@@ -1,0 +1,37 @@
+.file-input {
+    min-width: 50%;
+}
+
+table.dash-files-status {
+    tr {
+        vertical-align: top;
+        &.cap-status-delete {
+            background: #fcc;
+        }
+        &.cap-status-private {
+            background: #ffc;
+        }
+        &.cap-status-publish {
+            background: #cfc;
+        }
+    }
+
+    th {
+        text-align: left;
+        &.title {
+            width: 50%;
+        }
+    }
+
+    button{
+        &.action-delete {
+	    &:enabled {
+		color: red;
+	    }
+        }
+        &.action-private {
+        }
+        &.action-publish {
+        }
+    }
+}
