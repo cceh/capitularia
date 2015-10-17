@@ -14,7 +14,11 @@ function on_cap_action_file (element, action) {
         method: "POST",
         url: ajaxurl,
         data : data,
-    }).done (function (response) {
-        alert ('Got this from the server: ' + response.data.message);
+    }).done (function (response, status) {
+        jQuery ('table.cap_page_gen_table_files tbody').html (response.rows);
+    }).always (function (response, status) {
+        var msg = jQuery ('div.cap_page_dash_message');
+        msg.html (response.message);
+        msg.slideDown ().delay (2000).slideUp ();
     });
 }

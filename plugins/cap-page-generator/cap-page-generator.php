@@ -12,6 +12,8 @@ Text Domain: cap-page-gen
 
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
+require_once ('class-file-list-table.php');
+
 class Cap_Page_Generator {
     /**
      * Our singleton instance
@@ -243,7 +245,7 @@ class Cap_Page_Generator {
             $args = array (
                 'id'    => 'cap_page_gen_open',
                 'title' => __ ('Page Generator'),
-                'href'  => '/wp-admin/index.php?page=cap_page_gen_options',
+                'href'  => '/wp-admin/index.php?page=cap_page_gen_dashboard',
                 'meta'  => array ('class' => 'cap-page-gen',
                                   'title' => self::NAME),
             );
@@ -260,28 +262,36 @@ class Cap_Page_Generator {
 
     private function set_status ($slug, $status) {
         $post = $this->get_page_from_slug ($slug);
-        $post['post_status'] = $status;
-        return wp_update_post ($post) === 0; // wp_update_post returns 0 on error
+        $updated = array ('ID' => $post->ID, 'post_status' => $status);
+        return wp_update_post ($updated); // wp_update_post returns 0 on error
     }
 
     private function delete ($slug) {
         $post = $this->get_page_from_slug ($slug);
         if (!$post)
             return false;
-        error_log ("Cap_Page_Generator::delete () $slug {$post->ID}");
-
         return wp_delete_post ($post->ID, true);
     }
 
-    private function send_json ($error, $success_msg, $error_msg) {
-        if ($error) {
-            wp_send_json_error (array (
-                'message' => $error_msg
-            ));
+    private function send_json ($error) {
+        $json = array (
+            'success' => $error[0] < 2,
+            'message' => $error[1],
+        );
+
+        if ($json['success']) {
+            // Return new table content as JSON
+
+            ob_start ();
+            $xmlroot = $this->get_opt ('xmlroot');
+            $items = $this->prepare_items ($xmlroot);
+            $table = new Cap_Page_Generator_File_List_Table ();
+            $table->prepare_items ($items);
+            $table->display_rows_or_placeholder ();
+            $json['rows'] = ob_get_clean ();
         }
-        wp_send_json_success (array (
-            'message' => $success_msg,
-        ));
+
+        wp_send_json ($json);
     }
 
     /**
@@ -306,11 +316,11 @@ class Cap_Page_Generator {
         // rebase paths according to cap_xsl_processor directories
         $cap_xsl_options = get_option ('cap_xsl_options');
         $xsltroot2 = $cap_xsl_options['xsltroot'] . '/';
-        if (strcmp ($xsltroot, $xsltroot2, strlen ($xsltroot2)) == 0) {
+        if (strncmp ($xsltroot, $xsltroot2, strlen ($xsltroot2)) == 0) {
             $xsltroot = substr ($xsltroot, strlen ($xsltroot2));
         }
         $xmlroot2 = $cap_xsl_options['xmlroot'] . '/';
-        if (strcmp ($path, $xmlroot2, strlen ($xmlroot2)) == 0) {
+        if (strncmp ($path, $xmlroot2, strlen ($xmlroot2)) == 0) {
             $path = substr ($path, strlen ($xmlroot2));
         }
 
@@ -330,6 +340,53 @@ class Cap_Page_Generator {
         return wp_insert_post ($new_post);
     }
 
+    /**
+     * Do action on one file.
+     *
+     * @param action
+     * @param slug
+     *
+     * @return array of error code and relatve message
+     *         0 = success, 1 = warning, 2 = error
+     */
+
+    protected function do_action_on_file ($action, $filename) {
+        $slug   = $this->get_manuscript_slug ($filename);
+        $status = $this->get_post_status ($slug);
+
+        error_log ("do_action_on_file ($slug $status => $action $filename)");
+
+        if ($status == $action)
+            return array (1, "The post is already $action");
+
+        if ($action == 'delete') {
+            if ($this->delete ($slug) === false)
+                return array (2, __("Error: could not delete page $slug."));
+            return array (0, __("Page $slug deleted."));
+        }
+
+        if ($status == 'delete') {
+            $root = $this->get_opt ('xmlroot') . '/';
+            if ($this->create_page ($root . $filename, $action) === 0)
+                return array (2, __("Error: could not create page $slug."));
+            return array (0, __("Page $slug created."));
+        }
+
+        if ($this->set_status ($slug, $action) === 0)
+            return array (2, __("Error: could not set page $slug to status $action."));
+        return array (0, __("Page $slug status set to $action"));
+    }
+
+    protected function process_bulk_actions ($action, $filenames) {
+        error_log ("process_bulk_actions ($action)");
+
+        $msgs = array ();
+        foreach ($filenames as $filename) {
+            $msgs[] = $this->do_action_on_file ($action, $filename);
+        }
+        return $msgs;
+    }
+
     function on_cap_action_file () {
         check_ajax_referer (self::NONCE_SPECIAL_STRING, self::NONCE_PARAM_NAME);
         if (!current_user_can ('edit_posts'))
@@ -340,28 +397,7 @@ class Cap_Page_Generator {
         $action     = sanitize_key ($_POST['user_action']);
         $status     = $this->get_post_status ($slug);
 
-        error_log ("on_cap_action_file () $action $status $filename $slug");
-
-        if ($status == $action)
-            wp_send_json_error (array ('message' => "The post is already $action"));
-
-        if ($action == 'delete') {
-            $this->send_json ($this->delete ($slug) === false,
-                              __("Page $slug deleted."), __("Error: could not delete page $slug."));
-        }
-
-        if ($status == 'delete') {
-            // create a new page
-            $root = $this->get_opt ('xmlroot') . '/';
-            $this->send_json ($this->create_page ($root . $filename, $action) === 0,
-                              __("Page $slug created."),
-                              __("Error: could not create page $slug."));
-        }
-
-        // only change published status
-        $this->send_json ($this->set_status ($slug, $action) === false,
-                          __("Page $slug status set to $action"),
-                          __("Error: could not set page $slug to status $action."));
+        $this->send_json ($this->do_action_on_file ($action, $filename));
     }
 
     /**
@@ -372,51 +408,53 @@ class Cap_Page_Generator {
      * @return Nothing
      */
 
+    public function prepare_items ($xmlroot) {
+        $files = scandir ($xmlroot);
+        $items = array ();
+        foreach ($files as $file) {
+            if ($file[0] == '.')
+                continue;
+            $path = $xmlroot . '/' . $file;
+            if (is_dir ($path) || !is_readable ($path))
+                continue;
+
+            $slug  = $this->get_manuscript_slug ($path);
+            $title = $this->get_manuscript_title ($path);
+            if (empty ($title))
+                continue;
+
+            $status = $this->get_post_status ($slug);
+
+            $item = new stdClass ();
+            $item->slug     = esc_attr ($slug);
+            $item->filename = esc_html ($file);
+            $item->status   = esc_attr ($status);
+            $items[] = $item;
+        }
+        return $items;
+    }
+
     public function on_menu_dashboard_page () {
+        if (isset ($_REQUEST['filenames']) && isset ($_REQUEST['action'])) {
+            $this->process_bulk_actions ($_REQUEST['action'], $_REQUEST['filenames']);
+        }
+
         $xmlroot = $this->get_opt ('xmlroot');
         $title = esc_html (get_admin_page_title ());
         echo ("<div class='wrap'>\n  <h2>$title</h2>\n");
+        echo ("<div class='cap_page_dash_message'>Hi</div>");
         echo ("<p>Reading directory: {$xmlroot}</p>\n");
+        echo ("<form id='cap_page_gen_form' method='get'>");
+        // posts back to wp-admin/index.php, ensure that we get back to our
+        // current page
+        echo ("<input type='hidden' name='page' value='{$_REQUEST['page']}' />");
 
-        $files = scandir ($xmlroot);
-        if ($files) {
-            echo ("<table class='wp-list-table widefat fixed striped pages dash-files-status'>\n");
-            echo ("<thead><tr><td id='cb' class='manage-column column-cb check-column'>
-<label class='screen-reader-text' for='cb-select-all-1'>Select All</label>
-<input id='cb-select-all-1' type='checkbox'>
-</td><th>Slug</th><th>Action</th><th class='title'>Title</th></tr></thead><tbody>\n");
-            foreach ($files as $file) {
-                if ($file[0] == '.')
-                    continue;
-                $path = $xmlroot . '/' . $file;
-                if (is_dir ($path) || !is_readable ($path))
-                    continue;
+        $items = $this->prepare_items ($xmlroot);
+        $table = new Cap_Page_Generator_File_List_Table ();
+        $table->prepare_items ($items);
+        $table->display ();
 
-                $slug  = $this->get_manuscript_slug ($path);
-                $title = $this->get_manuscript_title ($path);
-                if (empty ($title))
-                    continue;
-
-                $status = $this->get_post_status ($slug);
-                $b_pub  = $this->make_action_button ('publish', $status, $slug, $file);
-                $b_priv = $this->make_action_button ('private', $status, $slug, $file);
-                $b_del  = $this->make_action_button ('delete',  $status, $slug, $file);
-                $aslug  = $status != 'delete' ? "<a href='/mss/$slug'>$slug</a>" : $slug;
-                echo ("<tr data-path='$file' data-slug='$slug' class='cap-status-$status'>\n");
-                echo ("<th class='check-column' scope='row'><input id='cb-select-$slug' type='checkbox' value='$slug' name='post[]'></th>");
-                echo ("<td>$aslug</td><td>$b_pub$b_priv$b_del</td><td>$title</td></tr>\n");
-            }
-            echo ("</tbody></table>\n");
-        }
-
-        echo ("</div>\n");
-    }
-
-    private function make_action_button ($action, $status, $slug, $path) {
-        $disable = $action == $status ? "disabled='disabled'" : "";
-        $path = esc_attr ($path);
-        $slug = esc_attr ($slug);
-        return  "<button class='status status-$status action-$action' $disable onclick=\"on_cap_action_file (this, '$action')\">$action</button>";
+        echo ("</form></div>\n");
     }
 
     /**

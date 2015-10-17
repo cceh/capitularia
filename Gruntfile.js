@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 
     grunt.initConfig ({
-        afs: grunt.option ('afs') || process.env.GRUNT_AFS ||
+        afs: grunt.option ('afs') || process.env.GRUNT_CAPITULARIA_AFS ||
             "/afs/rrz/vol/www/projekt/capitularia/http/docs/wp-content",
 
         pkg: grunt.file.readJSON ('package.json'),
@@ -83,8 +83,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks ('grunt-phplint');
     grunt.loadNpmTasks ('grunt-rsync');
 
-    grunt.registerTask ('lint', ['phplint', 'jshint']);
-    grunt.registerTask ('sync', ['lint', 'less', 'rsync']);
+    grunt.registerTask ('lint',   ['phplint', 'jshint']);
+    grunt.registerTask ('deploy', ['lint', 'less', 'rsync']);
 
     grunt.registerTask ('default', ['lint', 'less']);
 };

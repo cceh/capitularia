@@ -7,6 +7,6 @@
  * @since Capitularia 0.1
  */
 
-require ('page.php');
+require ('../page.php');
 
 ?>

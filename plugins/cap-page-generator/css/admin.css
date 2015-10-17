@@ -2,24 +2,17 @@
 .file-input {
   min-width: 50%;
 }
-table.dash-files-status tr {
-  vertical-align: top;
-}
-table.dash-files-status tr.cap-status-delete {
-  background: #fcc;
-}
-table.dash-files-status tr.cap-status-private {
-  background: #ffc;
-}
-table.dash-files-status tr.cap-status-publish {
+table.cap_page_gen_table_files tr.cap-published-status-publish th.check-column {
   background: #cfc;
 }
-table.dash-files-status th {
-  text-align: left;
+table.cap_page_gen_table_files tr.cap-published-status-private th.check-column {
+  background: #ffc;
 }
-table.dash-files-status th.title {
-  width: 50%;
+table.cap_page_gen_table_files tr.cap-published-status-delete th.check-column {
+  background: #fcc;
 }
-table.dash-files-status button.action-delete:enabled {
-  color: red;
+div.cap_page_dash_message {
+  display: none;
+  padding: 2em;
+  background: fcc;
 }

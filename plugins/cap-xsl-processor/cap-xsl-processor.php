@@ -166,7 +166,7 @@ class Cap_XSL_Processor {
         // BUG: wpautop Works only if the shortcode tag and
         // attributes are on one line.
 
-        error_log ("on_shortcode ()");
+        // error_log ("on_shortcode ()");
 
         if (!$this->post_id) {
             // relevanssi uses get_the_content () instead of
@@ -242,12 +242,12 @@ class Cap_XSL_Processor {
             return $content;
         }
 
-        error_log ("on_the_content () page id = $this->post_id");
+        // error_log ("on_the_content () page id = $this->post_id");
 
         $content = $this->strip_pre ($content);
 
         if ($this->save_post) {
-            error_log ("on_the_content () saving ...");
+            // error_log ("on_the_content () saving ...");
 
             // update metadata
             $this->increment_metadata ($this->post_id, 'cap_xsl_cache_misses');
@@ -255,7 +255,7 @@ class Cap_XSL_Processor {
             update_post_meta ($this->post_id, 'cap_xsl_cache_hits_temp',  0);
 
             if (!$this->do_revision) {
-                error_log ("on_the_content () revisions disabled");
+                // error_log ("on_the_content () revisions disabled");
                 // Turn off revisions for this save.  See:
                 // https://core.trac.wordpress.org/browser/tags/4.3.1/src/wp-includes/revision.php#L150
                 // Note: we cannot use the 'wp_revisions_to_keep' filter
@@ -272,9 +272,9 @@ class Cap_XSL_Processor {
                 'ID'           => $this->post_id,
                 'post_content' => $this->add_i18n_tags ($content)
             );
-            error_log ("on_the_content () before update_post ...");
+            // error_log ("on_the_content () before update_post ...");
             wp_update_post ($my_post);
-            error_log ("on_the_content () after update_post ...");
+            // error_log ("on_the_content () after update_post ...");
         }
 
         return $this->strip_shortcode ($content);
@@ -352,7 +352,7 @@ class Cap_XSL_Processor {
     public function on_admin_bar_menu ($wp_admin_bar) {
         // add clear cache button
         if ($this->page_has_shortcode) {
-            error_log ("on_admin_bar_menu ()");
+            // error_log ("on_admin_bar_menu ()");
 
             $args = array (
                 'id'    => 'cap_xsl_cache_reload',
