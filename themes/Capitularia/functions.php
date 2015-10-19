@@ -112,7 +112,22 @@ function cap_enqueue_scripts () {
     );
 }
 
-add_action ('wp_enqueue_scripts', 'cap_enqueue_scripts');
+function cap_admin_enqueue_scripts () {
+    // NOTE: Wordpress registers jquery-ui javascript (as jquery-ui-core,
+    // jquery-ui-accordion, etc.) but *does not register* nor includes any file
+    // of jquery-ui css.  We have to provide our own.  We enqueue this style
+    // here only for the sake of our plugins, because it is in a subdirectory of
+    // the theme.  FIXME: how do we avoid version conflicts between wp's
+    // jquery-ui and ours?
+    wp_register_style (
+        'cap-jquery-ui',
+        get_template_directory_uri () . '/bower_components/jquery-ui/themes/cupertino/jquery-ui.css',
+        array ()
+    );
+}
+
+add_action ('wp_enqueue_scripts',    'cap_enqueue_scripts');
+add_action ('admin_enqueue_scripts', 'cap_admin_enqueue_scripts');
 
 
 /**

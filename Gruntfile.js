@@ -26,17 +26,34 @@ module.exports = function (grunt) {
         },
 
         jshint: {
-            files: ['Gruntfile.js', 'themes/Capitularia/js/custom.js', 'plugins/cap*/js/*.js'],
             options: {
                 globals: {
                     jQuery: true
                 }
-            }
+            },
+            files: ['Gruntfile.js', 'themes/Capitularia/js/custom.js', 'plugins/cap*/js/*.js']
         },
 
         phplint: {
             themes:  ['themes/**/*.php'],
             plugins: ['plugins/**/*.php']
+        },
+
+        phpcs: {
+            options: {
+                // $ sudo apt-get install php-codesniffer
+                bin: 'phpcs',
+                standard: './phpcs',
+                extensions: 'php',
+                showSniffCodes: 'true',
+                report: 'emacs'
+            },
+            themes: {
+                src:  ['themes/Capitularia/**/*.php']
+            },
+            plugins: {
+                src:  ['plugins/**/*.php']
+            },
         },
 
         csslint: {
@@ -80,6 +97,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks ('grunt-contrib-jshint');
     grunt.loadNpmTasks ('grunt-contrib-less');
     grunt.loadNpmTasks ('grunt-contrib-watch');
+    grunt.loadNpmTasks ('grunt-phpcs');
     grunt.loadNpmTasks ('grunt-phplint');
     grunt.loadNpmTasks ('grunt-rsync');
 

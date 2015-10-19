@@ -2,17 +2,34 @@
 .file-input {
   min-width: 50%;
 }
-table.cap_page_gen_table_files tr.cap-published-status-publish th.check-column {
-  background: #cfc;
+table.cap_page_gen_table_files .check-column {
+  border-left: 0 solid white;
+  padding-left: 4px;
 }
-table.cap_page_gen_table_files tr.cap-published-status-private th.check-column {
-  background: #ffc;
+table.cap_page_gen_table_files tbody .check-column {
+  border-left-width: 4px;
+  border-left-color: inherit;
+  padding-left: 0;
 }
-table.cap_page_gen_table_files tr.cap-published-status-delete th.check-column {
-  background: #fcc;
+div.cap_page_spinner {
+  width: 100%;
+  height: 1em;
+  margin: 2px 0 0;
 }
-div.cap_page_dash_message {
-  display: none;
-  padding: 2em;
-  background: fcc;
+div.cap_page_spinner .ui-progressbar-indeterminate .ui-progressbar-value {
+  background: #00a0d2;
 }
+/* wp admin colors
+.notice-success {
+    border-color: #7ad03a;
+}
+.notice-warning {
+    border-color: #ffba00;
+}
+.notice-error {
+    border-color: #dd3d36;
+}
+.notice-info {
+    border-color: #00a0d2;
+}
+*/

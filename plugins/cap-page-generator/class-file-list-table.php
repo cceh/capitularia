@@ -5,12 +5,10 @@
  * @package Capitularia
  */
 
-if (!class_exists ('WP_List_Table')) {
-   require_once (ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
-}
+namespace cceh\capitularia\page_generator;
 
-class Cap_Page_Generator_File_List_Table extends WP_List_Table {
-
+class File_List_Table extends \WP_List_Table
+{
     /**
      * Constructor.
      *
@@ -19,13 +17,22 @@ class Cap_Page_Generator_File_List_Table extends WP_List_Table {
      * @param array $args An associative array of arguments.
      */
 
+    // We use the same classes in our table as wordpress admin notices.
+    private $status_to_notice_class = array (
+        'publish' => 'notice-success',
+        'private' => 'notice-warning',
+        'delete'  => 'notice-error',
+    );
+
     public function __construct ($args = array ()) {
-        parent::__construct (array (
-            'singular' => 'TEI file',
-            'plural'   => 'TEI files',
-            'ajax'     => true,
-            'screen'   => isset ($args['screen']) ? $args['screen'] : null,
-        ));
+        parent::__construct (
+            array (
+                'singular' => 'TEI file',
+                'plural'   => 'TEI files',
+                'ajax'     => true,
+                'screen'   => isset ($args['screen']) ? $args['screen'] : null,
+            )
+        );
     }
 
     protected function get_table_classes () {
@@ -47,19 +54,24 @@ class Cap_Page_Generator_File_List_Table extends WP_List_Table {
         $sortable = $this->get_sortable_columns ();
         $this->_column_headers = array ($columns, $hidden, $sortable);
 
-        $this->set_pagination_args (array ('total_items' => count ($items),
-                                           'per_page' => $per_page));
+        $this->set_pagination_args (
+            array (
+                'total_items' => count ($items),
+                'per_page' => $per_page
+            )
+        );
     }
 
-    public function no_items() {
+    public function no_items () {
         _e ('No TEI files found.');
     }
 
     protected function get_bulk_actions () {
         $actions = array ();
-        $actions['publish'] = _x ('Publish',           'publish TEI file');
-        $actions['private'] = _x ('Publish privately', 'publish TEI file');
-        $actions['delete']  = _x ('Delete',            'publish TEI file');
+        $actions['publish']  = _x ('Publish',           'publish TEI file');
+        $actions['private']  = _x ('Publish privately', 'publish TEI file');
+        $actions['delete']   = _x ('Unpublish',         'publish TEI file');
+        $actions['validate'] = _x ('Validate',          'publish TEI file');
 
         return $actions;
     }
@@ -73,21 +85,16 @@ class Cap_Page_Generator_File_List_Table extends WP_List_Table {
         );
     }
 
-    function process_bulk_action () {
-        if ($this->current_action () == 'delete') {
-            wp_die( 'Items deleted (or they would be if we had items to delete)!' );
-        }
-    }
-
     public function single_row ($file) {
-        echo ("<tr id='{$file->slug}' data-path='{$file->filename}' data-slug='{$file->slug}' class='cap-published-status-{$file->status}'>");
+        $class = $this->status_to_notice_class[$file->status];
+        echo ("<tr id='{$file->slug}' data-path='{$file->filename}' " .
+              "data-slug='{$file->slug}' class='$class'>");
         $this->single_row_columns ($file);
         echo ('</tr>');
     }
 
     /**
      * Table columns output
-     *
      */
 
     public function column_cb ($file) {
@@ -121,19 +128,16 @@ class Cap_Page_Generator_File_List_Table extends WP_List_Table {
         echo $file->filename;
     }
 
-    public function column_default ($file, $column_name) {
-        echo $column_name;
-    }
-
     /**
      * Generates and displays row action links.
      *
-     * @since 4.3.0
+     * @since  4.3.0
      * @access protected
      *
      * @param object $file        File being acted upon.
      * @param string $column_name Current column name.
      * @param string $primary     Primary column name.
+     *
      * @return string Row action output for links.
      */
 
@@ -142,14 +146,16 @@ class Cap_Page_Generator_File_List_Table extends WP_List_Table {
             return '';
         }
 
-        $u_publish = _x ('Publish',           'publish TEI file');
-        $u_private = _x ('Publish privately', 'publish TEI file');
-        $u_delete  = _x ('Delete',            'publish TEI file');
+        $u_publish  = _x ('Publish',           'publish TEI file');
+        $u_private  = _x ('Publish privately', 'publish TEI file');
+        $u_delete   = _x ('Unpublish',         'publish TEI file');
+        $u_validate = _x ('Validate',          'publish TEI file');
 
         $actions = array ();
-        $actions['publish'] = "<a onclick=\"on_cap_action_file (this, 'publish')\">$u_publish</a>";
-        $actions['private'] = "<a onclick=\"on_cap_action_file (this, 'private')\">$u_private</a>";
-        $actions['delete']  = "<a onclick=\"on_cap_action_file (this, 'delete')\" class='submitdelete'>$u_delete</a>";
+        $actions['publish']  = "<a onclick=\"on_cap_action_file (this, 'publish')\">$u_publish</a>";
+        $actions['private']  = "<a onclick=\"on_cap_action_file (this, 'private')\">$u_private</a>";
+        $actions['delete']   = "<a onclick=\"on_cap_action_file (this, 'delete')\" class='submitdelete'>$u_delete</a>";
+        $actions['validate'] = "<a onclick=\"on_cap_action_file (this, 'validate')\">$u_validate</a>";
         unset ($actions[$file->status]);
         return $this->row_actions ($actions);
     }
