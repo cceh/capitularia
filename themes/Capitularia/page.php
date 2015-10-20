@@ -53,6 +53,16 @@ if (isset ($cap_template_map[$cap_template])) {
     $cap_templates[] = cap_get_slug_root ();
 }
 
+// FIXME: stopgap measure
+$cap_tags = get_the_tags ($post->ID);
+if (is_array ($cap_tags)) {
+    foreach ($cap_tags as $cap_tag) {
+        if ($cap_tag->name == 'XML') {
+            $cap_templates = array ('transcription');
+        }
+    }
+}
+
 // You can override the selection by assigning a term in the cap-sidebar
 // taxonomy.
 

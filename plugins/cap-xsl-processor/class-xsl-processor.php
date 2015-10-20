@@ -14,7 +14,8 @@ class XSL_Processor
      */
     static private $instance = false;
 
-    const NAME = 'Capitularia XSL Processor';
+    const NAME     = 'Capitularia XSL Processor';
+    const AFS_ROOT = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
 
     private $options            = null;
     private $shortcode          = 'cap_xsl';
@@ -43,6 +44,56 @@ class XSL_Processor
         $this->stats = new Stats ();
         $this->shortcode = $this->get_opt ('shortcode', $this->shortcode);
         add_shortcode ($this->shortcode, array ($this, 'on_shortcode'));
+
+        add_action ('cap_xsl_transformed', array ($this, 'on_cap_xsl_transformed'), 10, 2);
+    }
+
+    // FIXME: this should go into its own plugin
+    private function meta ($post_id, $key, $node_list, $f = 'trim') {
+        delete_post_meta ($post_id, $key);
+        foreach ($node_list as $node) {
+            $value = $f ($node->nodeValue);
+            if (!is_array ($value)) {
+                $value = array ($value);
+            }
+            foreach ($value as $val) {
+                add_post_meta ($post_id, $key, $val);
+                error_log ("adding $key=$val to post $post_id");
+            }
+        }
+    }
+
+    public function on_cap_xsl_transformed ($post_id, $xml_path) {
+        libxml_use_internal_errors (true);
+        error_log ("on_cap_xsl_transformed ($post_id, $xml_path)");
+
+        $dom = new \DOMDocument;
+        $dom->Load ($xml_path);
+        if ($dom === false) {
+            return false;
+        }
+        $dom->xinclude ();
+
+        $xpath = new \DOMXPath ($dom);
+        $xpath->registerNamespace ('tei', 'http://www.tei-c.org/ns/1.0');
+        $xpath->registerNamespace ('xml', 'http://www.w3.org/XML/1998/namespace');
+
+        $this->meta ($post_id, 'msitem-corresp',     $xpath->query ('//tei:msItem/@corresp'));
+        $this->meta ($post_id, 'origDate-notBefore', $xpath->query ('//tei:head/tei:origDate/@notBefore'), 'intval');
+        $this->meta ($post_id, 'origDate-notAfter',  $xpath->query ('//tei:head/tei:origDate/@notAfter'),  'intval');
+        $this->meta ($post_id, 'origPlace',          $xpath->query ('//tei:head/tei:origPlace'));
+        $this->meta ($post_id, 'head-title-main',    $xpath->query ('//tei:head/tei:title[@type="main"]'));
+        $this->meta (
+            $post_id,
+            'origPlace-ref',
+            $xpath->query ('//tei:head/tei:origPlace/@ref'),
+            function ($in) {
+                return explode (' ', $in);
+            }
+        );
+
+        $errors = libxml_get_errors ();
+        libxml_clear_errors ();
     }
 
     public function on_enqueue_scripts () {
@@ -75,7 +126,9 @@ class XSL_Processor
     }
 
     private function wrap_in_shortcode ($content, $atts) {
-        return "[{$this->shortcode} xml=\"{$atts['xml']}\" xslt=\"{$atts['xslt']}\"]\n" .
+        $params  = empty ($atts['params'])       ? '' :       " params=\"{$atts['params']}\"";
+        $params .= empty ($atts['stringparams']) ? '' : " stringparams=\"{$atts['stringparams']}\"";
+        return "[{$this->shortcode} xml=\"{$atts['xml']}\" xslt=\"{$atts['xslt']}\"$params]\n" .
                "$content\n[/{$this->shortcode}]\n";
     }
 
@@ -103,7 +156,6 @@ class XSL_Processor
 
     private function add_i18n_tags ($content) {
         return "[:de]\n$content\n[:]\n"; // qTranslate-x
-        // return "<!--:de-->\n$content\n<!--:-->\n"; // mqTranslate
     }
 
     private function increment_metadata ($post_id, $meta) {
@@ -143,16 +195,20 @@ class XSL_Processor
             return $content;
         }
 
-        $args = shortcode_atts (
+        $atts = shortcode_atts (
             array (
-                'xml' => '',
-                'xslt' => '',
+                'xml'          => '',
+                'xslt'         => '',
+                'params'       => '',
+                'stringparams' => '',
             ),
             $atts
         );
         $xml  = $this->urljoin ($this->get_opt ('xmlroot'),  $atts['xml']);
         $xslt = $this->urljoin ($this->get_opt ('xsltroot'), $atts['xslt']);
-        $xsltproc  = $this->get_opt ('xsltproc');
+        $params       = wp_parse_args ($atts['params']);
+        $stringparams = wp_parse_args ($atts['stringparams']);
+        $xsltproc = $this->get_opt ('xsltproc');
 
         $xml_file_time  = intval (filemtime ($xml));
         $xslt_file_time = intval (filemtime ($xslt));
@@ -192,19 +248,28 @@ class XSL_Processor
         // call XSLT processor
         $output = array ();
         $retval = 666;
-        $cmdline = join (
-            ' ',
-            array (
-                $xsltproc,
-                escapeshellarg ($xslt),
-                escapeshellarg ($xml)
-                // cannot use tidy on such invalid input
-                // '| /vol/local/bin/tidy -qni -xml -utf8 -wrap 80'
-            )
-        );
+        $cmdline = array ();
+        $cmdline[] = $xsltproc;
+        foreach ($params as $key => $value) {
+            $key = escapeshellarg ($key);
+            $value = escapeshellarg ($value);
+            $cmdline[] = "--param $key $value";
+        }
+        foreach ($stringparams as $key => $value) {
+            $key = escapeshellarg ($key);
+            $value = escapeshellarg ($value);
+            $cmdline[] = "--stringparam $key $value";
+        }
+        $cmdline[] = escapeshellarg ($xslt);
+        $cmdline[] = escapeshellarg ($xml);
+        // '| /vol/local/bin/tidy -qni -xml -utf8 -wrap 80'
+
+        $cmdline = join (' ', $cmdline);
         // $output = shell_exec ($cmdline);
         exec ($cmdline, $output, $retval);
         $content = join ("\n", $output);
+
+        do_action ('cap_xsl_transformed', $this->post_id, $xml, $xslt, $params, $stringparams);
 
         return $this->wrap_in_shortcode ($content, $atts);
     }
@@ -250,6 +315,7 @@ class XSL_Processor
             );
             // error_log ("on_the_content () before update_post ...");
             wp_update_post ($my_post);
+            do_action ('cap_xsl_page_refreshed', $this->post_id);
             // error_log ("on_the_content () after update_post ...");
         }
 
@@ -356,13 +422,13 @@ class XSL_Processor
     public function on_options_field_xmlroot () {
         $setting = $this->get_opt ('xmlroot');
         echo "<input class='file-input' type='text' name='cap_xsl_options[xmlroot]' value='$setting' />";
-        echo '<p>Directory in the AFS, eg.: /afs/rrz/vol/www/projekt/capitularia/http/docs/cap/publ/mss</p>';
+        echo '<p>Directory in the AFS, eg.: ' . self::AFS_ROOT . 'http/docs/cap/publ/mss</p>';
     }
 
     public function on_options_field_xsltroot () {
         $setting = $this->get_opt ('xsltroot');
         echo "<input class='file-input' type='text' name='cap_xsl_options[xsltroot]' value='$setting' />";
-        echo '<p>Directory in the AFS, eg.: /afs/rrz/vol/www/projekt/capitularia/http/docs/cap/publ/transform</p>';
+        echo '<p>Directory in the AFS, eg.: ' . self::AFS_ROOT . 'http/docs/cap/publ/mss</p>';
     }
 
     public function on_options_field_xsltproc () {

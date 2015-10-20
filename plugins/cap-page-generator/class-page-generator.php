@@ -17,6 +17,7 @@ class Page_Generator
     const NAME                 = 'Capitularia Page Generator';
     const NONCE_SPECIAL_STRING = 'cap_nonce';
     const NONCE_PARAM_NAME     = '_ajax_nonce';
+    const AFS_ROOT             = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
 
     private $options = null;  // array of options, cached for performance
 
@@ -263,7 +264,7 @@ class Page_Generator
 
     private function send_json ($error) {
         // format message
-        $message = '<p><strong>' . esc_html ($error[1]) . "</strong></p>\n";
+        $message = '<p><strong>' . $error[1] . "</strong></p>\n";
         if (count ($error) >= 2) {
             $message .= "<ul>\n";
             // Return the array of xml validation errors
@@ -363,6 +364,7 @@ class Page_Generator
             'post_type'    => 'page',
             'post_parent'  => $parent_id,
             'tags_input'   => array ('xml'),
+            'tax_input'    => array ('cap-sidebar' => array ('transcription')),
         );
         return wp_insert_post ($new_post);
     }
@@ -395,10 +397,12 @@ class Page_Generator
                 // "/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/local/bin/xmllint --noout --relaxng",
                 // oops! incompatible binary format!
                 // web server reports:
-                // Linux ike.rrz.uni-koeln.de 2.6.18-274.7.1.el5PAE #1 SMP Mon Oct 17 12:05:46 EDT 2011 i686 i686 i386 GNU/Linux
+                // Linux ike.rrz.uni-koeln.de 2.6.18-274.7.1.el5PAE #1 SMP
+                //   Mon Oct 17 12:05:46 EDT 2011 i686 i686 i386 GNU/Linux
                 // => IA-32 while
                 // dialog reports:
-                // Linux dialog6.rrz.uni-koeln.de 2.6.32-504.12.2.el6.x86_64 #1 SMP Sun Feb 1 12:14:02 EST 2015 x86_64 x86_64 x86_64 GNU/Linux
+                // Linux dialog6.rrz.uni-koeln.de 2.6.32-504.12.2.el6.x86_64 #1 SMP
+                //   Sun Feb 1 12:14:02 EST 2015 x86_64 x86_64 x86_64 GNU/Linux
                 // => x86-64
 
                 'xmllint --noout --relaxng',
@@ -463,32 +467,36 @@ class Page_Generator
      *         0 = success, 1 = warning, 2 = error
      */
 
+    private function slug_to_link ($slug) {
+        return "<a href='/mss/$slug'>$slug</a>";
+    }
 
     protected function do_action_on_file ($action, $filename) {
         $slug   = $this->get_manuscript_slug ($filename);
         $status = $this->get_post_status ($slug);
         $root   = $this->get_opt ('xmlroot') . '/';
+        $a_slug = $this->slug_to_link ($slug);
 
         error_log ("do_action_on_file ($slug $status => $action $filename)");
 
         if ($action == 'validate') {
             $result = $this->validate ($root . $filename);
             if ($result === false) {
-                return array (1, __("Error while validating file $slug. Validity of file is unknown."));
+                return array (1, __("Error while validating file $a_slug. Validity of file is unknown."));
             }
             if ($result === true) {
-                return array (0, __("File $slug is valid TEI."));
+                return array (0, __("File $a_slug is valid TEI."));
             }
-            return array (2, __("File $slug is invalid TEI."), $result);
+            return array (2, __("File $a_slug is invalid TEI."), $result);
         }
 
         if ($status == $action) {
-            return array (1, "The post is already $action.");
+            return array (1, __("The post is already $action."));
         }
 
         if ($action == 'delete') {
             if ($this->delete ($slug) === false) {
-                return array (2, __("Error: could not unpublish page $slug."));
+                return array (2, __("Error: could not unpublish page $a_slug."));
             }
             return array (0, __("Page $slug unpublished."));
         }
@@ -497,13 +505,13 @@ class Page_Generator
             if ($this->create_page ($root . $filename, $action) === 0) {
                 return array (2, __("Error: could not create page $slug."));
             }
-            return array (0, __("Page $slug created."));
+            return array (0, __("Page $a_slug created with status set to $action."));
         }
 
         if ($this->set_status ($slug, $action) === 0) {
-            return array (2, __("Error: could not set page $slug to status $action."));
+            return array (2, __("Error: could not set page $a_slug to status $action."));
         }
-        return array (0, __("Page $slug status set to $action."));
+        return array (0, __("Page $a_slug status set to $action."));
     }
 
     protected function process_bulk_actions ($action, $filenames) {
@@ -611,13 +619,13 @@ class Page_Generator
     public function on_options_field_xmlroot () {
         $setting = $this->get_opt ('xmlroot');
         echo "<input class='file-input' type='text' name='cap_page_gen_options[xmlroot]' value='$setting' />";
-        echo '<p>Directory in the AFS, eg.: /afs/rrz/vol/www/projekt/capitularia/http/docs/cap/publ/mss</p>';
+        echo '<p>Directory in the AFS, eg.: ' . self::AFS_ROOT . 'http/docs/cap/publ/mss</p>';
     }
 
     public function on_options_field_xsltroot () {
         $setting = $this->get_opt ('xsltroot');
         echo "<input class='file-input' type='text' name='cap_page_gen_options[xsltroot]' value='$setting' />";
-        echo '<p>Directory in the AFS, eg.: /afs/rrz/vol/www/projekt/capitularia/http/docs/cap/publ/transform</p>';
+        echo '<p>Directory in the AFS, eg.: ' . self::AFS_ROOT . 'http/docs/cap/publ/transform</p>';
     }
 
     public function on_options_field_xslschema () {
