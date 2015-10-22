@@ -37,6 +37,16 @@ function get_id_by_slug($page_slug)
     return $page ? $page->ID : NULL;
 }
 
+function cap_get_option ($section, $option, $default = '') {
+    if (!isset ($cap_options) || !is_array ($cap_option)) {
+        $cap_options = array ();
+    }
+    if (!isset ($cap_options[$section])) {
+        $cap_options[$section] = get_option ($section, array ());
+    }
+    return isset ($cap_options[$section][$name]) ? $cap_options[$section][$name] : $default;
+}
+
 
 /**
  * Enqueue scripts and CSS

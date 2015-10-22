@@ -14,11 +14,12 @@ class XSL_Processor
      */
     static private $instance = false;
 
-    const NAME     = 'Capitularia XSL Processor';
-    const AFS_ROOT = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
+    const NAME      = 'Capitularia XSL Processor';
+    const AFS_ROOT  = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
+    const SHORTCODE = 'cap_xsl';
 
     private $options            = null;
-    private $shortcode          = 'cap_xsl';
+    private $shortcode          = null;
     private $page_has_shortcode = false;
     private $save_post          = false;
     private $do_revision        = false;
@@ -26,6 +27,8 @@ class XSL_Processor
     private $post_id            = 0;
     private $cache_time         = 0; // unixtime
     private $modified_time      = 0; // unixtime
+    private $content_cache      = null;
+    private $xmlfiles           = array ();
 
     private function __construct () {
         add_action ('init',                  array ($this, 'on_init'));
@@ -34,66 +37,22 @@ class XSL_Processor
         add_action ('admin_menu',            array ($this, 'on_admin_menu'));
         add_action ('admin_bar_menu',        array ($this, 'on_admin_bar_menu'), 200);
         add_action ('admin_enqueue_scripts', array ($this, 'on_admin_enqueue_scripts'));
+        add_action ('cap_xsl_get_xmlfiles',  array ($this, 'on_cap_xsl_get_xmlfiles'));
 
-        add_filter ('the_content', array ($this, 'on_the_content_early'), 5);  // very early before wpautop
-        add_filter ('the_content', array ($this, 'on_the_content_late'), 20);  // very late after do_shortcuts
+        // This is what WP does
+        // add_filter( 'the_content', 'do_shortcode', 11 ); // AFTER wpautop()
+
+        // very early before other plugins get a chance to mess things up
+        add_filter ('the_content', array ($this, 'on_the_content_early'), 1);
+        // after do_shortcodes
+        add_filter ('the_content', array ($this, 'on_the_content_late'), 20);
         add_filter ('query_vars',  array ($this, 'on_query_vars'));
     }
 
     public function on_init () {
         $this->stats = new Stats ();
-        $this->shortcode = $this->get_opt ('shortcode', $this->shortcode);
-        add_shortcode ($this->shortcode, array ($this, 'on_shortcode'));
-
-        add_action ('cap_xsl_transformed', array ($this, 'on_cap_xsl_transformed'), 10, 2);
-    }
-
-    // FIXME: this should go into its own plugin
-    private function meta ($post_id, $key, $node_list, $f = 'trim') {
-        delete_post_meta ($post_id, $key);
-        foreach ($node_list as $node) {
-            $value = $f ($node->nodeValue);
-            if (!is_array ($value)) {
-                $value = array ($value);
-            }
-            foreach ($value as $val) {
-                add_post_meta ($post_id, $key, $val);
-                error_log ("adding $key=$val to post $post_id");
-            }
-        }
-    }
-
-    public function on_cap_xsl_transformed ($post_id, $xml_path) {
-        libxml_use_internal_errors (true);
-        error_log ("on_cap_xsl_transformed ($post_id, $xml_path)");
-
-        $dom = new \DOMDocument;
-        $dom->Load ($xml_path);
-        if ($dom === false) {
-            return false;
-        }
-        $dom->xinclude ();
-
-        $xpath = new \DOMXPath ($dom);
-        $xpath->registerNamespace ('tei', 'http://www.tei-c.org/ns/1.0');
-        $xpath->registerNamespace ('xml', 'http://www.w3.org/XML/1998/namespace');
-
-        $this->meta ($post_id, 'msitem-corresp',     $xpath->query ('//tei:msItem/@corresp'));
-        $this->meta ($post_id, 'origDate-notBefore', $xpath->query ('//tei:head/tei:origDate/@notBefore'), 'intval');
-        $this->meta ($post_id, 'origDate-notAfter',  $xpath->query ('//tei:head/tei:origDate/@notAfter'),  'intval');
-        $this->meta ($post_id, 'origPlace',          $xpath->query ('//tei:head/tei:origPlace'));
-        $this->meta ($post_id, 'head-title-main',    $xpath->query ('//tei:head/tei:title[@type="main"]'));
-        $this->meta (
-            $post_id,
-            'origPlace-ref',
-            $xpath->query ('//tei:head/tei:origPlace/@ref'),
-            function ($in) {
-                return explode (' ', $in);
-            }
-        );
-
-        $errors = libxml_get_errors ();
-        libxml_clear_errors ();
+        $this->shortcode = $this->get_opt ('shortcode', self::SHORTCODE);
+        // add_shortcode ($this->shortcode, array ($this, 'on_shortcode'));
     }
 
     public function on_enqueue_scripts () {
@@ -105,7 +64,7 @@ class XSL_Processor
      * If an instance exists, this returns it.  If not, it creates one and
      * returns it.
      *
-     * @return Cap_XSL_Processor
+     * @return XSL_Processor
      */
     public static function getInstance () {
         if (!self::$instance) {
@@ -167,15 +126,37 @@ class XSL_Processor
 
 
     public function on_the_content_early ($content) {
+        error_log ('on_the_content_early () ==> enter');
+
         $this->post_id       = intval (get_queried_object_id ());
         $this->cache_time    = intval (get_metadata ('post', $this->post_id, 'cap_xsl_cache_time', true));
         $this->modified_time = intval (get_post_modified_time ('U', true, $this->post_id));
         $this->stats->page_cached = $this->cache_time;
         $this->stats->page_mtime  = $this->modified_time;
-        if (strpos ($content, $this->shortcode) !== false) {
-            $this->page_has_shortcode = true;
-            return $this->hide_shortcodes_from_wpautop ($content);
+
+        // Do our shortcode very early in the filter chain.  We want to use the
+        // very handy do_shortcode () function, so we have to remove all other
+        // shortcodes before calling it and reinstate them afterwards.
+        $current_shortcodes = $GLOBALS['shortcode_tags'];
+        remove_all_shortcodes ();
+        add_shortcode ($this->shortcode, array ($this, 'on_shortcode'));
+        $content = do_shortcode ($content);
+        $GLOBALS['shortcode_tags'] = $current_shortcodes;
+
+        // Save the result of the transform.  This is what we will write back to
+        // the post later.  We have to save this away because other plugins like
+        // to mess with it, eg. search plugins add highlighting and qTranslate-X
+        // adds do-you-want-this-in-another-language notices.  We have already
+        // taken care that our shortcode tags are still present.
+        if ($this->save_post) {
+            $this->content_cache = $content;
         }
+
+        if ($this->page_has_shortcode) {
+            $content = $this->hide_shortcodes_from_wpautop ($content);
+        }
+
+        error_log ('on_the_content_early () ==> exit');
         return $content;
     }
 
@@ -186,7 +167,9 @@ class XSL_Processor
         // BUG: wpautop Works only if the shortcode tag and
         // attributes are on one line.
 
-        // error_log ("on_shortcode ()");
+        error_log ('on_shortcode () ==> enter');
+
+        $this->page_has_shortcode = true;
 
         if (!$this->post_id) {
             // relevanssi uses get_the_content () instead of
@@ -233,15 +216,12 @@ class XSL_Processor
         // do a revision only if page or xml changed
         $this->do_revision |= $this->cache_time < max ($this->modified_time, $xml_file_time);
 
-        $this->page_has_shortcode = true;
-
         $this->stats->xml_mtime = $xml_file_time;
         $this->stats->xsl_mtime = $xslt_file_time;
 
         if (!$do_transform) {
             // return cached copy
-            $this->increment_metadata ($this->post_id, 'cap_xsl_cache_hits');
-            $this->increment_metadata ($this->post_id, 'cap_xsl_cache_hits_temp');
+            error_log ('on_shortcode () ==> exit cached');
             return $this->wrap_in_shortcode ($content, $atts);
         }
 
@@ -269,7 +249,12 @@ class XSL_Processor
         exec ($cmdline, $output, $retval);
         $content = join ("\n", $output);
 
+        if (!in_array ($xml, $this->xmlfiles)) {
+            $this->xmlfiles[] = $xml;
+        }
         do_action ('cap_xsl_transformed', $this->post_id, $xml, $xslt, $params, $stringparams);
+
+        error_log ('on_shortcode () ==> exit transformed');
 
         return $this->wrap_in_shortcode ($content, $atts);
     }
@@ -281,12 +266,10 @@ class XSL_Processor
             return $content;
         }
 
-        // error_log ("on_the_content () page id = $this->post_id");
-
-        $content = $this->strip_pre ($content);
+        error_log ("on_the_content_late () => enter page id = $this->post_id");
 
         if ($this->save_post) {
-            // error_log ("on_the_content () saving ...");
+            error_log ('on_the_content_late () saving ...');
 
             // update metadata
             $this->increment_metadata ($this->post_id, 'cap_xsl_cache_misses');
@@ -294,7 +277,7 @@ class XSL_Processor
             update_post_meta ($this->post_id, 'cap_xsl_cache_hits_temp',  0);
 
             if (!$this->do_revision) {
-                // error_log ("on_the_content () revisions disabled");
+                error_log ('on_the_content_late () revisions disabled');
                 // Turn off revisions for this save.  See:
                 // https://core.trac.wordpress.org/browser/tags/4.3.1/src/wp-includes/revision.php#L150
                 // Note: we cannot use the 'wp_revisions_to_keep' filter
@@ -311,21 +294,31 @@ class XSL_Processor
             // cache xslt output in database
             $my_post = array (
                 'ID'           => $this->post_id,
-                'post_content' => $this->add_i18n_tags ($content)
+                'post_content' => $this->add_i18n_tags ($this->content_cache)
             );
-            // error_log ("on_the_content () before update_post ...");
+            error_log ('on_the_content_late () before update_post ...');
             wp_update_post ($my_post);
             do_action ('cap_xsl_page_refreshed', $this->post_id);
-            // error_log ("on_the_content () after update_post ...");
+            error_log ('on_the_content_late () after update_post ...');
+        } else {
+            $this->increment_metadata ($this->post_id, 'cap_xsl_cache_hits');
+            $this->increment_metadata ($this->post_id, 'cap_xsl_cache_hits_temp');
         }
 
-        return $this->strip_shortcode ($content);
+        error_log ('on_the_content_late () => exit');
+
+        return $this->strip_shortcode ($this->strip_pre ($content));
     }
 
     public function on_query_vars ($vars) {
         $vars[] = 'cap_xsl';
         return $vars;
     }
+
+    public function on_cap_xsl_get_xmlfiles () {
+        return $this->xmlfiles;
+    }
+
 
     /**
      * Administration page stuff
@@ -390,8 +383,6 @@ class XSL_Processor
     public function on_admin_bar_menu ($wp_admin_bar) {
         // add clear cache button
         if ($this->page_has_shortcode) {
-            // error_log ("on_admin_bar_menu ()");
-
             $args = array (
                 'id'    => 'cap_xsl_cache_reload',
                 'title' => 'XSL',

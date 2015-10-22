@@ -13,7 +13,8 @@
 	background:#beac86;
 	color:#fff;
 	position:relative;
-	margin-bottom:70px;
+	margin-top: 70px;
+	margin-bottom: 70px;
 }
 
 .header-block:after {
@@ -38,8 +39,7 @@
 	display:block;
 	width:32%;
 	float:right;
-  padding: 20px;
-	/* margin-bottom:-40px; */
+	margin-bottom:-40px;
 }
 
 #main {
@@ -55,6 +55,7 @@
 
 div.teaser-bar {
     margin: 2em 0;
+    line-height: 1.5em;
 }
 
 div.teaser-bar ul {
@@ -62,8 +63,8 @@ div.teaser-bar ul {
 }
 
 div.teaser-bar-2 {
-	  border-top: solid 1px #0a0a0a;
-	  padding-top: 2em;
+	border-top: solid 1px #0a0a0a;
+	padding-top: 2em;
 }
 
 div.teaser-bar li.widget {
@@ -72,16 +73,16 @@ div.teaser-bar li.widget {
     vertical-align: top;
     width: 33%;
     box-sizing: border-box;
-    padding: 1em;
-	  text-align:center;
+    padding: 0 1em;
+	text-align:center;
 }
 
 div.teaser-bar li.widget.cap_widget_image {
-	  text-align:left;
+	text-align:left;
 }
 
 div.teaser-bar-2 li.widget {
-	  width: 49%;
+	width: 49%;
 }
 
 div.teaser-bar h2 {
@@ -89,26 +90,26 @@ div.teaser-bar h2 {
 }
 
 div.teaser-bar p {
-	  line-height: 1.5em;
-	  margin-bottom: 0.35em;
+	line-height: 1.5em;
+	margin-bottom: 0.35em;
 }
 
 div.teaser-bar a {
-	  color: #4e4c4f;
-	  transition: color 300ms;
+	color: #4e4c4f;
+	transition: color 300ms;
 }
 
 div.teaser-bar a:hover {
-	  color:#b92900;
-	  text-decoration: none;
+	color:#b92900;
+	text-decoration: none;
 }
 
 div.teaser-bar img {
-	  float: left;
+	float: left;
     height: 10em;
     max-width: 33%;
-    margin-right: 1em;
-    margin-bottom: 1em;
+    margin-right: 32px;
+    margin-bottom: 32px;
 }
 
 div.teaser-bar a.mehr-lesen {
@@ -120,8 +121,8 @@ div.teaser-bar a.mehr-lesen {
 	letter-spacing: 2px;
 
 	transition:color 300ms;
-  display: block;
-  margin-top: 1ex;
+    display: block;
+    margin-top: 1ex;
 }
 
 div.teaser-bar .mehr-lesen:focus,
@@ -486,11 +487,48 @@ input[type="text"] {
 }
 
 /***********/
+/* Content */
+/***********/
+
+div.content-col {
+    text-align: justify;
+}
+
+div.content-col h3,
+div.content-col h4,
+div.content-col h5,
+div.content-col h6
+{
+    margin: 2em 0;
+}
+
+div.content-col h5 {
+    font-weight: bold;
+}
+
+div.content-col p {
+    margin: 1.5em 0;
+}
+
+div.content-col ul {
+    margin: 1.5em 0;
+}
+
+div.content-col li {
+    margin-left: 2em;
+    list-style: disc outside;
+}
+
+div.content-col hr {
+    margin: 3em 0;
+}
+
+/***********/
 /* Sidebar */
 /***********/
 
 .sidebar-col h2 {
-	  font-size: 1.3em;
+	font-size: 1.3em;
     margin: 1.5em 0 1em;
 }
 

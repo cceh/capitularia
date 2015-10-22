@@ -15,7 +15,7 @@ class Page_Generator
     static private $instance = false;
 
     const NAME                 = 'Capitularia Page Generator';
-    const NONCE_SPECIAL_STRING = 'cap_nonce';
+    const NONCE_SPECIAL_STRING = 'cap_page_generator_nonce';
     const NONCE_PARAM_NAME     = '_ajax_nonce';
     const AFS_ROOT             = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
 
@@ -45,7 +45,7 @@ class Page_Generator
      * If an instance exists, this returns it.  If not, it creates one and
      * returns it.
      *
-     * @return Cap_Page_Gen_Processor
+     * @return Page_Generator
      */
     public static function getInstance () {
         if (!self::$instance) {
@@ -256,39 +256,42 @@ class Page_Generator
         $wp_admin_bar->add_node ($args);
     }
 
-    /**
-     * AJAX
-     *
-     * @return
-     */
-
-    private function send_json ($error) {
-        // format message
-        $message = '<p><strong>' . $error[1] . "</strong></p>\n";
-        if (count ($error) >= 2) {
+    private function format_error_message ($error_struct) {
+        $message = '<p><strong>' . $error_struct[1] . "</strong></p>\n";
+        if (count ($error_struct) >= 2 && is_array ($error_struct[2])) {
             $message .= "<ul>\n";
             // Return the array of xml validation errors
-            foreach ($error[2] as $e) {
+            foreach ($error_struct[2] as $e) {
                 $message .= '<li>' . esc_html ($e) . "</li>\n";
             }
             $message .= "</ul>\n";
         }
         $class = 'notice-success';
-        if ($error[0] == 1) {
+        if ($error_struct[0] == 1) {
             $class = 'notice-warning';
         }
-        if ($error[0] >= 2) {
+        if ($error_struct[0] >= 2) {
             $class = 'notice-error';
         }
         $message
             = "<div class='notice $class is-dismissible'>$message" .
             "<button class='notice-dismiss' type='button' " .
             "onclick='jQuery (this).parent ().slideUp ();'>" .
-            "<span class='screen-reader-text'>Dismiss this notice.</span></button></div>";
+            "<span class='screen-reader-text'>Dismiss this notice.</span></button></div>\n";
 
+        return $message;
+    }
+
+    /**
+     * AJAX
+     *
+     * @return
+     */
+
+    private function send_json ($error_struct) {
         $json = array (
-            'success' => $error[0] < 2, // 0 == success, 1 == warning, 2 == error
-            'message' => $message,
+            'success' => $error_struct[0] < 2, // 0 == success, 1 == warning, 2 == error
+            'message' => $this->format_error_message ($error_struct),
         );
 
         if ($json['success']) {
@@ -515,13 +518,11 @@ class Page_Generator
     }
 
     protected function process_bulk_actions ($action, $filenames) {
-        error_log ("process_bulk_actions ($action)");
-
-        $msgs = array ();
+        $messages = array ();
         foreach ($filenames as $filename) {
-            $msgs[] = $this->do_action_on_file ($action, $filename);
+            $messages[] = $this->format_error_message ($this->do_action_on_file ($action, $filename));
         }
-        return $msgs;
+        return implode ("\n", $messages);
     }
 
     public function on_cap_action_file () {
@@ -575,14 +576,16 @@ class Page_Generator
     }
 
     public function on_menu_dashboard_page () {
-        if (isset ($_REQUEST['filenames']) && isset ($_REQUEST['action'])) {
-            $this->process_bulk_actions ($_REQUEST['action'], $_REQUEST['filenames']);
-        }
-
         $xmlroot = $this->get_opt ('xmlroot');
         $title = esc_html (get_admin_page_title ());
         echo ("<div class='wrap'>\n  <h2>$title</h2>\n");
-        echo ("<div class='cap_page_dash_message'></div>");
+
+        echo ("<div class='cap_page_dash_message'>\n");
+        if (isset ($_REQUEST['action']) && isset ($_REQUEST['filenames'])) {
+            echo ($this->process_bulk_actions ($_REQUEST['action'], $_REQUEST['filenames']));
+        }
+        echo ("</div>\n");
+
         echo ("<p>Reading directory: {$xmlroot}</p>\n");
         echo ("<form id='cap_page_gen_form' method='get'>");
         // posts back to wp-admin/index.php, ensure that we get back to our
