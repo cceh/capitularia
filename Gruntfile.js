@@ -67,6 +67,35 @@ module.exports = function (grunt) {
             src:  ['themes/Capitularia/css/*.css', 'plugins/**/*.css']
         },
 
+        pot: {
+            options: {
+                text_domain: "capitularia",
+                encoding: "utf-8",
+                dest: 'themes/Capitularia/languages/',
+                keywords: ['__', '_n:1,2', '_x'],
+                msgmerge: true,
+            },
+            themes: {
+                src: ['themes/Capitularia/**/*.php'],
+                expand: true,
+            }
+        },
+
+        potomo: {
+            themes: {
+                options: {
+                    poDel: false
+                },
+                files: [{
+                    expand: true,
+                    src: ['themes/Capitularia/languages/*.po'],
+                    dest: './',
+                    ext: '.mo',
+                    nonull: true,
+                }]
+            }
+        },
+
         rsync: {
             options: {
                 args: ["-rlptz"],
@@ -99,10 +128,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks ('grunt-contrib-watch');
     grunt.loadNpmTasks ('grunt-phpcs');
     grunt.loadNpmTasks ('grunt-phplint');
+    grunt.loadNpmTasks ('grunt-pot');
+    grunt.loadNpmTasks ('grunt-potomo');
     grunt.loadNpmTasks ('grunt-rsync');
 
     grunt.registerTask ('lint',   ['phplint', 'jshint']);
-    grunt.registerTask ('deploy', ['lint', 'less', 'rsync']);
+    grunt.registerTask ('mo',     ['pot',     'potomo']);
+    grunt.registerTask ('deploy', ['lint',    'less',     'mo', 'rsync']);
 
     grunt.registerTask ('default', ['lint', 'less']);
 };

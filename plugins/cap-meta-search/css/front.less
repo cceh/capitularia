@@ -2,3 +2,19 @@
   content: "\f536";
   top: 2px;
 }
+
+div.search-results-excerpt {
+    h2 {
+	margin: 2em 0 1.5em 0;
+	font-size: 1.3em;
+    }
+    li.snippet {
+	padding: 0;
+	mark {
+	}
+	&:after {
+	    display: inline;
+	    content: " …";
+	}
+    }
+}

@@ -50,7 +50,7 @@ class Cap_Widget_Base extends WP_Widget {
 
     protected function the_widget_body ($args, $instance) {
         echo ("<div class=\"{$this->class}-body\">{$this->text}</div>\n");
-        echo $this->make_link (__('mehr lesen', 'text_domain'), $this->link, 'mehr-lesen ssdone');
+        echo $this->make_link (__('read more', 'capitularia'), $this->link, 'mehr-lesen ssdone');
     }
 
     protected function the_widget_image ($args, $instance) {
@@ -59,8 +59,8 @@ class Cap_Widget_Base extends WP_Widget {
 
     protected function the_option ($instance, $name, $caption, $placeholder) {
         $value = !empty ($instance[$name]) ? $instance[$name] : '';
-        $caption = __($caption);
-        $placeholder = __($placeholder);
+        $caption = __($caption, 'capitularia');
+        $placeholder = __($placeholder, 'capitularia');
         echo ("<p><label for=\"{$this->get_field_id ($name)}\">$caption</label>");
         echo ("<input class=\"widefat\" id=\"{$this->get_field_id ($name)}\" name=\"{$this->get_field_name ($name)}\" type=\"text\" value=\"$value\" placeholder=\"$placeholder\"></p>");
     }
@@ -114,10 +114,10 @@ class Cap_Widget_Text extends Cap_Widget_Base {
     public function __construct () {
         $widget_ops = array (
             'classname' => 'cap_widget_text',
-            'description' => __('Arbitrary text.')
+            'description' => __('Arbitrary text.', 'capitularia')
         );
         $control_ops = array ('width' => 400, 'height' => 350);
-        parent::__construct ('cap_widget_text', __('Capitularia Text Widget'),
+        parent::__construct ('cap_widget_text', __('Capitularia Text Widget', 'capitularia'),
                              self::HAS_TITLE | self::HAS_TEXT, $widget_ops);
     }
 }
@@ -127,10 +127,10 @@ class Cap_Widget_Image extends Cap_Widget_Base {
     public function __construct () {
         $widget_ops = array (
             'classname' => 'cap_widget_image',
-            'description' => __('Arbitrary text and image.')
+            'description' => __('Arbitrary text and image.', 'capitularia')
         );
         $control_ops = array ('width' => 400, 'height' => 350);
-        parent::__construct ('cap_widget_image', __('Capitularia Image Widget'),
+        parent::__construct ('cap_widget_image', __('Capitularia Image Widget', 'capitularia'),
                              self::HAS_TITLE | self::HAS_TEXT | self::HAS_IMAGE, $widget_ops);
     }
 }
@@ -140,10 +140,10 @@ class Cap_Widget_Logo extends Cap_Widget_Base {
     public function __construct () {
         $widget_ops = array (
             'classname' => 'cap_widget_logo',
-            'description' => __('Image and link for the logo bar.')
+            'description' => __('Image and link for the logo bar.', 'capitularia')
         );
         $control_ops = array ('width' => 400, 'height' => 350);
-        parent::__construct ('cap_widget_logo', __('Capitularia Logo Widget'),
+        parent::__construct ('cap_widget_logo', __('Capitularia Logo Widget', 'capitularia'),
                              self::HAS_TITLE | self::HAS_IMAGE, $widget_ops);
     }
 

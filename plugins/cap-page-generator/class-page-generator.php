@@ -121,6 +121,12 @@ class Page_Generator
         foreach ($titles as $title) {
             if (isset ($title['xml:lang'])) {
                 $lang = $title['xml:lang'];
+                if ($lang == 'ger') {
+                    $lang = 'de';
+                }
+                if ($lang == 'eng') {
+                    $lang = 'en';
+                }
                 $tmp[] = "[:{$lang}]{$title}[:]";
             } else {
                 $tmp[] = strval ($title);
@@ -481,6 +487,19 @@ class Page_Generator
         $a_slug = $this->slug_to_link ($slug);
 
         error_log ("do_action_on_file ($slug $status => $action $filename)");
+
+        if ($action == 'metadata') {
+            // We proxy this action to the Meta Search plugin.
+            $page = $this->get_page_from_slug ($slug);
+            if (!$page) {
+                return array (2, __("Error while extracting metadata: no page with slug $slug."));
+            }
+            $errors = apply_filters ('cap_meta_search_extract_metadata', array (), $page->ID, $root . $filename);
+            if ($errors) {
+                return array (2, __("Errors while extracting metadata from file $a_slug."), $errors);
+            }
+            return array (0, __("Metadata extracted from file $a_slug."));
+        }
 
         if ($action == 'validate') {
             $result = $this->validate ($root . $filename);

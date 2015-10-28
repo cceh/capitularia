@@ -73,8 +73,8 @@ class Cap_Walker_Transcription_Nav_Menu extends Walker_Nav_Menu {
 class Cap_Widget_Transcription_Navigation extends WP_Nav_Menu_Widget {
 
     public function __construct() {
-        $widget_ops = array ('description' => __('A navigation menu for transcription pages.') );
-        WP_Widget::__construct ('cap_nav_menu', __('Capitularia Navigation Menu'), $widget_ops );
+        $widget_ops = array ('description' => __('A navigation menu for transcription pages.', 'capitularia') );
+        WP_Widget::__construct ('cap_nav_menu', __('Capitularia Navigation Menu', 'capitularia'), $widget_ops );
     }
 
     public function widget ($args, $instance) {

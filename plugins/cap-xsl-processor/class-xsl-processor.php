@@ -126,7 +126,7 @@ class XSL_Processor
 
 
     public function on_the_content_early ($content) {
-        error_log ('on_the_content_early () ==> enter');
+        // error_log ('on_the_content_early () ==> enter');
 
         $this->post_id       = intval (get_queried_object_id ());
         $this->cache_time    = intval (get_metadata ('post', $this->post_id, 'cap_xsl_cache_time', true));
@@ -156,7 +156,7 @@ class XSL_Processor
             $content = $this->hide_shortcodes_from_wpautop ($content);
         }
 
-        error_log ('on_the_content_early () ==> exit');
+        // error_log ('on_the_content_early () ==> exit');
         return $content;
     }
 
@@ -167,7 +167,7 @@ class XSL_Processor
         // BUG: wpautop Works only if the shortcode tag and
         // attributes are on one line.
 
-        error_log ('on_shortcode () ==> enter');
+        // error_log ('on_shortcode () ==> enter');
 
         $this->page_has_shortcode = true;
 
@@ -221,7 +221,7 @@ class XSL_Processor
 
         if (!$do_transform) {
             // return cached copy
-            error_log ('on_shortcode () ==> exit cached');
+            // error_log ('on_shortcode () ==> exit cached');
             return $this->wrap_in_shortcode ($content, $atts);
         }
 
@@ -254,7 +254,7 @@ class XSL_Processor
         }
         do_action ('cap_xsl_transformed', $this->post_id, $xml, $xslt, $params, $stringparams);
 
-        error_log ('on_shortcode () ==> exit transformed');
+        // error_log ('on_shortcode () ==> exit transformed');
 
         return $this->wrap_in_shortcode ($content, $atts);
     }
@@ -266,10 +266,10 @@ class XSL_Processor
             return $content;
         }
 
-        error_log ("on_the_content_late () => enter page id = $this->post_id");
+        // error_log ("on_the_content_late () => enter page id = $this->post_id");
 
         if ($this->save_post) {
-            error_log ('on_the_content_late () saving ...');
+            // error_log ('on_the_content_late () saving ...');
 
             // update metadata
             $this->increment_metadata ($this->post_id, 'cap_xsl_cache_misses');
@@ -277,7 +277,7 @@ class XSL_Processor
             update_post_meta ($this->post_id, 'cap_xsl_cache_hits_temp',  0);
 
             if (!$this->do_revision) {
-                error_log ('on_the_content_late () revisions disabled');
+                // error_log ('on_the_content_late () revisions disabled');
                 // Turn off revisions for this save.  See:
                 // https://core.trac.wordpress.org/browser/tags/4.3.1/src/wp-includes/revision.php#L150
                 // Note: we cannot use the 'wp_revisions_to_keep' filter
@@ -296,16 +296,16 @@ class XSL_Processor
                 'ID'           => $this->post_id,
                 'post_content' => $this->add_i18n_tags ($this->content_cache)
             );
-            error_log ('on_the_content_late () before update_post ...');
+            // error_log ('on_the_content_late () before update_post ...');
             wp_update_post ($my_post);
             do_action ('cap_xsl_page_refreshed', $this->post_id);
-            error_log ('on_the_content_late () after update_post ...');
+            // error_log ('on_the_content_late () after update_post ...');
         } else {
             $this->increment_metadata ($this->post_id, 'cap_xsl_cache_hits');
             $this->increment_metadata ($this->post_id, 'cap_xsl_cache_hits_temp');
         }
 
-        error_log ('on_the_content_late () => exit');
+        // error_log ('on_the_content_late () => exit');
 
         return $this->strip_shortcode ($this->strip_pre ($content));
     }
@@ -388,7 +388,8 @@ class XSL_Processor
                 'title' => 'XSL',
                 'href'  => $_SERVER['REQUEST_URI'] . '?cap_xsl=reload',
                 'meta'  => array ('class' => 'cap-xsl',
-                                  'title' => self::NAME . "\n" . $this->stats->get_tooltip ($this->post_id))
+                                  'title' => self::NAME . "\nRefresh the page cache\n" .
+                                  $this->stats->get_tooltip ($this->post_id))
             );
             $wp_admin_bar->add_node ($args);
         }

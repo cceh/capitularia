@@ -1,91 +1,59 @@
 <?php
+
 /**
  * The template for displaying Search Results pages.
  *
- * @package WordPress
- * @subpackage Capitularia
+ * @package Capitularia
  */
-?>
 
-<?php get_header(); ?>
+get_header ();
 
-			<main id="main">
+echo ("<main id='main'>\n");
+echo ("<div class='content-col'>\n");
 
-				<div class="content-col">
+echo ("<div class='page-header'>\n<h2>" . __('Search Results', 'capitularia') . "</h2>\n</div>\n");
 
-					<div class="page-header">
-						<h2>Kapitulariensuche</h2>
-					</div>
+$your_search = apply_filters ('cap_meta_search_your_search', '');
+$n_results = $wp_query->post_count;
 
-					<div class="search-pager">
-						<?php
-						/*if ( ! $_GET["cat"] == '' ) { $filter_cat = '&cat='.$_GET["cat"]; }
-$allsearch = &new WP_Query('s='.str_replace(' ', '+', get_search_query()).'&showposts=-1'.$filter_cat);
-$count = $allsearch->post_count;
-wp_reset_query();
+if ($n_results) {
+    $your_search = sprintf (_n (
+        'Your search for: %1$s gave one result.',
+        'Your search for: %1$s gave %2$d results.',
+        $n_results,
+        'capitularia'
+    ), $your_search, $n_results);
+} else {
+    $your_search = sprintf (__ (
+        'Your search for %1$s gave no results.',
+        'capitularia'
+    ), $your_search);
+}
 
-if( have_posts () ) :
-$have_post = '1';
-$actual_url = currentURL();
-$constructed_url = get_bloginfo(url).'/search/'.str_replace(' ', '+', get_search_query()).'/';
-$replace = str_replace('page', '', str_replace('/', '', str_replace($constructed_url, '', $actual_url)));
-$count_max = $replace*10;
-if ( $count_max < $count ) { $the_max = $count_max; } elseif ( $count_max >= $count ) { $the_max = $count; }
-$the_min = $replace*10-9;
-$display_count = 'Results '.$the_min.' - '.$the_max.' of '.$count;
-$display_count = str_replace('Results -9 - 0 of', 'Results 1 - 10 of', $display_count);
-*/?>
+echo ("<div class='search-pager'>$your_search</div>\n");
 
+if (have_posts ()) {
+    echo ("<div class='search-results'>\n");
 
-						<?php if ( have_posts() ) : ?>
-						<p>
-						<?php echo $wp_query->post_count; ?>
+    while (have_posts ()) {
+        the_post ();
+        get_template_part ('content', get_post_format ());
 
-							Ergebnisse
-						</p>
+        echo ("<div class='search-results-excerpt'>\n");
+        echo ('<h2><a href="' . get_the_permalink () .'">' . get_the_title () . "</a></h2>\n");
+        echo (get_the_excerpt ());
+        echo ("</div>\n");
 
-						<!--
-						<ul>
-							<li class="active"><a href="javascript:void(0)">Seite 1</a></li>
-							<li><a href="javascript:void(0)">Seite 2</a></li>
-						</ul>
-						-->
+    }
+    echo ("</div>\n");
+}
 
-						<?php endif; ?>
-					</div>
+echo ("</div>\n");
 
-					<div class="search-results">
-						<?php if ( have_posts() ) : ?>
+echo ("<div class='sidebar-col'>\n<ul>\n");
+dynamic_sidebar ('search');
+echo ("</ul>\n</div>\n");
 
+echo ("</main>\n");
 
-
-							<?php while ( have_posts() ) : the_post(); ?>
-
-								<?php get_template_part( 'content', get_post_format() ); ?>
-								
-								<a href="<?php the_permalink(); ?>">
-								<h2><?php the_title(); ?></h2>
-								</a>
-								<p><?php the_excerpt(); ?></p>
-
-							<?php endwhile; ?>
-
-						<?php else : ?>
-							
-							<?php echo wpautop('Nichts gefunden...'); ?>
-
-						<?php endif; ?>
-					</div>
-
-				</div>
-
-				<div class="sidebar-col">
-
-				</div>
-
-
-
-
-			</main>
-
-<?php get_footer(); ?>
+get_footer ();

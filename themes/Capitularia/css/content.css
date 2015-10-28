@@ -90,7 +90,6 @@ div.teaser-bar h2 {
 }
 
 div.teaser-bar p {
-	line-height: 1.5em;
 	margin-bottom: 0.35em;
 }
 
@@ -149,7 +148,6 @@ div.teaser-bar .mehr-lesen:hover {
 }
 
 p {
-	line-height:1.4em;
 	font-size:1em;
 }
 
@@ -236,17 +234,6 @@ a.back-to-top:after {
 	margin-right:8px;
 	position:relative;
 	color:#1a171b;
-}
-
-.search-pager p:after {
-	content:'';
-	display:block;
-	position:absolute;
-	right:0px;
-	top:0px;
-	width:1px;
-	height:1em;
-	background:#1a171b;
 }
 
 .search-pager ul li {
@@ -492,6 +479,17 @@ input[type="text"] {
 
 div.content-col {
     text-align: justify;
+	line-height: 1.4em;
+}
+
+div.content-col h1,
+div.content-col h2,
+div.content-col h3,
+div.content-col h4,
+div.content-col h5,
+div.content-col h6
+{
+    text-align: left;
 }
 
 div.content-col h3,
@@ -556,7 +554,6 @@ div.content-col hr {
 .transkription-header h2 {
 	font-size:1.6em;
 	width:400px;
-	line-height:1.4em;
 	font-family:'open_sansbold','sans-serif','sans','Helvetica','Arial';
 	padding-bottom:8px;
 }
@@ -565,10 +562,6 @@ div.content-col hr {
 	border-top:solid 1px #bcb8b6;
 	padding-top:12px;
 	padding-bottom:24px;
-}
-
-.transkription-block h4 {
-	line-height:1.4em;
 }
 
 .transkription-block p {

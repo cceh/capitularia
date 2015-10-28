@@ -72,6 +72,7 @@ class File_List_Table extends \WP_List_Table
         $actions['private']  = _x ('Publish privately', 'publish TEI file');
         $actions['delete']   = _x ('Unpublish',         'publish TEI file');
         $actions['validate'] = _x ('Validate',          'publish TEI file');
+        $actions['metadata'] = _x ('Extract metadata',  'publish TEI file');
 
         return $actions;
     }
@@ -150,12 +151,14 @@ class File_List_Table extends \WP_List_Table
         $u_private  = _x ('Publish privately', 'publish TEI file');
         $u_delete   = _x ('Unpublish',         'publish TEI file');
         $u_validate = _x ('Validate',          'publish TEI file');
+        $u_metadata = _x ('Extract metadata',  'publish TEI file');
 
         $actions = array ();
         $actions['publish']  = "<a onclick=\"on_cap_action_file (this, 'publish')\">$u_publish</a>";
         $actions['private']  = "<a onclick=\"on_cap_action_file (this, 'private')\">$u_private</a>";
         $actions['delete']   = "<a onclick=\"on_cap_action_file (this, 'delete')\" class='submitdelete'>$u_delete</a>";
         $actions['validate'] = "<a onclick=\"on_cap_action_file (this, 'validate')\">$u_validate</a>";
+        $actions['metadata'] = "<a onclick=\"on_cap_action_file (this, 'metadata')\">$u_metadata</a>";
         unset ($actions[$file->status]);
         return $this->row_actions ($actions);
     }

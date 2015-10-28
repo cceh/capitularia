@@ -4,9 +4,9 @@ function on_cap_meta_search_extract_metadata (post_id, xml_path) {
 
     var data = {
         'action':      'on_cap_action_file',
-        'user_action': action,
-        'path':        tr.attr ("data-path"),
-        'slug':        tr.attr ("data-slug"),
+        'user_action': 'metadata',
+        'path':        xml_path,
+        'post_id':     post_id,
     };
     data[ajax_object.ajax_nonce_param_name] = ajax_object.ajax_nonce;
 

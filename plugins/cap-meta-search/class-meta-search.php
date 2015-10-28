@@ -28,16 +28,18 @@ class Meta_Search
         add_action ('admin_menu',            array ($this, 'on_admin_menu'));
         add_action ('admin_bar_menu',        array ($this, 'on_admin_bar_menu'), 200);
         add_action ('admin_enqueue_scripts', array ($this, 'on_admin_enqueue_scripts'));
+        add_filter ('get_the_excerpt',       array ($this, 'on_get_the_excerpt'));
     }
 
     public function on_init () {
-        add_action ('cap_xsl_transformed', array ($this, 'on_cap_xsl_transformed'), 10, 2);
+        add_action ('cap_xsl_transformed',              array ($this, 'on_cap_xsl_transformed'),           10, 2);
+        add_filter ('cap_meta_search_extract_metadata', array ($this, 'on_cap_meta_search_extract_metadata'), 10, 3);
     }
 
     private function meta ($post_id, $key, $node_list, $f = 'trim') {
         delete_post_meta ($post_id, $key);
         foreach ($node_list as $node) {
-            $value = $f ($node->nodeValue);
+            $value = call_user_func ($f, $node->nodeValue);
             if (!is_array ($value)) {
                 $value = array ($value);
             }
@@ -48,14 +50,17 @@ class Meta_Search
         }
     }
 
-    public function on_cap_xsl_transformed ($post_id, $xml_path) {
+    private function nmtokens ($in) {
+        return explode (' ', $in);
+    }
+
+    public function extract_meta ($post_id, $xml_path) {
         libxml_use_internal_errors (true);
-        error_log ("on_cap_xsl_transformed ($post_id, $xml_path)");
 
         $dom = new \DOMDocument;
         $dom->Load ($xml_path);
         if ($dom === false) {
-            return false;
+            return array ("Error: DOMDocument could not parse file: $xml_path");
         }
         $dom->xinclude ();
 
@@ -63,7 +68,12 @@ class Meta_Search
         $xpath->registerNamespace ('tei', 'http://www.tei-c.org/ns/1.0');
         $xpath->registerNamespace ('xml', 'http://www.w3.org/XML/1998/namespace');
 
-        $this->meta ($post_id, 'msitem-corresp',     $xpath->query ('//tei:msItem/@corresp'));
+        $this->meta (
+            $post_id,
+            'msitem-corresp',
+            $xpath->query ('//tei:msItem/@corresp'),
+            array ($this, 'nmtokens')
+        );
         $this->meta ($post_id, 'origDate-notBefore', $xpath->query ('//tei:head/tei:origDate/@notBefore'), 'intval');
         $this->meta ($post_id, 'origDate-notAfter',  $xpath->query ('//tei:head/tei:origDate/@notAfter'),  'intval');
         $this->meta ($post_id, 'origPlace',          $xpath->query ('//tei:head/tei:origPlace'));
@@ -72,13 +82,27 @@ class Meta_Search
             $post_id,
             'origPlace-ref',
             $xpath->query ('//tei:head/tei:origPlace/@ref'),
-            function ($in) {
-                return explode (' ', $in);
-            }
+            array ($this, 'nmtokens')
         );
 
         $errors = libxml_get_errors ();
         libxml_clear_errors ();
+
+        $messages = array ();
+        foreach ($errors as $e) {
+            $messages[] = "{$e->file}:{$e->line} {$e->level} {$e->code} {$e->message}\n";
+        }
+        return $messages;
+    }
+
+    public function on_cap_xsl_transformed ($post_id, $xml_path) {
+        error_log ("on_cap_xsl_transformed ($post_id, $xml_path)");
+        $this->extract_meta ($post_id, $xml_path);
+    }
+
+    public function on_cap_meta_search_extract_metadata ($errors, $post_id, $xml_path) {
+        error_log ("on_cap_meta_search_extract_metadata ($post_id, $xml_path)");
+        return array_merge ($errors, $this->extract_meta ($post_id, $xml_path));
     }
 
     public function on_enqueue_scripts () {
@@ -110,6 +134,86 @@ class Meta_Search
 
     private function urljoin ($url1, $url2) {
         return rtrim ($url1, '/') . '/' . $url2;
+    }
+
+    /**
+     * Result snippets and highlighting
+     */
+
+    private function get_bounds ($content, $content_len, $match) {
+        // offsets in $match are byte offsets even if the regex uses /u !!!
+        // convert byte offset into char offset
+        $char_offset = mb_strlen (mb_strcut ($content, 0, $match[0][1]));
+
+        $start = max ($char_offset - 100, 0);
+        $end   = min ($char_offset + 100, $content_len);
+
+        if ($start && ($space = mb_strpos ($content, ' ', $start))) {
+            $start = $space + 1;
+        }
+        if ($end   && ($space = mb_strpos ($content, ' ', $end))) {
+            $end = $space;
+        }
+
+        return array ('start' => $start, 'end' => $end);
+    }
+
+    private function get_snippets ($content, $regex, $max_snippets = 3) {
+        $regex = "#$regex#u";
+        $matches = array ();
+        preg_match_all ($regex, $content, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
+
+        $content_len = mb_strlen ($content);
+        $snippets = array (); // array of array ('start' => pos, 'end' => pos)
+        $n_snippets = 0;
+
+        foreach ($matches as $match) {
+            $snippet = $this->get_bounds ($content, $content_len, $match);
+            if (($n_snippets > 0) && (($snippet['start'] - $snippets[$n_snippets - 1]['end']) < 5)) {
+                // extend previous snippet
+                $snippets[$n_snippets - 1]['end'] = $snippet['end'];
+            } else {
+                // add a new snippet
+                $snippets[] = $snippet;
+                $n_snippets++;
+            }
+            if ($n_snippets >= $max_snippets) {
+                break;
+            }
+        }
+
+        $text = "<ul>\n";
+
+        foreach ($snippets as $snippet) {
+            $start = $snippet['start'];
+            $len   = $snippet['end'] - $start;
+            $text .= "<li class='snippet'>\n";
+            $text .= preg_replace ($regex, '<mark>${0}</mark>', mb_substr ($content, $start, $len));
+            $text .= "</li>\n";
+        }
+
+        $text .= "</ul>\n";
+        return $text;
+    }
+
+    private function escape_search_term ($term) {
+        return preg_quote ($term, '#');
+    }
+
+    public function on_get_the_excerpt ($content) {
+        global $wp_query;
+        if (!is_admin () && $wp_query->is_main_query () && $wp_query->is_search ()) {
+            if ($terms = $wp_query->get ('search_terms')) {
+                $content = wp_strip_all_tags (
+                    apply_filters ('the_content', get_the_content ()),
+                    true
+                );
+                $terms = array_map (array ($this, 'escape_search_term'), $terms);
+                $regex = implode ('|', $terms);
+                return $this->get_snippets ($content, $regex);
+            }
+        }
+        return $content;
     }
 
     /**

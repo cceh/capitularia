@@ -75,6 +75,8 @@ if ($terms && !is_wp_error ($terms)) {
     }
 }
 
+$cap_templates = array_unique ($cap_templates);
+
 // Display the chosen sidebars.
 foreach ($cap_templates as $template) {
     dynamic_sidebar ($template);

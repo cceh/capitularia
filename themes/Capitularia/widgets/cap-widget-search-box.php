@@ -12,10 +12,10 @@ class Cap_Widget_Search_Box extends WP_Widget {
     public function __construct () {
         $widget_ops = array (
             'classname' => 'cap_widget_search_box',
-            'description' => __('Search box for taxonomies and ranges.'),
+            'description' => __('Search box for taxonomies and ranges.', 'capitularia'),
         );
         $control_ops = array ('width' => 400, 'height' => 350);
-        parent::__construct ('cap_widget_search_box', __('Capitularia Taxonomies Search Widget'),
+        parent::__construct ('cap_widget_search_box', __('Capitularia Taxonomies Search Widget', 'capitularia'),
                              $widget_ops, $control_ops);
     }
 

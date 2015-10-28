@@ -15,7 +15,7 @@
   <a href="<?php echo get_site_url(); ?>">
     <div class="header-block ui-helper-clearfix">
       <h1><?php bloginfo ('description', 'display'); ?></h1>
-      <img <?php cap_theme_image ('img-home-3.png'); ?> />
+      <img <?php cap_theme_image ('img-home-4.png'); ?> />
     </div>
   </a>
 

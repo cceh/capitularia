@@ -6,6 +6,16 @@ define('CAPITULARIA_JS_DIR', CAPITULARIA_PARENT_DIR . '/js');
 define('CAPITULARIA_PARENT_URL', get_template_directory_uri());
 define('CAPITULARIA_CSS_URL', CAPITULARIA_PARENT_DIR . '/css');
 
+/**
+ * Load the translation files.
+ *
+ * Translation files are *.mo files in the themes/Capitularia/languages/
+ * directory.
+ */
+
+if (!load_theme_textdomain ('capitularia', get_template_directory () . "/languages/")) {
+    error_log ("Could not load text domain. locale = " . get_locale ());
+}
 
 /**
  * Some utility functions
@@ -46,7 +56,6 @@ function cap_get_option ($section, $option, $default = '') {
     }
     return isset ($cap_options[$section][$name]) ? $cap_options[$section][$name] : $default;
 }
-
 
 /**
  * Enqueue scripts and CSS
@@ -173,7 +182,7 @@ function cap_wp_title ($title, $sep) {
 
     // Add a page number if necessary:
     if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-        $title .= " $sep " . sprintf( __( 'Page %s', '_s' ), max( $paged, $page ) );
+        $title .= " $sep " . sprintf( __( 'Page %s', 'capitularia' ), max( $paged, $page ) );
     }
 
     return $title;
@@ -218,8 +227,8 @@ add_filter ('body_class', 'cap_on_body_class');
 function cap_register_nav_menus () {
     register_nav_menus (
         array (
-            'navtop'    => __('Top horizontal navigation bar'),
-            'navbottom' => __('Bottom horizontal navigation bar')
+            'navtop'    => __('Top horizontal navigation bar', 'capitularia'),
+            'navbottom' => __('Bottom horizontal navigation bar', 'capitularia')
         )
     );
 }
@@ -264,6 +273,8 @@ $sidebars[] = array ('internal',       'Internal Sidebar',
                      'The sidebar on /internal/ pages.');
 $sidebars[] = array ('transcription',  'Transcription Sidebar',
                      'The sidebar on transcription pages');
+$sidebars[] = array ('search',  'Search Page Sidebar',
+                     'The sidebar on the search page');
 
 foreach ($sidebars as $a) {
     register_sidebar (array (
@@ -284,7 +295,7 @@ function cap_create_page_taxonomy () {
         'cap-sidebar',
         'page',
         array (
-            'label' => __('Capitularia Sidebar'),
+            'label' => __('Capitularia Sidebar', 'capitularia'),
             'public' => false,
             'show_ui' => true,
             'rewrite' => false,
