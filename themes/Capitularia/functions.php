@@ -28,9 +28,19 @@ function cap_the_slug () {
 
 function cap_get_slug_root () {
     // get the first path component of the slug
+    $path = parse_url (get_page_uri (), PHP_URL_PATH);
+    $a = explode ('/', $path);
+    if ($a) {
+        return $a[0];
+    }
+    return '';
+}
+
+function cap_get_slug_root_x () {
+    // get the first path component of the slug
     $path = parse_url (get_permalink (), PHP_URL_PATH);
     $a = explode ('/', $path);
-    if (count ($a) >= 1) {
+    if (count ($a) > 1) {
         return $a[1];
     }
     return '';
@@ -327,7 +337,6 @@ add_filter ('quick_edit_dropdown_pages_args',      'cap_on_dropdown_pages_args')
  */
 
 require ('widgets/cap-widgets.php');
-require ('widgets/cap-widget-search-box.php');
 require ('widgets/cap-widget-transcription-navigation.php');
 
 ?>

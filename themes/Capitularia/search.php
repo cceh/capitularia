@@ -37,7 +37,6 @@ if (have_posts ()) {
 
     while (have_posts ()) {
         the_post ();
-        get_template_part ('content', get_post_format ());
 
         echo ("<div class='search-results-excerpt'>\n");
         echo ('<h2><a href="' . get_the_permalink () .'">' . get_the_title () . "</a></h2>\n");

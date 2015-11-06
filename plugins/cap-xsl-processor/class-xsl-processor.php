@@ -113,17 +113,12 @@ class XSL_Processor
         return $content;
     }
 
-    private function add_i18n_tags ($content) {
-        return "[:de]\n$content\n[:]\n"; // qTranslate-x
-    }
-
     private function increment_metadata ($post_id, $meta) {
         $n = get_metadata ('post', $post_id, $meta, true) or 0;
         $n++;
         update_post_meta ($post_id, $meta, $n);
         return $n;
     }
-
 
     public function on_the_content_early ($content) {
         // error_log ('on_the_content_early () ==> enter');
@@ -141,16 +136,27 @@ class XSL_Processor
         remove_all_shortcodes ();
         add_shortcode ($this->shortcode, array ($this, 'on_shortcode'));
         $content = do_shortcode ($content);
-        $GLOBALS['shortcode_tags'] = $current_shortcodes;
 
         // Save the result of the transform.  This is what we will write back to
         // the post later.  We have to save this away because other plugins like
         // to mess with it, eg. search plugins add highlighting and qTranslate-X
         // adds do-you-want-this-in-another-language notices.  We have already
         // taken care that our shortcode tags are still present.
+        //
+        // NOTE: we are using the bare metal database here because it seems the
+        // only way to get in ahead of qTranslate-X and its stupid
+        // do-you-want-this-in-another-language notices.
+
         if ($this->save_post) {
-            $this->content_cache = $content;
+            global $wpdb;
+            $sql = $wpdb->prepare ("SELECT post_content FROM $wpdb->posts WHERE ID = %d", $this->post_id);
+            error_log ("SQL: $sql");
+            $raw_content = $wpdb->get_var ($sql);
+            $this->content_cache = do_shortcode ($raw_content);
         }
+
+        // restore shortcodes
+        $GLOBALS['shortcode_tags'] = $current_shortcodes;
 
         if ($this->page_has_shortcode) {
             $content = $this->hide_shortcodes_from_wpautop ($content);
@@ -226,7 +232,6 @@ class XSL_Processor
         }
 
         // call XSLT processor
-        $output = array ();
         $retval = 666;
         $cmdline = array ();
         $cmdline[] = $xsltproc;
@@ -246,7 +251,14 @@ class XSL_Processor
 
         $cmdline = join (' ', $cmdline);
         // $output = shell_exec ($cmdline);
+
+        $output = array ();
         exec ($cmdline, $output, $retval);
+        if (strncmp ($output[0], '<?xml ', 6) == 0) {
+            array_shift ($output);
+        }
+        array_unshift ($output, '<div class="xsl-output">');
+        $output[] = "</div>";
         $content = join ("\n", $output);
 
         if (!in_array ($xml, $this->xmlfiles)) {
@@ -294,10 +306,12 @@ class XSL_Processor
             // cache xslt output in database
             $my_post = array (
                 'ID'           => $this->post_id,
-                'post_content' => $this->add_i18n_tags ($this->content_cache)
+                'post_content' => $this->content_cache,
             );
             // error_log ('on_the_content_late () before update_post ...');
+            kses_remove_filters ();
             wp_update_post ($my_post);
+            kses_init_filters();
             do_action ('cap_xsl_page_refreshed', $this->post_id);
             // error_log ('on_the_content_late () after update_post ...');
         } else {

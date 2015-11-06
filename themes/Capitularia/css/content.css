@@ -152,48 +152,60 @@ p {
 }
 
 table {
-	margin:32px 0px;
-	width:100%;
+	margin: 32px 0px;
+	width: 100%;
 }
 
-table thead td,
-table thead th{
-	font-family:'open_sanssemibold','sans-serif','sans','Helvetica','Arial';
-	text-align:left;
-	padding-bottom:16px;
+thead {
+	border-bottom: solid 1px #0a0a0a;
 }
 
-table thead {
-	border-bottom:solid 1px #0a0a0a;
+thead td,
+thead th {
+	font-family: 'open_sanssemibold','sans-serif','sans','Helvetica','Arial';
+	text-align: left;
+	padding-bottom: 16px;
 }
 
-table tbody tr td {
-	padding:6px 0px;
-	background:#f6f3f3;
+tr {
+	background: #f6f3f3;
 }
 
-table tbody tr:nth-child(even) td {
-	background:#fff;
+tr:nth-child(even) {
+	background: #fff;
 }
 
-table tbody tr td:first-child {
-	padding-left:4px;
+td, th {
+	padding: 6px;
 }
 
-table tbody tr td i {
-	font-family:'open_sansitalic','sans-serif','sans','Helvetica','Arial';
+div.content-col td p {
+    margin-top: 0;
 }
 
-table tbody td a {
+div.content-col td p:last-child {
+    margin-bottom: 0;
+}
+
+tr i {
+	font-family: 'open_sansitalic','sans-serif','sans','Helvetica','Arial';
+}
+
+tr a {
 	text-decoration:none;
 	color:#1a171b;
+}
+
+div.back-to-top {
+    text-align: right;
+    margin-top: -2em;
 }
 
 a.back-to-top {
 	display: block;
 	font-size: 6px;
 	text-align: right;
-  vertical-align: top;
+    vertical-align: top;
 }
 
 a.back-to-top:after {
@@ -420,8 +432,8 @@ input[type="text"] {
 }
 
 .kapitularien-pager ul li {
-	padding-right:48px;
-	margin-right:48px;
+	padding-right:36px;
+	margin-right:36px;
 }
 
 .kapitularien-pager {
@@ -505,7 +517,7 @@ div.content-col h5 {
 }
 
 div.content-col p {
-    margin: 1.5em 0;
+    margin: 1em 0;
 }
 
 div.content-col ul {
@@ -517,9 +529,35 @@ div.content-col li {
     list-style: disc outside;
 }
 
+div.content-col div.xsl-output li {
+    margin-left: 0;
+    list-style: none;
+}
+
+div.content-col div.xsl-output ol.alphabetisch li {
+    margin-left: 2em;
+    padding-left: 0.5em;
+    list-style-type: lower-alpha;
+}
+
+div.content-col div.xsl-output ol.numerisch li {
+    margin-left: 2em;
+    padding-left: 0.5em;
+    list-style-type: decimal;
+}
+
 div.content-col hr {
     margin: 3em 0;
 }
+
+div.content-col .rend-red {
+    color: #b92900;
+}
+
+div.content-col .rend-default {
+    color: black;
+}
+
 
 /***********/
 /* Sidebar */
@@ -596,7 +634,7 @@ div.content-col hr {
 }
 
 .annotation {
-	display:inline;
+	display:inline-block;
 	text-align:center;
 	position:relative;
 	/* z-index:0; */
@@ -718,7 +756,7 @@ span.red {
 	padding-bottom:1em;
 }
 
-textarea.zitatbox {
+.zitatbox {
 	border:solid 16px #e9e1c1;
 	width:100%;
 	resize:none;

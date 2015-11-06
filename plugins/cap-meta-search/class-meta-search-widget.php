@@ -73,6 +73,16 @@ class Widget extends \WP_Widget
 
         $bks = $wpdb->get_results ($sql);
         foreach ($bks as $bk) {
+            $bk->key = preg_replace_callback (
+                '|\d+|',
+                function ($match) {
+                    return strval (strlen ($match[0])) . $match[0];
+                },
+                $bk->meta_value
+            );
+        }
+        usort ($bks, function ($bk1, $bk2) { return strcoll ($bk1->key, $bk2->key); } );
+        foreach ($bks as $bk) {
             echo ("<option value='{$bk->meta_value}'>{$bk->meta_value}</option>\n");
         }
     }
@@ -81,7 +91,7 @@ class Widget extends \WP_Widget
         echo ("<label for='$id'>$caption</label>\n");
         echo ("<select id='$id' name='$id'>\n");
         $this->echo_options (
-            "SELECT distinct meta_value FROM wp_postmeta WHERE meta_key = '$meta_key' ORDER BY meta_value"
+            "SELECT distinct meta_value FROM wp_postmeta WHERE meta_key = '$meta_key'"
         );
         echo ("</select>\n");
     }
@@ -105,7 +115,7 @@ class Widget extends \WP_Widget
         $this->echo_select ('Kapitularien',       'capit',     'msitem-corresp');
         $this->echo_input  ('Nach (Jahreszahl)',  'notbefore');
         $this->echo_input  ('Vor (Jahreszahl)',   'notafter');
-        $this->echo_select ('Herkunft',           'place',     'origPlace');
+        // $this->echo_select ('Herkunft',           'place',     'origPlace');
         $this->echo_input  ('Text',               's');
 
         echo ("<input type='submit' value='Suchen' />\n");

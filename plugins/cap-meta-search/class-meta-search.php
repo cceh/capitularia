@@ -45,7 +45,7 @@ class Meta_Search
             }
             foreach ($value as $val) {
                 add_post_meta ($post_id, $key, $val);
-                error_log ("adding $key=$val to post $post_id");
+                // error_log ("adding $key=$val to post $post_id");
             }
         }
     }
@@ -159,7 +159,7 @@ class Meta_Search
     }
 
     private function get_snippets ($content, $regex, $max_snippets = 3) {
-        $regex = "#$regex#u";
+        $regex = "#$regex#ui";
         $matches = array ();
         preg_match_all ($regex, $content, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
 
@@ -212,6 +212,7 @@ class Meta_Search
                 $regex = implode ('|', $terms);
                 return $this->get_snippets ($content, $regex);
             }
+            return wp_strip_all_tags ($content);
         }
         return $content;
     }
