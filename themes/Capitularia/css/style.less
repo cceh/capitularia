@@ -1,19 +1,35 @@
-@import "fonts.less";
+@import (reference) "fonts.less";
+@import (reference) "colors.less";
 
 body {
     .regular;
-	color:#1a171b;
-	background: #fff;
+	color: @color-text;
+	background: @background;
 }
 
 h1 {
-	font-size:3em;
 	.light;
+	font-size:3em;
 }
 
 h2 {
-	font-size:2.4em;
 	.regular;
+	font-size:2.4em;
+}
+
+h3 {
+    .regular;
+	font-size:2em;
+}
+
+h4 {
+	.semibold;
+	font-size:1.3em;
+}
+
+h5 {
+	.light-italic;
+	font-size:1em;
 }
 
 .teaser-bar-1 h2 {
@@ -26,25 +42,10 @@ h2 {
 	font-size:1.3em;
 }
 
-h3 {
-	font-size:2em;
-    .regular;
-}
-
-h4 {
-	font-size:1.3em;
+a[href] {
 	.semibold;
-}
-
-h5 {
-	font-size:1em;
-	.light-italic;
-}
-
-a {
-	color: #b92900;
+	color: @color-link;
 	text-decoration: none;
-	.semibold;
 }
 
 a[href]:active ,

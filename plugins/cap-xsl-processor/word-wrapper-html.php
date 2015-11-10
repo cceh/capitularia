@@ -235,6 +235,17 @@ foreach ($textnodes as $textnode) {
 }
 
 //
+// Make new w3c validator happy
+//
+
+foreach ($xpath->query ('//style') as $style) {
+    $style->setAttribute ('scoped', '');
+}
+foreach ($xpath->query ('//script') as $script) {
+    $script->removeAttribute ('language');
+}
+
+//
 // Output to stdout.
 //
 
@@ -245,6 +256,9 @@ $divs = $xpath->query ('/html/body/div');
 
 if (count ($divs)) {
     $out = $doc->saveHTML ($divs[0]);
+
+    // xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml"
+    $out = preg_replace ('/xmlns:(tei|html|cs|my)=".*?"/u', '', $out);
 } else {
     $out = $doc->saveHTML ();
 }

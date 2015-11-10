@@ -1,18 +1,19 @@
-@import "fonts.less";
+@import (reference) "fonts.less";
+@import (reference) "colors.less";
 
 #bottom-header-wrapper {
     padding-top: 40px;
-    border-bottom: solid 1px #0a0a0a;
+    border-bottom: solid 1px @color-rule;
 }
 
-#bottom-nav {
+.bottom-nav {
     margin-top:    0.3em;
     margin-bottom: 0.3em;
 }
 
-/***********************************/
-/* navigation in header and footer */
-/***********************************/
+/*******************/
+/* navigation bars */
+/*******************/
 
 nav.horiz-nav ul {
     display: block;
@@ -28,10 +29,10 @@ nav.horiz-nav li {
 }
 
 nav.horiz-nav a {
-    text-decoration: none;
-    transition: color 300ms;
     display: block;
+    text-decoration: none;
     padding: 7px 14px;
+    transition: color 300ms, background 300ms;
 }
 
 nav.horiz-nav a:hover {
@@ -43,57 +44,50 @@ nav.horiz-nav ul ul li {
     float: none;
 }
 
-#top-nav,
-#top-nav ul {
-    background-color: #b92900;
+/* top navbar colors */
+
+.top-nav {
+    background-color: @background-menubar-top;
 }
 
-#top-nav li {
-    transition: background 500ms;
+.top-nav a {
+    .font-menubar-top;
+    color: @color-menubar-top;
+    background-color: @background-menubar-top;
 }
 
-#top-nav li:hover {
-    background: rgba(0, 0, 0, 0.1);
+.top-nav a:active,
+.top-nav a:focus,
+.top-nav a:hover,
+.top-nav li.current-menu-item a {
+    color: @color-menubar-top-hover;
+    background: @background-menubar-top-hover;
 }
 
-#top-nav a {
-    .font-menubar;
-    color: #e0b7b3;
+/* bottom navbar colors */
+
+.bottom-nav {
+    background-color: @background-menubar-bottom;
 }
 
 .bottom-nav a {
-    .font-menubar;
-    color: #978f7d;
-    text-transform: uppercase;
+    .font-menubar-bottom;
+    color: @color-menubar-bottom;
+    background-color: @background-menubar-bottom;
 }
 
-#top-nav a:active,
-#top-nav a:focus,
-#top-nav a:hover,
-#top-nav li.current-menu-item a {
-    color: #fff;
+.bottom-nav a:active,
+.bottom-nav a:focus,
+.bottom-nav a:hover,
+.bottom-nav li.current-menu-item > a,
+.bottom-nav li.current_page_item > a,
+.bottom-nav li.current-page-ancestor > a,
+.bottom-nav li.current_page_ancestor > a {
+    color: @color-menubar-bottom-hover;
+    background: @background-menubar-bottom-hover;
 }
 
-#bottom-nav a:active,
-#bottom-nav a:focus,
-#bottom-nav a:hover,
-#bottom-nav li.current-menu-item > a,
-#bottom-nav li.current_page_item > a,
-#bottom-nav li.current-page-ancestor > a,
-#bottom-nav li.current_page_ancestor > a {
-    color: #b92900
-}
-
-.login a:before {
-    font-family: "dashicons";
-    content: "\f110";
-    padding-right: 0.5em;
-    vertical-align: top;
-}
-
-/********************************************/
 /* the qTranslate-X language drop-down menu */
-/********************************************/
 
 .qtranxs-lang-menu ul.sub-menu {
     position: absolute;
@@ -115,6 +109,15 @@ nav.horiz-nav ul ul li {
 .qtranxs-lang-menu-item > a > img {
     /* the flag images in the drop-down menu */
     padding-right: 0.5em;
+}
+
+/* the login menu entry */
+
+.login a:before {
+    font-family: "dashicons";
+    content: "\f110";
+    padding-right: 0.5em;
+    vertical-align: top;
 }
 
 /************************/
@@ -174,7 +177,7 @@ form.searchform *:hover {
 }
 
 #searchsubmit:hover {
-    background: #b92900;
+    background: @color-highlight;
 }
 
 /**********/
@@ -182,8 +185,8 @@ form.searchform *:hover {
 /**********/
 
 #footer {
-    background:#4e4c4f;
-    color:#fff;
+    background: @color-gray;
+    color: @color-white;
     padding-top:32px;
     padding-bottom:32px;
     font-size:0.825em;
@@ -217,7 +220,7 @@ div.logo-bar li img {
 
 .pager {
     padding-top:16px;
-    border-top:solid 1px #bcb8b6;
+    border-top:solid 1px @color-rule;
     margin-top:16px;
     padding-bottom:24px;
 }
@@ -237,7 +240,7 @@ div.logo-bar li img {
 }
 
 .pager ul li a {
-    color:#b92900;
+    color: @color-link;
     text-decoration:none;
 }
 
@@ -249,5 +252,5 @@ div.logo-bar li img {
     position:absolute;
     right:0px;
     top:-0.1em;
-    background:#b92900;
+    background: @color-highlight;
 }

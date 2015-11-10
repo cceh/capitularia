@@ -6,10 +6,11 @@
 @color-beige:     #e9e1c1;
 @color-white:     #fff;
 
-@color-text:      @color-darkgray;
-@color-highlight: @color-red;
+@background:      @color-white;
 
-@background-box:  @color-beige;
+@color-text:      @color-darkgray;
+@color-link:      @color-red;
+@color-highlight: @color-red;
 
 @color-annotation-red: #af402e;
 @color-startpage-box:  #beac86;
@@ -18,3 +19,15 @@
 @color-row-even: @color-white;
 
 @color-rule:     @color-darkgray;
+
+@background-menubar-top:             @color-red;
+@background-menubar-top-hover:       shade(@background-menubar-top, 20%);
+@color-menubar-top:                  tint(@background-menubar-top, 80%);
+@color-menubar-top-hover:            @color-white;
+
+@color-menubar-bottom:               @color-lightgray;
+@color-menubar-bottom-hover:         @color-red;
+@background-menubar-bottom:          @color-white;
+@background-menubar-bottom-hover:    @background-menubar-bottom;
+
+@background-box:  @color-beige;

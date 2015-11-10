@@ -1,4 +1,4 @@
-@import "fonts.less";
+@import (reference) "fonts.less";
 
 div.text {
     b, strong {
@@ -47,13 +47,13 @@ pre, code, tt {
 	font: 1em/1.5em 'Andale Mono', 'Lucida Console', monospace;
 }
 h1, h2, h3, h4, h5, h6, b, strong {
-	font-weight: bold;
+	.bold;
 }
 em, i, dfn {
-	font-style: italic;
+	.italic;
 }
 dfn {
-	font-weight:bold;
+	.bold;
 }
 p, code, pre, kbd {
 	margin:0 0 1.5em 0;
@@ -62,7 +62,7 @@ blockquote {
 	margin:0 1.5em 1.5em 1.5em;
 }
 cite {
-	font-style: italic;
+	.italic;
 }
 li ul, li ol {
 	margin:0 1.5em;
@@ -89,7 +89,7 @@ dl {
 	margin:0 0 1.5em 0;
 }
 dl dt {
-	font-weight:bold;
+	.bold;
 }
 dd {
 	margin-left:1.5em;
@@ -99,13 +99,13 @@ table {
 	width:100%;
 }
 th {
-	font-weight:bold;
+	.bold;
 }
 th, td, caption {
 	padding:4px 10px 4px 5px;
 }
 tfoot {
-	font-style:italic;
+	.italic;
 }
 sup, sub {
 	line-height:0;
@@ -115,7 +115,7 @@ abbr, acronym {
 }
 address {
 	margin:0 0 1.5em;
-	font-style:italic;
+	.italic;
 }
 del {
 	text-decoration: line-through;

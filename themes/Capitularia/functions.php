@@ -82,8 +82,8 @@ function cap_enqueue_scripts () {
 
     $styles = array ();
     $styles['cap-webfonts']    = '/webfonts/webfonts.css';
+    $styles['cap-fonts']       = '/css/fonts.css';
     $styles['cap-base']        = '/css/base.css';
-    $styles['cap-fonts']       = '/ttf/fonts.css';
     $styles['cap-style']       = '/css/style.css';
     $styles['cap-bg-data-uri'] = '/css/bg_data_uri.css';
     $styles['cap-bg-img-ie7']  = '/css/bg_img.css';
