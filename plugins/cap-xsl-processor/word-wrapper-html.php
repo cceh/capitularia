@@ -172,7 +172,7 @@ foreach ($notes as $note) {
 }
 
 //
-// Loop over footnotes again to remove preceding whitespace.
+// Loop over footnotes again to remove leading whitespace.
 //
 
 $notes = $xpath->query ('//div[contains (concat (" ", @class, " "), " annotation ")]');
@@ -223,11 +223,23 @@ foreach ($initials as $initial) {
 }
 
 //
+// Loop over text nodes to replace punctuation following whitespace
+//
+
+$textnodes = $xpath->query ('//text()');
+foreach ($textnodes as $textnode) {
+    $text = $textnode->nodeValue;
+    $text = preg_replace ('/\s+([·])/u', ' $1', $text);
+    if ($text != $textnode->nodeValue)
+        $textnode->nodeValue = $text;
+}
+
+//
 // Output to stdout.
 //
 
-// Output as HTML because this gets embedded into a wordpress page. Get rid of
-// <DICTYPE>, <html>, <head>, <body> also by starting at topmost div.
+// Output as HTML because this gets embedded into a wordpress page. Also get rid
+// of <DOCTYPE>, <html>, <head>, <body> by starting at topmost <div>.
 
 $divs = $xpath->query ('/html/body/div');
 

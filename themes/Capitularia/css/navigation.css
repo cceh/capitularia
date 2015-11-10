@@ -1,77 +1,65 @@
+/* Generated file. Do not edit. */
+/* Font mixins */
 #bottom-header-wrapper {
-    padding-top: 40px;
-    border-bottom: solid 1px #0a0a0a;
+  padding-top: 40px;
+  border-bottom: solid 1px #0a0a0a;
 }
-
 #bottom-nav {
-    margin-top:    0.3em;
-    margin-bottom: 0.3em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
 }
-
 /***********************************/
 /* navigation in header and footer */
 /***********************************/
-
 nav.horiz-nav ul {
-    display: block;
-    float: right;
-    position: relative;
-    z-index: 10;
+  display: block;
+  float: right;
+  position: relative;
+  z-index: 10;
 }
-
 nav.horiz-nav li {
-    float: left;
-    position: relative;
-    padding: 0;
+  float: left;
+  position: relative;
+  padding: 0;
 }
-
 nav.horiz-nav a {
-    text-decoration: none;
-    transition: color 300ms;
-    display: block;
-    padding: 7px 14px;
+  text-decoration: none;
+  transition: color 300ms;
+  display: block;
+  padding: 7px 14px;
 }
-
 nav.horiz-nav a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
-
 nav.horiz-nav ul ul li {
-    /* <li> in drop-down menu */
-    float: none;
+  /* <li> in drop-down menu */
+  float: none;
 }
-
 #top-nav,
 #top-nav ul {
-    background-color: #b92900;
+  background-color: #b92900;
 }
-
 #top-nav li {
-    transition: background 500ms;
+  transition: background 500ms;
 }
-
 #top-nav li:hover {
-    background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
-
 #top-nav a {
-	font-family: 'open_sansregular','sans-serif','sans','Helvetica','Arial';
-    color: #e0b7b3;
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  color: #e0b7b3;
 }
-
 .bottom-nav a {
-	font-family: 'open_sanssemibold','sans-serif','sans','Helvetica','Arial';
-    color: #978f7d;
-    text-transform: uppercase;
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  color: #978f7d;
+  text-transform: uppercase;
 }
-
 #top-nav a:active,
 #top-nav a:focus,
 #top-nav a:hover,
 #top-nav li.current-menu-item a {
-    color: #fff;
+  color: #fff;
 }
-
 #bottom-nav a:active,
 #bottom-nav a:focus,
 #bottom-nav a:hover,
@@ -79,184 +67,146 @@ nav.horiz-nav ul ul li {
 #bottom-nav li.current_page_item > a,
 #bottom-nav li.current-page-ancestor > a,
 #bottom-nav li.current_page_ancestor > a {
-    color: #b92900
+  color: #b92900;
 }
-
 .login a:before {
-    font-family: "dashicons";
-    content: "\f110";
-    padding-right: 0.5em;
-    vertical-align: top;
+  font-family: "dashicons";
+  content: "\f110";
+  padding-right: 0.5em;
+  vertical-align: top;
 }
-
-/* hack to get current menu highlighting on descendant pages
-
-body.cap-slug-capit     .menu-item-capit a,
-body.cap-slug-mss       .menu-item-mss a,
-body.cap-slug-resources .menu-item-resources a,
-body.cap-slug-project   .menu-item-project a {
-    color: #b92900
-}
-
-*/
-
 /********************************************/
 /* the qTranslate-X language drop-down menu */
 /********************************************/
-
 .qtranxs-lang-menu ul.sub-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 100%;
-    display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 100%;
+  display: none;
 }
-
 .qtranxs-lang-menu:hover ul.sub-menu {
-    display: block;
+  display: block;
 }
-
 .qtranxs-lang-menu > a > img {
-    /* the flag image in the horizontal menu */
-    padding-left: 0.5em;
+  /* the flag image in the horizontal menu */
+  padding-left: 0.5em;
 }
-
 .qtranxs-lang-menu-item > a > img {
-    /* the flag images in the drop-down menu */
-    padding-right: 0.5em;
+  /* the flag images in the drop-down menu */
+  padding-right: 0.5em;
 }
-
 /************************/
 /* the search form      */
 /************************/
-
 #searchform {
-    float: right;
-    height: 2.5em;
-    font-family: 'open_sansregular','sans-serif','sans','Helvetica','Arial';
-    background: linear-gradient(to bottom, #f8f8f8, #ccc);
+  float: right;
+  height: 2.5em;
+  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  background: linear-gradient(to bottom, #f8f8f8, #cccccc);
 }
-
 form.searchform input,
 form.searchform button {
-    float: left;
-    display: block;
-    position: relative;
-    -webkit-appearance:none;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
-    box-sizing:border-box;
-    font-size:1.1em;
-    height: 100%;
-    vertical-align: top;
-    padding: 0;
-    margin: 0;
-    border: 0px solid black;
-    background: transparent;
-    transition: background 500ms;
+  float: left;
+  display: block;
+  position: relative;
+  -webkit-appearance: none;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 1.1em;
+  height: 100%;
+  vertical-align: top;
+  padding: 0;
+  margin: 0;
+  border: 0px solid black;
+  background: transparent;
+  transition: background 500ms;
 }
-
 form.searchform *:hover {
-    background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
-
 #searchinput {
-    width: 200px;
-    padding: 0 1em;
+  width: 200px;
+  padding: 0 1em;
 }
-
 #searchsubmit {
-    margin-left: 1px;
-    background: rgba(0, 0, 0, 0.1);
-    width: 2.5em;
-    height: 100%;
+  margin-left: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  width: 2.5em;
+  height: 100%;
 }
-
 #searchsubmit:after {
-    font-family: "dashicons";
-    content: "\f179";
-    color: white;
-    font-size: 1.5em;
-    display: block;
+  font-family: "dashicons";
+  content: "\f179";
+  color: white;
+  font-size: 1.5em;
+  display: block;
 }
-
 #searchsubmit:hover {
-    background: #b92900;
+  background: #b92900;
 }
-
 /**********/
 /* footer */
 /**********/
-
 #footer {
-    background:#4e4c4f;
-    color:#fff;
-    padding-top:32px;
-    padding-bottom:32px;
-    font-size:0.825em;
+  background: #4e4c4f;
+  color: #fff;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  font-size: 0.825em;
 }
-
 .footer-text li {
-    float:left;
-    display:block;
-    position:relative;
-    margin-bottom:32px;
-    margin-right:12px;
-    padding-right:12px;
+  float: left;
+  display: block;
+  position: relative;
+  margin-bottom: 32px;
+  margin-right: 12px;
+  padding-right: 12px;
 }
-
 div.logo-bar li {
-    float:left;
-    display:block;
-    position:relative;
-    margin-right:50px
+  float: left;
+  display: block;
+  position: relative;
+  margin-right: 50px;
 }
-
 div.logo-bar li img {
-    display:block;
-    width:auto;
-    height:100px;
+  display: block;
+  width: auto;
+  height: 100px;
 }
-
 /*********/
 /* pager */
 /*********/
-
 .pager {
-    padding-top:16px;
-    border-top:solid 1px #bcb8b6;
-    margin-top:16px;
-    padding-bottom:24px;
+  padding-top: 16px;
+  border-top: solid 1px #bcb8b6;
+  margin-top: 16px;
+  padding-bottom: 24px;
 }
-
 .pager ul:after {
-    content:'';
-    display:block;
-    position:relative;
-    clear:both;
+  content: '';
+  display: block;
+  position: relative;
+  clear: both;
 }
-
 .pager ul li {
-    float:left;
-    margin-right:8px;
-    padding-right:8px;
-    position:relative;
+  float: left;
+  margin-right: 8px;
+  padding-right: 8px;
+  position: relative;
 }
-
 .pager ul li a {
-    color:#b92900;
-    text-decoration:none;
+  color: #b92900;
+  text-decoration: none;
 }
-
 .pager ul li:after {
-    content:'';
-    display:block;
-    width:1px;
-    height:1.2em;
-    position:absolute;
-    right:0px;
-    top:-0.1em;
-    background:#b92900;
+  content: '';
+  display: block;
+  width: 1px;
+  height: 1.2em;
+  position: absolute;
+  right: 0px;
+  top: -0.1em;
+  background: #b92900;
 }

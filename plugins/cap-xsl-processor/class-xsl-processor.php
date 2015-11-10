@@ -52,7 +52,6 @@ class XSL_Processor
     public function on_init () {
         $this->stats = new Stats ();
         $this->shortcode = $this->get_opt ('shortcode', self::SHORTCODE);
-        // add_shortcode ($this->shortcode, array ($this, 'on_shortcode'));
     }
 
     public function on_enqueue_scripts () {
@@ -264,6 +263,7 @@ class XSL_Processor
         if (!in_array ($xml, $this->xmlfiles)) {
             $this->xmlfiles[] = $xml;
         }
+        error_log ("cap_xsl_transformed ($this->post_id, $xml, $xslt)");
         do_action ('cap_xsl_transformed', $this->post_id, $xml, $xslt, $params, $stringparams);
 
         // error_log ('on_shortcode () ==> exit transformed');
@@ -311,7 +311,7 @@ class XSL_Processor
             // error_log ('on_the_content_late () before update_post ...');
             kses_remove_filters ();
             wp_update_post ($my_post);
-            kses_init_filters();
+            kses_init_filters ();
             do_action ('cap_xsl_page_refreshed', $this->post_id);
             // error_log ('on_the_content_late () after update_post ...');
         } else {

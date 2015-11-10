@@ -18,3 +18,59 @@ div.search-results-excerpt {
 	}
     }
 }
+
+div.cap-meta-search-box {
+    background: #e9e1c1;
+    padding: 16px 8px;
+
+    label {
+	display: block;
+	color: #6e6b6f;
+    }
+
+    div.cap-meta-search-buttons {
+	input {
+	    background: #b92900;
+	    color: #fff;
+	    margin: 16px 0;
+	    padding: 4px 12px;
+	    cursor: pointer;
+	    display: inline-block;
+	    border: none;
+	    border-radius: 0px;
+	    -webkit-appearance: none;
+	    font-size: 1.1em;
+	    font-family: 'open_sanslight','sans-serif','sans','Helvetica','Arial';
+	    text-align: center;
+	    transition: background-color 500ms;
+	    &:hover {
+		background-color: #000;
+	    }
+	    &.cap-meta-search-submit {
+		float: left;
+		width: 45%;
+	    }
+	    &.cap-meta-search-help {
+		float: right;
+		width: 45%;
+	    }
+	}
+    }
+    div.cap-meta-search-help-text {
+	display: none;
+	p {
+	    margin-bottom: 1ex;
+	    font-size: 90%;
+	}
+    }
+}
+
+div.cap-meta-search-field-notbefore {
+    float: left;
+    width: 45%;
+}
+
+div.cap-meta-search-field-notafter {
+    float: right;
+    width: 45%;
+}

@@ -30,10 +30,13 @@ class Widget extends \WP_Widget
             $control_ops
         );
         add_action ('pre_get_posts',               array ($this, 'on_pre_get_posts'));
+        add_action ('wp_enqueue_scripts',          array ($this, 'on_enqueue_scripts'));
+
         add_filter ('query_vars',                  array ($this, 'on_query_vars'));
         add_filter ('posts_search',                array ($this, 'on_posts_search'), 10, 2);
         add_filter ('wp_search_stopwords',         array ($this, 'on_wp_search_stopwords'));
         add_filter ('cap_meta_search_your_search', array ($this, 'on_cap_meta_search_your_search'));
+
     }
 
     /**
@@ -65,11 +68,15 @@ class Widget extends \WP_Widget
         return $vars;
     }
 
+    public function on_enqueue_scripts () {
+        wp_enqueue_script  ('cap-meta-search-front');
+    }
+
     private function echo_options ($sql) {
         global $wpdb;
 
         $all = __('Alle');
-        echo ("<option value=''>$all</option>\n");
+        echo ("    <option value=''>$all</option>\n");
 
         $bks = $wpdb->get_results ($sql);
         foreach ($bks as $bk) {
@@ -83,22 +90,31 @@ class Widget extends \WP_Widget
         }
         usort ($bks, function ($bk1, $bk2) { return strcoll ($bk1->key, $bk2->key); } );
         foreach ($bks as $bk) {
-            echo ("<option value='{$bk->meta_value}'>{$bk->meta_value}</option>\n");
+            echo ("    <option value='{$bk->meta_value}'>{$bk->meta_value}</option>\n");
         }
     }
 
-    private function echo_select ($caption, $id, $meta_key) {
-        echo ("<label for='$id'>$caption</label>\n");
-        echo ("<select id='$id' name='$id'>\n");
+    private function echo_select ($caption, $id, $meta_key, $tooltip) {
+        $tooltip = esc_attr ($tooltip);
+        echo ("<div class='cap-meta-search-field cap-meta-search-field-$id'>\n");
+        echo ("  <label for='$id'>$caption</label>\n");
+        echo ("  <select id='$id' name='$id' title='$tooltip' >\n");
         $this->echo_options (
             "SELECT distinct meta_value FROM wp_postmeta WHERE meta_key = '$meta_key'"
         );
-        echo ("</select>\n");
+        echo ("  </select>\n");
+        echo ("</div>\n");
+        $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
     }
 
-    private function echo_input ($caption, $id) {
-        echo ("<label for='$id'>$caption</label>\n");
-        echo ("<input type='text' id='$id' name='$id' />\n");
+    private function echo_input ($caption, $id, $placeholder, $tooltip) {
+        $tooltip     = esc_attr ($tooltip);
+        $placeholder = esc_attr ($placeholder);
+        echo ("<div class='cap-meta-search-field cap-meta-search-field-$id'>\n");
+        echo ("  <label for='$id'>$caption</label>\n");
+        echo ("  <input type='text' id='$id' name='$id' placeholder='$placeholder' title='$tooltip' />\n");
+        echo ("</div>\n");
+        $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
     }
 
     public function widget ($args, $instance) {
@@ -109,17 +125,36 @@ class Widget extends \WP_Widget
         echo $this->title;
         echo ($args['after_title']);
 
-        echo ("<div class='filter-box'>\n");
-        echo ("<form class='filter-form' action='/'>\n");
+        $this->help_text = array ();
 
-        $this->echo_select ('Kapitularien',       'capit',     'msitem-corresp');
-        $this->echo_input  ('Nach (Jahreszahl)',  'notbefore');
-        $this->echo_input  ('Vor (Jahreszahl)',   'notafter');
-        // $this->echo_select ('Herkunft',           'place',     'origPlace');
-        $this->echo_input  ('Text',               's');
+        echo ("<div class='cap-meta-search-box'>\n");
+        echo ("<form action='/'>\n");
 
-        echo ("<input type='submit' value='Suchen' />\n");
+        $tooltip = __ ('Nur Handschriften anzeigen, die dieses Kapitular enthalten.');
+        $this->echo_select ('Enthaltene Kapitularien', 'capit',     'msitem-corresp', $tooltip);
+
+        echo ("<div class='ui-helper-clearfix'>\n");
+        $tooltip = __ ('Nur Handschriften anzeigen, die nach diesem Jahr entstanden sind.');
+        $this->echo_input  ('Nach',                    'notbefore', '700',  $tooltip);
+
+        $tooltip = __ ('Nur Handschriften anzeigen, die vor diesem Jahr entstanden sind.');
+        $this->echo_input  ('Vor',                     'notafter',  '1000', $tooltip);
+        echo ("</div>\n");
+
+        // $this->echo_select ('Herkunft',                'place',     'origPlace');
+
+        $tooltip = __ ('Freie Textsuche');
+        $this->echo_input  ('Text',                    's',         'Suchtext', $tooltip);
+
+        echo ("<div class='cap-meta-search-buttons ui-helper-clearfix'>\n");
+        echo ("  <input class='cap-meta-search-submit' type='submit' value='Suchen' />\n");
+        echo ("  <input class='cap-meta-search-help'   type='button' value='Hilfe' onclick='on_cap_meta_search_toggle_help ()' />\n");
+        echo ("</div>\n");
+
         echo ("</form>\n");
+        echo ("<div class='cap-meta-search-help-text'>\n");
+        echo (implode ("\n", $this->help_text));
+        echo ("</div>\n");
         echo ("</div>\n");
 
         echo $args['after_widget'];

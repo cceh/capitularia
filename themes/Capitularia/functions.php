@@ -26,9 +26,9 @@ function cap_the_slug () {
     echo (basename (get_permalink ()));
 }
 
-function cap_get_slug_root () {
+function cap_get_slug_root ($page) {
     // get the first path component of the slug
-    $path = parse_url (get_page_uri (), PHP_URL_PATH);
+    $path = parse_url (get_page_uri ($page), PHP_URL_PATH);
     $a = explode ('/', $path);
     if ($a) {
         return $a[0];
@@ -81,6 +81,7 @@ function cap_enqueue_scripts () {
     );
 
     $styles = array ();
+    $styles['cap-webfonts']    = '/webfonts/webfonts.css';
     $styles['cap-base']        = '/css/base.css';
     $styles['cap-fonts']       = '/ttf/fonts.css';
     $styles['cap-style']       = '/css/style.css';
@@ -221,7 +222,7 @@ add_action ('init', 'cap_add_excerpts_to_pages');
 
 function cap_on_body_class ($classes) {
     if (is_page ()) {
-        $classes[] = esc_attr ('cap-slug-' . cap_get_slug_root ());
+        $classes[] = esc_attr ('cap-slug-' . cap_get_slug_root (get_the_ID ()));
     }
     return $classes;
 }
@@ -332,8 +333,26 @@ add_filter ('quick_edit_dropdown_pages_args',      'cap_on_dropdown_pages_args')
 
 
 /**
+ * Shortcodes
+ */
+
+function on_cap_shortcode_logged_in ($atts, $content) {
+    if (is_user_logged_in ())
+        return do_shortcode ($content);
+    return '';
+}
+
+function on_cap_shortcode_logged_out ($atts, $content) {
+    if (!is_user_logged_in ())
+        return do_shortcode ($content);
+    return '';
+}
+
+add_shortcode ('logged_in',  'on_cap_shortcode_logged_in');
+add_shortcode ('logged_out', 'on_cap_shortcode_logged_out');
+
+/**
  * Widgets
- *
  */
 
 require ('widgets/cap-widgets.php');

@@ -50,7 +50,7 @@ if (isset ($cap_template_map[$cap_template])) {
     $cap_templates[] = $cap_template_map[$cap_template];
 } else {
     // new method: use page slug
-    $cap_templates[] = cap_get_slug_root ();
+    $cap_templates[] = cap_get_slug_root ($post);
 }
 
 // FIXME: stopgap measure

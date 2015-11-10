@@ -96,12 +96,12 @@ class Meta_Search
     }
 
     public function on_cap_xsl_transformed ($post_id, $xml_path) {
-        error_log ("on_cap_xsl_transformed ($post_id, $xml_path)");
+        // error_log ("on_cap_xsl_transformed ($post_id, $xml_path)");
         $this->extract_meta ($post_id, $xml_path);
     }
 
     public function on_cap_meta_search_extract_metadata ($errors, $post_id, $xml_path) {
-        error_log ("on_cap_meta_search_extract_metadata ($post_id, $xml_path)");
+        // error_log ("on_cap_meta_search_extract_metadata ($post_id, $xml_path)");
         return array_merge ($errors, $this->extract_meta ($post_id, $xml_path));
     }
 
@@ -111,7 +111,7 @@ class Meta_Search
         wp_register_script (
             'cap-meta-search-front',
             plugins_url ('js/front.js', __FILE__),
-            array ('jquery', 'jquery-ui-progressbar')
+            array ('jquery', 'jquery-ui-progressbar', 'jquery-ui-tooltip')
         );
     }
 
