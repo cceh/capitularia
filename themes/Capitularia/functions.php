@@ -14,7 +14,7 @@ define('CAPITULARIA_CSS_URL', CAPITULARIA_PARENT_DIR . '/css');
  */
 
 if (!load_theme_textdomain ('capitularia', get_template_directory () . "/languages/")) {
-    error_log ("Could not load text domain. locale = " . get_locale ());
+    // error_log ("Could not load text domain. locale = " . get_locale ());
 }
 
 /**
@@ -138,7 +138,7 @@ function cap_enqueue_scripts () {
     wp_enqueue_script (
         'cap-custom-js',
         get_template_directory_uri () . '/js/custom.js',
-        array ('jquery', 'jquery-ui-core', 'jquery-ui-accordion')
+        array ('jquery', 'jquery-ui-core', 'jquery-ui-accordion', 'jquery-ui-dialog')
     );
 }
 
@@ -146,9 +146,9 @@ function cap_admin_enqueue_scripts () {
     // NOTE: Wordpress registers jquery-ui javascript (as jquery-ui-core,
     // jquery-ui-accordion, etc.) but *does not register* nor includes any file
     // of jquery-ui css.  We have to provide our own.  We enqueue this style
-    // here only for the sake of our plugins, because it is in a subdirectory of
-    // the theme.  FIXME: how do we avoid version conflicts between wp's
-    // jquery-ui and ours?
+    // here, also for the sake of our plugins, because it is practical to do it
+    // here, as it lives in a subdirectory of the theme.  FIXME: how do we avoid
+    // version conflicts between wp's jquery-ui and ours?
     wp_register_style (
         'cap-jquery-ui',
         get_template_directory_uri () . '/bower_components/jquery-ui/themes/cupertino/jquery-ui.css',
@@ -253,12 +253,14 @@ add_action ('init', 'cap_register_nav_menus');
  */
 
 $sidebars = array ();
+$sidebars[] = array ('frontpage-image',     'Frontpage Image',
+                     'The big splash image on the front page. Takes one Capitularia Logo Widget.');
 $sidebars[] = array ('frontpage-teaser-1',  'Frontpage Teaser Bar 1',
-                     'The top teaser bar on the front page.');
+                     'The top teaser bar on the front page. Normally takes 3 Capitularia Text Widgets.');
 $sidebars[] = array ('frontpage-teaser-2',  'Frontpage Teaser Bar 2',
-                     'The bottom teaser bar on the front page.');
-$sidebars[] = array ('logobar',        'Logo Bar',
-                     'The logo bar in the footer of every page.');
+                     'The bottom teaser bar on the front page. Normally takes 2 Capitularia Image Widgets.');
+$sidebars[] = array ('logobar',             'Logo Bar',
+                     'The logo bar in the footer of every page. Takes one or more Capitularia Logo Widgets.');
 
 foreach ($sidebars as $a) {
     register_sidebar (array (
@@ -269,8 +271,12 @@ foreach ($sidebars as $a) {
 };
 
 $sidebars = array ();
-$sidebars[] = array ('sidebar',        'Sidebar',
-                     'The sidebar on most pages. This starts below the more specialized sidebars.');
+$sidebars[] = array ('post-sidebar',   'Post Sidebar',
+                     'The sidebar on posts.');
+$sidebars[] = array ('page-sidebar',   'Page Sidebar',
+                     'The sidebar on pages. TOutput below the more specialized page sidebars.');
+$sidebars[] = array ('sidebar',        'Post and Page Sidebar',
+                     'The sidebar on posts and pages. Output below the other sidebars.');
 
 $sidebars[] = array ('capit',          'Capitularies Sidebar',
                      'The sidebar on /capit/ pages.');

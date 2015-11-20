@@ -83,6 +83,8 @@ foreach ($cap_templates as $template) {
 }
 
 // This sidebar gets displayed on all pages.
+dynamic_sidebar ('Page-Sidebar');
+// This sidebar gets displayed on all posts and pages.
 dynamic_sidebar ('Sidebar');
 
 ?>

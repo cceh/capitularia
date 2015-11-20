@@ -124,36 +124,31 @@ nav.horiz-nav ul ul li {
 /* the search form      */
 /************************/
 
-#searchform {
+nav.search-nav {
     float: right;
+}
+
+form.searchform {
     height: 2.5em;
     .regular;
     background: linear-gradient(to bottom, #f8f8f8, #ccc);
-}
-
-form.searchform input,
-form.searchform button {
-    float: left;
-    display: block;
-    position: relative;
-    -webkit-appearance:none;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
-    box-sizing:border-box;
-    font-size:1.1em;
-    height: 100%;
-    vertical-align: top;
-    padding: 0;
-    margin: 0;
-    border: 0px solid black;
-    background: transparent;
-    transition: background 500ms;
-}
-
-form.searchform *:hover {
-    background: rgba(0, 0, 0, 0.05);
+    input, button {
+        float: left;
+        display: block;
+        position: relative;
+        box-sizing:border-box;
+        font-size:1.1em;
+        height: 100%;
+        vertical-align: top;
+        padding: 0;
+        margin: 0;
+        border: 0px solid black;
+        background: transparent;
+        transition: background 500ms;
+    }
+    *:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
 }
 
 #searchinput {
@@ -166,18 +161,16 @@ form.searchform *:hover {
     background: rgba(0, 0, 0, 0.1);
     width: 2.5em;
     height: 100%;
-}
-
-#searchsubmit:after {
-    font-family: "dashicons";
-    content: "\f179";
-    color: white;
-    font-size: 1.5em;
-    display: block;
-}
-
-#searchsubmit:hover {
-    background: @color-highlight;
+    &::after {
+        font-family: "dashicons";
+        content: "\f179";
+        color: white;
+        font-size: 1.5em;
+        display: block;
+    }
+    &:hover {
+        background: @color-highlight;
+    }
 }
 
 /**********/

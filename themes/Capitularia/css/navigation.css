@@ -103,8 +103,10 @@ nav.horiz-nav ul ul li {
 /************************/
 /* the search form      */
 /************************/
-#searchform {
+nav.search-nav {
   float: right;
+}
+form.searchform {
   height: 2.5em;
   font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
@@ -116,9 +118,6 @@ form.searchform button {
   float: left;
   display: block;
   position: relative;
-  -webkit-appearance: none;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 1.1em;
   height: 100%;
@@ -142,7 +141,7 @@ form.searchform *:hover {
   width: 2.5em;
   height: 100%;
 }
-#searchsubmit:after {
+#searchsubmit::after {
   font-family: "dashicons";
   content: "\f179";
   color: white;

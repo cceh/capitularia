@@ -8,13 +8,15 @@
  */
 ?>
 
+/*** Warning: this is a test page, not the real front page! ****/
+
 <?php get_header (); ?>
 
 <main id="main" class="home">
 
-  <div class="header-block ui-helper-clearfix">
+  <div class="front-splash ui-helper-clearfix">
     <h1><?php bloginfo ('description', 'display'); ?></h1>
-    <img <?php cap_theme_image ('img-home-4.png'); ?> />
+    <?php dynamic_sidebar ('frontpage-image') ?>
   </div>
 
   <div class="teaser-bar teaser-bar-1 ui-helper-clearfix">

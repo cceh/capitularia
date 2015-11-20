@@ -149,7 +149,7 @@ class XSL_Processor
         if ($this->save_post) {
             global $wpdb;
             $sql = $wpdb->prepare ("SELECT post_content FROM $wpdb->posts WHERE ID = %d", $this->post_id);
-            error_log ("SQL: $sql");
+            // error_log ("SQL: $sql");
             $raw_content = $wpdb->get_var ($sql);
             $this->content_cache = do_shortcode ($raw_content);
         }
@@ -248,8 +248,11 @@ class XSL_Processor
         $cmdline[] = escapeshellarg ($xml);
         // '| /vol/local/bin/tidy -qni -xml -utf8 -wrap 80'
 
+        // redirect stderr to stdout to keep server error logs small
+        // (seems to be a problem at uni-koeln.de)
+        $cmdline[] = "2>/dev/null";
+
         $cmdline = join (' ', $cmdline);
-        // $output = shell_exec ($cmdline);
 
         $output = array ();
         exec ($cmdline, $output, $retval);
@@ -263,7 +266,7 @@ class XSL_Processor
         if (!in_array ($xml, $this->xmlfiles)) {
             $this->xmlfiles[] = $xml;
         }
-        error_log ("cap_xsl_transformed ($this->post_id, $xml, $xslt)");
+        // error_log ("cap_xsl_transformed ($this->post_id, $xml, $xslt)");
         do_action ('cap_xsl_transformed', $this->post_id, $xml, $xslt, $params, $stringparams);
 
         // error_log ('on_shortcode () ==> exit transformed');

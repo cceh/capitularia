@@ -2,9 +2,11 @@
 
 <main id="main" class="home">
 
-  <div class="header-block ui-helper-clearfix">
+  <div class="front-splash ui-helper-clearfix">
     <h1><?php bloginfo ('description', 'display'); ?></h1>
-    <img <?php cap_theme_image ('img-home-4.png'); ?> title="Modena BC O.I.2, fol. 154v/155r. ©Archivio Storico Diocesano, Modena" />
+    <ul>
+      <?php dynamic_sidebar ('frontpage-image') ?>
+    </ul>
   </div>
 
   <div class="teaser-bar teaser-bar-1 ui-helper-clearfix">

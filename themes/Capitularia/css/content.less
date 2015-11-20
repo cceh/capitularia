@@ -1,6 +1,18 @@
 @import (reference) "fonts.less";
 @import (reference) "colors.less";
 
+.screen-only {
+    @media print {
+	display: none;
+    }
+}
+
+.print-only {
+    @media screen {
+	display: none;
+    }
+}
+
 #top-nav > div,
 #bottom-header-wrapper,
 #footer-wrapper,
@@ -8,9 +20,12 @@
     width:1140px;
     margin:0px auto;
     position:relative;
+    @media print {
+	width: 100%;
+    }
 }
 
-.header-block {
+.front-splash {
     width:100%;
     height:auto;
     background: @color-startpage-box;
@@ -20,17 +35,10 @@
     margin-bottom: 70px;
 }
 
-.header-block:after {
-    content:'';
-    display:block;
-    position:relative;
-    clear:both;
-}
-
-.header-block h1,
-.header-block h2,
-.header-block h3,
-.header-block h4 {
+.front-splash h1,
+.front-splash h2,
+.front-splash h3,
+.front-splash h4 {
     display:block;
     width:60%;
     position:absolute;
@@ -38,7 +46,7 @@
     bottom:16px;
 }
 
-.header-block img {
+.front-splash img {
     display:block;
     width:32%;
     float:right;
@@ -198,7 +206,7 @@ tr a {
     color: @color-darkgray;
 }
 
-div.back-to-top {
+div.back-to-top { /* old way */
     text-align: right;
 }
 
@@ -208,14 +216,16 @@ a.back-to-top {
     font-size: 6px;
     text-align: right;
     vertical-align: top;
-}
-
-a.back-to-top:after {
-    display: inline;
-    padding-left: 1em;
-    font-family: "dashicons";
-    content: " \f343";
-    font-size: 12px;
+    @media print {
+	display: none;
+    }
+    &::after {
+	display: inline;
+	padding-left: 1em;
+	font-family: "dashicons";
+	content: " \f343";
+	font-size: 12px;
+    }
 }
 
 hr + a.back-to-top,
@@ -298,11 +308,19 @@ hr + div.back-to-top {
 .content-col {
     float:left;
     width:64%;
+    @media print {
+	float: none;
+	width: 100%;
+    }
 }
 
 .sidebar-col {
     float: right;
     width: 28%;
+    @media print {
+	float: none;
+	display: none;
+    }
 }
 
 .kapitularien-uebersicht li {
@@ -341,7 +359,6 @@ select {
     width:100%;
     display:block;
     margin:8px 0px 16px;
-    -webkit-appearance:none;
     display:block;
     border:none;
     position:relative;
@@ -353,10 +370,6 @@ select {
 
     height:1.6em;
     padding-left:1em;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
     box-sizing:border-box;
 
     background:url('../img/icon-selectbox.png') right no-repeat @color-white;
@@ -368,11 +381,6 @@ input[type="text"] {
     margin:8px 0px 16px;
     border:none;
     padding:4px 8px;
-
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
     box-sizing:border-box;
 }
 
@@ -524,12 +532,85 @@ div.content-col .rend-default {
     color: black;
 }
 
-div.content-col .align-center {
-    text-align: center;
+div.content-col {
+    .align-left {
+	text-align: left;
+    }
+    .align-center {
+	text-align: center;
+    }
+    .align-right {
+	text-align: right;
+    }
+    .align-bottom {
+	vertical-align: bottom;
+    }
+    .float-left {
+	display: block;
+	float: left;
+	margin: 0 1em 1em 0;
+    }
+    .float-right {
+	display: block;
+	float: left;
+	margin: 0 0 1em 1em;
+    }
 }
 
-div.content-col .align-bottom {
-    vertical-align: bottom;
+/*************/
+/* Footnotes */
+/*************/
+
+div.content-col {
+    div.footnotes-wrapper {
+	display: none;
+	@media print {
+	    display: block;
+	}
+    }
+    .annotation-ref {
+	vertical-align: super;
+        font-size: 70%;
+        line-height: 0;
+    }
+}
+
+div.annotation-content {
+    /* gets copied by jquery-ui tooltip () so it is not necessarily inside content-col */
+    font-size: 80%;
+    line-height: 150%;
+    @media print {
+	&:first-child::before {
+	    display: block;
+	    content: '';
+	    margin-top: 1ex;
+	    border-top: 1px solid @color-black;
+	    padding-top: 1ex;
+	    width: 25%;
+	}
+    }
+    .annotation-backref {
+	display: none;
+	@media print {
+	    display: block;
+	    float: left;
+	    width: 2em;
+	    text-align: right;
+	}
+    }
+    .annotation-text {
+	@media print {
+	    margin-left: 3em;
+	}
+    }
+}
+
+body div.ui-tooltip-footnote {
+    background-color: @background-box;
+    padding: 8px;
+    max-width: 400px;
+    box-shadow: 5px 5px 5px @color-lightgray;
+    border-width: 0;
 }
 
 /***********/
@@ -606,78 +687,6 @@ div.content-col .align-bottom {
     .bold;
 }
 
-.annotation {
-    display:inline-block;
-    text-align:center;
-    position:relative;
-    /* z-index:0; */
-}
-
-.annotation.active {
-    z-index:1;
-}
-
-.annotation-link {
-    position:relative;
-    font-size:0.6em;
-    display:inline;
-    top:-0.7em;
-    color: @color-annotation-red;
-}
-
-.annotation-content {
-    display:inline-block;
-    background: @color-annotation-red;
-    background:rgba(175,64,46,0.85);
-    color: @color-white;
-    position:absolute;
-    padding:16px 8px;
-    width:400px;
-    margin-left:-200px;
-    bottom:100%;
-    margin-bottom:8px;
-    transition:opacity 500ms;
-    box-shadow:8px 8px 16px rgba(0,0,0,0.2);
-    opacity:0;
-    z-index:-1;
-}
-
-.annotation-content a {
-    color: @color-white;
-    text-decoration:underline;
-    .regular;
-}
-
-.annotation-content:after {
-    content:'';
-    display:block;
-    position:absolute;
-    left:50%;
-    margin-left:-20px;
-    border-top:solid 8px  @color-highlight;
-    border-top:solid 8px rgba(175,64,46,0.85);
-    border-left:solid 10px transparent;
-    border-right:solid 10px transparent;
-    bottom:-8px;
-}
-
-.annotation-content:before {
-    content:'';
-    display:block;
-    position:absolute;
-    width:100px;
-    margin-left:-50px;
-    background:transparent;
-    top:100%;
-    height:32px;
-    left:50%;
-}
-
-.annotation.active .annotation-content {
-
-    opacity:1;
-    z-index:100;
-}
 .text + h4 {
     padding:24px 0px;
 }
@@ -716,7 +725,7 @@ div.content-col .align-bottom {
 }
 
 span.red {
-    color: @color-annotation-red;
+    color: @color-red;
 }
 
 .transkription-footer {

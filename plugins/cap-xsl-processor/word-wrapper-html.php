@@ -11,6 +11,16 @@
  * immediately after the xslt processor. This script accepts XML or HTML input.
  */
 
+const FOOTNOTES = '//span[contains (concat (" ", @class, " "), " annotation ")]';
+
+function is_note ($node) {
+    return
+        $node &&
+        ($node->nodeType == XML_ELEMENT_NODE) &&
+        ($node->nodeName == 'span') &&
+        has_class ($node, 'annotation');
+}
+
 function add_class ($node, $class) {
     $classes = explode (' ', $node->getAttribute ('class'));
     $classes[] = $class;
@@ -24,14 +34,6 @@ function has_class ($node, $class) {
 
 function is_text_node ($node) {
     return $node && ($node->nodeType == XML_TEXT_NODE);
-}
-
-function is_note ($node) {
-    return
-        $node &&
-        ($node->nodeType == XML_ELEMENT_NODE) &&
-        ($node->nodeName == 'div') &&
-        has_class ($node, 'annotation');
 }
 
 /**
@@ -50,7 +52,7 @@ function merge_notes ($note, $next) {
     $dest = $xpath1->query ('.//div[@class="annotation-content"]',   $next);
 
     // never merge into editorial notes, just drop it
-    if (has_class ($next, 'editorial')) {
+    if (has_class ($next, 'annotation-editorial')) {
         add_class ($next, 'previous-notes-dropped');
     } else {
         $dest[0]->insertBefore ($src[0], $dest[0]->lastChild);
@@ -103,7 +105,11 @@ $doc = new \DomDocument ();
 
 // load XML or HTML
 
+// keep server error log small (seems to be a problem at uni-koeln.de)
+libxml_use_internal_errors (true);
+
 if ($doc->loadXML  ($in, LIBXML_NONET) === false) {
+    libxml_clear_errors ();
     // Hack to load HTML with utf-8 encoding
     $doc->loadHTML ("<?xml encoding='UTF-8'>\n" . $in, LIBXML_NONET);
     foreach ($doc->childNodes as $item)
@@ -119,11 +125,11 @@ $xpath1 = new \DOMXpath ($doc);
 // Loop over footnotes.
 //
 
-$notes = $xpath->query ('//div[contains (concat (" ", @class, " "), " annotation ")]');
+$notes = $xpath->query (FOOTNOTES);
 foreach ($notes as $note) {
 
     // Don't touch editorial notes.
-    if (has_class ($note, 'editorial')) {
+    if (has_class ($note, 'annotation-editorial')) {
         continue;
     }
 
@@ -175,7 +181,7 @@ foreach ($notes as $note) {
 // Loop over footnotes again to remove leading whitespace.
 //
 
-$notes = $xpath->query ('//div[contains (concat (" ", @class, " "), " annotation ")]');
+$notes = $xpath->query (FOOTNOTES);
 foreach ($notes as $note) {
 
     $prev = $note->previousSibling;
@@ -186,6 +192,38 @@ foreach ($notes as $note) {
     $text = $prev->nodeValue;
     $text = preg_replace ('/\s+$/u', '', $text);
     $prev->nodeValue = $text;
+}
+
+//
+// Renumber footnote refs
+//
+
+$count = 0;
+$notes = $xpath->query (FOOTNOTES);
+foreach ($notes as $note) {
+    $count++;
+
+    $span = $xpath1->query ('.//a[contains (concat (" ", @class, " "), " annotation-ref ")]/span[contains (concat (" ", @class, " "), " print-only ")]', $note);
+    if (count ($span)) {
+        $span[0]->nodeValue = strVal ($count);
+    }
+
+    $span = $xpath1->query ('.//a[contains (concat (" ", @class, " "), " annotation-backref ")]/span[contains (concat (" ", @class, " "), " print-only ")]', $note);
+    if (count ($span)) {
+        $span[0]->nodeValue = strVal ($count);
+    }
+}
+
+//
+// Loop over footnote contents and move it into the respective <div class="footnotes-wrapper">.
+//
+
+$notes = $xpath->query ('//div[contains (concat (" ", @class, " "), " annotation-content ")]');
+foreach ($notes as $note) {
+    $abfs = $xpath1->query ('following::div[contains (concat (" ", @class, " "), " footnotes-wrapper ")]', $note);
+    if ($abfs) {
+        $abfs[0]->appendChild ($note);
+    }
 }
 
 //
@@ -223,7 +261,7 @@ foreach ($initials as $initial) {
 }
 
 //
-// Loop over text nodes to replace punctuation following whitespace
+// Loop over text nodes to nbsp punctuation following whitespace
 //
 
 $textnodes = $xpath->query ('//text()');
@@ -258,7 +296,7 @@ if (count ($divs)) {
     $out = $doc->saveHTML ($divs[0]);
 
     // xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:html="http://www.w3.org/1999/xhtml"
-    $out = preg_replace ('/xmlns:(tei|html|cs|my)=".*?"/u', '', $out);
+    $out = preg_replace ('/ xmlns:[a-z]+=".*?"/u', ' ', $out);
 } else {
     $out = $doc->saveHTML ();
 }
