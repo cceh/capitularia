@@ -73,7 +73,31 @@ function cap_get_option ($section, $option, $default = '') {
  * Adds all our JS and CSS the wordpress way.
  */
 
+function cap_register_jquery () {
+    wp_register_script (
+        'cap-jquery',
+        get_template_directory_uri () . '/bower_components/jquery/dist/jquery.js'
+    );
+    wp_register_script (
+        'cap-jquery-ui',
+        get_template_directory_uri () . '/bower_components/jquery-ui/jquery-ui.js',
+        array ('cap-jquery')
+    );
+    wp_register_script (
+        'cap-jquery-sticky',
+        get_template_directory_uri () . '/bower_components/jquery-sticky/jquery.sticky.js',
+        array ('cap-jquery-ui')
+    );
+    wp_register_style (
+        'cap-jquery-ui-css',
+        get_template_directory_uri () . '/bower_components/jquery-ui/themes/cupertino/jquery-ui.css',
+        array ()
+    );
+}
+
 function cap_enqueue_scripts () {
+    cap_register_jquery ();
+
     wp_enqueue_style (
         'cap-reset',
         get_template_directory_uri () . "/css/reset.css",
@@ -83,12 +107,10 @@ function cap_enqueue_scripts () {
     $styles = array ();
     $styles['cap-webfonts']    = '/webfonts/webfonts.css';
     $styles['cap-fonts']       = '/css/fonts.css';
-    $styles['cap-base']        = '/css/base.css';
-    $styles['cap-style']       = '/css/style.css';
     $styles['cap-bg-data-uri'] = '/css/bg_data_uri.css';
     $styles['cap-bg-img-ie7']  = '/css/bg_img.css';
-    $styles['cap-navigation']  = '/css/navigation.css';
     $styles['cap-content']     = '/css/content.css';
+    $styles['cap-navigation']  = '/css/navigation.css';
     $styles['cap-mobile']      = '/css/mobile.css';
     $styles['cap-qtranslate']  = '/css/qtranslate-x.css';
 
@@ -118,42 +140,22 @@ function cap_enqueue_scripts () {
     $wp_styles->add_data ('cap-bg-img-ie7', 'conditional', 'lte IE 7');
     $wp_scripts->add_data ('cap-html5-ie9', 'conditional', 'lt IE 9');
 
-    wp_register_style (
-        'jquery-ui-css',
-        get_template_directory_uri () . '/js/jquery-ui-1.11.4/jquery-ui.css',
-        array ()
-    );
-    wp_register_style (
-        'cap-jquery-ui-custom',
+    wp_enqueue_style (
+        'cap-jquery-ui-custom-css',
         get_template_directory_uri () . '/css/jquery-ui-custom.css',
-        array ('jquery-ui-css')
-    );
-    wp_enqueue_style ('cap-jquery-ui-custom');
-
-    wp_enqueue_script (
-        'jquery-plugin-sticky',
-        get_template_directory_uri () . '/js/jquery.sticky.js',
-        array ('jquery')
+        array ('cap-jquery-ui-css')
     );
     wp_enqueue_script (
         'cap-custom-js',
         get_template_directory_uri () . '/js/custom.js',
-        array ('jquery', 'jquery-ui-core', 'jquery-ui-accordion', 'jquery-ui-dialog')
+        array ('cap-jquery', 'cap-jquery-ui', 'cap-jquery-sticky')
     );
 }
 
 function cap_admin_enqueue_scripts () {
-    // NOTE: Wordpress registers jquery-ui javascript (as jquery-ui-core,
-    // jquery-ui-accordion, etc.) but *does not register* nor includes any file
-    // of jquery-ui css.  We have to provide our own.  We enqueue this style
-    // here, also for the sake of our plugins, because it is practical to do it
-    // here, as it lives in a subdirectory of the theme.  FIXME: how do we avoid
-    // version conflicts between wp's jquery-ui and ours?
-    wp_register_style (
-        'cap-jquery-ui',
-        get_template_directory_uri () . '/bower_components/jquery-ui/themes/cupertino/jquery-ui.css',
-        array ()
-    );
+    // NOTE: Wordpress' own jquery-ui does not include jquery-ui.css.
+    cap_register_jquery ();
+    wp_enqueue_script ('cap-jquery-ui');
 }
 
 add_action ('wp_enqueue_scripts',    'cap_enqueue_scripts');

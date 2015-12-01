@@ -250,7 +250,7 @@ class XSL_Processor
 
         // redirect stderr to stdout to keep server error logs small
         // (seems to be a problem at uni-koeln.de)
-        $cmdline[] = "2>/dev/null";
+        $cmdline[] = '2>/dev/null';
 
         $cmdline = join (' ', $cmdline);
 
@@ -260,7 +260,7 @@ class XSL_Processor
             array_shift ($output);
         }
         array_unshift ($output, '<div class="xsl-output">');
-        $output[] = "</div>";
+        $output[] = '</div>';
         $content = join ("\n", $output);
 
         if (!in_array ($xml, $this->xmlfiles)) {

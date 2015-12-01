@@ -88,7 +88,12 @@ class Widget extends \WP_Widget
                 $bk->meta_value
             );
         }
-        usort ($bks, function ($bk1, $bk2) { return strcoll ($bk1->key, $bk2->key); } );
+        usort (
+            $bks,
+            function ($bk1, $bk2) {
+                return strcoll ($bk1->key, $bk2->key);
+            }
+        );
         foreach ($bks as $bk) {
             echo ("    <option value='{$bk->meta_value}'>{$bk->meta_value}</option>\n");
         }
@@ -148,7 +153,8 @@ class Widget extends \WP_Widget
 
         echo ("<div class='cap-meta-search-buttons ui-helper-clearfix'>\n");
         echo ("  <input class='cap-meta-search-submit' type='submit' value='Suchen' />\n");
-        echo ("  <input class='cap-meta-search-help'   type='button' value='Hilfe' onclick='on_cap_meta_search_toggle_help ()' />\n");
+        echo ("  <input class='cap-meta-search-help'   type='button' value='Hilfe' " .
+              "onclick='on_cap_meta_search_toggle_help ()' />\n");
         echo ("</div>\n");
 
         echo ("</form>\n");
@@ -181,7 +187,7 @@ class Widget extends \WP_Widget
                             'compare' => '=',
                             'type' => 'CHAR'
                         );
-                        $this->your_search[] = sprintf (__("cap. %s"), $val);
+                        $this->your_search[] = sprintf (__('cap. %s'), $val);
                         continue;
                     }
                     if ($key == 'notbefore') {
@@ -192,7 +198,7 @@ class Widget extends \WP_Widget
                             'compare' => '>=',
                             'type' => 'NUMERIC'
                         );
-                        $this->your_search[] = sprintf (__("after %d"), $val);
+                        $this->your_search[] = sprintf (__('after %d'), $val);
                         continue;
                     }
                     if ($key == 'notafter') {
@@ -203,7 +209,7 @@ class Widget extends \WP_Widget
                             'compare' => '<=',
                             'type' => 'NUMERIC'
                         );
-                        $this->your_search[] = sprintf (__("before %d") , $val);
+                        $this->your_search[] = sprintf (__('before %d'), $val);
                         continue;
                     }
                     if ($key == 'place') {
@@ -214,7 +220,7 @@ class Widget extends \WP_Widget
                             'compare' => '=',
                             'type' => 'CHAR'
                         );
-                        $this->your_search[] = sprintf (__("in %s"), $val);
+                        $this->your_search[] = sprintf (__('in %s'), $val);
                         continue;
                     }
                 }

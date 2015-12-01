@@ -63,8 +63,8 @@ var inPrintMode = false;
     }
 
     function initFootnoteTooltips () {
-        $("div.content-col").tooltip ({
-            items: "a.annotation-ref",
+        $("a.annotation-ref").cap_tooltip ({
+            items: "a",
             content: function () {
                 var href = $(this).attr ('href');
                 // clone because jquery appendsTo a 'log file'
@@ -79,9 +79,51 @@ var inPrintMode = false;
                 collision: "fit"
             }
         });
+
     }
 
     detectPrintMode ();
+
+    //
+    // a custom tooltip widget that stays open while the user is hovering on the
+    // popup allowing her to click on links
+    //
+
+    $.widget ("custom.cap_tooltip", $.ui.tooltip, {
+        open: function (event) {
+            var that = this;
+            var ret = this._super (event);
+            var target = $(event ? event.currentTarget : this.element);
+            this._off (target, "mouseleave");
+            this.capTimeoutId = 0;
+
+            target.off ("mouseleave");
+            target.on ("mouseleave", function () {
+                var id = setTimeout (function () {
+                    // console.log ("a mouseleave timeout");
+                    that.close ();
+                }, 500);
+                target.data ('capTimeoutId', id);
+                // console.log ("a mouseleave id=" + id);
+            });
+
+            var tooltipData = this._find (target);
+            if (tooltipData) {
+                var tt = $(tooltipData.tooltip);
+                tt.off ("mouseenter mouseleave");
+                tt.on ("mouseenter", function (event) {
+                    var id = target.data ('capTimeoutId');
+                    clearTimeout (id);
+                    // console.log ("div mouseenter id=" + id);
+                });
+                tt.on ("mouseleave", function (event) {
+                    // console.log ("div mouseleave");
+                    that.close ();
+                });
+            }
+            return ret;
+        }
+    });
 
     $(document).ready (function () {
         setTimeout (initBackToTop,0);

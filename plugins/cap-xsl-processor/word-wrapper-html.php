@@ -3,6 +3,8 @@
 /**
  * This script:
  *
+ * FIXME: The script should be renamed to footnotes-post-processor.php
+ *
  * - Merges adjacent footnotes and moves footnotes to the end of the word.
  * - Wraps initials and the following word into a span.
  * - Converts XML to HTML.
@@ -36,6 +38,10 @@ function is_text_node ($node) {
     return $node && ($node->nodeType == XML_TEXT_NODE);
 }
 
+function remove_node ($node) {
+    $node->parentNode->removeChild ($node);
+}
+
 /**
  * Merge @note into @next and delete @note.
  *
@@ -48,17 +54,19 @@ function is_text_node ($node) {
 function merge_notes ($note, $next) {
     global $xpath1;
 
-    $src  = $xpath1->query ('.//div[@class="annotation-content"]/a', $note);
+    $src  = $xpath1->query ('.//div[@class="annotation-text"]', $note);
     $dest = $xpath1->query ('.//div[@class="annotation-content"]',   $next);
 
     // never merge into editorial notes, just drop it
     if (has_class ($next, 'annotation-editorial')) {
         add_class ($next, 'previous-notes-dropped');
     } else {
-        $dest[0]->insertBefore ($src[0], $dest[0]->lastChild);
-        add_class ($next, 'previous-notes-merged');
+        if (count ($src) && count ($dest)) {
+            $dest[0]->insertBefore ($src[0], $dest[0]->lastChild);
+            add_class ($next, 'previous-notes-merged');
+        }
     }
-    $note->parentNode->removeChild ($note);
+    remove_node ($note);
 }
 
 /**
@@ -112,9 +120,11 @@ if ($doc->loadXML  ($in, LIBXML_NONET) === false) {
     libxml_clear_errors ();
     // Hack to load HTML with utf-8 encoding
     $doc->loadHTML ("<?xml encoding='UTF-8'>\n" . $in, LIBXML_NONET);
-    foreach ($doc->childNodes as $item)
-        if ($item->nodeType == XML_PI_NODE)
+    foreach ($doc->childNodes as $item) {
+        if ($item->nodeType == XML_PI_NODE) {
             $doc->removeChild ($item); // remove xml declaration
+        }
+    }
     $doc->encoding = 'UTF-8'; // insert proper encoding
 }
 
@@ -122,7 +132,7 @@ $xpath  = new \DOMXpath ($doc);
 $xpath1 = new \DOMXpath ($doc);
 
 //
-// Loop over footnotes.
+// Merge an move footnotes to the end of the word.
 //
 
 $notes = $xpath->query (FOOTNOTES);
@@ -135,6 +145,7 @@ foreach ($notes as $note) {
 
     $next = $note->nextSibling;
     if (!$next) {
+        // note was last child
         continue;
     }
 
@@ -150,14 +161,12 @@ foreach ($notes as $note) {
         continue;
     }
 
+    $nnext = $next->nextSibling;
     $ws_pos = whitespace_pos ($next);
 
-    // Merge footnotes in the same word.
+    // Merge notes separated by non-whitespace only (footnotes in the same word).
     //
     if ($ws_pos === false) {
-        // following text node contains no whitespace
-
-        $nnext = $next->nextSibling;
         if (is_note ($nnext)) {
             merge_notes ($note, $nnext);
         }
@@ -178,7 +187,8 @@ foreach ($notes as $note) {
 }
 
 //
-// Loop over footnotes again to remove leading whitespace.
+// Remove whitespace before footnotes.  Do this after moving footnotes to the
+// end of words or we will merge words.
 //
 
 $notes = $xpath->query (FOOTNOTES);
@@ -192,6 +202,37 @@ foreach ($notes as $note) {
     $text = $prev->nodeValue;
     $text = preg_replace ('/\s+$/u', '', $text);
     $prev->nodeValue = $text;
+
+    if (empty ($text)) {
+        remove_node ($prev);
+    }
+}
+
+//
+// Merge adjacent footnotes again.
+// Footnotes may have become adjacent by removing whitespace.
+//
+
+$notes = $xpath->query (FOOTNOTES);
+foreach ($notes as $note) {
+
+    // Don't touch editorial notes.
+    if (has_class ($note, 'annotation-editorial')) {
+        continue;
+    }
+
+    $next = $note->nextSibling;
+    if (!$next) {
+        // note was last child
+        continue;
+    }
+
+    // Merge immediately adjacent notes.
+    //
+    if (is_note ($next)) {
+        merge_notes ($note, $next);
+        continue;
+    }
 }
 
 //
@@ -221,7 +262,7 @@ foreach ($notes as $note) {
 $notes = $xpath->query ('//div[contains (concat (" ", @class, " "), " annotation-content ")]');
 foreach ($notes as $note) {
     $abfs = $xpath1->query ('following::div[contains (concat (" ", @class, " "), " footnotes-wrapper ")]', $note);
-    if ($abfs) {
+    if (count ($abfs)) {
         $abfs[0]->appendChild ($note);
     }
 }
@@ -268,17 +309,24 @@ $textnodes = $xpath->query ('//text()');
 foreach ($textnodes as $textnode) {
     $text = $textnode->nodeValue;
     $text = preg_replace ('/\s+([·])/u', ' $1', $text);
-    if ($text != $textnode->nodeValue)
+    if ($text != $textnode->nodeValue) {
         $textnode->nodeValue = $text;
+    }
 }
 
 //
 // Make new w3c validator happy
 //
 
+/*
+The w3c validator complains about this but it is not yet widely supported. It's
+even buggy in Firefox.
+
 foreach ($xpath->query ('//style') as $style) {
     $style->setAttribute ('scoped', '');
 }
+*/
+
 foreach ($xpath->query ('//script') as $script) {
     $script->removeAttribute ('language');
 }

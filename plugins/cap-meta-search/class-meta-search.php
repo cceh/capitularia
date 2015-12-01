@@ -111,7 +111,7 @@ class Meta_Search
         wp_register_script (
             'cap-meta-search-front',
             plugins_url ('js/front.js', __FILE__),
-            array ('jquery', 'jquery-ui-progressbar', 'jquery-ui-tooltip')
+            array ('cap-jquery', 'cap-jquery-ui')
         );
     }
 

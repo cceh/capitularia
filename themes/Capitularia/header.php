@@ -24,26 +24,31 @@
   <body <?php body_class (); ?>>
     <header id="header">
 
+      <div id="top"></div>
+
       <nav id="top-nav" class="top-nav horiz-nav ui-helper-clearfix">
         <?php wp_nav_menu (array ('theme_location' => 'navtop')); ?>
       </nav>
 
       <div id="bottom-header-wrapper">
-        <a href="/" class="homelink">
-          <img <?php cap_theme_image ('Capitularia_Logo.png'); ?>
-               alt="Capitularia - Edition der fränkischen Herrschererlasse"/>
-        </a>
 
         <nav class="search-nav">
-	  <form id="searchform" class="searchform" action="/" method="get">
-          <input id="searchinput"  class="sword"  type="text" placeholder="Suchen" name="s" />
-          <button id="searchsubmit" class="submit" type="submit" name="submit"></button>
-	  </form>
-	</nav>
+          <form id="searchform" class="searchform" action="/" method="get">
+            <input id="searchinput"  class="sword"  type="text" placeholder="Suchen" name="s" />
+            <button id="searchsubmit" class="submit" type="submit" name="submit"></button>
+          </form>
+        </nav>
+
+        <h1>
+          <a href="/" class="homelink"><img
+                 <?php cap_theme_image ('Capitularia_Logo.png'); ?>
+                 alt="Capitularia - Edition der fränkischen Herrschererlasse"/></a>
+        </h1>
 
         <nav id="bottom-nav" class="bottom-nav horiz-nav ui-helper-clearfix">
           <?php wp_nav_menu (array ('theme_location' => 'navbottom')); ?>
         </nav>
+
       </div>
 
     </header>

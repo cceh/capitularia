@@ -211,15 +211,17 @@ class Page_Generator
         wp_register_style (
             'cap-page-gen-admin',
             plugins_url ('css/admin.css', __FILE__),
-            array ('cap-jquery-ui')
+            array ('cap-jquery-ui-css')
         );
         wp_enqueue_style  ('cap-page-gen-admin');
+
         wp_register_script (
             'cap-page-gen-admin',
             plugins_url ('js/admin.js', __FILE__),
-            array ('jquery', 'jquery-ui-progressbar')
+            array ('cap-jquery', 'cap-jquery-ui')
         );
         wp_enqueue_script ('cap-page-gen-admin');
+
         wp_localize_script (
             'cap-page-gen-admin', 'ajax_object',
             array ('ajax_nonce' => wp_create_nonce (self::NONCE_SPECIAL_STRING),
@@ -322,12 +324,39 @@ class Page_Generator
         return wp_update_post ($updated); // wp_update_post returns 0 on error
     }
 
+    /**
+     * Delete all pages with a slug that starts with @slug
+     *
+     * @param slug
+     *
+     * @return no. of deleted posts
+     */
+
     private function delete ($slug) {
-        $post = $this->get_page_from_slug ($slug);
-        if (!$post) {
-            return false;
+        if (empty ($slug)) {
+            return 0;
         }
-        return wp_delete_post ($post->ID, true);
+
+        global $wpdb;
+        $sql = $wpdb->prepare ('select ID from wp_posts where post_name REGEXP %s', "^$slug(-\\d)?\$");
+        error_log ("Deleting posts: SQL: $sql");
+
+        $ids = $wpdb->get_col ($sql, 0);
+
+        if (count ($ids) > 9) {
+            // guard against disaster
+            return 0;
+        }
+
+        $count = 0;
+        foreach ($ids as $id) {
+            // bypass trash or we'll still have the slug in the bloody way
+            error_log ("Deleting post: $id");
+            if (wp_delete_post ($id, true) !== false) {
+                $count++;
+            }
+        }
+        return $count;
     }
 
     /**
@@ -336,7 +365,7 @@ class Page_Generator
      * @param path    Path to the xml file.
      * @param status  Status of the new page.
      *
-     * @return 0 on error
+     * @return false on error, new page slug on success
      */
 
     private function create_page ($path, $status) {
@@ -375,7 +404,12 @@ class Page_Generator
             'tags_input'   => array ('xml'),
             'tax_input'    => array ('cap-sidebar' => array ('transcription')),
         );
-        return wp_insert_post ($new_post);
+        $post_id = wp_insert_post ($new_post);
+        if ($post_id) {
+            $post = get_post ($post_id);
+            return $post->post_name;
+        }
+        return false;
     }
 
     /**
@@ -512,21 +546,35 @@ class Page_Generator
             return array (2, __("File $a_slug is invalid TEI."), $result);
         }
 
-        if ($status == $action) {
+        if ($action == 'refresh') {
+            if ($status == 'delete') {
+                return array (1, __('Cannot refresh unpublished file.'));
+            }
+            if ($this->delete ($slug) == 0) {
+                return array (2, __("Error: could not unpublish page $a_slug while refreshing."));
+            }
+            $action = $status;
+            $status = 'delete';
+        }
+
+        if ($action == $status) {
             return array (1, __("The post is already $action."));
         }
 
         if ($action == 'delete') {
-            if ($this->delete ($slug) === false) {
+            if ($this->delete ($slug) == 0) {
                 return array (2, __("Error: could not unpublish page $a_slug."));
             }
             return array (0, __("Page $slug unpublished."));
         }
 
         if ($status == 'delete') {
-            if ($this->create_page ($root . $filename, $action) === 0) {
+            $this->delete ($slug);
+            $new_slug = $this->create_page ($root . $filename, $action);
+            if ($new_slug === false) {
                 return array (2, __("Error: could not create page $slug."));
             }
+            $a_slug = $this->slug_to_link ($new_slug);
             return array (0, __("Page $a_slug created with status set to $action."));
         }
 
@@ -601,7 +649,11 @@ class Page_Generator
 
         echo ("<div class='cap_page_dash_message'>\n");
         if (isset ($_REQUEST['action']) && isset ($_REQUEST['filenames'])) {
-            echo ($this->process_bulk_actions ($_REQUEST['action'], $_REQUEST['filenames']));
+            $action = $_REQUEST['action'];
+            if ($action == '-1' and isset ($_REQUEST['action2'])) {
+                $action = $_REQUEST['action2'];
+            }
+            echo ($this->process_bulk_actions ($action, $_REQUEST['filenames']));
         }
         echo ("</div>\n");
 

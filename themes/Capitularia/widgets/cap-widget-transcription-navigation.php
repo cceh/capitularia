@@ -38,6 +38,23 @@ class Cap_Walker_Transcription_Nav_Menu extends Walker_Nav_Menu {
             $item->url = '';
         }
 
+        if (in_array ('menu-load-h4', $classes)) {
+            $doc = $this->load_html ();
+            $xpath  = new \DOMXpath ($doc);
+            $out = array ();
+            $headers = $xpath->query ("//h4[@id]|//h5[@id]|//h6[@id]");
+
+            foreach ($headers as $header) {
+                $id = $header->getAttribute ('id');
+                $level = intVal ($header->tagName[1]) - 3;
+                $out[] = "<li class='menu-item menu-item-load-h4 menu-item-level-$level'>";
+                $out[] = "<a class='ssdone' href='#$id'>{$header->textContent}</a>";
+                $out[] = "</li>";
+            }
+            $output .= implode ("\n", $out);
+            return;
+        }
+
         $tmp_output = '';
         parent::start_el ($tmp_output, $item, $depth, $args, $id);
 
@@ -63,10 +80,47 @@ class Cap_Walker_Transcription_Nav_Menu extends Walker_Nav_Menu {
 
             $tmp_output .= "<ul class='menu-dyn-is'><!-- filled by javascript --></ul>";
         }
-        if (in_array ('menu-load-bk', $classes)) {
+        if (in_array ('menu-load-bk-js', $classes)) {
+            // obsolete js way
             $tmp_output .= "<ul class='menu-dyn-bk'><!-- filled by javascript --></ul>";
         }
+        if (in_array ('menu-load-bk', $classes)) {
+            // new php way
+            $doc = $this->load_html ();
+            $xpath  = new \DOMXpath ($doc);
+            $out = array ();
+            $out[] = "<ul class='menu-bk'>";
+
+            foreach ($xpath->query ("//span[@class='milestone']") as $bk) {
+                $id = $bk->getAttribute ('id');
+                $text = preg_replace ("/_.*$/u", "", $id);
+                $text = str_replace (".", " ", $text);
+                $out[] = "  <li class='menu-item menu-item-load-bk'>";
+                $out[] = "    <a href='#$id'>$text</a>";
+                $out[] = "  </li>";
+            }
+            $out[] = "</ul>";
+            $tmp_output .= implode ("\n", $out);
+        }
         $output .= $tmp_output;
+    }
+
+    private function load_html () {
+        $content = apply_filters ('the_content', get_the_content ());
+        // $content = str_replace( ']]>', ']]&gt;', $content);
+
+        $doc = new \DomDocument ();
+
+        // keep server error log small (seems to be a problem at uni-koeln.de)
+        libxml_use_internal_errors (true);
+
+        // Hack to load HTML with utf-8 encoding
+        $doc->loadHTML ("<?xml encoding='UTF-8'>\n" . $content, LIBXML_NONET);
+        foreach ($doc->childNodes as $item)
+            if ($item->nodeType == XML_PI_NODE)
+                $doc->removeChild ($item); // remove xml declaration
+        $doc->encoding = 'UTF-8'; // insert proper encoding
+        return $doc;
     }
 }
 
@@ -94,7 +148,7 @@ class Cap_Widget_Transcription_Navigation extends WP_Nav_Menu_Widget {
         wp_enqueue_script (
             'cap-widget-transcription-navigation-js',
             get_template_directory_uri () . '/widgets/cap-widget-transcription-navigation.js',
-            array ('jquery', 'jquery-ui-core', 'jquery-ui-accordion')
+            array ('cap-jquery', 'cap-jquery-ui')
         );
     }
 

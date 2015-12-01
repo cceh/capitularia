@@ -1,4 +1,109 @@
 /* Generated file. Do not edit. */
+body {
+  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+  color: #1a171b;
+  background: #ffffff;
+}
+p {
+  margin: 1em 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 3em 0 2em 0;
+  line-height: 1.5em;
+  text-align: left;
+}
+h4,
+h5,
+h6 {
+  margin: 2em 0 1em 0;
+}
+h1 {
+  font-family: 'OpenSans-Light', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 3em;
+  margin: 0;
+}
+h2 {
+  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2.4em;
+}
+h3 {
+  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+}
+h4 {
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.3em;
+}
+h5 {
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+h6 {
+  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: underline;
+}
+a[href] {
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+  color: #b92900;
+  text-decoration: none;
+}
+a[href]:active,
+a[href]:focus,
+a[href]:hover {
+  text-decoration: underline;
+}
+.regular {
+  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+i,
+em,
+.italic {
+  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+b,
+strong,
+.bold {
+  font-family: 'OpenSans-Bold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+.red {
+  color: #b92900;
+}
+sup {
+  vertical-align: super;
+  font-size: 70%;
+  line-height: 0;
+}
+sub {
+  vertical-align: sub;
+  font-size: 70%;
+  line-height: 0;
+}
 @media print {
   .screen-only {
     display: none;
@@ -25,31 +130,6 @@
     width: 100%;
   }
 }
-.front-splash {
-  width: 100%;
-  height: auto;
-  background: #beac86;
-  color: #ffffff;
-  position: relative;
-  margin-top: 70px;
-  margin-bottom: 70px;
-}
-.front-splash h1,
-.front-splash h2,
-.front-splash h3,
-.front-splash h4 {
-  display: block;
-  width: 60%;
-  position: absolute;
-  left: 16px;
-  bottom: 16px;
-}
-.front-splash img {
-  display: block;
-  width: 32%;
-  float: right;
-  margin-bottom: -40px;
-}
 #main {
   padding-top: 40px;
   padding-bottom: 70px;
@@ -57,35 +137,44 @@
 #main.home {
   padding-top: 15px;
 }
-/* Teaser Bars */
+/**************/
+/* Front page */
+/**************/
+.front-splash {
+  position: relative;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  width: 100%;
+  height: auto;
+  background: #beac86;
+  color: #ffffff;
+}
+.front-splash h1 {
+  position: absolute;
+  width: 60%;
+  left: 16px;
+  bottom: 16px;
+  line-height: 1;
+}
+.front-splash img {
+  display: block;
+  float: right;
+  width: 32%;
+  margin-bottom: -40px;
+}
 div.teaser-bar {
   margin: 2em 0;
   line-height: 1.5em;
 }
+div.teaser-bar h2 {
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+  margin-top: 0;
+  margin-bottom: .7ex;
+}
 div.teaser-bar ul {
   margin: 0 auto;
-}
-div.teaser-bar-2 {
-  border-top: solid 1px #1a171b;
-  padding-top: 2em;
-}
-div.teaser-bar li.widget {
-  display: inline-block;
-  position: relative;
-  vertical-align: top;
-  width: 33%;
-  box-sizing: border-box;
-  padding: 0 1em;
-  text-align: center;
-}
-div.teaser-bar li.widget.cap_widget_image {
-  text-align: left;
-}
-div.teaser-bar-2 li.widget {
-  width: 49%;
-}
-div.teaser-bar h2 {
-  margin-bottom: .7ex;
 }
 div.teaser-bar p {
   margin-bottom: 0.35em;
@@ -97,13 +186,6 @@ div.teaser-bar a {
 div.teaser-bar a:hover {
   color: #b92900;
   text-decoration: none;
-}
-div.teaser-bar img {
-  float: left;
-  height: 10em;
-  max-width: 33%;
-  margin-right: 32px;
-  margin-bottom: 32px;
 }
 div.teaser-bar a.mehr-lesen {
   color: #b92900;
@@ -117,18 +199,58 @@ div.teaser-bar a.mehr-lesen {
   display: block;
   margin-top: 1ex;
 }
-div.teaser-bar .mehr-lesen:focus,
-div.teaser-bar .mehr-lesen:active,
-div.teaser-bar .mehr-lesen:hover {
+div.teaser-bar a.mehr-lesen:focus,
+div.teaser-bar a.mehr-lesen:active,
+div.teaser-bar a.mehr-lesen:hover {
   color: #000000;
   text-decoration: none;
 }
+div.teaser-bar img {
+  float: left;
+  height: 10em;
+  max-width: 33%;
+  margin-right: 32px;
+  margin-bottom: 32px;
+}
+div.teaser-bar li.widget {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  width: 33%;
+  box-sizing: border-box;
+  padding: 0 1em;
+  text-align: center;
+}
+div.teaser-bar li.widget.cap_widget_image {
+  text-align: left;
+}
+div.teaser-bar-1 {
+  padding-top: 1em;
+  text-align: center;
+}
+div.teaser-bar-1 h2 {
+  font-size: 2em;
+  text-align: center;
+}
+div.teaser-bar-2 {
+  border-top: solid 1px #1a171b;
+  padding-top: 2em;
+}
+div.teaser-bar-2 h2 {
+  font-size: 1.3em;
+}
+div.teaser-bar-2 li.widget {
+  width: 49%;
+}
+/*************/
+/* All pages */
+/*************/
 .page-header {
   margin-bottom: 32px;
 }
 .page-header h2 {
   color: #b92900;
-  margin-bottom: 12px;
+  margin: 0 0 12px 0;
 }
 .page-header h4 {
   margin-bottom: 12px;
@@ -137,93 +259,79 @@ div.teaser-bar .mehr-lesen:hover {
   font-weight: normal;
   font-style: normal;
 }
-p {
-  font-size: 1em;
-}
-table {
+div.content-col table {
   margin: 32px 0px;
   width: 100%;
 }
-thead {
+div.content-col thead {
   border-bottom: solid 1px #1a171b;
 }
-thead td,
-thead th {
+div.content-col thead th,
+div.content-col thead td {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
   text-align: left;
   padding-bottom: 16px;
 }
-tr {
+div.content-col tr {
   background: #f6f3f3;
 }
-tr:nth-child(even) {
+div.content-col tr:nth-child(even) {
   background: #ffffff;
 }
-td,
-th {
+div.content-col th,
+div.content-col td {
   padding: 6px;
 }
-div.content-col td p {
+div.content-col th p,
+div.content-col td p,
+div.content-col th ul,
+div.content-col td ul,
+div.content-col th ol,
+div.content-col td ol {
   margin-top: 0;
 }
-div.content-col td p:last-child {
+div.content-col th p:last-child,
+div.content-col td p:last-child,
+div.content-col th ul:last-child,
+div.content-col td ul:last-child,
+div.content-col th ol:last-child,
+div.content-col td ol:last-child {
   margin-bottom: 0;
 }
-tr i {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+div.content-col table.handschriften th,
+div.content-col table.handschriften td {
+  padding: 8px;
+}
+div.content-col table.handschriften a {
+  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-tr a {
-  text-decoration: none;
-  color: #1a171b;
+div.page-break {
+  page-break-before: always;
 }
 div.back-to-top {
-  /* old way */
+  margin: 3em 0;
   text-align: right;
+  line-height: 1.75em;
 }
-a.back-to-top {
-  display: block;
-  margin: 1em 0;
-  font-size: 6px;
-  text-align: right;
-  vertical-align: top;
+div.back-to-top a::after {
+  font-family: "dashicons";
+  font-size: 12px;
+  content: " \f343";
+}
+div.back-to-top.back-to-top-with-rule {
+  border-top: 1px solid #000000;
+}
+div.back-to-top.back-to-top-compact {
+  margin: 0;
 }
 @media print {
-  a.back-to-top {
+  div.back-to-top {
     display: none;
   }
-}
-a.back-to-top::after {
-  display: inline;
-  padding-left: 1em;
-  font-family: "dashicons";
-  content: " \f343";
-  font-size: 12px;
-}
-hr + a.back-to-top,
-hr + div.back-to-top {
-  margin-top: -3em;
-}
-.handschriften thead th,
-.handschriften thead td {
-  padding-left: 8px;
-}
-.handschriften tbody td,
-.handschriften tbody th {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-.handschriften tbody td a,
-.handschriften tbody th a {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
 }
 .search-pager p {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
@@ -295,6 +403,9 @@ hr + div.back-to-top {
     display: none;
   }
 }
+.kapitularien-uebersicht {
+  margin-bottom: 48px;
+}
 .kapitularien-uebersicht li {
   padding: 24px 0px 16px;
   border-bottom: solid 1px #1a171b;
@@ -318,9 +429,6 @@ hr + div.back-to-top {
 .kapitularien-uebersicht li a:focus,
 .kapitularien-uebersicht li a:active {
   color: #000000;
-}
-.kapitularien-uebersicht {
-  margin-bottom: 48px;
 }
 select {
   width: 100%;
@@ -357,54 +465,6 @@ input[type="text"] {
   color: #000000;
   text-decoration: none;
 }
-.kapitularien-pager ul li:after {
-  height: 3em;
-}
-.kapitularien-pager ul li a {
-  line-height: 1.5em;
-  font-family: 'OpenSans-Light', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-.kapitularien-pager ul li {
-  padding-right: 36px;
-  margin-right: 36px;
-}
-.kapitularien-pager {
-  padding-top: 8px;
-}
-.handschriften-table tbody td a,
-.handschriften-table tbody td {
-  line-height: 2em;
-  font-family: 'OpenSans-Light', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-.handschriften-table tbody td:first-child a {
-  font-family: 'OpenSans-LightItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-  position: relative;
-  padding-left: 3em;
-  line-height: 1em;
-}
-.handschriften-table tbody td:first-child a:before {
-  content: '';
-  display: block;
-  width: 1em;
-  height: 1em;
-  margin-right: 1.25em;
-  margin-left: 0.25em;
-  position: absolute;
-  left: 0.25em;
-  top: 0em;
-}
-.handschriften-table tbody td a {
-  display: block;
-}
-.handschriften-table {
-  margin-bottom: 100px;
-}
 .search-pager a {
   font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
@@ -425,48 +485,17 @@ div.content-col {
   text-align: justify;
   line-height: 1.4em;
 }
-div.content-col h1,
-div.content-col h2,
-div.content-col h3,
-div.content-col h4,
-div.content-col h5,
-div.content-col h6 {
-  text-align: left;
-}
-div.content-col h3,
-div.content-col h4,
-div.content-col h5,
-div.content-col h6 {
-  margin: 2em 0;
-}
-div.content-col h5 {
-  font-family: 'OpenSans-Bold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.content-col p {
-  margin: 1em 0;
-}
-div.content-col ul {
+div.content-col ul,
+div.content-col ol {
   margin: 1.5em 0;
 }
 div.content-col li {
-  margin-left: 2em;
+  margin-left: 1.5em;
   list-style: disc outside;
 }
-div.content-col div.xsl-output li {
+div.content-col ul.bare li {
   margin-left: 0;
-  list-style: none;
-}
-div.content-col div.xsl-output ol.alphabetisch li {
-  margin-left: 2em;
-  padding-left: 0.5em;
-  list-style-type: lower-alpha;
-}
-div.content-col div.xsl-output ol.numerisch li {
-  margin-left: 2em;
-  padding-left: 0.5em;
-  list-style-type: decimal;
+  list-style-type: none;
 }
 div.content-col hr {
   margin: 3em 0;
@@ -498,6 +527,41 @@ div.content-col .float-right {
   display: block;
   float: left;
   margin: 0 0 1em 1em;
+}
+div.content-col div.xsl-output ul {
+  list-style: disc outside;
+}
+div.content-col div.xsl-output ol {
+  list-style: decimal outside;
+}
+div.content-col div.xsl-output ol.alphabetisch {
+  list-style-type: lower-alpha;
+}
+div.content-col div.xsl-output ol ol {
+  list-style-type: upper-alpha;
+}
+div.content-col div.xsl-output ol ol ol {
+  list-style-type: lower-roman;
+}
+div.content-col div.xsl-output ol ol ol ol {
+  list-style-type: lower-alpha;
+}
+div.content-col div.xsl-output ol li {
+  margin-left: 2em;
+  padding-left: 0.5em;
+}
+div.content-col div.xsl-output ul.tei-msItem li,
+div.content-col div.xsl-output ul.downloads li {
+  margin-left: 0;
+  list-style: none;
+}
+div.content-col div.xsl-output div.abMETA {
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.content-col div.xsl-output div.abTEXT {
+  line-height: 200%;
 }
 /*************/
 /* Footnotes */
@@ -537,7 +601,7 @@ div.annotation-content .annotation-backref {
   div.annotation-content .annotation-backref {
     display: block;
     float: left;
-    width: 2em;
+    width: 2.5em;
     text-align: right;
   }
 }
@@ -653,16 +717,6 @@ body div.ui-tooltip-footnote {
   height: 0.6em;
   margin-left: 4px;
 }
-span.red {
-  color: #b92900;
-}
-.transkription-footer {
-  padding-top: 70px;
-  padding-bottom: 35px;
-}
-.transkription-footer h4 {
-  padding-bottom: 1em;
-}
 .zitatbox {
   border: solid 16px #e9e1c1;
   width: 100%;
@@ -679,22 +733,13 @@ span.red {
   background: #e9e1c1;
   border-bottom: solid 1px #ffffff;
 }
-.downloads li:last-child {
+.downloads li li:last-child {
   border-bottom: none;
 }
-.downloads li a:before {
-  content: '';
-  display: inline-block;
-  width: 1.5em;
-  height: 1.5em;
-  position: relative;
-  top: 0.35em;
-  margin-right: 1em;
-  background-color: #b92900;
-  transition: background-color 500ms;
-}
-.downloads li a:focus:before,
-.downloads li a:active:before,
-.downloads li a:hover:before {
-  background-color: #000000;
+.download-icon::before {
+  font-family: "dashicons";
+  font-size: 24px;
+  content: "\f316";
+  float: left;
+  padding-right: 1em;
 }
