@@ -46,6 +46,11 @@ function cap_get_slug_root_x () {
     return '';
 }
 
+function cap_attribute ($name, $value) {
+    // Echoes: name="value"
+    echo ($name . '="' . esc_attr ($value) . '" ');
+}
+
 function cap_theme_image ($img) {
     // Echoes image url pointing to the theme images directory
     echo ('src="' . get_bloginfo ('template_directory') . "/img/$img\"");

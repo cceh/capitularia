@@ -13,7 +13,7 @@ admin interface to define the menu.
 Added functionality:
 
  - If a menu entry has a class of "menu-load-rubriken" we generate a sub-menu
- from the #inhaltsverzeichnis metadata.
+   from the #inhaltsverzeichnis metadata.
 
  - If a menu entry has a class of "menu-load-bk" we generate a sub-menu from the
    span.milestone elements.
@@ -30,17 +30,26 @@ class Cap_Walker_Transcription_Nav_Menu extends Walker_Nav_Menu {
 
     public function start_el (&$output, $item, $depth = 0, $args = array (), $id = 0) {
 
-        $classes = empty ($item->classes) ? array () : (array) $item->classes;
-
         if ($item->url == '#null') {
             // HACK: #null is just a placeholder for no url, to use when
             // wordpress admin screen requires an input in this field
             $item->url = '';
         }
 
+        $classes = empty ($item->classes) ? array () : (array) $item->classes;
+
+        // load contents DOM (once) if needed
+        $doc = null;
+        $xpath = null;
+        foreach ($classes as $class) {
+            if ($class == 'menu-load-rubriken' || $class == 'menu-load-bk' || $class == 'menu-load-h4') {
+                $doc = $this->load_html ();
+                $xpath  = new \DOMXpath ($doc);
+                break;
+            }
+        }
+
         if (in_array ('menu-load-h4', $classes)) {
-            $doc = $this->load_html ();
-            $xpath  = new \DOMXpath ($doc);
             $out = array ();
             $headers = $xpath->query ("//h4[@id]|//h5[@id]|//h6[@id]");
 
@@ -58,40 +67,30 @@ class Cap_Walker_Transcription_Nav_Menu extends Walker_Nav_Menu {
         $tmp_output = '';
         parent::start_el ($tmp_output, $item, $depth, $args, $id);
 
-        /*
-        if (empty ($item->url)) {
-            $tmp_output = preg_replace ('/<a(.*?)>/', '<span${1}>', $tmp_output);
-            $tmp_output = str_replace  ('</a>',       '</span>',    $tmp_output);
-        }
-        */
-
-        if (in_array ('menu-load-rubriken', $classes)) {
-            // FIXME: Generating the menus here doesn't work yet because our XML
-            // just plain doesn't validate.  Instead we rely on the browser to
-            // parse it for better or worse (probably worse) and then use jquery
-            // to fill the holes.
-
-            // This is what we may do when the transformed xml validates...
-            //
-            // $content = apply_filters ('the_content', get_the_content ());
-            // $content = str_replace( ']]>', ']]&gt;', $content);
-            // $xml = simplexml_load_string ($content);
-            // $milestones = $xml->xpath ("//span[@class='milestone']");
-
+        if (in_array ('menu-load-rubriken-js', $classes)) {
+            // obsolete js way
             $tmp_output .= "<ul class='menu-dyn-is'><!-- filled by javascript --></ul>";
         }
         if (in_array ('menu-load-bk-js', $classes)) {
             // obsolete js way
             $tmp_output .= "<ul class='menu-dyn-bk'><!-- filled by javascript --></ul>";
         }
+        if (in_array ('menu-load-rubriken', $classes)) {
+            // new php way
+
+            foreach ($xpath->query ("//*[@id='inhaltsverzeichnis']/ul") as $ul) {
+                $ul->setAttribute ('class', 'menu-is');
+                $html = $doc->saveHTML ($ul);
+                // error_log ("Copying HTML: $html\n");
+                $tmp_output .= $html;
+            }
+        }
         if (in_array ('menu-load-bk', $classes)) {
             // new php way
-            $doc = $this->load_html ();
-            $xpath  = new \DOMXpath ($doc);
             $out = array ();
             $out[] = "<ul class='menu-bk'>";
 
-            foreach ($xpath->query ("//span[@class='milestone']") as $bk) {
+            foreach ($xpath->query ("//span[@id][@class='milestone']") as $bk) {
                 $id = $bk->getAttribute ('id');
                 $text = preg_replace ("/_.*$/u", "", $id);
                 $text = str_replace (".", " ", $text);
@@ -138,8 +137,9 @@ class Cap_Widget_Transcription_Navigation extends WP_Nav_Menu_Widget {
 
     static function on_widget_nav_menu_args ($nav_menu_args, $nav_menu, $args) {
         if (!empty ($args['mirsn'])) { // pick out *our* menu
-            $nav_menu_args['walker'] = new Cap_Walker_Transcription_Nav_Menu ();
+            $nav_menu_args['walker']          = new Cap_Walker_Transcription_Nav_Menu ();
             $nav_menu_args['container_class'] = 'sidebar-toc';
+            $nav_menu_args['menu_class']      = 'menu ui-helper-clearfix';
         }
         return $nav_menu_args;
     }

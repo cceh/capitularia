@@ -34,15 +34,17 @@
 
         <nav class="search-nav">
           <form id="searchform" class="searchform" action="/" method="get">
-            <input id="searchinput"  class="sword"  type="text" placeholder="Suchen" name="s" />
+            <input id="searchinput" class="sword" type="text" name="s"
+              <?php cap_attribute ('placeholder', __('Search', 'capitularia')); ?> />
             <button id="searchsubmit" class="submit" type="submit" name="submit"></button>
           </form>
         </nav>
 
         <h1>
           <a href="/" class="homelink"><img
-                 <?php cap_theme_image ('Capitularia_Logo.png'); ?>
-                 alt="Capitularia - Edition der fränkischen Herrschererlasse"/></a>
+            <?php cap_theme_image ('Capitularia_Logo.png');
+                  cap_attribute ('alt', get_bloginfo ('name') . ' - ' . get_bloginfo ('description')); ?>
+          /></a>
         </h1>
 
         <nav id="bottom-nav" class="bottom-nav horiz-nav ui-helper-clearfix">

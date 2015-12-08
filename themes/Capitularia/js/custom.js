@@ -79,14 +79,30 @@ var inPrintMode = false;
                 collision: "fit"
             }
         });
+    }
 
+    function initLegend () {
+        // the Legend slide-out
+        var legend = $('#legend');
+        if (legend.length) {
+            var wrapper = $(
+                '<div class="slideout screen-only"><div class="slideout-tab"></div><div class="slideout-inner"></div></div>');
+            $('body').append (wrapper);
+            var legend_copy = legend.clone ();
+            legend.addClass ('print-only');
+            $('div.slideout-inner').append (legend_copy);
+            $('div.slideout-tab').append ($('div.slideout-inner h5'));
+            $('div.slideout-tab, div.slideout-inner').click (function () {
+                $(this).parent ().toggleClass ('slideout-active');
+            });
+        }
     }
 
     detectPrintMode ();
 
     //
-    // a custom tooltip widget that stays open while the user is hovering on the
-    // popup allowing her to click on links
+    // a custom tooltip jquery widget that stays open while the user is hovering
+    // on the popup, allowing her to click on links in the popup
     //
 
     $.widget ("custom.cap_tooltip", $.ui.tooltip, {
@@ -130,6 +146,7 @@ var inPrintMode = false;
         setTimeout (initSmoothScrollLinks,0);
         setTimeout (initResetForm,0);
         initFootnoteTooltips ();
+        initLegend ();
     });
 
 })(jQuery);

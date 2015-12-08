@@ -69,10 +69,6 @@ class Page_Generator
         return "[{$this->shortcode} xml=\"$xml\" xslt=\"$xslt\"]\n[/{$this->shortcode}]\n";
     }
 
-    private function add_i18n_tags ($content) {
-        return "[:de]\n$content\n[:]\n"; // qTranslate-x
-    }
-
     private function increment_metadata ($post_id, $meta) {
         $n = get_metadata ('post', $post_id, $meta, true) or 0;
         $n++;

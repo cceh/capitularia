@@ -1,10 +1,15 @@
 /* Generated file. Do not edit. */
+body,
+html {
+  overflow-x: hidden;
+}
 body {
   font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
   color: #1a171b;
   background: #ffffff;
+  line-height: 1.3;
 }
 p {
   margin: 1em 0;
@@ -114,6 +119,17 @@ sub {
     display: none;
   }
 }
+@media print {
+  div,
+  span,
+  article {
+    float: none !important;
+  }
+  nav,
+  .qtrans_language_chooser {
+    display: none;
+  }
+}
 #top-nav > div,
 #bottom-header-wrapper,
 #footer-wrapper,
@@ -136,6 +152,11 @@ sub {
 }
 #main.home {
   padding-top: 15px;
+}
+@media print {
+  #footer {
+    display: none;
+  }
 }
 /**************/
 /* Front page */
@@ -271,7 +292,6 @@ div.content-col thead td {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
-  text-align: left;
   padding-bottom: 16px;
 }
 div.content-col tr {
@@ -282,6 +302,7 @@ div.content-col tr:nth-child(even) {
 }
 div.content-col th,
 div.content-col td {
+  text-align: left;
   padding: 6px;
 }
 div.content-col th p,
@@ -300,6 +321,11 @@ div.content-col th ol:last-child,
 div.content-col td ol:last-child {
   margin-bottom: 0;
 }
+div.content-col th {
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
 div.content-col table.handschriften th,
 div.content-col table.handschriften td {
   padding: 8px;
@@ -309,8 +335,26 @@ div.content-col table.handschriften a {
   font-weight: normal;
   font-style: normal;
 }
+div.hr {
+  /* a horizontal rule always */
+  margin: 3em 0;
+  border-top: 1px solid #000000;
+}
+div.hr .compact {
+  margin: 1em 0;
+}
 div.page-break {
+  /* a horizontal rule on screen and a page break on print */
   page-break-before: always;
+}
+@media screen {
+  div.page-break {
+    margin: 3em 0;
+    border-top: 1px solid #000000;
+  }
+  div.page-break .compact {
+    margin: 1em 0;
+  }
 }
 div.back-to-top {
   margin: 3em 0;
@@ -629,15 +673,94 @@ body div.ui-tooltip-footnote {
 }
 .sidebar-col ul.menu li {
   border-bottom: 1px solid #ffffff;
+  /* HACK for Alphabet Menus */
+  /* HACK for Alphabet Menus */
 }
 .sidebar-col ul.menu li:last-child {
   border-bottom: none;
 }
 .sidebar-col ul.menu li a {
   display: block;
+  line-height: 1.3;
   padding: 16px 8px;
   color: #b92900;
   background: #e9e1c1;
+}
+.sidebar-col ul.menu li.dynamic-menu-item-level-2.dynamic-menu-item-inline {
+  float: left;
+  width: 8%;
+  padding-right: 8px;
+  text-align: center;
+  border-bottom: none;
+}
+.sidebar-col ul.menu li.dynamic-menu-item-float {
+  float: left;
+  width: 8%;
+  padding-right: 8px;
+  text-align: center;
+  border-bottom: none;
+}
+/*******************/
+/* Legend Slideout */
+/*******************/
+#legend table {
+  font-size: 80%;
+}
+#legend table .legend-col-1 {
+  width: 33%;
+}
+#legend table th,
+#legend table td {
+  text-align: left;
+  padding: 4px;
+}
+#legend table th {
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+  border-bottom: 1px solid white;
+}
+div.slideout {
+  position: fixed;
+  top: 40px;
+  width: 600px;
+  right: -500px;
+  z-index: 20;
+  transition-duration: 0.5s;
+}
+div.slideout.slideout-active {
+  right: 0px;
+}
+div.slideout .slideout-inner {
+  background: #e9e1c1;
+  margin-left: 100px;
+  padding: 1em;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+  box-shadow: 5px 5px 5px #978f7d;
+  position: relative;
+  z-index: 21;
+}
+div.slideout .slideout-inner div.hr {
+  display: none;
+}
+div.slideout .slideout-tab {
+  float: left;
+  width: 100px;
+  -webkit-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+div.slideout .slideout-tab h5 {
+  margin: 0;
+  text-align: center;
+  background: #e9e1c1;
+  padding: 0.5em 1em;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+  box-shadow: -5px 5px 5px #978f7d;
+  z-index: 20;
 }
 .transkription-header h2 {
   font-size: 1.6em;

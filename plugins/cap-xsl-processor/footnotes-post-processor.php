@@ -3,14 +3,12 @@
 /**
  * This script:
  *
- * FIXME: The script should be renamed to footnotes-post-processor.php
- *
  * - Merges adjacent footnotes and moves footnotes to the end of the word.
- * - Wraps initials and the following word into a span.
- * - Converts XML to HTML.
+ * - Wraps initials (dropcaps) and the following word into a span.
+ * - Accepts XML or HTML input, always outputs HTML.
  *
- * We do this in PHP because it is easier than in XSLT. This script is called
- * immediately after the xslt processor. This script accepts XML or HTML input.
+ * We do this postprocessing in PHP because it is easier than in XSLT. This
+ * script is called immediately after the xslt processor.
  */
 
 const FOOTNOTES = '//span[contains (concat (" ", @class, " "), " annotation ")]';

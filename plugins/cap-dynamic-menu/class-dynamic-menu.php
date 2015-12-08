@@ -76,15 +76,24 @@ class Dynamic_Menu
         $doc = $this->load_html ();
         $xpath  = new \DOMXpath ($doc);
         foreach ($items as $key => $item) {
-            if (isset ($item->url) && stristr ($item->url, '#cap_dynamic_menu#') !== false) {
+            if (
+                isset ($item->url) && (
+                    stristr ($item->url, '#cap_dynamic_menu#') !== false ||
+                    stristr ($item->url, '#cap-dynamic-menu#') !== false
+                )
+            ) {
                 // get levels out of description field
                 $desc = isset ($item->description) ? $item->description :
                       '//h3[@id]|//h4[@id]|//h5[@id]|//h6[@id]';
                 $levels = explode ('|', $desc);
+                $item_classes = isset ($item->classes) ? $item->classes : array ();
+
+                // We need to get all nodes that match any of our level xpath
+                // expressions in document order.  First mark all relevant nodes
+                // with attribute data-cap-level ...
 
                 $parent_on_level = array ();
                 $parent_on_level[] = $item->menu_item_parent;
-                // mark nodes with special attribute
                 $level_no = 0;
                 foreach ($levels as $level) {
                     ++$level_no;
@@ -94,11 +103,14 @@ class Dynamic_Menu
                     $parent_on_level[] = $item->menu_item_parent;
                 }
 
-                // get all marked nodes in document order
+                // ... then walk all relevant nodes in document order outputting
+                // menu entries.
+
                 foreach ($xpath->query ('//*[@data-cap-level]') as $e) {
                     $max_item_id++;
                     $id         = $e->getAttribute ('id');
-                    $caption    = $e->textContent;
+                    $caption    = $e->hasAttribute ('data-cap-dyn-menu-caption') ?
+                                $e->getAttribute ('data-cap-dyn-menu-caption') : $e->textContent;
                     $node_level = intVal ($e->getAttribute ('data-cap-level')); // 1..max
 
                     $new_item = new \WP_Post ((object) array ('ID' => $max_item_id));
@@ -117,10 +129,23 @@ class Dynamic_Menu
                     $new_item->post_title       = $caption;
                     $new_item->url              = "#$id";
                     $new_item->post_name        = "dynamic-menu-item-$max_item_id";
-                    $new_item->classes          = array ();
+                    $new_item->classes          = $item_classes;
                     $new_item->classes[]        = 'menu-item';
                     $new_item->classes[]        = 'dynamic-menu-item';
                     $new_item->classes[]        = "dynamic-menu-item-level-$node_level";
+
+                    // add classes keyed to level
+                    foreach ($item_classes as $class) {
+                        $new_item->classes[] = "$class-level-$node_level";
+                    }
+
+                    // copy classes that start with 'dynamic-menu-'
+                    $classes = $e->hasAttribute ('class') ? $e->getAttribute ('class') : '';
+                    foreach (explode (' ', $classes) as $class) {
+                        if (strncmp ($class, 'dynamic-menu-', 13) == 0) {
+                            $new_item->classes[] = $class;
+                        }
+                    }
 
                     // the menu hierarchy fields
                     $new_item->db_id              = $max_item_id;
@@ -129,7 +154,7 @@ class Dynamic_Menu
 
                     $new_items[$new_item->post_name] = $new_item;
 
-                    error_log ("Menu Item: $new_item->title $new_item->post_name $new_item->menu_item_parent");
+                    // error_log ("Menu Item: $new_item->title $new_item->post_name $new_item->menu_item_parent");
                 }
             } else {
                 $new_items[$key] = $item;

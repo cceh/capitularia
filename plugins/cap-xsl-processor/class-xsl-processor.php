@@ -27,7 +27,6 @@ class XSL_Processor
     private $post_id            = 0;
     private $cache_time         = 0; // unixtime
     private $modified_time      = 0; // unixtime
-    private $content_cache      = null;
     private $xmlfiles           = array ();
 
     private function __construct () {
@@ -39,10 +38,10 @@ class XSL_Processor
         add_action ('admin_enqueue_scripts', array ($this, 'on_admin_enqueue_scripts'));
         add_action ('cap_xsl_get_xmlfiles',  array ($this, 'on_cap_xsl_get_xmlfiles'));
 
-        // This is what WP does
-        // add_filter( 'the_content', 'do_shortcode', 11 ); // AFTER wpautop()
+        // This is the WP default priority
+        // add_filter ('the_content', 'do_shortcode', 11); // AFTER wpautop ()
 
-        // very early before other plugins get a chance to mess things up
+        // Get our hands in very early before other plugins mess things up.
         add_filter ('the_content', array ($this, 'on_the_content_early'), 1);
         // after do_shortcodes
         add_filter ('the_content', array ($this, 'on_the_content_late'), 20);
@@ -87,28 +86,22 @@ class XSL_Processor
         $params  = empty ($atts['params'])       ? '' :       " params=\"{$atts['params']}\"";
         $params .= empty ($atts['stringparams']) ? '' : " stringparams=\"{$atts['stringparams']}\"";
         return "[{$this->shortcode} xml=\"{$atts['xml']}\" xslt=\"{$atts['xslt']}\"$params]\n" .
-               "$content\n[/{$this->shortcode}]\n";
+               "$content\n[/{$this->shortcode}]";
     }
 
     private function hide_shortcodes_from_wpautop ($content) {
-        // <pre></pre> added to turn off the 'wpautop' filter on the content of our shortcode
+        // We don't want the wpautop filter applied to our xsl output, but we
+        // want it applied to the rest of the page.  We add <pre> and </pre>
+        // tags to turn off the wpautop filter on the xsl output.
         $content = str_replace ("[{$this->shortcode} ",  "<pre>[{$this->shortcode} ",   $content);
         $content = str_replace ("[/{$this->shortcode}]", "[/{$this->shortcode}]</pre>", $content);
         return $content;
     }
 
-    private function strip_pre ($content) {
-        // strip the <pre>'s around our shortcodes (before saving the post)
-        $content = str_replace ("<pre>[{$this->shortcode} ",   "[{$this->shortcode} ",  $content);
-        $content = str_replace ("[/{$this->shortcode}]</pre>", "[/{$this->shortcode}]", $content);
-        $content = str_replace ("[/{$this->shortcode}]\n</pre>", "[/{$this->shortcode}]", $content);
-        return $content;
-    }
-
     private function strip_shortcode ($content) {
         // strip our shortcodes (before presenting the post to the user)
-        $content = preg_replace ("/\\[{$this->shortcode}.*?\\]/s", '', $content);
-        $content = str_replace  ("[/{$this->shortcode}]",          '', $content);
+        $content = preg_replace ("/<pre>\\[{$this->shortcode}.*?\\]/s", '', $content);
+        $content = str_replace  ("[/{$this->shortcode}]</pre>",         '', $content);
         return $content;
     }
 
@@ -132,26 +125,72 @@ class XSL_Processor
         // very handy do_shortcode () function, so we have to remove all other
         // shortcodes before calling it and reinstate them afterwards.
         $current_shortcodes = $GLOBALS['shortcode_tags'];
+
         remove_all_shortcodes ();
-        add_shortcode ($this->shortcode, array ($this, 'on_shortcode'));
+        add_shortcode ($this->shortcode, array ($this, 'on_shortcode_check_only'));
+
+        $this->save_post = false; // set as a side effect of do_shortcode
         $content = do_shortcode ($content);
 
-        // Save the result of the transform.  This is what we will write back to
-        // the post later.  We have to save this away because other plugins like
-        // to mess with it, eg. search plugins add highlighting and qTranslate-X
-        // adds do-you-want-this-in-another-language notices.  We have already
-        // taken care that our shortcode tags are still present.
-        //
-        // NOTE: we are using the bare metal database here because it seems the
-        // only way to get in ahead of qTranslate-X and its stupid
-        // do-you-want-this-in-another-language notices.
-
         if ($this->save_post) {
+            // The cached content is not current any more. Run the XSL and store
+            // the results in the database.  We have already taken care that our
+            // shortcode tags are still present.
+            //
+            // NOTE: we are using a low-level database read because we must be
+            // sure that no other plugin has mucked with the content before we
+            // save it again. (eg. before qTranslate-X adds its stupid
+            // do-you-want-this-in-another-language notices.)
+
+            error_log ('saving post ...');
+
+            $content = null; // release some mem
+
             global $wpdb;
             $sql = $wpdb->prepare ("SELECT post_content FROM $wpdb->posts WHERE ID = %d", $this->post_id);
             // error_log ("SQL: $sql");
-            $raw_content = $wpdb->get_var ($sql);
-            $this->content_cache = do_shortcode ($raw_content);
+            $content = $wpdb->get_var ($sql);
+
+            // Run do_shortcode again to actually do the xsl
+            remove_all_shortcodes ();
+            add_shortcode ($this->shortcode, array ($this, 'on_shortcode_xsl'));
+            $content = do_shortcode ($content);
+
+            if (!$this->do_revision) {
+                // error_log ('on_the_content_early () revisions disabled');
+                // Turn off revisions for this save.  See:
+                // https://core.trac.wordpress.org/browser/tags/4.3.1/src/wp-includes/revision.php#L150
+                // Note: we cannot use the 'wp_revisions_to_keep' filter
+                // because it would delete all previous revisions.
+                add_filter (
+                    'wp_save_post_revision_post_has_changed',
+                    function ($post_has_changed, $last_revision, $post) {
+                        return false;
+                    },
+                    10, 3
+                );
+            }
+
+            // cache xslt output in database
+            $my_post = array (
+                'ID'           => $this->post_id,
+                'post_content' => $content,
+            );
+            // error_log ('on_the_content_early () before update_post ...');
+            kses_remove_filters ();
+            wp_update_post ($my_post);
+            kses_init_filters ();
+
+            // update metadata
+            $this->increment_metadata ($this->post_id, 'cap_xsl_cache_misses');
+            update_post_meta ($this->post_id, 'cap_xsl_cache_time', $this->cache_time = time ());
+            update_post_meta ($this->post_id, 'cap_xsl_cache_hits_temp',  0);
+
+            do_action ('cap_xsl_page_refreshed', $this->post_id);
+            // error_log ('on_the_content_early () after update_post ...');
+        } else {
+            $this->increment_metadata ($this->post_id, 'cap_xsl_cache_hits');
+            $this->increment_metadata ($this->post_id, 'cap_xsl_cache_hits_temp');
         }
 
         // restore shortcodes
@@ -165,14 +204,22 @@ class XSL_Processor
         return $content;
     }
 
-    public function on_shortcode ($atts, $content = '') {
+    public function on_shortcode_check_only ($atts, $content = '') {
+        return $this->on_shortcode (false, $atts, $content);
+    }
+
+    public function on_shortcode_xsl ($atts, $content = '') {
+        return $this->on_shortcode (true, $atts, $content);
+    }
+
+    public function on_shortcode ($do_xsl, $atts, $content = '') {
         // NOTE: this function keeps the shortcode tags around because
         // we still need them in case we have to save the post.
         //
         // BUG: wpautop Works only if the shortcode tag and
         // attributes are on one line.
 
-        // error_log ('on_shortcode () ==> enter');
+        // error_log ("on_shortcode ($do_xsl) ==> enter");
 
         $this->page_has_shortcode = true;
 
@@ -192,11 +239,11 @@ class XSL_Processor
             ),
             $atts
         );
-        $xml  = $this->urljoin ($this->get_opt ('xmlroot'),  $atts['xml']);
-        $xslt = $this->urljoin ($this->get_opt ('xsltroot'), $atts['xslt']);
+        $xml          = $this->urljoin ($this->get_opt ('xmlroot'),  $atts['xml']);
+        $xslt         = $this->urljoin ($this->get_opt ('xsltroot'), $atts['xslt']);
         $params       = wp_parse_args ($atts['params']);
         $stringparams = wp_parse_args ($atts['stringparams']);
-        $xsltproc = $this->get_opt ('xsltproc');
+        $xsltproc     = $this->get_opt ('xsltproc');
 
         $xml_file_time  = intval (filemtime ($xml));
         $xslt_file_time = intval (filemtime ($xslt));
@@ -224,13 +271,18 @@ class XSL_Processor
         $this->stats->xml_mtime = $xml_file_time;
         $this->stats->xsl_mtime = $xslt_file_time;
 
-        if (!$do_transform) {
-            // return cached copy
+        if (!$do_xsl || !$do_transform) {
+            // Cached copy of this XSL is current. Return the cached copy. The
+            // shortcode is already stripped, so we must add it again, so that
+            // we can protect our content from the dreaded wp_autop.
+
             // error_log ('on_shortcode () ==> exit cached');
             return $this->wrap_in_shortcode ($content, $atts);
         }
 
-        // call XSLT processor
+        // The cached copy is out of date. Run the XSLT processor. Then add the
+        // shortcodes back so we can save them into the db.
+
         $retval = 666;
         $cmdline = array ();
         $cmdline[] = $xsltproc;
@@ -275,56 +327,12 @@ class XSL_Processor
     }
 
     public function on_the_content_late ($content) {
-        // This function saves the post if it needs saving and finally strips the shortcode tags.
+        // Strip the shortcode tags. (That we needed only to keep off wpautop.)
 
         if (!$this->page_has_shortcode) {
             return $content;
         }
-
-        // error_log ("on_the_content_late () => enter page id = $this->post_id");
-
-        if ($this->save_post) {
-            // error_log ('on_the_content_late () saving ...');
-
-            // update metadata
-            $this->increment_metadata ($this->post_id, 'cap_xsl_cache_misses');
-            update_post_meta ($this->post_id, 'cap_xsl_cache_time', time ());
-            update_post_meta ($this->post_id, 'cap_xsl_cache_hits_temp',  0);
-
-            if (!$this->do_revision) {
-                // error_log ('on_the_content_late () revisions disabled');
-                // Turn off revisions for this save.  See:
-                // https://core.trac.wordpress.org/browser/tags/4.3.1/src/wp-includes/revision.php#L150
-                // Note: we cannot use the 'wp_revisions_to_keep' filter
-                // because it would delete all previous revisions.
-                add_filter (
-                    'wp_save_post_revision_post_has_changed',
-                    function ($post_has_changed, $last_revision, $post) {
-                        return false;
-                    },
-                    10, 3
-                );
-            }
-
-            // cache xslt output in database
-            $my_post = array (
-                'ID'           => $this->post_id,
-                'post_content' => $this->content_cache,
-            );
-            // error_log ('on_the_content_late () before update_post ...');
-            kses_remove_filters ();
-            wp_update_post ($my_post);
-            kses_init_filters ();
-            do_action ('cap_xsl_page_refreshed', $this->post_id);
-            // error_log ('on_the_content_late () after update_post ...');
-        } else {
-            $this->increment_metadata ($this->post_id, 'cap_xsl_cache_hits');
-            $this->increment_metadata ($this->post_id, 'cap_xsl_cache_hits_temp');
-        }
-
-        // error_log ('on_the_content_late () => exit');
-
-        return $this->strip_shortcode ($this->strip_pre ($content));
+        return $this->strip_shortcode ($content);
     }
 
     public function on_query_vars ($vars) {
