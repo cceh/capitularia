@@ -1,14 +1,18 @@
 <?php
 
 /**
+ * Capitularia Footnotes Post-Processor
+ *
+ * We do some postprocessing in PHP because it is easier than in XSLT.  This
+ * script is called immediately after xsltproc.
+ *
  * This script:
  *
  * - Merges adjacent footnotes and moves footnotes to the end of the word.
  * - Wraps initials (dropcaps) and the following word into a span.
  * - Accepts XML or HTML input, always outputs HTML.
  *
- * We do this postprocessing in PHP because it is easier than in XSLT. This
- * script is called immediately after the xslt processor.
+ * @package Capitularia
  */
 
 const FOOTNOTES = '//span[contains (concat (" ", @class, " "), " annotation ")]';

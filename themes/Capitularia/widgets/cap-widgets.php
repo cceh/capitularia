@@ -1,13 +1,24 @@
 <?php
 
 /**
- * Widgets
+ * Capitularia Theme Widgets
  *
+ * @package Capitularia
  */
 
-class Cap_Widget_Base extends WP_Widget {
+/**
+ * Base class for widgets.
+ */
 
-    protected $title, $text, $link, $image, $mask, $class;
+class Cap_Widget_Base extends WP_Widget
+{
+
+    protected $title;
+    protected $text;
+    protected $link;
+    protected $image;
+    protected $mask;
+    protected $class;
 
     const HAS_TITLE = 1; // use for $mask parameter
     const HAS_TEXT  = 2;
@@ -29,13 +40,17 @@ class Cap_Widget_Base extends WP_Widget {
     }
 
     protected function widget_setup ($args, $instance) {
-        $this->title = apply_filters ('widget_title',
-                                      empty ($instance['title']) ? '' : $instance['title'],
-                                      $instance, $this->id_base);
+        $this->title = apply_filters (
+            'widget_title',
+            empty ($instance['title']) ? '' : $instance['title'],
+            $instance, $this->id_base
+        );
 
-        $this->text = apply_filters ('widget_text',
-                               empty ($instance['content']) ? '' : $instance['content'],
-                               $instance);
+        $this->text = apply_filters (
+            'widget_text',
+            empty ($instance['content']) ? '' : $instance['content'],
+            $instance
+        );
 
         $this->image = empty ($instance['image']) ? '' : $instance['image'];
 
@@ -69,9 +84,15 @@ class Cap_Widget_Base extends WP_Widget {
         $this->widget_setup ($args, $instance);
 
         echo $args['before_widget'];
-        if ($this->mask & self::HAS_IMAGE) { $this->the_widget_image ($args, $instance); }
-        if ($this->mask & self::HAS_TITLE) { $this->the_widget_title ($args, $instance); }
-        if ($this->mask & self::HAS_TEXT)  { $this->the_widget_body  ($args, $instance); }
+        if ($this->mask & self::HAS_IMAGE) {
+            $this->the_widget_image ($args, $instance);
+        }
+        if ($this->mask & self::HAS_TITLE) {
+            $this->the_widget_title ($args, $instance);
+        }
+        if ($this->mask & self::HAS_TEXT) {
+            $this->the_widget_body  ($args, $instance);
+        }
         echo $args['after_widget'];
     }
 
@@ -82,10 +103,16 @@ class Cap_Widget_Base extends WP_Widget {
     */
     public function update ($new_instance, $old_instance) {
         $instance = $old_instance;
-        if ($this->mask & self::HAS_TITLE) { $instance['title']   = $this->sanitize ($new_instance['title']);   }
-        if ($this->mask & self::HAS_TEXT)  { $instance['content'] = $this->sanitize ($new_instance['content']); }
-        if ($this->mask & self::HAS_IMAGE) { $instance['image']   = $this->sanitize ($new_instance['image']);   }
-        $instance['link']    = $this->sanitize ($new_instance['link']);
+        if ($this->mask & self::HAS_TITLE) {
+            $instance['title'] = $this->sanitize ($new_instance['title']);
+        }
+        if ($this->mask & self::HAS_TEXT) {
+            $instance['content'] = $this->sanitize ($new_instance['content']);
+        }
+        if ($this->mask & self::HAS_IMAGE) {
+            $instance['image'] = $this->sanitize ($new_instance['image']);
+        }
+        $instance['link'] = $this->sanitize ($new_instance['link']);
         return $instance;
     }
 
@@ -95,11 +122,11 @@ class Cap_Widget_Base extends WP_Widget {
       }
     */
 
-    public function form( $instance ) {
+    public function form ($instance) {
         if ($this->mask & self::HAS_TITLE) {
             $this->the_option ($instance, 'title',   'Title',     'New title');
         }
-        if ($this->mask & self::HAS_TEXT)  {
+        if ($this->mask & self::HAS_TEXT) {
             $this->the_option ($instance, 'content', 'Text',      'New text');
         }
         if ($this->mask & self::HAS_IMAGE) {
@@ -109,42 +136,65 @@ class Cap_Widget_Base extends WP_Widget {
     }
 }
 
-class Cap_Widget_Text extends Cap_Widget_Base {
+/**
+ * A text widget for the front page.
+ */
 
+class Cap_Widget_Text extends Cap_Widget_Base
+{
     public function __construct () {
         $widget_ops = array (
             'classname' => 'cap_widget_text',
             'description' => __('Arbitrary text.', 'capitularia')
         );
         $control_ops = array ('width' => 400, 'height' => 350);
-        parent::__construct ('cap_widget_text', __('Capitularia Text Widget', 'capitularia'),
-                             self::HAS_TITLE | self::HAS_TEXT, $widget_ops);
+        parent::__construct (
+            'cap_widget_text',
+            __('Capitularia Text Widget', 'capitularia'),
+            self::HAS_TITLE | self::HAS_TEXT, $widget_ops
+        );
     }
 }
 
-class Cap_Widget_Image extends Cap_Widget_Base {
+/**
+ * An image widget for the front page.
+ */
 
+class Cap_Widget_Image extends Cap_Widget_Base
+{
     public function __construct () {
         $widget_ops = array (
             'classname' => 'cap_widget_image',
             'description' => __('Arbitrary text and image.', 'capitularia')
         );
         $control_ops = array ('width' => 400, 'height' => 350);
-        parent::__construct ('cap_widget_image', __('Capitularia Image Widget', 'capitularia'),
-                             self::HAS_TITLE | self::HAS_TEXT | self::HAS_IMAGE, $widget_ops);
+        parent::__construct (
+            'cap_widget_image',
+            __('Capitularia Image Widget', 'capitularia'),
+            self::HAS_TITLE | self::HAS_TEXT | self::HAS_IMAGE,
+            $widget_ops
+        );
     }
 }
 
-class Cap_Widget_Logo extends Cap_Widget_Base {
+/**
+ * A logo widget for the front page.
+ */
 
+class Cap_Widget_Logo extends Cap_Widget_Base
+{
     public function __construct () {
         $widget_ops = array (
             'classname' => 'cap_widget_logo',
             'description' => __('Image and link for the logo bar.', 'capitularia')
         );
         $control_ops = array ('width' => 400, 'height' => 350);
-        parent::__construct ('cap_widget_logo', __('Capitularia Logo Widget', 'capitularia'),
-                             self::HAS_TITLE | self::HAS_IMAGE, $widget_ops);
+        parent::__construct (
+            'cap_widget_logo',
+            __('Capitularia Logo Widget', 'capitularia'),
+            self::HAS_TITLE | self::HAS_IMAGE,
+            $widget_ops
+        );
     }
 
     protected function the_widget_title ($args, $instance) {
@@ -164,8 +214,3 @@ function cap_register_widgets () {
 }
 
 add_action ('widgets_init', 'cap_register_widgets');
-
-// FIXME: WTF?
-// add_filter('widget_text', 'do_shortcode');
-
-?>

@@ -18,7 +18,7 @@
          * as styles, scripts, and meta tags.
          */
         wp_head ();
-       ?>
+        ?>
   </head>
 
   <body <?php body_class (); ?>>
@@ -35,7 +35,7 @@
         <nav class="search-nav">
           <form id="searchform" class="searchform" action="/" method="get">
             <input id="searchinput" class="sword" type="text" name="s"
-              <?php cap_attribute ('placeholder', __('Search', 'capitularia')); ?> />
+                <?php cap_attribute ('placeholder', __('Search', 'capitularia')); ?> />
             <button id="searchsubmit" class="submit" type="submit" name="submit"></button>
           </form>
         </nav>
@@ -48,7 +48,7 @@
         </h1>
 
         <nav id="bottom-nav" class="bottom-nav horiz-nav ui-helper-clearfix">
-          <?php wp_nav_menu (array ('theme_location' => 'navbottom')); ?>
+            <?php wp_nav_menu (array ('theme_location' => 'navbottom')); ?>
         </nav>
 
       </div>

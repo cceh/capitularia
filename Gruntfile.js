@@ -56,6 +56,16 @@ module.exports = function (grunt) {
             },
         },
 
+        phpdocumentor: {
+            dist: {
+                options: {
+	                directory : ['themes/Capitularia', 'plugins'],
+                    target : 'phpdoc',
+                    template: 'responsive-twig'
+                }
+            }
+        },
+
         csslint: {
             options: {
                 "ids": false,
@@ -75,8 +85,8 @@ module.exports = function (grunt) {
                 keywords: ['__', '_n:1,2', '_x'],
                 msgmerge: true,
             },
-            themes: {
-                src: ['themes/Capitularia/**/*.php'],
+            files: {
+                src: ['themes/Capitularia/**/*.php', 'plugins/**/*.php'],
                 expand: true,
             }
         },
@@ -127,6 +137,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks ('grunt-contrib-less');
     grunt.loadNpmTasks ('grunt-contrib-watch');
     grunt.loadNpmTasks ('grunt-phpcs');
+    grunt.loadNpmTasks ('grunt-phpdocumentor');
     grunt.loadNpmTasks ('grunt-phplint');
     grunt.loadNpmTasks ('grunt-pot');
     grunt.loadNpmTasks ('grunt-potomo');

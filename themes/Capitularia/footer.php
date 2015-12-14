@@ -5,7 +5,7 @@
 
     <div class="logo-bar logo-bar-1">
       <ul>
-	<?php dynamic_sidebar ('logobar') ?>
+        <?php dynamic_sidebar ('logobar') ?>
       </ul>
     </div>
   </div>
@@ -19,7 +19,7 @@
            * See: https://codex.wordpress.org/Function_Reference/wp_footer
            */
           wp_footer();
-   ?>
+?>
 
 </body>
 </html>

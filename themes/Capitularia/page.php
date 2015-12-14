@@ -1,4 +1,12 @@
-<?php get_header (); ?>
+<?php
+
+/**
+ * Capitularia Theme page.php file
+ *
+ * @package Capitularia
+ */
+
+get_header (); ?>
 
 <main id="main">
 
@@ -94,4 +102,4 @@ dynamic_sidebar ('Sidebar');
 
 </main>
 
-<?php get_footer (); ?>
+<?php get_footer ();

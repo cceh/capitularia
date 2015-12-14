@@ -20,12 +20,12 @@ class Widget extends \WP_Widget
     public function __construct () {
         $widget_ops = array (
             'classname' => 'cap_meta_search_widget',
-            'description' => __('Search widget for Capitularia metadata.'),
+            'description' => __('Search widget for Capitularia metadata.', 'capitularia'),
         );
         $control_ops = array ('width' => 400, 'height' => 350);
         parent::__construct (
             'cap_meta_search_widget',
-            __('Capitularia Search Box Widget'),
+            __('Capitularia Search Box Widget', 'capitularia'),
             $widget_ops,
             $control_ops
         );
@@ -75,7 +75,7 @@ class Widget extends \WP_Widget
     private function echo_options ($sql) {
         global $wpdb;
 
-        $all = __('Alle');
+        $all = __('All', 'capitularia');
         echo ("    <option value=''>$all</option>\n");
 
         $bks = $wpdb->get_results ($sql);
@@ -135,26 +135,40 @@ class Widget extends \WP_Widget
         echo ("<div class='cap-meta-search-box'>\n");
         echo ("<form action='/'>\n");
 
-        $tooltip = __ ('Nur Handschriften anzeigen, die dieses Kapitular enthalten.');
-        $this->echo_select ('Enthaltene Kapitularien', 'capit',     'msitem-corresp', $tooltip);
+        $label   = __('Contained capitulars', 'capitularia');
+        $tooltip = __('Only show manuscripts that contain this capitular.', 'capitularia');
+        $this->echo_select ($label, 'capit',     'msitem-corresp', $tooltip);
 
         echo ("<div class='ui-helper-clearfix'>\n");
-        $tooltip = __ ('Nur Handschriften anzeigen, die nach diesem Jahr entstanden sind.');
-        $this->echo_input  ('Nach',                    'notbefore', '700',  $tooltip);
+        $label   = __('After', 'capitularia');
+        $tooltip = __('Only show manuscripts created after this year.', 'capitularia');
+        $this->echo_input  ($label, 'notbefore', '700',  $tooltip);
 
-        $tooltip = __ ('Nur Handschriften anzeigen, die vor diesem Jahr entstanden sind.');
-        $this->echo_input  ('Vor',                     'notafter',  '1000', $tooltip);
+        $label   = __('Before', 'capitularia');
+        $tooltip = __('Only show manuscripts created before this year.', 'capitularia');
+        $this->echo_input  ($label, 'notafter',  '1000', $tooltip);
         echo ("</div>\n");
 
-        // $this->echo_select ('Herkunft',                'place',     'origPlace');
+        $label   = __('Origin', 'capitularia');
+        $tooltip = __('Only show manuscripts created in this region.', 'capitularia');
+        $this->echo_select ($label, 'place',     'origPlace-geonames', $tooltip);
 
-        $tooltip = __ ('Freie Textsuche');
-        $this->echo_input  ('Text',                    's',         'Suchtext', $tooltip);
+        $label       = __('Free Text', 'capitularia');
+        $tooltip     = __('Free text search', 'capitularia');
+        $placeholder = __('Free Text', 'capitularia');
+        $this->echo_input  ($label, 's', $placeholder, $tooltip);
 
         echo ("<div class='cap-meta-search-buttons ui-helper-clearfix'>\n");
-        echo ("  <input class='cap-meta-search-submit' type='submit' value='Suchen' />\n");
-        echo ("  <input class='cap-meta-search-help'   type='button' value='Hilfe' " .
+
+        $label   = __('Search', 'capitularia');
+        $tooltip = __('Start the search', 'capitularia');
+        echo ("  <input class='cap-meta-search-submit' type='submit' value='$label' title='$tooltip' />\n");
+
+        $label   = __('Help', 'capitularia');
+        $tooltip = __('Show some help', 'capitularia');
+        echo ("  <input class='cap-meta-search-help'   type='button' value='$label' title='$tooltip' " .
               "onclick='on_cap_meta_search_toggle_help ()' />\n");
+
         echo ("</div>\n");
 
         echo ("</form>\n");
@@ -187,7 +201,7 @@ class Widget extends \WP_Widget
                             'compare' => '=',
                             'type' => 'CHAR'
                         );
-                        $this->your_search[] = sprintf (__('cap. %s'), $val);
+                        $this->your_search[] = sprintf (__('contains %s', 'capitularia'), $val);
                         continue;
                     }
                     if ($key == 'notbefore') {
@@ -198,7 +212,7 @@ class Widget extends \WP_Widget
                             'compare' => '>=',
                             'type' => 'NUMERIC'
                         );
-                        $this->your_search[] = sprintf (__('after %d'), $val);
+                        $this->your_search[] = sprintf (__('after %d', 'capitularia'), $val);
                         continue;
                     }
                     if ($key == 'notafter') {
@@ -209,18 +223,18 @@ class Widget extends \WP_Widget
                             'compare' => '<=',
                             'type' => 'NUMERIC'
                         );
-                        $this->your_search[] = sprintf (__('before %d'), $val);
+                        $this->your_search[] = sprintf (__('before %d', 'capitularia'), $val);
                         continue;
                     }
                     if ($key == 'place') {
                         $val = sanitize_text_field ($val);
                         $meta_query_args[] = array (
-                            'key' => 'origPlace',
+                            'key' => 'origPlace-geonames',
                             'value' => $val,
                             'compare' => '=',
                             'type' => 'CHAR'
                         );
-                        $this->your_search[] = sprintf (__('in %s'), $val);
+                        $this->your_search[] = sprintf (__('in %s', 'capitularia'), $val);
                         continue;
                     }
                 }

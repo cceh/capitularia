@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-08 15:20+0100\n"
+"POT-Creation-Date: 2015-12-11 17:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,24 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: themes/Capitularia/functions.php:203
+#: themes/Capitularia/functions.php:199
 #, php-format
 msgid "Page %s"
 msgstr ""
 
-#: themes/Capitularia/functions.php:248
+#: themes/Capitularia/functions.php:242
 msgid "Top horizontal navigation bar"
 msgstr ""
 
-#: themes/Capitularia/functions.php:249
+#: themes/Capitularia/functions.php:243
 msgid "Bottom horizontal navigation bar"
 msgstr ""
 
-#: themes/Capitularia/functions.php:322
+#: themes/Capitularia/functions.php:318
 msgid "Capitularia Sidebar"
 msgstr ""
 
 #: themes/Capitularia/header.php:38
+#: plugins/cap-meta-search/class-meta-search-widget.php:163
 msgid "Search"
 msgstr ""
 
@@ -48,50 +49,202 @@ msgstr ""
 msgid "Search Results"
 msgstr ""
 
-#: themes/Capitularia/search.php:21
+#: themes/Capitularia/search.php:22
 #, php-format
 msgid "Your search for: %1$s gave one result."
 msgid_plural "Your search for: %1$s gave %2$d results."
 msgstr[0] ""
 msgstr[1] ""
 
-#: themes/Capitularia/search.php:28
+#: themes/Capitularia/search.php:31
 #, php-format
 msgid "Your search for %1$s gave no results."
 msgstr ""
 
-#: themes/Capitularia/widgets/cap-widget-transcription-navigation.php:129
+#: themes/Capitularia/widgets/cap-widget-transcription-navigation.php:139
 msgid "A navigation menu for transcription pages."
 msgstr ""
 
-#: themes/Capitularia/widgets/cap-widget-transcription-navigation.php:130
+#: themes/Capitularia/widgets/cap-widget-transcription-navigation.php:140
 msgid "Capitularia Navigation Menu"
 msgstr ""
 
-#: themes/Capitularia/widgets/cap-widgets.php:53
+#: themes/Capitularia/widgets/cap-widgets.php:62
 msgid "read more"
 msgstr ""
 
-#: themes/Capitularia/widgets/cap-widgets.php:117
+#: themes/Capitularia/widgets/cap-widgets.php:138
 msgid "Arbitrary text."
 msgstr ""
 
-#: themes/Capitularia/widgets/cap-widgets.php:120
+#: themes/Capitularia/widgets/cap-widgets.php:143
 msgid "Capitularia Text Widget"
 msgstr ""
 
-#: themes/Capitularia/widgets/cap-widgets.php:130
+#: themes/Capitularia/widgets/cap-widgets.php:154
 msgid "Arbitrary text and image."
 msgstr ""
 
-#: themes/Capitularia/widgets/cap-widgets.php:133
+#: themes/Capitularia/widgets/cap-widgets.php:159
 msgid "Capitularia Image Widget"
 msgstr ""
 
-#: themes/Capitularia/widgets/cap-widgets.php:143
+#: themes/Capitularia/widgets/cap-widgets.php:171
 msgid "Image and link for the logo bar."
 msgstr ""
 
-#: themes/Capitularia/widgets/cap-widgets.php:146
+#: themes/Capitularia/widgets/cap-widgets.php:176
 msgid "Capitularia Logo Widget"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:23
+msgid "Search widget for Capitularia metadata."
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:28
+msgid "Capitularia Search Box Widget"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:78
+msgid "All"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:138
+msgid "Contained capitulars"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:139
+msgid "Only show manuscripts that contain this capitular."
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:143
+msgid "After"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:144
+msgid "Only show manuscripts created after this year."
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:147
+msgid "Before"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:148
+msgid "Only show manuscripts created before this year."
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:152
+msgid "Origin"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:153
+msgid "Only show manuscripts created in this region."
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:156
+#: plugins/cap-meta-search/class-meta-search-widget.php:158
+msgid "Free Text"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:157
+msgid "Free text search"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:164
+msgid "Start the search"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:167
+msgid "Help"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:168
+msgid "Show some help"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:204
+#, php-format
+msgid "contains %s"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:215
+#, php-format
+msgid "after %d"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:226
+#, php-format
+msgid "before %d"
+msgstr ""
+
+#: plugins/cap-meta-search/class-meta-search-widget.php:237
+#, php-format
+msgid "in %s"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:71
+#: plugins/cap-page-generator/class-file-list-table.php:151
+msgid "Publish"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:72
+#: plugins/cap-page-generator/class-file-list-table.php:152
+msgid "Publish privately"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:73
+#: plugins/cap-page-generator/class-file-list-table.php:153
+msgid "Unpublish"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:74
+#: plugins/cap-page-generator/class-file-list-table.php:154
+msgid "Refresh"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:75
+#: plugins/cap-page-generator/class-file-list-table.php:155
+msgid "Validate"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:76
+#: plugins/cap-page-generator/class-file-list-table.php:156
+msgid "Extract metadata"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:84
+msgid "Slug"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:85
+msgid "Status"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:86
+msgid "Filename"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:103
+#, php-format
+msgid "Select %s"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:113
+msgid "Published"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:114
+msgid "Published privately"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:115
+msgid "Not published"
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:254
+msgid "Page Generator"
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:551
+msgid "Cannot refresh unpublished file."
 msgstr ""

@@ -2,9 +2,9 @@
 /**
  * Template Name: Startseite
  *
- * @package WordPress
+ * @package    WordPress
  * @subpackage Capitularia
- * @since Capitularia 0.1
+ * @since      Capitularia 0.1
  */
 ?>
 
@@ -33,4 +33,4 @@
 
 </main>
 
-<?php get_footer (); ?>
+<?php get_footer ();

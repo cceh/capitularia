@@ -17,17 +17,21 @@ $your_search = apply_filters ('cap_meta_search_your_search', '');
 $n_results = $wp_query->post_count;
 
 if ($n_results) {
-    $your_search = sprintf (_n (
-        'Your search for: %1$s gave one result.',
-        'Your search for: %1$s gave %2$d results.',
-        $n_results,
-        'capitularia'
-    ), $your_search, $n_results);
+    $your_search = sprintf (
+        _n (
+            'Your search for: %1$s gave one result.',
+            'Your search for: %1$s gave %2$d results.',
+            $n_results,
+            'capitularia'
+        ), $your_search, $n_results
+    );
 } else {
-    $your_search = sprintf (__ (
-        'Your search for %1$s gave no results.',
-        'capitularia'
-    ), $your_search);
+    $your_search = sprintf (
+        __(
+            'Your search for %1$s gave no results.',
+            'capitularia'
+        ), $your_search
+    );
 }
 
 echo ("<div class='search-pager'>$your_search</div>\n");

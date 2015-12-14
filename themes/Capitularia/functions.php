@@ -1,25 +1,28 @@
 <?php
 
+/**
+ * Capitularia Theme functions.php file
+ *
+ * @package Capitularia
+ */
+
 define('CAPITULARIA_PARENT_DIR', get_template_directory());
 define('CAPITULARIA_JS_DIR', CAPITULARIA_PARENT_DIR . '/js');
 
 define('CAPITULARIA_PARENT_URL', get_template_directory_uri());
 define('CAPITULARIA_CSS_URL', CAPITULARIA_PARENT_DIR . '/css');
 
-/**
+/*
  * Load the translation files.
  *
  * Translation files are *.mo files in the themes/Capitularia/languages/
  * directory.
  */
 
-if (!load_theme_textdomain ('capitularia', get_template_directory () . "/languages/")) {
-    // error_log ("Could not load text domain. locale = " . get_locale ());
-}
+load_theme_textdomain ('capitularia', get_template_directory () . '/languages/');
 
-/**
+/*
  * Some utility functions
- *
  */
 
 function cap_the_slug () {
@@ -56,10 +59,9 @@ function cap_theme_image ($img) {
     echo ('src="' . get_bloginfo ('template_directory') . "/img/$img\"");
 }
 
-function get_id_by_slug($page_slug)
-{
-    $page = get_page_by_path($page_slug);
-    return $page ? $page->ID : NULL;
+function get_id_by_slug ($page_slug) {
+    $page = get_page_by_path ($page_slug);
+    return $page ? $page->ID : null;
 }
 
 function cap_get_option ($section, $option, $default = '') {
@@ -105,7 +107,7 @@ function cap_enqueue_scripts () {
 
     wp_enqueue_style (
         'cap-reset',
-        get_template_directory_uri () . "/css/reset.css",
+        get_template_directory_uri () . '/css/reset.css',
         array ()
     );
 
@@ -175,9 +177,9 @@ add_action ('admin_enqueue_scripts', 'cap_admin_enqueue_scripts');
  * if root: "Capitularia | Edition der fränkischen Herrschererlasse"
  * else:    "[Name der Unterseite] | Capitularia"
  *
- *
  * @param string $title Default title text for current view.
  * @param string $sep Optional separator.
+ *
  * @return string The filtered title.
  */
 
@@ -199,8 +201,8 @@ function cap_wp_title ($title, $sep) {
     $title .= $blog_name;
 
     // Add a page number if necessary:
-    if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-        $title .= " $sep " . sprintf( __( 'Page %s', 'capitularia' ), max( $paged, $page ) );
+    if (($paged >= 2 || $page >= 2) && ! is_404 ()) {
+        $title .= " $sep " . sprintf (__ ('Page %s', 'capitularia'), max ($paged, $page));
     }
 
     return $title;
@@ -210,8 +212,7 @@ add_filter ('wp_title', 'cap_wp_title', 10, 2);
 
 
 /**
- * Add excerpt support to pages
- *
+ * Add excerpt support to pages.
  */
 
 function cap_add_excerpts_to_pages () {
@@ -224,7 +225,7 @@ add_action ('init', 'cap_add_excerpts_to_pages');
 /**
  * Add <body> classes depending on which website section we are in
  *
- * eg.: adds class="cap-slug-mss" in the /mss/ section of the site.
+ * Eg.: adds class="cap-slug-mss" in the /mss/ section of the site.
  */
 
 function cap_on_body_class ($classes) {
@@ -239,7 +240,6 @@ add_filter ('body_class', 'cap_on_body_class');
 
 /**
  * Register our 2 horizontal navigation menus
- *
  */
 
 function cap_register_nav_menus () {
@@ -254,9 +254,8 @@ function cap_register_nav_menus () {
 add_action ('init', 'cap_register_nav_menus');
 
 
-/**
+/*
  * Register sidebars
- *
  */
 
 $sidebars = array ();
@@ -270,18 +269,20 @@ $sidebars[] = array ('logobar',             'Logo Bar',
                      'The logo bar in the footer of every page. Takes one or more Capitularia Logo Widgets.');
 
 foreach ($sidebars as $a) {
-    register_sidebar (array (
-        'id' => $a[0],
-        'name' => $a[1],
-        'description' => $a[2],
-    ));
+    register_sidebar (
+        array (
+            'id' => $a[0],
+            'name' => $a[1],
+            'description' => $a[2],
+        )
+    );
 };
 
 $sidebars = array ();
 $sidebars[] = array ('post-sidebar',   'Post Sidebar',
                      'The sidebar on posts.');
 $sidebars[] = array ('page-sidebar',   'Page Sidebar',
-                     'The sidebar on pages. TOutput below the more specialized page sidebars.');
+                     'The sidebar on pages. Output below the more specialized page sidebars.');
 $sidebars[] = array ('sidebar',        'Post and Page Sidebar',
                      'The sidebar on posts and pages. Output below the other sidebars.');
 
@@ -301,17 +302,18 @@ $sidebars[] = array ('search',  'Search Page Sidebar',
                      'The sidebar on the search page');
 
 foreach ($sidebars as $a) {
-    register_sidebar (array (
-        'id' => $a[0],
-        'name' => $a[1],
-        'description' => $a[2],
-    ));
+    register_sidebar (
+        array (
+            'id' => $a[0],
+            'name' => $a[1],
+            'description' => $a[2],
+        )
+    );
 };
 
 
 /**
  * Register a custom taxonony for sidebar selection
- *
  */
 
 function cap_create_page_taxonomy () {
@@ -336,7 +338,7 @@ add_action ('init', 'cap_create_page_taxonomy');
  * Add private/draft/future/pending pages to page parent dropdown.
  */
 
-function cap_on_dropdown_pages_args ($dropdown_args, $post = NULL) {
+function cap_on_dropdown_pages_args ($dropdown_args, $post = null) {
     $dropdown_args['post_status'] = array ('publish', 'draft', 'pending', 'future', 'private');
     return $dropdown_args;
 }
@@ -345,30 +347,30 @@ add_filter ('page_attributes_dropdown_pages_args', 'cap_on_dropdown_pages_args')
 add_filter ('quick_edit_dropdown_pages_args',      'cap_on_dropdown_pages_args');
 
 
-/**
+/*
  * Shortcodes
  */
 
 function on_cap_shortcode_logged_in ($atts, $content) {
-    if (is_user_logged_in ())
+    if (is_user_logged_in ()) {
         return do_shortcode ($content);
+    }
     return '';
 }
 
 function on_cap_shortcode_logged_out ($atts, $content) {
-    if (!is_user_logged_in ())
+    if (!is_user_logged_in ()) {
         return do_shortcode ($content);
+    }
     return '';
 }
 
 add_shortcode ('logged_in',  'on_cap_shortcode_logged_in');
 add_shortcode ('logged_out', 'on_cap_shortcode_logged_out');
 
-/**
+/*
  * Widgets
  */
 
-require ('widgets/cap-widgets.php');
-require ('widgets/cap-widget-transcription-navigation.php');
-
-?>
+require 'widgets/cap-widgets.php';
+require 'widgets/cap-widget-transcription-navigation.php';

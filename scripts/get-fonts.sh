@@ -4,6 +4,11 @@
 #
 # prerequisites:
 #   sudo apt-get install fontforge ttfautohint lcdf-typetools
+#   mkdir newdir; cd newdir
+#   git clone --recursive https://github.com/google/woff2.git
+#   cd woff2
+#   make clean all
+#   cp woff2_compress <DIR_IN_PATH>
 #
 
 FONTDIR=../themes/Capitularia/webfonts
@@ -11,6 +16,7 @@ BASEURL=
 CSS=$FONTDIR/webfonts.css
 DATE=`date`
 ZIP=open-sans.zip
+WOFF2_COMPRESS=woff2_compress
 
 # download the ttf bundle
 
@@ -40,9 +46,10 @@ EOF
 
 for TTF in $FONTDIR/*.ttf
 do
-    ./convert.pe "$TTF"
+    ./convert.pe "$TTF"                  # fontforge shell file
     ttfautohint "$TTF" "$TTF.autohint"
     mv "$TTF.autohint" "$TTF"
+    $WOFF2_COMPRESS "$TTF"
 
     PSNAME=`otfinfo -p "$TTF"`
     URL="$BASEURL"`basename -s .ttf "$TTF"`

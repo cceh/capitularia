@@ -444,13 +444,17 @@ class Page_Generator
                 //   Sun Feb 1 12:14:02 EST 2015 x86_64 x86_64 x86_64 GNU/Linux
                 // => x86-64
 
-                'xmllint --noout --relaxng',
+                '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/local/bin/xmllint --noout --relaxng',
+                // 'xmllint --noout --relaxng',
                 escapeshellarg ($schema),
                 escapeshellarg ($path),
                 '2>&1'
             )
         );
         exec ($cmdline, $messages, $retval); // 0 = ok, 3 = error
+        if ($retval == 0) {
+            return true;
+        }
         return $messages;
     }
 
@@ -532,7 +536,7 @@ class Page_Generator
         }
 
         if ($action == 'validate') {
-            $result = $this->validate ($root . $filename);
+            $result = $this->validate_xmllint ($root . $filename);
             if ($result === false) {
                 return array (1, __("Error while validating file $a_slug. Validity of file is unknown."));
             }

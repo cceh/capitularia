@@ -14,10 +14,12 @@ class Meta_Search
      */
     static private $instance = false;
 
-    const NAME                 = 'Capitularia Meta Search';
-    const NONCE_SPECIAL_STRING = 'cap_meta_search_nonce';
-    const NONCE_PARAM_NAME     = '_ajax_nonce';
-    const AFS_ROOT = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
+    const NAME                  = 'Capitularia Meta Search';
+    const NONCE_SPECIAL_STRING  = 'cap_meta_search_nonce';
+    const NONCE_PARAM_NAME      = '_ajax_nonce';
+    const AFS_ROOT              = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
+    const GEONAMES_API_ENDPOINT = 'http://api.geonames.org/hierarchyJSON';
+    const GEONAMES_USER         = 'highlander'; # FIXME get an institutional user
 
     private $options            = null;
 
@@ -28,6 +30,7 @@ class Meta_Search
         add_action ('admin_menu',            array ($this, 'on_admin_menu'));
         add_action ('admin_bar_menu',        array ($this, 'on_admin_bar_menu'), 200);
         add_action ('admin_enqueue_scripts', array ($this, 'on_admin_enqueue_scripts'));
+        add_filter ('the_content',           array ($this, 'on_the_content'));
         add_filter ('get_the_excerpt',       array ($this, 'on_get_the_excerpt'));
     }
 
@@ -52,6 +55,42 @@ class Meta_Search
 
     private function nmtokens ($in) {
         return explode (' ', $in);
+    }
+
+    /**
+     * Get geonames.org place names hierarchy from id.
+     *
+     * @param in Array of urls to geoname services.
+     *
+     * @return Array of place names.
+     */
+
+    private function geonames ($in) {
+        // See: http://www.geonames.org/export/place-hierarchy.html#hierarchy
+        $places = array ();
+        foreach (explode (' ', $in) as $urn) {
+            // http://www.geonames.org/2984114/reims.html
+            if (preg_match  ('#//www.geonames.org/([\d]+)/#', $urn, $matches)) {
+                $url = self::GEONAMES_API_ENDPOINT . '?' . http_build_query (
+                    array ('geonameId' => $matches[1], 'username' => self::GEONAMES_USER));
+                // $json = file_get_contents ($url);
+                $json = wp_remote_retrieve_body (wp_remote_get ($url));
+                // error_log ('Geonames answer is: ' . $json);
+                $g = json_decode ($json, true);
+                // error_log ('JSON Error is: ' . json_last_error_msg ());
+                // error_log ('Decoded JSON is: ' . print_r ($g, true));
+                if (isset ($g['geonames'])) {
+                    foreach ($g['geonames'] as $r) {
+                        if ($r['fcl'] == 'A') {
+                            $places[] = $r['name'];
+                            $places[] = $r['toponymName'];
+                        }
+                    }
+                }
+            }
+        }
+        $places = array_unique ($places);
+        return $places;
     }
 
     public function extract_meta ($post_id, $xml_path) {
@@ -83,6 +122,12 @@ class Meta_Search
             'origPlace-ref',
             $xpath->query ('//tei:head/tei:origPlace/@ref'),
             array ($this, 'nmtokens')
+        );
+        $this->meta (
+            $post_id,
+            'origPlace-geonames',
+            $xpath->query ('//tei:head/tei:origPlace/@ref'),
+            array ($this, 'geonames')
         );
 
         $errors = libxml_get_errors ();
@@ -213,6 +258,34 @@ class Meta_Search
                 return $this->get_snippets ($content, $regex);
             }
             return wp_strip_all_tags ($content);
+        }
+        return $content;
+    }
+
+    /**
+     * Highlight search terms in full post if referenced from search page.
+     *
+     * @param content Post content
+     *
+     * @return Highlighted post content
+     */
+
+    public function on_the_content ($content) {
+        global $wp_query;
+        if (!is_admin () && isset ($_SERVER['HTTP_REFERER']) && is_singular () && in_the_loop ()) {
+            $referrer = $_SERVER['HTTP_REFERER'];
+            $args = explode('?', $referrer);
+            if (count ($args) > 1) {
+                $args = wp_parse_args ($args[1], array ());
+                $local_search = stripos ($referrer, $_SERVER['SERVER_NAME']) !== false;
+                if (!empty ($args['s'])) {
+                    $terms = array_map (array ($this, 'escape_search_term'), explode (' ', $args['s']));
+                    $regex = implode ('|', $terms);
+                    $regex = "#$regex#ui";
+                    // error_log ("Highlight regex = $regex");
+                    $content = preg_replace ($regex, '<mark>${0}</mark>', $content);
+                }
+            }
         }
         return $content;
     }
