@@ -8,7 +8,7 @@
 
 get_header (); ?>
 
-<main id="main" class="home">
+<main id="main" class="home front-page-php">
 
   <div class="front-splash ui-helper-clearfix">
     <h1><?php bloginfo ('description', 'display'); ?></h1>

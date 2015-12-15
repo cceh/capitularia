@@ -74,6 +74,16 @@ function cap_get_option ($section, $option, $default = '') {
     return isset ($cap_options[$section][$name]) ? $cap_options[$section][$name] : $default;
 }
 
+function get_permalink_a () {
+    return (
+        '<a href="' .
+        get_the_permalink () .
+        '" title="' .
+        esc_attr (sprintf (__('Permalink to %s', 'capitularia'), the_title_attribute ('echo=0'))) .
+        '" rel="bookmark">'
+    );
+}
+
 /**
  * Enqueue scripts and CSS
  *
@@ -373,4 +383,3 @@ add_shortcode ('logged_out', 'on_cap_shortcode_logged_out');
  */
 
 require 'widgets/cap-widgets.php';
-require 'widgets/cap-widget-transcription-navigation.php';

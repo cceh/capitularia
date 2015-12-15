@@ -8,18 +8,20 @@
 
 get_header (); ?>
 
-<main id="main">
+<main id="main" class="page-php">
 
   <div class="content-col">
     <?php while (have_posts()) : the_post(); ?>
 
-    <div class="page-header">
-      <h2><?php the_title (); ?></h2>
-    </div>
+    <article>
+      <header class="article-header page-header">
+        <h2><?php the_title (); ?></h2>
+      </header>
 
-    <div class="entry">
-      <?php the_content (); ?>
-    </div>
+      <div class="entry">
+        <?php the_content (); ?>
+      </div>
+    </article>
 
     <?php endwhile; ?>
   </div>

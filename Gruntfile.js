@@ -39,6 +39,19 @@ module.exports = function (grunt) {
             plugins: ['plugins/**/*.php']
         },
 
+        pdepend: {
+            all: {
+                src: ['themes/Capitularia/**/*.php', 'plugins/**/*.php']
+            },
+            options: {
+                bin: 'vendor/bin/pdepend',
+                jdependChart: 'jdependChart.svg',
+                jdependXml: 'jdependXml.xml',
+                overviewPyramid: 'overviewPyramid.svg',
+                summaryXml: 'summaryXml.xml',
+            },
+        },
+
         phpcs: {
             options: {
                 // $ sudo apt-get install php-codesniffer
@@ -136,6 +149,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks ('grunt-contrib-jshint');
     grunt.loadNpmTasks ('grunt-contrib-less');
     grunt.loadNpmTasks ('grunt-contrib-watch');
+    grunt.loadNpmTasks ('grunt-pdepend');
     grunt.loadNpmTasks ('grunt-phpcs');
     grunt.loadNpmTasks ('grunt-phpdocumentor');
     grunt.loadNpmTasks ('grunt-phplint');

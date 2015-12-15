@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-11 17:50+0100\n"
+"POT-Creation-Date: 2015-12-15 17:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n !=1 ;\n"
 
-#: themes/Capitularia/functions.php:199
+#: themes/Capitularia/functions.php:82
+#, php-format
+msgid "Permalink to %s"
+msgstr "Permalink zu %s"
+
+#: themes/Capitularia/functions.php:215
 #, php-format
 msgid "Page %s"
 msgstr "Seite %s"
 
-#: themes/Capitularia/functions.php:242
+#: themes/Capitularia/functions.php:258
 msgid "Top horizontal navigation bar"
 msgstr "Obere horizontale Navigationsleiste"
 
-#: themes/Capitularia/functions.php:243
+#: themes/Capitularia/functions.php:259
 msgid "Bottom horizontal navigation bar"
 msgstr "Untere horizontale Navigationsleiste"
 
-#: themes/Capitularia/functions.php:318
+#: themes/Capitularia/functions.php:334
 msgid "Capitularia Sidebar"
 msgstr "Capitularia Sidebar"
 
@@ -39,11 +44,6 @@ msgstr "Capitularia Sidebar"
 #: plugins/cap-meta-search/class-meta-search-widget.php:163
 msgid "Search"
 msgstr "Suchen"
-
-#: themes/Capitularia/home.php:8
-#, php-format
-msgid "Permalink to %s"
-msgstr "Permalink zu %s"
 
 #: themes/Capitularia/search.php:14
 msgid "Search Results"
@@ -61,41 +61,43 @@ msgstr[1] "Ihre Suche nach: %1$s ergab %2$d Treffer."
 msgid "Your search for %1$s gave no results."
 msgstr "Ihre Suche nach: %1$s ergab keine Treffer."
 
-#: themes/Capitularia/widgets/cap-widget-transcription-navigation.php:139
-msgid "A navigation menu for transcription pages."
-msgstr "Ein Navigationsmenu für Transkriptionsseiten"
-
-#: themes/Capitularia/widgets/cap-widget-transcription-navigation.php:140
-msgid "Capitularia Navigation Menu"
-msgstr "Capitularia Navigationsmenu"
-
-#: themes/Capitularia/widgets/cap-widgets.php:62
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:70
 msgid "read more"
 msgstr "mehr lesen"
 
-#: themes/Capitularia/widgets/cap-widgets.php:138
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:139
 msgid "Arbitrary text."
 msgstr "Beliebiger Text"
 
-#: themes/Capitularia/widgets/cap-widgets.php:143
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:144
 msgid "Capitularia Text Widget"
 msgstr "Capitularia Text-Widget"
 
-#: themes/Capitularia/widgets/cap-widgets.php:154
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:159
 msgid "Arbitrary text and image."
 msgstr "Beliebiger Text mit Bild"
 
-#: themes/Capitularia/widgets/cap-widgets.php:159
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:164
 msgid "Capitularia Image Widget"
 msgstr "Capitularia Bild-Widget"
 
-#: themes/Capitularia/widgets/cap-widgets.php:171
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:180
 msgid "Image and link for the logo bar."
 msgstr "Bild und Link für die Logo-Bar"
 
-#: themes/Capitularia/widgets/cap-widgets.php:176
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:185
 msgid "Capitularia Logo Widget"
 msgstr "Capitularia Logo-Widget"
+
+#: themes/Capitularia/widgets/class-sticky-nav-menu-widget.php:18
+#, fuzzy
+msgid "A sticky navigation menu."
+msgstr "Capitularia Navigationsmenu"
+
+#: themes/Capitularia/widgets/class-sticky-nav-menu-widget.php:22
+#, fuzzy
+msgid "Capitularia Sticky Navigation Menu"
+msgstr "Capitularia Navigationsmenu"
 
 #: plugins/cap-meta-search/class-meta-search-widget.php:23
 msgid "Search widget for Capitularia metadata."
@@ -248,3 +250,6 @@ msgstr "Seitengenerator"
 #: plugins/cap-page-generator/class-page-generator.php:551
 msgid "Cannot refresh unpublished file."
 msgstr "Eine nicht veröffentlichte Datei kann nicht generiert werden."
+
+#~ msgid "A navigation menu for transcription pages."
+#~ msgstr "Ein Navigationsmenu für Transkriptionsseiten"

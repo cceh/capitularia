@@ -254,20 +254,23 @@ div.teaser-bar-2 {
 /* All pages */
 /*************/
 
-.page-header {
-    margin-bottom:32px;
-    h2 {
-	color: @color-highlight;
-	margin: 0 0 12px 0;
-    }
-    h4 {
-	margin-bottom:12px;
-	font-size:1em;
-	.bold;
-    }
-}
-
 div.content-col {
+    article {
+	margin: 0 0 32px 0;
+	header {
+	    h2 {
+		color: @color-highlight;
+		margin: 0 0 32px 0;
+	    }
+	    &.excerpt-header {
+		h2 {
+		    font-size: 1.3em;
+		    margin-bottom: 12px;
+		}
+	    }
+	}
+    }
+
     table {
 	margin: 32px 0px;
 	width: 100%;

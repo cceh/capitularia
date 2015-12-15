@@ -11,7 +11,7 @@ get_header ();
 echo ("<main id='main'>\n");
 echo ("<div class='content-col'>\n");
 
-echo ("<div class='page-header'>\n<h2>" . __('Search Results', 'capitularia') . "</h2>\n</div>\n");
+echo ("<header class='article-header page-header'>\n<h2>" . __('Search Results', 'capitularia') . "</h2>\n</header>\n");
 
 $your_search = apply_filters ('cap_meta_search_your_search', '');
 $n_results = $wp_query->post_count;

@@ -1,32 +1,54 @@
-<?php get_header(); ?>
+<?php
 
-<main id="main">
+/**
+ * Template for single posts or multiple excerpts.
+ *
+ * @package Capitularia
+ */
 
-  <div class="content-col">
-    <?php while (have_posts ()) : the_post (); ?>
+get_header ();
 
-      <div class="page-header">
-        <h2><?php the_title (); ?></h2>
-      </div>
+echo ("<main id='main' class='index-php'>\n");
+echo ("<div class='content-col'>\n");
 
-      <div class="entry">
-        <?php the_content (); ?>
-      </div>
+while (have_posts ()) {
+    the_post ();
+    $id = get_the_ID ();
+    $class = is_single () ? 'post' : 'excerpt';
+    $classes = implode (' ', get_post_class ($class));
+    $title = get_the_title ($id);
+    if (!is_single ()) {
+        $title = get_permalink_a () . $title . '</a>';
+    }
+    echo ("<article id='post-$id' class='$classes'>\n");
+    echo ("<header class='article-header $class-header'>\n  <h2>$title</h2>\n</header>\n");
+    echo ("<div class='$class'>\n");
+    if (is_single ()) {
+        the_content ();
+    } else {
+        if (has_post_thumbnail ()) {
+            echo (get_permalink_a ());
+            the_post_thumbnail ('featured-slider');
+            echo ('</a>');
+        }
+        the_excerpt ();
+    }
+    echo ("</div>\n");
+    echo ("</article>\n");
+}
+echo ("</div>\n");
 
-    <?php endwhile; ?>
-  </div>
+echo ("<div class='sidebar-col'>\n");
+echo ("<ul>\n");
 
-  <div class="sidebar-col">
-    <ul>
-      <?php
-        // This sidebar gets displayed on all posts.
-        dynamic_sidebar ('Post-Sidebar');
-        // This sidebar gets displayed on all posts and pages.
-        dynamic_sidebar ('Sidebar');
-      ?>
-    </ul>
-  </div>
+// This sidebar gets displayed on all posts.
+dynamic_sidebar ('Post-Sidebar');
+// This sidebar gets displayed on all posts and pages.
+dynamic_sidebar ('Sidebar');
 
-</main>
+echo ("</ul>\n");
+echo ("</div>\n");
 
-<?php get_footer ();
+echo ("</main>\n");
+
+get_footer ();

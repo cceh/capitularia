@@ -186,7 +186,7 @@ class Dynamic_Menu
                         $level = str_replace ('′', "'", $level);
                         $level = str_replace ('’', "'", $level);
                         $level = str_replace ('”', '"', $level);
-                        error_log ("Level = '$level'");
+                        // error_log ("Level = '$level'");
                         foreach ($xpath->query (trim ($level)) as $e) {
                             $e->setAttribute ('data-cap-level', strVal ($level_no));
                         }
@@ -230,61 +230,11 @@ class Dynamic_Menu
                     }
                     continue;
                 }
-                /*
-                if (stristr ($item->url, '#cap_dynamic_menu_load_bk#') !== false) {
-                    foreach ($xpath->query ("//span[@id][@class='milestone']") as $bk) {
-                        $id = $bk->getAttribute ('id');
-                        $caption = preg_replace ('/_.*$/u', '', $id);
-                        $caption = str_replace ('.', ' ', $caption);
-                        $node_level = 1;
-
-                        $new_item = $this->new_item ($caption, array ('menu-item-load-bk'));
-                        // $new_item->object_id        = $item->object_id + $this->next_item_id;
-                        $new_item->url              = "#$id";
-                        $new_item->classes[]        = "dynamic-menu-item-level-$node_level";
-                        $new_item->menu_item_parent = $item->menu_item_parent;
-
-                        $new_items[$new_item->post_name] = $new_item;
-                    }
-                    continue;
-                }
-                if (stristr ($item->url, '#cap_dynamic_menu_load_rubrics#') !== false) {
-                    foreach ($xpath->query ("//*[@id='inhaltsverzeichnis']/ul/li") as $li) {
-                        $this->parse_li ($li, $new_items, $item->menu_item_parent, 1);
-                    }
-                    continue;
-                }
-                */
             }
             $new_items[$key] = $item;
         }
         return $new_items;
     }
-
-    /*
-    private function parse_li ($li, &$new_items, $parent, $level) {
-        foreach ($li->childNodes as $node) {
-            if ($node->nodeTag == 'ul') {
-                // recurse
-                foreach ($node->childNodes as $n) {
-                    // ul only ever contains li
-                    $this->parse_li ($n, $new_items, $new_items[count ($new_items) - 1], $level + 1);
-                }
-            }
-            if ($node->nodeTag == 'a') {
-                $caption = $node->textContent;
-
-                $new_item = $this->new_item ($caption, array ('menu-item-load-rubrics'));
-                // $new_item->object_id        = $item->object_id + $this->next_item_id;
-                $new_item->url              = $node->getAttribute ('href');
-                $new_item->classes[]        = "dynamic-menu-item-level-$level";
-                $new_item->menu_item_parent = $parent;
-
-                $new_items[$new_item->post_name] = $new_item;
-            }
-        }
-    }
-    */
 
     /**
      * Enqueue Javascript and CSS.
