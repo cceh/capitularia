@@ -12,7 +12,7 @@ require 'class-frontpage-widgets.php';
 require 'class-sticky-nav-menu-widget.php';
 
 /**
- * Register all capitularie theme widgets.
+ * Register all Capitularia theme widgets.
  */
 
 function register_widgets () {

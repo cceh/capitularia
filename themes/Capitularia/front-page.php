@@ -6,7 +6,11 @@
  * @package Capitularia
  */
 
-get_header (); ?>
+namespace cceh\capitularia\theme;
+
+get_header ();
+
+?>
 
 <main id="main" class="home front-page-php">
 

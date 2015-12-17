@@ -9,7 +9,7 @@
 namespace cceh\capitularia\theme;
 
 /**
- * Base class for front page widgets.
+ * Base class for the front page widgets.
  */
 
 class Frontpage_Widget_Base extends \WP_Widget
@@ -38,30 +38,37 @@ class Frontpage_Widget_Base extends \WP_Widget
     }
 
     protected function sanitize ($text) {
+        $allowed_html = array (
+            'a' => array (
+                'href' => array (),
+                'title' => array ()
+            ),
+            'em' => array (),
+            'strong' => array (),
+            'p' => array (),
+            'br' => array (),
+        );
+        return empty ($text) ? '' : wp_kses ($text, $allowed_html);
+    }
+
+    protected function strip_tags ($text) {
         return empty ($text) ? '' : strip_tags ($text);
     }
 
+    protected function pass ($text) {
+        return empty ($text) ? '' : $text;
+    }
+
     protected function widget_setup ($args, $instance) {
-        $this->title = apply_filters (
-            'widget_title',
-            empty ($instance['title']) ? '' : $instance['title'],
-            $instance, $this->id_base
-        );
-
-        $this->text = apply_filters (
-            'widget_text',
-            empty ($instance['content']) ? '' : $instance['content'],
-            $instance
-        );
-
-        $this->image = empty ($instance['image']) ? '' : $instance['image'];
-
-        $this->link = empty ($instance['link']) ? '' : ' href="' . $instance['link'] . '"';
+        $this->title = empty ($instance['title'])   ? '' : $instance['title'];
+        $this->text  = empty ($instance['content']) ? '' : $instance['content'];
+        $this->image = empty ($instance['image'])   ? '' : $instance['image'];
+        $this->link  = empty ($instance['link'])    ? '' : ' href="' . $instance['link'] . '"';
     }
 
     protected function the_widget_title ($args, $instance) {
         echo ($args['before_title']);
-        echo $this->make_link ($this->title, $this->link);
+        echo $this->title;
         echo ($args['after_title']);
     }
 
@@ -76,8 +83,6 @@ class Frontpage_Widget_Base extends \WP_Widget
 
     protected function the_option ($instance, $name, $caption, $placeholder) {
         $value = !empty ($instance[$name]) ? $instance[$name] : '';
-        $caption = __($caption, 'capitularia');
-        $placeholder = __($placeholder, 'capitularia');
         echo ("<p><label for=\"{$this->get_field_id ($name)}\">$caption</label>");
         echo ("<input class=\"widefat\" id=\"{$this->get_field_id ($name)}\" name=\"{$this->get_field_name ($name)}\" type=\"text\" value=\"$value\" placeholder=\"$placeholder\"></p>");
     }
@@ -101,29 +106,31 @@ class Frontpage_Widget_Base extends \WP_Widget
     public function update ($new_instance, $old_instance) {
         $instance = $old_instance;
         if ($this->mask & self::HAS_TITLE) {
-            $instance['title'] = $this->sanitize ($new_instance['title']);
+            $instance['title'] = $this->pass ($new_instance['title']);
         }
         if ($this->mask & self::HAS_TEXT) {
-            $instance['content'] = $this->sanitize ($new_instance['content']);
+            $instance['content'] = $this->pass ($new_instance['content']);
         }
         if ($this->mask & self::HAS_IMAGE) {
-            $instance['image'] = $this->sanitize ($new_instance['image']);
+            $instance['image'] = $this->strip_tags ($new_instance['image']);
         }
-        $instance['link'] = $this->sanitize ($new_instance['link']);
+        $instance['link'] = $this->strip_tags ($new_instance['link']);
         return $instance;
     }
 
     public function form ($instance) {
         if ($this->mask & self::HAS_TITLE) {
-            $this->the_option ($instance, 'title',   'Title',     'New title');
+            $this->the_option ($instance, 'title',   __('Title', 'capitularia'),     __('New title', 'capitularia'));
         }
         if ($this->mask & self::HAS_TEXT) {
-            $this->the_option ($instance, 'content', 'Text',      'New text');
+            $this->the_option ($instance, 'content', __('Text', 'capitularia'),      __('New text', 'capitularia'));
         }
         if ($this->mask & self::HAS_IMAGE) {
-            $this->the_option ($instance, 'image',   'Image-URL', 'New image');
+            $this->the_option ($instance, 'image',   __('Image-URL', 'capitularia'), __('New image', 'capitularia'));
         }
-        $this->the_option ($instance, 'link', 'Link-URL', 'New link');
+        if (true) {
+            $this->the_option ($instance, 'link',    __('More-URL', 'capitularia'),  __('New more-URL', 'capitularia'));
+        }
     }
 }
 

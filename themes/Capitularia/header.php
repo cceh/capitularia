@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<?php
+
+/**
+ * The HTML header on every page.
+ *
+ * @package Capitularia
+ */
+
+namespace cceh\capitularia\theme;
+
+?><!DOCTYPE html>
 
 <html <?php language_attributes (); ?>>
   <head>

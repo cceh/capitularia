@@ -7,6 +7,10 @@
 
 namespace cceh\capitularia\meta_search;
 
+/**
+ * A metadata search box widget
+ */
+
 class Widget extends \WP_Widget
 {
     /**

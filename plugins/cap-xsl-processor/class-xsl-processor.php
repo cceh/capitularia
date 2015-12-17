@@ -7,11 +7,13 @@
 
 namespace cceh\capitularia\xsl_processor;
 
+/**
+ * A caching XSL processor.
+ */
+
 class XSL_Processor
 {
-    /**
-     * Our singleton instance
-     */
+    /** Singleton instance */
     static private $instance = false;
 
     const NAME      = 'Capitularia XSL Processor';

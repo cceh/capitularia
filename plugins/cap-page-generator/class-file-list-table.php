@@ -7,6 +7,10 @@
 
 namespace cceh\capitularia\page_generator;
 
+/**
+ * A file list table for the page generator admin page.
+ */
+
 class File_List_Table extends \WP_List_Table
 {
     /**

@@ -173,6 +173,7 @@ div.teaser-bar {
     margin: 2em 0;
     line-height: 1.5em;
     h2 {
+	color: @color-gray;
 	.semibold;
 	margin-top: 0;
 	margin-bottom: .7ex;
@@ -184,14 +185,15 @@ div.teaser-bar {
 	margin-bottom: 0.35em;
     }
     a {
-	color: @color-gray;
+	color: @color-link;
 	transition: color 300ms;
+	&:focus,
+	&:active,
 	&:hover {
-	    color: @color-link;
+	    color: @color-black;
 	    text-decoration: none;
 	}
 	&.mehr-lesen {
-	    color: @color-link;
 	    .bold;
 	    text-transform: uppercase;
 	    font-size: 0.7em;
@@ -200,12 +202,6 @@ div.teaser-bar {
 	    transition:color 300ms;
 	    display: block;
 	    margin-top: 1ex;
-	    &:focus,
-	    &:active,
-	    &:hover {
-		color: @color-black;
-		text-decoration: none;
-	    }
 	}
     }
     img {

@@ -10,6 +10,12 @@ License:     GPLv2 or later
 Text Domain: cap-meta-search
 */
 
+/**
+ * TEI metadata extraction and search widget.
+ *
+ * @package Capitularia
+ */
+
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
 require_once 'class-meta-search-widget.php';

@@ -15,7 +15,17 @@
  * @package Capitularia
  */
 
+namespace cceh\capitularia\xsl_processor;
+
 const FOOTNOTES = '//span[contains (concat (" ", @class, " "), " annotation ")]';
+
+/**
+ * Is the node a note?
+ *
+ * @param node $node  The node to test.
+ *
+ * @return bool  true if the node is a note.
+ */
 
 function is_note ($node) {
     return
@@ -45,10 +55,10 @@ function remove_node ($node) {
 }
 
 /**
- * Merge @note into @next and delete @note.
+ * Merge $note into $next and delete $note.
  *
- * @param note  The note to merge.
- * @param next  The note to merge into.
+ * @param \DOMNode $note  The note to merge.
+ * @param \DOMNode $next  The note to merge into.
  *
  * @return nothing
  */
@@ -72,11 +82,11 @@ function merge_notes ($note, $next) {
 }
 
 /**
- * Wrap @nodes into a span.
+ * Wrap $nodes into a span.
  *
- * @param nodes
+ * @param array $nodes  Nodes to wrap.
  *
- * @return
+ * @return nothing
  */
 
 function wrap ($nodes) {
@@ -90,13 +100,13 @@ function wrap ($nodes) {
 }
 
 /**
- * Return the position of the first whitespace in the node.
+ * Return the position of the first whitespace in $text_node.
  *
- * Node must be a text node.
+ * $text_node must be a text node.
  *
- * @param text_node
+ * @param \DOMNode text_node
  *
- * @return Position of first whitespace or false.
+ * @return mixed Position of first whitespace or false.
  */
 
 function whitespace_pos ($text_node) {

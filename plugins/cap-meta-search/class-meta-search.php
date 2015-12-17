@@ -1,11 +1,15 @@
 <?php
 /**
- * Capitularia Meta Search main class.
+ * Capitularia Meta Search.
  *
  * @package Capitularia
  */
 
 namespace cceh\capitularia\meta_search;
+
+/**
+ * TEI metadata extraction and search.
+ */
 
 class Meta_Search
 {
@@ -19,7 +23,7 @@ class Meta_Search
     const NONCE_PARAM_NAME      = '_ajax_nonce';
     const AFS_ROOT              = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
     const GEONAMES_API_ENDPOINT = 'http://api.geonames.org/hierarchyJSON';
-    const GEONAMES_USER         = 'highlander'; # FIXME get an institutional user
+    const GEONAMES_USER         = 'highlander'; // FIXME get an institutional user
 
     private $options            = null;
 
@@ -72,7 +76,8 @@ class Meta_Search
             // http://www.geonames.org/2984114/reims.html
             if (preg_match  ('#//www.geonames.org/([\d]+)/#', $urn, $matches)) {
                 $url = self::GEONAMES_API_ENDPOINT . '?' . http_build_query (
-                    array ('geonameId' => $matches[1], 'username' => self::GEONAMES_USER));
+                    array ('geonameId' => $matches[1], 'username' => self::GEONAMES_USER)
+                );
                 // $json = file_get_contents ($url);
                 $json = wp_remote_retrieve_body (wp_remote_get ($url));
                 // error_log ('Geonames answer is: ' . $json);
@@ -173,8 +178,15 @@ class Meta_Search
         return self::$instance;
     }
 
-    private function get_option ($name, $default = '') {
-        return cap_get_option ('cap_meta_search', $name, $default);
+    private function get_option ($option, $default = '') {
+        $section = 'cap_meta_search';
+        if (!isset ($cap_options) || !is_array ($cap_option)) {
+            $cap_options = array ();
+        }
+        if (!isset ($cap_options[$section])) {
+            $cap_options[$section] = get_option ($section, array ());
+        }
+        return isset ($cap_options[$section][$name]) ? $cap_options[$section][$name] : $default;
     }
 
     private function urljoin ($url1, $url2) {

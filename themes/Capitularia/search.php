@@ -6,6 +6,8 @@
  * @package Capitularia
  */
 
+namespace cceh\capitularia\theme;
+
 get_header ();
 
 echo ("<main id='main'>\n");

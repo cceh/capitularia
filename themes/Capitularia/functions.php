@@ -6,11 +6,7 @@
  * @package Capitularia
  */
 
-define('CAPITULARIA_PARENT_DIR', get_template_directory());
-define('CAPITULARIA_JS_DIR', CAPITULARIA_PARENT_DIR . '/js');
-
-define('CAPITULARIA_PARENT_URL', get_template_directory_uri());
-define('CAPITULARIA_CSS_URL', CAPITULARIA_PARENT_DIR . '/css');
+namespace cceh\capitularia\theme;
 
 /*
  * Load the translation files.
@@ -39,16 +35,6 @@ function cap_get_slug_root ($page) {
     return '';
 }
 
-function cap_get_slug_root_x () {
-    // get the first path component of the slug
-    $path = parse_url (get_permalink (), PHP_URL_PATH);
-    $a = explode ('/', $path);
-    if (count ($a) > 1) {
-        return $a[1];
-    }
-    return '';
-}
-
 function cap_attribute ($name, $value) {
     // Echoes: name="value"
     echo ($name . '="' . esc_attr ($value) . '" ');
@@ -64,16 +50,6 @@ function get_id_by_slug ($page_slug) {
     return $page ? $page->ID : null;
 }
 
-function cap_get_option ($section, $option, $default = '') {
-    if (!isset ($cap_options) || !is_array ($cap_option)) {
-        $cap_options = array ();
-    }
-    if (!isset ($cap_options[$section])) {
-        $cap_options[$section] = get_option ($section, array ());
-    }
-    return isset ($cap_options[$section][$name]) ? $cap_options[$section][$name] : $default;
-}
-
 function get_permalink_a () {
     return (
         '<a href="' .
@@ -85,9 +61,15 @@ function get_permalink_a () {
 }
 
 /**
- * Enqueue scripts and CSS
+ * Register jquery and jquery-ui scripts and CSS
  *
- * Adds all our JS and CSS the wordpress way.
+ * Quandary: Wordpress (as of 4.3) comes with a version of jquery and jquery-ui
+ * but lacks the jquery-ui css styles.  If we provide just our own jquery-ui css
+ * styles, we may get out of sync with the jquery-ui javascript provided by
+ * Wordpress.  But if we provide the whole jquery-ui of our own we may get out
+ * of sync with Wordpress' assumptions of the actual jquery-ui version.
+ *
+ * For now we provide our own jquery / jquery-ui.
  */
 
 function cap_register_jquery () {
@@ -112,6 +94,12 @@ function cap_register_jquery () {
     );
 }
 
+/**
+ * Enqueue scripts and CSS
+ *
+ * Add JS and CSS the wordpress way.
+ */
+
 function cap_enqueue_scripts () {
     cap_register_jquery ();
 
@@ -124,11 +112,8 @@ function cap_enqueue_scripts () {
     $styles = array ();
     $styles['cap-webfonts']    = '/webfonts/webfonts.css';
     $styles['cap-fonts']       = '/css/fonts.css';
-    $styles['cap-bg-data-uri'] = '/css/bg_data_uri.css';
-    $styles['cap-bg-img-ie7']  = '/css/bg_img.css';
     $styles['cap-content']     = '/css/content.css';
     $styles['cap-navigation']  = '/css/navigation.css';
-    $styles['cap-mobile']      = '/css/mobile.css';
     $styles['cap-qtranslate']  = '/css/qtranslate-x.css';
 
     foreach ($styles as $key => $file) {
@@ -141,8 +126,8 @@ function cap_enqueue_scripts () {
     wp_enqueue_style ('dashicons');
 
     $scripts = array ();
-    $scripts['cap-html5-ie9']   = '/js/html5.js';
-    $scripts['cap-mobile']      = '/js/mobile.js';
+    $scripts['cap-piwik']       = '/js/piwik-wrapper.js';
+    $scripts['cap-html5shiv']   = '/bower_components/html5shiv/dist/html5shiv.js';
 
     foreach ($scripts as $key => $file) {
         wp_enqueue_script (
@@ -152,10 +137,9 @@ function cap_enqueue_scripts () {
         );
     };
 
-    // make some stuff IE-conditional
-    global $wp_styles, $wp_scripts;
-    $wp_styles->add_data ('cap-bg-img-ie7', 'conditional', 'lte IE 7');
-    $wp_scripts->add_data ('cap-html5-ie9', 'conditional', 'lt IE 9');
+    // make html5shiv IE-conditional
+    global $wp_scripts;
+    $wp_scripts->add_data ('cap-html5shiv', 'conditional', 'lt IE 9');
 
     wp_enqueue_style (
         'cap-jquery-ui-custom-css',
@@ -175,22 +159,23 @@ function cap_admin_enqueue_scripts () {
     wp_enqueue_script ('cap-jquery-ui');
 }
 
-add_action ('wp_enqueue_scripts',    'cap_enqueue_scripts');
-add_action ('admin_enqueue_scripts', 'cap_admin_enqueue_scripts');
+add_action ('wp_enqueue_scripts',    'cceh\capitularia\theme\cap_enqueue_scripts');
+add_action ('admin_enqueue_scripts', 'cceh\capitularia\theme\cap_admin_enqueue_scripts');
 
 
 /**
- * Customize title
+ * Customize <head> <title>
  *
- * Anpassung nach Muster:
+ * Customize the title displayed in the browser window caption and used if you
+ * bookmark the page.
  *
  * if root: "Capitularia | Edition der fränkischen Herrschererlasse"
- * else:    "[Name der Unterseite] | Capitularia"
+ * else:    "[Name of page] | Capitularia"
  *
- * @param string $title Default title text for current view.
- * @param string $sep Optional separator.
+ * @param string $title  Default title text for current view.
+ * @param string $sep    Optional separator.
  *
- * @return string The filtered title.
+ * @return string  The customized title.
  */
 
 function cap_wp_title ($title, $sep) {
@@ -206,7 +191,6 @@ function cap_wp_title ($title, $sep) {
 
     if (is_home () || is_front_page ()) {
         return "$blog_name $sep $blog_description";
-        // return "Capitularia | Edition der fränkischen Herrschererlasse";
     }
     $title .= $blog_name;
 
@@ -218,7 +202,7 @@ function cap_wp_title ($title, $sep) {
     return $title;
 }
 
-add_filter ('wp_title', 'cap_wp_title', 10, 2);
+add_filter ('wp_title', 'cceh\capitularia\theme\cap_wp_title', 10, 2);
 
 
 /**
@@ -229,7 +213,7 @@ function cap_add_excerpts_to_pages () {
     add_post_type_support ('page', 'excerpt');
 }
 
-add_action ('init', 'cap_add_excerpts_to_pages');
+add_action ('init', 'cceh\capitularia\theme\cap_add_excerpts_to_pages');
 
 
 /**
@@ -245,7 +229,7 @@ function cap_on_body_class ($classes) {
     return $classes;
 }
 
-add_filter ('body_class', 'cap_on_body_class');
+add_filter ('body_class', 'cceh\capitularia\theme\cap_on_body_class');
 
 
 /**
@@ -261,7 +245,7 @@ function cap_register_nav_menus () {
     );
 }
 
-add_action ('init', 'cap_register_nav_menus');
+add_action ('init', 'cceh\capitularia\theme\cap_register_nav_menus');
 
 
 /*
@@ -341,7 +325,7 @@ function cap_create_page_taxonomy () {
     register_taxonomy_for_object_type ('cap-sidebar', 'page');
 }
 
-add_action ('init', 'cap_create_page_taxonomy');
+add_action ('init', 'cceh\capitularia\theme\cap_create_page_taxonomy');
 
 
 /**
@@ -353,8 +337,8 @@ function cap_on_dropdown_pages_args ($dropdown_args, $post = null) {
     return $dropdown_args;
 }
 
-add_filter ('page_attributes_dropdown_pages_args', 'cap_on_dropdown_pages_args');
-add_filter ('quick_edit_dropdown_pages_args',      'cap_on_dropdown_pages_args');
+add_filter ('page_attributes_dropdown_pages_args', 'cceh\capitularia\theme\cap_on_dropdown_pages_args');
+add_filter ('quick_edit_dropdown_pages_args',      'cceh\capitularia\theme\cap_on_dropdown_pages_args');
 
 
 /*
@@ -375,8 +359,8 @@ function on_cap_shortcode_logged_out ($atts, $content) {
     return '';
 }
 
-add_shortcode ('logged_in',  'on_cap_shortcode_logged_in');
-add_shortcode ('logged_out', 'on_cap_shortcode_logged_out');
+add_shortcode ('logged_in',  'cceh\capitularia\theme\on_cap_shortcode_logged_in');
+add_shortcode ('logged_out', 'cceh\capitularia\theme\on_cap_shortcode_logged_out');
 
 /*
  * Widgets

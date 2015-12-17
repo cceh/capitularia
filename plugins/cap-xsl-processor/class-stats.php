@@ -7,6 +7,10 @@
 
 namespace cceh\capitularia\xsl_processor;
 
+/**
+ * Cache statistics for the caching XSL processor.
+ */
+
 class Stats
 {
 

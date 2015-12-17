@@ -1,4 +1,16 @@
-<?php get_header (); ?>
+<?php
+
+/**
+ * Template for 404 Page not found.
+ *
+ * @package Capitularia
+ */
+
+namespace cceh\capitularia\theme;
+
+get_header ();
+
+?>
 
 <main id="main" class="404-php">
   <div class="content-col">

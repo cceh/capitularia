@@ -1,11 +1,15 @@
 <?php
 /**
- * Capitularia Page Generator main class.
+ * Capitularia Page Generator.
  *
  * @package Capitularia
  */
 
 namespace cceh\capitularia\page_generator;
+
+/**
+ * Create page scaffoldings from TEI files.
+ */
 
 class Page_Generator
 {

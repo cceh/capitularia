@@ -1,3 +1,15 @@
+<?php
+
+/**
+ * The HTML footer on every page.
+ *
+ * @package Capitularia
+ */
+
+namespace cceh\capitularia\theme;
+
+?>
+
 <footer id="footer">
   <div id="footer-wrapper" class="ui-helper-clearfix">
 
@@ -20,6 +32,8 @@
            */
           wp_footer();
 ?>
+
+<noscript><img src="//projects.cceh.uni-koeln.de/piwik/piwik.php?idsite=14" style="border:0;" alt="" /></noscript>
 
 </body>
 </html>

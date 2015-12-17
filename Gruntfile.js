@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                     jQuery: true
                 }
             },
-            files: ['Gruntfile.js', 'themes/Capitularia/js/custom.js', 'plugins/cap*/js/*.js']
+            files: ['Gruntfile.js', 'themes/Capitularia/js/*.js', 'plugins/**/*.js']
         },
 
         phplint: {

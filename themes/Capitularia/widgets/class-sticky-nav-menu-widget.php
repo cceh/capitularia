@@ -9,7 +9,7 @@
 namespace cceh\capitularia\theme;
 
 /**
- * A sticky navigation menu widget.
+ * A sticky navigation menu widget for the sidebar.
  */
 
 class Sticky_Nav_Menu_Widget extends \WP_Nav_Menu_Widget

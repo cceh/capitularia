@@ -1,1 +1,0 @@
-garand-sticky-a0154df/jquery.sticky.js
