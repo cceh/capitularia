@@ -64,10 +64,10 @@ if (isset ($cap_template_map[$cap_template])) {
     $cap_templates[] = $cap_template_map[$cap_template];
 } else {
     // new method: use page slug
-    $cap_templates[] = cap_get_slug_root ($post);
+    $cap_templates[] = get_slug_root ($post);
 }
 
-// FIXME: stopgap measure
+// FIXME: stopgap measure until we have a reliable taxonomy
 $cap_tags = get_the_tags ($post->ID);
 if (is_array ($cap_tags)) {
     foreach ($cap_tags as $cap_tag) {

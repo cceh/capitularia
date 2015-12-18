@@ -84,7 +84,9 @@ class Frontpage_Widget_Base extends \WP_Widget
     protected function the_option ($instance, $name, $caption, $placeholder) {
         $value = !empty ($instance[$name]) ? $instance[$name] : '';
         echo ("<p><label for=\"{$this->get_field_id ($name)}\">$caption</label>");
-        echo ("<input class=\"widefat\" id=\"{$this->get_field_id ($name)}\" name=\"{$this->get_field_name ($name)}\" type=\"text\" value=\"$value\" placeholder=\"$placeholder\"></p>");
+        echo ("<input class=\"widefat\" id=\"{$this->get_field_id ($name)}\" " .
+              "name=\"{$this->get_field_name ($name)}\" type=\"text\" " .
+              "value=\"$value\" placeholder=\"$placeholder\"></p>");
     }
 
     public function widget ($args, $instance) {

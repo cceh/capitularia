@@ -162,7 +162,7 @@ class File_List_Table extends \WP_List_Table
         $actions = array ();
         $actions['publish']  = "<a onclick=\"on_cap_action_file (this, 'publish' )\">$u_publish</a>";
         $actions['private']  = "<a onclick=\"on_cap_action_file (this, 'private' )\">$u_private</a>";
-        $actions['delete']   = "<a onclick=\"on_cap_action_file (this, 'delete'  )\" class='submitdelete'>$u_delete</a>";
+        $actions['delete']   = "<a onclick=\"on_cap_action_file (this, 'delete')\" class='submitdelete'>$u_delete</a>";
         $actions['refresh']  = "<a onclick=\"on_cap_action_file (this, 'refresh' )\">$u_refresh</a>";
         $actions['validate'] = "<a onclick=\"on_cap_action_file (this, 'validate')\">$u_validate</a>";
         $actions['metadata'] = "<a onclick=\"on_cap_action_file (this, 'metadata')\">$u_metadata</a>";

@@ -2,7 +2,7 @@
 /**
  * Template Name: Startseite
  *
- * @package    Capitularia
+ * @package Capitularia
  */
 
 /*** Warning: this is a test page, not the real front page! ****/

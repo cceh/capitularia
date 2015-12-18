@@ -8,6 +8,9 @@
 
 namespace cceh\capitularia\theme;
 
+/** The URL to the Capitularia image server. */
+const IMAGE_SERVER_URL = 'http://images.cceh.uni-koeln.de/capitularia/';
+
 /*
  * Load the translation files.
  *
@@ -17,17 +20,18 @@ namespace cceh\capitularia\theme;
 
 load_theme_textdomain ('capitularia', get_template_directory () . '/languages/');
 
-/*
- * Some utility functions
+/**
+ * Get the first path component of the slug.
+ *
+ * If a page has a slug of: "top/sub/current" this function returns "top".
+ *
+ * @param integer $page_id Wordpress Page ID.
+ *
+ * @return string The slug root.
  */
 
-function cap_the_slug () {
-    echo (basename (get_permalink ()));
-}
-
-function cap_get_slug_root ($page) {
-    // get the first path component of the slug
-    $path = parse_url (get_page_uri ($page), PHP_URL_PATH);
+function get_slug_root ($page_id) {
+    $path = parse_url (get_page_uri ($page_id), PHP_URL_PATH);
     $a = explode ('/', $path);
     if ($a) {
         return $a[0];
@@ -35,20 +39,41 @@ function cap_get_slug_root ($page) {
     return '';
 }
 
-function cap_attribute ($name, $value) {
+/**
+ * Echo a name="value" pair.
+ *
+ * @param string $name
+ * @param string $value
+ *
+ * @return nothing
+ */
+
+function echo_attribute ($name, $value) {
     // Echoes: name="value"
     echo ($name . '="' . esc_attr ($value) . '" ');
 }
 
-function cap_theme_image ($img) {
-    // Echoes image url pointing to the theme images directory
+/**
+ * Echo a src="img" pair.
+ *
+ * The src will be pointing to the theme images directory.
+ *
+ * @param string $img  The image filename.
+ *
+ * @return nothing
+ */
+
+function echo_theme_image ($img) {
     echo ('src="' . get_bloginfo ('template_directory') . "/img/$img\"");
 }
 
-function get_id_by_slug ($page_slug) {
-    $page = get_page_by_path ($page_slug);
-    return $page ? $page->ID : null;
-}
+/**
+ * Returns an opening <a> containing a permalink to the current page.
+ *
+ * It is the responsibilty of the caller to close the <a> tag.
+ *
+ * @return string An opening <a> tag.
+ */
 
 function get_permalink_a () {
     return (
@@ -70,9 +95,11 @@ function get_permalink_a () {
  * of sync with Wordpress' assumptions of the actual jquery-ui version.
  *
  * For now we provide our own jquery / jquery-ui.
+ *
+ * @return nothing
  */
 
-function cap_register_jquery () {
+function register_jquery () {
     wp_register_script (
         'cap-jquery',
         get_template_directory_uri () . '/bower_components/jquery/dist/jquery.js'
@@ -98,10 +125,12 @@ function cap_register_jquery () {
  * Enqueue scripts and CSS
  *
  * Add JS and CSS the wordpress way.
+ *
+ * @return nothing
  */
 
-function cap_enqueue_scripts () {
-    cap_register_jquery ();
+function on_enqueue_scripts () {
+    register_jquery ();
 
     wp_enqueue_style (
         'cap-reset',
@@ -153,14 +182,20 @@ function cap_enqueue_scripts () {
     );
 }
 
-function cap_admin_enqueue_scripts () {
+/**
+ * Enqueue admin scripts and CSS
+ *
+ * @return nothing
+ */
+
+function on_admin_enqueue_scripts () {
     // NOTE: Wordpress' own jquery-ui does not include jquery-ui.css.
-    cap_register_jquery ();
+    register_jquery ();
     wp_enqueue_script ('cap-jquery-ui');
 }
 
-add_action ('wp_enqueue_scripts',    'cceh\capitularia\theme\cap_enqueue_scripts');
-add_action ('admin_enqueue_scripts', 'cceh\capitularia\theme\cap_admin_enqueue_scripts');
+add_action ('wp_enqueue_scripts',    'cceh\capitularia\theme\on_enqueue_scripts');
+add_action ('admin_enqueue_scripts', 'cceh\capitularia\theme\on_admin_enqueue_scripts');
 
 
 /**
@@ -178,7 +213,7 @@ add_action ('admin_enqueue_scripts', 'cceh\capitularia\theme\cap_admin_enqueue_s
  * @return string  The customized title.
  */
 
-function cap_wp_title ($title, $sep) {
+function wp_title ($title, $sep) {
     if (is_feed ()) {
         return $title;
     }
@@ -202,18 +237,18 @@ function cap_wp_title ($title, $sep) {
     return $title;
 }
 
-add_filter ('wp_title', 'cceh\capitularia\theme\cap_wp_title', 10, 2);
+add_filter ('wp_title', 'cceh\capitularia\theme\wp_title', 10, 2);
 
 
 /**
  * Add excerpt support to pages.
  */
 
-function cap_add_excerpts_to_pages () {
+function add_excerpts_to_pages () {
     add_post_type_support ('page', 'excerpt');
 }
 
-add_action ('init', 'cceh\capitularia\theme\cap_add_excerpts_to_pages');
+add_action ('init', 'cceh\capitularia\theme\add_excerpts_to_pages');
 
 
 /**
@@ -222,22 +257,22 @@ add_action ('init', 'cceh\capitularia\theme\cap_add_excerpts_to_pages');
  * Eg.: adds class="cap-slug-mss" in the /mss/ section of the site.
  */
 
-function cap_on_body_class ($classes) {
+function on_body_class ($classes) {
     if (is_page ()) {
-        $classes[] = esc_attr ('cap-slug-' . cap_get_slug_root (get_the_ID ()));
+        $classes[] = esc_attr ('cap-slug-' . get_slug_root (get_the_ID ()));
     }
     return $classes;
 }
 
-add_filter ('body_class', 'cceh\capitularia\theme\cap_on_body_class');
+add_filter ('body_class', 'cceh\capitularia\theme\on_body_class');
 
 
 /**
  * Register our 2 horizontal navigation menus
  */
 
-function cap_register_nav_menus () {
-    register_nav_menus (
+function register_nav_menus () {
+    \register_nav_menus (
         array (
             'navtop'    => __('Top horizontal navigation bar', 'capitularia'),
             'navbottom' => __('Bottom horizontal navigation bar', 'capitularia')
@@ -245,7 +280,7 @@ function cap_register_nav_menus () {
     );
 }
 
-add_action ('init', 'cceh\capitularia\theme\cap_register_nav_menus');
+add_action ('init', 'cceh\capitularia\theme\register_nav_menus');
 
 
 /*
@@ -310,7 +345,7 @@ foreach ($sidebars as $a) {
  * Register a custom taxonony for sidebar selection
  */
 
-function cap_create_page_taxonomy () {
+function create_page_taxonomy () {
     register_taxonomy (
         'cap-sidebar',
         'page',
@@ -325,42 +360,93 @@ function cap_create_page_taxonomy () {
     register_taxonomy_for_object_type ('cap-sidebar', 'page');
 }
 
-add_action ('init', 'cceh\capitularia\theme\cap_create_page_taxonomy');
+add_action ('init', 'cceh\capitularia\theme\create_page_taxonomy');
 
 
 /**
  * Add private/draft/future/pending pages to page parent dropdown.
  */
 
-function cap_on_dropdown_pages_args ($dropdown_args, $post = null) {
+function on_dropdown_pages_args ($dropdown_args, $post = null) {
     $dropdown_args['post_status'] = array ('publish', 'draft', 'pending', 'future', 'private');
     return $dropdown_args;
 }
 
-add_filter ('page_attributes_dropdown_pages_args', 'cceh\capitularia\theme\cap_on_dropdown_pages_args');
-add_filter ('quick_edit_dropdown_pages_args',      'cceh\capitularia\theme\cap_on_dropdown_pages_args');
+add_filter ('page_attributes_dropdown_pages_args', 'cceh\capitularia\theme\on_dropdown_pages_args');
+add_filter ('quick_edit_dropdown_pages_args',      'cceh\capitularia\theme\on_dropdown_pages_args');
 
 
 /*
  * Shortcodes
  */
 
-function on_cap_shortcode_logged_in ($atts, $content) {
+/**
+ * Add the logged_in shortcode.
+ *
+ * This shortcode outputs its content only to logged-in users.
+ *
+ * @param array  atts
+ * @param string content
+ *
+ * @return string The new content
+ */
+
+function on_shortcode_logged_in ($atts, $content) {
     if (is_user_logged_in ()) {
         return do_shortcode ($content);
     }
     return '';
 }
 
-function on_cap_shortcode_logged_out ($atts, $content) {
+/**
+ * Add the logged_out shortcode.
+ *
+ * This shortcode outputs its content only to logged-out users.
+ *
+ * @param array  atts
+ * @param string content
+ *
+ * @return string The new content
+ */
+
+function on_shortcode_logged_out ($atts, $content) {
     if (!is_user_logged_in ()) {
         return do_shortcode ($content);
     }
     return '';
 }
 
-add_shortcode ('logged_in',  'cceh\capitularia\theme\on_cap_shortcode_logged_in');
-add_shortcode ('logged_out', 'cceh\capitularia\theme\on_cap_shortcode_logged_out');
+/**
+ * Add the cap_image_server shortcode.
+ *
+ * This shortcode wraps the content in a link to the image server if the user is
+ * logged in.
+ *
+ * @param array  atts
+ * @param string content
+ *
+ * @return string The new content
+ */
+
+function on_shortcode_cap_image_server ($atts, $content) {
+    if (is_user_logged_in () && isset ($atts['id']) && isset ($atts['n'])) {
+        // build url out of attributes
+        $id = $atts['id'];
+        $n = $atts['n'];
+
+        $matches = array ();
+        if (preg_match ('/(\d+)(.+)/', $n, $matches)) {
+            $num = str_pad ($matches[1], 4, '0', STR_PAD_LEFT);
+            $num .= $matches[2];
+            return '<a href="' . IMAGE_SERVER_URL . "$id/{$id}_{$num}.jpg\">$content</a>";
+        }
+    }
+    return $content;
+}
+
+add_shortcode ('logged_in',        'cceh\capitularia\theme\on_shortcode_logged_in');
+add_shortcode ('logged_out',       'cceh\capitularia\theme\on_shortcode_logged_out');
+add_shortcode ('cap_image_server', 'cceh\capitularia\theme\on_shortcode_cap_image_server');
 
 /*
  * Widgets

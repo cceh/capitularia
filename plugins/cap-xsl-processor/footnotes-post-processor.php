@@ -256,12 +256,20 @@ $notes = $xpath->query (FOOTNOTES);
 foreach ($notes as $note) {
     $count++;
 
-    $span = $xpath1->query ('.//a[contains (concat (" ", @class, " "), " annotation-ref ")]/span[contains (concat (" ", @class, " "), " print-only ")]', $note);
+    $span = $xpath1->query (
+        './/a[contains (concat (" ", @class, " "), " annotation-ref ")]/' .
+        'span[contains (concat (" ", @class, " "), " print-only ")]',
+        $note
+    );
     if (count ($span)) {
         $span[0]->nodeValue = strVal ($count);
     }
 
-    $span = $xpath1->query ('.//a[contains (concat (" ", @class, " "), " annotation-backref ")]/span[contains (concat (" ", @class, " "), " print-only ")]', $note);
+    $span = $xpath1->query (
+        './/a[contains (concat (" ", @class, " "), " annotation-backref ")]' .
+        '/span[contains (concat (" ", @class, " "), " print-only ")]',
+        $note
+    );
     if (count ($span)) {
         $span[0]->nodeValue = strVal ($count);
     }

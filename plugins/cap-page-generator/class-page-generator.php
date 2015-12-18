@@ -132,7 +132,7 @@ class Page_Generator
                 $tmp[] = strval ($title);
             }
         }
-        return sanitize_text_field (__(join ("\n", $tmp)), null, 'display');
+        return sanitize_text_field (__(join ("\n", $tmp), 'capitularia'), null, 'display');
     }
 
     public function on_query_vars ($vars) {
@@ -530,62 +530,106 @@ class Page_Generator
             // We proxy this action to the Meta Search plugin.
             $page = $this->get_page_from_slug ($slug);
             if (!$page) {
-                return array (2, __("Error while extracting metadata: no page with slug $slug."));
+                return array (
+                    2,
+                    sprintf (__('Error while extracting metadata: no page with slug %s.', 'capitularia'), $slug)
+                );
             }
             $errors = apply_filters ('cap_meta_search_extract_metadata', array (), $page->ID, $root . $filename);
             if ($errors) {
-                return array (2, __("Errors while extracting metadata from file $a_slug."), $errors);
+                return array (
+                    2,
+                    sprintf (__('Errors while extracting metadata from file %s.', 'capitularia'), $a_slug),
+                    $errors
+                );
             }
-            return array (0, __("Metadata extracted from file $a_slug."));
+            return array (
+                0,
+                sprintf (__('Metadata extracted from file %s.', 'capitularia'), $a_slug)
+            );
         }
 
         if ($action == 'validate') {
             $result = $this->validate_xmllint ($root . $filename);
             if ($result === false) {
-                return array (1, __("Error while validating file $a_slug. Validity of file is unknown."));
+                return array (
+                    1,
+                    sprintf (__('Error while validating file %s. Validity of file is unknown.', 'capitularia'), $a_slug)
+                );
             }
             if ($result === true) {
-                return array (0, __("File $a_slug is valid TEI."));
+                return array (
+                    0,
+                    sprintf (__('File %s is valid TEI.', 'capitularia'), $a_slug)
+                );
             }
-            return array (2, __("File $a_slug is invalid TEI."), $result);
+            return array (
+                2,
+                sprintf (__('File %s is invalid TEI.', 'capitularia'), $a_slug),
+                $result
+            );
         }
 
         if ($action == 'refresh') {
             if ($status == 'delete') {
-                return array (1, __('Cannot refresh unpublished file.'));
+                return array (1, __('Cannot refresh unpublished file.', 'capitularia'));
             }
             if ($this->delete ($slug) == 0) {
-                return array (2, __("Error: could not unpublish page $a_slug while refreshing."));
+                return array (
+                    2,
+                    sprintf (__('Error: could not unpublish page %s while refreshing.', 'capitularia'), $a_slug)
+                );
             }
             $action = $status;
             $status = 'delete';
         }
 
         if ($action == $status) {
-            return array (1, __("The post is already $action."));
+            return array (
+                1,
+                sprintf (__('The post is already %s.', 'capitularia'), $action)
+            );
         }
 
         if ($action == 'delete') {
             if ($this->delete ($slug) == 0) {
-                return array (2, __("Error: could not unpublish page $a_slug."));
+                return array (
+                    2,
+                    sprintf (__('Error: could not unpublish page %s.', 'capitularia'), $a_slug)
+                );
             }
-            return array (0, __("Page $slug unpublished."));
+            return array (
+                0,
+                sprintf (__('Page %s unpublished.', 'capitularia'), $slug)
+            );
         }
 
         if ($status == 'delete') {
             $this->delete ($slug);
             $new_slug = $this->create_page ($root . $filename, $action);
             if ($new_slug === false) {
-                return array (2, __("Error: could not create page $slug."));
+                return array (
+                    2,
+                    sprintf (__('Error: could not create page %s.', 'capitularia'), $slug)
+                );
             }
             $a_slug = $this->slug_to_link ($new_slug);
-            return array (0, __("Page $a_slug created with status set to $action."));
+            return array (
+                0,
+                sprintf (__('Page %1$s created with status set to %2$s.', 'capitularia'), $a_slug, $action)
+            );
         }
 
         if ($this->set_status ($slug, $action) === 0) {
-            return array (2, __("Error: could not set page $a_slug to status $action."));
+            return array (
+                2,
+                sprintf (__('Error: could not set page %1$s to status %2$s.', 'capitularia'), $a_slug, $action)
+            );
         }
-        return array (0, __("Page $a_slug status set to $action."));
+        return array (
+            0,
+            sprintf (__('Page %1$s status set to %2$s.', 'capitularia'), $a_slug, $action)
+        );
     }
 
     protected function process_bulk_actions ($action, $filenames) {
@@ -599,7 +643,7 @@ class Page_Generator
     public function on_cap_action_file () {
         check_ajax_referer (self::NONCE_SPECIAL_STRING, self::NONCE_PARAM_NAME);
         if (!current_user_can ('edit_posts')) {
-            wp_send_json_error (array ('message' => 'You have no permission to edit posts.'));
+            wp_send_json_error (array ('message' => __('You have no permission to edit posts.', 'capitularia')));
         }
 
         $filename = sanitize_file_name ($_POST['path']);
@@ -609,13 +653,6 @@ class Page_Generator
 
         $this->send_json ($this->do_action_on_file ($action, $filename));
     }
-
-    /**
-     * Our main page.  Found in wordpress admin under 'Dashboard' | 'Capitularia
-     * Page Generator'.  Here's where we control the plugin.
-     *
-     * @return Nothing
-     */
 
     public function prepare_items ($xmlroot) {
         $files = scandir ($xmlroot);
@@ -646,6 +683,19 @@ class Page_Generator
         return $items;
     }
 
+    private function p ($s) {
+        echo ("<p>$s</p>\n");
+    }
+
+    /**
+     * Output dashboard page.
+     *
+     * Found in wordpress admin under 'Dashboard' | 'Capitularia Page
+     * Generator'.  Here's where we control the plugin.
+     *
+     * @return Nothing
+     */
+
     public function on_menu_dashboard_page () {
         $xmlroot = $this->get_opt ('xmlroot');
         $title = esc_html (get_admin_page_title ());
@@ -661,7 +711,7 @@ class Page_Generator
         }
         echo ("</div>\n");
 
-        echo ("<p>Reading directory: {$xmlroot}</p>\n");
+        $this->p (sprintf (__('Reading directory: %s', 'capitularia'), $xmlroot));
         echo ("<form id='cap_page_gen_form' method='get'>");
         // posts back to wp-admin/index.php, ensure that we get back to our
         // current page
@@ -697,43 +747,53 @@ class Page_Generator
     public function on_options_field_xmlroot () {
         $setting = $this->get_opt ('xmlroot');
         echo "<input class='file-input' type='text' name='cap_page_gen_options[xmlroot]' value='$setting' />";
-        echo '<p>Directory in the AFS, eg.: ' . self::AFS_ROOT . 'http/docs/cap/publ/mss</p>';
+        $this->p (
+            sprintf (
+                __('Directory in the AFS, eg.: %s', 'capitularia'),
+                self::AFS_ROOT . 'http/docs/cap/publ/mss'
+            )
+        );
     }
 
     public function on_options_field_xsltroot () {
         $setting = $this->get_opt ('xsltroot');
         echo "<input class='file-input' type='text' name='cap_page_gen_options[xsltroot]' value='$setting' />";
-        echo '<p>Directory in the AFS, eg.: ' . self::AFS_ROOT . 'http/docs/cap/publ/transform</p>';
+        $this->p (
+            sprintf (
+                __('Directory in the AFS, eg.: %s', 'capitularia'),
+                self::AFS_ROOT . 'http/docs/cap/publ/transform'
+            )
+        );
     }
 
     public function on_options_field_xslschema () {
         $setting = $this->get_opt ('xslschema');
         echo "<input class='file-input' type='text' name='cap_page_gen_options[xslschema]' value='$setting' />";
-        echo '<p>The path to the xsl schema file.</p>';
+        $this->p (__('The path to the xsl schema file.', 'capitularia'));
     }
 
     public function on_options_field_xsl () {
         $setting = $this->get_opt ('xsl');
         echo "<input class='file-input' type='text' name='cap_page_gen_options[xsl]' value='$setting' />";
-        echo '<p>The filename of the main xsl file.</p>';
+        $this->p (__('The filename of the main xsl file.', 'capitularia'));
     }
 
     public function on_options_field_xslheader () {
         $setting = $this->get_opt ('xslheader');
         echo "<input class='file-input' type='text' name='cap_page_gen_options[xslheader]' value='$setting' />";
-        echo '<p>The filename of the xsl header file.</p>';
+        $this->p (__('The filename of the xsl header file.', 'capitularia'));
     }
 
     public function on_options_field_xslfooter () {
         $setting = $this->get_opt ('xslfooter');
         echo "<input class='file-input' type='text' name='cap_page_gen_options[xslfooter]' value='$setting' />";
-        echo '<p>The filename of the xsl footer file.</p>';
+        $this->p (__('The filename of the xsl footer file.', 'capitularia'));
     }
 
     public function on_options_field_shortcode () {
         $setting = $this->get_opt ('shortcode');
         echo "<input class='file-input' type='text' name='cap_page_gen_options[shortcode]' value='$setting' />";
-        echo '<p>The shortcode, eg.: cap_xsl</p>';
+        $this->p (__('The shortcode, eg.: cap_xsl', 'capitularia'));
     }
 
     public function on_validate_options ($options) {

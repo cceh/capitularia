@@ -178,15 +178,11 @@ class Meta_Search
         return self::$instance;
     }
 
-    private function get_option ($option, $default = '') {
-        $section = 'cap_meta_search';
-        if (!isset ($cap_options) || !is_array ($cap_option)) {
-            $cap_options = array ();
+    private function get_opt ($name, $default = '') {
+        if ($this->options === null) {
+            $this->options = get_option ('cap_meta_search_options', array ());
         }
-        if (!isset ($cap_options[$section])) {
-            $cap_options[$section] = get_option ($section, array ());
-        }
-        return isset ($cap_options[$section][$name]) ? $cap_options[$section][$name] : $default;
+        return $this->options[$name] ? $this->options[$name] : $default;
     }
 
     private function urljoin ($url1, $url2) {
@@ -314,6 +310,7 @@ class Meta_Search
             'cap_meta_search_options'
         );
 
+        /* TODO: just a placeholder
         add_settings_field (
             'cap_meta_search_options_xpath',
             'XPath expression',
@@ -321,6 +318,7 @@ class Meta_Search
             'cap_meta_search_options',
             'cap_meta_search_options_section_general'
         );
+        */
 
         register_setting (
             'cap_meta_search_options',
@@ -345,10 +343,19 @@ class Meta_Search
         );
     }
 
-    public function on_admin_bar_menu ($wp_admin_bar) {
-        // add meta load button
+    /**
+     * Add a metadata extract button to the admin bar.
+     *
+     * @param object $wp_admin_bar  The Wordpress admin bar.
+     *
+     * @return nothing
+     */
 
-        // this works because admin_bar_menu is one of the last hooks called
+    public function on_admin_bar_menu ($wp_admin_bar) {
+
+        // Ask the xsl processor plugin if this page contains any xsl
+        // transformations.  This works because admin_bar_menu is one of the
+        // last hooks called and the shortcode filter has already run.
         $xmlfiles = do_action ('cap_xsl_get_xmlfiles');
 
         if (count ($xmlfiles) > 0) {
@@ -385,20 +392,18 @@ class Meta_Search
     }
 
     public function on_options_section_general () {
+        echo ("<div>No settings.</div>\n");
     }
 
+    /*
     public function on_options_field_xpath () {
-        $setting = $this->get_option ('xpath');
+        $setting = $this->get_opt ('xpath');
         echo "<input class='file-input' type='text' name='cap_meta_search_options[xpath]' value='$setting' />";
         echo '<p>XPath expression</p>';
     }
-
-    private function sanitize_path ($path) {
-        return rtrim (realpath (sanitize_text_field ($path)), '/');
-    }
+    */
 
     public function on_validate_options ($options) {
-        // $options['xpath']   = $this->sanitize_xpath ($options['xpath']);
         return $options;
     }
 

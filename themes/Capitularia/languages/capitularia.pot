@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-17 17:09+0100\n"
+"POT-Creation-Date: 2015-12-18 17:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,25 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: themes/Capitularia/functions.php:58
+#: themes/Capitularia/functions.php:83
 #, php-format
 msgid "Permalink to %s"
 msgstr ""
 
-#: themes/Capitularia/functions.php:199
+#: themes/Capitularia/functions.php:234
 #, php-format
 msgid "Page %s"
 msgstr ""
 
-#: themes/Capitularia/functions.php:242
+#: themes/Capitularia/functions.php:277
 msgid "Top horizontal navigation bar"
 msgstr ""
 
-#: themes/Capitularia/functions.php:243
+#: themes/Capitularia/functions.php:278
 msgid "Bottom horizontal navigation bar"
 msgstr ""
 
-#: themes/Capitularia/functions.php:318
+#: themes/Capitularia/functions.php:353
 msgid "Capitularia Sidebar"
 msgstr ""
 
@@ -65,59 +65,61 @@ msgstr ""
 msgid "read more"
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:123
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:125
+#: plugins/cap-meta-search/class-meta-search-widget.php:296
 msgid "Title"
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:123
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:125
+#: plugins/cap-meta-search/class-meta-search-widget.php:296
 msgid "New title"
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:126
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:128
 msgid "Text"
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:126
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:128
 msgid "New text"
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:129
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:131
 msgid "Image-URL"
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:129
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:131
 msgid "New image"
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:132
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:134
 msgid "More-URL"
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:132
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:134
 msgid "New more-URL"
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:146
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:148
 msgid "Arbitrary text."
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:151
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:153
 msgid "Capitularia Text Widget"
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:166
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:168
 msgid "Arbitrary text and image."
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:171
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:173
 msgid "Capitularia Image Widget"
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:187
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:189
 msgid "Image and link for the logo bar."
 msgstr ""
 
-#: themes/Capitularia/widgets/class-frontpage-widgets.php:192
+#: themes/Capitularia/widgets/class-frontpage-widgets.php:194
 msgid "Capitularia Logo Widget"
 msgstr ""
 
@@ -277,6 +279,111 @@ msgstr ""
 msgid "Page Generator"
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:555
+#: plugins/cap-page-generator/class-page-generator.php:535
+#, php-format
+msgid "Error while extracting metadata: no page with slug %s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:542
+#, php-format
+msgid "Errors while extracting metadata from file %s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:548
+#, php-format
+msgid "Metadata extracted from file %s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:557
+#, php-format
+msgid "Error while validating file %s. Validity of file is unknown."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:563
+#, php-format
+msgid "File %s is valid TEI."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:568
+#, php-format
+msgid "File %s is invalid TEI."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:575
 msgid "Cannot refresh unpublished file."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:580
+#, php-format
+msgid "Error: could not unpublish page %s while refreshing."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:590
+#, php-format
+msgid "The post is already %s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:598
+#, php-format
+msgid "Error: could not unpublish page %s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:603
+#, php-format
+msgid "Page %s unpublished."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:613
+#, php-format
+msgid "Error: could not create page %s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:619
+#, php-format
+msgid "Page %1$s created with status set to %2$s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:626
+#, php-format
+msgid "Error: could not set page %1$s to status %2$s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:631
+#, php-format
+msgid "Page %1$s status set to %2$s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:646
+msgid "You have no permission to edit posts."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:714
+#, php-format
+msgid "Reading directory: %s"
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:752
+#: plugins/cap-page-generator/class-page-generator.php:763
+#, php-format
+msgid "Directory in the AFS, eg.: %s"
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:772
+msgid "The path to the xsl schema file."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:778
+msgid "The filename of the main xsl file."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:784
+msgid "The filename of the xsl header file."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:790
+msgid "The filename of the xsl footer file."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:796
+msgid "The shortcode, eg.: cap_xsl"
 msgstr ""

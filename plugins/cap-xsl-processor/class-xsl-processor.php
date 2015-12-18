@@ -144,7 +144,7 @@ class XSL_Processor
             // save it again. (eg. before qTranslate-X adds its stupid
             // do-you-want-this-in-another-language notices.)
 
-            error_log ('saving post ...');
+            // error_log ('saving post ...');
 
             $content = null; // release some mem
 
@@ -273,6 +273,11 @@ class XSL_Processor
         $this->stats->xml_mtime = $xml_file_time;
         $this->stats->xsl_mtime = $xslt_file_time;
 
+        // Keep track of the XML files that make up this page.
+        if (!in_array ($xml, $this->xmlfiles)) {
+            $this->xmlfiles[] = $xml;
+        }
+
         if (!$do_xsl || !$do_transform) {
             // Cached copy of this XSL is current. Return the cached copy. The
             // shortcode is already stripped, so we must add it again, so that
@@ -317,10 +322,8 @@ class XSL_Processor
         $output[] = '</div>';
         $content = join ("\n", $output);
 
-        if (!in_array ($xml, $this->xmlfiles)) {
-            $this->xmlfiles[] = $xml;
-        }
-        // error_log ("cap_xsl_transformed ($this->post_id, $xml, $xslt)");
+        // A hook to let other plugins know that we just transformed a file.
+        // Used by the metadata extraction plugin to keep metadata up-to-date.
         do_action ('cap_xsl_transformed', $this->post_id, $xml, $xslt, $params, $stringparams);
 
         // error_log ('on_shortcode () ==> exit transformed');
