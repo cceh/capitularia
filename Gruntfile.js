@@ -1,8 +1,12 @@
 module.exports = function (grunt) {
 
+    var php_files = ['themes/**/*.php', 'plugins/**/*.php'];
+
     grunt.initConfig ({
         afs: grunt.option ('afs') || process.env.GRUNT_CAPITULARIA_AFS ||
             "/afs/rrz/vol/www/projekt/capitularia/http/docs/wp-content",
+
+        browser: grunt.option ('browser') || process.env.GRUNT_BROWSER || "iceweasel",
 
         pkg: grunt.file.readJSON ('package.json'),
 
@@ -39,53 +43,13 @@ module.exports = function (grunt) {
             plugins: ['plugins/**/*.php']
         },
 
-        pdepend: {
-            all: {
-                src: ['themes/Capitularia/**/*.php', 'plugins/**/*.php']
-            },
-            options: {
-                bin: 'vendor/bin/pdepend',
-                jdependChart: 'jdependChart.svg',
-                jdependXml: 'jdependXml.xml',
-                overviewPyramid: 'overviewPyramid.svg',
-                summaryXml: 'summaryXml.xml',
-            },
-        },
-
-        phpcs: {
-            options: {
-                // $ sudo apt-get install php-codesniffer
-                bin: 'phpcs',
-                standard: './phpcs',
-                extensions: 'php',
-                showSniffCodes: 'true',
-                report: 'emacs'
-            },
-            themes: {
-                src:  ['themes/Capitularia/**/*.php']
-            },
-            plugins: {
-                src:  ['plugins/**/*.php']
-            },
-        },
-
-        phpdocumentor: {
-            dist: {
-                options: {
-	                directory : ['themes/Capitularia', 'plugins'],
-                    target : 'phpdoc',
-                    template: 'responsive-twig'
-                }
-            }
-        },
-
         csslint: {
             options: {
-                "ids": false,
-                "adjoining-classes": false,   // IE6
-                "box-sizing": false,          // IE6,7
-                "qualified-headings": false,
-                "overqualified-elements": false
+                "adjoining-classes":      false,   // concerns IE6
+                "box-sizing":             false,   // concerns IE6,7
+                "ids":                    false,
+                "overqualified-elements": false,
+                "qualified-headings":     false,
             },
             src:  ['themes/Capitularia/css/*.css', 'plugins/**/*.css']
         },
@@ -99,7 +63,7 @@ module.exports = function (grunt) {
                 msgmerge: true,
             },
             files: {
-                src: ['themes/Capitularia/**/*.php', 'plugins/**/*.php'],
+                src: php_files,
                 expand: true,
             }
         },
@@ -139,6 +103,33 @@ module.exports = function (grunt) {
             },
         },
 
+        shell: {
+            options: {
+                cwd: ".",
+                failOnError: false,
+            },
+            phpcs: {
+                /* PHP_CodeSniffer https://github.com/squizlabs/PHP_CodeSniffer */
+                command: 'vendor/bin/phpcs --standard=tools/phpcs --report=emacs -s --extensions=php themes plugins',
+            },
+            phpdoc: {
+                /* phpDocumentor http://www.phpdoc.org/ */
+                command: 'vendor/bin/phpdoc run --directory="themes,plugins" --target="tools/reports/phpdoc" --template="responsive-twig" --title="Capitularia" && <%= browser %> tools/reports/phpdoc/index.html',
+            },
+            phpmd: {
+                /* PHP Mess Detector http://phpmd.org/ */
+	            command: 'vendor/bin/phpmd "themes,plugins" html tools/phpmd/ruleset.xml --reportfile "tools/reports/phpmd/index.html" ; <%= browser %> tools/reports/phpmd/index.html',
+	        },
+            phpmetrics: {
+                /* PhpMetrics http://www.phpmetrics.org/ */
+                command: 'vendor/bin/phpmetrics --report-html="tools/reports/phpmetrics/index.html" --excluded-dirs="node_modules|tools|scripts|vendor" --template-title="Capitularia" . && <%= browser %> tools/reports/phpmetrics/index.html',
+            },
+            sami: {
+                /* Sami Documentation Generator https://github.com/FriendsOfPHP/Sami */
+                command: 'vendor/bin/sami.php update tools/sami/config.php && <%= browser %> tools/reports/sami/build/index.html',
+            },
+        },
+
         watch: {
             files: ['<%= less.production.files %>'],
             tasks: ['less']
@@ -149,17 +140,22 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks ('grunt-contrib-jshint');
     grunt.loadNpmTasks ('grunt-contrib-less');
     grunt.loadNpmTasks ('grunt-contrib-watch');
-    grunt.loadNpmTasks ('grunt-pdepend');
-    grunt.loadNpmTasks ('grunt-phpcs');
-    grunt.loadNpmTasks ('grunt-phpdocumentor');
     grunt.loadNpmTasks ('grunt-phplint');
     grunt.loadNpmTasks ('grunt-pot');
     grunt.loadNpmTasks ('grunt-potomo');
     grunt.loadNpmTasks ('grunt-rsync');
+    grunt.loadNpmTasks ('grunt-shell');
 
-    grunt.registerTask ('lint',   ['phplint', 'jshint']);
-    grunt.registerTask ('mo',     ['pot',     'potomo']);
-    grunt.registerTask ('deploy', ['lint',    'less',     'mo', 'rsync']);
+    grunt.registerTask ('phpcs',      ['shell:phpcs']);
+    grunt.registerTask ('phpdoc',     ['shell:phpdoc']);
+    grunt.registerTask ('phpmd',      ['shell:phpmd']);
+    grunt.registerTask ('phpmetrics', ['shell:phpmetrics']);
+    grunt.registerTask ('sami',       ['shell:sami']);
 
-    grunt.registerTask ('default', ['lint', 'less']);
+    grunt.registerTask ('lint',       ['phplint', 'jshint']);
+    grunt.registerTask ('mo',         ['pot', 'potomo']);
+    grunt.registerTask ('doc',        ['phpdoc', 'phpmd', 'phpmetrics', 'sami']);
+    grunt.registerTask ('deploy',     ['lint', 'less', 'mo', 'rsync']);
+
+    grunt.registerTask ('default',    ['lint', 'less']);
 };

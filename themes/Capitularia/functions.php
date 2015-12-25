@@ -30,7 +30,8 @@ load_theme_textdomain ('capitularia', get_template_directory () . '/languages/')
  * @return string The slug root.
  */
 
-function get_slug_root ($page_id) {
+function get_slug_root ($page_id)
+{
     $path = parse_url (get_page_uri ($page_id), PHP_URL_PATH);
     $a = explode ('/', $path);
     if ($a) {
@@ -42,13 +43,14 @@ function get_slug_root ($page_id) {
 /**
  * Echo a name="value" pair.
  *
- * @param string $name
- * @param string $value
+ * @param string $name  The name of the attribute.
+ * @param string $value The value of the attribute.
  *
- * @return nothing
+ * @return void
  */
 
-function echo_attribute ($name, $value) {
+function echo_attribute ($name, $value)
+{
     // Echoes: name="value"
     echo ($name . '="' . esc_attr ($value) . '" ');
 }
@@ -58,12 +60,13 @@ function echo_attribute ($name, $value) {
  *
  * The src will be pointing to the theme images directory.
  *
- * @param string $img  The image filename.
+ * @param string $img The image filename.
  *
- * @return nothing
+ * @return void
  */
 
-function echo_theme_image ($img) {
+function echo_theme_image ($img)
+{
     echo ('src="' . get_bloginfo ('template_directory') . "/img/$img\"");
 }
 
@@ -75,12 +78,13 @@ function echo_theme_image ($img) {
  * @return string An opening <a> tag.
  */
 
-function get_permalink_a () {
+function get_permalink_a ()
+{
     return (
         '<a href="' .
         get_the_permalink () .
         '" title="' .
-        esc_attr (sprintf (__('Permalink to %s', 'capitularia'), the_title_attribute ('echo=0'))) .
+        esc_attr (sprintf (__ ('Permalink to %s', 'capitularia'), the_title_attribute ('echo=0'))) .
         '" rel="bookmark">'
     );
 }
@@ -96,10 +100,11 @@ function get_permalink_a () {
  *
  * For now we provide our own jquery / jquery-ui.
  *
- * @return nothing
+ * @return void
  */
 
-function register_jquery () {
+function register_jquery ()
+{
     wp_register_script (
         'cap-jquery',
         get_template_directory_uri () . '/bower_components/jquery/dist/jquery.js'
@@ -126,10 +131,11 @@ function register_jquery () {
  *
  * Add JS and CSS the wordpress way.
  *
- * @return nothing
+ * @return void
  */
 
-function on_enqueue_scripts () {
+function on_enqueue_scripts ()
+{
     register_jquery ();
 
     wp_enqueue_style (
@@ -185,10 +191,11 @@ function on_enqueue_scripts () {
 /**
  * Enqueue admin scripts and CSS
  *
- * @return nothing
+ * @return void
  */
 
-function on_admin_enqueue_scripts () {
+function on_admin_enqueue_scripts ()
+{
     // NOTE: Wordpress' own jquery-ui does not include jquery-ui.css.
     register_jquery ();
     wp_enqueue_script ('cap-jquery-ui');
@@ -207,13 +214,14 @@ add_action ('admin_enqueue_scripts', 'cceh\capitularia\theme\on_admin_enqueue_sc
  * if root: "Capitularia | Edition der fränkischen Herrschererlasse"
  * else:    "[Name of page] | Capitularia"
  *
- * @param string $title  Default title text for current view.
- * @param string $sep    Optional separator.
+ * @param string $title Default title text for current view.
+ * @param string $sep   Optional separator.
  *
  * @return string  The customized title.
  */
 
-function wp_title ($title, $sep) {
+function on_wp_title ($title, $sep)
+{
     if (is_feed ()) {
         return $title;
     }
@@ -237,27 +245,36 @@ function wp_title ($title, $sep) {
     return $title;
 }
 
-add_filter ('wp_title', 'cceh\capitularia\theme\wp_title', 10, 2);
+add_filter ('wp_title', 'cceh\capitularia\theme\on_wp_title', 10, 2);
 
 
 /**
  * Add excerpt support to pages.
+ *
+ * @return void
  */
 
-function add_excerpts_to_pages () {
+function on_init_add_excerpts_to_pages ()
+{
     add_post_type_support ('page', 'excerpt');
 }
 
-add_action ('init', 'cceh\capitularia\theme\add_excerpts_to_pages');
+add_action ('init', 'cceh\capitularia\theme\on_init_add_excerpts_to_pages');
 
 
 /**
- * Add <body> classes depending on which website section we are in
+ * Add a <body> class.
  *
- * Eg.: adds class="cap-slug-mss" in the /mss/ section of the site.
+ * Add a class to the HTML <body> tag depending on which section of the website
+ * we are in.  Eg.: adds class="cap-slug-mss" in the /mss/ section of the site.
+ *
+ * @param array $classes Old classes added by Wordpress or other plugins.
+ *
+ * @return array New classes
  */
 
-function on_body_class ($classes) {
+function on_body_class ($classes)
+{
     if (is_page ()) {
         $classes[] = esc_attr ('cap-slug-' . get_slug_root (get_the_ID ()));
     }
@@ -269,18 +286,21 @@ add_filter ('body_class', 'cceh\capitularia\theme\on_body_class');
 
 /**
  * Register our 2 horizontal navigation menus
+ *
+ * @return void
  */
 
-function register_nav_menus () {
-    \register_nav_menus (
+function on_init_register_nav_menus ()
+{
+    register_nav_menus (
         array (
-            'navtop'    => __('Top horizontal navigation bar', 'capitularia'),
-            'navbottom' => __('Bottom horizontal navigation bar', 'capitularia')
+            'navtop'    => __ ('Top horizontal navigation bar', 'capitularia'),
+            'navbottom' => __ ('Bottom horizontal navigation bar', 'capitularia')
         )
     );
 }
 
-add_action ('init', 'cceh\capitularia\theme\register_nav_menus');
+add_action ('init', 'cceh\capitularia\theme\on_init_register_nav_menus');
 
 
 /*
@@ -343,14 +363,17 @@ foreach ($sidebars as $a) {
 
 /**
  * Register a custom taxonony for sidebar selection
+ *
+ * @return void
  */
 
-function create_page_taxonomy () {
+function on_init_create_page_taxonomy ()
+{
     register_taxonomy (
         'cap-sidebar',
         'page',
         array (
-            'label' => __('Capitularia Sidebar', 'capitularia'),
+            'label' => __ ('Capitularia Sidebar', 'capitularia'),
             'public' => false,
             'show_ui' => true,
             'rewrite' => false,
@@ -360,14 +383,20 @@ function create_page_taxonomy () {
     register_taxonomy_for_object_type ('cap-sidebar', 'page');
 }
 
-add_action ('init', 'cceh\capitularia\theme\create_page_taxonomy');
+add_action ('init', 'cceh\capitularia\theme\on_init_create_page_taxonomy');
 
 
 /**
  * Add private/draft/future/pending pages to page parent dropdown.
+ *
+ * @param array $dropdown_args The previous args.
+ * @param int   $dummy_post    (unused) The post ID .
+ *
+ * @return array The new args.
  */
 
-function on_dropdown_pages_args ($dropdown_args, $post = null) {
+function on_dropdown_pages_args ($dropdown_args, $dummy_post = null)
+{
     $dropdown_args['post_status'] = array ('publish', 'draft', 'pending', 'future', 'private');
     return $dropdown_args;
 }
@@ -385,13 +414,14 @@ add_filter ('quick_edit_dropdown_pages_args',      'cceh\capitularia\theme\on_dr
  *
  * This shortcode outputs its content only to logged-in users.
  *
- * @param array  atts
- * @param string content
+ * @param array  $dummy_atts (unused) The shortocde attributes.
+ * @param string $content    The shortcode content.
  *
- * @return string The new content
+ * @return string The shortcode content if logged in else ''.
  */
 
-function on_shortcode_logged_in ($atts, $content) {
+function on_shortcode_logged_in ($dummy_atts, $content)
+{
     if (is_user_logged_in ()) {
         return do_shortcode ($content);
     }
@@ -403,13 +433,14 @@ function on_shortcode_logged_in ($atts, $content) {
  *
  * This shortcode outputs its content only to logged-out users.
  *
- * @param array  atts
- * @param string content
+ * @param array  $dummy_atts (unused) The shortocde attributes.
+ * @param string $content    The shortcode content.
  *
- * @return string The new content
+ * @return string The shortcode content if logged out else ''.
  */
 
-function on_shortcode_logged_out ($atts, $content) {
+function on_shortcode_logged_out ($dummy_atts, $content)
+{
     if (!is_user_logged_in ()) {
         return do_shortcode ($content);
     }
@@ -422,13 +453,14 @@ function on_shortcode_logged_out ($atts, $content) {
  * This shortcode wraps the content in a link to the image server if the user is
  * logged in.
  *
- * @param array  atts
- * @param string content
+ * @param array  $atts    The shortocde attributes.
+ * @param string $content The shortcode content.
  *
- * @return string The new content
+ * @return string The shortcode content wrapped in a link.
  */
 
-function on_shortcode_cap_image_server ($atts, $content) {
+function on_shortcode_cap_image_server ($atts, $content)
+{
     if (is_user_logged_in () && isset ($atts['id']) && isset ($atts['n'])) {
         // build url out of attributes
         $id = $atts['id'];

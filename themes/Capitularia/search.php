@@ -10,10 +10,8 @@ namespace cceh\capitularia\theme;
 
 get_header ();
 
-echo ("<main id='main'>\n");
+echo ("<main id='main' class='search-php'>\n");
 echo ("<div class='content-col'>\n");
-
-echo ("<header class='article-header page-header'>\n<h2>" . __('Search Results', 'capitularia') . "</h2>\n</header>\n");
 
 $your_search = apply_filters ('cap_meta_search_your_search', '');
 $n_results = $wp_query->post_count;
@@ -25,32 +23,44 @@ if ($n_results) {
             'Your search for: %1$s gave %2$d results.',
             $n_results,
             'capitularia'
-        ), $your_search, $n_results
+        ),
+        $your_search,
+        $n_results
     );
 } else {
     $your_search = sprintf (
-        __(
+        __ (
             'Your search for %1$s gave no results.',
             'capitularia'
-        ), $your_search
+        ),
+        $your_search
     );
 }
 
-echo ("<div class='search-pager'>$your_search</div>\n");
+echo (
+    "<header class='search-header page-header'>\n  <h2>" .
+    __ ('Search Results', 'capitularia') . "</h2>\n" .
+    "  <div class='search-pager'>$your_search</div>\n" .
+    "</header>\n"
+);
 
 if (have_posts ()) {
-    echo ("<div class='search-results'>\n");
+    echo ("<main class='search-results'>\n");
 
     while (have_posts ()) {
         the_post ();
+        $id = get_the_ID ();
 
-        echo ("<div class='search-results-excerpt'>\n");
-        echo ('<h2><a href="' . get_the_permalink () .'">' . get_the_title () . "</a></h2>\n");
+        echo ("<article id='post-$id' class='search-results-excerpt'>\n");
+        echo ("  <header class='article-header excerpt-header search-excerpt-header'>\n");
+        echo ('    <h2><a href="' . get_the_permalink () .'">' . get_the_title () . "</a></h2>\n");
+        echo ("  </header>\n");
+        echo ("  <main class='excerpt'>\n");
         echo (get_the_excerpt ());
-        echo ("</div>\n");
-
+        echo ("  </main>\n");
+        echo ("</article>\n");
     }
-    echo ("</div>\n");
+    echo ("</main>\n");
 }
 
 echo ("</div>\n");

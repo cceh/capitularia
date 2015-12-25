@@ -45,7 +45,7 @@ namespace cceh\capitularia\theme;
         <nav class="search-nav">
           <form id="searchform" class="searchform" action="/" method="get">
             <input id="searchinput" class="sword" type="text" name="s"
-                <?php echo_attribute ('placeholder', __('Search', 'capitularia')); ?> />
+                <?php echo_attribute ('placeholder', __ ('Search', 'capitularia')); ?> />
             <button id="searchsubmit" class="submit" type="submit" name="submit"></button>
           </form>
         </nav>

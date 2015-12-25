@@ -14,31 +14,31 @@ namespace cceh\capitularia\dynamic_menu;
  * content.  Each xpath expression generates one level of the menu.  Use the
  * standard wordpress admin interface to define the xpath expressions.
  *
- * To make a dynamic menu, insert a 'Custom Link' item into your Wordpress menu
- * and give it a magic url of: <kbd>#cap_dynamic_menu#</kbd>.  The 'Custom Link'
+ * To make a dynamic menu, insert a _Custom Link_ item into any Wordpress menu
+ * and give it a magic url of: _#cap\_dynamic\_menu#_.  The _Custom Link_
  * item will be replaced by the generated menu.
  *
- * Put the xpath expressions for each level of the menu into the 'Description'
- * field.  Separate each level with a <kbd>§</kbd> (section sign).
+ * Put the xpath expressions for each level of the menu into the _Description_
+ * field.  Separate each level with a _§_ (section sign).
  *
- * The default xpath expressions are:
- * //h3[{@}id]§//h4[{@}id]§//h5[{@}id]§//h6[{@}id], which generate a 4 level
- * deep menu built from h3-h6 elements that have an <var>id</var> attribute.
+ * The default xpath expressions are: //h3[@id]§//h4[@id]§//h5[@id]§//h6[@id],
+ * which generate a 4 level deep menu built from h3-h6 elements that have an
+ * _id_ attribute.
  *
  * The caption of a generated menu item is taken from the
- * <var>data-cap-dyn-menu-caption</var> attribute on the source element or
- * from the source element's textContent.
+ * _data-cap-dyn-menu-caption_ attribute on the source element or
+ * from the source element's _textContent_.
  *
- * All classes in the 'CSS Classes' field in the WP admin interface are copied
- * over to each generated menu item as class <var>$class-level-$level</var>.
- * Eg. a class <var>my-menu</var> would become <var>my-menu-level-1</var>.
+ * All classes in the _CSS Classes_ field in the Wordpress admin interface are
+ * copied over to each generated menu item as class _$class-level-$level_.
+ * Eg. a class of _my-menu_ would become _my-menu-level-1_.
  *
- * All classes on the source element that start with <var>dynamic-menu-</var>
+ * All classes on the source element that start with _dynamic-menu-_
  * are copied to each generated menu item.
  *
- * Additionally classes named <var>menu-item</var>,
- * <var>dynamic-menu-item</var>, and
- * <var>dynamic-menu-item-level-$level</var> are added to each generated menu
+ * Additionally classes named _menu-item_,
+ * _dynamic-menu-item_, and
+ * _dynamic-menu-item-level-$level_ are added to each generated menu
  * item.
  */
 
@@ -54,7 +54,8 @@ class Dynamic_Menu
      *
      * @return Dynamic_Menu
      */
-    public static function getInstance () {
+    public static function get_instance ()
+    {
         if (!self::$instance) {
             self::$instance = new self;
         }
@@ -62,7 +63,8 @@ class Dynamic_Menu
     }
 
     /** Class constructor */
-    private function __construct () {
+    private function __construct ()
+    {
         add_action ('wp_enqueue_scripts',    array ($this, 'on_enqueue_scripts'));
         add_filter ('wp_get_nav_menu_items', array ($this, 'on_wp_get_nav_menu_items'), 20, 3);
     }
@@ -73,7 +75,8 @@ class Dynamic_Menu
      * @return \DomDocument
      */
 
-    private function load_html () {
+    private function load_html ()
+    {
         $content = apply_filters ('the_content', get_the_content ());
 
         $doc = new \DomDocument ();
@@ -95,13 +98,14 @@ class Dynamic_Menu
     /**
      * Create a new menu item in memory.
      *
-     * @param string $caption  The menu item caption.
-     * @param array  $classes  The classes to add to the menu item.
+     * @param string $caption The menu item caption.
+     * @param array  $classes The classes to add to the menu item.
      *
      * @return \WP_Post The new menu item.
      */
 
-    private function new_item ($caption, $classes = array ()) {
+    private function new_item ($caption, $classes = array ())
+    {
         $this->next_item_id++;
 
         $new_item = new \WP_Post ((object) array ('ID' => $this->next_item_id));
@@ -133,14 +137,15 @@ class Dynamic_Menu
     /**
      * Add dynamic items to the menu.
      *
-     * @param array  $items Old items.
-     * @param string $menu  Menu.      (unused)
-     * @param array  $args  Menu args. (unused)
+     * @param array  $items      Old items.
+     * @param string $dummy_menu (unused) Menu.
+     * @param array  $dummy_args (unused) Menu args.
      *
      * @return array Menu with new items.
      */
 
-    public function on_wp_get_nav_menu_items ($items, $menu, $args) {
+    public function on_wp_get_nav_menu_items ($items, $dummy_menu, $dummy_args)
+    {
         if (is_admin ()) {
             return $items;
         }
@@ -238,9 +243,12 @@ class Dynamic_Menu
 
     /**
      * Enqueue Javascript and CSS.
+     *
+     * @return void
      */
 
-    public function on_enqueue_scripts () {
+    public function on_enqueue_scripts ()
+    {
         wp_register_style  ('cap-dynamic-menu-front', plugins_url ('css/front.css', __FILE__));
         wp_register_script (
             'cap-dynamic-menu-front',
@@ -251,12 +259,15 @@ class Dynamic_Menu
         // wp_enqueue_style   ('cap-dynamic-menu-front');
     }
 
-    public static function on_activation () {
+    public static function on_activation ()
+    {
     }
 
-    public static function on_deactivation () {
+    public static function on_deactivation ()
+    {
     }
 
-    public static function on_uninstall () {
+    public static function on_uninstall ()
+    {
     }
 }

@@ -13,14 +13,6 @@ namespace cceh\capitularia\page_generator;
 
 class File_List_Table extends \WP_List_Table
 {
-    /**
-     * Constructor.
-     *
-     * @see WP_List_Table::__construct() for more information on default arguments.
-     *
-     * @param array $args An associative array of arguments.
-     */
-
     // We use the same classes in our table as wordpress admin notices.
     private $status_to_notice_class = array (
         'publish' => 'notice-success',
@@ -28,7 +20,16 @@ class File_List_Table extends \WP_List_Table
         'delete'  => 'notice-error',
     );
 
-    public function __construct ($args = array ()) {
+    /**
+     * Constructor.
+     *
+     * @param array $args An associative array of arguments.
+     *
+     * @see WP_List_Table::__construct() for more information on default arguments.
+     */
+
+    public function __construct ($args = array ())
+    {
         parent::__construct (
             array (
                 'singular' => 'TEI file',
@@ -39,17 +40,20 @@ class File_List_Table extends \WP_List_Table
         );
     }
 
-    protected function get_table_classes () {
+    protected function get_table_classes ()
+    {
         $classes = parent::get_table_classes ();
         $classes[] = 'cap_page_gen_table_files';
         return $classes;
     }
 
-    public function ajax_user_can () {
+    public function ajax_user_can ()
+    {
         return current_user_can ('edit_posts');
     }
 
-    public function prepare_items ($items) {
+    public function prepare_items ($items)
+    {
         global $per_page;
 
         $this->items = $items;
@@ -66,11 +70,13 @@ class File_List_Table extends \WP_List_Table
         );
     }
 
-    public function no_items () {
+    public function no_items ()
+    {
         _e ('No TEI files found.');
     }
 
-    protected function get_bulk_actions () {
+    protected function get_bulk_actions ()
+    {
         $actions = array ();
         $actions['publish']  = _x ('Publish',           'publish TEI file');
         $actions['private']  = _x ('Publish privately', 'publish TEI file');
@@ -82,7 +88,8 @@ class File_List_Table extends \WP_List_Table
         return $actions;
     }
 
-    public function get_columns () {
+    public function get_columns ()
+    {
         return array (
             'cb'         => '<input type="checkbox" />',
             'slug'       => _x ('Slug',   'publish TEI file'),
@@ -91,7 +98,8 @@ class File_List_Table extends \WP_List_Table
         );
     }
 
-    public function single_row ($file) {
+    public function single_row ($file)
+    {
         $class = $this->status_to_notice_class[$file->status];
         echo ("<tr id='{$file->slug}' data-path='{$file->filename}' " .
               "data-slug='{$file->slug}' class='$class'>");
@@ -99,11 +107,12 @@ class File_List_Table extends \WP_List_Table
         echo ('</tr>');
     }
 
-    /**
+    /*
      * Table columns output
      */
 
-    public function column_cb ($file) {
+    public function column_cb ($file)
+    {
         $u_select = sprintf (__ ('Select %s'), $file->filename);
         $u_slug = $file->slug;
         $u_filename = $file->filename;
@@ -112,7 +121,8 @@ class File_List_Table extends \WP_List_Table
         echo ("<input type='checkbox' name='filenames[]' id='cb-select-$u_slug' value='$u_filename' />");
     }
 
-    public function column_status ($file) {
+    public function column_status ($file)
+    {
         $a = array ();
         $a['publish'] = _x ('Published',           'publish TEI file');
         $a['private'] = _x ('Published privately', 'publish TEI file');
@@ -122,7 +132,8 @@ class File_List_Table extends \WP_List_Table
         echo ("<span class='cap-published-status cap-published-status-{$file->status}'>$status</span>");
     }
 
-    public function column_slug ($file) {
+    public function column_slug ($file)
+    {
         $td = "<strong>{$file->slug}</strong>";
         if ($file->status != 'delete') {
             $td = "<a href='/mss/{$file->slug}'>$td</a>";
@@ -130,15 +141,13 @@ class File_List_Table extends \WP_List_Table
         echo ($td);
     }
 
-    public function column_filename ($file) {
+    public function column_filename ($file)
+    {
         echo $file->filename;
     }
 
     /**
      * Generates and displays row action links.
-     *
-     * @since  4.3.0
-     * @access protected
      *
      * @param object $file        File being acted upon.
      * @param string $column_name Current column name.
@@ -147,7 +156,8 @@ class File_List_Table extends \WP_List_Table
      * @return string Row action output for links.
      */
 
-    protected function handle_row_actions ($file, $column_name, $primary) {
+    protected function handle_row_actions ($file, $column_name, $primary)
+    {
         if ($primary !== $column_name) {
             return '';
         }

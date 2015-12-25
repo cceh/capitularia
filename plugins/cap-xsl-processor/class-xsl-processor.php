@@ -31,7 +31,8 @@ class XSL_Processor
     private $modified_time      = 0; // unixtime
     private $xmlfiles           = array ();
 
-    private function __construct () {
+    private function __construct ()
+    {
         add_action ('init',                  array ($this, 'on_init'));
         add_action ('wp_enqueue_scripts',    array ($this, 'on_enqueue_scripts'));
         add_action ('admin_init',            array ($this, 'on_admin_init'));
@@ -50,12 +51,14 @@ class XSL_Processor
         add_filter ('query_vars',  array ($this, 'on_query_vars'));
     }
 
-    public function on_init () {
+    public function on_init ()
+    {
         $this->stats = new Stats ();
         $this->shortcode = $this->get_opt ('shortcode', self::SHORTCODE);
     }
 
-    public function on_enqueue_scripts () {
+    public function on_enqueue_scripts ()
+    {
         wp_register_style ('cap-xsl-front', plugins_url ('css/front.css', __FILE__));
         wp_enqueue_style  ('cap-xsl-front');
     }
@@ -66,32 +69,37 @@ class XSL_Processor
      *
      * @return XSL_Processor
      */
-    public static function getInstance () {
+    public static function get_instance ()
+    {
         if (!self::$instance) {
             self::$instance = new self;
         }
         return self::$instance;
     }
 
-    private function get_opt ($name, $default = '') {
+    private function get_opt ($name, $default = '')
+    {
         if ($this->options === null) {
             $this->options = get_option ('cap_xsl_options', array ());
         }
         return $this->options[$name] ? $this->options[$name] : $default;
     }
 
-    private function urljoin ($url1, $url2) {
+    private function urljoin ($url1, $url2)
+    {
         return rtrim ($url1, '/') . '/' . $url2;
     }
 
-    private function wrap_in_shortcode ($content, $atts) {
+    private function wrap_in_shortcode ($content, $atts)
+    {
         $params  = empty ($atts['params'])       ? '' :       " params=\"{$atts['params']}\"";
         $params .= empty ($atts['stringparams']) ? '' : " stringparams=\"{$atts['stringparams']}\"";
         return "[{$this->shortcode} xml=\"{$atts['xml']}\" xslt=\"{$atts['xslt']}\"$params]\n" .
                "$content\n[/{$this->shortcode}]";
     }
 
-    private function hide_shortcodes_from_wpautop ($content) {
+    private function hide_shortcodes_from_wpautop ($content)
+    {
         // We don't want the wpautop filter applied to our xsl output, but we
         // want it applied to the rest of the page.  We add <pre> and </pre>
         // tags to turn off the wpautop filter on the xsl output.
@@ -100,21 +108,50 @@ class XSL_Processor
         return $content;
     }
 
-    private function strip_shortcode ($content) {
+    private function strip_shortcode ($content)
+    {
         // strip our shortcodes (before presenting the post to the user)
         $content = preg_replace ("/<pre>\\[{$this->shortcode}.*?\\]/s", '', $content);
         $content = str_replace  ("[/{$this->shortcode}]</pre>",         '', $content);
         return $content;
     }
 
-    private function increment_metadata ($post_id, $meta) {
+    private function increment_metadata ($post_id, $meta)
+    {
         $n = get_metadata ('post', $post_id, $meta, true) or 0;
         $n++;
         update_post_meta ($post_id, $meta, $n);
         return $n;
     }
 
-    public function on_the_content_early ($content) {
+    /**
+     * Turn off revision generation for save operations.
+     *
+     * Note: we cannot use the _wp_revisions_to_keep_ -filter and set it to 0
+     * because that would delete all previous revisions.
+     *
+     * @return void
+     *
+     * @see https://core.trac.wordpress.org/browser/tags/4.3.1/src/wp-includes/revision.php#L150
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+     */
+
+    private function suppress_revisions ()
+    {
+        // error_log ('on_the_content_early () revisions disabled');
+        add_filter (
+            'wp_save_post_revision_post_has_changed',
+            function ($post_has_changed, $last_revision, $post) {
+                return false;
+            },
+            10,
+            3
+        );
+    }
+
+    public function on_the_content_early ($content)
+    {
         // error_log ('on_the_content_early () ==> enter');
 
         $this->post_id       = intval (get_queried_object_id ());
@@ -159,18 +196,7 @@ class XSL_Processor
             $content = do_shortcode ($content);
 
             if (!$this->do_revision) {
-                // error_log ('on_the_content_early () revisions disabled');
-                // Turn off revisions for this save.  See:
-                // https://core.trac.wordpress.org/browser/tags/4.3.1/src/wp-includes/revision.php#L150
-                // Note: we cannot use the 'wp_revisions_to_keep' filter
-                // because it would delete all previous revisions.
-                add_filter (
-                    'wp_save_post_revision_post_has_changed',
-                    function ($post_has_changed, $last_revision, $post) {
-                        return false;
-                    },
-                    10, 3
-                );
+                $this->suppress_revisions ();
             }
 
             // cache xslt output in database
@@ -206,15 +232,18 @@ class XSL_Processor
         return $content;
     }
 
-    public function on_shortcode_check_only ($atts, $content = '') {
+    public function on_shortcode_check_only ($atts, $content = '')
+    {
         return $this->on_shortcode (false, $atts, $content);
     }
 
-    public function on_shortcode_xsl ($atts, $content = '') {
+    public function on_shortcode_xsl ($atts, $content = '')
+    {
         return $this->on_shortcode (true, $atts, $content);
     }
 
-    public function on_shortcode ($do_xsl, $atts, $content = '') {
+    public function on_shortcode ($do_xsl, $atts, $content = '')
+    {
         // NOTE: this function keeps the shortcode tags around because
         // we still need them in case we have to save the post.
         //
@@ -290,17 +319,17 @@ class XSL_Processor
         // The cached copy is out of date. Run the XSLT processor. Then add the
         // shortcodes back so we can save them into the db.
 
-        $retval = 666;
-        $cmdline = array ();
+        $retval    = 666;
+        $cmdline   = array ();
         $cmdline[] = $xsltproc;
         foreach ($params as $key => $value) {
-            $key = escapeshellarg ($key);
-            $value = escapeshellarg ($value);
+            $key       = escapeshellarg ($key);
+            $value     = escapeshellarg ($value);
             $cmdline[] = "--param $key $value";
         }
         foreach ($stringparams as $key => $value) {
-            $key = escapeshellarg ($key);
-            $value = escapeshellarg ($value);
+            $key       = escapeshellarg ($key);
+            $value     = escapeshellarg ($value);
             $cmdline[] = "--stringparam $key $value";
         }
         $cmdline[] = escapeshellarg ($xslt);
@@ -331,7 +360,8 @@ class XSL_Processor
         return $this->wrap_in_shortcode ($content, $atts);
     }
 
-    public function on_the_content_late ($content) {
+    public function on_the_content_late ($content)
+    {
         // Strip the shortcode tags. (That we needed only to keep off wpautop.)
 
         if (!$this->page_has_shortcode) {
@@ -340,21 +370,24 @@ class XSL_Processor
         return $this->strip_shortcode ($content);
     }
 
-    public function on_query_vars ($vars) {
+    public function on_query_vars ($vars)
+    {
         $vars[] = 'cap_xsl';
         return $vars;
     }
 
-    public function on_cap_xsl_get_xmlfiles () {
+    public function on_cap_xsl_get_xmlfiles ()
+    {
         return $this->xmlfiles;
     }
 
 
-    /**
+    /*
      * Administration page stuff
      */
 
-    public function on_admin_init () {
+    public function on_admin_init ()
+    {
         add_settings_section (
             'cap_xsl_options_section_general',
             'General Settings',
@@ -394,12 +427,14 @@ class XSL_Processor
         register_setting ('cap_xsl_options', 'cap_xsl_options',  array ($this, 'on_validate_options'));
     }
 
-    public function on_admin_enqueue_scripts () {
+    public function on_admin_enqueue_scripts ()
+    {
         wp_register_style ('cap-xsl-admin', plugins_url ('css/admin.css', __FILE__));
         wp_enqueue_style  ('cap-xsl-admin');
     }
 
-    public function on_admin_menu () {
+    public function on_admin_menu ()
+    {
         // adds a menu entry to the settings menu
         add_options_page (
             self::NAME . ' Options',
@@ -410,7 +445,8 @@ class XSL_Processor
         );
     }
 
-    public function on_admin_bar_menu ($wp_admin_bar) {
+    public function on_admin_bar_menu ($wp_admin_bar)
+    {
         // add clear cache button
         if ($this->page_has_shortcode) {
             $args = array (
@@ -425,7 +461,8 @@ class XSL_Processor
         }
     }
 
-    public function on_menu_options_page () {
+    public function on_menu_options_page ()
+    {
         $title = esc_html (get_admin_page_title ());
         echo ("<div class='wrap'>\n<h2>$title</h2>\n<form method='post' action='options.php'>");
         settings_fields ('cap_xsl_options');
@@ -438,38 +475,45 @@ class XSL_Processor
         echo ("</table></div>\n");
     }
 
-    public function on_options_section_general () {
+    public function on_options_section_general ()
+    {
     }
 
-    public function on_options_field_xmlroot () {
+    public function on_options_field_xmlroot ()
+    {
         $setting = $this->get_opt ('xmlroot');
         echo "<input class='file-input' type='text' name='cap_xsl_options[xmlroot]' value='$setting' />";
         echo '<p>Directory in the AFS, eg.: ' . self::AFS_ROOT . 'http/docs/cap/publ/mss</p>';
     }
 
-    public function on_options_field_xsltroot () {
+    public function on_options_field_xsltroot ()
+    {
         $setting = $this->get_opt ('xsltroot');
         echo "<input class='file-input' type='text' name='cap_xsl_options[xsltroot]' value='$setting' />";
         echo '<p>Directory in the AFS, eg.: ' . self::AFS_ROOT . 'http/docs/cap/publ/mss</p>';
     }
 
-    public function on_options_field_xsltproc () {
+    public function on_options_field_xsltproc ()
+    {
         $setting = $this->get_opt ('xsltproc');
         echo "<input class='file-input' type='text' name='cap_xsl_options[xsltproc]' value='$setting' />";
         echo '<p>The path to the xslt processor, eg.: /usr/bin/xsltproc</p>';
     }
 
-    public function on_options_field_shortcode () {
+    public function on_options_field_shortcode ()
+    {
         $setting = $this->get_opt ('shortcode');
         echo "<input class='file-input' type='text' name='cap_xsl_options[shortcode]' value='$setting' />";
         echo '<p>The shortcode, eg.: cap_xsl</p>';
     }
 
-    private function sanitize_path ($path) {
+    private function sanitize_path ($path)
+    {
         return rtrim (realpath (sanitize_text_field ($path)), '/');
     }
 
-    public function on_validate_options ($options) {
+    public function on_validate_options ($options)
+    {
         $options['xmlroot']   = $this->sanitize_path ($options['xmlroot']);
         $options['xsltroot']  = $this->sanitize_path ($options['xsltroot']);
         $options['xsltproc']  = $this->sanitize_path ($options['xsltproc']);
@@ -477,12 +521,15 @@ class XSL_Processor
         return $options;
     }
 
-    public static function on_activation () {
+    public static function on_activation ()
+    {
     }
 
-    public static function on_deactivation () {
+    public static function on_deactivation ()
+    {
     }
 
-    public static function on_uninstall () {
+    public static function on_uninstall ()
+    {
     }
 }

@@ -6,20 +6,21 @@
  * @package Capitularia
  */
 
-namespace cceh\capitularia\theme;
+defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
-require 'class-frontpage-widgets.php';
-require 'class-sticky-nav-menu-widget.php';
+require_once 'class-frontpage-widget-base.php';
+require_once 'class-frontpage-text-widget.php';
+require_once 'class-frontpage-image-widget.php';
+require_once 'class-frontpage-logo-widget.php';
 
-/**
- * Register all Capitularia theme widgets.
- */
+require_once 'class-sticky-nav-menu-widget.php';
 
-function register_widgets () {
-    register_widget ('cceh\capitularia\theme\Frontpage_Text_Widget');
-    register_widget ('cceh\capitularia\theme\Frontpage_Image_Widget');
-    register_widget ('cceh\capitularia\theme\Frontpage_Logo_Widget');
-    register_widget ('cceh\capitularia\theme\Sticky_Nav_Menu_Widget');
-}
-
-add_action ('widgets_init', 'cceh\capitularia\theme\register_widgets');
+add_action (
+    'widgets_init',
+    function () {
+        register_widget ('cceh\capitularia\theme\Frontpage_Text_Widget');
+        register_widget ('cceh\capitularia\theme\Frontpage_Image_Widget');
+        register_widget ('cceh\capitularia\theme\Frontpage_Logo_Widget');
+        register_widget ('cceh\capitularia\theme\Sticky_Nav_Menu_Widget');
+    }
+);

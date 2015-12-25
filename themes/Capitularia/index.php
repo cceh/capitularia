@@ -23,8 +23,10 @@ while (have_posts ()) {
         $title = get_permalink_a () . $title . '</a>';
     }
     echo ("<article id='post-$id' class='$classes'>\n");
-    echo ("<header class='article-header $class-header'>\n  <h2>$title</h2>\n</header>\n");
-    echo ("<div class='$class'>\n");
+    echo ("  <header class='article-header $class-header'>\n");
+    echo ("    <h2>$title</h2>\n");
+    echo ("  </header>\n");
+    echo ("  <main class='$class'>\n");
     if (is_single ()) {
         the_content ();
     } else {
@@ -35,7 +37,7 @@ while (have_posts ()) {
         }
         the_excerpt ();
     }
-    echo ("</div>\n");
+    echo ("  </main>\n");
     echo ("</article>\n");
 }
 echo ("</div>\n");

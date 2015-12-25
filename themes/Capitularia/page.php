@@ -10,30 +10,27 @@ namespace cceh\capitularia\theme;
 
 get_header ();
 
-?>
+echo ("<main id='main' class='page-php'>\n");
+echo ("  <div class='content-col'>\n");
 
-<main id="main" class="page-php">
+while (have_posts ()) {
+    the_post ();
+    $id = get_the_ID ();
 
-  <div class="content-col">
-    <?php while (have_posts()) : the_post(); ?>
+    echo ("<article id='post-$id' class='page'>\n");
+    echo ("  <header class='article-header page-header'>\n");
+    echo ('    <h2>' . get_the_title () . "</h2>\n");
+    echo ("  </header>\n");
 
-    <article>
-      <header class="article-header page-header">
-        <h2><?php the_title (); ?></h2>
-      </header>
+    echo ("  <main class='page'>\n");
+    the_content ();
+    echo ("  </main>\n");
+    echo ("</article>\n");
+}
 
-      <div class="entry">
-        <?php the_content (); ?>
-      </div>
-    </article>
-
-    <?php endwhile; ?>
-  </div>
-
-  <div class="sidebar-col">
-    <ul>
-
-<?php
+echo ("  </div>\n");
+echo ("  <div class='sidebar-col'>\n");
+echo ("    <ul>\n");
 
 // Code to choose the sidebar to display depending on page template (old method)
 // or slug and taxonomy (new method).
@@ -41,7 +38,7 @@ get_header ();
 // The sidebars to choose from. Only one of these gets displayed.
 $cap_sidebars = array ('capit', 'mss', 'resources', 'project', 'internal', 'transcription');
 
-// compatibility to old system of sidebar-selection through page template
+// FIXME: compatibility to old system of sidebar-selection through page template
 $cap_template_map = array (
     'page-UebersichtKapitularien.php'  => 'capit',
     'page-UebersichtHandschriften.php' => 'mss',
@@ -101,11 +98,8 @@ dynamic_sidebar ('Page-Sidebar');
 // This sidebar gets displayed on all posts and pages.
 dynamic_sidebar ('Sidebar');
 
-?>
+echo ("    </ul>\n");
+echo ("  </div>\n");
+echo ("</main>\n");
 
-    </ul>
-  </div>
-
-</main>
-
-<?php get_footer ();
+get_footer ();

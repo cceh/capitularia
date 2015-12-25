@@ -22,12 +22,13 @@ const FOOTNOTES = '//span[contains (concat (" ", @class, " "), " annotation ")]'
 /**
  * Is the node a note?
  *
- * @param node $node  The node to test.
+ * @param node $node The node to test.
  *
- * @return bool  true if the node is a note.
+ * @return bool true if the node is a note.
  */
 
-function is_note ($node) {
+function is_note ($node)
+{
     return
         $node &&
         ($node->nodeType == XML_ELEMENT_NODE) &&
@@ -35,35 +36,40 @@ function is_note ($node) {
         has_class ($node, 'annotation');
 }
 
-function add_class ($node, $class) {
+function add_class ($node, $class)
+{
     $classes = explode (' ', $node->getAttribute ('class'));
     $classes[] = $class;
     $node->setAttribute ('class', implode (' ', array_unique ($classes)));
 }
 
-function has_class ($node, $class) {
+function has_class ($node, $class)
+{
     $classes = explode (' ', $node->getAttribute ('class'));
     return in_array ($class, $classes);
 }
 
-function is_text_node ($node) {
+function is_text_node ($node)
+{
     return $node && ($node->nodeType == XML_TEXT_NODE);
 }
 
-function remove_node ($node) {
+function remove_node ($node)
+{
     $node->parentNode->removeChild ($node);
 }
 
 /**
  * Merge $note into $next and delete $note.
  *
- * @param \DOMNode $note  The note to merge.
- * @param \DOMNode $next  The note to merge into.
+ * @param \DOMNode $note The note to merge.
+ * @param \DOMNode $next The note to merge into.
  *
  * @return nothing
  */
 
-function merge_notes ($note, $next) {
+function merge_notes ($note, $next)
+{
     global $xpath1;
 
     $src  = $xpath1->query ('.//div[@class="annotation-text"]', $note);
@@ -84,12 +90,13 @@ function merge_notes ($note, $next) {
 /**
  * Wrap $nodes into a span.
  *
- * @param array $nodes  Nodes to wrap.
+ * @param array $nodes Nodes to wrap.
  *
  * @return nothing
  */
 
-function wrap ($nodes) {
+function wrap ($nodes)
+{
     global $doc;
     $span = $doc->createElement ('span');
     $nodes[0]->parentNode->insertBefore ($span, $nodes[0]);
@@ -104,12 +111,13 @@ function wrap ($nodes) {
  *
  * $text_node must be a text node.
  *
- * @param \DOMNode text_node
+ * @param \DOMNode $text_node The text node.
  *
  * @return mixed Position of first whitespace or false.
  */
 
-function whitespace_pos ($text_node) {
+function whitespace_pos ($text_node)
+{
     $text = $text_node->nodeValue;
     $text = preg_replace ('/\s/u', ' ', $text);
     return mb_strpos ($text, ' ');

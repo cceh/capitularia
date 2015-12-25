@@ -8,7 +8,7 @@
 namespace cceh\capitularia\meta_search;
 
 /**
- * A metadata search box widget
+ * A metadata search box widget.
  */
 
 class Widget extends \WP_Widget
@@ -21,15 +21,16 @@ class Widget extends \WP_Widget
     private $title;
     private $your_search = array ();
 
-    public function __construct () {
+    public function __construct ()
+    {
         $widget_ops = array (
             'classname' => 'cap_meta_search_widget',
-            'description' => __('Search widget for Capitularia metadata.', 'capitularia'),
+            'description' => __ ('Search widget for Capitularia metadata.', 'capitularia'),
         );
         $control_ops = array ('width' => 400, 'height' => 350);
         parent::__construct (
             'cap_meta_search_widget',
-            __('Capitularia Search Box Widget', 'capitularia'),
+            __ ('Capitularia Search Box Widget', 'capitularia'),
             $widget_ops,
             $control_ops
         );
@@ -49,22 +50,26 @@ class Widget extends \WP_Widget
      *
      * @return Search_Widget
      */
-    public static function getInstance () {
+    public static function get_instance ()
+    {
         if (!self::$instance) {
             self::$instance = new self;
         }
         return self::$instance;
     }
 
-    protected function setup ($args, $instance) {
+    protected function setup ($dummy_args, $instance)
+    {
         $this->title = apply_filters (
             'widget_title',
             empty ($instance['title']) ? '' : $instance['title'],
-            $instance, $this->id_base
+            $instance,
+            $this->id_base
         );
     }
 
-    public function on_query_vars ($vars) {
+    public function on_query_vars ($vars)
+    {
         $vars[] = 'capit';
         $vars[] = 'place';
         $vars[] = 'notbefore';
@@ -72,14 +77,16 @@ class Widget extends \WP_Widget
         return $vars;
     }
 
-    public function on_enqueue_scripts () {
+    public function on_enqueue_scripts ()
+    {
         wp_enqueue_script  ('cap-meta-search-front');
     }
 
-    private function echo_options ($sql) {
+    private function echo_options ($sql)
+    {
         global $wpdb;
 
-        $all = __('All', 'capitularia');
+        $all = __ ('All', 'capitularia');
         echo ("    <option value=''>$all</option>\n");
 
         $bks = $wpdb->get_results ($sql);
@@ -103,7 +110,8 @@ class Widget extends \WP_Widget
         }
     }
 
-    private function echo_select ($caption, $id, $meta_key, $tooltip) {
+    private function echo_select ($caption, $id, $meta_key, $tooltip)
+    {
         $tooltip = esc_attr ($tooltip);
         echo ("<div class='cap-meta-search-field cap-meta-search-field-$id'>\n");
         echo ("  <label for='$id'>$caption</label>\n");
@@ -116,7 +124,8 @@ class Widget extends \WP_Widget
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
     }
 
-    private function echo_input ($caption, $id, $placeholder, $tooltip) {
+    private function echo_input ($caption, $id, $placeholder, $tooltip)
+    {
         $tooltip     = esc_attr ($tooltip);
         $placeholder = esc_attr ($placeholder);
         echo ("<div class='cap-meta-search-field cap-meta-search-field-$id'>\n");
@@ -126,7 +135,8 @@ class Widget extends \WP_Widget
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
     }
 
-    public function widget ($args, $instance) {
+    public function widget ($args, $instance)
+    {
         $this->setup ($args, $instance);
 
         echo $args['before_widget'];
@@ -139,37 +149,37 @@ class Widget extends \WP_Widget
         echo ("<div class='cap-meta-search-box'>\n");
         echo ("<form action='/'>\n");
 
-        $label   = __('Contained capitulars', 'capitularia');
-        $tooltip = __('Only show manuscripts that contain this capitular.', 'capitularia');
+        $label   = __ ('Contained capitulars', 'capitularia');
+        $tooltip = __ ('Only show manuscripts that contain this capitular.', 'capitularia');
         $this->echo_select ($label, 'capit',     'msitem-corresp', $tooltip);
 
         echo ("<div class='ui-helper-clearfix'>\n");
-        $label   = __('After', 'capitularia');
-        $tooltip = __('Only show manuscripts created after this year.', 'capitularia');
+        $label   = __ ('After', 'capitularia');
+        $tooltip = __ ('Only show manuscripts created after this year.', 'capitularia');
         $this->echo_input  ($label, 'notbefore', '700',  $tooltip);
 
-        $label   = __('Before', 'capitularia');
-        $tooltip = __('Only show manuscripts created before this year.', 'capitularia');
+        $label   = __ ('Before', 'capitularia');
+        $tooltip = __ ('Only show manuscripts created before this year.', 'capitularia');
         $this->echo_input  ($label, 'notafter',  '1000', $tooltip);
         echo ("</div>\n");
 
-        $label   = __('Origin', 'capitularia');
-        $tooltip = __('Only show manuscripts created in this region.', 'capitularia');
+        $label   = __ ('Origin', 'capitularia');
+        $tooltip = __ ('Only show manuscripts created in this region.', 'capitularia');
         $this->echo_select ($label, 'place',     'origPlace-geonames', $tooltip);
 
-        $label       = __('Free Text', 'capitularia');
-        $tooltip     = __('Free text search', 'capitularia');
-        $placeholder = __('Free Text', 'capitularia');
+        $label       = __ ('Free Text', 'capitularia');
+        $tooltip     = __ ('Free text search', 'capitularia');
+        $placeholder = __ ('Free Text', 'capitularia');
         $this->echo_input  ($label, 's', $placeholder, $tooltip);
 
         echo ("<div class='cap-meta-search-buttons ui-helper-clearfix'>\n");
 
-        $label   = __('Search', 'capitularia');
-        $tooltip = __('Start the search', 'capitularia');
+        $label   = __ ('Search', 'capitularia');
+        $tooltip = __ ('Start the search', 'capitularia');
         echo ("  <input class='cap-meta-search-submit' type='submit' value='$label' title='$tooltip' />\n");
 
-        $label   = __('Help', 'capitularia');
-        $tooltip = __('Show some help', 'capitularia');
+        $label   = __ ('Help', 'capitularia');
+        $tooltip = __ ('Show some help', 'capitularia');
         echo ("  <input class='cap-meta-search-help'   type='button' value='$label' title='$tooltip' " .
               "onclick='on_cap_meta_search_toggle_help ()' />\n");
 
@@ -184,7 +194,8 @@ class Widget extends \WP_Widget
         echo $args['after_widget'];
     }
 
-    public function on_pre_get_posts ($query) {
+    public function on_pre_get_posts ($query)
+    {
         if (!is_admin () && $query->is_main_query ()) {
             if ($query->is_search) {
                 $this->your_search = array ();
@@ -205,7 +216,7 @@ class Widget extends \WP_Widget
                             'compare' => '=',
                             'type' => 'CHAR'
                         );
-                        $this->your_search[] = sprintf (__('contains %s', 'capitularia'), $val);
+                        $this->your_search[] = sprintf (__ ('contains %s', 'capitularia'), $val);
                         continue;
                     }
                     if ($key == 'notbefore') {
@@ -216,7 +227,7 @@ class Widget extends \WP_Widget
                             'compare' => '>=',
                             'type' => 'NUMERIC'
                         );
-                        $this->your_search[] = sprintf (__('after %d', 'capitularia'), $val);
+                        $this->your_search[] = sprintf (__ ('after %d', 'capitularia'), $val);
                         continue;
                     }
                     if ($key == 'notafter') {
@@ -227,7 +238,7 @@ class Widget extends \WP_Widget
                             'compare' => '<=',
                             'type' => 'NUMERIC'
                         );
-                        $this->your_search[] = sprintf (__('before %d', 'capitularia'), $val);
+                        $this->your_search[] = sprintf (__ ('before %d', 'capitularia'), $val);
                         continue;
                     }
                     if ($key == 'place') {
@@ -238,7 +249,7 @@ class Widget extends \WP_Widget
                             'compare' => '=',
                             'type' => 'CHAR'
                         );
-                        $this->your_search[] = sprintf (__('in %s', 'capitularia'), $val);
+                        $this->your_search[] = sprintf (__ ('in %s', 'capitularia'), $val);
                         continue;
                     }
                 }
@@ -247,7 +258,8 @@ class Widget extends \WP_Widget
         }
     }
 
-    public function on_posts_search ($sql, $query) {
+    public function on_posts_search ($sql, $query)
+    {
         // echo ("<pre>" . print_r ($query, true) . "</pre>");
         if (isset ($query->query_vars['search_terms'])) {
             foreach ($query->query_vars['search_terms'] as $term) {
@@ -257,7 +269,8 @@ class Widget extends \WP_Widget
         return $sql;
     }
 
-    public function on_wp_search_stopwords ($stopwords) {
+    public function on_wp_search_stopwords ($stopwords)
+    {
         $stopwords = array_merge ($stopwords, explode (' ', 'der die das'));
         return $stopwords;
     }
@@ -265,20 +278,23 @@ class Widget extends \WP_Widget
     /**
      * Generate the "You searched for BK.123 not before 950 and 'Karl'" message.
      *
-     * @param message
+     * @param string $message The free text searched for.
      *
-     * @return
+     * @return string "You searched for ..."
      */
 
-    public function on_cap_meta_search_your_search ($message) {
+    public function on_cap_meta_search_your_search ($message)
+    {
         return  implode (' &middot; ', $this->your_search) . $message;
     }
 
-    protected function sanitize ($text) {
+    protected function sanitize ($text)
+    {
         return empty ($text) ? '' : strip_tags ($text);
     }
 
-    protected function the_option ($instance, $name, $caption, $placeholder) {
+    protected function the_option ($instance, $name, $caption, $placeholder)
+    {
         $value = !empty ($instance[$name]) ? $instance[$name] : '';
         echo ("<p><label for=\"{$this->get_field_id ($name)}\">$caption</label>");
         echo ("<input class=\"widefat\" id=\"{$this->get_field_id ($name)}\" " .
@@ -286,13 +302,15 @@ class Widget extends \WP_Widget
               "placeholder=\"$placeholder\"></p>");
     }
 
-    public function update ($new_instance, $old_instance) {
+    public function update ($new_instance, $old_instance)
+    {
         $instance = $old_instance;
         $instance['title'] = $this->sanitize ($new_instance['title']);
         return $instance;
     }
 
-    public function form ($instance) {
-        $this->the_option ($instance, 'title', __('Title', 'capitularia'), __('New title', 'capitularia'));
+    public function form ($instance)
+    {
+        $this->the_option ($instance, 'title', __ ('Title', 'capitularia'), __ ('New title', 'capitularia'));
     }
 }

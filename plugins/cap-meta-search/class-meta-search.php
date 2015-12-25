@@ -25,9 +25,8 @@ class Meta_Search
     const GEONAMES_API_ENDPOINT = 'http://api.geonames.org/hierarchyJSON';
     const GEONAMES_USER         = 'highlander'; // FIXME get an institutional user
 
-    private $options            = null;
-
-    private function __construct () {
+    private function __construct ()
+    {
         add_action ('init',                  array ($this, 'on_init'));
         add_action ('wp_enqueue_scripts',    array ($this, 'on_enqueue_scripts'));
         add_action ('admin_init',            array ($this, 'on_admin_init'));
@@ -38,15 +37,17 @@ class Meta_Search
         add_filter ('get_the_excerpt',       array ($this, 'on_get_the_excerpt'));
     }
 
-    public function on_init () {
+    public function on_init ()
+    {
         add_action ('cap_xsl_transformed',              array ($this, 'on_cap_xsl_transformed'),           10, 2);
         add_filter ('cap_meta_search_extract_metadata', array ($this, 'on_cap_meta_search_extract_metadata'), 10, 3);
     }
 
-    private function meta ($post_id, $key, $node_list, $f = 'trim') {
+    private function meta ($post_id, $key, $node_list, $func = 'trim')
+    {
         delete_post_meta ($post_id, $key);
         foreach ($node_list as $node) {
-            $value = call_user_func ($f, $node->nodeValue);
+            $value = call_user_func ($func, $node->nodeValue);
             if (!is_array ($value)) {
                 $value = array ($value);
             }
@@ -57,19 +58,34 @@ class Meta_Search
         }
     }
 
-    private function nmtokens ($in) {
+    /**
+     * Explode nmtokens list intoarray.
+     *
+     * @param string $in One or more nmtokens separated by ' '.
+     *
+     * @return array Array of nmtokens.
+     *
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
+
+    private function nmtokens ($in)
+    {
         return explode (' ', $in);
     }
 
     /**
      * Get geonames.org place names hierarchy from id.
      *
-     * @param in Array of urls to geoname services.
+     * @param string $in One or more URLs to geoname services separated by ' '.
      *
-     * @return Array of place names.
+     * @return array The names of the places and of the broader administrative
+     * regions the places are in.
+     *
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
 
-    private function geonames ($in) {
+    private function geonames ($in)
+    {
         // See: http://www.geonames.org/export/place-hierarchy.html#hierarchy
         $places = array ();
         foreach (explode (' ', $in) as $urn) {
@@ -98,7 +114,8 @@ class Meta_Search
         return $places;
     }
 
-    public function extract_meta ($post_id, $xml_path) {
+    public function extract_meta ($post_id, $xml_path)
+    {
         libxml_use_internal_errors (true);
 
         $dom = new \DOMDocument;
@@ -145,17 +162,20 @@ class Meta_Search
         return $messages;
     }
 
-    public function on_cap_xsl_transformed ($post_id, $xml_path) {
+    public function on_cap_xsl_transformed ($post_id, $xml_path)
+    {
         // error_log ("on_cap_xsl_transformed ($post_id, $xml_path)");
         $this->extract_meta ($post_id, $xml_path);
     }
 
-    public function on_cap_meta_search_extract_metadata ($errors, $post_id, $xml_path) {
+    public function on_cap_meta_search_extract_metadata ($errors, $post_id, $xml_path)
+    {
         // error_log ("on_cap_meta_search_extract_metadata ($post_id, $xml_path)");
         return array_merge ($errors, $this->extract_meta ($post_id, $xml_path));
     }
 
-    public function on_enqueue_scripts () {
+    public function on_enqueue_scripts ()
+    {
         wp_register_style  ('cap-meta-search-front', plugins_url ('css/front.css', __FILE__));
         wp_enqueue_style   ('cap-meta-search-front');
         wp_register_script (
@@ -171,29 +191,26 @@ class Meta_Search
      *
      * @return Meta_Search
      */
-    public static function getInstance () {
+    public static function get_instance ()
+    {
         if (!self::$instance) {
             self::$instance = new self;
         }
         return self::$instance;
     }
 
-    private function get_opt ($name, $default = '') {
-        if ($this->options === null) {
-            $this->options = get_option ('cap_meta_search_options', array ());
-        }
-        return $this->options[$name] ? $this->options[$name] : $default;
-    }
-
-    private function urljoin ($url1, $url2) {
-        return rtrim ($url1, '/') . '/' . $url2;
-    }
-
     /**
      * Result snippets and highlighting
+     *
+     * @param string $content     The post content.
+     * @param int    $content_len The post content length.
+     * @param object $match       The preg_match match structure.
+     *
+     * @return array Begin and end of the snippet.
      */
 
-    private function get_bounds ($content, $content_len, $match) {
+    private function get_bounds ($content, $content_len, $match)
+    {
         // offsets in $match are byte offsets even if the regex uses /u !!!
         // convert byte offset into char offset
         $char_offset = mb_strlen (mb_strcut ($content, 0, $match[0][1]));
@@ -208,21 +225,22 @@ class Meta_Search
             $end = $space;
         }
 
-        return array ('start' => $start, 'end' => $end);
+        return array ('begin' => $start, 'end' => $end);
     }
 
-    private function get_snippets ($content, $regex, $max_snippets = 3) {
+    private function get_snippets ($content, $regex, $max_snippets = 3)
+    {
         $regex = "#$regex#ui";
         $matches = array ();
         preg_match_all ($regex, $content, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
 
         $content_len = mb_strlen ($content);
-        $snippets = array (); // array of array ('start' => pos, 'end' => pos)
+        $snippets = array (); // array of array ('begin' => pos, 'end' => pos)
         $n_snippets = 0;
 
         foreach ($matches as $match) {
             $snippet = $this->get_bounds ($content, $content_len, $match);
-            if (($n_snippets > 0) && (($snippet['start'] - $snippets[$n_snippets - 1]['end']) < 5)) {
+            if (($n_snippets > 0) && (($snippet['begin'] - $snippets[$n_snippets - 1]['end']) < 5)) {
                 // extend previous snippet
                 $snippets[$n_snippets - 1]['end'] = $snippet['end'];
             } else {
@@ -238,7 +256,7 @@ class Meta_Search
         $text = "<ul>\n";
 
         foreach ($snippets as $snippet) {
-            $start = $snippet['start'];
+            $start = $snippet['begin'];
             $len   = $snippet['end'] - $start;
             $text .= "<li class='snippet'>\n";
             $text .= preg_replace ($regex, '<mark>${0}</mark>', mb_substr ($content, $start, $len));
@@ -249,11 +267,26 @@ class Meta_Search
         return $text;
     }
 
-    private function escape_search_term ($term) {
+    /**
+     * Escape search term for regexp.
+     *
+     * Escapes a search term so that preg_* functions can safely use it. '#' is
+     * the preg separator, eg. #term#u .
+     *
+     * @param string $term The user input.
+     *
+     * @return string The escaped user input.
+     *
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
+
+    private function escape_search_term ($term)
+    {
         return preg_quote ($term, '#');
     }
 
-    public function on_get_the_excerpt ($content) {
+    public function on_get_the_excerpt ($content)
+    {
         global $wp_query;
         if (!is_admin () && $wp_query->is_main_query () && $wp_query->is_search ()) {
             if ($terms = $wp_query->get ('search_terms')) {
@@ -273,19 +306,19 @@ class Meta_Search
     /**
      * Highlight search terms in full post if referenced from search page.
      *
-     * @param content Post content
+     * @param string $content The post content.
      *
-     * @return Highlighted post content
+     * @return string The highlighted post content.
      */
 
-    public function on_the_content ($content) {
-        global $wp_query;
+    public function on_the_content ($content)
+    {
         if (!is_admin () && isset ($_SERVER['HTTP_REFERER']) && is_singular () && in_the_loop ()) {
             $referrer = $_SERVER['HTTP_REFERER'];
-            $args = explode('?', $referrer);
+            $args = explode ('?', $referrer);
             if (count ($args) > 1) {
                 $args = wp_parse_args ($args[1], array ());
-                $local_search = stripos ($referrer, $_SERVER['SERVER_NAME']) !== false;
+                // $local_search = stripos ($referrer, $_SERVER['SERVER_NAME']) !== false;
                 if (!empty ($args['s'])) {
                     $terms = array_map (array ($this, 'escape_search_term'), explode (' ', $args['s']));
                     $regex = implode ('|', $terms);
@@ -298,11 +331,12 @@ class Meta_Search
         return $content;
     }
 
-    /**
+    /*
      * Administration page stuff
      */
 
-    public function on_admin_init () {
+    public function on_admin_init ()
+    {
         add_settings_section (
             'cap_meta_search_options_section_general',
             'General Settings',
@@ -310,7 +344,7 @@ class Meta_Search
             'cap_meta_search_options'
         );
 
-        /* TODO: just a placeholder
+        /* Example of field definition
         add_settings_field (
             'cap_meta_search_options_xpath',
             'XPath expression',
@@ -327,12 +361,14 @@ class Meta_Search
         );
     }
 
-    public function on_admin_enqueue_scripts () {
+    public function on_admin_enqueue_scripts ()
+    {
         wp_register_style ('cap-meta-search-admin', plugins_url ('css/admin.css', __FILE__));
         wp_enqueue_style  ('cap-meta-search-admin');
     }
 
-    public function on_admin_menu () {
+    public function on_admin_menu ()
+    {
         // adds a menu entry to the settings menu
         add_options_page (
             self::NAME . ' Options',
@@ -346,12 +382,13 @@ class Meta_Search
     /**
      * Add a metadata extract button to the admin bar.
      *
-     * @param object $wp_admin_bar  The Wordpress admin bar.
+     * @param object $wp_admin_bar The Wordpress admin bar.
      *
      * @return nothing
      */
 
-    public function on_admin_bar_menu ($wp_admin_bar) {
+    public function on_admin_bar_menu ($wp_admin_bar)
+    {
 
         // Ask the xsl processor plugin if this page contains any xsl
         // transformations.  This works because admin_bar_menu is one of the
@@ -361,17 +398,20 @@ class Meta_Search
         if (count ($xmlfiles) > 0) {
             wp_enqueue_script  ('cap-meta-search-front');
             wp_localize_script (
-                'cap-meta-search-front', 'ajax_object',
-                array ('ajax_nonce' => wp_create_nonce (self::NONCE_SPECIAL_STRING),
-                       'ajax_nonce_param_name' => self::NONCE_PARAM_NAME
+                'cap-meta-search-front',
+                'ajax_object',
+                array (
+                    'ajax_nonce' => wp_create_nonce (self::NONCE_SPECIAL_STRING),
+                    'ajax_nonce_param_name' => self::NONCE_PARAM_NAME,
                 )
             );
 
             $xmlfile = esc_attr ($xmlfiles[0]);
+            $post_id = get_the_ID ();
             $args = array (
                 'id'      => 'cap_meta_search_extract_metadata',
                 'title'   => 'Metadata',
-                'onclick' => 'on_cap_meta_search_extract_metadata ($post->ID, $xmlfile);',
+                'onclick' => "on_cap_meta_search_extract_metadata ($post_id, $xmlfile);",
                 'meta'    => array ('class' => 'cap-meta-search-reload',
                                     'title' => self::NAME . ': Extract metadata from TEI file.'),
             );
@@ -379,7 +419,8 @@ class Meta_Search
         }
     }
 
-    public function on_menu_options_page () {
+    public function on_menu_options_page ()
+    {
         $title = esc_html (get_admin_page_title ());
         echo ("<div class='wrap'>\n<h2>$title</h2>\n<form method='post' action='options.php'>");
         settings_fields ('cap_meta_search_options');
@@ -391,28 +432,25 @@ class Meta_Search
         echo ("</table></div>\n");
     }
 
-    public function on_options_section_general () {
+    public function on_options_section_general ()
+    {
         echo ("<div>No settings.</div>\n");
     }
 
-    /*
-    public function on_options_field_xpath () {
-        $setting = $this->get_opt ('xpath');
-        echo "<input class='file-input' type='text' name='cap_meta_search_options[xpath]' value='$setting' />";
-        echo '<p>XPath expression</p>';
-    }
-    */
-
-    public function on_validate_options ($options) {
+    public function on_validate_options ($options)
+    {
         return $options;
     }
 
-    public static function on_activation () {
+    public static function on_activation ()
+    {
     }
 
-    public static function on_deactivation () {
+    public static function on_deactivation ()
+    {
     }
 
-    public static function on_uninstall () {
+    public static function on_uninstall ()
+    {
     }
 }

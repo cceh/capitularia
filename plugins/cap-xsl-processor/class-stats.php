@@ -23,7 +23,8 @@ class Stats
     public $xml_mtime   = 0;
     public $xsl_mtime   = 0;
 
-    public function get_tooltip ($post_id) {
+    public function get_tooltip ($post_id)
+    {
         $post_id = intval ($post_id);
         global $wpdb;
         $result = $wpdb->get_results (
@@ -35,7 +36,8 @@ class Stats
         return "hits: $hits\nmisses: $misses";
     }
 
-    public function get_table_rows () {
+    public function get_table_rows ()
+    {
         global $wpdb;
         $this->pages = $wpdb->get_var (
             "SELECT COUNT(*)        FROM wp_postmeta WHERE meta_key = 'cap_xsl_cache_time'"

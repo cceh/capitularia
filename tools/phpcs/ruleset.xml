@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!--
+
+The CCeH Capitularia Coding Style
+
+This is a PHP_CodeSniffer ruleset to check conformance to the
+CCeH Capitularia Coding Style (CCCS).
+
+The CCCS follows the PSR-2 Coding Style Guide with the following exceptions:
+
+- Function and variable names must be in snake_case instead of camelCase.
+Rationale: it doesn't really matter which style you use as long as it is
+consistent.  Since this is a Wordpress project it makes more sense to follow
+Wordpress style, otherwise we'd have to use both snake_case and camelCase.
+
+- There must be a space between a function name and the opening parenthesis of
+its argument list (GNU style).  Rationale: Consistency, because opening
+parentheses have spaces before them everywhere else.
+
+- File and class doc-comments are required.  They must follow the proposed
+PSR-5 PHPDoc Standard.
+
+- Function doc-comments are optional, but they must follow PSR-5 if present.
+
+@see: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml
+
+@see: http://www.php-fig.org/ The PHP Framework Interop Group
+
+@see: https://github.com/phpDocumentor/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
+PSR-2 Coding Style Guide
+
+@see: https://github.com/phpDocumentor/fig-standards/blob/master/proposed/phpdoc.md
+PSR-5 Proposed PHPDoc Standard
+
+-->
+
+<ruleset name="CCeH Capitularia Coding Style">
+
+  <description>The PHP coding style for the CCeH Capitularia
+  project.</description>
+
+  <arg value="s" />
+  <arg name="report-width" value="120" />
+
+  <rule ref="Generic.Classes.DuplicateClassName" />
+  <rule ref="Generic.CodeAnalysis.EmptyStatement" />
+  <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop" />
+  <rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall" />
+  <rule ref="Generic.CodeAnalysis.JumbledIncrementer" />
+  <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement" />
+  <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier" />
+  <!-- replaced by custom <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter" /> -->
+  <rule ref="Generic.CodeAnalysis.UselessOverridingMethod" />
+  <rule ref="Generic.Commenting.DocComment">
+    <!-- These rules are disabled because they don't allow single-line
+         doc-comments, eg.: /** Short Comment */ -->
+    <exclude name="Generic.Commenting.DocComment.ContentAfterOpen" />
+    <exclude name="Generic.Commenting.DocComment.SpacingBeforeShort" />
+    <exclude name="Generic.Commenting.DocComment.ContentBeforeClose" />
+  </rule>
+  <rule ref="Generic.Commenting.Fixme" />
+  <rule ref="Generic.Commenting.Todo" />
+  <rule ref="Generic.Files.EndFileNewline" />
+  <rule ref="Generic.Files.LowercasedFilename" />
+  <rule ref="Generic.Formatting.SpaceAfterCast" />
+  <rule ref="Generic.Functions.CallTimePassByReference" />
+  <rule ref="Generic.Functions.FunctionCallArgumentSpacing">
+    <!-- Spaces in arguments lists are allowed for alignment. -->
+    <exclude name="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma" />
+  </rule>
+  <rule ref="Generic.NamingConventions.ConstructorName" />
+  <rule ref="Generic.PHP.DeprecatedFunctions" />
+  <rule ref="Generic.PHP.ForbiddenFunctions" />
+  <rule ref="Generic.PHP.NoSilencedErrors" />
+  <rule ref="Generic.PHP.SAPIUsage" />
+
+  <rule ref="PEAR">
+    <!-- All these tags are not required by Wordpress conventions. -->
+    <exclude name="PEAR.Commenting.ClassComment.MissingCategoryTag"/>
+    <exclude name="PEAR.Commenting.ClassComment.MissingPackageTag"/>
+    <exclude name="PEAR.Commenting.ClassComment.MissingAuthorTag"/>
+    <exclude name="PEAR.Commenting.ClassComment.MissingLicenseTag"/>
+    <exclude name="PEAR.Commenting.ClassComment.MissingLinkTag"/>
+    <exclude name="PEAR.Commenting.FileComment.MissingVersion"/>
+    <exclude name="PEAR.Commenting.FileComment.MissingCategoryTag"/>
+    <exclude name="PEAR.Commenting.FileComment.MissingAuthorTag"/>
+    <exclude name="PEAR.Commenting.FileComment.MissingLicenseTag"/>
+    <exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
+    <exclude name="PEAR.Commenting.FunctionComment.Missing" />
+    <exclude name="PEAR.Commenting.FunctionComment.SpacingAfter" />
+    <exclude name="PEAR.Commenting.FunctionComment.WrongStyle" />
+    <!-- These rules are disabled and replaced with our custom rules below
+         because we want a space after the function name. -->
+    <exclude name="PEAR.Functions.FunctionCallSignature" />
+    <exclude name="PEAR.Functions.FunctionDeclaration" />
+    <!-- These rules are disabled and replaced with our custom rules below
+         because we want snake_case according to Wordpress conventions instead
+         of camelCase. -->
+    <exclude name="PEAR.NamingConventions.ValidFunctionName" />
+    <exclude name="PEAR.NamingConventions.ValidVariableName" />
+  </rule>
+
+  <rule ref="PSR2">
+    <!-- Note: PSR2 contains all of PSR1 -->
+    <!-- These rules are disabled and replaced with our custom rules below
+         because we want a space after the function name. -->
+    <exclude name="PSR2.Methods.FunctionCallSignature.SpaceBeforeOpenBracket" />
+    <exclude name="Squiz.Functions.FunctionDeclaration" />
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceBeforeOpenParen" />
+    <!-- These rules are disabled and replaced with our custom rules below
+         because we want snake_case according to Wordpress conventions instead
+         of camelCase. -->
+    <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps" />
+    <exclude name="Squiz.Classes.ValidClassName.NotCamelCaps" />
+  </rule>
+
+  <rule ref="Squiz.Strings.DoubleQuoteUsage">
+    <exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar" />
+  </rule>
+
+  <!-- Our custom sniffs.  These are already automatically included but we list
+       them explicitly lest we forget about them. -->
+  <rule ref="phpcs.CodeAnalysis.UnusedFunctionParameter" />
+  <rule ref="phpcs.Functions.FunctionDeclaration" />
+  <rule ref="phpcs.Functions.FunctionCallSignature" />
+  <rule ref="phpcs.NamingConventions.ValidFunctionName" />
+  <rule ref="phpcs.NamingConventions.ValidVariableName">
+    <exclude name="phpcs.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
+    <!-- Too many false positives from members of Wordpress- and the DOM-classes. -->
+    <exclude name="phpcs.NamingConventions.ValidVariableName.MemberUseNotSnakeCase" />
+  </rule>
+
+  <rule ref="Generic.Commenting.Fixme.TaskFound">
+    <type>warning</type>
+  </rule>
+
+  <rule ref="Generic.Commenting.Todo.TaskFound">
+    <type>warning</type>
+  </rule>
+
+  <rule ref="Generic.Files.LineLength">
+    <properties>
+      <property name="lineLimit" value="120"/>
+      <property name="absoluteLineLimit" value="999" />
+    </properties>
+    <type>warning</type>
+  </rule>
+
+  <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses">
+    <!-- One class per file is required if you use autoloader.  We don't use
+         autoloader, so it is only a warning. -->
+    <type>warning</type>
+  </rule>
+
+</ruleset>

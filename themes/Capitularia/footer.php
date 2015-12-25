@@ -30,7 +30,7 @@ namespace cceh\capitularia\theme;
            *
            * See: https://codex.wordpress.org/Function_Reference/wp_footer
            */
-          wp_footer();
+          wp_footer ();
 ?>
 
 <noscript><img src="//projects.cceh.uni-koeln.de/piwik/piwik.php?idsite=14" style="border:0;" alt="" /></noscript>
