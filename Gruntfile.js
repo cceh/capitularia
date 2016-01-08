@@ -5,6 +5,9 @@ module.exports = function (grunt) {
     grunt.initConfig ({
         afs: grunt.option ('afs') || process.env.GRUNT_CAPITULARIA_AFS ||
             "/afs/rrz/vol/www/projekt/capitularia/http/docs/wp-content",
+        localfs: grunt.option ('localfs') || process.env.GRUNT_CAPITULARIA_LOCALFS ||
+            "/var/www/capitularia/wp-content",
+        rsync: "rsync -rlptz --exclude='*~' --exclude='.*' --exclude='*.less' --exclude='node_modules'",
 
         browser: grunt.option ('browser') || process.env.GRUNT_BROWSER || "iceweasel",
 
@@ -83,30 +86,16 @@ module.exports = function (grunt) {
             }
         },
 
-        rsync: {
-            options: {
-                args: ["-rlptz"],
-                exclude: ["*~", ".*", "*.less", "node_modules"],
-                recursive: true
-            },
-            themes: {
-                options: {
-                    src: "themes/Capitularia/*",
-                    dest: "<%= afs %>/themes/Capitularia/"
-                }
-            },
-            plugins: {
-                options: {
-                    src: "plugins/cap-*",
-                    dest: "<%= afs %>/plugins/"
-                }
-            },
-        },
-
         shell: {
             options: {
                 cwd: ".",
                 failOnError: false,
+            },
+            deploy: {
+                command: '<%= rsync %> themes/Capitularia/* <%= afs %>/themes/Capitularia/ ; <%= rsync %> plugins/cap-* <%= afs %>/plugins/',
+            },
+            testdeploy: {
+                command: '<%= rsync %> themes/Capitularia/* <%= localfs %>/themes/Capitularia/ ; <%= rsync %> plugins/cap-* <%= localfs %>/plugins/',
             },
             phpcs: {
                 /* PHP_CodeSniffer https://github.com/squizlabs/PHP_CodeSniffer */
@@ -122,7 +111,7 @@ module.exports = function (grunt) {
 	        },
             phpmetrics: {
                 /* PhpMetrics http://www.phpmetrics.org/ */
-                command: 'vendor/bin/phpmetrics --report-html="tools/reports/phpmetrics/index.html" --excluded-dirs="node_modules|tools|scripts|vendor" --template-title="Capitularia" . && <%= browser %> tools/reports/phpmetrics/index.html',
+                command: 'vendor/bin/phpmetrics --config="tools/phpmetrics/config.yml" . && <%= browser %> tools/reports/phpmetrics/index.html',
             },
             sami: {
                 /* Sami Documentation Generator https://github.com/FriendsOfPHP/Sami */
@@ -143,7 +132,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks ('grunt-phplint');
     grunt.loadNpmTasks ('grunt-pot');
     grunt.loadNpmTasks ('grunt-potomo');
-    grunt.loadNpmTasks ('grunt-rsync');
     grunt.loadNpmTasks ('grunt-shell');
 
     grunt.registerTask ('phpcs',      ['shell:phpcs']);
@@ -155,7 +143,8 @@ module.exports = function (grunt) {
     grunt.registerTask ('lint',       ['phplint', 'jshint']);
     grunt.registerTask ('mo',         ['pot', 'potomo']);
     grunt.registerTask ('doc',        ['phpdoc', 'phpmd', 'phpmetrics', 'sami']);
-    grunt.registerTask ('deploy',     ['lint', 'less', 'mo', 'rsync']);
+    grunt.registerTask ('testdeploy', ['lint', 'less', 'mo', 'shell:testdeploy']);
+    grunt.registerTask ('deploy',     ['lint', 'less', 'mo', 'shell:deploy']);
 
     grunt.registerTask ('default',    ['lint', 'less']);
 };

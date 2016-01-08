@@ -19,6 +19,60 @@ div.cap_page_spinner {
 div.cap_page_spinner .ui-progressbar-indeterminate .ui-progressbar-value {
   background: #00a0d2;
 }
+table.cap_page_gen_table_files td.column-status,
+table.cap_page_gen_table_files th.column-status {
+  width: 10%;
+}
+div.spinner-div {
+  padding: 2em;
+  text-align: center;
+}
+div.spinner-div span.spinner {
+  float: none;
+}
+/* undo jquery-ui default styling */
+div.wrap .ui-tabs {
+  margin-top: 2em;
+  padding: 0;
+}
+div.wrap ul.ui-tabs-nav {
+  border-bottom: 1px solid #ccc;
+}
+div.wrap ul.ui-tabs-nav li {
+  margin-left: 0.5em;
+  border-width: 0;
+  position: relative;
+  top: 1px;
+}
+div.wrap ul.ui-tabs-nav li a {
+  border: 1px solid #ccc;
+  background: #e4e4e4;
+  color: #555;
+  line-height: 24px;
+  outline: 0 none;
+}
+div.wrap ul.ui-tabs-nav li a:focus,
+div.wrap ul.ui-tabs-nav li a:hover {
+  background-color: #fff;
+  color: #464646;
+  box-shadow: none;
+}
+div.wrap ul.ui-tabs-nav li.ui-state-active a,
+div.wrap ul.ui-tabs-nav li.ui-state-active a:link,
+div.wrap ul.ui-tabs-nav li.ui-state-active a:visited,
+div.wrap ul.ui-tabs-nav li.ui-state-active a:focus,
+div.wrap ul.ui-tabs-nav li.ui-state-active a:hover {
+  margin-bottom: -1px;
+  border-bottom: 1px solid #f1f1f1;
+  background: #f1f1f1;
+  color: #000;
+}
+div.wrap ul.ui-tabs-nav li a.cap_can_publish {
+  border-top: 4px solid #7ad03a;
+}
+div.wrap ul.ui-tabs-nav li a.cap_can_private {
+  border-top: 4px solid #ffba00;
+}
 /* wp admin colors
 .notice-success {
     border-color: #7ad03a;

@@ -53,10 +53,11 @@ PSR-5 Proposed PHPDoc Standard
   <rule ref="Generic.CodeAnalysis.UselessOverridingMethod" />
   <rule ref="Generic.Commenting.DocComment">
     <!-- These rules are disabled because they don't allow single-line
-         doc-comments, eg.: /** Short Comment */ -->
+         doc-comments, eg.: /** @var string $s A string */ -->
     <exclude name="Generic.Commenting.DocComment.ContentAfterOpen" />
     <exclude name="Generic.Commenting.DocComment.SpacingBeforeShort" />
     <exclude name="Generic.Commenting.DocComment.ContentBeforeClose" />
+    <exclude name="Generic.Commenting.DocComment.MissingShort" />
   </rule>
   <rule ref="Generic.Commenting.Fixme" />
   <rule ref="Generic.Commenting.Todo" />
@@ -98,6 +99,8 @@ PSR-5 Proposed PHPDoc Standard
          of camelCase. -->
     <exclude name="PEAR.NamingConventions.ValidFunctionName" />
     <exclude name="PEAR.NamingConventions.ValidVariableName" />
+    <!-- broken with switch statements -->
+    <exclude name="PEAR.WhiteSpace.ScopeIndent.IncorrectExact" />
   </rule>
 
   <rule ref="PSR2">

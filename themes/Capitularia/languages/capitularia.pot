@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-25 11:47+0100\n"
+"POT-Creation-Date: 2016-01-08 15:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,6 +87,7 @@ msgstr ""
 
 #: themes/Capitularia/widgets/class-frontpage-widget-base.php:47
 #: plugins/cap-meta-search/class-meta-search-widget.php:314
+#: plugins/cap-page-generator/class-file-list-table.php:204
 msgid "Title"
 msgstr ""
 
@@ -219,174 +220,253 @@ msgstr ""
 msgid "New title"
 msgstr ""
 
-#: plugins/cap-page-generator/class-file-list-table.php:81
-#: plugins/cap-page-generator/class-file-list-table.php:165
-msgid "Publish"
+#: plugins/cap-page-generator/class-config.php:68
+msgid "List of section ids"
 msgstr ""
 
-#: plugins/cap-page-generator/class-file-list-table.php:82
-#: plugins/cap-page-generator/class-file-list-table.php:166
-msgid "Publish privately"
-msgstr ""
-
-#: plugins/cap-page-generator/class-file-list-table.php:83
-#: plugins/cap-page-generator/class-file-list-table.php:167
-msgid "Unpublish"
-msgstr ""
-
-#: plugins/cap-page-generator/class-file-list-table.php:84
-#: plugins/cap-page-generator/class-file-list-table.php:168
-msgid "Refresh"
-msgstr ""
-
-#: plugins/cap-page-generator/class-file-list-table.php:85
-#: plugins/cap-page-generator/class-file-list-table.php:169
-msgid "Validate"
-msgstr ""
-
-#: plugins/cap-page-generator/class-file-list-table.php:86
-#: plugins/cap-page-generator/class-file-list-table.php:170
-msgid "Extract metadata"
-msgstr ""
-
-#: plugins/cap-page-generator/class-file-list-table.php:95
-msgid "Slug"
-msgstr ""
-
-#: plugins/cap-page-generator/class-file-list-table.php:96
-msgid "Status"
-msgstr ""
-
-#: plugins/cap-page-generator/class-file-list-table.php:97
-msgid "Filename"
-msgstr ""
-
-#: plugins/cap-page-generator/class-file-list-table.php:116
+#: plugins/cap-page-generator/class-config.php:70
 #, php-format
-msgid "Select %s"
+msgid "List of section ids (space-separated). Eg.: %s"
 msgstr ""
 
-#: plugins/cap-page-generator/class-file-list-table.php:127
-msgid "Published"
+#: plugins/cap-page-generator/class-config.php:77
+msgid "XML root"
 msgstr ""
 
-#: plugins/cap-page-generator/class-file-list-table.php:128
-msgid "Published privately"
-msgstr ""
-
-#: plugins/cap-page-generator/class-file-list-table.php:129
-msgid "Not published"
-msgstr ""
-
-#: plugins/cap-page-generator/class-page-generator.php:266
-msgid "Page Generator"
-msgstr ""
-
-#: plugins/cap-page-generator/class-page-generator.php:495
+#: plugins/cap-page-generator/class-config.php:79
 #, php-format
-msgid "Error while extracting metadata: no page with slug %s."
+msgid "Root directory for XML files in the AFS, eg.: %s"
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:502
+#: plugins/cap-page-generator/class-config.php:86
+msgid "XSL root"
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:88
 #, php-format
-msgid "Errors while extracting metadata from file %s."
+msgid "Root directory for XSL files in the AFS, eg.: %s"
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:508
+#: plugins/cap-page-generator/class-config.php:95
+msgid "Schema root"
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:97
 #, php-format
-msgid "Metadata extracted from file %s."
+msgid "Root directory for schema files in the AFS, eg.: %s"
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:518
+#: plugins/cap-page-generator/class-config.php:104
+msgid "Shortcode"
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:105
+msgid "The shortcode, eg.: cap_xsl"
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:110
+msgid "xmllint path"
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:112
 #, php-format
-msgid "Error while validating file %s. Validity of file is unknown."
+msgid "The full path to the xmllint utility as seen from the server, eg.: %s"
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:526
+#: plugins/cap-page-generator/class-config.php:121
+msgid "Section name"
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:122
+msgid "Name of this section"
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:127
+msgid "XML files directory"
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:129
 #, php-format
-msgid "File %s is valid TEI."
+msgid "Directory (relative to XML root), eg.: %s"
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:531
+#: plugins/cap-page-generator/class-config.php:136
+msgid "XSL files list"
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:137
+msgid ""
+"A list of xsl files to run (relative to XSL root) (space-separated list)."
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:142
+msgid "XSL schema"
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:143
+msgid "The path to the xsl schema file (relative to schema root)."
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:148
+msgid "Slug path"
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:150
 #, php-format
-msgid "File %s is invalid TEI."
+msgid "The URL path to the page, eg.: %s"
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:538
-msgid "Cannot refresh unpublished file."
+#: plugins/cap-page-generator/class-config.php:157
+msgid "Slug prefix"
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:543
+#: plugins/cap-page-generator/class-config.php:159
 #, php-format
-msgid "Error: could not unpublish page %s while refreshing."
+msgid "The slug prefix for the pages, eg.: %s"
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:553
+#: plugins/cap-page-generator/class-config.php:166
+msgid "Page statuses list"
+msgstr ""
+
+#: plugins/cap-page-generator/class-config.php:168
 #, php-format
-msgid "The post is already %s."
+msgid "The allowed page statuses (space-separated list). Eg.: %s"
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:561
-#, php-format
-msgid "Error: could not unpublish page %s."
-msgstr ""
-
-#: plugins/cap-page-generator/class-page-generator.php:566
-#, php-format
-msgid "Page %s unpublished."
-msgstr ""
-
-#: plugins/cap-page-generator/class-page-generator.php:576
-#, php-format
-msgid "Error: could not create page %s."
-msgstr ""
-
-#: plugins/cap-page-generator/class-page-generator.php:582
-#, php-format
-msgid "Page %1$s created with status set to %2$s."
-msgstr ""
-
-#: plugins/cap-page-generator/class-page-generator.php:589
-#, php-format
-msgid "Error: could not set page %1$s to status %2$s."
-msgstr ""
-
-#: plugins/cap-page-generator/class-page-generator.php:594
-#, php-format
-msgid "Page %1$s status set to %2$s."
-msgstr ""
-
-#: plugins/cap-page-generator/class-page-generator.php:611
-msgid "You have no permission to edit posts."
-msgstr ""
-
-#: plugins/cap-page-generator/class-page-generator.php:680
+#: plugins/cap-page-generator/class-dashboard-page.php:96
 #, php-format
 msgid "Reading directory: %s"
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:721
-#: plugins/cap-page-generator/class-page-generator.php:733
+#: plugins/cap-page-generator/class-file-list-table.php:73
+msgid "TEI file"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:74
+msgid "TEI files"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:87
+msgid "Publish"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:90
+msgid "Publish privately"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:92
+msgid "Unpublish"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:93
+msgid "Refresh"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:95
+msgid "Validate"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:97
+msgid "Extract metadata"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:99
+msgid "Published"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:100
+msgid "Published privately"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:101
+msgid "Not published"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:202
+msgid "Slug"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:203
+msgid "Status"
+msgstr ""
+
+#: plugins/cap-page-generator/class-file-list-table.php:248
 #, php-format
-msgid "Directory in the AFS, eg.: %s"
+msgid "Select %s"
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:743
-msgid "The path to the xsl schema file."
+#: plugins/cap-page-generator/class-manuscript.php:198
+#, php-format
+msgid "File %s is valid TEI."
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:750
-msgid "The filename of the main xsl file."
+#: plugins/cap-page-generator/class-manuscript.php:204
+#, php-format
+msgid "File %s is invalid TEI."
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:757
-msgid "The filename of the xsl header file."
+#: plugins/cap-page-generator/class-manuscript.php:211
+#, php-format
+msgid "Validity of file %s is unknown."
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:764
-msgid "The filename of the xsl footer file."
+#: plugins/cap-page-generator/class-manuscript.php:319
+#, php-format
+msgid "Error: could not unpublish page %s."
 msgstr ""
 
-#: plugins/cap-page-generator/class-page-generator.php:771
-msgid "The shortcode, eg.: cap_xsl"
+#: plugins/cap-page-generator/class-manuscript.php:326
+#, php-format
+msgid "Page %s unpublished."
+msgstr ""
+
+#: plugins/cap-page-generator/class-manuscript.php:344
+msgid "No title"
+msgstr ""
+
+#: plugins/cap-page-generator/class-manuscript.php:386
+#, php-format
+msgid "Page %1$s created with status set to %2$s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-manuscript.php:395
+#, php-format
+msgid "Error: could not create page %s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-manuscript.php:413
+#, php-format
+msgid "Error while extracting metadata: no page with slug %s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-manuscript.php:427
+#, php-format
+msgid "Errors while extracting metadata from file %s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-manuscript.php:436
+#, php-format
+msgid "Metadata extracted from file %s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-manuscript.php:465
+#, php-format
+msgid "The post is already %s."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:70
+msgid "Capitularia Page Generator"
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:92
+msgid "You have no permission to edit posts."
+msgstr ""
+
+#: plugins/cap-page-generator/class-page-generator.php:222
+msgid "Page Generator"
+msgstr ""
+
+#: plugins/cap-page-generator/class-settings-page.php:164
+msgid "General"
 msgstr ""

@@ -1,0 +1,26 @@
+default:
+
+    # see vendor/halleck45/phpmetrics/src/Hal/Application/Rule/RuleSet.php
+    rules:
+        commentWeight:        [ 0, 35, 40 ]
+        cyclomaticComplexity: [ 20, 10, 5 ]
+        lcom:                 [ 8, 4, 1.5 ]
+        maintainabilityIndex: [ 0, 65, 85 ]
+
+    path:
+        directory:   .
+        extensions:  php
+        exclude:     node_modules|tools|scripts|vendor
+
+    template:
+        title:       Capitularia
+
+    logging:
+        report:
+            xml:     tools/reports/phpmetrics/phpmetrics.xml
+            html:    tools/reports/phpmetrics/index.html
+            csv:     tools/reports/phpmetrics/phpmetrics.csv
+        violations:
+            xml:     tools/reports/phpmetrics/violations.xml
+        chart:
+            bubbles: tools/reports/phpmetrics/bubbles.svg

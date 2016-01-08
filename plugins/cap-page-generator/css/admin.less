@@ -28,6 +28,72 @@ div.cap_page_spinner {
 div.cap_page_dash_message {
 }
 
+table.cap_page_gen_table_files {
+    td, th {
+	&.column-status {
+	    width: 10%;
+	}
+    }
+}
+
+div.spinner-div {
+    padding: 2em;
+    text-align: center;
+    span.spinner  {
+	float: none;
+    }
+}
+
+/* undo jquery-ui default styling */
+div.wrap {
+    .ui-tabs {
+	margin-top: 2em;
+	padding: 0;
+    }
+    ul.ui-tabs-nav {
+	border-bottom: 1px solid #ccc;
+	li {
+	    margin-left: 0.5em;
+	    border-width: 0;
+	    position: relative;
+	    top: 1px;
+	    a {
+		border: 1px solid #ccc;
+		background: #e4e4e4;
+		color: #555;
+		line-height: 24px;
+		outline: 0 none;
+		&:focus,
+		&:hover {
+		    background-color: #fff;
+		    color: #464646;
+		    box-shadow: none;
+		}
+	    }
+	    &.ui-state-active {
+		a,
+		a:link,
+		a:visited,
+		a:focus,
+		a:hover {
+		    margin-bottom: -1px;
+		    border-bottom: 1px solid #f1f1f1;
+		    background: #f1f1f1;
+		    color: #000;
+		}
+	    }
+	    a.cap_can_publish {
+		border-top: 4px solid #7ad03a;
+	    }
+	    a.cap_can_private {
+		border-top: 4px solid #ffba00;
+	    }
+	}
+    }
+}
+
+
+
 /* wp admin colors
 .notice-success {
     border-color: #7ad03a;
