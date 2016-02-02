@@ -1,0 +1,84 @@
+table.collation {
+    border-collapse: collapse;
+    tr {
+	background-color: #fff;
+	&:nth-child(even) {
+	    background-color: #eee;
+	}
+	&:first-child {
+	    background-color: LightSkyBlue;
+	}
+    }
+
+    td, th {
+	border: 1px solid gray;
+	padding: 0.2em 0.3em;
+	background-color: inherit;
+	white-space: nowrap;
+    }
+    td {
+	text-align: center;
+	&.equal {
+	    opacity: 0.33;
+	}
+    }
+    span.missing::before {
+	content: '\2014';
+    }
+}
+
+div.debug {
+    display: none;
+}
+
+div.collation {
+
+    table {
+	border: solid 1px;
+	border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+	background-color: WhiteSmoke;
+    }
+
+    tr:first-child {
+	background-color: LightSkyBlue;
+    }
+
+    th {
+	white-space: nowrap;
+    }
+
+    td {
+	border-left: solid 2px gray;
+	border-right: solid 2px gray;
+
+	padding-left: 0.3em;
+	padding-right: 0.3em;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+
+	white-space: nowrap;
+	text-align: center;
+    }
+
+    span.text-is-equal {
+	color: lightgray;
+    }
+
+    span.text-is-missing {
+	color: red;
+    }
+
+    hr {
+	width: 50%;
+	border-style: solid;
+	border-width: 1px 0 0 0;
+	border-color: inherit;
+    }
+}
+
+div.collation-messages {
+    display: none;
+}

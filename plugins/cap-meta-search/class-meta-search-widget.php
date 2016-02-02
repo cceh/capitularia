@@ -58,6 +58,15 @@ class Widget extends \WP_Widget
         return self::$instance;
     }
 
+    /**
+     * Setup the widget
+     *
+     * @param array $dummy_args The widget arguments
+     * @param array $instance   The widget instance
+     *
+     * @return void
+     */
+
     protected function setup ($dummy_args, $instance)
     {
         $this->title = apply_filters (
@@ -68,6 +77,14 @@ class Widget extends \WP_Widget
         );
     }
 
+    /**
+     * Add our custom HTTP query vars
+     *
+     * @param array $vars The stock query vars
+     *
+     * @return array The stock and custom query vars
+     */
+
     public function on_query_vars ($vars)
     {
         $vars[] = 'capit';
@@ -77,19 +94,38 @@ class Widget extends \WP_Widget
         return $vars;
     }
 
+    /**
+     * Enqueue javascript
+     *
+     * @return void
+     */
+
     public function on_enqueue_scripts ()
     {
-        wp_enqueue_script  ('cap-meta-search-front');
+        wp_enqueue_script ('cap-meta-search-front');
     }
+
+    /**
+     * Echo <select> options from SQL query
+     *
+     * Output the options for a HTML <select> element.  Sort numeric substrings
+     * in a sensible way for humans, eg. 'BK 2' before 'BK 12'
+     *
+     * @param string $sql The SQL query
+     *
+     * @return void
+     */
 
     private function echo_options ($sql)
     {
         global $wpdb;
+        $bks = $wpdb->get_results ($sql);
 
-        $all = __ ('All', 'capitularia');
+        $all = _x ('All', '\'All\' option in drop-down', 'capitularia');
         echo ("    <option value=''>$all</option>\n");
 
-        $bks = $wpdb->get_results ($sql);
+        // Add a key to all objects in the array that allows for sensible
+        // sorting of numeric substrings.
         foreach ($bks as $bk) {
             $bk->key = preg_replace_callback (
                 '|\d+|',
@@ -99,16 +135,31 @@ class Widget extends \WP_Widget
                 $bk->meta_value
             );
         }
+
+        // Sort the array according to key.
         usort (
             $bks,
             function ($bk1, $bk2) {
                 return strcoll ($bk1->key, $bk2->key);
             }
         );
+
+        // Output
         foreach ($bks as $bk) {
             echo ("    <option value='{$bk->meta_value}'>{$bk->meta_value}</option>\n");
         }
     }
+
+    /**
+     * Echo a HTML <select> element with options.
+     *
+     * @param string $caption  The caption for the <select>
+     * @param string $id       The xml id and name of the <select>
+     * @param string $meta_key The meta key
+     * @param string $tooltip  The tooltip for the <select>
+     *
+     * @return void
+     */
 
     private function echo_select ($caption, $id, $meta_key, $tooltip)
     {
@@ -124,6 +175,17 @@ class Widget extends \WP_Widget
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
     }
 
+    /**
+     * Echo a text <input> field
+     *
+     * @param string $caption     The caption for the <input>
+     * @param string $id          The xml id and nameof the <input>
+     * @param string $placeholder The placeholder text
+     * @param string $tooltip     The tooltip
+     *
+     * @return void
+     */
+
     private function echo_input ($caption, $id, $placeholder, $tooltip)
     {
         $tooltip     = esc_attr ($tooltip);
@@ -134,6 +196,15 @@ class Widget extends \WP_Widget
         echo ("</div>\n");
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
     }
+
+    /**
+     * Output the widget
+     *
+     * @param array  $args     The arguments to the widget
+     * @param object $instance The widget instance
+     *
+     * @return void
+     */
 
     public function widget ($args, $instance)
     {
@@ -149,8 +220,8 @@ class Widget extends \WP_Widget
         echo ("<div class='cap-meta-search-box'>\n");
         echo ("<form action='/'>\n");
 
-        $label   = __ ('Contained capitulars', 'capitularia');
-        $tooltip = __ ('Only show manuscripts that contain this capitular.', 'capitularia');
+        $label   = __ ('Capitularies contained', 'capitularia');
+        $tooltip = __ ('Only show manuscripts that contain this capitulary.', 'capitularia');
         $this->echo_select ($label, 'capit',     'msitem-corresp', $tooltip);
 
         echo ("<div class='ui-helper-clearfix'>\n");
@@ -194,6 +265,19 @@ class Widget extends \WP_Widget
         echo $args['after_widget'];
     }
 
+    /**
+     * Convert HTTP query into SQL query.
+     *
+     * Operates on the Wordpress query object.
+     *
+     * @param WP_Query $query The Wordpress query object
+     *
+     * @return void
+     *
+     * @see https://codex.wordpress.org/Class_Reference/WP_Query Class Reference
+     * WP_Query
+     */
+
     public function on_pre_get_posts ($query)
     {
         if (!is_admin () && $query->is_main_query ()) {
@@ -223,7 +307,7 @@ class Widget extends \WP_Widget
                         $val = absint ($val);
                         $meta_query_args[] = array (
                             'key' => 'origDate-notBefore',
-                            'value' => absint ($val),
+                            'value' => $val,
                             'compare' => '>=',
                             'type' => 'NUMERIC'
                         );
@@ -234,7 +318,7 @@ class Widget extends \WP_Widget
                         $val = absint ($val);
                         $meta_query_args[] = array (
                             'key' => 'origDate-notAfter',
-                            'value' => absint ($val),
+                            'value' => $val,
                             'compare' => '<=',
                             'type' => 'NUMERIC'
                         );
@@ -258,6 +342,15 @@ class Widget extends \WP_Widget
         }
     }
 
+    /**
+     * Add search terms to 'You searched for ...'
+     *
+     * @param string   $sql   The SQL query (unused)
+     * @param WP_Query $query The wordpress query object
+     *
+     * @return The SQL query (unchanged)
+     */
+
     public function on_posts_search ($sql, $query)
     {
         // echo ("<pre>" . print_r ($query, true) . "</pre>");
@@ -269,6 +362,14 @@ class Widget extends \WP_Widget
         return $sql;
     }
 
+    /**
+     * Adds custom stopwords
+     *
+     * @param array $stopwords The stock stopwords
+     *
+     * @return array The stock and custom stopwords
+     */
+
     public function on_wp_search_stopwords ($stopwords)
     {
         $stopwords = array_merge ($stopwords, explode (' ', 'der die das'));
@@ -276,7 +377,10 @@ class Widget extends \WP_Widget
     }
 
     /**
-     * Generate the "You searched for BK.123 not before 950 and 'Karl'" message.
+     * Generate the "You searched for ..." message
+     *
+     * Generate a message like "You searched for BK.123 not before 950 and
+     * 'Karl'".
      *
      * @param string $message The free text searched for.
      *
@@ -293,6 +397,17 @@ class Widget extends \WP_Widget
         return empty ($text) ? '' : strip_tags ($text);
     }
 
+    /**
+     * Output one option field
+     *
+     * @param array  $instance    The widet options
+     * @param string $name        The option name
+     * @param string $caption     The caption
+     * @param string $placeholder The placeholder
+     *
+     * @return void
+     */
+
     protected function the_option ($instance, $name, $caption, $placeholder)
     {
         $value = !empty ($instance[$name]) ? $instance[$name] : '';
@@ -302,12 +417,29 @@ class Widget extends \WP_Widget
               "placeholder=\"$placeholder\"></p>");
     }
 
+    /**
+     * Update widget settings on save
+     *
+     * @param array $new_instance Values just sent to be saved.
+     * @param array $old_instance Previously saved values from database.
+     *
+     * @return array
+     */
+
     public function update ($new_instance, $old_instance)
     {
         $instance = $old_instance;
         $instance['title'] = $this->sanitize ($new_instance['title']);
         return $instance;
     }
+
+    /**
+     * Outputs the widget options form on admin
+     *
+     * @param array $instance The widget options
+     *
+     * @return void
+     */
 
     public function form ($instance)
     {

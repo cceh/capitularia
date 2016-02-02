@@ -48,6 +48,8 @@ class Page_Generator
     /**
      * Create and return singleton instance.
      *
+     * @param Config $config The plugin configuration
+     *
      * @return Page_Generator
      */
     public static function get_instance ($config)
@@ -60,6 +62,8 @@ class Page_Generator
 
     /**
      * Constructor
+     *
+     * @param Config $config The plugin configuration
      *
      * @return Page_Generator
      */
@@ -104,7 +108,7 @@ class Page_Generator
 
     public function on_cap_load_files ()
     {
-        // no checks because we are just reading
+        // no user permission checks because we are just reading
         $this->dashboard_page = new Dashboard_Page ($this->config);
         $this->dashboard_page->on_cap_load_files ();
     }

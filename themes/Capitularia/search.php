@@ -45,7 +45,7 @@ echo (
 );
 
 if (have_posts ()) {
-    echo ("<main class='search-results'>\n");
+    echo ("<div class='search-results'>\n");
 
     while (have_posts ()) {
         the_post ();
@@ -55,12 +55,12 @@ if (have_posts ()) {
         echo ("  <header class='article-header excerpt-header search-excerpt-header'>\n");
         echo ('    <h2><a href="' . get_the_permalink () .'">' . get_the_title () . "</a></h2>\n");
         echo ("  </header>\n");
-        echo ("  <main class='excerpt'>\n");
+        echo ("  <div class='excerpt'>\n");
         echo (get_the_excerpt ());
-        echo ("  </main>\n");
+        echo ("  </div>\n");
         echo ("</article>\n");
     }
-    echo ("</main>\n");
+    echo ("</div>\n");
 }
 
 echo ("</div>\n");

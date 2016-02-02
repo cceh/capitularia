@@ -50,7 +50,12 @@ class Frontpage_Widget_Base extends \WP_Widget
                 array ($this, 'normalize'),  __ ('Text',      'capitularia'), __ ('Enter text',      'capitularia')
             ),
             'image'   => array (
-                array ($this, 'strip_tags'), __ ('Image-URL', 'capitularia'), __ ('Enter image-URL', 'capitularia')
+                array ($this, 'strip_tags'), __ ('Image-URL', 'capitularia'), __ ('Enter image URL', 'capitularia')
+            ),
+            'image-tooltip' => array (
+                array ($this, 'strip_tags'),
+                __ ('Image-Tooltip', 'capitularia'),
+                __ ('Enter image tooltip', 'capitularia')
             ),
             'link'    => array (
                 array ($this, 'strip_tags'), __ ('Link-URL',  'capitularia'), __ ('Enter link-URL',  'capitularia')
@@ -103,7 +108,10 @@ class Frontpage_Widget_Base extends \WP_Widget
 
     protected function the_widget_image ($dummy_args, $instance)
     {
-        echo $this->make_link ("<img src=\"{$instance['image']}\" alt =\"\">", $instance['link']);
+        echo $this->make_link (
+            "<img src=\"{$instance['image']}\" title=\"{$instance['image-tooltip']}\" alt =\"\">",
+            $instance['link']
+        );
     }
 
     /**
@@ -148,7 +156,7 @@ class Frontpage_Widget_Base extends \WP_Widget
 
     protected function the_option ($instance, $name, $caption, $placeholder)
     {
-        $value = !empty ($instance[$name]) ? $instance[$name] : '';
+        $value = esc_attr ($this->normalize ($instance[$name]));
         echo ("<p><label for=\"{$this->get_field_id ($name)}\">$caption</label>");
         echo ("<input class=\"widefat\" id=\"{$this->get_field_id ($name)}\" " .
               "name=\"{$this->get_field_name ($name)}\" type=\"text\" " .

@@ -2,16 +2,24 @@ module.exports = function (grunt) {
 
     var php_files = ['themes/**/*.php', 'plugins/**/*.php'];
 
+    var afs =  grunt.option ('afs') || process.env.GRUNT_CAPITULARIA_AFS || "/afs/rrz/vol/www/projekt/capitularia";
+
+    var localfs = grunt.option ('localfs') || process.env.GRUNT_CAPITULARIA_LOCALFS ||
+        "/var/www/capitularia";
+
+    var git_user = grunt.option ('gituser') || process.env.GRUNT_CAPITULARIA_GITUSER;
+
+    var browser = grunt.option ('browser') || process.env.GRUNT_BROWSER || "iceweasel";
+
     grunt.initConfig ({
-        afs: grunt.option ('afs') || process.env.GRUNT_CAPITULARIA_AFS ||
-            "/afs/rrz/vol/www/projekt/capitularia/http/docs/wp-content",
-        localfs: grunt.option ('localfs') || process.env.GRUNT_CAPITULARIA_LOCALFS ||
-            "/var/www/capitularia/wp-content",
-        rsync: "rsync -rlptz --exclude='*~' --exclude='.*' --exclude='*.less' --exclude='node_modules'",
-
-        browser: grunt.option ('browser') || process.env.GRUNT_BROWSER || "iceweasel",
-
-        pkg: grunt.file.readJSON ('package.json'),
+        afs:            afs,
+        localfs:        localfs,
+        browser:        browser,
+        rsync:          "rsync -rlptz --exclude='*~' --exclude='.*' --exclude='*.less' --exclude='node_modules'",
+        wpcontent:      afs     + "/http/docs/wp-content",
+        wpcontentlocal: localfs + "/wp-content",
+        gituser:        git_user,
+        pkg:            grunt.file.readJSON ('package.json'),
 
         less: {
             options: {
@@ -62,7 +70,7 @@ module.exports = function (grunt) {
                 text_domain: "capitularia",
                 encoding: "utf-8",
                 dest: 'themes/Capitularia/languages/',
-                keywords: ['__', '_n:1,2', '_x'],
+                keywords: ['__', '_e', '_n:1,2', '_x:1,2c'],
                 msgmerge: true,
             },
             files: {
@@ -92,10 +100,10 @@ module.exports = function (grunt) {
                 failOnError: false,
             },
             deploy: {
-                command: '<%= rsync %> themes/Capitularia/* <%= afs %>/themes/Capitularia/ ; <%= rsync %> plugins/cap-* <%= afs %>/plugins/',
+                command: '<%= rsync %> themes/Capitularia/* <%= wpcontent %>/themes/Capitularia/ ; <%= rsync %> plugins/cap-* <%= wpcontent %>/plugins/',
             },
             testdeploy: {
-                command: '<%= rsync %> themes/Capitularia/* <%= localfs %>/themes/Capitularia/ ; <%= rsync %> plugins/cap-* <%= localfs %>/plugins/',
+                command: '<%= rsync %> themes/Capitularia/* <%= wpcontentlocal %>/themes/Capitularia/ ; <%= rsync %> plugins/cap-* <%= wpcontentlocal %>/plugins/',
             },
             phpcs: {
                 /* PHP_CodeSniffer https://github.com/squizlabs/PHP_CodeSniffer */
@@ -116,6 +124,9 @@ module.exports = function (grunt) {
             sami: {
                 /* Sami Documentation Generator https://github.com/FriendsOfPHP/Sami */
                 command: 'vendor/bin/sami.php update tools/sami/config.php && <%= browser %> tools/reports/sami/build/index.html',
+            },
+            'git-fetch-collation': {
+                command: 'git clone https://<%= gituser %>@github.com/cceh/capitularia-collation.git <%= afs %>/local/capitularia-collation',
             },
         },
 
@@ -139,6 +150,7 @@ module.exports = function (grunt) {
     grunt.registerTask ('phpmd',      ['shell:phpmd']);
     grunt.registerTask ('phpmetrics', ['shell:phpmetrics']);
     grunt.registerTask ('sami',       ['shell:sami']);
+    grunt.registerTask ('git',        ['shell:git-fetch-collation']);
 
     grunt.registerTask ('lint',       ['phplint', 'jshint']);
     grunt.registerTask ('mo',         ['pot', 'potomo']);

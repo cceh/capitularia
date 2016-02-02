@@ -360,6 +360,19 @@ foreach ($xpath->query ('//script') as $script) {
 }
 
 //
+// Fix bogus xml:ids
+//
+
+$id_counter = 1000;
+foreach ($xpath->query ('//@id') as $id) {
+    if (preg_match ('/^[a-z][-.:\w]*$/i', $id->value)) {
+        continue;
+    }
+    $id->value = "id-cap-gen-$id_counter";
+    $id_counter++;
+}
+
+//
 // Output to stdout.
 //
 

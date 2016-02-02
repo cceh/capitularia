@@ -5,7 +5,9 @@
  * @package Capitularia
  */
 
-/*** Warning: this is a test page, not the real front page! ****/
+////////////////////////////////////////////////////////////
+// Warning: this is a test page, not the real front page! //
+////////////////////////////////////////////////////////////
 
 namespace cceh\capitularia\theme;
 

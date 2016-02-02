@@ -52,7 +52,8 @@ function get_slug_root ($page_id)
 function echo_attribute ($name, $value)
 {
     // Echoes: name="value"
-    echo ($name . '="' . esc_attr ($value) . '" ');
+    $value = esc_attr ($value);
+    echo (" $name=\"$value\"");
 }
 
 /**
@@ -308,14 +309,26 @@ add_action ('init', 'cceh\capitularia\theme\on_init_register_nav_menus');
  */
 
 $sidebars = array ();
-$sidebars[] = array ('frontpage-image',     'Frontpage Image',
-                     'The big splash image on the front page. Takes one Capitularia Logo Widget.');
-$sidebars[] = array ('frontpage-teaser-1',  'Frontpage Teaser Bar 1',
-                     'The top teaser bar on the front page. Normally takes 3 Capitularia Text Widgets.');
-$sidebars[] = array ('frontpage-teaser-2',  'Frontpage Teaser Bar 2',
-                     'The bottom teaser bar on the front page. Normally takes 2 Capitularia Image Widgets.');
-$sidebars[] = array ('logobar',             'Logo Bar',
-                     'The logo bar in the footer of every page. Takes one or more Capitularia Logo Widgets.');
+$sidebars[] = array (
+    'frontpage-image',
+    __ ('Frontpage Image', 'capitularia'),
+    __ ('The big splash image on the front page. Takes one Capitularia Logo Widget.', 'capitularia')
+);
+$sidebars[] = array (
+    'frontpage-teaser-1',
+    __ ('Frontpage Teaser Bar 1', 'capitularia'),
+    __ ('The top teaser bar on the front page. Normally takes 3 Capitularia Text Widgets.', 'capitularia')
+);
+$sidebars[] = array (
+    'frontpage-teaser-2',
+    __ ('Frontpage Teaser Bar 2', 'capitularia'),
+    __ ('The bottom teaser bar on the front page. Normally takes 2 Capitularia Image Widgets.', 'capitularia')
+);
+$sidebars[] = array (
+    'logobar',
+    __ ('Logo Bar', 'capitularia'),
+    __ ('The logo bar in the footer of every page. Takes one or more Capitularia Logo Widgets.', 'capitularia')
+);
 
 foreach ($sidebars as $a) {
     register_sidebar (
@@ -328,27 +341,57 @@ foreach ($sidebars as $a) {
 };
 
 $sidebars = array ();
-$sidebars[] = array ('post-sidebar',   'Post Sidebar',
-                     'The sidebar on posts.');
-$sidebars[] = array ('page-sidebar',   'Page Sidebar',
-                     'The sidebar on pages. Output below the more specialized page sidebars.');
-$sidebars[] = array ('sidebar',        'Post and Page Sidebar',
-                     'The sidebar on posts and pages. Output below the other sidebars.');
+$sidebars[] = array (
+    'post-sidebar',
+    __ ('Post Sidebar', 'capitularia'),
+    __ ('The sidebar on posts.', 'capitularia')
+);
+$sidebars[] = array (
+    'page-sidebar',
+    __ ('Page Sidebar', 'capitularia'),
+    __ ('The sidebar on pages. Output below the more specialized page sidebars.', 'capitularia')
+);
+$sidebars[] = array (
+    'sidebar',
+    __ ('Post and Page Sidebar', 'capitularia'),
+    __ ('The sidebar on posts and pages. Output below the other sidebars.', 'capitularia')
+);
 
-$sidebars[] = array ('capit',          'Capitularies Sidebar',
-                     'The sidebar on /capit/ pages.');
-$sidebars[] = array ('mss',            'Manuscripts Sidebar',
-                     'The sidebar on /mss/ pages.');
-$sidebars[] = array ('resources',      'Resources Sidebar',
-                     'The sidebar on /resources/ pages.');
-$sidebars[] = array ('project',        'Project Sidebar',
-                     'The sidebar on /project/ pages.');
-$sidebars[] = array ('internal',       'Internal Sidebar',
-                     'The sidebar on /internal/ pages.');
-$sidebars[] = array ('transcription',  'Transcription Sidebar',
-                     'The sidebar on transcription pages');
-$sidebars[] = array ('search',  'Search Page Sidebar',
-                     'The sidebar on the search page');
+$sidebars[] = array (
+    'capit',
+    __ ('Capitularies Sidebar', 'capitularia'),
+    __ ('The sidebar on /capit/ pages.', 'capitularia')
+);
+$sidebars[] = array (
+    'mss',
+    __ ('Manuscripts Sidebar', 'capitularia'),
+    __ ('The sidebar on /mss/ pages.', 'capitularia')
+);
+$sidebars[] = array (
+    'resources',
+    __ ('Resources Sidebar', 'capitularia'),
+    __ ('The sidebar on /resources/ pages.', 'capitularia')
+);
+$sidebars[] = array (
+    'project',
+    __ ('Project Sidebar', 'capitularia'),
+    __ ('The sidebar on /project/ pages.', 'capitularia')
+);
+$sidebars[] = array (
+    'internal',
+    __ ('Internal Sidebar', 'capitularia'),
+    __ ('The sidebar on /internal/ pages.', 'capitularia')
+);
+$sidebars[] = array (
+    'transcription',
+    __ ('Transcription Sidebar', 'capitularia'),
+    __ ('The sidebar on transcription pages', 'capitularia')
+);
+$sidebars[] = array (
+    'search',
+    __ ('Search Page Sidebar', 'capitularia'),
+    __ ('The sidebar on the search page', 'capitularia')
+);
 
 foreach ($sidebars as $a) {
     register_sidebar (
@@ -479,6 +522,44 @@ function on_shortcode_cap_image_server ($atts, $content)
 add_shortcode ('logged_in',        'cceh\capitularia\theme\on_shortcode_logged_in');
 add_shortcode ('logged_out',       'cceh\capitularia\theme\on_shortcode_logged_out');
 add_shortcode ('cap_image_server', 'cceh\capitularia\theme\on_shortcode_cap_image_server');
+
+
+/**
+ * Translate the archive widget month names
+ *
+ * @param string $month_year Link containing untranslated MMMMMMM YYYY
+ *
+ * @return string Link containing translated MMMMMMM YYYY
+ */
+
+function translate_month_year ($month_year)
+{
+    return preg_replace_callback (
+        '/^(.*?)(\w+)( \d{4}.*)$/',
+        function ($matches) {
+            return $matches[1] . __ ($matches[2], 'capitularia') . $matches[3];
+        },
+        $month_year
+    );
+}
+
+/* Dummy calls to get month names into .pot file. */
+
+__ ('January',   'capitularia');
+__ ('February',  'capitularia');
+__ ('March',     'capitularia');
+__ ('April',     'capitularia');
+__ ('May',       'capitularia');
+__ ('June',      'capitularia');
+__ ('July',      'capitularia');
+__ ('August',    'capitularia');
+__ ('September', 'capitularia');
+__ ('October',   'capitularia');
+__ ('November',  'capitularia');
+__ ('December',  'capitularia');
+
+add_filter ('get_archives_link', 'cceh\capitularia\theme\translate_month_year');
+
 
 /*
  * Widgets

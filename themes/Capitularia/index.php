@@ -26,7 +26,7 @@ while (have_posts ()) {
     echo ("  <header class='article-header $class-header'>\n");
     echo ("    <h2>$title</h2>\n");
     echo ("  </header>\n");
-    echo ("  <main class='$class'>\n");
+    echo ("  <div class='$class'>\n");
     if (is_single ()) {
         the_content ();
     } else {
@@ -37,7 +37,7 @@ while (have_posts ()) {
         }
         the_excerpt ();
     }
-    echo ("  </main>\n");
+    echo ("  </div>\n");
     echo ("</article>\n");
 }
 echo ("</div>\n");

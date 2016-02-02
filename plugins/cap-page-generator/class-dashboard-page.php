@@ -24,7 +24,9 @@ class Dashboard_Page
     /**
      * Constructor
      *
-     * @return Config
+     * @param Config $config The plugin configuration
+     *
+     * @return Dashboard_Page
      */
 
     public function __construct ($config)
@@ -64,7 +66,7 @@ class Dashboard_Page
         echo ("<ul>\n");
         foreach ($sections as $section) {
             $section_id = $section[0];
-            $caption    = $this->config->get_opt ($section_id, 'section_caption');
+            $caption    = __ ($this->config->get_opt ($section_id, 'section_caption'));
             $ajax_url   = admin_url ('admin-ajax.php');
             $class = $this->config->section_can ($section_id, 'publish') ? ' cap_can_publish' : ' cap_can_private';
             echo ("  <li>\n");
@@ -89,7 +91,7 @@ class Dashboard_Page
     public function display_section ($section)
     {
         $section_id = $section[0];
-        $caption    = $this->config->get_opt ($section_id, 'section_caption');
+        $caption    = __ ($this->config->get_opt ($section_id, 'section_caption'));
         $xml_dir    = $this->config->get_opt_path ('xml_root', $section_id, 'xml_dir');
         echo ("<div id='tabs-$section_id'>\n");
         echo ("<h2>$caption</h2>\n");
@@ -194,7 +196,7 @@ class Dashboard_Page
     /**
      * Ajax endpoint
      *
-     * Handles AJAX-loading of jquery-ui tas.
+     * Handles AJAX-loading of jquery-ui tabs.
      *
      * @return void
      */

@@ -22,9 +22,9 @@ while (have_posts ()) {
     echo ('    <h2>' . get_the_title () . "</h2>\n");
     echo ("  </header>\n");
 
-    echo ("  <main class='page'>\n");
+    echo ("  <div class='page'>\n");
     the_content ();
-    echo ("  </main>\n");
+    echo ("  </div>\n");
     echo ("</article>\n");
 }
 

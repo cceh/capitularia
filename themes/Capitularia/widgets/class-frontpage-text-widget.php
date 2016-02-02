@@ -26,6 +26,7 @@ class Frontpage_Text_Widget extends Frontpage_Widget_Base
             $widget_ops
         );
         unset ($this->options['image']);
+        unset ($this->options['image-tooltip']);
     }
 
     protected function the_widget_image ($dummy_args, $dummy_instance)

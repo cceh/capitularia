@@ -19,19 +19,14 @@ namespace cceh\capitularia\meta_search;
 
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
+require_once 'functions.php';
+require_once 'class-extractor.php';
+require_once 'class-highlighter.php';
+require_once 'class-settings-page.php';
 require_once 'class-meta-search-widget.php';
-require_once 'class-meta-search.php';
 
-$i = Meta_Search::get_instance ();
+init ();
 
-$class_name = 'cceh\capitularia\meta_search\Meta_Search';
-register_activation_hook   (__FILE__, array ($class_name, 'on_activation'));
-register_deactivation_hook (__FILE__, array ($class_name, 'on_deactivation'));
-register_uninstall_hook    (__FILE__, array ($class_name, 'on_uninstall'));
-
-add_action (
-    'widgets_init',
-    function () {
-        register_widget ('cceh\capitularia\meta_search\Widget');
-    }
-);
+register_activation_hook   (__FILE__, ns ('on_activation'));
+register_deactivation_hook (__FILE__, ns ('on_deactivation'));
+register_uninstall_hook    (__FILE__, ns ('on_uninstall'));
