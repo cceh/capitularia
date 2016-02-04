@@ -1,5 +1,13 @@
 table.collation {
     border-collapse: collapse;
+    margin: 1em 0;
+    width: 100%;
+    page-break-inside: avoid;
+
+    &.last {
+	width: 1%;
+    }
+
     tr {
 	background-color: #fff;
 	&:nth-child(even) {
@@ -19,11 +27,30 @@ table.collation {
     td {
 	text-align: center;
 	&.equal {
-	    opacity: 0.33;
+	    color: fade(#444, 33%);
 	}
+    }
+    th {
+	padding: 0.2em 0.5em;
+	text-align: left;
+	width: 1%;
     }
     span.missing::before {
 	content: '\2014';
+    }
+}
+
+@media print {
+    #adminmenumain,
+    div.no-print {
+	display: none;
+    }
+    #wpcontent, #wpfooter {
+	margin-left: 0;
+    }
+    html, body {
+	background-color: white;
+	font-size: 10pt;
     }
 }
 
@@ -32,7 +59,6 @@ div.debug {
 }
 
 div.collation {
-
     table {
 	border: solid 1px;
 	border-collapse: collapse;

@@ -29,16 +29,16 @@ function on_cap_load_sections () {
 function on_cap_load_manuscripts () {
     var data = {
         'action':         'on_cap_load_manuscripts',      /* the AJAX action */
-        'corresp':        jQuery ('#section').val (),
-        'algorithm':      jQuery ('#algorithm').val (),
-        'levenshtein':    jQuery ('#levenshtein').val (),
-        'proportional_levenshtein':    jQuery ('#proportional_levenshtein').val (),
-        'segmentation':   jQuery ('#segmentation').prop ('checked'),
-        'transpositions': jQuery ('#transpositions').prop ('checked'),
+        'corresp':              jQuery ('#section').val (),
+        'algorithm':            jQuery ('#algorithm').val (),
+        'levenshtein_distance': jQuery ('#levenshtein_distance').val (),
+        'levenshtein_ratio':    jQuery ('#levenshtein_ratio').val (),
+        'segmentation':         jQuery ('#segmentation').prop ('checked'),
+        'transpositions':       jQuery ('#transpositions').prop ('checked'),
     };
     data[ajax_object.ajax_nonce_param_name] = ajax_object.ajax_nonce;
 
-    var div = jQuery ('#collation-manuscripts');
+    var div = jQuery ('#collation-tables');
     div.html ('<div class="spinner-div"><span class="spinner is-active" /></div>');
 
     jQuery.ajax ({

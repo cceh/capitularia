@@ -1,6 +1,12 @@
 /* Generated file. Do not edit. */
 table.collation {
   border-collapse: collapse;
+  margin: 1em 0;
+  width: 100%;
+  page-break-inside: avoid;
+}
+table.collation.last {
+  width: 1%;
 }
 table.collation tr {
   background-color: #fff;
@@ -22,10 +28,30 @@ table.collation td {
   text-align: center;
 }
 table.collation td.equal {
-  opacity: 0.33;
+  color: rgba(68, 68, 68, 0.33);
+}
+table.collation th {
+  padding: 0.2em 0.5em;
+  text-align: left;
+  width: 1%;
 }
 table.collation span.missing::before {
   content: '\2014';
+}
+@media print {
+  #adminmenumain,
+  div.no-print {
+    display: none;
+  }
+  #wpcontent,
+  #wpfooter {
+    margin-left: 0;
+  }
+  html,
+  body {
+    background-color: white;
+    font-size: 10pt;
+  }
 }
 div.debug {
   display: none;

@@ -141,24 +141,67 @@ class CollateX
     }
 
     /**
-     * Format a CollateX table into HTML
+     * Calculate the cell width in characters
      *
-     * @param array $data The CollateX table
+     * @param array $cell The array of tokens
      *
-     * @return string The HTML table
+     * @return integer The width in characters
      */
 
-    public function format_table ($data)
+    private function cell_width ($cell)
+    {
+        $tmp = '';
+        foreach ($cell as $token) {
+            $tmp .= $token['t'];
+        }
+        return strlen (trim ($tmp));
+    }
+
+    /**
+     * Split a table every n columns
+     *
+     * @param array   $in_table  The table to split
+     * @param integer $max_width Split after this many characters
+     *
+     * @return array An array of tables
+     */
+
+    public function split_table ($in_table, $max_width)
+    {
+        $out_tables = array ();
+        $n_cols = count ($in_table);
+
+        $width = $max_width + 1;
+        for ($c = 0; $c < $n_cols; $c++) {
+            $column = $in_table[$c];
+            $column_width = max (array_map (array ($this, 'cell_width'), $column));
+            if ($width + $column_width > $max_width) {
+                // ArrayObject because of reference copying
+                $out_tables[] = $table = new \ArrayObject ();
+                $width = 0;
+            }
+            $table->append ($column);
+            $width += $column_width;
+        }
+        return $out_tables;
+    }
+
+    /**
+     * Format a CollateX table into HTML
+     *
+     * @param array $witnesses The witnesses
+     * @param array $table     The collation table in row orientation
+     *
+     * @return string[] The rows of the HTML table
+     */
+
+    public function format_table ($witnesses, $table)
     {
         $out = array ();
-
-        $out[] = '<table class="collation">';
-
-        $table  = $data['table'];
         $n_witnesses = count ($table);
         for ($w = 0; $w < $n_witnesses; $w++) {
             $row = $table[$w];
-            $witness = esc_attr ($data['witnesses'][$w]);
+            $witness = esc_attr ($witnesses[$w]);
             $out[] = "<tr title='$witness'>";
             $out[] = "<th class='witness'>$witness</th>";
             $n_segments = count ($row);
@@ -181,11 +224,6 @@ class CollateX
             }
             $out[] = '</tr>';
         }
-
-        $out[] = '</table>';
-
-        $out[] = esc_html ($json_out);
-
-        return implode ("\n", $out);
+        return $out;
     }
 }

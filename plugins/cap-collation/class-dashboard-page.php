@@ -7,14 +7,7 @@
 
 namespace cceh\capitularia\collation;
 
-const COLLATION_ROOT  = AFS_ROOT . '/local/capitularia-collation';
-
-const ALGORITHMS = array (
-    'dekker'           => 'Dekker',
-    'gst'              => 'Greedy String Tiling',
-    'medite'           => 'MEDITE',
-    'needleman-wunsch' => 'Needleman-Wunsch',
-);
+const COLLATION_ROOT = AFS_ROOT . '/local/capitularia-collation';
 
 /**
  * Implements the dashboard page.
@@ -27,12 +20,39 @@ const ALGORITHMS = array (
 
 class Dashboard_Page
 {
+    private $algorithms;
 
-    private function sort_results ($results)
+    /**
+     * Constructor
+     *
+     * @return Dashboard_Page
+     */
+
+    public function __construct ()
+    {
+        $this->algorithms = array (
+            'dekker'           => _x ('Dekker',               'Collation Algorithm', 'capitularia'),
+            'gst'              => _x ('Greedy String Tiling', 'Collation Algorithm', 'capitularia'),
+            'medite'           => _x ('MEDITE',               'Collation Algorithm', 'capitularia'),
+            'needleman-wunsch' => _x ('Needleman-Wunsch',     'Collation Algorithm', 'capitularia'),
+        );
+    }
+
+    /**
+     * Sort strings with numbers
+     *
+     * Sort the numbers in the strings in a sensible way, eg. BK1, BK2, BK10.
+     *
+     * @param array $unsorted The return fron an SQL query
+     *
+     * @return string[] The sorted array of strings
+     */
+
+    private function sort_results ($unsorted)
     {
         // Add a key to all objects in the array that allows for sensible
         // sorting of numeric substrings.
-        foreach ($results as $res) {
+        foreach ($unsorted as $res) {
             $res->key = preg_replace_callback (
                 '|\d+|',
                 function ($match) {
@@ -44,7 +64,7 @@ class Dashboard_Page
 
         // Sort the array according to key.
         usort (
-            $results,
+            $unsorted,
             function ($res1, $res2) {
                 return strcoll ($res1->key, $res2->key);
             }
@@ -54,9 +74,15 @@ class Dashboard_Page
             function ($s) {
                 return $s->meta_value;
             },
-            $results
+            $unsorted
         );
     }
+
+    /**
+     * Get a list of all capitulars
+     *
+     * @return string[] All capitulars
+     */
 
     private function get_capitulars ()
     {
@@ -67,6 +93,14 @@ class Dashboard_Page
 
         return $this->sort_results ($wpdb->get_results ($sql));
     }
+
+    /**
+     * Get a list of all sections of a capitular
+     *
+     * @param string $bk The capitular
+     *
+     * @return string[] The sections in the capitular
+     */
 
     private function get_sections ($bk)
     {
@@ -83,7 +117,15 @@ class Dashboard_Page
         return $this->sort_results ($wpdb->get_results ($sql));
     }
 
-    private function get_collation_items ($corresp)
+    /**
+     * Get all witnesses for a Corresp
+     *
+     * @param string $corresp The corresp eg. 'BK123_4'
+     *
+     * @return Witness[] The witnesses
+     */
+
+    private function get_witnesses ($corresp)
     {
         global $wpdb;
         $items = array ();
@@ -113,6 +155,19 @@ class Dashboard_Page
     }
 
     /**
+     * Return 'on' or 'off'
+     *
+     * @param boolean $bool The status
+     *
+     * @return string The localized message
+     */
+
+    private function on_off ($bool)
+    {
+        return $bool ? __ ('on', 'capitularia') : __ ('off', 'capitularia');
+    }
+
+    /**
      * Output dashboard page.
      *
      * @return void
@@ -125,14 +180,14 @@ class Dashboard_Page
 
         $title = esc_html (get_admin_page_title ());
         $html[] = "  <h1>$title</h1>";
-        $html[] = '<div>';
-        $caption = _x ('Capitulary', 'H2 caption', 'capitularia');
-        $html[] = "<h2>$caption</h2>";
-        $page = DASHBOARD_PAGE_ID;
+        $html[] = '<div class="inner-wrap">';
 
         // AJAX form for Capitulary selection. Loads sections list.
 
-        $html[] = '<div class="collation-capitulary">';
+        $html[] = '<div id="collation-capitulary" class="collation-capitulary no-print">';
+        $caption = _x ('Capitulary', 'H2 caption', 'capitularia');
+        $html[] = "<h2>$caption</h2>";
+        $page = DASHBOARD_PAGE_ID;
         $html[] = '<form onsubmit="return on_cap_load_sections()">';
         $html[] = "<input type='hidden' name='page' value='{$page}' />";
 
@@ -148,7 +203,7 @@ class Dashboard_Page
 
         $html[] = '<td>';
         $capitulars = $this->get_capitulars ();
-        $html[] = '<select id="bk" name="bk">';
+        $html[] = '<select id="bk" name="bk" onchange="on_cap_load_sections()">';
         foreach ($capitulars as $capitular) {
             $capitular = esc_attr ($capitular);
             $html[] = "<option value='$capitular'>$capitular</option>";
@@ -176,13 +231,7 @@ class Dashboard_Page
         // Placeholder for AJAX-retrieved section list.  The previous form will
         // load into this.  This will then contain code to load the next section.
 
-        $html[] = '<div id="collation-sections" class="collation-sections">';
-        $html[] = '</div>';
-
-        // Placeholder for AJAX-retrieved collation manuscripts.  The previous div will
-        // load into this.  This will then contain code to load the next section.
-
-        $html[] = '<div id="collation-manuscripts" class="collation-manuscripts">';
+        $html[] = '<div id="collation-sections" class="collation-sections no-print">';
         $html[] = '</div>';
 
         // Placeholder for AJAX-retrieved collation tables.  The previous div will
@@ -209,7 +258,7 @@ class Dashboard_Page
     {
         $bk = $_REQUEST['bk'];
 
-        $html = array ('<div class="collation-sections">');
+        $html = array ('<div class="collation-sections no-print">');
         $caption = _x ('Section', 'H2 caption', 'capitularia');
         $html[] = "<h2>$caption</h2>";
         $html[] = '<form onsubmit="return on_cap_load_manuscripts()">';
@@ -242,8 +291,10 @@ class Dashboard_Page
         $html[] = '</td>';
         $html[] = '<td>';
         $html[] = '<select id="algorithm" name="algorithm">';
-        foreach (ALGORITHMS as $algo => $algorithm) {
-            $html[] = "<option value='$algo'>$algorithm</option>";
+        $default = 'needleman-wunsch';
+        foreach ($this->algorithms as $algo => $algorithm) {
+            $def = ($algo == $default) ? ' selected="selected"' : '';
+            $html[] = "<option value='$algo'$def>$algorithm</option>";
         }
         $html[] = '</select>';
         $html[] = '</td>';
@@ -254,28 +305,31 @@ class Dashboard_Page
         $html[] = '<tr>';
         $html[] = '<td>';
         $caption = _x ('Select Levenshtein distance', 'Label: for drop-down', 'capitularia');
-        $html[] = "<label for='levenshtein'>$caption</label>";
+        $html[] = "<label for='levenshtein_distance'>$caption</label>";
         $html[] = '</td>';
         $html[] = '<td>';
-        $html[] = '<select id="levenshtein" name="levenshtein">';
+        $html[] = '<select id="levenshtein_distance" name="levenshtein_distance">';
         for ($i = 0; $i < 5; $i++) {
             $html[] = "<option value='$i'>$i</option>";
         }
         $html[] = '</select>';
+        $html[] = _x ('or', 'Either this or that, not both.', 'capitularia');
         $html[] = '</td>';
         $html[] = '</tr>';
 
-        // Proportional Levenshtein distance
+        // Levenshtein ratio
 
         $html[] = '<tr>';
         $html[] = '<td>';
-        $caption = _x ('Select proportional Levenshtein distance', 'Label: for drop-down', 'capitularia');
-        $html[] = "<label for='proportional_levenshtein'>$caption</label>";
+        $caption = _x ('Select Levenshtein ratio', 'Label: for drop-down', 'capitularia');
+        $html[] = "<label for='levenshtein_ratio'>$caption</label>";
         $html[] = '</td>';
         $html[] = '<td>';
-        $html[] = '<select id="proportional_levenshtein" name="proportional_levenshtein">';
-        foreach (explode (' ', '0.0 0.1 0.2 0.25 0.3 0.4 0.5') as $i) {
-            $html[] = "<option value='$i'>$i</option>";
+        $html[] = '<select id="levenshtein_ratio" name="levenshtein_ratio">';
+        $default = '0.6';
+        foreach (explode (' ', '1.0 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 0.1') as $i) {
+            $def = ($i == $default) ? ' selected="selected"' : '';
+            $html[] = "<option value='$i'$def>$i</option>";
         }
         $html[] = '</select>';
         $html[] = '</td>';
@@ -342,21 +396,19 @@ class Dashboard_Page
 
     public function on_cap_load_manuscripts ()
     {
-        $corresp      = $_REQUEST['corresp'];
-        $algorithm    = isset ($_REQUEST['algorithm']) ? $_REQUEST['algorithm'] : 'default';
-        if (!array_key_exists ($algorithm, ALGORITHMS)) {
+        $status = array (); // the status message for the user
+
+        $corresp = $_REQUEST['corresp'];
+        $items = $this->get_witnesses ($corresp);
+
+        $algorithm = isset ($_REQUEST['algorithm']) ? $_REQUEST['algorithm'] : 'default';
+        if (!array_key_exists ($algorithm, $this->algorithms)) {
             $algorithm = 'needleman-wunsch';
         }
-        $levenshtein    = intval (isset ($_REQUEST['levenshtein']) ? $_REQUEST['levenshtein'] : 0);
-        $levenshtein    = max (min ($levenshtein, 10), 0);
-        $p_levenshtein  = doubleval (
-            isset ($_REQUEST['proportional_levenshtein']) ?
-            $_REQUEST['proportional_levenshtein'] : 0.0
-        );
-        $p_levenshtein  = max (min ($p_levenshtein, 1.0), 0.0);
+        $status[] = sprintf (__ ('Algorithm: %s', 'capitularia'), $this->algorithms[$algorithm]);
+
         $segmentation   = $_REQUEST['segmentation']   == 'true';
         $transpositions = $_REQUEST['transpositions'] == 'true';
-        $items = $this->get_collation_items ($corresp);
 
         $witnesses = array ();
         foreach ($items as $item) {
@@ -370,15 +422,39 @@ class Dashboard_Page
             'witnesses' => $witnesses,
             'algorithm' => $algorithm,
         );
-        // !!! tokenComparator works only in our custom patched version !!!
-        if ($levenshtein > 0) {
-            $json['tokenComparator'] = array ('type' => 'levenshtein', 'distance' => $levenshtein);
+
+        // !!! tokenComparators works only in our custom patched version !!!
+
+        if (isset ($_REQUEST['levenshtein_distance'])) {
+            $dist = intval ($_REQUEST['levenshtein_distance']);
+            $dist = max (min ($dist, 10), 0);
+            $json['tokenComparator'] = array (
+                'type' => 'levenshtein',
+                'distance' => $dist,
+            );
+            $status[] = sprintf (__ ('Levenshtein distance: %s', 'capitularia'), $dist);
         }
-        if ($p_levenshtein > 0.0) {
-            $json['tokenComparator'] = array ('type' => 'proportional_levenshtein', 'distance' => $p_levenshtein);
+
+        if (isset ($_REQUEST['levenshtein_ratio'])) {
+            $ratio = doubleval ($_REQUEST['levenshtein_ratio']);
+            $ratio = max (min ($ratio, 1.0), 0.0);
+            $json['tokenComparator'] = array (
+                'type' => 'levenshtein',
+                'ratio' => $ratio,
+            );
+            $status[] = sprintf (__ ('Levenshtein ratio: %s', 'capitularia'), $ratio);
         }
+
         $json['joined']         = $segmentation;
         $json['transpositions'] = $transpositions;
+        $status[] = sprintf (
+            _x ('Segmentation: %s',   '%s = on off', 'capitularia'),
+            $this->on_off ($segmentation)
+        );
+        $status[] = sprintf (
+            _x ('Transpositions: %s', '%s = on off', 'capitularia'),
+            $this->on_off ($transpositions)
+        );
 
         $json_in = json_encode ($json, JSON_PRETTY_PRINT);
 
@@ -389,10 +465,24 @@ class Dashboard_Page
         if ($ret['error_code'] == 0) {
             $caption = sprintf (__ ('Collation output for %s', 'capitularia'), $corresp);
             $tmp[] = "<h2>$caption</h2>";
-            $tmp[] = "Algorithm: $algorithm Levenshtein: $levenshtein Prop_Levenshtein: $p_levenshtein";
             $data = json_decode ($ret['stdout'], true);
-            $data['table'] = $collatex->invert_table ($data['table']);
-            $tmp[] = $collatex->format_table ($data);
+            $tables = $collatex->split_table ($data['table'], 80);
+            $n_tables = count ($tables);
+            for ($n = 0; $n < $n_tables; $n++) {
+                $class = 'collation';
+                $class .= ($n == 0) ? ' first' : '';
+                $class .= ($n == $n_tables - 1) ? ' last' : '';
+                $tmp[] = "<table class='$class'>";
+                $tmp = array_merge (
+                    $tmp,
+                    $collatex->format_table (
+                        $data['witnesses'],
+                        $collatex->invert_table ($tables[$n])
+                    )
+                );
+                $tmp[] = '</table>';
+            }
+            $tmp[] = '<p>' . implode (', ', $status) . '</p>';
         } else {
             $tmp[] = '<h2>CollateX Error</h2>';
             $tmp[] = esc_html ($ret['error_code'] . ' ' . $ret['stdout'] . ' ' . $ret['stderr']);
