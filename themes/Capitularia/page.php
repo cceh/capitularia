@@ -36,7 +36,7 @@ echo ("    <ul>\n");
 // or slug and taxonomy (new method).
 
 // The sidebars to choose from. Only one of these gets displayed.
-$cap_sidebars = array ('capit', 'mss', 'resources', 'project', 'internal', 'transcription');
+$cap_sidebars = array ('capit', 'mss', 'resources', 'project', 'internal', 'transcription', 'capitular');
 
 // FIXME: compatibility to old system of sidebar-selection through page template
 $cap_template_map = array (
@@ -61,24 +61,27 @@ if (isset ($cap_template_map[$cap_template])) {
     $cap_templates[] = $cap_template_map[$cap_template];
 } else {
     // new method: use page slug
-    $cap_templates[] = get_slug_root ($post);
+    $cap_templates[] = get_slug_root ($post->ID);
 }
 
 // FIXME: stopgap measure until we have a reliable taxonomy
+/*
 $cap_tags = get_the_tags ($post->ID);
-if (is_array ($cap_tags)) {
+if (is_array ($cap_tags) && get_slug_root ($post->ID) == 'mss') {
     foreach ($cap_tags as $cap_tag) {
         if ($cap_tag->name == 'XML') {
             $cap_templates = array ('transcription');
         }
     }
 }
+*/
 
-// You can override the selection by assigning a term in the cap-sidebar
-// taxonomy.
+// You can override the default selection by slug if you assign terms in the
+// cap-sidebar taxonomy.
 
 $terms = get_the_terms ($post->ID, 'cap-sidebar');
 if ($terms && !is_wp_error ($terms)) {
+    $cap_templates = array ();
     foreach ($terms as $term) {
         if (in_array ($term->name, $cap_sidebars)) {
             $cap_templates[] = $term->name;

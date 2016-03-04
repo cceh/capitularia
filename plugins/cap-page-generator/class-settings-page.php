@@ -83,7 +83,7 @@ class Settings_Page
         echo ("      <ul>\n");
         foreach ($this->config->sections as $section) {
             $section_id = $section[0];
-            $caption    = $this->config->get_opt ($section_id, 'section_caption', $section_id);
+            $caption    = __ ($this->config->get_opt ($section_id, 'section_caption', $section_id));
             echo ("<li><a href='#tabs-$section_id'>$caption</a></li>\n");
         }
         echo ("      </ul>\n");
@@ -91,7 +91,7 @@ class Settings_Page
         // Output the ui-widget-content
         foreach ($this->config->sections as $section) {
             $section_id = $section[0];
-            $caption    = $this->config->get_opt ($section_id, 'section_caption', $section_id);
+            $caption    = __ ($this->config->get_opt ($section_id, 'section_caption', $section_id));
             echo ("      <div id='tabs-$section_id'>\n");
             echo ("        <h2>$caption</h2>\n");
             echo ('        <table class="form-table">');

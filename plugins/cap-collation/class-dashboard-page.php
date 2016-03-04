@@ -31,10 +31,11 @@ class Dashboard_Page
     public function __construct ()
     {
         $this->algorithms = array (
-            'dekker'           => _x ('Dekker',               'Collation Algorithm', 'capitularia'),
-            'gst'              => _x ('Greedy String Tiling', 'Collation Algorithm', 'capitularia'),
-            'medite'           => _x ('MEDITE',               'Collation Algorithm', 'capitularia'),
-            'needleman-wunsch' => _x ('Needleman-Wunsch',     'Collation Algorithm', 'capitularia'),
+            'dekker'               => _x ('Dekker',               'Collation Algorithm', 'capitularia'),
+            'gst'                  => _x ('Greedy String Tiling', 'Collation Algorithm', 'capitularia'),
+            'medite'               => _x ('MEDITE',               'Collation Algorithm', 'capitularia'),
+            'needleman-wunsch'     => _x ('Needleman-Wunsch',     'Collation Algorithm', 'capitularia'),
+            'new-needleman-wunsch' => _x ('New Needleman-Wunsch', 'Collation Algorithm', 'capitularia'),
         );
     }
 
@@ -151,6 +152,40 @@ class Dashboard_Page
                 $items[] = new Witness ($corresp, $xml_id, $xml_filename);
             }
         }
+
+        // sort according to $xml_id
+        usort (
+            $items,
+            function ($item1, $item2) {
+                return strcoll ($item1->sort_key, $item2->sort_key);
+            }
+        );
+
+        return $items;
+    }
+
+    /**
+     * Get witnesses for a Corresp in a predetermined order
+     *
+     * @param string $corresp The corresp eg. 'BK123_4'
+     * @param array  $order   An array of xml ids
+     *
+     * @return Witness[] The ordered witnesses
+     */
+
+    private function get_witnesses_ordered_like ($corresp, $order)
+    {
+        $witnesses = $this->get_witnesses ($corresp);
+        $items = array ();
+
+        foreach ($order as $xml_id) {
+            foreach ($witnesses as $witness) {
+                if ($witness->xml_id == $xml_id) {
+                    $items[] = $witness;
+                }
+            }
+        }
+
         return $items;
     }
 
@@ -234,6 +269,12 @@ class Dashboard_Page
         $html[] = '<div id="collation-sections" class="collation-sections no-print">';
         $html[] = '</div>';
 
+        // Placeholder for AJAX-retrieved manuscript list.  The previous form will
+        // load into this.  This will then contain code to load the next section.
+
+        $html[] = '<div id="manuscripts-div" class="manuscripts-div no-print">';
+        $html[] = '</div>';
+
         // Placeholder for AJAX-retrieved collation tables.  The previous div will
         // load into this.  This is the stuff the user wants to see.
 
@@ -273,7 +314,7 @@ class Dashboard_Page
         $html[] = '</td>';
         $html[] = '<td>';
         $sections = $this->get_sections ($bk);
-        $html[] = '<select id="section" name="section">';
+        $html[] = '<select id="section" name="section" onchange="on_cap_load_manuscripts()">';
         foreach ($sections as $section) {
             $section = esc_attr ($section);
             $html[] = "<option value='$section'>$section</option>";
@@ -282,8 +323,98 @@ class Dashboard_Page
         $html[] = '</td>';
         $html[] = '</tr>';
 
+        // Collate button
+
+        $html[] = '<tr>';
+        $html[] = '<td>';
+        $html[] = '</td>';
+        $html[] = '<td>';
+        $html[] = get_submit_button (
+            _x ('Show manuscripts', 'Button: Show manuscripts', 'capitularia'),
+            'primary',
+            'submit',
+            false
+        );
+        $html[] = '</td>';
+        $html[] = '</tr>';
+
+        $html[] = '</table>';
+        $html[] = '</form>';
+        $html[] = '</div>';
+
+        $json = array (
+            'success' => true,
+            'message' => '',
+            'html' => implode ("\n", $html),
+        );
+        wp_send_json ($json);
+    }
+
+    /**
+     * Ajax endpoint
+     *
+     * Handles AJAX-loading of the manuscripts of a section.
+     *
+     * @return void
+     */
+
+    public function on_cap_load_manuscripts ()
+    {
+        $corresp = $_REQUEST['corresp'];
+
+        $html = array ('<div>');
+        $caption = _x ('Manuscripts', 'H2 caption', 'capitularia');
+        $html[] = "<h2>$caption</h2>";
+        $caption = __ ('Drag and drop to sort and move between lists.', 'capitularia');
+        $html[] = "<p>$caption</p>";
+
+        $html[] = '<form onsubmit="return on_cap_load_collation()">';
+
+        // Table of manuscripts for collation
+        $html[] = '<div class="ui-helper-clearfix">';
+        $html[] = '<table class="manuscripts manuscripts-collated">';
+
+        $html[] = '<thead>';
+        $html[] = '<tr>';
+        $html[] = '<td>';
+        $html[] = __ ('Manuscripts to collate', 'capitularia');
+        $html[] = '</td>';
+        $html[] = '</tr>';
+        $html[] = '</thead>';
+
+        $html[] = '<tbody>';
+        $items = $this->get_witnesses ($corresp);
+        foreach ($items as $item) {
+            $html[] = "<tr data-siglum='$item->xml_id'>";
+            $html[] = '<td>';
+            $html[] = $item->xml_id;
+            $html[] = '</td>';
+            $html[] = '</tr>';
+        }
+        $html[] = '</tbody>';
+        $html[] = '</table>';
+
+        // Table of manuscripts to ignore
+
+        $html[] = '<table class="manuscripts manuscripts-ignored">';
+
+        $html[] = '<thead>';
+        $html[] = '<tr>';
+        $html[] = '<td>';
+        $html[] = __ ('Manuscripts to ignore', 'capitularia');
+        $html[] = '</td>';
+        $html[] = '</tr>';
+        $html[] = '</thead>';
+
+        $html[] = '<tbody>';
+        $html[] = '</tbody>';
+        $html[] = '</table>';
+
+        $html[] = '</div>';
+
         // Algorithm
 
+        $html[] = '<table>';
         $html[] = '<tr>';
         $html[] = '<td>';
         $caption = _x ('Select Collation Algorithm', 'Label: for drop-down', 'capitularia');
@@ -291,7 +422,8 @@ class Dashboard_Page
         $html[] = '</td>';
         $html[] = '<td>';
         $html[] = '<select id="algorithm" name="algorithm">';
-        $default = 'needleman-wunsch';
+        $default = 'new-needleman-wunsch';
+        $default = 'dekker';
         foreach ($this->algorithms as $algo => $algorithm) {
             $def = ($algo == $default) ? ' selected="selected"' : '';
             $html[] = "<option value='$algo'$def>$algorithm</option>";
@@ -371,6 +503,17 @@ class Dashboard_Page
             'submit',
             false
         );
+        $html[] = str_replace (
+            'type="submit"',
+            'type="button"',
+            get_submit_button (
+                _x ('Save Config', 'Button: Save the collation config', 'capitularia'),
+                'save',
+                'save',
+                false,
+                array ('onclick' => 'return save_params()')
+            )
+        );
         $html[] = '</td>';
         $html[] = '</tr>';
 
@@ -394,16 +537,18 @@ class Dashboard_Page
      * @return void
      */
 
-    public function on_cap_load_manuscripts ()
+    public function on_cap_load_collation ()
     {
         $status = array (); // the status message for the user
 
-        $corresp = $_REQUEST['corresp'];
-        $items = $this->get_witnesses ($corresp);
+        $corresp     = $_REQUEST['corresp'];
+        $manuscripts = $_REQUEST['manuscripts'];
+        // $items = $this->get_witnesses ($corresp);
+        $items = $this->get_witnesses_ordered_like ($corresp, $manuscripts);
 
         $algorithm = isset ($_REQUEST['algorithm']) ? $_REQUEST['algorithm'] : 'default';
         if (!array_key_exists ($algorithm, $this->algorithms)) {
-            $algorithm = 'needleman-wunsch';
+            $algorithm = 'new-needleman-wunsch';
         }
         $status[] = sprintf (__ ('Algorithm: %s', 'capitularia'), $this->algorithms[$algorithm]);
 
@@ -477,7 +622,8 @@ class Dashboard_Page
                     $tmp,
                     $collatex->format_table (
                         $data['witnesses'],
-                        $collatex->invert_table ($tables[$n])
+                        $collatex->invert_table ($tables[$n]),
+                        $manuscripts
                     )
                 );
                 $tmp[] = '</table>';

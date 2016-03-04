@@ -25,17 +25,20 @@ var inPrintMode = false;
                 return;
             }
             $(this).addClass ('ssdone');
+
+            var href = $(this).attr ('href');
+            if (href === undefined) {
+                return;
+            }
+            href = href.replace ('.', '\\.');
+            var io = href.indexOf ('#');
+            // only act on page-internal links
+            if (io !== 0) {
+                return;
+            }
+            $(this).addClass ('sscontrolled');
+
             $(this).click (function () {
-                var href = $(this).attr ('href');
-                if (href === undefined) {
-                    return;
-                }
-                href = href.replace ('.', '\\.');
-                var io = href.indexOf ('#');
-                if (io == -1) {
-                    return;
-                }
-                href = href.substr (io);
                 var target = $(href);
                 if (target.length > 0) {
                     var off = target.first ().offset ().top;

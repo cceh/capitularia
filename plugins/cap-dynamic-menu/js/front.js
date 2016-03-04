@@ -22,6 +22,7 @@
             var href = $(this).attr ("href") || '';
             // jquery interprets #BK.123 as selector id=BK and class=123
             href = href.replace ('.', '\\.');
+            href = href.replace (',', '\\,');
             href = href.replace (':', '\\:');
             if (href && $(href).length === 0) {
                 $(this).parent ().parent ().css ("display", "none");

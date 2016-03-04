@@ -164,9 +164,50 @@ class Highlighter
                     $terms = array_map (array ($this, 'escape_search_term'), explode (' ', $args['s']));
                     $regex = implode ('|', $terms);
                     $regex = "#$regex#ui";
-                    // error_log ("Highlight regex = $regex");
-                    // FIXME: BUG: don't replace in attributes, eg. href
-                    $content = preg_replace ($regex, '<mark>${0}</mark>', $content);
+
+                    // The naive approach:
+                    //
+                    //   return preg_replace ($regex, '<mark>${0}</mark>', $content);
+                    //
+                    // did not work because we were also replacing text in HTML
+                    // tags and attributes.  This whole rigmarole is needed so
+                    // we can parse the content as HTML and then search the text
+                    // nodes only.
+
+                    $doc = new \DomDocument ();
+
+                    // keep server error log small (seems to be a problem at uni-koeln.de)
+                    libxml_use_internal_errors (true);
+
+                    $doc->loadHTML (
+                        "<?xml encoding='UTF-8'>\n<div id='dropme'>\n" .
+                        $content . "</div>\n",
+                        LIBXML_NONET
+                    );
+                    foreach ($doc->childNodes as $item) {
+                        if ($item->nodeType == XML_PI_NODE) {
+                            $doc->removeChild ($item); // remove xml declaration
+                        }
+                    }
+                    $doc->encoding = 'UTF-8'; // insert proper encoding
+
+                    $xpath  = new \DOMXpath ($doc);
+                    $text_nodes = $xpath->query ('//text()');
+                    foreach ($text_nodes as $text_node) {
+                        $text = $text_node->textContent;
+                        preg_match_all ($regex, $text, $matches, PREG_OFFSET_CAPTURE);
+                        foreach ($matches[0] as $match) {
+                            $match[1] = mb_strlen (substr ($text, 0, $match[1]));
+
+                            $new_node_1 = $text_node->splitText ($match[1]);
+                            $new_node_1->splitText (mb_strlen ($match[0]));
+
+                            $new_node_2 = $doc->createElement ('mark', $match[0]);
+                            $text_node->parentNode->replaceChild ($new_node_2, $new_node_1);
+                        }
+                    }
+                    $div = $xpath->query ("//div[@id='dropme']");
+                    $content = $doc->saveHTML ($div[0]);
                 }
             }
         }

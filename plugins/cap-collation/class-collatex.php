@@ -12,13 +12,6 @@ const COLLATEX_JAR    = COLLATION_ROOT . '/scripts/collatex-tools-1.8-SNAPSHOT.j
 const COLLATEX        = AFS_ROOT . '/local/bin/java -jar ' . COLLATEX_JAR;
 const COLLATEX_PYTHON = AFS_ROOT . '/http/docs/wp-content/plugins/cap-collation/collatex-cli.py';
 
-const ALGORITHMS = array (
-    'dekker'           => 'Dekker',
-    'gst'              => 'Greedy String Tiling',
-    'medite'           => 'MEDITE',
-    'needleman-wunsch' => 'Needleman-Wunsch',
-);
-
 /**
  * Implements the CollateX interface
  */
@@ -189,38 +182,52 @@ class CollateX
     /**
      * Format a CollateX table into HTML
      *
-     * @param array $witnesses The witnesses
-     * @param array $table     The collation table in row orientation
+     * @param array $witnesses  The witnesses
+     * @param array $table      The collation table in row orientation
+     * @param array $order_like The witnesses in the order they should be displayed
      *
      * @return string[] The rows of the HTML table
      */
 
-    public function format_table ($witnesses, $table)
+    public function format_table ($witnesses, $table, $order_like)
     {
+        $permutations = array ();
+        foreach ($order_like as $order) {
+            $permutations[] = array_search ($order, $witnesses);
+        }
+
         $out = array ();
-        $n_witnesses = count ($table);
-        for ($w = 0; $w < $n_witnesses; $w++) {
+        $master_vertex_id = array (); // id of vertex in first witness
+        foreach ($permutations as $w) {
             $row = $table[$w];
             $witness = esc_attr ($witnesses[$w]);
-            $out[] = "<tr title='$witness'>";
-            $out[] = "<th class='witness'>$witness</th>";
+            $out[] = "<tr class='witness siglum-$witness' data-siglum='$witness' title='$witness'>";
+            $out[] = "<th class='siglum'>$witness</th>";
             $n_segments = count ($row);
             for ($s = 0; $s < $n_segments; $s++) {
                 $token_set = $row[$s];
                 $class = 'tokens';
-                if ($w > 0 && ($table[0][$s] == $token_set)) {
-                    $class .= ' equal';
-                }
                 $tmp = '';
+                $vertex_id = -1;
                 if (count ($token_set) > 0) {
                     foreach ($token_set as $token) {
                         $tmp .= $token['t'];
                     }
+                    $vertex_id = $token_set[0]['_VertexId'];
                 } else {
                     $tmp = '<span class="missing" />';
                 }
+                if ($w == $permutations[0]) {
+                    // on the first row, save the vertex id
+                    $master_vertex_id[$s] = $vertex_id;
+                } else {
+                    // on the next rows, if vertex same as master -> equal
+                    if ($master_vertex_id[$s] == $vertex_id) {
+                        $class .= ' equal';
+                    }
+                }
                 $tmp = trim ($tmp);
-                $out[] = "<td class='$class'>$tmp</td>";
+                $out[] = "<td class='$class vertex-$vertex_id'>$tmp</td>";
             }
             $out[] = '</tr>';
         }

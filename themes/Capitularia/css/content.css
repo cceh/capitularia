@@ -89,6 +89,22 @@ em,
   font-weight: normal;
   font-style: normal;
 }
+i a[href],
+em a[href],
+.italic a[href],
+i a[href]:active,
+em a[href]:active,
+.italic a[href]:active,
+i a[href]:focus,
+em a[href]:focus,
+.italic a[href]:focus,
+i a[href]:hover,
+em a[href]:hover,
+.italic a[href]:hover {
+  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
 b,
 strong,
 .bold {
@@ -537,7 +553,8 @@ div.content-col ul.bare li {
 div.content-col hr {
   margin: 3em 0;
 }
-div.content-col .rend-red {
+div.content-col .rend-red,
+div.content-col .rend-coloured {
   color: #b92900;
 }
 div.content-col .rend-default {

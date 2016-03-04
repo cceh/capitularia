@@ -25,14 +25,15 @@ class Collation
     {
         $this->name   = __ ('Capitularia Collation', 'capitularia');
 
-        add_action ('wp_enqueue_scripts',           array ($this, 'on_enqueue_scripts'));
-        add_action ('admin_menu',                   array ($this, 'on_admin_menu'));
-        add_action ('admin_bar_menu',               array ($this, 'on_admin_bar_menu'), 200);
-        add_action ('admin_enqueue_scripts',        array ($this, 'on_admin_enqueue_scripts'));
-        add_filter ('query_vars',                   array ($this, 'on_query_vars'));
+        add_action ('wp_enqueue_scripts',              array ($this, 'on_enqueue_scripts'));
+        add_action ('admin_menu',                      array ($this, 'on_admin_menu'));
+        add_action ('admin_bar_menu',                  array ($this, 'on_admin_bar_menu'), 200);
+        add_action ('admin_enqueue_scripts',           array ($this, 'on_admin_enqueue_scripts'));
+        add_filter ('query_vars',                      array ($this, 'on_query_vars'));
 
         add_action ('wp_ajax_on_cap_load_sections',    array ($this, 'on_cap_load_sections'));
         add_action ('wp_ajax_on_cap_load_manuscripts', array ($this, 'on_cap_load_manuscripts'));
+        add_action ('wp_ajax_on_cap_load_collation',   array ($this, 'on_cap_load_collation'));
     }
 
     /**
@@ -178,5 +179,18 @@ class Collation
         // no user permission checks because we are just reading
         $this->dashboard_page = new Dashboard_Page ();
         $this->dashboard_page->on_cap_load_manuscripts ();
+    }
+
+    /**
+     * AJAX hook
+     *
+     * @return void
+     */
+
+    public function on_cap_load_collation ()
+    {
+        // no user permission checks because we are just reading
+        $this->dashboard_page = new Dashboard_Page ();
+        $this->dashboard_page->on_cap_load_collation ();
     }
 }

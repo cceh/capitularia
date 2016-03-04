@@ -365,6 +365,7 @@ class Manuscript
             $xsl = cap_make_path_relative_to ($xsl_root . $xsl, $cap_xsl_options['xsltroot']);
             $content .= "[{$shortcode} xml=\"{$path}\" xslt=\"{$xsl}\"][/{$shortcode}]\n";
         }
+        $sidebars = $config->get_opt ($this->section_id, 'sidebars');
 
         $new_post = array (
             'post_name'    => $slug,
@@ -374,7 +375,7 @@ class Manuscript
             'post_type'    => 'page',
             'post_parent'  => cap_get_parent_id ($this->section_id),
             'tags_input'   => array ('xml'),
-            'tax_input'    => array ('cap-sidebar' => array ('transcription')),
+            'tax_input'    => array ('cap-sidebar' => explode (' ', $sidebars)),
         );
         $post_id = wp_insert_post ($new_post);
         if ($post_id) {

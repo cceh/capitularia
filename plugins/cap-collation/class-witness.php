@@ -19,8 +19,9 @@ const NS_XML = 'http://www.w3.org/XML/1998/namespace';
 class Witness
 {
     private $corresp;
-    public $xml_id;
     private $xml_filename;
+    public $xml_id;
+    public $sort_key;
 
     /**
      * Constructor
@@ -37,6 +38,14 @@ class Witness
         $this->corresp      = $corresp;
         $this->xml_id       = $xml_id;
         $this->xml_filename = $xml_filename;
+
+        $this->sort_key     = preg_replace_callback (
+            '|\d+|',
+            function ($match) {
+                return 'zz' . strval (strlen ($match[0])) . $match[0];
+            },
+            $xml_id
+        );
     }
 
     /**
@@ -82,7 +91,7 @@ class Witness
         if ($doc->loadXML  ($s, LIBXML_NONET) === false) {
             libxml_clear_errors ();
             // Hack to load HTML with utf-8 encoding
-            $doc->loadHTML ("<?xml encoding='UTF-8'>\n" . $in, LIBXML_NONET);
+            $doc->loadHTML ("<?xml encoding='UTF-8'>\n" . $s, LIBXML_NONET);
             foreach ($doc->childNodes as $item) {
                 if ($item->nodeType == XML_PI_NODE) {
                     $doc->removeChild ($item); // remove xml declaration

@@ -383,6 +383,11 @@ $sidebars[] = array (
     __ ('The sidebar on /internal/ pages.', 'capitularia')
 );
 $sidebars[] = array (
+    'capitular',
+    __ ('Capitular Sidebar', 'capitularia'),
+    __ ('The sidebar on single capitular pages', 'capitularia')
+);
+$sidebars[] = array (
     'transcription',
     __ ('Transcription Sidebar', 'capitularia'),
     __ ('The sidebar on transcription pages', 'capitularia')
@@ -513,7 +518,7 @@ function on_shortcode_cap_image_server ($atts, $content)
         if (preg_match ('/(\d+)(.+)/', $n, $matches)) {
             $num = str_pad ($matches[1], 4, '0', STR_PAD_LEFT);
             $num .= $matches[2];
-            return '<a href="' . IMAGE_SERVER_URL . "$id/{$id}_{$num}.jpg\">$content</a>";
+            return '<a href="' . IMAGE_SERVER_URL . "$id/{$id}_{$num}.jpg\" target=\"_blank\">$content</a>";
         }
     }
     return $content;

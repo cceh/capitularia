@@ -1,8 +1,7 @@
-#! /afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/local/bin/python3
+#! python3
 #
 
 import collections
-import itertools
 import json
 import re
 import sys
@@ -11,7 +10,7 @@ import collatex
 import collatex.core_functions
 
 from networkx.algorithms.dag import topological_sort
-
+import networkx as nx
 
 def segment (graph):
     """
@@ -20,14 +19,13 @@ def segment (graph):
     Joins a string of vertices with no ramifications into one vertex.
     """
 
-    def join_tokens (graph, v1, v2):
-        """ Join v2 to v1 """
+    def join_tokens (graph, vertex1, vertex2):
+        """ Join vertex2 to vertex1 """
 
-        node1 = graph.node[v1]
-        node2 = graph.node[v2]
-        for sigil, tokens in node2['tokens'].items ():
-            node1['tokens'].setdefault (sigil, []).extend (tokens)
-        node1['label'] += node2['label']
+        node1 = graph.node[vertex1]
+        node2 = graph.node[vertex2]
+        if 'tokens' in node1 and 'tokens' in node2:
+            node1['tokens'] += node2['tokens']
 
     sorted_vertices = topological_sort (graph)[1:-1] # remove start, end
 
@@ -40,25 +38,28 @@ def segment (graph):
                 for (_, neighbor, data) in graph.out_edges (vertex, data=True):
                     graph.remove_edge (vertex, neighbor)
                     # must be a new edge because out_degree of prev_vertex was 1
-                    graph.add_edge (prev_vertex, neighbor, label=data['label'])
+                    graph.add_edge (prev_vertex, neighbor, label=data['witnesses'])
 
                 graph.remove_edge (prev_vertex, vertex)
                 graph.remove_node (vertex)
 
 
-def graph_to_json (graph, witnesses, empty_cell_content = []):
+def graph_to_json (graph, empty_cell_content = []):
     """
     Converts the graph into JSON representation.
     """
+
+    witnesses = set ()
 
     # Sort vertices into ranks.  (More than one vertex can have the same rank.)
     sorted_vertices = topological_sort (graph)[1:-1] # remove start, end
 
     vertex_to_rank = collections.defaultdict (lambda: 0)
     for vertex in sorted_vertices:
+        my_rank = vertex_to_rank[vertex]
         for successor in graph.successors (vertex):
             vertex_to_rank[successor] = max (vertex_to_rank[successor],
-                                             vertex_to_rank[vertex] + 1);
+                                             my_rank + 1);
 
     # The nodes in each rank
     ranks = collections.defaultdict (list)
@@ -71,37 +72,40 @@ def graph_to_json (graph, witnesses, empty_cell_content = []):
 
     # Construct table columns. Each rank becomes a table column.
     columns = []
-    for rank, vertices in itertools.groupby (sorted_vertices, keyfunc):
+    variant_columns = []
+    for rank, vertices in ranks.items ():
         column = {}
-        columns.append (column)
-
-        # FIXME: keep the vertex `id´ around
         for vertex in vertices:
-            node = graph.node[vertex]
-
             # the incoming edges are the witnesses that contain this token
             edges = graph.in_edges (vertex, data=True)
             for edge in edges:
-                sigli = edge[2]['label'].split(', ')
-                for sigil in sigli:
-                    column[sigil] = [token.token_data for token in node['tokens'][sigil]]
+                if 'witnesses' in edge[2]:
+                    sigli = edge[2]['witnesses'].split(', ')
+                    witnesses.update (sigli)
+                    for sigil in sigli:
+                        column[sigil] = vertex
+
+        columns.append (column)
+        variant_columns.append (len (vertices) > 1)
 
     # Build JSON
+    witnesses = sorted (witnesses)
     json_output = {}
-    json_output['witnesses'] = [witness.sigil for witness in witnesses]
+    json_output['witnesses'] = witnesses
 
     # Write the columns to JSON
     table = []
-    variant_columns = []
     for column in columns:
         json_column = []
-        variants = set () # only to see if a column is invariant
         for witness in witnesses:
-            tokens = column.get (witness.sigil, empty_cell_content)
-            json_column.append (tokens)
-            variants.add (''.join ([token['t'] for token in tokens]))
+            if witness in column:
+                vertex = column[witness]
+                node = graph.node[vertex]
+                if 'tokens' in node:
+                    json_column.append (node['tokens'])
+                    continue
+            json_column.append (empty_cell_content)
         table.append (json_column)
-        variant_columns.append (len (variants) > 1)
     json_output['table'] = table
     json_output['status'] = variant_columns
 
@@ -111,7 +115,7 @@ def graph_to_json (graph, witnesses, empty_cell_content = []):
     for witness in witnesses:
         json_row = []
         for column in columns:
-            json_row.append (column.get (witness.sigil, empty_cell_content))
+            json_row.append (column.get (witness, empty_cell_content))
         table.append (json_row)
     json_output['inverted_table'] = table
 
@@ -119,16 +123,18 @@ def graph_to_json (graph, witnesses, empty_cell_content = []):
 
 
 if __name__ == '__main__':
+    import argparse
 
-    data = json.load (sys.stdin)
+    parser = argparse.ArgumentParser(description='Post-Process CollateX output.')
+    parser.add_argument('--inputformat', dest='inputformat', type=str, default='json',
+                        help='the input format')
+    args = parser.parse_args()
 
-    collation = collatex.core_functions.Collation ()
-    for witness in data['witnesses']:
-        collation.add_witness (witness)
+    if args.inputformat == 'graphml':
+        graph = nx.read_graphml (sys.stdin)
+    else:
+        sys.exit ()
 
-    graph = collatex.core_functions.collate (
-        collation, output = 'graph', segmentation = False)
+    # segment (graph)
 
-    segment (graph.graph)
-
-    print (graph_to_json (graph.graph, collation.witnesses))
+    print (graph_to_json (graph))

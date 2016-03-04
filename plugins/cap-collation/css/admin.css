@@ -1,42 +1,70 @@
 /* Generated file. Do not edit. */
-table.collation {
+table.collation,
+table.manuscripts {
   border-collapse: collapse;
   margin: 1em 0;
   width: 100%;
   page-break-inside: avoid;
 }
-table.collation.last {
+table.collation.last,
+table.manuscripts.last {
   width: 1%;
 }
-table.collation tr {
+table.collation tbody tr,
+table.manuscripts tbody tr {
   background-color: #fff;
 }
-table.collation tr:nth-child(even) {
+table.collation tbody tr:nth-child(even),
+table.manuscripts tbody tr:nth-child(even) {
   background-color: #eee;
 }
-table.collation tr:first-child {
+table.collation tbody tr:first-child,
+table.manuscripts tbody tr:first-child {
   background-color: LightSkyBlue;
 }
+table.collation tbody tr.highlight-witness.highlight-witness,
+table.manuscripts tbody tr.highlight-witness.highlight-witness {
+  background-color: #eea;
+}
 table.collation td,
-table.collation th {
+table.manuscripts td,
+table.collation th,
+table.manuscripts th {
   border: 1px solid gray;
   padding: 0.2em 0.3em;
   background-color: inherit;
   white-space: nowrap;
 }
-table.collation td {
+table.collation td,
+table.manuscripts td {
   text-align: center;
 }
-table.collation td.equal {
+table.collation td.equal,
+table.manuscripts td.equal {
   color: rgba(68, 68, 68, 0.33);
 }
-table.collation th {
+table.collation th,
+table.manuscripts th {
   padding: 0.2em 0.5em;
   text-align: left;
   width: 1%;
 }
-table.collation span.missing::before {
+table.collation span.missing::before,
+table.manuscripts span.missing::before {
   content: '\2014';
+}
+table.manuscripts {
+  width: 49%;
+}
+table.manuscripts .ui-sortable-helper {
+  /* keeps original row width while dragging */
+  display: table;
+}
+table.manuscripts-collated {
+  float: left;
+}
+table.manuscripts-ignored {
+  float: right;
 }
 @media print {
   #adminmenumain,

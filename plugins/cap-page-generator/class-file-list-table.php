@@ -117,6 +117,33 @@ class File_List_Table extends \WP_List_Table
     }
 
     /**
+     * Recursively scan a directory.
+     *
+     * @param string   $root  The root directory
+     * @param string[] $paths The array of paths
+     *
+     * @return void
+     */
+
+    public function scandir_recursive ($root, &$paths)
+    {
+        foreach (scandir ($root) as $filename) {
+            if ($filename[0] == '.') {
+                continue;
+            }
+            $path = $root . $filename;
+            if (!is_readable ($path)) {
+                continue;
+            }
+            if (is_dir ($path)) {
+                $this->scandir_recursive ($path, $paths);
+            } else {
+                $paths[] = $path;
+            }
+        }
+    }
+
+    /**
      * Prepare the items to show in the table.
      *
      * Overrides abstract method in base class.
@@ -128,15 +155,10 @@ class File_List_Table extends \WP_List_Table
     {
         $this->items = array ();
 
-        foreach (scandir ($this->directory) as $filename) {
-            if ($filename[0] == '.') {
-                continue;
-            }
-            $path = $this->directory . $filename;
-            if (is_dir ($path) || !is_readable ($path)) {
-                continue;
-            }
+        $paths = array ();
+        $this->scandir_recursive ($this->directory, $paths);
 
+        foreach ($paths as $path) {
             $manuscript = new Manuscript ($this->section_id, $path);
             $title = $manuscript->get_title ();
             if (empty ($title)) {

@@ -62,6 +62,8 @@ class Config
     {
         $namespace = __NAMESPACE__;
 
+        // FIXME: too early for translation
+
         $section_general = array (
             array (
                 'section_id_list',
@@ -168,7 +170,16 @@ class Config
                     __ ('The allowed page statuses (space-separated list). Eg.: %s', 'capitularia'),
                     'publish private'
                 ),
-                "$namespace\cap_sanitize_key",
+                "$namespace\cap_sanitize_caption",
+            ),
+            array (
+                'sidebars',
+                __ ('Sidebars', 'capitularia'),
+                sprintf (
+                    __ ('The sidebars (space-separated list). Eg.: %s', 'capitularia'),
+                    'transcription'
+                ),
+                "$namespace\cap_sanitize_caption",
             ),
         );
 

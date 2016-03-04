@@ -72,6 +72,12 @@ a[href]:hover {
 
 i, em, .italic {
     .italic;
+    a[href],
+    a[href]:active,
+    a[href]:focus,
+    a[href]:hover {
+	.semibold-italic;
+    }
 }
 
 b, strong, .bold {
@@ -536,7 +542,8 @@ div.content-col {
         margin: 3em 0;
     }
 
-    .rend-red {
+    .rend-red,
+    .rend-coloured {
         color:  @color-highlight;
     }
 

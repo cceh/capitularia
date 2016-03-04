@@ -364,11 +364,14 @@ foreach ($xpath->query ('//script') as $script) {
 //
 
 $id_counter = 1000;
+// HACK: multiple outputs from this script may be concatenated.  To avoid
+// duplicate ids we add some salt.
+$rand = rand ();
 foreach ($xpath->query ('//@id') as $id) {
-    if (preg_match ('/^[a-z][-.:\w]*$/i', $id->value)) {
+    if (preg_match ('/^[-_.:\pL\pN]*$/iu', $id->value)) {
         continue;
     }
-    $id->value = "id-cap-gen-$id_counter";
+    $id->value = "id-cap-gen-$id_counter-$rand";
     $id_counter++;
 }
 
