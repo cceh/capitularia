@@ -66,6 +66,10 @@ class Witness
         return $xpath;
     }
 
+    public function get_corresp () {
+        return $this->corresp;
+    }
+
     private function new_tei_dom ()
     {
         return \DOMDocument::loadXML ('<TEI xmlns="' . NS_TEI . '"><text><body/></text></TEI>');
@@ -103,12 +107,91 @@ class Witness
     }
 
     /**
-     * Extract section from TEI file
+     * Process a node
+     *
+     * Nodes may be either <ab> or <span to="id">.  In cased of <ab> the node is
+     * copied, in case of <span to="id"> the output is an <ab> containing all
+     * nodes up to the closing anchor.
+     *
+     * @param DOMNode $body The element to append to
+     * @param DOMNode $node The node to process
      *
      * @return void
      */
 
-    public function extract_section ()
+    private function process_node ($body, $node) {
+        // <ab>
+        if ($node->localName == 'ab') {
+            $body->appendChild ($this->document->importNode ($node, true));
+        }
+
+        // <span to="id" /> ... <anchor id="id" />
+        //
+        // This outputs an <ab> containing all nodes up to the closing anchor.
+        if ($node->localName == 'span' && $milestone_id = $node->getAttribute ('to')) {
+            $div = $body->appendChild ($this->document->createElementNS (NS_TEI, 'tei:ab'));
+            $div->setAttribute ('corresp', $corresp);
+            $xpath2 = $this->xpath ($node->ownerDocument);
+            $nodes2 = $xpath2->query (
+                "following-sibling::node()[following-sibling::tei:anchor[@xml:id='$milestone_id']]",
+                $node
+            );
+            foreach ($nodes2 as $node2) {
+                $div->appendChild ($this->document->importNode ($node2, true));
+            }
+        }
+
+        // <* next="id">
+        //
+        // This outputs all nodes linked with @next.  Those nodes will all have
+        // a @prev attribute.  All nodes with @prev attribute will be output
+        // here.
+        $next_id = $node->getAttribute ('next');
+        if ($next_id && $next_id[0] == '#') {
+            $node = $node->ownerDocument->getElementById (substr ($next_id, 1));
+            if ($node) {
+                // Yay, recurse!
+                $this->process_node ($body, $node);
+            }
+        }
+    }
+
+    /**
+     * Extract section from TEI file.
+     *
+     * This function builds a new TEI-like DOM in memory and adds just the
+     * section(s) matched by corresp.
+     *
+     * Aus den Transkriptionsrichtlinien 1.3 beta
+     *
+     * Beginnt ein neues Kapitel mitten im Text, werden innerhalb des <ab/> alle
+     * jeweils zu einem Kapitel gehörenden Textteile zusätzlich in <span/>s
+     * gesetzt:
+     *
+     * <span corresp=”BK.184_b” to=”berlin-sb-phill-1762-71r-1_2″/>
+     * Uolumus etiam … octauas paschae .
+     * <anchor xml:id=”berlin-sb-phill-1762-71r-1_2″/>
+     *
+     * Der Anfang des Textabschnittes wird jeweils durch ein leeres
+     * <span/>-Element markiert, in dem sich das @corresp mit dem Verweis auf
+     * die entsprechende Stelle bei BK sowie ein @to befinden; letzteres
+     * verweist auf die xml:id, mit dem das Ende des Textabschnittes markiert
+     * wird. Am Ende des Abschnittes wird ein leeres <anchor>-Element gesetzt,
+     * das die xml:id enthält (= die xml:id des <ab/>, in dem die <span/>
+     * enthalten ist, mit dem Zusatz „_1“, „_2“, „_3“ etc.)
+     *
+     * Sind zusammengehörige Textabschnitte über mehrere <ab/> verteilt, so
+     * erhält die erste <span/> zusätzlich ein @next (Wert: xml:id der folgenden
+     * <span/>) und die folgenden zugehörigen jeweils ein @prev (Wert: xml:id
+     * der vorangehenden <span/>) und @next. Die letzte <span/> des
+     * zusammengehörigen Abschnittes erhält nur ein @prev.
+     *
+     * @param string $corresp The corresp attribute to match
+     *
+     * @return void
+     */
+
+    public function extract_section ($corresp)
     {
         $s   = file_get_contents ($this->xml_filename);
         $doc = $this->string_to_dom ($s);
@@ -116,21 +199,18 @@ class Witness
         $this->document = $this->new_tei_dom ();
         $xpath = $this->xpath ($this->document);
         $body  = $xpath->query ('//tei:body')[0];
-
         $xpath = $this->xpath ($doc);
-        $nodes = $xpath->query ("//tei:ab[@corresp='{$this->corresp}'] | //tei:span[@corresp='{$this->corresp}']");
+
+        $nodes = $xpath->query ("//tei:ab[@corresp='{$corresp}'] | //tei:span[@to and @corresp='{$corresp}']");
         foreach ($nodes as $node) {
-            $body->appendChild ($this->document->importNode ($node, true));
-            if ($node->nodeName == 'span' && ($milestone_id = $node->getAttribute ('to'))) {
-                $xpath2 = $this->xpath ($doc);
-                $nodes2 = $xpath2->query (
-                    "following-sibling::node()[following-sibling::tei:anchor[@xml:id='$milestone_id']]",
-                    $node
-                );
-                foreach ($nodes2 as $node2) {
-                    $body->appendChild ($this->document->importNode ($node2, true));
-                }
+            // Nodes with @prev are handled in the @next chain instead.
+            if ($node->getAttribute ('prev')) {
+                continue;
             }
+            $this->process_node ($body, $node);
+        }
+        if (empty ($body->textContent)) {
+            error_log ("Nothing extracted from {$this->xml_filename} for $corresp");
         }
     }
 
@@ -180,13 +260,28 @@ class Witness
      * @return array The array representation of one witness.
      */
 
-    public function to_collatex ()
+    public function to_collatex ($normalizations = array ())
     {
         $tokens = array ();
-        preg_match_all ('/\S+\s*/', trim ($this->pure_text), $matches);
+        $patterns = array ();
+        $replacements = array ();
+        $text = trim ($this->pure_text);
 
+        foreach ($normalizations as $n) {
+            $n = explode ('=', $n);
+            if (count ($n) == 2) {
+                $patterns[] = trim ($n[0]);
+                $replacements[] = trim ($n[1]);
+            }
+        }
+
+        preg_match_all ('/\S+\s*/', $text, $matches);
         foreach ($matches[0] as $pattern) {
-            $normalized = strtolower (trim ($pattern));
+            $normalized = trim ($pattern);
+            if (count ($patterns)) {
+                $normalized = str_replace ($patterns, $replacements, $normalized);
+            }
+            $normalized = strtolower ($normalized);
             $normalized = preg_replace ('/\[\s*|\s*\]/', '', $normalized);
             $normalized = preg_replace ('/[.,:;]/',      '', $normalized);
             if (!empty ($normalized)) {

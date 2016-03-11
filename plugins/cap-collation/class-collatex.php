@@ -8,7 +8,7 @@
 namespace cceh\capitularia\collation;
 
 const COLLATION_ROOT  = AFS_ROOT . '/local/capitularia-collation';
-const COLLATEX_JAR    = COLLATION_ROOT . '/scripts/collatex-tools-1.8-SNAPSHOT.jar';
+const COLLATEX_JAR    = AFS_ROOT . '/local/bin/collatex-tools-1.8-SNAPSHOT.jar';
 const COLLATEX        = AFS_ROOT . '/local/bin/java -jar ' . COLLATEX_JAR;
 const COLLATEX_PYTHON = AFS_ROOT . '/http/docs/wp-content/plugins/cap-collation/collatex-cli.py';
 
@@ -193,7 +193,10 @@ class CollateX
     {
         $permutations = array ();
         foreach ($order_like as $order) {
-            $permutations[] = array_search ($order, $witnesses);
+            $perm = array_search ($order, $witnesses);
+            if ($perm !== false) {
+                $permutations[] = array_search ($order, $witnesses);
+            }
         }
 
         $out = array ();

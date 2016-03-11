@@ -151,6 +151,12 @@ class Extractor
         );
         $this->meta (
             $post_id,
+            'corresp',
+            $xpath->query ('//tei:*/@corresp'),
+            array ($this, 'nmtokens')
+        );
+        $this->meta (
+            $post_id,
             'ab-corresp',
             $xpath->query ('//tei:ab[@type="text"]/@corresp|//tei:ab[@type="meta-text"]/@corresp'),
             array ($this, 'nmtokens')

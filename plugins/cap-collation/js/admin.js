@@ -10,10 +10,14 @@ function add_ajax_action (data, action) {
 function get_manuscripts_list () {
     // Get sigla of all manuscript to collate
     var manuscripts = [];
-    $('table.manuscripts-collated tbody tr').each (function () {
-        manuscripts.push ($(this).attr ('data-siglum'));
+    jQuery ('table.manuscripts-collated tbody tr').each (function () {
+        manuscripts.push (jQuery (this).attr ('data-siglum'));
     });
     return manuscripts;
+}
+
+function get_normalizations () {
+    return jQuery ('#normalizations').val ().split ("\n");
 }
 
 function get_sections_params () {
@@ -39,64 +43,176 @@ function get_collation_params () {
         'segmentation':         jQuery ('#segmentation').prop ('checked'),
         'transpositions':       jQuery ('#transpositions').prop ('checked'),
         'manuscripts':          get_manuscripts_list (),
+        'normalizations':       get_normalizations (),
     };
     data = jQuery.extend (data, get_manuscripts_params ());
     return data;
 }
 
+/* Save parameters to a user-local file. */
+
 function save_params () {
-    alert (JSON.stringify (get_collation_params ()));
+    var params = get_collation_params ();
+    var url = 'data:text/plain,' + encodeURIComponent (JSON.stringify (params, null, 2));
+    var e = document.getElementById ("save-fake-download");
+    e.setAttribute ("href", url);
+    e.setAttribute (
+        "download",
+        "save-" + encodeRFC5987ValueChars (params.corresp.toLowerCase ()) + ".txt"
+    );
+    e.click ();
+
     return false;
 }
 
-function on_cap_load_sections () {
+function click_on_load_params (fileInput) {
+    var e = document.getElementById ("load-params");
+    e.click ();
+}
+
+/* Load parameters from a user-local file. */
+
+function load_params (fileInput) {
+    var files = fileInput.files;
+    if (files.length != 1) {
+        return false;
+    }
+
+    var reader = new FileReader ();
+    reader.onload = function (e) {
+        var json = JSON.parse (e.target.result);
+
+        /* Set the control value and then call the onclick function. */
+        jQuery ('#bk').val (json.bk);
+        on_cap_load_sections (function () {
+
+            /* Set the control value and then call the onclick function. */
+            jQuery ('#section').val (json.corresp);
+            on_cap_load_manuscripts (function () {
+
+                jQuery ('#algorithm').val (json.algorithm);
+                jQuery ('#levenshtein_distance').val (json.levenshtein_distance);
+                jQuery ('#levenshtein_ratio').val (json.levenshtein_ratio);
+                jQuery ('#segmentation').prop ('checked', json.segmentation);
+                jQuery ('#transpositions').prop ('checked', json.transpositions);
+
+                /*
+                 * Deal with manuscript tables.  First move *all* manuscripts to the
+                 * ignored table.  Then move manuscripts to collate back in sorted
+                 * order.
+                 */
+                var collated = jQuery ('table.manuscripts-collated tbody');
+                var ignored  = jQuery ('table.manuscripts-ignored tbody');
+                collated.find ('tr').appendTo (ignored);
+                for (var i = 0; i < json.manuscripts.length; i++) {
+                    var siglum = json.manuscripts[i];
+                    var tr = ignored.find ('tr[data-siglum="' + siglum + '"]');
+                    tr.appendTo (collated);
+                }
+            });
+        });
+
+    };
+    reader.readAsText (files[0]);
+
+    return false; // Don't submit form
+}
+
+
+function encodeRFC5987ValueChars (str) {
+    return encodeURIComponent (str).
+        // Note that although RFC3986 reserves "!", RFC5987 does not,
+        // so we do not need to escape it
+        replace (/['()]/g, escape). // i.e., %27 %28 %29
+        replace (/\*/g, '%2A').
+            // The following are not required for percent-encoding per RFC5987,
+            // so we can allow for a little better readability over the wire: |`^
+            replace (/%(?:7C|60|5E)/g, unescape);
+}
+
+function clear_sections () {
+    jQuery ('#collation-sections').children ().slideUp ().remove ();
+}
+
+function clear_manuscripts () {
+    jQuery ('#manuscripts-div').children ().slideUp ().remove ();
+}
+
+function clear_collation () {
+    jQuery ('#collation-tables').children ().slideUp ().remove ();
+}
+
+function add_spinner (div) {
+    var spinner = jQuery ('<div class="spinner-div"><span class="spinner is-active" /></div>');
+    spinner.hide ();
+    div.append (spinner);
+    spinner.slideDown ();
+    return spinner;
+}
+
+function clear_spinners () {
+    var spinners = jQuery ('div.spinner-div');
+    spinners.slideUp (function () {
+        jQuery (this).remove ();
+    });
+}
+
+function on_cap_load_sections (onReady) {
     var data = add_ajax_action (get_sections_params (), 'on_cap_load_sections');
 
+    clear_sections ();
+    clear_manuscripts ();
+    clear_collation ();
+
     var div = jQuery ('#collation-sections');
-    div.html ('<div class="spinner-div"><span class="spinner is-active" /></div>');
+    add_spinner (div);
 
     jQuery.ajax ({
         method: "POST",
         url: ajaxurl,
         data : data,
     }).done (function (response, status) {
-        jQuery ('div.spinner-div').fadeOut ().remove ();
-        jQuery (response.html).hide ().appendTo (div).slideDown ();
+        div.append (jQuery (response.html).hide ().slideDown ());
     }).always (function (response, status) {
-        jQuery ('div.spinner-div').fadeOut ().remove ();
+        clear_spinners ();
         jQuery (response.message).hide ().appendTo (div).slideDown ();
         /* Adds a 'dismiss this notice' button. */
         jQuery (document).trigger ('wp-plugin-update-error');
+        if (onReady !== undefined) {
+            onReady ();
+        }
     });
     return false;  // don't submit form
 }
 
-function on_cap_load_manuscripts () {
+function on_cap_load_manuscripts (onReady) {
     var data = add_ajax_action (get_manuscripts_params (), 'on_cap_load_manuscripts');
 
+    clear_manuscripts ();
+    clear_collation ();
+
     var div = jQuery ('#manuscripts-div');
-    div.html ('<div class="spinner-div"><span class="spinner is-active" /></div>');
+    add_spinner (div);
 
     jQuery.ajax ({
         method: "POST",
         url: ajaxurl,
         data : data,
     }).done (function (response, status) {
-        jQuery ('div.spinner-div').fadeOut ().remove ();
         jQuery (response.html).hide ().appendTo (div).slideDown ();
     }).always (function (response, status) {
-        jQuery ('div.spinner-div').fadeOut ().remove ();
+        clear_spinners ();
         jQuery (response.message).hide ().appendTo (div).slideDown ();
         /* Adds a 'dismiss this notice' button. */
         jQuery (document).trigger ('wp-plugin-update-error');
 
-        $('table.manuscripts').disableSelection ().sortable ({
+        jQuery ('table.manuscripts').disableSelection ().sortable ({
             helper: 'clone',
             items: '*[data-siglum]',
             connectWith: 'table.manuscripts',
             cursor: 'pointer',
             receive: function (event, ui) {
-                var tbody = $(event.target).find ('tbody');
+                var tbody = jQuery (event.target).find ('tbody');
                 if (ui.item.closest (tbody).size () === 0) {
                     ui.item.appendTo (tbody);
                 }
@@ -104,6 +220,10 @@ function on_cap_load_manuscripts () {
                 ui.item.css ('display', '');
             }
         });
+
+        if (onReady !== undefined) {
+            onReady ();
+        }
     });
     return false;  // don't submit form
 }
@@ -111,28 +231,29 @@ function on_cap_load_manuscripts () {
 function on_cap_load_collation () {
     var data = add_ajax_action (get_collation_params (), 'on_cap_load_collation');
 
+    clear_collation ();
+
     var div = jQuery ('#collation-tables');
-    div.html ('<div class="spinner-div"><span class="spinner is-active" /></div>');
+    add_spinner (div);
 
     jQuery.ajax ({
         method: "POST",
         url: ajaxurl,
         data : data,
     }).done (function (response, status) {
-        jQuery ('div.spinner-div').fadeOut ().remove ();
         jQuery (response.html).hide ().appendTo (div).slideDown ();
     }).always (function (response, status) {
-        jQuery ('div.spinner-div').fadeOut ().remove ();
+        clear_spinners ();
         jQuery (response.message).hide ().appendTo (div).slideDown ();
         /* Adds a 'dismiss this notice' button. */
         jQuery (document).trigger ('wp-plugin-update-error');
 
-        var data_rows = $('tr[data-siglum]');
+        var data_rows = jQuery ('tr[data-siglum]');
         data_rows.hover (function () {
-            div.find ('tr[data-siglum="' + $(this).attr ('data-siglum') +  '"]').addClass ('highlight-witness');
+            div.find ('tr[data-siglum="' + jQuery (this).attr ('data-siglum') +  '"]').addClass ('highlight-witness');
         }, function () {
             data_rows.each (function (index) {
-                $(this).removeClass ('highlight-witness');
+                jQuery (this).removeClass ('highlight-witness');
             });
         });
     });

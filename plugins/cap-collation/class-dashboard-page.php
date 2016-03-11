@@ -111,7 +111,7 @@ class Dashboard_Page
 
         $sql = $wpdb->prepare (
             'SELECT DISTINCT meta_value FROM wp_postmeta ' .
-            'WHERE meta_key = \'ab-corresp\' AND meta_value LIKE %s ORDER BY meta_value;',
+            'WHERE meta_key = \'corresp\' AND meta_value LIKE %s ORDER BY meta_value;',
             $bk
         );
 
@@ -132,7 +132,7 @@ class Dashboard_Page
         $items = array ();
 
         $sql = $wpdb->prepare (
-            "SELECT DISTINCT post_id FROM wp_postmeta WHERE meta_key = 'ab-corresp' AND meta_value = %s",
+            "SELECT DISTINCT post_id FROM wp_postmeta WHERE meta_key = 'corresp' AND meta_value = %s",
             $corresp
         );
         $ids = $wpdb->get_col ($sql);
@@ -148,9 +148,13 @@ class Dashboard_Page
             );
             $xml_filename = $wpdb->get_var ($sql);
 
-            if ($xml_id) { // FIXME: why is xml_id sometimes null ?
-                $items[] = new Witness ($corresp, $xml_id, $xml_filename);
+            // FIXME: Q: Why is xml_id sometimes null? A: Because
+            // the TEI file is bogus and doesn't have one.
+            if (empty ($xml_id)) {
+                $xml_id = basename ($xml_filename, '.xml');
             }
+
+            $items[] = new Witness ($corresp, $xml_id, $xml_filename);
         }
 
         // sort according to $xml_id
@@ -211,6 +215,10 @@ class Dashboard_Page
     public function on_menu_dashboard_page ()
     {
         $html = array ();
+        // Helper element to fake download of parameters we want to save.  This
+        // will be click()ed by JS.
+        $html[] = '<a id="save-fake-download" href="" download="" style="display: none;"></a>';
+
         $html[] = '<div class="wrap">';
 
         $title = esc_html (get_admin_page_title ());
@@ -257,6 +265,23 @@ class Dashboard_Page
             'submit',
             false
         );
+        $html[] = '</td>';
+        $html[] = '<td class="load-params">';
+        $html[] = '<input id="load-params" type="file" onchange="return load_params(this)">';
+
+        $html[] = str_replace (
+            'type="submit"',
+            'type="button"',
+            get_submit_button (
+                _x ('Load Config', 'Button: Load the collation config', 'capitularia'),
+                'load',
+                'load',
+                false,
+                array ('onclick' => 'return click_on_load_params()')
+            )
+        );
+
+
         $html[] = '</td>';
         $html[] = '</tr>';
         $html[] = '</table>';
@@ -491,6 +516,18 @@ class Dashboard_Page
         $html[] = '</td>';
         $html[] = '</tr>';
 
+        // Normalizations
+
+        $html[] = '<tr>';
+        $html[] = '<td>';
+        $caption = _x ('Normalizations', 'Label: for textarea', 'capitularia');
+        $html[] = "<label for='normalizations'>$caption</label>";
+        $html[] = '</td>';
+        $html[] = '<td>';
+        $html[] = '<textarea id="normalizations" name="normalizations" rows="4" cols="50" />';
+        $html[] = '</td>';
+        $html[] = '</tr>';
+
         // Collate button
 
         $html[] = '<tr>';
@@ -555,12 +592,15 @@ class Dashboard_Page
         $segmentation   = $_REQUEST['segmentation']   == 'true';
         $transpositions = $_REQUEST['transpositions'] == 'true';
 
+        $normalizations = isset ($_REQUEST['normalizations']) ? $_REQUEST['normalizations'] : array ();
+
         $witnesses = array ();
         foreach ($items as $item) {
-            $item->extract_section ();
+            $item->extract_section ($item->get_corresp ());
             $item->xml_to_text ();
-            if ($item->pure_text) { // FIXME: why is this sometimes empty ?
-                $witnesses[] = $item->to_collatex ();
+            if ($item->pure_text) { // FIXME: Q: why is this sometimes empty? A:
+                                    // because of bogus markup.
+                $witnesses[] = $item->to_collatex ($normalizations);
             }
         }
         $json = array (
