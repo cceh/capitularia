@@ -163,7 +163,7 @@ class Highlighter
                 if (!empty ($args['s'])) {
                     $terms = array_map (array ($this, 'escape_search_term'), explode (' ', $args['s']));
                     $regex = implode ('|', $terms);
-                    $regex = "#$regex#ui";
+                    $regex = "#($regex)#ui";
 
                     // The naive approach:
                     //
@@ -194,16 +194,20 @@ class Highlighter
                     $xpath  = new \DOMXpath ($doc);
                     $text_nodes = $xpath->query ('//text()');
                     foreach ($text_nodes as $text_node) {
-                        $text = $text_node->textContent;
-                        preg_match_all ($regex, $text, $matches, PREG_OFFSET_CAPTURE);
-                        foreach ($matches[0] as $match) {
-                            $match[1] = mb_strlen (substr ($text, 0, $match[1]));
-
-                            $new_node_1 = $text_node->splitText ($match[1]);
-                            $new_node_1->splitText (mb_strlen ($match[0]));
-
-                            $new_node_2 = $doc->createElement ('mark', $match[0]);
-                            $text_node->parentNode->replaceChild ($new_node_2, $new_node_1);
+                        $splits = preg_split ($regex, $text_node->textContent, -1, PREG_SPLIT_DELIM_CAPTURE);
+                        if (count ($splits) > 1) {
+                            $parent = $text_node->parentNode;
+                            $i = 0;
+                            foreach ($splits as $split) {
+                                if (($i % 2) == 0) {
+                                    $new_node = $doc->createTextNode ($split);
+                                } else {
+                                    $new_node = $doc->createElement ('mark', $split);
+                                }
+                                $parent->insertBefore ($new_node, $text_node);
+                                $i++;
+                            }
+                            $parent->removeChild  ($text_node);
                         }
                     }
                     $div = $xpath->query ("//div[@id='dropme']");

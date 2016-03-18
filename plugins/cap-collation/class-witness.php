@@ -66,7 +66,8 @@ class Witness
         return $xpath;
     }
 
-    public function get_corresp () {
+    public function get_corresp ()
+    {
         return $this->corresp;
     }
 
@@ -113,13 +114,15 @@ class Witness
      * copied, in case of <span to="id"> the output is an <ab> containing all
      * nodes up to the closing anchor.
      *
-     * @param DOMNode $body The element to append to
-     * @param DOMNode $node The node to process
+     * @param DOMNode  $body   The element to append to
+     * @param DOMNode  $node   The node to process
+     * @param string[] $errors An array for error messages
      *
      * @return void
      */
 
-    private function process_node ($body, $node) {
+    private function process_node ($body, $node, &$errors)
+    {
         // <ab>
         if ($node->localName == 'ab') {
             $body->appendChild ($this->document->importNode ($node, true));
@@ -130,7 +133,7 @@ class Witness
         // This outputs an <ab> containing all nodes up to the closing anchor.
         if ($node->localName == 'span' && $milestone_id = $node->getAttribute ('to')) {
             $div = $body->appendChild ($this->document->createElementNS (NS_TEI, 'tei:ab'));
-            $div->setAttribute ('corresp', $corresp);
+            $div->setAttribute ('corresp', $node->getAttribute ('corresp'));
             $xpath2 = $this->xpath ($node->ownerDocument);
             $nodes2 = $xpath2->query (
                 "following-sibling::node()[following-sibling::tei:anchor[@xml:id='$milestone_id']]",
@@ -147,11 +150,24 @@ class Witness
         // a @prev attribute.  All nodes with @prev attribute will be output
         // here.
         $next_id = $node->getAttribute ('next');
+        $corresp = $node->getAttribute ('corresp');
         if ($next_id && $next_id[0] == '#') {
             $node = $node->ownerDocument->getElementById (substr ($next_id, 1));
+
             if ($node) {
+                // Test if the @next element really corresp-onds to the source element.
+                if ($node->getAttribute ('corresp') !== $corresp) {
+                    // build error message
+                    $bad_corresp = $node->getAttribute ('corresp');
+                    $error_msg  = "@next='{$next_id}' ";
+                    $error_msg .= "points from @corresp='{$corresp}' to @corresp='{$bad_corresp}'";
+                    $errors[] = $error_msg;
+                }
+
                 // Yay, recurse!
-                $this->process_node ($body, $node);
+                $this->process_node ($body, $node, $errors);
+            } else {
+                $errors[] = "Unresolved ref: {$next_id}";
             }
         }
     }
@@ -186,12 +202,13 @@ class Witness
      * der vorangehenden <span/>) und @next. Die letzte <span/> des
      * zusammengehörigen Abschnittes erhält nur ein @prev.
      *
-     * @param string $corresp The corresp attribute to match
+     * @param string   $corresp The corresp attribute to match
+     * @param string[] $errors  Array for error messages
      *
      * @return void
      */
 
-    public function extract_section ($corresp)
+    public function extract_section ($corresp, &$errors)
     {
         $s   = file_get_contents ($this->xml_filename);
         $doc = $this->string_to_dom ($s);
@@ -207,10 +224,10 @@ class Witness
             if ($node->getAttribute ('prev')) {
                 continue;
             }
-            $this->process_node ($body, $node);
+            $this->process_node ($body, $node, $errors);
         }
         if (empty ($body->textContent)) {
-            error_log ("Nothing extracted from {$this->xml_filename} for $corresp");
+            $errors[] = "Nothing extracted from {$this->xml_filename} for $corresp";
         }
     }
 
@@ -256,6 +273,8 @@ class Witness
      *     }
      *   ]
      * }
+     *
+     * @param string[] $normalizations Array of string in the form: oldstring=newstring
      *
      * @return array The array representation of one witness.
      */

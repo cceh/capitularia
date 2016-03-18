@@ -448,7 +448,7 @@ class Dashboard_Page
         $html[] = '<td>';
         $html[] = '<select id="algorithm" name="algorithm">';
         $default = 'new-needleman-wunsch';
-        $default = 'dekker';
+        // $default = 'dekker';
         foreach ($this->algorithms as $algo => $algorithm) {
             $def = ($algo == $default) ? ' selected="selected"' : '';
             $html[] = "<option value='$algo'$def>$algorithm</option>";
@@ -522,6 +522,8 @@ class Dashboard_Page
         $html[] = '<td>';
         $caption = _x ('Normalizations', 'Label: for textarea', 'capitularia');
         $html[] = "<label for='normalizations'>$caption</label>";
+        $caption = _x ('One or more lines in the form: raw=normalized', 'Help text', 'capitularia');
+        $html[] = "<p>$caption</p>";
         $html[] = '</td>';
         $html[] = '<td>';
         $html[] = '<textarea id="normalizations" name="normalizations" rows="4" cols="50" />';
@@ -577,6 +579,7 @@ class Dashboard_Page
     public function on_cap_load_collation ()
     {
         $status = array (); // the status message for the user
+        $errors = array (); // the error messages for the user
 
         $corresp     = $_REQUEST['corresp'];
         $manuscripts = $_REQUEST['manuscripts'];
@@ -596,7 +599,7 @@ class Dashboard_Page
 
         $witnesses = array ();
         foreach ($items as $item) {
-            $item->extract_section ($item->get_corresp ());
+            $item->extract_section ($item->get_corresp (), $errors);
             $item->xml_to_text ();
             if ($item->pure_text) { // FIXME: Q: why is this sometimes empty? A:
                                     // because of bogus markup.
@@ -688,7 +691,9 @@ class Dashboard_Page
         /* Return */
         $json = array (
             'success' => true,
-            'message' => '',
+            'message' => (count ($errors) > 0 ?
+                          '<div class="notice notice-error is-dismissible"><p>' .
+                          implode ("<br>\n", $errors) . '</p></div>' : ''),
             'html' => '<div>' . implode ("\n", $tmp) . '</div>',
         );
         wp_send_json ($json);

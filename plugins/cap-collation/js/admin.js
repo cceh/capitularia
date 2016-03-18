@@ -175,7 +175,7 @@ function on_cap_load_sections (onReady) {
         div.append (jQuery (response.html).hide ().slideDown ());
     }).always (function (response, status) {
         clear_spinners ();
-        jQuery (response.message).hide ().appendTo (div).slideDown ();
+        jQuery (response.message).hide ().prependTo (div).slideDown ();
         /* Adds a 'dismiss this notice' button. */
         jQuery (document).trigger ('wp-plugin-update-error');
         if (onReady !== undefined) {
@@ -202,7 +202,7 @@ function on_cap_load_manuscripts (onReady) {
         jQuery (response.html).hide ().appendTo (div).slideDown ();
     }).always (function (response, status) {
         clear_spinners ();
-        jQuery (response.message).hide ().appendTo (div).slideDown ();
+        jQuery (response.message).hide ().prependTo (div).slideDown ();
         /* Adds a 'dismiss this notice' button. */
         jQuery (document).trigger ('wp-plugin-update-error');
 
@@ -244,7 +244,7 @@ function on_cap_load_collation () {
         jQuery (response.html).hide ().appendTo (div).slideDown ();
     }).always (function (response, status) {
         clear_spinners ();
-        jQuery (response.message).hide ().appendTo (div).slideDown ();
+        jQuery (response.message).hide ().prependTo (div).slideDown ();
         /* Adds a 'dismiss this notice' button. */
         jQuery (document).trigger ('wp-plugin-update-error');
 
