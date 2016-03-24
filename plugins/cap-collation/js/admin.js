@@ -95,6 +95,7 @@ function load_params (fileInput) {
                 jQuery ('#levenshtein_ratio').val (json.levenshtein_ratio);
                 jQuery ('#segmentation').prop ('checked', json.segmentation);
                 jQuery ('#transpositions').prop ('checked', json.transpositions);
+                jQuery ('#normalizations').val (json.normalizations.join ("\n"));
 
                 /*
                  * Deal with manuscript tables.  First move *all* manuscripts to the
@@ -130,41 +131,48 @@ function encodeRFC5987ValueChars (str) {
             replace (/%(?:7C|60|5E)/g, unescape);
 }
 
-function clear_sections () {
-    jQuery ('#collation-sections').children ().slideUp ().remove ();
-}
-
 function clear_manuscripts () {
-    jQuery ('#manuscripts-div').children ().slideUp ().remove ();
+    jQuery ('#manuscripts-div').children ().fadeOut ().remove ();
 }
 
 function clear_collation () {
-    jQuery ('#collation-tables').children ().slideUp ().remove ();
+    jQuery ('#collation-tables').children ().fadeOut ().remove ();
 }
 
 function add_spinner (div) {
     var spinner = jQuery ('<div class="spinner-div"><span class="spinner is-active" /></div>');
     spinner.hide ();
     div.append (spinner);
-    spinner.slideDown ();
+    spinner.fadeIn ();
     return spinner;
 }
 
-function clear_spinners () {
+function clear_spinners (next) {
     var spinners = jQuery ('div.spinner-div');
-    spinners.slideUp (function () {
-        jQuery (this).remove ();
+    spinners.fadeOut (function () {
+        jQuery (this).detach (); // Do not use remove here or promise () won't work.
+    });
+    if (next !== undefined) {
+        spinners.promise ().done (next);
+    }
+}
+
+function handle_message (div, response) {
+    var msg = jQuery (response.message).hide ().prependTo (div);
+    clear_spinners (function () {
+        msg.fadeIn ();
+        /* Adds a 'dismiss this notice' button. */
+        jQuery (document).trigger ('wp-plugin-update-error');
     });
 }
 
 function on_cap_load_sections (onReady) {
     var data = add_ajax_action (get_sections_params (), 'on_cap_load_sections');
 
-    clear_sections ();
     clear_manuscripts ();
     clear_collation ();
 
-    var div = jQuery ('#collation-sections');
+    var div = jQuery ('#collation-capitulary');
     add_spinner (div);
 
     jQuery.ajax ({
@@ -172,15 +180,14 @@ function on_cap_load_sections (onReady) {
         url: ajaxurl,
         data : data,
     }).done (function (response, status) {
-        div.append (jQuery (response.html).hide ().slideDown ());
+        clear_spinners (function () {
+            jQuery ('#section').replaceWith (response.html);
+            if (onReady !== undefined) {
+                onReady ();
+            }
+        });
     }).always (function (response, status) {
-        clear_spinners ();
-        jQuery (response.message).hide ().prependTo (div).slideDown ();
-        /* Adds a 'dismiss this notice' button. */
-        jQuery (document).trigger ('wp-plugin-update-error');
-        if (onReady !== undefined) {
-            onReady ();
-        }
+        handle_message (div, response);
     });
     return false;  // don't submit form
 }
@@ -199,12 +206,19 @@ function on_cap_load_manuscripts (onReady) {
         url: ajaxurl,
         data : data,
     }).done (function (response, status) {
-        jQuery (response.html).hide ().appendTo (div).slideDown ();
+        var html = jQuery (response.html).hide ().appendTo (div);
+        clear_spinners (function () {
+            html.fadeIn ();
+            jQuery ('div.accordion').accordion ({
+                collapsible: true,
+                active: false
+            });
+            if (onReady !== undefined) {
+                onReady ();
+            }
+        });
     }).always (function (response, status) {
-        clear_spinners ();
-        jQuery (response.message).hide ().prependTo (div).slideDown ();
-        /* Adds a 'dismiss this notice' button. */
-        jQuery (document).trigger ('wp-plugin-update-error');
+        handle_message (div, response);
 
         jQuery ('table.manuscripts').disableSelection ().sortable ({
             helper: 'clone',
@@ -220,10 +234,6 @@ function on_cap_load_manuscripts (onReady) {
                 ui.item.css ('display', '');
             }
         });
-
-        if (onReady !== undefined) {
-            onReady ();
-        }
     });
     return false;  // don't submit form
 }
@@ -241,12 +251,16 @@ function on_cap_load_collation () {
         url: ajaxurl,
         data : data,
     }).done (function (response, status) {
-        jQuery (response.html).hide ().appendTo (div).slideDown ();
+        var html = jQuery (response.html).hide ().appendTo (div);
+        clear_spinners (function () {
+            html.fadeIn ();
+            jQuery ('div.accordion').accordion ({
+                collapsible: true,
+                active: false
+            });
+        });
     }).always (function (response, status) {
-        clear_spinners ();
-        jQuery (response.message).hide ().prependTo (div).slideDown ();
-        /* Adds a 'dismiss this notice' button. */
-        jQuery (document).trigger ('wp-plugin-update-error');
+        handle_message (div, response);
 
         var data_rows = jQuery ('tr[data-siglum]');
         data_rows.hover (function () {
@@ -256,6 +270,7 @@ function on_cap_load_collation () {
                 jQuery (this).removeClass ('highlight-witness');
             });
         });
+
     });
     return false;  // don't submit form
 }

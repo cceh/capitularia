@@ -184,8 +184,14 @@ class Dashboard_Page
 
         foreach ($order as $xml_id) {
             foreach ($witnesses as $witness) {
-                if ($witness->xml_id == $xml_id) {
+                if ($witness->get_id () == $xml_id) {
+                    $n_sections = $witness->enum_sections ($corresp);
                     $items[] = $witness;
+                    if ($n_sections > 1) {
+                        for ($n = 2; $n <= $n_sections; $n++) {
+                            $items[] = $witness->clone_witness ($n);
+                        }
+                    }
                 }
             }
         }
@@ -225,48 +231,9 @@ class Dashboard_Page
         $html[] = "  <h1>$title</h1>";
         $html[] = '<div class="inner-wrap">';
 
-        // AJAX form for Capitulary selection. Loads sections list.
+        // Load config button
 
-        $html[] = '<div id="collation-capitulary" class="collation-capitulary no-print">';
-        $caption = _x ('Capitulary', 'H2 caption', 'capitularia');
-        $html[] = "<h2>$caption</h2>";
-        $page = DASHBOARD_PAGE_ID;
-        $html[] = '<form onsubmit="return on_cap_load_sections()">';
-        $html[] = "<input type='hidden' name='page' value='{$page}' />";
-
-        $html[] = '<table>';
-
-        // Capitular
-
-        $html[] = '<tr>';
-        $html[] = '<td>';
-        $caption = _x ('Select a Capitulary', 'Label: text input', 'capitularia');
-        $html[] = "<label for='bk'>$caption</label>";
-        $html[] = '</td>';
-
-        $html[] = '<td>';
-        $capitulars = $this->get_capitulars ();
-        $html[] = '<select id="bk" name="bk" onchange="on_cap_load_sections()">';
-        foreach ($capitulars as $capitular) {
-            $capitular = esc_attr ($capitular);
-            $html[] = "<option value='$capitular'>$capitular</option>";
-        }
-        $html[] = '</select>';
-        $html[] = '</td>';
-        $html[] = '</tr>';
-
-        $html[] = '<tr>';
-        $html[] = '<td>';
-        $html[] = '</td>';
-        $html[] = '<td>';
-        $html[] = get_submit_button (
-            _x ('Show Sections', 'Button: Show sections of a Capitulary', 'capitularia'),
-            'primary',
-            'submit',
-            false
-        );
-        $html[] = '</td>';
-        $html[] = '<td class="load-params">';
+        $html[] = '<div class="collation-panel collation-load-params no-print">';
         $html[] = '<input id="load-params" type="file" onchange="return load_params(this)">';
 
         $html[] = str_replace (
@@ -280,18 +247,60 @@ class Dashboard_Page
                 array ('onclick' => 'return click_on_load_params()')
             )
         );
-
-
-        $html[] = '</td>';
-        $html[] = '</tr>';
-        $html[] = '</table>';
-        $html[] = '</form>';
         $html[] = '</div>';
 
-        // Placeholder for AJAX-retrieved section list.  The previous form will
-        // load into this.  This will then contain code to load the next section.
+        // AJAX form for Capitulary selection. Loads sections list.
 
-        $html[] = '<div id="collation-sections" class="collation-sections no-print">';
+        $html[] = '<div id="collation-capitulary" class="collation-capitulary no-print">';
+        $caption = _x ('Capitulary', 'H2 caption', 'capitularia');
+        $html[] = "<h2>$caption</h2>";
+        $page = DASHBOARD_PAGE_ID;
+
+        $html[] = '<form onsubmit="return on_cap_load_manuscripts()">';
+        $html[] = "<input type='hidden' name='page' value='{$page}' />";
+
+        $html[] = '<table>';
+
+        // Select Capitulary and Section
+
+        $html[] = '<tr>';
+        $html[] = '<td>';
+        $caption = _x ('Select Capitulary and Section', 'Label: for select', 'capitularia');
+        $html[] = "<label for='bk'>$caption</label>";
+        $html[] = '</td>';
+
+        $html[] = '<td>';
+        $capitulars = $this->get_capitulars ();
+        $html[] = '<select id="bk" name="bk" onchange="on_cap_load_sections()">';
+        foreach ($capitulars as $capitular) {
+            $capitular = esc_attr ($capitular);
+            $html[] = "<option value='$capitular'>$capitular</option>";
+        }
+        $html[] = '</select>';
+        $html[] = '</td>';
+
+        $html[] = '<td>';
+        $html[] = '<select id="section" name="section" onchange="on_cap_load_manuscripts()">';
+        $html[] = "<option value=''>empty</option>";
+        $html[] = '</select>';
+        $html[] = '</td>';
+
+        // Collate button
+
+        $html[] = '<td>';
+        $html[] = '</td>';
+        $html[] = '<td>';
+        $html[] = get_submit_button (
+            _x ('Show manuscripts', 'Button: Show manuscripts', 'capitularia'),
+            'primary',
+            'submit',
+            false
+        );
+        $html[] = '</td>';
+        $html[] = '</tr>';
+
+        $html[] = '</table>';
+        $html[] = '</form>';
         $html[] = '</div>';
 
         // Placeholder for AJAX-retrieved manuscript list.  The previous form will
@@ -324,20 +333,6 @@ class Dashboard_Page
     {
         $bk = $_REQUEST['bk'];
 
-        $html = array ('<div class="collation-sections no-print">');
-        $caption = _x ('Section', 'H2 caption', 'capitularia');
-        $html[] = "<h2>$caption</h2>";
-        $html[] = '<form onsubmit="return on_cap_load_manuscripts()">';
-        $html[] = '<table>';
-
-        // Sections
-
-        $html[] = '<tr>';
-        $html[] = '<td>';
-        $caption = sprintf (_x ('Select a section in Capitulary %s', 'Label: for drop-down', 'capitularia'), $bk);
-        $html[] = "<label for='section'>$caption</label>";
-        $html[] = '</td>';
-        $html[] = '<td>';
         $sections = $this->get_sections ($bk);
         $html[] = '<select id="section" name="section" onchange="on_cap_load_manuscripts()">';
         foreach ($sections as $section) {
@@ -345,27 +340,6 @@ class Dashboard_Page
             $html[] = "<option value='$section'>$section</option>";
         }
         $html[] = '</select>';
-        $html[] = '</td>';
-        $html[] = '</tr>';
-
-        // Collate button
-
-        $html[] = '<tr>';
-        $html[] = '<td>';
-        $html[] = '</td>';
-        $html[] = '<td>';
-        $html[] = get_submit_button (
-            _x ('Show manuscripts', 'Button: Show manuscripts', 'capitularia'),
-            'primary',
-            'submit',
-            false
-        );
-        $html[] = '</td>';
-        $html[] = '</tr>';
-
-        $html[] = '</table>';
-        $html[] = '</form>';
-        $html[] = '</div>';
 
         $json = array (
             'success' => true,
@@ -410,9 +384,9 @@ class Dashboard_Page
         $html[] = '<tbody>';
         $items = $this->get_witnesses ($corresp);
         foreach ($items as $item) {
-            $html[] = "<tr data-siglum='$item->xml_id'>";
+            $html[] = "<tr data-siglum='{$item->get_id ()}'>";
             $html[] = '<td>';
-            $html[] = $item->xml_id;
+            $html[] = $item->get_id ();
             $html[] = '</td>';
             $html[] = '</tr>';
         }
@@ -439,6 +413,11 @@ class Dashboard_Page
 
         // Algorithm
 
+        $html[] = '<div class="accordion advanced-options">';
+        $caption = _x ('Advanced Options', 'H3 caption', 'capitularia');
+        $html[] = "<h3>$caption</h3>";
+
+        $html[] = '<div>';
         $html[] = '<table>';
         $html[] = '<tr>';
         $html[] = '<td>';
@@ -483,7 +462,7 @@ class Dashboard_Page
         $html[] = '</td>';
         $html[] = '<td>';
         $html[] = '<select id="levenshtein_ratio" name="levenshtein_ratio">';
-        $default = '0.6';
+        $default = '1.0';
         foreach (explode (' ', '1.0 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 0.1') as $i) {
             $def = ($i == $default) ? ' selected="selected"' : '';
             $html[] = "<option value='$i'$def>$i</option>";
@@ -529,9 +508,13 @@ class Dashboard_Page
         $html[] = '<textarea id="normalizations" name="normalizations" rows="4" cols="50" />';
         $html[] = '</td>';
         $html[] = '</tr>';
+        $html[] = '</table>';
+        $html[] = '</div>';
+        $html[] = '</div>'; // Accordion
 
         // Collate button
 
+        $html[] = '<table>';
         $html[] = '<tr>';
         $html[] = '<td>';
         $html[] = '</td>';
@@ -666,7 +649,7 @@ class Dashboard_Page
                     $collatex->format_table (
                         $data['witnesses'],
                         $collatex->invert_table ($tables[$n]),
-                        $manuscripts
+                        $items
                     )
                 );
                 $tmp[] = '</table>';
@@ -677,16 +660,29 @@ class Dashboard_Page
             $tmp[] = esc_html ($ret['error_code'] . ' ' . $ret['stdout'] . ' ' . $ret['stderr']);
         }
 
-        /* Output hidden debug section */
-        $tmp[] = "<div class='debug'>";
-        $tmp[] = '<h2>Debug Sections</h2>';
+        /* Debug section */
+        $tmp[] = '<div class="accordion debug-options no-print">';
+        $caption = _x ('Debug Output', 'H3', 'capitularia');
+        $tmp[] = "<h3>$caption</h3>";
+        $tmp[] = '<div>';
+
+        $tmp[] = '<h4>Extracted Sections</h4>';
         foreach ($items as $item) {
-            $tmp[] = "<h3>{$item->xml_id}</h3>";
+            $tmp[] = '<div>';
+            $tmp[] = "<h5>{$item->get_id ()}</h5>";
             $tmp[] = "<p>{$item->pure_text}</p>";
+            $tmp[] = '</div>';
         }
-        $tmp[] = '<h2>Debug Collatex Input</h2>';
+
+        $tmp[] = '<h4>Collatex Input</h4>';
         $tmp[] = '<pre>' . esc_html ($json_in) . '</pre>';
+
+        $tmp[] = '<h4>Collatex Output</h4>';
+        $tmp[] = '<pre>' . esc_html ($ret['stdout']) . '</pre>';
+
         $tmp[] = '</div>';
+
+        $tmp[] = '</div>'; // Accordion
 
         /* Return */
         $json = array (

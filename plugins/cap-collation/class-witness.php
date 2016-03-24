@@ -20,32 +20,52 @@ class Witness
 {
     private $corresp;
     private $xml_filename;
-    public $xml_id;
+    private $xml_id;
     public $sort_key;
+    public $sub_id;
+    private $sections = array ();
 
     /**
      * Constructor
      *
+     * Note: Manuscripts may contain more than one copy of the same @corresp. In
+     * that case a second witness is generated with a Sub-Id > 1.
+     *
      * @param string $corresp      The capitulary section, eg. "BK.184_a"
      * @param string $xml_id       The xml:id of the TEI file, eg. "bamberg-sb-can-12"
      * @param string $xml_filename The full path to the TEI file.
+     * @param int    $sub_id       Sub-Id of witness.
      *
      * @return Collation_item
      */
 
-    public function __construct ($corresp, $xml_id, $xml_filename)
+    public function __construct ($corresp, $xml_id, $xml_filename, $sub_id = 1)
     {
         $this->corresp      = $corresp;
         $this->xml_id       = $xml_id;
         $this->xml_filename = $xml_filename;
+        $this->sub_id       = $sub_id;
 
         $this->sort_key     = preg_replace_callback (
             '|\d+|',
             function ($match) {
                 return 'zz' . strval (strlen ($match[0])) . $match[0];
             },
-            $xml_id
+            $this->get_id ()
         );
+    }
+
+    public function clone_witness ($sub_id)
+    {
+        return new Witness ($this->corresp, $this->xml_id, $this->xml_filename, $sub_id);
+    }
+
+    public function get_id ()
+    {
+        if ($this->sub_id > 1) {
+            return $this->xml_id . '-' . $this->sub_id;
+        }
+        return $this->xml_id;
     }
 
     /**
@@ -178,6 +198,8 @@ class Witness
      * This function builds a new TEI-like DOM in memory and adds just the
      * section(s) matched by corresp.
      *
+     * See: http://capitularia.uni-koeln.de/wp-admin/admin.php?page=wp-help-documents&document=7402
+     *
      * Aus den Transkriptionsrichtlinien 1.3 beta
      *
      * Beginnt ein neues Kapitel mitten im Text, werden innerhalb des <ab/> alle
@@ -219,12 +241,17 @@ class Witness
         $xpath = $this->xpath ($doc);
 
         $nodes = $xpath->query ("//tei:ab[@corresp='{$corresp}'] | //tei:span[@to and @corresp='{$corresp}']");
+        $n = 1;
         foreach ($nodes as $node) {
             // Nodes with @prev are handled in the @next chain instead.
             if ($node->getAttribute ('prev')) {
                 continue;
             }
-            $this->process_node ($body, $node, $errors);
+            // Process only the correct sub-id.
+            if ($n == $this->sub_id) {
+                $this->process_node ($body, $node, $errors);
+            }
+            $n++;
         }
         if (empty ($body->textContent)) {
             $errors[] = "Nothing extracted from {$this->xml_filename} for $corresp";
@@ -243,6 +270,23 @@ class Witness
         } else {
             error_log ("Could not open $xsl_filename");
         }
+    }
+
+    public function enum_sections ($corresp)
+    {
+        $s   = file_get_contents ($this->xml_filename);
+        $doc = $this->string_to_dom ($s);
+        $xpath = $this->xpath ($doc);
+
+        $n = 0;
+        $nodes = $xpath->query ("//tei:ab[@corresp='{$corresp}'] | //tei:span[@to and @corresp='{$corresp}']");
+        foreach ($nodes as $node) {
+            if ($node->getAttribute ('prev')) {
+                continue;
+            }
+            $n++;
+        }
+        return $n;
     }
 
     /**
@@ -307,7 +351,7 @@ class Witness
                 $tokens[] = array ('t' => $pattern, 'n' => $normalized);
             }
         }
-        return array ('id' => $this->xml_id, 'tokens' => $tokens);
+        return array ('id' => $this->get_id (), 'tokens' => $tokens);
     }
 
     /**

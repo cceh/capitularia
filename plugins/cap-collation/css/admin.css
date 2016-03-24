@@ -1,8 +1,17 @@
 /* Generated file. Do not edit. */
+div.collation-panel {
+  margin: 1em 0;
+}
+table {
+  margin: 1em 0;
+}
+select#bk,
+select#section {
+  min-width: 10%;
+}
 table.collation,
 table.manuscripts {
   border-collapse: collapse;
-  margin: 1em 0;
   width: 100%;
   page-break-inside: avoid;
 }
@@ -66,10 +75,11 @@ table.manuscripts-collated {
 table.manuscripts-ignored {
   float: right;
 }
-td.load-params {
+/* hide the 'Choose File' button */
+div.collation-load-params {
   position: relative;
 }
-#load-params {
+div.collation-load-params #load-params {
   position: absolute;
   top: 0;
   visibility: hidden;
@@ -90,8 +100,22 @@ td.load-params {
     font-size: 10pt;
   }
 }
-div.debug {
-  display: none;
+div.ui-accordion .ui-state-default,
+div.ui-accordion .ui-widget-content .ui-state-default,
+div.ui-accordion .ui-widget-header .ui-state-default {
+  background: transparent;
+  color: black;
+  border: none;
+  border-radius: 0px;
+  outline: none;
+}
+div.ui-accordion .ui-accordion-icons .ui-accordion-icons {
+  padding: 0 0 0 2.2em;
+}
+div.ui-accordion .ui-accordion-content {
+  border: 1px solid grey;
+  border-radius: 0px;
+  background: transparent;
 }
 div.collation table {
   border: solid 1px;

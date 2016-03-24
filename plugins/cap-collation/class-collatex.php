@@ -182,9 +182,9 @@ class CollateX
     /**
      * Format a CollateX table into HTML
      *
-     * @param array $witnesses  The witnesses
-     * @param array $table      The collation table in row orientation
-     * @param array $order_like The witnesses in the order they should be displayed
+     * @param string[]  $witnesses  The witnesses' ids
+     * @param array     $table      The collation table in row orientation
+     * @param Witness[] $order_like The witnesses in the order they should be displayed
      *
      * @return string[] The rows of the HTML table
      */
@@ -193,9 +193,9 @@ class CollateX
     {
         $permutations = array ();
         foreach ($order_like as $order) {
-            $perm = array_search ($order, $witnesses);
+            $perm = array_search ($order->get_id (), $witnesses);
             if ($perm !== false) {
-                $permutations[] = array_search ($order, $witnesses);
+                $permutations[] = $perm;
             }
         }
 

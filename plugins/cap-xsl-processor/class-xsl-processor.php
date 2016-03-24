@@ -193,6 +193,8 @@ class XSL_Processor
             // Run do_shortcode again to actually do the xsl
             remove_all_shortcodes ();
             add_shortcode ($this->shortcode, array ($this, 'on_shortcode_xsl'));
+            error_log ('Used memory before do_shortcode: ' . memory_get_usage ());
+            error_log ('Peak memory before do_shortcode: ' . memory_get_peak_usage ());
             $content = do_shortcode ($content);
 
             if (!$this->do_revision) {
@@ -206,7 +208,12 @@ class XSL_Processor
             );
             // error_log ('on_the_content_early () before update_post ...');
             kses_remove_filters ();
+            gc_collect_cycles ();
+            error_log ('Used memory before wp_update: ' . memory_get_usage ());
+            error_log ('Peak memory before wp_update: ' . memory_get_peak_usage ());
             wp_update_post ($my_post);
+            error_log ('Used memory after wp_update : ' . memory_get_usage ());
+            error_log ('Peak memory after wp_update : ' . memory_get_peak_usage ());
             kses_init_filters ();
 
             // update metadata
