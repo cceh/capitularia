@@ -152,6 +152,20 @@ $xpath  = new \DOMXpath ($doc);
 $xpath1 = new \DOMXpath ($doc);
 
 //
+// Identify the transform so we are sure to generate different ids even if we
+// combine many transformation outputs into one page.
+//
+
+$xsl_id = "undefined";
+foreach (array ('header', 'body', 'footer') as $part) {
+    $divs = $xpath->query ("//div[@class='transkription-$part']");
+    if (($divs !== false) && ($divs->length > 0)) {
+        $xsl_id = $part;
+        break;
+    }
+}
+
+//
 // Merge an move footnotes to the end of the word.
 //
 
@@ -364,14 +378,11 @@ foreach ($xpath->query ('//script') as $script) {
 //
 
 $id_counter = 1000;
-// HACK: multiple outputs from this script may be concatenated.  To avoid
-// duplicate ids we add some salt.
-$rand = rand ();
 foreach ($xpath->query ('//@id') as $id) {
     if (preg_match ('/^[-_.:\pL\pN]*$/iu', $id->value)) {
         continue;
     }
-    $id->value = "id-cap-gen-$id_counter-$rand";
+    $id->value = "id-cap-gen-{$xsl_id}-{$id_counter}";
     $id_counter++;
 }
 

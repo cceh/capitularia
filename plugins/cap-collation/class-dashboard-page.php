@@ -31,11 +31,11 @@ class Dashboard_Page
     public function __construct ()
     {
         $this->algorithms = array (
-            'dekker'               => _x ('Dekker',               'Collation Algorithm', 'capitularia'),
-            'gst'                  => _x ('Greedy String Tiling', 'Collation Algorithm', 'capitularia'),
-            'medite'               => _x ('MEDITE',               'Collation Algorithm', 'capitularia'),
-            'needleman-wunsch'     => _x ('Needleman-Wunsch',     'Collation Algorithm', 'capitularia'),
-            'new-needleman-wunsch' => _x ('New Needleman-Wunsch', 'Collation Algorithm', 'capitularia'),
+            'dekker'                 => _x ('Dekker',                 'Collation Algorithm', 'capitularia'),
+            'gst'                    => _x ('Greedy String Tiling',   'Collation Algorithm', 'capitularia'),
+            'medite'                 => _x ('MEDITE',                 'Collation Algorithm', 'capitularia'),
+            'needleman-wunsch'       => _x ('Needleman-Wunsch',       'Collation Algorithm', 'capitularia'),
+            'needleman-wunsch-gotoh' => _x ('Needleman-Wunsch-Gotoh', 'Collation Algorithm', 'capitularia'),
         );
     }
 
@@ -154,7 +154,9 @@ class Dashboard_Page
                 $xml_id = basename ($xml_filename, '.xml');
             }
 
-            $items[] = new Witness ($corresp, $xml_id, $xml_filename);
+            $slug = get_page_uri ($id);
+
+            $items[] = new Witness ($corresp, $xml_id, $xml_filename, $slug);
         }
 
         // sort according to $xml_id
@@ -386,7 +388,7 @@ class Dashboard_Page
         foreach ($items as $item) {
             $html[] = "<tr data-siglum='{$item->get_id ()}'>";
             $html[] = '<td>';
-            $html[] = $item->get_id ();
+            $html[] = "<a href='/{$item->get_slug ()}'>{$item->get_id ()}</a>";
             $html[] = '</td>';
             $html[] = '</tr>';
         }
@@ -426,7 +428,7 @@ class Dashboard_Page
         $html[] = '</td>';
         $html[] = '<td>';
         $html[] = '<select id="algorithm" name="algorithm">';
-        $default = 'new-needleman-wunsch';
+        $default = 'needleman-wunsch-gotoh';
         // $default = 'dekker';
         foreach ($this->algorithms as $algo => $algorithm) {
             $def = ($algo == $default) ? ' selected="selected"' : '';
@@ -571,7 +573,7 @@ class Dashboard_Page
 
         $algorithm = isset ($_REQUEST['algorithm']) ? $_REQUEST['algorithm'] : 'default';
         if (!array_key_exists ($algorithm, $this->algorithms)) {
-            $algorithm = 'new-needleman-wunsch';
+            $algorithm = 'needleman-wunsch-gotoh';
         }
         $status[] = sprintf (__ ('Algorithm: %s', 'capitularia'), $this->algorithms[$algorithm]);
 

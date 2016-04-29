@@ -21,6 +21,7 @@ class Witness
     private $corresp;
     private $xml_filename;
     private $xml_id;
+    private $slug;
     public $sort_key;
     public $sub_id;
     private $sections = array ();
@@ -39,11 +40,12 @@ class Witness
      * @return Collation_item
      */
 
-    public function __construct ($corresp, $xml_id, $xml_filename, $sub_id = 1)
+    public function __construct ($corresp, $xml_id, $xml_filename, $slug, $sub_id = 1)
     {
         $this->corresp      = $corresp;
         $this->xml_id       = $xml_id;
         $this->xml_filename = $xml_filename;
+        $this->slug         = $slug;
         $this->sub_id       = $sub_id;
 
         $this->sort_key     = preg_replace_callback (
@@ -57,15 +59,20 @@ class Witness
 
     public function clone_witness ($sub_id)
     {
-        return new Witness ($this->corresp, $this->xml_id, $this->xml_filename, $sub_id);
+        return new Witness ($this->corresp, $this->xml_id, $this->xml_filename, $this->slug, $sub_id);
     }
 
     public function get_id ()
     {
         if ($this->sub_id > 1) {
-            return $this->xml_id . '-' . $this->sub_id;
+            return $this->xml_id . '#' . $this->sub_id;
         }
         return $this->xml_id;
+    }
+
+    public function get_slug ()
+    {
+        return $this->slug;
     }
 
     /**
