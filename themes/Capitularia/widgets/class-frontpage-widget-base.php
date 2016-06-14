@@ -158,9 +158,9 @@ class Frontpage_Widget_Base extends \WP_Widget
     {
         $value = esc_attr ($this->normalize ($instance[$name]));
         echo ("<p><label for=\"{$this->get_field_id ($name)}\">$caption</label>");
-        echo ("<input class=\"widefat\" id=\"{$this->get_field_id ($name)}\" " .
-              "name=\"{$this->get_field_name ($name)}\" type=\"text\" " .
-              "value=\"$value\" placeholder=\"$placeholder\"></p>");
+        echo ("<textarea class=\"widefat resizable\" id=\"{$this->get_field_id ($name)}\" " .
+              "name=\"{$this->get_field_name ($name)}\" " .
+              "value=\"$value\" placeholder=\"$placeholder\">$value</textarea></p>");
     }
 
     /**

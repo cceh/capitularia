@@ -159,6 +159,9 @@ class Dynamic_Menu
                 if (stristr ($item->url, '#cap_dynamic_menu#') !== false) {
                     $is_dynamic_menu = true;
                 }
+                if (stristr ($item->url, '#cap_login_menu#') !== false) {
+                    $is_dynamic_menu = true;
+                }
             }
         }
         if (!$is_dynamic_menu) {
@@ -235,7 +238,14 @@ class Dynamic_Menu
                     }
                     continue;
                 }
+                if (stristr ($item->url, '#cap_login_menu#') !== false) {
+                    $item->url = wp_login_url (get_permalink ());
+                    // error_log ("Login menu url: {$item->url}");
+                    $new_items[$key] = $item;
+                    continue;
+                }
             }
+            # else add unprocessed items
             $new_items[$key] = $item;
         }
         return $new_items;

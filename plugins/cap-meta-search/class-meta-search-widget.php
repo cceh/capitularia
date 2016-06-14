@@ -338,6 +338,18 @@ class Widget extends \WP_Widget
                     }
                 }
                 $query->set ('meta_query', $meta_query_args);
+
+                /* Output titles in alphabetical order. */
+                $query->set ('orderby', 'title');
+                $query->set ('order', 'ASC');
+
+                /* If you want results paged. */
+                $paged = max (1, intval (get_query_var ('paged')));
+                $query->set ('paged', $paged);
+                $query->set ('posts_per_page', 10);
+
+                /* If you don't want results paged. */
+                // $query->set ('nopaging', true);
             }
         }
     }

@@ -455,7 +455,7 @@ class XSL_Processor
     public function on_admin_bar_menu ($wp_admin_bar)
     {
         // add clear cache button
-        if ($this->page_has_shortcode) {
+        if (!is_admin () && $this->page_has_shortcode && current_user_can ('edit_pages')) {
             $args = array (
                 'id'    => 'cap_xsl_cache_reload',
                 'title' => 'XSL',

@@ -220,7 +220,7 @@ class Page_Generator
 
     public function on_admin_bar_menu ($wp_admin_bar)
     {
-        if (!is_admin ()) {
+        if (!is_admin () && current_user_can ('edit_pages')) {
             $args = array (
                 'id'    => 'cap_page_gen_open',
                 'title' => __ ('Page Generator'),

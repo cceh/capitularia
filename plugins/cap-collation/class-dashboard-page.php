@@ -107,11 +107,11 @@ class Dashboard_Page
     {
         global $wpdb;
 
-        $bk = "{$bk}_%";
+        $bk = "{$bk}(_|$)";
 
         $sql = $wpdb->prepare (
             'SELECT DISTINCT meta_value FROM wp_postmeta ' .
-            'WHERE meta_key = \'corresp\' AND meta_value LIKE %s ORDER BY meta_value;',
+            'WHERE meta_key = \'corresp\' AND meta_value REGEXP \'%s\' ORDER BY meta_value;',
             $bk
         );
 

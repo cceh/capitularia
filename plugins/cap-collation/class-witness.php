@@ -353,7 +353,9 @@ class Witness
             }
             $normalized = strtolower ($normalized);
             $normalized = preg_replace ('/\[\s*|\s*\]/', '', $normalized);
-            $normalized = preg_replace ('/[.,:;]/',      '', $normalized);
+            // $normalized = preg_replace ('|[.,:;/·˙∴]|',  '', $normalized);
+            $normalized = preg_replace ('|[.,:;/]|',  '', $normalized);
+            // $normalized = preg_replace ('/[.,:;]/',      '', $normalized);
             if (!empty ($normalized)) {
                 $tokens[] = array ('t' => $pattern, 'n' => $normalized);
             }

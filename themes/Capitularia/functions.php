@@ -197,6 +197,17 @@ function on_enqueue_scripts ()
 
 function on_admin_enqueue_scripts ()
 {
+    $styles = array ();
+    $styles['cap-admin']       = '/css/admin.css';
+
+    foreach ($styles as $key => $file) {
+        wp_enqueue_style (
+            $key,
+            get_template_directory_uri () . $file,
+            array () // no deps for now
+        );
+    };
+
     // NOTE: Wordpress' own jquery-ui does not include jquery-ui.css.
     register_jquery ();
     wp_enqueue_script ('cap-jquery-ui');
@@ -564,6 +575,17 @@ __ ('November',  'capitularia');
 __ ('December',  'capitularia');
 
 add_filter ('get_archives_link', 'cceh\capitularia\theme\translate_month_year');
+
+
+/*
+ * Redirect user to current page after login
+ */
+
+function on_login_redirect ($redirect_to, $requested_redirect_to, $user) {
+    return $requested_redirect_to;
+}
+
+add_filter ('login_redirect', 'cceh\capitularia\theme\on_login_redirect', 10, 3);
 
 
 /*
