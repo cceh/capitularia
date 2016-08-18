@@ -156,7 +156,7 @@ $xpath1 = new \DOMXpath ($doc);
 // combine many transformation outputs into one page.
 //
 
-$xsl_id = "undefined";
+$xsl_id = 'undefined';
 foreach (array ('header', 'body', 'footer') as $part) {
     $divs = $xpath->query ("//div[@class='transkription-$part']");
     if (($divs !== false) && ($divs->length > 0)) {
@@ -171,7 +171,6 @@ foreach (array ('header', 'body', 'footer') as $part) {
 
 $notes = $xpath->query (FOOTNOTES);
 foreach ($notes as $note) {
-
     // Don't touch editorial notes.
     if (has_class ($note, 'annotation-editorial')) {
         continue;
@@ -227,7 +226,6 @@ foreach ($notes as $note) {
 
 $notes = $xpath->query (FOOTNOTES);
 foreach ($notes as $note) {
-
     $prev = $note->previousSibling;
     if (!is_text_node ($prev)) {
         continue;
@@ -249,7 +247,6 @@ foreach ($notes as $note) {
 
 $notes = $xpath->query (FOOTNOTES);
 foreach ($notes as $note) {
-
     // Don't touch editorial notes.
     if (has_class ($note, 'annotation-editorial')) {
         continue;
@@ -315,7 +312,6 @@ foreach ($notes as $note) {
 
 $initials = $xpath->query ('//span[contains (concat (" ", @class, " "), " initial ")]');
 foreach ($initials as $initial) {
-
     $next = $initial->nextSibling;
     if (!is_text_node ($next)) {
         continue;

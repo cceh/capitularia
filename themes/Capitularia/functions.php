@@ -581,7 +581,8 @@ add_filter ('get_archives_link', 'cceh\capitularia\theme\translate_month_year');
  * Redirect user to current page after login
  */
 
-function on_login_redirect ($redirect_to, $requested_redirect_to, $user) {
+function on_login_redirect ($redirect_to, $requested_redirect_to, $user)
+{
     return $requested_redirect_to;
 }
 

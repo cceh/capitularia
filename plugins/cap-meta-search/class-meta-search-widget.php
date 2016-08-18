@@ -41,7 +41,6 @@ class Widget extends \WP_Widget
         add_filter ('posts_search',                array ($this, 'on_posts_search'), 10, 2);
         add_filter ('wp_search_stopwords',         array ($this, 'on_wp_search_stopwords'));
         add_filter ('cap_meta_search_your_search', array ($this, 'on_cap_meta_search_your_search'));
-
     }
 
     /**

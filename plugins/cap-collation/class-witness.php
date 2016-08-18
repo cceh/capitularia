@@ -35,6 +35,7 @@ class Witness
      * @param string $corresp      The capitulary section, eg. "BK.184_a"
      * @param string $xml_id       The xml:id of the TEI file, eg. "bamberg-sb-can-12"
      * @param string $xml_filename The full path to the TEI file.
+     * @param string $slug         Slug of manuscript page
      * @param int    $sub_id       Sub-Id of witness.
      *
      * @return Collation_item

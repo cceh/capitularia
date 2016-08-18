@@ -43,7 +43,7 @@ if ($n_results) {
 }
 
 
-$page_msg = __('Page:', 'capitularia');
+$page_msg = __ ('Page:', 'capitularia');
 $pagination = paginate_links (
     array (
         'current' => max (1, get_query_var ('paged')),

@@ -148,6 +148,11 @@ class Dashboard_Page
             );
             $xml_filename = $wpdb->get_var ($sql);
 
+            if (!is_readable ($xml_filename)) {
+                // orphaned file
+                continue;
+            }
+
             // FIXME: Q: Why is xml_id sometimes null? A: Because
             // the TEI file is bogus and doesn't have one.
             if (empty ($xml_id)) {

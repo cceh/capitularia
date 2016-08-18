@@ -152,7 +152,7 @@ class Extractor
         $this->meta (
             $post_id,
             'corresp',
-            $xpath->query ('//tei:*/@corresp'),
+            $xpath->query ('//tei:ab/@corresp|//tei:span/@corresp'),
             array ($this, 'nmtokens')
         );
         $this->meta (

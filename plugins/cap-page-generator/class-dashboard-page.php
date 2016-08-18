@@ -61,6 +61,7 @@ class Dashboard_Page
 
         // output sections
         $sections = array_slice ($this->config->sections, 1);
+        $paged = isset ($_REQUEST['paged']) ? $_REQUEST['paged'] : 0;
 
         echo ("<div id='tabs'>\n");
         echo ("<ul>\n");
@@ -71,7 +72,7 @@ class Dashboard_Page
             $class = $this->config->section_can ($section_id, 'publish') ? ' cap_can_publish' : ' cap_can_private';
             echo ("  <li>\n");
             echo ("    <a class='navtab $class' data-section='$section_id' ");
-            echo ("href='$ajax_url?action=on_cap_load_files&section=$section_id'>$caption</a>\n");
+            echo ("href='$ajax_url?action=on_cap_load_files&section=$section_id&paged=$paged'>$caption</a>\n");
             echo ("  </li>\n");
         }
         echo ("</ul>\n");
@@ -96,19 +97,75 @@ class Dashboard_Page
         echo ("<div id='tabs-$section_id'>\n");
         echo ("<h2>$caption</h2>\n");
         echo ('<p>' . sprintf (__ ('Reading directory: %s', 'capitularia'), $xml_dir) . "</p>\n");
+
         $page = DASHBOARD_PAGE_ID;
-        echo ("<form action='/wp-admin/index.php' id='cap_page_gen_form_{$section_id}' method='get'>");
+        $paged = isset ($_REQUEST['paged']) ? $_REQUEST['paged'] : 1;
+        $page_url = '/wp-admin/index.php';
+        $pagination_args = array (
+            'per_page'    => 50,
+            'current_url' => "{$page_url}?section={$section_id}&page={$page}",
+        );
+
+        $table = new File_List_Table ($section_id, $xml_dir);
+        $table->prepare_items ($pagination_args);
+        // $this->print_orphaned_metadata ($section, $table);
+
+        echo ("<form action='{$page_url}' id='cap_page_gen_form_{$section_id}' method='get'>");
         // posts back to wp-admin/index.php, ensure that we get back to our
         // current page
         echo ("<input type='hidden' name='page' value='{$page}' />");
+        echo ("<input type='hidden' name='paged' value='{$paged}' />");
         echo ("<input type='hidden' name='section' value='{$section_id}' />");
 
-        $table = new File_List_Table ($section_id, $xml_dir);
-        $table->prepare_items ();
         $table->display ();
 
         echo ("</form>\n");
         echo ("</div>\n");
+    }
+
+    /**
+     * Find orphaned metadata
+     *
+     * @param array           $section Section descriptor
+     * @param File_List_Table $table   Table with loaded paths
+     *
+     * @return void
+     */
+
+    public function print_orphaned_metadata ($section, $table)
+    {
+        global $wpdb;
+        $section_id = $section[0];
+
+        /* Get all the metadata we know in a dict. */
+
+        $sql = $wpdb->prepare (
+            "SELECT ID, post_name, meta_value FROM {$wpdb->posts}, {$wpdb->postmeta} " .
+            "WHERE ID = post_id AND meta_key = 'tei-filename' AND post_parent = %d",
+            cap_get_parent_id ($section_id)
+        );
+        $known_slugs = array ();
+        foreach ($wpdb->get_results ($sql) as $row) {
+            // echo ("<!-- In Metadata: {$row->meta_value} -->");
+            $known_slugs[$row->meta_value] = $row->post_name;
+        }
+
+        /* Remove still current metadata from dict. */
+
+        foreach ($table->paths as $path) {
+            // echo ("<!-- Found: {$path} -->");
+            unset ($known_slugs[$path]);
+        }
+
+        /* Output the orphaned metadata. */
+
+        if ($known_slugs) {
+            echo ('<ul>');
+            foreach ($known_slugs as $path => $slug) {
+                echo ("<li>Orphaned metadata: '{$slug}': '{$path}'</li>");
+            }
+            echo ('</ul>');
+        }
     }
 
     /**

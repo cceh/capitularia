@@ -245,7 +245,7 @@ class Dynamic_Menu
                     continue;
                 }
             }
-            # else add unprocessed items
+            // else add unprocessed items
             $new_items[$key] = $item;
         }
         return $new_items;

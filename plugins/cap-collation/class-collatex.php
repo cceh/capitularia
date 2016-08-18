@@ -201,6 +201,7 @@ class CollateX
 
         $out = array ();
         $master_vertex_id = array (); // id of vertex in first witness
+        $master_text = array ();      // text in first witness
         foreach ($permutations as $w) {
             $row = $table[$w];
             $witness = esc_attr ($witnesses[$w]);
@@ -223,9 +224,16 @@ class CollateX
                 if ($w == $permutations[0]) {
                     // on the first row, save the vertex id
                     $master_vertex_id[$s] = $vertex_id;
+                    $master_text[$s] = strtolower ($tmp);
                 } else {
+                    /*
                     // on the next rows, if vertex same as master -> equal
                     if ($master_vertex_id[$s] == $vertex_id) {
+                        $class .= ' equal';
+                    }
+                    */
+                    // on the next rows, if text same as master -> equal
+                    if ($master_text[$s] == strtolower ($tmp)) {
                         $class .= ' equal';
                     }
                 }
