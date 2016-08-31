@@ -107,7 +107,7 @@ function wrap ($nodes)
 }
 
 /**
- * Return the position of the first whitespace in $text_node.
+ * Return the position of the character after the first word in $text_node.
  *
  * $text_node must be a text node.
  *
@@ -116,10 +116,10 @@ function wrap ($nodes)
  * @return mixed Position of first whitespace or false.
  */
 
-function whitespace_pos ($text_node)
+function word_end_pos ($text_node)
 {
     $text = $text_node->nodeValue;
-    $text = preg_replace ('/\s/u', ' ', $text);
+    $text = preg_replace ('/[[:punct:]\s]/u', ' ', $text);
     return mb_strpos ($text, ' ');
 }
 
@@ -166,7 +166,7 @@ foreach (array ('header', 'body', 'footer') as $part) {
 }
 
 //
-// Merge an move footnotes to the end of the word.
+// Merge and move footnotes to the end of the word.
 //
 
 $notes = $xpath->query (FOOTNOTES);
@@ -195,11 +195,11 @@ foreach ($notes as $note) {
     }
 
     $nnext = $next->nextSibling;
-    $ws_pos = whitespace_pos ($next);
+    $we_pos = word_end_pos ($next);
 
     // Merge notes separated by non-whitespace only (footnotes in the same word).
     //
-    if ($ws_pos === false) {
+    if ($we_pos === false) {
         if (is_note ($nnext)) {
             merge_notes ($note, $nnext);
         }
@@ -208,11 +208,11 @@ foreach ($notes as $note) {
 
     // Move footnote to the end of the word.
     //
-    if ($ws_pos > 0) {
+    if ($we_pos > 0) {
         // the note is not at the word's end
         // split the following text node at the end of the word
         // and move the note
-        $dummy_second_text_node = $next->splitText ($ws_pos);
+        $dummy_second_text_node = $next->splitText ($we_pos);
         $note->parentNode->insertBefore ($next, $note);
         add_class ($note, 'relocated');
         continue;
@@ -317,9 +317,9 @@ foreach ($initials as $initial) {
         continue;
     }
 
-    $ws_pos = whitespace_pos ($next);
+    $we_pos = word_end_pos ($next);
 
-    if ($ws_pos === false) {
+    if ($we_pos === false) {
         // following text node contains no whitespace
         // see if it is followed by a note
 
@@ -330,40 +330,45 @@ foreach ($initials as $initial) {
         continue;
     }
 
-    if ($ws_pos > 0) {
+    if ($we_pos > 0) {
         // following text node contains whitespace
         // split the following text node at the end of the word
-        $dummy_second_text_node = $next->splitText ($ws_pos);
+        $dummy_second_text_node = $next->splitText ($we_pos);
         wrap (array ($initial, $next));
         continue;
     }
 }
 
 //
-// Loop over text nodes to nbsp punctuation following whitespace
+// Loop over text nodes to:
+//
+// replace keyboard shortcuts
+// add nbsp before punctuation (if following whitespace)
 //
 
-$textnodes = $xpath->query ('//text()');
-foreach ($textnodes as $textnode) {
-    $text = $textnode->nodeValue;
-    $text = preg_replace ('/\s+([·])/u', ' $1', $text);
-    if ($text != $textnode->nodeValue) {
-        $textnode->nodeValue = $text;
+// Test if this file was transformed with the CTE stylesheet.  In that case we
+// don't want to replace shortcuts.
+$divs = $xpath->query ('//div[@class="CTE"]');
+$is_CTE = ($divs !== false) && ($divs->length > 0);
+
+if (!$is_CTE) {
+    $search  = array ('.:', ';.',  '.', '!',  '*');
+    $replace = array ('∴',  '·,·', '·', ".'", '˙');
+
+    $textnodes = $xpath->query ('//text()[ancestor::*[@data-shortcuts][1]/@data-shortcuts = "1"]');
+    foreach ($textnodes as $textnode) {
+        $text = $textnode->nodeValue;
+        $text = str_replace ($search, $replace, $text);
+        $text = preg_replace ('/\s+([·])/u', ' $1', $text);
+        if ($text != $textnode->nodeValue) {
+            $textnode->nodeValue = $text;
+        }
     }
 }
 
 //
 // Make new w3c validator happy
 //
-
-/*
-The w3c validator complains about this but it is not yet widely supported. It's
-even buggy in Firefox.
-
-foreach ($xpath->query ('//style') as $style) {
-    $style->setAttribute ('scoped', '');
-}
-*/
 
 foreach ($xpath->query ('//script') as $script) {
     $script->removeAttribute ('language');
