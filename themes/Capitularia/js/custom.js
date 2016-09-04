@@ -70,7 +70,10 @@ var inPrintMode = false;
             items: "a",
             content: function () {
                 var href = $(this).attr ('href');
-                // clone because jquery appendsTo a 'log file'
+                // jquery appends the content to a 'log file' div.  Printing
+                // footnotes would not work any more after that.  We let jquery
+                // grab a clone instead so we still have the footnotes where we
+                // want to print them.
                 return $(href).closest ('div.annotation-content').clone ();
             },
             show: false,

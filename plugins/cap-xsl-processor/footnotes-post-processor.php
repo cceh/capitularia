@@ -17,7 +17,8 @@
 
 namespace cceh\capitularia\xsl_processor;
 
-const FOOTNOTES = '//span[contains (concat (" ", @class, " "), " annotation ")]';
+$FOOTNOTE  = 'span[contains (concat (" ", @class, " "), " annotation ")]';
+$FOOTNOTES = '//' . $FOOTNOTE;
 
 /**
  * Is the node a note?
@@ -71,20 +72,33 @@ function remove_node ($node)
 function merge_notes ($note, $next)
 {
     global $xpath1;
+    global $doc;
 
-    $src  = $xpath1->query ('.//div[@class="annotation-text"]', $note);
-    $dest = $xpath1->query ('.//div[@class="annotation-content"]',   $next);
+    $note_content_id = $note->getAttribute ('id') . '-content';
+    $next_content_id = $next->getAttribute ('id') . '-content';
 
-    // never merge into editorial notes, just drop it
+    $src      = $xpath1->query ('//*[@id="' . $note_content_id . '"]');
+    $dest     = $xpath1->query ('//*[@id="' . $next_content_id . '"]');
+
+    if ($src->length == 0 || $dest->length ==  0) {
+        return;
+    }
+
+    // never merge into editorial notes, just drop the $note
     if (has_class ($next, 'annotation-editorial')) {
         add_class ($next, 'previous-notes-dropped');
-    } else {
-        if (count ($src) && count ($dest)) {
-            $dest[0]->insertBefore ($src[0], $dest[0]->lastChild);
-            add_class ($next, 'previous-notes-merged');
-        }
+        remove_node ($src[0]); // the div class=annotation-content
+        remove_node ($note);   // the span
+        return;
     }
-    remove_node ($note);
+
+    $src_text = $xpath1->query ('.//div[contains (concat (" ", @class, " "), " annotation-text ")]', $src[0]);
+    if (count ($src_text)) {
+        $dest[0]->insertBefore ($src_text[0], $dest[0]->lastChild);
+        add_class ($next, 'previous-notes-merged');
+    }
+    remove_node ($src[0]); // the div class=annotation-content
+    remove_node ($note);   // the span
 }
 
 /**
@@ -136,10 +150,10 @@ $doc = new \DomDocument ();
 // keep server error log small (seems to be a problem at uni-koeln.de)
 libxml_use_internal_errors (true);
 
-if ($doc->loadXML  ($in, LIBXML_NONET) === false) {
+if ($doc->loadXML  ($in, LIBXML_NONET | LIBXML_NOENT) === false) {
     libxml_clear_errors ();
     // Hack to load HTML with utf-8 encoding
-    $doc->loadHTML ("<?xml encoding='UTF-8'>\n" . $in, LIBXML_NONET);
+    $doc->loadHTML ("<?xml encoding='UTF-8'>\n" . $in, LIBXML_NONET | LIBXML_NOENT);
     foreach ($doc->childNodes as $item) {
         if ($item->nodeType == XML_PI_NODE) {
             $doc->removeChild ($item); // remove xml declaration
@@ -152,8 +166,8 @@ $xpath  = new \DOMXpath ($doc);
 $xpath1 = new \DOMXpath ($doc);
 
 //
-// Identify the transform so we are sure to generate different ids even if we
-// combine many transformation outputs into one page.
+// Identify the transform (header, body, footer) so we are sure to generate
+// different ids even if we combine many transformations into one page.
 //
 
 $xsl_id = 'undefined';
@@ -166,144 +180,107 @@ foreach (array ('header', 'body', 'footer') as $part) {
 }
 
 //
+// Remove whitespace before isolated footnotes.  An isolated footnote is
+// surrounded by whitespace.
+//
+
+$notes = $xpath->query ($FOOTNOTES);
+foreach ($notes as $note) {
+
+    // Does the first following non-empty text node start with whitespace?
+    foreach ($xpath->query ('following::text()[string(.)][1]', $note) as $node) {
+        if (ltrim ($node->nodeValue) != $node->nodeValue) {
+            // ... Yes, it does.
+            // Does the first preceding non-empty text node end with whitespace?
+            foreach ($xpath->query ('preceding::text()[string(.)][1]', $note) as $node) {
+                if (rtrim ($node->nodeValue) != $node->nodeValue) {
+                    // ... Yes, it does. -> Isolated note.
+                    $node->nodeValue = rtrim ($node->nodeValue);
+                }
+            }
+        }
+    }
+}
+
+//
 // Merge and move footnotes to the end of the word.
 //
 
-$notes = $xpath->query (FOOTNOTES);
+$notes = $xpath->query ($FOOTNOTES);
+
 foreach ($notes as $note) {
     // Don't touch editorial notes.
     if (has_class ($note, 'annotation-editorial')) {
         continue;
     }
 
-    $next = $note->nextSibling;
-    if (!$next) {
-        // note was last child
-        continue;
+    // iterate over footnotes and text nodes
+
+    $nodes = array ();
+    foreach ($xpath->query ("following::node()[self::text() or self::{$FOOTNOTE}][position() < 10]", $note) as $node) {
+        $nodes[] = $node;
     }
+    foreach ($nodes as $next) {
 
-    // Merge immediately adjacent notes.
-    //
-    if (is_note ($next)) {
-        merge_notes ($note, $next);
-        continue;
-    }
-
-    if (!is_text_node ($next)) {
-        // FIXME: is it necessary to look into other type nodes?
-        continue;
-    }
-
-    $nnext = $next->nextSibling;
-    $we_pos = word_end_pos ($next);
-
-    // Merge notes separated by non-whitespace only (footnotes in the same word).
-    //
-    if ($we_pos === false) {
-        if (is_note ($nnext)) {
-            merge_notes ($note, $nnext);
+        // Merge notes in the same word
+        //
+        if (is_note ($next)) {
+            merge_notes ($note, $next);
+            break;
         }
-        continue;
-    }
 
-    // Move footnote to the end of the word.
-    //
-    if ($we_pos > 0) {
-        // the note is not at the word's end
-        // split the following text node at the end of the word
-        // and move the note
-        $dummy_second_text_node = $next->splitText ($we_pos);
-        $note->parentNode->insertBefore ($next, $note);
+        // $next is a text node
+
+        $we_pos = word_end_pos ($next);
+        if ($we_pos === false) {
+            // $next contains no whitespace
+            continue;
+        }
+
+        if ($we_pos > 0) {
+            // split $next at the end of the word
+            $next = $next->splitText ($we_pos);
+        }
+
+        // move the footnote to before $next
+        $next->parentNode->insertBefore ($note, $next);
         add_class ($note, 'relocated');
-        continue;
-    }
-}
-
-//
-// Remove whitespace before footnotes.  Do this after moving footnotes to the
-// end of words or we will merge words.
-//
-
-$notes = $xpath->query (FOOTNOTES);
-foreach ($notes as $note) {
-    $prev = $note->previousSibling;
-    if (!is_text_node ($prev)) {
-        continue;
-    }
-
-    $text = $prev->nodeValue;
-    $text = preg_replace ('/\s+$/u', '', $text);
-    $prev->nodeValue = $text;
-
-    if (empty ($text)) {
-        remove_node ($prev);
-    }
-}
-
-//
-// Merge adjacent footnotes again.
-// Footnotes may have become adjacent by removing whitespace.
-//
-
-$notes = $xpath->query (FOOTNOTES);
-foreach ($notes as $note) {
-    // Don't touch editorial notes.
-    if (has_class ($note, 'annotation-editorial')) {
-        continue;
-    }
-
-    $next = $note->nextSibling;
-    if (!$next) {
-        // note was last child
-        continue;
-    }
-
-    // Merge immediately adjacent notes.
-    //
-    if (is_note ($next)) {
-        merge_notes ($note, $next);
-        continue;
+        break;
     }
 }
 
 //
 // Renumber footnote refs
+// Delete footnote refs inside footnote texts
 //
 
 $count = 0;
-$notes = $xpath->query (FOOTNOTES);
-foreach ($notes as $note) {
-    $count++;
+$id_to_number = array ();
 
-    $span = $xpath1->query (
-        './/a[contains (concat (" ", @class, " "), " annotation-ref ")]/' .
-        'span[contains (concat (" ", @class, " "), " print-only ")]',
-        $note
-    );
-    if (count ($span)) {
-        $span[0]->nodeValue = strVal ($count);
-    }
+// make a copy of nodelist because we delete nodes as we go
+$spans = array ();
+foreach ($xpath->query ('//span[contains (concat (" ", @class, " "), " footnote-number-ref ")]') as $span) {
+    $spans[] = $span;
+}
 
-    $span = $xpath1->query (
-        './/a[contains (concat (" ", @class, " "), " annotation-backref ")]' .
-        '/span[contains (concat (" ", @class, " "), " print-only ")]',
-        $note
-    );
-    if (count ($span)) {
-        $span[0]->nodeValue = strVal ($count);
+foreach ($spans as $span) {
+    $id = str_replace ('-ref', '-backref', $span->parentNode->getAttribute ('id'));
+    if ($xpath1->query ('ancestor::div[contains (concat (" ", @class, " "), " annotation-text ")]', $span)->length) {
+        remove_node ($span->parentNode);
+    } else {
+        $count++;
+        $id_to_number[$id] = $count;
+        $span->nodeValue = strVal ($count);
     }
 }
 
-//
-// Loop over footnote contents and move it into the respective <div class="footnotes-wrapper">.
-//
+foreach ($xpath->query ('//span[contains (concat (" ", @class, " "), " footnote-number-backref ")]') as $span) {
+    $backref_id = $span->parentNode->getAttribute ('id');
+    $span->nodeValue = strVal ($id_to_number[$backref_id]);
+}
 
-$notes = $xpath->query ('//div[contains (concat (" ", @class, " "), " annotation-content ")]');
-foreach ($notes as $note) {
-    $abfs = $xpath1->query ('following::div[contains (concat (" ", @class, " "), " footnotes-wrapper ")]', $note);
-    if (count ($abfs)) {
-        $abfs[0]->appendChild ($note);
-    }
+foreach ($xpath->query ('//span[contains (concat (" ", @class, " "), " footnote-siglum ")]') as $span) {
+    $span->nodeValue = '*';
 }
 
 //
@@ -312,6 +289,7 @@ foreach ($notes as $note) {
 
 $initials = $xpath->query ('//span[contains (concat (" ", @class, " "), " initial ")]');
 foreach ($initials as $initial) {
+
     $next = $initial->nextSibling;
     if (!is_text_node ($next)) {
         continue;
@@ -326,6 +304,8 @@ foreach ($initials as $initial) {
         $nnext = $next->nextSibling;
         if (is_note ($nnext)) {
             wrap (array ($initial, $next, $nnext));
+        } else {
+            wrap (array ($initial, $next));
         }
         continue;
     }
@@ -343,7 +323,8 @@ foreach ($initials as $initial) {
 // Loop over text nodes to:
 //
 // replace keyboard shortcuts
-// add nbsp before punctuation (if following whitespace)
+// change whitespace before punctuation into nbsp
+
 //
 
 // Test if this file was transformed with the CTE stylesheet.  In that case we
@@ -358,8 +339,8 @@ if (!$is_CTE) {
     $textnodes = $xpath->query ('//text()[ancestor::*[@data-shortcuts][1]/@data-shortcuts = "1"]');
     foreach ($textnodes as $textnode) {
         $text = $textnode->nodeValue;
+        $text = preg_replace ('/\s+([[:punct:]])/u', ' $1', $text);
         $text = str_replace ($search, $replace, $text);
-        $text = preg_replace ('/\s+([·])/u', ' $1', $text);
         if ($text != $textnode->nodeValue) {
             $textnode->nodeValue = $text;
         }
@@ -395,6 +376,7 @@ foreach ($xpath->query ('//@id') as $id) {
 // of <DOCTYPE>, <html>, <head>, <body> by starting at topmost <div>.
 
 $divs = $xpath->query ('/html/body/div');
+$doc->substituteEntities = true;
 
 if (count ($divs)) {
     $out = $doc->saveHTML ($divs[0]);
@@ -404,5 +386,7 @@ if (count ($divs)) {
 } else {
     $out = $doc->saveHTML ();
 }
+
+$out = html_entity_decode ($out, ENT_QUOTES, "UTF-8");
 
 file_put_contents ('php://stdout', $out);

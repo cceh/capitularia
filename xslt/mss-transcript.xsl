@@ -1,0 +1,511 @@
+<xsl:stylesheet
+    version="1.0"
+    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
+    xmlns:exsl="http://exslt.org/common"
+    xmlns:func="http://exslt.org/functions"
+    xmlns:set="http://exslt.org/sets"
+    xmlns:str="http://exslt.org/strings"
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    extension-element-prefixes="cap exsl func set str"
+    exclude-result-prefixes="tei xhtml xs xsl">
+  <!-- libexslt does not support the regexp extension ! -->
+
+  <!--
+      This is the new stylesheet that generates the transcription section of the
+      manuscript pages. It replaces the transkription_PublWP* series of
+      stylesheets.
+
+      @authors: NG, MP
+  -->
+
+  <xsl:include href="mss-transcript-footnotes.xsl"/>       <!-- generation of footnotes / tooltips -->
+  <xsl:include href="base_variables.xsl"/>                 <!-- urls etc. -->
+
+  <xsl:output method="html" encoding="UTF-8" indent="no"/>
+
+  <xsl:variable name="css">
+    <style type="text/css">
+      div.tei-root {
+        font-size: 90%;
+      }
+
+      div.tei-body {
+        font-size: 120%;
+        line-height: 200%;
+      }
+    </style>
+  </xsl:variable>
+
+  <xsl:template match="/">
+    <div class="tei-root">
+      <xsl:apply-templates select="//tei:text"/>
+    </div>
+  </xsl:template>
+
+  <xsl:template match="tei:text">
+    <xsl:copy-of select="$css"/>
+
+    <h4 id="transcription">[:de]Transkription[:en]Transcription[:]</h4>
+
+    <xsl:apply-templates select="//tei:encodingDesc"/>
+    <xsl:apply-templates select="tei:front"/>
+    <xsl:apply-templates select="//tei:sourceDesc"/>
+
+    <!-- This is for automatically generating the sidebar menu,
+         not for users' eyes. -->
+    <div id="inhaltsverzeichnis" style="display: none">
+      <h5 id="contents-rubrics">
+        [:de]Inhalt (Rubriken)[:en]Contents (Rubrics)[:]
+      </h5>
+      <xsl:apply-templates select="//tei:div[@xml:id='divContent']" mode="toc"/>
+      <h5 id="contents-bknos">
+        [:de]Inhalt (BK-Nummern)[:en]Contents (BK-Nos.)[:]
+      </h5>
+    </div>
+
+    <xsl:call-template name="page-break" />
+    <xsl:apply-templates select="tei:body"/>
+  </xsl:template>
+
+  <xsl:template match="tei:encodingDesc">
+    <div class="italic tei-encodingDesc">
+      <xsl:apply-templates />
+    </div>
+  </xsl:template>
+
+  <xsl:template match="tei:front">
+    <div class="tei-front">
+      <h5 id="editorial-preface" data-cap-dyn-menu-caption="[:de]Editorische Vorbemerkung[:en]Editorial Preface[:]">
+        [:de]Editorische Vorbemerkung zur Transkription[:en]Editorial Preface to the Transcription[:]
+      </h5>
+      <xsl:apply-templates select="tei:div[normalize-space (.)]" />
+    </div>
+  </xsl:template>
+
+  <xsl:template match="tei:sourceDesc" /><!-- overridden in transkription_CTE.xsl -->
+  <xsl:template match="tei:projectDesc"/>
+  <xsl:template match="tei:editorialDecl"/>
+  <xsl:template match="tei:revisionDesc"/>
+
+  <xsl:template match="tei:front/tei:div">
+    <div class="italic tei-front-div">
+      <h6>
+        <xsl:choose>
+          <xsl:when test="@type='scribe'">                       Schreiber</xsl:when>
+          <xsl:when test="@type='lett' or @type='letters'">      Buchstabenformen</xsl:when>
+          <xsl:when test="@type='abbr' or @type='abbreviation' or @type='abbreviations'">Abkürzungen</xsl:when>
+          <xsl:when test="@type='punct' or @type='punctuation'"> Interpunktion</xsl:when>
+          <xsl:when test="@type='struct' or @type='structure'">  Gliederungsmerkmale</xsl:when>
+          <xsl:when test="@type='other'">                        Sonstiges</xsl:when>
+          <xsl:when test="@type='mshist'">                       Zur Handschrift</xsl:when>
+          <xsl:when test="@type='annotations'">                  Benutzungsspuren</xsl:when>
+        </xsl:choose>
+      </h6>
+
+      <xsl:apply-templates select="tei:p"/>
+    </div>
+  </xsl:template>
+
+  <!-- Das strukturierte Inhaltsverzeichnis in der Sidebar wird
+       vorläufig aus einem nur zu diesem Zwecke angelegten div
+       erzeugt.  TODO: Struktur irgendwie aus dem Haupttext
+       ableiten. -->
+
+  <xsl:template match="tei:div[@xml:id='divContent']//tei:list" mode="toc">
+    <ul>
+      <xsl:apply-templates select="tei:item" mode="toc"/>
+    </ul>
+  </xsl:template>
+
+  <xsl:template match="tei:div[@xml:id='divContent']//tei:item" mode="toc">
+    <li class="toc">
+      <xsl:variable name="level" select="count (ancestor::tei:item)" />
+      <a href="{tei:ptr/@target}" data-level="{$level}"><xsl:value-of select="text()"/></a>
+      <xsl:apply-templates select="tei:list" mode="toc"/>
+    </li>
+  </xsl:template>
+
+  <xsl:template match="tei:body">
+    <div class="tei-body transkription-body"><!-- transkription-body is a flag for the post-processor -->
+      <xsl:apply-templates/>
+    </div>
+  </xsl:template>
+
+  <!--
+      #############################################################################################
+  -->
+
+  <xsl:template match="tei:p">
+    <p class="tei-p">
+      <xsl:apply-templates/>
+    </p>
+  </xsl:template>
+
+  <xsl:template match="tei:mentioned">
+    <span class="regular tei-mentioned"><xsl:apply-templates /></span>
+  </xsl:template>
+
+  <xsl:template match="//tei:body//tei:mentioned">
+    <span class="italic tei-mentioned"><xsl:apply-templates /></span>
+  </xsl:template>
+
+  <xsl:template name="page-break">
+    <div class="page-break" />
+  </xsl:template>
+
+  <xsl:template name="tCorresp">
+    <!-- Wandelt "BK.123_4" nach "BK 123 c. 4" und entfernt
+         "inscriptio" und "incipit" falls vorhanden. -->
+
+    <xsl:if test="@corresp">
+      <xsl:variable name="search">
+        <tei:item>.</tei:item>
+        <tei:item>_</tei:item>
+        <tei:item>_inscriptio</tei:item>
+        <tei:item>_incipit</tei:item>
+      </xsl:variable>
+
+      <xsl:variable name="replace">
+        <tei:item> </tei:item>
+        <tei:item> c. </tei:item>
+        <tei:item></tei:item>
+        <tei:item></tei:item>
+      </xsl:variable>
+
+      <xsl:variable name="corresp">
+        <xsl:value-of select="normalize-space (str:replace (@corresp, exsl:node-set ($search)/tei:item, exsl:node-set ($replace)/tei:item))"/>
+      </xsl:variable>
+
+      <xsl:if test="$corresp">
+        <xsl:text>&#x0a;</xsl:text>
+        <div class="corresp">
+          <xsl:text>[</xsl:text>
+          <xsl:value-of select="$corresp"/>
+          <xsl:text>]</xsl:text>
+        </div>
+        <xsl:text>&#x0a;&#x0a;</xsl:text>
+      </xsl:if>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="tei:body/tei:ab[@type='meta-text']">
+    <xsl:call-template name="tCorresp" />
+
+    <div class="abMETA" lang="la" data-shortcuts="1" id="{@xml:id}">
+      <xsl:choose>
+        <xsl:when test="@rend='coloured'"><!-- Änderung von Wert red auf coloured wg. Anpassung an TRL # DS 22.02.16 -->
+          <xsl:attribute name="class">abMETA rend-red</xsl:attribute>
+        </xsl:when>
+        <xsl:when test="@rend='default'">
+          <xsl:attribute name="class">abMETA rend-default</xsl:attribute>
+        </xsl:when>
+      </xsl:choose>
+      <xsl:apply-templates/>
+    </div>
+
+  </xsl:template>
+
+  <xsl:template match="tei:body/tei:ab[@type='text']">
+    <xsl:call-template name="tCorresp" />
+
+    <div class="abTEXT" lang="la" data-shortcuts="1" id="{@xml:id}">
+      <xsl:apply-templates/>
+    </div>
+
+    <div class="footnotes-wrapper">
+      <!-- generate footnote bodies for all immediately preceding ab-meta's and
+           for this ab -->
+      <xsl:text>&#x0a;&#x0a;</xsl:text>
+      <xsl:apply-templates mode="auto-note-wrapper"
+                           select="set:trailing (preceding-sibling::tei:ab, preceding-sibling::tei:ab[@type='text'][1])"/>
+      <xsl:apply-templates mode="auto-note-wrapper" />
+    </div>
+
+    <xsl:call-template name="page-break" />
+  </xsl:template>
+
+  <xsl:template match="//tei:seg[@type = 'numDenom' or @type = 'num']">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="tei:lb">
+    <!-- <lb> ignorieren ?!? -->
+  </xsl:template>
+
+  <xsl:template match="tei:lb[parent::*[@place='margin']]">
+  </xsl:template>
+
+  <xsl:template match="tei:cb">
+    <xsl:if test="not (@break = 'no')">
+      <xsl:text> </xsl:text>
+    </xsl:if>
+
+    <xsl:variable name="cb_prefix">
+      <xsl:choose>
+        <!-- recto -->
+        <xsl:when test="contains (@n, 'r')">
+          <xsl:text>fol.</xsl:text>
+        </xsl:when>
+        <!-- verso -->
+        <xsl:when test="contains (@n, 'v')">
+          <xsl:text>fol.</xsl:text>
+        </xsl:when>
+        <!-- other -->
+        <xsl:otherwise>
+          <xsl:text>p.</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <span class="folio" data-shortcuts="0">
+      <xsl:text>[cap_image_server id="</xsl:text><xsl:value-of select="/tei:TEI/@xml:id" /><xsl:text>" n="</xsl:text><xsl:value-of select="@n" /><xsl:text>"]</xsl:text>
+      <xsl:value-of select="concat ('[', $cb_prefix, '&#xa0;', @n, ']')"/>
+      <xsl:text>[/cap_image_server]</xsl:text>
+    </span>
+
+    <xsl:if test="not (@break = 'no')">
+      <xsl:text> </xsl:text>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="tei:milestone">
+    <!-- wird vom Sidebar-Menu benützt -->
+    <span id="{@n}" class="milestone"><span style="display: none"><xsl:value-of select="str:replace (substring-before (concat (@n, '_'), '_'), '.', ' ')"/></span></span>
+  </xsl:template>
+
+
+  <!-- Typ-Unterscheidung hinzufügen!!! -->
+  <!--
+      Die einzelnen Typen sollen optisch unterscheidbar sein, ohne daß man Farbe verwenden muß.
+      Alle größer und fett; zusätzlich zur Unterscheidung verschiedene Größen/Schrifttypen?
+  -->
+  <!--<xsl:template match="//tei:seg[substring-before(@type,'-')='initial']">-->
+  <!--<xsl:template match="//tei:seg[string-length(translate(@type,'initial',''))!=string-length(@type)]">-->
+  <xsl:template match="tei:seg[@type='initial']">
+    <span class="initial">
+      <xsl:choose>
+        <xsl:when test="@rend='coloured'">
+          <xsl:attribute name="class">initial rend-red</xsl:attribute>
+        </xsl:when>
+        <xsl:when test="@rend='default'">
+          <xsl:attribute name="class">initial rend-default</xsl:attribute>
+        </xsl:when>
+      </xsl:choose>
+      <xsl:attribute name="title">
+        <xsl:text>Initiale</xsl:text>
+        <xsl:if test="contains(@type,'-')">
+          <xsl:text>, Typ </xsl:text>
+          <xsl:value-of select="substring-after(@type, '-')"/>
+        </xsl:if>
+      </xsl:attribute>
+
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:seg[@type='versalie']">
+    <span class="versalie">
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:seg[@type='numDenom'][@rend='coloured']">
+    <span class="rend-coloured">
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:seg[@type='numDenom'][@rend='default']">
+    <span class="rend-default">
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:seg[@type='numDenom'][not(@rend)]">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="tei:seg[@type='num'][@rend='coloured']">
+    <span class="rend-coloured">
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:seg[@type='num'][@rend='default']">
+    <span class="rend-default">
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:seg[@type='num'][not(@rend)]">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="tei:cit">
+    <xsl:apply-templates select="tei:quote"/>
+    <xsl:apply-templates select="tei:ref"/>
+  </xsl:template>
+
+  <xsl:template match="tei:cit/tei:quote">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="tei:cit/tei:ref">
+    <!-- 06.01.2016
+         <span class="annotation annotation-cit-ref">
+         <xsl:call-template name="footnote" />
+         </span>
+    -->
+  </xsl:template>
+
+  <!-- Hinzufügung durch DT am 27.08.2014, um auf externe
+       Ressourcen wie die dMGH verlinken zu können (modifiziert
+       durch NG am 04.09.2014: um mehrdeutige Regeln zu
+       beseitigen => [@type] => tei:ref auf type-Attribut prüfen
+       - Template muss möglicherweise noch ansich mit anderem
+       ref-Template abgeglichen/angepasst werden) -->
+
+  <xsl:template match="tei:ref[@type='external']">
+    <a target="_blank" title="Externer Link" href="{@target}">
+      <xsl:apply-templates/>
+    </a>
+  </xsl:template>
+
+  <xsl:template match="tei:ref[@type='internal' and @subtype='mss']">
+    <a target="_blank" title="Interner Link" href="{$mss}{@target}">
+      <xsl:apply-templates/>
+      <xsl:if test="normalize-space (.)">
+        <xsl:text>→</xsl:text>
+      </xsl:if>
+    </a>
+  </xsl:template>
+
+  <!--
+  <xsl:template match="tei:abbr">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="tei:expan">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="tei:date">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="tei:locus">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="tei:rs">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="tei:rs[@type='person']">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="tei:rs[@type='place']">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="tei:fw[@type='catch']">
+    <xsl:apply-templates/>
+  </xsl:template>
+  -->
+
+  <xsl:template match="tei:metamark">
+    <!-- metamark vorerst ignorieren -->
+    <span class="tei-metamark" />
+  </xsl:template>
+
+  <xsl:template match="tei:hi[@rend='super']">
+    <sup class="tei-hi rend-super">
+      <xsl:apply-templates />
+    </sup>
+  </xsl:template>
+
+  <xsl:template match="tei:hi[@rend='sub']">
+    <sub class="tei-hi rend-sub">
+      <xsl:apply-templates />
+    </sub>
+  </xsl:template>
+
+  <xsl:template match="tei:hi[@rend='coloured']">
+    <!-- Baustelle: Klasse für "rote" span?! -->
+    <span class="tei-hi rend-coloured">
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:hi[@rend='default']">
+    <!-- Baustelle: Klasse für "default" span?! -->
+    <span class="tei-hi rend-default">
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:hi[@rend='italic']">
+    <span class="tei-hi rend-italic italic">
+      <xsl:apply-templates />
+    </span>
+  </xsl:template>
+
+
+  <xsl:template match="tei:span[@xml:id]">
+    <span class="tei-span">
+      <!-- "Erstreckungsfußnoten" -->
+
+      <xsl:variable name="before">
+        <xsl:value-of select="normalize-space(substring-before(text()[last()],' '))"/>
+      </xsl:variable>
+      <xsl:variable name="after">
+        <xsl:value-of select="substring-after(text()[last()],' ')"/>
+      </xsl:variable>
+
+      <xsl:value-of select="node()[1]"/>
+      <xsl:apply-templates select="tei:add"/>
+      <xsl:value-of select="$before"/>
+      <xsl:apply-templates select="following-sibling::node()[1][name()='note']"/>
+      <xsl:value-of select="$after"/>
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:figure">
+    <!--
+        Neues Element: figure; wie verarbeiten? (bm 21.01.16) –
+        Markiert eine Stelle, an der eine Miniatur/Illustration in der Handschrift steht.
+        Kommt nur selten vor; kann leer sein (evtl. mit graphic url) oder mit Text, der als Fußnote ausgegeben werden soll.
+        Eigentlich brauchen wir nur ein Symbol für “Bild”, das an der entsprechenden Stelle erscheint. (bm 26.01.16)
+        (NG, 27.01.16: Gibt es hierbei auch die “Hand-X-Problematik”?)
+    -->
+
+    <xsl:variable name="title">
+      <xsl:choose>
+        <xsl:when test="tei:figDesc">
+          <xsl:value-of select="tei:figDesc"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>[:de]Platzhalter für Bild[:en]Picture[:]</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <xsl:choose>
+      <xsl:when test="tei:graphic/@url">
+        <a target="_blank" title="{$title}" href="tei:graphic/@url">
+          <!-- WordPress-Icon -->
+          <span class="dashicons dashicons-format-image" />
+        </a>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- WordPress-Icon -->
+        <span class="dashicons dashicons-format-image" title="{$title}" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+</xsl:stylesheet>
