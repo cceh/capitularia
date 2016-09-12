@@ -153,6 +153,7 @@
   </xsl:template>
 
   <xsl:template name="page-break">
+    <xsl:text>&#x0a;&#x0a;</xsl:text>
     <div class="page-break" />
   </xsl:template>
 
@@ -160,7 +161,8 @@
     <!-- Wandelt "BK.123_4" nach "BK 123 c. 4" und entfernt
          "inscriptio" und "incipit" falls vorhanden. -->
 
-    <xsl:if test="@corresp">
+    <!-- FIXME: It is not clear what to do with incipt and inscriptio. -->
+    <xsl:if test="@corresp and not (contains (@corresp, '_in'))">
       <xsl:variable name="search">
         <tei:item>.</tei:item>
         <tei:item>_</tei:item>
@@ -194,7 +196,10 @@
   <xsl:template match="tei:body/tei:ab[@type='meta-text']">
     <xsl:call-template name="tCorresp" />
 
-    <div class="abMETA" lang="la" data-shortcuts="1" id="{@xml:id}">
+    <div class="abMETA" lang="la" data-shortcuts="1">
+      <xsl:if test="@xml:id">
+        <xsl:attribute name="id"><xsl:value-of select="@xml:id"/></xsl:attribute>
+      </xsl:if>
       <xsl:choose>
         <xsl:when test="@rend='coloured'"><!-- Änderung von Wert red auf coloured wg. Anpassung an TRL # DS 22.02.16 -->
           <xsl:attribute name="class">abMETA rend-red</xsl:attribute>
@@ -211,17 +216,21 @@
   <xsl:template match="tei:body/tei:ab[@type='text']">
     <xsl:call-template name="tCorresp" />
 
-    <div class="abTEXT" lang="la" data-shortcuts="1" id="{@xml:id}">
+    <div class="abTEXT" lang="la" data-shortcuts="1">
+      <xsl:if test="@xml:id">
+        <xsl:attribute name="id"><xsl:value-of select="@xml:id"/></xsl:attribute>
+      </xsl:if>
       <xsl:apply-templates/>
     </div>
 
+    <xsl:text>&#x0a;&#x0a;</xsl:text>
     <div class="footnotes-wrapper">
       <!-- generate footnote bodies for all immediately preceding ab-meta's and
            for this ab -->
-      <xsl:text>&#x0a;&#x0a;</xsl:text>
       <xsl:apply-templates mode="auto-note-wrapper"
                            select="set:trailing (preceding-sibling::tei:ab, preceding-sibling::tei:ab[@type='text'][1])"/>
       <xsl:apply-templates mode="auto-note-wrapper" />
+      <xsl:text>&#x0a;</xsl:text>
     </div>
 
     <xsl:call-template name="page-break" />

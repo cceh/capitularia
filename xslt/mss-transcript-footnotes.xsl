@@ -27,22 +27,22 @@ Footnotes come in 2 flavours:
 
 Footnote generation examples:
 
-co<subst>
-<del>r</del>
-<add>n</add>
-</subst>cordet
+  co<subst>
+      <del>r</del>
+      <add>n</add>
+    </subst>cordet
 
 will generate markup equivalent to:
 
-con<note>korr. aus corcordet</note>cordet
+  con<note>korr. aus <mentioned>corcordet</mentioned></note>cordet
 
 and
 
-ad<add @hand="A">d</add>endum
+  ad<add @hand="X">d</add>endum
 
 will generate markup equivalent to:
 
-add<note>d von Hand A ergänzt</note>endum
+  ad<note>von Hand X korr. zu <mentioned>addendum</mentioned></note>endum
 
 
 Complications:
@@ -71,8 +71,8 @@ Post processing:
 The output of this stylesheet will be processed by footnotes-post-processor.php.
 That script will move generated footnotes to the end of the word eventually
 merging multiple generated footnotes into one.  Generated footnotes will be
-suppressed if there is a manual note at the end of the word.  Isolated footnotes
-will be joined to the preceding word.
+suppressed if there is a editorial note at the end of the word.  Isolated
+footnotes will be joined to the preceding word.
 
 @authors: NG & MP
 
@@ -89,11 +89,11 @@ will be joined to the preceding word.
 
     <xsl:variable name="before">
       <xsl:variable name="s">
-        <xsl:value-of select="str:concat ($e/preceding::text()[position() &lt; 10])"/>
+        <xsl:value-of select="str:concat ($e/preceding::text ()[position () &lt; 10])"/>
       </xsl:variable>
       <!-- str:tokenize does not return the empty token if string ends with whitespace. -->
       <xsl:if test="normalize-space (substring ($s, string-length ($s)))">
-        <xsl:value-of select="str:tokenize ($s)[last()]"/>
+        <xsl:value-of select="str:tokenize ($s)[last ()]"/>
       </xsl:if>
     </xsl:variable>
 
@@ -110,7 +110,7 @@ will be joined to the preceding word.
 
     <xsl:variable name="after">
       <xsl:variable name="s">
-        <xsl:value-of select="str:concat ($e/following::text()[position() &lt; 10])"/>
+        <xsl:value-of select="str:concat ($e/following::text ()[position () &lt; 10])"/>
       </xsl:variable>
       <!-- str:tokenize does not return the empty token if string starts with whitespace. -->
       <xsl:if test="normalize-space (substring ($s, 1, 1))">
@@ -144,19 +144,19 @@ will be joined to the preceding word.
     -->
     <xsl:choose>
       <xsl:when test="@hand">
-        <func:result select="@hand" />
+        <func:result select="@hand"/>
       </xsl:when>
       <xsl:when test="tei:add/@hand">
-        <func:result select="tei:add/@hand" />
+        <func:result select="tei:add/@hand"/>
       </xsl:when>
       <xsl:when test="parent::tei:subst/@hand">
-        <func:result select="../@hand" />
+        <func:result select="../@hand"/>
       </xsl:when>
       <xsl:when test="parent::tei:subst/tei:add/@hand">
-        <func:result select="../tei:add/@hand" />
+        <func:result select="../tei:add/@hand"/>
       </xsl:when>
       <otherwise>
-        <func:result select="''" />
+        <func:result select="''"/>
       </otherwise>
     </xsl:choose>
   </func:function>
@@ -164,34 +164,18 @@ will be joined to the preceding word.
   <func:function name="cap:is-normal-hand">
     <!-- If these hands made corrections we display them in the
          text and put the old text in the apparatus. -->
-    <xsl:param name="hand" select="cap:get-hand ()" />
-    <func:result select="normalize-space ($hand) and contains ('ABCDEFGHIJKLMNOPQRSTU', $hand)" />
+    <xsl:param name="hand" select="cap:get-hand ()"/>
+    <func:result select="normalize-space ($hand) and contains ('ABCDEFGHIJKLMNOPQRSTU', $hand)"/>
   </func:function>
 
-  <func:function name="cap:is-special-hand">
+  <func:function name="cap:is-later-hand">
     <!-- If these hands made corrections we put them in
          the apparatus and display the old text. -->
-    <xsl:param name="hand" select="cap:get-hand ()" />
-    <func:result select="normalize-space ($hand) and contains ('XYZ', $hand)" />
+    <xsl:param name="hand" select="cap:get-hand ()"/>
+    <func:result select="normalize-space ($hand) and contains ('XYZ', $hand)"/>
   </func:function>
 
-  <func:function name="cap:contains-whitespace">
-    <xsl:param name="s" select="string (.)" />
-    <func:result select="translate ($s, ' &#09;&#xa;&#xd;', '') != string ($s)"/>
-  </func:function>
-
-  <func:function name="cap:note-follows">
-    <!--
-        Check if there is a tei:note at the end of this word.
-
-        Return true if the first tei:note after the current node
-        comes before the first text node with whitespace.
-    -->
-    <xsl:param name="n" select="."/>
-    <func:result select="boolean ($n/following::node ()[self::tei:note or (self::text () and cap:contains-whitespace (.))][1][self::tei:note])"/>
-  </func:function>
-
-  <xsl:template name="blurb">
+  <xsl:template name="hand-blurb">
     <xsl:if test="cap:get-hand ()">
       <xsl:text> von Hand </xsl:text>
       <xsl:value-of select="cap:get-hand ()"/>
@@ -206,8 +190,8 @@ will be joined to the preceding word.
 
   <xsl:template name="plural">
     <!-- Get singular or plural of known terms. -->
-    <xsl:param name="quantity" select="'0'"  />
-    <xsl:param name="unit"     select="unit" />
+    <xsl:param name="quantity" select="0" />
+    <xsl:param name="unit"     select="unit"/>
 
     <xsl:variable name="terms">
       <tei:list unit="chars">
@@ -215,19 +199,24 @@ will be joined to the preceding word.
         <tei:item>Buchstaben</tei:item>
       </tei:list>
 
-      <tei:list unit="word">
+      <tei:list unit="words">
         <tei:item>Wort</tei:item>
         <tei:item>Wörter</tei:item>
       </tei:list>
 
-      <tei:list unit="unit">
+      <tei:list unit="lines">
+        <tei:item>Zeile</tei:item>
+        <tei:item>Zeilen</tei:item>
+      </tei:list>
+
+      <tei:list unit="units">
         <tei:item>Einheit</tei:item>
         <tei:item>Einheiten</tei:item>
       </tei:list>
     </xsl:variable>
 
     <xsl:choose>
-      <xsl:when test="$quantity = '1'">
+      <xsl:when test="number ($quantity) = 1">
         <xsl:value-of select="exsl:node-set ($terms)/tei:list[@unit=$unit]/tei:item[1]"/>
       </xsl:when>
       <xsl:otherwise>
@@ -236,124 +225,134 @@ will be joined to the preceding word.
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template name="footnote-ref">
-    <!-- Generate a footnote reference. That is the <sup>number</sup> that goes
-         in the text. -->
-    <a id="{generate-id(.)}-ref" href="#{generate-id(.)}-backref" class="annotation-ref ssdone">
-      <span class="print-only footnote-number-ref"></span><!-- filled by post-processor -->
-      <span class="screen-only footnote-siglum"></span>
-    </a>
-  </xsl:template>
-
-  <xsl:template name="footnote-backref">
-    <!-- Generate a footnote back reference. That is the number before the
-         footnote text in the footnote section. -->
-    <a id="{generate-id(.)}-backref" href="#{generate-id(.)}-ref" class="annotation-backref ssdone">
-      <span class="print-only footnote-number-backref"></span><!-- filled by post-processor -->
-      <span class="screen-only footnote-siglum"></span>
-    </a>
-  </xsl:template>
-
   <!--
-      ##############################################################################
+      default mode
+
+      This mode generates the text section.
   -->
 
-  <xsl:template match="//tei:body//tei:note[@type='editorial'][@target]">
-    <!-- als Teil von "Erstreckungsfußnote" -->
-    <xsl:call-template name="footnote-ref" />
-  </xsl:template>
-
-  <xsl:template match="//tei:body//tei:note[@type='editorial'][not(@target)]">
-    <span id="{generate-id(.)}" class="annotation annotation-editorial">
-      <xsl:call-template name="footnote-ref"/>
-    </span>
-  </xsl:template>
-
-  <xsl:template match="//tei:body//tei:note[@type='comment']">
-    <span id="{generate-id(.)}" class="annotation annotation-comment" data-shortcuts="0">
-      <xsl:call-template name="footnote-ref"/>
+  <xsl:template match="//tei:body//tei:note[@type]">
+    <span data-note-id="{generate-id ()}" class="tei-note annotation annotation-{@type}" data-shortcuts="0">
     </span>
   </xsl:template>
 
   <xsl:template match="//tei:body//tei:note" priority="-0.5">
-    <span id="{generate-id(.)}" class="annotation" data-shortcuts="0">
-      <xsl:call-template name="footnote-ref"/>
+    <span data-note-id="{generate-id ()}" class="tei-note annotation" data-shortcuts="0">
     </span>
   </xsl:template>
 
   <xsl:template match="tei:subst">
-    <span class="tei-subst">
-      <xsl:apply-templates select="tei:del" />
-      <xsl:apply-templates select="tei:add" />
+    <span class="tei-subst" data-note-id="{generate-id ()}">
+      <xsl:apply-templates select="tei:del"/>
+      <xsl:apply-templates select="tei:add"/>
     </span>
-    <xsl:call-template name="auto-note-ref"/>
+  </xsl:template>
+
+  <xsl:template match="tei:add" mode="edited">
+    <xsl:if test="@rend='coloured'">
+      <xsl:attribute name="class">tei-add rend-coloured</xsl:attribute>
+    </xsl:if>
+    <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="tei:add">
     <span class="tei-add">
-      <xsl:if test="not (cap:is-special-hand ())">
-        <xsl:if test="@rend='coloured'">
-          <xsl:attribute name="class">tei-add rend-coloured</xsl:attribute>
-        </xsl:if>
-        <xsl:apply-templates />
+      <xsl:if test="not (parent::tei:subst)">
+        <xsl:attribute name="data-note-id"><xsl:value-of select="generate-id ()"/></xsl:attribute>
       </xsl:if>
+      <xsl:choose>
+        <xsl:when test="cap:is-later-hand ()">
+          <xsl:apply-templates mode="refs-only"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="." mode="edited"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </span>
-    <xsl:if test="not (parent::tei:subst)">
-      <xsl:call-template name="auto-note-ref"/>
-    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="empty-del">
+    <!-- Special treatment for empty <del> -->
+    <xsl:choose>
+      <xsl:when test="not (normalize-space ()) and @quantity">
+        <xsl:value-of select="str:padding (@quantity, '+')"/>
+      </xsl:when>
+      <xsl:when test="not (normalize-space ())">
+        <xsl:text>[+]</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="tei:del" mode="original">
+    <xsl:choose>
+      <xsl:when test="normalize-space ()">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="empty-del"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="tei:del">
+    <!-- non-empty del -->
     <span class="tei-del">
-      <xsl:if test="cap:is-special-hand ()">
-        <xsl:choose>
-          <!-- Special cases for empty <del> -->
-          <xsl:when test="not (normalize-space (.)) and @quantity">
-            <xsl:value-of select="str:padding (@quantity, '+')"/>
-          </xsl:when>
-          <xsl:when test="not (normalize-space (.))">
-            <xsl:text>[+]</xsl:text>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates />
-          </xsl:otherwise>
-        </xsl:choose>
+      <xsl:if test="not (parent::tei:subst)">
+        <xsl:attribute name="data-note-id"><xsl:value-of select="generate-id ()"/></xsl:attribute>
       </xsl:if>
+      <xsl:choose>
+        <xsl:when test="cap:is-later-hand ()">
+          <xsl:apply-templates />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates mode="refs-only"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </span>
-    <xsl:if test="not (parent::tei:subst)">
-      <xsl:call-template name="auto-note-ref"/>
-    </xsl:if>
   </xsl:template>
 
-  <xsl:template match="tei:mod">
-    <span class="tei-mod">
-      <xsl:if test="@rend='coloured'">
-        <xsl:attribute name="class">tei-mod rend-coloured</xsl:attribute>
-      </xsl:if>
-      <xsl:apply-templates />
+  <xsl:template match="tei:del[not (normalize-space ())]">
+    <!-- empty del -->
+    <span class="tei-del">
+      <xsl:choose>
+        <xsl:when test="parent::tei:subst and cap:is-later-hand ()">
+          <xsl:call-template name="empty-del"/>
+        </xsl:when>
+        <xsl:when test="not (parent::tei:subst)">
+          <xsl:call-template name="empty-del"/>
+        </xsl:when>
+      </xsl:choose>
     </span>
-
-    <xsl:call-template name="auto-note-ref"/>
   </xsl:template>
 
   <xsl:template match="tei:choice">
-    <span class="tei-choice">
+    <span class="tei-choice" data-note-id="{generate-id ()}">
       <xsl:apply-templates select="tei:expan"/>
     </span>
-
-    <xsl:call-template name="auto-note-ref"/>
   </xsl:template>
 
-  <xsl:template match="tei:unclear[tei:gap]">
-    <span class="tei-unclear tei-unclear-gap" data-shortcuts="0">
-      <xsl:text>...</xsl:text>
+  <xsl:template match="tei:mod">
+    <span class="tei-mod" data-note-id="{generate-id ()}">
+      <xsl:if test="@rend='coloured'">
+        <xsl:attribute name="class">tei-mod rend-coloured</xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates/>
     </span>
-
-    <xsl:call-template name="auto-note-ref"/>
   </xsl:template>
 
-  <xsl:template match="tei:unclear[not (tei:gap)]">
-    <span class="tei-unclear tei-unclear-not-gap">
+  <xsl:template match="tei:space">
+    <span class="tei-space" data-note-id="{generate-id ()}">
+      <xsl:text> - - - </xsl:text>
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:handShift">
+    <span class="tei-handShift" data-note-id="{generate-id ()}">
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:unclear">
+    <span class="tei-unclear">
       <xsl:text>[</xsl:text>
       <xsl:apply-templates/>
       <xsl:text>]</xsl:text>
@@ -363,8 +362,23 @@ will be joined to the preceding word.
   <xsl:template match="tei:gap">
     <span class="tei-gap" data-shortcuts="0">
       <xsl:text>[</xsl:text>
-      <xsl:value-of select="str:padding (@quantity, ' .')"/>
-      <xsl:text> ]</xsl:text>
+      <xsl:value-of select="str:padding (@quantity, '.')"/>
+      <xsl:text>]</xsl:text>
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:sic">
+    <span class="tei-sic">
+      <xsl:apply-templates/>
+      <span data-shortcuts="0">
+        <xsl:text> [!]</xsl:text>
+      </span>
+    </span>
+  </xsl:template>
+
+  <xsl:template match="tei:num">
+    <span class="tei-num">
+      <xsl:apply-templates/>
     </span>
   </xsl:template>
 
@@ -374,140 +388,119 @@ will be joined to the preceding word.
     </span>
   </xsl:template>
 
-  <xsl:template match="tei:sic">
-    <span class="tei-sic">
-      <xsl:apply-templates />
-      <span data-shortcuts="0">
-        <xsl:text> [!]</xsl:text>
-      </span>
-    </span>
+  <!--
+      refs-only mode
 
-    <!-- xsl:call-template name="auto-note-ref"/ -->
+      While generating the text section, whenever execution takes one of two or
+      more paths, (eg. the normal-hand or the later-hand paths in an <add> or
+      <del>) we must traverse the other path in refs-only mode.
+
+      This is to assure that all footnote refs in all paths get generated in the
+      text section.  Otherwise if we had eg. a <choice> nested inside an <add
+      hand="X"> the <choice> would not get transformed in the text, leaving no
+      generated note ref and a dangling note body.
+
+      Some footnote refs will also get generated in the footnote section, but
+      those will be ignored by the post-processor.
+
+      refs-only mode generates refs and nothing else.  Refs are <span>s with a
+      data-node-id attribute.
+  -->
+
+
+  <xsl:template match="tei:add|tei:del[normalize-space ()]" mode="refs-only">
+    <span class="tei-{local-name ()}">
+      <xsl:if test="not (parent::tei:subst)">
+        <xsl:attribute name="data-note-id"><xsl:value-of select="generate-id ()"/></xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates mode="refs-only"/>
+    </span>
   </xsl:template>
 
-  <xsl:template match="tei:num">
-    <span class="tei-num">
-      <xsl:apply-templates />
+  <xsl:template match="tei:subst|tei:mod|tei:note|tei:space|tei:choice|tei:handShift" mode="refs-only">
+    <span class="tei-{local-name ()}" data-note-id="{generate-id ()}">
+      <xsl:apply-templates mode="refs-only"/>
     </span>
   </xsl:template>
 
-  <xsl:template match="tei:space">
-    <span class="tei-space">
-      <xsl:text> - - - </xsl:text>
-    </span>
-
-    <xsl:call-template name="auto-note-ref"/>
-  </xsl:template>
-
-  <xsl:template match="tei:handShift">
-    <xsl:call-template name="auto-note-ref"/>
+  <xsl:template match="text ()" mode="refs-only">
   </xsl:template>
 
   <!--
-      Automatic footnote ref generation.
+      auto-note-wrapper mode
+
+      auto-note-wrapper mode is used at the end of every <ab> to generate and
+      collect all footnotes into a footnote section.
+
+      To get the footnotes in the right chronological order, we need a
+      depth-first traversal, on the assumption that older edits are nested
+      deeper than newer edits.
+
+      FIXME: what about <choice> inside <add> or <del>? Choice should then
+      output after the parent.
   -->
 
-  <xsl:template name="auto-note-ref">
-    <!--
-        Generate a footnote from markup.
-
-        For tei:add, tei:del, tei:subst, etc. elements we
-        automatically generate a human-readable footnote from
-        the markup.  This can be overridden by manually placing
-        a tei:note after the element.
-    -->
-    <xsl:choose>
-      <xsl:when test="not (cap:note-follows ())">
-        <span id="{generate-id(.)}" class="annotation auto" data-shortcuts="0">
-          <xsl:call-template name="footnote-ref"/>
-        </span>
-      </xsl:when>
-      <xsl:otherwise>
-        <span class="annotation auto note-follows-suppressed" />
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
-  <!--
-      Automatic footnote wrapper generation
-
-      apply-templates with mode of 'auto-note-wrapper' is called at the end of
-      every tei:ab to generate and collect all notes into one div.  Generating
-      notes in a separate step and separate mode allows us to call the default
-      mode templates from nested elements without the generated notes polluting
-      the results. eg.
-
-        <tei:subst>
-          <tei:del>
-            <tei:choice>
-              <tei:expan>
-
-      the tei:choice would generate a note, which would show up inside the
-      tei:del content.  FIXME: Better explanation needed.
-  -->
-
-  <xsl:template match="tei:add|tei:del" mode="auto-note-wrapper">
-    <!-- generate notes from children -->
-    <xsl:apply-templates mode="auto-note-wrapper" />
+  <xsl:template match="tei:add|tei:del[normalize-space ()]" mode="auto-note-wrapper">
+    <!-- generate notes from children depth first -->
+    <xsl:apply-templates mode="auto-note-wrapper"/>
     <!-- generate note from this node -->
     <xsl:if test="not (parent::tei:subst)">
-      <xsl:call-template name="auto-note-wrapper" />
+      <xsl:call-template name="auto-note-wrapper"/>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="tei:subst|tei:mod|tei:note|tei:space|tei:unclear[tei:gap]|tei:choice|tei:handShift"
+  <xsl:template match="tei:subst|tei:mod|tei:note|tei:space|tei:choice|tei:handShift"
                 mode="auto-note-wrapper">
-    <!-- generate notes from children -->
-    <xsl:apply-templates mode="auto-note-wrapper" />
+    <!-- generate notes from children depth first -->
+    <xsl:apply-templates mode="auto-note-wrapper"/>
     <!-- generate note from this node -->
-    <xsl:call-template name="auto-note-wrapper" />
+    <xsl:call-template name="auto-note-wrapper"/>
   </xsl:template>
 
   <xsl:template name="auto-note-wrapper">
-    <!--
-        Generate a footnote from markup.
-
-        For tei:add, tei:del, tei:subst, etc. elements we
-        automatically generate a human-readable footnote from
-        the markup.  This can be overridden by manually placing
-        a tei:note after the element.
-    -->
-    <xsl:if test="not (cap:note-follows ())">
-      <div id="{generate-id(.)}-content" class="annotation-content">
-        <xsl:call-template name="footnote-backref"/>
-        <div class="annotation-text">
-          <!-- run again on this node -->
-          <xsl:apply-templates select="." mode="auto-note" />
-        </div>
+    <!-- Generate the footnote decorations, then call auto-note mode to generate
+         the footnote body. -->
+    <xsl:text>&#x0a;</xsl:text>
+    <div id="{generate-id ()}-content" class="annotation-content">
+      <div class="annotation-text">
+        <!-- run again on this node -->
+        <xsl:apply-templates select="." mode="auto-note"/>
+        <!-- This is to assure that footnote refs do not get moved past the
+             div's end. Do *not* remove! -->
+        <xsl:text>&#x0a;</xsl:text>
       </div>
-    </xsl:if>
+    </div>
   </xsl:template>
 
-  <xsl:template match="text()" mode="auto-note-wrapper">
+  <xsl:template match="text ()" mode="auto-note-wrapper">
   </xsl:template>
 
   <!--
-      Automatic footnote text generation
+      auto-note mode
+
+      auto-note mode generates the actual footnote bodies.  It is called from
+      auto-note-wrapper mode.  Every template in auto-note mode generates
+      exactly one footnote body.  They do not recurse of themselves.
   -->
 
   <xsl:template match="tei:subst" mode="auto-note">
-    <xsl:variable name="before"   select="cap:word-before (.)" />
-    <xsl:variable name="after"    select="cap:word-after (.)" />
+    <xsl:variable name="before"   select="cap:word-before (.)"/>
+    <xsl:variable name="after"    select="cap:word-after (.)"/>
 
     <xsl:choose>
-      <xsl:when test="cap:is-special-hand ()">
+      <xsl:when test="cap:is-later-hand ()">
         <xsl:variable name="del">
-          <xsl:apply-templates select="tei:del"/>
+          <xsl:apply-templates select="tei:del" mode="original" />
         </xsl:variable>
         <xsl:if test="cap:is-phrase (str:concat (exsl:node-set ($del)))">
           <span class="mentioned" data-shortcuts="1">
-            <xsl:value-of select="$before"/><xsl:apply-templates select="tei:del"/><xsl:value-of select="$after"/>
+            <xsl:value-of select="$before"/><xsl:apply-templates select="tei:del" mode="original" /><xsl:value-of select="$after"/>
           </span>
         </xsl:if>
-        <xsl:call-template name="blurb" />
+        <xsl:call-template name="hand-blurb"/>
         <xsl:text> korr. zu </xsl:text>
         <span class="mentioned" data-shortcuts="1">
-          <xsl:value-of select="$before"/><xsl:apply-templates select="tei:add/node()"/><xsl:value-of select="$after"/>
+          <xsl:value-of select="$before"/><xsl:apply-templates select="tei:add" mode="edited"/><xsl:value-of select="$after"/>
         </span>
       </xsl:when>
       <xsl:otherwise>
@@ -519,24 +512,24 @@ will be joined to the preceding word.
             <xsl:value-of select="$before"/><xsl:apply-templates select="tei:add"/><xsl:value-of select="$after"/>
           </span>
         </xsl:if>
-        <xsl:call-template name="blurb" />
+        <xsl:call-template name="hand-blurb"/>
         <xsl:text> korr. aus </xsl:text>
         <span class="mentioned" data-shortcuts="1">
-          <xsl:value-of select="$before"/><xsl:apply-templates select="tei:del/node()"/><xsl:value-of select="$after"/>
+          <xsl:value-of select="$before"/><xsl:apply-templates select="tei:del" mode="original"/><xsl:value-of select="$after"/>
         </span>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
   <xsl:template match="tei:add" mode="auto-note">
-    <xsl:variable name="before"   select="cap:word-before (.)" />
-    <xsl:variable name="after"    select="cap:word-after (.)" />
+    <xsl:variable name="before"   select="cap:word-before (.)"/>
+    <xsl:variable name="after"    select="cap:word-after (.)"/>
 
     <xsl:variable name="index">
       <!-- the index, eg. a², only if needed -->
-      <xsl:if test="(string-length (.) = 1) and (cap:count-char (concat ($before, $after), string (.)) > 0)">
+      <xsl:if test="(string-length () = 1) and (cap:count-char (concat ($before, $after), string ()) > 0)">
         <sup class="mentioned-index">
-          <xsl:value-of select="1 + cap:count-char ($before, string (.))"/>
+          <xsl:value-of select="1 + cap:count-char ($before, string ())"/>
         </sup>
       </xsl:if>
     </xsl:variable>
@@ -548,83 +541,81 @@ will be joined to the preceding word.
     </xsl:variable>
 
     <xsl:choose>
-      <xsl:when test="cap:is-special-hand ()">
+      <xsl:when test="cap:is-later-hand ()">
         <xsl:choose>
           <xsl:when test="$before = '' and $after = ''">
             <xsl:text>folgt</xsl:text>
-            <xsl:call-template name="blurb" />
+            <xsl:call-template name="hand-blurb"/>
             <xsl:text> ergänztes </xsl:text>
-            <xsl:copy-of select="$edited" />
+            <xsl:copy-of select="$edited"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:call-template name="blurb" />
+            <xsl:call-template name="hand-blurb"/>
             <xsl:text> korr. zu </xsl:text>
             <xsl:copy-of select="$edited"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
-      <xsl:otherwise> <!-- not speacial hand -->
+      <xsl:otherwise> <!-- not later hand -->
         <span class="mentioned" data-shortcuts="1">
           <xsl:apply-templates/><xsl:copy-of select="$index"/>
         </span>
-        <xsl:call-template name="blurb" />
+        <xsl:call-template name="hand-blurb"/>
         <xsl:text> ergänzt</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="tei:del" mode="auto-note">
-    <xsl:if test="normalize-space (.)">
-      <xsl:variable name="before"   select="cap:word-before (.)" />
-      <xsl:variable name="after"    select="cap:word-after (.)" />
+  <xsl:template match="tei:del[normalize-space ()]" mode="auto-note">
+    <xsl:variable name="before"   select="cap:word-before (.)"/>
+    <xsl:variable name="after"    select="cap:word-after (.)"/>
 
-      <xsl:variable name="original">
-        <span class="mentioned" data-shortcuts="1">
-          <xsl:value-of select="$before"/><xsl:apply-templates/><xsl:value-of select="$after"/>
-        </span>
-      </xsl:variable>
+    <xsl:variable name="original">
+      <span class="mentioned" data-shortcuts="1">
+        <xsl:value-of select="$before"/><xsl:apply-templates select="." mode="original" /><xsl:value-of select="$after"/>
+      </span>
+    </xsl:variable>
 
-      <xsl:choose>
-        <xsl:when test="$before = '' and $after = ''">
-          <!-- Whole word deleted. -->
-          <xsl:choose>
-            <xsl:when test="cap:is-special-hand ()">
-              <xsl:call-template name="blurb"/>
-              <xsl:text> getilgt</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-              <!-- The footnote reference will be moved to the end of the preceding word. -->
-              <xsl:text>folgt</xsl:text>
-              <xsl:call-template name="blurb"/>
-              <xsl:text> getilgtes </xsl:text>
-              <xsl:copy-of select="$original" />
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:when>
+    <xsl:choose>
+      <xsl:when test="$before = '' and $after = ''">
+        <!-- Whole word deleted. -->
+        <xsl:choose>
+          <xsl:when test="cap:is-later-hand ()">
+            <xsl:call-template name="hand-blurb"/>
+            <xsl:text> getilgt</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- The footnote reference will be moved to the end of the preceding word. -->
+            <xsl:text>folgt</xsl:text>
+            <xsl:call-template name="hand-blurb"/>
+            <xsl:text> getilgtes </xsl:text>
+            <xsl:copy-of select="$original"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
 
-        <xsl:otherwise>
-          <!-- Part of word deleted. -->
-          <xsl:call-template name="blurb"/>
-          <xsl:choose>
-            <xsl:when test="cap:is-special-hand ()">
-              <xsl:text> korr. zu </xsl:text>
-              <span class="mentioned" data-shortcuts="1">
-                <xsl:value-of select="concat ($before, $after)"/>
-              </span>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:text> korr. aus </xsl:text>
-              <xsl:copy-of select="$original" />
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:if>
+      <xsl:otherwise>
+        <!-- Part of word deleted. -->
+        <xsl:call-template name="hand-blurb"/>
+        <xsl:choose>
+          <xsl:when test="cap:is-later-hand ()">
+            <xsl:text> korr. zu </xsl:text>
+            <span class="mentioned" data-shortcuts="1">
+              <xsl:value-of select="concat ($before, $after)"/>
+            </span>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text> korr. aus </xsl:text>
+            <xsl:copy-of select="$original"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="tei:mod" mode="auto-note">
-    <xsl:variable name="before"   select="cap:word-before (.)" />
-    <xsl:variable name="after"    select="cap:word-after (.)" />
+    <xsl:variable name="before"   select="cap:word-before (.)"/>
+    <xsl:variable name="after"    select="cap:word-after (.)"/>
 
     <xsl:choose>
       <xsl:when test="$before = '' and $after = ''">
@@ -635,30 +626,23 @@ will be joined to the preceding word.
         <xsl:text> korr. (?)</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
-
   </xsl:template>
 
   <xsl:template match="tei:note" mode="auto-note">
     <xsl:if test="@target">
-      <xsl:variable name="vPrecSeg" select="preceding-sibling::node()[1][local-name(.)='span'][@xml:id]"/>
+      <xsl:variable name="vPrecSeg" select="preceding-sibling::node ()[1][local-name ()='span'][@xml:id]"/>
       <xsl:variable name="vBezug">
-        <xsl:value-of select="$vPrecSeg/text()[1]"/>
+        <xsl:value-of select="$vPrecSeg/text ()[1]"/>
         <xsl:value-of select="$vPrecSeg/tei:add"/>
-        <xsl:value-of select="substring-before($vPrecSeg/text()[last()],' ')"/>
+        <xsl:value-of select="substring-before ($vPrecSeg/text ()[last ()],' ')"/>
         <xsl:text>...</xsl:text>
-        <xsl:value-of select="substring-after($vPrecSeg/text()[last()],' ')"/>
+        <xsl:value-of select="substring-after ($vPrecSeg/text ()[last ()],' ')"/>
         <xsl:text>: </xsl:text>
       </xsl:variable>
       <xsl:value-of select="$vBezug"/>
     </xsl:if>
-    <xsl:apply-templates />
+    <xsl:apply-templates/>
   </xsl:template>
-
-  <!--
-  <xsl:template match="tei:sic" mode="auto-note">
-    <xsl:text>sic Hs.</xsl:text>
-  </xsl:template>
-  -->
 
   <xsl:template match="tei:space" mode="auto-note">
     <xsl:text>Lücke von ca. </xsl:text>
@@ -666,26 +650,15 @@ will be joined to the preceding word.
     <xsl:text> </xsl:text>
 
     <xsl:call-template name="plural">
-      <xsl:with-param name="quantity" select="@quantity" />
-      <xsl:with-param name="unit"     select="@unit" />
-    </xsl:call-template>
-  </xsl:template>
-
-  <xsl:template match="tei:unclear[tei:gap]" mode="auto-note">
-    <xsl:text>Lücke von ca. </xsl:text>
-    <xsl:value-of select="@quantity"/>
-    <xsl:text> </xsl:text>
-
-    <xsl:call-template name="plural">
-      <xsl:with-param name="quantity" select="@quantity" />
-      <xsl:with-param name="unit"     select="@unit" />
+      <xsl:with-param name="quantity" select="@quantity"/>
+      <xsl:with-param name="unit"     select="@unit"/>
     </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="tei:choice" mode="auto-note">
     <xsl:text>gek. </xsl:text>
     <span class="mentioned" data-shortcuts="1">
-      <xsl:apply-templates select="tei:abbr" />
+      <xsl:apply-templates select="tei:abbr"/>
     </span>
   </xsl:template>
 

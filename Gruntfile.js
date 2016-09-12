@@ -101,7 +101,7 @@ module.exports = function (grunt) {
                 failOnError: false,
             },
             deploy: {
-                command: '<%= rsync %> themes/Capitularia/* <%= wpcontent %>/themes/Capitularia/ ; <%= rsync %> plugins/cap-* <%= wpcontent %>/plugins/; <%= rsync %> xslt/*.xsl <%= transform %>/',
+                command: '<%= rsync %> themes/Capitularia/* <%= wpcontent %>/themes/Capitularia/ ; <%= rsync %> plugins/cap-* <%= wpcontent %>/plugins/; <%= rsync %> xslt/*.xsl xslt/test/*xml <%= transform %>/',
             },
             testdeploy: {
                 command: '<%= rsync %> themes/Capitularia/* <%= wpcontentlocal %>/themes/Capitularia/ ; <%= rsync %> plugins/cap-* <%= wpcontentlocal %>/plugins/',

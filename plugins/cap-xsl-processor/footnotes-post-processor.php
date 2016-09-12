@@ -3,13 +3,16 @@
 /**
  * Capitularia Footnotes Post-Processor
  *
- * We do some postprocessing in PHP because it is easier than in XSLT.  This
- * script is called immediately after xsltproc.
+ * This script processes the output of xsltproc.  Here we do those things that
+ * are easier in PHP than in XSLT.
  *
  * This script:
  *
  * - Merges adjacent footnotes and moves footnotes to the end of the word.
+ * - Drops footnotes followed by an editorial note in the same word.
+ * - Inserts footnote refs and backrefs and numbers them sequentially.
  * - Wraps initials (dropcaps) and the following word into a span.
+ * - Substitutes editors' shortcuts with proper medieaval punctuation.
  * - Accepts XML or HTML input, always outputs HTML.
  *
  * @package Capitularia
@@ -17,7 +20,7 @@
 
 namespace cceh\capitularia\xsl_processor;
 
-$FOOTNOTE  = 'span[contains (concat (" ", @class, " "), " annotation ")]';
+$FOOTNOTE  = 'a[contains (concat (" ", @class, " "), " annotation-ref ")]';
 $FOOTNOTES = '//' . $FOOTNOTE;
 
 /**
@@ -33,8 +36,8 @@ function is_note ($node)
     return
         $node &&
         ($node->nodeType == XML_ELEMENT_NODE) &&
-        ($node->nodeName == 'span') &&
-        has_class ($node, 'annotation');
+        ($node->nodeName == 'a') &&
+        has_class ($node, 'annotation-ref');
 }
 
 function add_class ($node, $class)
@@ -61,7 +64,7 @@ function remove_node ($node)
 }
 
 /**
- * Merge $note into $next and delete $note.
+ * Merge $note into $next.
  *
  * @param \DOMNode $note The note to merge.
  * @param \DOMNode $next The note to merge into.
@@ -74,27 +77,29 @@ function merge_notes ($note, $next)
     global $xpath1;
     global $doc;
 
-    $note_content_id = $note->getAttribute ('id') . '-content';
-    $next_content_id = $next->getAttribute ('id') . '-content';
-
-    $src      = $xpath1->query ('//*[@id="' . $note_content_id . '"]');
-    $dest     = $xpath1->query ('//*[@id="' . $next_content_id . '"]');
+    $note_id = str_replace ('-ref', '', $note->getAttribute ('id'));
+    $next_id = str_replace ('-ref', '', $next->getAttribute ('id'));
+    $src     = $xpath1->query ("//*[@id='{$note_id}-content']");
+    $dest    = $xpath1->query ("//*[@id='{$next_id}-content']");
 
     if ($src->length == 0 || $dest->length ==  0) {
         return;
     }
 
-    // never merge into editorial notes, just drop the $note
+    // echo ("about to merge $note_id into $next_id\n");
+
+    // never merge into editorial notes
     if (has_class ($next, 'annotation-editorial')) {
         add_class ($next, 'previous-notes-dropped');
         remove_node ($src[0]); // the div class=annotation-content
         remove_node ($note);   // the span
+        // echo ("dropped note $note_id\n");
         return;
     }
 
     $src_text = $xpath1->query ('.//div[contains (concat (" ", @class, " "), " annotation-text ")]', $src[0]);
     if (count ($src_text)) {
-        $dest[0]->insertBefore ($src_text[0], $dest[0]->lastChild);
+        $dest[0]->insertBefore ($src_text[0]->cloneNode (true), $dest[0]->lastChild);
         add_class ($next, 'previous-notes-merged');
     }
     remove_node ($src[0]); // the div class=annotation-content
@@ -135,6 +140,31 @@ function word_end_pos ($text_node)
     $text = $text_node->nodeValue;
     $text = preg_replace ('/[[:punct:]\s]/u', ' ', $text);
     return mb_strpos ($text, ' ');
+}
+
+function query_copy ($xpath, $query) {
+    $nodes = array ();
+    foreach ($xpath->query ($query) as $node) {
+        $nodes[] = $node;
+    }
+    return $nodes;
+}
+
+function insert_footnote_ref ($elem, $id, $num)
+{
+    global $doc;
+    $class = $elem->getAttribute ("class");
+    $frag = $doc->createDocumentFragment ();
+    $frag->appendXML ("<a class='annotation-ref ssdone $class' id='{$id}-ref' href='#{$id}-content' data-shortcuts='0'><span class='print-only footnote-number-ref'>{$num}</span><span class='screen-only footnote-siglum'>*</span></a>");
+    $elem->appendChild ($frag);
+}
+
+function insert_footnote_backref ($elem, $id, $num)
+{
+    global $doc;
+    $frag = $doc->createDocumentFragment ();
+    $frag->appendXML ("<a class='annotation-backref ssdone' href='#{$id}-ref'><span class='print-only footnote-number-backref'>{$num}</span><span class='screen-only footnote-siglum'>*</span></a>");
+    $elem->insertBefore ($frag, $elem->firstChild);
 }
 
 //
@@ -181,11 +211,16 @@ foreach (array ('header', 'body', 'footer') as $part) {
 
 //
 // Remove whitespace before isolated footnotes.  An isolated footnote is
-// surrounded by whitespace.
+// empty and surrounded by whitespace.
 //
 
-$notes = $xpath->query ($FOOTNOTES);
+$FOOTNOTE_SPAN = '//span[@data-note-id][not (ancestor::div[@class="footnotes-wrapper"])]';
+
+$notes = $xpath->query ($FOOTNOTE_SPAN);
 foreach ($notes as $note) {
+    if (trim ($note->nodeValue)) {
+        continue;
+    }
 
     // Does the first following non-empty text node start with whitespace?
     foreach ($xpath->query ('following::text()[string(.)][1]', $note) as $node) {
@@ -200,6 +235,23 @@ foreach ($notes as $note) {
             }
         }
     }
+}
+
+//
+// Turn <span data-node-id="idm42"/> into footnote refs, add backrefs to the
+// footnote bodies and link them via hrefs.
+//
+
+// get all spans in the text that have data-node-id and add footnote refs
+foreach (query_copy ($xpath, $FOOTNOTE_SPAN) as $span) {
+    $id = $span->getAttribute ('data-note-id');
+    insert_footnote_ref ($span, $id, 0);
+}
+
+// get all footnote bodies and add footnote backrefs
+foreach (query_copy ($xpath, '//div[contains (concat (" ", @class, " "), " annotation-content ")]') as $note) {
+    $id = str_replace ('-content', '', $note->getAttribute ('id'));
+    insert_footnote_backref ($note, $id, 0);
 }
 
 //
@@ -250,23 +302,19 @@ foreach ($notes as $note) {
 }
 
 //
-// Renumber footnote refs
-// Delete footnote refs inside footnote texts
+// Number footnote refs
+//
+// Add the foonote numbers for the print view.  We must do this after footnote
+// merging.
 //
 
 $count = 0;
 $id_to_number = array ();
 
-// make a copy of nodelist because we delete nodes as we go
-$spans = array ();
 foreach ($xpath->query ('//span[contains (concat (" ", @class, " "), " footnote-number-ref ")]') as $span) {
-    $spans[] = $span;
-}
-
-foreach ($spans as $span) {
-    $id = str_replace ('-ref', '-backref', $span->parentNode->getAttribute ('id'));
-    if ($xpath1->query ('ancestor::div[contains (concat (" ", @class, " "), " annotation-text ")]', $span)->length) {
-        remove_node ($span->parentNode);
+    $id = str_replace ('-ref', '', $span->parentNode->getAttribute ('id'));
+    if (array_key_exists ($id, $id_to_number)) {
+        $span->nodeValue = strVal ($id_to_number[$id]);
     } else {
         $count++;
         $id_to_number[$id] = $count;
@@ -275,16 +323,17 @@ foreach ($spans as $span) {
 }
 
 foreach ($xpath->query ('//span[contains (concat (" ", @class, " "), " footnote-number-backref ")]') as $span) {
-    $backref_id = $span->parentNode->getAttribute ('id');
-    $span->nodeValue = strVal ($id_to_number[$backref_id]);
-}
-
-foreach ($xpath->query ('//span[contains (concat (" ", @class, " "), " footnote-siglum ")]') as $span) {
-    $span->nodeValue = '*';
+    $id = str_replace ('-content', '', $span->parentNode->parentNode->getAttribute ('id'));
+    if (array_key_exists ($id, $id_to_number)) {
+        $span->nodeValue = strVal ($id_to_number[$id]);
+    }
 }
 
 //
-// Loop over initials.
+// Wrap initials (dropcaps) and the rest of words into spans.
+//
+// Some browsers (chrome) will break a line between an initial and the following
+// word fragment.  We must wrap them into spans with word-wrap off.
 //
 
 $initials = $xpath->query ('//span[contains (concat (" ", @class, " "), " initial ")]');
@@ -322,13 +371,12 @@ foreach ($initials as $initial) {
 //
 // Loop over text nodes to:
 //
-// replace keyboard shortcuts
-// change whitespace before punctuation into nbsp
-
+// - replace keyboard shortcuts
+// - change whitespace before punctuation into nbsp
 //
 
 // Test if this file was transformed with the CTE stylesheet.  In that case we
-// don't want to replace shortcuts.
+// don't want to replace shortcuts. FIXME: find a better way to configure this.
 $divs = $xpath->query ('//div[@class="CTE"]');
 $is_CTE = ($divs !== false) && ($divs->length > 0);
 
@@ -348,7 +396,7 @@ if (!$is_CTE) {
 }
 
 //
-// Make new w3c validator happy
+// Make the new w3c validator happy.
 //
 
 foreach ($xpath->query ('//script') as $script) {
@@ -373,7 +421,7 @@ foreach ($xpath->query ('//@id') as $id) {
 //
 
 // Output as HTML because this gets embedded into a wordpress page. Also get rid
-// of <DOCTYPE>, <html>, <head>, <body> by starting at topmost <div>.
+// of <DOCTYPE>, <html>, <head>, <body> by starting at the topmost <div>.
 
 $divs = $xpath->query ('/html/body/div');
 $doc->substituteEntities = true;
