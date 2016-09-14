@@ -20,8 +20,8 @@
 
 namespace cceh\capitularia\xsl_processor;
 
-$FOOTNOTE  = 'a[contains (concat (" ", @class, " "), " annotation-ref ")]';
-$FOOTNOTES = '//' . $FOOTNOTE;
+const FOOTNOTE  = 'a[contains (concat (" ", @class, " "), " annotation-ref ")]';
+const FOOTNOTES = '//' . FOOTNOTE;
 
 /**
  * Is the node a note?
@@ -142,7 +142,8 @@ function word_end_pos ($text_node)
     return mb_strpos ($text, ' ');
 }
 
-function query_copy ($xpath, $query) {
+function query_copy ($xpath, $query)
+{
     $nodes = array ();
     foreach ($xpath->query ($query) as $node) {
         $nodes[] = $node;
@@ -153,7 +154,7 @@ function query_copy ($xpath, $query) {
 function insert_footnote_ref ($elem, $id, $num)
 {
     global $doc;
-    $class = $elem->getAttribute ("class");
+    $class = $elem->getAttribute ('class');
     $frag = $doc->createDocumentFragment ();
     $frag->appendXML ("<a class='annotation-ref ssdone $class' id='{$id}-ref' href='#{$id}-content' data-shortcuts='0'><span class='print-only footnote-number-ref'>{$num}</span><span class='screen-only footnote-siglum'>*</span></a>");
     $elem->appendChild ($frag);
@@ -214,9 +215,9 @@ foreach (array ('header', 'body', 'footer') as $part) {
 // empty and surrounded by whitespace.
 //
 
-$FOOTNOTE_SPAN = '//span[@data-note-id][not (ancestor::div[@class="footnotes-wrapper"])]';
+const FOOTNOTE_SPAN = '//span[@data-note-id][not (ancestor::div[@class="footnotes-wrapper"])]';
 
-$notes = $xpath->query ($FOOTNOTE_SPAN);
+$notes = $xpath->query (FOOTNOTE_SPAN);
 foreach ($notes as $note) {
     if (trim ($note->nodeValue)) {
         continue;
@@ -243,7 +244,7 @@ foreach ($notes as $note) {
 //
 
 // get all spans in the text that have data-node-id and add footnote refs
-foreach (query_copy ($xpath, $FOOTNOTE_SPAN) as $span) {
+foreach (query_copy ($xpath, FOOTNOTE_SPAN) as $span) {
     $id = $span->getAttribute ('data-note-id');
     insert_footnote_ref ($span, $id, 0);
 }
@@ -258,7 +259,7 @@ foreach (query_copy ($xpath, '//div[contains (concat (" ", @class, " "), " annot
 // Merge and move footnotes to the end of the word.
 //
 
-$notes = $xpath->query ($FOOTNOTES);
+$notes = $xpath->query (FOOTNOTES);
 
 foreach ($notes as $note) {
     // Don't touch editorial notes.
@@ -269,11 +270,11 @@ foreach ($notes as $note) {
     // iterate over footnotes and text nodes
 
     $nodes = array ();
-    foreach ($xpath->query ("following::node()[self::text() or self::{$FOOTNOTE}][position() < 10]", $note) as $node) {
+    $fn = FOOTNOTE;
+    foreach ($xpath->query ("following::node()[self::text() or self::{$fn}][position() < 10]", $note) as $node) {
         $nodes[] = $node;
     }
     foreach ($nodes as $next) {
-
         // Merge notes in the same word
         //
         if (is_note ($next)) {
@@ -282,6 +283,10 @@ foreach ($notes as $note) {
         }
 
         // $next is a text node
+        if ($next->parentNode->getAttribute ('data-shortcuts') == "0") {
+            // skip non-latin texts
+            continue;
+        }
 
         $we_pos = word_end_pos ($next);
         if ($we_pos === false) {
@@ -338,7 +343,6 @@ foreach ($xpath->query ('//span[contains (concat (" ", @class, " "), " footnote-
 
 $initials = $xpath->query ('//span[contains (concat (" ", @class, " "), " initial ")]');
 foreach ($initials as $initial) {
-
     $next = $initial->nextSibling;
     if (!is_text_node ($next)) {
         continue;
@@ -378,9 +382,9 @@ foreach ($initials as $initial) {
 // Test if this file was transformed with the CTE stylesheet.  In that case we
 // don't want to replace shortcuts. FIXME: find a better way to configure this.
 $divs = $xpath->query ('//div[@class="CTE"]');
-$is_CTE = ($divs !== false) && ($divs->length > 0);
+$is_cte = ($divs !== false) && ($divs->length > 0);
 
-if (!$is_CTE) {
+if (!$is_cte) {
     $search  = array ('.:', ';.',  '.', '!',  '*');
     $replace = array ('∴',  '·,·', '·', ".'", '˙');
 
@@ -435,6 +439,6 @@ if (count ($divs)) {
     $out = $doc->saveHTML ();
 }
 
-$out = html_entity_decode ($out, ENT_QUOTES, "UTF-8");
+$out = html_entity_decode ($out, ENT_QUOTES, 'UTF-8');
 
 file_put_contents ('php://stdout', $out);

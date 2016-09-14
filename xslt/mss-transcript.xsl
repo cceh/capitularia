@@ -41,7 +41,7 @@
 
   <xsl:template match="/">
     <div class="tei-root">
-      <xsl:apply-templates select="//tei:text"/>
+      <xsl:apply-templates select="/tei:TEI/tei:text"/>
     </div>
   </xsl:template>
 
@@ -50,9 +50,9 @@
 
     <h4 id="transcription">[:de]Transkription[:en]Transcription[:]</h4>
 
-    <xsl:apply-templates select="//tei:encodingDesc"/>
+    <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:encodingDesc"/>
     <xsl:apply-templates select="tei:front"/>
-    <xsl:apply-templates select="//tei:sourceDesc"/>
+    <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc"/>
 
     <!-- This is for automatically generating the sidebar menu,
          not for users' eyes. -->
@@ -60,7 +60,7 @@
       <h5 id="contents-rubrics">
         [:de]Inhalt (Rubriken)[:en]Contents (Rubrics)[:]
       </h5>
-      <xsl:apply-templates select="//tei:div[@xml:id='divContent']" mode="toc"/>
+      <xsl:apply-templates select="tei:front/tei:div[@xml:id='divContent']" mode="toc"/>
       <h5 id="contents-bknos">
         [:de]Inhalt (BK-Nummern)[:en]Contents (BK-Nos.)[:]
       </h5>
@@ -236,7 +236,7 @@
     <xsl:call-template name="page-break" />
   </xsl:template>
 
-  <xsl:template match="//tei:seg[@type = 'numDenom' or @type = 'num']">
+  <xsl:template match="tei:seg[@type = 'numDenom' or @type = 'num']">
     <xsl:apply-templates/>
   </xsl:template>
 
@@ -291,8 +291,8 @@
       Die einzelnen Typen sollen optisch unterscheidbar sein, ohne daß man Farbe verwenden muß.
       Alle größer und fett; zusätzlich zur Unterscheidung verschiedene Größen/Schrifttypen?
   -->
-  <!--<xsl:template match="//tei:seg[substring-before(@type,'-')='initial']">-->
-  <!--<xsl:template match="//tei:seg[string-length(translate(@type,'initial',''))!=string-length(@type)]">-->
+  <!--<xsl:template match="tei:seg[substring-before(@type,'-')='initial']">-->
+  <!--<xsl:template match="tei:seg[string-length(translate(@type,'initial',''))!=string-length(@type)]">-->
   <xsl:template match="tei:seg[@type='initial']">
     <span class="initial">
       <xsl:choose>
