@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# XSL test script
+#
+# Usage:   meld xmlid
+#          meld new_url old_url
+#
+# Example: meld gotha-flb-memb-i-84
+#          meld test/mss-transcript/ mss/gotha-flb-memb-i-84/
+#
+# This script tests changes to an XSL stylesheet by comparing the
+# output it generates against the output of another (the old) XSL
+# stylesheet.
+#
+# Both XSL stylesheets are run by the Capitularia web site. You have
+# to add a new wordpress page that runs the new XSL on some the same
+# TEI input file as the old page.
+#
+# If you want to use private pages (you want) you have to provide
+# login data in the environment variables CAPITULARIA_USERNAME and
+# CAPITULARIA_PASSWORD.
+#
+# Elinks is used to format the pages and an SED script normalizes its
+# output so as to reduce noise.
+#
+
+CAP="http://capitularia.uni-koeln.de"
+DIFF="meld"
+
+if [ -n "$CAPITULARIA_USERNAME" -a -n "$CAPITULARIA_PASSWORD" ]
+then
+    # echo "Username is: $CAPITULARIA_USERNAME"
+    curl -s -D tests/cookie1.txt $CAP/wp-login.php > /dev/null
+    curl -s -D tests/cookie2.txt -b tests/cookie1.txt -F log="$CAPITULARIA_USERNAME" -F pwd="$CAPITULARIA_PASSWORD" -F testcookie=1 -F wp-submit="Log In" -F redirect_to="$CAP/wp-admin" -F submit=login -F rememberme=forever "$CAP/wp-login.php" > /dev/null
+fi
+
+if [ "$#" -eq 1 ]
+then
+    URL1="$CAP/test/$1/?cap_xsl=reload"
+    URL2="$CAP/mss/$1/"
+else
+    URL1="$CAP/$1?cap_xsl=reload"
+    URL2="$CAP/$2"
+fi
+
+CURL="curl -s -L --cookie tests/cookie2.txt"
+ELINKS="elinks -dump"
+SED="sed -f tests/normalize-transcript.sed"
+
+$DIFF <($CURL "$URL1" | $ELINKS | $SED) <($CURL "$URL2" | $ELINKS | $SED)
+
+rm tests/cookie[12].txt

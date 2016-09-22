@@ -344,6 +344,17 @@ div.content-col table.handschriften a {
   font-weight: normal;
   font-style: normal;
 }
+div.content-col nav.bib-index-tabs {
+  text-align: center;
+}
+div.content-col nav.bib-index-tabs span.bib-index-tab + span.bib-index-tab::before {
+  content: '\2009·\2009';
+}
+div.content-col .bib-short-title {
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
 div.hr {
   /* a horizontal rule always */
   margin: 3em 0;
@@ -594,6 +605,7 @@ div.content-col div.xsl-output ul.downloads li {
   margin-left: 0;
   list-style: none;
 }
+div.ab-meta-text,
 div.abMETA {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;

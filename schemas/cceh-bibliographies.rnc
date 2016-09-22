@@ -1,0 +1,3043 @@
+default namespace = "http://www.tei-c.org/ns/Examples"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+namespace ns1 = "http://www.tei-c.org/ns/1.0"
+namespace rng = "http://relaxng.org/ns/structure/1.0"
+namespace s = "http://www.ascc.net/xml/schematron"
+namespace sch = "http://purl.oclc.org/dsdl/schematron"
+namespace xlink = "http://www.w3.org/1999/xlink"
+
+# Schema generated from ODD source 2014-10-14T18:42:00Z. 
+# Edition: Version 2.7.0. Last updated on
+#	16th September 2014, revision 13036
+# Edition Location: http://www.tei-c.org/Vault/P5/Version 2.7.0/
+#
+
+#
+tei_macro.paraContent =
+  (text
+   | tei_model.gLike
+   | tei_model.phrase
+   | tei_model.inter
+   | tei_model.global)*
+tei_macro.phraseSeq =
+  (text | tei_model.gLike | tei_model.phrase | tei_model.global)*
+tei_macro.phraseSeq.limited =
+  (text | tei_model.limitedPhrase | tei_model.global)*
+tei_macro.specialPara =
+  (text
+   | tei_model.gLike
+   | tei_model.phrase
+   | tei_model.inter
+   | tei_model.divPart
+   | tei_model.global)*
+tei_macro.xtext = (text | tei_model.gLike)*
+tei_data.certainty = "high" | "medium" | "low" | "unknown"
+tei_data.probability =
+  xsd:double { minInclusive = "0" maxInclusive = "1" }
+tei_data.numeric =
+  xsd:double
+  | xsd:token { pattern = "(\-?[\d]+/\-?[\d]+)" }
+  | xsd:decimal
+tei_data.count = xsd:nonNegativeInteger
+tei_data.temporal.w3c =
+  xsd:date
+  | xsd:gYear
+  | xsd:gMonth
+  | xsd:gDay
+  | xsd:gYearMonth
+  | xsd:gMonthDay
+  | xsd:time
+  | xsd:dateTime
+tei_data.truthValue = xsd:boolean
+tei_data.xTruthValue = xsd:boolean | "unknown" | "inapplicable"
+tei_data.language = xsd:language | ""
+tei_data.namespace = xsd:anyURI
+tei_data.pointer = xsd:anyURI
+tei_data.version = xsd:token { pattern = "[\d]+(\.[\d]+){0,2}" }
+tei_data.word = xsd:token { pattern = "(\p{L}|\p{N}|\p{P}|\p{S})+" }
+tei_data.text = xsd:string
+tei_data.name = xsd:Name
+tei_data.xmlName = xsd:NCName
+tei_data.enumerated = tei_data.name
+tei_data.temporal.iso =
+  xsd:date
+  | xsd:gYear
+  | xsd:gMonth
+  | xsd:gDay
+  | xsd:gYearMonth
+  | xsd:gMonthDay
+  | xsd:time
+  | xsd:dateTime
+  | xsd:token { pattern = "[0-9.,DHMPRSTWYZ/:+\-]+" }
+tei_macro.anyXML =
+  element * - (ns1:* | egXML) {
+    attribute * { text }*,
+    (text | tei_macro.anyXML)*
+  }
+tei_macro.schemaPattern = tei_macro.anyXML
+tei_att.ascribed.attributes = tei_att.ascribed.attribute.who
+tei_att.ascribed.attribute.who =
+  
+  ## indicates the person, or group of people, to whom the element content is ascribed.
+  attribute who {
+    list { tei_data.pointer+ }
+  }?
+tei_att.canonical.attributes =
+  tei_att.canonical.attribute.key, tei_att.canonical.attribute.ref
+tei_att.canonical.attribute.key =
+  
+  ## provides an externally-defined means of identifying the entity (or entities) being named, using a coded value of some kind.
+  attribute key { tei_data.text }?
+tei_att.canonical.attribute.ref =
+  
+  ## (reference) provides an explicit means of locating a full definition for the entity being named by means of one or more URIs.
+  attribute ref {
+    list { tei_data.pointer+ }
+  }?
+tei_att.ranging.attributes =
+  tei_att.ranging.attribute.atLeast,
+  tei_att.ranging.attribute.atMost,
+  tei_att.ranging.attribute.min,
+  tei_att.ranging.attribute.max,
+  tei_att.ranging.attribute.confidence
+tei_att.ranging.attribute.atLeast =
+  
+  ## gives a minimum estimated value for the approximate measurement.
+  attribute atLeast { tei_data.numeric }?
+tei_att.ranging.attribute.atMost =
+  
+  ## gives a maximum estimated value for the approximate measurement.
+  attribute atMost { tei_data.numeric }?
+tei_att.ranging.attribute.min =
+  
+  ## where the measurement summarizes more than one observation or a range, supplies the minimum value observed.
+  attribute min { tei_data.numeric }?
+tei_att.ranging.attribute.max =
+  
+  ## where the measurement summarizes more than one observation or a range, supplies the maximum value observed.
+  attribute max { tei_data.numeric }?
+tei_att.ranging.attribute.confidence =
+  
+  ## specifies the degree of statistical confidence (between zero and one) that a value falls within the range specified by min and max, or the proportion of observed values that fall within that range.
+  attribute confidence { tei_data.probability }?
+tei_att.dimensions.attributes =
+  tei_att.ranging.attributes,
+  tei_att.dimensions.attribute.unit,
+  tei_att.dimensions.attribute.quantity,
+  tei_att.dimensions.attribute.extent,
+  tei_att.dimensions.attribute.precision,
+  tei_att.dimensions.attribute.scope
+tei_att.dimensions.attribute.unit =
+  
+  ## names the unit used for the measurement
+  ## Suggested values include: 1] cm(centimetres) ; 2] mm(millimetres) ; 3] in(inches) ; 4] lines; 5] chars(characters) 
+  attribute unit {
+    
+    ## (centimetres) 
+    "cm"
+    | 
+      ## (millimetres) 
+      "mm"
+    | 
+      ## (inches) 
+      "in"
+    | 
+      ## lines of text
+      "lines"
+    | 
+      ## (characters) characters of text
+      "chars"
+    | xsd:Name
+  }?
+tei_att.dimensions.attribute.quantity =
+  
+  ## specifies the length in the units specified
+  attribute quantity { tei_data.numeric }?
+tei_att.dimensions.attribute.extent =
+  
+  ## indicates the size of the object concerned using a project-specific vocabulary combining quantity and units in a single string of words.
+  attribute extent { tei_data.text }?
+tei_att.dimensions.attribute.precision =
+  
+  ## characterizes the precision of the values specified by the other attributes.
+  attribute precision { tei_data.certainty }?
+tei_att.dimensions.attribute.scope =
+  
+  ## where the measurement summarizes more than one observation, specifies the applicability of this measurement.
+  ## Sample values include: 1] all; 2] most; 3] range
+  attribute scope { tei_data.enumerated }?
+tei_att.breaking.attributes = tei_att.breaking.attribute.break
+tei_att.breaking.attribute.break =
+  
+  ## indicates whether or not the element bearing this attribute should be considered to mark the end of an orthographic token in the same way as whitespace.
+  attribute break { tei_data.enumerated }?
+tei_att.datable.w3c.attributes =
+  tei_att.datable.w3c.attribute.when,
+  tei_att.datable.w3c.attribute.notBefore,
+  tei_att.datable.w3c.attribute.notAfter,
+  tei_att.datable.w3c.attribute.from,
+  tei_att.datable.w3c.attribute.to
+tei_att.datable.w3c.attribute.when =
+  
+  ## supplies the value of the date or time in a standard form, e.g. yyyy-mm-dd.
+  attribute when { tei_data.temporal.w3c }?
+tei_att.datable.w3c.attribute.notBefore =
+  
+  ## specifies the earliest possible date for the event in standard form, e.g. yyyy-mm-dd.
+  attribute notBefore { tei_data.temporal.w3c }?
+tei_att.datable.w3c.attribute.notAfter =
+  
+  ## specifies the latest possible date for the event in standard form, e.g. yyyy-mm-dd.
+  attribute notAfter { tei_data.temporal.w3c }?
+tei_att.datable.w3c.attribute.from =
+  
+  ## indicates the starting point of the period in standard form, e.g. yyyy-mm-dd.
+  attribute from { tei_data.temporal.w3c }?
+tei_att.datable.w3c.attribute.to =
+  
+  ## indicates the ending point of the period in standard form, e.g. yyyy-mm-dd.
+  attribute to { tei_data.temporal.w3c }?
+tei_att.datable.attributes =
+  tei_att.datable.w3c.attributes,
+  tei_att.datable.iso.attributes,
+  tei_att.datable.custom.attributes,
+  tei_att.datable.attribute.calendar,
+  tei_att.datable.attribute.period
+tei_att.datable.attribute.calendar =
+  
+  ## indicates the system or calendar to which the date represented by the content of this element belongs.
+  attribute calendar { tei_data.pointer }?
+sch:pattern [
+  id = "cceh-bibliographies-att.datable-calendar-calendar-constraint-1"
+  "\x{a}" ~
+  "      "
+  sch:rule [
+    context = "tei:*[@calendar]"
+    "\x{a}" ~
+    "            "
+    sch:assert [
+      test = "string-length(.) gt 0"
+      "\x{a}" ~
+      "@calendar indicates the system or calendar to which the date represented by the content of this element\x{a}" ~
+      "belongs, but this "
+      sch:name [ ]
+      " element has no textual content."
+    ]
+    "\x{a}" ~
+    "          "
+  ]
+  "\x{a}" ~
+  "   "
+]
+tei_att.datable.attribute.period =
+  
+  ## supplies a pointer to some location defining a named period of time within which the datable item is understood to have occurred.
+  attribute period { tei_data.pointer }?
+tei_att.declarable.attributes = tei_att.declarable.attribute.default
+tei_att.declarable.attribute.default =
+  
+  ## indicates whether or not this element is selected by default when its parent is selected.
+  [ a:defaultValue = "false" ]
+  attribute default {
+    
+    ## This element is selected if its parent is selected
+    "true"
+    | 
+      ## This element can only be selected explicitly, unless it is the only one of its kind, in which case it is selected if its parent is selected.
+      "false"
+  }?
+tei_att.declaring.attributes = tei_att.declaring.attribute.decls
+tei_att.declaring.attribute.decls =
+  
+  ## identifies one or more declarable elements within the header, which are understood to apply to the element bearing this attribute and its content.
+  attribute decls {
+    list { tei_data.pointer+ }
+  }?
+tei_att.fragmentable.attributes = tei_att.fragmentable.attribute.part
+tei_att.fragmentable.attribute.part =
+  
+  ## specifies whether or not its parent element is fragmented in some way, typically by some other overlapping structure: for example a speech which is divided between two or more verse stanzas, a paragraph which is split across a page division, a verse line which is divided between two speakers.
+  [ a:defaultValue = "N" ]
+  attribute part {
+    
+    ## (yes) the element is fragmented in some (unspecified) respect
+    "Y"
+    | 
+      ## (no) either the element is not fragmented, or no claim is made as to its completeness.
+      "N"
+    | 
+      ## (initial) this is the initial part of a fragmented element
+      "I"
+    | 
+      ## (medial) this is a medial part of a fragmented element
+      "M"
+    | 
+      ## (final) this is the final part of a fragmented element
+      "F"
+  }?
+tei_att.divLike.attributes =
+  tei_att.fragmentable.attributes,
+  tei_att.divLike.attribute.org,
+  tei_att.divLike.attribute.sample
+tei_att.divLike.attribute.org =
+  
+  ## (organization) specifies how the content of the division is organized.
+  [ a:defaultValue = "uniform" ]
+  attribute org {
+    
+    ## no claim is made about the sequence in which the immediate contents of this division are to be processed, or their inter-relationships.
+    "composite"
+    | 
+      ## the immediate contents of this element are regarded as forming a logical unit, to be processed in sequence.
+      "uniform"
+  }?
+tei_att.divLike.attribute.sample =
+  
+  ## indicates whether this division is a sample of the original source and if so, from which part.
+  [ a:defaultValue = "complete" ]
+  attribute sample {
+    
+    ## division lacks material present at end in source.
+    "initial"
+    | 
+      ## division lacks material at start and end.
+      "medial"
+    | 
+      ## division lacks material at start.
+      "final"
+    | 
+      ## position of sampled material within original unknown.
+      "unknown"
+    | 
+      ## division is not a sample.
+      "complete"
+  }?
+tei_att.docStatus.attributes = tei_att.docStatus.attribute.status
+tei_att.docStatus.attribute.status =
+  
+  ## describes the status of a document either currently or, when associated with a dated element, at the time indicated.
+  ## Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] draft; 6] embargoed; 7] expired; 8] frozen; 9] galley; 10] proposed; 11] published; 12] recommendation; 13] submitted; 14] unfinished; 15] withdrawn
+  [ a:defaultValue = "draft" ] attribute status { tei_data.enumerated }?
+tei_att.responsibility.attributes =
+  tei_att.source.attributes,
+  tei_att.responsibility.attribute.cert,
+  tei_att.responsibility.attribute.resp
+tei_att.responsibility.attribute.cert =
+  
+  ## (certainty) signifies the degree of certainty associated with the intervention or interpretation.
+  attribute cert { tei_data.certainty }?
+tei_att.responsibility.attribute.resp =
+  
+  ## (responsible party) indicates the agency responsible for the intervention or interpretation, for example an editor or transcriber.
+  attribute resp {
+    list { tei_data.pointer+ }
+  }?
+tei_att.editLike.attributes =
+  tei_att.dimensions.attributes,
+  tei_att.responsibility.attributes,
+  tei_att.editLike.attribute.evidence,
+  tei_att.editLike.attribute.instant
+tei_att.editLike.attribute.evidence =
+  
+  ## indicates the nature of the evidence supporting the reliability or accuracy of the intervention or interpretation.
+  ## Suggested values include: 1] internal; 2] external; 3] conjecture
+  attribute evidence {
+    list {
+      (
+       ## there is internal evidence to support the intervention.
+       "internal"
+       | 
+         ## there is external evidence to support the intervention.
+         "external"
+       | 
+         ## the intervention or interpretation has been made by the editor, cataloguer, or scholar on the basis of their expertise.
+         "conjecture"
+       | xsd:Name)+
+    }
+  }?
+tei_att.editLike.attribute.instant =
+  
+  ## indicates whether this is an instant revision or not.
+  [ a:defaultValue = "false" ]
+  attribute instant { tei_data.xTruthValue }?
+tei_att.global.attributes =
+  tei_att.global.linking.attributes,
+  tei_att.global.attribute.xmlid,
+  tei_att.global.attribute.n,
+  tei_att.global.attribute.xmllang,
+  tei_att.global.attribute.rend,
+  tei_att.global.attribute.style,
+  tei_att.global.attribute.rendition,
+  tei_att.global.attribute.xmlbase,
+  tei_att.global.attribute.xmlspace
+tei_att.global.attribute.xmlid =
+  
+  ## (identifier) provides a unique identifier for the element bearing the attribute.
+  attribute xml:id { xsd:ID }?
+tei_att.global.attribute.n =
+  
+  ## (number) gives a number (or other label) for an element, which is not necessarily unique within the document.
+  attribute n { tei_data.text }?
+tei_att.global.attribute.xmllang =
+  
+  ## (language) indicates the language of the element content using a tag generated according to BCP 47.
+  attribute xml:lang { tei_data.language }?
+tei_att.global.attribute.rend =
+  
+  ## (rendition) indicates how the element in question was rendered or presented in the source text.
+  attribute rend {
+    list { tei_data.word+ }
+  }?
+tei_att.global.attribute.style =
+  
+  ## contains an expression in some formal style definition language which defines the rendering or presentation used for this element in the source text
+  attribute style { tei_data.text }?
+tei_att.global.attribute.rendition =
+  
+  ## points to a description of the rendering or presentation used for this element in the source text.
+  attribute rendition {
+    list { tei_data.pointer+ }
+  }?
+tei_att.global.attribute.xmlbase =
+  
+  ## provides a base URI reference with which applications can resolve relative URI references into absolute URI references.
+  attribute xml:base { tei_data.pointer }?
+tei_att.global.attribute.xmlspace =
+  
+  ## signals an intention about how white space should be managed by applications.
+  attribute xml:space {
+    
+    ## signals that the application's default white-space processing modes are acceptable
+    "default"
+    | 
+      ## indicates the intent that applications preserve all white space
+      "preserve"
+  }?
+tei_att.internetMedia.attributes =
+  tei_att.internetMedia.attribute.mimeType
+tei_att.internetMedia.attribute.mimeType =
+  
+  ## (MIME media type) specifies the applicable multimedia internet mail extension (MIME) media type
+  attribute mimeType {
+    list { tei_data.word+ }
+  }?
+tei_att.naming.attributes =
+  tei_att.canonical.attributes,
+  tei_att.naming.attribute.role,
+  tei_att.naming.attribute.nymRef
+tei_att.naming.attribute.role =
+  
+  ## may be used to specify further information about the entity referenced by this name in the form of a set of whitespace-separated values, for example the occupation of a person, or the status of a place.
+  attribute role {
+    list { tei_data.enumerated+ }
+  }?
+tei_att.naming.attribute.nymRef =
+  
+  ## (reference to the canonical name) provides a means of locating the canonical form (nym) of the names associated with the object named by the element bearing it.
+  attribute nymRef {
+    list { tei_data.pointer+ }
+  }?
+tei_att.placement.attributes = tei_att.placement.attribute.place
+tei_att.placement.attribute.place =
+  
+  ## specifies where this item is placed
+  ## Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6] overleaf; 7] above; 8] end; 9] inline; 10] inspace
+  attribute place {
+    list {
+      (
+       ## below the line
+       "below"
+       | 
+         ## at the foot of the page
+         "bottom"
+       | 
+         ## in the margin (left, right, or both)
+         "margin"
+       | 
+         ## at the top of the page
+         "top"
+       | 
+         ## on the opposite, i.e. facing, page
+         "opposite"
+       | 
+         ## on the other side of the leaf
+         "overleaf"
+       | 
+         ## above the line
+         "above"
+       | 
+         ## at the end of e.g. chapter or volume.
+         "end"
+       | 
+         ## within the body of the text.
+         "inline"
+       | 
+         ## in a predefined space, for example left by an earlier scribe.
+         "inspace"
+       | xsd:Name)+
+    }
+  }?
+tei_att.typed.attributes =
+  tei_att.typed.attribute.type, tei_att.typed.attribute.subtype
+tei_att.typed.attribute.type =
+  
+  ## characterizes the element in some sense, using any convenient classification scheme or typology.
+  attribute type { tei_data.enumerated }?
+tei_att.typed.attribute.subtype =
+  
+  ## provides a sub-categorization of the element, if needed
+  attribute subtype { tei_data.enumerated }?
+sch:pattern [
+  id = "cceh-bibliographies-att.typed-subtypeTyped-constraint-2"
+  "\x{a}" ~
+  "      "
+  sch:rule [
+    context = "*[@subtype]"
+    "\x{a}" ~
+    "        "
+    sch:assert [
+      test = "@type"
+      "The "
+      sch:name [ ]
+      " element should not be categorized in detail with @subtype\x{a}" ~
+      " unless also categorized in general with @type"
+    ]
+    "\x{a}" ~
+    "      "
+  ]
+  "\x{a}" ~
+  "   "
+]
+tei_att.pointing.attributes =
+  tei_att.pointing.attribute.targetLang,
+  tei_att.pointing.attribute.target,
+  tei_att.pointing.attribute.evaluate
+tei_att.pointing.attribute.targetLang =
+  
+  ## specifies the language of the content to be found at the destination referenced by target, using a language tag generated according to BCP 47.
+  attribute targetLang { tei_data.language }?
+sch:pattern [
+  id =
+    "cceh-bibliographies-att.pointing-targetLang-targetLang-constraint-3"
+  "\x{a}" ~
+  "      "
+  sch:rule [
+    context = "tei:*[not(self::tei:schemaSpec)][@targetLang]"
+    "\x{a}" ~
+    "            "
+    sch:assert [
+      test = "count(@target)"
+      "@targetLang can only be used if @target is specified."
+    ]
+    "\x{a}" ~
+    "          "
+  ]
+  "\x{a}" ~
+  "   "
+]
+tei_att.pointing.attribute.target =
+  
+  ## specifies the destination of the reference by supplying one or more URI References
+  attribute target {
+    list { tei_data.pointer+ }
+  }?
+tei_att.pointing.attribute.evaluate =
+  
+  ## specifies the intended meaning when the target of a pointer is itself a pointer.
+  attribute evaluate {
+    
+    ## if the element pointed to is itself a pointer, then the target of that pointer will be taken, and so on, until an element is found which is not a pointer.
+    "all"
+    | 
+      ## if the element pointed to is itself a pointer, then its target (whether a pointer or not) is taken as the target of this pointer.
+      "one"
+    | 
+      ## no further evaluation of targets is carried out beyond that needed to find the element specified in the pointer's target.
+      "none"
+  }?
+tei_att.readFrom.attributes = tei_att.readFrom.attribute.source
+tei_att.readFrom.attribute.source =
+  
+  ## specifies the source from which declarations and definitions for the components of the object being defined may be obtained.
+  attribute source { tei_data.pointer }?
+tei_att.sortable.attributes = tei_att.sortable.attribute.sortKey
+tei_att.sortable.attribute.sortKey =
+  
+  ## supplies the sort key for this element in an index, list or group which contains it.
+  attribute sortKey { tei_data.word }?
+tei_att.edition.attributes =
+  tei_att.edition.attribute.ed, tei_att.edition.attribute.edRef
+tei_att.edition.attribute.ed =
+  
+  ## (edition) supplies a sigil or other arbitrary identifier for the source edition in which the associated feature (for example, a page, column, or line break) occurs at this point in the text.
+  attribute ed {
+    list { tei_data.word+ }
+  }?
+tei_att.edition.attribute.edRef =
+  
+  ## (edition reference) provides a pointer to the source edition in which the associated feature (for example, a page, column, or line break) occurs at this point in the text.
+  attribute edRef {
+    list { tei_data.pointer+ }
+  }?
+tei_att.spanning.attributes = tei_att.spanning.attribute.spanTo
+tei_att.spanning.attribute.spanTo =
+  
+  ## indicates the end of a span initiated by the element bearing this attribute.
+  attribute spanTo { tei_data.pointer }?
+sch:pattern [
+  id = "cceh-bibliographies-att.spanning-spanTo-spanTo-2-constraint-4"
+  "\x{a}" ~
+  "      "
+  sch:rule [
+    context = "tei:*[@spanTo]"
+    "\x{a}" ~
+    "            "
+    sch:assert [
+      test =
+        "id(substring(@spanTo,2)) and following::*[@xml:id=substring(current()/@spanTo,2)]"
+      "\x{a}" ~
+      "The element indicated by @spanTo ("
+      sch:value-of [ select = "@spanTo" ]
+      ") must follow the current element "
+      sch:name [ ]
+      "\x{a}" ~
+      "                  "
+    ]
+    "\x{a}" ~
+    "          "
+  ]
+  "\x{a}" ~
+  "   "
+]
+tei_att.translatable.attributes =
+  tei_att.translatable.attribute.versionDate
+tei_att.translatable.attribute.versionDate =
+  
+  ## specifies the date on which the source text was extracted and sent to the translator
+  attribute versionDate { tei_data.temporal.w3c }?
+tei_att.citing.attribute.from =
+  
+  ## specifies the starting point of the range of units indicated by the unit attribute.
+  attribute from { tei_data.word }?
+tei_att.citing.attribute.to =
+  
+  ## specifies the end-point of the range of units indicated by the unit attribute.
+  attribute to { tei_data.word }?
+tei_model.nameLike.agent = tei_name | tei_orgName | tei_persName
+tei_model.nameLike.agent_alternation =
+  tei_name | tei_orgName | tei_persName
+tei_model.nameLike.agent_sequence = tei_name, tei_orgName, tei_persName
+tei_model.nameLike.agent_sequenceOptional =
+  tei_name?, tei_orgName?, tei_persName?
+tei_model.nameLike.agent_sequenceOptionalRepeatable =
+  tei_name*, tei_orgName*, tei_persName*
+tei_model.nameLike.agent_sequenceRepeatable =
+  tei_name+, tei_orgName+, tei_persName+
+tei_model.hiLike = tei_hi
+tei_model.hiLike_alternation = tei_hi
+tei_model.hiLike_sequence = tei_hi
+tei_model.hiLike_sequenceOptional = tei_hi?
+tei_model.hiLike_sequenceOptionalRepeatable = tei_hi*
+tei_model.hiLike_sequenceRepeatable = tei_hi+
+tei_model.emphLike = tei_title | tei_code | tei_ident
+tei_model.emphLike_alternation = tei_title | tei_code | tei_ident
+tei_model.emphLike_sequence = tei_title, tei_code, tei_ident
+tei_model.emphLike_sequenceOptional = tei_title?, tei_code?, tei_ident?
+tei_model.emphLike_sequenceOptionalRepeatable =
+  tei_title*, tei_code*, tei_ident*
+tei_model.emphLike_sequenceRepeatable =
+  tei_title+, tei_code+, tei_ident+
+tei_model.highlighted = tei_model.hiLike | tei_model.emphLike
+tei_model.dateLike = tei_date
+tei_model.dateLike_alternation = tei_date
+tei_model.dateLike_sequence = tei_date
+tei_model.dateLike_sequenceOptional = tei_date?
+tei_model.dateLike_sequenceOptionalRepeatable = tei_date*
+tei_model.dateLike_sequenceRepeatable = tei_date+
+tei_model.measureLike = notAllowed
+tei_model.measureLike_alternation = notAllowed
+tei_model.measureLike_sequence = empty
+tei_model.measureLike_sequenceOptional = empty
+tei_model.measureLike_sequenceOptionalRepeatable = empty
+tei_model.measureLike_sequenceRepeatable = notAllowed
+tei_model.egLike = tei_eg | tei_egXML
+tei_model.egLike_alternation = tei_eg | tei_egXML
+tei_model.egLike_sequence = tei_eg, tei_egXML
+tei_model.egLike_sequenceOptional = tei_eg?, tei_egXML?
+tei_model.egLike_sequenceOptionalRepeatable = tei_eg*, tei_egXML*
+tei_model.egLike_sequenceRepeatable = tei_eg+, tei_egXML+
+tei_model.offsetLike = notAllowed
+tei_model.offsetLike_alternation = notAllowed
+tei_model.offsetLike_sequence = empty
+tei_model.offsetLike_sequenceOptional = empty
+tei_model.offsetLike_sequenceOptionalRepeatable = empty
+tei_model.offsetLike_sequenceRepeatable = notAllowed
+tei_model.ptrLike = notAllowed
+tei_model.milestoneLike = tei_lb
+tei_model.gLike = notAllowed
+tei_model.oddDecl =
+  tei_moduleSpec
+  | tei_specGrp
+  | tei_specGrpRef
+  | tei_elementSpec
+  | tei_classSpec
+  | tei_macroSpec
+  | tei_listRef
+  | tei_constraintSpec
+tei_model.oddDecl_alternation =
+  tei_moduleSpec
+  | tei_specGrp
+  | tei_specGrpRef
+  | tei_elementSpec
+  | tei_classSpec
+  | tei_macroSpec
+  | tei_listRef
+  | tei_constraintSpec
+tei_model.oddDecl_sequence =
+  tei_moduleSpec,
+  tei_specGrp,
+  tei_specGrpRef,
+  tei_elementSpec,
+  tei_classSpec,
+  tei_macroSpec,
+  tei_listRef,
+  tei_constraintSpec
+tei_model.oddDecl_sequenceOptional =
+  tei_moduleSpec?,
+  tei_specGrp?,
+  tei_specGrpRef?,
+  tei_elementSpec?,
+  tei_classSpec?,
+  tei_macroSpec?,
+  tei_listRef?,
+  tei_constraintSpec?
+tei_model.oddDecl_sequenceOptionalRepeatable =
+  tei_moduleSpec*,
+  tei_specGrp*,
+  tei_specGrpRef*,
+  tei_elementSpec*,
+  tei_classSpec*,
+  tei_macroSpec*,
+  tei_listRef*,
+  tei_constraintSpec*
+tei_model.oddDecl_sequenceRepeatable =
+  tei_moduleSpec+,
+  tei_specGrp+,
+  tei_specGrpRef+,
+  tei_elementSpec+,
+  tei_classSpec+,
+  tei_macroSpec+,
+  tei_listRef+,
+  tei_constraintSpec+
+tei_model.oddRef =
+  tei_classRef | tei_elementRef | tei_macroRef | tei_moduleRef
+tei_model.phrase.xml = tei_att | tei_gi | tei_tag | tei_val
+tei_model.specDescLike = tei_specList | tei_specDesc
+tei_model.biblLike = tei_biblStruct | tei_listBibl
+tei_model.biblLike_alternation = tei_biblStruct | tei_listBibl
+tei_model.biblLike_sequence = tei_biblStruct, tei_listBibl
+tei_model.biblLike_sequenceOptional = tei_biblStruct?, tei_listBibl?
+tei_model.biblLike_sequenceOptionalRepeatable =
+  tei_biblStruct*, tei_listBibl*
+tei_model.biblLike_sequenceRepeatable = tei_biblStruct+, tei_listBibl+
+tei_model.headLike = notAllowed
+tei_model.headLike_alternation = notAllowed
+tei_model.headLike_sequence = empty
+tei_model.headLike_sequenceOptional = empty
+tei_model.headLike_sequenceOptionalRepeatable = empty
+tei_model.headLike_sequenceRepeatable = notAllowed
+tei_model.labelLike = notAllowed
+tei_model.labelLike_alternation = notAllowed
+tei_model.labelLike_sequence = empty
+tei_model.labelLike_sequenceOptional = empty
+tei_model.labelLike_sequenceOptionalRepeatable = empty
+tei_model.labelLike_sequenceRepeatable = notAllowed
+tei_model.listLike = notAllowed
+tei_model.listLike_alternation = notAllowed
+tei_model.listLike_sequence = empty
+tei_model.listLike_sequenceOptional = empty
+tei_model.listLike_sequenceOptionalRepeatable = empty
+tei_model.listLike_sequenceRepeatable = notAllowed
+tei_model.noteLike = tei_note
+tei_model.pLike = tei_p
+tei_model.pLike_alternation = tei_p
+tei_model.pLike_sequence = tei_p
+tei_model.pLike_sequenceOptional = tei_p?
+tei_model.pLike_sequenceOptionalRepeatable = tei_p*
+tei_model.pLike_sequenceRepeatable = tei_p+
+tei_model.divPart = tei_model.pLike | tei_schemaSpec
+tei_model.placeNamePart = tei_placeName
+tei_model.placeNamePart_alternation = tei_placeName
+tei_model.placeNamePart_sequence = tei_placeName
+tei_model.placeNamePart_sequenceOptional = tei_placeName?
+tei_model.placeNamePart_sequenceOptionalRepeatable = tei_placeName*
+tei_model.placeNamePart_sequenceRepeatable = tei_placeName+
+tei_model.placeStateLike = tei_model.placeNamePart | tei_location
+tei_model.placeStateLike_alternation =
+  tei_model.placeNamePart_alternation | tei_location
+tei_model.placeStateLike_sequence =
+  tei_model.placeNamePart_sequence, tei_location
+tei_model.placeStateLike_sequenceOptional =
+  tei_model.placeNamePart_sequenceOptional?, tei_location?
+tei_model.placeStateLike_sequenceOptionalRepeatable =
+  tei_model.placeNamePart_sequenceOptionalRepeatable*, tei_location*
+tei_model.placeStateLike_sequenceRepeatable =
+  tei_model.placeNamePart_sequenceRepeatable+, tei_location+
+tei_model.publicationStmtPart.agency = tei_publisher
+tei_model.publicationStmtPart.detail =
+  tei_date | tei_pubPlace | tei_idno
+tei_model.descLike = notAllowed
+tei_model.glossLike = tei_equiv | tei_altIdent
+tei_model.respLike = tei_author | tei_editor | tei_respStmt
+tei_model.divTopPart = tei_model.headLike
+tei_model.divTop = tei_model.divTopPart
+tei_model.pLike.front = notAllowed
+tei_model.divBottom = notAllowed
+tei_model.titlepagePart = notAllowed
+tei_model.imprintPart = tei_publisher | tei_biblScope | tei_pubPlace
+tei_model.addressLike = notAllowed
+tei_model.addressLike_alternation = notAllowed
+tei_model.addressLike_sequence = empty
+tei_model.addressLike_sequenceOptional = empty
+tei_model.addressLike_sequenceOptionalRepeatable = empty
+tei_model.addressLike_sequenceRepeatable = notAllowed
+tei_model.nameLike =
+  tei_model.nameLike.agent
+  | tei_model.offsetLike
+  | tei_model.placeStateLike
+  | tei_rs
+  | tei_idno
+  | tei_model.persNamePart
+tei_model.nameLike_alternation =
+  tei_model.nameLike.agent_alternation
+  | tei_model.offsetLike_alternation
+  | tei_model.placeStateLike_alternation
+  | tei_rs
+  | tei_idno
+  | tei_model.persNamePart_alternation
+tei_model.nameLike_sequence =
+  tei_model.nameLike.agent_sequence,
+  tei_model.offsetLike_sequence,
+  tei_model.placeStateLike_sequence,
+  tei_rs,
+  tei_idno,
+  tei_model.persNamePart_sequence
+tei_model.nameLike_sequenceOptional =
+  tei_model.nameLike.agent_sequenceOptional?,
+  tei_model.offsetLike_sequenceOptional?,
+  tei_model.placeStateLike_sequenceOptional?,
+  tei_rs?,
+  tei_idno?,
+  tei_model.persNamePart_sequenceOptional?
+tei_model.nameLike_sequenceOptionalRepeatable =
+  tei_model.nameLike.agent_sequenceOptionalRepeatable*,
+  tei_model.offsetLike_sequenceOptionalRepeatable*,
+  tei_model.placeStateLike_sequenceOptionalRepeatable*,
+  tei_rs*,
+  tei_idno*,
+  tei_model.persNamePart_sequenceOptionalRepeatable*
+tei_model.nameLike_sequenceRepeatable =
+  tei_model.nameLike.agent_sequenceRepeatable+,
+  tei_model.offsetLike_sequenceRepeatable+,
+  tei_model.placeStateLike_sequenceRepeatable+,
+  tei_rs+,
+  tei_idno+,
+  tei_model.persNamePart_sequenceRepeatable+
+tei_model.global = tei_model.milestoneLike | tei_model.noteLike
+tei_model.frontPart = tei_titlePage
+tei_model.pPart.data =
+  tei_model.dateLike
+  | tei_model.measureLike
+  | tei_model.addressLike
+  | tei_model.nameLike
+tei_model.inter =
+  tei_model.egLike
+  | tei_model.oddDecl
+  | tei_model.biblLike
+  | tei_model.labelLike
+  | tei_model.listLike
+tei_model.common = tei_model.divPart | tei_model.inter
+tei_model.phrase =
+  tei_model.highlighted
+  | tei_model.ptrLike
+  | tei_model.phrase.xml
+  | tei_model.specDescLike
+  | tei_model.pPart.data
+tei_model.limitedPhrase =
+  tei_model.hiLike
+  | tei_model.emphLike
+  | tei_model.ptrLike
+  | tei_model.phrase.xml
+  | tei_model.pPart.data
+tei_model.divLike = tei_div
+tei_model.divGenLike = notAllowed
+tei_model.div1Like = notAllowed
+tei_model.teiHeaderPart = tei_profileDesc
+tei_model.sourceDescPart = notAllowed
+tei_model.profileDescPart = tei_abstract
+tei_att.source.attributes = tei_att.source.attribute.source
+tei_att.source.attribute.source =
+  
+  ## provides a pointer to the bibliographical source from which a quotation or citation is drawn.
+  attribute source {
+    list { tei_data.pointer+ }
+  }?
+tei_model.resourceLike = notAllowed
+tei_att.personal.attributes =
+  tei_att.naming.attributes,
+  tei_att.personal.attribute.full,
+  tei_att.personal.attribute.sort
+tei_att.personal.attribute.full =
+  
+  ## indicates whether the name component is given in full, as an abbreviation or simply as an initial.
+  [ a:defaultValue = "yes" ]
+  attribute full {
+    
+    ## the name component is spelled out in full.
+    "yes"
+    | 
+      ## (abbreviated) the name component is given in an abbreviated form.
+      "abb"
+    | 
+      ## (initial letter) the name component is indicated only by one initial.
+      "init"
+  }?
+tei_att.personal.attribute.sort =
+  
+  ## specifies the sort order of the name component in relation to others within the name.
+  attribute sort { tei_data.count }?
+tei_p =
+  
+  ## (paragraph) marks paragraphs in prose. [3.1.  7.2.5. ]
+  element ns1:p {
+    tei_macro.paraContent,
+    tei_att.global.attributes,
+    tei_att.declaring.attributes,
+    tei_att.fragmentable.attributes,
+    empty
+  }
+tei_hi =
+  
+  ## (highlighted) marks a word or phrase as graphically distinct from the surrounding text, for reasons concerning which no claim is made. [3.3.2.2.  3.3.2. ]
+  element ns1:hi {
+    tei_macro.paraContent, tei_att.global.attributes, empty
+  }
+tei_name =
+  
+  ## (name, proper noun) contains a proper noun or noun phrase. [3.5.1. ]
+  element ns1:name {
+    tei_macro.phraseSeq,
+    tei_att.global.attributes,
+    tei_att.personal.attributes,
+    tei_att.datable.attributes,
+    tei_att.editLike.attributes,
+    tei_att.typed.attributes,
+    empty
+  }
+tei_rs =
+  
+  ## (referencing string) contains a general purpose name or referring string. [13.2.1.  3.5.1. ]
+  element ns1:rs {
+    tei_macro.phraseSeq,
+    tei_att.global.attributes,
+    tei_att.naming.attributes,
+    tei_att.typed.attributes,
+    tei_att.responsibility.attributes,
+    empty
+  }
+tei_date =
+  
+  ## contains a date in any format. [3.5.4.  2.2.4.  2.5.  3.11.2.4.  15.2.3.  13.3.6. ]
+  element ns1:date {
+    (text | tei_model.gLike | tei_model.phrase | tei_model.global)*,
+    tei_att.global.attributes,
+    tei_att.datable.attribute.calendar,
+    tei_att.datable.attribute.period,
+    tei_att.datable.w3c.attribute.notBefore,
+    tei_att.datable.w3c.attribute.notAfter,
+    tei_att.datable.w3c.attribute.from,
+    tei_att.datable.w3c.attribute.to,
+    tei_att.datable.iso.attribute.when-iso,
+    tei_att.datable.iso.attribute.notBefore-iso,
+    tei_att.datable.iso.attribute.notAfter-iso,
+    tei_att.datable.iso.attribute.from-iso,
+    tei_att.datable.iso.attribute.to-iso,
+    tei_att.datable.custom.attribute.when-custom,
+    tei_att.datable.custom.attribute.notBefore-custom,
+    tei_att.datable.custom.attribute.notAfter-custom,
+    tei_att.datable.custom.attribute.from-custom,
+    tei_att.datable.custom.attribute.to-custom,
+    tei_att.datable.custom.attribute.datingPoint,
+    tei_att.datable.custom.attribute.datingMethod,
+    tei_att.editLike.attributes,
+    tei_att.typed.attribute.subtype,
+    
+    ## supplies the value of the date or time in a standard form, e.g. yyyy-mm-dd.
+    attribute when { tei_data.temporal.w3c }?,
+    
+    ## characterizes the element in some sense, using any convenient classification scheme or typology.
+    attribute type {
+      
+      ## Erstellungsdatum der Webressource
+      "posting"
+      | 
+        ## Datum des letzten Zugriffs auf die Webressource
+        "access"
+    }?,
+    empty
+  }
+tei_note =
+  
+  ## contains a note or annotation. [3.8.1.  2.2.6.  3.11.2.8.  9.3.5.4. ]
+  element ns1:note {
+    tei_macro.specialPara,
+    tei_att.global.attributes,
+    tei_att.placement.attributes,
+    tei_att.pointing.attributes,
+    tei_att.responsibility.attributes,
+    
+    ## characterizes the element in some sense, using any convenient classification scheme or typology.
+    attribute type {
+      
+      ## [Korrigierter Nachdruck xxxx | Nachdruck zum Erstdruck von xxxx]
+      "reprint"
+      | 
+        ## [herausgegeben, übersetzt und erläutert von]
+        "role"
+      | 
+        ## die Beziehung des bibliografischen Items zu einem Primärtext Vorschläge: Edition|Übersetzung|Kommentar oder Freitext
+        "rel_text"
+      | 
+        ## Schlagwörter, à la DARE; kann einmal vorkommen; kommaseparierte Liste
+        "tags"
+      | 
+        ## Teasertext
+        "abstract"
+      | 
+        ## allgemeine Anmerkungen - durch p-Elemente strukturiert - kann einmal vorkommen
+        "notes"
+      | 
+        ## Exemplar (gedruckt oder digital)
+        "item"
+      | 
+        ## Zugänglichkeit
+        "access"
+    },
+    
+    ## provides a sub-categorization of the element, if needed
+    attribute subtype {
+      
+      ## Druckexemplar
+      "print_version"
+      | 
+        ## Digitalisat
+        "digitized_version"
+    }?,
+    
+    ## indicates whether the copy text shows the exact place of reference for the note.
+    [ a:defaultValue = "true" ]
+    attribute anchored { tei_data.truthValue }?,
+    
+    ## points to the end of the span to which the note is attached, if the note is not embedded in the text at that point.
+    attribute targetEnd {
+      list { tei_data.pointer+ }
+    }?,
+    empty
+  }
+tei_lb =
+  
+  ## (line break) marks the start of a new (typographic) line in some edition or version of a text. [3.10.3.  7.2.5. ]
+  element ns1:lb {
+    empty,
+    tei_att.global.attributes,
+    tei_att.typed.attributes,
+    tei_att.edition.attributes,
+    tei_att.spanning.attributes,
+    tei_att.breaking.attributes,
+    empty
+  }
+tei_analytic =
+  
+  ## (analytic level) contains bibliographic elements describing an item (e.g. an article or poem) published within a monograph or journal and not as an independent publication. [3.11.2.1. ]
+  element ns1:analytic {
+    (tei_author
+     | tei_editor
+     | tei_respStmt
+     | tei_title
+     | tei_model.ptrLike
+     | tei_date
+     | tei_textLang
+     | tei_idno)*,
+    tei_att.global.attributes,
+    empty
+  }
+tei_monogr =
+  
+  ## (monographic level) contains bibliographic elements describing an item (e.g. a book or journal) published as an independent item (i.e. as a separate physical object). [3.11.2.1. ]
+  element ns1:monogr {
+    ((((tei_author | tei_editor | tei_respStmt),
+       (tei_author | tei_editor | tei_respStmt)*,
+       tei_title+,
+       (tei_model.ptrLike
+        | tei_idno
+        | tei_textLang
+        | tei_editor
+        | tei_respStmt)*)
+      | ((tei_title | tei_model.ptrLike | tei_idno)+,
+         (tei_textLang | tei_author | tei_editor | tei_respStmt)*)
+      | tei_idno)?,
+     tei_model.noteLike*,
+     (tei_edition,
+      (tei_idno | tei_model.ptrLike | tei_editor | tei_respStmt)*)*,
+     tei_imprint,
+     (tei_imprint | tei_biblScope)*),
+    tei_att.global.attributes,
+    empty
+  }
+tei_series =
+  
+  ## (series information) contains information about the series in which a book or other bibliographic item has appeared. [3.11.2.1. ]
+  element ns1:series {
+    (text
+     | tei_model.gLike
+     | tei_title
+     | tei_model.ptrLike
+     | tei_editor
+     | tei_respStmt
+     | tei_biblScope
+     | tei_idno
+     | tei_textLang
+     | tei_model.global)*,
+    tei_att.global.attributes,
+    empty
+  }
+tei_author =
+  
+  ## in a bibliographic reference, contains the name(s) of an author, personal or corporate, of a work; for example in the same form as that provided by a recognized bibliographic name authority. [3.11.2.2.  2.2.1. ]
+  element ns1:author {
+    tei_macro.phraseSeq,
+    tei_att.global.attributes,
+    tei_att.naming.attributes,
+    empty
+  }
+tei_editor =
+  
+  ## contains a secondary statement of responsibility for a bibliographic item, for example the name of an individual, institution or organization, (or of several such) acting as editor, compiler, translator, etc. [3.11.2.2. ]
+  element ns1:editor {
+    tei_macro.phraseSeq,
+    tei_att.global.attributes,
+    tei_att.naming.attributes,
+    empty
+  }
+tei_respStmt =
+  
+  ## (statement of responsibility) supplies a statement of responsibility for the intellectual content of a text, edition, recording, or series, where the specialized elements for authors, editors, etc. do not suffice or do not apply. May also be used to encode information about individuals or organizations which have played a role in the production or distribution of a bibliographic work. [3.11.2.2.  2.2.1.  2.2.2.  2.2.5. ]
+  element ns1:respStmt {
+    ((tei_resp+, tei_model.nameLike.agent+)
+     | (tei_model.nameLike.agent+, tei_resp+)),
+    tei_att.global.attributes,
+    tei_att.canonical.attributes,
+    empty
+  }
+tei_resp =
+  
+  ## (responsibility) contains a phrase describing the nature of a person's intellectual responsibility, or an organization's role in the production or distribution of a work. [3.11.2.2.  2.2.1.  2.2.2.  2.2.5. ]
+  element ns1:resp {
+    tei_macro.phraseSeq.limited,
+    tei_att.global.attributes,
+    tei_att.canonical.attributes,
+    tei_att.datable.attributes,
+    empty
+  }
+tei_title =
+  
+  ## contains a title for any kind of work. [3.11.2.2.  2.2.1.  2.2.5. ]
+  element ns1:title {
+    tei_macro.paraContent,
+    tei_att.global.attribute.xmlid,
+    tei_att.global.attribute.n,
+    tei_att.global.attribute.rend,
+    tei_att.global.attribute.style,
+    tei_att.global.attribute.rendition,
+    tei_att.global.attribute.xmlbase,
+    tei_att.global.attribute.xmlspace,
+    tei_att.global.linking.attribute.corresp,
+    tei_att.global.linking.attribute.synch,
+    tei_att.global.linking.attribute.sameAs,
+    tei_att.global.linking.attribute.copyOf,
+    tei_att.global.linking.attribute.next,
+    tei_att.global.linking.attribute.prev,
+    tei_att.global.linking.attribute.exclude,
+    tei_att.global.linking.attribute.select,
+    tei_att.canonical.attributes,
+    
+    ## (language) indicates the language of the element content using a tag generated according to BCP 47.
+    ## Sample values include: 1] de; 2] en
+    attribute xml:lang { tei_data.language }?,
+    
+    ## classifies the title according to some convenient typology.
+    attribute type {
+      
+      ## Haupttitel (nur einmal)
+      "main"
+      | 
+        ## Untertitel (darf mehrfach vorkommen)
+        "sub"
+    },
+    
+    ## provides a sub-categorization of the element, if needed
+    attribute subtype {
+      
+      ## Alternativer Titel (ergänzend zu Haupt oder Untertitel)
+      "alt"
+    }?,
+    
+    ## indicates the bibliographic level for a title, that is, whether it identifies an article, book, journal, series, or unpublished material.
+    attribute level {
+      
+      ## Aufsatz
+      "a"
+      | 
+        ## Journal
+        "j"
+      | 
+        ## Monographie
+        "m"
+      | 
+        ## Reihe
+        "s"
+      | 
+        ## Bibliographie
+        "overall"
+    },
+    empty
+  }
+tei_imprint =
+  
+  ## groups information relating to the publication or distribution of a bibliographic item. [3.11.2.4. ]
+  element ns1:imprint {
+    (empty*,
+     ((tei_model.imprintPart | tei_model.dateLike),
+      tei_respStmt*,
+      tei_model.global*)+),
+    tei_att.global.attributes,
+    empty
+  }
+tei_publisher =
+  
+  ## provides the name of the organization responsible for the publication or distribution of a bibliographic item. [3.11.2.4.  2.2.4. ]
+  element ns1:publisher {
+    tei_macro.phraseSeq, tei_att.global.attributes, empty
+  }
+tei_biblScope =
+  
+  ## (scope of bibliographic reference) defines the scope of a bibliographic reference, for example as a list of page numbers, or a named subdivision of a larger work. [3.11.2.5. ]
+  element ns1:biblScope {
+    tei_macro.phraseSeq,
+    tei_att.global.attributes,
+    tei_att.citing.attribute.from,
+    tei_att.citing.attribute.to,
+    
+    ## identifies the unit of information conveyed by the element, e.g. columns, pages, volume.
+    attribute unit {
+      
+      ## Einzelband
+      "volume"
+      | 
+        ## Nummer
+        "issue"
+      | 
+        ## Seitensequenz
+        "page"
+      | 
+        ## Kapitel
+        "chapter"
+      | 
+        ## Teil
+        "part"
+    }?,
+    
+    ## identifies the type of information conveyed by the element, e.g. columns, pages, volume.
+    ## Suggested values include: 1] vol(volume) ; 2] issue; 3] pp(pages) ; 4] ll(lines) ; 5] chap(chapter) ; 6] part
+    attribute type {
+      
+      ## (volume) the element contains a volume number.
+      "vol"
+      | 
+        ## the element contains an issue number, or volume and issue numbers.
+        "issue"
+      | 
+        ## (pages) the element contains a page number or page range.
+        "pp"
+      | 
+        ## (lines) the element contains a line number or line range.
+        "ll"
+      | 
+        ## (chapter) the element contains a chapter indication (number and/or title)
+        "chap"
+      | 
+        ## the element identifies a part of a book or collection.
+        "part"
+      | xsd:Name
+    }?,
+    empty
+  }
+tei_pubPlace =
+  
+  ## (publication place) contains the name of the place where a bibliographic item was published. [3.11.2.4. ]
+  element ns1:pubPlace {
+    tei_macro.phraseSeq,
+    tei_att.global.attribute.xmlid,
+    tei_att.global.attribute.n,
+    tei_att.global.attribute.rend,
+    tei_att.global.attribute.style,
+    tei_att.global.attribute.rendition,
+    tei_att.global.attribute.xmlbase,
+    tei_att.global.attribute.xmlspace,
+    tei_att.global.linking.attribute.corresp,
+    tei_att.global.linking.attribute.synch,
+    tei_att.global.linking.attribute.sameAs,
+    tei_att.global.linking.attribute.copyOf,
+    tei_att.global.linking.attribute.next,
+    tei_att.global.linking.attribute.prev,
+    tei_att.global.linking.attribute.exclude,
+    tei_att.global.linking.attribute.select,
+    tei_att.naming.attributes,
+    
+    ## (language) indicates the language of the element content using a tag generated according to BCP 47.
+    ## Sample values include: 1] de; 2] en; 3] fr
+    attribute xml:lang { tei_data.language }?,
+    empty
+  }
+tei_biblStruct =
+  
+  ## (structured bibliographic citation) contains a structured bibliographic citation, in which only bibliographic sub-elements appear and in a specified order. [3.11.1.  2.2.7.  15.3.2. ]
+  element ns1:biblStruct {
+    (tei_analytic*,
+     (tei_monogr, tei_series*)+,
+     (tei_model.noteLike
+      | tei_idno
+      | tei_model.ptrLike
+      | tei_relatedItem)*),
+    tei_att.global.attribute.n,
+    tei_att.global.attribute.xmllang,
+    tei_att.global.attribute.rend,
+    tei_att.global.attribute.style,
+    tei_att.global.attribute.rendition,
+    tei_att.global.attribute.xmlbase,
+    tei_att.global.attribute.xmlspace,
+    tei_att.global.linking.attribute.corresp,
+    tei_att.global.linking.attribute.synch,
+    tei_att.global.linking.attribute.sameAs,
+    tei_att.global.linking.attribute.copyOf,
+    tei_att.global.linking.attribute.next,
+    tei_att.global.linking.attribute.prev,
+    tei_att.global.linking.attribute.exclude,
+    tei_att.global.linking.attribute.select,
+    tei_att.declarable.attributes,
+    tei_att.typed.attribute.subtype,
+    tei_att.sortable.attributes,
+    
+    ## (identifier) provides a unique identifier for the element bearing the attribute.
+    attribute xml:id { xsd:ID },
+    
+    ## characterizes the element in some sense, using any convenient classification scheme or typology.
+    attribute type {
+      
+      ## Monographien
+      "book"
+      | 
+        ## Abschnitte in Monographien
+        "bookSection"
+      | 
+        ## Artikel in Sammelpublikation und Periodika
+        "journalArticle"
+      | 
+        ## Webpublikation
+        "webPublication"
+    },
+    
+    ## describes the status of a document either currently or, when associated with a dated element, at the time indicated.
+    [ a:defaultValue = "draft" ]
+    attribute status {
+      
+      ## veröffentlicht
+      "published"
+      | 
+        ## unveröffentlicht
+        "unpublished"
+    },
+    empty
+  }
+tei_listBibl =
+  
+  ## (citation list) contains a list of bibliographic citations of any kind. [3.11.1.  2.2.7.  15.3.2. ]
+  element ns1:listBibl {
+    (tei_model.headLike*,
+     (tei_model.biblLike | tei_model.milestoneLike)+,
+     empty*),
+    tei_att.global.attributes,
+    tei_att.sortable.attributes,
+    tei_att.declarable.attributes,
+    tei_att.typed.attributes,
+    empty
+  }
+tei_relatedItem =
+  
+  ## contains or references some other bibliographic item which is related to the present one in some specified manner, for example as a constituent or alternative version of it. [3.11.2.7. ]
+  element ns1:relatedItem {
+    ((tei_model.biblLike | tei_model.ptrLike)?)
+    >> sch:pattern [
+         id =
+           "cceh-bibliographies-relatedItem-targetorcontent1-constraint-1"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:relatedItem"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "@target and count( child::* ) > 0"
+             "\x{a}" ~
+             "If the @target attribute on "
+             sch:name [ ]
+             " is used, the\x{a}" ~
+             "relatedItem element must be empty"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:pattern [
+         id =
+           "cceh-bibliographies-relatedItem-targetorcontent1-constraint-5"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:relatedItem"
+           "\x{a}" ~
+           "               "
+           sch:assert [
+             test = "@target or child::*"
+             "A relatedItem element should have either a 'target' attribute\x{a}" ~
+             "        or a child element to indicate the related bibliographic item"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    tei_att.global.attributes,
+    tei_att.typed.attribute.subtype,
+    
+    ## characterizes the element in some sense, using any convenient classification scheme or typology.
+    attribute type {
+      
+      ## Übersetzung von
+      "translationOf"
+      | 
+        ## Review zu
+        "reviewOf"
+      | 
+        ## Nachdruck von
+        "reprintOf"
+      | 
+        ## Teil von
+        "partOf"
+      | 
+        ## Fortgesetzt von
+        "continuedBy"
+      | 
+        ## Fortsetzung von
+        "continuationOf"
+    },
+    
+    ## points to the related bibliographic element by means of an absolute or relative URI reference
+    attribute target { tei_data.pointer },
+    empty
+  }
+tei_textLang =
+  
+  ## (text language) describes the languages and writing systems identified within the bibliographic work being described, rather than its description. [3.11.2.4.  10.6.6. ]
+  element ns1:textLang {
+    tei_macro.phraseSeq,
+    tei_att.global.attributes,
+    
+    ## (main language) supplies a code which identifies the chief language used in the bibliographic work.
+    attribute mainLang {
+      
+      ## deutsch
+      "de"
+      | 
+        ## englisch
+        "en"
+      | 
+        ## französisch
+        "fr"
+    },
+    
+    ## (other languages) one or more codes identifying any other languages used in the bibliographic work.
+    attribute otherLangs {
+      list { tei_data.language* }
+    }?,
+    empty
+  }
+tei_teiHeader =
+  
+  ## (TEI header) supplies the descriptive and declarative information making up an electronic title page for every TEI-conformant document. [2.1.1.  15.1. ]
+  element ns1:teiHeader {
+    (tei_fileDesc, tei_model.teiHeaderPart*, tei_revisionDesc?),
+    tei_att.global.attributes,
+    
+    ## specifies the kind of document to which the header is attached, for example whether it is a corpus or individual text.
+    ## Sample values include: 1] text; 2] corpus
+    [ a:defaultValue = "text" ] attribute type { tei_data.enumerated }?,
+    empty
+  }
+tei_fileDesc =
+  
+  ## (file description) contains a full bibliographic description of an electronic file. [2.2.  2.1.1. ]
+  element ns1:fileDesc {
+    ((tei_titleStmt, tei_publicationStmt, tei_notesStmt?),
+     tei_sourceDesc+),
+    tei_att.global.attributes,
+    empty
+  }
+tei_titleStmt =
+  
+  ## (title statement) groups information about the title of a work and those responsible for its content. [2.2.1.  2.2. ]
+  element ns1:titleStmt {
+    (tei_title+, tei_model.respLike*), tei_att.global.attributes, empty
+  }
+tei_edition =
+  
+  ## describes the particularities of one edition of a text. [2.2.2. ]
+  element ns1:edition {
+    tei_macro.phraseSeq,
+    tei_att.global.attribute.xmlid,
+    tei_att.global.attribute.xmllang,
+    tei_att.global.attribute.rend,
+    tei_att.global.attribute.style,
+    tei_att.global.attribute.rendition,
+    tei_att.global.attribute.xmlbase,
+    tei_att.global.attribute.xmlspace,
+    tei_att.global.linking.attribute.corresp,
+    tei_att.global.linking.attribute.synch,
+    tei_att.global.linking.attribute.sameAs,
+    tei_att.global.linking.attribute.copyOf,
+    tei_att.global.linking.attribute.next,
+    tei_att.global.linking.attribute.prev,
+    tei_att.global.linking.attribute.exclude,
+    tei_att.global.linking.attribute.select,
+    
+    ## (number) gives a number (or other label) for an element, which is not necessarily unique within the document.
+    ## Sample values include: 
+    attribute n { tei_data.text },
+    empty
+  }
+tei_publicationStmt =
+  
+  ## (publication statement) groups information concerning the publication or distribution of an electronic or other text. [2.2.4.  2.2. ]
+  element ns1:publicationStmt {
+    ((tei_model.publicationStmtPart.agency,
+      tei_model.publicationStmtPart.detail*)+
+     | tei_model.pLike+),
+    tei_att.global.attributes,
+    empty
+  }
+tei_idno =
+  
+  ## (identifier) supplies any form of identifier used to identify some object, such as a bibliographic item, a person, a title, an organization, etc. in a standardized way. [2.2.4.  2.2.5.  3.11.2.4. ]
+  element ns1:idno {
+    (text | tei_model.gLike | tei_idno)*,
+    tei_att.global.attributes,
+    tei_att.sortable.attributes,
+    
+    ## categorizes the identifier, for example as an ISBN, Social Security number, etc.
+    attribute type {
+      
+      ## Kurztitel obligatorisch (höchstens 60 Zeichen, inkl. Leerzeichen)
+      "short_title"
+      | 
+        ## ISBN
+        "ISBN"
+      | 
+        ## ISSN
+        "ISSN"
+      | 
+        ## DOI
+        "DOI"
+      | 
+        ## URL
+        "URL"
+      | 
+        ## Signatur
+        "signature"
+    },
+    empty
+  }
+tei_notesStmt =
+  
+  ## (notes statement) collects together any notes providing information about a text additional to that recorded in other parts of the bibliographic description. [2.2.6.  2.2. ]
+  element ns1:notesStmt {
+    (tei_model.noteLike | tei_relatedItem)+,
+    tei_att.global.attributes,
+    empty
+  }
+tei_sourceDesc =
+  
+  ## (source description) describes the source from which an electronic text was derived or generated, typically a bibliographic description in the case of a digitized text, or a phrase such as "born digital" for a text which has no previous existence. [2.2.7. ]
+  element ns1:sourceDesc {
+    (tei_model.pLike+
+     | (tei_model.biblLike
+        | tei_model.sourceDescPart
+        | tei_model.listLike)+),
+    tei_att.global.attributes,
+    tei_att.declarable.attributes,
+    empty
+  }
+tei_punctuation =
+  
+  ## specifies editorial practice adopted with respect to punctuation marks in the original. [2.3.3.  3.2. ]
+  element ns1:punctuation {
+    tei_model.pLike*,
+    tei_att.declarable.attributes,
+    tei_att.global.attributes,
+    
+    ## indicates whether or not punctation marks have been retained as content within the text.
+    attribute marks {
+      
+      ## no punctuation marks have been retained
+      "none"
+      | 
+        ## some punctuation marks have been retained
+        "some"
+      | 
+        ## all punctuation marks have been retained
+        "all"
+    }?,
+    
+    ## indicates whether punctation marks have been captured inside or outside of an adjacent element.
+    attribute placement {
+      
+      ## punctuation marks are captured inside adjacent elements
+      "internal"
+      | 
+        ## punctuation marks are captured outside adjacent elements
+        "external"
+    }?,
+    empty
+  }
+tei_profileDesc =
+  
+  ## (text-profile description) provides a detailed description of non-bibliographic aspects of a text, specifically the languages and sublanguages used, the situation in which it was produced, the participants and their setting. [2.4.  2.1.1. ]
+  element ns1:profileDesc {
+    tei_model.profileDescPart*, tei_att.global.attributes, empty
+  }
+tei_abstract =
+  
+  ## contains a summary or formal abstract prefixed to an existing source document by the encoder. [2.4.4. ]
+  element ns1:abstract {
+    (tei_model.pLike | tei_model.listLike)+,
+    tei_att.global.attributes,
+    tei_att.responsibility.attributes,
+    empty
+  }
+tei_revisionDesc =
+  
+  ## (revision description) summarizes the revision history for a file. [2.5.  2.1.1. ]
+  element ns1:revisionDesc {
+    (tei_change+),
+    tei_att.global.attributes,
+    tei_att.docStatus.attributes,
+    empty
+  }
+tei_change =
+  
+  ## documents a change or set of changes made during the production of a source document, or during the revision of an electronic file. [2.5.  2.4.1.  11.7. ]
+  element ns1:change {
+    tei_macro.specialPara,
+    tei_att.ascribed.attributes,
+    tei_att.datable.attributes,
+    tei_att.docStatus.attributes,
+    tei_att.global.attributes,
+    tei_att.typed.attributes,
+    
+    ## points to one or more elements that belong to this change.
+    attribute target {
+      list { tei_data.pointer+ }
+    }?,
+    empty
+  }
+tei_TEI =
+  
+  ## (TEI document) contains a single TEI-conformant document, comprising a TEI header and a text, either in isolation or as part of a teiCorpus element. [4.  15.1. ]
+  element ns1:TEI {
+    (tei_teiHeader,
+     ((tei_model.resourceLike+, tei_text?) | tei_text))
+    >> sch:ns [ prefix = "tei" uri = "http://www.tei-c.org/ns/1.0" ]
+    >> sch:ns [ prefix = "xs" uri = "http://www.w3.org/2001/XMLSchema" ]
+    >> sch:ns [
+         prefix = "rng"
+         uri = "http://relaxng.org/ns/structure/1.0"
+       ],
+    tei_att.global.attributes,
+    
+    ## specifies the major version number of the TEI Guidelines against which this document is valid.
+    attribute version { tei_data.version }?,
+    empty
+  }
+tei_text =
+  
+  ## contains a single text of any kind, whether unitary or composite, for example a poem or drama, a collection of essays, a novel, a dictionary, or a corpus sample. [4.  15.1. ]
+  element ns1:text {
+    (tei_model.global*,
+     (tei_front, tei_model.global*)?,
+     (tei_body),
+     tei_model.global*,
+     tei_model.global*),
+    tei_att.global.attributes,
+    tei_att.declaring.attributes,
+    tei_att.typed.attributes,
+    empty
+  }
+tei_body =
+  
+  ## (text body) contains the whole body of a single unitary text, excluding any front or back matter. [4. ]
+  element ns1:body {
+    (tei_model.global*,
+     (tei_model.divTop, (tei_model.global | tei_model.divTop)*)?,
+     (tei_model.divGenLike,
+      (tei_model.global | tei_model.divGenLike)*)?,
+     ((tei_model.divLike, (tei_model.global | tei_model.divGenLike)*)+
+      | (tei_model.div1Like,
+         (tei_model.global | tei_model.divGenLike)*)+
+      | ((tei_model.common, tei_model.global*)+,
+         ((tei_model.divLike,
+           (tei_model.global | tei_model.divGenLike)*)+
+          | (tei_model.div1Like,
+             (tei_model.global | tei_model.divGenLike)*)+)?)),
+     (tei_model.divBottom, tei_model.global*)*),
+    tei_att.global.attributes,
+    tei_att.declaring.attributes,
+    empty
+  }
+tei_div =
+  
+  ## (text division) contains a subdivision of the front, body, or back of a text. [4.1. ]
+  element ns1:div {
+    ((tei_model.divTop | tei_model.global)*,
+     ((((tei_model.divLike | tei_model.divGenLike), tei_model.global*)+
+       | ((tei_model.common, tei_model.global*)+,
+          ((tei_model.divLike | tei_model.divGenLike),
+           tei_model.global*)*)),
+      (tei_model.divBottom, tei_model.global*)*)?),
+    tei_att.global.attributes,
+    tei_att.divLike.attributes,
+    tei_att.typed.attributes,
+    tei_att.declaring.attributes,
+    empty
+  }
+tei_titlePage =
+  
+  ## (title page) contains the title page of a text, appearing within the front or back matter. [4.6. ]
+  element ns1:titlePage {
+    (tei_model.global*,
+     tei_model.titlepagePart,
+     (tei_model.titlepagePart | tei_model.global)*),
+    tei_att.global.attributes,
+    
+    ## classifies the title page according to any convenient typology.
+    attribute type { tei_data.enumerated }?,
+    empty
+  }
+tei_front =
+  
+  ## (front matter) contains any prefatory matter (headers, title page, prefaces, dedications, etc.) found at the start of a document, before the main body. [4.6.  4. ]
+  element ns1:front {
+    ((tei_model.frontPart
+      | tei_model.pLike
+      | tei_model.pLike.front
+      | tei_model.global)*,
+     (((tei_model.div1Like,
+        (tei_model.div1Like | tei_model.frontPart | tei_model.global)*)
+       | (tei_model.divLike,
+          (tei_model.divLike
+           | tei_model.frontPart
+           | tei_model.global)*)),
+      (tei_model.divBottom,
+       (tei_model.divBottom | tei_model.global)*)?)?),
+    tei_att.global.attributes,
+    tei_att.declaring.attributes,
+    empty
+  }
+tei_att.datable.custom.attributes =
+  tei_att.datable.custom.attribute.when-custom,
+  tei_att.datable.custom.attribute.notBefore-custom,
+  tei_att.datable.custom.attribute.notAfter-custom,
+  tei_att.datable.custom.attribute.from-custom,
+  tei_att.datable.custom.attribute.to-custom,
+  tei_att.datable.custom.attribute.datingPoint,
+  tei_att.datable.custom.attribute.datingMethod
+tei_att.datable.custom.attribute.when-custom =
+  
+  ## supplies the value of a date or time in some standard form.
+  attribute when-custom {
+    list { tei_data.word+ }
+  }?
+tei_att.datable.custom.attribute.notBefore-custom =
+  
+  ## specifies the earliest possible date for the event in some custom standard form.
+  attribute notBefore-custom {
+    list { tei_data.word+ }
+  }?
+tei_att.datable.custom.attribute.notAfter-custom =
+  
+  ## specifies the latest possible date for the event in some custom standard form.
+  attribute notAfter-custom {
+    list { tei_data.word+ }
+  }?
+tei_att.datable.custom.attribute.from-custom =
+  
+  ## indicates the starting point of the period in some standard form.
+  attribute from-custom {
+    list { tei_data.word+ }
+  }?
+tei_att.datable.custom.attribute.to-custom =
+  
+  ## indicates the ending point of the period in some standard form.
+  attribute to-custom {
+    list { tei_data.word+ }
+  }?
+tei_att.datable.custom.attribute.datingPoint =
+  
+  ## supplies a pointer to some location defining a named point in time with reference to which the datable item is understood to have occurred
+  attribute datingPoint { tei_data.pointer }?
+tei_att.datable.custom.attribute.datingMethod =
+  
+  ## supplies a pointer to a calendar element or other means of interpreting the values of the custom dating attributes.
+  attribute datingMethod { tei_data.pointer }?
+tei_model.persNamePart = tei_surname | tei_forename
+tei_model.persNamePart_alternation = tei_surname | tei_forename
+tei_model.persNamePart_sequence = tei_surname, tei_forename
+tei_model.persNamePart_sequenceOptional = tei_surname?, tei_forename?
+tei_model.persNamePart_sequenceOptionalRepeatable =
+  tei_surname*, tei_forename*
+tei_model.persNamePart_sequenceRepeatable = tei_surname+, tei_forename+
+tei_att.datable.iso.attributes =
+  tei_att.datable.iso.attribute.when-iso,
+  tei_att.datable.iso.attribute.notBefore-iso,
+  tei_att.datable.iso.attribute.notAfter-iso,
+  tei_att.datable.iso.attribute.from-iso,
+  tei_att.datable.iso.attribute.to-iso
+tei_att.datable.iso.attribute.when-iso =
+  
+  ## supplies the value of a date or time in a standard form.
+  attribute when-iso { tei_data.temporal.iso }?
+tei_att.datable.iso.attribute.notBefore-iso =
+  
+  ## specifies the earliest possible date for the event in standard form, e.g. yyyy-mm-dd.
+  attribute notBefore-iso { tei_data.temporal.iso }?
+tei_att.datable.iso.attribute.notAfter-iso =
+  
+  ## specifies the latest possible date for the event in standard form, e.g. yyyy-mm-dd.
+  attribute notAfter-iso { tei_data.temporal.iso }?
+tei_att.datable.iso.attribute.from-iso =
+  
+  ## indicates the starting point of the period in standard form.
+  attribute from-iso { tei_data.temporal.iso }?
+tei_att.datable.iso.attribute.to-iso =
+  
+  ## indicates the ending point of the period in standard form.
+  attribute to-iso { tei_data.temporal.iso }?
+tei_orgName =
+  
+  ## (organization name) contains an organizational name. [13.2.2. ]
+  element ns1:orgName {
+    tei_macro.phraseSeq,
+    tei_att.global.attributes,
+    tei_att.datable.attributes,
+    tei_att.editLike.attributes,
+    tei_att.personal.attributes,
+    tei_att.typed.attributes,
+    empty
+  }
+tei_persName =
+  
+  ## (personal name) contains a proper noun or proper-noun phrase referring to a person, possibly including one or more of the person's forenames, surnames, honorifics, added names, etc. [13.2.1. ]
+  element ns1:persName {
+    tei_macro.phraseSeq,
+    tei_att.global.attributes,
+    tei_att.datable.attributes,
+    tei_att.editLike.attributes,
+    tei_att.personal.attributes,
+    tei_att.typed.attributes,
+    empty
+  }
+tei_surname =
+  
+  ## contains a family (inherited) name, as opposed to a given, baptismal, or nick name. [13.2.1. ]
+  element ns1:surname {
+    tei_macro.phraseSeq,
+    tei_att.global.attributes,
+    tei_att.personal.attributes,
+    tei_att.typed.attributes,
+    empty
+  }
+tei_forename =
+  
+  ## contains a forename, given or baptismal name. [13.2.1. ]
+  element ns1:forename {
+    tei_macro.phraseSeq,
+    tei_att.global.attributes,
+    tei_att.personal.attributes,
+    tei_att.typed.attributes,
+    empty
+  }
+tei_placeName =
+  
+  ## contains an absolute or relative place name. [13.2.3. ]
+  element ns1:placeName {
+    tei_macro.phraseSeq,
+    tei_att.datable.attributes,
+    tei_att.editLike.attributes,
+    tei_att.global.attributes,
+    tei_att.personal.attributes,
+    tei_att.typed.attributes,
+    empty
+  }
+tei_location =
+  
+  ## defines the location of a place as a set of geographical coordinates, in terms of other named geo-political entities, or as an address. [13.3.4. ]
+  element ns1:location {
+    (tei_model.labelLike
+     | tei_model.placeNamePart
+     | tei_model.offsetLike
+     | tei_model.measureLike
+     | tei_model.addressLike
+     | tei_model.noteLike
+     | tei_model.biblLike)*,
+    tei_att.global.attributes,
+    tei_att.typed.attributes,
+    tei_att.datable.attributes,
+    tei_att.editLike.attributes,
+    empty
+  }
+tei_att.global.linking.attributes =
+  tei_att.global.linking.attribute.corresp,
+  tei_att.global.linking.attribute.synch,
+  tei_att.global.linking.attribute.sameAs,
+  tei_att.global.linking.attribute.copyOf,
+  tei_att.global.linking.attribute.next,
+  tei_att.global.linking.attribute.prev,
+  tei_att.global.linking.attribute.exclude,
+  tei_att.global.linking.attribute.select
+tei_att.global.linking.attribute.corresp =
+  
+  ## (corresponds) points to elements that correspond to the current element in some way.
+  attribute corresp {
+    list { tei_data.pointer+ }
+  }?
+tei_att.global.linking.attribute.synch =
+  
+  ## (synchronous) points to elements that are synchronous with the current element.
+  attribute synch {
+    list { tei_data.pointer+ }
+  }?
+tei_att.global.linking.attribute.sameAs =
+  
+  ## points to an element that is the same as the current element.
+  attribute sameAs { tei_data.pointer }?
+tei_att.global.linking.attribute.copyOf =
+  
+  ## points to an element of which the current element is a copy.
+  attribute copyOf { tei_data.pointer }?
+tei_att.global.linking.attribute.next =
+  
+  ## points to the next element of a virtual aggregate of which the current element is part.
+  attribute next { tei_data.pointer }?
+tei_att.global.linking.attribute.prev =
+  
+  ## (previous) points to the previous element of a virtual aggregate of which the current element is part.
+  attribute prev { tei_data.pointer }?
+tei_att.global.linking.attribute.exclude =
+  
+  ## points to elements that are in exclusive alternation with the current element.
+  attribute exclude {
+    list { tei_data.pointer+ }
+  }?
+tei_att.global.linking.attribute.select =
+  
+  ## selects one or more alternants; if one alternant is selected, the ambiguity or uncertainty is marked as resolved. If more than one alternant is selected, the degree of ambiguity or uncertainty is marked as reduced by the number of alternants not selected.
+  attribute select {
+    list { tei_data.pointer+ }
+  }?
+tei_att.repeatable.attributes =
+  tei_att.repeatable.attribute.allowText,
+  tei_att.repeatable.attribute.context,
+  tei_att.repeatable.attribute.minOccurs,
+  tei_att.repeatable.attribute.maxOccurs
+tei_att.repeatable.attribute.allowText =
+  
+  ## when true, indicates that the content of this component may include text as well as other elements
+  attribute allowText { tei_data.truthValue }?
+tei_att.repeatable.attribute.context =
+  
+  ## supplies an XPath identifying a context within which this component of a content model must be found
+  attribute context { text }?
+tei_att.repeatable.attribute.minOccurs =
+  
+  ## (minimum number of occurences) indicates the smallest number of times this component may occur.
+  [ a:defaultValue = "1" ] attribute minOccurs { tei_data.count }?
+tei_att.repeatable.attribute.maxOccurs =
+  
+  ## (maximum number of occurences) indicates the largest number of times this component may occur.
+  [ a:defaultValue = "1" ]
+  attribute maxOccurs { tei_data.count | "unbounded" }?
+tei_model.contentPart =
+  tei_classRef
+  | tei_elementRef
+  | tei_macroRef
+  | tei_sequence
+  | tei_alternate
+tei_att.combinable.attributes =
+  tei_att.deprecated.attributes, tei_att.combinable.attribute.mode
+tei_att.combinable.attribute.mode =
+  
+  ## specifies the effect of this declaration on its parent object.
+  [ a:defaultValue = "add" ]
+  attribute mode {
+    
+    ## this declaration is added to the current definitions
+    "add"
+    | 
+      ## if present already, the whole of the declaration for this object is removed from the current setup
+      "delete"
+    | 
+      ## this declaration changes the declaration of the same name in the current definition
+      "change"
+    | 
+      ## this declaration replaces the declaration of the same name in the current definition
+      "replace"
+  }?
+tei_att.identified.attributes =
+  tei_att.combinable.attributes,
+  tei_att.identified.attribute.ident,
+  tei_att.identified.attribute.predeclare,
+  tei_att.identified.attribute.module,
+  tei_att.identified.attribute.status
+tei_att.identified.attribute.ident =
+  
+  ## supplies the identifier by which this element may be referenced.
+  attribute ident { tei_data.name }
+tei_att.identified.attribute.predeclare =
+  
+  ## says whether this object should be predeclared in the tei infrastructure module.
+  [ a:defaultValue = "false" ]
+  attribute predeclare { tei_data.truthValue }?
+tei_att.identified.attribute.module =
+  
+  ## supplies a name for the module in which this object is to be declared.
+  attribute module { tei_data.xmlName }?
+tei_att.identified.attribute.status =
+  
+  ## indicates the current status of the object identified with respect to the current version of the TEI Guidelines.
+  [ a:defaultValue = "stable" ]
+  attribute status {
+    
+    ## the item is not recommended for use, and may be withdrawn at a future release.
+    "deprecated"
+    | 
+      ## the item is new and still under review.
+      "unstable"
+    | 
+      ## the item has changed significantly since the preceding version.
+      "changed"
+    | 
+      ## the item has not recently changed and is not expected to do so except for correction of any errors.
+      "stable"
+  }?
+sch:pattern [
+  id = "cceh-bibliographies-att.identified-spec-in-module-constraint-5"
+  "\x{a}" ~
+  "      "
+  sch:rule [
+    context =
+      "tei:elementSpec[@module]|tei:classSpec[@module]|tei:macroSpec[@module]"
+    "\x{a}" ~
+    "        "
+    sch:assert [
+      test =
+        "         (not(ancestor::tei:schemaSpec | ancestor::tei:TEI | ancestor::tei:teiCorpus)) or         (not(@module) or          (not(//tei:moduleSpec) and not(//tei:moduleRef))  or         (//tei:moduleSpec[@ident = current()/@module]) or          (//tei:moduleRef[@key = current()/@module]))         "
+      "\x{a}" ~
+      "        Specification "
+      sch:value-of [ select = "@ident" ]
+      ': the value of the module attribute ("'
+      sch:value-of [ select = "@module" ]
+      '") \x{a}' ~
+      "should correspond to an existing module, via a moduleSpec or\x{a}" ~
+      "      moduleRef"
+    ]
+    "\x{a}" ~
+    "      "
+  ]
+  "\x{a}" ~
+  "   "
+]
+tei_att.deprecated.attributes = tei_att.deprecated.attribute.validUntil
+tei_att.deprecated.attribute.validUntil =
+  
+  ## provides a date before which the construct being defined will not be removed.
+  attribute validUntil { xsd:date }?
+sch:pattern [
+  id =
+    "cceh-bibliographies-att.deprecated-validUntil-deprecated-constraint-6"
+  "\x{a}" ~
+  "      "
+  sch:rule [
+    context = "tei:*[@validUntil]"
+    "\x{a}" ~
+    "            "
+    sch:assert [
+      test = "@validUntil cast as xs:date ge          current-date()"
+      "\x{a}" ~
+      "            "
+      sch:value-of [
+        select =
+          "if          (@ident) then concat('The ',@ident) else          concat('This ',local-name(.),' of          ',ancestor::tei:*[@ident][1]/@ident)"
+      ]
+      "\x{a}" ~
+      "	    construct is outdated (as of "
+      sch:value-of [ select = "@validUntil" ]
+      "); ODD processors may ignore it, and its use is no longer supported"
+    ]
+    "\x{a}" ~
+    "            "
+    sch:assert [
+      role = "nonfatal"
+      test =
+        "@validUntil cast as xs:date ge          (current-date() + (60*xs:dayTimeDuration('P1D')))"
+      "\x{a}" ~
+      "            "
+      sch:value-of [
+        select =
+          "if (@ident) then concat('The ',@ident) else concat('This ',local-name(.),' of ',ancestor::tei:*[@ident][1]/@ident)"
+      ]
+      "  construct becomes outdated on "
+      sch:value-of [ select = "@validUntil" ]
+      "\x{a}" ~
+      "         "
+    ]
+    "\x{a}" ~
+    "          "
+  ]
+  "\x{a}" ~
+  "   "
+]
+tei_att.namespaceable.attributes = tei_att.namespaceable.attribute.ns
+tei_att.namespaceable.attribute.ns =
+  
+  ## (namespace) specifies the namespace to which this element belongs
+  [ a:defaultValue = "http://www.tei-c.org/ns/1.0" ]
+  attribute ns { tei_data.namespace }?
+tei_att =
+  
+  ## (attribute) contains the name of an attribute appearing within running text. [22. ]
+  element ns1:att {
+    tei_data.name,
+    tei_att.global.attributes,
+    
+    ## supplies an identifier for the scheme in which this name is defined.
+    ## Sample values include: 1] TEI(text encoding initiative) ; 2] DBK(docbook) ; 3] XX(unknown) ; 4] imaginary; 5] XHTML; 6] XML; 7] XI
+    [ a:defaultValue = "TEI" ]
+    attribute scheme { tei_data.enumerated }?,
+    empty
+  }
+tei_code =
+  
+  ## contains literal code from some formal language such as a programming language. [22.1.1. ]
+  element ns1:code {
+    text,
+    tei_att.global.attributes,
+    
+    ## (formal language) a name identifying the formal language in which the code is expressed
+    attribute lang { tei_data.word }?,
+    empty
+  }
+tei_eg =
+  
+  ## (example) contains any kind of illustrative example. [22.4.4.  22.4.5. ]
+  element ns1:eg {
+    tei_macro.phraseSeq, tei_att.global.attributes, empty
+  }
+tei_egXML =
+  
+  ## (example of XML) contains a single well-formed XML fragment demonstrating the use of some XML element or attribute, in which the egXML element itself functions as the root element. [22.1.1. ]
+  element egXML {
+    (text | tei_macro.anyXML)*,
+    tei_att.global.attributes,
+    tei_att.source.attributes,
+    
+    ## indicates the intended validity of the example with respect to a schema.
+    [ a:defaultValue = "true" ]
+    attribute valid {
+      
+      ## the example is intended to be fully valid, assuming that its root element, or a provided root element, could have been used as a possible root element in the schema concerned.
+      "true"
+      | 
+        ## the example could be transformed into a valid document by inserting any number of valid attributes and child elements anywhere within it; or it is valid against a version of the schema concerned in which the provision of character data, list, element, or attribute values has been made optional.
+        "feasible"
+      | 
+        ## the example is not intended to be valid, and contains deliberate errors.
+        "false"
+    }?,
+    empty
+  }
+tei_gi =
+  
+  ## (element name) contains the name (generic identifier) of an element. [22.  22.4.4. ]
+  element ns1:gi {
+    tei_data.name,
+    tei_att.global.attributes,
+    
+    ## supplies the name of the scheme in which this name is defined.
+    ## Sample values include: 1] TEI; 2] DBK(docbook) ; 3] XX(unknown) ; 4] Schematron; 5] HTML
+    [ a:defaultValue = "TEI" ]
+    attribute scheme { tei_data.enumerated }?,
+    empty
+  }
+tei_ident =
+  
+  ## (identifier) contains an identifier or name for an object of some kind in a formal language. ident is used for tokens such as variable names, class names, type names, function names etc. in formal programming languages. [22.1.1. ]
+  element ns1:ident {
+    text, tei_att.global.attributes, tei_att.typed.attributes, empty
+  }
+tei_tag =
+  
+  ## contains text of a complete start- or end-tag, possibly including attribute specifications, but excluding the opening and closing markup delimiter characters. [22. ]
+  element ns1:tag {
+    text,
+    tei_att.global.attributes,
+    
+    ## indicates the type of XML tag intended
+    attribute type {
+      
+      ## a start-tag, with delimiters < and > is intended
+      "start"
+      | 
+        ## an end-tag, with delimiters </ and > is intended
+        "end"
+      | 
+        ## a empty tag, with delimiters < and /> is intended
+        "empty"
+      | 
+        ## a pi (processing instruction), with delimiters <? and ?> is intended
+        "pi"
+      | 
+        ## a comment, with delimiters <!-- and --> is intended
+        "comment"
+      | 
+        ## a marked-section, with delimiters <[CDATA[ and ]]> is intended
+        "ms"
+    }?,
+    
+    ## supplies the name of the schema in which this tag is defined.
+    ## Sample values include: 1] TEI(text encoding initiative) ; 2] DBK(docbook) ; 3] XX(unknown) ; 4] Schematron; 5] HTML
+    [ a:defaultValue = "TEI" ]
+    attribute scheme { tei_data.enumerated }?,
+    empty
+  }
+tei_val =
+  
+  ## (value) contains a single attribute value. [22.  22.4.5. ]
+  element ns1:val { text, tei_att.global.attributes, empty }
+tei_specList =
+  
+  ## (specification list) marks where a list of descriptions is to be inserted into the prose documentation. [22.1.2. ]
+  element ns1:specList {
+    tei_specDesc+, tei_att.global.attributes, empty
+  }
+tei_specDesc =
+  
+  ## (specification description) indicates that a description of the specified element or class should be included at this point within a document. [22.1.2. ]
+  element ns1:specDesc {
+    empty,
+    tei_att.global.attributes,
+    
+    ## (identifier) supplies the identifier of the documentary element or class for which a description is to be obtained.
+    attribute key { tei_data.name }?,
+    
+    ## (attributes) supplies attribute names for which descriptions should additionally be obtained.
+    attribute atts {
+      list { tei_data.name* }
+    }?,
+    empty
+  }
+tei_classRef =
+  
+  ## points to the specification for an attribute or model class which is to be included in a schema [22.4.6. ]
+  element ns1:classRef {
+    empty,
+    tei_att.global.attributes,
+    tei_att.repeatable.attributes,
+    tei_att.readFrom.attributes,
+    
+    ## the identifier used for the required class within the source indicated.
+    attribute key { tei_data.xmlName },
+    
+    ## indicates how references to this class within a content model should be interpreted.
+    attribute expand {
+      
+      ## any one member of the class may appear
+      "alternate"
+      | 
+        ## a single occurrence of all members of the class may appear in sequence
+        "sequence"
+      | 
+        ## a single occurrence of one or more members of the class may appear in sequence 
+        "sequenceOptional"
+      | 
+        ## one or more occurrences of one or more members of the class may appear in sequence. 
+        "sequenceOptionalRepeatable"
+      | 
+        ## one or more occurrences of all members of the class may appear in sequence
+        "sequenceRepeatable"
+    }?,
+    (
+     ## supplies a list of class members which are to be included in the schema being defined.
+     attribute include {
+       list { tei_data.xmlName* }
+     }?
+     | 
+       ## supplies a list of class members which are to be excluded from the schema being defined.
+       attribute except {
+         list { tei_data.xmlName* }
+       }?),
+    empty
+  }
+tei_elementRef =
+  
+  ## points to the specification for some element which is to be included in a schema [22.2. ]
+  element ns1:elementRef {
+    empty,
+    tei_att.global.attributes,
+    tei_att.repeatable.attributes,
+    tei_att.readFrom.attributes,
+    
+    ## the identifier used for the required element within the source indicated.
+    attribute key { tei_data.xmlName },
+    empty
+  }
+tei_macroRef =
+  
+  ## points to the specification for some pattern which is to be included in a schema [22.4.7. ]
+  element ns1:macroRef {
+    empty,
+    tei_att.global.attributes,
+    tei_att.readFrom.attributes,
+    
+    ## the identifier used for the required pattern within the source indicated.
+    attribute key { tei_data.xmlName },
+    empty
+  }
+tei_moduleRef =
+  
+  ## (module reference) references a module which is to be incorporated into a schema. [22.2. ]
+  element ns1:moduleRef {
+    (tei_content?)
+    >> sch:pattern [
+         id = "cceh-bibliographies-moduleRef-modref-constraint-7"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:moduleRef"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test = "* and @key"
+             "\x{a}" ~
+             "Child elements of "
+             sch:name [ ]
+             " are only allowed when an external module is being loaded\x{a}" ~
+             "        "
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    tei_att.global.attributes,
+    tei_att.readFrom.attributes,
+    (
+     ## specifies a default prefix which will be prepended to all patterns from the imported module
+     attribute prefix { tei_data.xmlName }?)
+    >> sch:pattern [
+         id =
+           "cceh-bibliographies-moduleRef-prefix-not-same-prefix-constraint-8"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:moduleRef"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test =
+               "//*[ not( generate-id(.) eq generate-id(      current() ) ) ]/@prefix = @prefix"
+             "The prefix attribute\x{a}" ~
+             "	    of "
+             sch:name [ ]
+             " should not match that of any other\x{a}" ~
+             "	    element (it would defeat the purpose)"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    (
+     ## supplies a list of the elements which are to be copied from the specified module into the schema being defined.
+     attribute include {
+       list { tei_data.xmlName* }
+     }?
+     | 
+       ## supplies a list of the elements which are not to be copied from the specified module into the schema being defined.
+       attribute except {
+         list { tei_data.xmlName* }
+       }?),
+    (
+     ## the name of a TEI module
+     attribute key { tei_data.xmlName }?
+     | 
+       ## (uniform resource locator) refers to a non-TEI module of RELAX NG code by external location
+       attribute url { tei_data.pointer }?),
+    empty
+  }
+tei_moduleSpec =
+  
+  ## (module specification) documents the structure, content, and purpose of a single module, i.e. a named and externally visible group of declarations. [22.2. ]
+  element ns1:moduleSpec {
+    ((tei_model.glossLike | tei_model.descLike)*,
+     tei_exemplum*,
+     tei_remarks?,
+     tei_listRef*),
+    tei_att.global.attributes,
+    tei_att.identified.attributes,
+    tei_att.typed.attributes,
+    empty
+  }
+tei_schemaSpec =
+  
+  ## (schema specification) generates a TEI-conformant schema and documentation for it. [2.3.  22.2.  23.5.1. ]
+  element ns1:schemaSpec {
+    ((tei_model.glossLike | tei_model.descLike)*,
+     (tei_model.oddRef | tei_model.oddDecl)*),
+    tei_att.global.attributes,
+    tei_att.identified.attributes,
+    tei_att.namespaceable.attributes,
+    tei_att.readFrom.attributes,
+    
+    ## specifies entry points to the schema, i.e. which patterns may be used as the root of documents conforming to it.
+    [ a:defaultValue = "TEI" ]
+    attribute start {
+      list { tei_data.name+ }
+    }?,
+    
+    ## specifies a default prefix which will be prepended to all patterns relating to TEI elements, unless otherwise stated.
+    attribute prefix { "" | tei_data.xmlName }?,
+    
+    ## (target language) specifies which language to use when creating the objects in a schema if names for elements or attributes are available in more than one language
+    attribute targetLang { tei_data.language }?,
+    
+    ## (documentation language) specifies which languages to use when creating documentation if the description for an element, attribute, class or macro is available in more than one language
+    attribute docLang {
+      list { tei_data.language+ }
+    }?,
+    empty
+  }
+tei_specGrp =
+  
+  ## (specification group) contains any convenient grouping of specifications for use within the current module. [22.2. ]
+  element ns1:specGrp {
+    (tei_model.oddDecl | tei_model.oddRef | tei_model.divPart)*,
+    tei_att.global.attributes,
+    empty
+  }
+tei_specGrpRef =
+  
+  ## (reference to a specification group) indicates that the declarations contained by the specGrp referenced should be inserted at this point. [22.2. ]
+  element ns1:specGrpRef {
+    empty,
+    tei_att.global.attributes,
+    
+    ## points at the specification group which logically belongs here.
+    attribute target { tei_data.pointer },
+    empty
+  }
+tei_elementSpec =
+  
+  ## (element specification) documents the structure, content, and purpose of a single element type. [22.4.4.  22. ]
+  element ns1:elementSpec {
+    ((tei_model.glossLike | tei_model.descLike)*,
+     tei_classes?,
+     tei_content?,
+     tei_valList?,
+     tei_constraintSpec*,
+     tei_attList?,
+     tei_exemplum*,
+     tei_remarks*,
+     tei_listRef*),
+    tei_att.global.attributes,
+    tei_att.identified.attributes,
+    tei_att.namespaceable.attributes,
+    
+    ## specifies a default prefix which will be prepended to all patterns relating to the element, unless otherwise stated.
+    attribute prefix { "" | tei_data.xmlName }?,
+    empty
+  }
+tei_classSpec =
+  
+  ## (class specification) contains reference information for a TEI element class; that is a group of elements which appear together in content models, or which share some common attribute, or both. [22.3.  22.4.6. ]
+  element ns1:classSpec {
+    ((tei_model.glossLike | tei_model.descLike)*,
+     tei_classes?,
+     tei_constraintSpec*,
+     tei_attList?,
+     tei_exemplum*,
+     tei_remarks*,
+     tei_listRef*),
+    tei_att.global.attributes,
+    tei_att.identified.attributes,
+    
+    ## indicates whether this is a model class or an attribute class
+    attribute type {
+      
+      ## (content model) members of this class appear in the same content models
+      "model"
+      | 
+        ## (attributes) members of this class share common attributes
+        "atts"
+    },
+    
+    ## indicates which alternation and sequence instantiations of a model class may be referenced. By default, all variations are permitted.
+    attribute generate {
+      list {
+        (
+         ## members of the class are alternatives
+         "alternation"
+         | 
+           ## members of the class are to be provided in sequence
+           "sequence"
+         | 
+           ## members of the class may be provided, in sequence, but are optional
+           "sequenceOptional"
+         | 
+           ## members of the class may be provided one or more times, in sequence, but are optional.
+           "sequenceOptionalRepeatable"
+         | 
+           ## members of the class may be provided one or more times, in sequence
+           "sequenceRepeatable"),
+        (
+         ## members of the class are alternatives
+         "alternation"
+         | 
+           ## members of the class are to be provided in sequence
+           "sequence"
+         | 
+           ## members of the class may be provided, in sequence, but are optional
+           "sequenceOptional"
+         | 
+           ## members of the class may be provided one or more times, in sequence, but are optional.
+           "sequenceOptionalRepeatable"
+         | 
+           ## members of the class may be provided one or more times, in sequence
+           "sequenceRepeatable")?,
+        (
+         ## members of the class are alternatives
+         "alternation"
+         | 
+           ## members of the class are to be provided in sequence
+           "sequence"
+         | 
+           ## members of the class may be provided, in sequence, but are optional
+           "sequenceOptional"
+         | 
+           ## members of the class may be provided one or more times, in sequence, but are optional.
+           "sequenceOptionalRepeatable"
+         | 
+           ## members of the class may be provided one or more times, in sequence
+           "sequenceRepeatable")?,
+        (
+         ## members of the class are alternatives
+         "alternation"
+         | 
+           ## members of the class are to be provided in sequence
+           "sequence"
+         | 
+           ## members of the class may be provided, in sequence, but are optional
+           "sequenceOptional"
+         | 
+           ## members of the class may be provided one or more times, in sequence, but are optional.
+           "sequenceOptionalRepeatable"
+         | 
+           ## members of the class may be provided one or more times, in sequence
+           "sequenceRepeatable")?,
+        (
+         ## members of the class are alternatives
+         "alternation"
+         | 
+           ## members of the class are to be provided in sequence
+           "sequence"
+         | 
+           ## members of the class may be provided, in sequence, but are optional
+           "sequenceOptional"
+         | 
+           ## members of the class may be provided one or more times, in sequence, but are optional.
+           "sequenceOptionalRepeatable"
+         | 
+           ## members of the class may be provided one or more times, in sequence
+           "sequenceRepeatable")?
+      }
+    }?,
+    empty
+  }
+tei_macroSpec =
+  
+  ## (macro specification) documents the function and implementation of a pattern. [22.3.  22.4.7. ]
+  element ns1:macroSpec {
+    ((tei_model.glossLike | tei_model.descLike)*,
+     (tei_content | tei_valList)*,
+     tei_constraintSpec*,
+     tei_exemplum*,
+     tei_remarks*,
+     tei_listRef*),
+    tei_att.global.attributes,
+    tei_att.identified.attributes,
+    
+    ## indicates which type of entity should be generated, when an ODD processor is generating a module using XML DTD syntax.
+    attribute type {
+      
+      ## (parameter entity) 
+      "pe"
+      | 
+        ## (datatype entity) 
+        "dt"
+    }?,
+    empty
+  }
+tei_remarks =
+  
+  ## contains any commentary or discussion about the usage of an element, attribute, class, or entity not otherwise documented within the containing element. [22.4.4.  22.4.5.  22.4.6.  22.4.7. ]
+  element ns1:remarks {
+    tei_model.pLike+,
+    tei_att.global.attributes,
+    tei_att.translatable.attributes,
+    empty
+  }
+tei_listRef =
+  
+  ## (list of references) supplies a list of significant references to places where this element is discussed, in the current document or elsewhere.
+  element ns1:listRef { tei_att.global.attributes, empty }
+tei_exemplum =
+  
+  ## groups an example demonstrating the use of an element along with optional paragraphs of commentary. [22.4.4. ]
+  element ns1:exemplum {
+    (tei_model.pLike*, (tei_egXML | tei_eg), tei_model.pLike*),
+    tei_att.global.attributes,
+    tei_att.typed.attributes,
+    tei_att.translatable.attributes,
+    empty
+  }
+tei_classes =
+  
+  ## specifies all the classes of which the documented element or class is a member or subclass. [22.4.4.  22.4.6. ]
+  element ns1:classes {
+    tei_memberOf*,
+    tei_att.global.attributes,
+    
+    ## specifies the effect of this declaration on its parent module.
+    [ a:defaultValue = "replace" ]
+    attribute mode {
+      
+      ## this declaration changes the declaration of the same name in the current definition
+      "change"
+      | 
+        ## this declaration replaces the declaration of the same name in the current definition
+        "replace"
+    }?,
+    empty
+  }
+tei_memberOf =
+  
+  ## specifies class membership of the documented element or class. [22.4.3. ]
+  element ns1:memberOf {
+    tei_macro.xtext,
+    tei_att.global.attributes,
+    
+    ## specifies the identifier for a class of which the documented element or class is a member or subclass
+    attribute key { tei_data.name }?,
+    
+    ## specifies the effect of this declaration on its parent module.
+    [ a:defaultValue = "add" ]
+    attribute mode {
+      
+      ## this declaration is added to the current definitions
+      "add"
+      | 
+        ## this declaration and all of its children are removed from the current setup
+        "delete"
+    }?,
+    
+    ## supplies the maximum number of times the element can occur in elements which use this model class in their content model
+    attribute max { tei_data.numeric }?,
+    
+    ## supplies the minumum number of times the element must occur in elements which use this model class in their content model
+    attribute min { tei_data.numeric }?,
+    empty
+  }
+tei_equiv =
+  
+  ## (equivalent) specifies a component which is considered equivalent to the parent element, either by co-reference, or by external link. [3.3.4.  22.4.1. ]
+  element ns1:equiv {
+    empty,
+    tei_att.global.attributes,
+    tei_att.internetMedia.attributes,
+    
+    ## a single word which follows the rules defining a legal XML name (see ), naming the underlying concept of which the parent is a representation.
+    attribute name { tei_data.name }?,
+    
+    ## (uniform resource identifier) references the underlying concept of which the parent is a representation by means of some external identifier
+    attribute uri { tei_data.pointer }?,
+    
+    ## references an external script which contains a method to transform instances of this element to canonical TEI
+    attribute filter { tei_data.pointer }?,
+    empty
+  }
+tei_altIdent =
+  
+  ## (alternate identifier) supplies the recommended XML name for an element, class, attribute, etc. in some language. [3.3.4.  22.4.1. ]
+  element ns1:altIdent {
+    text, tei_att.global.attributes, tei_att.typed.attributes, empty
+  }
+tei_content =
+  
+  ## (content model) contains the text of a declaration for the schema documented. [22.4.4. ]
+  element ns1:content {
+    (tei_valList | tei_macro.anyXML+ | tei_model.contentPart*),
+    tei_att.global.attributes,
+    
+    ## when true, indicates that textual content is permitted.
+    attribute allowText { tei_data.truthValue }?,
+    
+    ## controls whether or not pattern names generated in the corresponding Relax NG schema source are automatically prefixed to avoid potential nameclashes.
+    [ a:defaultValue = "true" ]
+    attribute autoPrefix {
+      
+      ## Each name referenced in e.g. a rng:ref element within a content model is automatically prefixed by the value of the prefix attribute on the current schemaSpec
+      "true"
+      | 
+        ## No prefixes are added: any prefix required by the value of the prefix attribute on the current schemaSpec must therefore be supplied explicitly, as appropriate.
+        "false"
+    }?,
+    empty
+  }
+tei_sequence =
+  
+  ## sequence of references
+  element ns1:sequence {
+    tei_model.contentPart+,
+    tei_att.global.attributes,
+    tei_att.repeatable.attributes,
+    
+    ## if true, indicates that the order in which component elements of a sequence appear in a document must correspond to the order in which they are given in the content model.
+    attribute preserveOrder { tei_data.truthValue }?,
+    empty
+  }
+tei_alternate =
+  
+  ## an alternation of references
+  element ns1:alternate {
+    tei_model.contentPart+,
+    tei_att.global.attributes,
+    tei_att.repeatable.attributes,
+    empty
+  }
+tei_constraint =
+  
+  ## (constraint rules) the formal rules of a constraint [22.4.4. ]
+  element ns1:constraint {
+    (text | tei_macro.anyXML), tei_att.global.attributes, empty
+  }
+tei_constraintSpec =
+  
+  ## (constraint on schema) contains a constraint, expressed in some formal syntax, which cannot be expressed in the structural content model [22.4.4. ]
+  element ns1:constraintSpec {
+    (tei_model.glossLike | tei_model.descLike)*,
+    (tei_constraint?)
+    >> sch:ns [
+         prefix = "s"
+         uri = "http://www.ascc.net/xml/schematron"
+       ]
+    >> sch:pattern [
+         id = "cceh-bibliographies-constraintSpec-sch-constraint-4"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:constraintSpec"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test =
+               "tei:constraint/s:* and    not(@scheme='schematron')"
+             "\x{a}" ~
+             "	Rules in the Schematron 1.* language must be inside\x{a}" ~
+             "	a constraintSpec with a value of 'schematron' on the scheme attribute\x{a}" ~
+             "      "
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:ns [
+         prefix = "sch"
+         uri = "http://purl.oclc.org/dsdl/schematron"
+       ]
+    >> sch:pattern [
+         id = "cceh-bibliographies-constraintSpec-isosch-constraint-5"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:constraintSpec"
+           "\x{a}" ~
+           "               "
+           sch:report [
+             test =
+               "tei:constraint/sch:* and    not(@scheme='isoschematron')"
+             "\x{a}" ~
+             "	Rules in the ISO Schematron language must be inside\x{a}" ~
+             "	a constraintSpec with a value of 'isoschematron' on the scheme attribute\x{a}" ~
+             "      "
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ]
+    >> sch:ns [
+         prefix = "sch"
+         uri = "http://purl.oclc.org/dsdl/schematron"
+       ]
+    >> sch:pattern [
+         id =
+           "cceh-bibliographies-constraintSpec-needrules-constraint-9"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context =
+             "tei:macroSpec/tei:constraintSpec[@scheme='isoschematron']/tei:constraint"
+           "\x{a}" ~
+           "	              "
+           sch:report [
+             test = "sch:assert|sch:report"
+             "An ISO Schematron constraint specification for a macro should not have an 'assert' or 'report' element without a parent 'rule' element"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    tei_att.global.attributes,
+    tei_att.identified.attributes,
+    tei_att.typed.attributes,
+    
+    ## supplies the name of the language in which the constraints are defined
+    attribute scheme {
+      
+      ## (Schematron) 
+      "schematron"
+      | 
+        ## (ISO Schematron) 
+        "isoschematron"
+      | 
+        ## (XSLT) 
+        "xsl"
+      | 
+        ## (private constraint language) 
+        "private"
+    },
+    empty
+  }
+tei_attList =
+  
+  ## contains documentation for all the attributes associated with this element, as a series of attDef elements. [22.4.4.  22.4.6. ]
+  element ns1:attList {
+    (tei_attRef | tei_attDef | tei_attList)+,
+    tei_att.global.attributes,
+    
+    ## (organization) specifies whether all the attributes in the list are available (org="group") or only one of them (org="choice")
+    [ a:defaultValue = "group" ]
+    attribute org {
+      
+      ## grouped
+      "group"
+      | 
+        ## alternated
+        "choice"
+    }?,
+    empty
+  }
+tei_attDef =
+  
+  ## (attribute definition) contains the definition of a single attribute. [22.4.5. ]
+  element ns1:attDef {
+    ((tei_model.glossLike | tei_model.descLike)*,
+     tei_datatype?,
+     tei_constraintSpec*,
+     tei_defaultVal?,
+     (tei_valList | tei_valDesc+)?,
+     tei_exemplum*,
+     tei_remarks*)
+    >> sch:ns [
+         prefix = "teix"
+         uri = "http://www.tei-c.org/ns/Examples"
+       ]
+    >> sch:pattern [
+         id = "cceh-bibliographies-attDef-attDefContents-constraint-11"
+         "\x{a}" ~
+         "            "
+         sch:rule [
+           context = "tei:attDef"
+           "\x{a}" ~
+           "               "
+           sch:assert [
+             test =
+               "ancestor::teix:egXML[@valid='feasible'] or @mode eq 'change' or @mode eq 'delete' or tei:datatype or tei:valList[@type='closed']"
+             "Attribute: the definition of the @"
+             sch:value-of [ select = "@ident" ]
+             " attribute in the "
+             sch:value-of [ select = "ancestor::*[@ident][1]/@ident" ]
+             "\x{a}" ~
+             "                  "
+             sch:value-of [ select = "' '" ]
+             "\x{a}" ~
+             "                  "
+             sch:value-of [
+               select = "local-name(ancestor::*[@ident][1])"
+             ]
+             " should have a closed valList or a datatype"
+           ]
+           "\x{a}" ~
+           "            "
+         ]
+         "\x{a}" ~
+         "         "
+       ],
+    tei_att.global.attributes,
+    tei_att.identified.attributes,
+    
+    ## specifies the optionality of the attribute.
+    [ a:defaultValue = "opt" ]
+    attribute usage {
+      
+      ## (required) 
+      "req"
+      | 
+        ## (recommended ) 
+        "rec"
+      | 
+        ## (optional ) 
+        "opt"
+    }?,
+    
+    ## (namespace) specifies the namespace to which this attribute belongs
+    [ a:defaultValue = "http://www.tei-c.org/ns/1.0" ]
+    attribute ns { tei_data.namespace }?,
+    empty
+  }
+tei_attRef =
+  
+  ## (attribute pointer) points to the definition of an attribute or group of attributes. [22.2. ]
+  element ns1:attRef {
+    empty,
+    tei_att.global.attributes,
+    
+    ## the name of the attribute class
+    attribute class { tei_data.word }?,
+    
+    ## the name of the attribute
+    attribute name { tei_data.text }?,
+    empty
+  }
+tei_datatype =
+  
+  ## specifies the declared value for an attribute, by referring to any datatype defined by the chosen schema language. [1.4.2.  22.4.5. ]
+  element ns1:datatype {
+    (tei_macroRef | tei_macro.schemaPattern+),
+    tei_att.global.attributes,
+    
+    ## (minimum number of occurences) indicates the minimum number of times this datatype may occur in the specification of the attribute being defined
+    [ a:defaultValue = "1" ] attribute minOccurs { tei_data.count }?,
+    
+    ## (maximum number of occurences) indicates the maximum number of times this datatype may occur in the specification of the attribute being defined
+    [ a:defaultValue = "1" ]
+    attribute maxOccurs { tei_data.count | "unbounded" }?,
+    empty
+  }
+tei_defaultVal =
+  
+  ## (default value) specifies the default declared value for an attribute. [22.4.5. ]
+  element ns1:defaultVal { text, tei_att.global.attributes, empty }
+tei_valDesc =
+  
+  ## (value description) specifies any semantic or syntactic constraint on the value that an attribute may take, additional to the information carried by the datatype element. [22.4.5. ]
+  element ns1:valDesc {
+    tei_macro.phraseSeq.limited,
+    tei_att.global.attributes,
+    tei_att.translatable.attributes,
+    tei_att.combinable.attributes,
+    empty
+  }
+tei_valItem =
+  
+  ## documents a single value in a predefined list of values. [22.4.5. ]
+  element ns1:valItem {
+    (tei_model.descLike | tei_model.glossLike)*,
+    tei_att.global.attributes,
+    tei_att.combinable.attributes,
+    
+    ## specifies the value concerned.
+    attribute ident { tei_data.text },
+    empty
+  }
+tei_valList =
+  
+  ## (value list) contains one or more valItem elements defining possible values. [22.4.5. ]
+  element ns1:valList {
+    tei_valItem*,
+    tei_att.global.attributes,
+    tei_att.combinable.attributes,
+    
+    ## specifies the extensibility of the list of values specified.
+    [ a:defaultValue = "open" ]
+    attribute type {
+      
+      ## only the values specified are permitted.
+      "closed"
+      | 
+        ## (semi-open) all the values specified should be supported, but other values are legal and software should have appropriate fallback processing for them.
+        "semi"
+      | 
+        ## the values specified are sample values only.
+        "open"
+    }?,
+    empty
+  }
+start = tei_TEI

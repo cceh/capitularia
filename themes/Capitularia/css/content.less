@@ -317,6 +317,16 @@ div.content-col {
             .regular;
         }
     }
+
+    nav.bib-index-tabs {
+	text-align: center;
+	span.bib-index-tab + span.bib-index-tab::before {
+	    content: '\2009·\2009';
+	}
+    }
+    .bib-short-title {
+	.semibold;
+    }
 }
 
 div.hr {
@@ -589,7 +599,7 @@ div.content-col {
         }
     }
 }
-div.abMETA {
+div.ab-meta-text, div.abMETA {
     .semibold;
 }
 div.corresp {

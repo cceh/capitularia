@@ -20,8 +20,8 @@
 
 namespace cceh\capitularia\xsl_processor;
 
-const FOOTNOTE  = 'a[contains (concat (" ", @class, " "), " annotation-ref ")]';
-const FOOTNOTES = '//' . FOOTNOTE;
+const FOOTNOTE_SPAN = '//span[@data-note-id][not (ancestor::div[@class="footnotes-wrapper"])]';
+const FOOTNOTE_REF  = 'a[contains (concat (" ", @class, " "), " annotation-ref ")]';
 
 /**
  * Is the node a note?
@@ -142,29 +142,30 @@ function word_end_pos ($text_node)
     return mb_strpos ($text, ' ');
 }
 
-function query_copy ($xpath, $query)
+function query_copy ($xpath_query_result)
 {
     $nodes = array ();
-    foreach ($xpath->query ($query) as $node) {
+    foreach ($xpath_query_result as $node) {
         $nodes[] = $node;
     }
     return $nodes;
 }
 
-function insert_footnote_ref ($elem, $id, $num)
+function insert_footnote_ref ($elem, $id)
 {
+    // Never insert text content here or you will mess up the footnote merging stage.
     global $doc;
     $class = $elem->getAttribute ('class');
     $frag = $doc->createDocumentFragment ();
-    $frag->appendXML ("<a class='annotation-ref ssdone $class' id='{$id}-ref' href='#{$id}-content' data-shortcuts='0'><span class='print-only footnote-number-ref'>{$num}</span><span class='screen-only footnote-siglum'>*</span></a>");
+    $frag->appendXML ("<a class='annotation-ref ssdone $class' id='{$id}-ref' href='#{$id}-content' data-shortcuts='0'><span class='print-only footnote-number-ref'></span><span class='screen-only footnote-siglum'></span></a>");
     $elem->appendChild ($frag);
 }
 
-function insert_footnote_backref ($elem, $id, $num)
+function insert_footnote_backref ($elem, $id)
 {
     global $doc;
     $frag = $doc->createDocumentFragment ();
-    $frag->appendXML ("<a class='annotation-backref ssdone' href='#{$id}-ref'><span class='print-only footnote-number-backref'>{$num}</span><span class='screen-only footnote-siglum'>*</span></a>");
+    $frag->appendXML ("<a class='annotation-backref ssdone' href='#{$id}-ref'><span class='print-only footnote-number-backref'></span><span class='screen-only footnote-siglum'></span></a>");
     $elem->insertBefore ($frag, $elem->firstChild);
 }
 
@@ -211,55 +212,78 @@ foreach (array ('header', 'body', 'footer') as $part) {
 }
 
 //
-// Remove whitespace before isolated footnotes.  An isolated footnote is
-// empty and surrounded by whitespace.
+// Remove whitespace before isolated footnotes.
 //
-
-const FOOTNOTE_SPAN = '//span[@data-note-id][not (ancestor::div[@class="footnotes-wrapper"])]';
-
-$notes = $xpath->query (FOOTNOTE_SPAN);
-foreach ($notes as $note) {
-    if (trim ($note->nodeValue)) {
-        continue;
-    }
-
-    // Does the first following non-empty text node start with whitespace?
-    foreach ($xpath->query ('following::text()[string(.)][1]', $note) as $node) {
-        if (ltrim ($node->nodeValue) != $node->nodeValue) {
-            // ... Yes, it does.
-            // Does the first preceding non-empty text node end with whitespace?
-            foreach ($xpath->query ('preceding::text()[string(.)][1]', $note) as $node) {
-                if (rtrim ($node->nodeValue) != $node->nodeValue) {
-                    // ... Yes, it does. -> Isolated note.
-                    $node->nodeValue = rtrim ($node->nodeValue);
-                }
-            }
-        }
-    }
-}
-
+// We can either operate right away on the <span data-node-id="42"> or on the
+// <a class="annotation-ref"> after we have inserted it.  Both modes have
+// disadvantages.  Operating on the <span> we have to deal with the span's
+// content: does it terminate with ws? and in that case remove it too.
+// Operating with the <a> the <a> also has contents which gets in the way when
+// we merge notes later on.  Currently we insert empty <a>'s and fill them with
+// text later.
+//
 //
 // Turn <span data-node-id="idm42"/> into footnote refs, add backrefs to the
 // footnote bodies and link them via hrefs.
 //
 
 // get all spans in the text that have data-node-id and add footnote refs
-foreach (query_copy ($xpath, FOOTNOTE_SPAN) as $span) {
+foreach (query_copy ($xpath->query (FOOTNOTE_SPAN)) as $span) {
     $id = $span->getAttribute ('data-note-id');
-    insert_footnote_ref ($span, $id, 0);
+    insert_footnote_ref ($span, $id);
 }
 
 // get all footnote bodies and add footnote backrefs
-foreach (query_copy ($xpath, '//div[contains (concat (" ", @class, " "), " annotation-content ")]') as $note) {
+foreach (query_copy ($xpath->query ('//div[contains (concat (" ", @class, " "), " annotation-content ")]')) as $note) {
     $id = str_replace ('-content', '', $note->getAttribute ('id'));
-    insert_footnote_backref ($note, $id, 0);
+    insert_footnote_backref ($note, $id);
+}
+
+// An isolated footnote is surrounded by ws.
+
+$notes = $xpath->query ('//' . FOOTNOTE_REF);
+foreach ($notes as $note) {
+    //if (trim ($note->nodeValue)) {
+    //    continue; // not empty, can't be moved
+    //}
+
+    $ws_before = false;
+    $ws_after  = false;
+
+    foreach ($xpath->query ('following::text()[string(.)][1]', $note) as $node) {
+        if (ltrim ($node->nodeValue) != $node->nodeValue) {
+            $ws_after = true;
+        }
+    }
+
+    if ($ws_after) {
+        foreach ($xpath->query ('preceding::text()[string(.)][1]', $note) as $node) {
+            if (rtrim ($node->nodeValue) != $node->nodeValue) {
+                $ws_before = true;
+            }
+        }
+    }
+
+    if ($ws_before && $ws_after) {
+        // Trim all whitespace before this node.
+        foreach (array_reverse (query_copy ($xpath->query ('preceding::text()[position() < 10]', $note))) as $node) {
+            if (rtrim ($node->nodeValue) != $node->nodeValue) {
+                $node->nodeValue = rtrim ($node->nodeValue);
+            }
+            if ($node->nodeValue) {
+                // Node has ink.
+                break;
+            }
+        }
+    }
 }
 
 //
 // Merge and move footnotes to the end of the word.
 //
 
-$notes = $xpath->query (FOOTNOTES);
+$notes = $xpath->query ('//' . FOOTNOTE_REF);
+$fn = FOOTNOTE_REF;
 
 foreach ($notes as $note) {
     // Don't touch editorial notes.
@@ -267,16 +291,12 @@ foreach ($notes as $note) {
         continue;
     }
 
-    // iterate over footnotes and text nodes
-
     $nodes = array ();
-    $fn = FOOTNOTE;
     foreach ($xpath->query ("following::node()[self::text() or self::{$fn}][position() < 10]", $note) as $node) {
         $nodes[] = $node;
     }
     foreach ($nodes as $next) {
         // Merge notes in the same word
-        //
         if (is_note ($next)) {
             merge_notes ($note, $next);
             break;
@@ -325,6 +345,10 @@ foreach ($xpath->query ('//span[contains (concat (" ", @class, " "), " footnote-
         $id_to_number[$id] = $count;
         $span->nodeValue = strVal ($count);
     }
+}
+
+foreach ($xpath->query ('//span[contains (concat (" ", @class, " "), " footnote-siglum ")]') as $span) {
+    $span->nodeValue = '*';
 }
 
 foreach ($xpath->query ('//span[contains (concat (" ", @class, " "), " footnote-number-backref ")]') as $span) {

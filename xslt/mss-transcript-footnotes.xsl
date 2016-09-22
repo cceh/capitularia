@@ -89,7 +89,7 @@ footnotes will be joined to the preceding word.
 
     <xsl:variable name="before">
       <xsl:variable name="s">
-        <xsl:value-of select="str:concat ($e/preceding::text ()[position () &lt; 10])"/>
+        <xsl:value-of select="str:concat ($e/preceding::text ()[not (ancestor::tei:note)][position () &lt; 10])"/>
       </xsl:variable>
       <!-- str:tokenize does not return the empty token if string ends with whitespace. -->
       <xsl:if test="normalize-space (substring ($s, string-length ($s)))">
@@ -110,7 +110,7 @@ footnotes will be joined to the preceding word.
 
     <xsl:variable name="after">
       <xsl:variable name="s">
-        <xsl:value-of select="str:concat ($e/following::text ()[position () &lt; 10])"/>
+        <xsl:value-of select="str:concat ($e/following::text ()[not (ancestor::tei:note)][position () &lt; 10])"/>
       </xsl:variable>
       <!-- str:tokenize does not return the empty token if string starts with whitespace. -->
       <xsl:if test="normalize-space (substring ($s, 1, 1))">
@@ -131,8 +131,26 @@ footnotes will be joined to the preceding word.
 
   <func:function name="cap:is-phrase">
     <!-- Test if the node contains a single word or a phrase. -->
-    <xsl:param name="node"/>
-    <func:result select="contains (normalize-space ($node), ' ')"/>
+    <xsl:param name="nodeset"/>
+
+    <func:result select="contains (normalize-space (str:concat ($nodeset)), ' ')"/>
+  </func:function>
+
+  <func:function name="cap:shorten-phrase">
+    <!-- Transform "phrase with more than five words" into "phrase with ... five words" -->
+    <xsl:param name="nodeset"/>
+
+    <xsl:variable name="nodes" select="str:split (str:concat ($nodeset))"/>
+    <xsl:variable name="len" select="count ($nodes)"/>
+
+    <xsl:choose>
+      <xsl:when test="$len &gt; 5">
+        <func:result select="concat ($nodes[1], ' ', $nodes[2], ' &#x2026; ', $nodes[$len - 1], ' ', $nodes[$len])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <func:result select="$nodeset"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </func:function>
 
   <func:function name="cap:get-hand">
@@ -183,7 +201,7 @@ footnotes will be joined to the preceding word.
     <xsl:if test="following-sibling::*[1][self::tei:metamark]">
       <xsl:text> mit Einfügungszeichen</xsl:text>
     </xsl:if>
-    <xsl:if test="@rend='default'">
+    <xsl:if test="@rend='default' or tei:add/@rend='default'">
       <xsl:text> in Texttinte</xsl:text>
     </xsl:if>
   </xsl:template>
@@ -326,8 +344,9 @@ footnotes will be joined to the preceding word.
   </xsl:template>
 
   <xsl:template match="tei:choice">
-    <span class="tei-choice" data-note-id="{generate-id ()}">
+    <span class="tei-choice">
       <xsl:apply-templates select="tei:expan"/>
+      <xsl:apply-templates select="tei:abbr" mode="refs-only"/>
     </span>
   </xsl:template>
 
@@ -404,7 +423,7 @@ footnotes will be joined to the preceding word.
       those will be ignored by the post-processor.
 
       refs-only mode generates refs and nothing else.  Refs are <span>s with a
-      data-node-id attribute.
+      data-note-id attribute.
   -->
 
 
@@ -417,7 +436,7 @@ footnotes will be joined to the preceding word.
     </span>
   </xsl:template>
 
-  <xsl:template match="tei:subst|tei:mod|tei:note|tei:space|tei:choice|tei:handShift" mode="refs-only">
+  <xsl:template match="tei:subst|tei:mod|tei:note|tei:space|tei:choice/tei:abbr|tei:handShift" mode="refs-only">
     <span class="tei-{local-name ()}" data-note-id="{generate-id ()}">
       <xsl:apply-templates mode="refs-only"/>
     </span>
@@ -432,29 +451,52 @@ footnotes will be joined to the preceding word.
       auto-note-wrapper mode is used at the end of every <ab> to generate and
       collect all footnotes into a footnote section.
 
-      To get the footnotes in the right chronological order, we need a
-      depth-first traversal, on the assumption that older edits are nested
-      deeper than newer edits.
+      Should we use a pre-order or post-order traversal when outputting
+      footnotes?
 
-      FIXME: what about <choice> inside <add> or <del>? Choice should then
-      output after the parent.
+      Inspection of ~300 files on 22 Sep. 2016 counted following constructs:
+
+        add          1768
+        del          1418
+        subst         948
+        abbr          792
+        expan        3158
+        choice        784
+        add//choice    15
+        del//choice     4
+        subst//choice   2
+        abbr//add       3
+        abbr//del       3
+        expan//add     17
+        expan//del     18
+
+      Since expan does not output anything the most frequent construct is choice
+      inside add.  Choice is use exclusively for abbreviations, so the most
+      natural sounding footnote would be:
+
+        "Wort" ergänzt
+        gek. "W"
+
+      That implies a pre-order traversal.
+
+      FIXME: needs change in footnotes-post-processor.php too.
   -->
 
   <xsl:template match="tei:add|tei:del[normalize-space ()]" mode="auto-note-wrapper">
-    <!-- generate notes from children depth first -->
-    <xsl:apply-templates mode="auto-note-wrapper"/>
-    <!-- generate note from this node -->
+    <!-- pre-order: this node first -->
     <xsl:if test="not (parent::tei:subst)">
       <xsl:call-template name="auto-note-wrapper"/>
     </xsl:if>
+    <!-- the children last -->
+    <xsl:apply-templates mode="auto-note-wrapper"/>
   </xsl:template>
 
-  <xsl:template match="tei:subst|tei:mod|tei:note|tei:space|tei:choice|tei:handShift"
+  <xsl:template match="tei:subst|tei:mod|tei:note|tei:space|tei:choice/tei:abbr|tei:handShift"
                 mode="auto-note-wrapper">
-    <!-- generate notes from children depth first -->
-    <xsl:apply-templates mode="auto-note-wrapper"/>
-    <!-- generate note from this node -->
+    <!-- pre-order: this node first -->
     <xsl:call-template name="auto-note-wrapper"/>
+    <!-- the children last -->
+    <xsl:apply-templates mode="auto-note-wrapper"/>
   </xsl:template>
 
   <xsl:template name="auto-note-wrapper">
@@ -465,9 +507,12 @@ footnotes will be joined to the preceding word.
       <div class="annotation-text">
         <!-- run again on this node -->
         <xsl:apply-templates select="." mode="auto-note"/>
-        <!-- This is to assure that footnote refs do not get moved past the
-             div's end. Do *not* remove! -->
-        <xsl:text>&#x0a;</xsl:text>
+        <!--
+            This is to assure that footnote refs do not get moved past the
+            div's end.  Needed if we decide to implement recursive footnotes.
+
+            <xsl:text> &#xa0;&#x0a;</xsl:text>
+        -->
       </div>
     </div>
   </xsl:template>
@@ -489,33 +534,41 @@ footnotes will be joined to the preceding word.
 
     <xsl:choose>
       <xsl:when test="cap:is-later-hand ()">
-        <xsl:variable name="del">
-          <xsl:apply-templates select="tei:del" mode="original" />
+        <xsl:variable name="phrase">
+          <xsl:value-of select="$before"/>
+          <xsl:apply-templates select="tei:del" mode="original"/>
+          <xsl:value-of select="$after"/>
         </xsl:variable>
-        <xsl:if test="cap:is-phrase (str:concat (exsl:node-set ($del)))">
+        <xsl:if test="cap:is-phrase (exsl:node-set ($phrase))">
           <span class="mentioned" data-shortcuts="1">
-            <xsl:value-of select="$before"/><xsl:apply-templates select="tei:del" mode="original" /><xsl:value-of select="$after"/>
+            <xsl:value-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
           </span>
         </xsl:if>
         <xsl:call-template name="hand-blurb"/>
         <xsl:text> korr. zu </xsl:text>
         <span class="mentioned" data-shortcuts="1">
-          <xsl:value-of select="$before"/><xsl:apply-templates select="tei:add" mode="edited"/><xsl:value-of select="$after"/>
+          <xsl:value-of select="$before"/>
+          <xsl:apply-templates select="tei:add" mode="edited"/>
+          <xsl:value-of select="$after"/>
         </span>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:variable name="add">
+        <xsl:variable name="phrase">
+          <xsl:value-of select="$before"/>
           <xsl:apply-templates select="tei:add"/>
+          <xsl:value-of select="$after"/>
         </xsl:variable>
-        <xsl:if test="cap:is-phrase (str:concat (exsl:node-set ($add)))">
+        <xsl:if test="cap:is-phrase (exsl:node-set ($phrase))">
           <span class="mentioned" data-shortcuts="1">
-            <xsl:value-of select="$before"/><xsl:apply-templates select="tei:add"/><xsl:value-of select="$after"/>
+            <xsl:value-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
           </span>
         </xsl:if>
         <xsl:call-template name="hand-blurb"/>
         <xsl:text> korr. aus </xsl:text>
         <span class="mentioned" data-shortcuts="1">
-          <xsl:value-of select="$before"/><xsl:apply-templates select="tei:del" mode="original"/><xsl:value-of select="$after"/>
+          <xsl:value-of select="$before"/>
+          <xsl:apply-templates select="tei:del" mode="original"/>
+          <xsl:value-of select="$after"/>
         </span>
       </xsl:otherwise>
     </xsl:choose>
@@ -525,21 +578,6 @@ footnotes will be joined to the preceding word.
     <xsl:variable name="before"   select="cap:word-before (.)"/>
     <xsl:variable name="after"    select="cap:word-after (.)"/>
 
-    <xsl:variable name="index">
-      <!-- the index, eg. a², only if needed -->
-      <xsl:if test="(string-length () = 1) and (cap:count-char (concat ($before, $after), string ()) > 0)">
-        <sup class="mentioned-index">
-          <xsl:value-of select="1 + cap:count-char ($before, string ())"/>
-        </sup>
-      </xsl:if>
-    </xsl:variable>
-
-    <xsl:variable name="edited">
-      <span class="mentioned" data-shortcuts="1">
-        <xsl:value-of select="$before"/><xsl:apply-templates/><xsl:value-of select="$after"/>
-      </span>
-    </xsl:variable>
-
     <xsl:choose>
       <xsl:when test="cap:is-later-hand ()">
         <xsl:choose>
@@ -547,18 +585,41 @@ footnotes will be joined to the preceding word.
             <xsl:text>folgt</xsl:text>
             <xsl:call-template name="hand-blurb"/>
             <xsl:text> ergänztes </xsl:text>
-            <xsl:copy-of select="$edited"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:call-template name="hand-blurb"/>
             <xsl:text> korr. zu </xsl:text>
-            <xsl:copy-of select="$edited"/>
           </xsl:otherwise>
         </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise> <!-- not later hand -->
         <span class="mentioned" data-shortcuts="1">
-          <xsl:apply-templates/><xsl:copy-of select="$index"/>
+          <xsl:value-of select="$before"/>
+          <xsl:apply-templates/>
+          <xsl:value-of select="$after"/>
+        </span>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- not (cap:is-later-hand ()) -->
+        <xsl:variable name="phrase">
+          <xsl:apply-templates/>
+        </xsl:variable>
+        <span class="mentioned" data-shortcuts="1">
+          <xsl:choose>
+            <xsl:when test="string-length () = 1">
+              <xsl:apply-templates/>
+              <!-- the index, eg. a² -->
+              <xsl:if test="cap:count-char (concat ($before, $after), string ()) > 0">
+                <sup class="mentioned-index">
+                  <xsl:value-of select="1 + cap:count-char ($before, string ())"/>
+                </sup>
+              </xsl:if>
+            </xsl:when>
+            <xsl:when test="cap:is-phrase (exsl:node-set ($phrase))">
+              <xsl:copy-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:copy-of select="$phrase"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </span>
         <xsl:call-template name="hand-blurb"/>
         <xsl:text> ergänzt</xsl:text>
@@ -567,13 +628,13 @@ footnotes will be joined to the preceding word.
   </xsl:template>
 
   <xsl:template match="tei:del[normalize-space ()]" mode="auto-note">
-    <xsl:variable name="before"   select="cap:word-before (.)"/>
-    <xsl:variable name="after"    select="cap:word-after (.)"/>
+    <xsl:variable name="before" select="cap:word-before (.)"/>
+    <xsl:variable name="after"  select="cap:word-after (.)"/>
 
-    <xsl:variable name="original">
-      <span class="mentioned" data-shortcuts="1">
-        <xsl:value-of select="$before"/><xsl:apply-templates select="." mode="original" /><xsl:value-of select="$after"/>
-      </span>
+    <xsl:variable name="phrase">
+      <xsl:value-of select="$before"/>
+      <xsl:apply-templates select="." mode="original"/>
+      <xsl:value-of select="$after"/>
     </xsl:variable>
 
     <xsl:choose>
@@ -581,6 +642,11 @@ footnotes will be joined to the preceding word.
         <!-- Whole word deleted. -->
         <xsl:choose>
           <xsl:when test="cap:is-later-hand ()">
+            <xsl:if test="cap:is-phrase (exsl:node-set ($phrase))">
+              <span class="mentioned" data-shortcuts="1">
+                <xsl:copy-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
+              </span>
+            </xsl:if>
             <xsl:call-template name="hand-blurb"/>
             <xsl:text> getilgt</xsl:text>
           </xsl:when>
@@ -589,7 +655,9 @@ footnotes will be joined to the preceding word.
             <xsl:text>folgt</xsl:text>
             <xsl:call-template name="hand-blurb"/>
             <xsl:text> getilgtes </xsl:text>
-            <xsl:copy-of select="$original"/>
+            <span class="mentioned" data-shortcuts="1">
+              <xsl:copy-of select="$phrase"/>
+            </span>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
@@ -606,7 +674,9 @@ footnotes will be joined to the preceding word.
           </xsl:when>
           <xsl:otherwise>
             <xsl:text> korr. aus </xsl:text>
-            <xsl:copy-of select="$original"/>
+            <span class="mentioned" data-shortcuts="1">
+              <xsl:copy-of select="$phrase"/>
+            </span>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:otherwise>
@@ -655,10 +725,10 @@ footnotes will be joined to the preceding word.
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="tei:choice" mode="auto-note">
+  <xsl:template match="tei:choice/tei:abbr" mode="auto-note">
     <xsl:text>gek. </xsl:text>
     <span class="mentioned" data-shortcuts="1">
-      <xsl:apply-templates select="tei:abbr"/>
+      <xsl:apply-templates/>
     </span>
   </xsl:template>
 

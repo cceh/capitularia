@@ -21,6 +21,9 @@ class Dashboard_Page
     /** @var Config The configuration. */
     private $config;
 
+    /** @var array The standard pagination args. */
+    private $pagination_args;
+
     /**
      * Constructor
      *
@@ -32,6 +35,9 @@ class Dashboard_Page
     public function __construct ($config)
     {
         $this->config = $config;
+        $this->pagination_args = array (
+            'per_page' => 50,
+        );
     }
 
     /**
@@ -101,16 +107,18 @@ class Dashboard_Page
         $page = DASHBOARD_PAGE_ID;
         $paged = isset ($_REQUEST['paged']) ? $_REQUEST['paged'] : 1;
         $page_url = '/wp-admin/index.php';
-        $pagination_args = array (
-            'per_page'    => 50,
-            'current_url' => "{$page_url}?section={$section_id}&page={$page}",
-        );
 
         $table = new File_List_Table ($section_id, $xml_dir);
-        $table->prepare_items ($pagination_args);
+        $table->prepare_items (
+            array_merge (
+                $this->pagination_args, array (
+                    'current_url' => "{$page_url}?section={$section_id}&page={$page}"
+                )
+            )
+        );
         // $this->print_orphaned_metadata ($section, $table);
 
-        echo ("<form action='{$page_url}' id='cap_page_gen_form_{$section_id}' method='get'>");
+        echo ("<form method='get' action='{$page_url}' id='cap_page_gen_form_{$section_id}' data-paged='{$paged}'>");
         // posts back to wp-admin/index.php, ensure that we get back to our
         // current page
         echo ("<input type='hidden' name='page' value='{$page}' />");
@@ -295,7 +303,7 @@ class Dashboard_Page
             ob_start ();
             $xml_dir = $this->config->get_opt_path ('xml_root', $section_id, 'xml_dir');
             $table = new File_List_Table ($section_id, $xml_dir);
-            $table->prepare_items ();
+            $table->prepare_items ($this->pagination_args);
             $table->display_rows_or_placeholder ();
             // return HTML output in JSON
             $json['rows'] = ob_get_clean ();

@@ -1,18 +1,21 @@
-function on_cap_action_file (element, action) {
-    var e = jQuery (element);
-    var tr = e.closest ('tr');
+function on_cap_action_file (e, action) {
+    var $e     = jQuery (e);
+    var $tr    = $e.closest ('tr');
+    var $table = $e.closest ('table');
+    var $form  = $e.closest ('form');
 
     var data = {
         'action':      'on_cap_action_file',      /* the AJAX action */
         'user_action': action,
-        'section':     tr.attr ("data-section"),
-        'filename':    tr.attr ("data-filename"),
-        'slug':        tr.attr ("data-slug"),
+        'section':     $tr.attr ("data-section"),
+        'filename':    $tr.attr ("data-filename"),
+        'slug':        $tr.attr ("data-slug"),
+        'paged':       $form.attr ("data-paged"),
     };
     data[ajax_object.ajax_nonce_param_name] = ajax_object.ajax_nonce;
 
     var msg_div    = jQuery ('div.cap_page_dash_message');
-    var status_div = tr.find ('td.column-status');
+    var status_div = $tr.find ('td.column-status');
     var spinner    = jQuery ("<div class='cap_page_spinner'></div>").progressbar ({value: false});
     spinner.hide ().appendTo (status_div).fadeIn ();
 
@@ -21,8 +24,7 @@ function on_cap_action_file (element, action) {
         url: ajaxurl,
         data : data,
     }).done (function (response, status) {
-        var table = e.closest ('table');
-        table.find ('tbody').html (response.rows);
+        $table.find ('tbody').html (response.rows);
     }).always (function (response, status) {
         spinner.fadeOut ().remove ();
         jQuery (response.message).hide ().appendTo (msg_div).slideDown ();

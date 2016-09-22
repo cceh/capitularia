@@ -21,8 +21,13 @@
       @authors: NG, MP
   -->
 
-  <xsl:include href="mss-transcript-footnotes.xsl"/>       <!-- generation of footnotes / tooltips -->
-  <xsl:include href="base_variables.xsl"/>                 <!-- urls etc. -->
+  <xsl:include href="common.xsl"/>                    <!-- common templates and functions -->
+  <xsl:include href="mss-transcript-footnotes.xsl"/>  <!-- generation of footnotes / tooltips -->
+  <xsl:include href="base_variables.xsl"/>            <!-- urls etc. -->
+
+  <!-- Needed for the correct determination of the word around an editorial
+       intervention. -->
+  <xsl:strip-space elements="tei:subst tei:choice"/>
 
   <xsl:output method="html" encoding="UTF-8" indent="no"/>
 
@@ -60,7 +65,7 @@
       <h5 id="contents-rubrics">
         [:de]Inhalt (Rubriken)[:en]Contents (Rubrics)[:]
       </h5>
-      <xsl:apply-templates select="tei:front/tei:div[@xml:id='divContent']" mode="toc"/>
+      <xsl:apply-templates select="id ('divContent')" mode="toc"/>
       <h5 id="contents-bknos">
         [:de]Inhalt (BK-Nummern)[:en]Contents (BK-Nos.)[:]
       </h5>
@@ -78,10 +83,18 @@
 
   <xsl:template match="tei:front">
     <div class="tei-front">
-      <h5 id="editorial-preface" data-cap-dyn-menu-caption="[:de]Editorische Vorbemerkung[:en]Editorial Preface[:]">
+      <h5 id="editorial-preface"
+          data-cap-dyn-menu-caption="[:de]Editorische Vorbemerkung[:en]Editorial Preface[:]">
         [:de]Editorische Vorbemerkung zur Transkription[:en]Editorial Preface to the Transcription[:]
       </h5>
       <xsl:apply-templates select="tei:div[normalize-space (.)]" />
+    </div>
+  </xsl:template>
+
+  <xsl:template match="tei:body">
+    <!-- transkription-body is a flag for the post-processor -->
+    <div class="tei-body transkription-body">
+      <xsl:apply-templates/>
     </div>
   </xsl:template>
 
@@ -114,24 +127,19 @@
        erzeugt.  TODO: Struktur irgendwie aus dem Haupttext
        ableiten. -->
 
-  <xsl:template match="tei:div[@xml:id='divContent']//tei:list" mode="toc">
+  <xsl:template match="tei:list" mode="toc">
     <ul>
       <xsl:apply-templates select="tei:item" mode="toc"/>
     </ul>
   </xsl:template>
 
-  <xsl:template match="tei:div[@xml:id='divContent']//tei:item" mode="toc">
+  <xsl:template match="tei:item" mode="toc">
     <li class="toc">
-      <xsl:variable name="level" select="count (ancestor::tei:item)" />
-      <a href="{tei:ptr/@target}" data-level="{$level}"><xsl:value-of select="text()"/></a>
+      <a href="{tei:ptr/@target}" data-level="{count (ancestor::tei:item)}">
+        <xsl:apply-templates select="text ()"/>
+      </a>
       <xsl:apply-templates select="tei:list" mode="toc"/>
     </li>
-  </xsl:template>
-
-  <xsl:template match="tei:body">
-    <div class="tei-body transkription-body"><!-- transkription-body is a flag for the post-processor -->
-      <xsl:apply-templates/>
-    </div>
   </xsl:template>
 
   <!--
@@ -152,86 +160,99 @@
     <span class="italic tei-mentioned"><xsl:apply-templates /></span>
   </xsl:template>
 
-  <xsl:template name="page-break">
-    <xsl:text>&#x0a;&#x0a;</xsl:text>
-    <div class="page-break" />
+  <xsl:template name="tCorresp">
+    <!-- "Wandelt "BK.123_4" nach "BK 123 c. 4" und entfernt
+         "inscriptio" und "incipit" falls vorhanden." -->
+
+    <!-- FIXME: It is not clear what to do with incipt and inscriptio.
+         Currently we delete them.-->
+    <xsl:variable name="search">
+      <tei:item>.</tei:item>
+      <tei:item>_</tei:item>
+      <tei:item>_inscriptio</tei:item>
+      <tei:item>_incipit</tei:item>
+    </xsl:variable>
+
+    <xsl:variable name="replace">
+      <tei:item> </tei:item>
+      <tei:item> c. </tei:item>
+      <tei:item></tei:item>
+      <tei:item></tei:item>
+    </xsl:variable>
+
+    <xsl:variable name="corresp">
+      <xsl:for-each select="str:split (@corresp)">
+        <xsl:if test="not (contains (., '_in'))">
+          <xsl:value-of select="normalize-space (str:replace (., exsl:node-set ($search)/tei:item, exsl:node-set ($replace)/tei:item))"/>
+          <xsl:text> </xsl:text>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+
+    <xsl:if test="normalize-space ($corresp)">
+      <xsl:text>&#x0a;</xsl:text>
+      <div class="corresp">
+        <xsl:text>[</xsl:text>
+        <xsl:value-of select="normalize-space ($corresp)"/>
+        <xsl:text>]</xsl:text>
+      </div>
+      <xsl:text>&#x0a;&#x0a;</xsl:text>
+    </xsl:if>
   </xsl:template>
 
-  <xsl:template name="tCorresp">
-    <!-- Wandelt "BK.123_4" nach "BK 123 c. 4" und entfernt
-         "inscriptio" und "incipit" falls vorhanden. -->
-
-    <!-- FIXME: It is not clear what to do with incipt and inscriptio. -->
-    <xsl:if test="@corresp and not (contains (@corresp, '_in'))">
-      <xsl:variable name="search">
-        <tei:item>.</tei:item>
-        <tei:item>_</tei:item>
-        <tei:item>_inscriptio</tei:item>
-        <tei:item>_incipit</tei:item>
-      </xsl:variable>
-
-      <xsl:variable name="replace">
-        <tei:item> </tei:item>
-        <tei:item> c. </tei:item>
-        <tei:item></tei:item>
-        <tei:item></tei:item>
-      </xsl:variable>
-
-      <xsl:variable name="corresp">
-        <xsl:value-of select="normalize-space (str:replace (@corresp, exsl:node-set ($search)/tei:item, exsl:node-set ($replace)/tei:item))"/>
-      </xsl:variable>
-
-      <xsl:if test="$corresp">
-        <xsl:text>&#x0a;</xsl:text>
-        <div class="corresp">
-          <xsl:text>[</xsl:text>
-          <xsl:value-of select="$corresp"/>
-          <xsl:text>]</xsl:text>
-        </div>
-        <xsl:text>&#x0a;&#x0a;</xsl:text>
-      </xsl:if>
-    </xsl:if>
+  <xsl:template name="footnotes-wrapper">
+    <div class="footnotes-wrapper">
+      <!-- generate footnote bodies for all immediately preceding ab-meta's and
+           for this ab -->
+      <xsl:apply-templates
+          mode="auto-note-wrapper"
+          select="set:trailing (preceding-sibling::tei:ab, preceding-sibling::tei:ab[@type='text'][1])"/>
+      <xsl:apply-templates mode="auto-note-wrapper" />
+    </div>
+    <xsl:text>&#x0a;&#x0a;</xsl:text>
   </xsl:template>
 
   <xsl:template match="tei:body/tei:ab[@type='meta-text']">
     <xsl:call-template name="tCorresp" />
 
-    <div class="abMETA" lang="la" data-shortcuts="1">
+    <div class="ab ab-meta-text" lang="la" data-shortcuts="1">
       <xsl:if test="@xml:id">
         <xsl:attribute name="id"><xsl:value-of select="@xml:id"/></xsl:attribute>
       </xsl:if>
       <xsl:choose>
-        <xsl:when test="@rend='coloured'"><!-- Änderung von Wert red auf coloured wg. Anpassung an TRL # DS 22.02.16 -->
-          <xsl:attribute name="class">abMETA rend-red</xsl:attribute>
+        <!-- Änderung von Wert red auf coloured wg. Anpassung an TRL # DS 22.02.16 -->
+        <xsl:when test="@rend='coloured'">
+          <xsl:attribute name="class">"ab ab-meta-text rend-red</xsl:attribute>
         </xsl:when>
         <xsl:when test="@rend='default'">
-          <xsl:attribute name="class">abMETA rend-default</xsl:attribute>
+          <xsl:attribute name="class">"ab ab-meta-text rend-default</xsl:attribute>
         </xsl:when>
       </xsl:choose>
       <xsl:apply-templates/>
+      <span> &#xa0;</span> <!-- Do not let footnotes escape the ab. -->
     </div>
+    <xsl:text>&#x0a;&#x0a;</xsl:text>
+
+    <!-- sometimes the text ends with an ab meta. -->
+    <xsl:if test="not (following-sibling::tei:ab)">
+      <xsl:call-template name="footnotes-wrapper"/>
+    </xsl:if>
 
   </xsl:template>
 
   <xsl:template match="tei:body/tei:ab[@type='text']">
     <xsl:call-template name="tCorresp" />
 
-    <div class="abTEXT" lang="la" data-shortcuts="1">
+    <div class="ab ab-text" lang="la" data-shortcuts="1">
       <xsl:if test="@xml:id">
         <xsl:attribute name="id"><xsl:value-of select="@xml:id"/></xsl:attribute>
       </xsl:if>
       <xsl:apply-templates/>
+      <span> &#xa0;</span> <!-- Do not let footnotes escape the ab. -->
     </div>
-
     <xsl:text>&#x0a;&#x0a;</xsl:text>
-    <div class="footnotes-wrapper">
-      <!-- generate footnote bodies for all immediately preceding ab-meta's and
-           for this ab -->
-      <xsl:apply-templates mode="auto-note-wrapper"
-                           select="set:trailing (preceding-sibling::tei:ab, preceding-sibling::tei:ab[@type='text'][1])"/>
-      <xsl:apply-templates mode="auto-note-wrapper" />
-      <xsl:text>&#x0a;</xsl:text>
-    </div>
+
+    <xsl:call-template name="footnotes-wrapper"/>
 
     <xsl:call-template name="page-break" />
   </xsl:template>
@@ -241,10 +262,9 @@
   </xsl:template>
 
   <xsl:template match="tei:lb">
-    <!-- <lb> ignorieren ?!? -->
-  </xsl:template>
-
-  <xsl:template match="tei:lb[parent::*[@place='margin']]">
+    <xsl:if test="not (@break = 'no')">
+      <xsl:text> </xsl:text>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="tei:cb">
@@ -270,7 +290,11 @@
     </xsl:variable>
 
     <span class="folio" data-shortcuts="0">
-      <xsl:text>[cap_image_server id="</xsl:text><xsl:value-of select="/tei:TEI/@xml:id" /><xsl:text>" n="</xsl:text><xsl:value-of select="@n" /><xsl:text>"]</xsl:text>
+      <xsl:text>[cap_image_server id="</xsl:text>
+      <xsl:value-of select="/tei:TEI/@xml:id" />
+      <xsl:text>" n="</xsl:text>
+      <xsl:value-of select="@n" />
+      <xsl:text>"]</xsl:text>
       <xsl:value-of select="concat ('[', $cb_prefix, '&#xa0;', @n, ']')"/>
       <xsl:text>[/cap_image_server]</xsl:text>
     </span>
@@ -282,17 +306,21 @@
 
   <xsl:template match="tei:milestone">
     <!-- wird vom Sidebar-Menu benützt -->
-    <span id="{@n}" class="milestone"><span style="display: none"><xsl:value-of select="str:replace (substring-before (concat (@n, '_'), '_'), '.', ' ')"/></span></span>
+    <span id="{@n}" class="milestone">
+      <span style="display: none">
+        <xsl:value-of select="str:replace (substring-before (concat (@n, '_'), '_'), '.', ' ')"/>
+      </span>
+    </span>
   </xsl:template>
 
 
-  <!-- Typ-Unterscheidung hinzufügen!!! -->
   <!--
-      Die einzelnen Typen sollen optisch unterscheidbar sein, ohne daß man Farbe verwenden muß.
-      Alle größer und fett; zusätzlich zur Unterscheidung verschiedene Größen/Schrifttypen?
+      Typ-Unterscheidung hinzufügen!!!
+
+      Die einzelnen Typen sollen optisch unterscheidbar sein, ohne daß man Farbe
+      verwenden muß.  Alle größer und fett; zusätzlich zur Unterscheidung
+      verschiedene Größen/Schrifttypen?
   -->
-  <!--<xsl:template match="tei:seg[substring-before(@type,'-')='initial']">-->
-  <!--<xsl:template match="tei:seg[string-length(translate(@type,'initial',''))!=string-length(@type)]">-->
   <xsl:template match="tei:seg[@type='initial']">
     <span class="initial">
       <xsl:choose>
@@ -386,7 +414,7 @@
   <xsl:template match="tei:ref[@type='internal' and @subtype='mss']">
     <a target="_blank" title="Interner Link" href="{$mss}{@target}">
       <xsl:apply-templates/>
-      <xsl:if test="normalize-space (.)">
+      <xsl:if test="not (normalize-space (.))">
         <xsl:text>→</xsl:text>
       </xsl:if>
     </a>
@@ -486,16 +514,19 @@
   <xsl:template match="tei:figure">
     <!--
         Neues Element: figure; wie verarbeiten? (bm 21.01.16) –
-        Markiert eine Stelle, an der eine Miniatur/Illustration in der Handschrift steht.
-        Kommt nur selten vor; kann leer sein (evtl. mit graphic url) oder mit Text, der als Fußnote ausgegeben werden soll.
-        Eigentlich brauchen wir nur ein Symbol für “Bild”, das an der entsprechenden Stelle erscheint. (bm 26.01.16)
-        (NG, 27.01.16: Gibt es hierbei auch die “Hand-X-Problematik”?)
+
+        Markiert eine Stelle, an der eine Miniatur/Illustration in der
+        Handschrift steht.  Kommt nur selten vor; kann leer sein (evtl. mit
+        graphic url) oder mit Text, der als Fußnote ausgegeben werden soll.
+        Eigentlich brauchen wir nur ein Symbol für “Bild”, das an der
+        entsprechenden Stelle erscheint. (bm 26.01.16) (NG, 27.01.16: Gibt es
+        hierbei auch die “Hand-X-Problematik”?)
     -->
 
     <xsl:variable name="title">
       <xsl:choose>
         <xsl:when test="tei:figDesc">
-          <xsl:value-of select="tei:figDesc"/>
+          <xsl:apply-templates select="tei:figDesc"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:text>[:de]Platzhalter für Bild[:en]Picture[:]</xsl:text>
