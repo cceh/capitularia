@@ -204,7 +204,7 @@ $xpath1 = new \DOMXpath ($doc);
 
 $xsl_id = 'undefined';
 foreach (array ('header', 'body', 'footer') as $part) {
-    $divs = $xpath->query ("//div[@class='transkription-$part']");
+    $divs = $xpath->query ("//div[contains (concat (' ', @class, ' '), ' transkription-$part ')]");
     if (($divs !== false) && ($divs->length > 0)) {
         $xsl_id = $part;
         break;
@@ -437,7 +437,7 @@ foreach ($xpath->query ('//script') as $script) {
 
 $id_counter = 1000;
 foreach ($xpath->query ('//@id') as $id) {
-    if (preg_match ('/^[-_.:\pL\pN]*$/iu', $id->value)) {
+    if (preg_match ('/^[-_.:\pL\pN]+$/iu', $id->value)) {
         continue;
     }
     $id->value = "id-cap-gen-{$xsl_id}-{$id_counter}";

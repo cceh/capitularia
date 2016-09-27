@@ -84,6 +84,10 @@ b, strong, .bold {
     .bold;
 }
 
+.small {
+    font-size: small;
+}
+
 .red {
     color: @color-red;
 }
@@ -98,6 +102,10 @@ sub {
     vertical-align: sub;
     font-size: 70%;
     line-height: 0;
+}
+
+.justify {
+    text-align: justify;
 }
 
 .screen-only {
@@ -318,12 +326,6 @@ div.content-col {
         }
     }
 
-    nav.bib-index-tabs {
-	text-align: center;
-	span.bib-index-tab + span.bib-index-tab::before {
-	    content: '\2009·\2009';
-	}
-    }
     .bib-short-title {
 	.semibold;
     }
@@ -348,6 +350,11 @@ div.page-break {
         }
     }
     page-break-before: always;
+}
+
+div.page-break + div.page-break {
+    /* Quick fix for duplicated page-breaks. */
+    display: none;
 }
 
 div.back-to-top {
@@ -495,7 +502,7 @@ input[type="text"] {
 
 .reset-form:hover,
 .reset-form:focus,
-.reset-form:active{
+.reset-form:active {
     color:@color-black;
     text-decoration:none;
 }
@@ -597,47 +604,110 @@ div.content-col {
                 list-style: none;
             }
         }
+
+	div.mss-header-xsl {
+	    font-size: 90%;
+
+            img {
+		vertical-align:middle;
+            }
+            table.tei-physDesc-table {
+		table-layout: fixed;
+		width: 100%;
+		th {
+		    width: 25%;
+		}
+            }
+            div.tei-msDesc div.mss-of-the-month {
+		margin-top: 1em;
+            }
+            div.tei-listBibl li {
+		font-size: 90%;
+		list-style-type: square;
+            }
+	    span.tei-note-corr {
+		color: @color-red;
+	    }
+	}
+
+        div.mss-transcript-xsl {
+	    font-size: 90%;
+
+	    div.tei-body {
+		font-size: 120%;
+		line-height: 200%;
+	    }
+
+	    div.ab-meta-text, div.abMETA {
+		.semibold;
+	    }
+	    div.corresp {
+		font-size: 70%;
+		.semibold;
+		color: @color-gray;
+	    }
+	    span.mentioned {
+		.italic;
+	    }
+	    span.folio {
+		.regular;
+		.semibold;
+		color: @color-gray;
+	    }
+	    span.initial {
+		display: inline-block;
+		.semibold;
+		font-size: 110%;
+	    }
+	    span.initial-word-wrapper {
+		white-space: nowrap;
+	    }
+	    span.versalie {
+		font-size: 110%;
+		.semibold;
+	    }
+	    span.tei-gap {
+		white-space: nowrap;
+	    }
+	    /* CTE */
+	    span.tei-witness {
+		.italic;
+	    }
+	    span.tei-witness-siglum {
+		.semibold;
+		color: @color-highlight;
+	    }
+        }
+
+        div.mss-footer-xsl {
+	    font-size: 90%;
+
+	    div.tei-revisionDesc {
+		table {
+		    .col-1 {
+			width: 20%;
+		    }
+		}
+	    }
+	    ul.downloads li {
+		padding: 16px 12px;
+		background: @color-beige;
+		border-bottom: solid 1px @color-white;
+
+		&.download-icon::before {
+		    font-family: "dashicons";
+		    font-size: 24px;
+		    content: "\f316";
+		    float: left;
+		    padding-right: 1em;
+		}
+		&:last-child {
+		    border-bottom: none;
+		}
+	    }
+	}
     }
 }
-div.ab-meta-text, div.abMETA {
-    .semibold;
-}
-div.corresp {
-    font-size: 70%;
-    .semibold;
-    color: @color-gray;
-}
-span.mentioned {
-    .italic;
-}
-span.folio {
-    .regular;
-    .semibold;
-    color: @color-gray;
-}
-span.tei-witness {
-    .italic;
-}
-span.tei-witness-siglum {
-    .semibold;
-    color: @color-highlight;
-}
-span.initial {
-    display: inline-block;
-    .semibold;
-    font-size: 110%;
-}
-span.initial-word-wrapper {
-    white-space: nowrap;
-}
-span.versalie {
-    font-size: 110%;
-    .semibold;
-}
-span.tei-unclear {
-    color: @color-lightgray;
-}
-
 
 /*************/
 /* Footnotes */
@@ -802,116 +872,4 @@ div.slideout {
             z-index: 20;
         }
     }
-}
-
-
-.transkription-header h2 {
-    font-size:1.6em;
-    width:400px;
-    .bold;
-    padding-bottom:8px;
-}
-
-.transkription-block {
-    border-top:solid 1px @color-rule;
-    padding-top:12px;
-    padding-bottom:24px;
-}
-
-.transkription-block p {
-    .light;
-}
-
-.transkription-block p.info {
-    .light-italic;
-    color: @color-darkgray;
-    padding:8px 0px;
-}
-
-.transkription-head h4 {
-    padding:8px 0px;
-}
-
-.transkription-head {
-    padding-bottom:32px;
-}
-
-.transkription-block h5 {
-    padding:8px 0px;
-}
-
-.transkription-block .text {
-    .light;
-    line-height:1.35em;
-}
-
-.transkription-block .text:first-letter {
-    .bold;
-}
-
-.text + h4 {
-    padding:24px 0px;
-}
-
-.transkription-block h6 {
-    color: @color-lightgray;
-    padding:12px 0px;
-}
-
-.transkription-citations {
-    margin-top:128px;
-    border-top:solid 1px @color-rule;
-    padding-top:16px;
-}
-
-.citation li {
-    padding:4px 8px 4px 24px;
-    position:relative;
-    font-size:0.8em;
-    .regular;
-}
-
-.citation li span.lt {
-    position:absolute;
-    left:0px;
-    top:0.25em;;
-}
-
-.citation li:after {
-    content:'';
-    display:inline-block;
-    position:relative;
-    width:0.6em;
-    height:0.6em;
-    margin-left:4px;
-}
-
-.zitatbox {
-    border:solid 16px  @color-beige;
-    width:100%;
-    resize:none;
-    height:8em;
-    margin-bottom:70px;
-    .regular;
-    font-size:1.1em;
-}
-
-.downloads li {
-    padding: 16px 12px;
-    background: @color-beige;
-    border-bottom: solid 1px @color-white;
-
-    li {
-        &:last-child {
-            border-bottom:none;
-        }
-    }
-}
-
-.download-icon::before {
-    font-family: "dashicons";
-    font-size: 24px;
-    content: "\f316";
-    float: left;
-    padding-right: 1em;
 }

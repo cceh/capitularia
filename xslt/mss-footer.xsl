@@ -1,15 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet
     version="1.0"
-    xmlns:date="http://exslt.org/dates-and-times"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    extension-element-prefixes="date"
     exclude-result-prefixes="tei xhtml xsl">
 
   <xsl:include href="common.xsl"/>                    <!-- common templates and functions -->
   <xsl:include href="base_variables.xsl"/>
+
+  <xsl:template match="/tei:TEI">
+
+    <div class="tei-TEI mss-footer-xsl transkription-footer">
+      <h4 id="info">[:de]Hinweise[:en]Notes[:]</h4>
+
+      <xsl:call-template name="legend"/>
+
+      <div id="citation">
+        <h5>[:de]Empfohlene Zitierweise[:en]How to cite[:]</h5>
+        <p>
+          <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']"/>
+          <xsl:text>, [:de]in: Capitularia. Edition der fränkischen Herrschererlasse, bearb. von
+          Karl Ubl und Mitarb., Köln 2014 ff.[:en]in: Capitularia. Edition of the Frankish
+          Capitularies, ed. by Karl Ubl and collaborators, Cologne 2014 ff.[:] </xsl:text>
+          <xsl:value-of select="concat ('URL: ', $mss, @xml:id)"/>
+          <xsl:text> [:de](abgerufen am: [aktuelles Datum])[:en](last accessed on: [date])[:]</xsl:text>
+        </p>
+      </div>
+
+      <xsl:call-template name="hr"/>
+
+      <div id="download">
+        <h5>[:de]Download[:en]Downloads[:]</h5>
+        <ul class="downloads">
+          <li class="download-icon">
+            <xsl:variable name="url"
+                          select="concat ($mss_downloads, @xml:id, '.xml')"/>
+            <a class="screen-only ssdone" href="{$url}"
+               title='[:de]Rechtsklick zum "Speichern unter"[:en]right button click to save file[:]'>
+              <xsl:text>[:de]Datei in XML[:en]File in XML[:]</xsl:text>
+            </a>
+            <div class="print-only">
+              <xsl:text>[:de]Datei in XML[:en]File in XML[:] </xsl:text>
+              <xsl:value-of select="$url"/>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <xsl:apply-templates select="tei:teiHeader/tei:revisionDesc" />
+
+    </div>
+  </xsl:template>
+
+  <xsl:template match="tei:revisionDesc">
+    <!-- "Generiert aus Mordek" soll nicht angezeigt werden, deswegen nur change ab position 1.  DS
+         - 9.11. -->
+    <xsl:if test="normalize-space (tei:change[position () > 1])">
+      <xsl:call-template name="hr"/>
+
+      <div class="tei-revisionDesc">
+        <h5>[:de]Versionsgeschichte[:en]Revision history[:]</h5>
+        <table>
+          <thead>
+            <tr>
+              <th class="col-1">[:de]Datum[:en]Date[:]</th>
+              <th>[:de]Änderung[:en]Change[:]</th>
+            </tr>
+          </thead>
+          <tbody>
+            <xsl:apply-templates select="tei:change[position () > 1]" />
+          </tbody>
+        </table>
+      </div>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="tei:revisionDesc/tei:change">
+    <tr>
+      <td class="col1">
+        <xsl:value-of select="@when"/>
+      </td>
+      <td>
+        <xsl:apply-templates/>
+      </td>
+    </tr>
+  </xsl:template>
+
 
   <xsl:template name="legend">
     <div id="legend">
@@ -97,78 +174,6 @@
       </table>
       <!-- Must be here because the legend is moved into the sidebar. -->
       <xsl:call-template name="hr"/>
-    </div>
-  </xsl:template>
-
-  <xsl:template match="/tei:TEI">
-
-    <div class="transkription-footer">
-      <h4 id="info">[:de]Hinweise[:en]Notes[:]</h4>
-
-      <xsl:call-template name="legend"/>
-
-      <div id="citation">
-        <h5>[:de]Empfohlene Zitierweise[:en]How to cite[:]</h5>
-        <p>
-          <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']"/>
-          <xsl:text>, [:de]in: Capitularia. Edition der fränkischen Herrschererlasse, bearb. von
-          Karl Ubl und Mitarb., Köln 2014 ff.[:en]in: Capitularia. Edition of the Frankish
-          Capitularies, ed. by Karl Ubl and collaborators, Cologne 2014 ff.[:] </xsl:text>
-          <xsl:value-of select="concat ('URL: ', $mss, @xml:id)"/>
-          <xsl:text> [:de](abgerufen am: [aktuelles Datum])[:en](last accessed on: [date])[:]</xsl:text>
-        </p>
-      </div>
-
-      <xsl:call-template name="hr"/>
-
-      <div id="download">
-        <h5>Download</h5>
-        <ul class="downloads">
-          <li class="download-icon">
-            <xsl:variable name="url"
-                          select="concat ($mss_downloads, @xml:id, '.xml')"/>
-            <a class="screen-only ssdone" href="{$url}"
-               title='[:de]Rechtsklick zum "Speichern unter"[:en]right button click to save file[:]'>
-              <xsl:text>[:de]Datei in XML[:en]File in XML[:]</xsl:text>
-            </a>
-            <div class="print-only">
-              <xsl:text>[:de]Datei in XML[:en]File in XML[:] </xsl:text>
-              <xsl:value-of select="$url"/>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <xsl:call-template name="hr"/>
-
-      <!-- "Generiert aus Mordek" soll nicht angezeigt werden, deswegen nur change ab position 1 -
-           DS - 9.11. -->
-      <xsl:if test="normalize-space (tei:teiHeader/tei:revisionDesc/tei:change[position () > 1])">
-        <div id="revisionDesc">
-          <h5>[:de]Versionsgeschichte[:en]Revision history[:]</h5>
-          <table>
-            <thead>
-              <tr>
-                <th style="width: 20%;">[:de]Datum[:en]Date[:]</th>
-                <th>[:de]Änderung[:en]Change[:]</th>
-              </tr>
-            </thead>
-            <tbody>
-              <xsl:for-each select="tei:teiHeader/tei:revisionDesc/tei:change[position () > 1]">
-                <tr>
-                  <td>
-                    <xsl:value-of select="@when"/>
-                  </td>
-                  <td>
-                    <xsl:apply-templates/>
-                  </td>
-                </tr>
-              </xsl:for-each>
-            </tbody>
-          </table>
-        </div>
-      </xsl:if>
-
     </div>
   </xsl:template>
 

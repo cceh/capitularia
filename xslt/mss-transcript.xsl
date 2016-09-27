@@ -31,48 +31,36 @@
 
   <xsl:output method="html" encoding="UTF-8" indent="no"/>
 
-  <xsl:variable name="css">
-    <style type="text/css">
-      div.tei-root {
-        font-size: 90%;
-      }
-
-      div.tei-body {
-        font-size: 120%;
-        line-height: 200%;
-      }
-    </style>
-  </xsl:variable>
-
-  <xsl:template match="/">
-    <div class="tei-root">
-      <xsl:apply-templates select="/tei:TEI/tei:text"/>
+  <xsl:template match="/tei:TEI">
+    <!-- transkription-body is a flag for the post-processor -->
+    <div class="tei-TEI mss-transcript-xsl transkription-body">
+      <xsl:apply-templates select="tei:text"/>
     </div>
   </xsl:template>
 
   <xsl:template match="tei:text">
-    <xsl:copy-of select="$css"/>
+    <div class="tei-text">
+      <h4 id="transcription">[:de]Transkription[:en]Transcription[:]</h4>
 
-    <h4 id="transcription">[:de]Transkription[:en]Transcription[:]</h4>
+      <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:encodingDesc"/>
+      <xsl:apply-templates select="tei:front"/>
+      <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc"/>
 
-    <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:encodingDesc"/>
-    <xsl:apply-templates select="tei:front"/>
-    <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc"/>
+      <!-- This is for automatically generating the sidebar menu,
+           not for users' eyes. -->
+      <div id="inhaltsverzeichnis" style="display: none">
+        <h5 id="contents-rubrics">
+          [:de]Inhalt (Rubriken)[:en]Contents (Rubrics)[:]
+        </h5>
+        <xsl:apply-templates select="id ('divContent')" mode="toc"/>
+        <h5 id="contents-bknos">
+          [:de]Inhalt (BK-Nummern)[:en]Contents (BK-Nos.)[:]
+        </h5>
+      </div>
 
-    <!-- This is for automatically generating the sidebar menu,
-         not for users' eyes. -->
-    <div id="inhaltsverzeichnis" style="display: none">
-      <h5 id="contents-rubrics">
-        [:de]Inhalt (Rubriken)[:en]Contents (Rubrics)[:]
-      </h5>
-      <xsl:apply-templates select="id ('divContent')" mode="toc"/>
-      <h5 id="contents-bknos">
-        [:de]Inhalt (BK-Nummern)[:en]Contents (BK-Nos.)[:]
-      </h5>
+      <xsl:call-template name="page-break" />
+      <xsl:apply-templates select="tei:body"/>
     </div>
-
-    <xsl:call-template name="page-break" />
-    <xsl:apply-templates select="tei:body"/>
   </xsl:template>
 
   <xsl:template match="tei:encodingDesc">
@@ -92,8 +80,7 @@
   </xsl:template>
 
   <xsl:template match="tei:body">
-    <!-- transkription-body is a flag for the post-processor -->
-    <div class="tei-body transkription-body">
+    <div class="tei-body">
       <xsl:apply-templates/>
     </div>
   </xsl:template>
@@ -156,28 +143,21 @@
     <span class="regular tei-mentioned"><xsl:apply-templates /></span>
   </xsl:template>
 
-  <xsl:template match="//tei:body//tei:mentioned">
+  <xsl:template match="tei:body//tei:mentioned">
     <span class="italic tei-mentioned"><xsl:apply-templates /></span>
   </xsl:template>
 
   <xsl:template name="tCorresp">
-    <!-- "Wandelt "BK.123_4" nach "BK 123 c. 4" und entfernt
-         "inscriptio" und "incipit" falls vorhanden." -->
-
-    <!-- FIXME: It is not clear what to do with incipt and inscriptio.
-         Currently we delete them.-->
+    <!-- Transform 'BK.123_4' to 'BK 123 c. 4' and remove entries containing
+         '_inscriptio' and '_incipit'. -->
     <xsl:variable name="search">
       <tei:item>.</tei:item>
       <tei:item>_</tei:item>
-      <tei:item>_inscriptio</tei:item>
-      <tei:item>_incipit</tei:item>
     </xsl:variable>
 
     <xsl:variable name="replace">
       <tei:item> </tei:item>
       <tei:item> c. </tei:item>
-      <tei:item></tei:item>
-      <tei:item></tei:item>
     </xsl:variable>
 
     <xsl:variable name="corresp">
@@ -236,6 +216,7 @@
     <!-- sometimes the text ends with an ab meta. -->
     <xsl:if test="not (following-sibling::tei:ab)">
       <xsl:call-template name="footnotes-wrapper"/>
+      <xsl:call-template name="page-break" />
     </xsl:if>
 
   </xsl:template>
@@ -306,13 +287,12 @@
 
   <xsl:template match="tei:milestone">
     <!-- wird vom Sidebar-Menu benützt -->
-    <span id="{@n}" class="milestone">
+    <span id="{cap:make-id (@n)}" class="milestone">
       <span style="display: none">
         <xsl:value-of select="str:replace (substring-before (concat (@n, '_'), '_'), '.', ' ')"/>
       </span>
     </span>
   </xsl:template>
-
 
   <!--
       Typ-Unterscheidung hinzufügen!!!
@@ -419,40 +399,6 @@
       </xsl:if>
     </a>
   </xsl:template>
-
-  <!--
-  <xsl:template match="tei:abbr">
-    <xsl:apply-templates/>
-  </xsl:template>
-
-  <xsl:template match="tei:expan">
-    <xsl:apply-templates/>
-  </xsl:template>
-
-  <xsl:template match="tei:date">
-    <xsl:apply-templates/>
-  </xsl:template>
-
-  <xsl:template match="tei:locus">
-    <xsl:apply-templates/>
-  </xsl:template>
-
-  <xsl:template match="tei:rs">
-    <xsl:apply-templates/>
-  </xsl:template>
-
-  <xsl:template match="tei:rs[@type='person']">
-    <xsl:apply-templates/>
-  </xsl:template>
-
-  <xsl:template match="tei:rs[@type='place']">
-    <xsl:apply-templates/>
-  </xsl:template>
-
-  <xsl:template match="tei:fw[@type='catch']">
-    <xsl:apply-templates/>
-  </xsl:template>
-  -->
 
   <xsl:template match="tei:metamark">
     <!-- metamark vorerst ignorieren -->

@@ -89,7 +89,7 @@ class Dashboard_Page
     {
         global $wpdb;
 
-        $sql = 'SELECT DISTINCT meta_value FROM wp_postmeta ' .
+        $sql = 'SELECT DISTINCT REGEXP_REPLACE (meta_value, \'_.*$\', \'\') as meta_value FROM wp_postmeta ' .
                'WHERE meta_key = \'milestone-capitulare\' ORDER BY meta_value;';
 
         return $this->sort_results ($wpdb->get_results ($sql));

@@ -12,6 +12,40 @@
     extension-element-prefixes="cap exsl func set str"
     exclude-result-prefixes="tei xhtml xs xsl">
 
+  <func:function name="cap:make-id">
+    <!--
+        Replace characters that are invalid in a HTML id.
+
+        Also remove characters that need escaping in jQuery selectors.
+    -->
+    <xsl:param name="id"/>
+    <func:result select="translate ($id, ' .:,;!?+', '________')"/>
+  </func:function>
+
+  <func:function name="cap:lookup-element">
+    <!--
+        Lookup an element in a `table´.
+
+        The `table´ is a variable that contains a sequence of <item> elements.  Each <item> has a
+        @key attribute and contains the element to return.
+    -->
+    <xsl:param name="table"/>
+    <xsl:param name="key"/>
+    <func:result select="exsl:node-set ($table)/item[@key=$key]"/>
+  </func:function>
+
+  <func:function name="cap:lookup-value">
+    <!--
+        Lookup a value in a `table´.
+
+        The `table´ is a variable that contains a sequence of <item> elements.  Each <item> has a
+        @key attribute and a @value attribute, which is returned.
+    -->
+    <xsl:param name="table"/>
+    <xsl:param name="key"/>
+    <func:result select="exsl:node-set ($table)/item[@key=$key]/@value"/>
+  </func:function>
+
   <xsl:template name="back-to-top">
     <xsl:text>&#x0a;&#x0a;</xsl:text>
     <div class="back-to-top">

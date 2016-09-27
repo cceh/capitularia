@@ -112,6 +112,9 @@ strong,
   font-weight: normal;
   font-style: normal;
 }
+.small {
+  font-size: small;
+}
 .red {
   color: #b92900;
 }
@@ -124,6 +127,9 @@ sub {
   vertical-align: sub;
   font-size: 70%;
   line-height: 0;
+}
+.justify {
+  text-align: justify;
 }
 @media print {
   .screen-only {
@@ -344,12 +350,6 @@ div.content-col table.handschriften a {
   font-weight: normal;
   font-style: normal;
 }
-div.content-col nav.bib-index-tabs {
-  text-align: center;
-}
-div.content-col nav.bib-index-tabs span.bib-index-tab + span.bib-index-tab::before {
-  content: '\2009·\2009';
-}
 div.content-col .bib-short-title {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
@@ -375,6 +375,10 @@ div.page-break {
   div.page-break .compact {
     margin: 1em 0;
   }
+}
+div.page-break + div.page-break {
+  /* Quick fix for duplicated page-breaks. */
+  display: none;
 }
 div.back-to-top {
   margin: 3em 0;
@@ -605,76 +609,128 @@ div.content-col div.xsl-output ul.downloads li {
   margin-left: 0;
   list-style: none;
 }
-div.ab-meta-text,
-div.abMETA {
+div.content-col div.xsl-output div.mss-header-xsl {
+  font-size: 90%;
+}
+div.content-col div.xsl-output div.mss-header-xsl img {
+  vertical-align: middle;
+}
+div.content-col div.xsl-output div.mss-header-xsl table.tei-physDesc-table {
+  table-layout: fixed;
+  width: 100%;
+}
+div.content-col div.xsl-output div.mss-header-xsl table.tei-physDesc-table th {
+  width: 25%;
+}
+div.content-col div.xsl-output div.mss-header-xsl div.tei-msDesc div.mss-of-the-month {
+  margin-top: 1em;
+}
+div.content-col div.xsl-output div.mss-header-xsl div.tei-listBibl li {
+  font-size: 90%;
+  list-style-type: square;
+}
+div.content-col div.xsl-output div.mss-header-xsl span.tei-note-corr {
+  color: #b92900;
+}
+div.content-col div.xsl-output div.mss-transcript-xsl {
+  font-size: 90%;
+  /* CTE */
+}
+div.content-col div.xsl-output div.mss-transcript-xsl div.tei-body {
+  font-size: 120%;
+  line-height: 200%;
+}
+div.content-col div.xsl-output div.mss-transcript-xsl div.ab-meta-text,
+div.content-col div.xsl-output div.mss-transcript-xsl div.abMETA {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-div.corresp {
+div.content-col div.xsl-output div.mss-transcript-xsl div.corresp {
   font-size: 70%;
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
   color: #4e4c4f;
 }
-span.mentioned {
+div.content-col div.xsl-output div.mss-transcript-xsl span.mentioned {
   font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-span.mentioned a[href],
-span.mentioned a[href]:active,
-span.mentioned a[href]:focus,
-span.mentioned a[href]:hover {
+div.content-col div.xsl-output div.mss-transcript-xsl span.mentioned a[href],
+div.content-col div.xsl-output div.mss-transcript-xsl span.mentioned a[href]:active,
+div.content-col div.xsl-output div.mss-transcript-xsl span.mentioned a[href]:focus,
+div.content-col div.xsl-output div.mss-transcript-xsl span.mentioned a[href]:hover {
   font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-span.folio {
+div.content-col div.xsl-output div.mss-transcript-xsl span.folio {
   font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
   color: #4e4c4f;
 }
-span.tei-witness {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-span.tei-witness a[href],
-span.tei-witness a[href]:active,
-span.tei-witness a[href]:focus,
-span.tei-witness a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-span.tei-witness-siglum {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-  color: #b92900;
-}
-span.initial {
+div.content-col div.xsl-output div.mss-transcript-xsl span.initial {
   display: inline-block;
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
   font-size: 110%;
 }
-span.initial-word-wrapper {
+div.content-col div.xsl-output div.mss-transcript-xsl span.initial-word-wrapper {
   white-space: nowrap;
 }
-span.versalie {
+div.content-col div.xsl-output div.mss-transcript-xsl span.versalie {
   font-size: 110%;
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-span.tei-unclear {
-  color: #978f7d;
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-gap {
+  white-space: nowrap;
+}
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness {
+  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href],
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:active,
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:focus,
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:hover {
+  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness-siglum {
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+  color: #b92900;
+}
+div.content-col div.xsl-output div.mss-footer-xsl {
+  font-size: 90%;
+}
+div.content-col div.xsl-output div.mss-footer-xsl div.tei-revisionDesc table .col-1 {
+  width: 20%;
+}
+div.content-col div.xsl-output div.mss-footer-xsl ul.downloads li {
+  padding: 16px 12px;
+  background: #e9e1c1;
+  border-bottom: solid 1px #ffffff;
+}
+div.content-col div.xsl-output div.mss-footer-xsl ul.downloads li.download-icon::before {
+  font-family: "dashicons";
+  font-size: 24px;
+  content: "\f316";
+  float: left;
+  padding-right: 1em;
+}
+div.content-col div.xsl-output div.mss-footer-xsl ul.downloads li:last-child {
+  border-bottom: none;
 }
 /*************/
 /* Footnotes */
@@ -830,108 +886,4 @@ div.slideout .slideout-tab h5 {
   border-top-right-radius: 1em;
   box-shadow: -5px 5px 5px #978f7d;
   z-index: 20;
-}
-.transkription-header h2 {
-  font-size: 1.6em;
-  width: 400px;
-  font-family: 'OpenSans-Bold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-  padding-bottom: 8px;
-}
-.transkription-block {
-  border-top: solid 1px #1a171b;
-  padding-top: 12px;
-  padding-bottom: 24px;
-}
-.transkription-block p {
-  font-family: 'OpenSans-Light', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-.transkription-block p.info {
-  font-family: 'OpenSans-LightItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-  color: #1a171b;
-  padding: 8px 0px;
-}
-.transkription-head h4 {
-  padding: 8px 0px;
-}
-.transkription-head {
-  padding-bottom: 32px;
-}
-.transkription-block h5 {
-  padding: 8px 0px;
-}
-.transkription-block .text {
-  font-family: 'OpenSans-Light', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1.35em;
-}
-.transkription-block .text:first-letter {
-  font-family: 'OpenSans-Bold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-.text + h4 {
-  padding: 24px 0px;
-}
-.transkription-block h6 {
-  color: #978f7d;
-  padding: 12px 0px;
-}
-.transkription-citations {
-  margin-top: 128px;
-  border-top: solid 1px #1a171b;
-  padding-top: 16px;
-}
-.citation li {
-  padding: 4px 8px 4px 24px;
-  position: relative;
-  font-size: 0.8em;
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-.citation li span.lt {
-  position: absolute;
-  left: 0px;
-  top: 0.25em;
-}
-.citation li:after {
-  content: '';
-  display: inline-block;
-  position: relative;
-  width: 0.6em;
-  height: 0.6em;
-  margin-left: 4px;
-}
-.zitatbox {
-  border: solid 16px #e9e1c1;
-  width: 100%;
-  resize: none;
-  height: 8em;
-  margin-bottom: 70px;
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 1.1em;
-}
-.downloads li {
-  padding: 16px 12px;
-  background: #e9e1c1;
-  border-bottom: solid 1px #ffffff;
-}
-.downloads li li:last-child {
-  border-bottom: none;
-}
-.download-icon::before {
-  font-family: "dashicons";
-  font-size: 24px;
-  content: "\f316";
-  float: left;
-  padding-right: 1em;
 }

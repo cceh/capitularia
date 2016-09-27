@@ -381,7 +381,7 @@ footnotes will be joined to the preceding word.
   <xsl:template match="tei:gap">
     <span class="tei-gap" data-shortcuts="0">
       <xsl:text>[</xsl:text>
-      <xsl:value-of select="str:padding (@quantity, '.')"/>
+      <xsl:value-of select="str:padding (number (@quantity) * 2 + 1, '&#x2009;.')"/>
       <xsl:text>]</xsl:text>
     </span>
   </xsl:template>

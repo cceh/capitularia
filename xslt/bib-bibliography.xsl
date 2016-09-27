@@ -224,9 +224,6 @@
         <xsl:if test="normalize-space ($bibls_in_section)">
           <div id="bib-section-{id}" class="bib-section">
             <h4 id="{id}"><xsl:copy-of select="caption/node()"/></h4>
-            <nav class="bib-index-tabs">
-              <xsl:apply-templates select="exsl:node-set ($bibls_in_section)/*" mode="index-tabs"/>
-            </nav>
             <table>
               <tbody>
                 <!-- the /* avoids matching the root node of the node-set -->
@@ -347,13 +344,15 @@
   </xsl:template>
 
   <xsl:template match="tei:persName">
+    <xsl:variable name="forenames">
+      <xsl:copy-of select="cap:join (tei:forename, ' ', ' ')"/>
+    </xsl:variable>
+
     <xsl:choose>
       <xsl:when test="ancestor::tei:monogr and ancestor::tei:biblStruct[@type = 'bookSection']">
-        <!-- "[forename] [surname]" -->
-        <xsl:if test="tei:forename">
-          <span class="tei-forename">
-            <xsl:apply-templates select="tei:forename"/>
-          </span>
+        <!-- Johann Wolfgang Goethe -->
+        <xsl:if test="normalize-space (tei:forename)">
+          <xsl:copy-of select="$forenames"/>
           <xsl:text> </xsl:text>
         </xsl:if>
         <span class="tei-surname">
@@ -361,26 +360,21 @@
         </span>
       </xsl:when>
       <xsl:otherwise>
-        <!-- "[surname], [forename]" -->
+        <!-- Goethe, Johann Wolfgang -->
         <span class="tei-surname">
           <xsl:apply-templates select="tei:surname"/>
         </span>
-        <xsl:if test="tei:forename">
+        <xsl:if test="normalize-space (tei:forename)">
           <xsl:text>, </xsl:text>
-          <span class="tei-forename">
-            <xsl:apply-templates select="tei:forename"/>
-          </span>
+          <xsl:copy-of select="$forenames"/>
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="tei:forename[preceding-sibling::tei:forename]">
-    <!-- middlename / second forename -->
+  <xsl:template match="tei:forename">
     <span class="tei-forename">
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="substring (., 1, 1)"/>
-      <xsl:text>.</xsl:text>
+      <xsl:apply-templates/>
     </span>
   </xsl:template>
 
@@ -585,24 +579,6 @@
       </td>
     </tr>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
-  </xsl:template>
-
-  <xsl:template match="tei:biblStruct" mode="index-tabs">
-    <xsl:variable name="rel_text">
-      <xsl:value-of select="tei:note[@type='rel_text']"/>
-    </xsl:variable>
-    <xsl:variable name="first_letter">
-      <xsl:value-of select="cap:first-letter (.)" />
-    </xsl:variable>
-
-    <xsl:if test="$first_letter != cap:first-letter (preceding-sibling::tei:biblStruct[1])">
-      <!-- <span> so we can add a ::before that does not hover -->
-      <span class="bib-index-tab">
-        <a href="#{$first_letter}_{$rel_text}">
-          <xsl:value-of select="$first_letter" />
-        </a>
-      </span>
-    </xsl:if>
   </xsl:template>
 
   <!-- book -->
