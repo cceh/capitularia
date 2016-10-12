@@ -516,6 +516,21 @@ input[type="text"] {
 /***********/
 /* Content */
 /***********/
+span.mentioned {
+  /* Must be global because it gets moved outside of content-col by
+       jquery-ui. */
+  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+span.mentioned a[href],
+span.mentioned a[href]:active,
+span.mentioned a[href]:focus,
+span.mentioned a[href]:hover {
+  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
 div.content-col {
   text-align: justify;
   line-height: 1.4em;
@@ -528,9 +543,19 @@ div.content-col li {
   margin-left: 1.5em;
   list-style: disc outside;
 }
-div.content-col ul.bare li {
+div.content-col ul.bare > li {
   margin-left: 0;
   list-style-type: none;
+}
+div.content-col ul.dash > li {
+  position: relative;
+  margin-left: 2em;
+  list-style-type: none;
+}
+div.content-col ul.dash > li::before {
+  position: absolute;
+  margin-left: -1em;
+  content: "-";
 }
 div.content-col hr {
   margin: 3em 0;
@@ -653,19 +678,6 @@ div.content-col div.xsl-output div.mss-transcript-xsl div.corresp {
   font-style: normal;
   color: #4e4c4f;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl span.mentioned {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.content-col div.xsl-output div.mss-transcript-xsl span.mentioned a[href],
-div.content-col div.xsl-output div.mss-transcript-xsl span.mentioned a[href]:active,
-div.content-col div.xsl-output div.mss-transcript-xsl span.mentioned a[href]:focus,
-div.content-col div.xsl-output div.mss-transcript-xsl span.mentioned a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
 div.content-col div.xsl-output div.mss-transcript-xsl span.folio {
   font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
@@ -710,6 +722,11 @@ div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness-siglum {
   font-weight: normal;
   font-style: normal;
   color: #b92900;
+}
+div.content-col div.xsl-output div.mss-transcript-xsl li.compact,
+div.content-col div.xsl-output div.mss-transcript-xsl ul.compact {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 div.content-col div.xsl-output div.mss-footer-xsl {
   font-size: 90%;

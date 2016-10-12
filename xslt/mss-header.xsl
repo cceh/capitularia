@@ -524,6 +524,18 @@
     </p>
   </xsl:template>
 
+  <xsl:template match="tei:list">
+    <ul class="tei-list dash">
+      <xsl:apply-templates/>
+    </ul>
+  </xsl:template>
+
+  <xsl:template match="tei:item">
+    <li class="tei-item">
+      <xsl:apply-templates/>
+    </li>
+  </xsl:template>
+
   <xsl:template match="tei:anchor">
     <a id="{@xml:id}" />
   </xsl:template>

@@ -511,6 +511,12 @@ input[type="text"] {
 /* Content */
 /***********/
 
+span.mentioned {
+    /* Must be global because it gets moved outside of content-col by
+       jquery-ui. */
+    .italic;
+}
+
 div.content-col {
     text-align: justify;
     line-height: 1.4em;
@@ -524,9 +530,20 @@ div.content-col {
         list-style: disc outside;
     }
 
-    ul.bare li {
+    ul.bare > li {
         margin-left: 0;
         list-style-type: none;
+    }
+
+    ul.dash > li {
+	position: relative;
+        margin-left: 2em;
+        list-style-type: none;
+	&::before {
+	    position: absolute;
+	    margin-left: -1em;
+	    content: "-";
+	}
     }
 
     hr {
@@ -646,9 +663,6 @@ div.content-col {
 		.semibold;
 		color: @color-gray;
 	    }
-	    span.mentioned {
-		.italic;
-	    }
 	    span.folio {
 		.regular;
 		.semibold;
@@ -676,6 +690,12 @@ div.content-col {
 	    span.tei-witness-siglum {
 		.semibold;
 		color: @color-highlight;
+	    }
+	    li, ul {
+		&.compact {
+		    margin-top: 0;
+		    margin-bottom: 0;
+		}
 	    }
         }
 

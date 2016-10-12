@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <xsl:stylesheet
     version="1.0"
-    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
+    xmlns:exsl="http://exslt.org/common"
+    xmlns:func="http://exslt.org/functions"
+    xmlns:set="http://exslt.org/sets"
+    xmlns:str="http://exslt.org/strings"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    exclude-result-prefixes="tei xhtml xsl">
+    extension-element-prefixes="cap exsl func set str"
+    exclude-result-prefixes="tei xhtml xs xsl">
+  <!-- libexslt does not support the regexp extension ! -->
 
-  <xsl:include href="common.xsl"/>                    <!-- common templates and functions -->
+  <xsl:include href="common.xsl"/>
   <xsl:include href="base_variables.xsl"/>
+
+  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
   <xsl:template match="/tei:TEI">
 
@@ -20,7 +31,8 @@
         <h5>[:de]Empfohlene Zitierweise[:en]How to cite[:]</h5>
         <p>
           <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']"/>
-          <xsl:text>, [:de]in: Capitularia. Edition der fränkischen Herrschererlasse, bearb. von
+          <!-- The whitespace eater. See: footnotes-post-processor.php  -->
+          <xsl:text>&#xe000;, [:de]in: Capitularia. Edition der fränkischen Herrschererlasse, bearb. von
           Karl Ubl und Mitarb., Köln 2014 ff.[:en]in: Capitularia. Edition of the Frankish
           Capitularies, ed. by Karl Ubl and collaborators, Cologne 2014 ff.[:] </xsl:text>
           <xsl:value-of select="concat ('URL: ', $mss, @xml:id)"/>
@@ -52,6 +64,9 @@
 
     </div>
   </xsl:template>
+
+  <!-- Put only the main manuscript title in "How to cite" -->
+  <xsl:template match="tei:note[@type = 'filiation']"/>
 
   <xsl:template match="tei:revisionDesc">
     <!-- "Generiert aus Mordek" soll nicht angezeigt werden, deswegen nur change ab position 1.  DS
@@ -86,7 +101,6 @@
       </td>
     </tr>
   </xsl:template>
-
 
   <xsl:template name="legend">
     <div id="legend">

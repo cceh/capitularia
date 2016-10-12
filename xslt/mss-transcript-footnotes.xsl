@@ -78,8 +78,77 @@ footnotes will be joined to the preceding word.
 
 -->
 
+  <func:function name="cap:contains-whitespace">
+    <xsl:param name="s"/>
+    <func:result select="str:concat (str:tokenize ($s)) != $s"/>
+    <!-- func:result select="$s != transform ($s, '&#x9;&#xA;&#xD;&#x20;', '')"/ -->
+  </func:function>
 
   <func:function name="cap:word-before">
+    <!--
+        Get the word fragment before the element.
+
+        Return the word fragment before the $e element.
+    -->
+    <xsl:param name="e"/>
+
+    <xsl:variable name="before" select="$e/preceding::node ()[self::text () or self::tei:note][1]"/>
+
+    <func:result>
+      <xsl:choose>
+        <!-- we assume that a note is always at the end of a word, return nothing -->
+        <xsl:when test="$before/self::tei:note" />
+
+        <!-- ends with whitespace, return nothing -->
+        <xsl:when test="normalize-space (substring ($before, string-length ($before), 1)) = ''" />
+
+        <!-- contains a whitespace, return chars after whitespace -->
+        <xsl:when test="cap:contains-whitespace ($before)">
+          <xsl:value-of select="str:tokenize ($before)[last ()]"/>
+        </xsl:when>
+
+        <!-- no whitespace, return everything and recurse -->
+        <xsl:otherwise>
+          <xsl:value-of select="cap:word-before ($before)"/>
+          <xsl:value-of select="$before"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </func:result>
+  </func:function>
+
+  <func:function name="cap:word-after">
+    <!--
+        Get the word fragment after the element.
+
+        Return the word fragment after the $e element.
+    -->
+    <xsl:param name="e"/>
+
+    <xsl:variable name="after" select="$e/following::node ()[self::text () or self::tei:note][1]"/>
+
+    <func:result>
+      <xsl:choose>
+        <!-- we assume that a note is always at the end of a word, return nothing -->
+        <xsl:when test="$after/self::tei:note" />
+
+        <!-- starts with whitespace, return nothing -->
+        <xsl:when test="normalize-space (substring ($after, 1, 1)) = ''" />
+
+        <!-- contains a whitespace, return chars before whitespace -->
+        <xsl:when test="cap:contains-whitespace ($after)">
+          <xsl:value-of select="str:tokenize ($after)[1]"/>
+        </xsl:when>
+
+        <!-- no whitespace, return everything and recurse -->
+        <xsl:otherwise>
+          <xsl:value-of select="$after"/>
+          <xsl:value-of select="cap:word-after ($after)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </func:result>
+  </func:function>
+
+  <func:function name="cap:word-before-old">
     <!--
         Get the word fragment before the element.
 
@@ -100,7 +169,7 @@ footnotes will be joined to the preceding word.
     <func:result select="$before"/>
   </func:function>
 
-  <func:function name="cap:word-after">
+  <func:function name="cap:word-after-old">
     <!--
         Get the word fragment after the element.
 
@@ -130,7 +199,7 @@ footnotes will be joined to the preceding word.
   </func:function>
 
   <func:function name="cap:is-phrase">
-    <!-- Test if the node contains a single word or a phrase. -->
+    <!-- Test if the node contains a phrase (ie. more than one word). -->
     <xsl:param name="nodeset"/>
 
     <func:result select="contains (normalize-space (str:concat ($nodeset)), ' ')"/>
@@ -607,7 +676,8 @@ footnotes will be joined to the preceding word.
             <xsl:when test="string-length () = 1">
               <xsl:apply-templates/>
               <!-- the index, eg. a² -->
-              <xsl:if test="cap:count-char (concat ($before, $after), string ()) > 0">
+              <!-- <xsl:comment><xsl:value-of select="concat ($before, ., $after)"/></xsl:comment> -->
+              <xsl:if test="cap:count-char (concat ($before, $after), string ()) &gt; 0">
                 <sup class="mentioned-index">
                   <xsl:value-of select="1 + cap:count-char ($before, string ())"/>
                 </sup>

@@ -193,6 +193,7 @@ if ($doc->loadXML  ($in, LIBXML_NONET | LIBXML_NOENT) === false) {
     }
     $doc->encoding = 'UTF-8'; // insert proper encoding
 }
+$doc->substituteEntities = true;
 
 $xpath  = new \DOMXpath ($doc);
 $xpath1 = new \DOMXpath ($doc);
@@ -399,7 +400,22 @@ foreach ($initials as $initial) {
 //
 // Loop over text nodes to:
 //
-// - replace keyboard shortcuts
+// - implement the whitespace eater that eats all whitespace immediately before it
+//
+
+$textnodes = $xpath->query ('//text()');
+foreach ($textnodes as $textnode) {
+    $text = $textnode->nodeValue;
+    $text = preg_replace ("/\s*[\x{e000}]/u", '', $text);
+    if ($text != $textnode->nodeValue) {
+        $textnode->nodeValue = $text;
+    }
+}
+
+//
+// Loop over text nodes to:
+//
+// - replace editors' keyboard shortcuts
 // - change whitespace before punctuation into nbsp
 //
 
@@ -452,7 +468,6 @@ foreach ($xpath->query ('//@id') as $id) {
 // of <DOCTYPE>, <html>, <head>, <body> by starting at the topmost <div>.
 
 $divs = $xpath->query ('/html/body/div');
-$doc->substituteEntities = true;
 
 if (count ($divs)) {
     $out = $doc->saveHTML ($divs[0]);
@@ -463,6 +478,6 @@ if (count ($divs)) {
     $out = $doc->saveHTML ();
 }
 
-$out = html_entity_decode ($out, ENT_QUOTES, 'UTF-8');
+// $out = html_entity_decode ($out, ENT_QUOTES, 'UTF-8');
 
 file_put_contents ('php://stdout', $out);

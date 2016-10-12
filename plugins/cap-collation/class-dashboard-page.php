@@ -132,39 +132,37 @@ class Dashboard_Page
         $items = array ();
 
         $sql = $wpdb->prepare (
-            "SELECT DISTINCT post_id FROM wp_postmeta WHERE meta_key = 'corresp' AND meta_value = %s",
+            "SELECT DISTINCT a.meta_value AS xml_id, b.meta_value AS filename FROM wp_postmeta a JOIN wp_postmeta b ON a.post_id = b.post_id AND a.meta_key = 'tei-xml-id' AND b.meta_key = 'tei-filename' WHERE a.post_id in (SELECT post_id FROM wp_postmeta WHERE meta_key = 'corresp' AND meta_value = %s)",
             $corresp
         );
-        $ids = $wpdb->get_col ($sql);
-        foreach ($ids as $id) {
-            $sql = $wpdb->prepare (
-                "SELECT meta_value FROM wp_postmeta WHERE post_id = %d AND meta_key = 'tei-xml-id'",
-                $id
-            );
-            $xml_id = $wpdb->get_var ($sql);
-            $sql = $wpdb->prepare (
-                "SELECT meta_value FROM wp_postmeta WHERE post_id = %d AND meta_key = 'tei-filename'",
-                $id
-            );
-            $xml_filename = $wpdb->get_var ($sql);
 
-            if (!is_readable ($xml_filename)) {
-                // orphaned file
+        foreach ($wpdb->get_results ($sql) as $row) {
+            if (!is_readable ($row->filename)) {
+                // orphaned page without file
                 continue;
             }
 
             // FIXME: Q: Why is xml_id sometimes null? A: Because
             // the TEI file is bogus and doesn't have one.
-            if (empty ($xml_id)) {
-                $xml_id = basename ($xml_filename, '.xml');
+            if (empty ($row->xml_id)) {
+                $row->xml_id = basename ($row->filename, '.xml');
             }
 
-            $slug = get_page_uri ($id);
+            $post_id = $wpdb->get_var ($wpdb->prepare (
+                "SELECT post_id FROM wp_postmeta WHERE meta_key = 'tei-xml-id' AND meta_value = %s ORDER BY post_id",
+                $row->xml_id
+            ));
+            $slug = get_page_uri ($post_id);
 
-            $items[] = new Witness ($corresp, $xml_id, $xml_filename, $slug);
+            // FIXME: quick-n-dirty fix for test files
+            /*if (strpos ($slug, 'test/') !== false) {
+                continue;
+                }*/
+
+            $items[] = new Witness ($corresp, $row->xml_id, $row->filename, $slug);
         }
 
-        // sort according to $xml_id
+        // sort Witnesses according to xml_id
         usort (
             $items,
             function ($item1, $item2) {

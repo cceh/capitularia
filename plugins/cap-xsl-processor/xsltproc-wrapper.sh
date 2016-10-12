@@ -7,7 +7,11 @@ PROCESSOR_PATH=$ROOT_PATH/http/docs/wp-content/plugins/cap-xsl-processor
 XSLTPROC=$ROOT_PATH/local/bin/xsltproc
 
 case "$@" in
+  *mss-header*)      PROCESSOR=footnotes-post-processor.php
+  ;;
   *mss-transcript*)  PROCESSOR=footnotes-post-processor.php
+  ;;
+  *mss-footer*)      PROCESSOR=footnotes-post-processor.php
   ;;
   *)                 PROCESSOR=the-old-footnotes-post-processor.php
   ;;

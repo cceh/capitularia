@@ -21,6 +21,7 @@
       @authors: NG, MP
   -->
 
+
   <xsl:include href="common.xsl"/>                    <!-- common templates and functions -->
   <xsl:include href="mss-transcript-footnotes.xsl"/>  <!-- generation of footnotes / tooltips -->
   <xsl:include href="base_variables.xsl"/>            <!-- urls etc. -->
