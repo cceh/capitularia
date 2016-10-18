@@ -283,7 +283,7 @@ div.content-col {
     }
 
     table {
-        margin: 32px 0px;
+        margin: 16px 0px;
         width: 100%;
     }
 
@@ -317,13 +317,121 @@ div.content-col {
         .semibold;
     }
 
-    table.handschriften {
-        th, td {
-            padding: 8px;
-        }
-        a {
+    div.capit {
+        font-size: 90%;
+	table {
+            .resp {
+		width: 30%;
+            }
+            .value{
+            }
+            .transcribed-p {
+		width: 1%;
+		font-size: 80%;
+		text-align: right;
+            }
+	    tr {
+		border-top: 1px solid @color-rule;
+		background: @color-white;
+		&:first-child {
+		    border-top: 2px solid @color-rule;
+		}
+	    }
+	    tbody {
+		border-bottom: 2px solid @color-rule;
+	    }
+	}
+	a.internal::after {
+            content: " \2023";
+	}
+	a.external::after {
+            font-family: "dashicons";
+	    line-height: 1;
+            content: " \f504";
+	}
+    }
+
+    div.capit-list, div.mss-table, div.mss-capit, div.mss-idno, div.mss-key {
+        font-size: 90%;
+        table {
+            table-layout: fixed;
+            font-size: 90%;
+
+            td {
+		padding: 4px 8px;
+            }
+            th {
+		padding: 16px 8px;
+		border-bottom: solid 1px @color-rule;
+            }
+	}
+    }
+
+    div.mss-table {
+        table {
+            .shelfmark {
+		width: 27%;
+            }
+            .capit {
+		width: 46%;
+            }
+            .origin {
+            }
+	}
+    }
+
+    div.mss-capit {
+        table {
+	    .capit {
+		width: 35%;
+            }
+            td.capit {
+		.italic;
+	    }
+            td.mss {
+		line-height: 120%;
+	    }
+	}
+        div.mss-capit-capitular-siglum {
+            font-size: 85%;
             .regular;
         }
+        div.note {
+            margin-top: 1em;
+            text-align: justify;
+            font-size: 85%;
+            .regular;
+        }
+    }
+
+    div.mss-idno {
+	span.siglum {
+	    .italic;
+	}
+    }
+
+    div.mss-key {
+	th, td {
+	    &.siglum {
+		width: 10%;
+	    }
+	}
+    }
+
+    div.capit-list {
+        table {
+            .siglum {
+		width: 20%;
+            }
+            .title {
+		width: 65%;
+	    }
+	    td.title {
+		.italic;
+            }
+            td.internal {
+            }
+	}
     }
 
     .bib-short-title {

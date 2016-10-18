@@ -444,7 +444,7 @@
                title="[:de]Zum bibliographischen Eintrag[:en]To the bibliographic entry[:]">
               <img class="align-middle"
                    alt="Zur Bibliographie"
-                   src="http://capitularia.uni-koeln.de/cap/publ/material/arrow_in.png"/>
+                   src="/cap/publ/material/arrow_in.png"/>
             </a>
           </li>
         </xsl:when>
@@ -455,7 +455,7 @@
              title="[:de]Zum bibliographischen Eintrag[:en]To the bibliographic entry[:]">
             <img class="align-middle"
                  alt="Zur Bibliographie"
-                 src="http://capitularia.uni-koeln.de/cap/publ/material/arrow_in.png"/>
+                 src="/cap/publ/material/arrow_in.png"/>
           </a>
         </xsl:otherwise>
       </xsl:choose>
@@ -511,7 +511,7 @@
 
   <xsl:template match="tei:note[@type='corr']">
     <img onclick="javascript:toggle('{generate-id()}')"
-         src="http://capitularia.uni-koeln.de/cap/publ/material/attention.png"
+         src="/cap/publ/material/attention.png"
          title="Bitte klicken Sie hier, um die Anmerkung bzw. Korrektur anzuzeigen."/>
     <span id="{generate-id()}" class="tei-note-corr" style="display: none">
       <xsl:apply-templates/>
@@ -638,7 +638,7 @@
       <a href="{$target/prefix}{@target}" target="_blank" title="{string ($target/caption)}">
         <img class="align-middle"
              alt="{string ($target/alt)}"
-             src="http://capitularia.uni-koeln.de/cap/publ/material/arrow_ex.png"/>
+             src="/cap/publ/material/arrow_ex.png"/>
       </a>
     </xsl:if>
   </xsl:template>

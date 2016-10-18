@@ -153,6 +153,11 @@
       <caption>[:de]Zum Katalog der BNF[:en]To the BNF catalogue[:]</caption>
       <alt>Zu KatBNF</alt>
     </item>
+    <item key="Gallica">
+      <prefix></prefix>
+      <caption>[:de]Gallica[:en]Gallica[:]</caption>
+      <alt>Zu Gallica</alt>
+    </item>
     <item key="">
       <prefix></prefix>
       <caption>[:de]Zur externen Ressource[:en]To the external resource[:]</caption>

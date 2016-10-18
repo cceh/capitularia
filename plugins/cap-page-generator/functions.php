@@ -153,6 +153,115 @@ function cap_sanitize_key_list ($key_list)
     return implode (' ', $result);
 }
 
+/*
+ * Shortcodes
+ */
+
+/**
+ * Find out the status of a page.
+ *
+ * @param array $atts The shortocde attributes.  status = status, path = path of page
+ *
+ * @return True if page has that status.
+ */
+
+function if_status_slow ($atts)
+{
+    static $cache = array ();
+
+    global $wpdb;
+
+    $status = $atts['status'];
+    $path   = $atts['path'];
+    if (!array_key_exists ($path, $cache)) {
+        $page = get_page_by_path ($path);
+        if ($page) {
+            $cache[$path] = get_post_status ($page->ID);
+        } else {
+            $cache[$path] = 'delete';
+        }
+    }
+    return $cache[$path] == $status;
+}
+
+function get_parent_path ($path)
+{
+    $a = explode ('/', trim ($path, '/'));
+    return implode ('/', array_slice ($a, 0, -1));
+}
+
+function if_status ($atts)
+{
+    static $parent_cache = array ();
+    static $cache = array ();
+
+    global $wpdb;
+
+    $status      = $atts['status'];
+    $path        = trim ($atts['path'], '/');
+    $parent_path = get_parent_path ($path);
+
+    if (!array_key_exists ($parent_path, $parent_cache)) {
+        $parent_page = get_page_by_path ($parent_path);
+        $parent_cache[$parent_path] = true;
+        if ($parent_page) {
+            $sql = $wpdb->prepare (
+                "SELECT post_name, post_status FROM {$wpdb->posts} WHERE post_parent = %d",
+                $parent_page->ID
+            );
+            foreach ($wpdb->get_results ($sql) as $row) {
+                $cache[$parent_path . '/' . $row->post_name] = $row->post_status;
+            }
+        }
+    }
+    if (array_key_exists ($path, $cache)) {
+        return $cache[$path] == $status;
+    }
+    return $status == 'delete';
+}
+
+/**
+ * Add the if_status shortcode.
+ *
+ * This shortcode outputs its content if the ms. has that status.
+ *
+ * @param array  $atts       The shortocde attributes.  status = status, path = path of page
+ * @param string $content    The shortcode content.
+ *
+ * @return string The shortcode content if the ms. has that status else ''.
+ */
+
+function on_shortcode_if_status ($atts, $content)
+{
+    if (if_status ($atts)) {
+        return do_shortcode ($content);
+    }
+    return '';
+}
+
+/**
+ * Add the if_not_status shortcode.
+ *
+ * This shortcode outputs its content if the ms. doesn't have that status.
+ *
+ * @param array  $atts       The shortocde attributes.  status = status, path = path of page
+ * @param string $content    The shortcode content.
+ *
+ * @return string The shortcode content if the ms. doesn't have that status else ''.
+ */
+
+function on_shortcode_if_not_status ($atts, $content)
+{
+    if (!if_status ($atts)) {
+        return do_shortcode ($content);
+    }
+    return '';
+}
+
+add_shortcode ('if_status',     'cceh\capitularia\page_generator\on_shortcode_if_status');
+add_shortcode ('if_not_status', 'cceh\capitularia\page_generator\on_shortcode_if_not_status');
+
+
 /**
  * Things to do when a admin activates the plugin
  *
