@@ -317,7 +317,46 @@ div.content-col {
         .semibold;
     }
 
-    div.capit {
+    table.new-style {
+    	tr {
+	    border-top: 1px solid @color-rule;
+	    background: @color-white;
+	    &:first-child {
+		border-top: 2px solid @color-rule;
+	    }
+	}
+	tbody {
+	    border-bottom: 2px solid @color-rule;
+	}
+    }
+
+    a.internal::after {
+        content: "\00a0\2023";
+    }
+
+    a.bib::after {
+        content: "\00a0\2023";
+    }
+
+    a.external::after {
+        font-family: "dashicons";
+	line-height: 1;
+        content: "\00a0\f504";
+    }
+
+    div.tei-msDesc {
+	div.tei-msIdentifier {
+	    margin: 1em 0;
+	}
+	div.tei-altIdentifier {
+	    margin: 1em 0;
+	}
+	div.tei-facsimile {
+	    margin: 1em 0;
+	}
+    }
+
+    div.capit-xsl {
         font-size: 90%;
 	table {
             .resp {
@@ -341,17 +380,9 @@ div.content-col {
 		border-bottom: 2px solid @color-rule;
 	    }
 	}
-	a.internal::after {
-            content: " \2023";
-	}
-	a.external::after {
-            font-family: "dashicons";
-	    line-height: 1;
-            content: " \f504";
-	}
     }
 
-    div.capit-list, div.mss-table, div.mss-capit, div.mss-idno, div.mss-key {
+    div.capit-list-xsl, div.mss-table-xsl, div.mss-capit-xsl, div.mss-idno-xsl, div.mss-key-xsl {
         font-size: 90%;
         table {
             table-layout: fixed;
@@ -367,58 +398,7 @@ div.content-col {
 	}
     }
 
-    div.mss-table {
-        table {
-            .shelfmark {
-		width: 27%;
-            }
-            .capit {
-		width: 46%;
-            }
-            .origin {
-            }
-	}
-    }
-
-    div.mss-capit {
-        table {
-	    .capit {
-		width: 35%;
-            }
-            td.capit {
-		.italic;
-	    }
-            td.mss {
-		line-height: 120%;
-	    }
-	}
-        div.mss-capit-capitular-siglum {
-            font-size: 85%;
-            .regular;
-        }
-        div.note {
-            margin-top: 1em;
-            text-align: justify;
-            font-size: 85%;
-            .regular;
-        }
-    }
-
-    div.mss-idno {
-	span.siglum {
-	    .italic;
-	}
-    }
-
-    div.mss-key {
-	th, td {
-	    &.siglum {
-		width: 10%;
-	    }
-	}
-    }
-
-    div.capit-list {
+    div.capit-list-xsl {
         table {
             .siglum {
 		width: 20%;
@@ -431,6 +411,56 @@ div.content-col {
             }
             td.internal {
             }
+	}
+    }
+
+    div.mss-table-xsl {
+        table {
+            .shelfmark {
+		width: 27%;
+            }
+            .capit {
+		width: 46%;
+            }
+            .origin {
+            }
+	}
+    }
+
+    div.mss-capit-xsl {
+        table {
+	    .capit {
+		width: 35%;
+            }
+            td.capit {
+		.italic;
+	    }
+            td.mss {
+		line-height: 120%;
+	    }
+	}
+        .mss-capit-capitular-siglum {
+            .regular;
+        }
+        div.note {
+            margin-top: 1em;
+            text-align: justify;
+            font-size: 85%;
+            .regular;
+        }
+    }
+
+    div.mss-idno-xsl {
+	span.siglum {
+	    .italic;
+	}
+    }
+
+    div.mss-key-xsl {
+	th, td {
+	    &.siglum {
+		width: 10%;
+	    }
 	}
     }
 

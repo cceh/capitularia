@@ -25,67 +25,80 @@ Old name:   list_capit_all.xsl
 
   <xsl:include href="common.xsl"/>
 
-  <xsl:include href="base_variables.xsl"/>
-
   <xsl:param name="type" select="'all'"/>
 
   <xsl:template match="/tei:TEI">
-    <div class="capit-list">
+
+    <xsl:variable name="BK">
+      <xsl:apply-templates select=".//tei:item[starts-with (@xml:id, 'BK_')]"/>
+    </xsl:variable>
+    <xsl:variable name="Mordek">
+      <xsl:apply-templates select=".//tei:item[starts-with (@xml:id, 'Mordek_')]"/>
+    </xsl:variable>
+    <xsl:variable name="Other">
+      <xsl:apply-templates select=".//tei:item[not(@xml:id)][not(parent::tei:list[@type='transmission'])]"/>
+    </xsl:variable>
+
+    <div class="capit-list-xsl">
       <div class="handschriften">
-        <h4 id="BK">
-          [:de]Bei Boretius/Krause (BK) verzeichnete Kapitularien
-          [:en]Capitularies mentioned by Boretius/Krause (BK)
-          [:]
-        </h4>
 
-        <table>
-          <xsl:call-template name="thead"/>
+        <xsl:if test="normalize-space ($BK)">
+          <h4 id="BK">
+            [:de]Bei Boretius/Krause (BK) verzeichnete Kapitularien
+            [:en]Capitularies mentioned by Boretius/Krause (BK)
+            [:]
+          </h4>
 
-          <xsl:apply-templates select=".//tei:item[starts-with (@xml:id, 'BK_')]"/>
-        </table>
+          <table>
+            <xsl:call-template name="thead"/>
+            <xsl:copy-of select="$BK"/>
+          </table>
+        </xsl:if>
 
-        <h4 id="rest">
-          [:de]Weitere Kapitularien und Ansegis
-          [:en]Further capitularies and Ansegis
-          [:]
-        </h4>
+        <xsl:if test="normalize-space ($Other)">
+          <h4 id="Other">
+            [:de]Weitere Kapitularien und Ansegis
+            [:en]Further capitularies and Ansegis
+            [:]
+          </h4>
 
-        <table>
-          <xsl:call-template name="thead"/>
+          <table>
+            <xsl:call-template name="thead"/>
+            <xsl:copy-of select="$Other"/>
+          </table>
+        </xsl:if>
 
-          <xsl:apply-templates select=".//tei:item[not(@xml:id)][not(parent::tei:list[@type='transmission'])]"/>
+        <xsl:if test="normalize-space ($Mordek)">
+          <h4 id="Mordek">
+            [:de]Neuentdeckte Kapitularien (Mordek Anhang I)
+            [:en]Newly discovered capitularies (Mordek appendix I)
+            [:]
+          </h4>
 
-        </table>
+          <table>
+            <xsl:call-template name="thead"/>
+            <xsl:copy-of select="$Mordek"/>
+          </table>
+        </xsl:if>
 
-        <h4 id="Mordek">
-          [:de]Neuentdeckte Kapitularien (Mordek Anhang I)
-          [:en]Newly discovered capitularies (Mordek appendix I)
-          [:]
-        </h4>
-
-        <table>
-          <xsl:call-template name="thead"/>
-
-          <xsl:apply-templates select=".//tei:item[starts-with (@xml:id, 'Mordek_')]"/>
-        </table>
       </div>
     </div>
   </xsl:template>
 
   <xsl:template match="tei:list/tei:item">
     <xsl:if test="../@type=$type or $type='all'">
-    <xsl:text>&#x0a;&#x0a;</xsl:text>
-    <tr>
-      <td class="siglum">
-        <xsl:value-of select="cap:human-readable-siglum (@xml:id)"/>
-      </td>
-      <td class="title">
-        <xsl:apply-templates select="tei:name"/>
-      </td>
-      <td class="internal">
-        <xsl:value-of select="@corresp"/>
-      </td>
-    </tr>
+      <xsl:text>&#x0a;&#x0a;</xsl:text>
+      <tr>
+        <td class="siglum">
+          <xsl:value-of select="cap:human-readable-siglum (@xml:id)"/>
+        </td>
+        <td class="title">
+          <xsl:apply-templates select="tei:name"/>
+        </td>
+        <td class="internal">
+          <xsl:value-of select="@corresp"/>
+        </td>
+      </tr>
     </xsl:if>
   </xsl:template>
 

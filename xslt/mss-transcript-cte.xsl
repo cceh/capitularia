@@ -22,12 +22,11 @@
 
   <xsl:import href="mss-transcript.xsl" />
 
-  <xsl:template match="/">
-    <!-- Wrapped in div because match="/" may return only *one*
-         element. class=CTE is a switch for the footnote
+  <xsl:template match="/tei:TEI">
+    <!-- class=CTE is a switch for the footnote
          post-processor to leave keyboard shortcuts alone. -->
-    <div class="CTE">
-      <xsl:apply-imports />
+    <div class="tei-TEI mss-transcript-xsl transkription-body CTE">
+      <xsl:apply-templates select="tei:text"/>
     </div>
   </xsl:template>
 
@@ -35,7 +34,6 @@
   <xsl:template match="//tei:body//tei:note[@type='textcrit']//tei:mentioned">
     <span class="regular tei-mentioned"><xsl:apply-templates /></span>
   </xsl:template>
-
 
   <!-- DS, 29.08.2016 Hinzufügung zur Verarbeitung des kritischen Textes-->
   <xsl:template match="tei:note[@type='crittext']">
@@ -51,33 +49,42 @@
     </div>
   </xsl:template>
 
-  <xsl:template match="tei:listWit"/><!-- Momentan ausgeklammert, da sich sonst die synoptische Darstellung verschiebt -->
+  <xsl:template match="tei:listWit">
+    <!-- Momentan ausgeklammert, da sich sonst die synoptische Darstellung verschiebt -->
   <!--<div id="editorial-preface-manuscripts">
       <h5 data-cap-dyn-menu-caption="[:de]Handschriften[:en]Manuscripts[:]">[:de]Handschriften[:en]Manuscripts[:]</h5>
+      <table class="new-style">
+      <tbody>
       <xsl:apply-templates select="tei:witness[@xml:id]" />
+      </tbody>
+      </table>
       </div>
       <div id="editorial-preface-prints">
       <h5 data-cap-dyn-menu-caption="[:de]Drucke[:en]Prints[:]">[:de]Drucke[:en]Prints[:]</h5>
+      <table class="new-style">
+      <tbody>
       <xsl:apply-templates select="tei:witness[not (@xml:id)]" />
+      </tbody>
+      </table>
       </div>
-      </xsl:template>-->
+      </xsl:template> -->
+  </xsl:template>
 
   <xsl:template match="tei:listWit/tei:witness">
     <!--Anpassen: Der @n-Wert sollte die BK-Nummer in der Form sein, in der sie in den Milestones verwendet werden-->
-    <div id="{@n}" class="tei-witness">
-      <span class="tei-witness-siglum">
+    <tr id="{@n}" class="tei-witness">
+      <td class="tei-witness-siglum">
         <xsl:choose><xsl:when test="@n='P4'"><xsl:text>P</xsl:text><sub>4</sub></xsl:when>
         <xsl:otherwise><xsl:value-of select="@n" /></xsl:otherwise></xsl:choose>
-      </span>
-      <xsl:text> </xsl:text>
-      <xsl:apply-templates />
-    </div>
+      </td>
+      <td class="tei-witness-title">
+        <xsl:apply-templates />
+      </td>
+    </tr>
   </xsl:template>
 
   <xsl:template match="tei:listWit/tei:witness/tei:title">
-    <span class="tei-witness-title">
-      <xsl:apply-templates />
-    </span>
+    <xsl:apply-templates />
   </xsl:template>
 
   <xsl:template match="tei:ref[@type='internal' and @subtype='witness' and //tei:witness[not (@xml:id) and @n=current()/@target]]">
@@ -100,26 +107,18 @@
          sigle.xml möglich, in den alle Hss. hinterlegt sein sollten,
          jedoch keine weiteren Zeugen-->
 
-    <!-- Links auskommentiert solange Handschriften nicht online sind  -->
-    <!-- <a target="_blank">
-         <xsl:attribute name="title">
-         <xsl:value-of select="//tei:witness[@n=current()/@target]/tei:title"/>
-         </xsl:attribute>
-         <xsl:attribute name="href">
-         <xsl:value-of select="$mss"/>
-         <xsl:value-of select="//tei:witness[@n=current()/@target]/@xml:id"/>
-         <xsl:text>#</xsl:text>
-         <xsl:value-of select="//tei:listWit/@n"/>
-         </xsl:attribute>
-         <xsl:apply-templates/>
-         <xsl:if test="string-length(node())=0">
-         <xsl:text>→</xsl:text>
-         </xsl:if>
-         </a>
-    -->
-    <span title="{//tei:witness[@n=current()/@target]/tei:title}" class="tei-witness-siglum">
-      <xsl:apply-templates/>
-    </span>
+    <xsl:variable name="id" select="//tei:witness[@n=current()/@target]/@xml:id"/>
+
+    <xsl:call-template name="if-published">
+      <xsl:with-param name="path" select="concat ('/mss/', $id)" />
+      <xsl:with-param name="href" select="concat ('/mss/', $id, '#', //tei:listWit/@n)"/>
+      <xsl:with-param name="title">
+        <xsl:value-of select="//tei:witness[@n=current()/@target]/tei:title"/>
+      </xsl:with-param>
+      <xsl:with-param name="text">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
 
 </xsl:stylesheet>

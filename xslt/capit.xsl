@@ -24,12 +24,10 @@ Output URL: /capit/ldf/bk-nr-186/
     exclude-result-prefixes="tei xhtml xs xsl">
   <!-- libexslt does not support the regexp extension ! -->
 
-  <xsl:include href="common.xsl"/>
-  <xsl:include href="base_variables.xsl"/>
-
+  <xsl:import href="common.xsl"/>
 
   <xsl:template match="/tei:TEI">
-    <div class="capit">
+    <div class="capit-xsl">
       <xsl:apply-templates select="tei:text/tei:body/tei:div/tei:note[@type='annotation']"/>
       <xsl:apply-templates select="tei:text/tei:body/tei:div/tei:note[@type='titles']"/>
       <xsl:apply-templates select="tei:text/tei:body/tei:div/tei:note[@type='date']"/>
@@ -139,30 +137,19 @@ Output URL: /capit/ldf/bk-nr-186/
   </xsl:template>
 
   <xsl:template match="tei:bibl">
-    <xsl:if test="@corresp">
-      <a class="internal" href="{$biblio}{@corresp}"
-         title="[:de]Zum bibliographischen Eintrag[:en]Go to bibliography[:]">
-        <xsl:apply-templates/>
-      </a>
-    </xsl:if>
-    <xsl:if test="not (@corresp)">
-      <xsl:apply-templates/>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template match="tei:ref[@type='external']">
-    <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
-    <a class="external" href="{$target/prefix}{@target}" target="_blank" title="{string ($target/caption)}">
-      <xsl:apply-templates/>
-    </a>
-  </xsl:template>
-
-  <xsl:template match="tei:ref[@type='internal']">
-    <xsl:if test="@subtype='capit'">
-      <a href="{$capit}{@target}" title="[:de]Zum Kapitular[:en]To the capitulary[:]">
-        <xsl:apply-templates/>
-      </a>
-    </xsl:if>
+    <tr>
+      <td>
+        <xsl:if test="@corresp">
+          <a class="bib" href="{$biblio}{@corresp}"
+             title="[:de]Zum bibliographischen Eintrag[:en]Go to bibliography[:]">
+            <xsl:apply-templates/>
+          </a>
+        </xsl:if>
+        <xsl:if test="not (@corresp)">
+          <xsl:apply-templates/>
+        </xsl:if>
+      </td>
+    </tr>
   </xsl:template>
 
   <xsl:template match="tei:lb">

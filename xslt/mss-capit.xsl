@@ -25,13 +25,11 @@ Old name:   tabelle_cap_mss.xsl
 
   <xsl:include href="common.xsl"/>
 
-  <xsl:include href="base_variables.xsl"/>            <!-- urls etc. -->
-
   <!-- With this key we simulate the XSL 2.0 distinct-values () function. -->
   <xsl:key name="id" match="/Kapitularien/Eintrag" use="Kapitular/@id" />
 
   <xsl:template match="/Kapitularien">
-    <div class="mss-capit">
+    <div class="mss-capit-xsl">
       <p class="intro">
         [:de]Die folgende, nach den Nummern der Boretius/Krause-Edition (BK) geordnete Liste führt
         alle Handschriften auf, die das jeweilige Kapitular enthalten. Grundlage hierfür ist das
@@ -165,6 +163,7 @@ Old name:   tabelle_cap_mss.xsl
               <xsl:apply-templates select="Kapitular"/>
             </xsl:otherwise>
           </xsl:choose>
+          <xsl:apply-templates select="Kapitular" mode="id"/>
         </td>
         <xsl:text>&#x0a;&#x0a;</xsl:text>
 
@@ -188,11 +187,7 @@ Old name:   tabelle_cap_mss.xsl
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="Kapitular">
-    <div class="mss-capit-capitular-desc">
-      <xsl:apply-templates />
-    </div>
-
+  <xsl:template match="Kapitular" mode="id">
     <xsl:if test="contains (@id, '.')">
       <div class="mss-capit-capitular-siglum">
         <xsl:text> [</xsl:text>

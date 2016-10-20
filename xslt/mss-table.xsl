@@ -25,12 +25,10 @@ Old name:   tabelle_ueberblick.xsl
 
   <xsl:include href="common.xsl"/>
 
-  <xsl:include href="base_variables.xsl"/>
-
   <xsl:template match="/MSS">
 
     <!-- Abbildung der Liste als Tabelle mit einer Zeile für jedes <item> -->
-    <div class="mss-table">
+    <div class="mss-table-xsl">
       <p class="intro">
         [:de]Die Übersicht listet alle bekannten Handschriften auf, die Kapitularien
         enthalten. Die in Mordek 1995 vergebenen Handschriftensiglen stehen in Klammern hinter

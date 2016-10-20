@@ -26,7 +26,7 @@ Old name:   IdnoSynopse.xsl
   <xsl:include href="common.xsl"/>
 
   <xsl:template match="/lists">
-    <div class="mss-key">
+    <div class="mss-key-xsl">
       <p class="intro">
         [:de]In dieser Konkordanz werden die in Mordek 1995 vergebenen Siglen den ausführlichen
         Handschriftensignaturen zugeordnet. Die Siglen Mordeks werden auch in der neuen Edition

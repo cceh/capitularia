@@ -12,6 +12,8 @@
     extension-element-prefixes="cap exsl func set str"
     exclude-result-prefixes="tei xhtml xs xsl">
 
+  <xsl:include href="base_variables.xsl"/>
+
   <func:function name="cap:make-id">
     <!--
         Replace characters that are invalid in a HTML id.
@@ -56,7 +58,7 @@
     -->
     <xsl:param name="siglum"/>
 
-    <func:result select="str:replace (str:replace (str:replace (str:replace ($siglum, '.', '_'), '_00', ' '), '_0', ' '), '_', ' ')"/>
+    <func:result select="str:replace (str:replace (str:replace (str:replace ($siglum, '.', '_'), '_00', '&#xa0;'), '_0', '&#xa0;'), '_', '&#xa0;')"/>
   </func:function>
 
   <xsl:template name="back-to-top">
@@ -123,7 +125,7 @@
     <xsl:call-template name="if-published-then-else">
       <xsl:with-param name="path" select="$path"/>
       <xsl:with-param name="then">
-        <a href="{$href}">
+        <a class="internal" href="{$href}">
           <xsl:if test="$title">
             <xsl:attribute name="title">
               <xsl:value-of select="$title"/>
@@ -141,6 +143,65 @@
         <xsl:copy-of select="$text"/>
       </xsl:with-param>
     </xsl:call-template>
+  </xsl:template>
+
+  <!-- Verlinkungen zu Resourcen -->
+
+  <xsl:template match="tei:ref[@type='external']">
+    <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
+    <a class="external" href="{$target/prefix}{@target}" target="_blank" title="{string ($target/caption)}">
+      <xsl:apply-templates/>
+    </a>
+  </xsl:template>
+
+  <xsl:template match="tei:ref[@type='internal']">
+    <xsl:choose>
+      <xsl:when test="@subtype='mss'">
+        <xsl:choose>
+          <xsl:when test="@target">
+            <a class="internal" href="{$mss}{str:replace (@target, '_', '#')}"
+               title= "[:de]Zur Handschrift[:en]To the manuscript[:]">
+
+              <xsl:attribute name="target">
+                <xsl:if test="not (contains (@target, '_'))">
+                  <xsl:text>_self</xsl:text>
+                </xsl:if>
+                <xsl:if test="contains (@target, '_')">
+                  <xsl:text>_blank</xsl:text>
+                </xsl:if>
+              </xsl:attribute>
+
+              <xsl:apply-templates/>
+            </a>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+
+      <xsl:when test="@subtype='capit'">
+        <a class="internal" href="{$capit}{@target}" title="[:de]Zum Kapitular[:en]To the respective capitulary[:]">
+          <xsl:apply-templates/>
+        </a>
+      </xsl:when>
+
+      <xsl:when test="@subtype='mom'">
+        <a class="internal" href="{$blog}{@target}" title="[:de]Zum Artikel[:en]To the manuscript of the month blogpost[:]">
+          <xsl:text>
+            [:de]Zum Artikel in der Rubrik "Handschrift des Monats"
+            [:en]To the "Manuscript of the Month" blogpost
+            [:]
+          </xsl:text>
+        </a>
+      </xsl:when>
+
+      <xsl:when test="@subtype='int'">
+        <a class="internal" href="{@target}">
+          <xsl:apply-templates/>
+        </a>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
 </xsl:stylesheet>

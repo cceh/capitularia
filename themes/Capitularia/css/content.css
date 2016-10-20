@@ -341,97 +341,137 @@ div.content-col th {
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.capit {
+div.content-col table.new-style tr {
+  border-top: 1px solid #1a171b;
+  background: #ffffff;
+}
+div.content-col table.new-style tr:first-child {
+  border-top: 2px solid #1a171b;
+}
+div.content-col table.new-style tbody {
+  border-bottom: 2px solid #1a171b;
+}
+div.content-col a.internal::after {
+  content: "\00a0\2023";
+}
+div.content-col a.bib::after {
+  content: "\00a0\2023";
+}
+div.content-col a.external::after {
+  font-family: "dashicons";
+  line-height: 1;
+  content: "\00a0\f504";
+}
+div.content-col div.tei-msDesc div.tei-msIdentifier {
+  margin: 1em 0;
+}
+div.content-col div.tei-msDesc div.tei-altIdentifier {
+  margin: 1em 0;
+}
+div.content-col div.tei-msDesc div.tei-facsimile {
+  margin: 1em 0;
+}
+div.content-col div.capit-xsl {
   font-size: 90%;
 }
-div.content-col div.capit table .resp {
+div.content-col div.capit-xsl table .resp {
   width: 30%;
 }
-div.content-col div.capit table .transcribed-p {
+div.content-col div.capit-xsl table .transcribed-p {
   width: 1%;
   font-size: 80%;
   text-align: right;
 }
-div.content-col div.capit table tr {
+div.content-col div.capit-xsl table tr {
   border-top: 1px solid #1a171b;
   background: #ffffff;
 }
-div.content-col div.capit table tr:first-child {
+div.content-col div.capit-xsl table tr:first-child {
   border-top: 2px solid #1a171b;
 }
-div.content-col div.capit table tbody {
+div.content-col div.capit-xsl table tbody {
   border-bottom: 2px solid #1a171b;
 }
-div.content-col div.capit a.internal::after {
-  content: " \2023";
-}
-div.content-col div.capit a.external::after {
-  font-family: "dashicons";
-  line-height: 1;
-  content: " \f504";
-}
-div.content-col div.capit-list,
-div.content-col div.mss-table,
-div.content-col div.mss-capit,
-div.content-col div.mss-idno,
-div.content-col div.mss-key {
+div.content-col div.capit-list-xsl,
+div.content-col div.mss-table-xsl,
+div.content-col div.mss-capit-xsl,
+div.content-col div.mss-idno-xsl,
+div.content-col div.mss-key-xsl {
   font-size: 90%;
 }
-div.content-col div.capit-list table,
-div.content-col div.mss-table table,
-div.content-col div.mss-capit table,
-div.content-col div.mss-idno table,
-div.content-col div.mss-key table {
+div.content-col div.capit-list-xsl table,
+div.content-col div.mss-table-xsl table,
+div.content-col div.mss-capit-xsl table,
+div.content-col div.mss-idno-xsl table,
+div.content-col div.mss-key-xsl table {
   table-layout: fixed;
   font-size: 90%;
 }
-div.content-col div.capit-list table td,
-div.content-col div.mss-table table td,
-div.content-col div.mss-capit table td,
-div.content-col div.mss-idno table td,
-div.content-col div.mss-key table td {
+div.content-col div.capit-list-xsl table td,
+div.content-col div.mss-table-xsl table td,
+div.content-col div.mss-capit-xsl table td,
+div.content-col div.mss-idno-xsl table td,
+div.content-col div.mss-key-xsl table td {
   padding: 4px 8px;
 }
-div.content-col div.capit-list table th,
-div.content-col div.mss-table table th,
-div.content-col div.mss-capit table th,
-div.content-col div.mss-idno table th,
-div.content-col div.mss-key table th {
+div.content-col div.capit-list-xsl table th,
+div.content-col div.mss-table-xsl table th,
+div.content-col div.mss-capit-xsl table th,
+div.content-col div.mss-idno-xsl table th,
+div.content-col div.mss-key-xsl table th {
   padding: 16px 8px;
   border-bottom: solid 1px #1a171b;
 }
-div.content-col div.mss-table table .shelfmark {
-  width: 27%;
+div.content-col div.capit-list-xsl table .siglum {
+  width: 20%;
 }
-div.content-col div.mss-table table .capit {
-  width: 46%;
+div.content-col div.capit-list-xsl table .title {
+  width: 65%;
 }
-div.content-col div.mss-capit table .capit {
-  width: 35%;
-}
-div.content-col div.mss-capit table td.capit {
+div.content-col div.capit-list-xsl table td.title {
   font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.mss-capit table td.capit a[href],
-div.content-col div.mss-capit table td.capit a[href]:active,
-div.content-col div.mss-capit table td.capit a[href]:focus,
-div.content-col div.mss-capit table td.capit a[href]:hover {
+div.content-col div.capit-list-xsl table td.title a[href],
+div.content-col div.capit-list-xsl table td.title a[href]:active,
+div.content-col div.capit-list-xsl table td.title a[href]:focus,
+div.content-col div.capit-list-xsl table td.title a[href]:hover {
   font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.mss-capit table td.mss {
+div.content-col div.mss-table-xsl table .shelfmark {
+  width: 27%;
+}
+div.content-col div.mss-table-xsl table .capit {
+  width: 46%;
+}
+div.content-col div.mss-capit-xsl table .capit {
+  width: 35%;
+}
+div.content-col div.mss-capit-xsl table td.capit {
+  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.content-col div.mss-capit-xsl table td.capit a[href],
+div.content-col div.mss-capit-xsl table td.capit a[href]:active,
+div.content-col div.mss-capit-xsl table td.capit a[href]:focus,
+div.content-col div.mss-capit-xsl table td.capit a[href]:hover {
+  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.content-col div.mss-capit-xsl table td.mss {
   line-height: 120%;
 }
-div.content-col div.mss-capit div.mss-capit-capitular-siglum {
-  font-size: 85%;
+div.content-col div.mss-capit-xsl .mss-capit-capitular-siglum {
   font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.mss-capit div.note {
+div.content-col div.mss-capit-xsl div.note {
   margin-top: 1em;
   text-align: justify;
   font-size: 85%;
@@ -439,41 +479,22 @@ div.content-col div.mss-capit div.note {
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.mss-idno span.siglum {
+div.content-col div.mss-idno-xsl span.siglum {
   font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.mss-idno span.siglum a[href],
-div.content-col div.mss-idno span.siglum a[href]:active,
-div.content-col div.mss-idno span.siglum a[href]:focus,
-div.content-col div.mss-idno span.siglum a[href]:hover {
+div.content-col div.mss-idno-xsl span.siglum a[href],
+div.content-col div.mss-idno-xsl span.siglum a[href]:active,
+div.content-col div.mss-idno-xsl span.siglum a[href]:focus,
+div.content-col div.mss-idno-xsl span.siglum a[href]:hover {
   font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.mss-key th.siglum,
-div.content-col div.mss-key td.siglum {
+div.content-col div.mss-key-xsl th.siglum,
+div.content-col div.mss-key-xsl td.siglum {
   width: 10%;
-}
-div.content-col div.capit-list table .siglum {
-  width: 20%;
-}
-div.content-col div.capit-list table .title {
-  width: 65%;
-}
-div.content-col div.capit-list table td.title {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.content-col div.capit-list table td.title a[href],
-div.content-col div.capit-list table td.title a[href]:active,
-div.content-col div.capit-list table td.title a[href]:focus,
-div.content-col div.capit-list table td.title a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
 }
 div.content-col .bib-short-title {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';

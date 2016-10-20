@@ -421,7 +421,7 @@ foreach ($textnodes as $textnode) {
 
 // Test if this file was transformed with the CTE stylesheet.  In that case we
 // don't want to replace shortcuts. FIXME: find a better way to configure this.
-$divs = $xpath->query ('//div[@class="CTE"]');
+$divs = $xpath->query ('//div[contains (concat (" ", @class, " "), " CTE ")]');
 $is_cte = ($divs !== false) && ($divs->length > 0);
 
 if (!$is_cte) {

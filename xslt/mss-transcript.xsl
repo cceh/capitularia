@@ -21,10 +21,8 @@
       @authors: NG, MP
   -->
 
-
   <xsl:include href="common.xsl"/>                    <!-- common templates and functions -->
   <xsl:include href="mss-transcript-footnotes.xsl"/>  <!-- generation of footnotes / tooltips -->
-  <xsl:include href="base_variables.xsl"/>            <!-- urls etc. -->
 
   <!-- Needed for the correct determination of the word around an editorial
        intervention. -->
@@ -364,41 +362,6 @@
 
   <xsl:template match="tei:cit">
     <xsl:apply-templates select="tei:quote"/>
-    <xsl:apply-templates select="tei:ref"/>
-  </xsl:template>
-
-  <xsl:template match="tei:cit/tei:quote">
-    <xsl:apply-templates />
-  </xsl:template>
-
-  <xsl:template match="tei:cit/tei:ref">
-    <!-- 06.01.2016
-         <span class="annotation annotation-cit-ref">
-         <xsl:call-template name="footnote" />
-         </span>
-    -->
-  </xsl:template>
-
-  <!-- Hinzufügung durch DT am 27.08.2014, um auf externe
-       Ressourcen wie die dMGH verlinken zu können (modifiziert
-       durch NG am 04.09.2014: um mehrdeutige Regeln zu
-       beseitigen => [@type] => tei:ref auf type-Attribut prüfen
-       - Template muss möglicherweise noch ansich mit anderem
-       ref-Template abgeglichen/angepasst werden) -->
-
-  <xsl:template match="tei:ref[@type='external']">
-    <a target="_blank" title="Externer Link" href="{@target}">
-      <xsl:apply-templates/>
-    </a>
-  </xsl:template>
-
-  <xsl:template match="tei:ref[@type='internal' and @subtype='mss']">
-    <a target="_blank" title="Interner Link" href="{$mss}{@target}">
-      <xsl:apply-templates/>
-      <xsl:if test="not (normalize-space (.))">
-        <xsl:text>→</xsl:text>
-      </xsl:if>
-    </a>
   </xsl:template>
 
   <xsl:template match="tei:metamark">

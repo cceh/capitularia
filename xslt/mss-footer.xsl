@@ -16,7 +16,6 @@
   <!-- libexslt does not support the regexp extension ! -->
 
   <xsl:include href="common.xsl"/>
-  <xsl:include href="base_variables.xsl"/>
 
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 

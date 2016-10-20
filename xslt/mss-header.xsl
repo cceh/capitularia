@@ -16,7 +16,6 @@
   <!-- libexslt does not support the regexp extension ! -->
 
   <xsl:include href="common.xsl"/>
-  <xsl:include href="base_variables.xsl"/>
 
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
@@ -151,12 +150,14 @@
       <xsl:value-of select="tei:collection"/>
       <xsl:text> </xsl:text>
       <xsl:value-of select="tei:idno"/>
-      <br/>
-      <br/>
+
       <div>
         <xsl:if test="normalize-space (tei:msName)">
-          <u>[:de]Name:[:en]Name:[:] </u>
-          <xsl:apply-templates select="tei:msName"/>
+          <div class="tei-msNames">
+            <u>[:de]Name[:en]Name[:]:</u>
+            <xsl:text> </xsl:text>
+            <xsl:apply-templates select="tei:msName"/>
+          </div>
         </xsl:if>
         <xsl:apply-templates select="tei:altIdentifier"/>
       </div>
@@ -164,26 +165,26 @@
   </xsl:template>
 
   <xsl:template match="tei:msName">
-    <xsl:apply-templates/>
-    <xsl:if test="following-sibling::tei:msName">
+    <xsl:if test="preceding-sibling::tei:msName">
       <xsl:text>, </xsl:text>
     </xsl:if>
+    <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match="tei:altIdentifier">
-    <xsl:if test="@type='siglum'">
-      <br/>
-      <br/>
+  <xsl:template match="tei:altIdentifier"/>
+
+  <xsl:template match="tei:altIdentifier[@type='siglum']">
+    <div class="tei-altIdentifier">
       <u>[:de]Sigle:[:en]Siglum[:]</u>
       <xsl:text> </xsl:text>
       <span class="italic">
         <xsl:value-of select="tei:idno"/>
         <xsl:if test="normalize-space (tei:note)">
-          <br/>
+          <xsl:text> </xsl:text>
           <xsl:apply-templates select="tei:note"/>
         </xsl:if>
       </span>
-    </xsl:if>
+    </div>
   </xsl:template>
 
   <!-- Entstehung und Überlieferung -->
@@ -342,9 +343,8 @@
   <xsl:template match="tei:msItem">
     <xsl:if test="@prev">
       <li class="tei-msItem">
-        <a target="_blank" href="{$mss}{str:replace (@prev, '_', '#')}"
+        <a class="internal" target="_blank" href="{$mss}{str:replace (@prev, '_', '#')}"
           title="[:de]Zum zugehörigen Teil (in einer anderen Handschrift)[:en]To the corresponding part in another manuscript[:]">
-          <xsl:text> → </xsl:text>
         </a>
       </li>
     </xsl:if>
@@ -360,9 +360,8 @@
 
     <xsl:if test="@next">
       <li class="tei-msItem">
-        <a target="_blank" href="{$mss}{str:replace (@next, '_', '#')}"
+        <a class="internal" target="_blank" href="{$mss}{str:replace (@next, '_', '#')}"
           title="[:de]Zum zugehörigen Teil (in einer anderen Handschrift)[:en]To the corresponding part in another manuscript[:]">
-          <xsl:text> → </xsl:text>
         </a>
       </li>
     </xsl:if>
@@ -383,7 +382,7 @@
   <xsl:template match="tei:msItem//tei:locus">
     <span class="semibold">
       <xsl:if test="@target">
-        <a href="{$mss}{str:replace (@target, '_', '#')}"
+        <a class="internal" href="{$mss}{str:replace (@target, '_', '#')}"
            target="_blank"
            title="[:de]Zur korrespondierenden Handschrift[:en]To the corresponding manuscript[:]">
           <xsl:apply-templates/>
@@ -438,24 +437,16 @@
       <xsl:choose>
         <xsl:when test="parent::tei:listBibl">
           <li class="tei-bibl">
-            <xsl:apply-templates/>
-            <xsl:text> </xsl:text>
-            <a href="{$biblio}{@corresp}"
+            <a class="bib" href="{$biblio}{@corresp}"
                title="[:de]Zum bibliographischen Eintrag[:en]To the bibliographic entry[:]">
-              <img class="align-middle"
-                   alt="Zur Bibliographie"
-                   src="/cap/publ/material/arrow_in.png"/>
+              <xsl:apply-templates/>
             </a>
           </li>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates/>
-          <xsl:text> </xsl:text>
-          <a href="{$biblio}{@corresp}"
+          <a class="bib" href="{$biblio}{@corresp}"
              title="[:de]Zum bibliographischen Eintrag[:en]To the bibliographic entry[:]">
-            <img class="align-middle"
-                 alt="Zur Bibliographie"
-                 src="/cap/publ/material/arrow_in.png"/>
+            <xsl:apply-templates/>
           </a>
         </xsl:otherwise>
       </xsl:choose>
@@ -473,10 +464,8 @@
   <xsl:template match="tei:facsimile">
     <xsl:if test="starts-with (tei:graphic/@url, 'http')">
       <div class="tei-facsimile">
-        <span class="small">
-          <xsl:text>[:de]Digitalisat verfügbar bei [:en]Digital image available at [:]</xsl:text>
-          <xsl:apply-templates/>
-        </span>
+        <xsl:text>[:de]Digitalisat verfügbar bei[:en]Digital image available at[:] </xsl:text>
+        <xsl:apply-templates/>
       </div>
     </xsl:if>
   </xsl:template>
@@ -485,7 +474,7 @@
     <xsl:if test="starts-with (@url, 'http')">
       <xsl:variable name="url" select="substring-after (@url, '://')"/>
       <xsl:variable name="target" select="exsl:node-set ($tei-graphic-targets)/item[contains ($url, @key)]"/>
-      <a class="small" href="{@url}" title="{string ($target/title)}" target="_blank">
+      <a class="external" href="{@url}" title="{string ($target/title)}" target="_blank">
         <xsl:value-of select="$target/caption"/>
       </a>
     </xsl:if>
@@ -573,74 +562,6 @@
         </span>
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:template>
-
-  <!-- Verlinkungen zu Resourcen -->
-
-  <xsl:template match="tei:ref">
-    <xsl:if test="@type='internal'">
-      <xsl:choose>
-        <xsl:when test="@subtype='mss'">
-          <xsl:choose>
-            <xsl:when test="@target">
-              <a href="{$mss}{str:replace (@target, '_', '#')}"
-                 title= "[:de]Zur Handschrift[:en]To the manuscript[:]">
-
-                <xsl:attribute name="target">
-                  <xsl:if test="not(contains(@target,'_'))">
-                    <xsl:text>_self</xsl:text>
-                  </xsl:if>
-                  <xsl:if test="contains(@target,'_')">
-                    <xsl:text>_blank</xsl:text>
-                  </xsl:if>
-                </xsl:attribute>
-
-                <xsl:text> → </xsl:text>
-                <xsl:apply-templates/>
-              </a>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:when>
-
-        <xsl:when test="@subtype='capit'">
-          <a href="{$capit}{@target}" title="[:de]Zum Kapitular[:en]To the respective capitulary[:]">
-            <xsl:text> → </xsl:text>
-            <xsl:apply-templates/>
-          </a>
-        </xsl:when>
-
-        <xsl:when test="@subtype='mom'">
-          <!-- Handschrift des Monats -->
-          <div class="mss-of-the-month">
-            <a href="{$blog}{@target}"
-               title="[:de]Zum Artikel[:en]To the manuscript of the month blogpost[:]">
-              <xsl:text> → [:de]Zum Artikel in der Rubrik "Handschrift des Monats"
-              [:en]To the "Manuscript of the Month" blogpost[:]</xsl:text>
-            </a>
-          </div>
-        </xsl:when>
-
-        <xsl:when test="@subtype='int'">
-          <a href="{@target}">
-            <xsl:apply-templates/>
-          </a>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:if>
-
-    <xsl:if test="@type='external'">
-      <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
-      <xsl:apply-templates/>
-      <xsl:text> </xsl:text>
-      <a href="{$target/prefix}{@target}" target="_blank" title="{string ($target/caption)}">
-        <img class="align-middle"
-             alt="{string ($target/alt)}"
-             src="/cap/publ/material/arrow_ex.png"/>
-      </a>
-    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>

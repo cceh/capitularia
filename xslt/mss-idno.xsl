@@ -26,7 +26,7 @@ Old name:   handschriften_mordek_signatur.xsl
   <xsl:include href="common.xsl"/>
 
   <xsl:template match="/tei:TEI">
-    <div class="mss-idno">
+    <div class="mss-idno-xsl">
       <p class="intro">
         [:de]Die folgende, alphabetisch geordnete Liste führt alle bei Mordek 1995 genannten
         Kapitularienhandschriften auf. Weitere, bei Mordek nicht verzeichnete Handschriften mit
