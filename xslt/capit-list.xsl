@@ -95,9 +95,6 @@ Old name:   list_capit_all.xsl
         <td class="title">
           <xsl:apply-templates select="tei:name"/>
         </td>
-        <td class="internal">
-          <xsl:value-of select="@corresp"/>
-        </td>
       </tr>
     </xsl:if>
   </xsl:template>
@@ -121,7 +118,6 @@ Old name:   list_capit_all.xsl
       <tr>
         <th class="siglum"  >[:de]Nummer                     [:en]No.                 [:]</th>
         <th class="title"   >[:de]Titel                      [:en]Caption             [:]</th>
-        <th class="internal">[:de]Projektinterne Nummerierung[:en]New (project) number[:]</th>
       </tr>
     </thead>
   </xsl:template>

@@ -124,7 +124,7 @@ class Dynamic_Menu
         $new_item->type_label       = 'Custom';
 
         $new_item->title            = $caption;
-        $new_item->attr_title       = $caption;
+        $new_item->attr_title       = preg_replace ('/\s+/', ' ', trim ($caption));
         $new_item->post_title       = $caption;
 
         $new_item->classes          = $classes;

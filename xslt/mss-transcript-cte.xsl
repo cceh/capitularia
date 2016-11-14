@@ -53,7 +53,7 @@
     <!-- Momentan ausgeklammert, da sich sonst die synoptische Darstellung verschiebt -->
   <!--<div id="editorial-preface-manuscripts">
       <h5 data-cap-dyn-menu-caption="[:de]Handschriften[:en]Manuscripts[:]">[:de]Handschriften[:en]Manuscripts[:]</h5>
-      <table class="new-style">
+      <table>
       <tbody>
       <xsl:apply-templates select="tei:witness[@xml:id]" />
       </tbody>
@@ -61,7 +61,7 @@
       </div>
       <div id="editorial-preface-prints">
       <h5 data-cap-dyn-menu-caption="[:de]Drucke[:en]Prints[:]">[:de]Drucke[:en]Prints[:]</h5>
-      <table class="new-style">
+      <table>
       <tbody>
       <xsl:apply-templates select="tei:witness[not (@xml:id)]" />
       </tbody>

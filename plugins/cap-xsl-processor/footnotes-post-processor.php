@@ -138,7 +138,7 @@ function wrap ($nodes)
 function word_end_pos ($text_node)
 {
     $text = $text_node->nodeValue;
-    $text = preg_replace ('/[[:punct:]\s]/u', ' ', $text);
+    $text = preg_replace ('/[[:punct:]\s\xa0]/u', ' ', $text);
     return mb_strpos ($text, ' ');
 }
 

@@ -432,31 +432,31 @@
     </div>
   </xsl:template>
 
-  <xsl:template match="tei:bibl">
-    <xsl:if test="@corresp">
-      <xsl:choose>
-        <xsl:when test="parent::tei:listBibl">
-          <li class="tei-bibl">
-            <a class="bib" href="{$biblio}{@corresp}"
-               title="[:de]Zum bibliographischen Eintrag[:en]To the bibliographic entry[:]">
-              <xsl:apply-templates/>
-            </a>
-          </li>
-        </xsl:when>
-        <xsl:otherwise>
-          <a class="bib" href="{$biblio}{@corresp}"
-             title="[:de]Zum bibliographischen Eintrag[:en]To the bibliographic entry[:]">
-            <xsl:apply-templates/>
-          </a>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:if>
+  <xsl:template name="bibl-a">
+    <xsl:choose>
+      <xsl:when test="@corresp">
+        <a class="internal bib" href="{$biblio}{@corresp}"
+           title="[:de]Zum bibliographischen Eintrag[:en]To the bibliographic entry[:]">
+          <xsl:apply-templates select="node()[not (self::tei:ref)]"/>
+        </a>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates select="node()[not (self::tei:ref) or @subtype='Bl']"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
-    <xsl:if test="not(@corresp)">
-      <li class="tei-bibl">
-        <xsl:apply-templates/>
-      </li>
-    </xsl:if>
+  <xsl:template match="tei:bibl">
+    <xsl:choose>
+      <xsl:when test="parent::tei:listBibl">
+        <li class="tei-bibl">
+          <xsl:call-template name="bibl-a"/>
+        </li>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="bibl-a"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <!-- Sonstige Elemente -->

@@ -458,8 +458,9 @@ footnotes will be joined to the preceding word.
   <xsl:template match="tei:sic">
     <span class="tei-sic">
       <xsl:apply-templates/>
+      <xsl:text>&#xa0;</xsl:text>
       <span data-shortcuts="0">
-        <xsl:text> [!]</xsl:text>
+        <xsl:text>[!]</xsl:text>
       </span>
     </span>
   </xsl:template>

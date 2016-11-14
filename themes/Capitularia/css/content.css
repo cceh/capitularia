@@ -284,6 +284,26 @@ div.teaser-bar-2 li.widget {
 /*************/
 /* All pages */
 /*************/
+div.content-col a::after {
+  font-family: "dashicons";
+  line-height: 1;
+}
+div.content-col a.internal::after {
+  /* content: "\00a0\2023"; */
+}
+div.content-col a.internal.bib {
+  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+  color: inherit;
+}
+div.content-col a.internal.bib::after {
+  color: #b92900;
+  content: "\00a0\00a0\f330";
+}
+div.content-col a.external::after {
+  content: "\00a0\f504";
+}
 div.content-col article {
   margin: 0 0 32px 0;
 }
@@ -341,26 +361,28 @@ div.content-col th {
   font-weight: normal;
   font-style: normal;
 }
-div.content-col table.new-style tr {
+div.content-col table.new-style thead {
   border-top: 1px solid #1a171b;
-  background: #ffffff;
+  border-bottom: 0px solid #1a171b;
 }
-div.content-col table.new-style tr:first-child {
-  border-top: 2px solid #1a171b;
+div.content-col table.new-style tr {
+  background: #ffffff;
+  /* border: 1px solid @color-lightrule;
+	    &:first-child {
+		border-top: 0px solid @color-lightrule;
+	    } */
+}
+div.content-col table.new-style tr:first-child td,
+div.content-col table.new-style tr:first-child th {
+  padding-top: 12px;
+}
+div.content-col table.new-style tr:last-child td,
+div.content-col table.new-style tr:last-child th {
+  padding-bottom: 12px;
 }
 div.content-col table.new-style tbody {
-  border-bottom: 2px solid #1a171b;
-}
-div.content-col a.internal::after {
-  content: "\00a0\2023";
-}
-div.content-col a.bib::after {
-  content: "\00a0\2023";
-}
-div.content-col a.external::after {
-  font-family: "dashicons";
-  line-height: 1;
-  content: "\00a0\f504";
+  border-top: 1px solid #1a171b;
+  border-bottom: 1px solid #1a171b;
 }
 div.content-col div.tei-msDesc div.tei-msIdentifier {
   margin: 1em 0;
@@ -381,16 +403,6 @@ div.content-col div.capit-xsl table .transcribed-p {
   width: 1%;
   font-size: 80%;
   text-align: right;
-}
-div.content-col div.capit-xsl table tr {
-  border-top: 1px solid #1a171b;
-  background: #ffffff;
-}
-div.content-col div.capit-xsl table tr:first-child {
-  border-top: 2px solid #1a171b;
-}
-div.content-col div.capit-xsl table tbody {
-  border-bottom: 2px solid #1a171b;
 }
 div.content-col div.capit-list-xsl,
 div.content-col div.mss-table-xsl,

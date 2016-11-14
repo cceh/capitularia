@@ -265,6 +265,31 @@ div.teaser-bar-2 {
 /*************/
 
 div.content-col {
+    a {
+	&::after {
+	    font-family: "dashicons";
+	    line-height: 1;
+	}
+	&.internal {
+	    &::after {
+		/* content: "\00a0\2023"; */
+	    }
+	    &.bib {
+		.regular;
+		color: inherit;
+		&::after {
+		    color: @color-link;
+		    content: "\00a0\00a0\f330";
+		}
+	    }
+	}
+	&.external {
+	    &::after {
+		content: "\00a0\f504";
+	    }
+	}
+    }
+
     article {
         margin: 0 0 32px 0;
     }
@@ -318,30 +343,31 @@ div.content-col {
     }
 
     table.new-style {
+	thead {
+	    border-top:    1px solid @color-rule;
+	    border-bottom: 0px solid @color-rule;
+	}
     	tr {
-	    border-top: 1px solid @color-rule;
 	    background: @color-white;
 	    &:first-child {
-		border-top: 2px solid @color-rule;
+		td, th {
+		    padding-top: 12px;
+		}
 	    }
+	    &:last-child {
+		td, th {
+		    padding-bottom: 12px;
+		}
+	    }
+	    /* border: 1px solid @color-lightrule;
+	    &:first-child {
+		border-top: 0px solid @color-lightrule;
+	    } */
 	}
 	tbody {
-	    border-bottom: 2px solid @color-rule;
+	    border-top:    1px solid @color-rule;
+	    border-bottom: 1px solid @color-rule;
 	}
-    }
-
-    a.internal::after {
-        content: "\00a0\2023";
-    }
-
-    a.bib::after {
-        content: "\00a0\2023";
-    }
-
-    a.external::after {
-        font-family: "dashicons";
-	line-height: 1;
-        content: "\00a0\f504";
     }
 
     div.tei-msDesc {
@@ -369,16 +395,6 @@ div.content-col {
 		font-size: 80%;
 		text-align: right;
             }
-	    tr {
-		border-top: 1px solid @color-rule;
-		background: @color-white;
-		&:first-child {
-		    border-top: 2px solid @color-rule;
-		}
-	    }
-	    tbody {
-		border-bottom: 2px solid @color-rule;
-	    }
 	}
     }
 

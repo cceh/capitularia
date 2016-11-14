@@ -66,57 +66,49 @@
   <!-- Aus jeder Datei führen Links zu den Tranksriptionsrichtlinien - Muss noch angepasst werden, wo diese genau liegen - welches Format? -->
   <xsl:variable name="trl"/>
 
-  <!-- Variablen zu externen Ressourcen -->
-  <xsl:variable name="Bl">http://www.leges.uni-koeln.de/mss/handschrift/</xsl:variable>
-
-  <xsl:variable name="dmgh">http://www.mgh.de/dmgh/resolving/</xsl:variable>
-
-  <!-- Boretius-Krause, 1. Teil;
-       hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
-  <xsl:variable name="BK1">http://www.mgh.de/dmgh/resolving/MGH_Capit._1_S._</xsl:variable>
-
-  <!-- Boretius-Krause, 2. Teil;
-       hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
-  <xsl:variable name="BK2">http://www.mgh.de/dmgh/resolving/MGH_Capit._2_S._</xsl:variable>
-
-  <!-- hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
-  <xsl:variable name="Ansegis"
-                >http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._</xsl:variable>
-
-  <!-- nur Home hinterlegt; hier sind mehrere Informationen nötig; Handschriften vs. Studien vs. Edition -->
-  <xsl:variable name="Benedictus">http://www.benedictus.mgh.de/</xsl:variable>
-
-  <!-- Alte Capitularien-Edition von Pertz -->
-  <xsl:variable name="Pertz1">http://www.mgh.de/dmgh/resolving/MGH_LL_1_S._</xsl:variable>
-
-  <!--<xsl:variable name="Pertz2">http://www.mgh.de/dmgh/resolving/MGH_LL_2_S._2_</xsl:variable>-->
-  <!-- Alte Capitularien-Edition von Pertz, 2. Teil -->
-
   <xsl:variable name="tei-ref-external-targets">
     <item key="BK1">
-      <prefix><xsl:value-of select="$BK1"/></prefix>
+      <!-- Boretius-Krause, 1. Teil;
+           hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
+      <prefix>http://www.mgh.de/dmgh/resolving/MGH_Capit._1_S._</prefix>
       <caption>[:de]Zur Edition von Boretius/Krause I (dMGH)[:en]To the edition by Boretius/Krause I (dMGH)[:]</caption>
       <alt>dMGH</alt>
     </item>
     <item key="BK2">
-      <prefix><xsl:value-of select="$BK2"/></prefix>
+      <!-- Boretius-Krause, 2. Teil;
+           hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
+      <prefix>http://www.mgh.de/dmgh/resolving/MGH_Capit._2_S._</prefix>
       <caption>[:de]Zur Edition von Boretius/Krause II (dMGH)[:en]To the edition by Boretius/Krause II (dMGH)[:]</caption>
       <alt>dMGH</alt>
     </item>
     <item key="dmgh">
-      <prefix><xsl:value-of select="$dmgh"/></prefix>
+      <prefix>http://www.mgh.de/dmgh/resolving/</prefix>
       <caption>[:de]Zu den dMGH[:en]To dMGH website[:]</caption>
       <alt>dMGH</alt>
     </item>
     <item key="Pertz1">
-      <prefix><xsl:value-of select="$Pertz1"/></prefix>
+      <!-- Alte Capitularien-Edition von Pertz, 1. Teil -->
+      <prefix>http://www.mgh.de/dmgh/resolving/MGH_LL_1_S._</prefix>
+      <caption>[:de]Zur Edition von Pertz (dMGH)[:en]To the edition by Pertz (dMGH)[:]</caption>
+      <alt>dMGH</alt>
+    </item>
+    <item key="Pertz2">
+      <!-- Alte Capitularien-Edition von Pertz, 2. Teil -->
+      <prefix>http://www.mgh.de/dmgh/resolving/MGH_LL_2_S._2_</prefix>
       <caption>[:de]Zur Edition von Pertz (dMGH)[:en]To the edition by Pertz (dMGH)[:]</caption>
       <alt>dMGH</alt>
     </item>
     <item key="Ansegis">
-      <prefix><xsl:value-of select="$Ansegis"/></prefix>
+      <!-- hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
+      <prefix>http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._</prefix>
       <caption>[:de]Zur Ansegis-Edition (dMGH)[:en]To the edition of Ansegis (dMGH)[:]</caption>
       <alt>dMGH</alt>
+    </item>
+    <item key="Benedictus">
+      <!-- nur Home hinterlegt; hier sind mehrere Informationen nötig; Handschriften vs. Studien vs. Edition -->
+      <prefix>http://www.benedictus.mgh.de/</prefix>
+      <caption>[:de]Zur Edition der falschen Kapitularien des Benedictus Levita[:en]To the edition of Benedictus Levita[:]</caption>
+      <alt>Benedictus Levita</alt>
     </item>
     <item key="BSB">
       <prefix></prefix>
@@ -124,7 +116,7 @@
       <alt>BSB</alt>
     </item>
     <item key="Bl">
-      <prefix><xsl:value-of select="$Bl"/></prefix>
+      <prefix>http://www.leges.uni-koeln.de/mss/handschrift/</prefix>
       <caption>[:de]Zur Beschreibung auf der Bibliotheca legum-Webseite[:en]To the manuscript description on the Bibliotheca legum website[:]</caption>
       <alt>Zur Bibliotheca legum</alt>
     </item>

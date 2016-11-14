@@ -33,6 +33,11 @@
     </tei:TEI>
   </xsl:template>
 
+  <xsl:template match="tei:div[@type='capitulatio']">
+    <tei:milestone n="{@xml:id}" unit="{@type}" />
+    <xsl:apply-templates />
+  </xsl:template>
+
   <xsl:template match="tei:div[@type='capitulare']">
     <tei:milestone n="{@xml:id}" unit="{@type}" />
     <xsl:apply-templates />
