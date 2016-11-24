@@ -109,7 +109,7 @@
 
     <xsl:variable name="id" select="//tei:witness[@n=current()/@target]/@xml:id"/>
 
-    <xsl:call-template name="if-published">
+    <xsl:call-template name="if-visible">
       <xsl:with-param name="path" select="concat ('/mss/', $id)" />
       <xsl:with-param name="href" select="concat ('/mss/', $id, '#', //tei:listWit/@n)"/>
       <xsl:with-param name="title">

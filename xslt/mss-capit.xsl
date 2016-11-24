@@ -150,7 +150,7 @@ Old name:   tabelle_cap_mss.xsl
         <td class="capit"> <!-- id="Kapitular/@id" data-cap-dyn-menu-caption="{Kapitular}" -->
           <xsl:choose>
             <xsl:when test="$prefix">
-              <xsl:call-template name="if-published">
+              <xsl:call-template name="if-visible">
                 <xsl:with-param name="path" select="$path"/>
                 <xsl:with-param name="text">
                   <xsl:apply-templates select="Kapitular"/>
@@ -172,7 +172,7 @@ Old name:   tabelle_cap_mss.xsl
             <xsl:for-each select="key ('id', Kapitular/@id)">
               <xsl:sort select="hss"/>
               <li>
-                <xsl:call-template name="if-published">
+                <xsl:call-template name="if-visible">
                   <xsl:with-param name="path" select="concat ('/mss/', hss/@url)"/>
                   <xsl:with-param name="text">
                     <xsl:apply-templates select="hss"/>

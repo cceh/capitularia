@@ -100,7 +100,7 @@ Old name:   list_capit_all.xsl
   </xsl:template>
 
   <xsl:template match="tei:item/tei:name">
-    <xsl:call-template name="if-published">
+    <xsl:call-template name="if-visible">
       <xsl:with-param name="path" select="concat ('/capit/', @ref)"/>
       <xsl:with-param  name="title">
         <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>

@@ -102,7 +102,7 @@ Output URL: /capit/ldf/bk-nr-186/
       <td class="value">
         <xsl:if test="@corresp">
           <xsl:variable name="id" select="str:replace (substring-before (../../tei:head, ':'), ' Nr. ', '_')"/>
-          <xsl:call-template name="if-published">
+          <xsl:call-template name="if-visible">
             <xsl:with-param name="path"  select="concat ('/mss/', @corresp)"/>
             <xsl:with-param name="href"  select="concat ('/mss/', @corresp, '#', str:replace ($id, 'BK_185', 'BK_185A'))"/>
             <xsl:with-param name="title" select="'[:de]Zur Transkription[:en]Go to the transcription[:]'"/>
@@ -140,7 +140,7 @@ Output URL: /capit/ldf/bk-nr-186/
     <tr>
       <td>
         <xsl:if test="@corresp">
-          <a class="bib" href="{$biblio}{@corresp}"
+          <a class="internal bib" href="{$biblio}{@corresp}"
              title="[:de]Zum bibliographischen Eintrag[:en]Go to bibliography[:]">
             <xsl:apply-templates/>
           </a>

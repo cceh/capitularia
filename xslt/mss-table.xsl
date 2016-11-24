@@ -120,7 +120,7 @@ Old name:   tabelle_ueberblick.xsl
   </xsl:template>
 
   <xsl:template match="idno[@type = 'main']">
-    <xsl:call-template name="if-published">
+    <xsl:call-template name="if-visible">
       <xsl:with-param name="path" select="concat ('/mss/', ../@xml:id)"/>
       <xsl:with-param name="title">[:de]Zur Handschrift[:en]Go to the manuscript[:]</xsl:with-param>
       <xsl:with-param name="text">
@@ -214,7 +214,7 @@ Old name:   tabelle_ueberblick.xsl
     <span class="term">
       <xsl:text> [</xsl:text>
 
-      <xsl:call-template name="if-published">
+      <xsl:call-template name="if-visible">
         <xsl:with-param name="path" select="$path"/>
 
         <xsl:with-param name="title">

@@ -153,36 +153,13 @@ function cap_sanitize_key_list ($key_list)
     return implode (' ', $result);
 }
 
-/*
- * Shortcodes
- */
-
 /**
- * Find out the status of a page.
+ * Get the path of the parent page.
  *
- * @param array $atts The shortocde attributes.  status = status, path = path of page
+ * @param string $path The path of the page.
  *
- * @return True if page has that status.
+ * @return string The path of the parent page.
  */
-
-function if_status_slow ($atts)
-{
-    static $cache = array ();
-
-    global $wpdb;
-
-    $status = $atts['status'];
-    $path   = $atts['path'];
-    if (!array_key_exists ($path, $cache)) {
-        $page = get_page_by_path ($path);
-        if ($page) {
-            $cache[$path] = get_post_status ($page->ID);
-        } else {
-            $cache[$path] = 'delete';
-        }
-    }
-    return $cache[$path] == $status;
-}
 
 function get_parent_path ($path)
 {
@@ -190,15 +167,28 @@ function get_parent_path ($path)
     return implode ('/', array_slice ($a, 0, -1));
 }
 
-function if_status ($atts)
+/**
+ * Make sure the status of a page is in the cache.
+ *
+ * Some pages with long lists are checking the status of hundreds of other
+ * pages.  Wordpress turns each status check into one SQL query.  This function
+ * reads the statuses of all children of a parent page in one SQL query,
+ * potentially saving hundreds of queries.
+ *
+ * @param string $path The path of the page without leading or trailing slashes.
+ *
+ * @return array  A dictionary of path => status which is guaranteed to
+ *                contain the page's status if the page exists.
+ */
+
+function get_page_status_in_cache ($path)
 {
     static $parent_cache = array ();
     static $cache = array ();
 
     global $wpdb;
 
-    $status      = $atts['status'];
-    $path        = trim ($atts['path'], '/');
+    $path        = trim ($path, '/');
     $parent_path = get_parent_path ($path);
 
     if (!array_key_exists ($parent_path, $parent_cache)) {
@@ -214,6 +204,27 @@ function if_status ($atts)
             }
         }
     }
+    return $cache;
+}
+
+/*
+ * Shortcodes
+ */
+
+/**
+ * Find out the status of a page.
+ *
+ * @param array $atts The shortocde attributes.  status = status, path = path of page
+ *
+ * @return True if page has that status.
+ */
+
+function if_status ($atts)
+{
+    $path   = trim ($atts['path'], '/');
+    $status = $atts['status'];
+    $cache  = get_page_status_in_cache ($path);
+
     if (array_key_exists ($path, $cache)) {
         return $cache[$path] == $status;
     }
@@ -225,8 +236,8 @@ function if_status ($atts)
  *
  * This shortcode outputs its content if the ms. has that status.
  *
- * @param array  $atts       The shortocde attributes.  status = status, path = path of page
- * @param string $content    The shortcode content.
+ * @param array  $atts    The shortocde attributes.  status = status, path = path of page
+ * @param string $content The shortcode content.
  *
  * @return string The shortcode content if the ms. has that status else ''.
  */
@@ -244,8 +255,8 @@ function on_shortcode_if_status ($atts, $content)
  *
  * This shortcode outputs its content if the ms. doesn't have that status.
  *
- * @param array  $atts       The shortocde attributes.  status = status, path = path of page
- * @param string $content    The shortcode content.
+ * @param array  $atts    The shortocde attributes.  status = status, path = path of page
+ * @param string $content The shortcode content.
  *
  * @return string The shortcode content if the ms. doesn't have that status else ''.
  */
@@ -260,6 +271,72 @@ function on_shortcode_if_not_status ($atts, $content)
 
 add_shortcode ('if_status',     'cceh\capitularia\page_generator\on_shortcode_if_status');
 add_shortcode ('if_not_status', 'cceh\capitularia\page_generator\on_shortcode_if_not_status');
+
+
+/**
+ * Check if the current user can see a page.
+ *
+ * Check if the user's permissions are sufficient to see a particular page.
+ *
+ * @param string $path The path of the page.
+ *
+ * @return True if the current user can see the page.
+ */
+
+function if_visible ($path)
+{
+    $path  = trim ($path, '/');
+    $cache = get_page_status_in_cache ($path);
+
+    if (array_key_exists ($path, $cache)) {
+        return (
+            $cache[$path] == 'publish' ||
+            ($cache[$path] == 'private' && current_user_can ('read_private_pages'))
+        );
+    }
+    return false; // page does not exist
+}
+
+/**
+ * Add the if_visible shortcode.
+ *
+ * This shortcode outputs its content if the current user can see the page in path.
+ *
+ * @param array  $atts    The shortocde attributes.  path = path of page
+ * @param string $content The shortcode content.
+ *
+ * @return string The shortcode content if the user can see the page in path.
+ */
+
+function on_shortcode_if_visible ($atts, $content)
+{
+    if (if_visible ($atts['path'])) {
+        return do_shortcode ($content);
+    }
+    return '';
+}
+
+/**
+ * Add the if_not_visible shortcode.
+ *
+ * This shortcode outputs its content if the current user cannot see the page in path.
+ *
+ * @param array  $atts    The shortocde attributes.  path = path of page
+ * @param string $content The shortcode content.
+ *
+ * @return string The shortcode content if the current user cannot see the page in path.
+ */
+
+function on_shortcode_if_not_visible ($atts, $content)
+{
+    if (!if_visible ($atts['path'])) {
+        return do_shortcode ($content);
+    }
+    return '';
+}
+
+add_shortcode ('if_visible',     'cceh\capitularia\page_generator\on_shortcode_if_visible');
+add_shortcode ('if_not_visible', 'cceh\capitularia\page_generator\on_shortcode_if_not_visible');
 
 
 /**

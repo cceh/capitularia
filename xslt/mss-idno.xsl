@@ -61,7 +61,7 @@ Old name:   handschriften_mordek_signatur.xsl
   <xsl:template match="tei:msDesc[@xml:id]/tei:head[@type='shelfmark']">
     <tr>
       <td>
-        <xsl:call-template name="if-published">
+        <xsl:call-template name="if-visible">
           <xsl:with-param name="path" select="concat ('/mss/', ../@xml:id)"/>
           <xsl:with-param name="text" select="text()"/>
         </xsl:call-template>

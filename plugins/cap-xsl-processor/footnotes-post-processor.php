@@ -304,7 +304,7 @@ foreach ($notes as $note) {
         }
 
         // $next is a text node
-        if ($next->parentNode->getAttribute ('data-shortcuts') == "0") {
+        if ($next->parentNode->getAttribute ('data-shortcuts') == '0') {
             // skip non-latin texts
             continue;
         }

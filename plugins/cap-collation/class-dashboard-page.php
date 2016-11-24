@@ -148,10 +148,12 @@ class Dashboard_Page
                 $row->xml_id = basename ($row->filename, '.xml');
             }
 
-            $post_id = $wpdb->get_var ($wpdb->prepare (
-                "SELECT post_id FROM wp_postmeta WHERE meta_key = 'tei-xml-id' AND meta_value = %s ORDER BY post_id",
-                $row->xml_id
-            ));
+            $post_id = $wpdb->get_var (
+                $wpdb->prepare (
+                    "SELECT post_id FROM wp_postmeta WHERE meta_key = 'tei-xml-id' AND meta_value = %s ORDER BY post_id",
+                    $row->xml_id
+                )
+            );
             $slug = get_page_uri ($post_id);
 
             // FIXME: quick-n-dirty fix for test files

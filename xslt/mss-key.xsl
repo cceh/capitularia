@@ -117,7 +117,7 @@ Old name:   IdnoSynopse.xsl
   </xsl:template>
 
   <xsl:template match="mss">
-    <xsl:call-template name="if-published">
+    <xsl:call-template name="if-visible">
       <xsl:with-param name="path" select="concat ('/mss/', ../url)"/>
       <xsl:with-param name="text" select="text()"/>
     </xsl:call-template>

@@ -111,7 +111,8 @@ class Dashboard_Page
         $table = new File_List_Table ($section_id, $xml_dir);
         $table->prepare_items (
             array_merge (
-                $this->pagination_args, array (
+                $this->pagination_args,
+                array (
                     'current_url' => "{$page_url}?section={$section_id}&page={$page}"
                 )
             )

@@ -97,32 +97,32 @@
     <xsl:text>&#x0a;&#x0a;</xsl:text>
   </xsl:template>
 
-  <xsl:template name="if-published-then-else">
+  <xsl:template name="if-visible-then-else">
     <xsl:param name="path"/>
     <xsl:param name="then"/>
     <xsl:param name="else"/>
 
-    <xsl:text>[if_status status="publish" path="</xsl:text>
+    <xsl:text>[if_visible path="</xsl:text>
     <xsl:value-of select="$path"/>
     <xsl:text>"]</xsl:text>
     <xsl:copy-of select="$then"/>
-    <xsl:text>[/if_status]</xsl:text>
+    <xsl:text>[/if_visible]</xsl:text>
 
-    <xsl:text>[if_not_status status="publish" path="</xsl:text>
+    <xsl:text>[if_not_visible path="</xsl:text>
     <xsl:value-of select="$path"/>
     <xsl:text>"]</xsl:text>
     <xsl:copy-of select="$else"/>
-    <xsl:text>[/if_not_status]</xsl:text>
+    <xsl:text>[/if_not_visible]</xsl:text>
   </xsl:template>
 
-  <xsl:template name="if-published">
+  <xsl:template name="if-visible">
     <xsl:param name="path"/> <!-- test path -->
     <xsl:param name="text"/>
     <xsl:param name="href"   select="$path" />
     <xsl:param name="title"  select="''"/>
     <xsl:param name="target" select="''"/>
 
-    <xsl:call-template name="if-published-then-else">
+    <xsl:call-template name="if-visible-then-else">
       <xsl:with-param name="path" select="$path"/>
       <xsl:with-param name="then">
         <a class="internal" href="{$href}">
@@ -159,20 +159,18 @@
       <xsl:when test="@subtype='mss'">
         <xsl:choose>
           <xsl:when test="@target">
-            <a class="internal" href="{$mss}{str:replace (@target, '_', '#')}"
-               title= "[:de]Zur Handschrift[:en]To the manuscript[:]">
-
-              <xsl:attribute name="target">
-                <xsl:if test="not (contains (@target, '_'))">
-                  <xsl:text>_self</xsl:text>
-                </xsl:if>
-                <xsl:if test="contains (@target, '_')">
-                  <xsl:text>_blank</xsl:text>
-                </xsl:if>
-              </xsl:attribute>
-
-              <xsl:apply-templates/>
-            </a>
+            <xsl:variable name="target">
+              <!-- example target="vatikan-bav-reg-lat-980_f14rv" -->
+              <xsl:value-of select="str:replace (@target, '_', '#')"/>
+            </xsl:variable>
+            <xsl:call-template name="if-visible">
+              <xsl:with-param name="path"  select="substring-before (concat ('/mss/', $target, '#'), '#')"/>
+              <xsl:with-param name="href"  select="concat ('/mss/', $target)"/>
+              <xsl:with-param name="title" select="'[:de]Zur Handschrift[:en]To the manuscript[:]'"/>
+              <xsl:with-param name="text">
+                <xsl:apply-templates />
+              </xsl:with-param>
+            </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
             <xsl:apply-templates/>
