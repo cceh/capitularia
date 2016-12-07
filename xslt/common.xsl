@@ -149,7 +149,7 @@
 
   <xsl:template match="tei:ref[@type='external']">
     <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
-    <a class="external" href="{$target/prefix}{@target}" target="_blank" title="{string ($target/caption)}">
+    <a class="external" href="{string ($target/prefix)}{@target}" target="_blank" title="{string ($target/caption)}">
       <xsl:apply-templates/>
     </a>
   </xsl:template>

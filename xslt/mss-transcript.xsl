@@ -293,6 +293,12 @@
     </span>
   </xsl:template>
 
+  <xsl:template match="tei:anchor[../tei:milestone[@unit = 'capitulatio' and @spanTo = concat ('#', current()/@xml:id)]]">
+    <!-- this anchor marks the end of a capitulatio -->
+    <span class="milestone milestone-capitulatio-end" />
+    <xsl:call-template name="page-break" />
+  </xsl:template>
+
   <!--
       Typ-Unterscheidung hinzufügen!!!
 

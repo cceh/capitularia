@@ -340,6 +340,41 @@ add_shortcode ('if_not_visible', 'cceh\capitularia\page_generator\on_shortcode_i
 
 
 /**
+ * Add the if_transcribed shortcode.
+ *
+ * This shortcode outputs its content if the capitular was already tanscribed on
+ * that page (in that manuscript).
+ *
+ * @param array  $atts    The shortocde attributes.  path = path of page, bk = BK No.
+ * @param string $content The shortcode content.
+ *
+ * @return string The shortcode content if the capitular is transcribed, else nothing.
+ */
+
+function on_shortcode_if_transcribed ($atts, $content)
+{
+    global $wpdb;
+
+    $page  = get_page_by_path (trim ($atts['path'], '/'));
+    if ($page) {
+        $re_bk = '^' . $atts['bk'];
+        $sql = $wpdb->prepare (
+            "SELECT post_id FROM {$wpdb->postmeta} " .
+            "WHERE meta_key = 'milestone-capitulare' AND post_id = %d " .
+            "AND meta_value REGEXP %s",
+            $page->ID, $re_bk
+        );
+        if ($wpdb->get_results ($sql)) {
+            return do_shortcode ($content);
+        }
+    }
+    return '';
+}
+
+add_shortcode ('if_transcribed', 'cceh\capitularia\page_generator\on_shortcode_if_transcribed');
+
+
+/**
  * Things to do when a admin activates the plugin
  *
  * @return void

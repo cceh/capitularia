@@ -432,6 +432,10 @@
     </div>
   </xsl:template>
 
+  <xsl:template match="tei:listBibl">
+    <xsl:apply-templates select="tei:bibl[not (@resp='capit')]"/>
+  </xsl:template>
+
   <xsl:template name="bibl-a">
     <xsl:choose>
       <xsl:when test="@corresp">

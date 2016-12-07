@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 
     var git_user = grunt.option ('gituser') || process.env.GRUNT_CAPITULARIA_GITUSER;
 
-    var browser = grunt.option ('browser') || process.env.GRUNT_BROWSER || "iceweasel";
+    var browser = grunt.option ('browser') || process.env.GRUNT_BROWSER || "firefox";
 
     grunt.initConfig ({
         afs:            afs,

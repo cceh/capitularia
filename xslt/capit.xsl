@@ -102,11 +102,30 @@ Output URL: /capit/ldf/bk-nr-186/
       <td class="value">
         <xsl:if test="@corresp">
           <xsl:variable name="id" select="str:replace (substring-before (../../tei:head, ':'), ' Nr. ', '_')"/>
-          <xsl:call-template name="if-visible">
-            <xsl:with-param name="path"  select="concat ('/mss/', @corresp)"/>
-            <xsl:with-param name="href"  select="concat ('/mss/', @corresp, '#', str:replace ($id, 'BK_185', 'BK_185A'))"/>
-            <xsl:with-param name="title" select="'[:de]Zur Transkription[:en]Go to the transcription[:]'"/>
-            <xsl:with-param name="text">
+          <xsl:variable name="path"  select="concat ('/mss/', @corresp)"/>
+          <xsl:variable name="href"  select="concat ('/mss/', @corresp, '#', str:replace ($id, 'BK_185', 'BK_185A'))"/>
+          <xsl:variable name="bk"    select="concat ('BK.', substring-after (/tei:TEI/@corresp, 'bk-nr-'))"/>
+          <!-- Make a link to the manuscript if it is already published, else: no link, just the
+               name. -->
+          <xsl:call-template name="if-visible-then-else">
+            <xsl:with-param name="path"  select="$path"/>
+            <xsl:with-param name="then">
+              <a class="internal" href="{$path}"
+                 title="[:de]Zum Manuskript[:en]Go to the manuscript[:]">
+                <xsl:apply-templates />
+              </a>
+              <!-- Add a deep link to the capitular if it is already transcribed in that ms. -->
+              <xsl:text>[if_transcribed path="</xsl:text>
+              <xsl:value-of select="$path"/>
+              <xsl:text>" bk="</xsl:text>
+              <xsl:value-of select="$bk"/>
+              <xsl:text>"]</xsl:text>
+              <a class="internal transcription" href="{$href}"
+                 title="[:de]Zur Transkription[:en]Go to the transcription[:]">
+              </a>
+              <xsl:text>[/if_transcribed]</xsl:text>
+            </xsl:with-param>
+            <xsl:with-param name="else">
               <xsl:apply-templates />
             </xsl:with-param>
           </xsl:call-template>

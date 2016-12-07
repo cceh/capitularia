@@ -247,7 +247,7 @@ Old name:   tabelle_ueberblick.xsl
 
   <xsl:template match="note[@type = 'filiation' or @type = 'annotation']">
     <span>
-      <xsl:apply-templates />
+      <xsl:apply-templates/>
     </span>
   </xsl:template>
 
@@ -258,8 +258,9 @@ Old name:   tabelle_ueberblick.xsl
     </strong>
   </xsl:template>
 
-  <xsl:template match="ref[@type = 'external' and @subtype = 'Bl']">
-    <a href="{$Bl}{@target}" target="_blank" title="Bibliotheca legum">
+  <xsl:template match="ref[@type='external']">
+    <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
+    <a class="external" href="{string ($target/prefix)}{@target}" target="_blank" title="{string ($target/caption)}">
       <xsl:apply-templates/>
     </a>
   </xsl:template>
