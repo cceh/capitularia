@@ -7,6 +7,11 @@ Outputs a content div for insertion in a manuscript file.
 Input file: cap/mss/*
 Output: divContent
 
+Needs SAXON !!! (Saxon does not grok str:concat (), but our editors use Saxon,
+so we have to use string-join () instead, which is XPath 2.0).
+
+  $ saxon xml-file xsl-file
+
 Einige Anpassungswünsche (06.10.16):
 
 Interpunktionszeichen sollen herausgefiltert werden;
@@ -19,7 +24,7 @@ nicht herausfiltern, bis auf das erste meta-text-Element (Beginn der Capitulatio
 -->
 
 <xsl:stylesheet
-    version="1.0"
+    version="2.0"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
     xmlns:exsl="http://exslt.org/common"
     xmlns:func="http://exslt.org/functions"
@@ -53,11 +58,17 @@ nicht herausfiltern, bis auf das erste meta-text-Element (Beginn der Capitulatio
       <item n="{$n}">
         <ptr type="internal" target="{$target}" />
         <xsl:variable name="text">
-          <xsl:apply-templates select="tei:seg[@type='num']" mode="num"/>
+          <span class="tei-seg tei-seg-num">
+            <xsl:apply-templates select=".//tei:seg[@type='num']" mode="num"/>
+          </span>
           <xsl:text> </xsl:text>
           <xsl:apply-templates/>
         </xsl:variable>
-        <xsl:value-of select="normalize-space (translate (str:concat (exsl:node-set ($text)), '.,:;!?*', ''))"/>
+        <!-- libxsl version: <xsl:value-of select="normalize-space (translate (str:concat
+             (exsl:node-set ($text)), '.,:;!?*', ''))"/>
+        -->
+        <!-- Saxon version: -->
+        <xsl:value-of select="normalize-space (translate (string-join ($text, ''), '.,:;!?*', ''))"/>
       </item>
     </xsl:if>
   </xsl:template>
