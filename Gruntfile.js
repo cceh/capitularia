@@ -16,6 +16,7 @@ module.exports = function (grunt) {
         localfs:        localfs,
         browser:        browser,
         rsync:          "rsync -rlptz --exclude='*~' --exclude='.*' --exclude='*.less' --exclude='node_modules'",
+        publ:           afs     + "/http/docs/cap/publ",
         transform:      afs     + "/http/docs/cap/publ/transform",
         wpcontent:      afs     + "/http/docs/wp-content",
         wpcontentlocal: localfs + "/wp-content",
@@ -101,7 +102,7 @@ module.exports = function (grunt) {
                 failOnError: false,
             },
             deploy: {
-                command: '<%= rsync %> themes/Capitularia/* <%= wpcontent %>/themes/Capitularia/ ; <%= rsync %> plugins/cap-* <%= wpcontent %>/plugins/; <%= rsync %> xslt/*.xsl xslt/test/*xml <%= transform %>/',
+                command: '<%= rsync %> themes/Capitularia/* <%= wpcontent %>/themes/Capitularia/ ; <%= rsync %> plugins/cap-* <%= wpcontent %>/plugins/; <%= rsync %> xslt/*.xsl xslt/test/*xml <%= transform %>/; <%= rsync %> scripts <%= publ %>',
             },
             testdeploy: {
                 command: '<%= rsync %> themes/Capitularia/* <%= wpcontentlocal %>/themes/Capitularia/ ; <%= rsync %> plugins/cap-* <%= wpcontentlocal %>/plugins/',

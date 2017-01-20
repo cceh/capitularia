@@ -212,8 +212,8 @@
     </div>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
 
-    <!-- sometimes the text ends with an ab meta. -->
-    <xsl:if test="not (following-sibling::tei:ab)">
+    <!-- If the text ends here or is followed by a capitulatio. -->
+    <xsl:if test="not (following-sibling::tei:ab) or following-sibling::*[1][self::tei:milestone[@unit='capitulatio']]">
       <xsl:call-template name="footnotes-wrapper"/>
       <xsl:call-template name="page-break" />
     </xsl:if>
@@ -233,7 +233,6 @@
     <xsl:text>&#x0a;&#x0a;</xsl:text>
 
     <xsl:call-template name="footnotes-wrapper"/>
-
     <xsl:call-template name="page-break" />
   </xsl:template>
 
