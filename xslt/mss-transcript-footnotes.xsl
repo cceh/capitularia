@@ -763,7 +763,23 @@ footnotes will be joined to the preceding word.
         <xsl:text>korr. (?)</xsl:text>
       </xsl:when>
       <xsl:otherwise>
-        <span class="mentioned" data-shortcuts="1"><xsl:apply-templates/></span>
+        <span class="mentioned" data-shortcuts="1">
+          <xsl:choose>
+            <xsl:when test="string-length () = 1">
+              <xsl:apply-templates/>
+              <!-- the index, eg. a² -->
+              <!-- <xsl:comment><xsl:value-of select="concat ($before, ., $after)"/></xsl:comment> -->
+              <xsl:if test="cap:count-char (concat ($before, $after), string ()) &gt; 0">
+                <sup class="mentioned-index">
+                  <xsl:value-of select="1 + cap:count-char ($before, string ())"/>
+                </sup>
+              </xsl:if>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </span>
         <xsl:text> korr. (?)</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
