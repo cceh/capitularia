@@ -441,11 +441,11 @@
       <xsl:when test="@corresp">
         <a class="internal bib" href="{$biblio}{@corresp}"
            title="[:de]Zum bibliographischen Eintrag[:en]To the bibliographic entry[:]">
-          <xsl:apply-templates select="node()[not (self::tei:ref)]"/>
+          <xsl:apply-templates />
         </a>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="node()[not (self::tei:ref) or @subtype='Bl']"/>
+        <xsl:apply-templates />
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

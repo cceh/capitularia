@@ -194,19 +194,13 @@
   <xsl:template match="tei:body/tei:ab[@type='meta-text']">
     <xsl:call-template name="tCorresp" />
 
-    <div class="ab ab-meta-text" lang="la" data-shortcuts="1">
+    <div lang="la" data-shortcuts="1">
+      <xsl:call-template name="handle-rend">
+        <xsl:with-param name="extra-class" select="'ab ab-meta-text'"/>
+      </xsl:call-template>
       <xsl:if test="@xml:id">
         <xsl:attribute name="id"><xsl:value-of select="@xml:id"/></xsl:attribute>
       </xsl:if>
-      <xsl:choose>
-        <!-- Änderung von Wert red auf coloured wg. Anpassung an TRL # DS 22.02.16 -->
-        <xsl:when test="@rend='coloured'">
-          <xsl:attribute name="class">"ab ab-meta-text rend-red</xsl:attribute>
-        </xsl:when>
-        <xsl:when test="@rend='default'">
-          <xsl:attribute name="class">"ab ab-meta-text rend-default</xsl:attribute>
-        </xsl:when>
-      </xsl:choose>
       <xsl:apply-templates/>
       <span> &#xa0;</span> <!-- Do not let footnotes escape the ab. -->
     </div>
@@ -306,15 +300,10 @@
       verschiedene Größen/Schrifttypen?
   -->
   <xsl:template match="tei:seg[@type='initial']">
-    <span class="initial">
-      <xsl:choose>
-        <xsl:when test="@rend='coloured'">
-          <xsl:attribute name="class">initial rend-red</xsl:attribute>
-        </xsl:when>
-        <xsl:when test="@rend='default'">
-          <xsl:attribute name="class">initial rend-default</xsl:attribute>
-        </xsl:when>
-      </xsl:choose>
+    <span>
+      <xsl:call-template name="handle-rend">
+        <xsl:with-param name="extra-class" select="'initial'" />
+      </xsl:call-template>
       <xsl:attribute name="title">
         <xsl:text>Initiale</xsl:text>
         <xsl:if test="contains(@type,'-')">
@@ -322,7 +311,6 @@
           <xsl:value-of select="substring-after(@type, '-')"/>
         </xsl:if>
       </xsl:attribute>
-
       <xsl:apply-templates />
     </span>
   </xsl:template>
@@ -333,36 +321,22 @@
     </span>
   </xsl:template>
 
-  <xsl:template match="tei:seg[@type='numDenom'][@rend='coloured']">
-    <span class="rend-coloured">
+  <xsl:template match="tei:seg[@type='numDenom']">
+    <span>
+      <xsl:call-template name="handle-rend">
+        <xsl:with-param name="extra-class" select="'tei-seg tei-seg-numDenom'"/>
+      </xsl:call-template>
       <xsl:apply-templates />
     </span>
   </xsl:template>
 
-  <xsl:template match="tei:seg[@type='numDenom'][@rend='default']">
-    <span class="rend-default">
+  <xsl:template match="tei:seg[@type='num']">
+    <span>
+      <xsl:call-template name="handle-rend">
+        <xsl:with-param name="extra-class" select="'tei-seg tei-seg-num'"/>
+      </xsl:call-template>
       <xsl:apply-templates />
     </span>
-  </xsl:template>
-
-  <xsl:template match="tei:seg[@type='numDenom'][not(@rend)]">
-    <xsl:apply-templates />
-  </xsl:template>
-
-  <xsl:template match="tei:seg[@type='num'][@rend='coloured']">
-    <span class="rend-coloured">
-      <xsl:apply-templates />
-    </span>
-  </xsl:template>
-
-  <xsl:template match="tei:seg[@type='num'][@rend='default']">
-    <span class="rend-default">
-      <xsl:apply-templates />
-    </span>
-  </xsl:template>
-
-  <xsl:template match="tei:seg[@type='num'][not(@rend)]">
-    <xsl:apply-templates />
   </xsl:template>
 
   <xsl:template match="tei:cit">
@@ -374,38 +348,14 @@
     <span class="tei-metamark" />
   </xsl:template>
 
-  <xsl:template match="tei:hi[@rend='super']">
-    <sup class="tei-hi rend-super">
-      <xsl:apply-templates />
-    </sup>
-  </xsl:template>
-
-  <xsl:template match="tei:hi[@rend='sub']">
-    <sub class="tei-hi rend-sub">
-      <xsl:apply-templates />
-    </sub>
-  </xsl:template>
-
-  <xsl:template match="tei:hi[@rend='coloured']">
-    <!-- Baustelle: Klasse für "rote" span?! -->
-    <span class="tei-hi rend-coloured">
+  <xsl:template match="tei:hi">
+    <span>
+      <xsl:call-template name="handle-rend">
+        <xsl:with-param name="extra-class" select="'tei-hi'"/>
+      </xsl:call-template>
       <xsl:apply-templates />
     </span>
   </xsl:template>
-
-  <xsl:template match="tei:hi[@rend='default']">
-    <!-- Baustelle: Klasse für "default" span?! -->
-    <span class="tei-hi rend-default">
-      <xsl:apply-templates />
-    </span>
-  </xsl:template>
-
-  <xsl:template match="tei:hi[@rend='italic']">
-    <span class="tei-hi rend-italic italic">
-      <xsl:apply-templates />
-    </span>
-  </xsl:template>
-
 
   <xsl:template match="tei:span[@xml:id]">
     <span class="tei-span">

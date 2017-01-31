@@ -111,7 +111,7 @@ Output URL: /capit/ldf/bk-nr-186/
             <xsl:with-param name="path"  select="$path"/>
             <xsl:with-param name="then">
               <a class="internal" href="{$path}"
-                 title="[:de]Zum Manuskript[:en]Go to the manuscript[:]">
+                 title="[:de]Zur Handschrift[:en]Go to the manuscript[:]">
                 <xsl:apply-templates />
               </a>
               <!-- Add a deep link to the capitular if it is already transcribed in that ms. -->

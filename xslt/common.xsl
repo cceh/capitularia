@@ -61,6 +61,25 @@
     <func:result select="str:replace (str:replace (str:replace (str:replace ($siglum, '.', '_'), '_00', '&#xa0;'), '_0', '&#xa0;'), '_', '&#xa0;')"/>
   </func:function>
 
+  <xsl:template name="handle-rend">
+    <xsl:param name="extra-class" select="''" />
+
+    <xsl:variable name="class">
+      <xsl:value-of select="concat (' ', $extra-class)"/>
+      <xsl:if test="@rend">
+        <xsl:for-each select="str:split(@rend)">
+          <xsl:value-of select="concat (' rend-', .)"/>
+        </xsl:for-each>
+      </xsl:if>
+    </xsl:variable>
+
+    <xsl:if test="normalize-space ($class)">
+      <xsl:attribute name="class">
+        <xsl:value-of select="normalize-space ($class)" />
+      </xsl:attribute>
+    </xsl:if>
+  </xsl:template>
+
   <xsl:template name="back-to-top">
     <xsl:text>&#x0a;&#x0a;</xsl:text>
     <div class="back-to-top">
@@ -148,10 +167,22 @@
   <!-- Verlinkungen zu Resourcen -->
 
   <xsl:template match="tei:ref[@type='external']">
-    <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
-    <a class="external" href="{string ($target/prefix)}{@target}" target="_blank" title="{string ($target/caption)}">
-      <xsl:apply-templates/>
-    </a>
+    <xsl:choose>
+      <!-- bibl with @corresp already generates an <a> -->
+      <xsl:when test="ancestor::tei:bibl[@corresp]">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <!-- only generate links to Bl -->
+      <xsl:when test="not (@subtype='Bl')">
+        <xsl:apply-templates/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
+        <a class="external" href="{string ($target/prefix)}{@target}" target="_blank" title="{string ($target/caption)}">
+          <xsl:apply-templates/>
+        </a>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="tei:ref[@type='internal']">
