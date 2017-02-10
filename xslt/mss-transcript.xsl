@@ -74,7 +74,7 @@
           data-cap-dyn-menu-caption="[:de]Editorische Vorbemerkung[:en]Editorial Preface[:]">
         [:de]Editorische Vorbemerkung zur Transkription[:en]Editorial Preface to the Transcription[:]
       </h5>
-      <xsl:apply-templates select="tei:div[normalize-space (.)]" />
+      <xsl:apply-templates select="tei:div[normalize-space (.) and not (@type='content')]" />
     </div>
   </xsl:template>
 

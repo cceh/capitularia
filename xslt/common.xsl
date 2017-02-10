@@ -165,6 +165,12 @@
   </xsl:template>
 
   <!-- Verlinkungen zu Resourcen -->
+  <xsl:template name="make-link-to-resource">
+    <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
+    <a class="external" href="{string ($target/prefix)}{@target}" target="_blank" title="{string ($target/caption)}">
+      <xsl:apply-templates/>
+    </a>
+  </xsl:template>
 
   <xsl:template match="tei:ref[@type='external']">
     <xsl:choose>
@@ -172,15 +178,20 @@
       <xsl:when test="ancestor::tei:bibl[@corresp]">
         <xsl:apply-templates/>
       </xsl:when>
-      <!-- only generate links to Bl -->
-      <xsl:when test="not (@subtype='Bl')">
-        <xsl:apply-templates/>
-      </xsl:when>
       <xsl:otherwise>
-        <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
-        <a class="external" href="{string ($target/prefix)}{@target}" target="_blank" title="{string ($target/caption)}">
-          <xsl:apply-templates/>
-        </a>
+        <xsl:choose>
+          <!-- generate links to Bl -->
+          <xsl:when test="@subtype='Bl'">
+            <xsl:call-template name="make-link-to-resource" />
+          </xsl:when>
+          <!-- generate links in capitular pages -->
+          <xsl:when test="ancestor::tei:note[@type='titles']">
+            <xsl:call-template name="make-link-to-resource" />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates />
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

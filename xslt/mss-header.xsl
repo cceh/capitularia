@@ -53,7 +53,7 @@
 
   <xsl:template match="/tei:TEI">
     <div class="tei-TEI mss-header-xsl transkription-header">
-      <script language="javascript">
+      <script type="text/javascript">
         function toggle (control) {
           var elem = document.getElementById(control);
           if (elem.style.display == "none") {

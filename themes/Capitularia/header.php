@@ -14,10 +14,9 @@ namespace cceh\capitularia\theme;
   <head>
     <meta charset="<?php bloginfo ('charset'); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="pingback" href="<?php bloginfo ('pingback_url'); ?>" />
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="pingback" href="<?php bloginfo ('pingback_url'); ?>" />
 
     <title><?php wp_title ('|', true, 'right'); ?></title>
 

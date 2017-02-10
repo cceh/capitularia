@@ -242,9 +242,9 @@ footnotes will be joined to the preceding word.
       <xsl:when test="parent::tei:subst/tei:add/@hand">
         <func:result select="../tei:add/@hand"/>
       </xsl:when>
-      <otherwise>
+      <xsl:otherwise>
         <func:result select="''"/>
-      </otherwise>
+      </xsl:otherwise>
     </xsl:choose>
   </func:function>
 
