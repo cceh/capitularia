@@ -17,19 +17,19 @@ function get_manuscripts_list () {
 }
 
 function get_normalizations () {
-    return jQuery ('#normalizations').val ().split ("\n");
+    return jQuery ('#normalizations').val ().split ('\n');
 }
 
 function get_sections_params () {
     var data = {
-        'bk': jQuery ('#bk').val (),
+        'bk' : jQuery ('#bk').val (),
     };
     return data;
 }
 
 function get_manuscripts_params () {
     var data = {
-        'corresp': jQuery ('#section').val (),
+        'corresp' : jQuery ('#section').val (),
     };
     data = jQuery.extend (data, get_sections_params ());
     return data;
@@ -37,13 +37,13 @@ function get_manuscripts_params () {
 
 function get_collation_params () {
     var data = {
-        'algorithm':            jQuery ('#algorithm').val (),
-        'levenshtein_distance': jQuery ('#levenshtein_distance').val (),
-        'levenshtein_ratio':    jQuery ('#levenshtein_ratio').val (),
-        'segmentation':         jQuery ('#segmentation').prop ('checked'),
-        'transpositions':       jQuery ('#transpositions').prop ('checked'),
-        'manuscripts':          get_manuscripts_list (),
-        'normalizations':       get_normalizations (),
+        'algorithm'            : jQuery ('#algorithm').val (),
+        'levenshtein_distance' : jQuery ('#levenshtein_distance').val (),
+        'levenshtein_ratio'    : jQuery ('#levenshtein_ratio').val (),
+        'segmentation'         : jQuery ('#segmentation').prop ('checked'),
+        'transpositions'       : jQuery ('#transpositions').prop ('checked'),
+        'manuscripts'          : get_manuscripts_list (),
+        'normalizations'       : get_normalizations (),
     };
     data = jQuery.extend (data, get_manuscripts_params ());
     return data;
@@ -54,11 +54,11 @@ function get_collation_params () {
 function save_params () {
     var params = get_collation_params ();
     var url = 'data:text/plain,' + encodeURIComponent (JSON.stringify (params, null, 2));
-    var e = document.getElementById ("save-fake-download");
-    e.setAttribute ("href", url);
+    var e = document.getElementById ('save-fake-download');
+    e.setAttribute ('href', url);
     e.setAttribute (
-        "download",
-        "save-" + encodeRFC5987ValueChars (params.corresp.toLowerCase ()) + ".txt"
+        'download',
+        'save-' + encodeRFC5987ValueChars (params.corresp.toLowerCase ()) + '.txt'
     );
     e.click ();
 
@@ -66,7 +66,7 @@ function save_params () {
 }
 
 function click_on_load_params (fileInput) {
-    var e = document.getElementById ("load-params");
+    var e = document.getElementById ('load-params');
     e.click ();
 }
 
@@ -74,7 +74,7 @@ function click_on_load_params (fileInput) {
 
 function load_params (fileInput) {
     var files = fileInput.files;
-    if (files.length != 1) {
+    if (files.length !== 1) {
         return false;
     }
 
@@ -85,17 +85,15 @@ function load_params (fileInput) {
         /* Set the control value and then call the onclick function. */
         jQuery ('#bk').val (json.bk);
         on_cap_load_sections (function () {
-
             /* Set the control value and then call the onclick function. */
             jQuery ('#section').val (json.corresp);
             on_cap_load_manuscripts (function () {
-
                 jQuery ('#algorithm').val (json.algorithm);
                 jQuery ('#levenshtein_distance').val (json.levenshtein_distance);
                 jQuery ('#levenshtein_ratio').val (json.levenshtein_ratio);
                 jQuery ('#segmentation').prop ('checked', json.segmentation);
                 jQuery ('#transpositions').prop ('checked', json.transpositions);
-                jQuery ('#normalizations').val (json.normalizations.join ("\n"));
+                jQuery ('#normalizations').val (json.normalizations.join ('\n'));
 
                 /*
                  * Deal with manuscript tables.  First move *all* manuscripts to the
@@ -112,7 +110,6 @@ function load_params (fileInput) {
                 }
             });
         });
-
     };
     reader.readAsText (files[0]);
 
@@ -121,14 +118,14 @@ function load_params (fileInput) {
 
 
 function encodeRFC5987ValueChars (str) {
-    return encodeURIComponent (str).
-        // Note that although RFC3986 reserves "!", RFC5987 does not,
+    return encodeURIComponent (str)
+        // Note that although RFC3986 reserves '!', RFC5987 does not,
         // so we do not need to escape it
-        replace (/['()]/g, escape). // i.e., %27 %28 %29
-        replace (/\*/g, '%2A').
-            // The following are not required for percent-encoding per RFC5987,
-            // so we can allow for a little better readability over the wire: |`^
-            replace (/%(?:7C|60|5E)/g, unescape);
+        .replace (/['()]/g, escape) // i.e., %27 %28 %29
+        .replace (/\*/g, '%2A')
+        // The following are not required for percent-encoding per RFC5987,
+        // so we can allow for a little better readability over the wire: |`^
+        .replace (/%(?:7C|60|5E)/g, unescape);
 }
 
 function clear_manuscripts () {
@@ -176,17 +173,17 @@ function on_cap_load_sections (onReady) {
     add_spinner (div);
 
     jQuery.ajax ({
-        method: "POST",
-        url: ajaxurl,
-        data : data,
-    }).done (function (response, status) {
+        'method' : 'POST',
+        'url'    : ajaxurl,
+        'data'   : data,
+    }).done (function (response) {
         clear_spinners (function () {
             jQuery ('#section').replaceWith (response.html);
             if (onReady !== undefined) {
                 onReady ();
             }
         });
-    }).always (function (response, status) {
+    }).always (function (response) {
         handle_message (div, response);
     });
     return false;  // don't submit form
@@ -202,37 +199,37 @@ function on_cap_load_manuscripts (onReady) {
     add_spinner (div);
 
     jQuery.ajax ({
-        method: "POST",
-        url: ajaxurl,
-        data : data,
-    }).done (function (response, status) {
+        'method' : 'POST',
+        'url'    : ajaxurl,
+        'data'   : data,
+    }).done (function (response) {
         var html = jQuery (response.html).hide ().appendTo (div);
         clear_spinners (function () {
             html.fadeIn ();
             jQuery ('div.accordion').accordion ({
-                collapsible: true,
-                active: false
+                'collapsible' : true,
+                'active'      : false,
             });
             if (onReady !== undefined) {
                 onReady ();
             }
         });
-    }).always (function (response, status) {
+    }).always (function (response) {
         handle_message (div, response);
 
         jQuery ('table.manuscripts').disableSelection ().sortable ({
-            helper: 'clone',
-            items: '*[data-siglum]',
-            connectWith: 'table.manuscripts',
-            cursor: 'pointer',
-            receive: function (event, ui) {
+            'helper'      : 'clone',
+            'items'       : '*[data-siglum]',
+            'connectWith' : 'table.manuscripts',
+            'cursor'      : 'pointer',
+            'receive'     : function (event, ui) {
                 var tbody = jQuery (event.target).find ('tbody');
                 if (ui.item.closest (tbody).size () === 0) {
                     ui.item.appendTo (tbody);
                 }
-	            /* to keep original row width while dragging. See also: admin.less */
+                /* to keep original row width while dragging. See also: admin.less */
                 ui.item.css ('display', '');
-            }
+            },
         });
     });
     return false;  // don't submit form
@@ -247,30 +244,29 @@ function on_cap_load_collation () {
     add_spinner (div);
 
     jQuery.ajax ({
-        method: "POST",
-        url: ajaxurl,
-        data : data,
-    }).done (function (response, status) {
+        'method' : 'POST',
+        'url'    : ajaxurl,
+        'data'   : data,
+    }).done (function (response) {
         var html = jQuery (response.html).hide ().appendTo (div);
         clear_spinners (function () {
             html.fadeIn ();
             jQuery ('div.accordion').accordion ({
-                collapsible: true,
-                active: false
+                'collapsible' : true,
+                'active'      : false,
             });
         });
-    }).always (function (response, status) {
+    }).always (function (response) {
         handle_message (div, response);
 
         var data_rows = jQuery ('tr[data-siglum]');
         data_rows.hover (function () {
             div.find ('tr[data-siglum="' + jQuery (this).attr ('data-siglum') +  '"]').addClass ('highlight-witness');
         }, function () {
-            data_rows.each (function (index) {
+            data_rows.each (function () {
                 jQuery (this).removeClass ('highlight-witness');
             });
         });
-
     });
     return false;  // don't submit form
 }
@@ -281,40 +277,45 @@ function on_cap_load_collation () {
  */
 
 function make_cb_select_all (event, ui) {
-	ui.panel.find ('thead, tfoot').find ('.check-column :checkbox').on ('click.wp-toggle-checkboxes', function (event) {
-		var $this = jQuery (this),
-			$table = $this.closest( 'table' ),
-			controlChecked = $this.prop('checked'),
-			toggle = event.shiftKey || $this.data('wp-toggle');
+    ui.panel.find ('thead, tfoot').find ('.check-column :checkbox').on ('click.wp-toggle-checkboxes', function (event) {
+        var $this = jQuery (this);
+        var $table = $this.closest ('table');
+        var controlChecked = $this.prop ('checked');
+        var toggle = event.shiftKey || $this.data ('wp-toggle');
 
-		$table.children( 'tbody' ).filter(':visible')
-			.children().children('.check-column').find(':checkbox')
-			.prop('checked', function() {
-				if ( jQuery (this).is(':hidden,:disabled') ) {
-					return false;
-				}
+        $table.children ('tbody')
+            .filter (':visible')
+            .children ()
+            .children ('.check-column')
+            .find (':checkbox')
+            .prop ('checked', function () {
+                if (jQuery (this).is (':hidden,:disabled')) {
+                    return false;
+                }
 
-				if ( toggle ) {
-					return ! jQuery (this).prop( 'checked' );
-				} else if ( controlChecked ) {
-					return true;
-				}
+                if (toggle) {
+                    return !jQuery (this).prop ('checked');
+                } else if (controlChecked) {
+                    return true;
+                }
 
-				return false;
-			});
+                return false;
+            });
 
-		$table.children('thead,  tfoot').filter(':visible')
-			.children().children('.check-column').find(':checkbox')
-			.prop('checked', function() {
-				if ( toggle ) {
-					return false;
-				} else if ( controlChecked ) {
-					return true;
-				}
-
-				return false;
-			});
-	});
+        $table.children ('thead,  tfoot')
+            .filter (':visible')
+            .children ()
+            .children ('.check-column')
+            .find (':checkbox')
+            .prop ('checked', function () {
+                if (toggle) {
+                    return false;
+                } else if (controlChecked) {
+                    return true;
+                }
+                return false;
+            });
+    });
 }
 
 jQuery (document).ready (function () {
