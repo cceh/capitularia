@@ -14,6 +14,15 @@
 
   <xsl:output method="xml" indent="no" />
 
+  <!--
+      Usage:
+
+      cd capitularia/http/docs/cap/publ
+      for src in tmp/pre814/*.xml ; do dest="capit/pre814/$(basename $src)"
+        xsltproc -\-stringparam path "../capit/lists/capit_mysql.xml" transform/Add-Corresp-To-Capit-List.xsl $src > $dest
+      done
+  -->
+
   <xsl:param name="path" select="''" />
 
   <xsl:param name="dict" select="document ($path)" />
