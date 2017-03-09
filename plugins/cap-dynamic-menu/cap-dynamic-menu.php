@@ -19,11 +19,13 @@ namespace cceh\capitularia\dynamic_menu;
 
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
+require_once 'functions.php';
 require_once 'class-dynamic-menu.php';
 
-$i = Dynamic_Menu::get_instance ();
+$cap_dynamic_menu = new Dynamic_Menu ();
 
-$class_name = 'cceh\capitularia\dynamic_menu\Dynamic_Menu';
-register_activation_hook   (__FILE__, array ($class_name, 'on_activation'));
-register_deactivation_hook (__FILE__, array ($class_name, 'on_deactivation'));
-register_uninstall_hook    (__FILE__, array ($class_name, 'on_uninstall'));
+add_action ('wp_enqueue_scripts',    __NAMESPACE__ . '\on_enqueue_scripts');
+
+register_activation_hook   (__FILE__, __NAMESPACE__ . '\on_activation');
+register_deactivation_hook (__FILE__, __NAMESPACE__ . '\on_deactivation');
+register_uninstall_hook    (__FILE__, __NAMESPACE__ . '\on_uninstall');

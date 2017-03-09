@@ -12,8 +12,9 @@
         "jquery"  : true
     },
     "globals" : {
-        "requirejs" : false,
-        "server_start_time" : true
+        "server_start_time" : true,
+        "ajax_object"       : false,   // added to every page header by wordpress
+        "ajaxurl"           : false    // "
     },
     "rules" : {
         // restrict airbnb
@@ -21,23 +22,27 @@
         // style.js
         "comma-dangle"      : ["error", "always-multiline"],
         "func-call-spacing" : ["error", "always"],
-        "indent" : ["error", 4, {
-            "SwitchCase"         : 0,
-            "VariableDeclarator" : 1,
-            "outerIIFEBody"      : 1,
-            "MemberExpression"   : 1
-        }],
-        "key-spacing"       : ["error", {
-            "singleLine" : {
-                "beforeColon" : true,
-                "afterColon"  : true
-            },
-            "multiLine" : {
-                "beforeColon" : true,
-                "afterColon"  : true,
-                "align"       : "colon"
+        "indent"            : [
+            "error", 4, {
+                "SwitchCase"         : 0,
+                "VariableDeclarator" : 1,
+                "outerIIFEBody"      : 1,
+                "MemberExpression"   : 1
             }
-        }],
+        ],
+        "key-spacing" : [
+            "error", {
+                "singleLine" : {
+                    "beforeColon" : true,
+                    "afterColon"  : true
+                },
+                "multiLine" : {
+                    "beforeColon" : true,
+                    "afterColon"  : true,
+                    "align"       : "colon"
+                }
+            }
+        ],
         "max-len" : ["warn", 120, 4, {
             "ignoreUrls"     : true,
             "ignoreComments" : false
@@ -53,7 +58,7 @@
         "no-unused-vars" : ["error", { "argsIgnorePattern": "^dummy_" }],
 
         // strict.js
-        "strict" : ["error", "function"],
+        "strict" : "off",
 
         // relax airbnb
 
@@ -63,6 +68,7 @@
         "no-mixed-operators"   : ["error", { "allowSamePrecedence" : true }],
         "no-spaced-func"       : "off",
         "no-underscore-dangle" : "off",
+        "no-plusplus"          : "off",
 
         // best practices
         "no-multi-spaces"   : "off",

@@ -15,9 +15,6 @@ namespace cceh\capitularia\page_generator;
 
 class Settings_Page
 {
-    /** @var Config The configuration. */
-    private $config;
-
     /**
      * Constructor
      *
@@ -28,17 +25,15 @@ class Settings_Page
      * Also register _one_ POST parameter to be handled and validated by
      * Wordpress.
      *
-     * @param Config $config The plugin configuration
-     *
      * @return Settings_Page
      */
 
-    public function __construct ($config)
+    public function __construct ()
     {
-        $this->config = $config;
+        global $cap_page_generator_config;
 
         /* Register the Settings page's fields with Wordpress. */
-        foreach ($this->config->sections as $section) {
+        foreach ($cap_page_generator_config->sections as $section) {
             $section_id = $section[0];
 
             foreach ($section[1] as $field) {
@@ -70,6 +65,8 @@ class Settings_Page
 
     public function display ()
     {
+        global $cap_page_generator_config;
+
         $title = esc_html (get_admin_page_title ());
         echo ("<div class='wrap'>\n");
         echo ("  <h2>$title</h2>\n");
@@ -81,17 +78,17 @@ class Settings_Page
 
         // Output the ui-widget-header
         echo ("      <ul>\n");
-        foreach ($this->config->sections as $section) {
+        foreach ($cap_page_generator_config->sections as $section) {
             $section_id = $section[0];
-            $caption    = __ ($this->config->get_opt ($section_id, 'section_caption', $section_id));
+            $caption    = __ ($cap_page_generator_config->get_opt ($section_id, 'section_caption', $section_id));
             echo ("<li><a href='#tabs-$section_id'>$caption</a></li>\n");
         }
         echo ("      </ul>\n");
 
         // Output the ui-widget-content
-        foreach ($this->config->sections as $section) {
+        foreach ($cap_page_generator_config->sections as $section) {
             $section_id = $section[0];
-            $caption    = __ ($this->config->get_opt ($section_id, 'section_caption', $section_id));
+            $caption    = __ ($cap_page_generator_config->get_opt ($section_id, 'section_caption', $section_id));
             echo ("      <div id='tabs-$section_id'>\n");
             echo ("        <h2>$caption</h2>\n");
             echo ('        <table class="form-table">');
@@ -125,11 +122,13 @@ class Settings_Page
 
     public function on_options_field ($args)
     {
+        global $cap_page_generator_config;
+
         $section_id  = $args[0];
         $field_id    = $args[1];
         $description = $args[2];
         $page_id     = OPTIONS_PAGE_ID;
-        $value       = $this->config->get_opt ($section_id, $field_id);
+        $value       = $cap_page_generator_config->get_opt ($section_id, $field_id);
         echo "<input class='file-input' type='text' name='{$page_id}[{$section_id}.{$field_id}]' value='{$value}' />";
         echo ("<p>{$description}</p>\n");
     }
@@ -148,10 +147,12 @@ class Settings_Page
 
     public function on_validate (array $input)
     {
+        global $cap_page_generator_config;
+
         $output = array ();
         foreach ($input as $input_field_id => $value) {
             // Find the field in the $sections structure.
-            foreach ($this->config->sections as $section) {
+            foreach ($cap_page_generator_config->sections as $section) {
                 $section_id = $section[0];
                 foreach ($section[1] as $field) {
                     $field_id = $field[0];

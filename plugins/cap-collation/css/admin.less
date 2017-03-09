@@ -18,52 +18,52 @@ table.manuscripts {
     page-break-inside: avoid;
 
     &.last {
-	width: 1%;
+        width: 1%;
     }
 
     thead tr {
     }
 
     tbody tr {
-	background-color: #fff;
-	&:nth-child(even) {
-	    background-color: #eee;
-	}
-	&:first-child {
-	    background-color: LightSkyBlue;
-	}
-	&.highlight-witness.highlight-witness {
-	    background-color: #eea;
-	}
+        background-color: #fff;
+        &:nth-child(even) {
+            background-color: #eee;
+        }
+        &:first-child {
+            background-color: LightSkyBlue;
+        }
+        &.highlight-witness.highlight-witness {
+            background-color: #eea;
+        }
     }
 
     td, th {
-	border: 1px solid gray;
-	padding: 0.2em 0.3em;
-	background-color: inherit;
-	white-space: nowrap;
+        border: 1px solid gray;
+        padding: 0.2em 0.3em;
+        background-color: inherit;
+        white-space: nowrap;
     }
     td {
-	text-align: center;
-	&.equal {
-	    color: fade(#444, 33%);
-	}
+        text-align: center;
+        &.equal {
+            color: fade(#444, 33%);
+        }
     }
     th {
-	padding: 0.2em 0.5em;
-	text-align: left;
-	width: 1%;
+        padding: 0.2em 0.5em;
+        text-align: left;
+        width: 1%;
     }
     span.missing::before {
-	content: '\2014';
+        content: '\2014';
     }
 }
 
 table.manuscripts {
     width: 49%;
     .ui-sortable-helper {
-	/* keeps original row width while dragging */
-	display: table;
+        /* keeps original row width while dragging */
+        display: table;
     }
 }
 
@@ -80,24 +80,24 @@ div.collation-load-params {
     position: relative;
 
     #load-params {
-	position: absolute;
-	top: 0;
-	visibility: hidden;
-	z-index: -1;
+        position: absolute;
+        top: 0;
+        visibility: hidden;
+        z-index: -1;
     }
 }
 
 @media print {
     #adminmenumain,
     div.no-print {
-	display: none;
+        display: none;
     }
     #wpcontent, #wpfooter {
-	margin-left: 0;
+        margin-left: 0;
     }
     html, body {
-	background-color: white;
-	font-size: 10pt;
+        background-color: white;
+        font-size: 10pt;
     }
 }
 
@@ -108,66 +108,66 @@ div.ui-accordion {
     .ui-state-default,
     .ui-widget-content .ui-state-default,
     .ui-widget-header .ui-state-default {
-	background: transparent;
-	color: black;
-	border: none;
-	border-radius: 0;
-	outline: none;
+        background: transparent;
+        color: black;
+        border: none;
+        border-radius: 0;
+        outline: none;
     }
     .ui-accordion-icons .ui-accordion-icons {
-	padding: 0 0 0 2.2em;
+        padding: 0 0 0 2.2em;
     }
     .ui-accordion-content {
-	border: 1px solid grey;
-	border-radius: 0;
-	background: transparent;
+        border: 1px solid grey;
+        border-radius: 0;
+        background: transparent;
     }
 }
 
 div.collation {
     table {
-	border: solid 1px;
-	border-collapse: collapse;
+        border: solid 1px;
+        border-collapse: collapse;
     }
 
     tr:nth-child(odd) {
-	background-color: WhiteSmoke;
+        background-color: WhiteSmoke;
     }
 
     tr:first-child {
-	background-color: LightSkyBlue;
+        background-color: LightSkyBlue;
     }
 
     th {
-	white-space: nowrap;
+        white-space: nowrap;
     }
 
     td {
-	border-left: solid 2px gray;
-	border-right: solid 2px gray;
+        border-left: solid 2px gray;
+        border-right: solid 2px gray;
 
-	padding-left: 0.3em;
-	padding-right: 0.3em;
-	padding-top: 0.2em;
-	padding-bottom: 0.2em;
+        padding-left: 0.3em;
+        padding-right: 0.3em;
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
 
-	white-space: nowrap;
-	text-align: center;
+        white-space: nowrap;
+        text-align: center;
     }
 
     span.text-is-equal {
-	color: lightgray;
+        color: lightgray;
     }
 
     span.text-is-missing {
-	color: red;
+        color: red;
     }
 
     hr {
-	width: 50%;
-	border-style: solid;
-	border-width: 1px 0 0 0;
-	border-color: inherit;
+        width: 50%;
+        border-style: solid;
+        border-width: 1px 0 0 0;
+        border-color: inherit;
     }
 }
 

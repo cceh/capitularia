@@ -26,16 +26,19 @@
 
       <xsl:call-template name="legend"/>
 
+      <xsl:variable name="title">
+        <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']"/>
+      </xsl:variable>
+
       <div id="citation">
         <h5>[:de]Empfohlene Zitierweise[:en]How to cite[:]</h5>
         <p>
-          <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']"/>
-          <!-- The whitespace eater. See: footnotes-post-processor.php  -->
-          <xsl:text>&#xe000;, [:de]in: Capitularia. Edition der fränkischen Herrschererlasse, bearb. von
+          <xsl:value-of select="normalize-space ($title)"/>
+          <xsl:text>, [:de]in: Capitularia. Edition der fränkischen Herrschererlasse, bearb. von
           Karl Ubl und Mitarb., Köln 2014 ff.[:en]in: Capitularia. Edition of the Frankish
           Capitularies, ed. by Karl Ubl and collaborators, Cologne 2014 ff.[:] </xsl:text>
           <xsl:value-of select="concat ('URL: ', $mss, @xml:id)"/>
-          <xsl:text> [:de](abgerufen am: [aktuelles Datum])[:en](last accessed on: [date])[:]</xsl:text>
+          <xsl:text> [:de](abgerufen am: [aktuelles Datum])[:en](accessed on: [date])[:]</xsl:text>
         </p>
       </div>
 

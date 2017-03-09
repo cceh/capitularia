@@ -32,52 +32,15 @@ echo ("  </div>\n");
 echo ("  <div class='sidebar-col'>\n");
 echo ("    <ul>\n");
 
-// Code to choose the sidebar to display depending on page template (old method)
-// or slug and taxonomy (new method).
-
-// The sidebars to choose from. Only one of these gets displayed.
-$cap_sidebars = array ('capit', 'mss', 'resources', 'project', 'internal', 'transcription', 'capitular');
-
-// FIXME: compatibility to old system of sidebar-selection through page template
-$cap_template_map = array (
-    'page-UebersichtKapitularien.php'  => 'capit',
-    'page-UebersichtHandschriften.php' => 'mss',
-    'page-UebersichtMaterialien.php'   => 'resources',
-    'page-UebersichtProjekt.php'       => 'project',
-    'page-UebersichtIntern.php'        => 'internal',
-    'page-KapitularienMitListe.php'    => 'capit',
-    'page-HandschriftenMitListe.php'   => 'mss',
-    'page-MaterialienMitListe.php'     => 'resources',
-    'page-ProjektMitListe.php'         => 'project',
-    'page-InternMitListe.php'          => 'internal',
-    'page-Transkription.php'           => 'transcription',
-);
+// Code to choose the sidebar depending on page slug or taxonomy.
 
 $cap_templates = array ();
-$cap_template = basename (get_page_template_slug ());
-
-if (isset ($cap_template_map[$cap_template])) {
-    // old method: use page template
-    $cap_templates[] = $cap_template_map[$cap_template];
-} else {
-    // new method: use page slug
-    $cap_templates[] = get_slug_root ($post->ID);
-}
-
-// FIXME: stopgap measure until we have a reliable taxonomy
-/*
-$cap_tags = get_the_tags ($post->ID);
-if (is_array ($cap_tags) && get_slug_root ($post->ID) == 'mss') {
-    foreach ($cap_tags as $cap_tag) {
-        if ($cap_tag->name == 'XML') {
-            $cap_templates = array ('transcription');
-        }
-    }
-}
-*/
+$cap_templates[] = get_slug_root ($post->ID);
 
 // You can override the default selection by slug if you assign terms in the
-// cap-sidebar taxonomy.
+// cap-sidebar taxonomy.  These are the sidebars you can choose from.  (Only one
+// of each gets displayed).
+$cap_sidebars = array ('capit', 'mss', 'resources', 'project', 'internal', 'transcription', 'capitular');
 
 $terms = get_the_terms ($post->ID, 'cap-sidebar');
 if ($terms && !is_wp_error ($terms)) {

@@ -49,6 +49,12 @@ class Settings_Page
         register_setting (OPTIONS_PAGE_ID, OPTIONS_PAGE_ID, array ($this, 'on_validate_options'));
     }
 
+    /**
+     * Output the Settings page.
+     *
+     * @return void
+     */
+
     public function display ()
     {
         $title = esc_html (get_admin_page_title ());
@@ -66,11 +72,25 @@ class Settings_Page
         echo ("</div>\n");
     }
 
+    /**
+     * Output the 'general' section.
+     *
+     * @return void
+     */
+
     public function on_options_section_general ()
     {
         $msg = __ ('No settings.', 'capitularia');
         echo ("<div>$msg</div>\n");
     }
+
+    /**
+     * Validate options entered by user.
+     *
+     * @param string[] $options Options as entered by admin user
+     *
+     * @return string[] Validated options
+     */
 
     public function on_validate_options ($options)
     {

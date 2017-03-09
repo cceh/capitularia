@@ -22,6 +22,277 @@ const NONCE_PARAM_NAME     = '_ajax_nonce';
 /** @var string Where our Wordpress is in the filesystem */
 const AFS_ROOT             = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
 
+
+/**
+ * Enqueue the public pages scripts and styles
+ *
+ * @return void
+ */
+
+function on_enqueue_scripts ()
+{
+    wp_register_style ('cap-collation-front', plugins_url ('css/front.css', __FILE__));
+    wp_enqueue_style  ('cap-collation-front');
+}
+
+/*
+ * Incipit Administration page stuff
+ */
+
+/**
+ * Enqueue the admin page scripts and styles
+ *
+ * @return void
+ */
+
+function on_admin_enqueue_scripts ()
+{
+    wp_register_style (
+        'cap-collation-admin',
+        plugins_url ('css/admin.css', __FILE__),
+        array ('cap-jquery-ui-css')
+    );
+    wp_enqueue_style  ('cap-collation-admin');
+
+    wp_register_script (
+        'cap-collation-admin',
+        plugins_url ('js/admin.js', __FILE__),
+        array ('cap-jquery', 'cap-jquery-ui')
+    );
+    wp_enqueue_script ('cap-collation-admin');
+
+    wp_localize_script (
+        'cap-collation-admin',
+        'ajax_object',
+        array (
+            'ajax_nonce' => wp_create_nonce (NONCE_SPECIAL_STRING),
+            'ajax_nonce_param_name' => NONCE_PARAM_NAME,
+        )
+    );
+}
+
+/**
+ * Add menu entries to the Wordpress admin menu.
+ *
+ * Adds menu entries for the settings (options) and the dashboard pages to
+ * the Wordpress settings and dashboard admin page menus respectively.
+ *
+ * @return void
+ */
+
+function on_admin_menu ()
+{
+    global $cap_collation_name;
+
+    // adds a menu entry to the dashboard menu
+    add_submenu_page (
+        'index.php',
+        $cap_collation_name . ' Dashboard',
+        $cap_collation_name,
+        'edit_pages',
+        DASHBOARD_PAGE_ID,
+        __NAMESPACE__ . '\on_menu_dashboard_page'
+    );
+}
+
+/**
+ * Add a dashboard button to the Wordpress toolbar.
+ *
+ * @param \WP_Admin_Bar $wp_admin_bar The \WP_Admin_Bar object
+ *
+ * @return void
+ */
+
+function on_admin_bar_menu ($wp_admin_bar)
+{
+    global $cap_collation_name;
+
+    if (!is_admin () && current_user_can ('edit_pages')) {
+        $args = array (
+            'id'    => 'cap_collation_open',
+            'title' => _x ('Collation', 'Admin bar button caption', 'capitularia'),
+            'href'  => '/wp-admin/index.php?page=' . DASHBOARD_PAGE_ID,
+            'meta'  => array ('class' => 'cap-collation',
+                              'title' => $cap_collation_name),
+        );
+        $wp_admin_bar->add_node ($args);
+    }
+}
+
+
+
+/**
+ * Sort strings with numbers
+ *
+ * Sort the numbers in the strings in a sensible way, eg. BK1, BK2, BK10.
+ *
+ * @param array $unsorted The return fron an SQL query
+ *
+ * @return string[] The sorted array of strings
+ */
+
+function sort_results ($unsorted)
+{
+    // Add a key to all objects in the array that allows for sensible
+    // sorting of numeric substrings.
+    foreach ($unsorted as $res) {
+        $res->key = preg_replace_callback (
+            '|\d+|',
+            function ($match) {
+                return 'zz' . strval (strlen ($match[0])) . $match[0];
+            },
+            $res->meta_value
+        );
+    }
+
+    // Sort the array according to key.
+    usort (
+        $unsorted,
+        function ($res1, $res2) {
+            return strcoll ($res1->key, $res2->key);
+        }
+    );
+
+    return array_map (
+        function ($s) {
+            return $s->meta_value;
+        },
+        $unsorted
+    );
+}
+
+/**
+ * Get a list of all capitulars
+ *
+ * @return string[] All capitulars
+ */
+
+function get_capitulars ()
+{
+    global $wpdb;
+
+    $sql = 'SELECT DISTINCT REGEXP_REPLACE (meta_value, \'_.*$\', \'\') as meta_value FROM wp_postmeta ' .
+         'WHERE meta_key = \'milestone-capitulare\' ORDER BY meta_value;';
+
+    return sort_results ($wpdb->get_results ($sql));
+}
+
+/**
+ * Get a list of all sections of a capitular
+ *
+ * @param string $bk The capitular
+ *
+ * @return string[] The sections in the capitular
+ */
+
+function get_sections ($bk)
+{
+    global $wpdb;
+
+    $bk = "{$bk}(_|$)";
+
+    $sql = $wpdb->prepare (
+        'SELECT DISTINCT meta_value FROM wp_postmeta ' .
+        'WHERE meta_key = \'corresp\' AND meta_value REGEXP \'%s\' ORDER BY meta_value;',
+        $bk
+    );
+
+    return sort_results ($wpdb->get_results ($sql));
+}
+
+/**
+ * Get all witnesses for a Corresp
+ *
+ * Take special care that we don't get duplicate ids !!! They fuck up the
+ * collation layout.  Since the same file can be "mounted" at more than one
+ * page, eg. below /mss/ and below /test/, we will get one random page_id
+ * and slug among the valid ones.
+ *
+ * @param string $corresp The corresp eg. 'BK123_4'
+ *
+ * @return Witness[] The witnesses
+ */
+
+function get_witnesses ($corresp)
+{
+    global $wpdb;
+    $items = array ();
+
+    $sql = $wpdb->prepare (
+        'SELECT DISTINCT meta_value AS xml_id ' .
+        'FROM wp_postmeta ' .
+        'WHERE meta_key = \'tei-xml-id\' AND post_id IN (' .
+        '  SELECT post_id FROM wp_postmeta ' .
+        '  WHERE meta_key = \'corresp\' AND meta_value = %s)',
+        $corresp
+    );
+
+    foreach ($wpdb->get_results ($sql) as $row) {
+        $post_id = $wpdb->get_var (
+            $wpdb->prepare (
+                'SELECT post_id FROM wp_postmeta ' .
+                "WHERE meta_key = 'tei-xml-id' AND meta_value = %s ORDER BY post_id",
+                $row->xml_id
+            )
+        );
+        $filename = $wpdb->get_var (
+            $wpdb->prepare (
+                'SELECT meta_value FROM wp_postmeta ' .
+                "WHERE meta_key = 'tei-filename' AND post_id = %d ORDER BY meta_value",
+                $post_id
+            )
+        );
+        if (!is_readable ($filename)) {
+            // orphaned page without file
+            continue;
+        }
+        $slug = get_page_uri ($post_id);
+
+        $items[] = new Witness ($corresp, $row->xml_id, $filename, $slug);
+    }
+
+    // sort Witnesses according to xml_id
+    usort (
+        $items,
+        function ($item1, $item2) {
+            return strcoll ($item1->sort_key, $item2->sort_key);
+        }
+    );
+
+    return $items;
+}
+
+/**
+ * Get witnesses for a Corresp in a predetermined order
+ *
+ * @param string $corresp The corresp eg. 'BK123_4'
+ * @param array  $order   An array of xml ids
+ *
+ * @return Witness[] The ordered witnesses
+ */
+
+function get_witnesses_ordered_like ($corresp, $order)
+{
+    $witnesses = get_witnesses ($corresp);
+    $items = array ();
+
+    foreach ($order as $xml_id) {
+        foreach ($witnesses as $witness) {
+            if ($witness->get_id () == $xml_id) {
+                $n_sections = $witness->enum_sections ($corresp);
+                $items[] = $witness;
+                if ($n_sections > 1) {
+                    for ($n = 2; $n <= $n_sections; $n++) {
+                        $items[] = $witness->clone_witness ($n);
+                    }
+                }
+            }
+        }
+    }
+
+    return $items;
+}
+
 /**
  * Returns a path relative to base
  *
@@ -113,6 +384,19 @@ function cap_sanitize_key_list ($key_list)
         $result[] = cap_sanitize_key ($key);
     }
     return implode (' ', $result);
+}
+
+/**
+ * Return localized message for 'on' or 'off'
+ *
+ * @param boolean $bool The status
+ *
+ * @return string The localized message
+ */
+
+function on_off ($bool)
+{
+    return $bool ? __ ('on', 'capitularia') : __ ('off', 'capitularia');
 }
 
 /**

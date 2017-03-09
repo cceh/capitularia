@@ -1,3 +1,5 @@
+'use strict';
+
 function add_ajax_action (data, action) {
     /* the AJAX action */
     data.action = action;
@@ -49,9 +51,20 @@ function get_collation_params () {
     return data;
 }
 
+function encodeRFC5987ValueChars (str) {
+    return encodeURIComponent (str)
+        // Note that although RFC3986 reserves '!', RFC5987 does not,
+        // so we do not need to escape it
+        .replace (/['()]/g, escape) // i.e., %27 %28 %29
+        .replace (/\*/g, '%2A')
+        // The following are not required for percent-encoding per RFC5987,
+        // so we can allow for a little better readability over the wire: |`^
+        .replace (/%(?:7C|60|5E)/g, unescape);
+}
+
 /* Save parameters to a user-local file. */
 
-function save_params () {
+function save_params () { // eslint-disable-line no-unused-vars
     var params = get_collation_params ();
     var url = 'data:text/plain,' + encodeURIComponent (JSON.stringify (params, null, 2));
     var e = document.getElementById ('save-fake-download');
@@ -65,14 +78,226 @@ function save_params () {
     return false;
 }
 
-function click_on_load_params (fileInput) {
+function click_on_load_params (fileInput) { // eslint-disable-line no-unused-vars
     var e = document.getElementById ('load-params');
     e.click ();
 }
 
+function clear_manuscripts () {
+    var $div     = jQuery ('#manuscripts-div');
+    var deferred = jQuery.Deferred ();
+
+    $div.slideUp (function () {
+        var $tbody = jQuery ('#manuscripts-tbody');
+        $tbody.children ().remove ();
+        deferred.resolve ();
+    });
+    return deferred.promise ();
+}
+
+function clear_collation () {
+    var $div = jQuery ('#collation-tables');
+    var deferred = jQuery.Deferred ();
+
+    $div.fadeOut (function () {
+        $div.children ().remove ();
+        deferred.resolve ();
+    });
+    return deferred.promise ();
+}
+
+function add_spinner ($parent) {
+    var spinner = jQuery ('<div class="spinner-div"><span class="spinner is-active" /></div>');
+    spinner.hide ();
+    $parent.append (spinner);
+    spinner.fadeIn ();
+    return spinner;
+}
+
+function clear_spinners () {
+    var spinners = jQuery ('div.spinner-div');
+    spinners.fadeOut (function () {
+        jQuery (this).detach (); // Do not use remove here or promise () won't work.
+    });
+    return spinners.promise ();
+}
+
+function handle_message (div, response) {
+    var msg = jQuery (response.message).hide ().prependTo (div);
+    clear_spinners ().done (function () {
+        msg.fadeIn ();
+        /* Adds a 'dismiss this notice' button. */
+        jQuery (document).trigger ('wp-plugin-update-error');
+    });
+}
+
+function on_cap_load_sections (onReady) {
+    var data = add_ajax_action (get_sections_params (), 'on_cap_load_sections');
+
+    clear_manuscripts ();
+    clear_collation ();
+
+    var div = jQuery ('#collation-capitulary');
+    add_spinner (div);
+
+    jQuery.ajax ({
+        'method' : 'POST',
+        'url'    : ajaxurl,
+        'data'   : data,
+    }).done (function (response) {
+        clear_spinners ().done (function () {
+            jQuery ('#section').html (response.html);
+            if (onReady !== undefined) {
+                onReady ();
+            }
+        });
+    }).always (function (response) {
+        handle_message (div, response);
+    });
+    return false;  // don't submit form
+}
+
+function on_cap_load_manuscripts (onReady) {
+    var data = add_ajax_action (get_manuscripts_params (), 'on_cap_load_manuscripts');
+    var $div = jQuery ('#manuscripts-div');
+
+    var p1 = clear_manuscripts ();
+    var p2 = clear_collation ();
+    var p3 = jQuery.ajax ({
+        'method' : 'POST',
+        'url'    : ajaxurl,
+        'data'   : data,
+    });
+
+    jQuery.when (p1, p2).done (function () {
+        var div = jQuery ('#collation-capitulary');
+        add_spinner (div);
+    });
+
+    jQuery.when (p1, p2, p3).done (function () {
+        var $tbody = jQuery ('#manuscripts-tbody');
+        jQuery (p3.responseJSON.html).appendTo ($tbody);
+        clear_spinners ().done (function () {
+            $div.slideDown ();
+            jQuery ('div.accordion').accordion ({
+                'collapsible' : true,
+                'active'      : false,
+            });
+            if (onReady !== undefined) {
+                onReady ();
+            }
+        });
+    }).always (function () {
+        handle_message ($div, p3.responseJSON);
+
+        jQuery ('table.manuscripts').disableSelection ().sortable ({
+            'helper'      : 'clone',
+            'items'       : '*[data-siglum]',
+            'connectWith' : 'table.manuscripts',
+            'cursor'      : 'pointer',
+            'receive'     : function (event, ui) {
+                var tbody = jQuery (event.target).find ('tbody');
+                if (ui.item.closest (tbody).size () === 0) {
+                    ui.item.appendTo (tbody);
+                }
+                /* to keep original row width while dragging. See also: admin.less */
+                ui.item.css ('display', '');
+            },
+        });
+    });
+    return false;  // don't submit form
+}
+
+function on_cap_load_collation () {         // eslint-disable-line no-unused-vars
+    var data = add_ajax_action (get_collation_params (), 'on_cap_load_collation');
+
+    var p1 = clear_collation ();
+    var p2 = jQuery.ajax ({
+        'method' : 'POST',
+        'url'    : ajaxurl,
+        'data'   : data,
+    });
+
+    p1.done (function () {
+        var $div = jQuery ('#manuscripts-div');
+        add_spinner ($div);
+    });
+
+    var $div = jQuery ('#collation-tables');
+    jQuery.when (p1, p2).done (function () {
+        jQuery (p2.responseJSON.html).appendTo ($div);
+        clear_spinners ().done (function () {
+            $div.fadeIn ();
+            $div.find ('div.accordion').accordion ({
+                'collapsible' : true,
+                'active'      : false,
+            });
+        });
+    }).always (function () {
+        handle_message ($div, p2.responseJSON);
+
+        var data_rows = jQuery ('tr[data-siglum]');
+        data_rows.hover (function () {
+            $div.find ('tr[data-siglum="' + jQuery (this).attr ('data-siglum') +  '"]').addClass ('highlight-witness');
+        }, function () {
+            data_rows.each (function () {
+                jQuery (this).removeClass ('highlight-witness');
+            });
+        });
+    });
+    return false;  // don't submit form
+}
+
+/*
+ * Activate the 'select all' checkboxes on the tables.
+ * Stolen from wp-admin/js/common.js
+ */
+
+function make_cb_select_all (ev, ui) { // eslint-disable-line no-unused-vars
+    ui.panel.find ('thead, tfoot').find ('.check-column :checkbox').on ('click.wp-toggle-checkboxes', function (event) {
+        var $this = jQuery (this);
+        var $table = $this.closest ('table');
+        var controlChecked = $this.prop ('checked');
+        var toggle = event.shiftKey || $this.data ('wp-toggle');
+
+        $table.children ('tbody')
+            .filter (':visible')
+            .children ()
+            .children ('.check-column')
+            .find (':checkbox')
+            .prop ('checked', function () {
+                if (jQuery (this).is (':hidden,:disabled')) {
+                    return false;
+                }
+
+                if (toggle) {
+                    return !jQuery (this).prop ('checked');
+                } else if (controlChecked) {
+                    return true;
+                }
+
+                return false;
+            });
+
+        $table.children ('thead,  tfoot')
+            .filter (':visible')
+            .children ()
+            .children ('.check-column')
+            .find (':checkbox')
+            .prop ('checked', function () {
+                if (toggle) {
+                    return false;
+                } else if (controlChecked) {
+                    return true;
+                }
+                return false;
+            });
+    });
+}
+
 /* Load parameters from a user-local file. */
 
-function load_params (fileInput) {
+function load_params (fileInput) { // eslint-disable-line no-unused-vars
     var files = fileInput.files;
     if (files.length !== 1) {
         return false;
@@ -116,207 +341,7 @@ function load_params (fileInput) {
     return false; // Don't submit form
 }
 
-
-function encodeRFC5987ValueChars (str) {
-    return encodeURIComponent (str)
-        // Note that although RFC3986 reserves '!', RFC5987 does not,
-        // so we do not need to escape it
-        .replace (/['()]/g, escape) // i.e., %27 %28 %29
-        .replace (/\*/g, '%2A')
-        // The following are not required for percent-encoding per RFC5987,
-        // so we can allow for a little better readability over the wire: |`^
-        .replace (/%(?:7C|60|5E)/g, unescape);
-}
-
-function clear_manuscripts () {
-    jQuery ('#manuscripts-div').children ().fadeOut ().remove ();
-}
-
-function clear_collation () {
-    jQuery ('#collation-tables').children ().fadeOut ().remove ();
-}
-
-function add_spinner (div) {
-    var spinner = jQuery ('<div class="spinner-div"><span class="spinner is-active" /></div>');
-    spinner.hide ();
-    div.append (spinner);
-    spinner.fadeIn ();
-    return spinner;
-}
-
-function clear_spinners (next) {
-    var spinners = jQuery ('div.spinner-div');
-    spinners.fadeOut (function () {
-        jQuery (this).detach (); // Do not use remove here or promise () won't work.
-    });
-    if (next !== undefined) {
-        spinners.promise ().done (next);
-    }
-}
-
-function handle_message (div, response) {
-    var msg = jQuery (response.message).hide ().prependTo (div);
-    clear_spinners (function () {
-        msg.fadeIn ();
-        /* Adds a 'dismiss this notice' button. */
-        jQuery (document).trigger ('wp-plugin-update-error');
-    });
-}
-
-function on_cap_load_sections (onReady) {
-    var data = add_ajax_action (get_sections_params (), 'on_cap_load_sections');
-
-    clear_manuscripts ();
-    clear_collation ();
-
-    var div = jQuery ('#collation-capitulary');
-    add_spinner (div);
-
-    jQuery.ajax ({
-        'method' : 'POST',
-        'url'    : ajaxurl,
-        'data'   : data,
-    }).done (function (response) {
-        clear_spinners (function () {
-            jQuery ('#section').replaceWith (response.html);
-            if (onReady !== undefined) {
-                onReady ();
-            }
-        });
-    }).always (function (response) {
-        handle_message (div, response);
-    });
-    return false;  // don't submit form
-}
-
-function on_cap_load_manuscripts (onReady) {
-    var data = add_ajax_action (get_manuscripts_params (), 'on_cap_load_manuscripts');
-
-    clear_manuscripts ();
-    clear_collation ();
-
-    var div = jQuery ('#manuscripts-div');
-    add_spinner (div);
-
-    jQuery.ajax ({
-        'method' : 'POST',
-        'url'    : ajaxurl,
-        'data'   : data,
-    }).done (function (response) {
-        var html = jQuery (response.html).hide ().appendTo (div);
-        clear_spinners (function () {
-            html.fadeIn ();
-            jQuery ('div.accordion').accordion ({
-                'collapsible' : true,
-                'active'      : false,
-            });
-            if (onReady !== undefined) {
-                onReady ();
-            }
-        });
-    }).always (function (response) {
-        handle_message (div, response);
-
-        jQuery ('table.manuscripts').disableSelection ().sortable ({
-            'helper'      : 'clone',
-            'items'       : '*[data-siglum]',
-            'connectWith' : 'table.manuscripts',
-            'cursor'      : 'pointer',
-            'receive'     : function (event, ui) {
-                var tbody = jQuery (event.target).find ('tbody');
-                if (ui.item.closest (tbody).size () === 0) {
-                    ui.item.appendTo (tbody);
-                }
-                /* to keep original row width while dragging. See also: admin.less */
-                ui.item.css ('display', '');
-            },
-        });
-    });
-    return false;  // don't submit form
-}
-
-function on_cap_load_collation () {
-    var data = add_ajax_action (get_collation_params (), 'on_cap_load_collation');
-
-    clear_collation ();
-
-    var div = jQuery ('#collation-tables');
-    add_spinner (div);
-
-    jQuery.ajax ({
-        'method' : 'POST',
-        'url'    : ajaxurl,
-        'data'   : data,
-    }).done (function (response) {
-        var html = jQuery (response.html).hide ().appendTo (div);
-        clear_spinners (function () {
-            html.fadeIn ();
-            jQuery ('div.accordion').accordion ({
-                'collapsible' : true,
-                'active'      : false,
-            });
-        });
-    }).always (function (response) {
-        handle_message (div, response);
-
-        var data_rows = jQuery ('tr[data-siglum]');
-        data_rows.hover (function () {
-            div.find ('tr[data-siglum="' + jQuery (this).attr ('data-siglum') +  '"]').addClass ('highlight-witness');
-        }, function () {
-            data_rows.each (function () {
-                jQuery (this).removeClass ('highlight-witness');
-            });
-        });
-    });
-    return false;  // don't submit form
-}
-
-/*
- * Activate the 'select all' checkboxes on the tables.
- * Stolen from wp-admin/js/common.js
- */
-
-function make_cb_select_all (event, ui) {
-    ui.panel.find ('thead, tfoot').find ('.check-column :checkbox').on ('click.wp-toggle-checkboxes', function (event) {
-        var $this = jQuery (this);
-        var $table = $this.closest ('table');
-        var controlChecked = $this.prop ('checked');
-        var toggle = event.shiftKey || $this.data ('wp-toggle');
-
-        $table.children ('tbody')
-            .filter (':visible')
-            .children ()
-            .children ('.check-column')
-            .find (':checkbox')
-            .prop ('checked', function () {
-                if (jQuery (this).is (':hidden,:disabled')) {
-                    return false;
-                }
-
-                if (toggle) {
-                    return !jQuery (this).prop ('checked');
-                } else if (controlChecked) {
-                    return true;
-                }
-
-                return false;
-            });
-
-        $table.children ('thead,  tfoot')
-            .filter (':visible')
-            .children ()
-            .children ('.check-column')
-            .find (':checkbox')
-            .prop ('checked', function () {
-                if (toggle) {
-                    return false;
-                } else if (controlChecked) {
-                    return true;
-                }
-                return false;
-            });
-    });
-}
-
 jQuery (document).ready (function () {
+    clear_manuscripts ();
+    clear_collation ();
 });

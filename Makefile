@@ -1,9 +1,11 @@
 PHP_DIRS   := plugins themes
 JS_DIRS	   := plugins themes/Capitularia/js
+JSON_DIRS  := .
 LESS_DIRS  := plugins themes/Capitularia/css
 
 PHP_FILES  := $(shell find $(PHP_DIRS)	-name '*.php')
 JS_FILES   := $(shell find $(JS_DIRS)	-name '*.js')
+JSON_FILES := $(shell find $(JSON_DIRS) -maxdepth 1 -name '*.json')
 LESS_FILES := $(shell find $(LESS_DIRS) -name '*.less')
 CSS_FILES  := $(patsubst %.less,%.css,$(LESS_FILES))
 
@@ -21,11 +23,11 @@ TRANSFORM := $(AFS)/http/docs/cap/publ/transform
 WPCONTENTLOCAL := $(LOCALFS)/wp-content
 
 %.css : %.less
-	lessc --autoprefix="last 2 versions" $? $@
+	lessc --autoprefix="last 2 versions" --source-map $? $@
 
 all: lint
 
-lint: phplint csslint eslint
+lint: phplint csslint jslint
 
 doc: phpdoc phpmd phpmetrics sami
 
@@ -36,11 +38,13 @@ css: $(CSS_FILES)
 phplint:
 	@for f in $(PHP_FILES); do php -l $$f; done
 
-eslint:
-	eslint --format=unix --global "$$" $(JS_FILES)
+jslint:
+	eslint --format=unix $(JS_FILES)
+	jshint --reporter=unix $(JSON_FILES)
 
+# csslint --quiet --format=compact $(CSS_FILES) | sed -r -e 's/: line ([0-9]+), col ([0-9]+), /:\1:\2:/g'
 csslint:
-	csslint --quiet --format=compact $(CSS_FILES) | sed -r -e 's/: line ([0-9]+), col ([0-9]+), /:\1:\2:/g'
+	csslint --quiet --format=compact $(CSS_FILES) | node unmap-reports
 
 deploy: lint mo
 	$(RSYNC) themes/Capitularia/* $(WPCONTENT)/themes/Capitularia/
@@ -55,12 +59,6 @@ testdeploy: lint mo
 # PHP_CodeSniffer https://github.com/squizlabs/PHP_CodeSniffer
 phpcs:
 	-vendor/bin/phpcs --standard=tools/phpcs --report=emacs -s --extensions=php themes plugins
-
-# phpDocumentor http://www.phpdoc.org/
-phpdoc:
-	vendor/bin/phpdoc run --directory="themes,plugins" --target="tools/reports/phpdoc" \
-						  --template="responsive-twig" --title="Capitularia"
-	$(BROWSER) tools/reports/phpdoc/index.html
 
 # PHP Mess Detector http://phpmd.org/
 phpmd:
@@ -111,8 +109,8 @@ $(foreach lang,$(TRANSLATIONS),$(eval $(call LOCALE_TEMPLATE,$(lang))))
 
 pot: $(LANGDIR)/capitularia.pot
 
-$(LANGDIR)/capitularia.pot: $(PHP_FILES) Makefile
-	xgettext --default-domain=capitularia --from-code=utf-8 --nowrap \
+$(LANGDIR)/capitularia.pot: $(PHP_FILES)
+	xgettext --default-domain=capitularia --from-code=utf-8 \
 	--copyright-holder="CCeH Cologne" --package-name=Capitularia --package-version=2.0 \
 	--msgid-bugs-address=marcello@perathoner.de \
-	-k '__' -k '_e' -k '_n:1,2' -k '_x:1,2c' -o $@ .
+	-k'__' -k'_e' -k'_n:1,2' -k'_x:1,2c' -o $@ $^

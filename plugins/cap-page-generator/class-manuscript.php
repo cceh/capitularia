@@ -95,15 +95,17 @@ class Manuscript
 
     public function get_slug_with_path ()
     {
-        global $config;
+        global $cap_page_generator_config;
 
-        $slug_path   = $config->get_opt ($this->section_id, 'slug_path');
-        $slug_prefix = $config->get_opt ($this->section_id, 'slug_prefix');
+        $slug_path   = $cap_page_generator_config->get_opt ($this->section_id, 'slug_path');
+        $slug_prefix = $cap_page_generator_config->get_opt ($this->section_id, 'slug_prefix');
         return $slug_path . '/' . $slug_prefix . $this->get_slug ();
     }
 
     /**
-     * Generate a slug with HTML link.
+     * Generate a HTML link that points to the page.
+     *
+     * A link the user can click to get to the relative page.
      *
      * @return string The link pointing to slug
      */
@@ -118,10 +120,11 @@ class Manuscript
     /**
      * Extract the manuscript title.
      *
-     * Extracts the manuscript title from the TEI file.  Also puts qTranslate-X
-     * tags into the title.
+     * Extracts the manuscript title from the TEI file.  The title gets diplayed
+     * in the file list table.  Also puts qTranslate-X tags into the title iff
+     * the title has an xml:lang attribute.
      *
-     * @return string The manuscript title
+     * @return string The manuscript title with qTranslate-X tags
      */
 
     public function get_title ()
@@ -164,11 +167,15 @@ class Manuscript
 
     private function validate_xmllint ()
     {
-        global $config;
+        global $cap_page_generator_config;
 
-        $xmllint_path = $config->get_opt ('general', 'xmllint_path');
-        $schema_path  = $config->get_opt_path ('schema_root', $this->get_section_id (), 'schema_path');
-        $link         = $this->get_status () == 'delete' ? $this->get_slug () : $this->get_slug_with_link ();
+        $xmllint_path = $cap_page_generator_config->get_opt ('general', 'xmllint_path');
+        $schema_path  = $cap_page_generator_config->get_opt_path (
+            'schema_root',
+            $this->get_section_id (),
+            'schema_path'
+        );
+        $link = $this->get_status () == 'delete' ? $this->get_slug () : $this->get_slug_with_link ();
 
         // The user can change the default catalog behaviour by redirecting
         // queries to its own set of catalogs, this can be done by setting the
@@ -181,38 +188,23 @@ class Manuscript
 
         $messages = array ();
         $retval = 666;
-        $cmdline = join (
-            ' ',
-            array (
-                $xmllint_path,
-                XMLLINT_PARAMS,
-                escapeshellarg (rtrim ($schema_path, '/')),
-                escapeshellarg ($this->path),
-                '2>&1'
-            )
+        $cmdline = array (
+            $xmllint_path,
+            XMLLINT_PARAMS,
+            escapeshellarg (rtrim ($schema_path, '/')),
+            escapeshellarg ($this->path),
+            '2>&1'
         );
-        exec ($cmdline, $messages, $retval); // 0 = ok, 3 = error
-        if ($retval == 0) {
-            return array (
-                0,
-                sprintf (__ ('File %s is valid TEI.', 'capitularia'), $link)
-            );
+        exec (join (' ', $cmdline), $messages, $retval); // 0 = ok, 3 = error
+        switch ($retval) {
+            case 0:
+                return array (0, sprintf (__ ('File %s is valid TEI.', 'capitularia'), $link));
+            case 3:
+            case 4:
+                return array (2, sprintf (__ ('File %s is invalid TEI.', 'capitularia'), $link), $messages);
+            default:
+                return array (1, sprintf (__ ('Validity of file %s is unknown.', 'capitularia'), $link), $messages);
         }
-        if ($retval == 3 || $retval == 4) {
-            return array (
-                2,
-                sprintf (__ ('File %s is invalid TEI.', 'capitularia'), $link),
-                $messages
-            );
-        }
-        return array (
-            1,
-            sprintf (
-                __ ('Validity of file %s is unknown.', 'capitularia'),
-                $link
-            ),
-            $messages
-        );
     }
 
     /**
@@ -241,33 +233,6 @@ class Manuscript
         }
         return 'delete';
     }
-
-    /**
-     * Set the 'published' status of a page.
-     *
-     * @param string $status The new status to set
-     *
-     * @return array Success or error messages
-     *
-
-    private function set_status ($status)
-    {
-        $link    = $this->get_slug_with_link ();
-        $page_id = $this->get_page_id ();
-
-        $updated = array ('ID' => $page_id, 'post_status' => $status);
-        if (wp_update_post ($updated) === 0) { // returns 0 on error
-            return array (
-                2,
-                sprintf (__ ('Error: could not set page %1$s to status %2$s.', 'capitularia'), $link, $status)
-            );
-        }
-        return array (
-            0,
-            sprintf (__ ('Page %1$s status set to %2$s.', 'capitularia'), $link, $status)
-        );
-    }
-    */
 
     /**
      * Delete all pages with our slug
@@ -321,14 +286,15 @@ class Manuscript
                 )
             );
         }
-        return array (
-            0,
-            sprintf (__ ('Page %s unpublished.', 'capitularia'), $slug)
-        );
+        return array (0, sprintf (__ ('Page %s unpublished.', 'capitularia'), $slug));
     }
 
     /**
      * Create a page containing one or more shortcodes.
+     *
+     * Build the content for the new page.  Some pages are made of more than one
+     * transformation, eg. the transcription pages have a header, transcription
+     * and footer.
      *
      * @param string $status Status to set on the newly created page.
      *
@@ -337,7 +303,7 @@ class Manuscript
 
     private function create_page ($status)
     {
-        global $config;
+        global $cap_page_generator_config;
 
         $title = $this->get_title ();
         if (empty ($title)) {
@@ -350,23 +316,28 @@ class Manuscript
         }
 
         $slug     = $this->get_slug ();
-        $xsl_root = $config->get_opt ('general', 'xsl_root') . '/';
+        $xsl_root = $cap_page_generator_config->get_opt ('general', 'xsl_root') . '/';
 
         // rebase paths according to cap_xsl_processor directories
         $cap_xsl_options = get_option ('cap_xsl_options', array ());
 
         error_log ("xsl_root = $xsl_root");
         error_log ("path = $this->path");
-        $path     = cap_make_path_relative_to ($this->path, $cap_xsl_options['xmlroot']);
+        $path = cap_make_path_relative_to ($this->path, $cap_xsl_options['xmlroot']);
+
+        // Put a shortcode on the new page for every transformation to be run.
 
         $content = '';
-        $shortcode = $config->get_opt ('general', 'shortcode');
-        foreach (explode (' ', $config->get_opt ($this->section_id, 'xsl_path_list')) as $xsl) {
+        $shortcode = $cap_page_generator_config->get_opt ('general', 'shortcode');
+        foreach (explode (' ', $cap_page_generator_config->get_opt ($this->section_id, 'xsl_path_list')) as $xsl) {
             $xsl = cap_make_path_relative_to ($xsl_root . $xsl, $cap_xsl_options['xsltroot']);
             $content .= "[{$shortcode} xml=\"{$path}\" xslt=\"{$xsl}\"][/{$shortcode}]\n";
         }
-        $sidebars = $config->get_opt ($this->section_id, 'sidebars');
 
+        // Add a taxonomy entry that controls which sidebar is displayed.
+        $sidebars = $cap_page_generator_config->get_opt ($this->section_id, 'sidebars');
+
+        // Finally call Wordpress to create the page.
         $new_post = array (
             'post_name'    => $slug,
             'post_title'   => $title,
@@ -391,14 +362,13 @@ class Manuscript
                 );
             }
         }
-        return array (
-            2,
-            sprintf (__ ('Error: could not create page %s.', 'capitularia'), $slug)
-        );
+        return array (2, sprintf (__ ('Error: could not create page %s.', 'capitularia'), $slug));
     }
 
     /**
      * Extract metadata from manuscript.
+     *
+     * Call the metadata search plugin to perfom the actual extraction.
      *
      * @return array Success or error message
      */
@@ -415,12 +385,7 @@ class Manuscript
             );
         }
         // We proxy this action to the Meta Search plugin.
-        $errors = apply_filters (
-            'cap_meta_search_extract_metadata',
-            array (),
-            $page_id,
-            $this->path
-        );
+        $errors = apply_filters ('cap_meta_search_extract_metadata', array (), $page_id, $this->path);
         if ($errors) {
             return array (
                 2,
@@ -433,15 +398,20 @@ class Manuscript
         }
         return array (
             0,
-            sprintf (
-                __ ('Metadata extracted from file %s.', 'capitularia'),
-                $this->get_slug_with_link ()
-            )
+            sprintf (__ ('Metadata extracted from file %s.', 'capitularia'), $this->get_slug_with_link ())
         );
     }
 
     /**
      * Perform an action on the manuscript.
+     *
+     * Actions:
+     *   publish:  create the page with publish status
+     *   private:  create the page with private status
+     *   refresh:  re-create the page with the same status as before
+     *   delete:   delete the page
+     *   metadata: extract metadata from page
+     *   validate: validate the TEI file
      *
      * @param string $action The action to perform with the manuscript.
      *
@@ -461,10 +431,7 @@ class Manuscript
 
         if ($action == $status) {
             // nothing to do
-            return array (
-                1,
-                sprintf (__ ('The post is already %s.', 'capitularia'), $action)
-            );
+            return array (1, sprintf (__ ('The post is already %s.', 'capitularia'), $action));
         }
 
         switch ($action) {

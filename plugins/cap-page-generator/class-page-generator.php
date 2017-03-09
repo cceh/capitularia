@@ -30,9 +30,6 @@ namespace cceh\capitularia\page_generator;
 
 class Page_Generator
 {
-    /** @var Page_Generator Singleton instance */
-    static private $instance = false;
-
     /** @var string The name of the plugin */
     public $name;
 
@@ -42,44 +39,23 @@ class Page_Generator
     /** @var Dashboard_Page Reference to keep the dashboard page alive */
     public $dashboard_page = null;
 
-    /** @var Config The configuration. */
-    public $config = null;
-
-    /**
-     * Create and return singleton instance.
-     *
-     * @param Config $config The plugin configuration
-     *
-     * @return Page_Generator
-     */
-    public static function get_instance ($config)
-    {
-        if (!self::$instance) {
-            self::$instance = new self ($config);
-        }
-        return self::$instance;
-    }
-
     /**
      * Constructor
      *
-     * @param Config $config The plugin configuration
-     *
      * @return Page_Generator
      */
 
-    private function __construct ($config)
+    public function __construct ()
     {
-        $this->config = $config;
         $this->name   = __ ('Capitularia Page Generator', 'capitularia');
 
-        add_action ('wp_enqueue_scripts',         array ($this, 'on_enqueue_scripts'));
-        add_action ('admin_menu',                 array ($this, 'on_admin_menu'));
-        add_action ('admin_bar_menu',             array ($this, 'on_admin_bar_menu'), 200);
-        add_action ('admin_enqueue_scripts',      array ($this, 'on_admin_enqueue_scripts'));
-        add_action ('wp_ajax_on_cap_action_file', array ($this, 'on_cap_action_file'));
-        add_action ('wp_ajax_on_cap_load_files',  array ($this, 'on_cap_load_files'));
-        add_filter ('query_vars',                 array ($this, 'on_query_vars'));
+        add_action ('wp_enqueue_scripts',          array ($this, 'on_enqueue_scripts'));
+        add_action ('admin_menu',                  array ($this, 'on_admin_menu'));
+        add_action ('admin_bar_menu',              array ($this, 'on_admin_bar_menu'), 200);
+        add_action ('admin_enqueue_scripts',       array ($this, 'on_admin_enqueue_scripts'));
+        add_action ('wp_ajax_on_cap_action_file',  array ($this, 'on_cap_action_file'));
+        add_action ('wp_ajax_on_cap_load_section', array ($this, 'on_cap_load_section'));
+        add_filter ('query_vars',                  array ($this, 'on_query_vars'));
     }
 
     /**
@@ -96,7 +72,7 @@ class Page_Generator
                 array ('message' => __ ('You have no permission to edit posts.', 'capitularia'))
             );
         }
-        $this->dashboard_page = new Dashboard_Page ($this->config);
+        $this->dashboard_page = new Dashboard_Page ();
         $this->dashboard_page->on_cap_action_file ();
     }
 
@@ -106,11 +82,11 @@ class Page_Generator
      * @return void
      */
 
-    public function on_cap_load_files ()
+    public function on_cap_load_section ()
     {
         // no user permission checks because we are just reading
-        $this->dashboard_page = new Dashboard_Page ($this->config);
-        $this->dashboard_page->on_cap_load_files ();
+        $this->dashboard_page = new Dashboard_Page ();
+        $this->dashboard_page->on_cap_load_section ();
     }
 
     /**
@@ -190,7 +166,7 @@ class Page_Generator
     public function on_admin_menu ()
     {
         // adds a menu entry to the settings menu
-        $this->settings_page  = new Settings_Page ($this->config);
+        $this->settings_page  = new Settings_Page ();
         add_options_page (
             $this->name . ' Options',
             $this->name,
@@ -199,7 +175,7 @@ class Page_Generator
             array ($this->settings_page, 'display')
         );
         // adds a menu entry to the dashboard menu
-        $this->dashboard_page = new Dashboard_Page ($this->config);
+        $this->dashboard_page = new Dashboard_Page ();
         add_submenu_page (
             'index.php',
             $this->name . ' Dashboard',

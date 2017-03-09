@@ -1,7 +1,9 @@
 <?php
 
 /**
- * The HTML header on every page.
+ * The HTML header.
+ *
+ * This is the HTML header that is output on every page.
  *
  * @package Capitularia
  */
@@ -21,7 +23,8 @@ namespace cceh\capitularia\theme;
     <title><?php wp_title ('|', true, 'right'); ?></title>
 
     <?php
-        /* Always have wp_head() just before the closing </head>
+        /*
+         * Always have wp_head() just before the closing </head>
          * tag of your theme, or you will break many plugins, which
          * generally use this hook to add elements to <head> such
          * as styles, scripts, and meta tags.

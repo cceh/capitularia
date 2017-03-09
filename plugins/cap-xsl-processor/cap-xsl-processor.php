@@ -19,12 +19,24 @@ namespace cceh\capitularia\xsl_processor;
 
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
+const NAME = 'Capitularia XSL Processor';
+
+require_once 'functions.php';
 require_once 'class-stats.php';
+require_once 'class-settings-page.php';
 require_once 'class-xsl-processor.php';
 
-$i = XSL_Processor::get_instance ();
+$cap_xsl_processor = new XSL_Processor ();
+$cap_xsl_processor_stats = new Stats ();
 
-$class_name = 'cceh\capitularia\xsl_processor\XSL_Processor';
-register_activation_hook   (__FILE__, array ($class_name, 'on_activation'));
-register_deactivation_hook (__FILE__, array ($class_name, 'on_deactivation'));
-register_uninstall_hook    (__FILE__, array ($class_name, 'on_uninstall'));
+add_action ('init',                  __NAMESPACE__ . '\on_init');
+add_action ('admin_init',            __NAMESPACE__ . '\on_admin_init');
+add_action ('wp_enqueue_scripts',    __NAMESPACE__ . '\on_enqueue_scripts');
+add_action ('admin_enqueue_scripts', __NAMESPACE__ . '\on_admin_enqueue_scripts');
+add_action ('admin_menu',            __NAMESPACE__ . '\on_admin_menu');
+add_action ('admin_bar_menu',        __NAMESPACE__ . '\on_admin_bar_menu', 200);
+add_filter ('query_vars',            __NAMESPACE__ . '\on_query_vars');
+
+register_activation_hook   (__FILE__, __NAMESPACE__ . '\on_activation');
+register_deactivation_hook (__FILE__, __NAMESPACE__ . '\on_deactivation');
+register_uninstall_hook    (__FILE__, __NAMESPACE__ . '\on_uninstall');

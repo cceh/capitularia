@@ -46,11 +46,12 @@ class Highlighter
     }
 
     /**
-     * Extract snippets
+     * Extract snippets from page content.
      *
      * Given a regex, search a post and return a list of snippets.  The snippets
-     * contain the highlighted search term and are returned formatted as HTML
-     * unordred list.
+     * contain the highlighted search term and a few words of context.  If two
+     * snippets do overlap they are merged.  Snippets are returned formatted as
+     * HTML unordered list.
      *
      * @param string  $content      The post content to search
      * @param string  $regex        The regex to search for
@@ -145,7 +146,19 @@ class Highlighter
     }
 
     /**
-     * Highlight search terms in full post if referenced from search page.
+     * Highlight search terms in full post.
+     *
+     * Highlight the full post if it was accessed through the search page.  We
+     * use the query string in the HTTP referrer to highlight the content.
+     *
+     * The naive approach:
+     *
+     *   return preg_replace ($regex, '<mark>${0}</mark>', $content);
+     *
+     * did not work because we were also replacing text in HTML
+     * tags and attributes.  This whole rigmarole is needed so
+     * we can parse the content as HTML and then search the text
+     * nodes only.
      *
      * @param string $content The post content.
      *
@@ -164,15 +177,6 @@ class Highlighter
                     $terms = array_map (array ($this, 'escape_search_term'), explode (' ', $args['s']));
                     $regex = implode ('|', $terms);
                     $regex = "#($regex)#ui";
-
-                    // The naive approach:
-                    //
-                    //   return preg_replace ($regex, '<mark>${0}</mark>', $content);
-                    //
-                    // did not work because we were also replacing text in HTML
-                    // tags and attributes.  This whole rigmarole is needed so
-                    // we can parse the content as HTML and then search the text
-                    // nodes only.
 
                     $doc = new \DomDocument ();
 

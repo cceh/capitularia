@@ -1,44 +1,37 @@
 {
-  "name": "@cceh/capitularia",
-  "description": "The Capitularia Wordpress theme and plugins",
-  "homepage": "http://capitularia.uni-koeln.de",
-  "author": "CCeH - Cologne Center for eHumanities",
-  "contributors": [
-    "Marcello Perathoner <marcello.perathoner@uni-koeln.de>",
-    "Nils Geissler"
-  ],
-  "version": "0.1.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cceh/capitularia-theme"
-  },
-  "bugs": {
-    "url": "https://github.com/cceh/capitularia-theme/issues"
-  },
-  "license": "UNLICENSED",
-  "private": true,
-  "devDependencies": {
-    "bower": "*",
-    "grunt": "*",
-    "grunt-contrib-csslint": "^0.5.0",
-    "grunt-contrib-jshint": "*",
-    "grunt-contrib-less": "*",
-    "grunt-contrib-nodeunit": "*",
-    "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-phplint": "*",
-    "grunt-pot": "^0.2.1",
-    "grunt-potomo": "^3.3.3",
-    "grunt-shell": "^1.1.2",
-    "less-plugin-autoprefix": "^1.5.1"
-  },
-  "engines": {
-    "node": ">=0.10.1"
-  },
-  "files": [
-    "dist",
-    "themes",
-    "plugins",
-    "Gruntfile.js"
-  ]
+    "name"         : "@cceh/capitularia",
+    "description"  : "The Capitularia Wordpress theme and plugins",
+    "homepage"     : "http://capitularia.uni-koeln.de",
+    "author"       : "CCeH - Cologne Center for eHumanities",
+    "contributors" : [
+        "Marcello Perathoner <marcello.perathoner@uni-koeln.de>",
+        "Nils Geissler"
+    ],
+    "version"    : "0.1.0",
+    "license"    : "UNLICENSED",
+    "private"    : true,
+    "repository" : {
+        "type" : "git",
+        "url"  : "https://github.com/cceh/capitularia"
+    },
+    "bugs" : {
+        "url" : "https://github.com/cceh/capitularia/issues"
+    },
+    "devDependencies" : {
+        "bower"        : "*",
+        "less"         : "*",
+        "autoprefixer" : "*",
+        "eslint"       : "*",
+        "jshint"       : "*",
+        "csslint"      : "*"
+    },
+    "engines" : {
+        "node" : "*"
+    },
+    "files" : [
+        "dist",
+        "themes",
+        "plugins",
+        "Makefile"
+    ]
 }

@@ -18,10 +18,16 @@ class Stats
     public $hits        = 0;
     public $hits_temp   = 0;
     public $misses      = 0;
-    public $page_cached = 0;
-    public $page_mtime  = 0;
-    public $xml_mtime   = 0;
-    public $xsl_mtime   = 0;
+
+    /**
+     * Generate a tooltip that is displayed on the cache reload button in the
+     * admin toolbar.  The tooltip contains cache statistics for the current
+     * page.
+     *
+     * @param int $post_id The post id.
+     *
+     * @return string The tooltip text.
+     */
 
     public function get_tooltip ($post_id)
     {
@@ -35,6 +41,14 @@ class Stats
         $misses = $result['cap_xsl_cache_misses']->meta_value;
         return "hits: $hits\nmisses: $misses";
     }
+
+    /**
+     * Generate statistic data for the whole cache.  This data is currently
+     * displayed on the settings page but should be moved to the dashboard page
+     * once we have one.
+     *
+     * @return string The table rows as HTML <tr> elements.
+     */
 
     public function get_table_rows ()
     {

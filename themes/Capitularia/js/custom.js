@@ -1,8 +1,6 @@
 (function ($) {
     'use strict';
 
-    var inPrintMode = false;
-
     function initBackToTop () {
         $ ('.back-to-top').click (function () {
             $ ('body,html').animate ({ 'scroll-top' : 0 }, 600);
@@ -51,22 +49,6 @@
         });
     }
 
-    function detectPrintMode () {
-        // sets inPrintMode as side effect
-        if (window.matchMedia) {
-            // modern browers
-            var mql = window.matchMedia ('print');
-            if (mql.matches) {
-                inPrintMode = true;
-            }
-        } else {
-            // IE < 10
-            window.onbeforeprint = function () {
-                inPrintMode = true;
-            };
-        }
-    }
-
     function initFootnoteTooltips () {
         $ ('a.annotation-ref').cap_tooltip ({
             'items'   : 'a',
@@ -107,8 +89,6 @@
         }
     }
 
-    detectPrintMode ();
-
     //
     // a custom tooltip jquery widget that stays open while the user is hovering
     // on the popup, allowing her to click on links in the popup
@@ -136,12 +116,12 @@
             if (tooltipData) {
                 var tt = $ (tooltipData.tooltip);
                 tt.off ('mouseenter mouseleave');
-                tt.on ('mouseenter', function (event) {
+                tt.on ('mouseenter', function () {
                     var id = target.data ('capTimeoutId');
                     clearTimeout (id);
                     // console.log ('div mouseenter id=' + id);
                 });
-                tt.on ('mouseleave', function (event) {
+                tt.on ('mouseleave', function () {
                     // console.log ('div mouseleave');
                     that.close ();
                 });

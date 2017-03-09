@@ -1,4 +1,24 @@
-function on_cap_action_file (e, action) {
+/**
+ * The inverse of the jQuery.param () function.
+ *
+ * @function deparam
+ *
+ * @param s {string} A string in the form "p=1&q=2"
+ *
+ * @return {Object} { p : 1, q : 2 }
+ */
+
+function deparam (s) {
+    return s.split ('&').reduce (function (params, param) {
+        var paramSplit = param.split ('=').map (function (value) {
+            return decodeURIComponent (value.replace ('+', ' '));
+        });
+        params[paramSplit[0]] = paramSplit[1];
+        return params;
+    }, {});
+}
+
+function on_cap_action_file (e, action) { // eslint-disable-line no-unused-vars
     var $e     = jQuery (e);
     var $tr    = $e.closest ('tr');
     var $table = $e.closest ('table');
@@ -33,12 +53,41 @@ function on_cap_action_file (e, action) {
     });
 }
 
+function on_cap_load_section (event) {
+    event.preventDefault ();
+
+    var $this = jQuery (this);
+    var $form  = $this.closest ('form');
+    var q = deparam ($this.attr ('href').split ('?')[1] || '');
+
+    var data = {
+        'action'  : 'on_cap_load_section',      /* the AJAX action */
+        'section' : $form.attr ('data-section'),
+        'paged'   : q.paged || 1,
+    };
+    data[ajax_object.ajax_nonce_param_name] = ajax_object.ajax_nonce;
+
+    var status_div = $form.parent ();
+    var spinner    = jQuery ('<div class="spinner-div"><span class="spinner is-active" /></div>');
+    spinner.hide ().appendTo (status_div).fadeIn ();
+
+    jQuery.ajax ({
+        'method' : 'POST',
+        'url'    : ajaxurl,
+        'data'   : data,
+    }).done (function (response) {
+        $form.closest ('div[role=tabpanel]').html (response);
+    }).always (function () {
+        spinner.fadeOut ().remove ();
+    });
+}
+
 /*
  * Activate the 'select all' checkboxes on the tables.
  * Stolen from wp-admin/js/common.js
  */
 
-function make_cb_select_all (event, ui) {
+function make_cb_select_all (ev, ui) {
     ui.panel.find ('thead, tfoot').find ('.check-column :checkbox').on ('click.wp-toggle-checkboxes', function (event) {
         var $this          = jQuery (this);
         var $table         = $this.closest ('table');
@@ -123,4 +172,5 @@ function init_tabs () {
 
 jQuery (document).ready (function () {
     init_tabs ();
+    jQuery ('body').on ('click', 'div.tablenav-pages a', on_cap_load_section);
 });

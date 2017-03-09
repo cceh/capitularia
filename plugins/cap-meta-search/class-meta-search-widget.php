@@ -13,13 +13,16 @@ namespace cceh\capitularia\meta_search;
 
 class Widget extends \WP_Widget
 {
-    /**
-     * Our singleton instance
-     */
-    static private $instance = false;
-
+    /** The widget title (caption) */
     private $title;
+    /** Holds the 'you searched for' strings.*/
     private $your_search = array ();
+
+    /**
+     * Constructor
+     *
+     * @return void
+     */
 
     public function __construct ()
     {
@@ -35,26 +38,10 @@ class Widget extends \WP_Widget
             $control_ops
         );
         add_action ('pre_get_posts',               array ($this, 'on_pre_get_posts'));
-        add_action ('wp_enqueue_scripts',          array ($this, 'on_enqueue_scripts'));
 
-        add_filter ('query_vars',                  array ($this, 'on_query_vars'));
         add_filter ('posts_search',                array ($this, 'on_posts_search'), 10, 2);
         add_filter ('wp_search_stopwords',         array ($this, 'on_wp_search_stopwords'));
         add_filter ('cap_meta_search_your_search', array ($this, 'on_cap_meta_search_your_search'));
-    }
-
-    /**
-     * If an instance exists, this returns it.  If not, it creates one and
-     * returns it.
-     *
-     * @return Search_Widget
-     */
-    public static function get_instance ()
-    {
-        if (!self::$instance) {
-            self::$instance = new self;
-        }
-        return self::$instance;
     }
 
     /**
@@ -77,38 +64,10 @@ class Widget extends \WP_Widget
     }
 
     /**
-     * Add our custom HTTP query vars
+     * Fill a drop-down box from a SQL query.
      *
-     * @param array $vars The stock query vars
-     *
-     * @return array The stock and custom query vars
-     */
-
-    public function on_query_vars ($vars)
-    {
-        $vars[] = 'capit';
-        $vars[] = 'place';
-        $vars[] = 'notbefore';
-        $vars[] = 'notafter';
-        return $vars;
-    }
-
-    /**
-     * Enqueue javascript
-     *
-     * @return void
-     */
-
-    public function on_enqueue_scripts ()
-    {
-        wp_enqueue_script ('cap-meta-search-front');
-    }
-
-    /**
-     * Echo <select> options from SQL query
-     *
-     * Output the options for a HTML <select> element.  Sort numeric substrings
-     * in a sensible way for humans, eg. 'BK 2' before 'BK 12'
+     * Output the <option>s for a HTML <select> element.  Sort numeric
+     * substrings in a sensible way for humans, eg. 'BK 2' before 'BK 12'
      *
      * @param string $sql The SQL query
      *
@@ -197,12 +156,15 @@ class Widget extends \WP_Widget
     }
 
     /**
-     * Output the widget
+     * Output the widget.  Overrides the base class method.
      *
-     * @param array  $args     The arguments to the widget
-     * @param object $instance The widget instance
+     * @param array $args     Display arguments including 'before_title', 'after_title',
+     *                        'before_widget', and 'after_widget'.
+     * @param array $instance The settings for the particular instance of the widget.
      *
      * @return void
+     *
+     * @see WP_Widget::widget ()
      */
 
     public function widget ($args, $instance)
@@ -267,7 +229,8 @@ class Widget extends \WP_Widget
     /**
      * Convert HTTP query into SQL query.
      *
-     * Operates on the Wordpress query object.
+     * Eg. converts the HTTP query string "?notBefore=1100" into a suitable
+     * Wordpress meta_query.  Reads the Wordpress query object.
      *
      * @param WP_Query $query The Wordpress query object
      *
@@ -403,57 +366,38 @@ class Widget extends \WP_Widget
         return  implode (' &middot; ', $this->your_search) . $message;
     }
 
-    protected function sanitize ($text)
-    {
-        return empty ($text) ? '' : strip_tags ($text);
-    }
-
     /**
-     * Output one option field
+     * Update widget settings on save.  Overrides the base class method.
      *
-     * @param array  $instance    The widet options
-     * @param string $name        The option name
-     * @param string $caption     The caption
-     * @param string $placeholder The placeholder
+     * @param array $new_instance New settings for this instance as input by the user via
+     *                            WP_Widget::form().
+     * @param array $old_instance Old settings for this instance.
      *
-     * @return void
-     */
-
-    protected function the_option ($instance, $name, $caption, $placeholder)
-    {
-        $value = !empty ($instance[$name]) ? $instance[$name] : '';
-        echo ("<p><label for=\"{$this->get_field_id ($name)}\">$caption</label>");
-        echo ("<input class=\"widefat\" id=\"{$this->get_field_id ($name)}\" " .
-              "name=\"{$this->get_field_name ($name)}\" type=\"text\" value=\"$value\" " .
-              "placeholder=\"$placeholder\"></p>");
-    }
-
-    /**
-     * Update widget settings on save
+     * @return array Settings to save or bool false to cancel saving.
      *
-     * @param array $new_instance Values just sent to be saved.
-     * @param array $old_instance Previously saved values from database.
-     *
-     * @return array
+     * @see WP_Widget::update ()
      */
 
     public function update ($new_instance, $old_instance)
     {
         $instance = $old_instance;
-        $instance['title'] = $this->sanitize ($new_instance['title']);
+        $instance['title'] = sanitize ($new_instance['title']);
         return $instance;
     }
 
     /**
-     * Outputs the widget options form on admin
+     * Outputs the widget options form on the admin page. Overrides the base
+     * class method.
      *
-     * @param array $instance The widget options
+     * @param array $instance Current settings.
      *
      * @return void
+     *
+     * @see WP_Widget::form ()
      */
 
     public function form ($instance)
     {
-        $this->the_option ($instance, 'title', __ ('Title', 'capitularia'), __ ('New title', 'capitularia'));
+        the_option ($instance, 'title', __ ('Title', 'capitularia'), __ ('New title', 'capitularia'));
     }
 }

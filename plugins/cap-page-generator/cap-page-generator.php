@@ -31,8 +31,8 @@ require_once 'class-dashboard-page.php';
 require_once 'class-settings-page.php';
 require_once 'class-page-generator.php';
 
-$config = new Config ();
-$i = Page_Generator::get_instance ($config);
+$cap_page_generator_config = new Config ();
+$cap_page_generator        = new Page_Generator ();
 
 register_activation_hook   (__FILE__, __NAMESPACE__ . '\on_activation');
 register_deactivation_hook (__FILE__, __NAMESPACE__ . '\on_deactivation');
