@@ -62,19 +62,8 @@
   </xsl:variable>
 
   <xsl:variable name="vDigitalisatePfad">
-    <!--<xsl:text>../hss-scans</xsl:text>-->
     <xsl:value-of select="$vParams/list[@xml:id='paths']/item[title = 'Digitalisate']/path" />
   </xsl:variable>
-
-  <xsl:variable name="vTransformationenPfad">
-    <!--<xsl:text>../hss-scans</xsl:text>-->
-    <xsl:value-of select="$vParams/list[@xml:id='paths']/item[title = 'Transformationen']/path" />
-  </xsl:variable>
-
-  <!-- BAUSTELLEN/ToDO:
-       * xsl:key einbauen?! notwendig??
-       * ...
-  -->
 
   <func:function name="cap:has-text">
     <xsl:param name="n" select="." />
@@ -352,7 +341,7 @@
       <xsl:when test="ancestor::tei:monogr and ancestor::tei:biblStruct[@type = 'bookSection']">
         <!-- Johann Wolfgang Goethe -->
         <xsl:if test="normalize-space (tei:forename)">
-          <xsl:copy-of select="$forenames"/>
+          <xsl:apply-templates select="exsl:node-set ($forenames)/*"/>
           <xsl:text> </xsl:text>
         </xsl:if>
         <span class="tei-surname">
@@ -366,7 +355,7 @@
         </span>
         <xsl:if test="normalize-space (tei:forename)">
           <xsl:text>, </xsl:text>
-          <xsl:copy-of select="$forenames"/>
+          <xsl:apply-templates select="exsl:node-set ($forenames)/*"/>
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
@@ -507,7 +496,8 @@
       <span class="imprint">
         <xsl:text>(</xsl:text>
         <xsl:apply-templates select="tei:monogr/tei:edition" />
-        <xsl:apply-templates select="tei:monogr/tei:imprint/tei:date" />
+        <!-- do not print acces date (found in analytic web publications) -->
+        <xsl:apply-templates select="tei:monogr/tei:imprint/tei:date[not (@type='access')]" />
         <xsl:text>) </xsl:text>
       </span>
     </xsl:variable>
@@ -570,7 +560,14 @@
             <xsl:call-template name="bib-article"/>
           </xsl:when>
           <xsl:when test="@type = 'webPublication'">
-            <xsl:call-template name="bib-web"/>
+            <xsl:choose>
+              <xsl:when test="tei:analytic">
+                <xsl:call-template name="bib-web-analytic"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:call-template name="bib-web-monograph"/>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:when>
           <xsl:otherwise>
             <xsl:message>ERROR: biblStruct @type = <xsl:value-of select="@type"/></xsl:message>
@@ -597,7 +594,6 @@
         <xsl:with-param name="n" select="tei:monogr" />
       </xsl:call-template>
 
-      <!-- Reihenangabe -->
       <xsl:apply-templates select="tei:series" />
 
       <xsl:call-template name="imprint" />
@@ -711,9 +707,9 @@
     </xsl:call-template>
   </xsl:template>
 
-  <!-- web pub -->
+  <!-- web pub (monograph) -->
 
-  <xsl:template name="bib-web">
+  <xsl:template name="bib-web-monograph">
     <xsl:call-template name="header">
       <xsl:with-param name="n" select="tei:monogr" />
     </xsl:call-template>
@@ -726,12 +722,42 @@
       <xsl:call-template name="titles">
         <xsl:with-param name="n" select="tei:monogr" />
       </xsl:call-template>
+
+      <xsl:apply-templates select="tei:series" />
     </xsl:variable>
 
     <xsl:copy-of select="cap:join (exsl:node-set ($res)/*)"/>
 
     <xsl:call-template name="notes">
       <xsl:with-param name="n" select="tei:monogr" />
+    </xsl:call-template>
+  </xsl:template>
+
+  <!-- web pub (analytic) -->
+
+  <xsl:template name="bib-web-analytic">
+    <xsl:call-template name="header">
+      <xsl:with-param name="n" select="tei:analytic" />
+    </xsl:call-template>
+
+    <xsl:variable name="res">
+      <xsl:call-template name="authors">
+        <xsl:with-param name="n" select="tei:analytic" />
+      </xsl:call-template>
+
+      <xsl:call-template name="titles">
+        <xsl:with-param name="n" select="tei:analytic" />
+      </xsl:call-template>
+
+      <xsl:call-template name="journal-titles" />
+
+      <xsl:apply-templates select="tei:series" />
+    </xsl:variable>
+
+    <xsl:copy-of select="cap:join (exsl:node-set ($res)/*)"/>
+
+    <xsl:call-template name="notes">
+      <xsl:with-param name="n" select="tei:analytic" />
     </xsl:call-template>
   </xsl:template>
 
