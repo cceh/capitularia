@@ -292,31 +292,35 @@ function on_shortcode_if_transcribed ($atts, $content)
  *
  * This shortcode outputs a short description of how to cite the post.
  *
- * @param array  $dummy_atts    The shortocde attributes.
+ * @param array  $atts          The shortocde attributes.
  * @param string $dummy_content The shortcode content. (empty)
  *
  * @return string A description of how to cite.
  */
 
-function on_shortcode_cite_as ($dummy_atts, $dummy_content)
+function on_shortcode_cite_as ($atts, $dummy_content)
 {
-    $author = get_the_author ();
-    $title  = get_the_title ();
-    $url    = get_permalink ();
-    $date   = strftime ('%x');
+    $atts = shortcode_atts (
+		array (
+			'author' => get_the_author (),
+            'title'  => get_the_title (),
+            'url'    => get_permalink (),
+            'date'   => strftime ('%x')
+		), $atts, 'cite_as'
+    );
 
     $res = <<<EOF
        <div class="cite_as">
          <h5>[:de]Empfohlene Zitierweise[:en]How to cite[:]</h5>
          <div>
-           <span class="author">$author</author>,
-           <span class="title">$title</title>,
+           <span class="author">{$atts['author']}</author>,
+           <span class="title">{$atts['title']}</title>,
            [:de]in: Capitularia. Edition der fränkischen Herrschererlasse, bearb. von
            Karl Ubl und Mitarb., Köln 2014 ff.
            [:en]in: Capitularia. Edition of the Frankish Capitularies, ed. by
            Karl Ubl and collaborators, Cologne 2014 ff.
            [:]
-           URL: $url ([:de]abgerufen am:[:en]accessed on:[:] $date)
+           URL: {$atts['url']} ([:de]abgerufen am:[:en]accessed on:[:] {$atts['date']})
          </div>
        </div>
 EOF;
