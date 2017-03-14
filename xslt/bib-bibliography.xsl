@@ -94,6 +94,10 @@
     <!--
         Join a node-set with a glue string, eg. <a><b><c> => <a>, <b>, <c>
 
+        - glue is applied between nodes
+
+        - glue2 is applied between nodes if the first node ends with punctuation
+
         Nodes with class=no-glue-after will get no glue applied after them.
         Nodes with class=no-glue-before will get no glue applied before them.
     -->
@@ -334,14 +338,14 @@
 
   <xsl:template match="tei:persName">
     <xsl:variable name="forenames">
-      <xsl:copy-of select="cap:join (tei:forename, ' ', ' ')"/>
+      <xsl:apply-templates select="tei:forename"/>
     </xsl:variable>
 
     <xsl:choose>
       <xsl:when test="ancestor::tei:monogr and ancestor::tei:biblStruct[@type = 'bookSection']">
         <!-- Johann Wolfgang Goethe -->
         <xsl:if test="normalize-space (tei:forename)">
-          <xsl:apply-templates select="exsl:node-set ($forenames)/*"/>
+          <xsl:copy-of select="cap:join (exsl:node-set ($forenames)/*, ' ', ' ')"/>
           <xsl:text> </xsl:text>
         </xsl:if>
         <span class="tei-surname">
@@ -355,7 +359,7 @@
         </span>
         <xsl:if test="normalize-space (tei:forename)">
           <xsl:text>, </xsl:text>
-          <xsl:apply-templates select="exsl:node-set ($forenames)/*"/>
+          <xsl:copy-of select="cap:join (exsl:node-set ($forenames)/*, ' ', ' ')"/>
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
