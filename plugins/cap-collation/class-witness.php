@@ -138,9 +138,9 @@ class Witness
     /**
      * Process a node
      *
-     * Nodes may be either <ab> or <span to="id">.  In cased of <ab> the node is
-     * copied, in case of <span to="id"> the output is an <ab> containing all
-     * nodes up to the closing anchor.
+     * Nodes may be either <ab> or <milestone unit='span' spanTo='id'>.  In
+     * case of <ab> the node is copied, in case of <milestone> the output is an
+     * <ab> containing all nodes up to the closing anchor.
      *
      * @param DOMNode  $body   The element to append to
      * @param DOMNode  $node   The node to process
@@ -156,10 +156,10 @@ class Witness
             $body->appendChild ($this->document->importNode ($node, true));
         }
 
-        // <span to="id" /> ... <anchor id="id" />
+        // <milestone spanTo="id" /> ... <anchor id="id" />
         //
         // This outputs an <ab> containing all nodes up to the closing anchor.
-        if ($node->localName == 'span' && $milestone_id = $node->getAttribute ('to')) {
+        if ($node->localName == 'milestone' && $milestone_id = $node->getAttribute ('spanTo')) {
             $div = $body->appendChild ($this->document->createElementNS (NS_TEI, 'tei:ab'));
             $div->setAttribute ('corresp', $node->getAttribute ('corresp'));
             $xpath2 = $this->xpath ($node->ownerDocument);
@@ -232,6 +232,9 @@ class Witness
      * der vorangehenden <span/>) und @next. Die letzte <span/> des
      * zusammengehörigen Abschnittes erhält nur ein @prev.
      *
+     * N.B. 2017-03-10 <span to='id'> wurde ersetzt durch <milestone unit='span'
+     * spanTo='id'>
+     *
      * @param string   $corresp The corresp attribute to match
      * @param string[] $errors  Array for error messages
      *
@@ -248,7 +251,9 @@ class Witness
         $body  = $xpath->query ('//tei:body')[0];
         $xpath = $this->xpath ($doc);
 
-        $nodes = $xpath->query ("//tei:ab[@corresp='{$corresp}'] | //tei:span[@to and @corresp='{$corresp}']");
+        $nodes = $xpath->query (
+            "//tei:ab[@corresp='{$corresp}'] | //tei:milestone[@spanTo and @unit='span' and @corresp='{$corresp}']"
+        );
         $n = 1;
         foreach ($nodes as $node) {
             // Nodes with @prev are handled in the @next chain instead.
@@ -287,7 +292,9 @@ class Witness
         $xpath = $this->xpath ($doc);
 
         $n = 0;
-        $nodes = $xpath->query ("//tei:ab[@corresp='{$corresp}'] | //tei:span[@to and @corresp='{$corresp}']");
+        $nodes = $xpath->query (
+            "//tei:ab[@corresp='{$corresp}'] | //tei:milestone[@spanTo and @unit='span' and @corresp='{$corresp}']"
+        );
         foreach ($nodes as $node) {
             if ($node->getAttribute ('prev')) {
                 continue;

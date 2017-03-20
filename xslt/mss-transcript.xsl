@@ -51,7 +51,7 @@
         <h5 id="contents-rubrics">
           [:de]Inhalt (Rubriken)[:en]Contents (Rubrics)[:]
         </h5>
-        <xsl:apply-templates select="id ('divContent')" mode="toc"/>
+        <xsl:apply-templates select="div[@type='content']" mode="toc"/>
         <h5 id="contents-bknos">
           [:de]Inhalt (BK-Nummern)[:en]Contents (BK-Nos.)[:]
         </h5>
@@ -93,14 +93,14 @@
     <div class="italic tei-front-div">
       <h6>
         <xsl:choose>
-          <xsl:when test="@type='scribe'">                       Schreiber</xsl:when>
-          <xsl:when test="@type='lett' or @type='letters'">      Buchstabenformen</xsl:when>
-          <xsl:when test="@type='abbr' or @type='abbreviation' or @type='abbreviations'">Abkürzungen</xsl:when>
-          <xsl:when test="@type='punct' or @type='punctuation'"> Interpunktion</xsl:when>
-          <xsl:when test="@type='struct' or @type='structure'">  Gliederungsmerkmale</xsl:when>
-          <xsl:when test="@type='other'">                        Sonstiges</xsl:when>
-          <xsl:when test="@type='mshist'">                       Zur Handschrift</xsl:when>
-          <xsl:when test="@type='annotations'">                  Benutzungsspuren</xsl:when>
+          <xsl:when test="@type='mshist'">       Zur Handschrift</xsl:when>
+          <xsl:when test="@type='scribe'">       Schreiber</xsl:when>
+          <xsl:when test="@type='letters'">      Buchstabenformen</xsl:when>
+          <xsl:when test="@type='abbreviations'">Abkürzungen</xsl:when>
+          <xsl:when test="@type='punctuation'">  Interpunktion</xsl:when>
+          <xsl:when test="@type='structure'">    Gliederungsmerkmale</xsl:when>
+          <xsl:when test="@type='annotations'">  Benutzungsspuren</xsl:when>
+          <xsl:when test="@type='other'">        Sonstiges</xsl:when>
         </xsl:choose>
       </h6>
 
@@ -277,7 +277,7 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="tei:milestone">
+  <xsl:template match="tei:milestone[not (@unit='span')]">
     <!-- wird vom Sidebar-Menu benützt -->
     <span id="{cap:make-id (@n)}" class="milestone">
       <span style="display: none">
