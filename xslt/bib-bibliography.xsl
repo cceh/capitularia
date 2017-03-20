@@ -35,7 +35,7 @@
        <xsl:param name="pSplit">0.0</xsl:param>
   -->
 
-  <!-- y/n Do not use str:encode-uri because oxygen doesn't like it -->
+  <!-- y/n Do not use str:encode-uri because oxygen/Saxon doesn't like it -->
   <xsl:param name="pOxygen">n</xsl:param>
 
   <xsl:variable name="config">
@@ -328,12 +328,7 @@
   </xsl:template>
 
   <xsl:template match="tei:idno[@type='URL']">
-    <div class="tei-idno tei-idno-url">
-      <xsl:text>URL: </xsl:text>
-      <a target="_blank" href="{.}">
-        <xsl:value-of select="."/>
-      </a>
-    </div>
+    <a class="tei-idno tei-idno-url external ssdone" target="_blank" href="{.}" title="{.}"></a>
   </xsl:template>
 
   <xsl:template match="tei:persName">
@@ -423,6 +418,8 @@
           <xsl:value-of select="$vNoUnderlineIDNO"/>
         </xsl:otherwise>
       </xsl:choose>
+
+      <xsl:apply-templates select="../tei:idno[@type='URL']"/>
     </div>
     <xsl:text>&#x0a;</xsl:text>
   </xsl:template>
@@ -530,7 +527,6 @@
     <xsl:param name="n" />
     <xsl:apply-templates select="tei:note[@type='reprint']"/>
     <xsl:apply-templates select="tei:note[@type='notes']"/>
-    <xsl:apply-templates select="$n/tei:idno[@type='URL']"/>
   </xsl:template>
 
   <!-- biblStruct -->
