@@ -7,7 +7,9 @@
 
 namespace cceh\capitularia\collation;
 
-const COLLATION_XSL = AFS_ROOT . '/http/docs/cap/publ/transform/transkription_LesEdi_CapKoll.xsl';
+const XSLTPROC      = AFS_ROOT . '/local/bin/xsltproc';
+const COLLATION_XSL = AFS_ROOT . '/http/docs/cap/publ/transform/mss-transcript-collation.xsl';
+// const COLLATION_XSL = AFS_ROOT . '/http/docs/cap/publ/transform/transkription_LesEdi_CapKoll.xsl';
 
 const NS_TEI = 'http://www.tei-c.org/ns/1.0';
 const NS_XML = 'http://www.w3.org/XML/1998/namespace';
@@ -29,25 +31,24 @@ class Witness
     /**
      * Constructor
      *
-     * Note: Manuscripts may contain more than one copy of the same @corresp. In
-     * that case a second witness is generated with a Sub-Id > 1.
-     *
      * @param string $corresp      The capitulary section, eg. "BK.184_a"
      * @param string $xml_id       The xml:id of the TEI file, eg. "bamberg-sb-can-12"
      * @param string $xml_filename The full path to the TEI file.
      * @param string $slug         Slug of manuscript page
-     * @param int    $sub_id       Sub-Id of witness.
+     * @param int    $sub_id       Sub-Id of witness. @See: clone_witness ().
+     * @param bool   $later_hands  True if corrections by later hands should be included.
      *
-     * @return Collation_item
+     * @return Witness
      */
 
-    public function __construct ($corresp, $xml_id, $xml_filename, $slug, $sub_id = 1)
+    public function __construct ($corresp, $xml_id, $xml_filename, $slug, $sub_id = 1, $later_hands = false)
     {
         $this->corresp      = $corresp;
         $this->xml_id       = $xml_id;
         $this->xml_filename = $xml_filename;
         $this->slug         = $slug;
         $this->sub_id       = $sub_id;
+        $this->later_hands  = $later_hands;
 
         $this->sort_key     = preg_replace_callback (
             '|\d+|',
@@ -58,18 +59,60 @@ class Witness
         );
     }
 
-    public function clone_witness ($sub_id)
+    /**
+     * Clone the witness structure with a different sub_id.
+     *
+     * Manuscripts may contain more than one copy of the same capitular.  In
+     * that case we want to collate each copy separately and need to duplicate
+     * this structure.  The sub_id indicates which copy of the capitular this
+     * instance respresents.  The first or only copy gets a sub_id of 1.
+     *
+     * Manuscripts may contain corrections by later hands, in which case we want
+     * to collate the earlier and later versions separately.
+     *
+     * @param integer $sub_id      The new sub_id. Should be > 1.
+     * @param bool    $later_hands True if corrections by later hands should be included.
+     *
+     * @return Witness The cloned witness.
+     */
+
+    public function clone_witness ($sub_id, $later_hands)
     {
-        return new Witness ($this->corresp, $this->xml_id, $this->xml_filename, $this->slug, $sub_id);
+        return new Witness (
+            $this->corresp,
+            $this->xml_id,
+            $this->xml_filename,
+            $this->slug,
+            $sub_id,
+            $later_hands
+        );
     }
+
+    /**
+     * Build an id containing a sub_id.
+     *
+     * To distinguish different copies of the same capitular in one manuscript.
+     *
+     * @return string The id including the sub_id.
+     */
 
     public function get_id ()
     {
-        if ($this->sub_id > 1) {
-            return $this->xml_id . '#' . $this->sub_id;
+        $id = $this->xml_id;
+        if ($this->later_hands) {
+            $id .= '?hands=XYZ';
         }
-        return $this->xml_id;
+        if ($this->sub_id > 1) {
+            $id .= '#' . $this->sub_id;
+        }
+        return $id;
     }
+
+    /**
+     * Get the slug.
+     *
+     * @return string The slug.
+     */
 
     public function get_slug ()
     {
@@ -138,7 +181,7 @@ class Witness
     /**
      * Process a node
      *
-     * Nodes may be either <ab> or <milestone unit='span' spanTo='id'>.  In
+     * Nodes may be either <ab> or <milestone unit='span' spanTo='#id'>.  In
      * case of <ab> the node is copied, in case of <milestone> the output is an
      * <ab> containing all nodes up to the closing anchor.
      *
@@ -156,10 +199,11 @@ class Witness
             $body->appendChild ($this->document->importNode ($node, true));
         }
 
-        // <milestone spanTo="id" /> ... <anchor id="id" />
+        // <milestone spanTo="#id" /> ... <anchor id="id" />
         //
         // This outputs an <ab> containing all nodes up to the closing anchor.
         if ($node->localName == 'milestone' && $milestone_id = $node->getAttribute ('spanTo')) {
+            $milestone_id = trim ($milestone_id, '#');
             $div = $body->appendChild ($this->document->createElementNS (NS_TEI, 'tei:ab'));
             $div->setAttribute ('corresp', $node->getAttribute ('corresp'));
             $xpath2 = $this->xpath ($node->ownerDocument);
@@ -233,7 +277,7 @@ class Witness
      * zusammengehörigen Abschnittes erhält nur ein @prev.
      *
      * N.B. 2017-03-10 <span to='id'> wurde ersetzt durch <milestone unit='span'
-     * spanTo='id'>
+     * spanTo='#id'>
      *
      * @param string   $corresp The corresp attribute to match
      * @param string[] $errors  Array for error messages
@@ -267,25 +311,70 @@ class Witness
             $n++;
         }
         if (empty ($body->textContent)) {
-            $errors[] = "Nothing extracted from {$this->xml_filename} for $corresp";
+            $errors[] = "Nothing extracted from {$this->xml_filename} for {$corresp} " .
+                      "sub-id {$this->sub_id} and hands {$this->later_hands}";
         }
     }
+
+    /**
+     * Convert TEI to plain text suited for collation.
+     *
+     * Use our own xslt toolchain because the Cogel-installed toolchain is
+     * obsolete and buggy.  (eg. The exslt:str:padding () produces garbage when
+     * asked to pad with a multibyte utf8 character.)
+     *
+     * @return integer The xsltproc error code
+     */
 
     public function xml_to_text ()
     {
-        $xsl = new \DOMDocument ();
-        $xsl_filename = COLLATION_XSL;
-        if ($xsl->load ($xsl_filename)) {
-            $proc = new \XSLTProcessor ();
-            $proc->importStylesheet ($xsl);
-            $this->pure_text = $proc->transformToXML ($this->document);
-            $this->pure_text = trim (preg_replace ('/\s+/', ' ', $this->pure_text));
-        } else {
-            error_log ("Could not open $xsl_filename");
+        $return_value = 666;
+
+        $cmdline   = array ();
+        $cmdline[] = XSLTPROC;
+        if ($this->later_hands) {
+            $cmdline[] = '--param include-later-hand "true()"';
         }
+        $cmdline[] = COLLATION_XSL;
+        $cmdline[] = '-';
+
+        $descriptorspec = array (
+            0 => array ('pipe', 'r'),
+            1 => array ('pipe', 'w'),
+            2 => array ('file', '/dev/null', 'w') // no stderr to keep server error logs small
+        );
+
+        $process = proc_open (join (' ', $cmdline), $descriptorspec, $pipes, null, null);
+
+        if (is_resource ($process)) {
+            fwrite ($pipes[0], $this->document->saveXML ());
+            fclose ($pipes[0]);
+
+            $this->pure_text = stream_get_contents ($pipes[1]);
+            fclose ($pipes[1]);
+
+            $return_value = proc_close ($process);
+
+            $this->pure_text = mb_trim (preg_replace ('/\s+/u', ' ', strip_tags ($this->pure_text)));
+        } else {
+            error_log ('Could not proc_open () ' . join (' ', $cmdline));
+        }
+        return $return_value;
     }
 
-    public function enum_sections ($corresp)
+    /**
+     * Count how many copies of a section there are.
+     *
+     * Manuscripts may contain more than one copy of the same capitular.  In
+     * that case we want to collate each copy separately.  This function counts
+     * how many copies of a section there are in this manuscript.
+     *
+     * @param string $corresp The corresp
+     *
+     * @return int The number of sections.
+     */
+
+    public function count_sections ($corresp)
     {
         $s   = file_get_contents ($this->xml_filename);
         $doc = $this->string_to_dom ($s);
@@ -302,6 +391,25 @@ class Witness
             $n++;
         }
         return $n;
+    }
+
+    /**
+     * Check for later hands in manuscript
+     *
+     * Sometimes we want to collate a manuscript in the version corrected by a
+     * later hand.  A later hand is defined as hand in 'X', 'Y', or Z.
+     *
+     * @return True if there are later hands.
+     */
+
+    public function has_later_hands ()
+    {
+        $s   = file_get_contents ($this->xml_filename);
+        $doc = $this->string_to_dom ($s);
+        $xpath = $this->xpath ($doc);
+
+        $nodes = $xpath->query ("//@hand[contains ('XYZ', .)]");
+        return $nodes->length > 0;
     }
 
     /**
@@ -343,29 +451,36 @@ class Witness
         $tokens = array ();
         $patterns = array ();
         $replacements = array ();
-        $text = trim ($this->pure_text);
+        $text = mb_trim ($this->pure_text);
+
+        foreach (mb_split (' ', 'ę=e Ę=E ae=e Ae=E AE=E') as $n) {
+            $n = mb_split ('=', $n);
+            $text = mb_ereg_replace ($n[0], $n[1],  $text);
+        }
+        $text = mb_ereg_replace ('[-.,:;!?*/]', '',  $text);
+        $text = mb_ereg_replace (' ',           ' ', $text);
 
         foreach ($normalizations as $n) {
-            $n = explode ('=', $n);
+            $n = mb_split ('=', $n);
             if (count ($n) == 2) {
-                $patterns[] = trim ($n[0]);
-                $replacements[] = trim ($n[1]);
+                $patterns[] = mb_trim ($n[0]);
+                $replacements[] = mb_trim ($n[1]);
             }
         }
 
-        preg_match_all ('/\S+\s*/', $text, $matches);
-        foreach ($matches[0] as $pattern) {
-            $normalized = trim ($pattern);
-            if (count ($patterns)) {
-                $normalized = str_replace ($patterns, $replacements, $normalized);
+        // tokenize
+        preg_match_all ('/\S+\s*/u', $text, $matches);
+        foreach ($matches[0] as $token) {
+            $n_patterns = count ($patterns);
+            $normalized = $token = mb_trim ($token);
+            for ($i = 0; $i < $n_patterns; $i++) {
+                $normalized = mb_ereg_replace ($patterns[$i], $replacements[$i], $normalized);
             }
-            $normalized = strtolower ($normalized);
-            $normalized = preg_replace ('/\[\s*|\s*\]/', '', $normalized);
-            // $normalized = preg_replace ('|[.,:;/·˙∴]|',  '', $normalized);
-            $normalized = preg_replace ('|[.,:;/]|',  '', $normalized);
-            // $normalized = preg_replace ('/[.,:;]/',      '', $normalized);
+            $normalized = mb_strtolower ($normalized);
+            $normalized = mb_ereg_replace ('\[\s*|\s*\]', '',  $normalized);
+
             if (!empty ($normalized)) {
-                $tokens[] = array ('t' => $pattern, 'n' => $normalized);
+                $tokens[] = array ('t' => $token, 'n' => $normalized);
             }
         }
         return array ('id' => $this->get_id (), 'tokens' => $tokens);

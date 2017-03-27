@@ -83,6 +83,7 @@ EOT;
  * Input: query parameters
  *   corresp: which section to collate, eg. 'BK.139_1'
  *   manuscripts: a list of manuscript ids to collate,
+ *   later_hands: wheter to synthetize manuscripts as edited by later hands
  *   algorithm: which algorithm to use,
  *   segmentation: do a segmentation step,
  *   transpositions: try to recognize transpositions,
@@ -102,8 +103,9 @@ function on_cap_load_collation ()
 
     $corresp     = $_REQUEST['corresp'];
     $manuscripts = $_REQUEST['manuscripts'];
-    // $items = get_witnesses ($corresp);
-    $items = get_witnesses_ordered_like ($corresp, $manuscripts);
+    $later_hands = $_REQUEST['later_hands'] == 'true';
+
+    $items = get_witnesses_ordered_like ($corresp, $manuscripts, $later_hands);
 
     $algorithm = isset ($_REQUEST['algorithm']) ? $_REQUEST['algorithm'] : 'default';
     if (!array_key_exists ($algorithm, $cap_collation_algorithms)) {
@@ -214,7 +216,7 @@ function on_cap_load_collation ()
     $html[] = '<pre>' . esc_html ($json_in) . '</pre>';
 
     $html[] = '<h4>Collatex Output</h4>';
-    $html[] = '<pre>' . esc_html ($ret['stdout']) . '</pre>';
+    $html[] = '<pre>' . esc_html (json_encode (json_decode ($ret['stdout']), JSON_PRETTY_PRINT)) . '</pre>';
 
     $html[] = '</div>';
     $html[] = '</div>'; // Accordion

@@ -147,7 +147,7 @@ class CollateX
         foreach ($cell as $token) {
             $tmp .= $token['t'];
         }
-        return strlen (trim ($tmp));
+        return mb_strlen (mb_trim ($tmp));
     }
 
     /**

@@ -14,15 +14,15 @@
   <!-- libexslt does not support the regexp extension ! -->
 
   <!--
-      This is the new stylesheet that generates the transcription section of the
-      manuscript pages. It replaces the transkription_PublWP* series of
-      stylesheets.
+      This is the new series of stylesheets that generate the transcription
+      section of the manuscript pages on the wordpress site.  It replaces the
+      transkription_PublWP* series of stylesheets.
 
-      @authors: NG, MP
+      @author: MP
   -->
 
   <xsl:include href="common.xsl"/>                    <!-- common templates and functions -->
-  <xsl:include href="mss-transcript-footnotes.xsl"/>  <!-- generation of footnotes / tooltips -->
+  <xsl:include href="mss-transcript-footnotes.xsl"/>  <!-- generates footnotes / tooltips -->
 
   <!-- Needed for the correct determination of the word around an editorial
        intervention. -->
@@ -51,7 +51,7 @@
         <h5 id="contents-rubrics">
           [:de]Inhalt (Rubriken)[:en]Contents (Rubrics)[:]
         </h5>
-        <xsl:apply-templates select="div[@type='content']" mode="toc"/>
+        <xsl:apply-templates select="tei:front/tei:div[@type='content']" mode="toc"/>
         <h5 id="contents-bknos">
           [:de]Inhalt (BK-Nummern)[:en]Contents (BK-Nos.)[:]
         </h5>

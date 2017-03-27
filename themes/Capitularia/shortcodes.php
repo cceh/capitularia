@@ -301,12 +301,14 @@ function on_shortcode_if_transcribed ($atts, $content)
 function on_shortcode_cite_as ($atts, $dummy_content)
 {
     $atts = shortcode_atts (
-		array (
-			'author' => get_the_author (),
+        array (
+            'author' => get_the_author (),
             'title'  => get_the_title (),
             'url'    => get_permalink (),
             'date'   => strftime ('%x')
-		), $atts, 'cite_as'
+        ),
+        $atts,
+        'cite_as'
     );
 
     $res = <<<EOF

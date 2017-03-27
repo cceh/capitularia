@@ -140,6 +140,7 @@ EOT;
     $caption2 = __ ('Drag and drop to sort and move between lists.', 'capitularia');
     $caption3 = __ ('Manuscripts to collate', 'capitularia');
     $caption4 = __ ('Manuscripts to ignore', 'capitularia');
+    $label1   = __ ('Include edits by later hands', 'capitularia');
 
     $html[] = <<<EOT
     <div id="manuscripts-div" class="manuscripts-div no-print" style="display: none">
@@ -155,6 +156,10 @@ EOT;
             <thead><tr><td>$caption4</td></tr></thead>
             <tbody></tbody>
           </table>
+        </div>
+        <div>
+          <label for="later_hands">$label1</label>
+          <input type="checkbox" id="later_hands" name="later_hands" value="later_hands" />
         </div>
 EOT;
 

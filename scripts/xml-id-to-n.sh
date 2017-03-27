@@ -8,9 +8,9 @@ for i in `find $ROOT/cap/intern/InArbeit/ -name "*.xml"`
 do
     DEST=/tmp/$(basename $i)
 
-    xsltproc scripts/xml_id_to_n.xsl "$i" > "$DEST"
+    xsltproc scripts/xml-id-to-n.xsl "$i" > "$DEST"
     if [ "$?" = 0 ]; then
-	cp --backup=numbered "$DEST" "$i"
+        cp --backup=numbered "$DEST" "$i"
         echo OK "$i"
     else
         echo ERRORS "$i"

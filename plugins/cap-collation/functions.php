@@ -265,13 +265,20 @@ function get_witnesses ($corresp)
 /**
  * Get witnesses for a Corresp in a predetermined order
  *
- * @param string $corresp The corresp eg. 'BK123_4'
- * @param array  $order   An array of xml ids
+ * Note: manuscripts may contain more than one copy of a capitular, in which
+ * case we want to collate each copy separately.
+ *
+ * Note: manuscripts may contain corrections by later hands, in which case we
+ * want to collate the earlier and later versions separately.
+ *
+ * @param string  $corresp     The corresp eg. 'BK123_4'
+ * @param array   $order       An array of xml ids
+ * @param boolean $later_hands Whether to sythetize manuscripts as edited by later hands
  *
  * @return Witness[] The ordered witnesses
  */
 
-function get_witnesses_ordered_like ($corresp, $order)
+function get_witnesses_ordered_like ($corresp, $order, $later_hands = false)
 {
     $witnesses = get_witnesses ($corresp);
     $items = array ();
@@ -279,11 +286,20 @@ function get_witnesses_ordered_like ($corresp, $order)
     foreach ($order as $xml_id) {
         foreach ($witnesses as $witness) {
             if ($witness->get_id () == $xml_id) {
-                $n_sections = $witness->enum_sections ($corresp);
+                $do_hands   = $later_hands && $witness->has_later_hands ();
+                $n_sections = $witness->count_sections ($corresp);
+
                 $items[] = $witness;
+                if ($do_hands) {
+                    $items[] = $witness->clone_witness (1, true);
+                }
+
                 if ($n_sections > 1) {
                     for ($n = 2; $n <= $n_sections; $n++) {
-                        $items[] = $witness->clone_witness ($n);
+                        $items[] = $witness->clone_witness ($n, false);
+                        if ($do_hands) {
+                            $items[] = $witness->clone_witness ($n, true);
+                        }
                     }
                 }
             }
@@ -397,6 +413,19 @@ function cap_sanitize_key_list ($key_list)
 function on_off ($bool)
 {
     return $bool ? __ ('on', 'capitularia') : __ ('off', 'capitularia');
+}
+
+/**
+ * The missing mb_trim function
+ *
+ * @param string $s The string to trim
+ *
+ * @return The trimmed string
+ */
+
+function mb_trim ($s)
+{
+    return preg_replace ('/^\s+/u', '', preg_replace ('/\s+$/u', '', $s));
 }
 
 /**

@@ -78,6 +78,8 @@ footnotes will be joined to the preceding word.
 
 -->
 
+  <xsl:param name="include-later-hand" select="false ()" />
+
   <func:function name="cap:contains-whitespace">
     <xsl:param name="s"/>
     <func:result select="str:concat (str:tokenize ($s)) != $s"/>
@@ -259,7 +261,7 @@ footnotes will be joined to the preceding word.
     <!-- If these hands made corrections we put them in
          the apparatus and display the old text. -->
     <xsl:param name="hand" select="cap:get-hand ()"/>
-    <func:result select="normalize-space ($hand) and contains ('XYZ', $hand)"/>
+    <func:result select="normalize-space ($hand) and contains ('XYZ', $hand) and not ($include-later-hand)"/>
   </func:function>
 
   <xsl:template name="hand-blurb">

@@ -39,6 +39,7 @@ function get_manuscripts_params () {
 
 function get_collation_params () {
     var data = {
+        'later_hands'          : jQuery ('#later_hands').prop ('checked'),
         'algorithm'            : jQuery ('#algorithm').val (),
         'levenshtein_distance' : jQuery ('#levenshtein_distance').val (),
         'levenshtein_ratio'    : jQuery ('#levenshtein_ratio').val (),
@@ -88,7 +89,7 @@ function clear_manuscripts () {
     var deferred = jQuery.Deferred ();
 
     $div.slideUp (function () {
-        var $tbody = jQuery ('#manuscripts-tbody');
+        var $tbody = jQuery ('table.manuscripts tbody');
         $tbody.children ().remove ();
         deferred.resolve ();
     });

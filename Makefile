@@ -36,7 +36,7 @@ csslint: css
 css: $(CSS_FILES)
 
 phplint:
-	@for f in $(PHP_FILES); do php -l $$f; done
+	for f in $(PHP_FILES); do php -l $$f; done
 
 jslint:
 	eslint --format=unix $(JS_FILES)
