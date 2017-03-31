@@ -398,6 +398,26 @@ class Widget extends \WP_Widget
 
     public function form ($instance)
     {
-        the_option ($instance, 'title', __ ('Title', 'capitularia'), __ ('New title', 'capitularia'));
+        $this->the_option ($instance, 'title', __ ('Title', 'capitularia'), __ ('New title', 'capitularia'));
+    }
+
+    /**
+     * Output one option field
+     *
+     * @param array  $instance    The widet options
+     * @param string $name        The option name
+     * @param string $caption     The caption
+     * @param string $placeholder The placeholder
+     *
+     * @return void
+     */
+
+    public function the_option ($instance, $name, $caption, $placeholder)
+    {
+        $value = !empty ($instance[$name]) ? $instance[$name] : '';
+        echo ("<p><label for=\"{$this->get_field_id ($name)}\">$caption</label>");
+        echo ("<input class=\"widefat\" id=\"{$this->get_field_id ($name)}\" " .
+              "name=\"{$this->get_field_name ($name)}\" type=\"text\" value=\"$value\" " .
+              "placeholder=\"$placeholder\"></p>");
     }
 }

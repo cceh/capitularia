@@ -52,26 +52,6 @@ function init ()
 }
 
 /**
- * Output one option field
- *
- * @param array  $instance    The widet options
- * @param string $name        The option name
- * @param string $caption     The caption
- * @param string $placeholder The placeholder
- *
- * @return void
- */
-
-function the_option ($instance, $name, $caption, $placeholder)
-{
-    $value = !empty ($instance[$name]) ? $instance[$name] : '';
-    echo ("<p><label for=\"{$this->get_field_id ($name)}\">$caption</label>");
-    echo ("<input class=\"widefat\" id=\"{$this->get_field_id ($name)}\" " .
-          "name=\"{$this->get_field_name ($name)}\" type=\"text\" value=\"$value\" " .
-          "placeholder=\"$placeholder\"></p>");
-}
-
-/**
  * Sanitize a text filed.
  *
  * @param string $text The text to sanitize.
