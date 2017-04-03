@@ -14,9 +14,11 @@ $page_msg = __ ('Page:', 'capitularia');
 
 $pagination = paginate_links (
     array (
-        'current' => max (1, get_query_var ('paged')),
-        'total' => $wp_query->max_num_pages,
-        'before_page_number' => "<span class='screen-reader-text'>$page_msg </span>"
+        'current'            => max (1, get_query_var ('paged')),
+        'total'              => $wp_query->max_num_pages,
+        'before_page_number' => "<span class='screen-reader-text'>$page_msg </span>",
+        'prev_text'          => __ ('« Previous', 'capitularia'),
+        'next_text'          => __ ('Next »', 'capitularia'),
     )
 );
 
@@ -26,10 +28,12 @@ echo ("<div class='content-col'>\n");
 if (have_posts ()) {
     echo (
         "<header class='index-header page-header'>\n  <h2>" .
-        __ ('Results', 'capitularia') . "</h2>\n" .
-        "  <div class='pagination-nav index-pagination-nav pagination-nav-top'>$pagination</div>\n" .
-        "</header>\n"
+        __ ('Results', 'capitularia') . "</h2>\n"
     );
+    if ($pagination) {
+        echo ("  <div class='pagination-nav index-pagination-nav pagination-nav-top'>$pagination</div>\n");
+    }
+    echo ("</header>\n");
 
     echo ("<div class='index-results'>\n");
 
@@ -62,7 +66,9 @@ if (have_posts ()) {
     }
 
     echo ("<footer class='index-footer'>\n");
-    echo ("<div class='pagination-nav index-pagination-nav pagination-nav-bottom'>\n$pagination\n</div>\n");
+    if ($pagination) {
+        echo ("<div class='pagination-nav index-pagination-nav pagination-nav-bottom'>\n$pagination\n</div>\n");
+    }
     echo ("</footer>\n");
 
     echo ("</div>\n");

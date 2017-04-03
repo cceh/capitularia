@@ -10,16 +10,11 @@ namespace cceh\capitularia\theme;
 
 get_header ();
 
-// $args['nopaging'] = true;
-// $the_query = new \WP_Query ($args);
-
-$the_query = $wp_query;
-
 echo ("<main id='main' class='search-php'>\n");
 echo ("<div class='content-col'>\n");
 
 $your_search = apply_filters ('cap_meta_search_your_search', '');
-$n_results = $the_query->found_posts;
+$n_results = $wp_query->found_posts;
 
 if ($n_results) {
     $your_search = sprintf (
@@ -46,24 +41,28 @@ if ($n_results) {
 $page_msg = __ ('Page:', 'capitularia');
 $pagination = paginate_links (
     array (
-        'current' => max (1, get_query_var ('paged')),
-        'total' => $the_query->max_num_pages,
-        'before_page_number' => "<span class='screen-reader-text'>$page_msg </span>"
+        'current'            => max (1, get_query_var ('paged')),
+        'total'              => $wp_query->max_num_pages,
+        'before_page_number' => "<span class='screen-reader-text'>$page_msg </span>",
+        'prev_text'          => __ ('« Previous', 'capitularia'),
+        'next_text'          => __ ('Next »', 'capitularia'),
     )
 );
 
 echo (
     "<header class='search-header page-header'>\n  <h2>" .
     __ ('Search Results', 'capitularia') . "</h2>\n" .
-    "  <div class='search-your-search'>$your_search</div>\n" .
-    "  <div class='pagination-nav search-pagination-nav pagination-nav-top'>$pagination</div>\n" .
-    "</header>\n"
+    "  <div class='search-your-search'>$your_search</div>\n"
 );
+if ($pagination) {
+    echo ("  <div class='pagination-nav search-pagination-nav pagination-nav-top'>$pagination</div>\n");
+}
+echo ("</header>\n");
 
-if ($the_query->have_posts ()) {
+if (have_posts ()) {
     echo ("<div class='search-results'>\n");
-    while ($the_query->have_posts ()) {
-        $the_query->the_post ();
+    while (have_posts ()) {
+        the_post ();
         $id = get_the_ID ();
 
         echo ("<article id='post-$id' class='search-results-excerpt'>\n");
@@ -78,7 +77,9 @@ if ($the_query->have_posts ()) {
     echo ("</div>\n");
 
     echo ("<footer class='search-footer'>\n");
-    echo ("<div class='pagination-nav search-pagination-nav pagination-nav-bottom'>\n$pagination\n</div>\n");
+    if ($pagination) {
+        echo ("<div class='pagination-nav search-pagination-nav pagination-nav-bottom'>\n$pagination\n</div>\n");
+    }
     echo ("</footer>\n");
 }
 echo ("</div>\n");
