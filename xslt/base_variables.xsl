@@ -60,6 +60,7 @@
   <xsl:variable name="downloads"><xsl:value-of select="$resources"/>downloads/</xsl:variable>
   <!-- Verlinkung zur Downloadseite, auf der alle Downloads gesammelt angeboten werden; ??? Wo liegen diese auf dem Server ??? -->
   <xsl:variable name="mss_downloads"><xsl:value-of select="$base"/>/cap/publ/mss/</xsl:variable>
+  <xsl:variable name="capit_downloads"><xsl:value-of select="$base"/>/cap/publ/capit/</xsl:variable>
   <!-- #### Projekt - unklar, ob diese notwendig sind #### -->
   <xsl:variable name="project"><xsl:value-of select="$base"/>/project/</xsl:variable>
   <xsl:variable name="blog"><xsl:value-of select="$base"/>/blog/</xsl:variable>

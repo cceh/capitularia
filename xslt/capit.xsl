@@ -34,6 +34,27 @@ Output URL: /capit/ldf/bk-nr-186/
       <xsl:apply-templates select="tei:text/tei:body/tei:div/tei:list[@type='transmission']"/>
       <xsl:apply-templates select="tei:text/tei:body/tei:div/tei:listBibl[@type='literature']"/>
       <xsl:apply-templates select="tei:text/tei:body/tei:div/tei:listBibl[@type='translation']"/>
+
+      <xsl:call-template name="hr"/>
+
+      <div id="download">
+        <h5>[:de]Download[:en]Downloads[:]</h5>
+        <ul class="downloads">
+          <li class="download-icon">
+            <!-- http://capitularia.uni-koeln.de/cap/publ/capit/ldf/bk-nr-148.xml -->
+            <xsl:variable name="url"
+                          select="concat ($capit_downloads, @corresp, '.xml')"/>
+            <a class="screen-only ssdone" href="{$url}"
+               title='[:de]Rechtsklick zum "Speichern unter"[:en]right button click to save file[:]'>
+              <xsl:text>[:de]Datei in XML[:en]File in XML[:]</xsl:text>
+            </a>
+            <div class="print-only">
+              <xsl:text>[:de]Datei in XML[:en]File in XML[:] </xsl:text>
+              <xsl:value-of select="$url"/>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </xsl:template>
 
