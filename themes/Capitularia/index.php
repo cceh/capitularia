@@ -26,10 +26,7 @@ echo ("<main id='main' class='index-php'>\n");
 echo ("<div class='content-col'>\n");
 
 if (have_posts ()) {
-    echo (
-        "<header class='index-header page-header'>\n  <h2>" .
-        __ ('Results', 'capitularia') . "</h2>\n"
-    );
+    echo ("<header class='index-header page-header'>\n");
     if ($pagination) {
         echo ("  <div class='pagination-nav index-pagination-nav pagination-nav-top'>$pagination</div>\n");
     }
