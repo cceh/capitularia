@@ -559,26 +559,31 @@ div.back-to-top.back-to-top-compact {
     display: none;
   }
 }
-div.search-pagination-nav {
+div.pagination-nav {
   margin: 14px 0;
   padding: 14px 0;
   border: solid 1px #1a171b;
-  border-width: 1px 0 1px 0;
   font-size: smaller;
 }
-div.search-pagination-nav .screen-reader-text {
+div.pagination-nav .screen-reader-text {
   display: none;
 }
-div.search-pagination-nav-bottom {
+div.pagination-nav-top {
+  border-width: 1px 0;
+}
+div.pagination-nav-bottom {
   border-width: 1px 0 0 0;
 }
-.search-results li {
+.search-results li,
+.index-results li {
   padding: 10px 0;
 }
-.search-results p {
+.search-results p,
+.index-results p {
   padding-top: 6px;
 }
-.search-results b {
+.search-results b,
+.index-results b {
   font-family: 'OpenSans-Bold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
@@ -1055,10 +1060,8 @@ div.slideout .slideout-inner div.hr {
 div.slideout .slideout-tab {
   float: left;
   width: 100px;
-  -webkit-transform-origin: 100% 100%;
-          transform-origin: 100% 100%;
-  -webkit-transform: rotate(270deg);
-          transform: rotate(270deg);
+  transform-origin: 100% 100%;
+  transform: rotate(270deg);
 }
 div.slideout .slideout-tab h5 {
   margin: 0;

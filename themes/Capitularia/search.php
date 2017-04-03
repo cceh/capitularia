@@ -56,7 +56,7 @@ echo (
     "<header class='search-header page-header'>\n  <h2>" .
     __ ('Search Results', 'capitularia') . "</h2>\n" .
     "  <div class='search-your-search'>$your_search</div>\n" .
-    "  <div class='search-pagination-nav search-pagination-nav-top'>$pagination</div>\n" .
+    "  <div class='pagination-nav search-pagination-nav pagination-nav-top'>$pagination</div>\n" .
     "</header>\n"
 );
 
@@ -78,7 +78,7 @@ if ($the_query->have_posts ()) {
     echo ("</div>\n");
 
     echo ("<footer class='search-footer'>\n");
-    echo ("<div class='search-pagination-nav search-pagination-nav-bottom'>\n$pagination\n</div>\n");
+    echo ("<div class='pagination-nav search-pagination-nav pagination-nav-bottom'>\n$pagination\n</div>\n");
     echo ("</footer>\n");
 }
 echo ("</div>\n");
