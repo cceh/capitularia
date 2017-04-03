@@ -88,20 +88,32 @@ b, strong, .bold {
     font-size: small;
 }
 
+.black {
+    color: @color-text;
+}
+
 .red {
     color: @color-red;
 }
 
-sup {
+.sup {
     vertical-align: super;
     font-size: 70%;
     line-height: 0;
 }
 
-sub {
+.sub {
     vertical-align: sub;
     font-size: 70%;
     line-height: 0;
+}
+
+sup {
+    .sup;
+}
+
+sub {
+    .sub;
 }
 
 .justify {
@@ -557,6 +569,7 @@ div.pagination-nav-bottom {
 }
 
 .search-results, .index-results {
+    margin: 2em 0;
     li {
         padding:10px 0;
     }
@@ -674,7 +687,7 @@ span.mentioned {
     .italic;
 }
 
-div.content-col {
+div.content-col, div.annotation-content {
     text-align: justify;
     line-height: 1.4em;
 
@@ -710,11 +723,11 @@ div.content-col {
     .rend-red,
     .rend-colored,
     .rend-coloured {
-        color:  @color-highlight;
+        .red;
     }
 
     .rend-default {
-        color: black;
+        .black;
     }
 
     .rend-italic {
@@ -726,8 +739,7 @@ div.content-col {
     }
 
     .rend-super {
-        text-align: super;
-        font-size: smaller;
+        .sup;
     }
 
     .align-left {
@@ -810,7 +822,7 @@ div.content-col {
                 list-style-type: square;
             }
             span.tei-note-corr {
-                color: @color-red;
+                .red;
             }
         }
 
@@ -909,16 +921,16 @@ div.content-col {
         }
     }
     .annotation-ref {
-        vertical-align: super;
-        font-size: 70%;
-        line-height: 0;
+        .sup;
     }
 }
 
 div.annotation-content {
     /* gets copied by jquery-ui tooltip () so it is not necessarily inside content-col */
+    text-align: left;
     font-size: 80%;
-    line-height: 150%;
+    line-height: 1.5em;
+
     @media print {
         &:first-child::before {
             display: block;
@@ -945,7 +957,7 @@ div.annotation-content {
     }
 }
 
-body div.ui-tooltip-footnote {
+div.ui-widget.ui-widget-content.ui-tooltip-footnote {
     background-color: @background-box;
     padding: 8px;
     max-width: 400px;

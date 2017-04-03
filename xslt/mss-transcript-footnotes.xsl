@@ -272,9 +272,6 @@ footnotes will be joined to the preceding word.
     <xsl:if test="following-sibling::*[1][self::tei:metamark]">
       <xsl:text> mit Einfügungszeichen</xsl:text>
     </xsl:if>
-    <xsl:if test="@rend='default' or tei:add/@rend='default'">
-      <xsl:text> in Texttinte</xsl:text>
-    </xsl:if>
   </xsl:template>
 
   <xsl:template name="plural">
@@ -337,11 +334,14 @@ footnotes will be joined to the preceding word.
     </span>
   </xsl:template>
 
-  <xsl:template match="tei:add" mode="edited">
-    <xsl:if test="@rend='coloured'">
-      <xsl:attribute name="class">tei-add rend-coloured</xsl:attribute>
-    </xsl:if>
-    <xsl:apply-templates/>
+  <xsl:template match="tei:*" mode="rend">
+    <!-- The following span guards against the error: "Cannot add
+         attributes to an element if children have been already added to
+         the element", which happens if we have a $before with text. -->
+    <span>
+      <xsl:call-template name="handle-rend" />
+      <xsl:apply-templates/>
+    </span>
   </xsl:template>
 
   <xsl:template match="tei:add">
@@ -354,7 +354,7 @@ footnotes will be joined to the preceding word.
           <xsl:apply-templates mode="refs-only"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="." mode="edited"/>
+          <xsl:apply-templates select="." mode="rend"/>
         </xsl:otherwise>
       </xsl:choose>
     </span>
@@ -391,7 +391,7 @@ footnotes will be joined to the preceding word.
       </xsl:if>
       <xsl:choose>
         <xsl:when test="cap:is-later-hand ()">
-          <xsl:apply-templates />
+          <xsl:apply-templates select="." mode="rend" />
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates mode="refs-only"/>
@@ -422,10 +422,10 @@ footnotes will be joined to the preceding word.
   </xsl:template>
 
   <xsl:template match="tei:mod">
-    <span class="tei-mod" data-note-id="{generate-id ()}">
-      <xsl:if test="@rend='coloured'">
-        <xsl:attribute name="class">tei-mod rend-coloured</xsl:attribute>
-      </xsl:if>
+    <span data-note-id="{generate-id ()}">
+      <xsl:call-template name="handle-rend">
+        <xsl:with-param name="extra-class" select="'tei-mod'"/>
+      </xsl:call-template>
       <xsl:apply-templates/>
     </span>
   </xsl:template>
@@ -576,7 +576,10 @@ footnotes will be joined to the preceding word.
          the footnote body. -->
     <xsl:text>&#x0a;</xsl:text>
     <div id="{generate-id ()}-content" class="annotation-content">
-      <div class="annotation-text">
+      <div>
+        <xsl:call-template name="handle-rend">
+          <xsl:with-param name="extra-class" select="'annotation-text'"/>
+        </xsl:call-template>
         <!-- run again on this node -->
         <xsl:apply-templates select="." mode="auto-note"/>
         <!--
@@ -617,10 +620,10 @@ footnotes will be joined to the preceding word.
           </span>
         </xsl:if>
         <xsl:call-template name="hand-blurb"/>
-        <xsl:text> korr. zu </xsl:text>
+        <span class="rend-default"> korr. zu </span>
         <span class="mentioned" data-shortcuts="1">
           <xsl:value-of select="$before"/>
-          <xsl:apply-templates select="tei:add" mode="edited"/>
+          <xsl:apply-templates select="tei:add" mode="rend"/>
           <xsl:value-of select="$after"/>
         </span>
       </xsl:when>
@@ -636,7 +639,7 @@ footnotes will be joined to the preceding word.
           </span>
         </xsl:if>
         <xsl:call-template name="hand-blurb"/>
-        <xsl:text> korr. aus </xsl:text>
+        <span class="rend-default"> korr. aus </span>
         <span class="mentioned" data-shortcuts="1">
           <xsl:value-of select="$before"/>
           <xsl:apply-templates select="tei:del" mode="original"/>
@@ -654,13 +657,17 @@ footnotes will be joined to the preceding word.
       <xsl:when test="cap:is-later-hand ()">
         <xsl:choose>
           <xsl:when test="$before = '' and $after = ''">
-            <xsl:text>folgt</xsl:text>
-            <xsl:call-template name="hand-blurb"/>
-            <xsl:text> ergänztes </xsl:text>
+            <span class="rend-default">
+              <xsl:text>folgt</xsl:text>
+              <xsl:call-template name="hand-blurb"/>
+              <xsl:text> ergänztes </xsl:text>
+            </span>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:call-template name="hand-blurb"/>
-            <xsl:text> korr. zu </xsl:text>
+            <span class="rend-default">
+              <xsl:call-template name="hand-blurb"/>
+              <xsl:text> korr. zu </xsl:text>
+            </span>
           </xsl:otherwise>
         </xsl:choose>
         <span class="mentioned" data-shortcuts="1">
@@ -694,8 +701,10 @@ footnotes will be joined to the preceding word.
             </xsl:otherwise>
           </xsl:choose>
         </span>
-        <xsl:call-template name="hand-blurb"/>
-        <xsl:text> ergänzt</xsl:text>
+        <span class="rend-default">
+          <xsl:call-template name="hand-blurb"/>
+          <xsl:text> ergänzt</xsl:text>
+        </span>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -720,14 +729,18 @@ footnotes will be joined to the preceding word.
                 <xsl:copy-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
               </span>
             </xsl:if>
-            <xsl:call-template name="hand-blurb"/>
-            <xsl:text> getilgt</xsl:text>
+            <span class="rend-default">
+              <xsl:call-template name="hand-blurb"/>
+              <xsl:text> getilgt</xsl:text>
+            </span>
           </xsl:when>
           <xsl:otherwise>
-            <!-- The footnote reference will be moved to the end of the preceding word. -->
-            <xsl:text>folgt</xsl:text>
-            <xsl:call-template name="hand-blurb"/>
-            <xsl:text> getilgtes </xsl:text>
+            <span class="rend-default">
+              <!-- The footnote reference will be moved to the end of the preceding word. -->
+              <xsl:text>folgt</xsl:text>
+              <xsl:call-template name="hand-blurb"/>
+              <xsl:text> getilgtes </xsl:text>
+            </span>
             <span class="mentioned" data-shortcuts="1">
               <xsl:copy-of select="$phrase"/>
             </span>
@@ -740,13 +753,13 @@ footnotes will be joined to the preceding word.
         <xsl:call-template name="hand-blurb"/>
         <xsl:choose>
           <xsl:when test="cap:is-later-hand ()">
-            <xsl:text> korr. zu </xsl:text>
+            <span class="rend-default"> korr. zu </span>
             <span class="mentioned" data-shortcuts="1">
               <xsl:value-of select="concat ($before, $after)"/>
             </span>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:text> korr. aus </xsl:text>
+            <span class="rend-default"> korr. aus </span>
             <span class="mentioned" data-shortcuts="1">
               <xsl:copy-of select="$phrase"/>
             </span>
@@ -762,7 +775,7 @@ footnotes will be joined to the preceding word.
 
     <xsl:choose>
       <xsl:when test="$before = '' and $after = ''">
-        <xsl:text>korr. (?)</xsl:text>
+        <span class="rend-default">korr. (?)</span>
       </xsl:when>
       <xsl:otherwise>
         <span class="mentioned" data-shortcuts="1">
@@ -782,51 +795,56 @@ footnotes will be joined to the preceding word.
             </xsl:otherwise>
           </xsl:choose>
         </span>
-        <xsl:text> korr. (?)</xsl:text>
+        <span class="rend-default"> korr. (?)</span>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
   <xsl:template match="tei:note" mode="auto-note">
-    <xsl:if test="@target">
-      <xsl:variable name="vPrecSeg" select="preceding-sibling::node ()[1][local-name ()='span'][@xml:id]"/>
-      <xsl:variable name="vBezug">
-        <xsl:value-of select="$vPrecSeg/text ()[1]"/>
-        <xsl:value-of select="$vPrecSeg/tei:add"/>
-        <xsl:value-of select="substring-before ($vPrecSeg/text ()[last ()],' ')"/>
-        <xsl:text>...</xsl:text>
-        <xsl:value-of select="substring-after ($vPrecSeg/text ()[last ()],' ')"/>
-        <xsl:text>: </xsl:text>
-      </xsl:variable>
-      <xsl:value-of select="$vBezug"/>
-    </xsl:if>
-    <xsl:apply-templates/>
+    <span class="rend-default">
+      <xsl:if test="@target">
+        <xsl:variable name="vPrecSeg" select="preceding-sibling::node ()[1][local-name ()='span'][@xml:id]"/>
+        <xsl:variable name="vBezug">
+          <xsl:value-of select="$vPrecSeg/text ()[1]"/>
+          <xsl:value-of select="$vPrecSeg/tei:add"/>
+          <xsl:value-of select="substring-before ($vPrecSeg/text ()[last ()],' ')"/>
+          <xsl:text>...</xsl:text>
+          <xsl:value-of select="substring-after ($vPrecSeg/text ()[last ()],' ')"/>
+          <xsl:text>: </xsl:text>
+        </xsl:variable>
+        <xsl:value-of select="$vBezug"/>
+      </xsl:if>
+      <xsl:apply-templates/>
+    </span>
   </xsl:template>
 
   <xsl:template match="tei:space" mode="auto-note">
-    <xsl:text>Lücke von ca. </xsl:text>
-    <xsl:value-of select="@quantity"/>
-    <xsl:text> </xsl:text>
-
-    <xsl:call-template name="plural">
-      <xsl:with-param name="quantity" select="@quantity"/>
-      <xsl:with-param name="unit"     select="@unit"/>
-    </xsl:call-template>
+    <span class="rend-default">
+      <xsl:text>Lücke von ca. </xsl:text>
+      <xsl:value-of select="@quantity"/>
+      <xsl:text> </xsl:text>
+      <xsl:call-template name="plural">
+        <xsl:with-param name="quantity" select="@quantity"/>
+        <xsl:with-param name="unit"     select="@unit"/>
+      </xsl:call-template>
+    </span>
   </xsl:template>
 
   <xsl:template match="tei:choice/tei:abbr" mode="auto-note">
-    <xsl:text>gek. </xsl:text>
+    <span class="rend-default">gek. </span>
     <span class="mentioned" data-shortcuts="1">
       <xsl:apply-templates/>
     </span>
   </xsl:template>
 
   <xsl:template match="tei:handShift" mode="auto-note">
-    <xsl:text>Im folgenden Schreiberwechsel zu Hand </xsl:text>
-    <span class="rend-italic">
-      <xsl:value-of select="@new"/>
+    <span class="rend-default">
+      <xsl:text>Im folgenden Schreiberwechsel zu Hand </xsl:text>
+      <span class="rend-italic">
+        <xsl:value-of select="@new"/>
+      </span>
+      <xsl:text>.</xsl:text>
     </span>
-    <xsl:text>.</xsl:text>
   </xsl:template>
 
 </xsl:stylesheet>

@@ -7,17 +7,8 @@
 #   meld-driver.sh tei-file
 #
 
-XSLT1=xslt/mss-transcript-collation.xsl
-XSLT2=~/uni/capitularia/http/docs/cap/publ/transform/transkription_LesEdi_CapKoll.xsl
+XSLT1=xslt/mss-transcript.xsl
+XSLT2=~/uni/capitularia/http/docs/cap/publ/transform/mss-transcript.xsl
 
-meld <(xsltproc --param include-later-hand "true()" "$XSLT1" "$1" | \
-          sed -r 's/<[^>]*>//g
-                  s/[-.,:;!?*\/]//g
-                  y/ęĘ/eE/
-                  s/ae/e/g
-                  s/A[Ee]/E/g
-                  s/ / /g
-                  s/ +$//mg' | \
-          sed -r '/^\s*$/d') \
-     <(xsltproc "$XSLT2" "$1" | \
-          sed -r '/^\s*$/d')
+meld <(xsltproc "$XSLT1" "$1") \
+     <(xsltproc "$XSLT2" "$1")

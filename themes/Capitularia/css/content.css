@@ -114,8 +114,21 @@ strong,
 .small {
   font-size: small;
 }
+.black {
+  color: #1a171b;
+}
 .red {
   color: #b92900;
+}
+.sup {
+  vertical-align: super;
+  font-size: 70%;
+  line-height: 0;
+}
+.sub {
+  vertical-align: sub;
+  font-size: 70%;
+  line-height: 0;
 }
 sup {
   vertical-align: super;
@@ -574,6 +587,10 @@ div.pagination-nav-top {
 div.pagination-nav-bottom {
   border-width: 1px 0 0 0;
 }
+.search-results,
+.index-results {
+  margin: 2em 0;
+}
 .search-results li,
 .index-results li {
   padding: 10px 0;
@@ -694,230 +711,306 @@ span.mentioned a[href]:hover {
   font-weight: normal;
   font-style: normal;
 }
-div.content-col {
+div.content-col,
+div.annotation-content {
   text-align: justify;
   line-height: 1.4em;
 }
 div.content-col ul,
-div.content-col ol {
+div.annotation-content ul,
+div.content-col ol,
+div.annotation-content ol {
   margin: 1.5em 0;
 }
-div.content-col li {
+div.content-col li,
+div.annotation-content li {
   margin-left: 1.5em;
   list-style: disc outside;
 }
-div.content-col ul.bare > li {
+div.content-col ul.bare > li,
+div.annotation-content ul.bare > li {
   margin-left: 0;
   list-style-type: none;
 }
-div.content-col ul.dash > li {
+div.content-col ul.dash > li,
+div.annotation-content ul.dash > li {
   position: relative;
   margin-left: 2em;
   list-style-type: none;
 }
-div.content-col ul.dash > li::before {
+div.content-col ul.dash > li::before,
+div.annotation-content ul.dash > li::before {
   position: absolute;
   margin-left: -1em;
   content: "-";
 }
-div.content-col hr {
+div.content-col hr,
+div.annotation-content hr {
   margin: 3em 0;
 }
 div.content-col .rend-red,
+div.annotation-content .rend-red,
 div.content-col .rend-colored,
-div.content-col .rend-coloured {
+div.annotation-content .rend-colored,
+div.content-col .rend-coloured,
+div.annotation-content .rend-coloured {
   color: #b92900;
 }
-div.content-col .rend-default {
-  color: black;
+div.content-col .rend-default,
+div.annotation-content .rend-default {
+  color: #1a171b;
 }
-div.content-col .rend-italic {
+div.content-col .rend-italic,
+div.annotation-content .rend-italic {
   font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
 div.content-col .rend-italic a[href],
+div.annotation-content .rend-italic a[href],
 div.content-col .rend-italic a[href]:active,
+div.annotation-content .rend-italic a[href]:active,
 div.content-col .rend-italic a[href]:focus,
-div.content-col .rend-italic a[href]:hover {
+div.annotation-content .rend-italic a[href]:focus,
+div.content-col .rend-italic a[href]:hover,
+div.annotation-content .rend-italic a[href]:hover {
   font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-div.content-col .rend-semibold {
+div.content-col .rend-semibold,
+div.annotation-content .rend-semibold {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-div.content-col .rend-super {
-  text-align: super;
-  font-size: smaller;
+div.content-col .rend-super,
+div.annotation-content .rend-super {
+  vertical-align: super;
+  font-size: 70%;
+  line-height: 0;
 }
-div.content-col .align-left {
+div.content-col .align-left,
+div.annotation-content .align-left {
   text-align: left;
 }
-div.content-col .align-center {
+div.content-col .align-center,
+div.annotation-content .align-center {
   text-align: center;
 }
-div.content-col .align-right {
+div.content-col .align-right,
+div.annotation-content .align-right {
   text-align: right;
 }
-div.content-col .align-bottom {
+div.content-col .align-bottom,
+div.annotation-content .align-bottom {
   vertical-align: bottom;
 }
-div.content-col .float-left {
+div.content-col .float-left,
+div.annotation-content .float-left {
   display: block;
   float: left;
   margin: 0 1em 1em 0;
 }
-div.content-col .float-right {
+div.content-col .float-right,
+div.annotation-content .float-right {
   display: block;
   float: left;
   margin: 0 0 1em 1em;
 }
-div.content-col div.xsl-output ul {
+div.content-col div.xsl-output ul,
+div.annotation-content div.xsl-output ul {
   list-style: disc outside;
 }
-div.content-col div.xsl-output ol {
+div.content-col div.xsl-output ol,
+div.annotation-content div.xsl-output ol {
   list-style: decimal outside;
 }
-div.content-col div.xsl-output ol.alphabetisch {
+div.content-col div.xsl-output ol.alphabetisch,
+div.annotation-content div.xsl-output ol.alphabetisch {
   list-style-type: lower-alpha;
 }
-div.content-col div.xsl-output ol ol {
+div.content-col div.xsl-output ol ol,
+div.annotation-content div.xsl-output ol ol {
   list-style-type: upper-alpha;
 }
-div.content-col div.xsl-output ol ol ol {
+div.content-col div.xsl-output ol ol ol,
+div.annotation-content div.xsl-output ol ol ol {
   list-style-type: lower-roman;
 }
-div.content-col div.xsl-output ol ol ol ol {
+div.content-col div.xsl-output ol ol ol ol,
+div.annotation-content div.xsl-output ol ol ol ol {
   list-style-type: lower-alpha;
 }
-div.content-col div.xsl-output ol li {
+div.content-col div.xsl-output ol li,
+div.annotation-content div.xsl-output ol li {
   margin-left: 2em;
   padding-left: 0.5em;
 }
 div.content-col div.xsl-output ul.tei-msItem li,
-div.content-col div.xsl-output ul.downloads li {
+div.annotation-content div.xsl-output ul.tei-msItem li,
+div.content-col div.xsl-output ul.downloads li,
+div.annotation-content div.xsl-output ul.downloads li {
   margin-left: 0;
   list-style: none;
 }
-div.content-col div.xsl-output .xml-comment {
+div.content-col div.xsl-output .xml-comment,
+div.annotation-content div.xsl-output .xml-comment {
   background-color: yellow;
 }
-div.content-col div.xsl-output div.mss-header-xsl {
+div.content-col div.xsl-output div.mss-header-xsl,
+div.annotation-content div.xsl-output div.mss-header-xsl {
   font-size: 90%;
 }
-div.content-col div.xsl-output div.mss-header-xsl img {
+div.content-col div.xsl-output div.mss-header-xsl img,
+div.annotation-content div.xsl-output div.mss-header-xsl img {
   vertical-align: middle;
 }
-div.content-col div.xsl-output div.mss-header-xsl table.tei-physDesc-table {
+div.content-col div.xsl-output div.mss-header-xsl table.tei-physDesc-table,
+div.annotation-content div.xsl-output div.mss-header-xsl table.tei-physDesc-table {
   table-layout: fixed;
   width: 100%;
 }
-div.content-col div.xsl-output div.mss-header-xsl table.tei-physDesc-table th {
+div.content-col div.xsl-output div.mss-header-xsl table.tei-physDesc-table th,
+div.annotation-content div.xsl-output div.mss-header-xsl table.tei-physDesc-table th {
   width: 25%;
 }
-div.content-col div.xsl-output div.mss-header-xsl div.tei-msDesc div.mss-of-the-month {
+div.content-col div.xsl-output div.mss-header-xsl div.tei-msDesc div.mss-of-the-month,
+div.annotation-content div.xsl-output div.mss-header-xsl div.tei-msDesc div.mss-of-the-month {
   margin-top: 1em;
 }
-div.content-col div.xsl-output div.mss-header-xsl div.tei-listBibl li {
+div.content-col div.xsl-output div.mss-header-xsl div.tei-listBibl li,
+div.annotation-content div.xsl-output div.mss-header-xsl div.tei-listBibl li {
   font-size: 90%;
   list-style-type: square;
 }
-div.content-col div.xsl-output div.mss-header-xsl span.tei-note-corr {
+div.content-col div.xsl-output div.mss-header-xsl span.tei-note-corr,
+div.annotation-content div.xsl-output div.mss-header-xsl span.tei-note-corr {
   color: #b92900;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl {
+div.content-col div.xsl-output div.mss-transcript-xsl,
+div.annotation-content div.xsl-output div.mss-transcript-xsl {
   font-size: 90%;
   /* CTE */
 }
-div.content-col div.xsl-output div.mss-transcript-xsl div.tei-body {
+div.content-col div.xsl-output div.mss-transcript-xsl div.tei-body,
+div.annotation-content div.xsl-output div.mss-transcript-xsl div.tei-body {
   font-size: 120%;
   line-height: 200%;
 }
 div.content-col div.xsl-output div.mss-transcript-xsl div.ab-meta-text,
-div.content-col div.xsl-output div.mss-transcript-xsl div.abMETA {
+div.annotation-content div.xsl-output div.mss-transcript-xsl div.ab-meta-text,
+div.content-col div.xsl-output div.mss-transcript-xsl div.abMETA,
+div.annotation-content div.xsl-output div.mss-transcript-xsl div.abMETA {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl div.corresp {
+div.content-col div.xsl-output div.mss-transcript-xsl div.corresp,
+div.annotation-content div.xsl-output div.mss-transcript-xsl div.corresp {
   font-size: 70%;
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
   color: #4e4c4f;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl span.folio {
+div.content-col div.xsl-output div.mss-transcript-xsl span.folio,
+div.annotation-content div.xsl-output div.mss-transcript-xsl span.folio {
   font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
   color: #4e4c4f;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl span.initial {
+div.content-col div.xsl-output div.mss-transcript-xsl span.initial,
+div.annotation-content div.xsl-output div.mss-transcript-xsl span.initial {
   display: inline-block;
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
   font-size: 110%;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl span.initial-word-wrapper {
+div.content-col div.xsl-output div.mss-transcript-xsl span.initial-word-wrapper,
+div.annotation-content div.xsl-output div.mss-transcript-xsl span.initial-word-wrapper {
   white-space: nowrap;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl span.versalie {
+div.content-col div.xsl-output div.mss-transcript-xsl span.versalie,
+div.annotation-content div.xsl-output div.mss-transcript-xsl span.versalie {
   font-size: 110%;
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl span.tei-gap {
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-gap,
+div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-gap {
   white-space: nowrap;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness {
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness,
+div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness {
   font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
 div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href],
+div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness a[href],
 div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:active,
+div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:active,
 div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:focus,
-div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:hover {
+div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:focus,
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:hover,
+div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:hover {
   font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness-siglum {
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness-siglum,
+div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness-siglum {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
   color: #b92900;
 }
 div.content-col div.xsl-output div.mss-transcript-xsl li.compact,
-div.content-col div.xsl-output div.mss-transcript-xsl ul.compact {
+div.annotation-content div.xsl-output div.mss-transcript-xsl li.compact,
+div.content-col div.xsl-output div.mss-transcript-xsl ul.compact,
+div.annotation-content div.xsl-output div.mss-transcript-xsl ul.compact {
   margin-top: 0;
   margin-bottom: 0;
 }
-div.content-col div.xsl-output div.mss-footer-xsl {
+div.content-col div.xsl-output div.mss-footer-xsl,
+div.annotation-content div.xsl-output div.mss-footer-xsl,
+div.content-col div.xsl-output div.capit-xsl,
+div.annotation-content div.xsl-output div.capit-xsl {
   font-size: 90%;
 }
-div.content-col div.xsl-output div.mss-footer-xsl div.tei-revisionDesc table .col-1 {
+div.content-col div.xsl-output div.mss-footer-xsl div.tei-revisionDesc table .col-1,
+div.annotation-content div.xsl-output div.mss-footer-xsl div.tei-revisionDesc table .col-1,
+div.content-col div.xsl-output div.capit-xsl div.tei-revisionDesc table .col-1,
+div.annotation-content div.xsl-output div.capit-xsl div.tei-revisionDesc table .col-1 {
   width: 20%;
 }
-div.content-col div.xsl-output div.mss-footer-xsl ul.downloads li {
+div.content-col div.xsl-output div.mss-footer-xsl ul.downloads li,
+div.annotation-content div.xsl-output div.mss-footer-xsl ul.downloads li,
+div.content-col div.xsl-output div.capit-xsl ul.downloads li,
+div.annotation-content div.xsl-output div.capit-xsl ul.downloads li {
   padding: 16px 12px;
   background: #e9e1c1;
   border-bottom: solid 1px #fff;
 }
-div.content-col div.xsl-output div.mss-footer-xsl ul.downloads li.download-icon::before {
+div.content-col div.xsl-output div.mss-footer-xsl ul.downloads li.download-icon::before,
+div.annotation-content div.xsl-output div.mss-footer-xsl ul.downloads li.download-icon::before,
+div.content-col div.xsl-output div.capit-xsl ul.downloads li.download-icon::before,
+div.annotation-content div.xsl-output div.capit-xsl ul.downloads li.download-icon::before {
   font-family: "dashicons";
   font-size: 24px;
   content: "\f316";
   float: left;
   padding-right: 1em;
 }
-div.content-col div.xsl-output div.mss-footer-xsl ul.downloads li:last-child {
+div.content-col div.xsl-output div.mss-footer-xsl ul.downloads li:last-child,
+div.annotation-content div.xsl-output div.mss-footer-xsl ul.downloads li:last-child,
+div.content-col div.xsl-output div.capit-xsl ul.downloads li:last-child,
+div.annotation-content div.xsl-output div.capit-xsl ul.downloads li:last-child {
   border-bottom: none;
 }
 /*************/
@@ -938,8 +1031,9 @@ div.content-col .annotation-ref {
 }
 div.annotation-content {
   /* gets copied by jquery-ui tooltip () so it is not necessarily inside content-col */
+  text-align: left;
   font-size: 80%;
-  line-height: 150%;
+  line-height: 1.5em;
 }
 @media print {
   div.annotation-content:first-child::before {
@@ -967,7 +1061,7 @@ div.annotation-content .annotation-backref {
     margin-left: 3em;
   }
 }
-body div.ui-tooltip-footnote {
+div.ui-widget.ui-widget-content.ui-tooltip-footnote {
   background-color: #e9e1c1;
   padding: 8px;
   max-width: 400px;

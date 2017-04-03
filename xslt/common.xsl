@@ -64,10 +64,21 @@
   <xsl:template name="handle-rend">
     <xsl:param name="extra-class" select="''" />
 
+    <xsl:variable name="rend">
+      <xsl:choose>
+        <xsl:when test="tei:add/@rend">
+          <xsl:value-of select="tei:add/@rend" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="ancestor-or-self::*[@rend][1]/@rend" />
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
     <xsl:variable name="class">
       <xsl:value-of select="concat (' ', $extra-class)"/>
-      <xsl:if test="@rend">
-        <xsl:for-each select="str:split(@rend)">
+      <xsl:if test="$rend">
+        <xsl:for-each select="str:split ($rend)">
           <xsl:value-of select="concat (' rend-', .)"/>
         </xsl:for-each>
       </xsl:if>
