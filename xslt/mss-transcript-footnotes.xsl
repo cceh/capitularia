@@ -83,36 +83,62 @@ footnotes will be joined to the preceding word.
   <func:function name="cap:contains-whitespace">
     <xsl:param name="s"/>
     <func:result select="str:concat (str:tokenize ($s)) != $s"/>
-    <!-- func:result select="$s != transform ($s, '&#x9;&#xA;&#xD;&#x20;', '')"/ -->
   </func:function>
 
   <func:function name="cap:word-before">
     <!--
         Get the word fragment before the element.
 
-        Return the word fragment before the $e element.
+        Return the word fragment before the $e element.  Get the immediately
+        preceding text node and analyze it.  If it does not contain whitespace
+        recurse and get the preceding-preceding text node, and so on until we
+        either find a whitespace or a <note>.
     -->
     <xsl:param name="e"/>
 
     <xsl:variable name="before" select="$e/preceding::node ()[self::text () or self::tei:note][1]"/>
+    <xsl:variable name="rend"   select="cap:get-rend ($before)" />
 
     <func:result>
       <xsl:choose>
-        <!-- we assume that a note is always at the end of a word, return nothing -->
+        <!-- We found a <note>.  We assume that a <note> is always at the end of
+             a word: return nothing. -->
         <xsl:when test="$before/self::tei:note" />
 
-        <!-- ends with whitespace, return nothing -->
-        <xsl:when test="normalize-space (substring ($before, string-length ($before), 1)) = ''" />
+        <!-- This text node ends with whitespace: return nothing.  N.B. we have
+             to handle this extra case because str:tokenize does not return the
+             empty token after a trailing whitespace. -->
+        <xsl:when test="cap:contains-whitespace (substring ($before, string-length ($before), 1))" />
 
-        <!-- contains a whitespace, return chars after whitespace -->
+        <!-- This text node contains a whitespace: return the chars after the
+             whitespace. -->
         <xsl:when test="cap:contains-whitespace ($before)">
-          <xsl:value-of select="str:tokenize ($before)[last ()]"/>
+          <xsl:choose>
+            <xsl:when test="$rend != ''">
+              <span class="rend-{$rend}">
+                <xsl:value-of select="str:tokenize ($before)[last ()]"/>
+              </span>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="str:tokenize ($before)[last ()]"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
 
-        <!-- no whitespace, return everything and recurse -->
+        <!-- This text node contains no whitespace: return the whole contents
+             and recurse. -->
         <xsl:otherwise>
-          <xsl:value-of select="cap:word-before ($before)"/>
-          <xsl:value-of select="$before"/>
+          <xsl:copy-of select="cap:word-before ($before)"/>
+          <xsl:choose>
+            <xsl:when test="$rend != ''">
+              <span class="rend-{$rend}">
+                <xsl:copy-of select="$before"/>
+              </span>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:copy-of select="$before"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:otherwise>
       </xsl:choose>
     </func:result>
@@ -127,69 +153,48 @@ footnotes will be joined to the preceding word.
     <xsl:param name="e"/>
 
     <xsl:variable name="after" select="$e/following::node ()[self::text () or self::tei:note][1]"/>
+    <xsl:variable name="rend"  select="cap:get-rend ($after)" />
 
     <func:result>
       <xsl:choose>
         <!-- we assume that a note is always at the end of a word, return nothing -->
         <xsl:when test="$after/self::tei:note" />
 
-        <!-- starts with whitespace, return nothing -->
-        <xsl:when test="normalize-space (substring ($after, 1, 1)) = ''" />
+        <!-- This text node starts with whitespace: return nothing.  N.B. we have
+             to handle this extra case because str:tokenize does not return the
+             empty token before a leading whitespace. -->
+        <xsl:when test="cap:contains-whitespace (substring ($after, 1, 1))" />
 
         <!-- contains a whitespace, return chars before whitespace -->
         <xsl:when test="cap:contains-whitespace ($after)">
-          <xsl:value-of select="str:tokenize ($after)[1]"/>
+          <xsl:choose>
+            <xsl:when test="$rend != ''">
+              <span class="rend-{$rend}">
+                <xsl:value-of select="str:tokenize ($after)[1]"/>
+              </span>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="str:tokenize ($after)[1]"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
 
         <!-- no whitespace, return everything and recurse -->
         <xsl:otherwise>
-          <xsl:value-of select="$after"/>
-          <xsl:value-of select="cap:word-after ($after)"/>
+          <xsl:choose>
+            <xsl:when test="$rend != ''">
+              <span class="rend-{$rend}">
+                <xsl:copy-of select="$after"/>
+              </span>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:copy-of select="$after"/>
+            </xsl:otherwise>
+          </xsl:choose>
+          <xsl:copy-of select="cap:word-after ($after)"/>
         </xsl:otherwise>
       </xsl:choose>
     </func:result>
-  </func:function>
-
-  <func:function name="cap:word-before-old">
-    <!--
-        Get the word fragment before the element.
-
-        Return the word fragment before the $e element.
-    -->
-    <xsl:param name="e"/>
-
-    <xsl:variable name="before">
-      <xsl:variable name="s">
-        <xsl:value-of select="str:concat ($e/preceding::text ()[not (ancestor::tei:note)][position () &lt; 10])"/>
-      </xsl:variable>
-      <!-- str:tokenize does not return the empty token if string ends with whitespace. -->
-      <xsl:if test="normalize-space (substring ($s, string-length ($s)))">
-        <xsl:value-of select="str:tokenize ($s)[last ()]"/>
-      </xsl:if>
-    </xsl:variable>
-
-    <func:result select="$before"/>
-  </func:function>
-
-  <func:function name="cap:word-after-old">
-    <!--
-        Get the word fragment after the element.
-
-        Return the word fragment after the $e element.
-    -->
-    <xsl:param name="e"/>
-
-    <xsl:variable name="after">
-      <xsl:variable name="s">
-        <xsl:value-of select="str:concat ($e/following::text ()[not (ancestor::tei:note)][position () &lt; 10])"/>
-      </xsl:variable>
-      <!-- str:tokenize does not return the empty token if string starts with whitespace. -->
-      <xsl:if test="normalize-space (substring ($s, 1, 1))">
-        <xsl:value-of select="str:tokenize ($s)[1]"/>
-      </xsl:if>
-    </xsl:variable>
-
-    <func:result select="$after"/>
   </func:function>
 
   <func:function name="cap:count-char">
@@ -334,16 +339,6 @@ footnotes will be joined to the preceding word.
     </span>
   </xsl:template>
 
-  <xsl:template match="tei:*" mode="rend">
-    <!-- The following span guards against the error: "Cannot add
-         attributes to an element if children have been already added to
-         the element", which happens if we have a $before with text. -->
-    <span>
-      <xsl:call-template name="handle-rend" />
-      <xsl:apply-templates/>
-    </span>
-  </xsl:template>
-
   <xsl:template match="tei:add">
     <span class="tei-add">
       <xsl:if test="not (parent::tei:subst)">
@@ -354,7 +349,10 @@ footnotes will be joined to the preceding word.
           <xsl:apply-templates mode="refs-only"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="." mode="rend"/>
+          <xsl:call-template name="handle-rend">
+            <xsl:with-param name="extra-class" select="'tei-add'"/>
+          </xsl:call-template>
+          <xsl:apply-templates />
         </xsl:otherwise>
       </xsl:choose>
     </span>
@@ -391,7 +389,10 @@ footnotes will be joined to the preceding word.
       </xsl:if>
       <xsl:choose>
         <xsl:when test="cap:is-later-hand ()">
-          <xsl:apply-templates select="." mode="rend" />
+          <xsl:call-template name="handle-rend">
+            <xsl:with-param name="extra-class" select="'tei-del'"/>
+          </xsl:call-template>
+          <xsl:apply-templates />
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates mode="refs-only"/>
@@ -576,10 +577,7 @@ footnotes will be joined to the preceding word.
          the footnote body. -->
     <xsl:text>&#x0a;</xsl:text>
     <div id="{generate-id ()}-content" class="annotation-content">
-      <div>
-        <xsl:call-template name="handle-rend">
-          <xsl:with-param name="extra-class" select="'annotation-text'"/>
-        </xsl:call-template>
+      <div class="annotation-text">
         <!-- run again on this node -->
         <xsl:apply-templates select="." mode="auto-note"/>
         <!--
@@ -604,76 +602,80 @@ footnotes will be joined to the preceding word.
   -->
 
   <xsl:template match="tei:subst" mode="auto-note">
-    <xsl:variable name="before"   select="cap:word-before (.)"/>
-    <xsl:variable name="after"    select="cap:word-after (.)"/>
+    <xsl:variable name="before" select="cap:word-before (.)"/>
+    <xsl:variable name="after"  select="cap:word-after (.)"/>
+    <xsl:variable name="rend"   select="concat ('mentioned', cap:get-rend-class (.))"/>
 
     <xsl:choose>
       <xsl:when test="cap:is-later-hand ()">
         <xsl:variable name="phrase">
-          <xsl:value-of select="$before"/>
+          <xsl:copy-of select="$before"/>
           <xsl:apply-templates select="tei:del" mode="original"/>
-          <xsl:value-of select="$after"/>
+          <xsl:copy-of select="$after"/>
         </xsl:variable>
         <xsl:if test="cap:is-phrase (exsl:node-set ($phrase))">
-          <span class="mentioned" data-shortcuts="1">
+          <span class="{$rend}" data-shortcuts="1">
             <xsl:value-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
           </span>
         </xsl:if>
-        <xsl:call-template name="hand-blurb"/>
-        <span class="rend-default"> korr. zu </span>
-        <span class="mentioned" data-shortcuts="1">
-          <xsl:value-of select="$before"/>
-          <xsl:apply-templates select="tei:add" mode="rend"/>
-          <xsl:value-of select="$after"/>
+        <span class="generated">
+          <xsl:call-template name="hand-blurb"/>
+          <xsl:text> korr. zu </xsl:text>
+        </span>
+        <span class="{$rend}" data-shortcuts="1">
+          <xsl:copy-of select="$before"/>
+          <xsl:apply-templates select="tei:add/node()" />
+          <xsl:copy-of select="$after"/>
         </span>
       </xsl:when>
       <xsl:otherwise>
         <xsl:variable name="phrase">
-          <xsl:value-of select="$before"/>
+          <xsl:copy-of select="$before"/>
           <xsl:apply-templates select="tei:add"/>
-          <xsl:value-of select="$after"/>
+          <xsl:copy-of select="$after"/>
         </xsl:variable>
         <xsl:if test="cap:is-phrase (exsl:node-set ($phrase))">
-          <span class="mentioned" data-shortcuts="1">
+          <span class="{$rend}" data-shortcuts="1">
             <xsl:value-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
           </span>
         </xsl:if>
-        <xsl:call-template name="hand-blurb"/>
-        <span class="rend-default"> korr. aus </span>
-        <span class="mentioned" data-shortcuts="1">
-          <xsl:value-of select="$before"/>
+        <span class="generated">
+          <xsl:call-template name="hand-blurb"/>
+          <xsl:text> korr. aus </xsl:text>
+        </span>
+        <span class="{$rend}" data-shortcuts="1">
+          <xsl:copy-of select="$before"/>
           <xsl:apply-templates select="tei:del" mode="original"/>
-          <xsl:value-of select="$after"/>
+          <xsl:copy-of select="$after"/>
         </span>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
   <xsl:template match="tei:add" mode="auto-note">
-    <xsl:variable name="before"   select="cap:word-before (.)"/>
-    <xsl:variable name="after"    select="cap:word-after (.)"/>
+    <xsl:variable name="before" select="cap:word-before (.)"/>
+    <xsl:variable name="after"  select="cap:word-after (.)"/>
+    <xsl:variable name="rend"   select="concat ('mentioned', cap:get-rend-class (.))"/>
 
     <xsl:choose>
       <xsl:when test="cap:is-later-hand ()">
-        <xsl:choose>
-          <xsl:when test="$before = '' and $after = ''">
-            <span class="rend-default">
+        <span class="generated">
+          <xsl:choose>
+            <xsl:when test="$before = '' and $after = ''">
               <xsl:text>folgt</xsl:text>
               <xsl:call-template name="hand-blurb"/>
               <xsl:text> ergänztes </xsl:text>
-            </span>
-          </xsl:when>
-          <xsl:otherwise>
-            <span class="rend-default">
+            </xsl:when>
+            <xsl:otherwise>
               <xsl:call-template name="hand-blurb"/>
               <xsl:text> korr. zu </xsl:text>
-            </span>
-          </xsl:otherwise>
-        </xsl:choose>
-        <span class="mentioned" data-shortcuts="1">
-          <xsl:value-of select="$before"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </span>
+        <span class="{$rend}" data-shortcuts="1">
+          <xsl:copy-of select="$before"/>
           <xsl:apply-templates/>
-          <xsl:value-of select="$after"/>
+          <xsl:copy-of select="$after"/>
         </span>
       </xsl:when>
       <xsl:otherwise>
@@ -681,7 +683,7 @@ footnotes will be joined to the preceding word.
         <xsl:variable name="phrase">
           <xsl:apply-templates/>
         </xsl:variable>
-        <span class="mentioned" data-shortcuts="1">
+        <span class="{$rend}" data-shortcuts="1">
           <xsl:choose>
             <xsl:when test="string-length () = 1">
               <xsl:apply-templates/>
@@ -701,7 +703,7 @@ footnotes will be joined to the preceding word.
             </xsl:otherwise>
           </xsl:choose>
         </span>
-        <span class="rend-default">
+        <span class="generated">
           <xsl:call-template name="hand-blurb"/>
           <xsl:text> ergänzt</xsl:text>
         </span>
@@ -712,11 +714,12 @@ footnotes will be joined to the preceding word.
   <xsl:template match="tei:del[normalize-space ()]" mode="auto-note">
     <xsl:variable name="before" select="cap:word-before (.)"/>
     <xsl:variable name="after"  select="cap:word-after (.)"/>
+    <xsl:variable name="rend"   select="concat ('mentioned', cap:get-rend-class (.))"/>
 
     <xsl:variable name="phrase">
-      <xsl:value-of select="$before"/>
+      <xsl:copy-of select="$before"/>
       <xsl:apply-templates select="." mode="original"/>
-      <xsl:value-of select="$after"/>
+      <xsl:copy-of select="$after"/>
     </xsl:variable>
 
     <xsl:choose>
@@ -725,23 +728,23 @@ footnotes will be joined to the preceding word.
         <xsl:choose>
           <xsl:when test="cap:is-later-hand ()">
             <xsl:if test="cap:is-phrase (exsl:node-set ($phrase))">
-              <span class="mentioned" data-shortcuts="1">
+              <span class="{$rend}" data-shortcuts="1">
                 <xsl:copy-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
               </span>
             </xsl:if>
-            <span class="rend-default">
+            <span class="generated">
               <xsl:call-template name="hand-blurb"/>
               <xsl:text> getilgt</xsl:text>
             </span>
           </xsl:when>
           <xsl:otherwise>
-            <span class="rend-default">
+            <span class="generated">
               <!-- The footnote reference will be moved to the end of the preceding word. -->
               <xsl:text>folgt</xsl:text>
               <xsl:call-template name="hand-blurb"/>
               <xsl:text> getilgtes </xsl:text>
             </span>
-            <span class="mentioned" data-shortcuts="1">
+            <span class="{$rend}" data-shortcuts="1">
               <xsl:copy-of select="$phrase"/>
             </span>
           </xsl:otherwise>
@@ -750,17 +753,23 @@ footnotes will be joined to the preceding word.
 
       <xsl:otherwise>
         <!-- Part of word deleted. -->
-        <xsl:call-template name="hand-blurb"/>
         <xsl:choose>
           <xsl:when test="cap:is-later-hand ()">
-            <span class="rend-default"> korr. zu </span>
-            <span class="mentioned" data-shortcuts="1">
-              <xsl:value-of select="concat ($before, $after)"/>
+            <span class="generated">
+              <xsl:call-template name="hand-blurb"/>
+              <xsl:text> korr. zu </xsl:text>
+            </span>
+            <span class="{$rend}" data-shortcuts="1">
+              <xsl:copy-of select="$before"/>
+              <xsl:copy-of select="$after"/>
             </span>
           </xsl:when>
           <xsl:otherwise>
-            <span class="rend-default"> korr. aus </span>
-            <span class="mentioned" data-shortcuts="1">
+            <span class="generated">
+              <xsl:call-template name="hand-blurb"/>
+              <xsl:text> korr. aus </xsl:text>
+            </span>
+            <span class="{$rend}" data-shortcuts="1">
               <xsl:copy-of select="$phrase"/>
             </span>
           </xsl:otherwise>
@@ -770,15 +779,16 @@ footnotes will be joined to the preceding word.
   </xsl:template>
 
   <xsl:template match="tei:mod" mode="auto-note">
-    <xsl:variable name="before"   select="cap:word-before (.)"/>
-    <xsl:variable name="after"    select="cap:word-after (.)"/>
+    <xsl:variable name="before" select="cap:word-before (.)"/>
+    <xsl:variable name="after"  select="cap:word-after (.)"/>
+    <xsl:variable name="rend"   select="concat ('mentioned', cap:get-rend-class (.))"/>
 
     <xsl:choose>
       <xsl:when test="$before = '' and $after = ''">
-        <span class="rend-default">korr. (?)</span>
+        <span class="generated">korr. (?)</span>
       </xsl:when>
       <xsl:otherwise>
-        <span class="mentioned" data-shortcuts="1">
+        <span class="{$rend}" data-shortcuts="1">
           <xsl:choose>
             <xsl:when test="string-length () = 1">
               <xsl:apply-templates/>
@@ -795,13 +805,13 @@ footnotes will be joined to the preceding word.
             </xsl:otherwise>
           </xsl:choose>
         </span>
-        <span class="rend-default"> korr. (?)</span>
+        <span class="generated"> korr. (?)</span>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
   <xsl:template match="tei:note" mode="auto-note">
-    <span class="rend-default">
+    <span class="generated">
       <xsl:if test="@target">
         <xsl:variable name="vPrecSeg" select="preceding-sibling::node ()[1][local-name ()='span'][@xml:id]"/>
         <xsl:variable name="vBezug">
@@ -814,12 +824,12 @@ footnotes will be joined to the preceding word.
         </xsl:variable>
         <xsl:value-of select="$vBezug"/>
       </xsl:if>
-      <xsl:apply-templates/>
     </span>
+    <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="tei:space" mode="auto-note">
-    <span class="rend-default">
+    <span class="generated">
       <xsl:text>Lücke von ca. </xsl:text>
       <xsl:value-of select="@quantity"/>
       <xsl:text> </xsl:text>
@@ -831,14 +841,15 @@ footnotes will be joined to the preceding word.
   </xsl:template>
 
   <xsl:template match="tei:choice/tei:abbr" mode="auto-note">
-    <span class="rend-default">gek. </span>
-    <span class="mentioned" data-shortcuts="1">
+    <xsl:variable name="rend" select="concat ('mentioned', cap:get-rend-class (.))"/>
+    <span class="generated">gek. </span>
+    <span class="{$rend}" data-shortcuts="1">
       <xsl:apply-templates/>
     </span>
   </xsl:template>
 
   <xsl:template match="tei:handShift" mode="auto-note">
-    <span class="rend-default">
+    <span class="generated">
       <xsl:text>Im folgenden Schreiberwechsel zu Hand </xsl:text>
       <span class="rend-italic">
         <xsl:value-of select="@new"/>

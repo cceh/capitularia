@@ -61,32 +61,50 @@
     <func:result select="str:replace (str:replace (str:replace (str:replace ($siglum, '.', '_'), '_00', '&#xa0;'), '_0', '&#xa0;'), '_', '&#xa0;')"/>
   </func:function>
 
+  <func:function name="cap:get-rend">
+    <!--
+        Get the nearest @rend attribute.
+
+        The effective @rend attribute is the one on the nearest ancestor.
+    -->
+    <xsl:param name="e" select="." />
+
+    <func:result>
+      <xsl:choose>
+        <xsl:when test="$e/@rend">
+          <xsl:value-of select="$e/@rend"/>
+        </xsl:when>
+        <xsl:when test="$e/self::tei:body">
+          <!-- don't look higher than the <body> -->
+          <xsl:value-of select="''" />
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="cap:get-rend ($e/parent::*)" />
+        </xsl:otherwise>
+      </xsl:choose>
+    </func:result>
+  </func:function>
+
+  <func:function name="cap:get-rend-class">
+    <xsl:param name="e" select="." />
+
+    <func:result>
+      <xsl:for-each select="str:split (cap:get-rend ($e))">
+        <xsl:value-of select="concat (' rend-', .)"/>
+      </xsl:for-each>
+    </func:result>
+  </func:function>
+
   <xsl:template name="handle-rend">
     <xsl:param name="extra-class" select="''" />
 
-    <xsl:variable name="rend">
-      <xsl:choose>
-        <xsl:when test="tei:add/@rend">
-          <xsl:value-of select="tei:add/@rend" />
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="ancestor-or-self::*[@rend][1]/@rend" />
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-
     <xsl:variable name="class">
-      <xsl:value-of select="concat (' ', $extra-class)"/>
-      <xsl:if test="$rend">
-        <xsl:for-each select="str:split ($rend)">
-          <xsl:value-of select="concat (' rend-', .)"/>
-        </xsl:for-each>
-      </xsl:if>
+      <xsl:value-of select="normalize-space (concat ($extra-class, cap:get-rend-class (.)))"/>
     </xsl:variable>
 
-    <xsl:if test="normalize-space ($class)">
+    <xsl:if test="$class != ''">
       <xsl:attribute name="class">
-        <xsl:value-of select="normalize-space ($class)" />
+        <xsl:value-of select="$class" />
       </xsl:attribute>
     </xsl:if>
   </xsl:template>
