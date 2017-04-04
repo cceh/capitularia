@@ -288,6 +288,30 @@ function on_shortcode_if_transcribed ($atts, $content)
 }
 
 /**
+ * Add the current_date shortcode.
+ *
+ * This shortcode outputs the current date.
+ *
+ * @param array  $atts          The shortocde attributes.
+ * @param string $dummy_content The shortcode content. (empty)
+ *
+ * @return string The current date.
+ */
+
+function on_shortcode_current_date ($atts, $dummy_content)
+{
+    $atts = shortcode_atts (
+        array (
+            'date' => strftime ('%x')
+        ),
+        $atts,
+        'current_date'
+    );
+
+    return $atts['date'];
+}
+
+/**
  * Add the cite_as shortcode.
  *
  * This shortcode outputs a short description of how to cite the post.
@@ -322,7 +346,7 @@ function on_shortcode_cite_as ($atts, $dummy_content)
            [:en]in: Capitularia. Edition of the Frankish Capitularies, ed. by
            Karl Ubl and collaborators, Cologne 2014 ff.
            [:]
-           URL: {$atts['url']} ([:de]abgerufen am:[:en]accessed on:[:] {$atts['date']})
+           URL: {$atts['url']} ([:de]abgerufen am[:en]accessed on[:] {$atts['date']})
          </div>
        </div>
 EOF;

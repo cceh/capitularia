@@ -38,7 +38,7 @@
           Karl Ubl und Mitarb., Köln 2014 ff.[:en]in: Capitularia. Edition of the Frankish
           Capitularies, ed. by Karl Ubl and collaborators, Cologne 2014 ff.[:] </xsl:text>
           <xsl:value-of select="concat ('URL: ', $mss, @xml:id)"/>
-          <xsl:text> [:de](abgerufen am: [aktuelles Datum])[:en](accessed on: [date])[:]</xsl:text>
+          <xsl:text> [:de](abgerufen am [current_date])[:en](accessed on [current_date])[:]</xsl:text>
         </p>
       </div>
 

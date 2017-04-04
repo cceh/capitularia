@@ -104,5 +104,8 @@ add_shortcode ('if_transcribed',   'cceh\capitularia\theme\on_shortcode_if_trans
 /* build a link to the image server */
 add_shortcode ('cap_image_server', 'cceh\capitularia\theme\on_shortcode_cap_image_server');
 
+/* output the current date */
+add_shortcode ('current_date',     'cceh\capitularia\theme\on_shortcode_current_date');
+
 /* output a short description of how to cite the article */
 add_shortcode ('cite_as',          'cceh\capitularia\theme\on_shortcode_cite_as');
