@@ -295,8 +295,9 @@ class Witness
         $body  = $xpath->query ('//tei:body')[0];
         $xpath = $this->xpath ($doc);
 
+        $corr = "contains (concat (' ', @corresp, ' '), ' {$corresp} ')";
         $nodes = $xpath->query (
-            "//tei:ab[@corresp='{$corresp}'] | //tei:milestone[@spanTo and @unit='span' and @corresp='{$corresp}']"
+            "//tei:ab[{$corr}] | //tei:milestone[@spanTo and @unit='span' and {$corr}]"
         );
         $n = 1;
         foreach ($nodes as $node) {
@@ -380,9 +381,10 @@ class Witness
         $doc = $this->string_to_dom ($s);
         $xpath = $this->xpath ($doc);
 
+        $corr = "contains (concat (' ', @corresp, ' '), ' {$corresp} ')";
         $n = 0;
         $nodes = $xpath->query (
-            "//tei:ab[@corresp='{$corresp}'] | //tei:milestone[@spanTo and @unit='span' and @corresp='{$corresp}']"
+            "//tei:ab[{$corr}] | //tei:milestone[@spanTo and @unit='span' and {$corr}]"
         );
         foreach ($nodes as $node) {
             if ($node->getAttribute ('prev')) {
