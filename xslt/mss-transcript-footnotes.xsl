@@ -129,16 +129,18 @@ footnotes will be joined to the preceding word.
              and recurse. -->
         <xsl:otherwise>
           <xsl:copy-of select="cap:word-before ($before)"/>
-          <xsl:choose>
-            <xsl:when test="$rend != ''">
-              <span class="rend-{$rend}">
+          <xsl:if test="not ($before/parent::tei:abbr)">
+            <xsl:choose>
+              <xsl:when test="$rend != ''">
+                <span class="rend-{$rend}">
+                  <xsl:copy-of select="$before"/>
+                </span>
+              </xsl:when>
+              <xsl:otherwise>
                 <xsl:copy-of select="$before"/>
-              </span>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:copy-of select="$before"/>
-            </xsl:otherwise>
-          </xsl:choose>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:if>
         </xsl:otherwise>
       </xsl:choose>
     </func:result>
@@ -181,16 +183,18 @@ footnotes will be joined to the preceding word.
 
         <!-- no whitespace, return everything and recurse -->
         <xsl:otherwise>
-          <xsl:choose>
-            <xsl:when test="$rend != ''">
-              <span class="rend-{$rend}">
+          <xsl:if test="not ($after/parent::tei:abbr)">
+            <xsl:choose>
+              <xsl:when test="$rend != ''">
+                <span class="rend-{$rend}">
+                  <xsl:copy-of select="$after"/>
+                </span>
+              </xsl:when>
+              <xsl:otherwise>
                 <xsl:copy-of select="$after"/>
-              </span>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:copy-of select="$after"/>
-            </xsl:otherwise>
-          </xsl:choose>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:if>
           <xsl:copy-of select="cap:word-after ($after)"/>
         </xsl:otherwise>
       </xsl:choose>
