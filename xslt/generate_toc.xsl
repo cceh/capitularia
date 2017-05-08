@@ -40,7 +40,7 @@ nicht herausfiltern, bis auf das erste meta-text-Element (Beginn der Capitulatio
   <xsl:output encoding="UTF-8" method="xml" indent="yes"/>
 
   <xsl:template match="/">
-    <div type="content" xml:id="divContent">
+    <div type="content">
       <list>
         <xsl:apply-templates select=".//tei:ab[@type='meta-text']" />
       </list>
