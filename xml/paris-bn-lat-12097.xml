@@ -1,0 +1,762 @@
+<?xml version="1.0"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-12097">
+   <!-- eigentlich 4 Teile, von denen Mordek 3 beschreibt und nur zu einem Inhalte nennt. Literatur muss angepasst werden, sowie Angaben überprüft ## DS 29.03.2016 -->
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main" xml:lang="ger">Paris, Bibliothèque Nationale, Lat. 12097</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift
+                                        nach Mordek</title>
+            <title type="sub" xml:lang="eng">Manuscript description
+                                        according to Mordek</title>
+            <respStmt>
+               <persName key="KU">
+                  <forename>Karl</forename>
+                  <surname>Ubl</surname>
+               </persName>
+               <resp xml:lang="ger">Projektleitung</resp>
+               <resp xml:lang="eng">Project lead</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="NN">
+                  <forename>NN</forename>
+                  <surname>NN</surname>
+               </persName>
+               <resp xml:lang="ger">Transkription, Beschreibung und
+                                            Auszeichnung nach TEI P5 Standard</resp>
+               <resp xml:lang="eng">Transcription, description and text
+                                            encoding according to the TEI P5 standard</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="NN">
+                  <forename>NN</forename>
+                  <surname>NN</surname>
+               </persName>
+               <resp xml:lang="ger">Erste Überprüfung der Transkription und
+                                            Ergänzungen</resp>
+               <resp xml:lang="eng">First revision of transcription and
+                                            additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="NN">
+                  <forename>NN</forename>
+                  <surname>NN</surname>
+               </persName>
+               <resp xml:lang="ger">Zweite Überprüfung der Transkription
+                                            und Ergänzungen</resp>
+               <resp xml:lang="eng">Second revision of transcription and
+                                            additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="FF">
+                  <forename>Franz</forename>
+                  <surname>Fischer</surname>
+                  <affiliation>Cologne Center for eHumanities (CCeH),
+                                                Universität zu Köln</affiliation>
+               </persName>
+               <resp xml:lang="ger">Datenmodellierung</resp>
+               <resp xml:lang="eng">Data Modelling</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="CR">
+                  <forename>Clemens</forename>
+                  <surname>Radl</surname>
+               </persName>
+               <resp xml:lang="ger">Kodierung von Mordek, Bibliotheca in
+                                            TEI, Vorbereitung für Übergabe an Capitularia</resp>
+               <resp xml:lang="eng">TEI encoding of Mordek, Bibliotheca,
+                                            preparation of data</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="DS">
+                  <forename>Daniela</forename>
+                  <surname>Schulz</surname>
+               </persName>
+               <resp xml:lang="ger">Technische Umsetzung, Generierung der
+                                            Handschriftenbeschreibungen aus Mordek,
+                                            Bibliotheca</resp>
+               <resp xml:lang="eng">technical support, generating of
+                                            manuscript description according to Mordek,
+                                            Bibliotheca</resp>
+            </respStmt>
+            <funder>Akademie der Wissenschaften und Künste
+                                        Nordrhein-Westfalen</funder>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>
+               <persName>Karl Ubl</persName>
+               <orgName xml:lang="ger">Historisches Institut, Lehrstuhl für
+                                            Geschichte des Mittelalters, Universität zu
+                                            Köln</orgName>
+               <orgName xml:lang="eng">History Department, Chair for
+                                            Medieval History, Cologne University</orgName>
+               <address xml:lang="ger">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Köln</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Raum 4.108</addrLine>
+                  <addrLine>0221-470 2717</addrLine>
+                  <country>Deutschland</country>
+               </address>
+               <address xml:lang="eng">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Cologne</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Room 4.108</addrLine>
+                  <addrLine>+49 221-470 2717</addrLine>
+                  <country>Germany</country>
+               </address>
+            </publisher>
+            <availability>
+               <p xml:lang="ger">Die Inhalte sind frei zugänglich und
+                                            nicht-kommerziell. Einige Digitalisate und Texte sind
+                                            aus rechtlichen Gründen jedoch Mitarbeitern
+                                            vorbehalten.</p>
+               <p xml:lang="eng">Content is freely available on a
+                                            non-commercial basis. Some digital images and texts are
+                                            only available to staff due to copyright issues.</p>
+            </availability>
+            <date when="2016-03-03">03.03.2016</date>
+         </publicationStmt>
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <settlement>Paris</settlement>
+                  <repository>Bibliothèque Nationale</repository>
+                  <idno>Lat. 12097</idno>
+                  <msName/>
+                  <altIdentifier type="former">
+                     <settlement/>
+                     <repository/>
+                     <idno>Saint-Germain-des-Prés 936</idno>
+                     <note type="date">
+                        <date/>
+                     </note>
+                  </altIdentifier>
+                  <altIdentifier type="former">
+                     <settlement/>
+                     <repository/>
+                     <idno>26</idno>
+                     <note type="date">
+                        <date/>
+                     </note>
+                  </altIdentifier>
+                  <altIdentifier type="siglum">
+                     <idno>P35</idno>
+                     <note/>
+                  </altIdentifier>
+               </msIdentifier>
+               <msPart n="foll. b-g"><msIdentifier><settlement>Paris</settlement>
+                  <repository>Bibliothèque Nationale</repository>
+                  <idno>Lat. 12097, foll. b-g</idno></msIdentifier>
+                  <head>
+                     <title type="main">Paris, Bibliothèque Nationale, Lat. 12097</title>
+                     <origDate notAfter="0899" notBefore="0850"> 2. Hälfte 9. Jh.</origDate></head>
+               <msContents>
+                  <summary><p>Liber apologeticus des Gregor von Nazianz in der Übersetzung des Rufinus von Aquileia.</p></summary>
+               </msContents></msPart>
+               <msPart n="foll. 1-139"><msIdentifier><settlement>Paris</settlement>
+                  <repository>Bibliothèque Nationale</repository>
+                  <idno>Lat. 12097, foll. 1-139</idno></msIdentifier><head>
+                     <title type="main">Paris, Bibliothèque Nationale, Lat. 12097</title>
+                     <origDate notAfter="0550" notBefore="0526"> 6. Jh., 2.
+                        Viertel</origDate>                     
+                     <origPlace ref="http://d-nb.info/gnd/4071403-2">
+                        Südfrankreich</origPlace>
+                     </head>
+                  <msContents>
+                     <summary>
+                        <p>Die Teile 2-4 bilden, sukzessive entstanden, die Kanonessammlung der Hs. von Corbie.</p>
+                        <p>Die foll. 1<hi rend="super">r</hi>-232<hi rend="super">v</hi>
+                           tradierte Collectio canonum Corbeiensis (vgl. zum Inhalt im einzelnen <hi rend="smallcaps">Maassen, </hi>Geschichte, S. 556-574) enthält an
+                           verschiedenen Stellen ihrer um 600 anzusetzenden ersten Erweiterung zwei
+                           seltene merowingische Kapitularien und den Brief Chlodwigs an die
+                           Bischöfe.</p>
+                     </summary>                     
+                  </msContents>
+                  <physDesc>
+                     <objectDesc form="codex">
+                        <supportDesc>
+                           <support>
+                              <material>Pergament</material>
+                           </support>                           
+                           <extent>Aus vier Teilen bestehend (zusammen 238 foll.)
+                              <dimensions type="leaf" unit="mm">
+                                 <height>270-280</height>
+                                 <width>205-210</width>
+                              </dimensions>
+                              <dimensions type="written" unit="mm">
+                                 <height>220-245</height>
+                                 <width>170-180</width>
+                              </dimensions>
+                           </extent>
+                           
+                           
+                           <collation>Lagen: <formula>III<hi rend="super">b-g</hi> + III<hi rend="super">6</hi> + V<hi rend="super">16</hi> + (IV-1)<hi rend="super">23</hi> + 17 IV<hi rend="super">159</hi> + 3<hi rend="super">162</hi> + 7 IV<hi rend="super">218</hi> + 3<hi rend="super">221</hi> + 3<hi rend="super">224</hi> + IV<hi rend="super">232</hi>.</formula>
+                              <catchwords>Kustoden: <hi rend="italic">q.
+                                 III</hi> (23<hi rend="super">v</hi>) bis <hi rend="italic">q.
+                                    XVII</hi> (135<hi rend="super">v</hi>); von anderer Hand <hi rend="italic">XVIII </hi>(143<hi rend="super">v</hi>) bis <hi rend="italic">XXX</hi> (224<hi rend="super">v</hi>); <hi rend="italic">XXXI</hi> (232<hi rend="super">v</hi>).</catchwords>
+                           </collation>
+                        </supportDesc>
+                        <layoutDesc>
+                           <layout writtenLines="32 34">32-34 Zeilen</layout>
+                          
+                           <layout columns="1"/>
+                        </layoutDesc>
+                     </objectDesc>
+                     <handDesc>
+                        <handNote/>
+                     </handDesc>
+                     <scriptDesc>
+                        <scriptNote>Halbunziale</scriptNote>
+                        
+                     </scriptDesc>
+                     <decoDesc>
+                        <p/>
+                     </decoDesc>
+                     <bindingDesc>
+                        <binding>
+                           <p/>
+                        </binding>
+                     </bindingDesc>
+                  </physDesc>
+                  <history>
+                     <summary>
+                       
+                     </summary>
+                     <origin>
+                        <p><origDate notAfter="0550" notBefore="0526"> 6. Jh., 2.
+                              Viertel</origDate>; <origPlace ref="http://d-nb.info/gnd/4071403-2">
+                                 Südfrankreich</origPlace>.</p>
+                     </origin>
+                     <provenance>
+                        <p>Die Kursive des merowingischen Korrektors aus der ersten
+                           Hälfte des 8. Jh. läßt den Schluß zu, daß sich die Hs. zu jener Zeit in
+                           Corbie befunden hat. Alte Signatur: <idno>Saint-Germain-des-Prés 936</idno>
+                           <idno>(olim 26</idno>).</p>                         
+                                                </provenance>
+                     <acquisition/>
+                  </history>
+                  <additional>
+                     <surrogates/>
+                     <listBibl>
+                        <listBibl type="lit">
+                           <bibl>
+                              <hi rend="smallcaps">Traube,</hi> Perrona Scottorum, S. 510, 526 (auch
+                              <hi rend="smallcaps">ders</hi>., Nomina sacra, S. 218, 235)</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">E. H. Zimmermann,</hi> Vorkarolingische
+                              Miniaturen (Deutscher Verein für Kunstwissenschaft. Denkmäler deutscher
+                              Kunst, III. Sektion: Malerei, I. Abteilung, Berlin 1916) S. 185 u.
+                              ö.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Lindsay,</hi> in: Palaeographia Latina 2, S. 6,
+                              46</bibl>
+                           <bibl> CLA 5 (1950) Nr. 619 f., S. 29 f., 59 (Literatur) und CLA Suppl.
+                              (1971) S. 55</bibl>
+                           <bibl> CLA 6 (1953) S. XXIII</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">E. A Lowe,</hi> The script of the farewell and date
+                              formulae in early papal documents as reflected in the oldest manuscripts
+                              of Bedes Historia Ecclesiastica, in: Rev. Bén. 69 (1959) S. 23 f.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Bischoff,</hi> Paläographie, S. 253 mit Anm.
+                              32</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">J. Vezin,</hi> Les
+                              scriptoria de Neustrie, 650-850, in: H. <hi rend="smallcaps">Atsma</hi>
+                              (Ed.), La Neustrie. Les pays au nord de la Loire de 650 à 850. Colloque
+                              historique international 2 (Beihefte der Francia 16/2, Sigmaringen 1989)
+                              S. 309 Anm. 13</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">D. Ganz,</hi> Corbie and Neustrian monastic culture
+                              661-849, in: ebd., S. 340 Anm. 10</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">ders.,</hi> Corbie in the Carolingian Renaissance
+                              (Beihefte der Francia 20, Sigmaringen 1990) S. 72, 127 u. ö.</bibl>
+                           <bibl>MGH Capit. 2, S. XXV</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Krah, </hi>Lex episcoporum, S. 22 f., 25
+                              ff.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Maassen,</hi> Bibliotheca I, 2, S. 268-282</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">ders.,</hi> Geschichte S. 405, 407, 439,
+                              556-574</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Wurm,</hi> Studien und Texte, S. 93 f., 272
+                              ff.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Duchesne,</hi> Liber Pontificalis1, S. XIV
+                              f.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Van Hove,</hi> Prolegomena, S. 273
+                              (Literatur)</bibl>
+                           <bibl> H. <hi rend="smallcaps">Vanderhoven - F. Masai - P. B. Corbett,</hi>
+                              Aux sources du monachisme bénédictin 1: La règle du maître. Édition
+                              diplomatique des manuscrits latins 12205 et 12634 de Paris (Bruxelles -
+                              Paris - Anvers - Amsterdam 1953) S. 38 f. mit Anm. 4</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Munier,</hi> Statuta ecclesiae antiqua, S.
+                              43-45</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">B. Capelle,</hi> Travaux liturgiques de doctrine et
+                              d’histoire 2: Histoire. La messe (Louvain 1962) S. 238 -240</bibl>
+                           <bibl> ACO 4, 3, 1, S. 43</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Mordek,</hi> Kirchenrecht und Reform, S. 90ff.
+                              (Literatur)</bibl>
+                           <bibl> L. <hi rend="smallcaps">Bieler,</hi> Corpus Christianorum (1), in:
+                              Scriptorium 30 (1976) S. 78.</bibl>
+                        </listBibl>
+                        <listBibl type="cat">
+                           <bibl>L. <hi rend="smallcaps">Delisle, </hi>Inventaire des manuscrits de
+                              Saint-Germain-des-Prés conservés à la Bibliothèque Impériale sous les
+                              numéros 11504-14231 du fonds latin (Paris 1868) S. 36.</bibl>
+                        </listBibl>
+                        <listBibl type="abb">
+                           <bibl>(oft reproduziert, z. B.) <hi rend="smallcaps">Zimmermann, </hi>Vorkarolingische Miniaturen, Mappe II, Taf. 85
+                              (foll. 227v, 228v und 230v, Ausschnitte)</bibl>
+                           <bibl> CLA 5, Nr. 619, vor
+                              S. 29 (foll. 139v, 106v,
+                              163v, 177r, Ausschnitte)
+                              und Nr. 620, nach S. 30 (fol. 228v, Teil) (ebd. S.
+                              59 Hinweis auf ältere Abb.)</bibl>
+                        </listBibl>
+                        <listBibl type="cap">
+                           <bibl>Mordek
+                              1995 S. 607-609</bibl>
+                           
+                        </listBibl>
+                     </listBibl>
+                  </additional></msPart>
+               <msPart n="foll. 139-224"><msIdentifier><settlement>Paris</settlement>
+                  <repository>Bibliothèque Nationale</repository>
+                  <idno>Lat. 12097, foll. 139-224</idno></msIdentifier><head>
+                     <title type="main">Paris, Bibliothèque Nationale, Lat. 12097</title>
+                     
+                     <origDate>6./7.
+                        Jh.</origDate>
+                     
+                     <origPlace ref="http://d-nb.info/gnd/4071403-2">
+                        Südfrankreich</origPlace>
+                      </head>
+                  <msContents>
+                     <summary>
+                        <p>Die foll. 1<hi rend="super">r</hi>-232<hi rend="super">v</hi>
+                           tradierte Collectio canonum Corbeiensis (vgl. zum Inhalt im einzelnen <hi rend="smallcaps">Maassen, </hi>Geschichte, S. 556-574) enthält an
+                           verschiedenen Stellen ihrer um 600 anzusetzenden ersten Erweiterung zwei
+                           seltene merowingische Kapitularien und den Brief Chlodwigs an die
+                           Bischöfe:</p>
+                     </summary>
+                     <msItem n="1" corresp="BK.2">
+                        <p>
+                           <locus>162r-v</locus>
+                           <title>Childeberti I regis praeceptum</title> (a. 511/558), nur
+                           hierüberliefert: <hi rend="italic">INCPT. EPISTOLA CLEMENTISSIMI ETBEATI
+                              REGIS NOSTRI CHILDEBERTHI DATA PERECCLESIAS SACERDOTUM UEL OMNI
+                              POPULO.CREDIMUS HOC DEO PROPITIO UT - FORTASSEPERSONA EST</hi> (MGH
+                           Capit. 1, Nr. 2, S. 2 Z. 25 - S. 3Z. 6); endet fragmentarisch wegen
+                           Blattverlusts.<note type="msDetail"/>
+                        </p>
+                     </msItem>
+                     <msItem n="2" corresp="BK.8">
+                        <p>
+                           <locus>169r-170v</locus>
+                           <title>Chlotharii I vel II praeceptio</title> (a. 511/561 vel
+                           584/628): <hi rend="italic">CHLODACHARIUS REX FRANCORUM OMNEBUS (-E-</hi>
+                           korr. zu -<hi rend="italic">I</hi>-) <hi rend="italic">AGENTIBUS. USUS EST
+                              CLEMENTIAE PRINCEPALIS (-E-</hi> korr. zu -<hi rend="italic">I</hi>-)
+                           <hi rend="italic">NICESSITATEM</hi> (erstes <hi rend="italic">I</hi>
+                           korr. zu <hi rend="italic">E) - TEMERETATE </hi>(drittes <hi rend="italic">E</hi> korr. zu <hi rend="italic">I) PRAESUMANT</hi> (das letzte Wort
+                           kaum noch zu lesen) (MGH Capit. 1, Nr. 8, S. 18 Z. 26- S. 19 Z. 30); sonst
+                           nur noch überliefert in Cod. Paris Lat. 10753 zwischen burgundischen
+                           Gesetzen.<note type="msDetail"/>
+                        </p>
+                     </msItem>
+                     <msItem n="3" corresp="BK.1">
+                        <p>
+                           <locus>197r-v</locus>
+                           <title>Chlodowici regis ad episcopos praeceptio</title> in Briefform
+                           (a. 507/511): <hi rend="italic">Incipiunt kanones aurilianensis. Dominis
+                              sanctis et apostolica sede dignissimis episcopis chlotho</hi>- <hi rend="italic">uechus rex. Enuntiante fama quod actum fuerit</hi> - <hi rend="italic">dignis</hi>- <hi rend="italic">simi papae</hi> (MGH Capit.
+                           1, Nr. 1, S. 1 Z. 8, S. 1 Z. 18 - S.2 Z. 9).<note type="msDetail"/>
+                        </p>
+                     </msItem>
+                  </msContents>
+                  <physDesc>
+                     <objectDesc form="codex">
+                        <supportDesc>
+                           <support>
+                              <material>Pergament</material>
+                           </support>
+                           <extent>Aus vier Teilen bestehend (zusammen 238 foll.)                              
+                              <dimensions type="leaf" unit="mm">
+                                 <height>270-280</height>
+                                 <width>205-210</width>
+                              </dimensions>
+                              <dimensions type="written" unit="mm">
+                                 <height>200-240</height>
+                                 <width>145-175</width>
+                              </dimensions>
+                           </extent>
+                           
+                           <collation>Lagen: <formula>III<hi rend="super">b-g</hi> + III<hi rend="super">6</hi> + V<hi rend="super">16</hi> + (IV-1)<hi rend="super">23</hi> + 17 IV<hi rend="super">159</hi> + 3<hi rend="super">162</hi> + 7 IV<hi rend="super">218</hi> + 3<hi rend="super">221</hi> + 3<hi rend="super">224</hi> + IV<hi rend="super">232</hi>.</formula>
+                              <catchwords>Kustoden: <hi rend="italic">q.
+                                 III</hi> (23<hi rend="super">v</hi>) bis <hi rend="italic">q.
+                                    XVII</hi> (135<hi rend="super">v</hi>); von anderer Hand <hi rend="italic">XVIII </hi>(143<hi rend="super">v</hi>) bis <hi rend="italic">XXX</hi> (224<hi rend="super">v</hi>); <hi rend="italic">XXXI</hi> (232<hi rend="super">v</hi>).</catchwords>
+                           </collation>
+                        </supportDesc>
+                        <layoutDesc>
+                          
+                           <layout writtenLines="24 31">24-31 Zeilen</layout>
+                          
+                           <layout columns="1"/>
+                        </layoutDesc>
+                     </objectDesc>
+                     <handDesc>
+                        <handNote/>
+                     </handDesc>
+                     <scriptDesc>
+                        
+                        <scriptNote>Unziale</scriptNote>
+                        
+                     </scriptDesc>
+                     <decoDesc>
+                        <p/>
+                     </decoDesc>
+                     <bindingDesc>
+                        <binding>
+                           <p/>
+                        </binding>
+                     </bindingDesc>
+                  </physDesc>
+                  <history>
+                     <summary>
+                        
+                       </summary>
+                     <origin>
+                       <p>
+                           <origDate> 6./7.
+                              Jh.</origDate>;<origPlace ref="http://d-nb.info/gnd/4071403-2">
+                                 Südfrankreich</origPlace>.</p>
+                     </origin>
+                     <provenance>
+                        <p>Die Kursive des merowingischen Korrektors aus der ersten
+                           Hälfte des 8. Jh. läßt den Schluß zu, daß sich die Hs. zu jener Zeit in
+                           Corbie befunden hat. Alte Signatur: <idno>Saint-Germain-des-Prés 936</idno>
+                           <idno>(olim 26</idno>).</p>
+                     </provenance>
+                     <acquisition/>
+                  </history>
+                  <additional>
+                     <surrogates/>
+                     <listBibl>
+                        <listBibl type="lit">
+                           <bibl>
+                              <hi rend="smallcaps">Traube,</hi> Perrona Scottorum, S. 510, 526 (auch
+                              <hi rend="smallcaps">ders</hi>., Nomina sacra, S. 218, 235)</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">E. H. Zimmermann,</hi> Vorkarolingische
+                              Miniaturen (Deutscher Verein für Kunstwissenschaft. Denkmäler deutscher
+                              Kunst, III. Sektion: Malerei, I. Abteilung, Berlin 1916) S. 185 u.
+                              ö.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Lindsay,</hi> in: Palaeographia Latina 2, S. 6,
+                              46</bibl>
+                           <bibl> CLA 5 (1950) Nr. 619 f., S. 29 f., 59 (Literatur) und CLA Suppl.
+                              (1971) S. 55</bibl>
+                           <bibl> CLA 6 (1953) S. XXIII</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">E. A Lowe,</hi> The script of the farewell and date
+                              formulae in early papal documents as reflected in the oldest manuscripts
+                              of Bedes Historia Ecclesiastica, in: Rev. Bén. 69 (1959) S. 23 f.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Bischoff,</hi> Paläographie, S. 253 mit Anm.
+                              32</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">J. Vezin,</hi> Les
+                              scriptoria de Neustrie, 650-850, in: H. <hi rend="smallcaps">Atsma</hi>
+                              (Ed.), La Neustrie. Les pays au nord de la Loire de 650 à 850. Colloque
+                              historique international 2 (Beihefte der Francia 16/2, Sigmaringen 1989)
+                              S. 309 Anm. 13</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">D. Ganz,</hi> Corbie and Neustrian monastic culture
+                              661-849, in: ebd., S. 340 Anm. 10</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">ders.,</hi> Corbie in the Carolingian Renaissance
+                              (Beihefte der Francia 20, Sigmaringen 1990) S. 72, 127 u. ö.</bibl>
+                           <bibl>MGH Capit. 2, S. XXV</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Krah, </hi>Lex episcoporum, S. 22 f., 25
+                              ff.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Maassen,</hi> Bibliotheca I, 2, S. 268-282</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">ders.,</hi> Geschichte S. 405, 407, 439,
+                              556-574</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Wurm,</hi> Studien und Texte, S. 93 f., 272
+                              ff.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Duchesne,</hi> Liber Pontificalis1, S. XIV
+                              f.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Van Hove,</hi> Prolegomena, S. 273
+                              (Literatur)</bibl>
+                           <bibl> H. <hi rend="smallcaps">Vanderhoven - F. Masai - P. B. Corbett,</hi>
+                              Aux sources du monachisme bénédictin 1: La règle du maître. Édition
+                              diplomatique des manuscrits latins 12205 et 12634 de Paris (Bruxelles -
+                              Paris - Anvers - Amsterdam 1953) S. 38 f. mit Anm. 4</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Munier,</hi> Statuta ecclesiae antiqua, S.
+                              43-45</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">B. Capelle,</hi> Travaux liturgiques de doctrine et
+                              d’histoire 2: Histoire. La messe (Louvain 1962) S. 238 -240</bibl>
+                           <bibl> ACO 4, 3, 1, S. 43</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Mordek,</hi> Kirchenrecht und Reform, S. 90ff.
+                              (Literatur)</bibl>
+                           <bibl> L. <hi rend="smallcaps">Bieler,</hi> Corpus Christianorum (1), in:
+                              Scriptorium 30 (1976) S. 78.</bibl>
+                        </listBibl>
+                        <listBibl type="cat">
+                           <bibl>L. <hi rend="smallcaps">Delisle, </hi>Inventaire des manuscrits de
+                              Saint-Germain-des-Prés conservés à la Bibliothèque Impériale sous les
+                              numéros 11504-14231 du fonds latin (Paris 1868) S. 36.</bibl>
+                        </listBibl>
+                        <listBibl type="abb">
+                           <bibl>(oft reproduziert, z. B.) <hi rend="smallcaps">Zimmermann, </hi>Vorkarolingische Miniaturen, Mappe II, Taf. 85
+                              (foll. 227v, 228v und 230v, Ausschnitte)</bibl>
+                           <bibl> CLA 5, Nr. 619, vor
+                              S. 29 (foll. 139v, 106v,
+                              163v, 177r, Ausschnitte)
+                              und Nr. 620, nach S. 30 (fol. 228v, Teil) (ebd. S.
+                              59 Hinweis auf ältere Abb.)</bibl>
+                        </listBibl>
+                        <listBibl type="cap">
+                           <bibl>Mordek
+                              1995 S. 607-609</bibl>
+                           
+                        </listBibl>
+                     </listBibl>
+                  </additional></msPart>
+               <msPart n="foll. 225-232"><msIdentifier><settlement>Paris</settlement>
+                  <repository>Bibliothèque Nationale</repository>
+                  <idno>Lat. 12097, foll. 225-232</idno></msIdentifier><head>
+                     <title type="main">Paris, Bibliothèque Nationale, Lat. 12097</title>
+                     
+                     <origDate> 8. Jh., 1.
+                        Hälfte</origDate>                     
+                     <origPlace ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"> Frankreich</origPlace>
+                  </head>
+                  
+                  <physDesc>
+                     <objectDesc form="codex">
+                        <supportDesc>
+                           
+                           <support>
+                              <material>Pergament</material>
+                           </support>                          
+                           <extent>Aus vier Teilen bestehend (zusammen 238 foll.)
+                              <dimensions type="leaf" unit="mm">
+                                 <height>270-280</height>
+                                 <width>205-210</width></dimensions>
+                              <dimensions type="written" unit="mm">
+                                 <height>200-215</height>
+                                 <width> 160-170</width>
+                              </dimensions>
+                           </extent>
+                           <collation>Lagen: <formula>III<hi rend="super">b-g</hi> + III<hi rend="super">6</hi> + V<hi rend="super">16</hi> + (IV-1)<hi rend="super">23</hi> + 17 IV<hi rend="super">159</hi> + 3<hi rend="super">162</hi> + 7 IV<hi rend="super">218</hi> + 3<hi rend="super">221</hi> + 3<hi rend="super">224</hi> + IV<hi rend="super">232</hi>.</formula>
+                              <catchwords>Kustoden: <hi rend="italic">q.
+                                 III</hi> (23<hi rend="super">v</hi>) bis <hi rend="italic">q.
+                                    XVII</hi> (135<hi rend="super">v</hi>); von anderer Hand <hi rend="italic">XVIII </hi>(143<hi rend="super">v</hi>) bis <hi rend="italic">XXX</hi> (224<hi rend="super">v</hi>); <hi rend="italic">XXXI</hi> (232<hi rend="super">v</hi>).</catchwords>
+                           </collation>
+                        </supportDesc>
+                        <layoutDesc>
+                          
+                           <layout writtenLines="28">28 Zeilen</layout>
+                           <layout columns="1"/>
+                        </layoutDesc>
+                     </objectDesc>
+                     <handDesc>
+                        <handNote/>
+                     </handDesc>
+                     <scriptDesc>
+                        
+                        <scriptNote>Halbunziale</scriptNote>
+                     </scriptDesc>
+                     <decoDesc>
+                        <p/>
+                     </decoDesc>
+                     <bindingDesc>
+                        <binding>
+                           <p/>
+                        </binding>
+                     </bindingDesc>
+                  </physDesc>
+                  <history>
+                     <summary>
+                        
+                     </summary>
+                     <origin>
+                        <p>
+                           <origDate> 8. Jh., 1.
+                              Hälfte</origDate>;<origPlace ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"> Frankreich</origPlace>.</p>
+                        
+                        
+                     </origin>
+                     <provenance>
+                        <p>
+                           
+                           <origDate notAfter="0550" notBefore="0526"> 6. Jh., 2.
+                              Viertel</origDate>; <origPlace ref="http://d-nb.info/gnd/4071403-2">
+                                 Südfrankreich</origPlace>.</p>
+                     </provenance>
+                     <acquisition/>
+                  </history>
+                  <additional>
+                     <surrogates/>
+                     <listBibl>
+                        <listBibl type="lit">
+                           <bibl>
+                              <hi rend="smallcaps">Traube,</hi> Perrona Scottorum, S. 510, 526 (auch
+                              <hi rend="smallcaps">ders</hi>., Nomina sacra, S. 218, 235)</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">E. H. Zimmermann,</hi> Vorkarolingische
+                              Miniaturen (Deutscher Verein für Kunstwissenschaft. Denkmäler deutscher
+                              Kunst, III. Sektion: Malerei, I. Abteilung, Berlin 1916) S. 185 u.
+                              ö.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Lindsay,</hi> in: Palaeographia Latina 2, S. 6,
+                              46</bibl>
+                           <bibl> CLA 5 (1950) Nr. 619 f., S. 29 f., 59 (Literatur) und CLA Suppl.
+                              (1971) S. 55</bibl>
+                           <bibl> CLA 6 (1953) S. XXIII</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">E. A. Lowe,</hi> The script of the farewell and date
+                              formulae in early papal documents as reflected in the oldest manuscripts
+                              of Bedes Historia Ecclesiastica, in: Rev. Bén. 69 (1959) S. 23 f.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Bischoff,</hi> Paläographie, S. 253 mit Anm.
+                              32</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">J. Vezin,</hi> Les
+                              scriptoria de Neustrie, 650-850, in: H. <hi rend="smallcaps">Atsma</hi>
+                              (Ed.), La Neustrie. Les pays au nord de la Loire de 650 à 850. Colloque
+                              historique international 2 (Beihefte der Francia 16/2, Sigmaringen 1989)
+                              S. 309 Anm. 13</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">D. Ganz,</hi> Corbie and Neustrian monastic culture
+                              661-849, in: ebd., S. 340 Anm. 10</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">ders.,</hi> Corbie in the Carolingian Renaissance
+                              (Beihefte der Francia 20, Sigmaringen 1990) S. 72, 127 u. ö.</bibl>
+                           <bibl>MGH Capit. 2, S. XXV</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Krah, </hi>Lex episcoporum, S. 22 f., 25
+                              ff.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Maassen,</hi> Bibliotheca I, 2, S. 268-282</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">ders.,</hi> Geschichte S. 405, 407, 439,
+                              556-574</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Wurm,</hi> Studien und Texte, S. 93 f., 272
+                              ff.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Duchesne,</hi> Liber Pontificalis1, S. XIV
+                              f.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Van Hove,</hi> Prolegomena, S. 273
+                              (Literatur)</bibl>
+                           <bibl> H. <hi rend="smallcaps">Vanderhoven - F. Masai - P. B. Corbett,</hi>
+                              Aux sources du monachisme bénédictin 1: La règle du maître. Édition
+                              diplomatique des manuscrits latins 12205 et 12634 de Paris (Bruxelles -
+                              Paris - Anvers - Amsterdam 1953) S. 38 f. mit Anm. 4</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Munier,</hi> Statuta ecclesiae antiqua, S.
+                              43-45</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">B. Capelle,</hi> Travaux liturgiques de doctrine et
+                              d’histoire 2: Histoire. La messe (Louvain 1962) S. 238 -240</bibl>
+                           <bibl> ACO 4, 3, 1, S. 43</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Mordek,</hi> Kirchenrecht und Reform, S. 90ff.
+                              (Literatur)</bibl>
+                           <bibl> L. <hi rend="smallcaps">Bieler,</hi> Corpus Christianorum (1), in:
+                              Scriptorium 30 (1976) S. 78.</bibl>
+                        </listBibl>
+                        <listBibl type="cat">
+                           <bibl>L. <hi rend="smallcaps">Delisle, </hi>Inventaire des manuscrits de
+                              Saint-Germain-des-Prés conservés à la Bibliothèque Impériale sous les
+                              numéros 11504-14231 du fonds latin (Paris 1868) S. 36.</bibl>
+                        </listBibl>
+                        <listBibl type="abb">
+                           <bibl>(oft reproduziert, z. B.) <hi rend="smallcaps">Zimmermann, </hi>Vorkarolingische Miniaturen, Mappe II, Taf. 85
+                              (foll. 227v, 228v und 230v, Ausschnitte)</bibl>
+                           <bibl> CLA 5, Nr. 619, vor
+                              S. 29 (foll. 139v, 106v,
+                              163v, 177r, Ausschnitte)
+                              und Nr. 620, nach S. 30 (fol. 228v, Teil) (ebd. S.
+                              59 Hinweis auf ältere Abb.)</bibl>
+                        </listBibl>
+                        <listBibl type="cap">
+                           <bibl>Mordek
+                              1995 S. 607-609</bibl>
+                           
+                        </listBibl>
+                     </listBibl>
+                  </additional></msPart>
+               
+               
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>Transkriptionsvorlage:</p>
+         <projectDesc>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen
+                                        Herrschererlasse: <ptr target="http://capitularia.uni-koeln.de/projekt/ueber-das-projekt/"/>
+            </p>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish
+                                        capitularies: <ptr target="http://capitularia.uni-koeln.de/projekt/ueber-das-projekt/"/>
+            </p>
+         </projectDesc>
+         <editorialDecl>
+            <p xml:lang="ger">Die Transkription folgt den Richtlinien des
+                                        Capitularia-Projektes: <ptr target="http://capitularia.uni-koeln.de/projekt/dokumentation/"/>
+            </p>
+            <p xml:lang="eng">The transcription adheres to the guidelines of
+                                        the Capitularia project: <ptr target="http://capitularia.uni-koeln.de/projekt/dokumentation/"/>
+            </p>
+         </editorialDecl>
+      </encodingDesc>
+      <revisionDesc>
+         <change who="DS" when="2016-03-01">Datei erstellt aus
+                                    Mordek-XML</change>
+         <change who="XXX" when="2016"/>
+      </revisionDesc>
+   </teiHeader>
+   <facsimile>
+      <graphic url="http://gallica.bnf.fr/ark:/12148/btv1b525030636 http://gallica.bnf.fr/ark:/12148/btv1b90666568"/>
+   </facsimile>
+   <text>
+      <front>
+         <div type="mshist"/>
+         <div type="scribe"/>
+         <div type="letters"/>
+         <div type="abbreviations"/>
+         <div type="punctuation"/>
+         <div type="structure"/>
+         <div type="annotations"/>
+         <div type="other"/>
+      </front>
+      <body>
+         <ab type="text"/>
+      </body>
+   </text>
+</TEI>

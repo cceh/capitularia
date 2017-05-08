@@ -56,6 +56,10 @@ testdeploy: lint mo
 	$(RSYNC) themes/Capitularia/* $(WPCONTENTLOCAL)/themes/Capitularia/
 	$(RSYNC) plugins/cap-* $(WPCONTENTLOCAL)/plugins/
 
+import_xml:
+	$(RSYNC) $(PUBL)/mss/*xml xml/
+
+
 # PHP_CodeSniffer https://github.com/squizlabs/PHP_CodeSniffer
 phpcs:
 	-vendor/bin/phpcs --standard=tools/phpcs --report=emacs -s --extensions=php themes plugins

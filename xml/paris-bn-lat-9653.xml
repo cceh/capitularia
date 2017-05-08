@@ -1,0 +1,764 @@
+<?xml version="1.0"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><!-- Überarbeitung notwendig wegen Handschriftenteilen; langfristige Aufgliederung in msParts ### DS 30.09.2015 -->
+
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="paris-bn-lat-9653" xml:lang="de">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main" xml:lang="ger">Paris, Bibliothèque Nationale, Lat. 9653 </title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+               Transkription der foll. 32v-33v</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+               transcription of fols 32v-33v</title>
+            <respStmt>
+               <persName key="KU">
+                  <forename>Karl</forename>
+                  <surname>Ubl</surname>
+               </persName>
+               <resp xml:lang="ger">Projektleitung</resp>
+               <resp xml:lang="eng">Project lead</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="TJ">
+                  <forename>Tobias</forename>
+                  <surname>Jansen</surname>
+               </persName>
+               <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
+                  Standard</resp>
+               <resp xml:lang="eng">Transcription, description and text encoding according to the
+                  TEI P5 standard</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
+               </persName>
+               <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
+               <resp xml:lang="eng">First revision of transcription and additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
+               </persName>
+               <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
+               <resp xml:lang="eng">Second revision of transcription and additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="FF">
+                  <forename>Franz</forename>
+                  <surname>Fischer</surname>
+                  <affiliation>Cologne Center for eHumanities (CCeH), Universität zu
+                     Köln</affiliation>
+               </persName>
+               <resp xml:lang="ger">Datenmodellierung</resp>
+               <resp xml:lang="eng">Data Modelling</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="CR">
+                  <forename>Clemens</forename>
+                  <surname>Radl</surname>
+               </persName>
+               <resp xml:lang="ger">Kodierung von Mordek, Bibliotheca in TEI, Vorbereitung für
+                  Übergabe an Capitularia</resp>
+               <resp xml:lang="eng">TEI encoding of Mordek, Bibliotheca, preparation of data</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="DS">
+                  <forename>Daniela</forename>
+                  <surname>Schulz</surname>
+               </persName>
+               <resp xml:lang="ger">Technische Umsetzung, Generierung der
+                  Handschriftenbeschreibungen aus Mordek, Bibliotheca</resp>
+               <resp xml:lang="eng">technical support, generating of manuscript description
+                  according to Mordek, Bibliotheca</resp>
+            </respStmt>
+            <funder>Akademie der Wissenschaften und Künste Nordrhein-Westfalen</funder>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>
+               <persName>Karl Ubl</persName>
+               <orgName xml:lang="ger">Historisches Institut, Lehrstuhl für Geschichte des
+                  Mittelalters, Universität zu Köln</orgName>
+               <orgName xml:lang="eng">History Department, Chair for Medieval History, Cologne
+                  University</orgName>
+               <address xml:lang="ger">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Köln</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Raum 4.108</addrLine>
+                  <addrLine>0221-470 2717</addrLine>
+                  <country>Deutschland</country>
+               </address>
+               <address xml:lang="eng">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Cologne</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Room 4.108</addrLine>
+                  <addrLine>+49 221-470 2717</addrLine>
+                  <country>Germany</country>
+               </address>
+            </publisher>
+            <availability>
+               <p xml:lang="ger">Die Inhalte sind frei zugänglich und nicht-kommerziell. Einige
+                  Digitalisate und Texte sind aus rechtlichen Gründen jedoch Mitarbeitern
+                  vorbehalten.</p>
+               <p xml:lang="eng">Content is freely available on a non-commercial basis. Some digital
+                  images and texts are only available to staff due to copyright issues.</p>
+            </availability>
+            <date when="2015-11-09">09.11.2015</date>
+         </publicationStmt>
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <settlement>Paris</settlement>
+                  <repository>Bibliothèque Nationale</repository>
+                  <idno>Lat. 9653</idno>
+                  <msName/>
+                  <altIdentifier type="former">
+                     <settlement/>
+                     <repository/>
+                     <idno>Suppl. Lat. 65</idno>
+                     <note type="date">
+                        <date/>
+                     </note>
+                  </altIdentifier>
+                  <altIdentifier type="siglum">
+                     <idno>P46</idno>
+                     <note/>
+                  </altIdentifier>
+               </msIdentifier>
+               <msPart n="foll. 3-37">
+                  <msIdentifier>
+                     <settlement>Paris</settlement>
+                     <repository>Bibliothèque Nationale</repository>
+                     <idno>Lat. 9653, Hs. I (foll. 3-37)</idno>
+                  </msIdentifier>
+                  <head>
+                     <title type="main">Paris, Bibliothèque Nationale, Lat. 9653 </title>
+                     <origDate notAfter="0860" notBefore="0841"> 9. Jh., etwa Mitte</origDate>
+                     <origPlace
+                        ref="http://www.geonames.org/3030967/region-bourgogne.html http://d-nb.info/gnd/4129468-3 http://viaf.org/viaf/249019852"
+                        > Burgund (B. Bischoff: Nähe von <placeName
+                           ref="http://www.geonames.org/6454573/lyon.html http://d-nb.info/gnd/4036770-8 http://viaf.org/viaf/158189703"
+                           >Lyon</placeName>)</origPlace>
+                  </head>
+                  <msContents>
+                     <summary>
+                        <p>Dem ab fol. 38 tradierten römischen Recht der Lex Romana Visigothorum ist
+                           erst später das Opusculum mit den Leges Burgundionum und Salica vorgefügt
+                           worden, zusammen mit den oft hier plazierten Capitula legibus addenda
+                           Ludwigs des Frommen von 818/819 und dem Exzerpt aus Isidors
+                           Etymologien.</p>
+                     </summary>
+                     <msItem n="1">
+                        <p>
+                           <locus>1v-r, 2r-v</locus> (14. Jh.) Fragment (Blatt 1 verkehrt
+                           eingebunden) der Institutionen Justinians, III, 4, 4 - 6, 7 und III, 11,
+                           2 - 14, 2, mit der Glossa ordinaria des Accursius. Zwei weitere Blätter
+                           aus derselben Hs. sind unten foll. 161 -162 erhalten.<note
+                              type="msDetail"/>
+                        </p>
+                     </msItem>
+                     <msItem n="7">
+                        <p>
+                           <locus>38r</locus> Leer bis auf den Nachtrag einer groben Hand des 10.
+                           Jh.: Lex Romana Visigothorum, Pauli Sent. I, 5, 1 (ed. <hi
+                              rend="smallcaps">Hänel, </hi>S. 342); Version wie im folgenden
+                              Text.<note type="msDetail"/>
+                        </p>
+                     </msItem>
+                     <msItem n="11">
+                        <p>
+                           <locus>161r-162v</locus> (14. Jh.) Fragment der Institutionen Justinians,
+                           III, 6, 7 - 7, 2 und III, 9, 7 - 11, 2, mit der Glossa ordinaria des
+                           Accursius. Zwei weitere Blätter aus derselben Hs. sind oben foll. 1-2
+                              erhalten.<note type="msDetail"/>
+                        </p>
+                     </msItem>
+                  </msContents>
+                  <physDesc>
+                     <objectDesc form="codex">
+                        <supportDesc>
+                           <support>
+                              <material>Pergament</material>
+                           </support>
+                           <extent>insg. 159 foll. (gezählt 3-160, 4bis), dazu vorn und hinten je
+                              zwei Pergamentblätter aus dem Spätmittelalter (gezählt 1-2, 161-162),
+                              zwei zusammengebundene Hss; hier (I): foll. 3-37 <dimensions
+                                 type="leaf" unit="mm">
+                                 <height>310-315</height>
+                                 <width>215</width>
+                              </dimensions>
+                              <dimensions type="written" unit="mm">
+                                 <height>255-265</height>
+                                 <width>160-175</width>
+                              </dimensions>
+                           </extent>
+
+                           <collation>Lagen: <formula>V<hi rend="super">11</hi> + II<hi rend="super"
+                                    >15</hi> + 2 IV<hi rend="super">31</hi> + (IV-2)<hi rend="super"
+                                    >37</hi> + 14 IV<hi rend="super">149</hi> + (1+V-2)<hi
+                                    rend="super">158</hi> +2<hi rend="super">160</hi> (?) (fol. 150
+                                 falsch eingebunden [gehört nach fol. 158]).</formula>
+                              <catchwords>Erhaltene Kustoden: <hi rend="italic">II</hi>
+                                 <hi rend="super">o</hi> (15<hi rend="super">v</hi>). <hi
+                                    rend="italic">III</hi><hi rend="super">o</hi> (23<hi
+                                    rend="super">v</hi>), <hi rend="italic">QTR. IIII</hi> (69<hi
+                                    rend="super">v</hi>).</catchwords>
+                           </collation>
+                        </supportDesc>
+                        <layoutDesc>
+                           <layout writtenLines="28">28</layout>
+                           <layout columns="1"/>
+                        </layoutDesc>
+                     </objectDesc>
+                     <handDesc>
+                        <handNote>wenigstens zwei Hände</handNote>
+                     </handDesc>
+                     <scriptDesc>
+                        <scriptNote>karolingische Minuskel</scriptNote>
+                     </scriptDesc>
+                     <decoDesc>
+                        <p>Rubriken und Text in brauner und schwarzer Tinte, Initialen mit roten
+                           Füllungen.</p>
+                     </decoDesc>
+                     <bindingDesc>
+                        <binding>
+                           <p>Dunkelroter Ledereinband mit Goldprägung und der Rückenaufschrift: <hi
+                                 rend="italic">LEGES REGUM BURGUNDIONUM. CAPITULA LEGIS SALICAE
+                                 &amp;. &amp;.</hi>
+                           </p>
+                           <p/>
+                        </binding>
+                     </bindingDesc>
+                  </physDesc>
+                  <history>
+                     <origin>
+                        <p>
+                           <origDate notAfter="0870" notBefore="0830">9. Jh., etwa
+                              Mitte</origDate>;<origPlace
+                              ref="http://www.geonames.org/3030967/region-bourgogne.html http://d-nb.info/gnd/4129468-3 http://viaf.org/viaf/249019852"
+                              > Burgund (B. Bischoff: Nähe von <placeName
+                                 ref="http://www.geonames.org/6454573/lyon.html http://d-nb.info/gnd/4036770-8 http://viaf.org/viaf/158189703"
+                                 >Lyon</placeName>)</origPlace>.</p>
+                     </origin>
+                     <provenance>
+                        <p>1609 von den Erben J. A. Lescures aus Valence d’Agen an Claude Expilly zu
+                           Grenoble verkauft, seit 1808 in der Bibliothèque Impériale (Nationale).
+                           Alte Signatur: <idno>Suppl. Lat. 65</idno>.</p>
+                     </provenance>
+                     <acquisition/>
+                  </history>
+                  <additional>
+                     <surrogates/>
+                     <listBibl>
+                        <listBibl type="cap">
+                           <bibl corresp="#Mordek_1995">Mordek 1995 S. 560-562</bibl>
+                           <bibl corresp="#Bischoff_2014">Bischoff 2014 S. 158, Nr. 4617</bibl>
+                           <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.)
+                              unter der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012
+                              ff. <ref subtype="Bl" target="paris-bn-lat-9653" type="external"
+                              /></bibl>
+                        </listBibl>
+                        <listBibl type="lit">
+                           <bibl> MGH LL 1 (1835), S. XXIV </bibl>
+                           <bibl corresp="#Pardessus_1843">Pardessus 1843, S. XXIV f.</bibl>
+                           <bibl>MGH LL 3 (1863), S. 509 f.</bibl>
+                           <bibl corresp="#Delisle_1868_1881"> Delisle 1868-1881, Bd. 2, S.
+                              282</bibl>
+                           <bibl> A. Holder, Lex Salica mit der Mallobergischen Glosse nach dem
+                              Codex Lescurianus (Leipzig 1880) S. 28-30</bibl>
+                           <bibl corresp="#Tardif_E_1895">Tardif E 1895, S. 660 f.</bibl>
+                           <bibl corresp="#Boretius_1897">Boretius 1897, S. XXIV</bibl>
+                           <bibl corresp="#Mommsen_1905"> Mommsen 1905, Bd. 1, 1, S.
+                              XCIX</bibl>
+                           <bibl corresp="#Mommsen_1905"> Mommsen 1905, Bd. 2, S. LII </bibl>
+                           <bibl corresp="#Stein_1947a"> Stein 1947a, S. 410</bibl>
+                           <bibl corresp="#Eckhardt_K_1955">Eckhardt K 1955, S. 25 f.</bibl>
+                           <bibl corresp="#Eckhardt_K_1955a"> Eckhardt K 1955a, S. 8</bibl>
+                           <bibl corresp="#Dolezalek_1972"> Dolezalek 1972, Bd. 2</bibl>
+                           <bibl corresp="#McKitterick_1989"> McKitterick 1989, S. 48 Tab. A</bibl>
+
+                        </listBibl>
+                        <listBibl type="cat">
+                           <bibl> L. Delisle, Inventaire des manuscrits conservés à la Bibliothèque
+                              Impériale sous les nos 8823-11503 du fonds latin et faisant suite à la
+                              série dont le catalogue a été publié en 1744 (Paris 1863) S.
+                              42.</bibl>
+                        </listBibl>
+                     </listBibl>
+                  </additional>
+               </msPart>
+               <msPart n="foll. 38-160">
+                  <msIdentifier>
+                     <settlement>Paris</settlement>
+                     <repository>Bibliothèque Nationale</repository>
+                     <idno>Lat. 9653, Hs. II (foll. 38-160)</idno>
+                  </msIdentifier>
+                  <head>
+                     <title type="main">Paris, Bibliothèque Nationale, Lat. 9653 </title>
+                     <origDate notAfter="0850" notBefore="0826">9. Jh., 2. Viertel</origDate>
+                     <origPlace
+                        ref="http://www.geonames.org/3030967/region-bourgogne.html http://d-nb.info/gnd/4129468-3 http://viaf.org/viaf/249019852"
+                        > Burgund (B. Bischoff: Nähe von <placeName
+                           ref="http://www.geonames.org/6454573/lyon.html http://d-nb.info/gnd/4036770-8 http://viaf.org/viaf/158189703"
+                           >Lyon</placeName>)</origPlace>
+                  </head>
+                  <msContents>
+                     <msItem n="2">
+                        <p>
+                           <locus>3r-21v</locus> Lex Burgundionum (Klasse B) (MGH LL nat. Germ. 2,
+                           1, S. 30-116; Sigle B 7; zur Hs. S. 17).<note type="msDetail"/>
+                        </p>
+                     </msItem>
+                     <msItem n="3">
+                        <p>
+                           <locus>21v-22r</locus> Zusätze zur Lex Burgundionum, im einzelnen
+                           aufgeschlüsselt bei <hi rend="smallcaps">Hänel, </hi>Lex Romana
+                           Visigothorum, S. LXIII Anm. 195.<note type="msDetail"/>
+                        </p>
+                     </msItem>
+                     <msItem n="4">
+                        <p>
+                           <locus>22r-32v</locus> Lex Salica (Klasse A), Titelverzeichnis und Text
+                           (MGH LL nat. Germ. 4, 1, S. 4-232; Sigle A 4; zur Hs. S. XIV f.; nach
+                           Cod. Paris Lat. 9653 ed. <hi rend="smallcaps">Holder, </hi>Lex Salica, S.
+                           1-27, mit Korrekturen nach S. 30).<note type="msDetail"/>
+                        </p>
+                     </msItem>
+                     <msItem corresp="BK.139" n="5">
+                        <p>
+                           <locus>32v-33v</locus>
+                           <hi rend="italic">IN PRIMO CAPITLO., XVIIII-XXI, CAP. X</hi> -
+                              <title>Capitula legibus addenda</title> (a. 818/819), Inskription, cc.
+                           1 (bis <hi rend="italic">iuxta quod uuarigild. illius est
+                              adpraesumpserint</hi>; danach Blattverlust<note type="corr">Diese
+                              Erklärung Mordeks für den Textverlust ist nicht zutreffend; vgl. unten
+                              die editorische Vorbemerkung zur Transkription (unter
+                              "Sonstiges").</note>), 18 (ab <hi rend="italic">LX ictibus
+                              uapulent),</hi> 19-21 (bis <hi rend="italic">in triblo componat)</hi>
+                           und 10: <hi rend="italic">INCIPIUNT CAPITULA QUȨ LEGIBUS ADTENTA SUNT QUȨ
+                              ET MISSI ET COMITES HABERE ET CETERIS NOTUM FACERE DEBENT. DE HONORE
+                              ȨCCLESIASTICA. Si quis aut ex leui causa - testes habere</hi> (MGH
+                           Capit. 1, Nr. 139, S. 281 Z. 1-13, S. 285 Z. 7-21, S. 282 Z. 40 - S. 283
+                           Z. 20).<note type="msDetail"/>
+                        </p>
+                     </msItem>
+                     <msItem n="6">
+                        <p>
+                           <locus>33v-37v</locus> Isidor von Sevilla, Etymologiae, V, 1-27 (ed. <hi
+                              rend="smallcaps">Lindsay;</hi> vgl. <hi rend="smallcaps">Tardif,
+                           </hi>Un abrégé juridique, S. 660 f. und <hi rend="smallcaps">Beeson,
+                           </hi>Isidor-Studien, S. 93). Nach Tardif tradieren dasselbe juridische
+                           Exzerpt aus Isidors Etymologien die Codd. Paris Lat. 4408 und Turin D. V.
+                              19.<note type="msDetail"/>
+                        </p>
+                     </msItem>
+                     <msItem n="8">
+                        <p>
+                           <locus>38v-149v, 151r-158v, 150r-v, 159r-160r</locus> Lex Romana
+                           Visigothorum, Titelverzeichnis bis Papian (mit Schlußrubrik <hi
+                              rend="italic">De paternis rebus),</hi> Text teils lückenhaft bis
+                           einschließlich Cod. Greg. IV, 2 (ed. <hi rend="smallcaps">Hänel, </hi>S.
+                           5-446; zur Hs. S. LXII f.).<note type="msDetail"/>
+                        </p>
+                     </msItem>
+                     <msItem n="10">
+                        <p>
+                           <locus>160v</locus> Schwache Federproben und Bibliotheksstempel.<note
+                              type="msDetail"/>
+                        </p>
+                     </msItem>
+                  </msContents>
+                  <physDesc>
+                     <objectDesc form="codex">
+                        <supportDesc>
+                           <support>
+                              <material>Pergament</material>
+                           </support>
+                           <extent>insg. 159 foll. (gezählt 3-160, 4bis), dazu vorn und hinten je
+                              zwei Pergamentblätter aus dem Spätmittelalter (gezählt 1-2, 161-162),
+                              zwei zusammengebundene Hss., hier (II): foll. 38-160 <dimensions
+                                 type="leaf" unit="mm">
+                                 <height>310-315</height>
+                                 <width>215</width>
+                              </dimensions>
+                              <dimensions type="written" unit="mm">
+                                 <height>265</height>
+                                 <width>170</width>
+                              </dimensions>
+                           </extent>
+
+                           <collation>Lagen: <formula>V<hi rend="super">11</hi> + II<hi rend="super"
+                                    >15</hi> + 2 IV<hi rend="super">31</hi> + (IV-2)<hi rend="super"
+                                    >37</hi> + 14 IV<hi rend="super">149</hi> + (1+V-2)<hi
+                                    rend="super">158</hi> +2<hi rend="super">160</hi> (?) (fol. 150
+                                 falsch eingebunden [gehört nach fol. 158]).</formula>
+                              <catchwords>Erhaltene Kustoden: <hi rend="italic">II</hi>
+                                 <hi rend="super">o</hi> (15<hi rend="super">v</hi>). <hi
+                                    rend="italic">III</hi><hi rend="super">o</hi> (23<hi
+                                    rend="super">v</hi>), <hi rend="italic">QTR. IIII</hi> (69<hi
+                                    rend="super">v</hi>).</catchwords>
+                           </collation>
+                        </supportDesc>
+                        <layoutDesc>
+                           <layout writtenLines="25">25</layout>
+                           <layout columns="1"/>
+                        </layoutDesc>
+                     </objectDesc>
+                     <handDesc>
+                        <handNote>wenigstens zwei Hände</handNote>
+                     </handDesc>
+                     <scriptDesc>
+                        <scriptNote>karolingische Minuskel</scriptNote>
+                     </scriptDesc>
+                     <decoDesc>
+                        <p>Rubriken in Rot oder in brauner Texttinte mit roten Füllungen.</p>
+                     </decoDesc>
+                     <bindingDesc>
+                        <binding>
+                           <p>Dunkelroter Ledereinband mit Goldprägung und der Rückenaufschrift: <hi
+                                 rend="italic">LEGES REGUM BURGUNDIONUM. CAPITULA LEGIS SALICAE
+                                 &amp;. &amp;.</hi>
+                           </p>
+                           <p/>
+                        </binding>
+                     </bindingDesc>
+                  </physDesc>
+                  <history>
+                     <origin>
+                        <p>
+                           <origDate notAfter="0850" notBefore="0826"> und 9. Jh., 2. Viertel (Hs.
+                              2)</origDate>;<origPlace
+                              ref="http://www.geonames.org/3030967/region-bourgogne.html http://d-nb.info/gnd/4129468-3 http://viaf.org/viaf/249019852"
+                              > Burgund (B. Bischoff: Nähe von <placeName
+                                 ref="http://www.geonames.org/6454573/lyon.html http://d-nb.info/gnd/4036770-8 http://viaf.org/viaf/158189703"
+                                 >Lyon</placeName>)</origPlace>.</p>
+                     </origin>
+                     <provenance>
+                        <p>1609 von den Erben J. A. Lescures aus Valence d’Agen an Claude Expilly zu
+                           Grenoble verkauft, seit 1808 in der Bibliothèque Impériale (Nationale).
+                           Alte Signatur: <idno>Suppl. Lat. 65</idno>.</p>
+                     </provenance>
+                     <acquisition/>
+                  </history>
+                  <additional>
+                     <surrogates/>
+                     <listBibl>
+                        <listBibl type="cap">
+                           <bibl corresp="#Mordek_1995">Mordek 1995 S. 560-562</bibl>
+                           <bibl corresp="#Bischoff_2014"><hi rend="smallcaps">Bischoff</hi> 2014 S.
+                              158, Nr. 4617</bibl>
+                           <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.)
+                              unter der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012
+                              ff. <ref subtype="Bl" target="paris-bn-lat-9653" type="external"
+                              /></bibl>
+                        </listBibl>
+                        <listBibl type="lit">
+                           <bibl>
+                              <hi rend="smallcaps">Delisle, </hi>Le cabinet des manuscrits 2, S.
+                              282</bibl>
+                           <bibl> MGH LL 1, <hi rend="smallcaps">S. XXIV</hi>
+                           </bibl>
+                           <bibl>Pardessus, Loi Salique, S. XXIV f.</bibl>
+                           <bibl>MGH LL 3, S. 509 f.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">A. Holder,</hi> Lex Salica mit der
+                              Mallobergischen Glosse nach dem Codex Lescurianus (Leipzig 1880) S.
+                              28-30</bibl>
+                           <bibl>MGH Capit. 2, <hi rend="smallcaps">S. </hi>XXIV</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Mommsen - Meyer,</hi> Theodosiani libri XVI, Bd.
+                              1, 1, S. XCIX</bibl>
+                           <bibl> Bd. 2, <hi rend="smallcaps">S. LII</hi>
+                           </bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Stein,</hi> Lex Salica, II, S. 410</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">K. A. Eckhardt,</hi> Gesetze des
+                              Merowingerreiches I, S. 8</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">ders.,</hi> Pactus legis Salicae II, S. 25
+                              f.</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Dolezalek,</hi> Verzeichnis 2</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">McKitterick,</hi> The Carolingians and the
+                              written word, S. 48 Tab. A</bibl>
+                           <bibl>
+                              <hi rend="smallcaps">Tardif, </hi>Un abrégé juridique, S. 660
+                              f.</bibl>
+                        </listBibl>
+                        <listBibl type="cat">
+                           <bibl><hi rend="smallcaps">L. </hi>
+                              <hi rend="smallcaps">Delisle, </hi>Inventaire des manuscrits conservés
+                              à la Bibliothèque Impériale sous les nos 8823-11503 du fonds latin et
+                              faisant suite à la série dont le catalogue a été publié en 1744 (Paris
+                              1863) S. 42.</bibl>
+                        </listBibl>
+                     </listBibl>
+                  </additional>
+               </msPart>
+
+
+
+
+
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>Transkriptionsvorlage: Die Transkription wurde erstellt anhand eines Scans von einem
+            s/w-Mikrofilm schlechter Qualität. Die 2. Nachkollation wurde anhand von in Paris neu
+            bestellten hochauflösenden Farbdigitalisaten von fol. 32v-33v vorgenommen
+            (29.07.15).</p>
+         <projectDesc>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
+            </p>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
+            </p>
+         </projectDesc>
+         <editorialDecl>
+            <p xml:lang="ger">Die Transkription folgt den Richtlinien des Capitularia-Projektes:
+                  <ptr target="http://capitularia.uni-koeln.de/project/doc/"/>
+            </p>
+            <p xml:lang="eng">The transcription adheres to the guidelines of the Capitularia
+               project: <ptr target="http://capitularia.uni-koeln.de/project/doc/"/>
+            </p>
+         </editorialDecl>
+      </encodingDesc>
+      <revisionDesc>
+         <change when="2015-08-25" who="DS">Datei erstellt aus Mordek-XML</change>
+         <change when="2015-11-09" who="BM">Datei veröffentlicht (BK 139)</change>
+      </revisionDesc>
+   </teiHeader>
+   <facsimile>
+      <graphic url=""/>
+   </facsimile>
+   <text>
+      <front>
+         <div type="content">
+            <list>
+               <item n="1">
+                  <ptr target="#paris-bn-lat-9653-32v-10" type="internal"/>INCIPIUNT CAPITULA QUĘ
+                  LEGIBUS ADTENTA SUNT ...<list>
+                     <item n="2">
+                        <ptr target="#paris-bn-lat-9653-32v-11" type="internal"/>IN PRIMO CAPITULO
+                        DE HONORE ĘCCLESIASTICO</item>
+                     <item n="3">
+                        <ptr target="#paris-bn-lat-9653-33r-2" type="internal"/>XVIIII DE
+                        ADULTERATORIBUS MONITĘ</item>
+                     <item n="4">
+                        <ptr target="#paris-bn-lat-9653-33r-4" type="internal"/>XX DE PROPRIO
+                        DOMINICO ...</item>
+                     <item n="5">
+                        <ptr target="#paris-bn-lat-9653-33r-6" type="internal"/>XXI DE PUERIS
+                        INUIDIS PARENTIBUS DETUNSIS ...</item>
+                  </list></item>
+               <item n="6">
+                  <ptr target="#paris-bn-lat-9653-33r-8" type="internal"/>CAPITULUM X DE FALSIS
+                  TESTIBUS CONUINCENDIS</item>
+            </list>
+         </div>
+         <div type="mshist"/>
+         <div type="scribe">
+            <p>Ab <locus>fol. 33r, Z. 15</locus> hat eine andere Hand (B) BK 139 c. 10 nachgetragen.
+               Offenkundigstes Merkmal sind wesentlich kleinere, feingliedrigere Buchstabenformen.
+               Hand A wie Hand B vertauschen gelegentlich <mentioned>d</mentioned> und
+                  <mentioned>t</mentioned>. Hand A etwa: <mentioned>adtenta</mentioned> statt
+               addenda (<locus>fol. 32v, Z. 17</locus>); Hand B: <mentioned>tuorum</mentioned> statt
+               duorum (<locus>fol. 33v, Z. 5</locus>).</p>
+         </div>
+         <div type="letters">
+            <p>Der Schreiber verwendet zuweilen eine an die Urkundenminuskel erinnernde rt-Ligatur
+               (etwa: <locus>fol. 32v, Z. 23</locus>: <mentioned>parte</mentioned>) und ct-Ligatur
+               (etwa: <locus>ebd. Z. 24</locus>: <mentioned>interfectus</mentioned>). Des Weiteren
+               sind or- und et- sowie selten unziale NT-Ligaturen am Wortende vorhanden.</p>
+            <p>Hand B schreibt kleiner, was jedoch nicht auf die Verwendung einer dünneren Feder
+               zurückzuführen ist. Die pro-Kürzung ist schwungvoll ausgeführt und die Cauda des e
+               blitzförmig gestaltet (etwa: <mentioned>sęculare</mentioned>,
+                  <mentioned>ęcclesiasticum</mentioned>; <locus>fol. 33r, Z. 26</locus>). Außerdem
+               verwendet der Schreiber gelegentlich ein unziales d (etwa: <mentioned>de
+                  altera</mentioned>; <locus>fol. 33r, Z. 26</locus>) sowie ein
+                  Majuskel-<mentioned>N</mentioned> im Fließtext (etwa: <mentioned>Nisi</mentioned>,
+                  <locus>fol. 33v, Z. 3</locus>). Beide Schreiber verwenden jedoch eine recht
+               ähnliche rt- und NT-Ligatur (<mentioned>habeant</mentioned>; <locus>fol. 33r, Z.
+                  28</locus>), was auf eine recht ähnliche Schule beider Schreiber zurückzuführen
+               sein könnte. Weitere Indizien dafür: 2-förmige ur-Kürzung anstatt der sonst häufigen
+               tilde-artigen ur-Kürzung; zusätzlich angebrache Buchstaben h, wie etwa bei
+                  <mentioned>huna</mentioned> (<locus>fol. 33r, Z. 19</locus>) oder
+                  <mentioned>hubi</mentioned> (<locus>ebd.</locus>). Letzteres könnte auch auf die
+               Vorlage zurückgehen (siehe aber auch unten unter "Sonstiges" zur Textvorlage).</p>
+         </div>
+         <div type="abbreviations">
+            <p>Gekürztes pre- wird normalisiert mit e aufgelöst.</p>
+         </div>
+         <div type="punctuation">
+            <p>Vorhanden ist ein gelegentlicher Punkt auf dem Mittelband sowie sehr selten ein
+               umgekehrtes Semikolon.</p>
+         </div>
+         <div type="structure">
+            <p>Incipit und Rubriken sind in Capitalis rustica ausgeführt. Die ersten beiden
+               Buchstaben sind durch eine Strichelung mit roter Tinte hervorgehoben. Der Text wird
+               strukturiert durch römische Zahlen sowie durch bereits genannte Rubriken in
+               Majuskelschrift. Große, sauber ausgeführte Initialen werden als Versalien
+               ausgerückt.</p>
+         </div>
+         <div type="annotations">
+            <p>Von späterer Hand wurden vereinzelt Betonungsstriche gesetzt: So etwa auf <locus>fol.
+                  33r, Z. 19</locus>: <mentioned>huna</mentioned>; <locus>ebd., Z. 20</locus>:
+                  <mentioned>unius</mentioned>.</p>
+         </div>
+         <div type="other">
+            <p>Zustand: Im von Hand A geschriebenen Teil ist die dunkelbraune Texttinte an vielen
+               Stellen stark abgeblättert, besonders auf fol. 33r. Der von Hand B ergänzte Abschnitt
+               ist davon nicht betroffen. </p>
+            <p>Textvorlage: Die Kopie von BK 139 enthält nur cc. sowie 18-21 und BK 139 c. 10 als
+               Nachtrag von anderer Hand. Die Kapitel 1 und 18 sind zudem nur fragmentarisch
+               enthalten (c. 1 bis <mentioned>dominus eius iuxta quod wirgildus illus est
+                  ad</mentioned>) und c. 18 ab <mentioned>praesumpserint sexaginta
+                  ictibus</mentioned>). Mordek erklärte dies durch einen Blattverlust zwischen den
+               foll. 32 und 33 (Mordek 1995, S.561). Da das fragmentarische c. 18 allerdings bereits
+               mit <mentioned>praesumpserint</mentioned> auf <locus>fol. 32v</locus> beginnt, greift
+               diese Erklärung nicht. Vielmehr muss der Text bereits durch einen Blattverlust in der
+               Vorlage verlorengegangen sein. Dem Kopisten fiel dies aber offenbar nicht auf, denn
+               er setzte den Text nach <mentioned>ad</mentioned> mit
+                  <mentioned>praesumpserint</mentioned> einfach fort, ohne eine Textlücke
+               anzudeuten, und schuf damit einen sinnlosen Satz.</p>
+            <p>Das von anderer Hand nachgetragene BK 139 c. 10 stammt vermutlich aus einer anderen
+               Vorlage. Wenn trotzdem bestimmte sprachliche Eigenheiten sowohl im ersten Teil wie im
+               Nachtrag (c. 10) zu finden sind (s.o.), sollten diese eher nicht durch die jeweilige
+               Vorlage zu erklären sein, sondern durch von beiden Schreibern gemäß sprachlicher
+               Eigenheiten ihrer Umgebung vorgenommener unbewusster Anpassungen.</p>
+         </div>
+      </front>
+      <body>
+
+         <milestone n="BK.139" unit="capitulare"/>
+
+         <cb n="32v"/>
+         <lb n="17"/>
+
+         <ab corresp="BK.139_inscriptio" type="meta-text" xml:id="paris-bn-lat-9653-32v-10"><hi
+               rend="coloured">IN</hi>CIPIUNT CAPITULA QUĘ LEGIBUS * ADTENTA SUNT <lb/> QUĘ ET MISSI
+            ET COMITES HABERE ET CETERIS NOTUM FACERE DEBENT . </ab>
+
+         <ab corresp="BK.139_1_inscriptio" type="meta-text" xml:id="paris-bn-lat-9653-32v-11">IN
+               <seg n="1" type="num">PRIMO</seg>
+            <lb/>CAPITULO DE HONORE ĘCCLESIASTIC<unclear>O</unclear>
+         </ab>
+         <ab corresp="BK.139_1" type="text" xml:id="paris-bn-lat-9653-32v-12"><seg rend="coloured"
+               type="initial">S</seg>i quis aut ex leui causa aut sine causa hominem <lb/>in
+            ecclęsiam interficeret de uita componat . Si uero foras rixati fuerint et hunus
+            <lb/>alterum in ęcclesiam fugierit et ibi se defendendo eum interfecerit si huius facti
+            testes <lb/>non habuerit cum <num>XII</num> coniuratoribus ligitimis per sacramento
+            adfirment se defenden<lb break="no"/>do eum interfecisse et postea . <num>DC</num> .
+            solidos ad parte ęcclesię quam illo homicidio polluerat . <lb/>et insuper banno nostro
+            soluere cogatur . His uero qui interfectus est absque conpos<unclear>it</unclear>ione
+            <lb/>iaceat . hac deinde interfector secundum iuditium canonicum congruam facinori quod
+               ad<lb break="no"/>misit pęnitentiam haccipiat . Si proprius seruus hoc
+               <expan>commiserit</expan> iuditio <expan>aque</expan> fer<unclear>uen</unclear>tis
+            <lb/>exsaminetur utrum hoc sponte ad se defendendo fecisset . et si manus eius exsusta
+            fuerit <lb/>interficiatur . Si autem non fuerit dominus eius iuxta quod <choice>
+               <abbr>uuarigild</abbr>
+               <expan>uuarigildus</expan>
+            </choice> illius est ad </ab>
+
+         <ab corresp="BK.139_18" type="text" xml:id="paris-bn-lat-9653-33r-1"
+               ><expan>presumpserint</expan>
+            <cb n="33r"/><lb n="1"/><num>LX</num> . ictibus uapulent . a<unclear>ut si</unclear>
+            magister <unclear>eorum</unclear> uel aduocatus qui liber est<note type="editorial">Über
+               dem einzelnen e ist kein Kürzungsstrich zu erkennen. Dieser könnte jedoch aber auch
+               von dem aufgeklebten Papierstück verdeckt sein, welches zur Stabilisierung der recht
+               unregelmäßig beschnittenen oberen Kante dieses Blattes dient.</note> eos uel comiti
+            uel missum <lb/>nostrum iussus <expan>presentare</expan> maluerit
+               <expan>predictum</expan> bannum . <num>LX</num> solidorum componat </ab>
+
+         <ab corresp="BK.139_19_inscriptio" type="meta-text" xml:id="paris-bn-lat-9653-33r-2"><hi
+               rend="coloured"> . <seg n="19" type="num">XVIIII</seg> . </hi><lb/>DE ADULTERATORIBUS
+               <sic>MONITĘ</sic> ! <lb/></ab>
+         <ab corresp="BK.139_19" type="text" xml:id="paris-bn-lat-9653-33r-3"><seg rend="coloured"
+               type="initial">D</seg>e falsa moneta iubimus ut qui eam<note type="editorial">Das
+               Wort <mentioned>eam</mentioned> wird von der mitten auf die Seite gesetzten Foliozahl
+                  <mentioned>33</mentioned> überschrieben.</note> percussisset et conprobatus fuerit
+            ! manus <lb/>ei amputetis . qui hoc consenserit si liber est . <num>LX</num> solidos
+            componat . si seruus est <lb/><num>LX</num> . hictus <choice>
+               <abbr>haccip</abbr>
+               <expan>haccipiat</expan>
+            </choice></ab>
+
+         <ab corresp="BK.139_20_inscriptio" type="meta-text" xml:id="paris-bn-lat-9653-33r-4"><hi
+               rend="coloured"> . <seg n="20" type="num">XX</seg> . </hi> DE PROPRIO
+               DOMIN<unclear>IC</unclear>O SINE IUSSIONE ILLIUS REDDI<gap quantity="2" unit="chars"/>
+            <lb/></ab>
+         <ab corresp="BK.139_20" type="text" xml:id="paris-bn-lat-9653-33r-5"><seg rend="coloured"
+               type="initial">S</seg>i quis proprium nostrum quod in uestitura <rs type="person"
+                  >gen<gap quantity="3" unit="chars"/>ris nostri</rs> fuit alicui
+               quęre<unclear>nd</unclear><gap quantity="1" unit="chars"/><lb/> reddiderit sine
+            nostra iussione alio tanto nobis de <unclear>suo</unclear> proprio cum sua lege
+            <lb/>componat . et quicumque illud scienter per malum ingenium adquirere
+            <lb/>temptauerit pro infide<unclear>le</unclear> teneatur . quia sacramentum fidelitatis
+            quod <lb/>nobis promisit irritum fecit . et ideo secundum nostram uoluntatem et potes<lb
+               break="no"/>tatem diiudic<unclear>an</unclear>dum est</ab>
+
+         <ab corresp="BK.139_21_inscriptio" type="meta-text" xml:id="paris-bn-lat-9653-33r-6"><seg
+               n="21" rend="coloured" type="num">.XXI.</seg> DE PUERIS INUIDIS PARENTIBUS <lb/>
+               DETUNSIS<note type="editorial">Der Kürzungsstrich für den Buchstaben
+                  <mentioned>N</mentioned> scheint von späterer Hand nachgetragen.</note>
+               AU<add>T</add><note type="editorial">Von derselben Hand, wie die Korrektur des
+                  <mentioned>DETUNSIS</mentioned> wird hier das <mentioned>T</mentioned> in Form
+               einer Ligatur an das <mentioned>AU</mentioned> angefügt.</note> PUELLIS<note
+               type="editorial">Der Bogen des <mentioned>P</mentioned> ist von derselben
+               korriegierenden Hand nachgezogen. Nach dem <mentioned>P</mentioned> eine Art Bogen
+               oder Klecks, welcher ebenfalls vom Korrektor zu stammen scheint.</note> UELATIS !
+            <lb/></ab>
+         <ab corresp="BK.139_21" type="text" xml:id="paris-bn-lat-9653-33r-7"><unclear><seg
+                  rend="coloured" type="initial">S</seg></unclear>i quis puerum inuitis parentibus
+            <lb/>thunderit aut puellam uelauerit .<note type="editorial">Über dem Punkt noch ein
+               Strich in Form eines Ausrufezeichens, was vom Korrektor der Zeilen darüber zu stammen
+               scheint.</note> legem suam in <num>triblo</num> componat ; <lb/></ab>
+
+
+         <ab corresp="BK.139_10_inscriptio" type="meta-text" xml:id="paris-bn-lat-9653-33r-8"
+               ><handShift new="B"/><seg type="numDenom">CAPITULUM</seg> . <seg n="10" type="num"
+               >X</seg> . DE FALSIS TESTIBUS . CONUINCENDIS ; <lb/></ab>
+         <ab corresp="BK.139_10" type="text" xml:id="paris-bn-lat-9653-33r-9"><seg type="initial"
+               >S</seg>i quis cum altero de qualibet causam contentionem habuerit et testes coram
+            eum per iudi<lb break="no"/>tium producti fuerint . Si ille falsos eos esse suspicatur
+            liceat ei alios testes quos meliores <lb/>potuerit contra eos opponere ut ueratium
+            testimonium peruersitas superetur . quod si ambe <lb/>partes testium ita inter se
+            dissenserint ut nullatenus huna pars alteri cederi uelli . ele<lb break="no"/>gatur
+               <num>duo</num> ex ipsis id est ex utraque parte <num>unius</num> qui cum scutis et
+            fustibus in campo decer<lb break="no"/>tent . Utraque pars falsitate . utraque ueritatem
+            suo testimonio sequatur ; et campio qui <lb/>uinctus fuerit propter periurium quod ante
+            pugnam promisit ! dextra manus amputetur ; Ceteri <lb/>uero eidem partes testibus qui
+            falsi apparuerunt ! manus suas redemant cuius conpositio<lb break="no"/>nis
+               <num>due</num> partes ei contra quem testati sunt dentur . <num>Tertia</num> pro
+            fredo soluatur . et in seculari <lb/>quidem causa huiuscemodi testium diuersitas campio
+            conprobetur . In ecclesiasticis autem causis <lb/>hubi de huna parte sęculare . de
+            altera uero ęcclesiasticum negotium eidem modo obseruetur * <lb/>hubi uero ex utraque
+            parte ecclesiasticum fuerit rectores earundem ęcclesiarum si se
+            fa<unclear>m</unclear>iliariter <lb/>pacificare uelint licentiam habeant . Si autem de
+            huiuscemodi pacificati<unclear>o</unclear>ne inter <unclear>eos con</unclear><cb
+               break="no" n="33v"/>uenire non possit . aduocati eorum in mallo publico ad
+               <expan>presentiam</expan> comitis ueniant . et ibi legitimo <lb/>terminio eorum
+            contentionibus inponatur . Testes uero de qualibet causa non aliund<mod>e</mod>
+            quęrantur <lb/>nisi de ipso comitatu in quo res unde causa<note type="editorial"
+               >Unklares Zeichen, evtl. ein weiteres <mentioned>a</mentioned>, das aufgrund einer
+               Falte im Pergament nicht sicher zu lesen ist.</note> agitur posite sunt quia non est
+            credibile ut uel <lb/>de statu hominis uel de possessione cuiuslibet per alios melius ei
+            ueritas agnosci ualeat . quam<note type="editorial">Der Kürzungsstrich über dem
+                  <mentioned>qua</mentioned> ist nur sehr schwach gezogen und könnte auch von
+               späterer Hand stammen.</note><lb/> per illos qui uiciniores sunt . Si tamen contentio
+            qui inter eos exorta est in confinio <num>tuorum</num>
+            <lb/>comitatu fuerit ! liceat eis de uicina centena adiacentis comitatus ad causam suam
+               t<mod>e</mod>stes <lb/>habere ; </ab>
+
+
+      </body>
+   </text>
+</TEI>

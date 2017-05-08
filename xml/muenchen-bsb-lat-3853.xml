@@ -1,0 +1,2415 @@
+<?xml version="1.0"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><!-- in Bearbeitung von sh -->
+
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="muenchen-bsb-lat-3853">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main" xml:lang="ger">München, Bayerische Staatsbibliothek, Lat.
+               3853</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+               Transkription der foll. 182r-v, 248r-254r, 261v, 262v</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+               transcription of the fols 182r-v, 248r-254r, 261v, 262v</title>
+            <respStmt>
+               <persName key="KU">
+                  <forename>Karl</forename>
+                  <surname>Ubl</surname>
+               </persName>
+               <resp xml:lang="ger">Projektleitung</resp>
+               <resp xml:lang="eng">Project lead</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="SP">
+                  <forename>Sarah</forename>
+                  <surname>Patt</surname>
+               </persName>
+               <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
+                  Standard (foll. 248r-254r; Anfang)</resp>
+               <resp xml:lang="eng">Transcription, description and text encoding according to the
+                  TEI P5 standard (fols 248r-254r; beginning)</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
+               </persName>
+               <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
+                  Standard (foll. 248r-254r; Fortführung bis Ende)</resp>
+               <resp xml:lang="eng">Transcription, description and text encoding according to the
+                  TEI P5 standard (fols 248r-254r; continuation until end)</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="DT">
+                  <forename>Dominik</forename>
+                  <surname>Trump</surname>
+               </persName>
+               <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
+                  Standard (fol. 261v, 262v)</resp>
+               <resp xml:lang="eng">Transcription, description and text encoding according to the
+                  TEI P5 standard (fol 261v, 262v)</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
+               </persName>
+               <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
+                  Standard (foll. 182r-v)</resp>
+               <resp xml:lang="eng">Transcription, description and text encoding according to the
+                  TEI P5 standard (fols 182r-v)</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
+               </persName>
+               <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen (foll.
+                  182r-v, 248r-254r, 261v, 262v)</resp>
+               <resp xml:lang="eng">First revision of transcription and additions (fols 182r-v,
+                  248r-254r, 261v, 262v)</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="DT">
+                  <forename>Dominik</forename>
+                  <surname>Trump</surname>
+               </persName>
+               <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen (fol.
+                  182r-v)</resp>
+               <resp xml:lang="eng">Second revision of transcription and additions (fol
+                  182r-v)</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
+               </persName>
+               <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen (foll.
+                  248r-254r, 261v, 262v)</resp>
+               <resp xml:lang="eng">Second revision of transcription and additions (fols 248r-254r,
+                  261v, 262v)</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="FF">
+                  <forename>Franz</forename>
+                  <surname>Fischer</surname>
+                  <affiliation>Cologne Center for eHumanities (CCeH), Universität zu
+                     Köln</affiliation>
+               </persName>
+               <resp xml:lang="ger">Datenmodellierung</resp>
+               <resp xml:lang="eng">Data Modelling</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="CR">
+                  <forename>Clemens</forename>
+                  <surname>Radl</surname>
+               </persName>
+               <resp xml:lang="ger">Kodierung von Mordek, Bibliotheca in TEI, Vorbereitung für
+                  Übergabe an Capitularia</resp>
+               <resp xml:lang="eng">TEI encoding of Mordek, Bibliotheca, preparation of data</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="DS">
+                  <forename>Daniela</forename>
+                  <surname>Schulz</surname>
+               </persName>
+               <resp xml:lang="ger">Technische Umsetzung, Generierung der
+                  Handschriftenbeschreibungen aus Mordek, Bibliotheca</resp>
+               <resp xml:lang="eng">technical support, generating of manuscript description
+                  according to Mordek, Bibliotheca</resp>
+            </respStmt>
+            <funder>Akademie der Wissenschaften und Künste Nordrhein-Westfalen</funder>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>
+               <persName>Karl Ubl</persName>
+               <orgName xml:lang="ger">Historisches Institut, Lehrstuhl für Geschichte des
+                  Mittelalters, Universität zu Köln</orgName>
+               <orgName xml:lang="eng">History Department, Chair for Medieval History, Cologne
+                  University</orgName>
+               <address xml:lang="ger">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Köln</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Raum 4.108</addrLine>
+                  <addrLine>0221-470 2717</addrLine>
+                  <country>Deutschland</country>
+               </address>
+               <address xml:lang="eng">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Cologne</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Room 4.108</addrLine>
+                  <addrLine>+49 221-470 2717</addrLine>
+                  <country>Germany</country>
+               </address>
+            </publisher>
+            <availability>
+               <p xml:lang="ger">Die Inhalte sind frei zugänglich und nicht-kommerziell. Einige
+                  Digitalisate und Texte sind aus rechtlichen Gründen jedoch Mitarbeitern
+                  vorbehalten.</p>
+               <p xml:lang="eng">Content is freely available on a non-commercial basis. Some digital
+                  images and texts are only available to staff due to copyright issues.</p>
+            </availability>
+            <date when="2015-10-28">28.10.2015</date>
+         </publicationStmt>
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <settlement>München</settlement>
+                  <repository>Bayerische Staatsbibliothek</repository>
+                  <idno>Lat. 3853</idno>
+                  <msName/>
+                  <altIdentifier>
+                     <settlement/>
+                     <repository/>
+                     <idno>Aug. eccl. 153</idno>
+                     <note type="date">
+                        <date/>
+                     </note>
+                  </altIdentifier>
+                  <altIdentifier type="siglum">
+                     <idno>M</idno>
+                     <note/>
+                  </altIdentifier>
+               </msIdentifier>
+               <head>
+                  <title type="main">München, Bayerische Staatsbibliothek, Lat. 3853</title>
+                  <origDate notBefore="0951" notAfter="1000">10. Jh., 2. Hälfte</origDate>
+                  <origPlace ref="http://d-nb.info/gnd/4078022-3 http://viaf.org/viaf/235489154">
+                     Süddeutschland (<placeName
+                        ref="http://www.geonames.org/6557107/augsburg.html http://d-nb.info/gnd/4003614-5 http://viaf.org/viaf/153139306"
+                        >Augsburg</placeName>?)</origPlace>
+               </head>
+               <msContents>
+                  <summary><p>Der Kompilator hat in seinem Werk, das auch von den Codd. <ref
+                           type="internal" subtype="mss" target="heiligenkreuz-sb-217">Heiligenkreuz
+                           217</ref> und <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-3878">Paris Lat. 3878</ref> + <ref type="internal"
+                           subtype="mss" target="weimar-hsa-depositum-hardenberg-fragm-9">Weimar
+                           Hardenberg Fragm. 9</ref> tradiert wird, mehrere Collectiones
+                        zusammengetragen und so ein imposantes Opus geschaffen, das in bezug auf die
+                        Kapitularien zwar nicht „wirklich vollständiger ist, als die Ausgabe des
+                        Baluzius“ (Philipp Wilhelm Gercken), das aber doch zu den umfangreichsten
+                        Kompendien des frühmittelalterlichen kirchlichen und weltlichen Rechts
+                        gehört.</p>
+                     <p>Zahlreiche Texte zeigen Verwandtschaft mit oberitalischen Überlieferungen
+                        (z. B. mit Cod. <ref type="internal" subtype="mss"
+                           target="vatikan-bav-vat-lat-5751">Vatikan Vat. Lat. 5751</ref>, Anfang
+                        10. Jh.), so daß zumindest für den Kern der in Süddeutschland verbreiteten
+                        Sammlung die Annahme einer Entstehung im Oberitalien des 10. Jahrhunderts
+                        nicht ganz von der Hand zu weisen ist. Aber auch ein kirchliches Zentrum wie
+                        Mainz käme in Betracht; dort dürften jedenfalls spätestens seit der Wende
+                        vom 10. zum 11. Jahrhundert beide unten genannten Hauptquellen greifbar
+                        gewesen sein, aus denen der Sammler die Kapitularien bezogen hat.</p>
+                     <p>Der erste Hauptteil der Hs. (foll. 1-158) präsentiert vor allem Kirchenrecht
+                        (Paenitentialia und Canones), darunter zwei größere Sammlungen in 178 (de
+                        facto 181) und 77 Kapiteln, bis fol. 128 in vielfacher Übereinstimmung mit
+                        dem älteren, im endenden 9. Jahrhundert wohl im Ostfranzösischen
+                        (Lotharingien) entstandenen Cod. <ref type="internal" subtype="mss"
+                           target="muenchen-bsb-lat-3851">München Lat. 3851</ref>, der über
+                        Ellwangen spätestens im 11. Jahrhundert gleichfalls nach Augsburg kam. Nicht
+                        in Cod. München Lat. 3853 aufgenommen sind z. B. - soweit ich sehe - zwei
+                        Kapitel aus dem Capitulare ecclesiasticum Ludwigs des Frommen (a. 818/819),
+                        die Cod. München Lat. 3851 an verschiedenen Stellen eingestreut hat: 1) fol.
+                           4<hi rend="super">r</hi>
+                        <hi rend="italic">CAP. XVII -</hi> Capitulare ecclesiasticum (a. 818/819),
+                        c. 17, mit Inskription: <hi rend="italic">IN CAPITULARE GLORIOSISSIMORUM
+                           PRINCIPUM KAROLI ET HLUDUUUICI. Statutum est ab episcopis de
+                           presbiteris</hi> - <hi rend="italic">canonica inuectione feriantur
+                        </hi>(MGH Capit. 1, Nr. 138, S. 278 Z. 9-12); 2) fol. 65<hi rend="super"
+                           >v</hi>
+                        <hi rend="italic">CAP. XXVII - </hi>Capitulare ecclesiasticum (a. 818/819),
+                        c. 27, mit Inskription und leicht verändertem Wortlaut: <hi rend="italic">EX
+                           CAPITLR. KAROLI ET HLUDUUUICI. Sanccitum est et modis omnibus prohibitum
+                           ut nullus omnino quamlibet examinationem crucis facere presumat ne
+                           christi passio glorificata cuiuslibet temeritate obtentui habeatur</hi>
+                        (MGH Capit. 1, Nr. 138, S. 279 Z. 29-31).</p>
+                     <p>Zurück zu Cod. München Lat. 3853. Den zweiten Hauptteil (ab fol. 159)
+                        dominiert, in Ergänzung zum kirchlichen, das weltliche Recht - die Lex
+                        Alamannorum mit dem Prolog zur Lex Baiuvariorum und Capitula legibus addita
+                        (darin wie teils auch im folgenden ähnlich Cod. <ref type="internal"
+                           subtype="mss" target="muenchen-bsb-lat-4460">München Lat. 4460</ref>)
+                        (foll. 159-182), die Collectio Ansegisi mit Anhängen (foll. 183-247), nach
+                        Art der Codd. <ref type="internal" subtype="mss"
+                           target="berlin-sb-lat-qu-931">Berlin Lat. qu. 931</ref> bzw. <ref
+                           type="internal" subtype="mss" target="muenchen-bsb-lat-6360">München Lat.
+                           6360</ref>, die allerdings nicht das anschließende, in zahlreichen
+                        Ansegis-Hss. tradierte Worms-Korpus bewahrt haben (siehe bei Cod. <ref
+                           type="internal" subtype="mss" target="paris-bn-lat-10758">Paris Lat.
+                           10758</ref>). Aus ihm hat der Exzerptor 32 Kapitel entlehnt, dazu als c.
+                        10 Benedictus Levita 1, 279, ein Kapitel, das immerhin am Ende von Cod. <ref
+                           type="internal" subtype="mss" target="muenchen-bsb-lat-6360">München Lat.
+                           6360</ref> auftaucht (Varianten schließen die erste der folgenden
+                        Hauptquellen, in die ein Teil des Worms-Korpus und das Benedikt-Kapitel
+                        übergegangen sind, als Vorlage aus).</p>
+                     <p>Die foll. 248-254 tradierten 33 Kapitel (Worms + Benedictus Levita 1, 279)
+                        bilden die erste von fünf eigens gezählten, mit Capitulationes versehenen
+                        Kapitulariensammlungen (foll. 248-314). Den vier letzteren liegen zwei
+                        Hauptquellen zugrunde. Die zweite, dritte und der erste Teil der vierten
+                        Sammlung (foll. 254-290) sind fast durchgängig aus der großen Collectio der
+                        Hss. <ref type="internal" subtype="mss" target="vatikan-bav-pal-lat-582"
+                           >Vatikan Pal. Lat. 582</ref> und <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-9654">Paris Lat. 9654</ref> geschöpft, der zweite
+                        Teil der vierten und die fünfte Sammlung (foll. 290-314) greifen auf den
+                        Liber legum des Lupus zurück, doch scheint unsicher, ob auf die Redaktion
+                        der Codd. <ref type="internal" subtype="mss" target="modena-bc-o-i-2">Modena
+                           O.I.2</ref> und <ref type="internal" subtype="mss"
+                           target="gotha-flb-memb-i-84">Gotha Memb. I 84</ref>: <list>
+                           <item>19 Kapitel des Decretum Vermeriense Pippins,</item>
+                           <item>46 Kapitel vorzüglich Karls des Großen,</item>
+                           <item>92 (de facto 96) Kapitel verschiedener fränkischer Herrscher (ab
+                              Pippins Kapitular von Pavia [a. 787] fol. 290 aus dem Liber legum des
+                              Lupus),</item>
+                           <item>70 (de facto 72) meist italische Kapitel.</item>
+                        </list></p>
+                     <p>Aus der Art der Quellenbenutzung wird deutlich, daß der Sammler anfangs
+                        seine Vorlagen vollständig kopierte, später aber durchweg mit Auszügen
+                        arbeitete, wohl um nur noch das zu übernehmen, was ihm im vorhergehenden zu
+                        fehlen schien.</p>
+                     <p>Ein Exzerpt aus der Kapitulariensammlung des Cod. München Lat. 3853 oder
+                        deren Vorlage dürfte sich in Cod. Wien 2198 und dessen Abschrift Bamberg
+                        Can. 9 erhalten haben; siehe bei Cod. <ref type="internal" subtype="mss"
+                           target="muenchen-bsb-lat-6245">München Lat. 6245</ref>.</p>
+                     <p>Das Verhältnis der drei Hss., welche die Gesamtsammlung überliefern, ist
+                        seit langem strittig. Während z.B. <hi rend="smallcaps">Krause,
+                        </hi>Münchener Handschriften 3851. 3853, S. 127 f. Cod. Heiligenkreuz 217
+                        (H) noch direkt aus Cod. München Lat. 3853 (M) herleitete und Cod. Paris
+                        Lat. 3878 + Weimar Hardenberg Fragm. 9 (P) wiederum direkt aus H, wollte <hi
+                           rend="smallcaps">Liebermann, Zu</hi> Bußbüchern, S. 292 f. nur einen
+                        mittelbaren Zusammenhang zwischen M und H gelten lassen, hielt aber an der
+                        Abhängigkeit des Parisinus von H weitgehend fest. Neuere Forscher sprechen
+                        meist vorsichtiger von Schwesternhss. (Ausnahme <hi rend="smallcaps"
+                           >Brommer,</hi> Rezeption, S. 141 ff., dessen Vermutung, M und H könnten
+                        sich vielleicht unmittelbar auf P zurückführen, aber nachweislich nicht
+                        zutrifft). Ansprechend scheint Hansens aufgrund eingehender Analysen
+                        gewonnenes Ergebnis, wonach M über x indirekte Vorlage für H wie P gewesen
+                        sei. Dann müßte man freilich von der Annahme ausgehen, x habe jene oben
+                        erwähnte Parzellierung von M in fünf Teile bewahrt und so an H
+                        weitergegeben. Definitiv werde ich mich zum Problem der
+                        Handschriftenfiliation äußern, wenn die Kollation der Kapitularientexte
+                        abgeschlossen ist.</p>
+                     <p>Eine vierte Hs., die zumindest den ersten Teil des Gesamtkorpus bot, fand
+                        sich einst im belgischen Benediktinerkloster Lobbes: 120. <hi rend="italic"
+                           >Eiusdem de questionibus canonum ad Heribaldum episcopum lib</hi>. <hi
+                           rend="italic">I</hi>. <hi rend="italic">Eiusdem de eadem re ad
+                           Reginbaldum corepiscopum lib</hi>. <hi rend="italic">I. Libri
+                           poenitentiales. Synodus wormacensis et alia multa ad canones
+                           pertinentia</hi>. <hi rend="italic">Vol.</hi>
+                        <hi rend="italic">I.</hi>, verkündet der dortige Bibliothekskatalog aus dem
+                        Jahre 1049 (ed. F. <hi rend="smallcaps">Dolbeau, </hi>Un nouveau catalogue
+                        des manuscrits de Lobbes aux XI<hi rend="super">e</hi> et XII<hi
+                           rend="super">e</hi> siècles, in: Recherches Augustiniennes 13 [1978] S.
+                        23, erstmals mit der neuen Überlieferung Brüssel, Bibliothèque des
+                        Bollandistes, Boll. 98; ältere Editionen sind S. 4 Anm. 6 genannt,
+                        Erläuterungen in: Recherches Augustiniennes 14 [1979] S. 201). Es läßt sich
+                        wohl nicht mehr entscheiden, ob der Katalogbearbeiter unter <hi
+                           rend="italic">alia multa ad canones pertinentia</hi> ausschließlich
+                        Kirchenrecht oder auch großzügig jene oft in den kirchlichen Bereich
+                        hinüberspielenden Kapitularien verstanden hat, die im zweiten Teil der
+                        Sammlung dominieren.</p>
+                     <p>Der Bibliothekskatalog von Lobbes weist übrigens auch das Capitulare
+                        Monasticum III Ludwigs des Frommen aus, zusammen u. a. mit der Benediktregel
+                        und dem Brief Abt Theodomars von Montecassino an Karl den Großen (Nr. 233;
+                        ed. <hi rend="smallcaps">Dolbeau, </hi>S. 30 bzw. S. 218).</p></summary>
+                  <msItem n="1">
+                     <p>
+                        <locus>1r-15r</locus> Halitgar von Cambrai, Paenitentiale: Prolog <hi
+                           rend="italic">DIVERSITAS CULPARVM</hi> (als Bestandteil des Excarpsus
+                        Cummeani ed. <hi rend="smallcaps">Schmitz, </hi>Bußbücher 2, S. 599-601),
+                        Praefatio (bricht wegen Blattverlusts ab bei <hi rend="italic">QUAMUIS
+                           ORIGINALIA IN BAP)</hi> und Bücher III (ab c. 7 der Capitulatio) bis V,
+                        17 <hi rend="italic">sine animo nequeat,</hi> aber ohne IV, 1-2 (in der Hs.
+                        als Bücher <hi rend="italic">I-III</hi> gezählt), mit Capitulationes <hi
+                           rend="smallcaps">(Migne, </hi>PL 105, Sp. 653 C, Sp. 677 B - 690 D).<note
+                           type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="2">
+                     <p>
+                        <locus>15r-41r</locus> Paenitentiale mixtum Pseudo-Bedae-Egberti mit den
+                        angehängten fünf Kanones wohl nach Hohenaltheim (a. 916) und Tribur (a. 895)
+                        (Versio vulgata), dazu am Anfang das auf Beda umformulierte Vorwort
+                        Halitgars zu seinem 6. Buch (nach unserer Hs. ed. Schmitz, Bußbücher 2, S.
+                        679-701; Praefatio Halitgarii: Migne, PL 105, Sp. 693 f.).<note
+                           type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="3">
+                     <p>
+                        <locus>41r-43v</locus> (Nachtrag von anderer Hand, den die übrigen Codd. des
+                        Gesamtwerkes nicht kennen) Kleine Sammlung von 12 Kanones, die in dieser
+                        Reihenfolge in der 4-Bücher-Sammlung des Cod. Köln 124 (I, 86; I, 108; II,
+                        6; II, 48-50; III, 43-48) auftauchen.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="4">
+                     <p>
+                        <locus>44r-69v</locus> Hrabanus Maurus, Paenitentiale ad Heribaldum<hi
+                           rend="smallcaps"> (Migne, </hi>PL 110, Sp. 467 C - 494 C; dazu der in der
+                        Teiledition MGH Epp. 5, S. 514 berücksichtigte Schluß).<note type="msDetail"
+                        />
+                     </p>
+                  </msItem>
+                  <msItem n="5">
+                     <p>
+                        <locus>69v-70r</locus> Capitulatio in 11 Kapiteln zu den nachfolgenden
+                        Texten bis einschließlich Konzil von Mainz (a. 852), c. 10 (fol. 81v).<note
+                           type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="6">
+                     <p>
+                        <locus>70r-77v</locus> Brief des Hrabanus Maurus an Chorbischof Reginbald
+                        von Mainz, Ep. 30 (MGH Epp. 5, S. 448-454, mit Berücksichtigung der
+                           Hs.).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="7">
+                     <p>
+                        <locus>77v-80r</locus> Brief des Hrabanus Maurus an Bischof Humbert von
+                        Würzburg, Ep. 29 (MGH Epp. 5, S. 445-448, mit Berücksichtigung der
+                           Hs.).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="8">
+                     <p>
+                        <locus>80v-81r</locus> Libellus responsionum Gregors I. an Augustinus von
+                        Canterbury, JE 1843, c. 5 (numeriert als <hi rend="italic">VIIII</hi>) (MGH
+                        Epp. 2, S. 335 f.).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="9" corresp="BK.249">
+                     <p>
+                        <locus>81r-v</locus>
+                        <hi rend="italic">X - CAP. XI</hi> - <title>Concilium Moguntinum</title> (a.
+                        852), cc. 9 und 10: <hi rend="italic">De his qui infantem suum oppresserint.
+                           Si quis </hi>(über der Zeile <hi rend="italic">mulier</hi>) <hi
+                           rend="italic">infantem suum incaute oppressent - peruenire confidat</hi>
+                        (MGH Capit. 2, Nr. 249, S. 189; MGH Conc. 3, S. 247 f., zur Hs. S. 237). Die
+                        Annales Fuldenses melden die Bestätigung der Mainzer Beschlüsse durch König
+                        Ludwig den Deutschen, siehe Cod. Bamberg Can. 2.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="10">
+                     <p>
+                        <locus>81v-128v</locus> Nach der Inskription <hi rend="italic">INCIPIUNT
+                           CAPITULA SINODI UUORMACENSIS:</hi> Sammlung von 178 (de facto 181)
+                        Kapiteln mit vorangestellter Capitulatio, Kanones des Konzils von Worms (a.
+                        868) und patristisch-kanonistischen Anhängen (Capitula I Theodulfs von
+                        Orléans, Capitula I und II Hinkmars von Reims u.a.), vgl. die ausführliche
+                        Analyse von Krause, Die Münchener Handschriften 3851. 3853, S. 96 ff.;
+                        Hansen, Die Rechtscorpora, S. 37-41, mit zusätzlichen Identifikationen.
+                        Dieselbe Komposition findet sich auch in dem neuzeitlichen Cod. Dresden,
+                        Sächsische Landesbibliothek, A 157 (18. Jh.; Vorbesitzer der Helmstedter
+                        Theologieprofessor Johann Andreas Schmidt [† 1726], vgl. Hartmann, Konzil
+                        von Worms 868, S. 25 Anm. 43).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="11">
+                     <p>
+                        <locus>-- 101v</locus> notierte am oberen Rand eine zeitgenössische Hand <hi
+                           rend="italic">Einhardus,</hi> dazu fol. 102r oben <hi rend="italic"
+                           >PRbt.</hi>, vermutlich Dompropst Einhard von Augsburg (1061 Bischof von
+                        Speyer, † 1067) (vgl. <hi rend="smallcaps">Ruland, </hi>Geschichtliche
+                        Nachricht, S. 61, hiernach u. a. W. <hi rend="smallcaps">Volkert, </hi>Die
+                        Regesten der Bischöfe und des Domkapitels von Augsburg 1 [Veröffentlichungen
+                        der Schwäbischen Forschungsgemeinschaft bei der Kommission für Bayerische
+                        Landesgeschichte, Reihe II b, Augsburg 1985] S. 347, Nachtrag zu Nr.
+                           277).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="12">
+                     <p>
+                        <locus>129r-157r</locus> 77-Kapitel-Sammlung mit einigen bislang nicht
+                        identifizierten Texten (vgl. die Angaben bei <hi rend="smallcaps">Fournier -
+                           Le Bras, </hi>Histoire des collections canoniques 1, S. 277-280 und <hi
+                           rend="smallcaps">Hansen, </hi>Die Rechtscorpora, S. 41-58); Nachtrag am
+                        unteren Rand von fol. 154v: <hi rend="italic">In a&lt;e&gt;clesia privata
+                           vel rebus suis viduata nullus cantet missam priusquam propriis restaurata
+                           rebus ad pristinvm revertatur honorem.</hi>
+                        <note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="13">
+                     <p>
+                        <locus>157r-v</locus> Drei Kanones von Mainz, Arles und Tours (a. 813) <hi
+                           rend="italic">DE PACE ECCLESIARVM,</hi> wie in Cod. Berlin Lat. qu. 931,
+                        fol. 89r (und Kopie Cod. München Lat. 6360).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="14">
+                     <p>
+                        <locus>157v</locus> (Von anderer Hand; dieser und die folgenden Texte bis
+                        158v sind den übrigen Hss. des Gesamtwerkes unbekannt) Regino von Prüm, De
+                        synodalibus causis II, 411 (ed. <hi rend="smallcaps">Wasserschleben, </hi>S.
+                        368f.); Rubrik am Rand (von anderer Hand): <hi rend="italic">De Induc.</hi>
+                        <note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="15">
+                     <p>
+                        <locus>157v-158r</locus> Burchard von Worms, Dekret XI, 67 <hi
+                           rend="smallcaps">(Migne, </hi>PL 140, Sp. 871).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem>
+                     <p>Von wechselnden Händen geschrieben (wohl Nachträge):</p>
+                  </msItem>
+                  <msItem n="16">
+                     <p><locus>158r</locus>
+                        <hi rend="italic">DE AECCLESIAE DOTE. EX REGISTRO SANCTI GREGORII. Vt
+                           unaquęque aeclesia habeat unum mansum - unde decima reddatur</hi>; ohne
+                        eindeutige Inskription in der Collectio Diessensis des Cod. München Lat.
+                        5541, fol. 120r (c. 152 in der Incipit-Explicit-Edition von V. <hi
+                           rend="smallcaps">Krause, </hi>Die Acten der Triburer Synode 895, in: NA
+                        17 [1892] S. 315): <hi rend="italic">Item eiusdem</hi> (weist zurück auf c.
+                        150 <hi rend="italic">Ex penitentiale</hi>). <hi rend="italic">De ęcclesię
+                           dote. Ut unaqueque ecclesia habeat mansum unum praeter cimiterium et
+                           curtem ubi ecclesia et domus presbiteri continetur et IIII mancipia et II
+                           mansos ingenuiles et III seruiles et accolas unde decima reddatur,</hi>
+                        vgl. Capitulare ecclesiasticum (a. 818/819), c. 10 (MGH Capit. 1, Nr. 138,
+                        S. 277) und Hlotharii capitulare Papiense (a. 832), c. 1 (MGH Capit. 2, Nr.
+                        201, S. 60);<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="17">
+                     <p>
+                        <locus>158r-v</locus>
+                        <hi rend="italic">DE SERVITIO ARCHYPRESBITERI VEL ARCHYDIACONI VVORMACENSI
+                           CONCILIO REPERTVM. Vniuscuiusque episcopi minister cum parrochiam - III
+                           mod. auenę</hi> (ed. <hi rend="smallcaps">Krause, </hi>Die Münchener
+                        Handschriften 3851. 3853, S. 110), nach <hi rend="smallcaps">Koeniger,
+                        </hi>Die Sendgerichte in Deutschland 1, S. 142 „eine Verfügung aus dem 10.
+                           Jahrhundert“;<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="18">
+                     <p>
+                        <locus>158v</locus>
+                        <hi rend="italic">Scias constantium imp. magni constantini filium - recipere
+                           meruit</hi>, eine „Zusammenstellung von Excommunicationen von Kaisern und
+                        Königen aus der Zeit des Investiturstreites“ (ed. <hi rend="smallcaps"
+                           >Krause, </hi>Die Münchener Handschriften 3851. 3853, S. 125 f.; MGH
+                        Libelli de lite imperatorum et pontificum saeculis XI. et XII. conscripti,
+                        Bd. 3 [Hannover 1897] S. 601 f.).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+
+                  <msItem>
+                     <p>Auf neuer Lage folgt:</p>
+                  </msItem>
+
+                  <msItem n="19">
+                     <p>
+                        <locus>159r-160r</locus> Lex Baiuvariorum (Klasse H), Prolog (MGH LL nat.
+                        Germ. 5, 2, S. 198-203; Sigle Ag 2 [= H 3 in der Edition Merkels]; zur Hs.
+                        S. 188).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="20">
+                     <p>
+                        <locus>160r-181v</locus> Lex Alamannorum (Klasse B), Titelverzeichnis und
+                        Text (MGH LL nat. Germ. 5, 1, S. 54-156; Sigle B 13; zur Hs. S. 15).<note
+                           type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="21" corresp="BK.68">
+                     <p>
+                        <locus>181v-182r</locus>
+                        <title>Capitula ad legem Baiuvariorum addita</title> (a. 803?):<hi
+                           rend="italic"> Capitula quę domnus Karolus serenissimus imperator addere
+                           iussit ut bannum ipsius quislibet irrumperet componere debeat. Ut
+                           ecclesice uiduę orfani vel minus potentes - si dignus fuerit
+                           deducatur</hi> (MGH Capit. 1, Nr. 68, S. 157 Z. 31 - S. 158 Z. 13).<note
+                           type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="22" corresp="BK.134">
+                     <p>
+                        <locus>182r-v</locus>
+                        <title>Capitula legi addita</title> (a. 816), cc. 1 und 2: <hi rend="italic"
+                           >Si quis cum altero de qualibet causa - pater ei suus dereliquerit
+                        </hi>(MGH Capit. 1, Nr. 134, S. 268 Z. 3-27).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem>
+                     <p>Mit neuer Lage beginnt:</p>
+                  </msItem>
+                  <msItem n="23" corresp="Ansegis">
+                     <p>
+                        <locus>183r-245r</locus>
+                        <title>Ansegisi abbatis capitularium collectio</title> (Klasse A),
+                        Praefatio, Bücher 1-4 (MGH Capit. 1, S. 394-446); Blattverlust nach fol.
+                        214. Einschub am Ende von Buch 1, in Capitulatio wie Textkorpus als Kapitel
+                           <hi rend="italic">CLXIII </hi>gezählt:<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="24">
+                     <p>
+                        <locus>-- 205v</locus> Siricius, JK 255, c. 4 (MGH Capit. 1, S. 413 Z.
+                        37-40, Anm. d) (in regestenhafter Verkürzung schon Admonitio generalis, c.
+                        51 [= Ansegis 1, 51]). Außerdem ist im Textkorpus (nicht in der Capitulatio)
+                        nach 4, 26 Appendix Ansegisi 2, 3 (ebd. S. 447f.) inseriert. Ansegis 4, 73
+                        und 74 bestehen jeweils nur aus Incipit und Rückverweis auf die (nahezu)
+                        identischen Kapitel 4, 24 und 23. Die <hi rend="italic"
+                        >require</hi>-Vermerke nach Ansegis 1, 78 und 101 (<hi rend="italic">R.</hi>
+                        in Capitulatio und Textkorpus), nach Ansegis 2, 15 und 3, 41 (<hi
+                           rend="italic">Hic deest require post</hi> in den Capitulationes) sowie
+                        nach Ansegis 4, 71 und 74 (Capitulationes: Rubriken auf Rasur [<hi
+                           rend="italic">De fratribus qui paterne seu materne</hi> und <hi
+                           rend="italic">De hominibus qui alienam potestatem inuadunt</hi>] mit
+                        Kapitelzahlen <hi rend="italic">LXXII </hi>und <hi rend="italic">LXXVI</hi>;
+                        Textkorpus: nach 4, 71 <hi rend="italic">Require post duo fol. </hi>mit
+                        Rubrik <hi rend="italic">DE FRATRIBUS CAP.</hi>, nach 4, 74 <hi
+                           rend="italic">R. prope post duo fol.</hi>, mit Kapitelzahlen) beziehen
+                        sich auf die bis fol. 247v folgenden Kapitularienexzerpte, die einer
+                        Ansegis-Vorlage wie Codd. Berlin Lat. qu. 931 und München Lat. 6360
+                        entnommen sind.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="25" corresp="BK.157">
+                     <p>
+                        <locus>245v</locus>
+                        <hi rend="italic">DE PRIMO LIBRO. CAPL. LXXVIIII-LXXX, CV-CVII - </hi>
+                        <title>Capitulare Olonnense</title> (a. 822/823), cc. 1-5, mit Rubriken: <hi
+                           rend="italic">De monasteria et baptismales ecclesias</hi> (am Rand). <hi
+                           rend="italic">Si quis episcopus aut propinquitatis affectu - episcopali
+                           subiaceat iudicio</hi> (MGH Capit. 1, Nr. 157, S. 316 Z. 29 - S. 317 Z.
+                           14).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="26" corresp="BK.165">
+                     <p>
+                        <locus>246r-v</locus>
+                        <hi rend="italic">DE SECUNDO LIBELLO. CAP. XVI-XVIII - </hi>
+                        <title>Capitulare Olonnense mundanum</title> (a. 825), cc. 1-3 (c. 3 mit
+                        Rubrik): <hi rend="italic">Statuimus ut liberi homines qui tantum
+                           proprietatis habent - non minoretur utilitas</hi> (MGH Capit. 1, Nr. 165,
+                        S. 329 Z. 33 - S. 330 Z. 13).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="27" corresp="BK.167">
+                     <p>
+                        <locus>246v</locus>
+                        <hi rend="italic">DE TERTIO LIBELLO. XLII - </hi>
+                        <title>Capitula Francica</title>, c. 1: <hi rend="italic">Ut nullus testis
+                           supra uestituram aui et patris nostri suscipiatur</hi> (MGH Capit. 1, Nr.
+                        167, S. 333 Z. 10).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="28" corresp="BK.201">
+                     <p>
+                        <locus>246v-247r</locus>
+                        <hi rend="italic">ITEM DE EADEM. XLIII - </hi>
+                        <title>Hlotharii capitulare Papiense</title> (a. 832), c. 11: <hi
+                           rend="italic">Decernimus ut quisquis aliter testes - contendere
+                           recipiatur</hi> (MGH Capit. 2, Nr. 201, S. 61 Z. 38 - S. 62 Z. 8).<note
+                           type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="29" corresp="BK.165">
+                     <p>
+                        <locus>247r-v</locus>
+                        <hi rend="italic">IN QUARTO LIBELLO. LXXIII, LXXVI - </hi>
+                        <title>Capitulare Olonnense mundanum</title> (a. 825), cc. 4 und 5, jeweils
+                        mit Rubrik: <hi rend="italic">DE FRATRIBUS. Precipimus de his fratribus -
+                           bannum nostrum persoluat</hi> (MGH Capit. 1, Nr. 165, S. 330 Z.
+                           14-29).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="30" corresp="Ansegis">
+                     <p>
+                        <locus>247v</locus>
+                        <hi rend="italic">IN CAPITULARIBUS KAROLI DE MALLO PUBLICO CAPITULO
+                           LVIIII</hi> - <title>Ansegisi abbatis capitularium collectio</title> 3,
+                        57: <hi rend="italic">Vt in locis ubi mallos publicos - obseruandum esse
+                           possit</hi> (MGH Capit. 1, S. 431).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="31">
+                     <p>
+                        <locus>248r-v</locus> Capitulatio zur folgenden Kapitulariensammlung (33
+                        gezählte Rubriken): <hi rend="italic">INCIPIUNT CAPITULA QUE LUODOUUICUS
+                           cesar et hlotharius inperator filius eius cum consensu eorum fidelium
+                           dederunt CAP. I. De liberis hominibus qui fidelitatem nondum domno impr.
+                           promiserunt - XXXIII. Ut ministri qui tributa maiora accipiunt quam
+                           constituta sint perdant ministeria.</hi> Die Rubriken sind den Kapiteln
+                        auch im Text vorangestellt.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="32" corresp="BK.188">
+                     <p>
+                        <locus>248v</locus>
+                        <hi rend="italic">CAP. I</hi> - <title>Capitulare missorum</title> (a. 829),
+                        c. 4, mit Rubrik: <hi rend="italic">DE LIBERIS HOMINIBUS QUI IMPERATORE
+                           NONDUM FIDELITATEM PROMISERUNT. Volumus ut missi nostri per totam
+                           legationem - per cetera capitula peragere</hi> (MGH Capit. 2, Nr. 188, S.
+                        10 Z. 10-13).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="33" corresp="BK.191">
+                     <p>
+                        <locus>248v-250r</locus>
+                        <hi rend="italic">II-VIIII</hi> - <title>Capitulare Wormatiense</title> (a.
+                        829), mit Rubriken, aber ohne c. 8: <hi rend="italic">De his qui sine
+                           consensu episcopi presbiteros in aecclesiis constituunt uel inde eitiunt.
+                           De his qui sine consensu episcopi - ad palatium uenire compellatur</hi>
+                        (MGH Capit. 2, Nr. 191, S. 12 Z. 17 - S. 13 Z. 26, S. 13 Z. 30 - S. 14 Z.
+                        13); c. 5 ohne die beiden Ansegis-Zitate, c. 6 direkt anschließend und ohne
+                        eigene Kapitelzählung.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="34">
+                     <p>
+                        <locus>250r-251r</locus>
+                        <hi rend="italic">X</hi> - Benedicti Levitae capitularium collectio 1, 279
+                        (MGH LL 2, 2, S. 61).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="35" corresp="BK.193">
+                     <p>
+                        <locus>251r-252r</locus>
+                        <hi rend="italic">XI-XVII</hi> - <title>Capitulare pro lege habendum
+                           Wormatiense</title> (a. 829), cc. 1-6, 8 (cc. 1, 5 und 8 gekürzt), mit
+                        Rubriken: <hi rend="italic">De homicidiis in aecclesiis uel in atriis
+                           commissis. De homicidiis in aecclesiis - Si quis aliqua necessitate et
+                           rel.</hi> (MGH Capit. 2, Nr. 193, S. 18 Z. 2 - S. 19 Z. 35, S. 20 Z. 4
+                           f.).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="36" corresp="BK.188">
+                     <p>
+                        <locus>252r</locus>
+                        <hi rend="italic">XVIII-XVIIII - </hi>
+                        <title>Capitulare missorum</title> (a. 829), cc. 1 und 2, mit Rubriken: <hi
+                           rend="italic">De rebus ecclesiasticis ut contineantur. Volumus ut omnes
+                           res ecclesiastice - uel contineantur uel reddantur</hi> (MGH Capit. 2,
+                        Nr. 188, S. 9 Z. 36 - S. 10 Z. 4).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="37" corresp="BK.192">
+                     <p>
+                        <locus>252r-254r</locus>
+                        <hi rend="italic">XX-XXXI - </hi>
+                        <title>Capitulare missorum Wormatiense</title> (a. 829), mit Rubriken, aber
+                        ohne c. 12 (cc. 1 und 8 jeweils ohne Ansegis-Zitat): <hi rend="italic">De
+                           beneficiis dest&lt;r&gt;uctis. De beneficiis destructis hoc obseruetur -
+                           et ministerium amittat</hi> (MGH Capit. 2, Nr. 192, S. 14 Z. 35 - S. 16
+                        Z. 23, S. 16 Z. 26 - S. 17 Z. 9); die beiden Schlußkapitel cc. 14 und 15
+                        sind nicht numeriert.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="38">
+                     <p>
+                        <locus>254r</locus> Capitulatio zum folgenden Kapitular (19 gezählte
+                        Rubriken; <hi rend="italic">XIII</hi> mit Lemma hinter <hi rend="italic"
+                           >XVIIII</hi> nachgetragen [Verweiszeichen: <hi rend="italic">R</hi>.]):
+                           <hi rend="italic">CAP. I. De his qui in tertio genuclo coniunguntur -
+                           XVIIII. Qui uxorem dimiserit uelare.</hi> Wiederum sind die Rubriken den
+                        Kapiteln auch im Text vorangestellt.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="39" corresp="BK.16">
+                     <p>
+                        <locus>254v-256r</locus>
+                        <hi rend="italic">CAP. I-XVIIII - </hi>
+                        <title>Decretum Vermeriense</title> (a. 756), mit Rubriken, aber ohne cc.
+                        14-16: <hi rend="italic">De tertia coniunc&lt;t&gt;ione. In tertio genuclo
+                           separentur - aliam non accipiat</hi> (MGH Capit. 1, Nr. 16, S. 40 Z. 8 -
+                        S. 41 Z. 18, S. 41 Z. 24-32); c. 1 in zwei Kapitel geteilt.<note
+                           type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="40">
+                     <p>
+                        <locus>256r-257r</locus> Capitulatio zur folgenden Kapitulariensammlung (46
+                        gezählte Rubriken): <hi rend="italic">INCIPIUNT CAPITULA. I. De
+                           coniunctionibus si in quarta uel tertia progenie inuenti fuerint - XLVI.
+                           De inscriptione temporum</hi>; im Textkorpus keine Rubriken.<note
+                           type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="41" corresp="BK.15">
+                     <p>
+                        <locus>257v-259r</locus>
+                        <hi rend="italic">CAP. I-XVIII - </hi>
+                        <title>Decretum Compendiense</title> (a. 757): <hi rend="italic">INCIPIT
+                           DECRETUM QUOD FACTUM FUIT AD CONPENDUM PALATII PUBLICUM. Si in quarta
+                           progenie reperti fuerint - accipiant coniugium</hi> (MGH Capit. 1, Nr.
+                        15, S. 37 Z. 38 - S. 39 Z. 18); cc. 1-3 als <hi rend="italic">I
+                        </hi>gezählt, cc. 17 und 18 als <hi rend="italic">XV.</hi>
+                        <note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="42" corresp="BK.13">
+                     <p>
+                        <locus>259r-v</locus>
+                        <hi rend="italic">XVIIII - </hi>
+                        <title>Pippini regis capitulare</title> (a. 751/755), cc. 1-3: <hi
+                           rend="italic">Si homo incestum commiserit de matre sua - ut ceteri
+                           emendentur</hi> (MGH Capit. 1, Nr. 13, S. 31 Z. 18 - S. 32 Z. 4).<note
+                           type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="43">
+                     <p>
+                        <locus>259v</locus>
+                        <hi rend="italic">XX-XXII - </hi>Capitula I Bischof Ghärbalds von Lüttich,
+                        cc. 7, 8, 4 und (17) (MGH Capitula episcoporum 1, S. 16f., 20; zur Hs. S.
+                           13).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="44" corresp="BK.55">
+                     <p>
+                        <locus>259v-260r</locus>
+                        <hi rend="italic">XXIII - </hi>
+                        <title>Capitula post a. 805 addita</title> (a. 806/813), c. 1: <hi
+                           rend="italic">De clericis et laicis qui chrisma </hi>(<hi rend="italic"
+                           >h</hi> über der Zeile ergänzt) - <hi rend="italic">manum perdant</hi>
+                        (MGH Capit. 1, Nr. 55, S. 142 Z. 17-20).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="45" corresp="BK.56">
+                     <p>
+                        <locus>260r</locus>
+                        <hi rend="italic">XXIIII</hi> - <title>Capitula Karoli Magni</title> (a.
+                        803/813), c. 3: <hi rend="italic">Si quis homo liber peccato inminente -
+                           hereditatem perdat </hi>(MGH Capit. 1, Nr. 56, S. 143 Z. 17-19).<note
+                           type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="46" corresp="BK.42">
+                     <p>
+                        <locus>260r-v</locus>
+                        <hi rend="italic">XXV-XXVII - </hi>
+                        <title>Capitula ecclesiastica ad Salz data</title> (a. 803/804), cc. 2, 3, 7
+                        und 8, mit Inskription: <hi rend="italic">Quarto anno ad sal. De decimis ubi
+                           antiquitus fuerunt ecclesię baptismales - elemosinam datum fuerit</hi>
+                        (MGH Capit. 1, Nr. 42, S. 119 Z. 7, 17-27, S. 119 Z. 40 - S. 120 Z. 3); cc.
+                        3 und 7 mit derselben Kapitelzahl <hi rend="italic">XXVI.</hi>
+                        <note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="47" corresp="BK.52">
+                     <p>
+                        <locus>260v-261r</locus>
+                        <hi rend="italic">CAP. XXVIII-XXXI</hi> - <title>Capitula cum primis
+                           constituta</title> (a. 808), cc. 1, 2 und 5 (c. 5 mit der Rubrik der
+                        Capitulatio): <hi rend="italic">De marcha ad praeuidendum unusquisque
+                           paratus sit - sol. XX pertineant</hi> (MGH Capit. 1, Nr. 52, S. 139 Z.
+                        25-33, S. 140 Z. 1-6); die Hs. zählt - vielleicht um die seit der
+                        Doppelzählung von <hi rend="italic">XXVI</hi> bestehende Abweichung von der
+                        Capitulatio auszugleichen - c. 2 von Boretius bis <hi rend="italic">in fisco
+                           non cadant</hi> als <hi rend="italic">XXVIIII</hi> und läßt dann den Rest
+                        ab <hi rend="italic">Si quis alterius seruum</hi> als <hi rend="italic"
+                           >XXX</hi> folgen; in der Capitulatio (fol. 257r) steht neben dem Lemma
+                        von c. 1: <hi rend="italic">ANNO VIII.</hi>
+                        <note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="48" corresp="BK.66">
+                     <p>
+                        <locus>261r</locus>
+                        <hi rend="italic">XXXII</hi> - <title>Capitula de missorum officiis</title>
+                        (a. 810), c. 3: <hi rend="italic">Ut missi nostri quando iusticiam
+                           pauperibus facere iusserint - per iusticiam esse debuit</hi> (MGH Capit.
+                        1, Nr. 66, S. 155 Z. 17-20).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="49" corresp="BK.20a">
+                     <p>
+                        <locus>261r</locus>
+                        <hi rend="italic">CAP. XXXIII-XXXIIII - </hi>
+                        <title>Capitulare Haristallense</title> (a. 779), cc. 11 und 23 in der Forma
+                        communis, mit Inskription: <hi rend="italic">Anno XI. De uindicta et iudicio
+                           in latronibus - emendauerint moriantur</hi> (MGH Capit. 1, Nr. 20, S. 49
+                        Z. 25-35, S. 51 Z. 24-26).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="50" corresp="BK.78">
+                     <p>
+                        <locus>261r-v</locus>
+                        <hi rend="italic">XXXV-XXXVI - </hi>
+                        <title>Capitula e canonibus excerpta</title> (a. 813), cc. 3 und 15: <hi
+                           rend="italic">Ut laici omnino non audeant munera exigere - de operibus
+                           cauendis ammoneantur </hi>(MGH Capit. 1, Nr. 78, S. 173 Z. 33 f., S. 174
+                        Z. 18 f.); in der Capitulatio neben dem Lemma von c. 3: <hi rend="italic"
+                           >ANNO XIII.</hi>
+                        <note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="51" corresp="BK.191">
+                     <p>
+                        <locus>261v</locus>
+                        <hi rend="italic">XXXVII - </hi>
+                        <title>Capitulare Wormatiense</title> (a. 829), c. 8: <hi rend="italic">Ut
+                           de rebus ecclesiarum quę ab eis - contineri solent</hi> (MGH Capit. 2,
+                        Nr. 191, S. 13 Z. 27-29).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="52" corresp="BK.131">
+                     <p>
+                        <locus>261v-262r</locus>
+                        <hi rend="italic">XXXVIII-XLI - </hi>
+                        <title>Capitula de Iudaeis</title> (Spurium?), Inskription, cc. 1-4, nur
+                        hier und in der abhängigen Heiligenkreuzer Hs. überliefert: <hi
+                           rend="italic">De capitulis domni Karoli imperatoris et Hludouuici. Nemo
+                           iudeus praesumat de ecclesia dei - malum non merui</hi> (MGH Capit. 1,
+                        Nr. 131, S. 258 Z. 17, S. 258 Z. 27 - S. 259 Z. 4).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="53" corresp="Ansegis">
+                     <p>
+                        <locus>262r-v</locus>
+                        <hi rend="italic">XLII-XLIIII - </hi>
+                        <title>Ansegisi abbatis capitularium collectio</title>, Appendix 1, cc. 10
+                        und 34; Appendix 2, c. 35 (MGH Capit. 1, S. 446 Z. 38-40, S. 447 Z. 27-31,
+                        S. 449 Z. 15-21).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="54" corresp="BK.192 BK.195">
+                     <p>
+                        <locus>262v</locus>
+                        <hi rend="italic">XLV - </hi>
+                        <title>Capitulare missorum Wormatiense</title> (a. 829), c. 12, mit
+                        Inskription: <hi rend="italic">Anno XVI regnante Hludouuicco. Ut examen aquę
+                           frigidę - ne ulterius fiat</hi> (MGH Capit. 2, Nr. 192, S. 16 Z. 24 f.);
+                        Inskription <hi rend="italic">ANNO VIX</hi> (!) <hi rend="italic">Regnante
+                           hludouuico</hi> auch über dem entsprechenden Lemma der Capitulatio.<lb/>
+                        <hi rend="italic">XLVI - </hi>
+                        <title>Capitula de praescriptione temporis</title>, c. 1 (verkürzt), mit
+                        Rubrik: <hi rend="italic">De inscriptione temporum. Licet iam pridem a nobis
+                           fuerat ordinatum - a quocumque etiam peruasa</hi> (MGH Capit. 2, Nr. 195,
+                        S. 25 Z. 17-25).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="55">
+                     <p>
+                        <locus>263r-v</locus> (Dieses und das folgende Stück von anderer Hand
+                        nachgetragen; beide Texte sind wie der dritte Zusatz den übrigen Codd. des
+                        Gesamtwerkes unbekannt)<lb/> Exzerpte aus dem gefälschten Briefwechsel
+                        Gregors I. mit Felix von Sizilien (ed. Hinschius, Decretales
+                        Pseudo-Isidorianae, S. 747 ff., besonders S. 751).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="56" corresp="BK.252">
+                     <p>
+                        <locus>263v</locus>
+                        <title>Konzil von Tribur</title> (a. 895), c. 14 in der Versio vulgata (MGH
+                        Capit. 2, Nr. 252, S. 221). (Von wiederum anderer, etwas jüngerer Hand
+                        nachgetragen) <hi rend="italic">Si quis hominem oculte occiderit -
+                           examinandus erit</hi> (ed. G. Phillips, Die grosse Synode von Tribur, in:
+                        SB Wien 49 [1865] S. 777 f.; zur Hs. - soweit von Bedeutung für das
+                        Triburiense und sein Umfeld - ebd. S. 741 f. [im Druck fälschlich: 641
+                           f.]).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="57">
+                     <p>Auf neuer Lage folgen:</p>
+                     <p><locus>264r-268r</locus> Zwei Capitulationes zu den nachfolgenden
+                        Kapitularien- und Konzilssammlungen (92 bzw. 70 gezählte Rubriken;
+                        tatsächlich sind es wegen Unregelmäßigkeiten bei der Numerierung jedoch 96
+                        bzw. 72 Rubriken): <hi rend="italic">DE CAPITVLARE CAROLI QVOD IN DIVERSIS
+                           LOCIS EST PERPETRATVM. De eo qui infra regnum sine iussione dominica vi
+                           praedauerit - XCII. De feminis quę habent potestatem emere</hi>, und: <hi
+                           rend="italic">CAPITULARE QUEM</hi> (<hi rend="italic">QUEM</hi> getilgt,
+                        darüber <hi rend="italic">quod</hi>) <hi rend="italic">CONSTITUIT IN PAPIA.
+                           CAP. I. De monachis qui monasteria dimittunt - LXX. Vt populis fidelibus
+                           terribiliter denuntietur vt diem dominicum uenerabiliter colant</hi> (<hi
+                           rend="italic">CAP. II</hi> und <hi rend="italic">III</hi> mit Lemmata am
+                        oberen Rand nachgetragen [Verweiszeichen: Punkt und Kreis]); im Textkorpus
+                        beider Sammlungen keine Rubriken.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="58" corresp="BK.266">
+                     <p>
+                        <locus>268r-v</locus>
+                        <hi rend="italic">I-II</hi> - <title>Capitulare Carisiacense</title> (a.
+                        857): Capitula domni Karoli et domni Hludowici imperatorum, cc. (10) und
+                        (11): <hi rend="italic">Si quis in exercitu infra regnum - firmiter
+                           denotande</hi> (MGH Capit. 2, Nr. 266, S. 290 Z. 46 - S. 291 Z. 13; MGH
+                        Conc. 3, S. 396 Z. 13-33).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="59" corresp="BK.242">
+                     <p>
+                        <locus>268v-269v</locus>
+                        <hi rend="italic">III-VII</hi> - <title>Hludowici, Karoli et Hlotharii II
+                           conventus apud Confluentes</title> (a. 860), Capitula ab omnibus
+                        conservanda, cc. 4-7 und 10 (meist gekürzt) mit der Teilnehmerliste: <hi
+                           rend="italic">De vagantibus</hi> (am Rand nachgetragen). <hi
+                           rend="italic">Et quia per vagos homines - Item Ruodolfus Sigegardus
+                        </hi>(MGH Capit. 2, Nr. 242, S. 155 Z. 25 - S. 156 Z. 11, S. 156 Z. 19-28,
+                        S. 154 Z. 7-19).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="60" corresp="BK.293">
+                     <p>
+                        <locus>269v-280v</locus>
+                        <hi rend="italic">VIII-XLVIII</hi> - <title>Konzil von Meaux-Paris</title>
+                        (a. 845-846), cc. 3, 4, 8, 10, 13-19, 21-24, 26, 27, 29, 35-38, 41, 45, 56,
+                        59-78 und 82 (MGH Capit. 2, Nr. 293, S. 398 ff.; MGH Conc. 3, S. 87 ff., zur
+                        Hs. S. 66); fol. 280r cc. 76 (Teil), 77 und 78 (Anfang) durchgestrichen, da
+                           doppelt.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="61" corresp="BK.273">
+                     <p>
+                        <locus>280v-282r</locus>
+                        <hi rend="italic">XLVIIII-LIII - </hi>
+                        <title>Edictum Pistense</title> (a. 864), Teil B, Einleitung (ohne Beginn),
+                        cc. 5, 22 (bis <hi rend="italic">reuuad. et cetera</hi>), 25 (ab <hi
+                           rend="italic">Vt quicumque post proximas</hi>), 32 und 34 (ab <hi
+                           rend="italic">In lege etiam</hi>): <hi rend="italic">Anno ab incarnatione
+                           domini DCCCLXIIII regni ipsius Karoli XXV - a regia auctoritate
+                           precepimus</hi> (MGH Capit. 2, Nr. 273, S. 312 Z. 3-7, S. 313 Z. 16-23,
+                        S. 319 Z. 2 - S. 320 Z. 4, S. 321 Z. 14-19, S. 324 Z. 19-29, S. 326 Z.
+                        14-28). Die Einleitung <hi rend="italic">ANNO INCARNATIONIS DOMINI
+                           DCCCLXIIII - obseruanda mandauimus</hi> findet sich auch vor den
+                        entsprechenden Rubriken der Capitulatio (fol. 265r).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="62" corresp="BK.287">
+                     <p>
+                        <locus>282r-284v </locus>
+                        <hi rend="italic">LII-LVII</hi> - <title>Karolomanni capitulare
+                           Vernense</title> (a. 884) Inskription (aufgrund der Einleitung
+                        formuliert), cc. 2, 3, 5, 6, 8-14: <hi rend="italic">Karlomannus gratia dei
+                           rex ad palacium uernis. Anno dominice incarnationis DCCCLXXXIIII. Anno
+                           autem regni sui V indictione II mense martio has capitulas constituit.
+                           Decernimus igitur ut omnes in palacio nostro - et rationabiliter
+                           corrigantur</hi> (MGH Capit. 2, Nr. 287, S. 371 Z. 18-22, S. 372 Z.
+                        30-42, S. 373 Z. 12-33, S. 374 Z. 6 - S. 375 Z. 20); cc. 5, 6, 8-10 unter
+                           <hi rend="italic">LIIII</hi>, cc. 11 und 12 unter <hi rend="italic"
+                           >LV</hi> zusammengefaßt.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="63" corresp="Mordek.27">
+                     <p>
+                        <locus>284v-285v</locus>
+                        <hi rend="italic">LVIII</hi> - Benedicti Levitae capitularium collectio 1,
+                        36-37 und 186 (MGH LL 2, 2, S. 48, 55; Kapitel 1, 186 auch unten Anhang I,
+                        Nr. 27, 3: <title>Capitula a Benedicto Levita singillatim tradita</title>,
+                        c. 3).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="64" corresp="BK.258">
+                     <p>
+                        <locus>285v-290r</locus>
+                        <hi rend="italic">LVIIII - </hi>
+                        <title>Konzil von Soissons</title> (a. 853), Verhandlungsprotokoll bis <hi
+                           rend="italic">debeat postulari</hi> (MGH Conc. 3, S. 264 - S. 272 Z.
+                           3).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="65" corresp="BK.94 BK.40">
+                     <p>
+                        <locus>290r</locus>
+                        <title>Pippini Italiae regis capitulare Papiense</title> (a. 787), c. 12,
+                        mit Inskription: <hi rend="italic">De capitulario quod constitit in papio
+                           pipinus. Placuit nobis ut nullus comes - ad iudicandum </hi>(<hi
+                           rend="italic">-di-</hi> über der Zeile nachgetragen) (MGH Capit. 1, Nr.
+                        94, S. 198 Z. 12 f., S. 199 Z. 42 - S. 200 Z. 3).<lb/>
+                        <title>Capitulare missorum</title> (a. 803), cc. 18 und 19: <hi
+                           rend="italic">De canibus qui in dextero armo - in ipsis capitulis
+                           faciant</hi> (MGH Capit. 1, Nr. 40, S. 116 Z. 12-16).<note
+                           type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="66" corresp="BK.20a">
+                     <p>
+                        <locus>290r-v</locus>
+                        <hi rend="italic">LX-LXII, LX[X]III-LX[X]VII, LXVIII-LXX</hi> (korr. aus <hi
+                           rend="italic">LXXVIII-LXXX</hi>) - <title>Capitulare
+                           Haristallense</title> (a. 779) in der Forma communis, cc. 1-4, 8-10 (bis
+                           <hi rend="italic">manum perdat</hi>), 17 und 21: <hi rend="italic">De
+                           metropolitanis. Vt suffraganei episcopi secundum canones - quousque
+                           iustitiam faciant</hi> (MGH Capit. 1, Nr. 20, S. 47 Z. 24-39, S. 48 Z. 15
+                        - S. 49 Z. 4, S. 51 Z. 4-6 und 16-19); cc. 9 und 17 zweigeteilt. In der
+                        Capitulatio sind die entsprechenden Lemmata <hi rend="italic">ANNO XI DOMNI
+                           CAROLI CAPITULA</hi> überschrieben (fol. 265v).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="67" corresp="BK.22">
+                     <p>
+                        <locus>290v</locus> (Auf Rasur) Verkürzte Datierungszeile der
+                           <title>Admonitio generalis</title> (a. 789): <hi rend="italic">Anno
+                           incar. DCCLXXXVIII</hi> (korr. zu <hi rend="italic">DCCCLXXXVIII</hi>)
+                           <hi rend="italic">X k. aprl. in aq. palat.</hi> (MGH Capit. 1, S. 62 Z.
+                        32-34). In der Capitulatio fol. 266r steht nach der gleichfalls verbesserten
+                        Jahreszahl <hi rend="italic">X kl. aprl. actum in aquis palatii.</hi>
+                        <note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="68" corresp="BK.23">
+                     <p>
+                        <locus>290v-291v</locus>
+                        <hi rend="italic">LXXI-LXXXVI</hi> - <title>Duplex capitulare
+                           missorum</title> (a. 789?), cc. 2, 4, 6, 10, 15, 16, 18, 20, 23, 25,
+                        30-34 und 36: <hi rend="italic">De anachoretis melius est ut hortentur -
+                           alio populo </hi>(MGH Capit. 1, Nr. 23, S. 63 Z. 2f., 6, 8 f., 14 f.,
+                        22-24, 27-30, S. 64 Z. 1 f., 6 f., 9 f., 19-26, 29).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="69" corresp="BK.95">
+                     <p>
+                        <locus>291v-292r</locus>
+                        <hi rend="italic">LXXXVII-XCII</hi> - <title>Karoli Magni capitulare
+                           Italicum</title> (a. 787?), cc. 2-5 (von c. 4 nur Schlußsatz <hi
+                           rend="italic">de viri statu ...</hi>), 8 und 11: <hi rend="italic">De
+                           ęcclesiis baptismalibus ut nullatenus - habeat potestatem et donare</hi>
+                        (MGH Capit. 1, Nr. 95, S. 200 Z. 34 - S. 201 Z. 2, S. 201 Z. 5-12, 17-20,
+                           26f.).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="70" corresp="BK.94">
+                     <p>
+                        <locus>292r-v</locus>
+                        <hi rend="italic">Cap. I-IIII </hi>- <title>Pippini Italiae regis capitulare
+                           Papiense</title> (a. 787), Inskription, cc. 2, 4, 5, 14: <hi
+                           rend="italic">Capitulare quem constituit in papia. Instituimus ut sicut
+                           domnus rex Karolus - bannum nostrum conponat ad partem nostram </hi>(MGH
+                        Capit. 1, Nr. 94, S. 198 Z. 12 f., 29-31, S. 198 Z. 34 - S. 199 Z. 20, S.
+                        200 Z. 7-9). </p>
+                  </msItem>
+
+                  <msItem n="71" corresp="BK.98">
+                     <p>
+                        <locus>292v-293r</locus>
+                        <hi rend="italic">V-VIII</hi> - <title>Capitulare Italicum</title> (a. 801),
+                        cc. 3, 4, 7, 5: <hi rend="italic">Si quis adeo contumax aut superbus -
+                           emendatione conponatur</hi> (MGH Capit. 1, Nr. 98, S. 205 Z. 20 - 27, S.
+                        205 Z. 36 - S. 206 Z. 2, S. 205 Z. 28-32).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+
+
+                  <msItem n="72" corresp="BK.20b">
+                     <p>
+                        <locus>293r</locus>
+                        <hi rend="italic">VIIII - </hi>
+                        <title>Capitulare Haristallense</title> (a. 779), c. 6 in der Forma
+                        Langobardica: <hi rend="italic">Ut nulli liceat alterius clericum - habitare
+                           debet</hi> (MGH Capit. 1, Nr. 20, S. 48 Z. 8 f. mit Anm. f Z.
+                           41-44).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="73" corresp="BK.157">
+                     <p>
+                        <locus>293r-v</locus>
+                        <hi rend="italic">X-XII</hi> - <title>Capitulare Olonnense</title> (a.
+                        822/823), cc. 3, 4, 6:<hi rend="italic"> Si quis adulter cum adultera - cum
+                           iuramento ualeat inquiri</hi> (MGH Capit. 1, Nr. 157, S. 317 Z. 4-10,
+                        15-18); in der Capitulatio fol. 266v neben den Lemmata zu <hi rend="italic"
+                           >VIIII</hi> und <hi rend="italic">X: ANNO I DOMNI HLOTHARII IN
+                           OLLONIA.</hi>
+                        <note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="74" corresp="BK.163">
+                     <p>
+                        <locus>293v-294r</locus>
+                        <hi rend="italic">XIII-XVII - </hi>
+                        <title>Capitulare Olonnense ecclesiasticum primum</title> (a. 825), cc. 1,
+                        4, 5, 8, 10: <hi rend="italic">Placuit nobis ut si pro quibuslibet culpis -
+                           tenenda sunt reuocentur</hi> (MGH Capit. 1, Nr. 163, S. 326 Z. 21-27 mit
+                        Anm. h Z. 40-42, S. 326 Z. 36 - S. 327 Z. 3, S. 327 Z. 22-24, 27-31);
+                        abweichender Schluß von c. 1 auf Rasur, c. 5 am unteren Rand
+                           nachgetragen.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="75" corresp="BK.165">
+                     <p>
+                        <locus>294r-295v</locus>
+                        <hi rend="italic">XVIII-XXVIIII</hi> - <title>Capitulare Olonnense
+                           mundanum</title> (a. 825), c. 1 (zweite Hälfte) - c. 12: <hi
+                           rend="italic">De mediocribus quippe liberis qui non possunt per se hostem
+                           facere - sicut in capitulare dominico constitutum fuit</hi> (MGH Capit.
+                        1, Nr. 165, S. 329 Z. 37 - S. 331 Z. 17).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="76" corresp="BK.196">
+                     <p>
+                        <locus>295v-314v</locus>
+                        <hi rend="italic">XXX-LXX - </hi>
+                        <title>Episcoporum ad Hludowicum imperatorem relatio</title> (a. 829),
+                        Einleitung und cc. 1-45: <hi rend="italic">Rescriptum consultationum siue
+                           exhortationis episcoporum ad domnum hludouuicum</hi> (korr. aus <hi
+                           rend="italic">hluduuuicum</hi>) <hi rend="italic">inperatorem. Domino
+                           praestantissimo et pietatis gratia praedito - deuotissime exhibeant</hi>
+                        (MGH Capit. 2, Nr. 196, S. 27 Z. 24 - S. 41 Z. 35); mit Abweichungen bei der
+                           Kapiteleinteilung.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="77">
+                     <p>
+                        <locus>315r</locus> (Nachtrag 12. Jh.) Burchard von Worms, Dekret II, 184
+                        (Migne, PL 140, Sp. 656 A-C).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="78">
+                     <p>
+                        <locus>315v-317r</locus> Paulinus von Aquileia, Brief an Haistulf (MGH Epp.
+                        4, S. 520-522).<note type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="79">
+                     <p>
+                        <locus>317r-318v</locus> Brief Erzbischof Mansuetus’ von Mailand an Kaiser
+                        Konstantin IV. Pogonatus (a. 680), bis <hi rend="italic">patres capitula
+                           illa</hi> (Migne, PL 87, Sp. 1261 C - 1264 A); endet fragmentarisch.<note
+                           type="msDetail"/>
+                     </p>
+                  </msItem>
+                  <msItem n="80">
+                     <p>Das im folgenden vermutlich Verlorengegangene läßt sich aus dem Ende von
+                        Cod. <ref type="internal" subtype="mss" target="paris-bn-lat-3878">Paris
+                           Lat. 3878</ref> erschließen.<note type="msDetail"/>
+                     </p>
+                  </msItem>
+               </msContents>
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc material="parch">
+                        <support>Pergament</support>
+                        <extent>318 foll.<dimensions type="leaf" unit="mm" precision="medium">
+                              <height>230-235</height>
+                              <width>185-190</width>
+                           </dimensions>
+                           <dimensions type="written" unit="mm" precision="medium">
+                              <height>170-195</height>
+                              <width>115-125</width>
+                           </dimensions>
+                        </extent>
+                        <collation><p>Markierung der Hs. in fünf etwa gleich große Teile zu 7, 8, 8,
+                              9 und 8 Lagen: <hi rend="italic">I</hi> (1<hi rend="super">r</hi>
+                              unten), <hi rend="italic">II pars</hi> (57<hi rend="super">r</hi>
+                              unten), radiert: <hi rend="italic">III pars</hi> (121<hi rend="super"
+                                 >r</hi> unten), <hi rend="italic">IIII</hi> (183<hi rend="super"
+                                 >r</hi> unten), <hi rend="italic">V</hi> (256<hi rend="super"
+                                 >r</hi> unten). Die Einteilung nimmt wenig Rücksicht auf den
+                              Inhalt, ließe sich aber als Grundlage für eine auf mehrere Schreiber
+                              übertragene Abschrift denken und ist auch in dem jüngeren Cod. <ref
+                                 type="internal" subtype="mss" target="heiligenkreuz-sb-217"
+                                 >Heiligenkreuz 217</ref> nachweisbar. Der Monacensis bzw. seine in
+                              fünf Teilen verfertigte Kopie dürften also im endenden 10. Jh.
+                              demselben südostdeutschen Skriptorium angehört haben, in dem der
+                              Sancrucensis geschrieben wurde.</p> 40 Lagen: <formula>(IV-3)<hi
+                                 rend="super">5</hi> + 3 IV<hi rend="super">29</hi> + (IV+2+II)<hi
+                                 rend="super">43</hi> + (IV-1)<hi rend="super">50</hi> + (IV-2)<hi
+                                 rend="super">56</hi> + 10 IV<hi rend="super">136</hi> + 2 (IV-1)<hi
+                                 rend="super">150</hi> + 8 IV<hi rend="super">214</hi> + (IV-1)<hi
+                                 rend="super">221</hi> + 3 IV<hi rend="super">245</hi> + (I+IV)<hi
+                                 rend="super">255</hi> + 3 IV<hi rend="super">279</hi> + (IV-1)<hi
+                                 rend="super">286</hi> + 4 IV<hi rend="super">318</hi>.</formula>
+                           <catchwords>Kustoden am Lagenende, z.T. abgeschnitten: <hi rend="italic"
+                                 >A</hi> bis <hi rend="italic">Z</hi> (174<hi rend="super">v</hi>)
+                              und <hi rend="italic">&lt;A&gt;</hi> bis <hi rend="italic">S
+                                 </hi>(318<hi rend="super">v</hi>). Im Bereich der foll. 158<hi
+                                 rend="super">v</hi> und 166<hi rend="super">v</hi> abgeschnittenen
+                              Kustoden ging Krause von einst vier, nicht zwei Kustoden (V, W, X, Y)
+                              und dem entsprechenden Verlust zweier Lagen aus, doch kommen V (= U)
+                              und W (= doppeltes U) als eigenständige Buchstaben kaum in Betracht;
+                              ich halte daher die Annahme Krauses, zwei Lagen seien ausgefallen, für
+                              unzutreffend, zumal an dieser Stelle auch keinerlei Textverlust
+                              nachzuweisen ist.</catchwords>
+                        </collation>
+                     </supportDesc>
+                     <layoutDesc>
+                        <layout writtenLines="22 24">22-24</layout>
+                        <layout columns="1"/>
+                     </layoutDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <p>mehrere Hände</p>
+                  </handDesc>
+                  <scriptDesc>
+                     <scriptNote>karolingische Minuskel</scriptNote>
+                  </scriptDesc>
+                  <decoDesc>
+                     <p>Rubriken in Capitalis rustica mit unzialen Elementen, auch Minuskel, in Rot
+                        oder in schwarzer Texttinte mit roten, grünen und gelben Füllungen; einige
+                        größere Initialen mit Ranken- und Blattwerk (1<hi rend="super">r</hi>: <hi
+                           rend="italic">D</hi>; 11<hi rend="super">v</hi>: <hi rend="italic"
+                        >P</hi>; 70<hi rend="super">r</hi>: <hi rend="italic">R</hi>; 85<hi
+                           rend="super">v</hi>: <hi rend="italic">D</hi>, <hi rend="italic">V;</hi>
+                           86<hi rend="super">r</hi>: <hi rend="italic">C</hi> [in feinen roten
+                        Umrißzeichnungen] u. a.)</p>
+                  </decoDesc>
+                  <bindingDesc>
+                     <binding>
+                        <p/>
+                     </binding>
+                  </bindingDesc>
+               </physDesc>
+               <history>
+                  <origin>
+                     <p>
+                        <origDate notBefore="0951" notAfter="1000">10. Jh., 2. Hälfte</origDate>;
+                           <origPlace
+                           ref="http://d-nb.info/gnd/4078022-3 http://viaf.org/viaf/235489154"
+                           >Süddeutschland (<placeName
+                              ref="http://www.geonames.org/6557107/augsburg.html http://d-nb.info/gnd/4003614-5 http://viaf.org/viaf/153139306"
+                              >Augsburg</placeName>?)</origPlace>.</p>
+                  </origin>
+                  <provenance>
+                     <p>Wohl schon um die Mitte des 11. Jh. in der Dombibliothek Augsburg (vgl. zum
+                        Namen <hi rend="italic">Einhardus</hi> unten bei fol. 101<hi rend="super"
+                           >v</hi>), später - nach Kottje - im Augsburger Dominikanerkloster; alte
+                        vorläufige Signatur Schmellers in München: <idno>Aug. eccl. 153</idno>.</p>
+                  </provenance>
+                  <acquisition/>
+               </history>
+               <additional>
+                  <surrogates/>
+                  <listBibl>
+
+                     <listBibl type="cap">
+                        <bibl corresp="#Mordek_1995"> Mordek 1995, S. 287-305</bibl>
+                        <bibl corresp="#Schmitz_G_1996"> Schmitz G 1996, S. 102-104</bibl>
+                        <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
+                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
+                              subtype="Bl" target="muenchen-bsb-lat-3853" type="external"/></bibl>
+                     </listBibl>
+
+
+                     <listBibl type="lit">
+                        <bibl> Ph. W. Gercken, Reisen durch Schwaben, Baiern, angränzende Schweiz,
+                           Franken, und die Rheinische Provinzen etc. in den Jahren 1779-1782 ...,
+                           1: von Schwaben und Baiern (Stendal 1783) S. 243</bibl>
+                        <bibl>MGH LL 1 (1835), S. XXI</bibl>
+                        <bibl> F. Kunstmann, Die lateinischen Pönitentialbücher der Angelsachsen
+                           (Mainz 1844) S. 32, 40 ff.</bibl>
+                        <bibl> A. Ruland, Geschichtliche Nachricht über die ehemalige
+                           Domstiftsbibliothek zu Augsburg, in: Archiv für die Geschichte des
+                           Bisthums Augsburg 1 (1856) S. 60 f.</bibl>
+                        <bibl>MGH LL 3 (1863), S. 6, 195</bibl>
+                        <bibl corresp="#Schmitz_H_1883">Schmitz H 1883, S. 551, 719 f.</bibl>
+                        <bibl> O. Holder-Egger, Handschriften der Königlichen Bibliothek zu München,
+                           in: NA 9 (1884) S. 417 f.</bibl>
+                        <bibl corresp="#Krause_V_1894">Krause V 1894, S. 96-130, 135-139</bibl>
+                        <bibl corresp="#Boretius_1897">Boretius 1897, S. XVIII</bibl>
+                        <bibl corresp="#Schmitz_H_1898">Schmitz H 1898, S. 209 u. ö.</bibl>
+                        <bibl> F. Liebermann, Zu Bußbüchern der Lateinischen Kirche, in: ZRG Kan.
+                           Abt. 10 (1920) S. 292 f.</bibl>
+                        <bibl corresp="#Finsterwalder_1929"> Finsterwalder 1929, S. 171</bibl>
+                        <bibl corresp="#Fournier_1931-1932"> Fournier 1931-1932, 1, S. 254 f.,
+                           277-280 u. ö.</bibl>
+                        <bibl corresp="#de_Clercq_C_1936">de Clercq C 1936, S. 131 Anm. 2, S. 138,
+                           140 Anm. 1, S. 206, S. 259 Anm. 2, S. 265 Anm. 1</bibl>
+                        <bibl corresp="#Christ_1937">Christ 1937, S. 302 mit Anm. 1 und 2, S.
+                           315</bibl>
+                        <bibl corresp="#McNeill_1938"> McNeill 1938, S. 436, 438, 446</bibl>
+                        <bibl corresp="#de_Clercq_C_1958">de Clercq C 1958, S. 63 Anm. 17, S. 255 f.
+                           u. ö.</bibl>
+                        <bibl corresp="#Patetta_1967i">Patetta 1967i, S. 723</bibl>
+                        <bibl corresp="#Brommer_1974">Brommer 1974, S. 16, 58</bibl>
+                        <bibl corresp="#Geary_1977">Geary 1977, S. 170</bibl>
+                        <bibl corresp="#Hartmann_W_1977">Hartmann 1977, S. 14, 17 ff., 37 u.
+                           ö.</bibl>
+                        <bibl corresp="#Sauer_1978">Sauer 1978, S. 22, 26</bibl>
+                        <bibl corresp="#Bischoff_1980">Bischoff 1980, S. 207</bibl>
+                        <bibl corresp="#Brommer_1980">Brommer 1980, S. 214 Anm. 57, S. 216, 223,
+                           233</bibl>
+                        <bibl corresp="#Kottje_1980">Kottje 1980, S. 38 f., 111 ff. u. ö.</bibl>
+                        <bibl> A. J. Frantzen, The Penitentials Attributed to Bede, in: Speculum 58
+                           (1983) S. 581 ff.</bibl>
+                        <bibl corresp="#Brommer_1984">Brommer 1984, S. 13, 84</bibl>
+                        <bibl> J.-P. Bouiiot, Les pénitentiels attribués à Bède le Vénérable et à
+                           Egbert d’York, in: Revue d’histoire des textes 16 (1986) S. 165</bibl>
+                        <bibl corresp="#Mordek_1986a">Mordek 1986a, S. 41 Anm. 85 und 86</bibl>
+                        <bibl> H. Fuhrmann, Die Synode von Hohenaltheim (916) - quellenkundlich
+                           betrachtet, in: DA 43 (1987) S. 449-452</bibl>
+                        <bibl corresp="#Kottje 1987">Kottje 1987, S. 372, 375</bibl>
+                        <bibl> J. Müller, Untersuchungen zur Collectio Duodecim Partium (Ebelsbach
+                           1989) S. 109 ff., 177 ff. u. ö.</bibl>
+                        <bibl corresp="#Haggenmüller_1991">Haggenmüller 1991, S. 76-78 u.
+                           ö.</bibl>
+                        <bibl corresp="#Schmitz_G_1991">Schmitz G 1991, S. 91 f. u. ö.</bibl>
+                        <bibl corresp="#Hansen_1992">Hansen 1992</bibl>
+                        <bibl corresp="#Mordek_1992">Mordek 1992, S. 611 f. Anm. 17 und 20</bibl>
+                        <bibl corresp="#Körntgen_1993">Körntgen 1993, S. 238 ff.</bibl>
+                        <bibl corresp="#Sousa_Costa_1993">Sousa Costa 1993, S. 55 u. ö.</bibl>
+                        <bibl> K. Zechiel-Eckes, Neue Aspekte zur Geschichte Bischof Hermanns von
+                           Augsburg (1096-1133), in: Zs. für bayerische Landesgeschichte 57 (1994)
+                           S. 29 f., 36</bibl>
+                     </listBibl>
+
+                     <listBibl type="cat">
+                        <bibl corresp="#Halm_1894"> Halm 1894, S. 146 Nr. 881</bibl>
+                     </listBibl>
+
+                     <listBibl type="abb">
+                        <bibl> Gercken, Reisen durch Schwaben, Tab. 1, 2</bibl>
+                     </listBibl>
+                  </listBibl>
+               </additional>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>Transkriptionsvorlage: Die Transkription der foll. 248r-254r wurde begonnen auf Basis
+            des online verfügbaren Schwarz/Weiß-Digitalisates, während die Nachkollationen bereits
+            auf ein von der Münchener BSB angefertigten Farbdigitalisat zurückgreifen konnten, das
+            auch die Grundlage für die Fortführung der Transkription bildete.</p>
+         <projectDesc>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
+            </p>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
+            </p>
+         </projectDesc>
+         <editorialDecl>
+            <p xml:lang="ger">Die Transkription folgt den Richtlinien des Capitularia-Projektes:
+                  <ptr target="http://capitularia.uni-koeln.de/project/docu/"/>
+            </p>
+            <p xml:lang="eng">The transcription adheres to the guidelines of the Capitularia
+               project: <ptr target="http://capitularia.uni-koeln.de/project/docu/"/>
+            </p>
+         </editorialDecl>
+      </encodingDesc>
+      <revisionDesc>
+         <change who="DS" when="2015-02-18">Datei erstellt aus Mordek-XML</change>
+         <change when="2016-12-19" who="BM">Datei veröffentlicht (BK 134, 188, 191, 192, 193;
+            Benedictus Levita 1,279)</change>
+      </revisionDesc>
+   </teiHeader>
+   <facsimile>
+      <graphic url="http://daten.digitale-sammlungen.de/bsb00060190/image_1"/>
+   </facsimile>
+   <text>
+      <front>
+
+         <div type="content">
+            <list>
+               <item n="10">
+                  <ptr target="#muenchen-bsb-lat-3853-182r-1" type="internal"/>(Si quis cum altero
+                  de qualibet causa ...)</item>
+               <item n="11">
+                  <ptr target="#muenchen-bsb-lat-3853-182v-1" type="internal"/>(Si quis in aliena
+                  patria ubi ...)</item>
+
+               <item n="15">
+                  <ptr target="#muenchen-bsb-lat-3853-248r-1" type="internal"/>[Capitulatio:]
+                  INCIPIUNT CAPITULA QUE LUODOUUICUS cesar et hlotharius inperator ...
+                  dederunt</item>
+
+               <item n="20"><ptr target="#muenchen-bsb-lat-3853-248v-15" type="internal"/>DE LIBERIS
+                  HOMINIBUS QUI IMPERATORE NONDUM FIDELITATEM PROMISERUNT <list>
+                     <item n="20.1"><ptr target="#muenchen-bsb-lat-3853-248v-16" type="internal"
+                        />CAPITULUM I</item>
+                     <item n="20.2"><ptr target="#muenchen-bsb-lat-3853-248v-18" type="internal"/>II
+                        De his qui sine consensu episcopi presbiteros in aecclesiis constituunt ... </item>
+                     <item n="20.3"><ptr target="#muenchen-bsb-lat-3853-249r-2" type="internal"/>III
+                        De ecclesiis inter coheredes Diuisis</item>
+                     <item n="20.4"><ptr target="#muenchen-bsb-lat-3853-249r-4" type="internal"
+                        />IIII De ecclesiis destructis</item>
+                     <item n="20.5"><ptr target="#muenchen-bsb-lat-3853-249r-6" type="internal"/>V
+                        De manso ad ecclesiam dato</item>
+                     <item n="20.6"><ptr target="#muenchen-bsb-lat-3853-249r-8" type="internal"/>VI
+                        De his qui nonas et decimas dare neglexerunt</item>
+                     <item n="20.7"><ptr target="#muenchen-bsb-lat-3853-249v-2" type="internal"/>VII
+                        DE DECIMIS QUAS POPULUS DARE NON VULT</item>
+                     <item n="20.8"><ptr target="#muenchen-bsb-lat-3853-249v-4" type="internal"
+                        />VIII De his qui restaurationes ecclesiarum nolunt</item>
+                     <item n="20.9"><ptr target="#muenchen-bsb-lat-3853-250r-1" type="internal"
+                        />VIIII De his qui agros neglexerunt</item>
+                     <item n="20.10"><ptr target="#muenchen-bsb-lat-3853-250r-3" type="internal"/>X
+                        Ut intellegatur in quo facto inmunitas frangatur</item>
+                     <item n="20.11"><ptr target="#muenchen-bsb-lat-3853-251r-1" type="internal"/>XI
+                        De homicidiis in aecclesiis uel in atriis commissis</item>
+                     <item n="20.12"><ptr target="#muenchen-bsb-lat-3853-251r-3" type="internal"
+                        />XII De his qui propter cupiditatem rerum patrem aut matrem
+                        occiderit</item>
+                     <item n="20.13"><ptr target="#muenchen-bsb-lat-3853-251r-5" type="internal"
+                        />XIII Qui uxorem interfecerit uel relinquerit</item>
+                     <item n="20.14"><ptr target="#muenchen-bsb-lat-3853-251r-7" type="internal"
+                        />XIIII De his qui res alienas malo ingenio vendiderint</item>
+                     <item n="20.15"><ptr target="#muenchen-bsb-lat-3853-251v-1" type="internal"/>De
+                        uicariis et centenariis qui per cupiditatem placita tenent </item>
+                     <item n="20.16"><ptr target="#muenchen-bsb-lat-3853-251v-3" type="internal"/>De
+                        liberis hominibus qui proprium non habent</item>
+                     <item n="20.17"><ptr target="#muenchen-bsb-lat-3853-252r-1" type="internal"
+                        />XVII De faidis coercendis</item>
+                     <item n="20.18"><ptr target="#muenchen-bsb-lat-3853-252r-3" type="internal"
+                        />XVIIIDe rebus ecclesiasticis ut contineantur</item>
+                     <item n="20.19"><ptr target="#muenchen-bsb-lat-3853-252r-5" type="internal"
+                        />XVIIII Quales testes contra fiscum recipiantur</item>
+                     <item n="20.20"><ptr target="#muenchen-bsb-lat-3853-252r-7" type="internal"/>XX
+                        De beneficiis destuctis</item>
+                     <item n="20.21"><ptr target="#muenchen-bsb-lat-3853-252r-9" type="internal"/>De
+                        scabinis malis ut eitiantur </item>
+                     <item n="20.22"><ptr target="#muenchen-bsb-lat-3853-252v-1" type="internal"
+                        />XXII Ut ueratiores eligantur</item>
+                     <item n="20.23"><ptr target="#muenchen-bsb-lat-3853-252v-3" type="internal"
+                        />XXIII Si scabinus iniuste iudicat</item>
+                     <item n="20.24"><ptr target="#muenchen-bsb-lat-3853-252v-5" type="internal"
+                        />XXIIII De commutationibus ecclesiasticarum</item>
+                     <item n="20.25"><ptr target="#muenchen-bsb-lat-3853-252v-7" type="internal"
+                        />XXV</item>
+                     <item n="20.26"><ptr target="#muenchen-bsb-lat-3853-252v-9" type="internal"
+                        />XXVI DE DISCORDIIS</item>
+                     <item n="20.27"><ptr target="#muenchen-bsb-lat-3853-253r-1" type="internal"
+                        />XXVII Qui bonos denario nolunt</item>
+                     <item n="20.28"><ptr target="#muenchen-bsb-lat-3853-253r-3" type="internal"
+                        />XXVIII De homicidiis que a fiscalinis fiunt</item>
+                     <item n="20.29"><ptr target="#muenchen-bsb-lat-3853-253r-5" type="internal"
+                        />XXVIIII</item>
+                     <item n="20.30"><ptr target="#muenchen-bsb-lat-3853-253v-1" type="internal"
+                        />XXX</item>
+                     <item n="20.31"><ptr target="#muenchen-bsb-lat-3853-253v-3" type="internal"
+                        />XXXI De reuersione</item>
+                     <item n="20.32"><ptr target="#muenchen-bsb-lat-3853-253v-5" type="internal"/>Ut
+                        missi nostri notum faciant ebdomada</item>
+                     <item n="20.33"><ptr target="#muenchen-bsb-lat-3853-253v-7" type="internal"/>ut
+                        ministri qui tributa maiora accipiunt ...</item>
+                  </list>
+               </item>
+
+               <item n="30"><ptr target="#muenchen-bsb-lat-3853-256r-9" type="internal"
+                  />[Capitulatio:] INCIPIUNT CAPITULA</item>
+
+               <item n="40"><ptr target="#muenchen-bsb-lat-3853-257v-1"/>INCIPIT DECRETUM quod
+                  FACTUM FUIT AD CONPENDUM PALATII PUBLICUM <list>
+                     <item n="40.37"><ptr target="#muenchen-bsb-lat-3853-261v-1" type="internal"
+                        />XXXVII</item>
+                     <item n="40.45"><ptr target="#muenchen-bsb-lat-3853-262v-1" type="internal"
+                        />XLV Anno XVI Regnante Hludouuicco</item>
+                  </list>
+               </item>
+            </list>
+         </div>
+
+         <div type="mshist"/>
+         <div type="scribe">
+            <p>Die Handschrift wurde von mehreren Händen in karolingischer Minuskel geschrieben. Auf
+               den hier transkribierten Seiten sind mindestens zwei Schreiber zu unterscheiden: Hand
+               A auf fol. 182r-v und Hand B, die auf <locus>fol. 248r</locus> neu einsetzt.
+               Eventuell findet mit dem Seitenwechsel auf <locus>fol. 252v</locus> ein Wechsel zu
+               einer weiteren Hand (C) statt, die dann allerdings wohl nur wenige Zeilen geschrieben
+               hätte. </p>
+            <p>An der Hinzufügung von Kapitelnummern und zugehörigen Rubriken, evtl. auch von
+               Initialen, waren verschiedene, nicht sicher zu unterscheidende Hände beteiligt; siehe
+               dazu unten die Ausführungen zur Textgliederung.</p>
+            <p>Die Tintenfarbe ist braun, allerdings erscheinen auf dem Farbscan einzelne Passagen
+               auf <locus>fol. 250r-251r</locus> dunkler. Die Rubriken, Initialen und die
+               Kapitelzählung sind in roter Tinte gestaltet.</p>
+         </div>
+         <div type="letters">
+            <p>Einzelbuchstaben:</p>
+            <p>Hand A (fol. 182r-v): Der Schaft des doppelstöckigen a steht fast senkrecht. Die
+               Cauda des e caudata hat einen zweiten Ausläufer, der rechtwinklig am ersten ansetzt.
+               f und gerades s haben einen knotigen Ansatz. Bei g sind unterer und oberer Bogen
+               geschlossen und senkrecht übereinander angeordnet.</p>
+            <p>Hand B (ab fol. 248r): Die Cauda von e caudata ist blitzförmig gestaltet. Am Wortende
+               wird bei e oft der Balken nach rechts verlängert, bei r die Fahne wellenförmig nach
+               rechts ausgezogen.</p>
+            <p>Hand C (fol. 252v, Z. 1-10): Die Buchstaben sind insgesamt breiter und runder
+               ausgeführt als bei Hand B. Die Ausläufer bei Endungs-e oder -r fehlen. Das q hat eine
+               nach links unten ausschwingende Unterlänge sowie einen rechts oben angesetzten
+               Haken.</p>
+            <p>Ligaturen:</p>
+            <p>Es werden nur wenige Ligaturen verwendet, z.B. st- und et-Ligaturen. Bei Hand A
+               findet sich auch eine NT-Ligatur.</p>
+            <p>Besonderheiten: Rubriken in Capitalis rustica oder ebenfalls in karolingischer
+               Minuskel, dann in der Regel gegenüber dem restlichen Text etwas vergrößert. Bei als
+               Initiale ausgeführtem Q verwendet Hand B gelegentlich die unziale Form, z.B.
+                  <locus>fol. 249v Z. 19</locus>, <locus>fol. 251r Z. 9 und 19</locus>.</p>
+         </div>
+         <div type="abbreviations">
+            <p>Hand A verwendet wenige Kürzungen bis auf Nasalstrich am Wortende sowie weitere
+               Standardkürzungen wie -(b)us, -(t)ur, -(t)er etc.</p>
+            <p>Hand B verwendet statt des einfachen Nasalstrichs ein doppelt gewelltes
+               Kürzungszeichen, sonst aber, wie Hand A, generell nur wenige Kürzungen.</p>
+            <p>Hand C verwendet im Unterschied zu Hand B einen geraden Nasalstrich.</p>
+         </div>
+         <div type="punctuation">
+            <p>Hand A: Media distinctio und trigonus.</p>
+            <p>Hand B: Es finden sich media distinctio und punctus versus. Die media distinctio
+               scheint eher Sprechpausen zu markieren, der punctus versus dagegen Satzenden.
+               Bisweilen steht aber auch am Satzende eine media distinctio.</p>
+            <p>Hand C: Nur media distinctio.</p>
+         </div>
+         <div type="structure">
+            <p>Foll. 182r-v: Die beiden Kapitel von BK 134 beginnen, mit einer Leerzeile vom
+               vorhergehenden Text (BK 68) abgesetzt, jeweils mit einer roten Versalie. Weder eine
+               einleitende Rubrik noch eine Nummerierung deuten darauf hin, dass die beiden Kapitel
+               als Teile einer zusammengehörigen Kapitelliste verstanden wurden.</p>
+            <p>Foll. 248r-254r: Eine Auswahl aus den Kapitularien der Wormser Versammlung von 829
+               wird hier in einer 33 Kapitel umfassenden Liste zusammengestellt: BK 188 c. 4; BK 191
+               ohne c. 8; Benedictus Levita 1, 279; BK 193 cc. 1-6 und 8; BK 188 cc. 1-2 sowie BK
+               192 ohne c. 12. Der Liste vorangestellt ist eine Capitulatio mit 33 gezählten
+               Rubriken auf <locus>fol. 248r-v</locus>, die sich - bis auf wenige Ausnahmen - auch
+               in der Liste wiederfinden. Die Untergliederung des Textes in Abschnitte erfolgt auf
+               dem Wege einer mit der Capitulatio korrespondierenden Durchnummerierung mit rot
+               gestalteten römischen Ziffern in der Marginalie. Zusätzlich werden die Anfänge der
+               jeweiligen Absätze mit Initialen in roter Tinte hervorgehoben. Diese Initialen fügen
+               sich in einigen wenigen Fällen in den Satzspiegel ein, zumeist werden sie jedoch
+               etwas seitlich ausgerückt.</p>
+            <p>Die der Kapitelliste vorangestellte Capitulatio stammt offenbar vom selben Schreiber,
+               der den Großteil der Abschrift vorgenommen hat. Bei den Nummern von cc. XVII-XVIIII
+                  (<locus>fol. 248r unten</locus>) sind die letzten Ziffern jeweils übergeschrieben,
+               was aber wohl nicht auf eine Korrektur hindeutet, sondern dem mangelnden Platz
+               geschuldet sein dürfte. Bei der Durchnummerierung der ausformulierten Kapitel sind
+               ihm kleinere Fehler unterlaufen: Auf <locus>fol. 249v</locus> sind bei der Nummer VI
+               Spuren eines Zeichens zu sehen, das evtl. den Ansatz zu einer irrtümlichen Korrektur
+               zu VII darstellen könnte. An dieser Stelle des Textes ließe sich eine Unsicherheit
+               bei der korrekten Nummerierung evtl. dadurch erklären, dass in c. VI zwei Texte
+               zusammengefasst sind, die in anderen Hss. als separate Kapitel erscheinen: BK 191 c.
+               5 (ohne die beiden Ansegis-Zitate) und c. 6, und dass zwischen c. VII und VIII ein
+               Kapitel fehlt, das in anderen Hss. an dieser Stelle folgt (BK 191 c. 8). Auf
+                  <locus>fol. 251v</locus> fehlt die Nummerierung ganz (cc. XV und XVI; die Anfänge
+               der Kapitel sind aber jeweils durch Initialen hervorgehoben), und dort, wo sie auf
+                  <locus>fol. 252r</locus> wieder einsetzt, könnte die XVII korrigiert worden sein
+               (das zweite <mentioned>I</mentioned> steht im Bauch der folgenden
+                  <mentioned>D</mentioned>-Initiale). Die Nummerierung von c. XXI fehlt, die Zählung
+               wird aber auf der folgenden Seite (<locus>fol. 252v</locus>) korrekt mit c. XXII
+               fortgeführt. Die letzten beiden Kapitel (auf <locus>fol. 253v</locus>) sind wiederum
+               nicht nummeriert.</p>
+            <p>Foll. 261v, 262v: Die in der Zusammenstellung der 33-Kapitel-Liste fehlenden Kapitel
+               BK 191 c. 8 und BK 192 c. 12 folgen als cc. XXXVII und XLV einer aus 46 Kapiteln
+               bestehenden, separaten Liste, die ebenfalls mit einer eigenen Capitulatio auf
+                  <locus>fol. 256r</locus> eröffnet wird.</p>
+         </div>
+         <div type="annotations">
+            <p>Eine hinzugefügte Rubrik in Texttinte auf dem linken Rand von <locus>fol.
+                  250v</locus> (<mentioned>De ImmvniTate</mentioned>) scheint unabhängig vom
+               eigentlichen Anlagekonzept entstanden zu sein - die ursprüngliche Rubrik steht noch
+               auf der vorangehenden Seite und konnte so leicht übersehen werden, was einen späteren
+               Bearbeiter offenbar dazu veranlasste, sie in Kurzfassung zu Beginn des Kapiteltextes
+               auf <locus>fol. 250v</locus> noch einmal zu wiederholen.</p>
+            <p>Auf <locus>fol. 249v</locus> dünn (mit Blei?) ein <mentioned>NB</mentioned> auf dem
+               linken Rand auf Höhe von <locus>Z. 5-6</locus> (neben c. VI, in dem BK 191 cc. 5 und
+               6 zusammengezogen werden); schräg rechts darüber, vor <locus>Z. 5</locus> und evtl.
+               im Zusammenhang mit dem <mentioned>NB</mentioned>-Zeichen, ein kleiner Schrägstrich
+               (mit Blei?). Auf fol. 182r-v Bleistiftnotizen am Rand der beiden Kapitel aus BK 134,
+               jeweils verweisend auf die Edition von Baluze, mit einer Anstreichung von gleicher
+               Hand der Passage zur Kreuzprobe.</p>
+         </div>
+         <div type="other"/>
+
+      </front>
+      <body>
+
+         <milestone unit="capitulare" n="BK.134"/>
+
+         <cb n="182r"/>
+         <lb n="10"/>
+
+
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-182r-1" corresp="BK.134_1">
+            <seg type="initial" rend="coloured">S</seg>i quis cum altero . de qualibet causa
+            contentionem habuerit . <lb/>et testes contra eum per iudicium producti fuerint . si
+            ille falsos <lb/>eos esse suspicatur . liceat ei alios testes . quos meliores pu<lb
+               break="no"/>tauerit contra eos obponere . ut ueratium testimonio . falsorum
+            <lb/>testium peruersitas sup<add>er</add><metamark function="insertion"/>etur<note
+               type="editorial">ursprünglich wohl als <mentioned>supet</mentioned> mit per- und
+               ur-Kürzung ausgeführt; die per-Kürzung wurde dann aber radiert und (später?) durch
+                  <mentioned>er</mentioned> über der Zeile ersetzt.</note> . Quod si ambę partes
+            testium ita inter se <lb/>dissenserint . ut nullatenus alteri altera cedere
+               uel<mod>it</mod> ! eligantur <lb/><num>duo</num> ex ipsis . <choice>
+               <abbr>ide</abbr>
+               <expan>id est</expan>
+            </choice> ex utraque parte <num>unus</num> . qui cum scuto et fustibus <lb/> in campho
+            decernant . utra pars falsitatem ! utra ueritatem <lb/>suo testimonio sequatur . et
+            campioni qui uic<add>t</add><metamark function="insertion"/>us fuerit propter
+               <lb/><mod>per</mod>iurium ! quod ante pugnam commisit . dextera manus amputetur .
+            <lb/>Ceteri uero eiusdem part<mod>is</mod> testes . quia falsi apparuerunt <lb/>manus
+            suas redimant . Cuius positionis <num>duę</num> partes ei contra <lb/>quem
+               tes<add>ta</add><metamark function="insertion"/>ti sunt dentur . <num>tertia</num>
+            comitis est . Et in sęculari quidem <lb/>causa huiuscemodi testium diuersitas campho
+            conprobetur . <cb n="182v"/>In ecclesiasticis autem negotiis . crucis iudicio rei
+            ueritas inqui<lb break="no"/>ratur . Hoc de timidis atque inbecillibus siue infirmis qui
+               pugn<unclear>a</unclear><lb break="no"/>re non ualent . Ne propter hoc iustitia
+            careant censuimus faciendum . <lb/>Testes uero de qualibet causa non aliunde quęrantur
+            nisi de <lb/>ipso comitatu . In quo res unde causa agitur positę sunt <lb/>quia non est
+            credibile ut de statu hominis . uel de possessione . <lb/>cuiuslibet per alios melior ei
+            ueritas cognosci ualeat quam per <lb/>illos qui uiciniores sunt .: <lb/>
+         </ab>
+
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-182v-1" corresp="BK.134_2">
+            <seg type="initial" rend="coloured">S</seg>i quis in aliena patria ubi uel propter
+            beneficium uel propter aliam <lb/>quamlibet occasionem assiduę conuersari solet de
+            qualibet <lb/>causa fuerit interpellatus . uerbi gratia . de conquestu suo . <lb/>uel de
+            mancipiis suis . ibi secundum legem suam iustitiam <lb/> faciat . et cum talibus
+            coniuratoribus quales in eodem regno uel <lb/> prouintia secum habere potuerit .
+            legitimum sacramentum iuret . <lb/>Excepto si quis eum de statu suo id est de libertate
+            sua . uel <lb/>de hereditate quam ei pater suus moriens dereliquid appel<lb break="no"
+            />lauerit . de his <num>duobus</num> liceat ei sacramentum in patria sua <lb/><choice>
+               <abbr>Ide</abbr>
+               <expan>Id est</expan>
+            </choice> in legitimo sui sacramenti loco iurandum offerre . et is <lb/>qui cum eo
+            litigatur . si uelit sequatur illum in patriam suam <lb/>ad recipiendum illud
+            sacramentum . Ipse tamen primo in <lb/>eodem loco ubi est interpellatus satisfaciat .
+            tam comi<unclear>ti</unclear>
+            <lb/>et iudicibus quam aduersario . testibus probando <add>vt proprietatem .
+               </add><metamark function="insertion"/> quę ab eo quę<lb break="no"/>ritur . pater ei
+            suus dereliqu<mod>er</mod>it<note type="editorial"><mentioned>er</mentioned><hi
+                  rend="super">2</hi> korr. (?)</note> . <lb/>
+         </ab>
+
+
+         <milestone xml:id="muenchen-bsb-lat-3853-248r-capitulatio-1" unit="capitulatio"
+            n="Capitulatio_foll. 248r-v" spanTo="#capitulatio-finis_1"/>
+
+         <cb n="248r"/>
+         <lb n="1"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-1" rend="coloured"><seg
+               type="initial">I</seg>NCIPIUNT CAPITULA QUE <rs type="person">LUODOUUICUS</rs> .
+            <lb/>cesar et <rs type="person">hlotharius</rs> inperator filius eius cum con<lb
+               break="no"/>sensu eorum fidelium dederunt ; <lb/></ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-2" corresp="BK.188_4_inscriptio_c"
+               ><seg type="numDenom" rend="coloured">CAPITULUM </seg>
+            <seg type="num" n="1" rend="coloured">I </seg><hi rend="coloured">D</hi>e liberis
+            hominibus qui fidelitatem nondum domno imperator promiserunt</ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-3" corresp="BK.191_1_inscriptio_c"
+               ><seg type="num" n="2" rend="coloured">II </seg>De his qui sine consensu episcopi
+            presbiteros in aecclesiis constituunt uel inde eitiunt . </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-4" corresp="BK.191_2_inscriptio_c"
+               ><seg type="num" n="3" rend="coloured">III </seg>De ęcclesiis <sic>in</sic> cohered<subst>
+               <del>i</del>
+               <add>e</add>
+            </subst>s diuisis . </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-5" corresp="BK.191_3_inscriptio_c"
+               ><seg type="num" n="4" rend="coloured">IIII </seg>De ecclesiis destructis</ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-6" corresp="BK.191_4_inscriptio_c"
+               ><seg type="num" n="5" rend="coloured">V </seg>De manso ad aecclesiam<note
+               type="editorial"><mentioned>l</mentioned> mit redundantem Kürzungsstrich.</note> dato
+            ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-7" corresp="BK.191_5_inscriptio_c"
+               ><seg type="num" n="6" rend="coloured">VI </seg>De his qui nonas et decimas dare
+            neglexerunt . </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-8" corresp="BK.191_7_inscriptio_c"
+               ><seg type="num" n="7" rend="coloured">VII </seg>De his qui decimas dare nolunt nisi
+            a se redimantur ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-9" corresp="BK.191_9_inscriptio_c"
+               ><seg type="num" n="8" rend="coloured">VIII </seg>De his qui restaurationes
+            ecclesiarum facere neglegunt</ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-10"
+            corresp="BK.191_10_inscriptio_c"><seg type="num" n="9" rend="coloured">VIIII </seg>De
+            his qui agros dominicatos ideo neglegunt ut nonas exinde non persoluant ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-11"
+            corresp="Benedictus.Levita.1_279_inscriptio_c">
+            <seg type="num" n="10" rend="coloured">X </seg>Ut intellegatur in quo facto inmunitas
+            frangatur ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-12" corresp="BK.193_1_inscriptio_c"
+               ><seg type="num" n="11" rend="coloured">XI </seg>De homicidiis in aecclesiis uel
+            earum atriis perpetratis ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-13" corresp="BK.193_2_inscriptio_c"
+               ><seg type="num" n="12" rend="coloured">XII </seg>De his qui per cupiditatem rerum
+            parentem uel propinquum occiderint . </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-14" corresp="BK.193_3_inscriptio_c"
+               ><seg type="num" n="13" rend="coloured">XIII </seg>De his qui uxores derelinquerint
+            uel occiderint ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-15" corresp="BK.193_4_inscriptio_c"
+               ><seg type="num" n="14" rend="coloured">XIIII </seg>De his qui res alienas
+            uendiderint uel malo ingenio uel mala occasione <choice>
+               <abbr>trad</abbr>
+               <expan>tradiderint</expan>
+            </choice> ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-16" corresp="BK.193_5_inscriptio_c"
+               ><seg type="num" n="15" rend="coloured">XV </seg>De uicariis et centenariis qui per
+            cupiditatem sepe placita tenent </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-17" corresp="BK.193_6_inscriptio_c"
+               ><seg type="num" n="16" rend="coloured">XVI </seg>De his qui proprium non habent sed
+            terram dominicam resident ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-18" corresp="BK.193_8_inscriptio_c"
+               ><seg type="num" n="17" rend="coloured">XVII</seg> De faidis coercendis . </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-19" corresp="BK.188_1_inscriptio_c"
+               ><seg type="num" n="18" rend="coloured">XVIII</seg> De ecclesiasticis rebus ut
+               continea<add>n</add><metamark function="insertion"/>tur sicut res ad fiscum contineri
+            solent ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-20" corresp="BK.188_2_inscriptio_c"
+               ><seg type="num" n="19" rend="coloured">XVIIII</seg> Quales testes contra fiscum
+            recipiantur hi sunt electi non producti ; </ab>
+         <cb n="248v"/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-1" corresp="BK.192_1_inscriptio_c"
+               ><seg type="num" n="20" rend="coloured">XX </seg><seg type="initial">D</seg>e
+               be<add>ne</add><metamark function="insertion"/>ficiis destructis ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-2" corresp="BK.192_2_inscriptio_c"
+               ><seg type="num" n="21" rend="coloured">XXI </seg><seg type="initial">U</seg>t per
+            missos nostros scabinios malos eiciantur et bonos constituantur . </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-3" corresp="BK.192_3_inscriptio_c"
+               ><seg type="num" n="22" rend="coloured">XXII </seg><seg type="initial">U</seg>t in
+            omni comitatu ad inquisitionem eligantur ueratiores et meliores ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-4" corresp="BK.192_4_inscriptio_c"
+               ><seg type="num" n="23" rend="coloured">XXIII </seg><seg type="initial">U</seg>t
+            scabinus qui iniuste iudicat propter munera ad nostram <expan>presentiam</expan> ueniat
+            ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-5" corresp="BK.192_5_inscriptio_c"
+               ><seg type="num" n="24" rend="coloured">XXIIII </seg><seg type="initial">D</seg>e
+            commutationibus diuersis aecclesiarum ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-6" corresp="BK.192_6_inscriptio_c"
+               ><seg type="num" n="25" rend="coloured">XXV </seg><seg type="initial">D</seg>e eo qui
+            sciens in periurium testes duxit ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-7" corresp="BK.192_7_inscriptio_c"
+               ><seg type="num" n="26" rend="coloured">XXVI </seg><seg type="initial">D</seg>e his
+            qui discordiis et contentionibus student ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-8" corresp="BK.192_8_inscriptio_c"
+               ><seg type="num" n="27" rend="coloured">XXVII </seg><seg type="initial">D</seg>e his
+            qui bonos denarios recipere non uolunt ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-9" corresp="BK.192_9_inscriptio_c"
+               ><seg type="num" n="28" rend="coloured">XXVIII </seg><seg type="initial">D</seg>e
+            homicidiis uel aliis iniusticiis quę a fiscalinis nostris fiunt ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-10"
+            corresp="BK.192_10_inscriptio_c"><seg type="num" n="29" rend="coloured">XXVIIII
+               </seg><seg type="initial">U</seg>t collecte ad male faciendum omnino prohibeantur ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-11"
+            corresp="BK.192_11_inscriptio_c"><seg type="num" n="30" rend="coloured">XXX </seg><seg
+               type="initial">D</seg>e pontibus p<mod>u</mod>blicis destructis . et de iniustis
+            teloneis ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-12"
+            corresp="BK.192_13_inscriptio_c"><seg type="num" n="31" rend="coloured">XXXI </seg><seg
+               type="initial">D</seg>e reuersione ab expedicione hostili ;. </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-13"
+            corresp="BK.192_14_inscriptio_c"><seg type="num" n="32" rend="coloured">XXXII </seg><seg
+               type="initial">U</seg>t missi nostri notum faciant comitibus et populo quod in omni
+               ebdoma<lb break="no"/>da <num>unum</num> diem ad iudicium sedere uolumus ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-14"
+            corresp="BK.192_15_inscriptio_c"><seg type="num" n="33" rend="coloured">XXXIII </seg>Ut
+            ministri qui tributa maiora accipiunt quam constituta sint . ministeria perdant . </ab>
+         <anchor xml:id="capitulatio-finis_1"/>
+         <lb/>
+
+         <milestone unit="capitulare" n="BK.188"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-15" rend="coloured"> DE LIBERIS
+            HOMINIBUS QUI IMPERATORE . <lb/>NONDUM FIDELITATEM PROMISERUNT . <lb/>
+         </ab>
+         <!--   sk: Diese Rubrik bezieht sich zwar faktisch auf das 1. Kapitel der folgenden Liste,
+            ist hier aber aufgrund seiner graphischen Gestaltung als Listenrubrik interpretiert 
+            und entsprechend nicht mit einem corresp-Element zur Kapitelrubrik versehen worden. -->
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-16" rend="coloured"><seg
+               type="numDenom">CAPITULUM </seg>
+            <seg type="num" n="1">I </seg>
+         </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-248v-17" corresp="BK.188_4">
+            <seg type="initial" rend="coloured">V</seg>olumus ut missi nostri per totam legationem
+            suam primo omnium inquirant<lb/> qui sint de liberis hominibus qui nondum fidelitatem
+            nobis promissam habe<lb break="no"/>ant . et faciant illos eam promittere sicut
+            consuetudo semper fuit . et post<lb break="no"/>ea legationem suam incipiant per cetera
+            capitula peragere ; </ab>
+
+         <milestone unit="capitulare" n="BK.191"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248v-18" rend="coloured"
+            corresp="BK.191_1_inscriptio"> De his qui sine consensu episcopi presbiteros in
+            aecclesiis constituunt uel inde <lb/>eitiunt . <cb n="249r"/>
+            <seg type="num" n="2">II </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-249r-1" corresp="BK.191_1">
+            <seg type="initial" rend="coloured">D</seg>e his qui sine consensu episcopi pres<subst>
+               <del>p</del>
+               <add>b</add>
+            </subst>iteros in aecclesiis constituunt uel de ecclesiis eitiunt . <lb/>et ab episcopo
+            uel a quolibet misso dominico admoniti obedire noluerint ut ban<lb break="no"/>num
+            nostrum reuuadiare cogantur et per fideiussores ad palatium nostrum uenire
+            <lb/>iubeantur et tunc nos decernamus utrum nobis placeat . ut aut illum <subst>
+               <del>b</del>
+               <add>p</add>
+            </subst>an<lb break="no"/>num perso<mod>l</mod>uat<note type="editorial"
+                  ><mentioned>l</mentioned> korr. Der Schreiber hatte offenbar zunächst
+               versehentlich schon zum <mentioned>u</mentioned>-Schaft angesetzt und diesen dann zum
+                  <mentioned>l</mentioned> verlängert. Vor dem folgenden <mentioned>u</mentioned>
+               ein übergeschriebenes Häkchen, das evtl. im Kontext desselben Korrekturvorganges
+               enstanden, aber nicht zu deuten ist.</note> aut aliam amissuram sustineat ; </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-249r-2" rend="coloured"
+            corresp="BK.191_2_inscriptio"> De ecclesiis in<add rend="default">ter</add> coheredes
+            Diuisis <lb/>
+            <seg type="num" n="3">III </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-249r-3" corresp="BK.191_2">
+            <seg type="initial" rend="coloured">D</seg>e ęcclesiis quę inter coheredes diuisę sunt
+            consideratum est quatinus si secundum proui<lb break="no"/>dentiam et admonitionem
+            episcopi ipsi coheredes eas uoluerint tenere et honorare <lb/>faciant sin<del
+               quantity="1" unit="chars"/> autem hoc contradixerint ut episcopi in potestate maneat
+            utrum eas <lb/>ita consistere permittat aut reliquias exinde auferat . Et ubi
+               <mod>ad</mod> nostrum bene<lb break="no"/>ficium <choice>
+               <abbr>ecclcce</abbr>
+               <expan>ecclesiae</expan>
+            </choice><note type="editorial">gek. <mentioned>ecclcce</mentioned> (sic).
+               Wahrscheinlich korrigierte der Schreiber das -<mentioned>cc</mentioned>- am Ende
+               nicht, weil man es auch als cc-a lesen kann.</note> pertinentes ita diuisę inuentę
+            fuerint ut describantur et <lb/>nobis renuntietur . </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-249r-4" rend="coloured"
+            corresp="BK.191_3_inscriptio"> De ecclesiis dest<add>r</add><metamark
+               function="insertion"/>uctis ; <lb/><seg type="num" n="4">IIII </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-249r-5" corresp="BK.191_3"><seg
+               type="initial" rend="coloured">D</seg>e ęcclesiis destructis ut episcopi et missi
+            inquisitionem faciant utrum per neglegen<lb break="no"/>tiam aut inpossibilitatem
+            destructę sint . Et ubi neglegentia inuenta fue<lb break="no"/>rit episcopali autoritate
+            emendare cogantur qui eam restaurare debu<lb break="no"/>erant . Si uero per
+            inpossibilitatem contigit ut au<add>t</add><metamark function="insertion"/> pluriores
+            sint quam neces<lb break="no"/>se sit aut maioris magnitudinis quam ut ex rebus ad eas
+            pertinentibus restau<lb break="no"/>rari po<add>s</add>sint . episcopus modum inueniat
+            qualiter congrue emendari et consiste<lb break="no"/>re possint ; </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-249r-6" rend="coloured"
+            corresp="BK.191_4_inscriptio"> De manso ad ecclesiam dato ; <lb/><seg type="num" n="5">V
+            </seg>
+         </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-249r-7" corresp="BK.191_4"><seg
+               type="initial" rend="coloured">D</seg>e uno manso ad ecclesiam dato de quo aliqui
+            homines contra statu<lb break="no"/>ta sibi seruitium exigunt . <expan>Quicumque</expan>
+            pro hac causa accusatus fuerit <lb/>comes vel missi hoc quod inde subtractum est
+            presbiteri cum sua lege restitu<lb break="no"/>ere faciant ; </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-249r-8" rend="coloured"
+            corresp="BK.191_5_inscriptio"> De his qui nonas et decimas dare neglexerunt ; <cb
+               n="249v"/>
+            <seg type="num" n="6">VI<note type="editorial">Nach <mentioned>I</mentioned> folgt ein
+                  Punkt oder der Ansatz zu einem weiteren Schaft. Evtl. hat der Korrektor, der auf
+                  derselben Seite weiter unten die <mentioned>VII</mentioned> zu
+                     <mentioned>VIII</mentioned> verbessert hat, an dieser Stelle irrtümlich auch zu
+                  einer Verbesserung angesetzt und diese nicht mehr getilgt?</note>
+            </seg>
+         </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-249v-1" corresp="BK.191_5 BK.191_6"
+               ><milestone unit="span" corresp="BK.191_5" spanTo="#muenchen-bsb-lat-3853-249v-1_1"
+               /><seg type="initial" rend="coloured">D</seg>e his qui decimas et nonas iam per
+            multos annos aut ex parte <lb/>aut ex toto dare neglexerunt . uolumus ut per missos
+            nostros constrin<lb break="no"/>gantur . ut secundum capitularem priorem soluant nonas
+            et decimas <lb/> cum sua lege . et insuper bannum nostrum . et hoc eis denuntietur .
+            quod qui<lb break="no"/>cumque hanc neglegentiam iterauerit . beneficium unde haec nona
+            et decima <lb/>persolui debuit amissurum se sciat . Ita enim continetur in capitulare
+            <lb/>bonę memorię <rs type="person">genitoris nostri</rs> in libro <num>primo</num>
+            capitulo . <num>CLVII</num> .<note type="editorial">Im Folgenden fehlen die beiden
+               Ansegis-Zitate, die in anderen Hss. an dieser Stelle folgen: Ansegis 1,157 (MGH
+               Capit. N. S. 1 <ref type="external"
+                  target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._514">S. 514</ref>
+               und 2,21 (MGH Capit. N. S. 1 <ref type="external"
+                  target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._538">S.
+                  538-539</ref>.</note>
+            <anchor xml:id="muenchen-bsb-lat-3853-249v-1_1"/><milestone unit="span"
+               corresp="BK.191_6" spanTo="#muenchen-bsb-lat-3853-249v-1_2"/><expan>Quicum<lb
+                  break="no"/>que</expan> decimam abstrahit de ęcclesia ad quam per iusticiam dari
+            debet <lb/>et eam pręsumptiose . uel propter munera . aut per amicitiam aut aliam<lb/>
+            quamlibet occasionem ad alteram aecclesiam dederit . a comite uel<lb/> a misso nostro
+            distringatur ut eiusdem decimę quantitatem . cum<lb/> sua lege restituat . <anchor
+               xml:id="muenchen-bsb-lat-3853-249v-1_2"/></ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-249v-2" rend="coloured"
+            corresp="BK.191_7_inscriptio"> DE DECIMIS QUAS <choice>
+               <abbr>PLS</abbr>
+               <expan>POPULUS</expan>
+            </choice> DARE NON VULT . <lb/><seg type="num" n="7">VII </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-249v-3" corresp="BK.191_7"><seg
+               type="initial" rend="coloured">D</seg>e decimis quas populus dare non uult . nisi
+            quolibet modo<lb/> ab eo redimantur . ab episcopis prohibendum est ne fiat . Et si quis
+               con<lb break="no"/>temptor inuentus fuerit . et nec episcopum nec comitem audire
+            uelit<lb/> si noster homo fuerit . ad <expan>presentiam</expan> nostram uenire
+            compellatur . <lb/>Ceteri uero distringantur ut inuiti ęcclesiae restituant qui uo<lb
+               break="no"/>luntarie neglexerunt dare . </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-249v-4" rend="coloured"
+            corresp="BK.191_9_inscriptio"> De his qui restaurationes ecclesiarum nolunt . <lb/><seg
+               type="num" n="8">VII<add>I</add></seg>
+         </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-249v-5" corresp="BK.191_9"><expan><seg
+                  type="initial" rend="coloured">Q</seg>uicumque</expan> de rebus ęcclesiarum quas
+            in beneficium habent restaurati<lb break="no"/>ones earum facere neglexerint . iuxta
+            capitularem anteriorem . <lb/> In quo de operibus ac nonis et decimis constitutum est
+            sic de <lb/> illis adimpleatur id est in libro <num>IIII<hi rend="super">o</hi></num> .
+            capitulum <num>XXXVIII</num> . <cit>
+               <quote>De opere<cb n="250r"/> uel restauratione ecclesiarum constitutum est ut de
+                  frugibus terrę et anima<lb break="no"/>lium nutrimine persoluantur : De opere uel
+                  restauratione ecclesiarum<lb/> comes et episcopus siue abba una cum misso nostro
+                  quem ipsi sibi ad hoc<lb/> elegerint considerationem faciant ut unusquisque eorum
+                  tantum<lb/> inde accipia<del>n</del>t ad operandum et restaurandum quantum
+                  ipse<lb/> de rebus ęcclesiarum habere cognoscitur . Similiter et uassi nostri aut
+                  in<lb/> commune tantum operis accipiant . quantum rerum ecclesiastica<lb
+                     break="no"/>rum habent uel unusquisque per se iuxta quantitatem quam ipse te<lb
+                     break="no"/>net . aut si inter eos conuenerit ut pro opere faciendo argen<lb
+                     break="no"/>tum donent . iuxta estimationem operis in argento persoluant .
+                  <lb/>cum quo <expan>precio</expan> rector ęcclesiae ad <expan>predictam</expan>
+                  restaurationem operarios<lb/> conducere et materiam emere possit . Et qui nonas et
+                  decimas<lb/> dare neglexerit . primum quidem illas cum sua lege restituat .
+                  <lb/>et insuper bannum nostrum soluat . ut ita castigatus caueat ne sepius<lb/>
+                  iterando beneficium amittat ; </quote>
+               <ref>Ansegis 4,38 (MGH Capit. N. S. 1 <ref type="external"
+                     target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._645">S.
+                     645</ref>)</ref>
+            </cit></ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-250r-1" rend="coloured"
+            corresp="BK.191_10_inscriptio"> De his qui agros neglexerunt . <lb/><seg type="num"
+               n="9">VIIII</seg> . </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-250r-2" corresp="BK.191_10"><seg
+               type="initial" rend="coloured">D</seg>e illis qui agros dominicatos propterea
+            neglexerunt excole<lb break="no"/>re . ut nonas exinde non persoluant et alienas terras
+            ad exco<lb break="no"/>lendum propter hoc accipiunt . uolumus ut de tribus annis ipsam
+            <lb/> nonam cum sua lege persoluant . Et si quis contemptor aut<lb/> comitis aut
+            uassallorum nostrorum <choice>
+               <abbr>proter</abbr>
+               <expan>propter</expan>
+            </choice> hoc extiterit per fideius<lb break="no"/>sores ad palatium<del quantity="1"
+               unit="chars"/> uenire compellatur . </ab>
+         <lb/>
+
+         <milestone unit="capitulare" n="Benedictus.Levita.1,279"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-250r-3" rend="coloured"
+            corresp="Benedictus.Levita.1_279_inscriptio"> Ut<note type="editorial">Das folgende
+               Kapitel stimmt überein mit Benedictus Levita 1,279 (ed. Schmitz/Lukas <ref
+                  type="external" target="http://www.benedictus.mgh.de/edition/aktuell/libI.pdf">S.
+                  89 f.</ref>; 24.03.2015) und stammt "aus derselben oder einer ähnlichen Vorlage"
+               wie Benedict, "aber nicht von diesem" (ebd.). Vgl. dazu auch Patzold 2014.</note>
+            intellegatur in quo facto inmunitas frangatur ; <cb n="250v"/>
+            <seg type="num" n="10" rend="default">X </seg></ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-250v-1"
+            corresp="Benedictus.Levita.1_279_inscriptio">
+            <add hand="B">De<lb/> Immvni<lb break="no"/>Tate . </add>
+         </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-250v-2" corresp="Benedictus.Levita.1_279"
+               ><seg type="initial" rend="coloured">P</seg>eruenit ad nos quod quedam aecclesiae ac
+            monasteria nostras et <expan>predeces<lb break="no"/>sorum</expan> nostrorum inmunitates
+            habentia . multa <expan>preiudicia</expan> et infestatio<lb break="no"/>nes a quibusdam
+            patiantur et nec per easdem inmunitates ullam defen<lb break="no"/>sionis tuitionem
+            habere ualeant propter hoc quod ab eisdem inmu<lb break="no"/>nitatum temeratoribus
+            dicatur non plus inmunitatis nomine com<lb break="no"/>plecti quam claustra monasterii .
+            Cetera quoque quamuis ad eas<lb break="no"/>dem aecclesias uel monasteria pertineant
+            extra inmunitatem esse . <lb/>Propter hoc uolumus atque decernimus ut omnes intellegant
+            . non so<lb break="no"/>lum claustra monasterii uel ęcclesię atque castitia ecclesiarum
+            sub inmuni<lb break="no"/>tatis defensione consistere . uerum etiam domos et uillas et
+            septa uil<lb break="no"/>larum et piscatoria manu facta et <sic>quidquic</sic> fossis
+            aut sepibus uel etiam<lb/> alio clausarum genere <expan>precingitur</expan> eodem
+            inmunitatis nomine<lb/> contineri . et quicquid intra huiusmodi munimenta ad ius
+               earun<lb break="no"/>dem ęcclesiarum uel monasteriorum pertinentia a quolibet homine
+               no<lb break="no"/>cendi uel damnum inferendi causa spontanea uoluntate commit<lb
+               break="no"/>titur . In hoc facto inmunitas fracta iudicatur . Quod uero in<lb/> agris
+            uel campis ac siluis quę sine laborationibus sunt et nullo modo<lb/> a munitione
+               ci<add>n</add>guntur<note type="editorial"><mentioned>n</mentioned><hi rend="super"
+                  >1</hi> ergänzt.</note> casu sicut fieri solet a quibuslibet homini<lb break="no"
+            />bus quiddam damni fuerit factum quamuis idem ager aut campus aut<lb/> silua ad
+            ęcclesiam uel ad monasterium <expan>preceptum</expan> inmunitatis haben<lb break="no"
+            />tem pertineat . non tamen in hoc inmunitas fracta iudicanda est<lb/> Et ideo non
+               <num>sexcentorum</num> solidorum <expan>compositione</expan> sed secundum legem quę
+               <cb n="251r"/>in eo<mod>d</mod>em<note type="editorial">Das <mentioned>d</mentioned>
+               eventuell korrigiert (aus einem zunächst angesetzten
+               <mentioned>i</mentioned>?).</note> loco tenetur . is multandus est . qui scandalum
+            uel damnum in<lb/> tali loco fecisse conuictus fuerit ; </ab>
+
+         <milestone unit="capitulare" n="BK.193"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-251r-1" rend="coloured"
+            corresp="BK.193_1_inscriptio"> De homicidiis in aecclesiis uel in atriis
+               <expan>commissis</expan> . <lb/><seg type="num" n="11">XI</seg> . </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-251r-2" corresp="BK.193_1"><seg
+               type="initial" rend="coloured">D</seg>e homicidiis . in aecclesiis uel in atriis
+            earum commissis hoc obseruetur<lb/> et teneatur quod in capitulare priori constitutum
+            est . In libro <num>IIII<hi rend="super">o</hi></num> . capitulo <num>XIII</num> .<lb/>
+            Si quis aut ex leui causa . et <choice>
+               <abbr>rel</abbr>
+               <expan>reliqua</expan>
+            </choice> . Commotor rixę si ibi moritur sine<lb/> uueregeldo . Alter qui se
+               defend<mod>e</mod>ndo<note type="editorial"><mentioned>e</mentioned><hi rend="super"
+                  >3</hi> korr. (?)</note> occisus fuerit uuerigeldo sol<lb break="no"/>uatur et
+            alia compositio sicut supra dictum uel scriptum est perficiat<note type="editorial"
+                  ><mentioned>Si ... perficiat</mentioned> eine Art kurze Zusammenfassung, aber kein
+               wörtliches Zitat von Ansegis 4,13 (MGH Capit. N. S. 1 <ref type="external"
+                  target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._625">S.
+                  625-627</ref>). Mit Blick auf die Ansegis-Kopie in derselben Hs. verweist der
+               Kopist hier darauf, dass die gemeinte Stelle bereits "oben" stehe.</note> ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-251r-3" rend="coloured"
+            corresp="BK.193_2_inscriptio"> De his qui propter cupiditatem rerum patrem aut matrem
+            occiderit ; <lb/><seg type="num" n="12">XII </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-251r-4" corresp="BK.193_2"><seg
+               type="initial" rend="coloured">Q</seg>uicumque propter cupiditatem rerum patrem aut
+            matrem aut fratrem aut<lb/> sororem uel nepotem . uel alium propinquum suum interfecerit
+            . hereditas inter<lb break="no"/>fecti ad alios suos legitimos heredes perueniat .
+            Interfectoris uero he<lb break="no"/>reditas ad fiscum redigatur . Ipse uero
+               ordina<add>n</add><metamark function="insertion"/>te<note type="editorial"
+                  ><mentioned>n</mentioned><hi rend="super">2</hi> mit Einfügungszeichen
+               ergänzt.</note> episcopo <sic>pulblicę</sic><note type="editorial">Über dem ersten
+               Schaft des <mentioned>u</mentioned> ein kleiner, leicht gebogener Strich, fast wie
+               ein Hochkomma. Unklar, wie er zu erklären ist.</note> peniten<lb break="no"/>tię
+            subdatur ; </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-251r-5" rend="coloured"
+            corresp="BK.193_3_inscriptio"> Qui uxorem interfecerit uel relinquerit . <lb/><seg
+               type="num" n="13">XIII </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-251r-6" corresp="BK.193_3"><seg
+               type="initial" rend="coloured">Q</seg>uicumque<note type="editorial"
+                  ><mentioned>Q</mentioned> ausnahmsweise nicht als Initiale gestaltet, aber doch
+               vergrößert und in roter Tinte, also durchaus 'initialenähnlich'.</note> propria uxore
+            derelicta uel sine culpa intefecta aliam<lb/> duxerit . armis depositis publicam agat
+            penitentiam . Et si <sic>con<lb break="no"/>max</sic> fuerit
+               <expan>conprehendatur</expan> a comite et ferro uinciatur et<lb/> in custodia
+            mittatur donec res ad nostram noticiam deducatur ; </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-251r-7" rend="coloured"
+            corresp="BK.193_4_inscriptio"> De his qui res alienas malo ingenio vendiderint ;
+               <lb/><seg type="num" n="14">XIIII </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-251r-8" corresp="BK.193_4"><seg
+               type="initial" rend="coloured">Q</seg>uicumque res alienas cuilibet homini uendiderit
+            et ipse homo<lb/> easdem res alicui <sic>altari</sic> dederit siue uendiderit et ipse
+            qui <lb/> tunc easdem res conparatas habet . per malum ingenium . proprio filio aut <lb/>
+            <sic>altari</sic> cuilibet necdum legitimos annos habenti iusticię tollendę <cb n="251v"
+            /> causa tradiderit . uolumus atque firmiter <expan>precipimus</expan> ut si pater
+            eiusdem<lb/> paruuli uixerit . ipse intret in causam rationem reddendi pro filio suo .
+            <lb/> Si autem ipse pater mortuus est tunc legitimus eius propinquus qui iuste<lb/> ei
+            tutor ac defensor esse uidetur . pro ipso rationem reddere conpellatur . <lb/>Similiter
+            de aliis omnibus iusticiis ad eum pertinentibus excepta sua legiti<lb break="no"/>ma
+            hereditate quę ei per successionem parentum suorum legitime eue<lb break="no"/>nire
+            debuit . Quodsi quis hanc nostram iussionem contempserit uel neglex<lb break="no"/>erit
+            . sicut de ceteris contemptoribus ita de eo agatur. Is uero qui easdem<lb/> res primus
+            inuasit . et iniuste uendidit necnon et em<add>p</add>tores excep<lb break="no"/>ta sola
+            persona paruuli . hoc quod fraudulenter a<add>d</add><metamark function="insertion"
+            />miserunt . intra<lb/> prouintiam emendare cogantur et postea sicut contemptores<lb/>
+            iussionis nostrę sub fideiussoribus ad nostram <expan>presentiam</expan> uenire<lb/>
+               conpella<add>n</add>tur . </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-251v-1" rend="coloured"
+            corresp="BK.193_5_inscriptio"> De uicariis et centenariis qui per c<mod>u</mod>piditatem
+            placita tenent . </ab>
+         <lb/>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-251v-2" corresp="BK.193_5"><seg
+               type="initial" rend="coloured">D</seg>e uicariis et centenariis qui magis propter
+            cupiditatem quam propter<lb/> iusticiam faciendam sepissime p<subst>
+               <del>a</del>
+               <add>l</add>
+            </subst>acita tenent . et exinde populum<lb/> nimis affligunt . Ita teneatur sicut in
+            capitulari domni <rs type="person">Karo<lb break="no"/>li</rs> imperatoris continetur .
+            In libro <num>III<hi rend="super">o</hi></num> capitulo . <num>XL</num> . ITEM De
+            placitis<lb/> quos liberi homines obseruare debent . Ita . seruetur sicut<lb/> in
+            capitulari nostro . in li<subst>
+               <del>p</del>
+               <add>b</add>
+            </subst>ro <num>IIII</num> . capitulo . <num>LV</num> . scriptum est . <lb/>Et quicumque
+            huius constitutionis transgressor . a missis nostris<lb/> inuentus fuerit bannum nostrum
+            persoluat ; </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-251v-3" rend="coloured"
+            corresp="BK.193_6_inscriptio"> De liberis homi<lb break="no"/>nibus qui proprium non
+            habent ; </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-251v-4" corresp="BK.193_6"><seg
+               type="initial" rend="coloured">D</seg>e liberis hominibus qui proprium <cb n="252r"/>
+            non habent . sed in terra dominica resident . ut propter res alterius<lb/> ad
+            testimonium non recipiantur . Coniuratores tamen aliorum<lb/> hominum ideo esse possunt
+            quia liberi sunt . Illi uero qui et <lb/>proprium habent . et tamen in terra dominica
+            resident propter hoc<lb/> non abiciantur quia in terra dominica resident sed propter hoc
+            ad<lb/> testimonium recipiantur quia proprium habent . </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-252r-1" rend="coloured"
+            corresp="BK.193_8_inscriptio"> De faidis coercendis . <seg type="num" n="17">XVII<note
+                  type="editorial"><mentioned>I</mentioned><hi rend="super">2</hi> steht im Bauch
+                  der <mentioned>D</mentioned>-Initiale und wurde vermutlich nachgetragen; siehe
+                  dazu oben die Vorbemerkung.</note>
+            </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-252r-2" corresp="BK.193_8">
+            <seg type="initial" rend="coloured">D</seg>e faidis coercendis hoc obseruetur<lb/> et
+            teneatur quod in capitulari nostro in libro <num>IIII</num> . capitulo <num>XXV</num> .
+            continetur <lb/>
+            <cit>
+               <quote>Si quis aliqua necessitate et <choice>
+                     <abbr>rel</abbr>
+                     <expan>reliqua</expan>
+                  </choice> . </quote>
+               <ref>Ansegis 4,25 (MGH Capit. N. S. 1 <ref type="external"
+                     target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._637">S.
+                     637</ref>).</ref>
+            </cit><note type="editorial">Ansegis-Zitat nur im Anlaut wiedergegeben; der Rest durch
+                  <mentioned>et reliqua</mentioned> gekürzt.</note></ab>
+
+         <milestone unit="capitulare" n="BK.188_1"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-252r-3" rend="coloured"
+            corresp="BK.188_1_inscriptio"> De rebus ecclesiasticis ut contineantur . <lb/><seg
+               type="num" n="18">XVIII </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-252r-4" corresp="BK.188_1">
+            <seg type="initial" rend="coloured">U</seg>olumus ut omnes res ecclesiastice eo modo
+               contine<add>an</add><metamark function="insertion"/>tur sicut res ad<lb/> fiscum
+            nostrum contineri solent . usque dum nos ad generalem platitum<lb/> nostrum cum fide<subst>
+               <del>b</del>
+               <add>l</add>
+            </subst>ibus nostris inuenerimus et constituerimus qualiter<lb/> in futurum de his fieri
+            debeat ; </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-252r-5" rend="coloured"
+            corresp="BK.188_2_inscriptio"> Quales testes contra fiscum recipiantur <lb/>
+            <seg type="num" n="19">XVIIII </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-252r-6" corresp="BK.188_2">
+            <seg type="initial" rend="coloured">I</seg>tem uolumus ut omnis inquisicio
+               <add>quę</add><metamark function="insertion"/> de rebus ad fiscum nostrum
+            pertinentibus<lb/> facienda est non per testes qui producti fuer<mod>i</mod>nt . sed per
+            illos qui in eo<lb/> comitatu meliores et ueratiores esse noscuntur per illorum
+               testimoni<lb break="no"/>um inquisitio fiat . Et iuxta quod illi testificati fuerint
+            uel contine<lb break="no"/>antur uel reddantur ; </ab>
+
+         <milestone unit="capitulare" n="BK.192"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-252r-7" rend="coloured"
+            corresp="BK.192_1_inscriptio"> De beneficiis <sic>destuctis</sic> ; <lb/><seg type="num"
+               n="20">XX </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-252r-8" corresp="BK.192_1"><seg
+               type="initial" rend="coloured">D</seg>e beneficiis destructis hoc obseruetur quod in
+            libro <num>IIII<hi rend="super">o</hi></num> . capitulo <num>XXXVI</num> . continetur ;
+               <note type="editorial">Ansegis-Zitat fehlt. Andere Hss. zitieren an dieser Stelle
+               Ansegis 4,36 (MGH Capit. N. S. 1 <ref type="external"
+                  target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._644">S.
+               644</ref>.</note></ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-252r-9" rend="coloured"
+            corresp="BK.192_2_inscriptio"> De scabinis malis ut eitiantur ; </ab>
+         <lb/>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-252r-10" corresp="BK.192_2"><seg
+               type="initial" rend="coloured">V</seg>t missi nostri ubicumque malos scabinios
+            inueniunt eitiant<lb/> et cum tocius populi consensu in locum eorum bonos eligant . et
+            cum elec<cb n="252v" break="no"/><handShift new="C"/>ti fuerint iurare faciant . ut
+            scienter iniuste iudicare non debeant</ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-252v-1" rend="coloured"
+            corresp="BK.192_3_inscriptio"> Ut ueratiores eligantur ; <seg type="num" n="22"
+                  >XXI<mod>I</mod>
+            </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-252v-2" corresp="BK.192_3"><seg
+               type="initial" rend="coloured">V</seg>t in omni comitatu hi qui<lb/> meliores et
+            ueratiores inueniri possunt eligantur a missis nostris ad<lb/> inquisitiones faciendas .
+            et rei ueritatem dicendam . et adiutores<lb/> comitum sint ad iustitias faciendas . </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-252v-3" rend="coloured"
+            corresp="BK.192_4_inscriptio"> Si scabinus iniuste iudicat <lb/>
+            <seg type="num" n="23">XXIII</seg> . </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-252v-4" corresp="BK.192_4"><seg
+               type="initial" rend="coloured">V</seg>olumus ut quicumque de scabinis
+               <expan>deprehensus</expan> fuerit propter<lb/> munera . aut propter amicitiam uel
+            inimicitiam iniuste iudicasse . <lb/>ut per fideiussores missus ad
+               <expan>presentiam</expan> nostram ueniat . De cetero<lb/> omnibus scabinis
+            denuntietur . ne quis deinceps etiam iustum iu<lb break="no"/>ditium uendere
+               <expan>presumat</expan> . <handShift new="B"/></ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-252v-5" rend="coloured"
+            corresp="BK.192_5_inscriptio"> De commutationibus ecclesiasticarum<note type="editorial"
+               >Etwas ungewöhnlich anmutende <mentioned>ecclesia</mentioned>-Kürzung, die außer
+                  <mentioned>e</mentioned><hi rend="super">2</hi> sonst nichts weiter eliminiert.
+               Über <mentioned>i</mentioned><hi rend="super">1</hi> scheinbar eine gewellte
+               senkrechte Linie, bei der es sich aber offenbar schlicht um verlaufene Tinte mit
+               kleinem Wasserfleck handelt. Abgesehen davon wirken die Buchstaben von
+                  <mentioned>ecclesiasticarum</mentioned> insgesamt etwas dünner als der Beginn der
+               Rubrik (andere Feder bzw. andere Hand?).</note><lb/>
+            <seg type="num" n="24"> XXIIII</seg> . </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-252v-6" corresp="BK.192_5"><seg
+               type="initial" rend="coloured">U</seg>bicumque commutationes tam tempore nostro
+               quaque<note type="editorial">Gek. <mentioned>quaq</mentioned>. Allerdings ist das an
+                  <mentioned>q</mentioned><hi rend="super">2</hi> angehängte Kürzungszeichen für
+                  <mentioned>-ue</mentioned> ungewöhnlich lang und gebogen, so dass die alternative
+               Lesung <mentioned>quam</mentioned> (korr.) zumindest möglich ist, wobei der Schreiber
+               in diesem Fall aus dem Bogen von <mentioned>q</mentioned> und dem daran angehängten
+               Bogen ein unziales <mentioned>m</mentioned> geformt hätte, ohne die dadurch
+               überflüssig gewordene Unterlänge des <mentioned>q</mentioned> zu tilgen.</note>
+            <rs type="person">genitoris nostri</rs><lb/> legitime et rationales atque utiles
+            ecclesiis dei factę sunt permaneant<lb/> Ubi<add>cum</add><metamark function="insertion"
+            />que inutiles et incommodę atque inrationa<add>bi</add><metamark function="insertion"
+            />les factę sunt dissoluantur<lb/> et recipiat unusquisque quod dedit . Ubi uero mortua
+            manus inter<lb break="no"/>iacet . aut alia quelibet causa quę rationabilis esse
+            uideatur<lb/> inuenta fuerit diligenter desc<add>r</add><metamark function="insertion"
+            />ibatur et ad nostram noticiam<lb/> perferatur</ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-252v-7" rend="coloured"><seg type="num"
+               n="25">XXV</seg> . </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-252v-8" corresp="BK.192_6"><seg
+               type="initial" rend="coloured">Q</seg>uicumque <expan>conprobatus</expan> fuerit de
+            eo quod scienter testes in periurium<lb/> induxisset sub fideiussione ad placitum
+            nostrum uenire <expan>conpel<lb break="no"/>latur</expan> . ut ibi cum fidelibus nostris cons<subst>
+               <del>edi</del>
+               <add>ide</add>
+            </subst>mus quid de tali homine<lb/> faciendum sit</ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-252v-9" rend="coloured"
+            corresp="BK.192_7_inscriptio"> DE DISCORDIIS <lb/>
+            <seg type="num" n="26">XX<add>VI</add></seg></ab>
+
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-252v-10" corresp="BK.192_7"><seg
+               type="initial" rend="coloured"> D</seg>e his qui discordiis et contentionibus studere
+            solent et in pace<cb n="253r"/> uiuere nolunt . et inde conuicti fuerint . uolumus ut
+            sub fide<lb break="no"/>iussoribus ad nostrum platitum ueniant ut ibi cum fidelibus
+            nostris<lb/> consideremus quid de talibus faciendum sit ; </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-253r-1" rend="coloured"
+            corresp="BK.192_8_inscriptio"> Qui bonos <sic>den<add>a</add><metamark
+                  function="insertion"/>rio</sic> nolunt <lb/>
+            <seg type="num" n="27">XXVI<add>I</add></seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-253r-2" corresp="BK.192_8"><seg
+               type="initial" rend="coloured"> D</seg>e bonis denariis quos populus recipere non
+            uult . uolumus ut hoc<lb/> obseruetur et teneatur quod in priori capitulari nostro
+            constitutum est<lb/> in libro <num>IIII</num> capitulo <num>XXX</num><note
+               type="editorial">Ansegis-Zitat fehlt. Andere Hss. zitieren an dieser Stelle Ansegis
+               4,30 (MGH Capit. N. S. 1 <ref type="external"
+                  target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._641">S.
+               641</ref>).</note> Et ad hanc institutionem nostram adim<lb break="no"/>plendam
+            episcopi et abbates siue reliqui qui beneficia nostra habent<lb/> adiuuent comites in
+            suis hominibus distringendis . Et si comi<lb break="no"/>tes hanc nostram constitutionem
+            neglexerint hoc per missos nostros<lb/> ad nostram notitiam perferatur </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-253r-3" rend="coloured"
+            corresp="BK.192_9_inscriptio"> De homicidiis que a fiscalinis fiunt ; <lb/><seg
+               type="num" n="28">XX<add>VIII</add></seg>
+         </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-253r-4" corresp="BK.192_9"><seg
+               type="initial" rend="coloured"> D</seg>e <sic>homici<subst>
+                  <del>i</del>
+                  <add>dis</add>
+               </subst></sic> uel aliis iniusticiis quę a fiscalinis nostris fiunt<lb/> quia inpune
+            ea <expan>committere</expan> se posse existimant nos actoribus<lb/> nostris
+               <expan>precipiendum</expan> esse decernimus ne ultra inpune fia<add>n</add><metamark
+               function="insertion"/>t ita ut ubi<lb break="no"/>cumque facta fuerint soluere per
+            disciplinam <expan>precipiemus</expan> ; </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-253r-5" rend="coloured"><seg type="num"
+               n="29">XXVI<add>III</add></seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-253r-6" corresp="BK.192_10"><seg
+               type="initial" rend="coloured"> C</seg>ollecte ad malefaciendum fieri omnimodis
+            prohibeantur . Et ubi<lb break="no"/>cumque huiusmodi <expan>presumpciones</expan> factę
+               fueri<add>n</add><metamark function="insertion"/>t digna emendatione<lb/> corrigantur
+            . Et si per neglegentiam comitis uel factę sunt uel inemendatę<lb/> remanserunt hoc ad
+            nostram noticiam perferatur . autor uero facti . si fuerit<lb/>
+            <expan>prepositus</expan> uel aduocatus siue centenarius uel qualibet alia dignitate <lb/>
+            <expan>predita</expan> libera persona post legalem emendationem in loco factam sub fi<lb
+               break="no"/>deiussoribus ad <expan>presentiam</expan> nostram ueniat . Multitudo uero
+            siue de<lb/> seruis uel de liberis sit . legitima emendatione multetur . </ab>
+         <cb n="253v"/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-253v-1" rend="coloured"><seg type="num"
+               n="30">XXX </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-253v-2" corresp="BK.192_11"><seg
+               type="initial" rend="coloured">D</seg>e pontibus publicis destructis placuit nobis ut
+            qui iussi<mod>onem nostram</mod><note type="editorial"><mentioned>-onem
+                  nostram</mentioned> eventuell auf Rasur.</note> in reparandis pontibus <choice>
+               <abbr>ctempser</abbr>
+               <expan>contempserunt</expan>
+            </choice> uolumus ac iubemus ut omnes homines<lb/> nostri in nostram ueniant
+               <expan>presentiam</expan> rationes reddere . cur nostram iussio<lb break="no"/>nem
+            ausi sunt contempnere . Comites autem reddent rationem<lb/> de eorum pagensibus . cur
+            eos aut non <choice>
+               <abbr>cstrinxer</abbr>
+               <expan>constrinxerunt</expan>
+            </choice> ut hoc facerent aut nobis<lb/> nunciare <choice>
+               <abbr>neglexr</abbr>
+               <expan>neglexerunt</expan>
+            </choice> . Similiter de iniustis teloneis ubicumque<lb/> accipiuntur . sciant se exinde
+            nobis rationem reddituros</ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-253v-3" rend="coloured"
+            corresp="BK.192_13_inscriptio"> . De reuersione ;. <seg type="num" n="31">XXXI
+            </seg></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-253v-4" corresp="BK.192_13"><seg
+               type="initial" rend="coloured">P</seg>ostquam comes et pagenses . <lb/> de qualibet
+            expeditione hostili reuersi fuerint . ex eo die super <lb/>
+            <num>XL</num> noctes sit bannus <sic>resinus</sic> quod lingua thutisca scaftlegi<note
+               type="editorial">Über <mentioned>e</mentioned> ein Schrägstrich, vermutlich ein
+               Betonungszeichen?</note> . id est<lb/> armorum depositio uocatur </ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-253v-5" rend="coloured"
+            corresp="BK.192_14_inscriptio"> Ut missi nostri notum facia<add>n</add>t <choice>
+               <abbr>ebdom</abbr>
+               <expan>ebdomada</expan>
+            </choice> ; </ab>
+         <lb/>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-253v-6" corresp="BK.192_14"><seg
+               type="initial" rend="coloured">H</seg>oc missi nostri notum faciant comitibus et
+            populo quod nos in omni<lb/> epdomada <num>unum</num> diem ad causas audiendas et
+            iudicandas sedere<lb/> uolumus ; Comites nostri autem et missi nost<mod>r</mod>i magnum
+            studium habeant<lb/> ne forte propter eorum neglegentiam pauperes crucientur et nos
+            tedium<lb/> propter eorum clamores patiamur . si nostram gratiam habere uelint .
+            Populo<lb/> autem dicatur ut caueat se de aliis causis ad nos reclamare nisi de<lb/>
+            quibus aut missi nostri aut comites eis iusticias facere noluerint . </ab>
+         <lb/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-253v-7" rend="coloured"
+            corresp="BK.192_15_inscriptio"> ut ministri qui tributa maiora accipiunt quam constituta
+            sint ministeria<lb/> perdant</ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-253v-8" corresp="BK.192_15"><seg
+               type="initial" rend="coloured">Q</seg>uicumque uicarii uel alii ministri comitum
+            tributum quod inferenda<lb/> uocatur maioris <choice>
+               <abbr>ptii</abbr>
+               <expan>pretii</expan>
+            </choice><note type="editorial"><mentioned>ptii</mentioned> ohne erkennbaren
+               Kürzungsstrich</note> a populo exigere <expan>presumpsit</expan> quam a missis<lb/>
+            bone memorię <rs type="person">genitoris nostri</rs>
+            <choice>
+               <abbr>cstitutum</abbr>
+               <expan>constitutum</expan>
+            </choice><note type="editorial"><mentioned>cstitutum</mentioned> ohne erkennbaren
+               Kürzungsstrich</note> fuit . hoc quod iniuste<cb n="254r"/> superposuit atque
+            abstulit sibique retinuit . his quibus hoc tulit<lb/> cum sua lege restituat et insuper
+            fredum nostrum conponat et minis<lb break="no"/>terium amittat ; </ab>
+
+         <milestone xml:id="muenchen-bsb-lat-3853-256r-capitulatio-2" unit="capitulatio"
+            n="Capitulatio_foll. 256r-257v" spanTo="#capitulatio-finis_2"/>
+
+         <cb n="256r"/>
+         <lb n="13"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-256r-9" rend="coloured">INCIPIUNT
+            CAPITULA . <lb/></ab>
+
+         <cb n="257r"/>
+         <lb n="9"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-257r-11" corresp="BK.191_8_inscriptio_c">
+            <seg type="num" n="37" rend="coloured">XXXVII </seg>Ut de rebus ecclesiae quę ab ea per
+               <num>XXX</num> annos possessę sunt testimonia <lb/>non recipiantur ; <lb/></ab>
+
+         <lb n="20"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-257r-19" rend="coloured"><date>ANNO
+                  <sic>. <num>VIX</num> .</sic> Regnante <rs type="person">hludouuico</rs></date> ;
+            <lb/></ab>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-257r-20" corresp="BK.192_12_inscriptio">
+            <seg type="num" n="45" rend="coloured">XLV </seg>Ut examen frigidę aquę non fiat ;
+            <lb/></ab>
+
+         <cb n="257v"/>
+         <lb n="1"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-257v-1" rend="coloured">INCIPIT DECRETUM
+            quod FACTUM FUIT AD CONPEN<lb break="no"/>DUM PALATII PUBLICUM / <lb/></ab>
+
+         <anchor xml:id="capitulatio-finis_2"/>
+
+         <milestone n="BK.191_1" unit="capitulare"/>
+
+         <cb n="261v"/>
+         <lb n="2"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-261v-1" rend="coloured"><seg type="num"
+               n="37">XXXVII</seg>
+            <lb/></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-261v-2" corresp="BK.191_8"><seg
+               type="initial" rend="coloured">V</seg>t de rebus ecclesiarum quę ab eis per
+               <num>XXX</num> annorum spacium sine ul<lb break="no"/>la interpellatione possessa
+            sunt . testimonia non recipiantur sed eo mo<lb break="no"/>do contineantur sicut res ad
+            fiscum dominicum pertinen<lb break="no"/>tes contineri solent . <lb/></ab>
+
+         <milestone n="BK.192_1" unit="capitulare"/>
+
+         <cb n="262v"/>
+         <lb n="4"/>
+
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-262v-1" rend="coloured"
+            corresp="BK.192_12_inscriptio">
+            <date>Anno <num>XVI</num> Regnante <rs type="person"> Hludouuicco</rs></date> ;
+               <lb/><seg type="num" n="45"/>XLV. </ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-262v-2" corresp="BK.192_12"><seg
+               type="initial" rend="coloured">V</seg>t examen aquę frigidę quid actenus faciebant a
+            missis nostris om<lb break="no"/>nibus interdicatur ne ulterius fiat ; <lb/>
+         </ab>
+
+      </body>
+   </text>
+</TEI>
