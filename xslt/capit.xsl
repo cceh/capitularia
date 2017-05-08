@@ -133,7 +133,7 @@ Output URL: /capit/ldf/bk-nr-186/
             <xsl:with-param name="then">
               <a class="internal" href="{$path}"
                  title="[:de]Zur Handschrift[:en]Go to the manuscript[:]">
-                <xsl:apply-templates />
+                <xsl:apply-templates/>
               </a>
               <!-- Add a deep link to the capitular if it is already transcribed in that ms. -->
               <xsl:text>[if_transcribed path="</xsl:text>
@@ -147,7 +147,7 @@ Output URL: /capit/ldf/bk-nr-186/
               <xsl:text>[/if_transcribed]</xsl:text>
             </xsl:with-param>
             <xsl:with-param name="else">
-              <xsl:apply-templates />
+              <xsl:apply-templates/>
             </xsl:with-param>
           </xsl:call-template>
         </xsl:if>

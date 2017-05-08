@@ -214,7 +214,7 @@
             <xsl:call-template name="make-link-to-resource" />
           </xsl:when>
           <!-- generate links in capitular pages -->
-          <xsl:when test="ancestor::tei:note[@type='titles']">
+          <xsl:when test="ancestor::tei:note[@type='titles' or @type='annotation']">
             <xsl:call-template name="make-link-to-resource" />
           </xsl:when>
           <xsl:otherwise>
