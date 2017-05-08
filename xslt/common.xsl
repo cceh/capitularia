@@ -265,11 +265,12 @@
         </a>
       </xsl:when>
 
-      <xsl:when test="@subtype='int'">
+      <xsl:otherwise>
         <a class="internal" href="{@target}">
           <xsl:apply-templates/>
         </a>
-      </xsl:when>
+      </xsl:otherwise>
+
     </xsl:choose>
   </xsl:template>
 
