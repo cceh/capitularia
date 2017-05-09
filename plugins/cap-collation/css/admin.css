@@ -11,7 +11,6 @@ select#section {
 table.collation,
 table.manuscripts {
   border-collapse: collapse;
-  width: 100%;
   page-break-inside: avoid;
 }
 table.collation.last,
@@ -39,40 +38,47 @@ table.manuscripts td,
 table.collation th,
 table.manuscripts th {
   border: 1px solid gray;
-  padding: 0.2em 0.3em;
   background-color: inherit;
   white-space: nowrap;
 }
-table.collation td,
-table.manuscripts td {
-  text-align: center;
-}
-table.collation td.equal,
-table.manuscripts td.equal {
-  color: rgba(68, 68, 68, 0.33);
-}
 table.collation th,
 table.manuscripts th {
-  padding: 0.2em 0.5em;
   text-align: left;
-  width: 1%;
 }
 table.collation span.missing::before,
 table.manuscripts span.missing::before {
   content: '\2014';
 }
+table.collation {
+  width: 100%;
+}
+table.collation td,
+table.collation th {
+  padding: 0.2em 0.3em;
+}
+table.collation td {
+  text-align: center;
+}
+table.collation td.equal {
+  color: rgba(68, 68, 68, 0.33);
+}
 table.manuscripts {
-  width: 49%;
+  width: 50%;
 }
-table.manuscripts .ui-sortable-helper {
-  /* keeps original row width while dragging */
-  display: table;
+table.manuscripts td,
+table.manuscripts th {
+  padding: 4px 10px;
 }
-table.manuscripts-collated {
-  float: left;
+table.manuscripts td.check-column,
+table.manuscripts th.check-column {
+  padding: 4px 0 0 3px;
 }
-table.manuscripts-ignored {
-  float: right;
+table.manuscripts td input,
+table.manuscripts th input {
+  vetrtical-align: middle;
+}
+div.witness-list-table-wrapper div.tablenav {
+  display: none;
 }
 /* hide the 'Choose File' button */
 div.collation-load-params {
@@ -98,6 +104,9 @@ div.collation-load-params #load-params {
     background-color: white;
     font-size: 10pt;
   }
+}
+div.options {
+  margin-top: 1em;
 }
 div.ui-accordion .ui-state-default,
 div.ui-accordion .ui-widget-content .ui-state-default,

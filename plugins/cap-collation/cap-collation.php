@@ -27,9 +27,14 @@ add_action ('wp_enqueue_scripts',              __NAMESPACE__ . '\on_enqueue_scri
 add_action ('admin_bar_menu',                  __NAMESPACE__ . '\on_admin_bar_menu', 200);
 
 if (is_admin ()) {
+    if (!class_exists ('\WP_List_Table')) {
+        include_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
+    }
+
     include_once 'dashboard.php';
     include_once 'dashboard-ajax.php';
     include_once 'class-witness.php';
+    include_once 'class-witness-list-table.php';
     include_once 'class-collatex.php';
 
     /**

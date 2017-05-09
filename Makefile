@@ -56,6 +56,9 @@ testdeploy: lint mo
 	$(RSYNC) themes/Capitularia/* $(WPCONTENTLOCAL)/themes/Capitularia/
 	$(RSYNC) plugins/cap-* $(WPCONTENTLOCAL)/plugins/
 
+deploy_xml:
+	$(RSYNC) xml/*xml $(PUBL)/mss/
+
 import_xml:
 	$(RSYNC) $(PUBL)/mss/*xml xml/
 

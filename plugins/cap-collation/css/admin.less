@@ -14,7 +14,6 @@ select#section {
 table.collation,
 table.manuscripts {
     border-collapse: collapse;
-    width: 100%;
     page-break-inside: avoid;
 
     &.last {
@@ -39,9 +38,21 @@ table.manuscripts {
 
     td, th {
         border: 1px solid gray;
-        padding: 0.2em 0.3em;
         background-color: inherit;
         white-space: nowrap;
+    }
+    th {
+        text-align: left;
+    }
+    span.missing::before {
+        content: '\2014';
+    }
+}
+
+table.collation {
+    width: 100%;
+    td, th {
+        padding: 0.2em 0.3em;
     }
     td {
         text-align: center;
@@ -49,30 +60,23 @@ table.manuscripts {
             color: fade(#444, 33%);
         }
     }
-    th {
-        padding: 0.2em 0.5em;
-        text-align: left;
-        width: 1%;
-    }
-    span.missing::before {
-        content: '\2014';
-    }
 }
 
 table.manuscripts {
-    width: 49%;
-    .ui-sortable-helper {
-        /* keeps original row width while dragging */
-        display: table;
+    width: 50%;
+    td, th {
+        padding: 4px 10px;
+        &.check-column {
+            padding: 4px 0 0 3px;
+        }
+        input {
+            vetrtical-align: middle;
+        }
     }
 }
 
-table.manuscripts-collated {
-    float: left;
-}
-
-table.manuscripts-ignored {
-    float: right;
+div.witness-list-table-wrapper div.tablenav {
+    display: none;
 }
 
 /* hide the 'Choose File' button */
@@ -99,6 +103,10 @@ div.collation-load-params {
         background-color: white;
         font-size: 10pt;
     }
+}
+
+div.options {
+    margin-top: 1em;
 }
 
 div.debug-options {

@@ -137,27 +137,16 @@ EOT;
     // next step will collate the selected manuscripts.
 
     $caption  = _x ('Manuscripts', 'H2 caption', 'capitularia');
-    $caption2 = __ ('Drag and drop to sort and move between lists.', 'capitularia');
-    $caption3 = __ ('Manuscripts to collate', 'capitularia');
-    $caption4 = __ ('Manuscripts to ignore', 'capitularia');
     $label1   = __ ('Include edits by later hands', 'capitularia');
 
     $html[] = <<<EOT
     <div id="manuscripts-div" class="manuscripts-div no-print" style="display: none">
       <h2>$caption</h2>
-      <p>$caption2</p>
       <form onsubmit="return on_cap_load_collation ()">
-        <div class="ui-helper-clearfix">
-          <table class="manuscripts manuscripts-collated">
-            <thead><tr><td>$caption3</td></tr></thead>
-            <tbody id="manuscripts-tbody"><!-- rows loaded thru AJAX --></tbody>
-          </table>
-          <table class="manuscripts manuscripts-ignored">
-            <thead><tr><td>$caption4</td></tr></thead>
-            <tbody></tbody>
-          </table>
+        <div class="witness-list-table-wrapper">
+          <!-- table inserted thru AJAX -->
         </div>
-        <div>
+        <div class="options">
           <label for="later_hands">$label1</label>
           <input type="checkbox" id="later_hands" name="later_hands" value="later_hands" />
         </div>

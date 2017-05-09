@@ -12,8 +12,17 @@ function add_ajax_action (data, action) {
 function get_manuscripts_list () {
     // Get sigla of all manuscript to collate
     var manuscripts = [];
-    jQuery ('table.manuscripts-collated tbody tr').each (function () {
-        manuscripts.push (jQuery (this).attr ('data-siglum'));
+    jQuery ('table.cap-collation-table-witnesses tbody input:checked').each (function () {
+        manuscripts.push (jQuery (this).val ());
+    });
+    return manuscripts;
+}
+
+function get_ignored_manuscripts_list () {
+    // Get sigla of all manuscript to ignore
+    var manuscripts = [];
+    jQuery ('table.cap-collation-table-witnesses tbody input:not(:checked)').each (function () {
+        manuscripts.push (jQuery (this).val ());
     });
     return manuscripts;
 }
@@ -46,10 +55,32 @@ function get_collation_params () {
         'segmentation'         : jQuery ('#segmentation').prop ('checked'),
         'transpositions'       : jQuery ('#transpositions').prop ('checked'),
         'manuscripts'          : get_manuscripts_list (),
+        'ignored'              : get_ignored_manuscripts_list (),
         'normalizations'       : get_normalizations (),
     };
     data = jQuery.extend (data, get_manuscripts_params ());
     return data;
+}
+
+/**
+ * Check or uncheck checkboxes according to manuscript list
+ *
+ * @param sigla   List of sigla of the manuscripts to check or uncheck
+ * @param checked To check or to uncheck
+ */
+
+function check_from_list (sigla, checked) {
+    var $checkboxes = jQuery ('table.cap-collation-table-witnesses tbody input');
+    $checkboxes.each (function () {
+        var $checkbox = jQuery (this);
+        if (jQuery.inArray ($checkbox.val (), sigla) !== -1) {
+            $checkbox.prop ('checked', checked);
+        }
+    });
+}
+
+function check_all (checked) {
+    jQuery ('table.cap-collation-table-witnesses tbody input').prop ('checked', checked);
 }
 
 function encodeRFC5987ValueChars (str) {
@@ -160,6 +191,7 @@ function on_cap_load_sections (onReady) {
 
 function on_cap_load_manuscripts (onReady) {
     var data = add_ajax_action (get_manuscripts_params (), 'on_cap_load_manuscripts');
+    var ignored = get_ignored_manuscripts_list ();
     var $div = jQuery ('#manuscripts-div');
 
     var p1 = clear_manuscripts ();
@@ -176,8 +208,13 @@ function on_cap_load_manuscripts (onReady) {
     });
 
     jQuery.when (p1, p2, p3).done (function () {
-        var $tbody = jQuery ('#manuscripts-tbody');
-        jQuery (p3.responseJSON.html).appendTo ($tbody);
+        // var $tbody = jQuery ('#manuscripts-tbody');
+        // jQuery (p3.responseJSON.html).appendTo ($tbody);
+        var $wrapper = jQuery ('div.witness-list-table-wrapper');
+        $wrapper.empty ();
+        jQuery (p3.responseJSON.html).appendTo ($wrapper);
+        check_all (true);
+        check_from_list (ignored, false);
         clear_spinners ().done (function () {
             $div.slideDown ();
             jQuery ('div.accordion').accordion ({
@@ -320,20 +357,8 @@ function load_params (fileInput) { // eslint-disable-line no-unused-vars
                 jQuery ('#segmentation').prop ('checked', json.segmentation);
                 jQuery ('#transpositions').prop ('checked', json.transpositions);
                 jQuery ('#normalizations').val (json.normalizations.join ('\n'));
-
-                /*
-                 * Deal with manuscript tables.  First move *all* manuscripts to the
-                 * ignored table.  Then move manuscripts to collate back in sorted
-                 * order.
-                 */
-                var collated = jQuery ('table.manuscripts-collated tbody');
-                var ignored  = jQuery ('table.manuscripts-ignored tbody');
-                collated.find ('tr').appendTo (ignored);
-                for (var i = 0; i < json.manuscripts.length; i++) {
-                    var siglum = json.manuscripts[i];
-                    var tr = ignored.find ('tr[data-siglum="' + siglum + '"]');
-                    tr.appendTo (collated);
-                }
+                check_all (false);
+                check_from_list (json.manuscripts, true);
             });
         });
     };

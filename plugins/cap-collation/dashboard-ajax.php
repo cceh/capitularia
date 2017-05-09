@@ -55,7 +55,7 @@ function on_cap_load_sections ()
  * Loads the manuscript list after the user selected a capitular and section.
  *
  * Input:  query parameter corresp, eg. 'BK.139_1'
- * Output: JSON.
+ * Output: HTML of table wrapped in JSON.
  *
  * @return void
  */
@@ -63,15 +63,16 @@ function on_cap_load_sections ()
 function on_cap_load_manuscripts ()
 {
     $html = array ();
-    foreach (get_witnesses ($_REQUEST['corresp']) as $item) {
-        $html[] = <<<EOT
-        <tr data-siglum='{$item->get_id ()}'>
-          <td>
-            <a href='/{$item->get_slug ()}'>{$item->get_id ()}</a>
-          </td>
-        </tr>
-EOT;
-    }
+    $html[] = "<div>";
+    ob_start ();
+    $table = new Witness_List_Table ($_REQUEST['corresp']);
+    // $table->set_pagination_args ($this->pagination_args);
+    $table->prepare_items ();
+    $table->display ();
+    $html[] = ob_get_contents ();
+    ob_end_clean ();
+    $html[] = "</div>";
+
     send_json (true, '', $html);
 }
 

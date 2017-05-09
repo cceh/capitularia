@@ -144,7 +144,9 @@ class Witness
 
     private function new_tei_dom ()
     {
-        return \DOMDocument::loadXML ('<TEI xmlns="' . NS_TEI . '"><text><body/></text></TEI>');
+        $doc = new \DOMDocument ();
+        $doc->loadXML ('<TEI xmlns="' . NS_TEI . '"><text><body/></text></TEI>');
+        return $doc;
     }
 
     /**
