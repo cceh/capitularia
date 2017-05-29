@@ -1,6 +1,6 @@
-body,
 html {
-  overflow-x: hidden;
+  /* otherwise bootstrap makes this very small */
+  font-size: 100%;
 }
 body {
   font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
@@ -8,6 +8,8 @@ body {
   font-style: normal;
   color: #1a171b;
   background: #fff;
+  /* otherwise bootstrap makes this very small */
+  font-size: 100%;
   line-height: 1.3;
 }
 p {
@@ -63,6 +65,12 @@ h6 {
   font-weight: normal;
   font-style: normal;
   text-decoration: underline;
+}
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 a[href] {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
@@ -153,75 +161,299 @@ sub {
     display: none;
   }
 }
-@media print {
-  div,
-  span,
-  article {
-    float: none !important;
+/***********/
+/* Headers */
+/***********/
+div.container > header {
+  margin-left: -15px;
+  margin-right: -15px;
+  /* see: https://getbootstrap.com/css/ */
+}
+div.container > header:before,
+div.container > header:after {
+  content: " ";
+  display: table;
+}
+div.container > header:after {
+  clear: both;
+}
+div.container > main {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+div.container > main:before,
+div.container > main:after {
+  content: " ";
+  display: table;
+}
+div.container > main:after {
+  clear: both;
+}
+div.container > footer {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+div.container > footer:before,
+div.container > footer:after {
+  content: " ";
+  display: table;
+}
+div.container > footer:after {
+  clear: both;
+}
+.cap-row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.cap-left-col {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* see: https://getbootstrap.com/css/ */
+}
+@media (min-width: 768px) {
+  .cap-left-col {
+    float: left;
+    width: 66.66666667%;
   }
-  nav,
-  .qtrans_language_chooser {
+}
+.cap-right-col {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* see: https://getbootstrap.com/css/ */
+}
+@media (min-width: 768px) {
+  .cap-right-col {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+.cap-left-col-pull {
+  /* a column that comes on top on mobile but on the right on desktop */
+  /* pull 8 to the right */
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* see: https://getbootstrap.com/css/ */
+}
+@media (min-width: 768px) {
+  .cap-left-col-pull {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+@media (min-width: 768px) {
+  .cap-left-col-pull {
+    right: 33.33333333%;
+  }
+}
+.cap-right-col-push {
+  /* a column that comes on bottom on mobile but on the left on desktop */
+  /* push 8 to the left */
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* see: https://getbootstrap.com/css/ */
+}
+@media (min-width: 768px) {
+  .cap-right-col-push {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+@media (min-width: 768px) {
+  .cap-right-col-push {
+    left: 66.66666667%;
+  }
+}
+nav.horiz-nav {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* see: https://getbootstrap.com/css/ */
+}
+nav.horiz-nav:before,
+nav.horiz-nav:after {
+  content: " ";
+  display: table;
+}
+nav.horiz-nav:after {
+  clear: both;
+}
+@media print {
+  nav {
     display: none;
   }
 }
-#top-nav > div,
-#bottom-header-wrapper,
-#footer-wrapper,
-#main {
-  width: 1140px;
-  margin: 0 auto;
-  position: relative;
+#bottom-nav {
+  padding-top: 20px;
+  border-bottom: solid 1px #1a171b;
 }
-@media print {
-  #top-nav > div,
-  #bottom-header-wrapper,
-  #footer-wrapper,
-  #main {
-    width: 100%;
-  }
-}
-#main {
+#main > div {
   padding-top: 40px;
-  padding-bottom: 70px;
+  padding-bottom: 40px;
 }
-#main.home {
+#main.home > div {
   padding-top: 15px;
+}
+#header2 > div {
+  padding-top: 40px;
+}
+/**********/
+/* Footer */
+/**********/
+#footer {
+  background: #4e4c4f;
+  color: #fff;
+  font-size: 0.825em;
 }
 @media print {
   #footer {
     display: none;
   }
 }
+.logo-bar {
+  margin-left: -15px;
+  margin-right: -15px;
+  /* see: https://getbootstrap.com/css/ */
+}
+.logo-bar:before,
+.logo-bar:after {
+  content: " ";
+  display: table;
+}
+.logo-bar:after {
+  clear: both;
+}
+.logo-bar li.widget {
+  position: relative;
+  float: left;
+  width: 16.66666667%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* see: https://getbootstrap.com/css/ */
+}
+.logo-bar li.widget a {
+  display: block;
+  width: 100%;
+}
+.logo-bar li.widget a img {
+  display: block;
+  margin: 20px auto;
+  width: 66%;
+}
 /**************/
 /* Front page */
 /**************/
 .front-splash {
+  margin-left: -15px;
+  margin-right: -15px;
+  /* see: https://getbootstrap.com/css/ */
   position: relative;
-  margin-top: 70px;
-  margin-bottom: 70px;
-  width: 100%;
-  height: auto;
+  margin-top: 40px;
+  margin-bottom: 40px;
   background: #beac86;
   color: #fff;
 }
-.front-splash h1 {
-  position: absolute;
-  width: 60%;
-  left: 16px;
-  bottom: 16px;
+.front-splash:before,
+.front-splash:after {
+  content: " ";
+  display: table;
+}
+.front-splash:after {
+  clear: both;
+}
+.front-splash div.front-splash-caption {
+  float: left;
+  width: 100%;
+  /* see: https://getbootstrap.com/css/ */
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* undo the bootstrap default of position: relative because we need to position
+           at the bottom of div.front-splash */
+  position: static;
+}
+@media (min-width: 768px) {
+  .front-splash div.front-splash-caption {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+.front-splash div.front-splash-caption h1 {
   line-height: 1;
 }
-.front-splash img {
-  display: block;
-  float: right;
-  width: 32%;
-  margin-bottom: -40px;
+@media (min-width: 768px) {
+  .front-splash div.front-splash-caption h1 {
+    position: absolute;
+    bottom: 15px;
+    width: 60%;
+  }
 }
-div.teaser-bar {
+.front-splash div.front-splash-caption h1 span {
+  font-size: 75%;
+}
+@media (min-width: 992px) {
+  .front-splash div.front-splash-caption h1 span {
+    font-size: 100%;
+  }
+}
+.front-splash ul.front-splash-image {
+  float: left;
+  width: 100%;
+  /* see: https://getbootstrap.com/css/ */
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .front-splash ul.front-splash-image {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+.front-splash ul.front-splash-image img {
+  margin-bottom: -12%;
+  margin-top: 2%;
+  display: block;
+  width: 100%;
+}
+ul.teaser-bar {
+  margin-left: -15px;
+  margin-right: -15px;
+  /* see: https://getbootstrap.com/css/ */
+  margin: 0 auto;
   margin: 2em 0;
   line-height: 1.5em;
 }
-div.teaser-bar h2 {
+ul.teaser-bar:before,
+ul.teaser-bar:after {
+  content: " ";
+  display: table;
+}
+ul.teaser-bar:after {
+  clear: both;
+}
+ul.teaser-bar h2 {
   color: #4e4c4f;
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
@@ -229,23 +461,20 @@ div.teaser-bar h2 {
   margin-top: 0;
   margin-bottom: .7ex;
 }
-div.teaser-bar ul {
-  margin: 0 auto;
-}
-div.teaser-bar p {
+ul.teaser-bar p {
   margin-bottom: 0.35em;
 }
-div.teaser-bar a {
+ul.teaser-bar a {
   color: #b92900;
   transition: color 300ms;
 }
-div.teaser-bar a:focus,
-div.teaser-bar a:active,
-div.teaser-bar a:hover {
+ul.teaser-bar a:focus,
+ul.teaser-bar a:active,
+ul.teaser-bar a:hover {
   color: #000;
   text-decoration: none;
 }
-div.teaser-bar a.mehr-lesen {
+ul.teaser-bar a.mehr-lesen {
   font-family: 'OpenSans-Bold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
@@ -256,46 +485,197 @@ div.teaser-bar a.mehr-lesen {
   display: block;
   margin-top: 1ex;
 }
-div.teaser-bar img {
+ul.teaser-bar img {
   float: left;
-  height: 10em;
   max-width: 33%;
   margin-right: 32px;
   margin-bottom: 32px;
 }
-div.teaser-bar li.widget {
-  display: inline-block;
-  position: relative;
-  vertical-align: top;
-  width: 33%;
-  box-sizing: border-box;
-  padding: 0 1em;
-  text-align: center;
-}
-div.teaser-bar li.widget.cap_widget_image {
-  text-align: left;
-}
-div.teaser-bar-1 {
+ul.teaser-bar-1 {
   padding-top: 1em;
   text-align: center;
 }
-div.teaser-bar-1 h2 {
+ul.teaser-bar-1 li.widget {
+  float: left;
+  width: 100%;
+  /* see: https://getbootstrap.com/css/ */
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  ul.teaser-bar-1 li.widget {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+ul.teaser-bar-1 h2 {
   font-size: 2em;
   text-align: center;
 }
-div.teaser-bar-2 {
+ul.teaser-bar-2 {
   border-top: solid 1px #1a171b;
   padding-top: 2em;
 }
-div.teaser-bar-2 h2 {
+ul.teaser-bar-2 li.widget {
+  float: left;
+  width: 100%;
+  /* see: https://getbootstrap.com/css/ */
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: left;
+}
+@media (min-width: 768px) {
+  ul.teaser-bar-2 li.widget {
+    float: left;
+    width: 50%;
+  }
+}
+ul.teaser-bar-2 h2 {
   font-size: 1.3em;
 }
-div.teaser-bar-2 li.widget {
-  width: 49%;
+/***********/
+/* Gadgets */
+/***********/
+div.hr {
+  /* a horizontal rule always */
+  margin: 3em 0;
+  border-top: 1px solid #000;
 }
-/*************/
-/* All pages */
-/*************/
+div.hr .compact {
+  margin: 1em 0;
+}
+div.page-break {
+  /* a horizontal rule on screen and a page break on print */
+  page-break-before: always;
+}
+@media screen {
+  div.page-break {
+    margin: 3em 0;
+    border-top: 1px solid #000;
+  }
+  div.page-break .compact {
+    margin: 1em 0;
+  }
+}
+div.page-break + div.page-break {
+  /* Quick fix for duplicated page-breaks. */
+  display: none;
+}
+div.back-to-top {
+  margin: 3em 0;
+  text-align: right;
+  line-height: 1.75em;
+}
+div.back-to-top a::after {
+  font-family: "dashicons";
+  font-size: 12px;
+  content: " \f343";
+}
+div.back-to-top.back-to-top-with-rule {
+  border-top: 1px solid #000;
+}
+div.back-to-top.back-to-top-compact {
+  margin: 0;
+}
+@media print {
+  div.back-to-top {
+    display: none;
+  }
+}
+div.pagination-nav {
+  margin: 14px 0;
+  padding: 14px 0;
+  border: solid 1px #1a171b;
+  font-size: smaller;
+}
+div.pagination-nav .screen-reader-text {
+  display: none;
+}
+div.pagination-nav-top {
+  border-width: 1px 0;
+}
+div.pagination-nav-bottom {
+  border-width: 1px 0 0 0;
+}
+.search-results,
+.index-results {
+  margin: 2em 0;
+}
+.search-results li,
+.index-results li {
+  padding: 10px 0;
+}
+.search-results p,
+.index-results p {
+  padding-top: 6px;
+}
+.search-results b,
+.index-results b {
+  font-family: 'OpenSans-Bold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+.downloads li a {
+  text-decoration: none;
+  transition: color 300ms;
+}
+.downloads li a:hover,
+.downloads li a:focus,
+.downloads li a:active {
+  color: #000;
+}
+select {
+  width: 100%;
+  margin: 8px 0 16px;
+  display: block;
+  border: none;
+  position: relative;
+  border-radius: 6px;
+  border-top: solid 1px #e0e0e0;
+  border-left: solid 1px #e0e0e0;
+  border-bottom: solid 2px #cccccc;
+  height: 1.6em;
+  padding-left: 1em;
+  box-sizing: border-box;
+  background: url('../img/icon-selectbox.png') right no-repeat #fff;
+  background-size: contain;
+}
+input[type="text"] {
+  width: 100%;
+  margin: 8px 0 16px;
+  border: none;
+  padding: 4px 8px;
+  box-sizing: border-box;
+}
+/***********/
+/* Content */
+/***********/
+span.mentioned {
+  /* Must be global because it gets moved outside of content-col by
+       jquery-ui. */
+  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+span.mentioned a[href],
+span.mentioned a[href]:active,
+span.mentioned a[href]:focus,
+span.mentioned a[href]:hover {
+  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+@media print {
+  div.content-col {
+    /* otherwise we get no page-breaks because this is floated by bootstrap */
+    float: none;
+    width: 100%;
+  }
+}
 div.content-col a::after {
   font-family: "dashicons";
   line-height: 1;
@@ -396,6 +776,16 @@ div.content-col table.new-style tr:last-child th {
 div.content-col table.new-style tbody {
   border-top: 1px solid #1a171b;
   border-bottom: 1px solid #1a171b;
+}
+@media screen {
+  div.content-col div.footnotes-wrapper {
+    display: none;
+  }
+}
+div.content-col .annotation-ref {
+  vertical-align: super;
+  font-size: 70%;
+  line-height: 0;
 }
 div.content-col div.tei-msDesc div.tei-msIdentifier {
   margin: 1em 0;
@@ -523,191 +913,6 @@ div.content-col div.mss-key-xsl td.siglum {
 }
 div.content-col .bib-short-title {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.hr {
-  /* a horizontal rule always */
-  margin: 3em 0;
-  border-top: 1px solid #000;
-}
-div.hr .compact {
-  margin: 1em 0;
-}
-div.page-break {
-  /* a horizontal rule on screen and a page break on print */
-  page-break-before: always;
-}
-@media screen {
-  div.page-break {
-    margin: 3em 0;
-    border-top: 1px solid #000;
-  }
-  div.page-break .compact {
-    margin: 1em 0;
-  }
-}
-div.page-break + div.page-break {
-  /* Quick fix for duplicated page-breaks. */
-  display: none;
-}
-div.back-to-top {
-  margin: 3em 0;
-  text-align: right;
-  line-height: 1.75em;
-}
-div.back-to-top a::after {
-  font-family: "dashicons";
-  font-size: 12px;
-  content: " \f343";
-}
-div.back-to-top.back-to-top-with-rule {
-  border-top: 1px solid #000;
-}
-div.back-to-top.back-to-top-compact {
-  margin: 0;
-}
-@media print {
-  div.back-to-top {
-    display: none;
-  }
-}
-div.pagination-nav {
-  margin: 14px 0;
-  padding: 14px 0;
-  border: solid 1px #1a171b;
-  font-size: smaller;
-}
-div.pagination-nav .screen-reader-text {
-  display: none;
-}
-div.pagination-nav-top {
-  border-width: 1px 0;
-}
-div.pagination-nav-bottom {
-  border-width: 1px 0 0 0;
-}
-.search-results,
-.index-results {
-  margin: 2em 0;
-}
-.search-results li,
-.index-results li {
-  padding: 10px 0;
-}
-.search-results p,
-.index-results p {
-  padding-top: 6px;
-}
-.search-results b,
-.index-results b {
-  font-family: 'OpenSans-Bold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-#main:after {
-  content: '';
-  display: block;
-  position: relative;
-  clear: both;
-}
-.content-col {
-  float: left;
-  width: 64%;
-}
-@media print {
-  .content-col {
-    float: none;
-    width: 100%;
-  }
-}
-.sidebar-col {
-  float: right;
-  width: 28%;
-}
-@media print {
-  .sidebar-col {
-    float: none;
-    display: none;
-  }
-}
-.kapitularien-uebersicht {
-  margin-bottom: 48px;
-}
-.kapitularien-uebersicht li {
-  padding: 24px 0 16px;
-  border-bottom: solid 1px #1a171b;
-}
-.kapitularien-uebersicht li:last-child {
-  border-bottom: none;
-}
-.pager li a,
-.downloads li a,
-.kapitularien-uebersicht li a {
-  text-decoration: none;
-  transition: color 300ms;
-}
-.pager li a:hover,
-.pager li a:focus,
-.pager li a:active,
-.downloads li a:hover,
-.downloads li a:focus,
-.downloads li a:active,
-.kapitularien-uebersicht li a:hover,
-.kapitularien-uebersicht li a:focus,
-.kapitularien-uebersicht li a:active {
-  color: #000;
-}
-select {
-  width: 100%;
-  margin: 8px 0 16px;
-  display: block;
-  border: none;
-  position: relative;
-  border-radius: 6px;
-  border-top: solid 1px #e0e0e0;
-  border-left: solid 1px #e0e0e0;
-  border-bottom: solid 2px #cccccc;
-  height: 1.6em;
-  padding-left: 1em;
-  box-sizing: border-box;
-  background: url('../img/icon-selectbox.png') right no-repeat #fff;
-  background-size: contain;
-}
-input[type="text"] {
-  width: 100%;
-  margin: 8px 0 16px;
-  border: none;
-  padding: 4px 8px;
-  box-sizing: border-box;
-}
-.reset-form {
-  font-family: 'OpenSans-Light', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-  transition: color 500ms;
-}
-.reset-form:hover,
-.reset-form:focus,
-.reset-form:active {
-  color: #000;
-  text-decoration: none;
-}
-/***********/
-/* Content */
-/***********/
-span.mentioned {
-  /* Must be global because it gets moved outside of content-col by
-       jquery-ui. */
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-span.mentioned a[href],
-span.mentioned a[href]:active,
-span.mentioned a[href]:focus,
-span.mentioned a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
 }
@@ -1016,19 +1221,6 @@ div.annotation-content div.xsl-output div.capit-xsl ul.downloads li:last-child {
 /*************/
 /* Footnotes */
 /*************/
-div.content-col div.footnotes-wrapper {
-  display: none;
-}
-@media print {
-  div.content-col div.footnotes-wrapper {
-    display: block;
-  }
-}
-div.content-col .annotation-ref {
-  vertical-align: super;
-  font-size: 70%;
-  line-height: 0;
-}
 div.annotation-content {
   /* gets copied by jquery-ui tooltip () so it is not necessarily inside content-col */
   text-align: left;
@@ -1071,6 +1263,11 @@ div.ui-widget.ui-widget-content.ui-tooltip-footnote {
 /***********/
 /* Sidebar */
 /***********/
+@media print {
+  .sidebar-col {
+    display: none;
+  }
+}
 .sidebar-col h2 {
   font-size: 1.3em;
   margin: 1.5em 0 1em;

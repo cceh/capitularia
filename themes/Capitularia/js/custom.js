@@ -72,7 +72,7 @@
     }
 
     function initLegend () {
-        // the Legend slide-out
+        // the Key (Legend) slide-out
         var legend = $ ('#legend');
         if (legend.length) {
             var wrapper = $ (
@@ -135,6 +135,11 @@
         setTimeout (initSmoothScrollLinks, 0);
         setTimeout (initResetForm, 0);
         initFootnoteTooltips ();
-        initLegend ();
+
+        // FIXME: somehow extract this value from bootstrap files
+        // if ($('body').css ('content') == 'sm')
+        if (window.matchMedia ('(min-width: 768px)').matches) {
+            initLegend ();
+        }
     });
 } (jQuery));

@@ -1,19 +1,17 @@
 @import (reference) "fonts.less";
 @import (reference) "colors.less";
 
-#bottom-header-wrapper {
-    padding-top: 40px;
-    border-bottom: solid 1px @color-rule;
-}
+/*******************/
+/* navigation bars */
+/*******************/
 
 .bottom-nav {
     margin-top:    0.3em;
     margin-bottom: 0.3em;
+    ul {
+        margin-right: -14px;
+    }
 }
-
-/*******************/
-/* navigation bars */
-/*******************/
 
 nav.horiz-nav ul {
     display: block;
@@ -46,7 +44,7 @@ nav.horiz-nav ul ul li {
 
 /* top navbar colors */
 
-.top-nav {
+#header {
     background-color: @background-menubar-top;
 }
 
@@ -124,42 +122,37 @@ nav.horiz-nav ul ul li {
 /* the search form      */
 /************************/
 
-nav.search-nav {
-    float: right;
-}
-
 form.searchform {
-    height: 2.5em;
     .regular;
     background: linear-gradient(to bottom, #f8f8f8, #ccc);
+    table {
+        width: 100%;
+    }
+    td.submit-cell {
+        width: 2.5em;
+    }
     input, button {
-        float: left;
-        display: block;
-        position: relative;
-        box-sizing:border-box;
-        font-size:1.1em;
-        height: 100%;
+        font-size: 1.1em;
+        width: 100%;
+        height: 2.5em;
         padding: 0;
         margin: 0;
         border: 0 solid black;
         background: transparent;
         transition: background 500ms;
     }
-    *:hover {
-        background: rgba(0, 0, 0, 0.05);
-    }
 }
 
 #searchinput {
-    width: 200px;
     padding: 0 1em;
+    &:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
 }
 
 #searchsubmit {
     margin-left: 1px;
     background: rgba(0, 0, 0, 0.1);
-    width: 2.5em;
-    height: 100%;
     &::after {
         font-family: "dashicons";
         content: "\f179";
@@ -169,99 +162,5 @@ form.searchform {
     }
     &:hover {
         background: @color-highlight;
-    }
-}
-
-/**********/
-/* footer */
-/**********/
-
-#footer {
-    background: @color-gray;
-    color: @color-white;
-    padding-top:32px;
-    padding-bottom:32px;
-    font-size:0.825em;
-}
-
-.footer-text li {
-    float:left;
-    display:block;
-    position:relative;
-    margin-bottom:32px;
-    margin-right:12px;
-    padding-right:12px;
-}
-
-div.logo-bar li {
-    float:left;
-    display:block;
-    position:relative;
-    margin-right:50px
-}
-
-div.logo-bar li img {
-    display:block;
-    width:auto;
-    height:100px;
-}
-
-/*********/
-/* pager */
-/*********/
-
-.pager {
-    padding-top:16px;
-    border-top:solid 1px @color-rule;
-    margin-top:16px;
-    padding-bottom:24px;
-}
-
-.pager ul:after {
-    content:'';
-    display:block;
-    position:relative;
-    clear:both;
-}
-
-.pager ul li {
-    float:left;
-    margin-right:8px;
-    padding-right:8px;
-    position:relative;
-}
-
-.pager ul li a {
-    color: @color-link;
-    text-decoration:none;
-}
-
-.pager ul li:after {
-    content:'';
-    display:block;
-    width:1px;
-    height:1.2em;
-    position:absolute;
-    right:0;
-    top:-0.1em;
-    background: @color-highlight;
-}
-
-.kapitularien-pager {
-    padding-top: 8px;
-    ul {
-        li {
-            list-style-type: none;
-            margin-left: 0;
-            padding-right: 36px;
-            margin-right: 36px;
-            &:after {
-                height:3em;
-            }
-            a {
-                line-height:1.5em;
-                .light;
-            }
-        }
     }
 }

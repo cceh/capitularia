@@ -81,6 +81,32 @@ function get_permalink_a ()
     );
 }
 
+function get_main_start ($class = '') {
+    echo ("<main id='main' class='cap-row main $class'>\n");
+}
+
+function get_main_end () {
+    echo ("</main>\n");
+}
+
+function get_sidebar_start () {
+    echo ("  <nav class='cap-right-col-push sidebar-col'>\n");
+    echo ("    <ul>\n");
+}
+
+function get_sidebar_end () {
+    echo ("    </ul>\n");
+    echo ("  </nav>\n");
+}
+
+function get_content_start () {
+    echo ("  <div class='cap-left-col-pull content-col'>\n");
+}
+
+function get_content_end () {
+    echo ("  </div>\n");
+}
+
 /**
  * Register jquery and jquery-ui scripts and CSS
  *
@@ -128,56 +154,38 @@ function register_jquery ()
 
 function on_enqueue_scripts ()
 {
-    register_jquery ();
-
-    wp_enqueue_style (
-        'cap-reset',
-        get_template_directory_uri () . '/css/reset.css',
-        array ()
-    );
+    $template_dir = get_template_directory_uri ();
 
     $styles = array ();
-    $styles['cap-webfonts']    = '/webfonts/webfonts.css';
-    $styles['cap-fonts']       = '/css/fonts.css';
-    $styles['cap-content']     = '/css/content.css';
-    $styles['cap-navigation']  = '/css/navigation.css';
-    $styles['cap-qtranslate']  = '/css/qtranslate-x.css';
+    $styles[] = array ('cap-bootstrap',            '/bower_components/bootstrap/dist/css/bootstrap.css');
+    $styles[] = array ('cap-webfonts',             '/webfonts/webfonts.css',    array ('cap-bootstrap'));
+    $styles[] = array ('cap-fonts',                '/css/fonts.css',            array ('cap-bootstrap'));
+    $styles[] = array ('cap-content',              '/css/content.css',          array ('cap-bootstrap'));
+    $styles[] = array ('cap-navigation',           '/css/navigation.css',       array ('cap-bootstrap'));
+    $styles[] = array ('cap-qtranslate',           '/css/qtranslate-x.css',     array ('cap-bootstrap'));
+    $styles[] = array ('cap-jquery-ui-custom-css', '/css/jquery-ui-custom.css', array ('cap-jquery-ui-css'));
 
-    foreach ($styles as $key => $file) {
+    register_jquery ();
+    foreach ($styles as $a) {
         wp_enqueue_style (
-            $key,
-            get_template_directory_uri () . $file,
-            array ('cap-reset')
+            $a[0],
+            $template_dir . $a[1],
+            count ($a) > 2 ? $a[2] : array ()
         );
     };
     wp_enqueue_style ('dashicons');
 
     $scripts = array ();
-    $scripts['cap-piwik']       = '/js/piwik-wrapper.js';
-    $scripts['cap-html5shiv']   = '/bower_components/html5shiv/dist/html5shiv.js';
+    $scripts[] = array ('cap-piwik',     '/js/piwik-wrapper.js');
+    $scripts[] = array ('cap-custom-js', '/js/custom.js', array ('cap-jquery', 'cap-jquery-ui', 'cap-jquery-sticky'));
 
-    foreach ($scripts as $key => $file) {
+    foreach ($scripts as $a) {
         wp_enqueue_script (
-            $key,
-            get_template_directory_uri () . $file,
-            array ()
+            $a[0],
+            $template_dir . $a[1],
+            count ($a) > 2 ? $a[2] : array ()
         );
     };
-
-    // make html5shiv IE-conditional
-    global $wp_scripts;
-    $wp_scripts->add_data ('cap-html5shiv', 'conditional', 'lt IE 9');
-
-    wp_enqueue_style (
-        'cap-jquery-ui-custom-css',
-        get_template_directory_uri () . '/css/jquery-ui-custom.css',
-        array ('cap-jquery-ui-css')
-    );
-    wp_enqueue_script (
-        'cap-custom-js',
-        get_template_directory_uri () . '/js/custom.js',
-        array ('cap-jquery', 'cap-jquery-ui', 'cap-jquery-sticky')
-    );
 }
 
 /**
@@ -188,19 +196,21 @@ function on_enqueue_scripts ()
 
 function on_admin_enqueue_scripts ()
 {
-    $styles = array ();
-    $styles['cap-admin']       = '/css/admin.css';
+    $template_dir = get_template_directory_uri ();
 
-    foreach ($styles as $key => $file) {
+    $styles = array ();
+    $styles[] = array ('cap-admin', '/css/admin.css');
+
+    register_jquery ();
+    foreach ($styles as $a) {
         wp_enqueue_style (
-            $key,
-            get_template_directory_uri () . $file,
-            array () // no deps for now
+            $a[0],
+            $template_dir . $a[1],
+            count ($a) > 2 ? $a[2] : array ()
         );
     };
 
     // NOTE: Wordpress' own jquery-ui does not include jquery-ui.css.
-    register_jquery ();
     wp_enqueue_script ('cap-jquery-ui');
 }
 

@@ -8,7 +8,11 @@
     }
 
     $(document).ready (function () {
-        initSidebarToc ();
+        // FIXME: somehow extract this value from bootstrap files
+        // if ($('body').css ('content') == 'sm')
+        if (window.matchMedia ('(min-width: 768px)').matches) {
+            initSidebarToc ();
+        }
     });
 
 })(jQuery);

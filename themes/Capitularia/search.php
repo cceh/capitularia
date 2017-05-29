@@ -10,8 +10,13 @@ namespace cceh\capitularia\theme;
 
 get_header ();
 
-echo ("<main id='main' class='search-php'>\n");
-echo ("<div class='content-col'>\n");
+get_main_start ('search-php');
+
+get_sidebar_start ();
+dynamic_sidebar ('search');
+get_sidebar_end ();
+
+get_content_start ();
 
 $your_search = apply_filters ('cap_meta_search_your_search', '');
 $n_results = $wp_query->found_posts;
@@ -50,7 +55,7 @@ $pagination = paginate_links (
 );
 
 echo (
-    "<header class='search-header page-header'>\n  <h2>" .
+    "<header class='search-header cap-page-header'>\n  <h2>" .
     __ ('Search Results', 'capitularia') . "</h2>\n" .
     "  <div class='search-your-search'>$your_search</div>\n"
 );
@@ -82,12 +87,9 @@ if (have_posts ()) {
     }
     echo ("</footer>\n");
 }
-echo ("</div>\n");
 
-echo ("<div class='sidebar-col'>\n<ul>\n");
-dynamic_sidebar ('search');
-echo ("</ul>\n</div>\n");
+get_content_end ();
 
-echo ("</main>\n");
+get_main_end ();
 
 get_footer ();

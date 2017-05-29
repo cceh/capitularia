@@ -1,14 +1,13 @@
-#bottom-header-wrapper {
-  padding-top: 40px;
-  border-bottom: solid 1px #1a171b;
-}
+/*******************/
+/* navigation bars */
+/*******************/
 .bottom-nav {
   margin-top: 0.3em;
   margin-bottom: 0.3em;
 }
-/*******************/
-/* navigation bars */
-/*******************/
+.bottom-nav ul {
+  margin-right: -14px;
+}
 nav.horiz-nav ul {
   display: block;
   float: right;
@@ -34,7 +33,7 @@ nav.horiz-nav ul ul li {
   float: none;
 }
 /* top navbar colors */
-.top-nav {
+#header {
   background-color: #b92900;
 }
 .top-nav a {
@@ -102,42 +101,38 @@ nav.horiz-nav ul ul li {
 /************************/
 /* the search form      */
 /************************/
-nav.search-nav {
-  float: right;
-}
 form.searchform {
-  height: 2.5em;
   font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
   font-weight: normal;
   font-style: normal;
   background: linear-gradient(to bottom, #f8f8f8, #ccc);
 }
+form.searchform table {
+  width: 100%;
+}
+form.searchform td.submit-cell {
+  width: 2.5em;
+}
 form.searchform input,
 form.searchform button {
-  float: left;
-  display: block;
-  position: relative;
-  box-sizing: border-box;
   font-size: 1.1em;
-  height: 100%;
+  width: 100%;
+  height: 2.5em;
   padding: 0;
   margin: 0;
   border: 0 solid black;
   background: transparent;
   transition: background 500ms;
 }
-form.searchform *:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
 #searchinput {
-  width: 200px;
   padding: 0 1em;
+}
+#searchinput:hover {
+  background: rgba(0, 0, 0, 0.05);
 }
 #searchsubmit {
   margin-left: 1px;
   background: rgba(0, 0, 0, 0.1);
-  width: 2.5em;
-  height: 100%;
 }
 #searchsubmit::after {
   font-family: "dashicons";
@@ -148,87 +143,5 @@ form.searchform *:hover {
 }
 #searchsubmit:hover {
   background: #b92900;
-}
-/**********/
-/* footer */
-/**********/
-#footer {
-  background: #4e4c4f;
-  color: #fff;
-  padding-top: 32px;
-  padding-bottom: 32px;
-  font-size: 0.825em;
-}
-.footer-text li {
-  float: left;
-  display: block;
-  position: relative;
-  margin-bottom: 32px;
-  margin-right: 12px;
-  padding-right: 12px;
-}
-div.logo-bar li {
-  float: left;
-  display: block;
-  position: relative;
-  margin-right: 50px;
-}
-div.logo-bar li img {
-  display: block;
-  width: auto;
-  height: 100px;
-}
-/*********/
-/* pager */
-/*********/
-.pager {
-  padding-top: 16px;
-  border-top: solid 1px #1a171b;
-  margin-top: 16px;
-  padding-bottom: 24px;
-}
-.pager ul:after {
-  content: '';
-  display: block;
-  position: relative;
-  clear: both;
-}
-.pager ul li {
-  float: left;
-  margin-right: 8px;
-  padding-right: 8px;
-  position: relative;
-}
-.pager ul li a {
-  color: #b92900;
-  text-decoration: none;
-}
-.pager ul li:after {
-  content: '';
-  display: block;
-  width: 1px;
-  height: 1.2em;
-  position: absolute;
-  right: 0;
-  top: -0.1em;
-  background: #b92900;
-}
-.kapitularien-pager {
-  padding-top: 8px;
-}
-.kapitularien-pager ul li {
-  list-style-type: none;
-  margin-left: 0;
-  padding-right: 36px;
-  margin-right: 36px;
-}
-.kapitularien-pager ul li:after {
-  height: 3em;
-}
-.kapitularien-pager ul li a {
-  line-height: 1.5em;
-  font-family: 'OpenSans-Light', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
 }
 /*# sourceMappingURL=navigation.css.map */

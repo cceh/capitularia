@@ -1,12 +1,20 @@
+@import (reference) "../bower_components/bootstrap/less/variables.less";
+@import (reference) "../bower_components/bootstrap/less/mixins/grid.less";
+@import (reference) "../bower_components/bootstrap/less/mixins/clearfix.less";
 @import (reference) "fonts.less";
 @import (reference) "colors.less";
 
-body, html { overflow-x: hidden; }
+html {
+    /* otherwise bootstrap makes this very small */
+    font-size: 100%;
+}
 
 body {
     .regular;
     color: @color-text;
     background: @background;
+    /* otherwise bootstrap makes this very small */
+    font-size: 100%;
     line-height: 1.3;
 }
 
@@ -52,6 +60,12 @@ h5 {
 h6 {
     .regular;
     text-decoration: underline;
+}
+
+ol, ul {
+    margin: 0;
+    padding: 0;
+	list-style: none;
 }
 
 a[href] {
@@ -132,70 +146,184 @@ sub {
     }
 }
 
-@media print {
-    div, span, article {
-        float: none !important;
+/***********/
+/* Headers */
+/***********/
+
+div.container {
+    > header {
+        .make-row(); /* see: https://getbootstrap.com/css/ */
+        .clearfix();
     }
-    nav, .qtrans_language_chooser {
+    > main {
+        .make-row();
+        .clearfix();
+    }
+    > footer {
+        .make-row();
+        .clearfix();
+    }
+}
+
+.cap-row {
+    .make-row();
+}
+
+.cap-left-col {
+    .make-sm-column(8);
+    .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
+}
+
+.cap-right-col {
+    .make-sm-column(4);
+    .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
+}
+
+.cap-left-col-pull {
+    /* a column that comes on top on mobile but on the right on desktop */
+    .make-sm-column(8);
+    .make-sm-column-pull(4); /* pull 8 to the right */
+    .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
+}
+
+.cap-right-col-push {
+    /* a column that comes on bottom on mobile but on the left on desktop */
+    .make-sm-column(4);
+    .make-sm-column-push(8); /* push 8 to the left */
+    .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
+}
+
+nav {
+    &.horiz-nav {
+        .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
+        .clearfix();
+    }
+    @media print {
         display: none
     }
 }
 
-#top-nav > div,
-#bottom-header-wrapper,
-#footer-wrapper,
+#bottom-nav {
+    padding-top: 20px;
+    border-bottom: solid 1px @color-rule;
+}
+
 #main {
-    width:1140px;
-    margin:0 auto;
-    position:relative;
-    @media print {
-        width: 100%;
+    > div {
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 }
 
-#main {
-    padding-top:40px;
-    padding-bottom:70px;
+#main.home > div {
+    padding-top: 15px;
 }
 
-#main.home {
-    padding-top:15px;
+#header2 > div {
+    padding-top: 40px;
 }
+
+/**********/
+/* Footer */
+/**********/
 
 #footer {
+    background: @color-gray;
+    color: @color-white;
+    font-size: 0.825em;
     @media print {
         display: none;
     }
 }
 
+.logo-bar {
+    .make-row(); /* see: https://getbootstrap.com/css/ */
+    .clearfix();
+
+    li.widget {
+        .make-xs-column(2); /* see: https://getbootstrap.com/css/ */
+        a {
+            display: block;
+            width: 100%;
+            img {
+                display: block;
+                margin: 20px auto;
+                width: 66%;
+            }
+        }
+    }
+}
+
+
 /**************/
 /* Front page */
 /**************/
 
-.front-splash {
-    position: relative;
-    margin-top: 70px;
-    margin-bottom: 70px;
-    width: 100%;
+.ribbon() {
     height: auto;
-    background: @color-startpage-box;
-    color: @color-white;
-    h1 {
-        position: absolute;
-        width: 60%;
-        left: 16px;
-        bottom: 16px;
-        line-height: 1;
+    font-size: 75%;
+    @media (min-width: @screen-sm-min) {
+        height: ((@screen-sm-min / 3) - @grid-gutter-width) * 276 / 352;
+        font-size: 100%;
     }
-    img {
-        display: block;
-        float: right;
-        width: 32%;
-        margin-bottom: -40px;
+    @media (min-width: @screen-md-min) {
+        height: ((@screen-md-min / 3) - @grid-gutter-width) * 276 / 352;
+        font-size: 100%;
+    }
+    @media (min-width: @screen-lg-min) {
+        height: ((@screen-lg-min / 3) - @grid-gutter-width) * 276 / 352;
+        font-size: 100%;
     }
 }
 
-div.teaser-bar {
+.front-splash {
+    .make-row(); /* see: https://getbootstrap.com/css/ */
+    .clearfix();
+    position: relative;
+
+    margin-top:    40px;
+    margin-bottom: 40px;
+    background: @color-startpage-box;
+    color: @color-white;
+
+    div.front-splash-caption {
+        .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
+        .make-sm-column(8);
+        /* undo the bootstrap default of position: relative because we need to position
+           at the bottom of div.front-splash */
+        position: static;
+        h1 {
+            line-height: 1;
+            @media (min-width: @screen-sm-min) {
+                position: absolute;
+                bottom: 15px;
+                width: 60%;
+            }
+            span {
+                font-size: 75%;
+                @media (min-width: @screen-md-min) {
+                    font-size: 100%;
+                }
+            }
+        }
+    }
+    ul.front-splash-image {
+        .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
+        .make-sm-column(4);
+        img {
+            margin-bottom: -12%;
+            margin-top: 2%;
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+ul.teaser-bar {
+    .make-row(); /* see: https://getbootstrap.com/css/ */
+    .clearfix();
+
+    margin: 0 auto;
     margin: 2em 0;
     line-height: 1.5em;
     h2 {
@@ -203,9 +331,6 @@ div.teaser-bar {
         .semibold;
         margin-top: 0;
         margin-bottom: .7ex;
-    }
-    ul {
-        margin: 0 auto;
     }
     p {
         margin-bottom: 0.35em;
@@ -232,26 +357,17 @@ div.teaser-bar {
     }
     img {
         float: left;
-        height: 10em;
         max-width: 33%;
         margin-right: 32px;
         margin-bottom: 32px;
     }
-    li.widget {
-        display: inline-block;
-        position: relative;
-        vertical-align: top;
-        width: 33%;
-        box-sizing: border-box;
-        padding: 0 1em;
-        text-align:center;
-    }
-    li.widget.cap_widget_image {
-        text-align:left;
-    }
 }
 
-div.teaser-bar-1 {
+ul.teaser-bar-1 {
+    li.widget {
+        .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
+        .make-sm-column(4);
+    }
     padding-top: 1em;
     text-align: center;
     h2 {
@@ -260,23 +376,161 @@ div.teaser-bar-1 {
     }
 }
 
-div.teaser-bar-2 {
+ul.teaser-bar-2 {
+    li.widget {
+        .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
+        .make-sm-column(6);
+        text-align:left;
+    }
     border-top: solid 1px @color-rule;
     padding-top: 2em;
     h2 {
         font-size: 1.3em;
     }
-    li.widget {
-        width: 49%;
-    }
 }
 
 
-/*************/
-/* All pages */
-/*************/
+/***********/
+/* Gadgets */
+/***********/
+
+div.hr {
+    /* a horizontal rule always */
+    margin: 3em 0;
+    border-top: 1px solid @color-black;
+    .compact {
+        margin: 1em 0;
+    }
+}
+
+div.page-break {
+    /* a horizontal rule on screen and a page break on print */
+    @media screen {
+        margin: 3em 0;
+        border-top: 1px solid @color-black;
+        .compact {
+            margin: 1em 0;
+        }
+    }
+    page-break-before: always;
+}
+
+div.page-break + div.page-break {
+    /* Quick fix for duplicated page-breaks. */
+    display: none;
+}
+
+div.back-to-top {
+    margin: 3em 0;
+    text-align: right;
+    line-height: 1.75em;
+    a::after {
+        font-family: "dashicons";
+        font-size: 12px;
+        content: " \f343";
+    }
+    &.back-to-top-with-rule {
+        border-top: 1px solid @color-black;
+    }
+    &.back-to-top-compact {
+        margin: 0;
+    }
+    @media print {
+        display: none;
+    }
+}
+
+div.search-your-search {
+}
+
+div.pagination-nav {
+    margin:  14px 0;
+    padding: 14px 0;
+    border: solid 1px @color-rule;
+    font-size: smaller;
+
+    .screen-reader-text {
+        display: none
+    }
+}
+
+div.pagination-nav-top {
+    border-width: 1px 0;
+}
+
+div.pagination-nav-bottom {
+    border-width: 1px 0 0 0;
+}
+
+.search-results, .index-results {
+    margin: 2em 0;
+    li {
+        padding:10px 0;
+    }
+    p {
+        padding-top:6px;
+    }
+    b {
+        .bold;
+    }
+}
+
+.downloads li a {
+    text-decoration:none;
+    transition:color 300ms;
+}
+
+.downloads li a:hover,
+.downloads li a:focus,
+.downloads li a:active {
+    color:@color-black;
+}
+
+select {
+    width:100%;
+    display:block;
+    margin:8px 0 16px;
+    display:block;
+    border:none;
+    position:relative;
+
+    border-radius:6px;
+    border-top:solid 1px #e0e0e0;
+    border-left:solid 1px #e0e0e0;
+    border-bottom:solid 2px #cccccc;
+
+    height:1.6em;
+    padding-left:1em;
+    box-sizing:border-box;
+
+    background:url('../img/icon-selectbox.png') right no-repeat @color-white;
+    background-size:contain
+}
+
+input[type="text"] {
+    width:100%;
+    margin:8px 0 16px;
+    border:none;
+    padding:4px 8px;
+    box-sizing:border-box;
+}
+
+/***********/
+/* Content */
+/***********/
+
+span.mentioned {
+    /* Must be global because it gets moved outside of content-col by
+       jquery-ui. */
+    .italic;
+}
 
 div.content-col {
+    @media print {
+        /* otherwise we get no page-breaks because this is floated by bootstrap */
+        float: none;
+        width: 100%;
+    }
     a {
         &::after {
             font-family: "dashicons";
@@ -383,6 +637,16 @@ div.content-col {
             border-top:    1px solid @color-rule;
             border-bottom: 1px solid @color-rule;
         }
+    }
+
+    div.footnotes-wrapper {
+        @media screen {
+            display: none;
+        }
+    }
+
+    .annotation-ref {
+        .sup;
     }
 
     div.tei-msDesc {
@@ -498,193 +762,6 @@ div.content-col {
     .bib-short-title {
         .semibold;
     }
-}
-
-div.hr {
-    /* a horizontal rule always */
-    margin: 3em 0;
-    border-top: 1px solid @color-black;
-    .compact {
-        margin: 1em 0;
-    }
-}
-
-div.page-break {
-    /* a horizontal rule on screen and a page break on print */
-    @media screen {
-        margin: 3em 0;
-        border-top: 1px solid @color-black;
-        .compact {
-            margin: 1em 0;
-        }
-    }
-    page-break-before: always;
-}
-
-div.page-break + div.page-break {
-    /* Quick fix for duplicated page-breaks. */
-    display: none;
-}
-
-div.back-to-top {
-    margin: 3em 0;
-    text-align: right;
-    line-height: 1.75em;
-    a::after {
-        font-family: "dashicons";
-        font-size: 12px;
-        content: " \f343";
-    }
-    &.back-to-top-with-rule {
-        border-top: 1px solid @color-black;
-    }
-    &.back-to-top-compact {
-        margin: 0;
-    }
-    @media print {
-        display: none;
-    }
-}
-
-div.search-your-search {
-}
-
-div.pagination-nav {
-    margin:  14px 0;
-    padding: 14px 0;
-    border: solid 1px @color-rule;
-    font-size: smaller;
-
-    .screen-reader-text {
-        display: none
-    }
-}
-
-div.pagination-nav-top {
-    border-width: 1px 0;
-}
-
-div.pagination-nav-bottom {
-    border-width: 1px 0 0 0;
-}
-
-.search-results, .index-results {
-    margin: 2em 0;
-    li {
-        padding:10px 0;
-    }
-    p {
-        padding-top:6px;
-    }
-    b {
-        .bold;
-    }
-}
-
-#main:after {
-    content:'';
-    display:block;
-    position:relative;
-    clear:both;
-}
-
-.content-col {
-    float:left;
-    width:64%;
-    @media print {
-        float: none;
-        width: 100%;
-    }
-}
-
-.sidebar-col {
-    float: right;
-    width: 28%;
-    @media print {
-        float: none;
-        display: none;
-    }
-}
-
-.kapitularien-uebersicht {
-    margin-bottom: 48px;
-    li {
-        padding: 24px 0 16px;
-        border-bottom: solid 1px @color-rule;
-        &:last-child {
-            border-bottom:none;
-        }
-    }
-}
-
-.pager li a ,
-.downloads li a ,
-.kapitularien-uebersicht li a {
-    text-decoration:none;
-    transition:color 300ms;
-}
-
-.pager li a:hover,
-.pager li a:focus,
-.pager li a:active,
-.downloads li a:hover,
-.downloads li a:focus,
-.downloads li a:active,
-.kapitularien-uebersicht li a:hover,
-.kapitularien-uebersicht li a:focus,
-.kapitularien-uebersicht li a:active {
-    color:@color-black;
-}
-
-select {
-    width:100%;
-    display:block;
-    margin:8px 0 16px;
-    display:block;
-    border:none;
-    position:relative;
-
-    border-radius:6px;
-    border-top:solid 1px #e0e0e0;
-    border-left:solid 1px #e0e0e0;
-    border-bottom:solid 2px #cccccc;
-
-    height:1.6em;
-    padding-left:1em;
-    box-sizing:border-box;
-
-    background:url('../img/icon-selectbox.png') right no-repeat @color-white;
-    background-size:contain
-}
-
-input[type="text"] {
-    width:100%;
-    margin:8px 0 16px;
-    border:none;
-    padding:4px 8px;
-    box-sizing:border-box;
-}
-
-.reset-form {
-    .light;
-    transition:color 500ms;
-}
-
-.reset-form:hover,
-.reset-form:focus,
-.reset-form:active {
-    color:@color-black;
-    text-decoration:none;
-}
-
-/***********/
-/* Content */
-/***********/
-
-span.mentioned {
-    /* Must be global because it gets moved outside of content-col by
-       jquery-ui. */
-    .italic;
 }
 
 div.content-col, div.annotation-content {
@@ -913,18 +990,6 @@ div.content-col, div.annotation-content {
 /* Footnotes */
 /*************/
 
-div.content-col {
-    div.footnotes-wrapper {
-        display: none;
-        @media print {
-            display: block;
-        }
-    }
-    .annotation-ref {
-        .sup;
-    }
-}
-
 div.annotation-content {
     /* gets copied by jquery-ui tooltip () so it is not necessarily inside content-col */
     text-align: left;
@@ -970,6 +1035,9 @@ div.ui-widget.ui-widget-content.ui-tooltip-footnote {
 /***********/
 
 .sidebar-col {
+    @media print {
+        display: none;
+    }
     h2 {
         font-size: 1.3em;
         margin: 1.5em 0 1em;

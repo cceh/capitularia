@@ -10,6 +10,17 @@ namespace cceh\capitularia\theme;
 
 get_header ();
 
+get_main_start ('index-php');
+
+get_sidebar_start ();
+// This sidebar gets displayed on all posts.
+dynamic_sidebar ('Post-Sidebar');
+// This sidebar gets displayed on all posts and pages.
+dynamic_sidebar ('Sidebar');
+get_sidebar_end ();
+
+get_content_start ();
+
 $page_msg = __ ('Page:', 'capitularia');
 
 $pagination = paginate_links (
@@ -22,11 +33,8 @@ $pagination = paginate_links (
     )
 );
 
-echo ("<main id='main' class='index-php'>\n");
-echo ("<div class='content-col'>\n");
-
 if (have_posts ()) {
-    echo ("<header class='index-header page-header'>\n");
+    echo ("<header class='index-header cap-page-header'>\n");
     if ($pagination) {
         echo ("  <div class='pagination-nav index-pagination-nav pagination-nav-top'>$pagination</div>\n");
     }
@@ -71,19 +79,8 @@ if (have_posts ()) {
     echo ("</div>\n");
 }
 
-echo ("</div>\n");
+get_content_end ();
 
-echo ("<div class='sidebar-col'>\n");
-echo ("<ul>\n");
-
-// This sidebar gets displayed on all posts.
-dynamic_sidebar ('Post-Sidebar');
-// This sidebar gets displayed on all posts and pages.
-dynamic_sidebar ('Sidebar');
-
-echo ("</ul>\n");
-echo ("</div>\n");
-
-echo ("</main>\n");
+get_main_end ();
 
 get_footer ();
