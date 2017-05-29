@@ -129,24 +129,18 @@ strong,
   color: #b92900;
 }
 .sup {
-  vertical-align: super;
-  font-size: 70%;
+  font-size: 75%;
   line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.5em;
 }
 .sub {
-  vertical-align: sub;
-  font-size: 70%;
+  font-size: 75%;
   line-height: 0;
-}
-sup {
-  vertical-align: super;
-  font-size: 70%;
-  line-height: 0;
-}
-sub {
-  vertical-align: sub;
-  font-size: 70%;
-  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  bottom: -0.25em;
 }
 .justify {
   text-align: justify;
@@ -159,6 +153,12 @@ sub {
 @media screen {
   .print-only {
     display: none;
+  }
+}
+@media print {
+  /* undo bootstrap madness */
+  a[href]:after {
+    content: none !important;
   }
 }
 /***********/
@@ -236,15 +236,15 @@ div.container > footer:after {
   }
 }
 .cap-left-col-pull {
-  /* a column that comes on top on mobile but on the right on desktop */
-  /* pull 8 to the right */
-  position: relative;
+  /* a column that comes on bottom on mobile but on the left on desktop */
   float: left;
   width: 100%;
+  /* see: https://getbootstrap.com/css/ */
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  /* see: https://getbootstrap.com/css/ */
+  /* pull 4 to the left */
 }
 @media (min-width: 768px) {
   .cap-left-col-pull {
@@ -258,15 +258,15 @@ div.container > footer:after {
   }
 }
 .cap-right-col-push {
-  /* a column that comes on bottom on mobile but on the left on desktop */
-  /* push 8 to the left */
-  position: relative;
+  /* a column that comes on top on mobile but on the right on desktop */
   float: left;
   width: 100%;
+  /* see: https://getbootstrap.com/css/ */
+  position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  /* see: https://getbootstrap.com/css/ */
+  /* push 8 to the right */
 }
 @media (min-width: 768px) {
   .cap-right-col-push {
@@ -344,7 +344,7 @@ nav.horiz-nav:after {
 .logo-bar li.widget {
   position: relative;
   float: left;
-  width: 16.66666667%;
+  width: 25%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
@@ -352,12 +352,11 @@ nav.horiz-nav:after {
 }
 .logo-bar li.widget a {
   display: block;
-  width: 100%;
+  width: 33%;
+  margin: 20px auto;
 }
 .logo-bar li.widget a img {
-  display: block;
-  margin: 20px auto;
-  width: 66%;
+  width: 100%;
 }
 /**************/
 /* Front page */
@@ -452,6 +451,10 @@ ul.teaser-bar:after {
 }
 ul.teaser-bar:after {
   clear: both;
+}
+ul.teaser-bar li.widget {
+  margin-bottom: 1em;
+  /* @media (min-width: @screen-sm-min) { */
 }
 ul.teaser-bar h2 {
   color: #4e4c4f;
@@ -669,11 +672,18 @@ span.mentioned a[href]:hover {
   font-weight: normal;
   font-style: normal;
 }
+span.mentioned .mentioned-index {
+  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
 @media print {
   div.content-col {
     /* otherwise we get no page-breaks because this is floated by bootstrap */
     float: none;
     width: 100%;
+    left: 0 !important;
+    right: 0 !important;
   }
 }
 div.content-col a::after {
@@ -783,9 +793,11 @@ div.content-col table.new-style tbody {
   }
 }
 div.content-col .annotation-ref {
-  vertical-align: super;
-  font-size: 70%;
+  font-size: 75%;
   line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.5em;
 }
 div.content-col div.tei-msDesc div.tei-msIdentifier {
   margin: 1em 0;
@@ -991,9 +1003,11 @@ div.annotation-content .rend-semibold {
 }
 div.content-col .rend-super,
 div.annotation-content .rend-super {
-  vertical-align: super;
-  font-size: 70%;
+  font-size: 75%;
   line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.5em;
 }
 div.content-col .align-left,
 div.annotation-content .align-left {

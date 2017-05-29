@@ -111,23 +111,19 @@ b, strong, .bold {
 }
 
 .sup {
-    vertical-align: super;
-    font-size: 70%;
+    font-size: 75%;
     line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+    top: -0.5em;
 }
 
 .sub {
-    vertical-align: sub;
-    font-size: 70%;
+    font-size: 75%;
     line-height: 0;
-}
-
-sup {
-    .sup;
-}
-
-sub {
-    .sub;
+    position: relative;
+    vertical-align: baseline;
+    bottom: -0.25em;
 }
 
 .justify {
@@ -143,6 +139,13 @@ sub {
 .print-only {
     @media screen {
         display: none;
+    }
+}
+
+@media print {
+    /* undo bootstrap madness */
+    a[href]:after {
+        content: none !important;
     }
 }
 
@@ -180,17 +183,17 @@ div.container {
 }
 
 .cap-left-col-pull {
-    /* a column that comes on top on mobile but on the right on desktop */
-    .make-sm-column(8);
-    .make-sm-column-pull(4); /* pull 8 to the right */
+    /* a column that comes on bottom on mobile but on the left on desktop */
     .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
+    .make-sm-column(8);
+    .make-sm-column-pull(4); /* pull 4 to the left */
 }
 
 .cap-right-col-push {
-    /* a column that comes on bottom on mobile but on the left on desktop */
-    .make-sm-column(4);
-    .make-sm-column-push(8); /* push 8 to the left */
+    /* a column that comes on top on mobile but on the right on desktop */
     .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
+    .make-sm-column(4);
+    .make-sm-column-push(8); /* push 8 to the right */
 }
 
 nav {
@@ -241,14 +244,13 @@ nav {
     .clearfix();
 
     li.widget {
-        .make-xs-column(2); /* see: https://getbootstrap.com/css/ */
+        .make-xs-column(3); /* see: https://getbootstrap.com/css/ */
         a {
             display: block;
-            width: 100%;
+            width: 33%;
+            margin: 20px auto;
             img {
-                display: block;
-                margin: 20px auto;
-                width: 66%;
+                width: 100%;
             }
         }
     }
@@ -326,6 +328,10 @@ ul.teaser-bar {
     margin: 0 auto;
     margin: 2em 0;
     line-height: 1.5em;
+    li.widget {
+        margin-bottom: 1em;
+        /* @media (min-width: @screen-sm-min) { */
+    }
     h2 {
         color: @color-gray;
         .semibold;
@@ -380,7 +386,7 @@ ul.teaser-bar-2 {
     li.widget {
         .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
         .make-sm-column(6);
-        text-align:left;
+        text-align: left;
     }
     border-top: solid 1px @color-rule;
     padding-top: 2em;
@@ -523,6 +529,9 @@ span.mentioned {
     /* Must be global because it gets moved outside of content-col by
        jquery-ui. */
     .italic;
+    .mentioned-index {
+        .regular;
+    }
 }
 
 div.content-col {
@@ -530,6 +539,8 @@ div.content-col {
         /* otherwise we get no page-breaks because this is floated by bootstrap */
         float: none;
         width: 100%;
+        left: 0 !important;
+        right: 0 !important;
     }
     a {
         &::after {

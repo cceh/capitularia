@@ -181,11 +181,12 @@
 
   <xsl:template name="footnotes-wrapper">
     <div class="footnotes-wrapper">
-      <!-- generate footnote bodies for all immediately preceding ab-meta's and
-           for this ab -->
+      <!-- generate footnote bodies for immediately preceding ab-meta's and ab's
+           linked to this one by @next -->
       <xsl:apply-templates
           mode="auto-note-wrapper"
-          select="set:trailing (preceding-sibling::tei:ab, preceding-sibling::tei:ab[@type='text'][1])"/>
+          select="set:trailing (preceding-sibling::tei:ab, preceding-sibling::tei:ab[@type='text' and not (@next)][1])"/>
+      <!-- generate footnote bodies for this ab -->
       <xsl:apply-templates mode="auto-note-wrapper" />
     </div>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
@@ -226,8 +227,10 @@
     </div>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
 
-    <xsl:call-template name="footnotes-wrapper"/>
-    <xsl:call-template name="page-break" />
+    <xsl:if test="not (@next)">
+      <xsl:call-template name="footnotes-wrapper"/>
+      <xsl:call-template name="page-break" />
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="tei:seg[@type = 'numDenom' or @type = 'num']">
