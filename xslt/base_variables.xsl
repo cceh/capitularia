@@ -159,113 +159,117 @@
   </xsl:variable>
 
   <xsl:variable name="tei-graphic-targets">
-    <item key=".hab.de">
-      <title>Herzog August Bibliothek</title>
-      <caption>Digitale Bibliothek HAB</caption>
-    </item>
-    <item key="e-codices">
-      <title>e-codices</title>
-      <caption>e-codices</caption>
-    </item>
-    <item key="europeana">
-      <title>europeana Regia</title>
-      <caption>europeana Regia</caption>
-    </item>
-    <item key="mgh">
-      <title>MGH</title>
-      <caption>Monumenta Germaniae Historica</caption>
-    </item>
-    <item key="bsb">
-      <title>Bayerische Staatsbibliothek München</title>
-      <caption>BSB München</caption>
-    </item>
-    <item key="bnf">
-      <title>Bibliothèque nationale de France</title>
-      <caption>BnF</caption>
-    </item>
-    <item key="freelibrary">
-      <title>Free Library Philadelphia</title>
-      <caption>Free Library</caption>
-    </item>
-    <item key="bhnumerique">
-      <title>Bibliothèque Humaniste numérique</title>
-      <caption>Bibliothèque Humaniste numérique</caption>
-    </item>
-    <item key="bibliotecadigital">
-      <title>Biblioteca Real Academia de la Historia Madrid</title>
-      <caption>Biblioteca Real Academia de la Historia Madrid</caption>
-    </item>
-    <item key="socrates">
-      <title>Digital Sources - Universität Leiden</title>
-      <caption>Digital Sources - Universiteit Leiden</caption>
-    </item>
-    <item key="trier">
-      <title>Die ältesten deutschsprachigen Texte der Stadtbibliothek Trier – ein Informationsportal im Internet“</title>
-      <caption>Portal zu den ältesten deutschsprachigen Texten der SB Trier</caption>
-    </item>
-    <item key="heidelberg">
-      <title>UB Heidelberg</title>
-      <caption>UB Heidelberg</caption>
-    </item>
-    <item key="stgallplan">
-      <title>Reichenau &amp; St. Gall</title>
-      <caption>Carolingian Culture at Reichenau &amp; St. Gall</caption>
-    </item>
-    <item key="bodley">
-      <title>Bodleian Library Oxford</title>
-      <caption>Bodleian Library Oxford</caption>
-    </item>
-    <item key="bvmm">
-      <title>Bibliothèque virtuelle</title>
-      <caption>Bibliothèque virtuelle</caption>
-    </item>
-    <item key="parkerweb">
-      <title>Parker Library</title>
-      <caption>Parker Library</caption>
-    </item>
-    <item key="manuscripta-">
-      <title>Manuscripta Mediaevalia</title>
-      <caption>MM</caption>
-    </item>
-    <item key="manus">
-      <title>Manus online</title>
-      <caption>Manus online</caption>
-    </item>
-    <item key="wlb">
-      <title>WLB Stuttgart</title>
-      <caption>WLB Stuttgart</caption>
-    </item>
-    <item key="onb">
-      <title>ÖNB</title>
-      <caption>ÖNB</caption>
-    </item>
-    <item key="blb">
-      <title>Badische Landesbibliothek</title>
-      <caption>Badische Landesbibliothek</caption>
-    </item>
-    <item key="uni-muenchen">
-      <title>Universitätsbibliothek München</title>
-      <caption>Universitätsbibliothek München</caption>
-    </item>
-    <item key="berlin">
-      <title>Staatsbibliothek Berlin</title>
-      <caption>Staatsbibliothek Berlin</caption>
-    </item>
-    <item key="landesarchiv-nrw">
-      <title>Landesarchiv NRW, Abt. Westfalen</title>
-      <caption>Landesarchiv NRW, Abt. Westfalen</caption>
-    </item>
-    <item key="pares">
-      <title>PARES - Portal de Archivos Españoles</title>
-      <caption>PARES</caption>
-    </item>
-    <item key="archiviodiocesano">
+    <item key="archiviodiocesano.mo.it">
       <title>Archivio Capitolare di Modena</title>
       <caption>Archivio Capitolare di Modena</caption>
     </item>
-    <item key="vatlib">
-      <title>Vatikan</title>
-      <caption>BAV</caption>
+    <item key=".beic.it">
+      <title>Biblioteca Europea di Informazione e Cultura</title>
+      <caption>BEIC</caption>
+    </item>
+    <item key="bhnumerique.ville-selestat.fr">
+      <title>Bibliothèque Humaniste numérique</title>
+      <caption>Bibliothèque Humaniste numérique</caption>
+    </item>
+    <item key="bibliotecadigital.rah.es">
+      <title>Biblioteca Real Academia de la Historia Madrid</title>
+      <caption>Biblioteca RAH Madrid</caption>
+    </item>
+    <item key="blb-karlsruhe.de">
+      <title>Badische Landesbibliothek</title>
+      <caption>Badische Landesbibliothek</caption>
+    </item>
+    <item key=".bnf.fr">
+      <title>Bibliothèque nationale de France</title>
+      <caption>BnF</caption>
+    </item>
+    <item key="bodley.ox.ac.uk">
+      <title>Bodleian Library Oxford</title>
+      <caption>Bodleian</caption>
+    </item>
+    <item key="bsb-muenchen.de">
+      <title>Bayerische Staatsbibliothek München</title>
+      <caption>BSB München</caption>
+    </item>
+    <item key="bsb.lrz.de">
+      <title>Staatsbibliothek Bamberg</title>
+      <caption>Staatsbibliothek Bamberg</caption>
+    </item>
+    <item key="bvmm.irht.cnrs.fr">
+      <title>Bibliothèque virtuelle</title>
+      <caption>Bibliothèque virtuelle</caption>
+    </item>
+    <item key="e-codices.unifr.ch">
+      <title>e-codices</title>
+      <caption>e-codices</caption>
+    </item>
+    <item key="europeanaregia.eu">
+      <title>Europeana Regia</title>
+      <caption>Europeana Regia</caption>
+    </item>
+    <item key="freelibrary.org">
+      <title>Free Library Philadelphia</title>
+      <caption>Free Library Philadelphia</caption>
+    </item>
+    <item key=".hab.de">
+      <title>Herzog August Bibliothek</title>
+      <caption>HAB</caption>
+    </item>
+    <item key="landesarchiv-nrw.de">
+      <title>Landesarchiv NRW</title>
+      <caption>Landesarchiv NRW</caption>
+    </item>
+    <item key="manus.iccu.sbn.it">
+      <title>Manus online</title>
+      <caption>Manus</caption>
+    </item>
+    <item key="manuscripta-mediaevalia.de">
+      <title>Manuscripta Mediaevalia</title>
+      <caption>MM</caption>
+    </item>
+    <item key=".mgh.de">
+      <title>Monumenta Germaniae Historica</title>
+      <caption>MGH</caption>
+    </item>
+    <item key="onb.ac.at">
+      <title>Österreichische Nationalbibliothek</title>
+      <caption>ÖNB</caption>
+    </item>
+    <item key="pares.mcu.es">
+      <title>PARES - Portal de Archivos Españoles</title>
+      <caption>PARES</caption>
+    </item>
+    <item key="parkerweb.stanford.edu">
+      <title>Parker Library</title>
+      <caption>Parker Library</caption>
+    </item>
+    <item key="socrates.leidenuniv.nl">
+      <title>Digital Sources - Universität Leiden</title>
+      <caption>Digital Sources Leiden</caption>
+    </item>
+    <item key="staatsbibliothek-berlin.de">
+      <title>Staatsbibliothek Berlin</title>
+      <caption>Staatsbibliothek Berlin</caption>
+    </item>
+    <item key="stgallplan.org">
+      <title>Carolingian Culture at Reichenau &amp; St. Gall</title>
+      <caption>Reichenau &amp; St. Gall</caption>
+    </item>
+    <item key="trierer-handschriften.de">
+      <title>Die ältesten deutschsprachigen Texte der trierer Stadtbibliothek</title>
+      <caption>Die ältesten deutschsprachigen Texte der trierer Stadtbibliothek</caption>
+    </item>
+    <item key="ub.uni-heidelberg.de">
+      <title>UB Heidelberg</title>
+      <caption>UB Heidelberg</caption>
+    </item>
+    <item key="digi.vatlib.it">
+      <title>DigiVatLib</title>
+      <caption>DVL</caption>
+    </item>
+    <item key="wlb-stuttgart.de">
+      <title>WLB Stuttgart</title>
+      <caption>WLB Stuttgart</caption>
     </item>
   </xsl:variable>
 
