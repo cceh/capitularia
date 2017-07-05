@@ -8,53 +8,39 @@ select#bk,
 select#section {
   min-width: 10%;
 }
-table.collation,
-table.manuscripts {
+table.cap-collation-table-witnesses .column-sort {
+  width: 1em;
+  cursor: move;
+}
+table.collation {
   border-collapse: collapse;
   page-break-inside: avoid;
+  width: 100%;
 }
-table.collation.last,
-table.manuscripts.last {
+table.collation.last {
   width: 1%;
 }
-table.collation tbody tr,
-table.manuscripts tbody tr {
+table.collation tbody tr {
   background-color: #fff;
 }
-table.collation tbody tr:nth-child(even),
-table.manuscripts tbody tr:nth-child(even) {
+table.collation tbody tr:nth-child(even) {
   background-color: #eee;
 }
-table.collation tbody tr:first-child,
-table.manuscripts tbody tr:first-child {
+table.collation tbody tr:first-child {
   background-color: LightSkyBlue;
 }
-table.collation tbody tr.highlight-witness.highlight-witness,
-table.manuscripts tbody tr.highlight-witness.highlight-witness {
+table.collation tbody tr.highlight-witness.highlight-witness {
   background-color: #eea;
 }
 table.collation td,
-table.manuscripts td,
-table.collation th,
-table.manuscripts th {
+table.collation th {
   border: 1px solid gray;
   background-color: inherit;
   white-space: nowrap;
-}
-table.collation th,
-table.manuscripts th {
-  text-align: left;
-}
-table.collation span.missing::before,
-table.manuscripts span.missing::before {
-  content: '\2014';
-}
-table.collation {
-  width: 100%;
-}
-table.collation td,
-table.collation th {
   padding: 0.2em 0.3em;
+}
+table.collation th {
+  text-align: left;
 }
 table.collation td {
   text-align: center;
@@ -62,20 +48,8 @@ table.collation td {
 table.collation td.equal {
   color: rgba(68, 68, 68, 0.33);
 }
-table.manuscripts {
-  width: 50%;
-}
-table.manuscripts td,
-table.manuscripts th {
-  padding: 4px 10px;
-}
-table.manuscripts td.check-column,
-table.manuscripts th.check-column {
-  padding: 4px 0 0 3px;
-}
-table.manuscripts td input,
-table.manuscripts th input {
-  vetrtical-align: middle;
+table.collation span.missing::before {
+  content: '\2014';
 }
 div.witness-list-table-wrapper div.tablenav {
   display: none;

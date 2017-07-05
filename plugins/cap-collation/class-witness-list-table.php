@@ -112,15 +112,16 @@ class Witness_List_Table extends \WP_List_Table
     public function get_columns ()
     {
         return array (
-            'cb' => '<input type="checkbox" />',
-            'id' => _x ('Manuscript Id',  'column heading', 'capitularia'),
+            'sort' => '',
+            'cb'   => '<input type="checkbox" />',
+            'id'   => _x ('Manuscript Id',  'column heading', 'capitularia'),
         );
     }
 
     /**
      * Generates content for a single row of the table
      *
-     * @param object $manuscript The current file
+     * @param object $witness The current file
      *
      * @return void
      */
@@ -143,14 +144,14 @@ class Witness_List_Table extends \WP_List_Table
      *
      * Called by the base class.
      *
-     * @param object $manuscript The current file
+     * @param object $witness The current file
      *
      * @return void
      */
 
-    public function column_cb ($manuscript)
+    public function column_cb ($witness)
     {
-        $id = esc_attr ($manuscript->get_id ());
+        $id = esc_attr ($witness->get_id ());
         $select   = esc_html (
             sprintf (
                 _x ('Select %s', 'Select a witness by id (screen reader only)', 'capitularia'),
@@ -162,11 +163,26 @@ class Witness_List_Table extends \WP_List_Table
     }
 
     /**
+     * Generates contents of the _sort_ column.
+     *
+     * Called by the base class.
+     *
+     * @param object $witness The current file
+     *
+     * @return void
+     */
+
+    public function column_sort ($witness)
+    {
+        echo ('<span class="dashicons dashicons-sort"></span>');
+    }
+
+    /**
      * Generates contents of the _slug_ column.
      *
      * Called by the base class.
      *
-     * @param object $manuscript The current file
+     * @param object $witness The current file
      *
      * @return void
      */
@@ -184,14 +200,14 @@ class Witness_List_Table extends \WP_List_Table
      * Clicking on the link initiates an Ajax request that performs the action
      * and automagically redraws the table.
      *
-     * @param object $manuscript  File being acted upon.
+     * @param object $witness     The file being acted upon.
      * @param string $column_name Current column name.
      * @param string $primary     Primary column name.
      *
      * @return string Row action output for links.
      */
 
-    protected function handle_row_actions ($manuscript, $column_name, $primary)
+    protected function handle_row_actions ($witness, $column_name, $primary)
     {
         if ($primary !== $column_name) {
             return '';

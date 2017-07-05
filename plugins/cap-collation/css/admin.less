@@ -11,16 +11,20 @@ select#section {
     min-width: 10%;
 }
 
-table.collation,
-table.manuscripts {
+table.cap-collation-table-witnesses {
+    .column-sort {
+        width: 1em;
+        cursor: move;
+    }
+}
+
+table.collation {
     border-collapse: collapse;
     page-break-inside: avoid;
+    width: 100%;
 
     &.last {
         width: 1%;
-    }
-
-    thead tr {
     }
 
     tbody tr {
@@ -40,19 +44,10 @@ table.manuscripts {
         border: 1px solid gray;
         background-color: inherit;
         white-space: nowrap;
+        padding: 0.2em 0.3em;
     }
     th {
         text-align: left;
-    }
-    span.missing::before {
-        content: '\2014';
-    }
-}
-
-table.collation {
-    width: 100%;
-    td, th {
-        padding: 0.2em 0.3em;
     }
     td {
         text-align: center;
@@ -60,18 +55,8 @@ table.collation {
             color: fade(#444, 33%);
         }
     }
-}
-
-table.manuscripts {
-    width: 50%;
-    td, th {
-        padding: 4px 10px;
-        &.check-column {
-            padding: 4px 0 0 3px;
-        }
-        input {
-            vetrtical-align: middle;
-        }
+    span.missing::before {
+        content: '\2014';
     }
 }
 

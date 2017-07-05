@@ -120,8 +120,6 @@ function clear_manuscripts () {
     var deferred = jQuery.Deferred ();
 
     $div.slideUp (function () {
-        var $tbody = jQuery ('table.manuscripts tbody');
-        $tbody.children ().remove ();
         deferred.resolve ();
     });
     return deferred.promise ();
@@ -228,19 +226,8 @@ function on_cap_load_manuscripts (onReady) {
     }).always (function () {
         handle_message ($div, p3.responseJSON);
 
-        jQuery ('table.manuscripts').disableSelection ().sortable ({
-            'helper'      : 'clone',
-            'items'       : '*[data-siglum]',
-            'connectWith' : 'table.manuscripts',
-            'cursor'      : 'pointer',
-            'receive'     : function (event, ui) {
-                var tbody = jQuery (event.target).find ('tbody');
-                if (ui.item.closest (tbody).size () === 0) {
-                    ui.item.appendTo (tbody);
-                }
-                /* to keep original row width while dragging. See also: admin.less */
-                ui.item.css ('display', '');
-            },
+        jQuery ('table.cap-collation-table-witnesses').disableSelection ().sortable ({
+            'items' : 'tr[data-siglum]',
         });
     });
     return false;  // don't submit form
