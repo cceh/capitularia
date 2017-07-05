@@ -181,6 +181,26 @@ class Witness
     }
 
     /**
+     * Get all nodes that have a certain corresp attribute
+     *
+     * @param string $corresp  The corresp
+     *
+     * @return nodelist The nodes
+     */
+
+    public function get_nodes_for ($corresp)
+    {
+        $s   = file_get_contents ($this->xml_filename);
+        $doc = $this->string_to_dom ($s);
+        $xpath = $this->xpath ($doc);
+        $corr = "contains (concat (' ', @corresp, ' '), ' {$corresp} ')";
+
+        return $xpath->query (
+            "//tei:ab[{$corr}][not (.//tei:milestone[@unit='span'])] | //tei:milestone[@spanTo and @unit='span' and {$corr}]"
+        );
+    }
+
+    /**
      * Process a node
      *
      * Nodes may be either <ab> or <milestone unit='span' spanTo='#id'>.  In
@@ -289,20 +309,12 @@ class Witness
 
     public function extract_section ($corresp, &$errors)
     {
-        $s   = file_get_contents ($this->xml_filename);
-        $doc = $this->string_to_dom ($s);
-
         $this->document = $this->new_tei_dom ();
         $xpath = $this->xpath ($this->document);
         $body  = $xpath->query ('//tei:body')[0];
-        $xpath = $this->xpath ($doc);
 
-        $corr = "contains (concat (' ', @corresp, ' '), ' {$corresp} ')";
-        $nodes = $xpath->query (
-            "//tei:ab[{$corr}] | //tei:milestone[@spanTo and @unit='span' and {$corr}]"
-        );
         $n = 1;
-        foreach ($nodes as $node) {
+        foreach ($this->get_nodes_for ($corresp) as $node) {
             // Nodes with @prev are handled in the @next chain instead.
             if ($node->getAttribute ('prev')) {
                 continue;
@@ -379,16 +391,8 @@ class Witness
 
     public function count_sections ($corresp)
     {
-        $s   = file_get_contents ($this->xml_filename);
-        $doc = $this->string_to_dom ($s);
-        $xpath = $this->xpath ($doc);
-
-        $corr = "contains (concat (' ', @corresp, ' '), ' {$corresp} ')";
         $n = 0;
-        $nodes = $xpath->query (
-            "//tei:ab[{$corr}] | //tei:milestone[@spanTo and @unit='span' and {$corr}]"
-        );
-        foreach ($nodes as $node) {
+        foreach ($this->get_nodes_for ($corresp) as $node) {
             if ($node->getAttribute ('prev')) {
                 continue;
             }
