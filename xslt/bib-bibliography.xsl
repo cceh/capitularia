@@ -50,7 +50,7 @@
       <path>lit</path>
     </section>
     <section rel_text="Katalog">
-      <caption>[:de]Handschriftenkataloge[:en]Manuscript catalogues[:]</caption>
+      <caption>[:de]Handschriften&#xad;kataloge[:en]Manuscript catalogues[:]</caption>
       <id>cat</id>
       <path>kat</path>
     </section>

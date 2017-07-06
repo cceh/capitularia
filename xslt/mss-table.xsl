@@ -66,7 +66,7 @@ Old name:   tabelle_ueberblick.xsl
         [:]
       </p>
 
-      <table align="center" class="handschriften" rules="all">
+      <table align="center" class="handschriften break-word" rules="all">
         <thead>
           <tr>
             <th class="shelfmark">[:de]Signatur [Siglum]       [:en]Shelfmark [siglum]     [:]</th>

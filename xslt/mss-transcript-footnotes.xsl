@@ -366,7 +366,7 @@ footnotes will be joined to the preceding word.
     <!-- Special treatment for empty <del> -->
     <xsl:choose>
       <xsl:when test="not (normalize-space ()) and @quantity">
-        <xsl:value-of select="str:padding (@quantity, '+')"/>
+        <span class="break-word"><xsl:value-of select="str:padding (@quantity, '+')"/></span>
       </xsl:when>
       <xsl:when test="not (normalize-space ())">
         <xsl:text>[+]</xsl:text>
@@ -455,7 +455,7 @@ footnotes will be joined to the preceding word.
   </xsl:template>
 
   <xsl:template match="tei:gap">
-    <span class="tei-gap" data-shortcuts="0">
+    <span class="tei-gap break-word" data-shortcuts="0">
       <xsl:text>[</xsl:text>
       <xsl:value-of select="str:padding (number (@quantity) * 2 + 1, '&#x2009;.')"/>
       <xsl:text>]</xsl:text>

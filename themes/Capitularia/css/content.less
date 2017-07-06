@@ -534,6 +534,10 @@ span.mentioned {
     }
 }
 
+span.break-word {
+    overflow-wrap: break-word;
+}
+
 div.content-col {
     @media print {
         /* otherwise we get no page-breaks because this is floated by bootstrap */
@@ -1070,16 +1074,14 @@ div.ui-widget.ui-widget-content.ui-tooltip-footnote {
             /* HACK for Alphabet Menus */
             &.dynamic-menu-item-level-2.dynamic-menu-item-inline {
                 float: left;
-                width: 8%;
-                padding-right: 8px;
+                width: 2em;
                 text-align: center;
                 border-bottom: none;
             }
             /* HACK for Alphabet Menus */
             &.dynamic-menu-item-float {
                 float: left;
-                width: 8%;
-                padding-right: 8px;
+                width: 2em;
                 text-align: center;
                 border-bottom: none;
             }

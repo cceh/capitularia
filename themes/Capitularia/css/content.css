@@ -677,6 +677,9 @@ span.mentioned .mentioned-index {
   font-weight: normal;
   font-style: normal;
 }
+span.break-word {
+  overflow-wrap: break-word;
+}
 @media print {
   div.content-col {
     /* otherwise we get no page-breaks because this is floated by bootstrap */
@@ -1306,15 +1309,13 @@ div.ui-widget.ui-widget-content.ui-tooltip-footnote {
 }
 .sidebar-col ul.menu li.dynamic-menu-item-level-2.dynamic-menu-item-inline {
   float: left;
-  width: 8%;
-  padding-right: 8px;
+  width: 2em;
   text-align: center;
   border-bottom: none;
 }
 .sidebar-col ul.menu li.dynamic-menu-item-float {
   float: left;
-  width: 8%;
-  padding-right: 8px;
+  width: 2em;
   text-align: center;
   border-bottom: none;
 }
