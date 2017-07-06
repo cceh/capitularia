@@ -227,10 +227,15 @@
     </div>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
 
-    <xsl:if test="not (@next)">
-      <xsl:call-template name="footnotes-wrapper"/>
-      <xsl:call-template name="page-break" />
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="@next">
+        <xsl:call-template name="hr" />
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="footnotes-wrapper"/>
+        <xsl:call-template name="page-break" />
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="tei:seg[@type = 'numDenom' or @type = 'num']">
