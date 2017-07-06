@@ -79,6 +79,20 @@ function check_from_list (sigla, checked) {
     });
 }
 
+/**
+ * Sort the sigla to the top of the table.
+ *
+ * @param sigla   List of sigla of the manuscripts
+ */
+
+function sort_from_list (sigla) {
+    var $tbody = jQuery ('table.cap-collation-table-witnesses tbody');
+    $.each (sigla.reverse (), function (index, siglum) {
+        var $tr = $tbody.find ('tr[data-siglum="' + siglum + '"]');
+        $tr.prependTo ($tbody); // sort to the top
+    });
+}
+
 function check_all (checked) {
     jQuery ('table.cap-collation-table-witnesses tbody input').prop ('checked', checked);
 }
@@ -189,6 +203,7 @@ function on_cap_load_sections (onReady) {
 
 function on_cap_load_manuscripts (onReady) {
     var data = add_ajax_action (get_manuscripts_params (), 'on_cap_load_manuscripts');
+    var manuscripts = get_manuscripts_list ();
     var ignored = get_ignored_manuscripts_list ();
     var $div = jQuery ('#manuscripts-div');
 
@@ -213,6 +228,8 @@ function on_cap_load_manuscripts (onReady) {
         jQuery (p3.responseJSON.html).appendTo ($wrapper);
         check_all (true);
         check_from_list (ignored, false);
+        sort_from_list (ignored);
+        sort_from_list (manuscripts);
         clear_spinners ().done (function () {
             $div.slideDown ();
             jQuery ('div.accordion').accordion ({
@@ -346,6 +363,8 @@ function load_params (fileInput) { // eslint-disable-line no-unused-vars
                 jQuery ('#normalizations').val (json.normalizations.join ('\n'));
                 check_all (false);
                 check_from_list (json.manuscripts, true);
+                sort_from_list (json.ignored);
+                sort_from_list (json.manuscripts);
             });
         });
     };
