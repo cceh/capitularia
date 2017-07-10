@@ -51,9 +51,10 @@ nicht herausfiltern, bis auf das erste meta-text-Element (Beginn der Capitulatio
     <xsl:variable name="target"               select="concat ('#', @xml:id)"/>
     <xsl:variable name="old-entry"            select="//tei:ptr[@target = $target]" />
     <xsl:variable name="n"                    select="count (preceding-sibling::tei:ab[@type='meta-text']) + 1"/>
-    <xsl:variable name="capitulatio"          select="substring-after (preceding-sibling::tei:milestone[@unit='capitulatio'][1]/@spanTo, '#')" />
-    <xsl:variable name="end-capitulatio"      select="following-sibling::tei:anchor[@xml:id=$capitulatio]" />
-    <xsl:variable name="first-in-capitulatio" select="self::*[preceding-sibling::tei:milestone[@unit='capitulatio'][1]//following-sibling::ab[1]]" />
+    <xsl:variable name="start-capitulatio"    select="preceding-sibling::tei:milestone[@unit='capitulatio'][1]" />
+    <xsl:variable name="capitulatio"          select="substring-after ($start-capitulatio/@spanTo, '#')" />
+    <xsl:variable name="end-capitulatio"      select="following::tei:anchor[@xml:id=$capitulatio]" />
+    <xsl:variable name="first-in-capitulatio" select="$start-capitulatio/following-sibling::tei:ab[1] = self::*" />
     <xsl:variable name="filter-capitulatio"   select="$capitulatio and $end-capitulatio and not ($first-in-capitulatio)" />
 
     <xsl:if test="not ($filter-capitulatio) and not ($old-entry)">
