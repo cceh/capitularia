@@ -95,6 +95,39 @@
     </func:result>
   </func:function>
 
+  <func:function name="cap:make-human-readable-bk">
+    <!-- Make a human readable BK string.
+
+         Transform the @corresp 'BK.123_4' to 'BK 123 c. 4' and remove entries
+         containing '_inscriptio' and '_incipit'.
+    -->
+
+    <xsl:param name="corresp" select="@corresp" />
+
+    <xsl:variable name="search">
+      <tei:item>.</tei:item>
+      <tei:item>_</tei:item>
+    </xsl:variable>
+
+    <xsl:variable name="replace">
+      <tei:item> </tei:item>
+      <tei:item> c. </tei:item>
+    </xsl:variable>
+
+    <xsl:variable name="hr">
+      <xsl:for-each select="str:split ($corresp)">
+        <xsl:if test="not (contains (., '_in'))">
+          <xsl:value-of select="normalize-space (str:replace (., exsl:node-set ($search)/tei:item, exsl:node-set ($replace)/tei:item))"/>
+          <xsl:text> </xsl:text>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:variable>
+
+    <func:result>
+      <xsl:value-of select="normalize-space ($hr)"/>
+    </func:result>
+  </func:function>
+
   <xsl:template name="handle-rend">
     <xsl:param name="extra-class" select="''" />
 

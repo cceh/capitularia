@@ -121,7 +121,7 @@
 
   <xsl:template match="tei:item" mode="toc">
     <li class="toc">
-      <a href="{tei:ptr/@target}" data-level="{count (ancestor::tei:item)}">
+      <a href="{tei:ptr/@target}" data-level="{count (ancestor::tei:item) + 6}">
         <xsl:apply-templates select="text ()"/>
       </a>
       <xsl:apply-templates select="tei:list" mode="toc"/>
@@ -146,37 +146,46 @@
     <span class="italic tei-mentioned"><xsl:apply-templates /></span>
   </xsl:template>
 
-  <xsl:template name="tCorresp">
-    <!-- Transform 'BK.123_4' to 'BK 123 c. 4' and remove entries containing
-         '_inscriptio' and '_incipit'. -->
-    <xsl:variable name="search">
-      <tei:item>.</tei:item>
-      <tei:item>_</tei:item>
-    </xsl:variable>
-
-    <xsl:variable name="replace">
-      <tei:item> </tei:item>
-      <tei:item> c. </tei:item>
-    </xsl:variable>
-
+  <xsl:template name="make-chapter-mark">
     <xsl:variable name="corresp">
-      <xsl:for-each select="str:split (@corresp)">
-        <xsl:if test="not (contains (., '_in'))">
-          <xsl:value-of select="normalize-space (str:replace (., exsl:node-set ($search)/tei:item, exsl:node-set ($replace)/tei:item))"/>
-          <xsl:text> </xsl:text>
-        </xsl:if>
-      </xsl:for-each>
+      <xsl:value-of select="cap:make-human-readable-bk (@corresp)" />
     </xsl:variable>
 
-    <xsl:if test="normalize-space ($corresp)">
-      <xsl:text>&#x0a;</xsl:text>
+    <xsl:if test="normalize-space ($corresp)"> <!-- is filtered by -inscriptio etc. -->
       <div class="corresp">
         <xsl:text>[</xsl:text>
-        <xsl:value-of select="normalize-space ($corresp)"/>
+        <xsl:value-of select="$corresp"/>
         <xsl:text>]</xsl:text>
       </div>
       <xsl:text>&#x0a;&#x0a;</xsl:text>
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="make-sidebar-entry">
+    <!-- Insert invisible markers for the sidebar generation algorithm.
+    -->
+
+    <xsl:param name="corresp" select="@corresp" />
+
+    <xsl:for-each select="str:split ($corresp)">
+      <xsl:if test="not (contains (., 'Ansegis'))">
+        <xsl:variable name="hr">
+          <xsl:value-of select="cap:make-human-readable-bk (.)" />
+        </xsl:variable>
+        <xsl:text>&#x0a;</xsl:text>
+        <a id="{cap:make-id (.)}" class="milestone milestone-capitulatio" data-shortcuts="0" data-level="6">
+          <xsl:if test="contains (., '_')"> <!-- a chapter -->
+            <xsl:attribute name="class">milestone milestone-chapter</xsl:attribute>
+            <xsl:attribute name="data-level">7</xsl:attribute>
+            <xsl:attribute name="data-fold-menu-entry">1</xsl:attribute>
+          </xsl:if>
+          <span style="display: none">
+            <xsl:value-of select="$hr" />
+          </span>
+        </a>
+      </xsl:if>
+    </xsl:for-each>
+    <xsl:text>&#x0a;</xsl:text>
   </xsl:template>
 
   <xsl:template name="footnotes-wrapper">
@@ -193,7 +202,10 @@
   </xsl:template>
 
   <xsl:template match="tei:body/tei:ab[@type='meta-text']">
-    <xsl:call-template name="tCorresp" />
+    <xsl:if test="not (.//tei:milestone[@unit='span' and @corresp and @spanTo])">
+      <xsl:call-template name="make-sidebar-entry" />
+    </xsl:if>
+    <xsl:call-template name="make-chapter-mark" />
 
     <div lang="la" data-shortcuts="1">
       <xsl:call-template name="handle-rend">
@@ -216,7 +228,10 @@
   </xsl:template>
 
   <xsl:template match="tei:body/tei:ab[@type='text']">
-    <xsl:call-template name="tCorresp" />
+    <xsl:if test="not (.//tei:milestone[@unit='span' and @corresp and @spanTo])">
+      <xsl:call-template name="make-sidebar-entry" />
+    </xsl:if>
+    <xsl:call-template name="make-chapter-mark" />
 
     <div class="ab ab-text" lang="la" data-shortcuts="1">
       <xsl:if test="@xml:id">
@@ -286,12 +301,13 @@
   </xsl:template>
 
   <xsl:template match="tei:milestone[not (@unit='span')]">
-    <!-- wird vom Sidebar-Menu benützt -->
-    <span id="{cap:make-id (@n)}" class="milestone">
-      <span style="display: none">
-        <xsl:value-of select="str:replace (substring-before (concat (@n, '_'), '_'), '.', ' ')"/>
-      </span>
-    </span>
+    <xsl:call-template name="make-sidebar-entry">
+      <xsl:with-param name="corresp" select="@n" />
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="tei:milestone[@unit='span' and @corresp and @spanTo]">
+    <xsl:call-template name="make-sidebar-entry" />
   </xsl:template>
 
   <xsl:template match="tei:anchor[../tei:milestone[@unit = 'capitulatio' and @spanTo = concat ('#', current()/@xml:id)]]">

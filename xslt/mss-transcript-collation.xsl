@@ -57,7 +57,9 @@
     <xsl:value-of select="str:padding (number (@quantity), '·')" />
   </xsl:template>
 
-  <xsl:template name="tCorresp" />
+  <xsl:template name="make-chapter-mark" />
+
+  <xsl:template name="make-sidebar-entry" />
 
   <xsl:template name="empty-del" />
 

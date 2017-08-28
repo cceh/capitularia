@@ -150,7 +150,7 @@ class Dynamic_Menu
                     // XML-attribute 'data-cap-level' ...
 
                     $parent_on_level = array ();
-                    $parent_on_level[] = $item->menu_item_parent;
+                    $parent_on_level[] = array ($item->menu_item_parent, '');
                     $level_no = 0;
                     foreach ($levels as $level) {
                         ++$level_no;
@@ -162,7 +162,7 @@ class Dynamic_Menu
                         foreach ($xpath->query (trim ($level)) as $e) {
                             $e->setAttribute ('data-cap-level', strVal ($level_no));
                         }
-                        $parent_on_level[] = $item->menu_item_parent;
+                        $parent_on_level[] = array ($item->menu_item_parent, '');
                     }
 
                     // 2. Find all nodes with the XML-attribute 'data-cap-level'
@@ -170,9 +170,17 @@ class Dynamic_Menu
 
                     foreach ($xpath->query ('//*[@data-cap-level]') as $e) {
                         $id         = $e->getAttribute ('id');
-                        $caption    = $e->hasAttribute ('data-cap-dyn-menu-caption') ?
-                                    $e->getAttribute ('data-cap-dyn-menu-caption') : $e->textContent;
+                        $caption    = trim ($e->hasAttribute ('data-cap-dyn-menu-caption') ?
+                                            $e->getAttribute ('data-cap-dyn-menu-caption') : $e->textContent);
                         $node_level = intVal ($e->getAttribute ('data-cap-level')); // 1..max
+
+                        // optionally shorten nested menu entries
+                        if ($e->getAttribute ('data-fold-menu-entry')) {
+                            $parent_caption = $parent_on_level[$node_level - 1][1];
+                            if ($caption && $parent_caption && mb_strpos ($caption, $parent_caption) === 0) {
+                                $caption = mb_substr ($caption, mb_strlen ($parent_caption));
+                            }
+                        }
 
                         // build the new menu entry
                         $next_item_id++;
@@ -197,8 +205,8 @@ class Dynamic_Menu
 
                         // Tell Wordpress the structure of our menu by setting
                         // the menu hierarchy fields.
-                        $new_item->menu_item_parent   = $parent_on_level[$node_level - 1];
-                        $parent_on_level[$node_level] = $new_item->db_id;
+                        $new_item->menu_item_parent   = $parent_on_level[$node_level - 1][0];
+                        $parent_on_level[$node_level] = array ($new_item->db_id, $caption);
 
                         $new_items[$new_item->post_name] = $new_item;
 
