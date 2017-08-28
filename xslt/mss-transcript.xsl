@@ -41,7 +41,6 @@
     <div class="tei-text">
       <h4 id="transcription">[:de]Transkription[:en]Transcription[:]</h4>
 
-      <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:encodingDesc"/>
       <xsl:apply-templates select="tei:front"/>
       <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc"/>
 
@@ -74,6 +73,7 @@
           data-cap-dyn-menu-caption="[:de]Editorische Vorbemerkung[:en]Editorial Preface[:]">
         [:de]Editorische Vorbemerkung zur Transkription[:en]Editorial Preface to the Transcription[:]
       </h5>
+      <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:encodingDesc"/>
       <xsl:apply-templates select="tei:div[normalize-space (.) and not (@type='content')]" />
     </div>
   </xsl:template>
