@@ -139,6 +139,11 @@ class Extractor
         );
         $this->meta (
             $post_id,
+            'tei-corresp', /* capit pages */
+            $xpath->query ('/tei:TEI/@corresp')
+        );
+        $this->meta (
+            $post_id,
             'msitem-corresp',
             $xpath->query ('//tei:msItem/@corresp'),
             array ($this, 'nmtokens')
@@ -167,11 +172,12 @@ class Extractor
             $xpath->query ('//tei:ab[@type="text"]/@corresp'),
             array ($this, 'nmtokens')
         );
-        $this->meta ($post_id, 'milestone-capitulare', $xpath->query ('//tei:milestone[@unit="capitulare"]/@n'));
-        $this->meta ($post_id, 'origDate-notBefore',   $xpath->query ('//tei:head/tei:origDate/@notBefore'), 'intval');
-        $this->meta ($post_id, 'origDate-notAfter',    $xpath->query ('//tei:head/tei:origDate/@notAfter'),  'intval');
-        $this->meta ($post_id, 'origPlace',            $xpath->query ('//tei:head/tei:origPlace'));
-        $this->meta ($post_id, 'head-title-main',      $xpath->query ('//tei:head/tei:title[@type="main"]'));
+        $this->meta ($post_id, 'milestone-capitulare',  $xpath->query ('//tei:milestone[@unit="capitulare"]/@n'));
+        $this->meta ($post_id, 'origDate-notBefore',    $xpath->query ('//tei:head/tei:origDate/@notBefore'), 'intval');
+        $this->meta ($post_id, 'origDate-notAfter',     $xpath->query ('//tei:head/tei:origDate/@notAfter'),  'intval');
+        $this->meta ($post_id, 'origPlace',             $xpath->query ('//tei:head/tei:origPlace'));
+        $this->meta ($post_id, 'head-title-main',       $xpath->query ('//tei:head/tei:title[@type="main"]'));
+        $this->meta ($post_id, 'facsimile-graphic-url', $xpath->query ('/tei:TEI/tei:facsimile/tei:graphic/@url'));
         $this->meta (
             $post_id,
             'origPlace-ref',

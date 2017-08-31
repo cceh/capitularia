@@ -73,6 +73,17 @@ Old name:   handschriften_mordek_signatur.xsl
           </span>
           <xsl:text>]</xsl:text>
         </xsl:if>
+
+        <xsl:variable name="doc" select="document (concat ('../mss/', ../@xml:id, '.xml'))"/>
+        <!-- some urls are invalid and of the form:
+             url="urn:nbn:de:hebis:30:2-45087 http://sammlungen.ub.uni-frankfurt.de/msma/content/titleinfo/4655261"
+        -->
+        <xsl:variable name="urls" select="str:split (normalize-space ($doc/tei:TEI/tei:facsimile/tei:graphic/@url))"/>
+        <xsl:for-each select="$urls">
+          <xsl:if test="starts-with (., 'http')">
+            <a href="{.}" class="external" title="Zum Digitalisat"></a>
+          </xsl:if>
+        </xsl:for-each>
       </td>
     </tr>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
