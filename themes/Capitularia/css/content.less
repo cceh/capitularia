@@ -525,15 +525,6 @@ input[type="text"] {
 /* Content */
 /***********/
 
-span.mentioned {
-    /* Must be global because it gets moved outside of content-col by
-       jquery-ui. */
-    .italic;
-    .mentioned-index {
-        .regular;
-    }
-}
-
 span.break-word {
     overflow-wrap: break-word;
 }
@@ -662,6 +653,20 @@ div.content-col {
 
     .annotation-ref {
         .sup;
+        span.footnote-siglum {
+            .red;
+        }
+    }
+
+    span.tei-mentioned {
+        .italic;
+    }
+
+    div.tei-front {
+        .italic;
+        span.tei-mentioned {
+            .regular;
+        }
     }
 
     div.tei-msDesc {
@@ -769,7 +774,7 @@ div.content-col {
     div.mss-key-xsl {
         th, td {
             &.siglum {
-                width: 10%;
+                width: 15%;
             }
         }
     }
@@ -1031,6 +1036,13 @@ div.annotation-content {
         }
     }
     .annotation-text {
+        .italic;
+        span.tei-mentioned {
+            .regular;
+        }
+        sup.mentioned-index {
+            .regular;
+        }
         @media print {
             margin-left: 3em;
         }

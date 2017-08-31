@@ -90,7 +90,7 @@
   <xsl:template match="tei:revisionDesc"/>
 
   <xsl:template match="tei:front/tei:div">
-    <div class="italic tei-front-div">
+    <div class="tei-front-div">
       <h6>
         <xsl:choose>
           <xsl:when test="@type='mshist'">       Zur Handschrift</xsl:when>
@@ -139,11 +139,7 @@
   </xsl:template>
 
   <xsl:template match="tei:mentioned">
-    <span class="regular tei-mentioned"><xsl:apply-templates /></span>
-  </xsl:template>
-
-  <xsl:template match="tei:body//tei:mentioned">
-    <span class="italic tei-mentioned"><xsl:apply-templates /></span>
+    <span class="tei-mentioned"><xsl:apply-templates /></span>
   </xsl:template>
 
   <xsl:template name="make-chapter-mark">

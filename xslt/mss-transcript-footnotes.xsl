@@ -608,7 +608,7 @@ footnotes will be joined to the preceding word.
   <xsl:template match="tei:subst" mode="auto-note">
     <xsl:variable name="before" select="cap:word-before (.)"/>
     <xsl:variable name="after"  select="cap:word-after (.)"/>
-    <xsl:variable name="rend"   select="concat ('mentioned', cap:get-rend-class (.))"/>
+    <xsl:variable name="rend"   select="concat ('tei-mentioned', cap:get-rend-class (.))"/>
 
     <xsl:choose>
       <xsl:when test="cap:is-later-hand ()">
@@ -659,7 +659,7 @@ footnotes will be joined to the preceding word.
   <xsl:template match="tei:add" mode="auto-note">
     <xsl:variable name="before" select="cap:word-before (.)"/>
     <xsl:variable name="after"  select="cap:word-after (.)"/>
-    <xsl:variable name="rend"   select="concat ('mentioned', cap:get-rend-class (.))"/>
+    <xsl:variable name="rend"   select="concat ('tei-mentioned', cap:get-rend-class (.))"/>
 
     <xsl:choose>
       <xsl:when test="cap:is-later-hand ()">
@@ -718,7 +718,7 @@ footnotes will be joined to the preceding word.
   <xsl:template match="tei:del[normalize-space ()]" mode="auto-note">
     <xsl:variable name="before" select="cap:word-before (.)"/>
     <xsl:variable name="after"  select="cap:word-after (.)"/>
-    <xsl:variable name="rend"   select="concat ('mentioned', cap:get-rend-class (.))"/>
+    <xsl:variable name="rend"   select="concat ('tei-mentioned', cap:get-rend-class (.))"/>
 
     <xsl:variable name="phrase">
       <xsl:copy-of select="$before"/>
@@ -785,7 +785,7 @@ footnotes will be joined to the preceding word.
   <xsl:template match="tei:mod" mode="auto-note">
     <xsl:variable name="before" select="cap:word-before (.)"/>
     <xsl:variable name="after"  select="cap:word-after (.)"/>
-    <xsl:variable name="rend"   select="concat ('mentioned', cap:get-rend-class (.))"/>
+    <xsl:variable name="rend"   select="concat ('tei-mentioned', cap:get-rend-class (.))"/>
 
     <xsl:choose>
       <xsl:when test="$before = '' and $after = ''">

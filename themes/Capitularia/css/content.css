@@ -657,26 +657,6 @@ input[type="text"] {
 /***********/
 /* Content */
 /***********/
-span.mentioned {
-  /* Must be global because it gets moved outside of content-col by
-       jquery-ui. */
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-span.mentioned a[href],
-span.mentioned a[href]:active,
-span.mentioned a[href]:focus,
-span.mentioned a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-span.mentioned .mentioned-index {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
 span.break-word {
   overflow-wrap: break-word;
 }
@@ -802,6 +782,40 @@ div.content-col .annotation-ref {
   vertical-align: baseline;
   top: -0.5em;
 }
+div.content-col .annotation-ref span.footnote-siglum {
+  color: #b92900;
+}
+div.content-col span.tei-mentioned {
+  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.content-col span.tei-mentioned a[href],
+div.content-col span.tei-mentioned a[href]:active,
+div.content-col span.tei-mentioned a[href]:focus,
+div.content-col span.tei-mentioned a[href]:hover {
+  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.content-col div.tei-front {
+  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.content-col div.tei-front a[href],
+div.content-col div.tei-front a[href]:active,
+div.content-col div.tei-front a[href]:focus,
+div.content-col div.tei-front a[href]:hover {
+  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.content-col div.tei-front span.tei-mentioned {
+  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
 div.content-col div.tei-msDesc div.tei-msIdentifier {
   margin: 1em 0;
 }
@@ -924,7 +938,7 @@ div.content-col div.mss-idno-xsl span.siglum a[href]:hover {
 }
 div.content-col div.mss-key-xsl th.siglum,
 div.content-col div.mss-key-xsl td.siglum {
-  width: 10%;
+  width: 15%;
 }
 div.content-col .bib-short-title {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
@@ -1264,6 +1278,29 @@ div.annotation-content .annotation-backref {
     width: 2.5em;
     text-align: right;
   }
+}
+div.annotation-content .annotation-text {
+  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.annotation-content .annotation-text a[href],
+div.annotation-content .annotation-text a[href]:active,
+div.annotation-content .annotation-text a[href]:focus,
+div.annotation-content .annotation-text a[href]:hover {
+  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.annotation-content .annotation-text span.tei-mentioned {
+  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.annotation-content .annotation-text sup.mentioned-index {
+  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
 }
 @media print {
   div.annotation-content .annotation-text {
