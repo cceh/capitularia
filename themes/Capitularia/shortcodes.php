@@ -95,17 +95,53 @@ function get_parent_path ($path)
 }
 
 /**
+ * Get the Capitular page url corresponding to a BK No.
+ *
+ * This function figures out which subdirectory the Capitular page is in,
+ * eg. pre814/ or ldf/ or post840/ ...
+ *
+ * @param string $corresp eg. BK.42a
+ *
+ * @return string The url to the page, eg. http:// ... /capit/pre814/bk-nr-042a
+ */
+
+function bk_to_permalink ($corresp)
+{
+    static $cache = array ();
+
+    global $wpdb;
+
+    if (array_key_exists ($corresp, $cache)) {
+        return $cache[$corresp];
+    }
+
+    if (preg_match ('/^BK[._](\d+)(\w?)$/', $corresp, $matches)) {
+        $sql = $wpdb->prepare (
+            "SELECT ID FROM {$wpdb->posts} " .
+            'WHERE post_name = %s',
+            'bk-nr-' . str_pad ($matches[1], 3, '0', STR_PAD_LEFT) . $matches[2]
+        );
+        foreach ($wpdb->get_results ($sql) as $row) {
+            $url = get_permalink ($row->ID);
+            $cache[$corresp] = $url;
+            return $url;
+        }
+    }
+    return false;
+}
+
+/**
  * Make sure the status of a page is in the cache.
  *
- * Some pages with long lists are checking the status of hundreds of other
- * pages.  Wordpress turns each status check into one SQL query.  This function
- * reads the statuses of all children of a parent page in one SQL query,
- * potentially saving hundreds of queries.
+ * Some pages with long lists must check the status of hundreds of other pages.
+ * Wordpress turns each status check into one SQL query.  This function reads
+ * the statuses of all children of a parent page in one SQL query, potentially
+ * saving hundreds of queries.
  *
  * @param string $path The path of the page without leading or trailing slashes.
  *
- * @return array  A dictionary of path => status which is guaranteed to
- *                contain the pages status if the page exists.
+ * @return array A dictionary of path => status which is guaranteed to
+ *               contain the page's status if the page exists.
  */
 
 function get_page_status_in_cache ($path)
@@ -205,6 +241,15 @@ function on_shortcode_if_not_status ($atts, $content)
 function if_visible ($path)
 {
     $path  = trim ($path, '/');
+
+    // Also look for 'virtual pages' like /bk/42
+    if (preg_match ('!^bk/(BK[._])?(\d+\w?)$!', $path, $matches)) {
+        $url = bk_to_permalink ('BK.' . $matches[2]);
+        if ($url) {
+            $path = trim (parse_url ($url, PHP_URL_PATH), '/');
+        }
+    }
+
     $cache = get_page_status_in_cache ($path);
 
     if (array_key_exists ($path, $cache)) {

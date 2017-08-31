@@ -367,14 +367,26 @@
     </xsl:if>
   </xsl:template>
 
+  <xsl:template match="tei:msItem[@corresp]//tei:title" priority="2.0">
+    <xsl:variable name="corresp" select="ancestor::tei:msItem/@corresp" />
+
+    <xsl:call-template name="if-visible-then-else">
+      <xsl:with-param name="path" select="concat ('/bk/', $corresp)"/>
+      <xsl:with-param name="then">
+        <a class="semibold" href="/bk/{$corresp}" title="{cap:human-readable-siglum ($corresp)}">
+          <xsl:apply-templates/>
+        </a>
+      </xsl:with-param>
+      <xsl:with-param name="else">
+        <span class="semibold" title="{cap:human-readable-siglum ($corresp)}">
+          <xsl:apply-templates/>
+        </span>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
   <xsl:template match="tei:msItem//tei:title">
     <span class="semibold">
-      <xsl:if test="contains (ancestor::tei:msItem/@corresp, '.')">
-        <xsl:attribute name="title">
-          <xsl:text>= </xsl:text>
-          <xsl:value-of select="str:replace (ancestor::tei:msItem/@corresp, '.', ' ')"/>
-        </xsl:attribute>
-      </xsl:if>
       <xsl:apply-templates/>
     </span>
   </xsl:template>

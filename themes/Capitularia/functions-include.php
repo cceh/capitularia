@@ -377,3 +377,25 @@ function on_login_redirect ($redirect_to, $requested_redirect_to, $user)
 {
     return $requested_redirect_to;
 }
+
+/*
+ * Redirect from /bk/BK.42a to /capit/<subdir>/bk-nr-042a/
+ *
+ * We cannot just use mod_rewrite because we don't know which subdirectory the
+ * capitular page is in.
+ */
+
+function on_do_parse_request ($do_parse, $dummy_wp, $dummy_extra_query_vars)
+{
+    $request = isset ($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+    // error_log ('Request was: ' . $request);
+
+    if (preg_match ('!^/bk/(BK[._])?(\d+\w?)$!', $request, $matches)) {
+        $url = bk_to_permalink ('BK.' . $matches[2]);
+        if ($url) {
+            wp_redirect ($url);
+            exit ();
+        }
+    }
+    return $do_parse;
+}

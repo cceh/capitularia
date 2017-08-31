@@ -81,6 +81,10 @@ add_filter ('quick_edit_dropdown_pages_args',      'cceh\capitularia\theme\on_dr
 /* translate month names in archives links */
 add_filter ('get_archives_link',                   'cceh\capitularia\theme\translate_month_year');
 
+/* add an url redirector for urls like /bk/42 */
+add_filter ('do_parse_request',                    'cceh\capitularia\theme\on_do_parse_request', 10, 3);
+
+
 /*
  * The shortcodes provided by our theme.  For the implementation see:
  * shortcodes.php.
