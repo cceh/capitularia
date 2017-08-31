@@ -250,12 +250,12 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:choose>
-          <!-- generate links to Bl -->
-          <xsl:when test="@subtype='Bl'">
+          <!-- generate links to Ansegis and Bl -->
+          <xsl:when test="@subtype='Ansegis' or @subtype='Bl'">
             <xsl:call-template name="make-link-to-resource" />
           </xsl:when>
           <!-- generate links in capitular pages -->
-          <xsl:when test="ancestor::tei:note[@type='titles' or @type='annotation']">
+          <xsl:when test="ancestor::tei:note[@type='titles' or @type='annotation'] or ancestor::tei:list[@type='transmission']">
             <xsl:call-template name="make-link-to-resource" />
           </xsl:when>
           <xsl:otherwise>
