@@ -219,8 +219,8 @@
     </div>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
 
-    <!-- If the text ends here or is followed by a capitulatio. -->
-    <xsl:if test="not (following-sibling::tei:ab) or following-sibling::*[1][self::tei:milestone[@unit='capitulatio']]">
+    <!-- If the text ends here, or is followed by a capitulatio, or is an epilog or explicit. -->
+    <xsl:if test="not (following-sibling::tei:ab) or following-sibling::*[1][self::tei:milestone[@unit='capitulatio']] or contains (@corresp, '_epilog') or contains (@corresp, '_explicit')">
       <xsl:call-template name="footnotes-wrapper"/>
       <xsl:call-template name="page-break" />
     </xsl:if>
