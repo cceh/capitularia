@@ -422,8 +422,8 @@ footnotes will be joined to the preceding word.
   <xsl:template match="tei:choice">
     <span class="tei-choice">
       <xsl:apply-templates select="tei:expan"/>
-      <xsl:apply-templates select="tei:abbr" mode="refs-only"/>
     </span>
+    <xsl:apply-templates select="." mode="refs-only"/>
   </xsl:template>
 
   <xsl:template match="tei:mod">
@@ -513,7 +513,7 @@ footnotes will be joined to the preceding word.
     </span>
   </xsl:template>
 
-  <xsl:template match="tei:subst|tei:mod|tei:note|tei:space|tei:choice/tei:abbr|tei:handShift" mode="refs-only">
+  <xsl:template match="tei:subst|tei:mod|tei:note|tei:space|tei:choice|tei:handShift" mode="refs-only">
     <span class="tei-{local-name ()}" data-note-id="{generate-id ()}">
       <xsl:apply-templates mode="refs-only"/>
     </span>
@@ -568,7 +568,7 @@ footnotes will be joined to the preceding word.
     <xsl:apply-templates mode="auto-note-wrapper"/>
   </xsl:template>
 
-  <xsl:template match="tei:subst|tei:mod|tei:note|tei:space|tei:choice/tei:abbr|tei:handShift"
+  <xsl:template match="tei:subst|tei:mod|tei:note|tei:space|tei:choice|tei:handShift"
                 mode="auto-note-wrapper">
     <!-- pre-order: this node first -->
     <xsl:call-template name="auto-note-wrapper"/>
@@ -814,6 +814,25 @@ footnotes will be joined to the preceding word.
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template match="tei:choice" mode="auto-note">
+    <xsl:variable name="phrase">
+      <xsl:apply-templates select="tei:expan" />
+    </xsl:variable>
+    <xsl:if test="cap:is-phrase (exsl:node-set ($phrase))">
+      <xsl:variable name="rend-expan" select="concat ('tei-mentioned', cap:get-rend-class (tei:expan))"/>
+      <span class="{$rend-expan}" data-shortcuts="1">
+        <xsl:copy-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
+      </span>
+    </xsl:if>
+
+    <span class="generated"> gek. </span>
+
+    <xsl:variable name="rend-abbr" select="concat ('tei-mentioned', cap:get-rend-class (tei:abbr))"/>
+    <span class="{$rend-abbr}" data-shortcuts="1">
+      <xsl:apply-templates select="tei:abbr"/>
+    </span>
+  </xsl:template>
+
   <xsl:template match="tei:note" mode="auto-note">
     <span class="generated">
       <xsl:if test="@target">
@@ -841,14 +860,6 @@ footnotes will be joined to the preceding word.
         <xsl:with-param name="quantity" select="@quantity"/>
         <xsl:with-param name="unit"     select="@unit"/>
       </xsl:call-template>
-    </span>
-  </xsl:template>
-
-  <xsl:template match="tei:choice/tei:abbr" mode="auto-note">
-    <xsl:variable name="rend" select="concat ('mentioned', cap:get-rend-class (.))"/>
-    <span class="generated">gek. </span>
-    <span class="{$rend}" data-shortcuts="1">
-      <xsl:apply-templates/>
     </span>
   </xsl:template>
 
