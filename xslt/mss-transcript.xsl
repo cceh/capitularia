@@ -157,7 +157,29 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template name="make-sidebar-entry">
+  <xsl:template name="make-sidebar-bk">
+    <!-- Insert invisible markers for the sidebar generation algorithm.
+    -->
+
+    <xsl:param name="corresp" select="@corresp" />
+
+    <xsl:for-each select="str:split ($corresp)">
+      <xsl:if test="not (contains (., 'Ansegis'))">
+        <xsl:variable name="hr">
+          <xsl:value-of select="cap:make-human-readable-bk (substring-before (concat (., '_'), '_'))" />
+        </xsl:variable>
+        <xsl:text>&#x0a;</xsl:text>
+        <a id="{cap:make-id (.)}" class="milestone milestone-capitulatio" data-shortcuts="0" data-level="6">
+          <span style="display: none">
+            <xsl:value-of select="$hr" />
+          </span>
+        </a>
+      </xsl:if>
+    </xsl:for-each>
+    <xsl:text>&#x0a;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="make-sidebar-bk-chapter">
     <!-- Insert invisible markers for the sidebar generation algorithm.
     -->
 
@@ -169,12 +191,7 @@
           <xsl:value-of select="cap:make-human-readable-bk (.)" />
         </xsl:variable>
         <xsl:text>&#x0a;</xsl:text>
-        <a id="{cap:make-id (.)}" class="milestone milestone-capitulatio" data-shortcuts="0" data-level="6">
-          <xsl:if test="contains (., '_')"> <!-- a chapter -->
-            <xsl:attribute name="class">milestone milestone-chapter</xsl:attribute>
-            <xsl:attribute name="data-level">7</xsl:attribute>
-            <xsl:attribute name="data-fold-menu-entry">1</xsl:attribute>
-          </xsl:if>
+        <a id="{cap:make-id (.)}" class="milestone milestone-chapter" data-shortcuts="0" data-fold-menu-entry="1" data-level="7">
           <span style="display: none">
             <xsl:value-of select="$hr" />
           </span>
@@ -199,7 +216,7 @@
 
   <xsl:template match="tei:body/tei:ab[@type='meta-text']">
     <xsl:if test="not (.//tei:milestone[@unit='span' and @corresp and @spanTo])">
-      <xsl:call-template name="make-sidebar-entry" />
+      <xsl:call-template name="make-sidebar-bk-chapter" />
     </xsl:if>
     <xsl:call-template name="make-chapter-mark" />
 
@@ -225,7 +242,7 @@
 
   <xsl:template match="tei:body/tei:ab[@type='text']">
     <xsl:if test="not (.//tei:milestone[@unit='span' and @corresp and @spanTo])">
-      <xsl:call-template name="make-sidebar-entry" />
+      <xsl:call-template name="make-sidebar-bk-chapter" />
     </xsl:if>
     <xsl:call-template name="make-chapter-mark" />
 
@@ -297,13 +314,13 @@
   </xsl:template>
 
   <xsl:template match="tei:milestone[not (@unit='span')]">
-    <xsl:call-template name="make-sidebar-entry">
+    <xsl:call-template name="make-sidebar-bk">
       <xsl:with-param name="corresp" select="@n" />
     </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="tei:milestone[@unit='span' and @corresp and @spanTo]">
-    <xsl:call-template name="make-sidebar-entry" />
+    <xsl:call-template name="make-sidebar-bk-chapter" />
   </xsl:template>
 
   <xsl:template match="tei:anchor[../tei:milestone[@unit = 'capitulatio' and @spanTo = concat ('#', current()/@xml:id)]]">
