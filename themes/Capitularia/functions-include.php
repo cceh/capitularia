@@ -81,29 +81,35 @@ function get_permalink_a ()
     );
 }
 
-function get_main_start ($class = '') {
+function get_main_start ($class = '')
+{
     echo ("<main id='main' class='cap-row main $class'>\n");
 }
 
-function get_main_end () {
+function get_main_end ()
+{
     echo ("</main>\n");
 }
 
-function get_sidebar_start () {
+function get_sidebar_start ()
+{
     echo ("  <nav class='cap-right-col-push sidebar-col'>\n");
     echo ("    <ul>\n");
 }
 
-function get_sidebar_end () {
+function get_sidebar_end ()
+{
     echo ("    </ul>\n");
     echo ("  </nav>\n");
 }
 
-function get_content_start () {
+function get_content_start ()
+{
     echo ("  <div class='cap-left-col-pull content-col'>\n");
 }
 
-function get_content_end () {
+function get_content_end ()
+{
     echo ("  </div>\n");
 }
 

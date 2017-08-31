@@ -22,11 +22,11 @@ get_header ();
 </div>
 
 <ul class="teaser-bar teaser-bar-1">
-  <?php dynamic_sidebar ('frontpage-teaser-1') ?>
+    <?php dynamic_sidebar ('frontpage-teaser-1') ?>
 </ul>
 
 <ul class="teaser-bar teaser-bar-2">
-  <?php dynamic_sidebar ('frontpage-teaser-2') ?>
+    <?php dynamic_sidebar ('frontpage-teaser-2') ?>
 </ul>
 
 <?php

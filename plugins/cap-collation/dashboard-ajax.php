@@ -63,7 +63,7 @@ function on_cap_load_sections ()
 function on_cap_load_manuscripts ()
 {
     $html = array ();
-    $html[] = "<div>";
+    $html[] = '<div>';
     ob_start ();
     $table = new Witness_List_Table ($_REQUEST['corresp']);
     // $table->set_pagination_args ($this->pagination_args);
@@ -71,7 +71,7 @@ function on_cap_load_manuscripts ()
     $table->display ();
     $html[] = ob_get_contents ();
     ob_end_clean ();
-    $html[] = "</div>";
+    $html[] = '</div>';
 
     send_json (true, '', $html);
 }

@@ -170,8 +170,10 @@ class Dynamic_Menu
 
                     foreach ($xpath->query ('//*[@data-cap-level]') as $e) {
                         $id         = $e->getAttribute ('id');
-                        $caption    = trim ($e->hasAttribute ('data-cap-dyn-menu-caption') ?
-                                            $e->getAttribute ('data-cap-dyn-menu-caption') : $e->textContent);
+                        $caption    = trim (
+                            $e->hasAttribute ('data-cap-dyn-menu-caption') ?
+                            $e->getAttribute ('data-cap-dyn-menu-caption') : $e->textContent
+                        );
                         $node_level = intVal ($e->getAttribute ('data-cap-level')); // 1..max
 
                         // optionally shorten nested menu entries

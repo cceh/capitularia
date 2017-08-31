@@ -183,7 +183,7 @@ class Witness
     /**
      * Get all nodes that have a certain corresp attribute
      *
-     * @param string $corresp  The corresp
+     * @param string $corresp The corresp
      *
      * @return nodelist The nodes
      */
@@ -196,7 +196,8 @@ class Witness
         $corr = "contains (concat (' ', @corresp, ' '), ' {$corresp} ')";
 
         return $xpath->query (
-            "//tei:ab[{$corr}][not (.//tei:milestone[@unit='span'])] | //tei:milestone[@spanTo and @unit='span' and {$corr}]"
+            "//tei:ab[{$corr}][not (.//tei:milestone[@unit='span'])] | " .
+            "//tei:milestone[@spanTo and @unit='span' and {$corr}]"
         );
     }
 

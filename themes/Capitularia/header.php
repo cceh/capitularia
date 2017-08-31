@@ -38,7 +38,7 @@ namespace cceh\capitularia\theme;
       <div id="top"></div>
       <header id="header">
         <nav id="top-nav" class="top-nav horiz-nav">
-          <?php wp_nav_menu (array ('theme_location' => 'navtop')); ?>
+            <?php wp_nav_menu (array ('theme_location' => 'navtop')); ?>
         </nav>
       </header>
 
@@ -46,8 +46,8 @@ namespace cceh\capitularia\theme;
         <div class="cap-left-col">
           <h1>
             <a href="/" class="homelink"><img
-              <?php echo_theme_image ('Capitularia_Logo.png');
-                    echo_attribute ('alt', get_bloginfo ('name') . ' - ' . get_bloginfo ('description')); ?>
+                <?php echo_theme_image ('Capitularia_Logo.png');
+                      echo_attribute ('alt', get_bloginfo ('name') . ' - ' . get_bloginfo ('description')); ?>
             /></a>
           </h1>
         </div>
@@ -59,7 +59,7 @@ namespace cceh\capitularia\theme;
                 <tr>
                   <td>
                     <input id="searchinput" class="sword" type="text" name="s"
-                      <?php echo_attribute ('placeholder', __ ('Search', 'capitularia')); ?> />
+                        <?php echo_attribute ('placeholder', __ ('Search', 'capitularia')); ?> />
                   </td>
                   <td class="submit-cell">
                     <button id="searchsubmit" class="submit" type="submit" name="submit"></button>

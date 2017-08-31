@@ -167,12 +167,12 @@ class Witness_List_Table extends \WP_List_Table
      *
      * Called by the base class.
      *
-     * @param object $witness The current file
+     * @param object $dummy_witness The current file (not used)
      *
      * @return void
      */
 
-    public function column_sort ($witness)
+    public function column_sort ($dummy_witness)
     {
         echo ('<span class="dashicons dashicons-sort"></span>');
     }
@@ -200,14 +200,14 @@ class Witness_List_Table extends \WP_List_Table
      * Clicking on the link initiates an Ajax request that performs the action
      * and automagically redraws the table.
      *
-     * @param object $witness     The file being acted upon.
-     * @param string $column_name Current column name.
-     * @param string $primary     Primary column name.
+     * @param object $dummy_witness The file being acted upon (not used).
+     * @param string $column_name   Current column name.
+     * @param string $primary       Primary column name.
      *
      * @return string Row action output for links.
      */
 
-    protected function handle_row_actions ($witness, $column_name, $primary)
+    protected function handle_row_actions ($dummy_witness, $column_name, $primary)
     {
         if ($primary !== $column_name) {
             return '';
