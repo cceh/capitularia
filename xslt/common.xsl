@@ -105,11 +105,19 @@
     <xsl:param name="corresp" select="@corresp" />
 
     <xsl:variable name="search">
+      <tei:item>_prolog</tei:item>
+      <tei:item>_praefatio</tei:item>
+      <tei:item>_epilog</tei:item>
+      <tei:item>_explicit</tei:item>
       <tei:item>.</tei:item>
       <tei:item>_</tei:item>
     </xsl:variable>
 
     <xsl:variable name="replace">
+      <tei:item> Prolog</tei:item>
+      <tei:item> Praefatio</tei:item>
+      <tei:item> Epilog</tei:item>
+      <tei:item> Explicit</tei:item>
       <tei:item> </tei:item>
       <tei:item> c. </tei:item>
     </xsl:variable>
