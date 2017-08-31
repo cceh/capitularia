@@ -143,8 +143,8 @@
     </item>
     <item key="KatBNF">
       <prefix></prefix>
-      <caption>[:de]Zum Katalog der BNF[:en]To the BNF catalogue[:]</caption>
-      <alt>Zu KatBNF</alt>
+      <caption>[:de]Zum Katalog der BN[:en]To the BN catalogue[:]</caption>
+      <alt>Zu KatBN</alt>
     </item>
     <item key="Gallica">
       <prefix></prefix>
@@ -181,13 +181,13 @@
     </item>
     <item key=".bnf.fr">
       <title>Bibliothèque nationale de France</title>
-      <caption>BnF</caption>
+      <caption>BN</caption>
     </item>
     <item key="bodley.ox.ac.uk">
       <title>Bodleian Library Oxford</title>
       <caption>Bodleian</caption>
     </item>
-    <item key="bsb-muenchen.de">
+    <item key="daten.digitale-sammlungen.de">
       <title>Bayerische Staatsbibliothek München</title>
       <caption>BSB München</caption>
     </item>
@@ -259,13 +259,17 @@
       <title>Die ältesten deutschsprachigen Texte der trierer Stadtbibliothek</title>
       <caption>Die ältesten deutschsprachigen Texte der trierer Stadtbibliothek</caption>
     </item>
+    <item key="ulb.tu-darmstadt.de">
+      <title>Universitäts- und Landesbibliothek Darmstadt</title>
+      <caption>ULB Darmstadt</caption>
+    </item>
     <item key="ub.uni-heidelberg.de">
       <title>UB Heidelberg</title>
       <caption>UB Heidelberg</caption>
     </item>
     <item key="digi.vatlib.it">
       <title>DigiVatLib</title>
-      <caption>DVL</caption>
+      <caption>BAV</caption>
     </item>
     <item key="wlb-stuttgart.de">
       <title>WLB Stuttgart</title>
