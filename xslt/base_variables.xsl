@@ -143,8 +143,8 @@
     </item>
     <item key="KatBNF">
       <prefix></prefix>
-      <caption>[:de]Zum Katalog der BN[:en]To the BN catalogue[:]</caption>
-      <alt>Zu KatBN</alt>
+      <caption>[:de]Zum Katalog der BnF[:en]To the BnF catalogue[:]</caption>
+      <alt>Zu KatBNF</alt>
     </item>
     <item key="Gallica">
       <prefix></prefix>
@@ -181,7 +181,7 @@
     </item>
     <item key=".bnf.fr">
       <title>Bibliothèque nationale de France</title>
-      <caption>BN</caption>
+      <caption>BnF</caption>
     </item>
     <item key="bodley.ox.ac.uk">
       <title>Bodleian Library Oxford</title>
