@@ -154,14 +154,14 @@
           indicates the (estimated) number of characters missing[:]</td>
         </tr>
         <tr>
-          <td>+++</td>
+          <td>†††</td>
           <td>[:de]Getilgter Text, der nicht mehr entzifferbar ist. Die Anzahl der Kreuze
           zeigt die (vermutliche) Anzahl der ausgefallenen Buchstaben an[:en]Deleted
           text. The number of crosses indicates the (estimated) number of characters
           missing[:]</td>
         </tr>
         <tr>
-          <td>[+]</td>
+          <td>[†]</td>
           <td>[:de]Platzhalter für nicht mehr entzifferbare getilgte Textstellen (<span
           class="italic">ohne</span> Angabe zur Anzahl der vermutlich
           ausgefallenen Buchstaben)[:en]Place holder for deleted, non-reconstructable

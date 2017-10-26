@@ -226,7 +226,7 @@
           <xsl:apply-templates select="tei:objectDesc/tei:supportDesc/tei:support"/>
           <!-- Umfang -->
           <xsl:apply-templates select="tei:objectDesc/tei:supportDesc/tei:extent"/>
-          <!-- Maße + Schriftraum -->
+          <!-- Maße und Schriftraum -->
           <xsl:apply-templates select="tei:objectDesc/tei:supportDesc/tei:extent/tei:dimensions" mode="dimensions"/>
           <!-- Lagen -->
           <xsl:apply-templates select="tei:objectDesc/tei:supportDesc/tei:collation[normalize-space()]"/>

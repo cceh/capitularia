@@ -366,10 +366,10 @@ footnotes will be joined to the preceding word.
     <!-- Special treatment for empty <del> -->
     <xsl:choose>
       <xsl:when test="not (normalize-space ()) and @quantity">
-        <span class="break-word"><xsl:value-of select="str:padding (@quantity, '+')"/></span>
+        <span class="break-word"><xsl:value-of select="str:padding (@quantity, '†')"/></span>
       </xsl:when>
       <xsl:when test="not (normalize-space ())">
-        <xsl:text>[+]</xsl:text>
+        <xsl:text>[†]</xsl:text>
       </xsl:when>
     </xsl:choose>
   </xsl:template>
