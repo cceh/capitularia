@@ -250,8 +250,8 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:choose>
-          <!-- generate links to Ansegis and Bl -->
-          <xsl:when test="@subtype='Ansegis' or @subtype='Bl'">
+          <!-- generate links to Ansegis and Bl and Werminghoff -->
+          <xsl:when test="@subtype='Ansegis' or @subtype='Bl' or @subtype='Werminghoff'">
             <xsl:call-template name="make-link-to-resource" />
           </xsl:when>
           <!-- generate links in capitular pages -->

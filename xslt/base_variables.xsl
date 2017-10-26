@@ -105,6 +105,12 @@
       <caption>[:de]Zur Ansegis-Edition (dMGH)[:en]To the edition of Ansegis (dMGH)[:]</caption>
       <alt>dMGH</alt>
     </item>
+    <item key="Werminghoff">
+      <!-- FIXME hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
+      <prefix>http://www.mgh.de/dmgh/resolving/</prefix>
+      <caption>[:de]Zur Edition von Werminghoff (dMGH)[:en]To the edition of Werminghoff (dMGH)[:]</caption>
+      <alt>dMGH</alt>
+    </item>
     <item key="Benedictus">
       <!-- nur Home hinterlegt; hier sind mehrere Informationen nötig; Handschriften vs. Studien vs. Edition -->
       <prefix>http://www.benedictus.mgh.de/</prefix>
