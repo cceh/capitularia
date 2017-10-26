@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/intern/InArbeit/capitularia.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="london-bl-egerton-2832">
    <teiHeader>
@@ -343,7 +344,7 @@
                   <listBibl>
                      <listBibl type="cap">
                         <bibl corresp="#Mordek_1995">Mordek 1995, S. 226-231</bibl>
-                        <bibl corresp="#Tischler_2008">Tischler 2008, S. 199, 232-233</bibl>
+                        <bibl corresp="#Tischler_2008">Tischler 2008, S. 199, 232-233, 244-246</bibl>
                         <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
                            der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
                               subtype="Bl" target="london-bl-egerton-2832" type="external"/></bibl>
@@ -460,11 +461,11 @@
          <div type="scribe">
             <p><locus>Foll. 50v-53v</locus>: Dieser Teil wurde von einer Hand in karolingischer
                Minuskel geschrieben. Vereinzelte kleinere Korrekturen scheinen von einer zweiten
-               Hand (B) vorgenommen worden zu sein: Evtl. die Nachzeichnung (?) des
+               Hand (X) vorgenommen worden zu sein: Evtl. die Nachzeichnung (?) des
                   <mentioned>DC</mentioned> auf <locus>fol. 52v, Z. 17</locus> und die Ergänzung des
                   <mentioned>ad</mentioned> im zweiten Teil der Kopie von BK 139, die sich heute in
                der Hs. <ref type="internal" subtype="mss" target="london-bl-egerton-269">London
-                  Egerton 269</ref> befindet (<locus>fol. 11v, Z. 1</locus>). In beiden Fällen wird
+                  Egerton 269</ref> befindet (<locus>fol. 11v, Z. 1</locus>). In beiden Fällen wurde
                etwas dunklere Tinte und ein unziales d verwendet, das sich bei der Haupthand nicht
                findet.</p>
          </div>
@@ -485,14 +486,14 @@
             <p>Ligaturen: Auf Ligaturen wird verzichtet.</p>
             <p>Besonderheiten: Überschriften und Auszeichnungsbuchstaben in Capitalis rustica.</p>
          </div>
-         <div type="abbreviations">
+         <!-- <div type="abbreviations">
             <p><locus>Foll. 50v-53v</locus>: Es werden nur gängige Kürzungen verwendet, die meist
                durch einen einfachen, waagerechten Kürzungsstrich angezeigt werden.</p>
          </div>
          <div type="punctuation">
             <p><locus>Foll. 50v-53v</locus>: Als Interpunktionszeichen begegnet ausschließlich die
                media distinctio.</p>
-         </div>
+         </div> -->
          <div type="structure">
             <p><locus>Foll. 50v-53v</locus>: BK 134 ist als separat nummerierte Kapitelliste
                enthalten, die mit <mentioned>INCIPIT CAPITULA HLUDUUUICI IMPERATORIS</mentioned>
@@ -503,18 +504,23 @@
                Bei c. 1 fehlt die Zählung, stattdessen steht vor der Zeile nur
                   <mentioned>cap.</mentioned> in Texttinte. Gelegentlich werden Majuskelbuchstaben
                im Text etwas größer und dicker ausgeführt (z.B. auf <locus>fol. 51v</locus>).</p>
-            <p>Den aufeinander folgenden Kapitellisten BK 139 und 140 ist eine gemeinsame
-               Capitulatio auf <locus>fol. 52r-v</locus> mit 29 Einträgen vorangestellt (BK 139
-               gesamt, Zusatzkapitel <mentioned>De seruis ad sacros ordines non
-                  mittendis</mentioned> (BK Bd. 1 S. 286 und BK 140 cc. 1-7), deren Einträge in
-               Minuskel mit leicht vergrößerten Anfangsmajuskeln in hellbrauner Texttinte gehalten
-               sind, während die vorangestellte Nummerierung mit römischen Ziffern wohl in roter
-               Tinte vorgenommen wurde, die aber heute an den meisten Stellen dunkelbraun erscheint.
-               Auch die Nummerierung und die Kapitelüberschriften des anschließenden Textes sind in
-               roter Tinte geschrieben, während die jedes Kapitel einleitenden, in der Höhe über
-               zwei Zeilen reichenden und mit Doppelstrich ausgeführten Anfangsinitialen in
-               Texttinte gehalten sind. Ab <locus>fol. 53v</locus> werden die Zwischenräume der
-               Doppelstriche der Initialschäfte und -bögen ausgefüllt.</p>
+            <p>Den aufeinander folgenden Kapitellisten BK 139 und 140 (cc. 1-7, mit vorangestelltem
+               Zusatzkapitel <mentioned>De seruis ad sacros ordines non mittendis</mentioned>, ein
+               Auszug aus BK 138 c. 6; vgl. Boretius - Krause Bd. 1 S. 286) ist eine gemeinsame
+               Capitulatio auf <locus>fol. 52r-v</locus> vorangestellt, deren Einträge in Minuskel
+               mit leicht vergrößerten Anfangsmajuskeln in hellbrauner Texttinte gehalten sind,
+               während die vorangestellte Nummerierung mit römischen Ziffern wohl in roter Tinte
+               vorgenommen wurde, die aber heute an den meisten Stellen dunkelbraun erscheint. Die
+               Nummerierung und die Kapitelüberschriften des ausgeschriebenen Textes sind ebenfalls
+               in roter Tinte geschrieben, während die jedes Kapitel einleitenden, in der Höhe über
+               zwei Zeilen reichenden Anfangsinitialen in Texttinte gehalten sind.</p>
+            <p>Während die Capitulatio die Rubriken der beiden aufeinanderfolgenden Kapitellisten
+               als cc. <mentioned>I-XXVIIII</mentioned> durchzählt, setzt die Kapitelzählung im
+               anschließend ausgeschriebenen Text nach <mentioned>XXI</mentioned> (= BK 139 c. 21)
+               neu mit <mentioned>I</mentioned> (= Zusatzkapitel vor BK 140) ein und bezieht auch
+               die im Anschluss kopierten Kapitel BK 156 cc. 1-3 (2 und 3 zusammengefasst in eins),
+               die nicht in der Capitulatio erscheinen, als <mentioned>IX</mentioned> und
+                  <mentioned>X</mentioned> als Fortsetzung derselben Liste mit ein.</p>
          </div>
          <div type="annotations">
             <p><locus>Foll. 50v-53v</locus>: Neuzeitliche Randvermerke mit Verweis auf die

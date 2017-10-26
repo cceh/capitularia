@@ -1,13 +1,19 @@
 <?xml version="1.0"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
 
+<?xml-model href="http://capitularia.uni-koeln.de/cap/intern/InArbeit/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-3851">
    <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main" xml:lang="ger">Paris, Bibliothèque Nationale, Lat. 3851 </title>
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek</title>
-            <title type="sub" xml:lang="eng">Manuscript description according to Mordek</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+               Transkription von fol. 26</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+               transcription of fol 26</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -17,27 +23,27 @@
                <resp xml:lang="eng">Project lead</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SH">
+                  <forename>Semih</forename>
+                  <surname>Heinen</surname>
                </persName>
                <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
-                  Standard</resp>
+                  Standard (fol. 26r-v = BK 156, c. 1)</resp>
                <resp xml:lang="eng">Transcription, description and text encoding according to the
-                  TEI P5 standard</resp>
+                  TEI P5 standard (fol. 26r-v = BK 156, ch. 1)</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
                </persName>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">First revision of transcription and additions</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
@@ -111,7 +117,7 @@
                <msIdentifier>
                   <settlement>Paris</settlement>
                   <repository>Bibliothèque Nationale</repository>
-                  <idno>Lat. 3851, foll. 24-46</idno>
+                  <idno>Lat. 3851<!--, foll. 24-46--></idno>
                   <msName/>
                   <altIdentifier type="former">
                      <settlement/>
@@ -124,7 +130,7 @@
                   <altIdentifier type="former">
                      <settlement/>
                      <repository/>
-                     <idno>Regius 4483. 1.a</idno>
+                     <idno>Regius 4483.1.a</idno>
                      <note type="date">
                         <date/>
                      </note>
@@ -147,77 +153,71 @@
                         Schriftspiegel) und inhaltlich passend, wohl gezielt zum älteren ersten Teil
                         des Parisinus hinzukomponiert (foll. 1-23: 1. Hälfte des 9. Jh., Lorsch;
                         Fragment der Concordia canonum des Cresconius bis 2, 2 <hi rend="italic"
-                           >inmoderata ambitione per)</hi>. Exzerpiert hat der Sammler eine
-                        Ansegis-Benedictus-Hs. mit Zusätzen vom Typ Avranches 145.</p>
+                           >inmoderata ambitione per</hi>). Exzerpiert hat der Sammler eine
+                        Ansegis-Benedictus-Hs. mit Zusätzen vom Typ <ref type="internal"
+                           subtype="mss" target="avranches-bm-145">Avranches 145</ref>.</p>
                   </summary>
                   <msItem n="1" corresp="Ansegis BenedictusLevita">
                      <p>
                         <locus>24r-44v</locus>
                         <title>Epitome Ansegisi</title> et <title>Benedicti Levitae</title> in 126
-                        Kapiteln, beginnt fragmentarisch mit c. 40 der Capitulatio <hi rend="italic"
-                           >(XL. De falsatore monetę)</hi> (Teiledition bei <hi rend="smallcaps"
-                           >Mordek - </hi>
-                        <hi rend="smallcaps">Schmitz</hi>, Neue Kapitularien, S. 424-439); Addenda
-                        wie in der Vollüberlieferung Avranches 145:<note type="msDetail"/>
+                        Kapiteln, beginnt fragmentarisch mit c. 40 der Capitulatio (<hi
+                           rend="italic">XL. De falsatore monetę</hi>) (Teiledition bei Mordek -
+                        Schmitz, Neue Kapitularien, S. 424-439); Addenda wie in der
+                        Vollüberlieferung Avranches 145:<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="2" corresp="BK.156">
                      <p>
-                        <locus>26r-v</locus>
+                        <locus>-- 26r-v</locus>
                         <hi rend="italic">V</hi> - <title>Capitula incerta</title> (a. 814/840), c.
                         1: <hi rend="italic">ITEM DE EADEM [P]. Qui sponsam alienam ipsa non
-                           con</hi>- <hi rend="italic">sentiente</hi> - <hi rend="italic">quam
-                           uoluerit accipiat</hi> (MGH Capit. 1, Nr. 156, S. 315 Z. 21-26);<note
-                           type="msDetail"/>
+                           consentiente - quam uoluerit accipiat</hi> (MGH Capit. 1, Nr. 156, S. 315
+                        Z. 21-26);<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="3" corresp="BK.39">
                      <p>
-                        <locus>27r</locus>
+                        <locus>-- 27r</locus>
                         <title>Capitulare legibus additum</title> (a. 803), c. 4: <hi rend="italic"
-                           >Et qui in iudicio iniuste contra alium</hi> - <hi rend="italic"
-                           >culpabilis iudicetur</hi> (MGH Capit. 1, Nr. 39, S. 113 Z. 27-29);<note
-                           type="msDetail"/>
+                           >Et qui in iudicio iniuste contra alium - culpabilis iudicetur</hi> (MGH
+                        Capit. 1, Nr. 39, S. 113 Z. 27-29);<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="4" corresp="Mordek.27">
                      <p>
-                        <locus>31v</locus>
+                        <locus>-- 31v</locus>
                         <hi rend="italic">XXXVI</hi> - Benedicti Levitae capitularium collectio 1,
                         186, wahrscheinlich aus einem unbekannten Kapitular Ludwigs des Frommen: <hi
                            rend="italic">DE PRESBITERO INTERFECTO. Presbiteri interfecti episcopo ad
-                           cuius parrochiam</hi> - <hi rend="italic">domino sociauit</hi> (MGH LL 2,
-                        2, S. 55; auch unten Anhang I, Nr. 27, 3: <title>Capitula a Benedicto Levita
+                           cuius parrochiam - domino sociauit</hi> (MGH LL 2, 2, S. 55; siehe auch
+                        Mordek 1995, Anhang I, Nr. 27, 3: <title>Capitula a Benedicto Levita
                            singillatim tradita</title>, c. 3; zur Echtheitsfrage <hi
-                           rend="smallcaps">Seckel,</hi> Studien VI, S. 88-90).<note type="msDetail"
+                           rend="smallcaps">Seckel</hi>, Studien VI, S. 88-90).<note type="msDetail"
                         />
                      </p>
                   </msItem>
                   <msItem n="5">
-                     <p>Nachträge des 12. Jh.:<lb/>
-                        <locus>45ra</locus> Epitaph auf Graf Helias von Le Mans († 1110) (ed. B.<hi
-                           rend="smallcaps">Hauréau, </hi>Notice sur les mélanges poétiques
-                        d’Hildebert de Lavardin, in: Notices et extraits des manuscrits de la
-                        Bibliothèque nationale et autres bibliothèques 28,2 [Paris 1878] S. 316 f.)
-                        und ein weiteres Gedicht <hi rend="italic">Vana placent uanis</hi> (ed. <hi
-                           rend="smallcaps">Mordek </hi>- Schmitz, S. 380 f. Anm. 97 von S. 380,
-                        Text b).<note type="msDetail"/>
+                     <p>Nachträge des 12. Jh.:</p>
+                     <p><locus>45ra</locus> Epitaph auf Graf Helias von Le Mans († 1110) (ed. B.
+                        Hauréau, Notice sur les mélanges poétiques d'Hildebert de Lavardin, in:
+                        Notices et extraits des manuscrits de la Bibliothèque nationale et autres
+                        bibliothèques 28,2 [Paris 1878] S. 316 f.) und ein weiteres Gedicht <hi
+                           rend="italic">Vana placent uanis</hi> (ed. Mordek - Schmitz, S. 380 f.
+                        Anm. 97 von S. 380, Text b).<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="7">
                      <p>
                         <locus>45rb</locus> Hymnus <hi rend="italic">Oritur hodie</hi> auf Christi
-                        Geburt (ed. <hi rend="smallcaps">Mordek -</hi>
-                        <hi rend="smallcaps">Schmitz, S. </hi>381 Anm. 97 von S. 380, Text c).<note
+                        Geburt (ed. Mordek - Schmitz, S. 381 Anm. 97 von S. 380, Text c).<note
                            type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="8">
                      <p>
-                        <locus>45v</locus> Augustinus, Retractationes 2, 20, 1-2 (ed. A. <hi
-                           rend="smallcaps">Mutzen</hi>
-                        <hi rend="smallcaps">becher, </hi>CCL 57 [1984] S. 106).<note
-                           type="msDetail"/>
+                        <locus>45v</locus> Augustinus, Retractationes 2, 20, 1-2 (ed. A.
+                        Mutzenbecher, CCL 57 [1984] S. 106).<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="9">
@@ -232,7 +232,7 @@
                         <support>
                            <material>Pergament</material>
                         </support>
-                        <extent>unser Teil: 23 foll. (numeriert 24-46) <dimensions
+                        <extent>dieser Teil: 23 foll. (numeriert 24-46) <dimensions
                               precision="medium" type="leaf" unit="mm">
                               <height>240</height>
                               <width>160</width>
@@ -242,13 +242,12 @@
                               <width>110</width>
                            </dimensions>
                         </extent>
-                        <collation>Lagen: <formula>2 IV<hi rend="super">39</hi> + l<hi rend="super"
-                                 >40</hi> + III<hi rend="super">46</hi>
-                           </formula>.</collation>
+                        <collation><formula>2 IV<hi rend="super">39</hi> + 1<hi rend="super">40</hi>
+                              + III<hi rend="super">46</hi>
+                           </formula></collation>
                      </supportDesc>
                      <layoutDesc>
-                        <layout writtenLines="24">24 Zeilen</layout>
-                        <layout columns="1"/>
+                        <layout writtenLines="24">24 </layout>
                      </layoutDesc>
                   </objectDesc>
                   <handDesc>
@@ -272,15 +271,15 @@
                      <p>
                         <origDate notAfter="1000" notBefore="0901"> 10. Jh.</origDate>;<origPlace
                            ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
-                           > Frankreich</origPlace>.</p>
+                           > Frankreich</origPlace></p>
                   </origin>
                   <provenance>
                      <p>Anfang des 12. Jh. Nordwestfrankreich (um Le Mans und Angers, siehe fol.
                            45<hi rend="super">r</hi>); dann wohl wie Teil I der Hs. im Besitz von
-                        Pierre Pithou (t 1596) (Namensvermerke foll. 2<hi rend="super">r</hi> und
-                           23<hi rend="super">v</hi>, Jean-Baptiste Colbert († 1683) (Signatur:
+                        Pierre Pithou († 1596) (Namensvermerke foll. 2<hi rend="super">r</hi> und
+                           23<hi rend="super">v</hi>), Jean-Baptiste Colbert († 1683) (Signatur:
                            <idno>Colbert 3604</idno>) und schließlich der Königlichen Bibliothek
-                        (Signatur: <idno>Regius 4483. 1.a</idno>).</p>
+                        (Signatur: <idno>Regius 4483.1.a</idno>).</p>
                   </provenance>
                   <acquisition/>
                </history>
@@ -288,20 +287,20 @@
                   <surrogates/>
                   <listBibl>
                      <listBibl type="lit">
-                        <bibl>
-                           <hi rend="smallcaps">Bourgeois, </hi>Le Capitulaire de Kiersy-sur-Oise,
-                           S. 15</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Mordek - Schmitz, </hi>Neue Kapitularien, S. 379-390
-                           (mit Literatur auch zum ersten Teil der Hs.).</bibl>
+                        <bibl corresp="#Bourgeois_1885"> Bourgeois 1885, S. 15</bibl>
+                        <bibl corresp="#Mordek_1987"> Mordek 1987, S. 379-390 (mit Literatur auch
+                           zum ersten Teil der Hs.)</bibl>
                      </listBibl>
+
                      <listBibl type="cat">
                         <bibl>Catalogus codicum manuscriptorum Bibliothecae Regiae 3, 3 (Paris 1744)
-                           S. 520.</bibl>
+                           S. 520</bibl>
                      </listBibl>
-                     <listBibl type="cap">
-                        <bibl>Mordek 1995 S. 443-444</bibl>
 
+                     <listBibl type="cap">
+                        <bibl corresp="#Mordek_1995">Mordek 1995, S. 443-444</bibl>
+                        <bibl corresp="#Bischoff_2014">Bischoff 2014, S. 92, Nr. 4290 (zum ersten
+                           Teil der Hs.)</bibl>
                      </listBibl>
                   </listBibl>
                </additional>
@@ -309,7 +308,7 @@
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage:</p>
+         <p>Transkriptionsvorlage: Ein sehr gutes Farbdigitalisat auf gallica.fr.</p>
          <projectDesc>
             <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
                   target="http://capitularia.uni-koeln.de/project/about/"/>
@@ -329,7 +328,8 @@
       </encodingDesc>
       <revisionDesc>
          <change who="DS" when="2016-03-01">Datei erstellt aus Mordek-XML</change>
-         <change who="XXX" when="2016"/>
+         <change who="SH" when="2017-10-05">Datei veröffentlicht (BK 156)</change>
+         <!-- sh: Datum später anpassen. -->
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -337,17 +337,60 @@
    </facsimile>
    <text>
       <front>
+         <div type="content">
+            <list>
+               <item n="10"><ptr type="internal" target="#paris-bn-lat-3851-26r-9"/>[Liste ohne
+                  Rubrik] <list>
+                     <item n="20">
+                        <ptr type="internal" target="#paris-bn-lat-3851-26r-9"/>V ITEM DE EADEM
+                        P</item>
+                  </list></item>
+            </list>
+         </div>
          <div type="mshist"/>
-         <div type="scribe"/>
+         <div type="scribe">
+            <p>Eine (französische?) Hand des 10. Jahrhunderts schreibt eine geschwungene
+               karolingische Minuskel.</p>
+         </div>
          <div type="letters"/>
          <div type="abbreviations"/>
          <div type="punctuation"/>
-         <div type="structure"/>
+         <div type="structure">
+            <p>BK 156, c. 1 bildet auf <locus>fol. 26r-v</locus> das c. <mentioned>V</mentioned>
+               einer 126 Kapitel umfassenden Epitome Ansegisi et Benedicti Levitae. Der Eintrag in
+               der vorausgehenden Capitulatio ist verloren (Beginn mit c. 40). Die Zählung im Korpus
+               der Sammlung befindet sich auf dem Seitenrand, die Rubriken sind - ebenso wie die
+               Zählung - in einer orangenen Tinte ausgeführt, die Kapitel beginnen mit einer
+               Initiale.</p>
+         </div>
          <div type="annotations"/>
          <div type="other"/>
       </front>
+
       <body>
-         <ab type="text"/>
+
+         <cb n="26r"/>
+         <lb n="21"/>
+
+         <milestone unit="capitulare" n="BK.156"/>
+
+         <ab type="meta-text" corresp="BK.156_1_inscriptio Ansegis.1_102bis.b_inscriptio"
+            xml:id="paris-bn-lat-3851-26r-9" rend="coloured">ITEM DE EADEM <sic>P</sic><lb/> . <seg
+               type="num" n="5">V</seg> . </ab>
+         <ab type="text" corresp="BK.156_1 Ansegis.1_102bis.b" xml:id="paris-bn-lat-3851-26r-10"
+               ><seg type="initial" rend="coloured">Q</seg>ui sponsam<del>m</del><note
+               type="editorial">Wohl ursprünglich mit redundantem Kürzungsstrich über dem
+                  <mentioned>a</mentioned>, dann das ausgeschriebene <mentioned>m</mentioned>
+               getilgt.</note> alienam ipsa non consentiente <lb/> rapuerit licet cum ea concubuerit
+            ! reddat <lb/> eam ei cui sponsa est ; Et <mod>i</mod>s ducat eam si uelit ! <cb n="26v"
+            /> quia uim passa potius quam uiolata uidetur ; <lb/> Quodsi etiam ducere noluerit !
+            accipiat alteram ; <lb/> Femina tamen si et ipsa nubere uoluerit ! <lb/> excepto raptore
+            cui uoluerit alteri <lb/> legittime copuletur ; Raptor uero ! ad<lb break="no"/>ulterii
+            crimine reus teneatur ; Quodsi et ipsa <lb/> consensit ! similiter ut raptor et nuptiis
+            in <lb/> ulterius prohibeatur . et is qui eam accepturus <lb/> erat aliam quam uoluerit
+            accipiat . <lb/>
+         </ab>
+
       </body>
    </text>
 </TEI>

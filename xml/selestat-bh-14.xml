@@ -1,9 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
 
-
-<!--   ####  ACHTUNG !!! Datei nicht verändern - z.Zt. in Bearbeitung (sk)  ####-->
-
+<?xml-model href="http://capitularia.uni-koeln.de/cap/intern/InArbeit/capitularia.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="selestat-bh-14">
 
@@ -12,9 +10,9 @@
          <titleStmt>
             <title type="main" xml:lang="ger">Sélestat, Bibliothèque Humaniste, 14 (104) </title>
             <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
-               Transkription der foll. 127r-134r, 138r-139r, 141v-146v</title>
+               Transkription der foll. 94v-96v, 112v-113r, 127r-134r, 138r-139r, 141v-146v</title>
             <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
-               transcription of fols 127r-134r, 138r-139r, 141v-146v</title>
+               transcription of fols 94v-96v, 112v-113r, 127r-134r, 138r-139r, 141v-146v</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -73,6 +71,16 @@
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="SH">
+                  <forename>Semih</forename>
+                  <surname>Heinen</surname>
+               </persName>
+               <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen (foll.
+                  94v-96v = BK 142, fol. 113r = BK 156, cc. 2+3, foll. 139v-141v = BK 77)</resp>
+               <resp xml:lang="eng">First revision of transcription and additions (fols 94v-96v = BK
+                  142, fol. 113r = BK 156, chs. 2+3, fols 139v-141v = BK 77)</resp>
             </respStmt>
             <respStmt>
                <persName key="FF">
@@ -259,9 +267,8 @@
                                  <height>175</height>
                                  <width>130</width>
                               </dimensions></extent>
-                           <collation>Lagen: <formula>III<hi rend="super">6</hi> + 1<hi rend="super"
-                                    >7</hi> + 7 IV<hi rend="super">63</hi> + (III-1)<hi rend="super"
-                                    >68</hi>
+                           <collation><formula>III<hi rend="super">6</hi> + 1<hi rend="super">7</hi>
+                                 + 7 IV<hi rend="super">63</hi> + (III-1)<hi rend="super">68</hi>
                               </formula>
                            </collation>
                         </supportDesc>
@@ -604,10 +611,10 @@
                                  <width>125-130</width>
                               </dimensions>
                            </extent>
-                           <collation>Lagen: <formula>2 IV<hi rend="super">83</hi> + III<hi
-                                    rend="super">89</hi> + IV<hi rend="super">90-93, 99-102</hi> + 5
-                                    IV<hi rend="super">142</hi> + (III-1)<hi rend="super"
-                                 >147</hi></formula>. </collation>
+                           <collation><formula>2 IV<hi rend="super">83</hi> + III<hi rend="super"
+                                    >89</hi> + IV<hi rend="super">90-93, 99-102</hi> + 5 IV<hi
+                                    rend="super">142</hi> + (III-1)<hi rend="super"
+                                 >147</hi></formula></collation>
                         </supportDesc>
                         <layoutDesc>
                            <layout writtenLines="25 26">25-26</layout>
@@ -745,7 +752,7 @@
                                  <width>95</width>
                               </dimensions>
                            </extent>
-                           <collation>Lagen: <formula>(II+1)</formula>
+                           <collation><formula>(II+1)</formula>
                            </collation>
                            <condition>am Rand beschnitten</condition>
                         </supportDesc>
@@ -819,7 +826,8 @@
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage: Transkription nach gutem Farbdigitalisat.</p>
+         <p>Transkriptionsvorlage: Transkription nach einem guten Farbdigitalisat der Bibliothèque
+            Humaniste.</p>
          <projectDesc>
             <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
                   target="http://capitularia.uni-koeln.de/project/about/"/>
@@ -842,6 +850,7 @@
          <change when="2016-03-16" who="BM">Datei veröffentlicht (BK 134, 139, 184, 186, 189, 191,
             192, 193; Ansegis 4, 71-74)</change>
          <change when="2016-09-28" who="SK">Transkription ergänzt (BK 138, 140)</change>
+         <change when="2017-09-20" who="SK">Transkription ergänzt (BK 77, 142, 156)</change>
       </revisionDesc>
    </teiHeader>
 
@@ -849,7 +858,7 @@
       <graphic url="http://bhnumerique.ville-selestat.fr/client/fr_FR/search/asset/4890"/>
    </facsimile>
    <!--Auf der Seite der Bibl. Humaniste (http://bhnumerique.ville-selestat.fr/client/bh) findet
-         man unter MS014 ("Recueil des capitulaires de Charlemagne") einen Katalogeintrag, der sich
+         sich unter MS014 ("Recueil des capitulaires de Charlemagne") ein Katalogeintrag, der sich
          auf dieses Ms. beziehen müßte, und einen Link zu einem pdf, der aber nicht immer funktioniert 
          (http://portfolio.ville-selestat.fr/client/search/asset/4890) - ist oben bei graphic eingefügt, 
          muss aber vor dem Veröffentlichen geprüft werden. 
@@ -865,6 +874,50 @@
 
          <div type="content">
             <list>
+               <item n="2"><ptr target="#selestat-bh-14-94v-1" type="internal"/>[Liste ohne Rubrik] <list>
+                     <item n="2.1">
+                        <ptr target="#selestat-bh-14-94v-1" type="internal"/>I CAPITULUM</item>
+                     <item n="2.2">
+                        <ptr type="internal" target="#selestat-bh-14-94v-3"/>II DE CAPITULO XII
+                        LEGIS SALICAE</item>
+                     <item n="2.3">
+                        <ptr type="internal" target="#selestat-bh-14-94v-5"/>III DE CAPITULO
+                        XIIII</item>
+                     <item n="2.4">
+                        <ptr type="internal" target="#selestat-bh-14-95r-1"/>IIII DE EODEM
+                        CAPITULO</item>
+                     <item n="2.5">
+                        <ptr type="internal" target="#selestat-bh-14-95r-3"/>V DE XXXVI
+                        CAPITULO</item>
+                     <item n="2.6">
+                        <ptr type="internal" target="#selestat-bh-14-95v-1"/>VI CAPITULUM</item>
+                     <item n="2.7">
+                        <ptr type="internal" target="#selestat-bh-14-95v-3"/>VII DE CAPITULO
+                        XXXVI</item>
+                     <item n="2.8">
+                        <ptr type="internal" target="#selestat-bh-14-96r-1"/>VIII DE XLVI CAPITULO
+                        ...</item>
+                     <item n="2.9">
+                        <ptr type="internal" target="#selestat-bh-14-96r-3"/>VIIII CAPITULUM</item>
+                     <item n="2.10">
+                        <ptr type="internal" target="#selestat-bh-14-96r-5"/>X DE AFATOMIE DIXERVNT
+                        QUOD ...</item>
+                     <item n="2.11">
+                        <ptr type="internal" target="#selestat-bh-14-96v-2"/>XII CAPITULO</item>
+                     <item n="2.12">
+                        <ptr type="internal" target="#selestat-bh-14-96v-4"/>XI CAPITULUM</item>
+                  </list>
+               </item>
+               <item n="5"><ptr target="#selestat-bh-14-112v-3" type="internal"/>[Capitulatio:]
+                  INCIPIUNT CAPITVLA<list>
+                     <item n="5.25">
+                        <ptr type="internal" target="#selestat-bh-14-113r-11"/>XXV qualiter de statu
+                        suo pulsatus ... </item>
+                     <!--        sk: ausnahmsweise hier den Wortlaut einer Capitulatio-Rubrik ins Inhaltsverzeichnis aufgenommen,
+                     weil es der einzige Textbestandteil von BK 156 ist, der in der gesamten Hs. vorhanden
+                     ist  -->
+                  </list>
+               </item>
                <item n="10"><ptr target="#selestat-bh-14-127r-7" type="internal"/>ANNO SEXTO DECIMO
                   REGNANTE DOMINO NOSTRO LUDOUUICO <list>
                      <item n="10.1">
@@ -883,7 +936,6 @@
                         <ptr target="#selestat-bh-14-127v-13" type="internal"/>VII</item>
                   </list>
                </item>
-
                <item n="11"><ptr target="#selestat-bh-14-128r-1" type="internal"/>[Capitulatio]
                   <!--                  <list>
                      <item n="11.1"><ptr target="#selestat-bh-14-128r-1" type="internal"/>Deo qui
@@ -896,8 +948,8 @@
                         proprietate hominis que ab aliquid In bannum ...</item>
                   </list>-->
                </item>
-
-               <item n="12"><ptr target="#selestat-bh-14-128r-5" type="internal"/>[Ohne Rubrik] <list>
+               <item n="12"><ptr target="#selestat-bh-14-128r-5" type="internal"/>[Liste ohne
+                  Rubrik] <list>
                      <item n="12.1"><ptr target="#selestat-bh-14-128r-5" type="internal"/>XXXVIII
                         DEO QUI IN ALIENA PATRIA ...</item>
                      <item n="12.2"><ptr target="#selestat-bh-14-128r-7" type="internal"/>XXXVIIII
@@ -908,8 +960,8 @@
                         PROPRIETATAE HOMINIS ...</item>
                   </list>
                </item>
-
-               <item n="16"><ptr target="#selestat-bh-14-129r-1" type="internal"/>[Ohne Rubrik] <list>
+               <item n="16"><ptr target="#selestat-bh-14-129r-1" type="internal"/>[Liste ohne
+                  Rubrik] <list>
                      <item n="16.1"><ptr target="#selestat-bh-14-129r-1" type="internal"/>I</item>
                      <item n="16.2"><ptr target="#selestat-bh-14-129r-3" type="internal"/>II</item>
                      <item n="16.3"><ptr target="#selestat-bh-14-129r-5" type="internal"/>III</item>
@@ -925,7 +977,6 @@
                      <item n="16.10"><ptr target="#selestat-bh-14-130v-1" type="internal"/>X</item>
                   </list>
                </item>
-
                <item n="17"><ptr target="#selestat-bh-14-130v-3" type="internal"/>ITEM ALIO CAPITULO <list>
                      <item n="17.1"><ptr target="#selestat-bh-14-130v-4" type="internal"/>I</item>
                      <item n="17.2"><ptr target="#selestat-bh-14-130v-6" type="internal"/>II</item>
@@ -968,8 +1019,8 @@
                         />XXV</item>
                   </list>
                </item>
-
-               <item n="21"><ptr target="#selestat-bh-14-138r-5" type="internal"/>[Ohne Rubrik] <list>
+               <item n="21"><ptr target="#selestat-bh-14-138r-5" type="internal"/>[Liste ohne
+                  Rubrik] <list>
                      <item n="21.1"><ptr target="#selestat-bh-14-138r-5" type="internal"/>I
                         capitulum</item>
                      <item n="21.2"><ptr target="#selestat-bh-14-138v-1" type="internal"/>II
@@ -982,7 +1033,59 @@
                         capitulum</item>
                   </list>
                </item>
-
+               
+               <item n="22"><ptr target="#selestat-bh-14-139v-1" type="internal"/>[Liste ohne
+                  Rubrik] 
+                  <list>
+                     <item n="22.01">
+                        <ptr type="internal" target="#selestat-bh-14-139v-1"/>(Carlus serenissimus
+                        imperator augustus ...)</item>
+                     <item n="22.02">
+                        <ptr type="internal" target="#selestat-bh-14-139v-2"/>I capitulum</item>
+                     <item n="22.03">
+                        <ptr type="internal" target="#selestat-bh-14-139v-4"/>II capitulum</item>
+                     <item n="22.04">
+                        <ptr type="internal" target="#selestat-bh-14-139v-6"/>III capitulum</item>
+                     <item n="22.05">
+                        <ptr type="internal" target="#selestat-bh-14-139v-8"/>IIII capitulum</item>
+                     <item n="22.06">
+                        <ptr type="internal" target="#selestat-bh-14-139v-10"/>V capitulum</item>
+                     <item n="22.07">
+                        <ptr type="internal" target="#selestat-bh-14-140r-1"/>VII capitulum</item>
+                     <item n="22.08">
+                        <ptr type="internal" target="#selestat-bh-14-140r-3"/>VII capitulum</item>
+                     <item n="22.09">
+                        <ptr type="internal" target="#selestat-bh-14-140r-5"/>VIII capitulum</item>
+                     <item n="22.10">
+                        <ptr type="internal" target="#selestat-bh-14-140r-7"/>VIIII capitulum</item>
+                     <item n="22.11">
+                        <ptr type="internal" target="#selestat-bh-14-140v-1"/>X capitulum</item>
+                     <item n="22.12">
+                        <ptr type="internal" target="#selestat-bh-14-140v-3"/>XI capitulum</item>
+                     <item n="22.13">
+                        <ptr type="internal" target="#selestat-bh-14-140v-5"/>XII capitulum</item>
+                     <item n="22.14">
+                        <ptr type="internal" target="#selestat-bh-14-140v-7"/>XIII capitulum</item>
+                     <item n="22.15">
+                        <ptr type="internal" target="#selestat-bh-14-140v-9"/>XIIII capitulum</item>
+                     <item n="22.16">
+                        <ptr type="internal" target="#selestat-bh-14-141r-1"/>XV capitulum</item>
+                     <item n="22.17">
+                        <ptr type="internal" target="#selestat-bh-14-141r-3"/>XVI capitulum</item>
+                     <item n="22.18">
+                        <ptr type="internal" target="#selestat-bh-14-141r-5"/>XVII capitulum</item>
+                     <item n="22.19">
+                        <ptr type="internal" target="#selestat-bh-14-141r-7"/>XVIII capitulum</item>
+                     <item n="22.20">
+                        <ptr type="internal" target="#selestat-bh-14-141r-9"/>XVIIII
+                        capitulum</item>
+                     <item n="22.21">
+                        <ptr type="internal" target="#selestat-bh-14-141r-11"/>XX capitulum</item>
+                  </list>
+               </item>
+               
+               <!--        sk: bis hier neue Abschnitte des Inhaltsverzeichnis (BK 77)       -->
+               
                <item n="23"><ptr target="#selestat-bh-14-141v-1" type="internal"/>INCIPIUNT CAPITULA
                   DE ONORE ECLESIARUM <list>
                      <item n="23.1"><ptr target="#selestat-bh-14-141v-2" type="internal"/>I
@@ -1031,8 +1134,6 @@
                         superscripta capitula in lege sunt addenda</item>
                   </list>
                </item>
-
-
                <item n="24"><ptr target="#selestat-bh-14-145v-8" type="internal"/>ITEM ALIA CAPITULA <list>
                      <item n="24.1"><ptr target="#selestat-bh-14-145v-9" type="internal"/> I DE
                         SERUIS AD SACROS ORDINES NON MITTENDIS</item>
@@ -1044,26 +1145,36 @@
                         BENEFICIIS DESTRUCTIS</item>
                      <item n="24.5"><ptr target="#selestat-bh-14-146r-5" type="internal"/> V DE
                         TERRA CENSALI</item>
-                     <item n="24.6"><ptr target="#selestat-bh-14-146r-5" type="internal"/> VI DE
+                     <item n="24.6"><ptr target="#selestat-bh-14-146v-1" type="internal"/> VI DE
                         NONIS ET DECIMIS</item>
-                     <item n="24.7"><ptr target="#selestat-bh-14-146r-5" type="internal"/> VII DE
+                     <item n="24.7"><ptr target="#selestat-bh-14-146v-3" type="internal"/> VII DE
                         MANCIPIIS IN UILLIS DOMINICIS ...</item>
-                     <item n="24.8"><ptr target="#selestat-bh-14-146r-5" type="internal"/> VIII DE
+                     <item n="24.8"><ptr target="#selestat-bh-14-146v-5" type="internal"/> VIII DE
                         FORESTIBUS NOUITER INSTITUTIS</item>
                   </list>
                </item>
-
-
             </list>
+
          </div>
          <div type="mshist"/>
          <div type="scribe">
             <!--     sk: überhaupt der gesamte Teil 2 (= fol. 69-147 ohne fol. 94-98) von einer Hand? Oder
-                  zumindest fol. 140r (s.u.) andere Hand? [sk 30.11.16: schwierig; laut Julia zwar gelegentlich
+                  zumindest fol. 140r (s.u.) andere Hand?
+            sk 30.11.16: schwierig; laut Julia zwar gelegentlich
                   kleine Indizien, aber in der Regel schnell gefolgt von Rückkehr (?) zu vorherigen 
                   Merkmalen; unterschiedliche Kürzungsstriche könnten am ehesten für zumindest
                   einen weiteren Schreiber sprechen. Die folgenden Kommentare daher weiter ausgeblendet,
-                  zur erneuten Prüfung, sobald weitere Seiten transkribiert sind. ]
+                  zur erneuten Prüfung, sobald weitere Seiten transkribiert sind.
+                  sk (20.09.17, nach Transkr. v. BK 77 = fol. 139v-141v):
+                  zunächst wie auf vorherigen Seiten: einfacher, aufsteigender Kürzungsstrich, gelegentlich
+                  Interpunktion via / (virgula suspensiva); auf fol. 140r-v werden aber auch unregelmäßig 
+                  Kürzungsstriche sowie Striche bei ! (punctus elevatus) verwendet, die oben und unten
+                  leicht verdickt bzw. umgebogen sind; ab fol. 141r dann wieder einfache, leicht aufsteigende
+                  gerade Kürzungsstriche, aber kein virgula suspensiva mehr; der verdickt/umgebogene
+                  Kürzungstrich kommt allerdings noch exklusiv bei cap-Kürzungen vor (bei c. 18-20,
+                  nicht aber bei c. 16-17); evtl. markant fol. 141r das Majuskel-e bei "Edificia" und
+                  "Et si quis"
+                  
                   
                   Der Schreiber / Kopist war nicht sonderlich aufmerksam und hatte zudem evtl. 
             Probleme, seine Vorlage zu entziffern (5x statt "de eo" nur "deo": 2x im Ansegis-
@@ -1092,10 +1203,21 @@
                für sich. Dann gehört aber auf jeden Fall auch die Zahl auf 140v "XI cap" noch zu diesem 
                Schreiber. Auf 141r dann wieder die alte Handhabe.. -->
 
-            <p><locus>Foll. 127r-134r, 138r-139r, 141v-146v</locus> vom gleichen Schreiber (A).</p>
+
+
+            <p><locus>Fol. 112v-113r, 127r-134r, 138r-146v</locus> von einer Hand (A); eine
+               ähnliche, aber flüssiger schreibende Hand (B) kopierte <locus>fol. 94v-96v</locus>.
+               <!--     sk: Indizien: B macht bei a den Schaft schräg, während A ihn fast senkrecht 
+               ausführt; A flache, B schräg aufsteigende Kürzungsstriche; A mit halbkreisförmiger
+               us-Kürze; A generell leicht nach rechts geneigte Schrift, B eher aufrecht. Beide Schreiber 
+               grundsätzlich ähnlich, u.a. gemischte Verwendung von cc-a neben doppelstöckigem a.  
+               sk: einstweilen erst für Schreiber A: Neigung zur u/o-Vertauschung, z.B. 
+               "den(on)tiare", "fondibulas"
+               -->
+            </p>
          </div>
          <div type="letters">
-            <p>Zu <locus>foll. 127r-134r, 138r-139r, 141v-146v</locus></p>
+            <p>Zu <locus>fol. 112v-113r, 127r-134r, 138r-146v</locus>:</p>
             <p>Einzelbuchstaben: Parallele Verwendung von doppelstöckigem a und cc-a. Bei e häufig
                der linke Schaft gebrochen, so dass ein kleiner, nach links heraus ragender Balken
                entsteht. Häufige Verwendung von I-longa, besonders an Wortanfängen und vor n.
@@ -1108,20 +1230,22 @@
                V statt U verwendet. </p>
          </div>
          <div type="abbreviations">
-            <p>Zu <locus>foll. 127r-134r, 138r-139r, 141v-146v</locus>: Es findet sich gelegentlich
-               die insulare Abkürzung ÷ für est, z.B. <locus>fol. 133r</locus>. Schreiber A
-               verwendet einen einfachen, nach rechts aufsteigenden Strich über dem Wort für
-               verschiedene Kürzungen, z.B. <mentioned> aut(em)</mentioned> (<locus>fol. 141v Z.
-                  15</locus>), <mentioned>conpon(at)</mentioned> (<locus>ebd. Z. 5</locus>),
+            <p>Zu <locus>fol. 94v-96v</locus>: Schreiber B verwendet neben einem einfachen
+               waagerechten Kürzungsstrich gelegentlich auch einen us-Haken, wenn er
+                  <mentioned>sic(ut)</mentioned> kürzt.</p>
+            <p>Zu <locus>fol. 112v-113r, 127r-134r, 138r-146v</locus>: Schreiber A verwendet einen
+               einfachen, nach rechts aufsteigenden Strich über dem Wort für verschiedene Kürzungen,
+               z.B. <mentioned> aut(em)</mentioned> (<locus>fol. 141v Z. 15</locus>),
+                  <mentioned>conpon(at)</mentioned> (<locus>ebd. Z. 5</locus>),
                   <mentioned>c(on)iuratoribus</mentioned> (<locus>ebd. Z. 7</locus>),
                   <mentioned>int(er)fecerit</mentioned> (<locus>ebd. Z. 6</locus>) sowie auf
                   <locus>fol. 142r </locus>
                <mentioned>n(ost)r(u)m</mentioned> (<locus>Z. 4, 8, 10</locus>) und
                   <mentioned>com(es)</mentioned> (<locus>Z. 16</locus>).</p>
-            <p>Er kürzt <mentioned>comes</mentioned> meist als <mentioned>com</mentioned>. Wo er das
-               Wort ausschreibt, verwendet er durchgängig <mentioned>comis</mentioned>. Daher ist
-               auch die Kürzung in der Transkription konsequent zu <mentioned>comis</mentioned>
-               aufgelöst.</p>
+            <p>Der Schreiber kürzt <mentioned>comes</mentioned> meist als
+               <mentioned>com</mentioned>. Wo er das Wort ausschreibt, verwendet er durchgängig
+                  <mentioned>comis</mentioned>, weshalb die Kürzung in der Transkription jeweils zu
+                  <mentioned>comis</mentioned> aufgelöst ist.</p>
             <p>Verwendung zweier verschiedener ur-Kürzungen, z.B.
                   <mentioned>componat(ur)</mentioned> (<locus>fol. 128r Z. 23</locus>) mit einem
                Kürzungszeichen in Gestalt eines gespiegelten, liegenden Z, sowie parallel in
@@ -1130,10 +1254,15 @@
                Letzteres wird vom Schreiber gelegentlich allerdings auch als us-Kürzung eingesetzt,
                z.B. bei <mentioned>Uolum(us)</mentioned> (<locus>fol. 130v Z. 22</locus>), bzw.
                sogar als os- (<locus>fol. 145r Z. 19</locus> nep[os]) und or-Kürzung verwendet, z.B.
-               bei <mentioned>auct(or)</mentioned> (<locus>fol. 132r Z. 23</locus>) .</p>
+               bei <mentioned>auct(or)</mentioned> (<locus>fol. 132r Z. 23</locus>).
+               <!--   sk: Sofern nicht ein Flüchtigkeitsfehler vorliegt, setzt der Schreiber die ur-Kürzung
+                  gelegentlich auch als er-Kürzung ein, z.B. fol. 140v, Z. 4 (habundantur, 
+                  korrekt wäre abundanter).  -->
+            </p>
          </div>
-         <div type="punctuation">
-            <p>Zu <locus>foll. 127r-134r, 138r-139r, 141v-146v</locus>: Insgesamt wenige
+
+         <!--         <div type="punctuation">
+            <p>Zu <locus>fol. 127r-134r, 138r-146v</locus>: Insgesamt wenige
                Satzzeichen, zumeist einfache mediae distinctiones. Daneben gelegentlich auch ein
                comma. Bei manchen Punkten finden sich zusätzliche Schrägstriche links bzw. leicht
                oberhalb, die z.T. in blasserer Tinte ausgeführt sind (als Korrektur zu punctus
@@ -1142,63 +1271,98 @@
                der Transkription nicht berücksichtigt, sofern sie nicht so stark ausgeführt sind,
                dass ein Unterschied in der verwendeten Tinte nicht mehr hinreichend sicher
                auszumachen ist.</p>
-         </div>
+         </div> -->
+
          <div type="structure">
-            <p>Zu <locus>foll. 127r-134r</locus>:</p>
+            <p>Zu <locus>fol. 94v-96v</locus> (BK 142): Das durchgängig in Texttinte geschriebene
+               Kapitular steht auf einer eingebundenen Lage in kleinerem Format. Es weist keine
+               eigene Rubrik auf. Kapitel 12 ist irrig vor c. 11 kopiert (wohl aufgrund eines
+               Augensprungs); ein Verweiszeichen sollte wohl auf die korrekte Reihung hinweisen. </p>
+            <p>Zu <locus>fol. 113r</locus> (BK 156): Im Rahmen der Capitulatio zum 4. Buch einer
+               Ansegis-Sammlung findet sich unter <mentioned>XXV</mentioned> eine Rubrik zu BK 156
+               c. 2 eingeschoben, wodurch sich die Zählung der eigentlichen Rubrik zu Ansegis 4, 25
+               verschiebt und unter <mentioned>XXVI</mentioned> folgt; in der Sammlung selbst jedoch
+               fehlt der entsprechende Text, so dass das Kapitel <mentioned>XXV</mentioned> dort den
+               regulären Text von Ansegis 4, 25 bietet. </p>
+            <p>Zu <locus>fol. 127r-134r</locus> (BK 184, 186 mit Ansegis 4, c. 71-74, BK 191, 192,
+               193, 189):</p>
             <p>Der gesamte Abschnitt ist gestaltet als eine Abfolge von drei Kapitellisten, mit
-               einem eingeschobenen Fragment einer kurzen vierten Liste (= Ansegis 4, 71-74).</p>
+               einer abrupt eingeschobenen kurzen vierten Liste (= Ansegis 4, c. 71-74).</p>
             <p>Die erste Liste verbindet BK 184+186, wobei der Text mit einer Überschrift in
-               Majuskeln einsetzt, bevor die 7 Kapitel von BK 186 nahtlos in neuer Zeile aber ohne
+               Majuskeln einsetzt, bevor die 7 Kapitel von BK 186 in neuer Zeile aber ohne eigene
                Überschrift folgen. Kapitel 7 wird dabei von Ansegis unterbrochen, dessen Gestaltung
                und Nummerierung am Seitenrand exakt die Nummerierung des direkt vor BK 184 endenden
-               Abschnitts (Ansegis, Klasse D, laut Mordek) aufgreift: <locus>fol. 127r</locus> endet
-               mit Ansegis App. 2, 38, gezählt als c. <mentioned>XXXVII</mentioned>, auf <locus>fol.
-                  128r</locus> sind die vier eingeschobenen Ansegis-Kapitel (4, 71-74; mit
-               vorangestellter Capitulatio der vier Kapitelüberschriften) als c.
-                  <mentioned>XXXVIII</mentioned> bis c. <mentioned>XLI</mentioned> gezählt.</p>
-            <p>Ohne Überschrift schließt in neuer Zeile die zweite Liste an, gleichmäßig als c.
+               Ansegis-Abschnitts aufgreift: <locus>fol. 127r</locus> endet mit Ansegis App. 2, c.
+               38, gezählt als <mentioned>XXXVII</mentioned>, auf <locus>fol. 128r</locus> sind die
+               vier eingeschobenen Ansegis-Kapitel (Buch 4, c. 71-74; mit vorangestellter
+               Capitulatio der vier Kapitelrubriken) als <mentioned>XXXVIII</mentioned> bis
+                  <mentioned>XLI</mentioned> gezählt.</p>
+            <p>Ohne eigene Überschrift schließt in neuer Zeile die zweite Liste an, gleichmäßig als
                   <mentioned>I-X</mentioned> durchgezählt. Sie besteht aus BK 191 c. 1-10.</p>
             <p>Die dritte Kapitelliste ist mit einer kurzen Überschrift in Majuskeln versehen
                   (<mentioned>ITEM ALIO CAPITULO</mentioned>) und reiht die 24 Kapitel der drei
                Kapitularien BK 192, 193 und 189 ohne erkennbare Zäsur aneinander. Die Zählung (als
-               c. <mentioned>I-XXV</mentioned>; die Nummer <mentioned>XVII</mentioned> wurde
-               versehentlich übersprungen) weist dabei kleinere Fehler und Korrekturen auf. BK 192
-               c. 1-15 sind als c. <mentioned>I-XV</mentioned> gezählt, wobei die Nummer
-                  <mentioned>X</mentioned> bei c. 10 am Rand einzutragen vergessen wurde. Die
-               umgebenden Kapitel sind aber korrekt als c. <mentioned>VIIII</mentioned> und c.
-                  <mentioned>XI</mentioned> bezeichnet. Die Nummerierung von c.
-                  <mentioned>XIII</mentioned> und c. <mentioned>XXII</mentioned> wurde vom Schreiber
-               selbst aus irrigem <mentioned>XXIII</mentioned> und <mentioned>XXVII</mentioned>
-               korrigiert. BK 192 c. 12 beginnt ausnahmsweise nicht in neuer Zeile, sondern direkt
-               im Anschluss an das vorhergehende Kapitel in gleicher Zeile; die Kapitelnummer
+                  <mentioned>I-XXV</mentioned>; die Nummer <mentioned>XVII</mentioned> wurde
+               versehentlich übersprungen) weist dabei kleinere Fehler und Korrekturen auf. Die
+               Nummerierung von <mentioned>XIII</mentioned> und <mentioned>XXII</mentioned> wurde
+               vom Schreiber selbst aus irrigem <mentioned>XXIII</mentioned> und
+                  <mentioned>XXVII</mentioned> korrigiert. BK 192 c. 1-15 sind als
+                  <mentioned>I-XV</mentioned> gezählt, wobei die Nummer <mentioned>X</mentioned> bei
+               c. 10 am Rand einzutragen vergessen wurde. Die umgebenden Kapitel sind aber korrekt
+               als <mentioned>VIIII</mentioned> und <mentioned>XI</mentioned> bezeichnet. BK 192 c.
+               12 beginnt ausnahmsweise nicht in neuer Zeile, sondern direkt im Anschluss an das
+               vorhergehende Kapitel in gleicher Zeile; die Kapitelnummer
                   (<mentioned>XII</mentioned>) ist hier einmalig nicht am Rand, sondern direkt in
-               der Zeile vor den Beginn des Kapitels platziert. BK 193 c. 1-8 sind in korrekter
-               Reihenfolge als c. <mentioned>XVI</mentioned> und <mentioned>XVIII-XXIIII</mentioned>
-               eingetragen, gefolgt von BK 189 als c. <mentioned>XXV</mentioned>, wobei der gesamte
+               der Zeile vor dem Kapitelanfang platziert. BK 193 c. 1-8 sind in korrekter
+               Reihenfolge als <mentioned>XVI</mentioned> und <mentioned>XVIII-XXIIII</mentioned>
+               eingetragen, gefolgt von BK 189 als <mentioned>XXV</mentioned>, wobei der gesamte
                Text des Kapitulars vom Schreiber als ein Kapitel (in einem Absatz) aufgefasst wurde. </p>
-            <p>Zu <locus>foll. 141v-145v</locus>: Jeweils am Ende der Kapitelüberschriften zu c.
-               1-3, 11, 14 und 16-17 eine Art Paragraphenzeichen, gestaltet vage ähnlich einem a
-               oder o mit nach rechts weit in die Oberlänge gezogener Schleife. Dieses Zeichen kommt
-               auch mehrfach auf <locus>foll. 127r-134r</locus> sowie auf <locus>fol. 139r</locus>
-               und <locus>fol. 145v-146v</locus> vor, jeweils meist am Ende einer nicht voll
-               beschriebenen Schlusszeile eines Kapitels. Gelegentlich folgen zwei Zeichen kurz
-               nacheinander in gleicher Zeile. Eine Systematik und entsprechend eine gliedernde
-               Funktion ist nicht erkennbar, es handelt sich also wohl um reine Ornamente. </p>
-            <p> Bei c. 5 vergaß der Schreiber die Kapitelzahl am Rand einzutragen, setzte die
-               Zählung aber beim folgenden Kapitel (c. 6, auf der folgenden Seite) korrekt mit
-                  <mentioned>VI</mentioned> fort.</p>
-            <p>Zu <locus>foll. 145v-146v</locus>: Gegliedert als neue, von I bis VIII gleichmäßig
+            <p>
+               Zu <locus>fol. 139v-141v</locus> (BK 77): Die Liste beginnt auf neuer Seite ohne
+               Rubrik unmittelbar mit dem Prolog, mit einer nur leicht vergrößerten Initiale in
+               Texttinte. Kapitel 6 ist irrig als <mentioned>VII</mentioned> gezählt, wobei die Zahl
+               auch beim folgenden c. 7 wiederholt wird; ebenso steht bei c. 9 erneut die Kapitelzahl
+               <mentioned>VIII</mentioned>. Beide Fehler wurden von der auch für die moderne 
+               Paginierung der Handschrift zuständigen Hand mit Blei verbessert. Die Zählung 
+               besteht durchgängig aus römischen Zahlen mit <mentioned>cap</mentioned> bzw.
+                  <mentioned>cp</mentioned>; ihre Platzierung wechselt zwischen dem Seitenrand,
+               einer leichten Ausrückung bei Zeilenanfang sowie mitten in der
+               Zeile.
+               <!-- dt: hier gerade ein frischer Eindruck: in Paris 4628A bei der ersten VII ein I getilgt, 
+                  zumindest ist es so kodiert momentan, Expungierung aber sehr schwach, vllt. auch dort 
+                  eher von VII auszugehen. -->
+            </p>
+            <p>Zu <locus>fol. 141v-145v</locus> (BK 139): Gegliedert als von
+                  <mentioned>I</mentioned> bis <mentioned>XXI</mentioned> durchnummerierte Liste.
+               Mit Ausnahme von c. 1 steht jeweils nur die römische Kapitelzahl, ohne Zusatz von
+                  <mentioned>cap</mentioned> o.ä. Bei c. 5 vergaß der Schreiber die Kapitelzahl am
+               Rand einzutragen, setzte die Zählung aber beim nächsten Kapitel (c. 6, auf der
+               folgenden Seite) korrekt mit <mentioned>VI</mentioned> fort. Jeweils am Ende der
+               Kapitelüberschriften zu c. 1-3, 11, 14 und 16-17 steht eine Art Paragraphenzeichen,
+               gestaltet vage ähnlich einem a oder o mit nach rechts weit in die Oberlänge gezogener
+               Schleife. Dieses Zeichen kommt auch mehrfach auf <locus>foll. 127r-134r</locus> sowie
+               auf <locus>fol. 139r</locus> und <locus>fol. 145v-146v</locus> vor, jeweils meist am
+               Ende einer nicht voll beschriebenen Schlusszeile eines Kapitels. Gelegentlich folgen
+               zwei Zeichen kurz nacheinander in gleicher Zeile. Eine Systematik und entsprechend
+               eine gliedernde Funktion ist nicht erkennbar, es handelt sich also wohl um reine
+               Ornamente.
+               <!--        sk: ggf. noch einmal systematisch über den gesamten transkribierten Abschnitt prüfen: 
+               diese Ornamente kommen nicht bei BK 77 vor, evtl. Indiz für Schreiberwechsel?
+               Verwendung auch in (welchen) anderen Seitenbereichen oder Kapitellisten? -->
+            </p>
+            <p>Zu <locus>fol. 145v-146v</locus> (BK 138+140): Gegliedert als von
+                  <mentioned>I</mentioned> bis <mentioned>VIII</mentioned> gleichmäßig
                durchnummerierte Liste. Die Kapitelnummern sind jeweils auf den linken Rand
                ausgerückt. Beim ersten Kapitel folgen Listentitel und Rubrik unmittelbar
                aufeinander. Im weiteren Verlauf beginnen die in Majuskeln und Texttinte gehaltenen
                Rubriken meist bereits in der letzten Zeile des vorhergehenden Kapitels. Die Liste
-               bricht aufgrund von Blattverlust fragmentarisch nach der Rubrik zu Kapitel acht ab.
-               Inhaltlich bietet sie die häufiger vorkommende Verbindung einer Variante von BK 138
-               c. 6 als erstem Kapitel mit c. 1-7 von BK 140, in der Nummerierung entsprechend
+               bricht aufgrund von Blattverlust fragmentarisch nach der Rubrik zu Kapitel
+                  <mentioned>VIII</mentioned> ab. Der Text bietet eine Variante von BK 138 c. 6 als
+               erstes Kapitel, gefolgt von c. 1-7 von BK 140, in der Nummerierung entsprechend
                verschoben. </p>
          </div>
          <div type="annotations">
-            <p>Zu <locus>foll. 127r-134r</locus>:</p>
+            <p>Zu <locus>fol. 127r-134r</locus>:</p>
             <p><locus>Fol. 127r</locus>: mit Blei auf unterem Rand nach einem Verweiszeichen, dass
                vom Ende des Ansegis-Abschnitts wiederholt ist: <mentioned>usque adhuc Pertz LL I,
                   324.</mentioned> Von neuzeitlicher Hand mit schwarzer Tinte neben der letzten
@@ -1231,7 +1395,8 @@
                schwarzer Tinte: <mentioned>Depositio armoru(m) lingua Theodisca Schaftlegi
                   dicitur</mentioned>, den entsprechenden Passus von BK 192 c. 13 paraphrasierend
                (hier in der ersten Zeile, evtl. mit anderer Tinte unterstrichen).</p>
-            <p>Zu <locus>foll. 141v-145v</locus>:</p>
+            <!-- sh: hier noch Glossen der foll. 139v-141v nachtragen? dt: ja, ist ja nicht viel, kann man in einem Satz abhandeln -->
+            <p>Zu <locus>fol. 141v-145v</locus>:</p>
             <p> Auf <locus>fol. 141v</locus> mit unterschiedlichem Blei zwei Vermerke am linken
                Rand, auf Höhe des Beginns von c. 1: <mentioned>pg 210</mentioned> und
                   <mentioned>403</mentioned>. Ersterer verweist offenbar auf die Kapitularienedition
@@ -1251,32 +1416,356 @@
                radierter) Vermerk <mentioned>non nos di...ter...</mentioned>.</p>
             <p>Auf fol. 145v neben der ersten Kapitelnummer der neuen Liste mit Blei der Vermerk
                "214".</p>
-            <p>Auf fol. 146v links unten auf dem Rand stark verblasst oder radiert "DE FOR",
-               offenbar in Wiederholung des Anfangs der auf der letzten Zeile eingetragenen Rubrik
-               "DE FORESTIBUS..."; wohl zeitnah, aber nicht von gleicher Hand.</p>
+            <p>Auf fol. 146v links unten auf dem Rand stark verblasst oder radiert <mentioned>DE
+                  FOR</mentioned>, offenbar in Wiederholung des Anfangs der auf der letzten Zeile
+               eingetragenen Rubrik <mentioned>DE FORESTIBUS...</mentioned>; wohl zeitnah, aber
+               nicht von gleicher Hand.</p>
          </div>
          <div type="other">
             <p>Pergamentschäden: Pergament an manchen Stellen mit stärkeren Falten, die insbesondere
                die Lesbarkeit der <locus>vorletzten Zeile auf fol. 143r</locus>, der <locus>7., 14.
                   und 24. Zeile auf fol. 144r</locus>, der <locus>14./15. Zeile auf fol.
-                  145r</locus> sowie der <locus>1./2., 7. und 14. Zeile azuf fol. 146r</locus>
+                  145r</locus> sowie der <locus>1./2., 7. und 14. Zeile auf fol. 146r</locus>
                beeinträchtigen. </p>
          </div>
       </front>
 
       <body>
-
-         <milestone unit="capitulare" n="BK.184"/>
-
+         <cb n="94v"/>
+         <lb n="1"/>
+         <milestone unit="capitulare" n="BK.142"/>
+         <ab type="meta-text" xml:id="selestat-bh-14-94v-1" corresp="BK.142_1_inscriptio">
+            <seg type="num" n="1">I</seg> . <seg type="numDenom">CAPITULUM</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-94v-2" corresp="BK.142_1">
+            <seg type="initial">D</seg>e hoc capitulo iudicatum est . Ut ille qui mannitur . <lb/>
+            spatium mannitionis suae . per <num>XL</num> . noctes . <lb/> habeat . et sic omnes
+            infra supradictarum noctium . <lb/> numerum mallum si uero non <choice>
+               <abbr>habuer</abbr>
+               <expan>habuerit</expan>
+            </choice> . ipsum spatium <lb/> usque ad mallum comitis extendatur . et deinde <lb/>
+            detur ei spatium ad respectum . ad <num>VII</num> . noctes . <choice>
+               <abbr>ind</abbr>
+               <expan>inde</expan>
+            </choice>
+            <lb/> non noctium spatie . sed proximum mallum comi<lb break="no"/>tis ei concedatur . </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-94v-3" corresp="BK.142_2_inscriptio"
+            next="#selestat-bh-14-94v-4_1">
+            <seg type="num" n="2">II</seg> . DE <choice>
+               <abbr>CAP</abbr>
+               <expan>CAPITULO</expan>
+            </choice>
+            <num>XII</num> . LEGIS SALICAE . <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-94v-4" corresp="BK.142_2_inscriptio BK.142_2">
+            <milestone unit="span" corresp="BK.142_2_inscriptio" xml:id="selestat-bh-14-94v-4_1"
+               prev="#selestat-bh-14-94v-3" spanTo="#selestat-bh-14-94v-4_2"/>
+            <seg type="initial">S</seg>i quis seruum alienum occiserit uel uendiderit uel inge<lb
+               break="no"/>nuum dimiserit . <num>ĪCCCC</num><note type="editorial">ĪCCCC =
+               1.400</note><!-- dt: die sicherere Variante bei 
+                  diesem Sonderzeichen ist es wohl, den HTML-Code einzugeben: "&#298;" Vllt. aber 
+               nochmal Marcello fragen oder allgemein besprechen -->
+            <choice>
+               <abbr>dr</abbr>
+               <expan>denarios</expan>
+            </choice> qui faciunt . solidos . <num>XXXV</num> . <lb/>
+            <choice>
+               <abbr>culpl</abbr>
+               <expan>culpabilis</expan>
+            </choice> . <choice>
+               <abbr>iudct</abbr>
+               <expan>iudicetur</expan>
+            </choice> . <choice>
+               <abbr>excep</abbr>
+               <expan>excepto</expan>
+            </choice> . <choice>
+               <abbr>capl</abbr>
+               <expan>capitale</expan>
+            </choice> et <choice>
+               <abbr>dltr</abbr>
+               <expan>dela<mod>t</mod>ura</expan>
+            </choice><note type="editorial">gek. <mentioned>dltr</mentioned>;
+                  <mentioned>t</mentioned> korr. (?)</note> . <lb/>
+            <anchor xml:id="selestat-bh-14-94v-4_2"/>
+            <milestone unit="span" corresp="BK.142_2" spanTo="#selestat-bh-14-94v-4_3"/>
+            <seg type="initial">D</seg>e hoc <choice>
+               <abbr>cap</abbr>
+               <expan>capitulo</expan>
+            </choice> iudicatum est . ab omnibus ut si ille seruus <lb/> qui iniuste uenditus uel
+            ingenuus dimissus <lb/> apparet . non alter pro eo in loco illius restituatur <lb/> quia <choice>
+               <abbr>dixer</abbr>
+               <expan>dixerunt</expan>
+            </choice> aliqui quod id est seruus qui ingenu<lb break="no"/>us dimissus fuerat . denuo
+            ad seruitium redde<lb break="no"/>re non debeat . sed pristino domino . et seruitio
+            <lb/> restitutus fiat <choice>
+               <abbr>iudicauer</abbr>
+               <expan>iudicauerunt</expan>
+            </choice> . <anchor xml:id="selestat-bh-14-94v-4_3"/>
+         </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-94v-5" corresp="BK.142_3_inscriptio"
+            next="#selestat-bh-14-94v-6_1">
+            <seg type="num" n="3">III</seg> . DE <choice>
+               <abbr>CAP</abbr>
+               <expan>CAPITULO</expan>
+            </choice>
+            <num>XIIII</num> . <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-94v-6" corresp="BK.142_3_inscriptio BK.142_3">
+            <milestone unit="span" corresp="BK.142_3_inscriptio" xml:id="selestat-bh-14-94v-6_1"
+               prev="#selestat-bh-14-94v-5" spanTo="#selestat-bh-14-94v-6_2"/>
+            <seg type="initial">S</seg>i quis ingenuus ancillam alienam in coniugium acce<lb
+               break="no"/>perit . ipso cum ea in seruitio implicetur ; <cb n="95r"/>
+            <anchor xml:id="selestat-bh-14-94v-6_2"/>
+            <milestone unit="span" corresp="BK.142_3" spanTo="#selestat-bh-14-94v-6_3"/>
+            <seg type="initial">D</seg>e hoc <choice>
+               <abbr>cap</abbr>
+               <expan>capitulo</expan>
+            </choice> . iudicatum est . ab omnibus ut si ingenua <lb/> femina quemlibet seruum in
+            coniugium sumpserit . <lb/> non solum cum ipso seruo in seruitio permaneat . sed etiam
+            <lb/> et omnes res quas habet . si eas cum parentibus suis di<lb break="no"/>uisas tenet
+            . Ad dominum cuius seruum in coniugi<lb break="no"/>um accepit perueniat . Et si cum
+            parentibus suis res . <lb/> paternas uel maternas non diuisit . nec alicui que<lb
+               break="no"/>renti respondere . nec cum suis heredibus in re<lb break="no"/>rum
+            paternarum haereditate . ultra diuisa acce<lb break="no"/>dere possit . similiter et si
+               <rs>francus homo</rs> alterius <lb/> ancillam in coniugium sumpserit sic <subst>
+               <del/>
+               <add>f</add>
+            </subst>aciendum . esse . <lb/>
+            <choice>
+               <abbr>iudicauer</abbr>
+               <expan>iudicauerunt</expan>
+            </choice> . <anchor xml:id="selestat-bh-14-94v-6_3"/>
+         </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-95r-1" corresp="BK.142_4_inscriptio"
+            next="#selestat-bh-14-95r-2_1">
+            <seg type="num" n="4">IIII</seg> DE EODEM CAPITULO . <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-95r-2" corresp="BK.142_4_inscriptio BK.142_4">
+            <milestone unit="span" corresp="BK.142_4_inscriptio" xml:id="selestat-bh-14-95r-2_1"
+               prev="#selestat-bh-14-95r-1" spanTo="#selestat-bh-14-95r-2_2"/>
+            <seg type="initial">S</seg>i quis uxorem alienam uiuo marito tullerit .
+               <num>VĪĪĪ</num><note type="editorial">die gesamte Zahl überstrichen, für VĪĪĪ =
+               8000</note>
+            <!-- sk: alternativ, da es das nur für U, nicht für V gibt: "ŪĪĪĪ"?  
+            - sh: kann das Prg. combining macrons (U+0304) oder overlines (U+0305) verarbeiten? V̄ 
+            offensichtlich nicht. =( Evtl. einen Tag einführen? 
+            dt: bei Unicode gibt es dieses V mit Strich nicht, vgl. aber Marcellos Mail; vllt. erstmal
+            einfach VIII und note? -->
+            <lb/>
+            <choice>
+               <abbr>dr</abbr>
+               <expan>denarios</expan>
+            </choice> qui faciunt solidos . <num>CC</num> . <choice>
+               <abbr>culpl</abbr>
+               <expan>culpabilis</expan>
+            </choice> iudicetur . <lb/>
+            <anchor xml:id="selestat-bh-14-95r-2_2"/>
+            <milestone unit="span" corresp="BK.142_4" spanTo="#selestat-bh-14-95r-2_3"/>
+            <seg type="initial">D</seg>e ho<note type="editorial">Der Schreiber zog das Wort mit der
+               folgenden Kürzung zusammen (<mentioned>hocap</mentioned>) und vergaß dabei, das
+                  <mentioned>c</mentioned> zu wiederholen.</note>
+            <choice>
+               <abbr>cap</abbr>
+               <expan>capitulo</expan>
+            </choice> . iudicatum est . Ut uiuo marito qui <lb/> eadem uxor contra legem subtracta
+            fuerat . <lb/> ab illo qui eam ei iniuste tullerat . cum lege supra<lb break="no"
+            />scripta . id est . <num>CC</num> . solidis reddita fiat . <anchor
+               xml:id="selestat-bh-14-95r-2_3"/>
+         </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-95r-3" corresp="BK.142_5_inscriptio"
+            next="#selestat-bh-14-95r-4_1">
+            <seg type="num" n="5">V</seg> . <lb/> DE <num>XXXVI</num> . CAPITULO . <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-95r-4" corresp="BK.142_5_inscriptio BK.142_5">
+            <milestone unit="span" corresp="BK.142_5_inscriptio" xml:id="selestat-bh-14-95r-4_1"
+               prev="#selestat-bh-14-95r-3" spanTo="#selestat-bh-14-95r-4_2"/>
+            <seg type="initial">S</seg>i quis puer infra . <num>XII</num> annos aliquam culpam <lb/>
+            commiserit . fredus <add>ei</add><metamark function="insertion"/> non requiratur . <cb
+               n="95v"/>
+            <anchor xml:id="selestat-bh-14-95r-4_2"/>
+            <milestone unit="span" corresp="BK.142_5" spanTo="#selestat-bh-14-95r-4_3"/>
+            <seg type="initial">D</seg>e hoc <choice>
+               <abbr>cap</abbr>
+               <expan>capitulo</expan>
+            </choice> iudicatum est Ut si infans infra . <num>XII</num> . <lb/> annos . res alterius
+            iniuste sibi usurpauerit . <lb/> eas excepto fredo cum lege sua conponat . <lb/> Reddat
+            et ita manniatur sicut ille manni<lb break="no"/>re potest cu<subst>
+               <del>m</del>
+               <add>i</add>
+            </subst> contra legem fecit . Et ita ad co<lb break="no"/>mitem ad mallum suum adducatur
+            sicut ille <lb/> adduci potest . cui contra legem fecit . De <lb/> hereditate uero
+            paterna uel materna . si <choice>
+               <abbr>aliq</abbr>
+               <expan>aliqui</expan>
+            </choice>
+            <lb/> eum interpellauerit . usque ad spatium . <num>XII</num> . <lb/> annorum expectare
+            iudicatus est . <lb/>
+            <anchor xml:id="selestat-bh-14-95r-4_3"/>
+         </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-95v-1" corresp="BK.142_6_inscriptio">
+            <seg type="num" n="6">VI</seg> . <seg type="numDenom">CAPITULUM</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-95v-2" corresp="BK.142_6">
+            <seg type="initial">I</seg>udicatum est ab omnibus ut si <rs>francus homo</rs>
+            <lb/> uel ingenua femina <mod>i</mod>n seruitio sponte sua <lb/> implicauerit se . Ut si
+            res suas dum in libertate <lb/> sua permanebat . ad ecclesiam dei aut cuilibet <lb/>
+            legibus tradidit . ipse cui traditae fuerint . eas <lb/> habere et tenere possit . et si
+            filius uel filias <lb/> dum in sua fuit libertate generauit . ipsi <lb/> liberi
+            permaneant . </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-95v-3" corresp="BK.142_7_inscriptio"
+            next="#selestat-bh-14-95v-4_1">
+            <seg type="num" n="7">VII</seg> . DE <choice>
+               <abbr>CAP</abbr>
+               <expan>CAPITULO</expan>
+            </choice>
+            <num>XXXVI</num> . <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-95v-4" corresp="BK.142_7_inscriptio BK.142_7">
+            <milestone unit="span" corresp="BK.142_7_inscriptio" xml:id="selestat-bh-14-95v-4_1"
+               prev="#selestat-bh-14-95v-3" spanTo="#selestat-bh-14-95v-4_2"/>
+            <seg type="initial">S</seg>i seruus hominem ingenuum occiserit . ipse <lb/> homicida pro
+            medietate conpositionis . <cb n="96r"/> parentibus hominis occisi traditur . et aliam
+               medieta<lb break="no"/>tem dominus seruo se nouerit soluiturum . Aut si legem <lb/>
+            intellexerit poterit se obmallare . Ut leodem non <lb/> soluat . <anchor
+               xml:id="selestat-bh-14-95v-4_2"/>
+            <milestone unit="span" corresp="BK.142_7" spanTo="#selestat-bh-14-95v-4_3"/> quia nulla
+            de ecclesiastico benefici<lb break="no"/>ario . uel alterius persona . seruo
+            discretionem lex <lb/> fecit . si ita ecclesiastici aut beneficiarii serui . <lb/> sicut
+            liberorum tradi aut dimitti possint :/ <lb/>
+            <anchor xml:id="selestat-bh-14-95v-4_3"/>
+         </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-96r-1" corresp="BK.142_8_inscriptio">
+            <seg type="num" n="8">VIII</seg> . DE <num>XLVI</num> . <choice>
+               <abbr>CAP</abbr>
+               <expan>CAPITULO</expan>
+            </choice>
+            <choice>
+               <abbr>IDE</abbr>
+               <expan>ID EST</expan>
+            </choice> . QUI UIDUAM IN <sic>CONGIUM</sic> ACCIPERE UULT . <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-96r-2" corresp="BK.142_8">
+            <choice>
+               <abbr>Iudicauer</abbr>
+               <expan><seg type="initial">I</seg>udicauerunt</expan>
+            </choice> homines . ut non ita sicut in <rs>lege salica</rs> scrip<lb break="no"/>tum
+            est eam accipiat . sed cum parentorum consensu et <lb/> uoluntate uiro . usque nunc
+            antecessores eorum <lb/>
+            <choice>
+               <abbr>fecer</abbr>
+               <expan>fecerunt</expan>
+            </choice> in coniugium sibi eam sumat . </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-96r-3" corresp="BK.142_9_inscriptio"
+            next="#selestat-bh-14-96r-4_1">
+            <seg type="num" n="9">VIIII</seg>
+            <seg type="numDenom">CAPITULUM</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-96r-4" corresp="BK.142_9_inscriptio BK.142_9">
+            <milestone unit="span" corresp="BK.142_9_inscriptio" xml:id="selestat-bh-14-96r-4_1"
+               prev="#selestat-bh-14-96r-3" spanTo="#selestat-bh-14-96r-4_2"/>
+            <seg type="initial">D</seg>e <num>XLVII</num> . <choice>
+               <abbr>cap</abbr>
+               <expan>capitulo</expan>
+            </choice> De eo qui uillam alterius occu<lb break="no"/>pauerit . <anchor
+               xml:id="selestat-bh-14-96r-4_2"/>
+            <milestone unit="span" corresp="BK.142_9" spanTo="#selestat-bh-14-96r-4_3"/> De hoc <choice>
+               <abbr>cap</abbr>
+               <expan>capitulo</expan>
+            </choice>
+            <choice>
+               <abbr>iudicauer</abbr>
+               <expan>iudicauerunt</expan>
+            </choice> ut nullus qui <lb/> uillam aut res alterius migrandi gratia per an<lb
+               break="no"
+            />nus<!-- sk: BK hat "anno", aber die Kürzung wird sonst (oben Z. 2 "dominus")
+            für -us verwendet -->
+            tenere uel possidere possit . sed in <expan>quacumque</expan>
+            <lb/> die inuasor illarum rerum interpellatus fu<lb break="no"/>erit . Aut easdem res
+            querendi reddat aut <lb/> eas si potest iuxta legem se defendendo sibi <lb/> uindicet .
+               <anchor xml:id="selestat-bh-14-96r-4_3"/>
+         </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-96r-5" corresp="BK.142_10_inscriptio">
+            <seg type="num" n="10">X</seg> . DE AFATOMIE DIXERVNT . <lb/> QUOD TRADICIO
+               FUISSE<unclear>T</unclear> . <cb n="96v"/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-96v-1" corresp="BK.142_10">
+            <seg type="initial">D</seg>e hoc <choice>
+               <abbr>cap</abbr>
+               <expan>capitulo</expan>
+            </choice> . iudicatum est . ut sicut per longam consuetu<lb break="no"/>dinem
+            antecessores eorum <sic>fatientes</sic>
+            <choice>
+               <abbr>habuer</abbr>
+               <expan>habuerunt</expan>
+            </choice> . ita <lb/> et omnes qui <rs>lege salica</rs> uiuunt . inantea habeant . <lb/>
+            et faci<mod>a</mod>nt . </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-96v-2" corresp="BK.142_12_inscriptio">
+            <seg type="num" n="12">XII</seg>
+            <seg type="numDenom">CAPITULO</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-96v-3" corresp="BK.142_12">
+            <seg type="initial">E</seg>t hoc <choice>
+               <abbr>iudicauer</abbr>
+               <expan>iudicauerunt</expan>
+            </choice> ut omnis qui alteri aliquid <lb/> querit . licentiam habeat prius sua
+            testimonia <lb/> producere . contra eum . et si ille cui queritur dixerit <lb/> quod
+            legibus teneat ea que tenet . et talia sunt testimonia . <lb/> qui hoc ueraciter
+            adfirmare possint ; <choice>
+               <abbr>Iudicauer</abbr>
+               <expan>Iudicauerunt</expan>
+            </choice>
+            <lb/> ut huius rei ueritas secundum <choice>
+               <abbr>cap</abbr>
+               <expan>capitula</expan>
+            </choice>
+            <rs type="person">domni <choice>
+                  <abbr>impr</abbr>
+                  <expan>imperatoris</expan>
+               </choice></rs> . <lb/> que prius pro lege tenenda constituit rei <lb/> ueritas
+            conprobetur </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-96v-4" corresp="BK.142_11_inscriptio">
+            <seg type="num" n="11">XI</seg>
+            <seg type="numDenom">CAPITULUM</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-96v-5" corresp="BK.142_11">
+            <seg type="initial">E</seg>t<note type="editorial">Wahrscheinlich war der Schreiber
+               aufgrund des identischen Anfangs der beiden letzten Kapitel verrutscht und kopierte
+               irrig zuerst c. 12. Das einem Trigonus ähnelnde Zeichen am Ende von c. 12 soll daher
+               wohl kein Satzzeichen, sondern ein Verweiszeichen darstellen; allerdings wiederholte
+               der Schreiber das Zeichen dann nicht an dem Ort, wo c. 11 einzufügen gewesen
+               wäre.</note> hoc <choice>
+               <abbr>iudicauer</abbr>
+               <expan>iudicauerunt</expan>
+            </choice> Ut si seruus cartam ingenu<lb break="no"/>itatis adtullerit . Si seruus
+            eiusdem carte auc<lb break="no"/>torem <del>h</del> legi<add>ti</add>mum habere non
+            potuerit . domi<lb break="no"/>no serui ipsam cartam falsare liceat . <lb/>
+         </ab>
+         <cb n="112v"/>
+         <lb n="10"/>
+         <milestone xml:id="selestat-bh-14-112v-capitulatio" spanTo="#capitulatio-finis"/>
+         <ab type="meta-text" xml:id="selestat-bh-14-112v-3" corresp="Ansegis.4_inscriptio_c">
+            INCIPIUNT CAPITVLA .! <lb/>
+         </ab>
+         <cb n="113r"/>
+         <lb n="11"/>
+         <milestone unit="capitulare" n="BK.156"/>
+         <ab type="meta-text" xml:id="selestat-bh-14-113r-11"
+            corresp="BK.156_2_inscriptio_c Ansegis.4_26bis_inscriptio_c">
+            <seg type="num" n="25">XXV</seg>
+            <del>D</del> qualiter de statu suo pulsatus euindicet libertatem suam<note
+               type="editorial">Im folgenden Textblock fehlt dieses Kapitel, an seiner Stelle findet
+               sich, als <mentioned>XXV</mentioned> gezählt, Ansegis 4, c. 25, das in der
+               Capitulatio noch als <mentioned>XXVI</mentioned> angekündigt war.</note> . <lb/>
+         </ab>
+         <anchor xml:id="capitulatio-finis"/>
          <cb n="127r"/>
          <lb n="17"/>
-
-
+         <milestone unit="capitulare" n="BK.184"/>
          <ab type="meta-text" xml:id="selestat-bh-14-127r-7" corresp="BK.184_a"
             next="#selestat-bh-14-127r-8_1"><date>ANNO <num>SEXTO DECIMO</num> REGNANTE
                   DOM<add>I</add>NO<note type="editorial"><mentioned>i</mentioned> ergänzt, evtl.
                   von späterer Hand</note> NOSTRO <rs type="person">LUDOUUICO</rs></date><lb/></ab>
-
          <ab type="text" xml:id="selestat-bh-14-127r-8"
             corresp="BK.184_a BK.184_b BK.186_inscriptio">
             <milestone unit="span" corresp="BK.184_a" spanTo="#selestat-bh-14-127r-8_2"/> Conuentus
@@ -1325,7 +1814,6 @@
             hec capitula <lb/>ab episcopus tractanda sunt . <lb/>
             <anchor xml:id="selestat-bh-14-127r-8_4"/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-127v-1"><seg type="num" n="1">I</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-127v-2" corresp="BK.186_1">De decimis que <subst>
@@ -1334,38 +1822,32 @@
             </subst> dominicas dantur et homini<lb break="no"/>bus qui eas habent et in suos usus
             conuertunt . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-127v-3"><seg type="num" n="2">II</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-127v-4" corresp="BK.186_2">De feminis quae in
             quibusdam locis Inrationabiliter uelamen sibi <lb/>sanctum inponunt <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-127v-5"><seg type="num" n="3">III</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-127v-6" corresp="BK.186_3">Similiter de
             monasteriolis puellarum In legatione <rs type="person">autgarii</rs> In qui<lb
                break="no"/>bus nullus ordo bone conuersationis tenetur . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-127v-7"><seg type="num" n="4">IIII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-127v-8" corresp="BK.186_4">De monasteriolis etiam
             diuersis In missatico <rs type="person">albrici</rs> . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-127v-9"><seg type="num" n="5">V</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-127v-10" corresp="BK.186_5"><mod>D</mod>e iudicio
             aque frigide . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-127v-11"><seg type="num" n="6">VI</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-127v-12" corresp="BK.186_6">De his qui usuris
             Inseruiunt . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-127v-13"><seg type="num" n="7">VII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-127v-14" corresp="BK.186_7"
@@ -1383,11 +1865,8 @@
             TJ: Ja, würde ich auch sagen, da die Zeile abgeschlossen wurde und die neue mit 
             einer Initiale/größeren Majuskel beginnt! DT: Alles bestens! -->
          </ab>
-
-
          <milestone xml:id="selestat-bh-14-128r-capitulatio" unit="capitulatio"
-            spanTo="#capitulatio-finis"/>
-
+            spanTo="#capitulatio-finis_1"/>
          <ab type="meta-text" xml:id="selestat-bh-14-128r-1" corresp="Ansegis.4_71_inscriptio_c">Deo
             qui aliena patria de qualibet causa fuerit interpellatus <lb/>
          </ab>
@@ -1399,11 +1878,8 @@
          </ab>
          <ab type="meta-text" xml:id="selestat-bh-14-128r-4" corresp="Ansegis.4_74_inscriptio_c">De
             proprietate hominis que ab aliquid In bannum fuerit missa . <lb/></ab>
-         <anchor xml:id="capitulatio-finis"/>
-
-
+         <anchor xml:id="capitulatio-finis_1"/>
          <milestone unit="capitulare" n="Ansegis.4,71-74"/>
-
          <ab type="meta-text" xml:id="selestat-bh-14-128r-5" corresp="Ansegis.4_71_inscriptio">DEO
             QUI IN ALIENA PATRIA DE QUALIBET CAUSA FUERIT INTERPELLATUS <lb/><seg type="num" n="38"
                >XXXVIII</seg></ab>
@@ -1429,7 +1905,6 @@
                <add>b</add>
             </subst>ando quod res que ab eo queritur pater suus ei dereliquid <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-128r-7" corresp="Ansegis.4_72_inscriptio">DE
             SOLUTIONE ATQUE COMPOSICIONE<lb/>
             <seg type="num" n="39">XXXVIIII</seg></ab>
@@ -1444,7 +1919,6 @@
                >frisio</rs> a parte <rs>salici franci</rs> cum eo litigantis soluere debet <cb
                n="128v"/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-128v-1" corresp="Ansegis.4_73_inscriptio">DE
             STATU HOMINIS <lb/>
             <seg type="num" n="40">XL</seg></ab>
@@ -1455,7 +1929,6 @@
             eius in bannum <lb/>missis uenire et iustitiam facere <del unit="chars" quantity="6"/>
             compellatur . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-128v-3" corresp="Ansegis.4_74_inscriptio">DE
             PROPRIETATAE HOMINIS QUE OB ALIQUOD CRI<lb break="no"/>MEN IN BANNUM FUERIT MISSA . <lb/>
             <seg type="num" n="41">XLI</seg></ab>
@@ -1480,9 +1953,7 @@
             </subst>co regis addat . et conpositionem de ea iuxta modum superius
                <lb/><expan>conprehensum</expan> . his ad quos illa legibus pertinet exoluat . <lb/>
          </ab>
-
          <milestone unit="capitulare" n="BK.186_1"/>
-
          <ab type="text" xml:id="selestat-bh-14-128v-5" corresp="BK.186_7"
             prev="#selestat-bh-14-127v-14"> qui a <num>tribus</num>
             <num>quartus</num> adiu<subst>
@@ -1496,11 +1967,7 @@
                </choice></num> adiuuatur et <expan>preparatur</expan> eandem expeditionem
             exercitalem <lb/>facere possint et eorum summam ad nostram notitiam deferant <lb/>
          </ab>
-
-
          <milestone unit="capitulare" n="BK.191"/>
-
-
          <ab type="meta-text" xml:id="selestat-bh-14-129r-1"><seg type="num" n="1">I</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-129r-2" corresp="BK.191_1">De his qui se consu<note
@@ -1510,18 +1977,16 @@
                <abbr>prbrs</abbr>
                <expan>presbiteros</expan>
             </choice> In ecclesiis suis constituunt uel de ecclesiis <lb/>eiciunt et ab episcopo uel
-            a quolibet misso dom<add>i</add>nico<note type="editorial">
-               <mentioned>i</mentioned><hi rend="super">1</hi> ergänzt</note> admonitio obedire
-               nolu<lb break="no"/>erint ut bannum nostrum reuadiare cogantur . et per fideiussores
-            ad <lb/>palatium<note type="editorial">Zwischen <mentioned>p</mentioned> und
-                  <mentioned>a</mentioned> ein kleiner Strich übergeschrieben, möglicherweise
-                  <mentioned>i</mentioned> oder <mentioned>l</mentioned>. Das Wort wird dadurch
-               unsinnig, evtl. wollte der Kopist zu <mentioned>placitum</mentioned>
-               verschlimmbessern, brach die Korrektur dann aber ab. </note> nostrum uenire iubeantur
-            . et tunc nos decernamus <lb/>utrum nobis placeat ut aut illum bannum persoluat aut
-               a<mod>l</mod>ium <lb/><add>h</add>armiscaram sustineat . <lb/>
+            a quolibet misso dom<add>i</add>nico admonitio obedire nolu<lb break="no"/>erint ut
+            bannum nostrum reuadiare cogantur . et per fideiussores ad <lb/>palatium<note
+               type="editorial">Zwischen <mentioned>p</mentioned> und <mentioned>a</mentioned> ein
+               kleiner Strich übergeschrieben, möglicherweise <mentioned>i</mentioned> oder
+                  <mentioned>l</mentioned>. Das Wort wird dadurch unsinnig, evtl. wollte der Kopist
+               zu <mentioned>placitum</mentioned> verschlimmbessern, brach die Korrektur dann aber
+               ab. </note> nostrum uenire iubeantur . et tunc nos decernamus <lb/>utrum nobis
+            placeat ut aut illum bannum persoluat aut a<mod>l</mod>ium <lb/><add>h</add>armiscaram
+            sustineat . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-129r-3"><seg type="num" n="2">II</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-129r-4" corresp="BK.191_2">De hecclesiis que inter
@@ -1532,7 +1997,6 @@
             ecclesie pertinentes Ita Inuente diuise <lb/>fuerint ut describantur et nobis
             renuntietur * <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-129r-5"><seg type="num" n="3">III</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-129r-6" corresp="BK.191_3">De ecclesiis destructis
@@ -1547,7 +2011,6 @@
             restaurari possint episcopus modum Inueniat qualiter congrue <lb/>emendari et consistere
             possint * <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-129r-7"><seg type="num" n="4">IIII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-129r-8" corresp="BK.191_4">De <num>uno</num> manso
@@ -1563,7 +2026,6 @@
             </subst>ssatus <lb/>fuerit comes uel missi hoc quod inde su<mod>b</mod>tractum est
                <expan>presbiteris</expan><cb n="129v"/> cum sua lege restituere faciant * <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-129v-1"><seg type="num" n="5">V</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-129v-2" corresp="BK.191_5">De his qui nonas et
@@ -1575,14 +2037,14 @@
             bannum nostrum et hoc eis <lb/>denuntietur quod <expan>quicumque</expan> hanc
             neglegentiam Iterauerit beneficium <lb/>unde hec nona et decima persolui debuit
             amissurum se <sic>siat</sic> * <lb/>Ita enim contin<mod>etur</mod> In capitulare bone
-            memoriae <rs type="person">genitoris nostri</rs><lb/> in libro <num>.I.</num> capitulo .
-               <num>CLVII.</num> Ut qui hecclesiarum beneficia habent <lb/>nonam et decimam ex eis
+            memoriae <rs type="person">genitoris nostri</rs><lb/> in libro . <num>I</num> . capitulo
+            . <num>CLVII</num> . Ut qui hecclesiarum beneficia habent <lb/>nonam et decimam ex eis
             ecclesie cu<add>i</add>us res sunt donent et qui <sic>talum</sic>
             <lb/>beneficium habent ut ad medietatem laborent et de eorum <lb/>portione proprio <choice>
                <abbr>probr</abbr>
                <expan>presbitero</expan>
-            </choice> decimas donent . Item in capitulo nostro <lb/>in libro <num>.II.</num>
-            capitulo <num>.XXI</num> de eadem re De nonis quidem et decimis <lb/>unde et <rs
+            </choice> decimas donent . Item in capitulo nostro <lb/>in libro . <num>II</num> .
+            capitulo . <num>XXI</num> de eadem re De nonis quidem et decimis <lb/>unde et <rs
                type="person">genitor noster</rs> et nos frequenter et in diuersis placitis <lb/>
             admonitionem fecimus et per capitularia nostra qualiter hec <lb/>obseruent ordinauimus .
             <lb/>Uolumus adque iubemus ut de homni conlaborato et de <lb/>uino et de feno fideliter
@@ -1594,7 +2056,6 @@
             In sua maneat potestate iuxta <lb/>quod ei et illi qui hoc persoluere debet conuenerit
             <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-129v-3"><seg type="num" n="6">VI</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-129v-4" corresp="BK.191_6"><expan>Quicumque</expan>
@@ -1603,7 +2064,6 @@
             occasionem ad alteram ecclesiam dederit <lb/>a comite uel a misso nostro distringatur ut
             eiusdem decimae <cb n="130r"/>quantitatem cum sua lege restaurat * <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-130r-1"><seg type="num" n="7">VII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-130r-2" corresp="BK.191_7">De decimis que dare
@@ -1615,7 +2075,6 @@
                <expan>ecclesia</expan>
             </choice> restituant <lb/>que uoluntariae dare neglexerunt * <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-130r-3"><seg type="num" n="8">VIII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-130r-4" corresp="BK.191_8">Vt de rebus ecclesiarum
@@ -1623,16 +2082,15 @@
             sunt testimonia non recipiantur <lb/>sed eo modo contineantur sicut res ad fiscum
             dominicum pertinen<lb break="no"/>tes contineri solent * <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-130r-5"><seg type="num" n="9">VIIII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-130r-6" corresp="BK.191_9">Quicumque de rebus
             ecclesiarum quas in beneficium habent res<lb break="no"/>taurationes e<add>a</add>rum
             face neglexerint Iuxta capitularem <sic>anteri</sic>
             <lb/>anteriorem In quo de operi<mod>b</mod>us ac nonis et decimis constitutum est
-            <lb/>sic de illis adimpleatur id est in libro <num>.IIII.</num> capitulo
-               <num>XXXVIII.</num><lb/> De opere et restauratione ecclesiarum consideratum est ut de
-            frugibus <lb/>terre et animalium nutrimine persoluantur . de opere uero uel res<lb
+            <lb/>sic de illis adimpleatur id est in libro . <num>IIII</num> . capitulo
+               <num>XXXVIII</num> . <lb/> De opere et restauratione ecclesiarum consideratum est ut
+            de frugibus <lb/>terre et animalium nutrimine persoluantur . de opere uero uel res<lb
                break="no"/>tauratione ecclesiarum comes et episcopus siue abbas una cum misso nostro
             quem <lb/>ipsi sibi ad <mod>h</mod>oc elegerint considerationem faciant ut unusquisque
             <lb/>eorum tantum Inde accipiat ad operandum et restaurandum <lb/>quantum ipse de rebus
@@ -1648,7 +2106,6 @@
             />super bannum <del unit="chars" quantity="4"/> nostrum soluat ut ita castigatus caueat
             ne sepius <lb/>iterando beneficium a<del>m</del>mittat <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-130v-1"><seg type="num" n="10">X</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-130v-2" corresp="BK.191_10">De illis qui agros
@@ -1659,11 +2116,7 @@
                   <mentioned>contemtur</mentioned>, allerdings nutzt der Schreiber dieses Zeichen
                zumindest auch noch für -us.</note> aut comitis aut missorum <lb/>nostrorum propter
             hoc extiterit per fideiussores ad palatium uenire <lb/>compellatur </ab>
-
-
-
          <milestone unit="capitulare" n="BK.192"/>
-
          <ab type="meta-text" xml:id="selestat-bh-14-130v-3" corresp="BK.192_inscriptio"> ITEM ALIO
             CAPITULO . <lb/>
          </ab>
@@ -1671,19 +2124,17 @@
          </ab>
          <ab type="text" xml:id="selestat-bh-14-130v-5" corresp="BK.192_1">De beneficiis destructis
             hoc obseruetur quod in capitulare priori <lb/> continetur id est in libro
-               <num>IIII</num> capitulo <num>XXXVI.</num> quicumque beneficium suum <lb/>occasione
+               <num>IIII</num> capitulo <num>XXXVI</num> . quicumque beneficium suum <lb/>occasione
             proprii desertum habuerit et intra <del>h</del>annum postquam <lb/>ei comite uel misso
             nostro notum factum fuerit illud emendatum <lb/>non habuerit ipsum beneficium
             ammittat<lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-130v-6"><seg type="num" n="2">II</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-130v-7" corresp="BK.192_2">ut missi nostri ubicumque
             malos scabinos Inueniunt eiciant et totius <lb/>populi consensu In locum eorum bonos
             eligant et cum electi fuerint * <lb/>iurare faciant ut scienter Iniuste iudicare non
             debeant . <lb/></ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-130v-8"><seg type="num" n="3">III</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-130v-9" corresp="BK.192_3">Ut In omni comitatu hi
@@ -1691,7 +2142,6 @@
             adquisitiones faciendas et rei ueritatem <lb/>dicendam et ut adiutores comitum sint ad
             iustitias faciendas <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-130v-10"><seg type="num" n="4">IIII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-130v-11" corresp="BK.192_4">Uolumus ut quicumque de
@@ -1701,7 +2151,6 @@
             scabinis denuntietur ne quis deinceps etiam iustum iudicium <lb/>uendaere pressumat <cb
                n="131r"/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-131r-1"><seg type="num" n="5">V</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-131r-2" corresp="BK.192_5">Vbicumque commutationes
@@ -1715,7 +2164,6 @@
             que rebellis <lb/>esse uideatur Inuenta fuerit diligenter describatur et ad nostram
             perferatur <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-131r-3"><seg type="num" n="6">VI</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-131r-4" corresp="BK.192_6">Quicumque comprobatus
@@ -1723,7 +2171,6 @@
             ad palatium nostrum uenire compellatur ut ubi <lb/>cum fidelibus nostris consideremus
             quid de tali homine faciendum <lb/>sit <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-131r-5"><seg type="num" n="7">VII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-131r-6" corresp="BK.192_7">De his qui discordiis et
@@ -1735,7 +2182,6 @@
             palatium ueniant ut <mod>u</mod>bi cum fidelibus nostris conside<lb break="no"/>remus
             quid de talibus faciendum sit <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-131r-7"><seg type="num" n="8">VIII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-131r-8" corresp="BK.192_8">De bonis denariis quos
@@ -1744,7 +2190,7 @@
                type="editorial">Der Schreiber vergaß mutmaßlich die ersten beiden Buchstaben einer
                lib(ro)-Kürzung und führte nur das <mentioned>b</mentioned> mit Kürzungsstrich
                aus.</note>
-            <num>IIII</num> capitulo <num>XXX.</num> quicumque liber homo uel in emtione uel In
+            <num>IIII</num> capitulo <num>XXX</num> . quicumque liber homo uel in emtione uel In
             debitis <lb/>solutione <choice>
                <abbr>denr</abbr>
                <expan>denarium</expan>
@@ -1758,13 +2204,12 @@
                <add>p</add>
             </subst>ulent et actores nostri aut aliorum uel aduocati eos <lb/>missis nostris uel
             comitibus iussi <expan>presentare</expan> noluerint <expan>predictum</expan> bannum
-            <lb/>id est <num>LX.</num> solidos componat . et ad <sic>haoc</sic> constitutionem
+            <lb/>id est <num>LX</num> . solidos componat . et ad <sic>haoc</sic> constitutionem
             nostram adimplendam <lb/>episcopi et abbates siue reliqui qui beneficia nostra habent
             adiuuent comites <lb/>in suis hominibus distringendis . Et si comites hanc nostram
             constitutionem <cb n="131v"/>neglexerint hoc per missos nostros ad nostram
                <sic>notiam</sic> perferatur<lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-131v-1"><seg type="num" n="9">VIIII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-131v-2" corresp="BK.192_9">De omecidiis uel aliis
@@ -1773,7 +2218,6 @@
             <lb/> esse decernimus ne ultra Inpune fiant Ita ut ubicumque facta fu<lb break="no"
             />erint <sic>soluer</sic> cum disciplinam <expan>precipiemus</expan> . <lb/>
          </ab>
-
          <ab type="text" xml:id="selestat-bh-14-131v-3" corresp="BK.192_10">Colecte<note
                type="editorial">Die Kapitelzahl fehlt, aber das folgende Kapitel ist korrekt als c.
                11 gezählt, so dass die Zahl hier wohl eher vergessen wurde, als dass der Schreiber
@@ -1791,7 +2235,6 @@
             </subst>m sub fideiussoribus ad nostram presentiam ueniad <lb/>multitudo uero siue de
             seruis siue de liberis sit legitima emendatione <lb/>mu<mod>l</mod>tetur * <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-131v-4"><seg type="num" n="11">XI</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-131v-5" corresp="BK.192_11">De pontibus p<subst>
@@ -1804,7 +2247,6 @@
             <lb/>constrinxerunt ut hoc facerent autem nobis nuntiare neglexerunt . <lb/>Similiter et
             de Iniustis teloneIs ubicumque accipiuntur sciant se <lb/>exinde nobis rationem
             reddituros </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-131v-6"><seg type="num" n="12">XII</seg> . </ab>
          <ab type="text" xml:id="selestat-bh-14-131v-7" corresp="BK.192_12">Ut examen aque frig<subst>
                <del>r</del>
@@ -1814,7 +2256,6 @@
                <add>c</add>
             </subst>ebant a missis nostris homnibus Interdicatur ne ulterius <lb/>fiat . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-131v-8"><seg type="num" n="13"
                >X<del>X</del>III</seg>
          </ab>
@@ -1823,7 +2264,6 @@
                <num>XL</num> noctes sit bannus resisus quod <del>in</del> lingua <cb n="132r"
             />theodisca scaftlegi id est armorum depositio uocatur <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-132r-1"><seg type="num" n="14">XIIII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-132r-2" corresp="BK.192_14">Hoc missi nostri notum
@@ -1835,7 +2275,6 @@
             causis se ad nos reclamare . Nisi de quibus aut missi nostri <lb/>aut comites eis
             iustitias facere noluerint . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-132r-3"><seg type="num" n="15">XV</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-132r-4" corresp="BK.192_15">Quicumque uicarii uel
@@ -1846,11 +2285,7 @@
             <lb/>sibique retinuit his quibus hoc tulit cum sua lege restituat <lb/>et insuper fredum
             nostrum componat et ministerium a<del>m</del>mittat . <lb/>
          </ab>
-
-
-
          <milestone unit="capitulare" n="BK.193"/>
-
          <ab type="meta-text" xml:id="selestat-bh-14-132r-5"><seg type="num" n="16">XVI</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-132r-6" corresp="BK.193_1">De homecidiis In
@@ -1892,7 +2327,6 @@
             </subst>bet quod in <lb/>munitate uiolata commit<add>itur</add> sicut continetur In
             libro superi <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-132v-1"><seg type="num" n="18">XVIII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-132v-2" corresp="BK.193_2">Quicumque propter
@@ -1902,7 +2336,6 @@
             fiscum redigatur Ipsi uero ordinante episcopo <sic>plublice</sic>
             <lb/>penitentie subdatur . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-132v-3"><seg type="num" n="19">XVIIII </seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-132v-4" corresp="BK.193_3">Quicumque propria uxore
@@ -1911,7 +2344,6 @@
                <expan>comprehendatur</expan> a comite et ferro uinciatur <lb/>et in custodia
             mittatur . donec res ad nostram notitiam deducatur <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-132v-5"><seg type="num" n="20">XX</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-132v-6" corresp="BK.193_4">Quicumque res alienas
@@ -1936,20 +2368,19 @@
             </subst>ra patriam emendare cogantur et postea sicut <lb/>contentores iussionis nostrae
             sub fideiussoribus ad nostram presentiam <lb/>uenire conpellantur . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-133r-1"><seg type="num" n="21">XXI</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-133r-2" corresp="BK.193_5">De uicariis et
             centenariis qui magis propter cupiditatem quam propter <lb/>iustitiam faciendam
             sepissime placita tenent et exinde populum <lb/><sic>minis</sic> affligunt Ita teneatur
             sicut in capitulare <rs type="person">domni karoli imperatoris</rs>
-            <lb/>continetur In libro <num>IIII.</num> capitulo <num>XL.</num> Ut nullus ad
+            <lb/>continetur In libro <num>IIII</num> . capitulo <num>XL</num> . Ut nullus ad
                palatium<note type="editorial">zwischen <mentioned>p</mentioned> und
                   <mentioned>a</mentioned> über der Zeile ein kurzer, senkrechter Strich unklarer
                Funktion, evtl. eine Verschlimmbesserung durch ein nachgetragenes
                   <mentioned>i</mentioned> oder <mentioned>l</mentioned></note> manniatur <lb/>nisi
             qui causam suam querit aut si alter ei conquerere debet exceptis <lb/>scabiniis
-               <num>VII.</num> qui ad <choice>
+               <num>VII</num> . qui ad <choice>
                <abbr>homa</abbr>
                <expan>homnia</expan>
             </choice> esse debent Item de eadem re in <choice>
@@ -1968,7 +2399,6 @@
                <add>r</add>
             </subst> ammissis nostris Inuentus fuerit bannum nostrum persoluat <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-133v-1"><seg type="num" n="22"
                >XX<del>V</del>II</seg>
          </ab>
@@ -1979,7 +2409,6 @@
             <lb/>in terra dominica resident propter hoc non habitiantur quia in terra <lb/>dominica
             resident sed propter hoc ad testimonium recipiantur <lb/>quia proprium habent<lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-133v-3"><seg type="num" n="23">XXIII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-133v-4" corresp="BK.193_7">Uolumus ad iubemus ut
@@ -1994,12 +2423,11 @@
                <expan>promiserunt</expan>
             </choice> cum sacrament<mod>o</mod> nobis fidelitatem <lb/> promittere faciatis . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-133v-5"><seg type="num" n="24">XXIIII</seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-133v-6" corresp="BK.193_8">De fagdis cohercendis
-            obseruetur et teneatur quod in capitulare <lb/>nostro In libro <num>IIII.</num> capitulo
-               <num>XX.</num> continetur Si quis aliqua necessitate <lb/>cogente homecidium
+            obseruetur et teneatur quod in capitulare <lb/>nostro In libro <num>IIII</num> .
+            capitulo <num>XX</num> . continetur Si quis aliqua necessitate <lb/>cogente homecidium
                <expan>commisit</expan> . Comes in cuius ministerio <lb/>res perpetrata est et
             conpositionem soluere et faida per sacramentum <lb/><mod>p</mod>atificare faciat
                <mod>q</mod>uodsi una p<subst>
@@ -2015,41 +2443,31 @@
                <add>r</add>
             </subst>escat <lb/>
          </ab>
-
-
-
          <milestone unit="capitulare" n="BK.189"/>
-
          <ab type="meta-text" xml:id="selestat-bh-14-134r-1"><seg type="num" n="25">XXV </seg>
          </ab>
          <ab type="text" xml:id="selestat-bh-14-134r-2" corresp="BK.189_a BK.189_b"><milestone
                unit="span" corresp="BK.189_a" spanTo="#selestat-bh-14-134r-2_1"/>Uolumus ut tale
             coniectum missi nostri accipiant quando per missaticum <lb/>suum perrexerint hoc est ut
-            unusquisque accipiat panes <num>.XL.</num>
-            <choice>
+            unusquisque accipiat panes . <num>XL</num> . <choice>
                <abbr>frising</abbr>
                <expan>frisingas</expan>
-            </choice>
-            <num>.II.</num>
-            <lb/>
+            </choice> . <num>II</num> . <lb/>
             <choice>
                <abbr>purcell</abbr>
                <expan>purcellum</expan>
-            </choice> aut agnum <num>.I.</num>
-            <choice>
+            </choice> aut agnum . <num>I</num> . <choice>
                <abbr>pull</abbr>
                <expan>pullos</expan>
-            </choice>
-            <num>.IIII.</num> oua <num>.XX.</num> uino <choice>
+            </choice> . <num>IIII</num> . oua . <num>XX</num> . uino <choice>
                <abbr>sexta</abbr>
                <expan>sextarios</expan>
-            </choice>
-            <num>.VIII.</num> ceruisa <lb/>modios <num>.II.</num> annona <choice>
+            </choice> . <num>VIII</num> . ceruisa <lb/>modios . <num>II</num> . annona <choice>
                <abbr>md</abbr>
                <expan>modios</expan>
             </choice>
-            <num>II.</num> et quando prope sunt de illorum <lb/>domibus nullum accipiant coniectum .
-               <anchor xml:id="selestat-bh-14-134r-2_1"/><milestone unit="span" corresp="BK.189_b"
+            <num>II</num> . et quando prope sunt de illorum <lb/>domibus nullum accipiant coniectum
+            . <anchor xml:id="selestat-bh-14-134r-2_1"/><milestone unit="span" corresp="BK.189_b"
                spanTo="#selestat-bh-14-134r-2_2"/>Uolumus etiam ut <date><choice>
                   <abbr>octab</abbr>
                   <expan>octabas</expan>
@@ -2057,15 +2475,9 @@
                <lb/> pasche</date> Incipiant suam agere legationem episcopi uero suum habere
             <lb/>debent conuentum <date>octauas <mod>p</mod>entecosten</date>
             <lb/><anchor xml:id="selestat-bh-14-134r-2_2"/></ab>
-
-
-
-
          <milestone unit="capitulare" n="BK.134"/>
-
          <cb n="138r"/>
          <lb n="12"/>
-
          <!--  sk: bei der Nachkollation bitte im Licht der ergänzten Vorbemerkung (vgl. BK 134 zu 139) prüfen, ob 
           bzw. welche der Striche (/) oder Ausrufezeichen beibehalten, entfernt oder ergänzt werden
           sollten.
@@ -2083,8 +2495,6 @@
          sk: Habe jetzt alle von der 1. NK ergänzten Striche in die Transkription übernommen; die 
          Problematik sollte dann noch in der Vorbemerkung erläutert werden, sobald deren Überarbeitungt
          hinsichtlich Anzahl der Schreiber etc. abgeschlossen ist. -->
-
-
          <ab type="meta-text" xml:id="selestat-bh-14-138r-5"><seg type="num" n="1">I </seg>
             <seg type="numDenom">capitulum</seg>
          </ab>
@@ -2126,7 +2536,6 @@
                re<del>g</del>i ueritas cognosci ualeat ! quam per <lb/>illos qui uiciniores sunt .
             <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-138v-1"><seg type="num" n="2">II </seg>
             <seg type="numDenom">capitulum</seg>
          </ab>
@@ -2148,7 +2557,6 @@
             <lb/>satisfaciat / tam comiti iudicibus quam aduersario suo <lb/>testibus probando quod
             rem que hab eo queritur <lb/> pater suus ei dereliquid . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-138v-3"><seg type="num" n="3">III </seg>
             <seg type="numDenom">capitulum</seg>
          </ab>
@@ -2169,7 +2577,6 @@
                      >1</hi> korr. (?)</note> franci</rs> cum eo litigantis <lb/>soluere debet .
             <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-139r-1"><seg type="num" n="3"><sic>III</sic>
             </seg>
             <seg type="numDenom">capitulum</seg>
@@ -2180,7 +2587,6 @@
             comitis admoni<lb break="no"/>tionem aliquis ad mallum uenire noluerit rebus eius in
             bannum <lb/>missis uenire et iustitiam facere compellatur . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-139r-3"><seg type="num" n="5">V </seg>
             <seg type="numDenom">capitulum</seg>
          </ab>
@@ -2203,27 +2609,298 @@
             </subst>sco regis addicat . et conpositionem <lb/><sic>dea</sic> ea iuxta modum superius
                <expan>conprehensum</expan> . his ad quos illa <lb/>legib<mod>us</mod> pertinet
                exsoluat<note type="editorial">Auf dem Rest der Zeile folgt eine zweimalige Abfolge
-               aus dem Paragraphenzeichen, wie es der Schreiber öfters am Ende eines Kapitels oder
+               des Paragraphenzeichens, wie es der Schreiber öfters am Ende eines Kapitels oder
                Kapitulars setzt, sowie eines einfachen Punkts.</note>
+            <cb n="139v"/>
+         </ab>
+         
+         <milestone unit="capitulare" n="BK.77"/>
+         
+         <ab type="text" xml:id="selestat-bh-14-139v-1" corresp="BK.77_prolog">
+            <rs type="person"><seg type="initial">C</seg>arlus serenissimus imperator
+               <choice>
+                  <abbr>augs</abbr>
+                  <expan>augustus</expan>
+               </choice></rs> / a deo coronatus magnus <lb/> et
+            pacificus cum episcopis abbatibus . comitibus .
+            ducibus . omnibus <lb/> que fidelibus . christiane ecclesie cum consensu consilioque
+            constituit <lb/> ex <rs>lege salica</rs> . <rs>romana</rs> adque <rs>gombata</rs>
+            capitula ista in <rs type="place">palatio <lb/> aquis</rs>
+            ut unusquisque fidelis iustitias ita faceret que et ipse <lb/> manu propria firmauit <choice>
+               <abbr>capla</abbr>
+               <expan>capitula</expan>
+            </choice> ista ut omnes fideles manu <lb/>
+            roborare studuissent . <lb/>
+         </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-139v-2" corresp="BK.77_1_inscriptio">
+            <seg type="numDenom">capitulum</seg>
+            <seg type="num" n="1">I</seg>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-139v-3" corresp="BK.77_1">
+            <seg type="initial">V</seg>t episcopi circumeant parrochias sibi commissas et ibi
+               inqui<lb break="no"/>rendi studium habeant . de incestu de patricidiis . fratricidiis
+            <lb/> adulteriis cenedoxiis . et alia mala que contraria sunt deo <lb/> que in sacris
+            scripturis legitur ! que christiani<note type="editorial">gek. <mentioned>xpiani</mentioned> 
+               ohne erkennbares Kürzungszeichen</note> deuitare debent
+            <lb/> et infra illorum par<subst>
+               <del>o</del>
+               <add>rochias</add>
+            </subst>
+            ecclesie quibus necessa est emendan<lb break="no"/>di c<mod>a</mod>ram
+            habeant . Similiter nostras a nobis in beneficio datas
+            <lb/> quam et aliorum ubi reliquie <expan>preesse</expan> uidentur
+            . et ut monachi <lb/> per uerbum episcopi et per regimen abbatis et per bona illorum
+            exempla <lb/> regulariter uiuant / prout loca locata sint ! et ut
+               <expan>prepositus</expan> <lb/> et hi<del>i</del>
+            qui foras monasteria sunt / ne uenatores habeant <lb/> quia iam frequenter iussimus ne
+               monachi<del>s</del> foras monasterio <lb/> habitassent . 
+         </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-139v-4" corresp="BK.77_2_inscriptio">
+            <seg type="num" n="2">II</seg>
+            <seg type="numDenom">capitulum</seg>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-139v-5" corresp="BK.77_2"> Vt ecclesie . uidue .
+            pupilli . per banno regis <lb/> pacem habeant . sin aliter in <expan>presentia</expan>
+            nostra hoc ueniat si fieri potest <lb/> sin autem missi nostri
+            <sic>inuestigient</sic> quomodo gestum sit </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-139v-6" corresp="BK.77_3_inscriptio">
+            <seg type="num" n="3">III</seg>
+            <seg type="numDenom">capitulum</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-139v-7" corresp="BK.77_3"> Ut iumenta pacem habeant
+            . similiter per bannum regis . <lb/>
+         </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-139v-8" corresp="BK.77_4_inscriptio">
+            <seg type="num" n="4">IIII</seg>
+            <seg type="numDenom">capitulum</seg>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-139v-9" corresp="BK.77_4"> Vt hi<del>i</del> qui
+            beneficium nostrum habent bene illud immeliorare <lb/>
+            in <del unit="chars" quantity="1"/>omni
+            re<note type="editorial">mit (Betonungs-)Strich über dem <mentioned>e</mentioned></note>
+            studeant et missi nostri hoc sciant . <lb/>
+         </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-139v-10" corresp="BK.77_5_inscriptio">
+            <seg type="num" n="5">V</seg>
+            <seg type="numDenom">capitulum</seg>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-139v-11" corresp="BK.77_5"> Ut uicari<add>i</add>
+            nostri uel centenarii a<note type="editorial">mit (Betonungs-)Strich</note> 
+            seruo regis mancipia ne emant <lb/> et ut ipsi uicarii de here<mod>d</mod>itate
+            foris heredibus si extiterit <cb n="140r"/> ad opus nostrum recipiatur ne illud
+            fraudetur * </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-140r-1" corresp="BK.77_6_inscriptio">
+            <seg type="num" n="7">VII</seg><note type="editorial">Die gleiche Person, die mit 
+               Blei die aktuelle Paginierung der Handschrift vornahm, unterstrich hier die falsche
+               Kapitelzahl und ergänzte auf dem Rand <mentioned>VI</mentioned>.
+            </note> . <seg type="numDenom">capitulum</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-140r-2" corresp="BK.77_6"> De his qui a litterarum
+            conscriptione ingenui fuerint . <lb/> si sine traditione mortui fuerint . hereditas
+            eorum <lb/> ad opus nostrum recipiatur . nec
+            comis nec uicarius . illud <lb/> sibi sotiet ! sed ad opus nostrum reuocetur . Similiter
+            uolumus <lb/> ut banni nostri de illis unde censa exigunt . ut ipsa <lb/> censa ad
+            nostrum opus . uel ubi nos iubemus ueniant . <lb/>
+         </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-140r-3" corresp="BK.77_7_inscriptio">
+            <seg type="num" n="7">VII</seg> . <seg type="numDenom">capitulum</seg>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-140r-4" corresp="BK.77_7"> De hereditate inter
+            heredes . si contentiose egerint . et rex <lb/> missum suum ad <sic>ilam</sic>
+            diuisionem transmis<subst>
+               <del/>
+               <add>e</add>
+            </subst>rit . deci<lb break="no"/>mum mancipium et decimum uirgam hereditatis fisco <lb/> regis
+            detur . </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-140r-5" corresp="BK.77_8_inscriptio">
+            <seg type="num" n="8">VIII</seg> . <seg type="numDenom">capitulum</seg> . </ab>
+         <ab type="text" xml:id="selestat-bh-14-140r-6" corresp="BK.77_8"> Vt uicarii luparios
+            habeant <lb/> unusquisque in suo <choice>
+               <abbr>minister</abbr>
+               <expan>ministerio</expan>
+            </choice> <num>duos</num> ! et ipsi de hoste pergendi <lb/> et de placito comitis .
+            uel uicarii ne custodiat nisi clamor <lb/> super eum eueniat et ipsae certare studeant .
+            de hoc ut per<lb break="no"/>fectum exinde habeat et ipsos
+            pelles luporum ad nostrum <lb/> opus dentur . et unusquisque . de illis qui in illo
+            ministerio <lb/> placitum custodiunt dentur eis <choice>
+               <abbr>md</abbr>
+               <expan>modium</expan>
+            </choice>
+            <num>unum</num> de annona . <lb/>
+         </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-140r-7" corresp="BK.77_9_inscriptio">
+            <seg type="num" n="8">VIII</seg><note type="editorial">Die gleiche Person, die mit 
+               Blei die aktuelle Paginierung der Handschrift vornahm und bei der irrig
+               von <mentioned>V</mentioned> auf <mentioned>VII</mentioned> springenden Zählung
+               neben letzterer auf dem Rand <mentioned>VI</mentioned> eintrug, verbesserte auch
+               hier die doppelt vergebene Zählung als <mentioned>VIII</mentioned> zu <mentioned>VIIII</mentioned>.
+            </note>
+            <seg type="numDenom">capitulum</seg> .
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-140r-8" corresp="BK.77_9"> De hoste pergendi . ut
+            comiti in suo comitatu . <lb/> per bannum unumquemque hominem . per <num>LX</num>
+            solidos in hostem pergere <lb/> bannire studeat . ut ad placi<del>a</del>tum
+            <choice><abbr>dentiatu</abbr><expan>denuntiatum</expan></choice>
+            ad illum locum <lb/> ubi iubetur ueniant . Et ipse comis <expan>preuideat</expan> quo<lb
+               break="no"/>modo sint parati . <choice>
+                  <abbr>ide</abbr><expan>id est</expan></choice> . lanceam scutum . aut 
+            arcum <lb/> cum <num>duas</num> cordas sagittas . <num>XII</num>
+            . De his uterque habeant <lb/> et episcopi . comites . abbates . hos
+            homines habeant . <lb/> qui hoc bene <expan>preuideant</expan> . et ad diem
+            <choice><abbr>dentiati</abbr><expan>denuntiati</expan></choice> placiti ueni<lb
+               break="no"/>ant . et ibi ostendant quomodo sint parati . <cb n="140v"/> habeant
+            loricas . uel galeas . et temporalem hostem . <choice>
+               <abbr>ide</abbr><expan>id est</expan></choice>
+            aestiuo <lb/>
+            <choice>
+               <abbr>tempr</abbr>
+               <expan>tempore</expan>
+            </choice> . </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-140v-1" corresp="BK.77_10_inscriptio"> . <seg
+               type="num" n="10">X</seg> . <seg type="numDenom">capitulum</seg> . </ab>
+         <ab type="text" xml:id="selestat-bh-14-140v-2" corresp="BK.77_10"> Vt regis spensa in carra
+            ducatur . simul <lb/> episcoporum . comitum abbatum . et obtimatum regis . farinam <lb/>
+            uinum baccones . et uictum habundantur . molas do<mod>l</mod>ato<lb break="no"
+            />rias . secur<mod>ae</mod>s
+            . taretros . fondibulas . et illos homines <lb/> qui exinde bene sciant iactare . et
+            marscalci regis <lb/> adducant eis petras . in saumas . <num>XX</num> . si opus est . et
+            unusquisque <lb/>
+            <subst>
+               <del/>
+               <add>os</add>
+            </subst>tiliter sit paratus . et omnia utensilia sufficientur
+            habeant . <lb/> et unusquisque comis <num>duas</num> partes de erba in suo comitatu
+            defendat <lb/> ad opus illius hosti ! et habeat pontos bonos naues bonas . <lb/>
+         </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-140v-3" corresp="BK.77_11_inscriptio">
+            <seg type="num" n="11">XI</seg>
+            <seg type="numDenom">capitulum</seg>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-140v-4" corresp="BK.77_11"> Vt comites unusquisque
+            in suo comitato carcerem habeant ! <lb/> et iudices adque uicarii patibulos habeant . </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-140v-5" corresp="BK.77_12_inscriptio">
+            <seg type="num" n="12">XII</seg> . <seg type="numDenom">capitulum</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-140v-6" corresp="BK.77_12"> Vt homines boni generis
+            qui infra comitatu inique uel in<lb break="no"/>iuste agunt . in
+               <expan>presentia</expan> regis ducantur . et rex super eos <lb/> districtionem faciat
+            ! carcerandi . exiliandi . usque ad emen<lb break="no"/>dationem illorum . 
+         </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-140v-7" corresp="BK.77_13_inscriptio">
+            <seg type="num" n="13">XIII</seg> . <seg type="numDenom">capitulum</seg>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-140v-8" corresp="BK.77_13"> Vt uicarii munera ne
+               acci<lb break="no"/>piant pro illos latrones qui ante comite iudicati fuerint <lb/>
+            ad mortem . Quod si hoc perpetrauer<mod>i</mod>t talem iudicium susti<lb break="no"
+            />neat sicut et latro iudicatus fuit . quia postquam scabini <lb/> eum diiudicauerint !
+            non est licentia comitis . uel uicarii ei <lb/> uitam concedere ; Sed si bannus ei
+            iudicatus fuerit . <lb/> et banno peracto ! stet in eo interim usquedum comiti et eo
+            <lb/> qui clamorem . uel causam
+            ad <del unit="chars" quantity="1"/>eum habuit ! et tunc sit foris <lb/> banno . </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-140v-9" corresp="BK.77_14_inscriptio">
+            <seg type="num" n="14">XIIII</seg> . <seg type="numDenom">capitulum</seg> . </ab>
+         <ab type="text" xml:id="selestat-bh-14-140v-10" corresp="BK.77_14"> Vt episcopi et abbates
+            aduocatos habeant ! <lb/> et ipsi habeant in illo comitatu propriam hereditatem . et ut
+            ipsi <lb/> recti et boni sint . et habeant uoluntatem . recte et iuste <cb n="141r"/>
+            causas perficere </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-141r-1" corresp="BK.77_15_inscriptio">
+            <seg type="num" n="15">XV</seg>
+            <seg type="numDenom">capitulum</seg> . </ab>
+         <ab type="text" xml:id="selestat-bh-14-141r-2" corresp="BK.77_15"> Vt uicarii eos qui pro
+            furtu se in <lb/> se<mod>r</mod>uitio tradere cupiunt
+            non <sic>consertientur</sic> sed secundum <lb/> iustum iudicium terminetur </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-141r-3" corresp="BK.77_16_inscriptio">
+            <seg type="num" n="16">XVI</seg>
+            <seg type="numDenom">capitulum</seg> . </ab>
+         <ab type="text" xml:id="selestat-bh-14-141r-4" corresp="BK.77_16"> Quod nullus seniorem
+            <lb/> suum dimittat . <sic>posquam</sic> ab eo acciperit ualente solido <num>I</num> .
+            excepto <lb/> si eum uult <del>h</del>occidere aut cum baculo cedere uel uxorem <lb/>
+            aut filiam maculari seu <mod>h</mod>ereditatem ei tollere . </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-141r-5" corresp="BK.77_17_inscriptio">
+            <seg type="num" n="17">XVII</seg>
+            <seg type="numDenom">capitulum</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-141r-6" corresp="BK.77_17"> Quod nullus in hoste
+            baculum habeat sed archum . </ab>
+         <ab type="meta-text" xml:id="selestat-bh-14-141r-7" corresp="BK.77_18_inscriptio">
+            <seg type="num" n="18">XVIII</seg>
+            <seg type="numDenom">capitulum</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="selestat-bh-14-141r-8" corresp="BK.77_18"> De forestis ut
+            forestarii bene illas defendant simul et cus<lb break="no"/>todiant . bestias et pisces
+            . et si rex intus foreste . feramen <num>unum</num>
+            <lb/> aut magis dederit . amplius ne prendat quam illi datum sit <lb/>
+         </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-141r-9" corresp="BK.77_19_inscriptio">
+            <seg type="num" n="19">XVIIII</seg>
+            <seg type="numDenom">capitulum</seg> . </ab>
+         <ab type="text" xml:id="selestat-bh-14-141r-10" corresp="BK.77_19" rend="glossa"> Vt
+            uilicus bonus sapiens et prudens in opus nostrum eligatur <lb/> qui sciat rationem misso
+            nostro reddere et seruitium perficere . <lb/> prout loca locata sunt . Edificia emendant
+            . nutriant . porcos . iumenta <lb/> animalia . ortos . apes . aucas . <choice>
+               <abbr>pull</abbr>
+               <expan>pullos</expan>
+            </choice> . uiuaria . cum <choice>
+               <abbr>pisc</abbr>
+               <expan>pisces</expan>
+            </choice> . <lb/> uennas . molina . stirpes . <sic>terra</sic> aratoriam .
+            studeant femare <lb/> in forestis mansum regale
+            . et ibi uiuaria cum pisces . et homines <lb/> ibi manent . et plantent uineas . facient
+            pomaria . et <expan>ubicumque</expan>
+            <lb/> inueniunt utiles homines detur illis silua ad stirpandum <lb/> ut nostrum
+            seruitium inmeliorentur . et femine nostrae que ad <lb/> opus nostrum sunt seruientes
+            habeant ex partibus nostris . <lb/> lana . et linum . et faciant <abbr>salc</abbr><note
+               type="editorial"> Nicht aufzulösende Kürzung; der Schreiber verlas möglicherweise
+               eine Kürzung seiner Vorlage für <mentioned>sarciles</mentioned></note> . et <choice>
+               <abbr>camisil</abbr>
+               <expan>camisiles</expan>
+            </choice> . et perueniant <lb/> ad camara nostra . per rationem per uilicis nostris
+            aut<note type="editorial">mit dünnem Strich über dem <mentioned>t</mentioned>, evtl. als
+            Kürzungsstrich für <mentioned>autem</mentioned> intendiert</note> a missis 
+            eius <lb/> a se <sic>tranmissis</sic> . </ab>
+         
+         <ab type="meta-text" xml:id="selestat-bh-14-141r-11" corresp="BK.77_20_inscriptio">
+            <seg type="num" n="20">XX</seg> . <seg type="numDenom">capitulum</seg> . </ab>
+         <ab type="text" xml:id="selestat-bh-14-141r-12" corresp="BK.77_20">
+            Et si quis de fidelibus suis contra aduer<lb break="no"/>sarium suum pugnam
+            <mod>a</mod>ut
+            aliquod certamen agere uoluit <lb/> et conuocauit ad se aliquem de conparis suis ut ei
+               adiu<lb break="no"/>torium <expan>prebuisset</expan> et ille noluit et exinde
+            negligens . <cb n="141v"/> permansit ipsum beneficium quod habuit
+            auferatur ab eo . <lb/> et detur ei
+            qui in stabilitate et fidelitate sua permansit . <lb/>
          </ab>
 
-
-
-
-
          <milestone unit="capitulare" n="BK.139"/>
-
-         <cb n="141v"/>
-         <lb n="3"/>
-
-
+         
          <ab type="meta-text" xml:id="selestat-bh-14-141v-1"
-            corresp="BK.139_inscriptio BK.139_1_inscriptio"><milestone unit="span"
-               corresp="BK.139_inscriptio" spanTo="#selestat-bh-14-141v-1_1"/>INCIPIUNT <anchor
-               xml:id="selestat-bh-14-141v-1_1"/>CAPITULA <milestone unit="span"
-               corresp="BK.139_1_inscriptio" spanTo="#selestat-bh-14-141v-1_2"/>DE ONORE ECLESIARUM
-               <lb/><anchor xml:id="selestat-bh-14-141v-1_2"/></ab>
-
+            corresp="BK.139_inscriptio BK.139_1_inscriptio">
+            <milestone unit="span" corresp="BK.139_inscriptio" spanTo="#selestat-bh-14-141v-1_1"/>
+            INCIPIUNT CAPITULA <anchor xml:id="selestat-bh-14-141v-1_1"/>
+            <milestone unit="span" corresp="BK.139_1_inscriptio" xml:id="selestat-bh-14-141v-1_2"
+               spanTo="#selestat-bh-14-141v-1_3" next="#selestat-bh-14-141v-2"/> DE ONORE ECLESIARUM <lb/>
+            <anchor xml:id="selestat-bh-14-141v-1_3"/>
+         </ab>
          <!--  sk: für das Folgende bei der Nachkollation bitte noch prüfen: 
          type=initial in c. 1-4 etwas inflationär verwendet; welche sollen 
          beibehalten werden, welche nicht? 
@@ -2240,9 +2917,8 @@
          das I am Kapitelanfang deutlich größer als die Exemplare im Fließtext. Wenn dir das 
          einleuchtend erscheint, kannst du den Text daraufgehend durcharbeiten. Ich habe das jetzt 
          nicht bei jedem Beispiel angemerkt, da der Aufwand sonst zu groß wäre!-->
-
-
-         <ab type="meta-text" xml:id="selestat-bh-14-141v-2">
+         <ab type="meta-text" xml:id="selestat-bh-14-141v-2" corresp="BK.139_1_inscriptio"
+            prev="#selestat-bh-14-141v-1_2">
             <seg type="num" n="1">I </seg>
             <seg type="numDenom">CAPITULUM</seg>
          </ab>
@@ -2255,7 +2931,7 @@
             </choice> . Siue foris rixati fuerint et unus <lb/>alterum In ecclesiam fugerit et ibi
             se defendendo eum interfecerit <lb/>si testes non habuerit cum <num>XII</num>
             coniuratoribus legitimis per sacra<lb break="no"/>mentum adfirmet . se defendendo eum
-            Interfecisse . Et post <lb/>haec <num>.DC.</num> solidos . ad partem
+            Interfecisse . Et post <lb/>haec . <num>DC</num> . solidos . ad partem
                ec<mod>c</mod>lesie<note type="editorial"><mentioned>c<hi rend="super"
                   >2</hi></mentioned> korr. (?)</note> quam illo omicidio polluerat <lb/>et insuper
             bannum nostrum soluere cogatur . Ille uero qui interfectus <lb/>est . absque
@@ -2285,7 +2961,6 @@
             in atrio commititur sicut componi debet quod in in<lb break="no"/>munitate uiolata
             committitur . <del unit="chars" quantity="20"/>
             <cb n="142r"/></ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-142r-1" corresp="BK.139_2_inscriptio"> DE
             INIURIIS SACERDOTUM IN ECCLESIA FACTIS <lb/><seg type="num" n="2">II </seg>
          </ab>
@@ -2306,7 +2981,6 @@
             ecclesiam persoluat <lb/>tradat se in seruitium eidem ecclesiae usque dum totum debitum
             <lb/>persoluat . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-142r-3" corresp="BK.139_3_inscriptio"> DE
             UIDUIS ET PUPILLIS ET PAUPERIBUS . <lb/><seg type="num" n="3">III </seg>
          </ab>
@@ -2318,7 +2992,6 @@
                <expan>comis</expan>
             </choice> illos <lb/>uel illas adiuuet dando eis talem hominem qui rationem eorum
             <lb/>teneat . uel pro eis loquatur . </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-142r-5" corresp="BK.139_4_inscriptio"> DE
                PARTU<note type="editorial"><mentioned>P</mentioned> und <mentioned>R</mentioned> von
                neuzeitlichem Schreiber mit Blei unterstrichen und das ganze Wort am Rand zu
@@ -2335,7 +3008,6 @@
             </choice> legem suam ei <expan><add>com</add>ponat</expan> ille tamen <lb/>qui eam
             rapuit habere non permittitur . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-142r-7" corresp="BK.139_5_inscriptio"> DE
             HOMINE <sic>PLUBLICAM</sic> PENITENTIAM AGENTE INTERFECTO <lb/>
          </ab>
@@ -2344,7 +3016,6 @@
             Interfecerit <lb/>bannum nostrum In <num>triplo</num> componat et uuirgildum eius
             proximis persoluat . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-142r-9" corresp="BK.139_6_inscriptio"> PRO
             SALUTE ANIME SUAE UT OMNIS HOMO LIBER <cb n="142v"/>POTESTATEM HABEAT
                <expan>UBICUMQUE</expan> UOLUERIT RES SUAS DAR<del quantity="1" unit="chars"/>E <lb/>
@@ -2391,7 +3062,6 @@
                pos<mod>t</mod>ea ipse res <lb/>ad inmunitatem ipsius ecclesie . re<del unit="chars"
                quantity="1"/>deant<lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-142v-2" corresp="BK.139_7_inscriptio"> DE
             OMICIDIIS PROHIBENDIS <cb n="143r"/>
             <seg type="num" n="7">VII </seg>
@@ -2404,7 +3074,6 @@
                <mentioned>t<hi rend="super">2</hi></mentioned> ergänzt</note> ad quantum tempus
             nobis <lb/>placuerit res tamen suas non a<del>m</del>mittat . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-143r-2" corresp="BK.139_8_inscriptio">
             <seg type="num" n="8">VIII </seg> QUICQUID IN CONPOSITIONEM UUIRGILDI DARI NON DEBEAT ,
             <lb/>
@@ -2416,7 +3085,6 @@
                im Pergament unleserlich.</note> accip<mod>itr</mod>e . et spada quia propter illa
                <num>duo</num> aliquoties per<lb break="no"/>iurium committitur . quando maioris
             pretii quam illa sint esse iu<unclear>ra</unclear>nt <lb/></ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-143r-4" corresp="BK.139_9_inscriptio">
             <seg type="num" n="9">VIIII </seg> DE RAPTU ALIAENARUM SPONSARUM <lb/>
          </ab>
@@ -2440,7 +3108,6 @@
             </choice> nobis placuerit in exi<lb break="no"/>lio maneat et illam feminam habere non
             liceat <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-143r-6" corresp="BK.139_10_inscriptio">
             <seg type="num" n="10">X </seg> DE <sic>LSIS</sic> TESTIBUS CONUINCENDIS <lb/>
          </ab>
@@ -2486,7 +3153,6 @@
                <num>duorum</num> comitatu fuerit . liceat <lb/>eis de uicina centena
                adiec<unclear>c</unclear>entis ad causam suam testes querere . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-143v-1" corresp="BK.139_11_inscriptio"> DE
             PROPRIO IN BANNUM MISSO <lb/><seg type="num" n="11">XI </seg>
          </ab>
@@ -2523,7 +3189,6 @@
             In nostrum dominicum <lb/><sic>dacta</sic> est per <expan>precepti<mod>s</mod></expan>
             <del>m</del>nostris auctoritatem<del>s</del> In huius potestatem hominis <lb/>qui eam
             querebat faciamus peruenire . <lb/></ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-144r-3" corresp="BK.139_12_inscriptio"> DE
                MANNIR<del unit="chars" quantity="1"/>E . <lb/>
             <seg type="num" n="12">XII </seg>
@@ -2535,7 +3200,6 @@
             redditurus non manniatur . sed si post secundam comitis admoni<lb break="no"/>tionem
             aliquis ad mallum uenire noluerit rebus eius in bannum missis <lb/> uenire et iustitiam
             facere conpellatur . </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-144r-5" corresp="BK.139_13_inscriptio"> DE
             FAIDIS COHERCENDIS <lb/>
             <seg type="num" n="13">XIII </seg>
@@ -2554,7 +3218,6 @@
             placuerit In exilium mittamus donec ibi castigetur <lb/>ut comiti suo inobediens esse
             ulterius non audeat et maius damnum <lb/>inde non adcrescat * <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-144v-1" corresp="BK.139_14_inscriptio">
             <seg type="num" n="14">XIIII </seg><del unit="chars" quantity="1"/> UBI SACRAMENTA
             IURANDA SINT <lb/>
@@ -2565,7 +3228,6 @@
             placita comis siue intra sua <lb/>potestatem uel ubi impetrare potuerit habeat et domus
             a comite <lb/>In <sic>lo</sic> ubi mallum tenere debet constituatur . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-144v-3" corresp="BK.139_15_inscriptio"> DE HIS
             QUI DE FURTU ACCUSATI FUERINT <lb/><seg type="num" n="15">XV </seg>
          </ab>
@@ -2584,7 +3246,6 @@
             com sacramento excuset nisi tale <lb/>furtum perpetratum habeat propter ad suplicium
             traditus esse debeat . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-144v-5" corresp="BK.139_16_inscriptio">
             <seg type="num" n="16">XVI </seg> DE DISPECTU LITERARUM DOMINICARUM <lb/>
          </ab>
@@ -2602,7 +3263,6 @@
                über <mentioned>u<hi rend="super">2</hi></mentioned></note> fuerit nudus ad palum
             uapulet <lb/>et capud eius tondatur . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-145r-1" corresp="BK.139_17_inscriptio"> DE
             INIUSTIS TELONEIS <lb/><seg type="num" n="17">XVII </seg>
          </ab>
@@ -2627,7 +3287,6 @@
                   <mentioned>D</mentioned> wieder zu tilgen.</note>
             <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-145r-3" corresp="BK.139_18_inscriptio"> DE HIS
             QUI BONOS DENARIOS ACCIPERE NOLUNT <lb/><seg type="num" n="18">XVIII </seg>
          </ab>
@@ -2645,7 +3304,6 @@
             </choice>
             <cb n="145v"/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-145v-1" corresp="BK.139_19_inscriptio"> DE
             ADULTERATORIBUS MONETAE / <lb/><seg type="num" n="19">XVIIII </seg>
          </ab>
@@ -2655,7 +3313,6 @@
                <num>LX</num> solidos conponat . <lb/>et si seruus . est . <num>LX</num>
                percussioni<del unit="chars" quantity="2"/> accipiat . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-145v-3" corresp="BK.139_20_inscriptio"> DE
             PROPRIO DOMINICO SINE IUSSIONE ILLIUS REDDITO <lb/>
             <seg type="num" n="20">XX </seg>
@@ -2668,7 +3325,6 @@
             infidelitate teneatur <lb/>quia sacramentum fidelitatis quod nobis promisit irritum
             fecit / et ideo <lb/>secundum nostram uoluntatem et potestatem diiucandus est . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-145v-5" corresp="BK.139_21_inscriptio"> DE
             PUERIS INUITIS PARENTIBUS DETONSIS AUT PUELLIS UELATIS <lb/>
             <seg type="num" n="21">XXI </seg>
@@ -2681,21 +3337,14 @@
                <expan>conponat</expan>
             </choice> . Aut ipsi puero si iam suae potestatis est <lb/>aut illi In cuius potestate
             fuerit </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-145v-7"> Ista superscripta capitula in lege
             sunt <lb/>addenda , </ab>
-
-
-
          <milestone unit="capitulare" n="BK.138"/>
-
          <ab type="meta-text" xml:id="selestat-bh-14-145v-8" corresp="BK.140_inscriptio"> ITEM ALIA
             CAPITULA </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-145v-9" corresp="BK.138_6_inscriptio">DE SERUIS
             AD SACROS <lb/>ORDINES NON MITTENDIS . <lb/><seg type="num" n="1">I </seg>
          </ab>
-
          <ab type="text" xml:id="selestat-bh-14-145v-10" corresp="BK.138_6">
             <seg type="initial">V</seg>t nullus episcoporum seruos ad sacros ordines promouere
                <expan>presumat</expan>
@@ -2715,14 +3364,10 @@
             mal so lassen -->
             ad grados ecclesiasticos perue<lb break="no"/>nerit deponatur et dominus eius eum
             recipiat </ab>
-
-
          <milestone unit="capitulare" n="BK.140"/>
-
          <ab type="meta-text" xml:id="selestat-bh-14-145v-11" corresp="BK.140_1_inscriptio">DE
             FORCAPIIS <lb/><seg type="num" n="2">II </seg>
          </ab>
-
          <ab type="text" xml:id="selestat-bh-14-145v-12" corresp="BK.140_1">
             <seg type="initial">S</seg>i mancipia dominos suos fugerint in alienam potestatem ut
             <lb/>propter hoc nullum <expan>premium</expan> querat ille in cuius potestate fuerint
@@ -2744,12 +3389,10 @@
                dt: Qualität des Scans so bescheiden, dass ich hier erstmal alles so lassen würde
                sk: also Original pr. -->
             secundum <lb/>legem ea soluere cogatur . </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-146r-1" corresp="BK.140_2_inscriptio">DE TERRA
             TRIBUTARIA <lb/>
             <seg type="num" n="3">III </seg>
          </ab>
-
          <ab type="text" xml:id="selestat-bh-14-146r-2" corresp="BK.140_2">
             <seg type="initial">Q</seg>uicumque terram tributariam . unde tributum ad partem
             <lb/>nostram exire solebat uel ad ecclesiam uel cuilibet tradiderit <del>h</del>is qui
@@ -2759,12 +3402,10 @@
             <lb/>de parte dominica habeat p<del unit="chars" quantity="2"/> quam ipsum tributum
             <lb/>sibi perdonatum possit ostendere . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-146r-3" corresp="BK.140_3_inscriptio">DE
             BENEFICIIS . DESTRUCTIS . <lb/>
             <seg type="num" n="4">IIII </seg>
          </ab>
-
          <ab type="text" xml:id="selestat-bh-14-146r-4" corresp="BK.140_3">
             <seg type="initial">Q</seg>uicumque suum ben<subst>
                <del/>
@@ -2775,12 +3416,10 @@
             occasione propriis desertum <lb/>habuerit et intra annum postquam ei a comite uel misso
             nostro <lb/> notum<!-- sk: am Or. prüfen (Falte)  --> factum fuerit illud emendatum non
             habuerit ipsum be<lb break="no"/>neficium perdat . </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-146r-5" corresp="BK.140_4_inscriptio">DE TERRA
             CENSALI . <lb/>
             <seg type="num" n="5">V </seg>
          </ab>
-
          <ab type="text" xml:id="selestat-bh-14-146r-6" corresp="BK.140_4">
             <seg type="initial">S</seg>i quis terram censalem habuerit quam antecessores sui uel ad
             aliquam <lb/>ecclesiam . uel ad uillam nostram dederunt Nullatenus secundum legem eam
@@ -2817,11 +3456,9 @@
                <del>d</del>
                <add>c</add>
             </subst> . </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-146v-1" corresp="BK.140_5_inscriptio">
             <seg type="num" n="6">VI </seg> DE NONIS ET DECIMIS . <lb/>
          </ab>
-
          <ab type="text" xml:id="selestat-bh-14-146v-2" corresp="BK.140_5"> Considerandum est ut de
             frugibus terrae persoluant<!-- sk: am Or. pr., ob Reste einer ur-Kürze erkennbar --> .
             <lb/> De opere uero uel <sic>destauratione</sic> ecclesiarum comis episcopus <lb/>siue
@@ -2836,11 +3473,9 @@
             materiam <lb/>emere possit et <mod>q</mod>ui nonas et decimas dare neglexerit illas
             <lb/>cum lege sua restituat insuper et bannum nostrum soluat <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-146v-3" corresp="BK.140_6_inscriptio"><seg
                type="num" n="7">VII </seg> DE MANCIPIIS IN UILLIS DOMINICIS CONFUGIENTIBUS <lb/>
          </ab>
-
          <ab type="text" xml:id="selestat-bh-14-146v-4" corresp="BK.140_6"><seg type="initial"
                >S</seg>i quislibet e mancipia In uillam nostram confugerint / auctor eiusdem
             <lb/>uille querenti domino ea non contradicat sed statim foras de eadem <lb/>uilla
@@ -2857,14 +3492,11 @@
                   ><mentioned>i</mentioned><hi rend="super">2</hi> ergänzt</note> propria esse
             noscuntur . <lb/>
          </ab>
-
          <ab type="meta-text" xml:id="selestat-bh-14-146v-5" corresp="BK.140_7_inscriptio"><seg
                type="num" n="8">VIII </seg> DE FORESTIBUS NOUITER INSTITUTIS<note type="editorial"
                >Abbruch des Textes (folgendes Blatt herausgeschnitten)</note>
             <cb n="147r"/>
          </ab>
-
-
       </body>
    </text>
 </TEI>
