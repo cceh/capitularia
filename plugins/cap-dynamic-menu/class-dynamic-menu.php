@@ -129,7 +129,9 @@ class Dynamic_Menu
 
         // The menu contains a dynamic element.
         $new_items = array ();
+        // error_log ('dynamic_menu/load_html () ==> enter');
         $doc = load_html ();
+        // error_log ('dynamic_menu/load_html () ==> exit');
         $xpath  = new \DOMXpath ($doc);
         foreach ($items as $key => $item) {
             if (isset ($item->url)) {

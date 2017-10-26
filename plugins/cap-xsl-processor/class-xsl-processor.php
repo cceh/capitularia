@@ -21,8 +21,9 @@ class XSL_Processor
     private $do_revision        = false;
     private $post_id            = 0;
     private $cache_time         = 0; // unixtime
-    private $modified_time      = 0; // unixtime
+    private $page_modified_time = 0; // unixtime
     private $xmlfiles           = array ();
+    private $force_reload       = false;
 
     /**
      * Constructor
@@ -35,6 +36,7 @@ class XSL_Processor
         // The default shortcode is 'cap_xsl'.
         $this->shortcode = get_opt ('shortcode', 'cap_xsl');
 
+        add_action ('parse_request',         array ($this, 'on_parse_request'));
         add_action ('cap_xsl_get_xmlfiles',  array ($this, 'on_cap_xsl_get_xmlfiles'));
 
         // Get our hands in very early before other plugins mess things up.
@@ -94,6 +96,24 @@ class XSL_Processor
     }
 
     /**
+     * Called at the end of WordPress's built-in request parsing method
+     *
+     * If _cap\_xsl_ is 'reload' then we refresh the cache unconditionally.
+     *
+     * @param query $query The query object
+     *
+     * @return query The query object
+     */
+
+    function on_parse_request ($query)
+    {
+        if ($query->query_vars['cap_xsl'] == 'reload') {
+            $this->force_reload = true;
+        }
+        return $query;
+     }
+
+    /**
      * Check if the cached page in the database is still current else rebuild it
      * and store the fresh version in the database.
      *
@@ -108,9 +128,9 @@ class XSL_Processor
     {
         // error_log ('on_the_content_early () ==> enter');
 
-        $this->post_id       = intval (get_queried_object_id ());
-        $this->cache_time    = intval (get_metadata ('post', $this->post_id, 'cap_xsl_cache_time', true));
-        $this->modified_time = intval (get_post_modified_time ('U', true, $this->post_id));
+        $this->post_id            = intval (get_queried_object_id ());
+        $this->cache_time         = intval (get_metadata ('post', $this->post_id, 'cap_xsl_cache_time', true));
+        $this->page_modified_time = intval (get_post_modified_time ('U', true, $this->post_id));
 
         // Do our shortcode very early in the filter chain.  We want to use the
         // very handy do_shortcode () function, so we have to remove all other
@@ -120,9 +140,8 @@ class XSL_Processor
         remove_all_shortcodes ();
         add_shortcode ($this->shortcode, array ($this, 'on_shortcode'));
 
-        // do_shortcode will set this as a side effect
-        $this->is_stale = false;
-        $this->do_xsl = false;
+        $this->do_xsl   = false; // tell do_shortcode that it should only check timestamps
+        $this->is_stale = false; // do_shortcode will set is_stale as a side effect
         $content = do_shortcode ($content);
 
         if ($this->is_stale) {
@@ -139,6 +158,11 @@ class XSL_Processor
 
             $content = null; // release some mem
 
+            // get_the_content () may get called more than once per HTTP
+            // request, eg. it may get called by the dynamic menu plugin.  Make
+            // sure we regenerate the page only once.
+            $this->force_reload = false;
+
             global $wpdb;
             $sql = $wpdb->prepare ("SELECT post_content FROM $wpdb->posts WHERE ID = %d", $this->post_id);
             // error_log ("SQL: $sql");
@@ -147,9 +171,9 @@ class XSL_Processor
             // Run do_shortcode again to actually do the xsl
             remove_all_shortcodes ();
             add_shortcode ($this->shortcode, array ($this, 'on_shortcode'));
-            error_log ('Used memory before do_shortcode: ' . memory_get_usage ());
-            error_log ('Peak memory before do_shortcode: ' . memory_get_peak_usage ());
-            $this->do_xsl = true;
+            // error_log ('Used memory before do_shortcode: ' . memory_get_usage ());
+            // error_log ('Peak memory before do_shortcode: ' . memory_get_peak_usage ());
+            $this->do_xsl = true;   // tell do_shortcode to run xsl
             $content = do_shortcode ($content);
 
             if (!$this->do_revision) {
@@ -164,11 +188,11 @@ class XSL_Processor
             // error_log ('on_the_content_early () before update_post ...');
             kses_remove_filters ();
             gc_collect_cycles ();
-            error_log ('Used memory before wp_update: ' . memory_get_usage ());
-            error_log ('Peak memory before wp_update: ' . memory_get_peak_usage ());
+            // error_log ('Used memory before wp_update: ' . memory_get_usage ());
+            // error_log ('Peak memory before wp_update: ' . memory_get_peak_usage ());
             wp_update_post ($my_post);
-            error_log ('Used memory after wp_update : ' . memory_get_usage ());
-            error_log ('Peak memory after wp_update : ' . memory_get_peak_usage ());
+            // error_log ('Used memory after wp_update : ' . memory_get_usage ());
+            // error_log ('Peak memory after wp_update : ' . memory_get_peak_usage ());
             kses_init_filters ();
 
             // update metadata
@@ -253,13 +277,12 @@ class XSL_Processor
         // passthru ('/vol/local/bin/tidy -help');
 
         // do a transform if any of page, xml, or xsl changed
-        $do_transform = $this->cache_time < max ($this->modified_time, $xml_file_time, $xslt_file_time);
-        // do a transform if http query param cap_xsl == 'reload'
-        $do_transform = $do_transform || (get_query_var ('cap_xsl', '') == 'reload');
+        $do_transform = $this->cache_time < max ($this->page_modified_time, $xml_file_time, $xslt_file_time);
+        $do_transform = $do_transform || $this->force_reload;
         $this->is_stale |= $do_transform;
 
         // do a revision only if page or xml changed
-        $this->do_revision |= $this->cache_time < max ($this->modified_time, $xml_file_time);
+        $this->do_revision |= $this->cache_time < max ($this->page_modified_time, $xml_file_time);
 
         // Keep track of the XML files that make up this page.
         if (!in_array ($xml, $this->xmlfiles)) {

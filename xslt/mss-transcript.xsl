@@ -163,13 +163,14 @@
 
     <xsl:param name="corresp" select="@corresp" />
 
+    <xsl:variable name="id" select="generate-id ()" />
+
     <xsl:for-each select="str:split ($corresp)">
-      <xsl:if test="not (contains (., 'Ansegis'))">
-        <xsl:variable name="hr">
-          <xsl:value-of select="cap:make-human-readable-bk (substring-before (concat (., '_'), '_'))" />
-        </xsl:variable>
+      <xsl:variable name="hr" select="cap:make-human-readable-bk (substring-before (concat (., '_'), '_'))" />
+      <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
         <xsl:text>&#x0a;</xsl:text>
-        <a id="{cap:make-id (.)}" class="milestone milestone-capitulatio" data-shortcuts="0" data-level="6">
+        <a id="x-menu-{$id}" class="milestone milestone-capitulatio"
+           data-shortcuts="0" data-level="6">
           <span style="display: none">
             <xsl:value-of select="$hr" />
           </span>
@@ -185,13 +186,14 @@
 
     <xsl:param name="corresp" select="@corresp" />
 
+    <xsl:variable name="id" select="generate-id ()" />
+
     <xsl:for-each select="str:split ($corresp)">
-      <xsl:if test="not (contains (., 'Ansegis'))">
-        <xsl:variable name="hr">
-          <xsl:value-of select="cap:make-human-readable-bk (.)" />
-        </xsl:variable>
+      <xsl:variable name="hr" select="cap:make-human-readable-bk (.)" />
+      <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
         <xsl:text>&#x0a;</xsl:text>
-        <a id="{cap:make-id (.)}" class="milestone milestone-chapter" data-shortcuts="0" data-fold-menu-entry="1" data-level="7">
+        <a id="x-menu-{$id}" class="milestone milestone-chapter"
+           data-shortcuts="0" data-fold-menu-entry="1" data-level="7">
           <span style="display: none">
             <xsl:value-of select="$hr" />
           </span>
