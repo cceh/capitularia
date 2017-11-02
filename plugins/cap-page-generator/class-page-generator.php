@@ -71,6 +71,7 @@ class Page_Generator
             wp_send_json_error (
                 array ('message' => __ ('You have no permission to edit posts.', 'capitularia'))
             );
+            exit ();
         }
         $this->dashboard_page = new Dashboard_Page ();
         $this->dashboard_page->on_cap_action_file ();
@@ -146,10 +147,9 @@ class Page_Generator
 
         wp_localize_script (
             'cap-page-gen-admin',
-            'ajax_object',
+            'cap_page_gen_admin_ajax_object',
             array (
-                'ajax_nonce' => wp_create_nonce (NONCE_SPECIAL_STRING),
-                'ajax_nonce_param_name' => NONCE_PARAM_NAME,
+                NONCE_PARAM_NAME => wp_create_nonce (NONCE_SPECIAL_STRING),
             )
         );
     }

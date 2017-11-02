@@ -44,8 +44,7 @@ function on_menu_dashboard_page ()
         _x ('Collate', 'Button: Start the collation', 'capitularia'),
         'primary',
         'collate',
-        false,
-        array ('onclick' => 'return on_cap_load_collation()')
+        false
     );
     $button_load = str_replace (
         'type="submit"',
@@ -55,7 +54,7 @@ function on_menu_dashboard_page ()
             'load',
             'load-config',
             false,
-            array ('onclick' => 'return click_on_load_params()')
+            array ('onclick' => 'cap_collation_admin.click_on_load_params ()')
         )
     );
     $button_save = str_replace (
@@ -66,7 +65,7 @@ function on_menu_dashboard_page ()
             'save',
             'save-config',
             false,
-            array ('onclick' => 'return save_params()')
+            array ('onclick' => 'cap_collation_admin.save_params ()')
         )
     );
 
@@ -84,7 +83,7 @@ function on_menu_dashboard_page ()
           <h1>$title</h1>
           <div class="inner-wrap">
             <div class="collation-panel collation-load-params no-print">
-              <input id="load-params" type="file" onchange="return load_params(this)" />
+              <input id="load-params" type="file" onchange="return cap_collation_admin.load_params (this)" />
               $button_load
             </div>
 EOT;
@@ -101,13 +100,13 @@ EOT;
     $html[] = <<<EOT
         <div id="collation-capitulary" class="collation-capitulary no-print">
           <h2>$caption</h2>
-          <form onsubmit="return on_cap_load_manuscripts()">
+          <form onsubmit="return cap_collation_admin.on_cap_load_manuscripts ()">
             <input type="hidden" name="page" value="$page" />
             <table>
               <tr>
                 <td><label for="bk">$caption</label></td>
                 <td>
-                  <select id="bk" name="bk" onchange="on_cap_load_sections ()">
+                  <select id="bk" name="bk" onchange="return cap_collation_admin.on_cap_load_sections ()">
 EOT;
 
     foreach (get_capitulars () as $capitular) {
@@ -119,7 +118,7 @@ EOT;
                   </select>
                 </td>
                 <td>
-                  <select id="section" name="section" onchange="on_cap_load_manuscripts ()">
+                  <select id="section" name="section" onchange="return cap_collation_admin.on_cap_load_manuscripts ()">
                     <option value="">empty</option>
                   </select>
                 </td>
@@ -132,9 +131,9 @@ EOT;
 
     // on_cap_load_manuscripts() loads #manuscripts-tbody with an AJAX-retrieved
     // array of rows containing manuscript items.  The user may select which
-    // manuscripts to collate and the order in which the manuscripts should
-    // collate through drag-and-drop between two tables.  On user submit the
-    // next step will collate the selected manuscripts.
+    // manuscripts to collate with checkboxes and the order in which the
+    // manuscripts should collate through drag-and-drop of the table rows.  On
+    // user submit the next step will collate the selected manuscripts.
 
     $caption  = _x ('Manuscripts', 'H2 caption', 'capitularia');
     $label1   = __ ('Include edits by later hands', 'capitularia');
@@ -142,7 +141,7 @@ EOT;
     $html[] = <<<EOT
     <div id="manuscripts-div" class="manuscripts-div no-print" style="display: none">
       <h2>$caption</h2>
-      <form onsubmit="return on_cap_load_collation ()">
+      <form onsubmit="return cap_collation_admin.on_cap_load_collation ()">
         <div class="witness-list-table-wrapper">
           <!-- table inserted thru AJAX -->
         </div>

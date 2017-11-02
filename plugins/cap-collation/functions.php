@@ -63,10 +63,9 @@ function on_admin_enqueue_scripts ()
 
     wp_localize_script (
         'cap-collation-admin',
-        'ajax_object',
+        'cap_collation_admin_ajax_object',
         array (
-            'ajax_nonce' => wp_create_nonce (NONCE_SPECIAL_STRING),
-            'ajax_nonce_param_name' => NONCE_PARAM_NAME,
+            NONCE_PARAM_NAME => wp_create_nonce (NONCE_SPECIAL_STRING),
         )
     );
 }
