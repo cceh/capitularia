@@ -22,6 +22,8 @@ TRANSFORM := $(AFS)/http/docs/cap/publ/transform
 
 WPCONTENTLOCAL := $(LOCALFS)/wp-content
 
+.PHONY: lint phplint jslint csslint
+
 %.css : %.less
 	lessc --autoprefix="last 2 versions" --source-map $? $@
 
@@ -36,7 +38,7 @@ csslint: css
 css: $(CSS_FILES)
 
 phplint:
-	for f in $(PHP_FILES); do php -l $$f; done
+	for f in $(PHP_FILES); do php -l $$f || exit; done
 
 jslint:
 	eslint --format=unix $(JS_FILES)
