@@ -110,6 +110,7 @@ class XSL_Processor
         if ($query->query_vars['cap_xsl'] == 'reload') {
             $this->force_reload = true;
         }
+        // error_log ('on_parse_request () ==> force_reload = ' . ($this->force_reload ? 'true' : 'false'));
         return $query;
      }
 
@@ -195,9 +196,18 @@ class XSL_Processor
             // error_log ('Peak memory after wp_update : ' . memory_get_peak_usage ());
             kses_init_filters ();
 
+            // clear cache and reload global post
+            // qtranslate-x will use the global post to return the wrong time to us!!!
+            clean_post_cache ($this->post_id);
+            global $post;
+            $post = get_post ($this->post_id);
+
+            $this->cache_time = intval (get_post_modified_time ('U', true, $this->post_id));
+            // $this->cache_time = time ();
+
             // update metadata
             increment_metadata ($this->post_id, 'cap_xsl_cache_misses');
-            update_post_meta ($this->post_id, 'cap_xsl_cache_time', $this->cache_time = time ());
+            update_post_meta ($this->post_id, 'cap_xsl_cache_time', $this->cache_time);
             update_post_meta ($this->post_id, 'cap_xsl_cache_hits_temp',  0);
 
             do_action ('cap_xsl_page_refreshed', $this->post_id);
