@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Capitularia 2.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2017-10-26 13:58+0200\n"
+"POT-Creation-Date: 2017-11-10 13:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,16 +18,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: plugins/cap-meta-search/functions.php:39
+#: plugins/cap-meta-search/functions.php:45
 msgid "Capitularia Meta Search"
+msgstr ""
+
+#: plugins/cap-meta-search/functions.php:444
+msgid "You have no permission to manage options."
+msgstr ""
+
+#: plugins/cap-meta-search/functions.php:454
+#, php-format
+msgid "Could not load XML file %s."
 msgstr ""
 
 #: plugins/cap-meta-search/class-settings-page.php:34
 msgid "General Settings"
 msgstr ""
 
-#: plugins/cap-meta-search/class-settings-page.php:83
-msgid "No settings."
+#: plugins/cap-meta-search/class-settings-page.php:72
+msgctxt "Button: Admin reload the places file"
+msgid "Reload Places File"
 msgstr ""
 
 #: plugins/cap-meta-search/class-meta-search-widget.php:31
@@ -43,90 +53,90 @@ msgctxt "'All' option in drop-down"
 msgid "All"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:184
+#: plugins/cap-meta-search/class-meta-search-widget.php:203
 msgid "Capitularies contained"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:185
+#: plugins/cap-meta-search/class-meta-search-widget.php:204
 msgid "Only show manuscripts that contain this capitulary."
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:189
+#: plugins/cap-meta-search/class-meta-search-widget.php:208
 msgid "After"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:190
+#: plugins/cap-meta-search/class-meta-search-widget.php:209
 msgid "Only show manuscripts created after this year."
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:193
+#: plugins/cap-meta-search/class-meta-search-widget.php:212
 msgid "Before"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:194
+#: plugins/cap-meta-search/class-meta-search-widget.php:213
 msgid "Only show manuscripts created before this year."
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:198
+#: plugins/cap-meta-search/class-meta-search-widget.php:217
 msgid "Origin"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:199
+#: plugins/cap-meta-search/class-meta-search-widget.php:218
 msgid "Only show manuscripts created in this region."
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:202
-#: plugins/cap-meta-search/class-meta-search-widget.php:204
+#: plugins/cap-meta-search/class-meta-search-widget.php:221
+#: plugins/cap-meta-search/class-meta-search-widget.php:223
 msgid "Free Text"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:203
+#: plugins/cap-meta-search/class-meta-search-widget.php:222
 msgid "Free text search"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:209
+#: plugins/cap-meta-search/class-meta-search-widget.php:228
 #: themes/Capitularia/header.php:62
 msgid "Search"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:210
+#: plugins/cap-meta-search/class-meta-search-widget.php:229
 msgid "Start the search"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:213
+#: plugins/cap-meta-search/class-meta-search-widget.php:232
 msgid "Help"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:214
+#: plugins/cap-meta-search/class-meta-search-widget.php:233
 msgid "Show some help"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:265
+#: plugins/cap-meta-search/class-meta-search-widget.php:284
 #, php-format
 msgid "contains %s"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:276
+#: plugins/cap-meta-search/class-meta-search-widget.php:295
 #, php-format
 msgid "after %d"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:287
+#: plugins/cap-meta-search/class-meta-search-widget.php:306
 #, php-format
 msgid "before %d"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:298
+#: plugins/cap-meta-search/class-meta-search-widget.php:323
 #, php-format
-msgid "in %s"
+msgid "origin in %s"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:401
+#: plugins/cap-meta-search/class-meta-search-widget.php:430
 #: themes/Capitularia/widgets/class-frontpage-widget-base.php:47
 msgid "Title"
 msgstr ""
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:401
+#: plugins/cap-meta-search/class-meta-search-widget.php:430
 msgid "New title"
 msgstr ""
 
@@ -140,90 +150,90 @@ msgctxt "Button: Start the collation"
 msgid "Collate"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:54
+#: plugins/cap-collation/dashboard.php:53
 msgctxt "Button: Load the collation config"
 msgid "Load Config"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:65
+#: plugins/cap-collation/dashboard.php:64
 msgctxt "Button: Save the collation config"
 msgid "Save Config"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:97
+#: plugins/cap-collation/dashboard.php:96
 msgctxt "H2 caption"
 msgid "Capitulary"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:98
+#: plugins/cap-collation/dashboard.php:97
 msgctxt "Label: for select"
 msgid "Select Capitulary and Section"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:139
+#: plugins/cap-collation/dashboard.php:138
 msgctxt "H2 caption"
 msgid "Manuscripts"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:140
+#: plugins/cap-collation/dashboard.php:139
 msgid "Include edits by later hands"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:157
+#: plugins/cap-collation/dashboard.php:156
 msgctxt "H3 caption"
 msgid "Advanced Options"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:158
+#: plugins/cap-collation/dashboard.php:157
 msgctxt "Label: for drop-down"
 msgid "Select Collation Algorithm"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:179
+#: plugins/cap-collation/dashboard.php:178
 msgctxt "Label: for drop-down"
 msgid "Select Levenshtein distance"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:180
+#: plugins/cap-collation/dashboard.php:179
 msgctxt "Either this or that, not both."
 msgid "or"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:198
+#: plugins/cap-collation/dashboard.php:197
 msgctxt "Label: for drop-down"
 msgid "Select Levenshtein ratio"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:219
+#: plugins/cap-collation/dashboard.php:218
 msgctxt "Label: for drop-down"
 msgid "Use segmentation"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:235
+#: plugins/cap-collation/dashboard.php:234
 msgctxt "Label: for drop-down"
 msgid "Use transpositions"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:248
+#: plugins/cap-collation/dashboard.php:247
 msgctxt "Label: for textarea"
 msgid "Normalizations"
 msgstr ""
 
-#: plugins/cap-collation/dashboard.php:249
+#: plugins/cap-collation/dashboard.php:248
 msgctxt "Help text"
 msgid "One or more lines in the form: raw=normalized"
 msgstr ""
 
-#: plugins/cap-collation/functions.php:113
+#: plugins/cap-collation/functions.php:112
 msgctxt "Admin bar button caption"
 msgid "Collation"
 msgstr ""
 
-#: plugins/cap-collation/functions.php:415
+#: plugins/cap-collation/functions.php:414
 msgid "on"
 msgstr ""
 
-#: plugins/cap-collation/functions.php:415
+#: plugins/cap-collation/functions.php:414
 msgid "off"
 msgstr ""
 

@@ -19,7 +19,10 @@ div.cap-meta-search-box {
 }
 div.cap-meta-search-box label {
   display: block;
-  color: #6e6b6f;
+  margin-bottom: 0;
+  font-weight: normal;
+  color: #000;
+  /*#6e6b6f;*/
 }
 div.cap-meta-search-box div.cap-meta-search-buttons input {
   background: #b92900;
@@ -46,6 +49,34 @@ div.cap-meta-search-box div.cap-meta-search-buttons input.cap-meta-search-help {
   float: right;
   width: 45%;
 }
+div.cap-meta-search-box select {
+  width: 100%;
+  margin: 8px 0 16px;
+  padding: 4px 8px;
+}
+div.cap-meta-search-box input[type="text"] {
+  width: 100%;
+  margin: 8px 0 16px;
+  padding: 4px 8px;
+  border: 1px solid #978f7d;
+}
+div.cap-meta-search-box div.cap-meta-search-field-notbefore {
+  float: left;
+  width: 45%;
+}
+div.cap-meta-search-box div.cap-meta-search-field-notafter {
+  float: right;
+  width: 45%;
+}
+div.cap-meta-search-box div.cap-meta-search-places {
+  margin: 8px 0 16px;
+  border: 1px solid #978f7d;
+  padding: 4px 0;
+  background-color: white;
+}
+div.cap-meta-search-box div.cap-meta-search-places div.jstree-wholerow-clicked {
+  background: #e9e1c1;
+}
 div.cap-meta-search-box div.cap-meta-search-help-text {
   display: none;
 }
@@ -53,12 +84,11 @@ div.cap-meta-search-box div.cap-meta-search-help-text p {
   margin-bottom: 1ex;
   font-size: 90%;
 }
-div.cap-meta-search-field-notbefore {
-  float: left;
-  width: 45%;
-}
-div.cap-meta-search-field-notafter {
-  float: right;
-  width: 45%;
+div.ui-widget.ui-widget-content.ui-tooltip-search {
+  background-color: #e9e1c1;
+  padding: 8px;
+  max-width: 400px;
+  box-shadow: 5px 5px 5px #978f7d;
+  border-width: 0;
 }
 /*# sourceMappingURL=front.css.map */

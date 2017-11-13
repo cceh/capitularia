@@ -107,7 +107,8 @@ class XSL_Processor
 
     function on_parse_request ($query)
     {
-        if ($query->query_vars['cap_xsl'] == 'reload') {
+        if (array_key_exists ('cap_xsl', $query->query_vars) &&
+            $query->query_vars['cap_xsl'] == 'reload') {
             $this->force_reload = true;
         }
         // error_log ('on_parse_request () ==> force_reload = ' . ($this->force_reload ? 'true' : 'false'));

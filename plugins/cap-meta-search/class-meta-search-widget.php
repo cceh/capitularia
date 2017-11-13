@@ -113,7 +113,7 @@ class Widget extends \WP_Widget
      *
      * @param string $caption  The caption for the <select>
      * @param string $id       The xml id and name of the <select>
-     * @param string $meta_key The meta key
+     * @param string $meta_key The meta_key to search for
      * @param string $tooltip  The tooltip for the <select>
      *
      * @return void
@@ -129,6 +129,25 @@ class Widget extends \WP_Widget
             "SELECT distinct meta_value FROM wp_postmeta WHERE meta_key = '$meta_key'"
         );
         echo ("  </select>\n");
+        echo ("</div>\n");
+        $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
+    }
+
+    /**
+     * Echo a HTML <div> element to contain a jstree of place names.
+     *
+     * @param string $caption  The caption for the <select>
+     * @param string $id       The xml id and name of the <select>
+     * @param string $tooltip  The tooltip for the <select>
+     *
+     * @return void
+     */
+
+    private function echo_places_tree ($caption, $id, $tooltip)
+    {
+        $tooltip = esc_attr ($tooltip);
+        echo ("<label for='$id'>$caption</label>\n");
+        echo ("<div id='$id' class='cap-meta-search-places' title='$tooltip'>\n");
         echo ("</div>\n");
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
     }
@@ -179,7 +198,7 @@ class Widget extends \WP_Widget
         $this->help_text = array ();
 
         echo ("<div class='cap-meta-search-box'>\n");
-        echo ("<form action='/'>\n");
+        echo ("<form>\n");
 
         $label   = __ ('Capitularies contained', 'capitularia');
         $tooltip = __ ('Only show manuscripts that contain this capitulary.', 'capitularia');
@@ -197,7 +216,7 @@ class Widget extends \WP_Widget
 
         $label   = __ ('Origin', 'capitularia');
         $tooltip = __ ('Only show manuscripts created in this region.', 'capitularia');
-        $this->echo_select ($label, 'place',     'origPlace-geonames', $tooltip);
+        $this->echo_places_tree ($label, 'places', $tooltip);
 
         $label       = __ ('Free Text', 'capitularia');
         $tooltip     = __ ('Free text search', 'capitularia');
@@ -212,8 +231,7 @@ class Widget extends \WP_Widget
 
         $label   = __ ('Help', 'capitularia');
         $tooltip = __ ('Show some help', 'capitularia');
-        echo ("  <input class='cap-meta-search-help'   type='button' value='$label' title='$tooltip' " .
-              "onclick='on_cap_meta_search_toggle_help ()' />\n");
+        echo ("  <input class='cap-meta-search-help'   type='button' value='$label' title='$tooltip' />\n");
 
         echo ("</div>\n");
 
@@ -248,6 +266,7 @@ class Widget extends \WP_Widget
                 // error_log ('cceh\capitularia\meta_search\Widget::on_pre_get_posts ()');
                 // error_log (print_r ($query->query, true));
                 $meta_query_args = array ();
+                $places = null;
 
                 foreach ($query->query as $key => $val) {
                     // error_log ("key = $key, value = $val");
@@ -287,18 +306,28 @@ class Widget extends \WP_Widget
                         $this->your_search[] = sprintf (__ ('before %d', 'capitularia'), $val);
                         continue;
                     }
-                    if ($key == 'place') {
-                        $val = sanitize_text_field ($val);
-                        $meta_query_args[] = array (
-                            'key' => 'origPlace-geonames',
-                            'value' => $val,
-                            'compare' => '=',
-                            'type' => 'CHAR'
-                        );
-                        $this->your_search[] = sprintf (__ ('in %s', 'capitularia'), $val);
+                    if ($key == 'places') {
+                        if (is_array ($val)) {
+                            $val = array_map ('sanitize_text_field', $val);
+                            if ($places === null) {
+                                $places = get_places ();
+                            }
+                            $authorities = get_place_authorities ($places, $val);
+                            $meta_query_args[] = array (
+                                'key' => 'origPlace-ref',
+                                'value' => $authorities,
+                                'compare' => 'IN',
+                                'type' => 'CHAR'
+                            );
+                            $this->your_search[] = sprintf (
+                                __ ('origin in %s', 'capitularia'),
+                                implode (', ', get_place_names ($places, $val))
+                            );
+                        }
                         continue;
                     }
                 }
+
                 $query->set ('meta_query', $meta_query_args);
 
                 /* Output titles in alphabetical order. */
@@ -363,7 +392,7 @@ class Widget extends \WP_Widget
 
     public function on_cap_meta_search_your_search ($message)
     {
-        return  implode (' &middot; ', $this->your_search) . $message;
+        return htmlspecialchars (implode (' · ', $this->your_search) . $message);
     }
 
     /**

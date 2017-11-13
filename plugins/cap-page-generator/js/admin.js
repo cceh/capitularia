@@ -93,43 +93,46 @@ var cap_page_generator_admin = (function ($) { // eslint-disable-line no-unused-
      */
 
     function make_cb_select_all (ev, ui) {
-        ui.panel.find ('thead, tfoot').find ('.check-column :checkbox').on ('click.wp-toggle-checkboxes', function (event) {
-            var $this          = $ (this);
-            var $table         = $this.closest ('table');
-            var controlChecked = $this.prop ('checked');
-            var toggle         = event.shiftKey || $this.data ('wp-toggle');
+        ui.panel
+            .find ('thead, tfoot')
+            .find ('.check-column :checkbox')
+            .on ('click.wp-toggle-checkboxes', function (event) {
+                var $this          = $ (this);
+                var $table         = $this.closest ('table');
+                var controlChecked = $this.prop ('checked');
+                var toggle         = event.shiftKey || $this.data ('wp-toggle');
 
-            $table.children ('tbody')
-                .filter (':visible')
-                .children ()
-                .children ('.check-column')
-                .find (':checkbox')
-                .prop ('checked', function () {
-                    if ($ (this).is (':hidden,:disabled')) {
+                $table.children ('tbody')
+                    .filter (':visible')
+                    .children ()
+                    .children ('.check-column')
+                    .find (':checkbox')
+                    .prop ('checked', function () {
+                        if ($ (this).is (':hidden,:disabled')) {
+                            return false;
+                        }
+                        if (toggle) {
+                            return !$ (this).prop ('checked');
+                        } else if (controlChecked) {
+                            return true;
+                        }
                         return false;
-                    }
-                    if (toggle) {
-                        return !$ (this).prop ('checked');
-                    } else if (controlChecked) {
-                        return true;
-                    }
-                    return false;
-                });
+                    });
 
-            $table.children ('thead,  tfoot')
-                .filter (':visible')
-                .children ()
-                .children ('.check-column')
-                .find (':checkbox')
-                .prop ('checked', function () {
-                    if (toggle) {
+                $table.children ('thead,  tfoot')
+                    .filter (':visible')
+                    .children ()
+                    .children ('.check-column')
+                    .find (':checkbox')
+                    .prop ('checked', function () {
+                        if (toggle) {
+                            return false;
+                        } else if (controlChecked) {
+                            return true;
+                        }
                         return false;
-                    } else if (controlChecked) {
-                        return true;
-                    }
-                    return false;
-                });
-        });
+                    });
+            });
     }
 
     function get_url_parameter (name) {
@@ -163,8 +166,8 @@ var cap_page_generator_admin = (function ($) { // eslint-disable-line no-unused-
          * Remove lots of troublesome jQuery-ui styles that we would otherwise have
          * to undo in css because they clash with Wordpress style.
          */
-        tabs.parent ().find ('*')
-            .removeClass ('ui-widget-content ui-widget-header ui-tabs-panel ui-corner-all ui-corner-top ui-corner-bottom');
+        tabs.parent ().find ('*').removeClass ('ui-widget-content ui-widget-header ui-tabs-panel' +
+                                               ' ui-corner-all ui-corner-top ui-corner-bottom');
 
         /* open the right tab */
         var section = get_url_parameter ('section');

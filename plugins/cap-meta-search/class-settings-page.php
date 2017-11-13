@@ -30,21 +30,19 @@ class Settings_Page
     public function __construct ()
     {
         add_settings_section (
-            'section_general',
+            'cap_meta_search_options_section_general',
             __ ('General Settings', 'capitularia'),
             array ($this, 'on_options_section_general'),
             OPTIONS_PAGE_ID
         );
 
-        /* Example of field definition
-           add_settings_field (
-               'section_genral__xpath',
-               'XPath expression',
-               array ($this, 'on_options_field_xpath'),
-               OPTIONS_PAGE_ID,
-               'section_general'
-           );
-        */
+        add_settings_field (
+            'cap_meta_search_options_places_path',
+            'Path for the XML Places file',
+            array ($this, 'on_options_field_places_path'),
+            OPTIONS_PAGE_ID,
+            'cap_meta_search_options_section_general'
+        );
 
         register_setting (OPTIONS_PAGE_ID, OPTIONS_PAGE_ID, array ($this, 'on_validate_options'));
     }
@@ -59,16 +57,26 @@ class Settings_Page
     {
         $title = esc_html (get_admin_page_title ());
         echo ("<div class='wrap'>\n");
-        echo ("<h2>$title</h2>\n");
+        echo ("  <h2>$title</h2>\n");
+        echo ("  <div class='cap_message'></div>\n");
+
         echo ("<form method='post' action='options.php'>\n");
         settings_fields (OPTIONS_PAGE_ID);
         do_settings_sections (OPTIONS_PAGE_ID);
         submit_button ();
         echo ("</form>\n");
 
-        echo ("<h3>Stats</h3>\n");
-        echo ("<table class='form-table'>\n");
-        echo ("</table>\n");
+        echo ("<h3>Places File</h3>\n");
+        echo ("<div>\n");
+        submit_button (
+            _x ('Reload Places File', 'Button: Admin reload the places file', 'capitularia'),
+            'secondary',
+            'reload-places',
+            true,
+            array ('onclick' => 'cap_meta_search_admin.on_reload_places ()')
+        );
+        echo ("</div>\n");
+
         echo ("</div>\n");
     }
 
@@ -80,8 +88,32 @@ class Settings_Page
 
     public function on_options_section_general ()
     {
-        $msg = __ ('No settings.', 'capitularia');
-        echo ("<div>$msg</div>\n");
+    }
+
+    /**
+     * Output the places path option field with its description.
+     *
+     * @return void
+     */
+
+    public function on_options_field_places_path ()
+    {
+        $setting = get_opt ('places_path');
+        echo "<input class='file-input' type='text' name='cap_meta_search_options[places_path]' value='$setting' />";
+        echo '<p>File path in the AFS, eg.: ' . AFS_ROOT . 'http/docs/cap/intern/workspace/places.xml</p>';
+    }
+
+    /**
+     * Sanitize a field that should contain a path.
+     *
+     * @param string $path The path to sanitize
+     *
+     * @return string Sanitized path without trailing slash.
+     */
+
+    private function sanitize_path ($path)
+    {
+        return rtrim (realpath (sanitize_text_field ($path)), '/');
     }
 
     /**
@@ -94,6 +126,7 @@ class Settings_Page
 
     public function on_validate_options ($options)
     {
+        $options['places_path'] = $this->sanitize_path ($options['places_path']);
         return $options;
     }
 }

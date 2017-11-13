@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2017-08-31 12:21+0200\n"
-"PO-Revision-Date: 2017-05-09 17:09+0200\n"
+"POT-Creation-Date: 2017-11-10 13:02+0100\n"
+"PO-Revision-Date: 2017-11-09 15:47+0100\n"
 "Last-Translator: Marcello Perathoner <marcello@perathoner.de>\n"
 "Language-Team: German <>\n"
 "Language: de_DE\n"
@@ -17,19 +17,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.4\n"
 
-#: plugins/cap-meta-search/functions.php:39
+#: plugins/cap-meta-search/functions.php:45
 msgid "Capitularia Meta Search"
 msgstr "Capitularia Meta-Suche"
+
+#: plugins/cap-meta-search/functions.php:444
+msgid "You have no permission to manage options."
+msgstr "Sie haben keine Berechtigung Einstellungen zu verändern."
+
+#: plugins/cap-meta-search/functions.php:454
+#, php-format
+msgid "Could not load XML file %s."
+msgstr "Die XML-Datei %s konnte nicht geladen werden."
 
 #: plugins/cap-meta-search/class-settings-page.php:34
 msgid "General Settings"
 msgstr "Allgemeine Einstellungen"
 
-#: plugins/cap-meta-search/class-settings-page.php:83
-msgid "No settings."
-msgstr "Keine Einstellungen"
+#: plugins/cap-meta-search/class-settings-page.php:72
+msgctxt "Button: Admin reload the places file"
+msgid "Reload Places File"
+msgstr "Ortschaften neu laden"
 
 #: plugins/cap-meta-search/class-meta-search-widget.php:31
 msgid "Search widget for Capitularia metadata."
@@ -44,90 +54,90 @@ msgctxt "'All' option in drop-down"
 msgid "All"
 msgstr "Alle"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:184
+#: plugins/cap-meta-search/class-meta-search-widget.php:203
 msgid "Capitularies contained"
 msgstr "Enthaltene Kapitularien"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:185
+#: plugins/cap-meta-search/class-meta-search-widget.php:204
 msgid "Only show manuscripts that contain this capitulary."
 msgstr "Nur Handschriften, die dieses Kapitular enthalten."
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:189
+#: plugins/cap-meta-search/class-meta-search-widget.php:208
 msgid "After"
 msgstr "Nach"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:190
+#: plugins/cap-meta-search/class-meta-search-widget.php:209
 msgid "Only show manuscripts created after this year."
 msgstr "Nur Handschriften, die nach diesem Jahr entstanden sind."
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:193
+#: plugins/cap-meta-search/class-meta-search-widget.php:212
 msgid "Before"
 msgstr "Vor"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:194
+#: plugins/cap-meta-search/class-meta-search-widget.php:213
 msgid "Only show manuscripts created before this year."
 msgstr "Nur Handschriften, die vor diesem Jahr entstanden sind."
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:198
+#: plugins/cap-meta-search/class-meta-search-widget.php:217
 msgid "Origin"
-msgstr "Herkunft"
+msgstr "Entstehung"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:199
+#: plugins/cap-meta-search/class-meta-search-widget.php:218
 msgid "Only show manuscripts created in this region."
 msgstr "Nur Handschriften, die in diesem Gebiet entstanden sind."
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:202
-#: plugins/cap-meta-search/class-meta-search-widget.php:204
+#: plugins/cap-meta-search/class-meta-search-widget.php:221
+#: plugins/cap-meta-search/class-meta-search-widget.php:223
 msgid "Free Text"
 msgstr "Freitext"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:203
+#: plugins/cap-meta-search/class-meta-search-widget.php:222
 msgid "Free text search"
 msgstr "Freie Textsuche"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:209
+#: plugins/cap-meta-search/class-meta-search-widget.php:228
 #: themes/Capitularia/header.php:62
 msgid "Search"
 msgstr "Suchen"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:210
+#: plugins/cap-meta-search/class-meta-search-widget.php:229
 msgid "Start the search"
 msgstr "Suche starten"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:213
+#: plugins/cap-meta-search/class-meta-search-widget.php:232
 msgid "Help"
 msgstr "Hilfe"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:214
+#: plugins/cap-meta-search/class-meta-search-widget.php:233
 msgid "Show some help"
 msgstr "Hilfe anzeigen"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:265
+#: plugins/cap-meta-search/class-meta-search-widget.php:284
 #, php-format
 msgid "contains %s"
 msgstr "enthält %s"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:276
+#: plugins/cap-meta-search/class-meta-search-widget.php:295
 #, php-format
 msgid "after %d"
 msgstr "nach %d"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:287
+#: plugins/cap-meta-search/class-meta-search-widget.php:306
 #, php-format
 msgid "before %d"
 msgstr "vor %d"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:298
+#: plugins/cap-meta-search/class-meta-search-widget.php:323
 #, php-format
-msgid "in %s"
-msgstr "in %s"
+msgid "origin in %s"
+msgstr "entstanden in %s"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:401
+#: plugins/cap-meta-search/class-meta-search-widget.php:430
 #: themes/Capitularia/widgets/class-frontpage-widget-base.php:47
 msgid "Title"
 msgstr "Titel"
 
-#: plugins/cap-meta-search/class-meta-search-widget.php:401
+#: plugins/cap-meta-search/class-meta-search-widget.php:430
 msgid "New title"
 msgstr "Neuer Titel"
 
@@ -141,90 +151,90 @@ msgctxt "Button: Start the collation"
 msgid "Collate"
 msgstr "Kollationieren"
 
-#: plugins/cap-collation/dashboard.php:54
+#: plugins/cap-collation/dashboard.php:53
 msgctxt "Button: Load the collation config"
 msgid "Load Config"
 msgstr "Konfiguration Laden"
 
-#: plugins/cap-collation/dashboard.php:65
+#: plugins/cap-collation/dashboard.php:64
 msgctxt "Button: Save the collation config"
 msgid "Save Config"
 msgstr "Konfiguration Speichern"
 
-#: plugins/cap-collation/dashboard.php:97
+#: plugins/cap-collation/dashboard.php:96
 msgctxt "H2 caption"
 msgid "Capitulary"
 msgstr "Kapitular"
 
-#: plugins/cap-collation/dashboard.php:98
+#: plugins/cap-collation/dashboard.php:97
 msgctxt "Label: for select"
 msgid "Select Capitulary and Section"
 msgstr "Wählen Sie Kapitular und Abschnitt"
 
-#: plugins/cap-collation/dashboard.php:139
+#: plugins/cap-collation/dashboard.php:138
 msgctxt "H2 caption"
 msgid "Manuscripts"
 msgstr "Handschriften"
 
-#: plugins/cap-collation/dashboard.php:140
+#: plugins/cap-collation/dashboard.php:139
 msgid "Include edits by later hands"
 msgstr "Einschließlich Edits von späterer Hand"
 
-#: plugins/cap-collation/dashboard.php:157
+#: plugins/cap-collation/dashboard.php:156
 msgctxt "H3 caption"
 msgid "Advanced Options"
 msgstr "Optionen für Fortgeschrittene"
 
-#: plugins/cap-collation/dashboard.php:158
+#: plugins/cap-collation/dashboard.php:157
 msgctxt "Label: for drop-down"
 msgid "Select Collation Algorithm"
 msgstr "Wählen Sie den Kollations-Algorithmus"
 
-#: plugins/cap-collation/dashboard.php:179
+#: plugins/cap-collation/dashboard.php:178
 msgctxt "Label: for drop-down"
 msgid "Select Levenshtein distance"
 msgstr "Wählen Sie den Levenshtein-Abstand"
 
-#: plugins/cap-collation/dashboard.php:180
+#: plugins/cap-collation/dashboard.php:179
 msgctxt "Either this or that, not both."
 msgid "or"
 msgstr "oder"
 
-#: plugins/cap-collation/dashboard.php:198
+#: plugins/cap-collation/dashboard.php:197
 msgctxt "Label: for drop-down"
 msgid "Select Levenshtein ratio"
 msgstr "Wählen Sie die Levenshtein-Ähnlichkeit"
 
-#: plugins/cap-collation/dashboard.php:219
+#: plugins/cap-collation/dashboard.php:218
 msgctxt "Label: for drop-down"
 msgid "Use segmentation"
 msgstr "Mit Segmentierung"
 
-#: plugins/cap-collation/dashboard.php:235
+#: plugins/cap-collation/dashboard.php:234
 msgctxt "Label: for drop-down"
 msgid "Use transpositions"
 msgstr "Mit Transpositionen"
 
-#: plugins/cap-collation/dashboard.php:248
+#: plugins/cap-collation/dashboard.php:247
 msgctxt "Label: for textarea"
 msgid "Normalizations"
 msgstr "Normalisierungen"
 
-#: plugins/cap-collation/dashboard.php:249
+#: plugins/cap-collation/dashboard.php:248
 msgctxt "Help text"
 msgid "One or more lines in the form: raw=normalized"
 msgstr "Eine oder mehrere Zeilen in der Form: original=normalisiert"
 
-#: plugins/cap-collation/functions.php:113
+#: plugins/cap-collation/functions.php:112
 msgctxt "Admin bar button caption"
 msgid "Collation"
 msgstr "Kollation"
 
-#: plugins/cap-collation/functions.php:415
+#: plugins/cap-collation/functions.php:414
 msgid "on"
 msgstr "an"
 
-#: plugins/cap-collation/functions.php:415
+#: plugins/cap-collation/functions.php:414
 msgid "off"
 msgstr "aus"
 
@@ -565,7 +575,7 @@ msgstr "Fehler: die Seite %s konnte nicht gelöscht werden."
 #: plugins/cap-page-generator/class-manuscript.php:289
 #, php-format
 msgid "Page %s unpublished."
-msgstr "Seite %s veröffentlicht"
+msgstr "Seite %s veröffentlicht."
 
 #: plugins/cap-page-generator/class-manuscript.php:310
 msgid "No title"
@@ -890,7 +900,7 @@ msgstr "Kapitularie-Sidebar"
 
 #: themes/Capitularia/sidebars.php:96
 msgid "The sidebar on single capitular pages"
-msgstr "Die Sidebar auf Kapitular-Seiten."
+msgstr "Die Sidebar auf Kapitular-Seiten"
 
 #: themes/Capitularia/sidebars.php:100
 msgid "Transcription Sidebar"
@@ -906,7 +916,13 @@ msgstr "Such-Seiten-Sidebar"
 
 #: themes/Capitularia/sidebars.php:106
 msgid "The sidebar on the search page"
-msgstr "Die Sidebar auf den Such-Seiten."
+msgstr "Die Sidebar auf den Such-Seiten"
+
+#~ msgid "in %s"
+#~ msgstr "in %s"
+
+#~ msgid "No settings."
+#~ msgstr "Keine Einstellungen"
 
 #~ msgid "Drag and drop to sort and move between lists."
 #~ msgstr ""

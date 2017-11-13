@@ -25,7 +25,7 @@ WPCONTENTLOCAL := $(LOCALFS)/wp-content
 .PHONY: lint phplint jslint csslint
 
 %.css : %.less
-	lessc --autoprefix="last 2 versions" --source-map $? $@
+	lessc --include-path=themes/Capitularia/css:themes/Capitularia/bower_components/bootstrap/less --autoprefix="last 2 versions" --source-map $? $@
 
 all: lint
 
