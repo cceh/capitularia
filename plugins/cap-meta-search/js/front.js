@@ -14,6 +14,8 @@ var cap_meta_search_front = (function ($) { // eslint-disable-line no-unused-var
         });
     }
 
+    var collator = new Intl.Collator ('de');
+
     function places_tree_init () {
         var container = $ ('#places');
         container.jstree ({
@@ -21,6 +23,9 @@ var cap_meta_search_front = (function ($) { // eslint-disable-line no-unused-var
             'checkbox' : {
                 'three_state' : false,
                 // 'cascade'     : 'down',
+            },
+            'sort' : function (a, b) {
+                return collator.compare (this.get_text (a), this.get_text (b));
             },
             'core' : {
                 'themes' : {
