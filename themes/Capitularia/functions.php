@@ -60,6 +60,8 @@ if (0 === 1) { // phpcs complains on false
 add_action ('init',                                'cceh\capitularia\theme\on_init');
 add_action ('wp_enqueue_scripts',                  'cceh\capitularia\theme\on_enqueue_scripts');
 add_action ('admin_enqueue_scripts',               'cceh\capitularia\theme\on_admin_enqueue_scripts');
+add_action ('registered_post_type',                ns ('on_registered_post_type'), 10, 2);
+add_action ('pre_get_posts',                       ns ('on_pre_get_posts'));
 
 /*
  * Wordpress Filters
@@ -70,6 +72,9 @@ add_filter ('login_redirect',                      'cceh\capitularia\theme\on_lo
 
 /* our custom page titles */
 add_filter ('wp_title',                            'cceh\capitularia\theme\on_wp_title', 10, 2);
+
+/* change post title for wiki posts */
+add_filter ('the_title',                           ns ('on_the_title'), 10, 2);
 
 /* our custom <body> classes */
 add_filter ('body_class',                          'cceh\capitularia\theme\on_body_class');
@@ -83,7 +88,6 @@ add_filter ('get_archives_link',                   'cceh\capitularia\theme\trans
 
 /* add an url redirector for urls like /bk/42 */
 add_filter ('do_parse_request',                    'cceh\capitularia\theme\on_do_parse_request', 10, 3);
-
 
 /*
  * The shortcodes provided by our theme.  For the implementation see:

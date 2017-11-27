@@ -12,6 +12,19 @@
 namespace cceh\capitularia\theme;
 
 /**
+ * Add current namespace
+ *
+ * @param string $function_name The class or function name without namespace
+ *
+ * @return string Name with namespace
+ */
+
+function ns ($function_name)
+{
+    return __NAMESPACE__ . '\\' . $function_name;
+}
+
+/**
  * Get the first path component of the slug.
  *
  * If a page has a slug of: "top/sub/current" this function returns "top".
@@ -261,6 +274,26 @@ function on_wp_title ($title, $sep)
 }
 
 /**
+ * Mark wiki post titles with "Wiki:"
+ *
+ * @function on_the_title
+ *
+ * @param string title - The post title
+ * @param int post_ID  - The post ID
+ *
+ * @return The edited post title
+ */
+
+function on_the_title ($title, $post_ID)
+{
+    if (get_post_type ($post_ID) === 'wp-help') {
+        $title = str_replace ('Private: ', '', $title);
+        $title = __ ('Wiki: ', 'capitularia') . $title;
+    };
+    return $title;
+}
+
+/**
  * Add a <body> class.
  *
  * Add a class to the HTML <body> tag depending on which section of the website
@@ -398,4 +431,47 @@ function on_do_parse_request ($do_parse, $dummy_wp, $dummy_extra_query_vars)
         }
     }
     return $do_parse;
+}
+
+/**
+ * HACK! make the "WP Help" wiki plugin's post type searchable
+ *
+ * @function on_registered_post_type
+ *
+ * @param string       $post_type        - The post type
+ * @param WP_Post_Type $post_type_object - The post object
+ *
+ * @return void
+ */
+
+function on_registered_post_type ($post_type, $post_type_object)
+{
+    if ($post_type == 'wp-help') {
+        $post_type_object->publicly_queryable  = true;
+        $post_type_object->exclude_from_search = false;
+    };
+}
+
+
+/**
+ * Search only wiki pages if search string contains 'wiki:'
+ *
+ * @function on_pre_get_posts
+ *
+ * @param WP_Query $query - The query
+ *
+ * @return void
+ */
+
+function on_pre_get_posts ($query)
+{
+    if (!is_admin () && $query->is_main_query ()) {
+        if ($query->is_search) {
+            $s = $query->get ('s');
+            if (stristr ($s, 'wiki:') !== false) {
+                $query->set ('post_type', 'wp-help');
+                $query->set ('s', str_replace ('wiki:', '', $s));
+            }
+        }
+    }
 }
