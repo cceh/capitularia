@@ -646,9 +646,13 @@ span.break-word {
     right: 0 !important;
   }
 }
-div.content-col a::after {
+div.content-col a.milestone {
+  display: block;
+}
+div.content-col a.internal::after {
   font-family: "dashicons";
   line-height: 1;
+  color: #b92900;
 }
 div.content-col a.internal.bib {
   font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
@@ -657,15 +661,16 @@ div.content-col a.internal.bib {
   color: inherit;
 }
 div.content-col a.internal.bib::after {
-  color: #b92900;
   content: "\00a0\00a0\f330";
 }
 div.content-col a.internal.transcription::after {
-  color: #b92900;
   content: "\00a0\00a0\f464";
 }
 div.content-col a.external::after {
-  content: "\00a0\f504";
+  font-family: "dashicons";
+  line-height: 1;
+  color: #b92900;
+  content: "\00a0\00a0\f504";
 }
 div.content-col article {
   margin: 0 0 32px 0;

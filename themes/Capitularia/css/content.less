@@ -509,29 +509,34 @@ div.content-col {
         right: 0 !important;
     }
     a {
-        &::after {
-            font-family: "dashicons";
-            line-height: 1;
+        &.milestone {
+            display: block;
         }
         &.internal {
+            &::after {
+                font-family: "dashicons";
+                line-height: 1;
+                color: @color-link;
+            }
             &.bib {
                 .regular;
                 color: inherit;
                 &::after {
-                    color: @color-link;
                     content: "\00a0\00a0\f330";
                 }
             }
             &.transcription {
                 &::after {
-                    color: @color-link;
                     content: "\00a0\00a0\f464";
                 }
             }
         }
         &.external {
             &::after {
-                content: "\00a0\f504";
+                font-family: "dashicons";
+                line-height: 1;
+                color: @color-link;
+                content: "\00a0\00a0\f504";
             }
         }
     }
