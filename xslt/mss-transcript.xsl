@@ -205,11 +205,33 @@
 
   <xsl:template name="footnotes-wrapper">
     <div class="footnotes-wrapper">
-      <!-- generate footnote bodies for immediately preceding ab-meta's and ab's
-           linked to this one by @next -->
-      <xsl:apply-templates
-          mode="auto-note-wrapper"
-          select="set:trailing (preceding-sibling::tei:ab, preceding-sibling::tei:ab[@type='text' and not (@next)][1])"/>
+      <xsl:choose>
+        <xsl:when test="self::tei:anchor">
+          <!-- end of capitulatio -->
+          <xsl:variable name="nodes"
+                        select="set:trailing (
+                                preceding-sibling::tei:ab|../tei:milestone,
+                                ../tei:milestone[@unit = 'capitulatio' and @spanTo = concat ('#', current()/@xml:id)]
+                                )" />
+          <xsl:apply-templates mode="auto-note-wrapper" select="$nodes"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- default: generate footnote bodies for immediately preceding ab-meta's
+               and ab's linked to this one by @next -->
+          <xsl:variable name="trailing-ab-text"
+                        select="set:trailing (
+                                preceding-sibling::tei:ab | preceding-sibling::tei:anchor,
+                                preceding-sibling::tei:ab[@type='text' and not (@next)][1]
+                                )" />
+          <xsl:variable name="nodes"
+                        select="set:trailing (
+                                $trailing-ab-text,
+                                preceding-sibling::tei:anchor[starts-with (@xml:id, 'capitulatio-finis')][1]
+                                )"/>
+          <xsl:apply-templates mode="auto-note-wrapper" select="$nodes"/>
+        </xsl:otherwise>
+      </xsl:choose>
+
       <!-- generate footnote bodies for this ab -->
       <xsl:apply-templates mode="auto-note-wrapper" />
     </div>
@@ -234,7 +256,9 @@
     </div>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
 
-    <!-- If the text ends here, or is followed by a capitulatio, or is an epilog or explicit. -->
+    <!-- If the manuscript ends here,
+         or is followed by a capitulatio,
+         or is an epilog or explicit. -->
     <xsl:if test="not (following-sibling::tei:ab) or following-sibling::*[1][self::tei:milestone[@unit='capitulatio']] or contains (@corresp, '_epilog') or contains (@corresp, '_explicit')">
       <xsl:call-template name="footnotes-wrapper"/>
       <xsl:call-template name="page-break" />
@@ -328,6 +352,7 @@
   <xsl:template match="tei:anchor[../tei:milestone[@unit = 'capitulatio' and @spanTo = concat ('#', current()/@xml:id)]]">
     <!-- this anchor marks the end of a capitulatio -->
     <span class="milestone milestone-capitulatio-end" />
+    <xsl:call-template name="footnotes-wrapper" />
     <xsl:call-template name="page-break" />
   </xsl:template>
 
