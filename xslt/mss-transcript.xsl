@@ -168,7 +168,6 @@
     <xsl:for-each select="str:split ($corresp)">
       <xsl:variable name="hr" select="cap:make-human-readable-bk (substring-before (concat (., '_'), '_'))" />
       <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
-        <xsl:text>&#x0a;</xsl:text>
         <a id="x-menu-{$id}" class="milestone milestone-capitulatio"
            data-shortcuts="0" data-level="6">
           <span style="display: none">
@@ -177,7 +176,6 @@
         </a>
       </xsl:if>
     </xsl:for-each>
-    <xsl:text>&#x0a;</xsl:text>
   </xsl:template>
 
   <xsl:template name="make-sidebar-bk-chapter">
@@ -191,7 +189,6 @@
     <xsl:for-each select="str:split ($corresp)">
       <xsl:variable name="hr" select="cap:make-human-readable-bk (.)" />
       <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
-        <xsl:text>&#x0a;</xsl:text>
         <a id="x-menu-{$id}" class="milestone milestone-chapter"
            data-shortcuts="0" data-fold-menu-entry="1" data-level="7">
           <span style="display: none">
@@ -200,7 +197,6 @@
         </a>
       </xsl:if>
     </xsl:for-each>
-    <xsl:text>&#x0a;</xsl:text>
   </xsl:template>
 
   <xsl:template name="footnotes-wrapper">
