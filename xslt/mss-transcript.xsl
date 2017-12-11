@@ -204,27 +204,26 @@
       <xsl:choose>
         <xsl:when test="self::tei:anchor">
           <!-- end of capitulatio -->
-          <xsl:variable name="nodes"
-                        select="set:trailing (
-                                preceding-sibling::tei:ab|../tei:milestone,
-                                ../tei:milestone[@unit = 'capitulatio' and @spanTo = concat ('#', current()/@xml:id)]
-                                )" />
-          <xsl:apply-templates mode="auto-note-wrapper" select="$nodes"/>
+          <xsl:apply-templates
+              mode="auto-note-wrapper"
+              select="set:trailing (
+                      preceding-sibling::tei:ab|../tei:milestone,
+                      ../tei:milestone[@unit = 'capitulatio' and @spanTo = concat ('#', current()/@xml:id)]
+                      )" />
         </xsl:when>
         <xsl:otherwise>
           <!-- default: generate footnote bodies for immediately preceding ab-meta's
                and ab's linked to this one by @next -->
-          <xsl:variable name="trailing-ab-text"
-                        select="set:trailing (
-                                preceding-sibling::tei:ab | preceding-sibling::tei:anchor,
-                                preceding-sibling::tei:ab[@type='text' and not (@next)][1]
-                                )" />
-          <xsl:variable name="nodes"
-                        select="set:trailing (
-                                $trailing-ab-text,
-                                preceding-sibling::tei:anchor[starts-with (@xml:id, 'capitulatio-finis')][1]
-                                )"/>
-          <xsl:apply-templates mode="auto-note-wrapper" select="$nodes"/>
+          <!-- Go back and get all ab's but stop on the first ab-text or anchor -->
+
+          <xsl:apply-templates
+              mode="auto-note-wrapper"
+              select="set:trailing (
+                      preceding-sibling::*[self::tei:ab or self::tei:anchor],
+                      preceding-sibling::*[
+                        self::tei:ab[@type='text' and not (@next)] or
+                        self::tei:anchor[starts-with (@xml:id, 'capitulatio-finis')]
+                      ][1])" />
         </xsl:otherwise>
       </xsl:choose>
 
@@ -286,10 +285,6 @@
         <xsl:call-template name="page-break" />
       </xsl:otherwise>
     </xsl:choose>
-  </xsl:template>
-
-  <xsl:template match="tei:seg[@type = 'numDenom' or @type = 'num']">
-    <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="tei:lb">
