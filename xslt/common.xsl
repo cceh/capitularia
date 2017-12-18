@@ -124,7 +124,7 @@
 
     <xsl:variable name="hr">
       <xsl:for-each select="str:split ($corresp)">
-        <xsl:if test="not (contains (., '_in'))">
+        <xsl:if test="not (contains (., '_inscriptio') or contains (., '_incipit') or contains (., 'explicit'))">
           <xsl:value-of select="normalize-space (str:replace (., exsl:node-set ($search)/tei:item, exsl:node-set ($replace)/tei:item))"/>
           <xsl:text> </xsl:text>
         </xsl:if>

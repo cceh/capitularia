@@ -147,7 +147,7 @@
       <xsl:value-of select="cap:make-human-readable-bk (@corresp)" />
     </xsl:variable>
 
-    <xsl:if test="normalize-space ($corresp)"> <!-- is filtered by -inscriptio etc. -->
+    <xsl:if test="normalize-space ($corresp)"> <!-- is filtered by inscriptio incipit explicit etc. -->
       <div class="corresp">
         <xsl:text>[</xsl:text>
         <xsl:value-of select="$corresp"/>
@@ -254,7 +254,7 @@
     <!-- If the manuscript ends here,
          or is followed by a capitulatio,
          or is an epilog or explicit. -->
-    <xsl:if test="not (following-sibling::tei:ab) or following-sibling::*[1][self::tei:milestone[@unit='capitulatio']] or contains (@corresp, '_epilog') or contains (@corresp, '_explicit')">
+    <xsl:if test="not (following-sibling::tei:ab) or following-sibling::*[1][self::tei:milestone[@unit='capitulatio']] or contains (@corresp, '_epilog') or contains (@corresp, 'explicit')">
       <xsl:call-template name="footnotes-wrapper"/>
       <xsl:call-template name="page-break" />
     </xsl:if>
