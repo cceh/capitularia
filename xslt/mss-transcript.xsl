@@ -340,7 +340,7 @@
     <xsl:call-template name="make-sidebar-bk-chapter" />
   </xsl:template>
 
-  <xsl:template match="tei:anchor[../tei:milestone[@unit = 'capitulatio' and @spanTo = concat ('#', current()/@xml:id)]]">
+  <xsl:template match="tei:anchor[preceding::tei:milestone[@spanTo = concat ('#', current()/@xml:id)]]">
     <!-- this anchor marks the end of a capitulatio -->
     <span class="milestone milestone-capitulatio-end" />
     <xsl:call-template name="footnotes-wrapper" />
