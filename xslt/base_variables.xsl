@@ -262,8 +262,8 @@
       <caption>Reichenau &amp; St. Gall</caption>
     </item>
     <item key="trierer-handschriften.de">
-      <title>Die ältesten deutschsprachigen Texte der trierer Stadtbibliothek</title>
-      <caption>Die ältesten deutschsprachigen Texte der trierer Stadtbibliothek</caption>
+      <title>Die ältesten deutschsprachigen Texte der Trierer Stadtbibliothek</title>
+      <caption>Die ältesten deutschsprachigen Texte der Trierer Stadtbibliothek</caption>
     </item>
     <item key="ulb.tu-darmstadt.de">
       <title>Universitäts- und Landesbibliothek Darmstadt</title>
@@ -280,6 +280,10 @@
     <item key="wlb-stuttgart.de">
       <title>WLB Stuttgart</title>
       <caption>WLB Stuttgart</caption>
+    </item>
+    <item key="www.kb.dk">
+      <title>Det Kongelige Bibliotek, København</title>
+      <caption>Det Kongelige Bibliotek, København</caption>
     </item>
   </xsl:variable>
 
