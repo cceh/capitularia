@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
-
-<!-- ACHTUNG! Kopie der Datei in Arbeit. -->
+<?xml-model href="http://capitularia.uni-koeln.de/cap/intern/InArbeit/capitularia.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-4613">
    <teiHeader>
@@ -9,9 +8,9 @@
          <titleStmt>
             <title type="main" xml:lang="ger">Paris, Bibliothèque Nationale, Lat. 4613</title>
             <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
-               Transkription der foll. 92r-94v</title>
+               Transkription der foll. 83v, 92r-97r</title>
             <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
-               transcription of fols 92r-94v</title>
+               transcription of fols 83v, 92r-97r</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -45,6 +44,16 @@
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="SH">
+                  <forename>Semih</forename>
+                  <surname>Heinen</surname>
+               </persName>
+               <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen (BK 77=fol.
+                  88va-90ra; BK 142 c. 10, 2. Teil=96ra)</resp>
+               <resp xml:lang="eng">First revision of transcription and additions (BK 77=fol.
+                  88va-90ra; BK 142 c. 10, 2nd part=96ra)</resp>
             </respStmt>
             <respStmt>
                <persName key="FF">
@@ -528,10 +537,8 @@
                </msContents>
                <physDesc>
                   <objectDesc form="codex">
-                     <supportDesc>
-                        <support>
-                           <material>Pergament</material>
-                        </support>
+                     <supportDesc material="parch">
+                        <support>Pergament</support>
                         <extent>100 foll. (numeriert 1-98, 49<hi rend="super">bis</hi>, 55<hi
                               rend="super">bis</hi>) <dimensions type="leaf" unit="mm">
                               <height>280-285</height>
@@ -683,7 +690,8 @@
       </encodingDesc>
       <revisionDesc>
          <change who="DS" when="2016-03-01">Datei erstellt aus Mordek-XML</change>
-         <change who="XXX" when="2016"/>
+         <change who="BM" when="2017-12-04">Datei veröffentlicht (BK 141, 158, 165, 191,
+            192)</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -694,7 +702,10 @@
          <div type="content">
             <list>
                <item n="20">
-                  <ptr target="#paris-bn-lat-4613-92r-2" type="internal"/>[Anfang der Liste fehlt] <list>
+                  <ptr type="internal" target="#paris-bn-lat-4613-83v-2"/>PRIMUM CAPITULUM DE
+                  LEGATIONE A DOMNO IMPERATORE DIRECTA<list>
+                     <item n="20.0"><ptr target="#paris-bn-lat-4613-92r-1" type="internal"/>[Anfang
+                        des Kapitels fehlt] </item>
                      <item n="20.1">
                         <ptr target="#paris-bn-lat-4613-92r-2" type="internal"/>LXXXIIII</item>
                      <item n="20.2">
@@ -714,7 +725,7 @@
                      <item n="20.9">
                         <ptr target="#paris-bn-lat-4613-92v-11" type="internal"/>LXXXXIIII</item>
                      <item n="20.10">
-                        <ptr target="#paris-bn-lat-4613-93r-1" type="internal"/>LXXXX</item>
+                        <ptr target="#paris-bn-lat-4613-93r-1" type="internal"/>LXXXX[.]</item>
                      <item n="20.11">
                         <ptr target="#paris-bn-lat-4613-93r-3" type="internal"/>LXXXXVI</item>
                      <item n="20.12">
@@ -741,16 +752,50 @@
                         <ptr target="#paris-bn-lat-4613-94v-3" type="internal"/>CVII</item>
                   </list>
                </item>
+               <item n="21">
+                  <ptr type="internal" target="#paris-bn-lat-4613-94v-5"/>HEC SVNT CAPITVLA QVE
+                  DOMNVS LOTHARIVS REX INSTITVERE IVSSIT<list>
+                     <item n="21.1">
+                        <ptr type="internal" target="#paris-bn-lat-4613-94v-6"/>I</item>
+                     <item n="21.2">
+                        <ptr type="internal" target="#paris-bn-lat-4613-94v-8"/>II</item>
+                     <item n="21.3">
+                        <ptr type="internal" target="#paris-bn-lat-4613-95r-1"/>III</item>
+                     <item n="21.4">
+                        <ptr type="internal" target="#paris-bn-lat-4613-95r-3"/>IIII</item>
+                     <item n="21.5">
+                        <ptr type="internal" target="#paris-bn-lat-4613-95r-5"/>V</item>
+                     <item n="21.6">
+                        <ptr type="internal" target="#paris-bn-lat-4613-95v-1"/>VI</item>
+                     <item n="21.7">
+                        <ptr type="internal" target="#paris-bn-lat-4613-95v-3"/>VII</item>
+                     <item n="21.8">
+                        <ptr type="internal" target="#paris-bn-lat-4613-95v-5"/>VIII</item>
+                     <item n="21.9">
+                        <ptr type="internal" target="#paris-bn-lat-4613-96r-1"/>VIIII</item>
+                     <item n="21.10">
+                        <ptr type="internal" target="#paris-bn-lat-4613-96r-3"/>X</item>
+                     <item n="21.11">
+                        <ptr type="internal" target="#paris-bn-lat-4613-96r-5"/>XI</item>
+                     <item n="21.12">
+                        <ptr type="internal" target="#paris-bn-lat-4613-96v-1"/>XII</item>
+                     <item n="21.13">
+                        <ptr type="internal" target="#paris-bn-lat-4613-96v-3"/>XIII</item>
+                     <item n="21.14">
+                        <ptr type="internal" target="#paris-bn-lat-4613-96v-5"/>[.]IIII</item>
+                     <item n="21.15">
+                        <ptr type="internal" target="#paris-bn-lat-4613-96v-7"/>XV</item>
+                     <item n="21.16">
+                        <ptr type="internal" target="#paris-bn-lat-4613-97r-1"/>XVI</item>
+                  </list></item>
             </list>
          </div>
          <div type="mshist"/>
          <div type="scribe">
             <p>Der Schreiber verwendet eine gut lesbare karolingische Minuskel. Sprachliche
                (italienische/romanische?) Besonderheiten des Schreibers: b statt u/v
-                  (<mentioned>bassus</mentioned>), prothetisches h
-               (<mentioned>obhedire</mentioned>).
-               <!--  sk: hier auch c/g Tausch erwähnen, z.B. mehrfach neclegens/neclexerit?          -->
-            </p>
+                  (<mentioned>bassus</mentioned>), c statt g (<mentioned>neclegens</mentioned>),
+               prothetisches h (<mentioned>obhedire</mentioned>). </p>
          </div>
          <div type="letters">
             <p>Einzelbuchstaben:</p>
@@ -761,43 +806,60 @@
                das t auf seinem Deckbalken liegt (z.B. <locus>fol. 92v, Z. 5</locus>:
                   <mentioned>debeant</mentioned>).</p>
             <p>Besonderheiten:</p>
-            <p>Die Initialen sind mehrfarbig und mit Ornamenten verziert; zu Beginn von BK 165 steht
-               eine aufwändig gestaltete Flechtbandinitiale.</p>
+            <p>Die Initialen sind mehrfarbig und mit Ornamenten verziert; zu Beginn von BK 165
+                  (<locus>fol. 93r</locus>) steht eine aufwändig gestaltete Flechtbandinitiale.</p>
 
          </div>
 
-         <div type="abbreviations">
-            <p>Der Schreiber verwendet nur wenige und meistens Standardkürzungen. Als
-               Kürzungszeichen kommt neben dem üblichen waagerechten Strich auch ein gewellter
-               senkrechter vor.</p>
-         </div>
+         <div type="abbreviations"/>
          <div type="punctuation"/>
          <div type="structure">
+            <p>Die Kapitularien Ludwigs des Frommen, BK 141, 191, 192, und Lothars, BK 158 und 165,
+               erscheinen hier im Rahmen einer umfangreichen Kapitelliste von 107 Kapiteln, die auf
+                  <locus>fol. 83v</locus> mit Kapitularien Karls des Großen einsetzt und sich bis
+                  <locus>fol. 94v</locus> erstreckt.</p>
+            <p>Wegen eines Lagenverlusts nach <locus>fol. 91v</locus> fehlt ein Teil der Liste, in
+               dem sich gemäß der chronologischen Ordnung Stücke Ludwigs des Frommen befunden haben
+               müssen: auf <locus>fol. 91v</locus> bricht der Text fragmentarisch in der Missi
+               cuiusdam admonitio Karls des Großen (BK 121) ab und setzt auf <locus>fol. 92r</locus>
+               im letzten Kapitel des Capitulare missorum Ludwigs des Frommen von 818/19 (BK 141)
+               wieder ein. Das folgende Kapitel (BK 191 c. 1) wird als
+                  <mentioned>LXXXIIII</mentioned> gezählt, was einen Anhaltspunkt für die Anzahl der
+               verlorenen Kapitel bietet. Da der Umfang der fehlenden Seiten jedoch nicht
+               verlässlich zu schätzen ist, ist nicht auszuschließen, dass die auf <locus>fol.
+                  83v</locus> begonnene Liste auf einer der verlorenen Seiten endete und dort eine
+               neue Kapitelliste einsetzte, zu der dann auch die hier transkribierten Kapitel zu
+               zählen wären.</p>
+            <p>Die Zählung springt von <mentioned>LXXXVI</mentioned> zu
+                  <mentioned>LXXXVIIII</mentioned> bei den aufeinanderfolgenden Kapiteln BK 191 c. 3
+               und BK 192 c. 2.</p>
             <p>Die einzelnen Absätze werden gegliedert durch eine römische Zählung in farbiger
                Tinte, meist am Ende der dem Abschnitt vorangehenden Zeile, sowie über zwei
                (gelegentlich auch mehr) Zeilen reichende Initialen, die z.T. in Texttinte
                ausgeführt, z.T. nur in Texttinte gerahmt und farbig gefüllt bzw. mit Ornamenten
                verziert sind. BK 165 c. 1 wird mit einer aufwändiger gestalteten Flechtbandinitiale
-               eingeleitet, so dass man an dieser Stelle, trotz der weitergeführten Kapitelzählung,
-               den Beginn eines inhaltlich neuen Abschnittes vermuten kann.</p>
-            <p>Wegen eines Lagenverlusts nach <locus>fol. 91v</locus> fehlt ein Teil der
-               Kapitulariensammlung, in dem sich gemäß der chronologischen Ordnung Stücke Ludwigs
-               des Frommen befunden haben müssen: auf <locus>fol. 91v</locus> bricht der Text
-               fragmentarisch in der Missi cuiusdam admonitio Karls des Großen (BK 121) ab und setzt
-               auf <locus>fol. 92r</locus> im letzten Kapitel des Capitulare missorum Ludwigs des
-               Frommen von 818/19 (BK 141) wieder ein. Das folgende Kapitel (BK 191 c. 1) wird als
-               LXXXIIII gezählt, was einen Anhaltspunkt für die Anzahl der verlorenen Kapitel
-               bietet. Die Zählung springt von LXXXVI zu LXXXVIIII bei den aufeinanderfolgenden
-               Kapiteln BK 191 c. 3 und BK 192 c. 2.</p>
+               eingeleitet (<locus>fol. 93r</locus>), so dass man an dieser Stelle, trotz der
+               weitergeführten Kapitelzählung, den Beginn eines inhaltlich neuen Abschnittes
+               vermuten kann.</p>
+            <p>Das direkt auf die 107-Kapitel-Liste folgende Hlotharii capitulare Papiense, BK 201
+               (ohne c. 9 und 10), ist hingegen deutlich als eigenständige Kapitelliste mit neu
+               einsetzender Zählung erkennbar; sie wird mit einer Rubrik in Capitalis und einer
+               auffälligen Flechtbandinitiale vor c. 1 eingeleitet. Die Fassung bietet vier
+               zusätzliche Kapitel, die nur hier überliefert sind (c.
+                  <mentioned>XIII-XVI</mentioned>; vgl. Boretius 1897, S. 62 f. Anm. ***). Am Ende
+               von BK 201 c. 4 wurde ein Teil des frei gebliebenen Zeilenendes mit einem
+               Schlaufenband aufgefüllt.</p>
+
          </div>
          <div type="annotations">
-            <p>Auf <locus>fol. 92r</locus> einige Randnotizen von neuzeitlicher Hand: vor Z. 1:
-                  <mentioned>Lib. 4 S. 73</mentioned> (wohl Verweis auf eine Edition des Stückes)
-               sowie am Rand neben Z. 6 (zu Beginn von BK 191): <mentioned>Ludouici an.
-                  XVI.</mentioned> Einige Textpassagen sind unterstrichen; evtl. von demselben
+            <p>Auf <locus>fol. 92r</locus> einige Randnotizen von neuzeitlicher Hand: vor Z. 1, in
+               der das fragmentarische Ende von BK 141 c. 29 einsetzt: <mentioned>Lib. 4 S.
+                  73</mentioned> (wohl Verweis auf eine Edition des Stückes) sowie am Rand neben Z.
+               6 (zu Beginn von BK 191): <mentioned>Ludouici an. XVI.</mentioned> Im gesamten hier
+               transkribierten Teil sind einzelne Textpassagen unterstrichen; evtl. von demselben
                neuzeitlichen Bearbeiter, der auch die Randnotizen
                eintrug.<!-- bm: Tintenfarbe sieht ähnlich aus; allerdings auf dem Graustufendigitalisat
-                  natürlich nicht eindeutig festzustellen. Ggf. am Or. prüfen! -->
+                  natürlich nicht eindeutig festzustellen. Ggf. am Original prüfen! -->
                Die unterstrichenen Stellen lassen auf ein Interesse an der Gerichts- und Strafpraxis
                schließen, z.B.: <mentioned>per fideiussores ad palatium nostrum (uenire iubeantur)
                   ... bannum persoluat aut aliam armisctra</mentioned> [sic statt
@@ -805,19 +867,34 @@
                   <locus>fol. 92r</locus>); <mentioned>ut per fideiussores missos ad nostra
                   presentia ueniat</mentioned> (BK 192 c. 4, <locus>fol. 92v</locus>);
                   <mentioned>bannum nostrum id est LX solidos persoluat</mentioned> (BK 165 c. 1,
-                  <locus>fol.
-               63r</locus>).<!-- bm: Habe keine rend type="nota/glossa" codiert, da es ja 
-                  weder-noch sind; zudem eher neuzeitlich. --></p>
+                  <locus>fol. 63r</locus>).</p>
          </div>
-         <div type="other"/>
+         <div type="other">
+            <p><locus>Fol. 96</locus> ist am unteren Rand zu etwa einem Fünftel beschnitten, jedoch
+               erst unterhalb des Schriftspiegels, so dass kein Textverlust entstand. Auch der
+               Seitenrand scheint beschnitten worden zu sein, da von der Kapitelzählung
+                  <mentioned>[X]IIII</mentioned> auf <locus>fol. 96v</locus> die erste Ziffer
+               fehlt.</p>
+         </div>
       </front>
       <body>
-
+         <cb n="83v"/>
+         <lb n="9"/>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-83v-2"
+            corresp="BK.33_1_inscriptio"><seg type="num" n="1">PRIMUM</seg>
+            <seg type="numDenom">CAPITULUM</seg> DE LEGATIONE A DOMNO <choice>
+               <abbr>IMPR</abbr>
+               <expan>IMPERATORE</expan>
+            </choice> DIRECTA<note type="editorial">Mit dieser Rubrik beginnt die Liste von 107
+               Kapiteln, die (vermutlich) auch die hier transkribierten Kapitel Ludwigs und Lothars
+               umfasste (sofern auf den zwischen <locus>fol. 91</locus> und <locus>92</locus>
+               verlorenen Blättern nicht eine neue Liste einsetzte). Die Rubrik bezieht sich
+               inhaltlich offensichtlich nur auf das erste Kapitel der Liste, nämlich c. 1 des hier
+               unikal überlieferten Capitulare missorum generale Karls des Großen (BK 33); eine
+               weitere Überschrift zur Gesamtliste fehlt.</note></ab>
          <milestone unit="capitulare" n="BK.141"/>
-
          <cb n="92r"/>
          <lb n="1"/>
-
          <ab type="text" xml:id="paris-bn-lat-4613-92r-1" corresp="BK.141_29">ministeriali nostro
             unicuique detur cot<mod>t</mod>idie panes <num>XXX</num> friscin<lb break="no"/>ge
                <num>due</num> . de potum modia . <num>II</num> . porcellus <num>unus</num> . pulli
@@ -833,21 +910,18 @@
                <expan>modium</expan>
             </choice> . <num>I</num> . pulli <lb/>
             <num>duo</num> . oba <num>X</num> . annonas ad cauallos modia . <num>II</num> . </ab>
-
          <milestone unit="capitulare" n="BK.191"/>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-92r-2"><seg type="num"
                n="84">LXXXIIII</seg> . <lb/>
          </ab>
-         <ab type="text" xml:id="paris-bn-lat-4613-92r-3" corresp="BK.191_1"><seg type="initial"
-               rend="coloured">P</seg>rimo capitulo de his qui sine consensum . episcopi .
-               <expan>presbiteri</expan>
+         <ab type="text" rend="nota" xml:id="paris-bn-lat-4613-92r-3" corresp="BK.191_1"><seg
+               type="initial" rend="coloured">P</seg>rimo capitulo de his qui sine consensum .
+            episcopi . <expan>presbiteri</expan>
             <lb/> in ecclesiis suis constitutum . uel de ecclesiis eiciunt . et ab e<lb break="no"
             />piscopo uel a quolibet misso domnico ammoniti o<mod>bh</mod>edire <lb/> noluerunt ut
             bannum nostrum seu uuadia requogantur . et per <lb/> fideiussores . ad palatium nostrum
             uenire iubeantur . et tunc nos de<lb break="no"/>cernamus utrum deo placeant . ut autem
             illum bannum persoluat aut <lb/> aliam <sic>armisctra</sic> sustineant ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-92r-4"><seg type="num"
                n="85">LXXXV</seg> . <lb/>
          </ab>
@@ -862,7 +936,6 @@
                reli<lb break="no"/>quias exinde auferat . et ubi ad nostrum beneficium ęcclesię
                per<lb break="no"/>tinentes . ita diuise inuenta fuerint ut describantur et <lb/>
             nobis renuntiantur ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-92r-6"><seg type="num"
                n="86">LXXXVI</seg> . <lb/>
          </ab>
@@ -874,10 +947,7 @@
             quam <lb/> necessit . aut maioris magnitudinis . quam ut rebus ad eas perti<cb n="92v"
                break="no"/>nentibus restaurari possint episcopis modum inueniat qualis congrue <lb/>
             <sic>mendari</sic> . et consistere possint ; </ab>
-
-
          <milestone unit="capitulare" n="BK.192"/>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-92v-1"><seg type="num"
                n="89">LXXXVIIII</seg>
             <lb/>
@@ -888,17 +958,15 @@
             eorum bonos eligant . et cum elec<lb break="no"/>ti fuerint iurare faciant et scienter
             iniuste iudicare <gap unit="chars" quantity="1"/> debeant ; <lb/>
          </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-92v-3"><seg type="num"
                n="90">LXXXX </seg>
          </ab>
-         <ab type="text" xml:id="paris-bn-lat-4613-92v-4" corresp="BK.192_4"><seg type="initial"
-               rend="coloured">U</seg>olumus ut <expan>quicumque</expan> de scabini
+         <ab type="text" rend="nota" xml:id="paris-bn-lat-4613-92v-4" corresp="BK.192_4"><seg
+               type="initial" rend="coloured">U</seg>olumus ut <expan>quicumque</expan> de scabini
                <expan>deprehensus</expan> fuerit <lb/> propter munera aut propter amicitiam iniuste
             iudicasset ut per fide<lb break="no"/>iussore missos ad nostra presentia ueniat ; De
             cetero omnibus <lb/> scauinis denuntietur . ne quis deinceps etiam iustum iudicium <lb/>
             uendere pręsumat ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-92v-5"><seg type="num"
                n="91">LXXXXI</seg>
             <lb/>
@@ -912,55 +980,43 @@
             recipiant unusquisque <lb/> quod dedit ubi uero mortua interiacet aut a qualibet causa .
             <lb/> que rationabilis est uideatur inuentor fuerit . diligenter de<lb break="no"
             />scribatur et ad nostra iustitia <sic>perforatur</sic> ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-92v-7"><seg type="num"
                n="92">LXXXXII</seg> . <lb/>
          </ab>
-         <ab type="text" xml:id="paris-bn-lat-4613-92v-8" corresp="BK.192_7"><seg type="initial"
-               rend="coloured">D</seg>e his qui decordiis et contentionibus studere solet . et in
-            pacem <lb/> uiuere nollent . et inde conuinctus<note type="editorial">Die Lesung
-                  <mentioned>coniunctus</mentioned> ist ebenfalls möglich.</note> fuerit uolumus ut
-            <lb/> sub fideiussoribus . ad nostrum placitum ueniant ubi cum fidelibus <lb/> nostris
-            consideremus quod de talibus nostris considerandum sit ;. </ab>
-
-
+         <ab type="text" rend="nota" xml:id="paris-bn-lat-4613-92v-8" corresp="BK.192_7"><seg
+               type="initial" rend="coloured">D</seg>e his qui decordiis et contentionibus studere
+            solet . et in pacem <lb/> uiuere nollent . et inde conuinctus<note type="editorial">Die
+               Lesung <mentioned>coniunctus</mentioned> ist ebenfalls möglich.</note> fuerit uolumus
+            ut <lb/> sub fideiussoribus . ad nostrum placitum ueniant ubi cum fidelibus <lb/>
+            nostris consideremus quod de talibus nostris considerandum sit ;. </ab>
          <milestone unit="capitulare" n="BK.158"/>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-92v-9"><seg type="num"
                n="93">LXXX<unclear>X</unclear>III</seg>
             <lb/>
          </ab>
-         <ab type="text" xml:id="paris-bn-lat-4613-92v-10" corresp="BK.158_12"><seg type="initial"
-               >U</seg>t cancellarii electi boni et ueraces cartas publicas con<lb break="no"
-            />scribant ante comites et scauini<mod>s</mod> et uicarius eius nullis <lb/> modis hoc
-            facere pręsumat de pecunia antequam legitimum <lb/> pretium addetur ;. </ab>
-
+         <ab type="text" rend="nota" xml:id="paris-bn-lat-4613-92v-10" corresp="BK.158_12"><seg
+               type="initial">U</seg>t cancellarii electi boni et ueraces cartas publicas con<lb
+               break="no"/>scribant ante comites et scauini<mod>s</mod> et uicarius eius nullis
+            <lb/> modis hoc facere pręsumat de pecunia antequam legitimum <lb/> pretium addetur ;. </ab>
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-92v-11"><seg type="num"
                n="94">LXXXXIIII</seg> . <lb/>
          </ab>
-         <ab type="text" xml:id="paris-bn-lat-4613-92v-12" corresp="BK.158_15"><seg type="initial"
-               rend="coloured">D</seg>e cancellarii qui ueraces . uel electi sunt ad homines
-               infir<cb n="93r" break="no"/>mi ueniant . et secundum lex tormenta conscribant . et
-            testim c<unclear>um</unclear>
+         <ab type="text" rend="nota" xml:id="paris-bn-lat-4613-92v-12" corresp="BK.158_15"><seg
+               type="initial" rend="coloured">D</seg>e cancellarii qui ueraces . uel electi sunt ad
+            homines infir<cb n="93r" break="no"/>mi ueniant . et secundum lex tormenta conscribant .
+            et testim c<unclear>um</unclear>
             <lb/> scripta cartula fuerint ostendam eam . episcopo . comiti . iudi<lb break="no"/>ces
             uel uicariis aut imp<subst>
                <del/>
                <add>leues</add>
-            </subst><!-- bm: Sicher bin ich nicht; weder, ob es wirklich korr. ist, noch, ob "-leues" 
-               da steht; ggf. am Or. prüfen! 
-               sk: sieht stimmig aus; bei "-leues" die Buchstaben dicker und größer als sonst,
-               das wirkt schon sehr nach einer Korr. -->
-            ut ueraces agnoscant esse ; </ab>
-
-
+            </subst><!-- Ggf. am Or. prüfen! --> ut ueraces agnoscant esse ; </ab>
          <milestone unit="capitulare" n="BK.165"/>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-93r-1"><seg type="num"
                n="95">LXXXX<gap unit="chars" quantity="1"/></seg>
             <lb/>
          </ab>
-         <ab type="text" xml:id="paris-bn-lat-4613-93r-2" corresp="BK.165_1"
-            next="paris-bn-lat-4613-93r-4"><seg type="initial" rend="coloured">S</seg>tatuimus ut
+         <ab type="text" rend="nota" xml:id="paris-bn-lat-4613-93r-2" corresp="BK.165_1"
+            next="#paris-bn-lat-4613-93r-4"><seg type="initial" rend="coloured">S</seg>tatuimus ut
             liberi homines que tantu<unclear>m</unclear> proprietatis <lb/> habent unde hostem bene
             facere possint et iussit facere . <lb/> nolunt ut prima uice secundum legem
                i<unclear>ll</unclear>orum statuto damno <lb/> subiaceat . Si uero secundum inuentus
@@ -968,20 +1024,18 @@
             uero tertio qui si<mod>n</mod>e ad culpa <lb/> defuerit implicatus sciat se
             <mod>o</mod>mnem substantiam suam admissu<lb break="no"/>ram aut in exilio esse
             mittendum ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-93r-3"><seg type="num"
                n="96">LXXXXV<unclear>I</unclear></seg>
             <lb/>
          </ab>
          <ab type="text" xml:id="paris-bn-lat-4613-93r-4" corresp="BK.165_1"
-            prev="paris-bn-lat-4613-93r-2"><seg type="initial" rend="coloured">D</seg>e metiocribus
+            prev="#paris-bn-lat-4613-93r-2"><seg type="initial" rend="coloured">D</seg>e metiocribus
             quippe liberis que non possint per se ostem fa<lb break="no"/>cere comitum fidelitatem
                <expan>commus</expan> . ut inter <num>duo</num> aut <num>tres</num> seu <lb/>
             <num>quattuor</num> uel si necesse fuerint . amplius unique meliores sed <lb/> uidetur
             adiutorium <expan>preueniant</expan> . ad nostrum seruitium faciendum <lb/>
             <sic>diis</sic> quoque hoc nimiam paupertatem neque per se hostem facere neque <lb/>
             adiutorium prestare possunt conseruentur quousque uale<lb break="no"/>ant recuperare .: </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-93r-5"><seg type="num"
                n="97">LXXXXVII</seg>
             <lb/>
@@ -995,7 +1049,6 @@
                break="no"/>tiam eos distringendi . comitibus permittimus per ipsas res . nostra
             <lb/> non resistentes emunitate ut satis . et utilitas regni huius<lb break="no"/>modis
             . adinuentionibus non infirmetur ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-93r-7"><seg type="num"
                n="98">LXXXXVIII</seg>
             <lb/>
@@ -1005,22 +1058,10 @@
             /> re seruetur uidelicet ; Si quis ulterius proprietatem que hoste face<lb break="no"
             />re potest emerit aut quoduis modo . ad eum peruenerit eiusque <lb/> adducendum eas
             dimiserit si neclegens de hoste fuerit . per ipsa <lb/> res . a comite distringantur ut
-            in quoque publica non minoretur ;. utilitas . <!-- bm: Das Interpunktionszeichen und die Zahl überschneiden sich. Ich glaube, dass die
-               Numerierung nachträglich erfolgte und in den hier sehr knappen Raum gezwängt wurde - 
-               aber nicht, dass irgendetwas "ergänzt" wurde, daher keine Codierung/Anmerkung. 
-               jb: ja, sehe ich auch so 
-               sk: naja, aber die Zahl ist ja gerade nicht gequetscht, sondern ungerührt ausgeschrieben,
-            so als wäre da kein Hindernis. Schwer zu erklären, aber da der Schreiber sonst nie (?)
-            das letzte Wort eines Abschnitts rechtsbündig einträgt um Platz zu sparen (siehe z.B. 
-            fol. 94r, dort 2x letzte Zeile eines Kapitels mit 1 Wort gefüllt, linksbündig),
-            könnte ich mir auch vorstellen, dass "utilitas" zusammen mit dem sonst auch nie verwendeten
-            Interpunktionszeichen (hier evtl. eher ein Trennzeichen?) nachträglich ergänzt wurde, 
-            vielleicht banausig über die (blasse?) Kapitelzählung? Woebi, eigentlich ist ja nur
-            das Interpunktionszeichen in Konflikt mit der Zahl ... das Original könnte mehr erkennen 
-            lassen  -->
+            in quoque publica non minoretur ;. utilitas . <!-- Das letzte Wort mit vorangehendem 
+               (Interpunktions-?) Zeichen evtl. ergänzt? Ggf. am Original prüfen! -->
             <lb/>
          </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-93v-1"><seg type="num"
                n="99">LXXXXVIIII</seg>
          </ab>
@@ -1036,7 +1077,6 @@
             suum <lb/> et bannum nostrum persolbat . Si uero fideiussores non inuenerit <lb/> tandiu
             sub custodia per comitem teneatur que aut fideiusso<lb break="no"/>res inueniat aut
             bannum persolutum habeant ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-93v-3"> . <seg type="num"
                n="100">C</seg> . <lb/>
          </ab>
@@ -1049,7 +1089,6 @@
             habita estimatione damnum que<lb break="no"/>sitori sarciat que uero mobilem illut
             recipit . si hoc sacramen<lb break="no"/>ta prouare non potuerit quod propter iustitiam
             ulterius dif<lb break="no"/>ferendam illud recipisset bannum nostrum persoluat ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-93v-5"> . <seg type="num"
                n="101">CI</seg> . <lb/>
          </ab>
@@ -1064,7 +1103,6 @@
             expeditione <lb/> facere debuit ! impleat prohibimus ut nemo illorum remane<lb
                break="no"/>at . In ętate quoque illorum . lex propria seruetur simili et in <lb/>
             nepotibus hec conditio teneat ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-94r-1"> . <seg type="num"
                n="102">CII</seg>
             <lb/>
@@ -1074,7 +1112,6 @@
             de libe<mod>r</mod>tate uel proprietatem in mancipiis . et in terris <lb/> seu de
             homicidio . et de incendio . illique non habent . si con<lb break="no"/>iuncti fuerint
             falsum dixisset testimonium unde secundum <lb/> conpositionem plenam reddere possit ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-94r-3"> . <seg type="num"
                n="103">CIII</seg> . <lb/>
          </ab>
@@ -1082,12 +1119,11 @@
             <milestone unit="span" corresp="BK.165_8" spanTo="#paris-bn-lat-4613-94r-4_1"/>
             <seg type="initial">S</seg>tatuimus ut omnes iuratores singillatim iurent ;. <anchor
                xml:id="paris-bn-lat-4613-94r-4_1"/>
-            <milestone unit="span" corresp="BK.165_9" spanTo="#paris-bn-lat-4613-94r-4_2"/> Ut
+            <milestone unit="span" corresp="BK.165_9" spanTo="#paris-bn-lat-4613-94r-4_2"/>Ut
                <sic>quique</sic>
             <lb/> sacramentum uel debitum . ante solis occasum persoluerit securus <lb/> inde sit ;.
                <anchor xml:id="paris-bn-lat-4613-94r-4_2"/>
          </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-94r-5"> . <seg type="num"
                n="104">CIIII</seg>
             <lb/>
@@ -1095,9 +1131,8 @@
          <ab type="text" xml:id="paris-bn-lat-4613-94r-6" corresp="BK.165_10"><seg type="initial"
                rend="coloured">U</seg>idetur nobis ut <expan>quicumque</expan> liberint
                <sic>ieniose</sic> in seruitio . tra<lb break="no"/>diderit hisque recipit . hoc quod
-            ille qui in seruitium se tradi<lb break="no"/>derit In publicum per antiquam
+            ille qui in seruitium se tradi<lb break="no"/>derit in publicum per antiquam
             consuetudinem facere debuit <lb/> implere ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-94r-7"><seg type="num"
                n="105">CV</seg>
             <lb/>
@@ -1114,7 +1149,6 @@
                <abbr>conp</abbr>
                <expan>conponat</expan>
             </choice> non ha<lb break="no"/>bet uerberetur ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-94v-1"> . <seg type="num"
                n="106">CVI</seg> . <lb/>
          </ab>
@@ -1125,7 +1159,6 @@
                <abbr>dni</abbr>
                <expan>domni</expan>
             </choice> . quod prius constitutum fuit ;. </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-94v-3"> . <seg type="num"
                n="107">CVII</seg> . <lb/>
          </ab>
@@ -1135,7 +1168,238 @@
                <expan>domno</expan>
             </choice> fugitiui nihil ac<lb break="no"/>cipias cum reddiderit eum ;. <lb/>
          </ab>
+         <milestone unit="capitulare" n="BK.201"/>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-94v-5"
+            corresp="BK.201_inscriptio">HEC SVNT <choice>
+               <abbr>CAPI</abbr>
+               <expan>CAPITVLA</expan>
+            </choice>
+            <expan>QVE</expan> DOMNVS LOTHA<lb break="no"/>RIVS REX INSTITVERE IVSSIT ;. <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-94v-6"
+            corresp="BK.201_1_inscriptio"> . <seg type="num" n="1">I</seg> . </ab>
+         <ab type="text" rend="nota" xml:id="paris-bn-lat-4613-94v-7" corresp="BK.201_1"><seg
+               type="initial" rend="coloured">D</seg>e ecclesiis emendandis . uolumus ut ita
+            obseruetis <lb/>sicut in capitulare nostro continetur . quod <sic>add</sic>
+            <rs type="place">o<lb break="no"/>lonam</rs> fecimus et ubi in <num>uno</num> loco
+            plures sunt destru<lb break="no"/>antur . quod si forte in aliquo loco sit ęcclesia
+               construc<lb break="no"/>ta . que tamen necessaria sint . et nihil doti habuerit
+            uolumus <lb/>ut secundum iussionem <rs type="person">domni et <subst>
+                  <del>dom</del>
+                  <add>genitoris</add>
+               </subst> nostris</rs>
+            <num>unus</num> mansus <num>XII</num>
+            <lb/> bunuariis de terra arabili ibi detur et mancipia <num>duo</num> . aut <lb/>
+            liberis hominibus qui ad eadem ecclesia officium dei audire ut <lb/>sacerdos <subst>
+               <del>u</del>
+               <add>i</add>
+            </subst>bi possit esse diuinus cultus fieri quod si hoc popu<lb break="no"/>lus facere
+            noluerit destruatur . </ab>
+         <ab type="meta-text" xml:id="paris-bn-lat-4613-94v-8" corresp="BK.201_2_inscriptio"> . <seg
+               type="num" n="2">II</seg> . <!-- bm: Die Zählung sieht hier nicht mehr farbig aus, daher 
+                  kein rend="coloured". Ggf. am Original prüfen! -->
+            <lb/></ab>
+         <ab type="text" xml:id="paris-bn-lat-4613-94v-9" corresp="BK.201_2"><seg type="initial"
+               rend="coloured">S</seg>anguinis effusio in ecclesia facta cum fuste si
+               <expan>presbiter</expan> fuerit <lb/>triplo conponatur . <num>duas</num> partes eidem
+               <expan>presbitero</expan> . tertiam pro <lb/>fredo ad ecclesia insuper bannus noster
+            ;. Similiter de diacono <cb n="95r"/> iuxta conpositionem ei in triplo cum banno nostro
+            conprobatur de <lb/>subdiaconus similiter triplos secundum suam conpositionem . et de
+               unius<lb break="no"/>cuiusque ordinis . secundum suam conpositionem triplo
+            persoluatur <lb/>insuper banno nostro similiter et de ictus . sine sanguinis effusionem
+            <lb/> de uniuscuiusque ordinis clero secundum suam conpositionem triplo
+            <lb/>persoluantur . Insuper banno nostro et qui non habet unde ad <lb/>ecclesia
+            persoluat tradat se in seruitio eidem ęcclesię usque <lb/> dum totum debitum persoluat
+            .: </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-95r-1"
+            corresp="BK.201_3_inscriptio"><seg type="num" n="3">III</seg> * <!-- bm: ab hier offenbar 
+               wieder farbig; ggf. am Original prüfen -->
+            <lb/></ab>
+         <ab type="text" xml:id="paris-bn-lat-4613-95r-2" corresp="BK.201_3"><seg type="initial"
+               rend="coloured">S</seg>tatuimus de <sic><expan>presbiteri</expan></sic> . et
+            diaconibus <sic>ęccleasticis</sic> honore pri<lb break="no"/>uatis ut
+               <sic>rediguatur</sic> . sub penitentia sicut canones pre<lb break="no"/>cipiunt . et
+            si habet episcopus in sua parrochias suum ministerium <lb/>ibi mittitur . quodsi
+            ministerium non hab<mod>u</mod>erit . tunc pre<lb break="no"/>cipiat episcopus . ut illi
+            tales habeant in illa plebem unde sunt <lb/>eligant sibi patronum quod de ipsis rebus
+            uictum et uestimen<lb break="no"/>tum eis ministret ipsi tamen nulla ha<mod>b</mod>eant
+            licentiam uagan<lb break="no"/>di . aut discurrendis . siue ad pl<mod>a</mod>cit<subst>
+               <del>um</del>
+               <add>a</add>
+            </subst><!-- u mit Kürzungsstrich korr. zu cc-a? Ggf. am Original prüfen.  --> . sue ad
+            palatium siue <lb/>ad ipsas res quas proprias ante fuerit sine licentia sui episcopo
+            <lb/>sed in eodem loco ubi siue <sic>constitum</sic> est . suam penitentiam . iugi<lb
+               break="no"/>ter agant ; Quodsi hoc <mod>n</mod>on obseruauerit primum uerbe<lb
+               break="no"/>rib<mod>u</mod>s quoerceantur ;. Quodsi n<mod>ec</mod> sit se
+            castigauerit in tali <lb/>loco re<del unit="chars" quantity="1"/>trudantur ! ubi
+               <mod>ue</mod>lint sup penitenti<unclear>a</unclear> uibant ; </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-95r-3"
+            corresp="BK.201_4_inscriptio"><seg type="num" n="4">IIII</seg>
+            <lb/></ab>
+         <ab type="text" xml:id="paris-bn-lat-4613-95r-4" corresp="BK.201_4"><seg type="initial"
+               rend="coloured">U</seg>t nullus ebrius suam causam in mallo possit
+            con<mod>q</mod>uerere . <lb/>
+            <mod>n</mod>am<!-- Hier evtl. Rasuren, oder nur Wasserschaden? Ggf. am Original prüfen! -->
+            testimonium dicere nec placitum comis habeant <lb/>nisi ieiunus . </ab>
 
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-95r-5"
+            corresp="BK.201_5_inscriptio"><seg type="num" n="5">V</seg>
+            <lb/></ab>
+         <ab type="text" xml:id="paris-bn-lat-4613-95r-6" corresp="BK.201_5"><seg type="initial"
+               >D</seg>e reclamatoribus uel <sic>causedicimus</sic> qui nec iudicium <lb/>scabinorum
+            acquiescere nec <sic>blapsemare</sic> uolunt . <cb n="95v"/> antiqua consuetudo seruetur
+            item ut in custodia reclaudatur <lb/> donec <num>unum</num> . et <num>duobus</num>
+            faciant et si ad palatium pro hanc re clama<lb break="no"/>uerint . et litteras
+               de<unclear>t</unclear>ulerunt non quidem eis credatur . nec tamen <lb/>in carcere
+            ponatur sed cum custodia et cum ipsis litteris pariter <lb/>ad palatium nostrum
+            remittantur . ut ibi discutiantur sicut dignum est ; <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-95v-1"
+            corresp="BK.201_6_inscriptio"><seg type="num" n="6">VI</seg> . </ab>
+         <ab type="text" rend="nota" xml:id="paris-bn-lat-4613-95v-2" corresp="BK.201_6"><seg
+               type="initial" rend="coloured">D</seg>e conspirationibus <expan>quicumque</expan>
+            facere presumserint <lb/>et sacramento <expan>quamcumque</expan> conspiratione
+            firmauerint . <lb/> triplici ratione iudicentur . primo ut <expan>ubicumque</expan>
+            aliquo <lb/>malum . per hoc perpetratum fuerit auctores facti interficiantur
+            <lb/>adiutores uero eorum alter ab altero flagellentur . et nares sibi <lb/>inuicem
+            precidant ;. Ubi uero nihil mali perpetratum est simi<lb break="no"/>li quidem inter se
+            flagellentur et capillos sibi uicissim detun<lb break="no"/>dant . si uero per dextras
+            aliqua conspiratio . firmata fuerit <lb/>si liberi sunt aut iuret cum idoneis
+            iuratoribus hoc pro malo non <lb/>fecisset aut si facere non potuerunt . suam legem <choice>
+               <abbr>conp</abbr>
+               <expan>conponat</expan>
+            </choice> . Si uero in <lb/>regno nostro nulla huiusmodis conspiratio fiat nec per
+               sacramen<lb break="no"/>tum . nec sine sacramentum ; </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-95v-3"
+            corresp="BK.201_7_inscriptio"><seg type="num" n="7">VII</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4613-95v-4" corresp="BK.201_7"><seg type="initial"
+               rend="coloured">D</seg>e oppressione pauperum liberorum hominum ut non fiat <lb/>a
+            potentioribus per aliquod malum ingenium . contra iusti<lb break="no"/>tiam oppressit
+            ita ut quod actiore se eorum uendant aut tra<lb break="no"/>dant . Ideo hec de liberis
+            hominibus diximus ne forte parentes <lb/>contra . iustitiam faciant exeredatis et regale
+            obsequium <lb/> muniatur et ipsi heredes <choice>
+               <abbr>propr</abbr>
+               <expan>propter</expan>
+            </choice> indigentiam mendaci uel <lb/>latrones . seu malefactores efficiantur ; </ab>
+         <ab type="meta-text" xml:id="paris-bn-lat-4613-95v-5" corresp="BK.201_8_inscriptio"><seg
+               type="num" n="8">VIII</seg> .
+            <!-- bm: Hier offenbar wieder Texttinte; auch bei der Initiale; ggf. am Original prüfen! --><lb/>
+         </ab>
+         <ab type="text" rend="nota" xml:id="paris-bn-lat-4613-95v-6" corresp="BK.201_8"><seg
+               type="initial">S</seg>i quis litteras nostras dispexerit id est tratoriam que propter
+               mis<lb break="no"/>sos recipiendos dirigitur aut honores quos habent dimit<cb n="96r"
+               break="no"/>tant aut in eo loco . ubi predicto missos suscipere debuit . tandiu
+            <lb/>resideat et de suis rebus legationes illuc ueniant suscipiant . quous<lb break="no"
+            />que animo nostro satisfactum habeant ; Qui uero epistolam nostram <expan>quocum<lb
+                  break="no"/>que</expan> modo dispexerit iusso nostro adolatium ueniat . et iuxta
+               uolun<lb break="no"/>tatem nostram congruam stultitie suę castigatione accipiat . et
+            si ho<lb break="no"/>mo liber uel minister comitis hoc fecerit honorem
+               <expan>qualecumque</expan>
+            <lb/> habuerit . sibe beneficium ammittat . et si seruus fuerit nudus ad <lb/> palatium
+            uapulent et caput eius tundantur ;. </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-96r-1"
+            corresp="BK.201_11_inscriptio"><seg type="num" n="9">VIIII</seg> .
+            <!-- bm: Hier wieder farbig; ggf. am Original prüfen! --><lb/>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4613-96r-2" corresp="BK.201_11"><seg type="initial"
+               rend="coloured">D</seg>ecernimus ut quisquis aliter testes . habere non potuerit .
+               uolu<lb break="no"/>mus ut per comiti iussionem quos in suo testimonio necessarios .
+            <lb/>quisque habuerit ueritatem probaturi publico . conuentum addu<lb break="no"/>cantur
+            ut ipsa ei ueritas cum iuramento ualeat inquirit quod<lb break="no"/>si de
+               <num>duabus</num> partibus fuerit inquisitio facta . idcirco quod nullus <lb/>eorum
+            possit habere testes<!-- Strich über e2 ggf. am Original prüfen ("testens"?)! -->
+            antequam iurent fiant inquisitio fac<lb break="no"/>ta quodsi omnes ad unam partem
+            dixerint testimonium iurent ue<lb break="no"/>rum dixisse testimonium . quodsi
+               <sic>disscenserint</sic> et quedam pars <lb/>testium uni prebuerit testimonium . et
+            alia alteri . tunc interro<lb break="no"/>getur si audierit per pugnam illorum .
+            testimonium approbare quodsi <lb/>nulla pars alteri cesserint iurent et pugna prouentur
+            . illorum <lb/>testimonium . quodsi una pars se subtraxerit . tunc illa que ausa
+            <lb/>fuerit contendere recipiantur ad testimonium ;. </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-96r-3"
+            corresp="BK.201_12_inscriptio"> . <seg type="num" n="10">X</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4613-96r-4" corresp="BK.201_12"><seg type="initial"
+               rend="coloured">Q</seg>uod per <num>XXX</num> annos serui liber fieri non possit si
+            pater illius ser<lb break="no"/>uus aut mater ancilla fuit similiter de aldionibus
+               <expan>precipimus</expan> ; <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-96r-5"
+            corresp="BK.201_13_inscriptio"><seg type="num" n="11">XI</seg> . </ab>
+         <ab type="text" rend="nota" xml:id="paris-bn-lat-4613-96r-6" corresp="BK.201_13"><seg
+               type="initial" rend="coloured">Q</seg>uod nullus cancellarius pro ullo iudicato . aut
+            scripto <lb/>aliquid amplius accipere audeat nisi <num>dimidiam</num> libram argenti
+            <lb/>de maioribus scriptis . de minoribus autem infra ipsam <num>dimi<cb n="96v"
+                  break="no"/>diam</num> libram quantum rex exposuit et iudicibus rectum uidetur
+               acci<lb break="no"/>piat ;. De orphanis autem et ceteris pauperibus . qui exoluere
+            hoc non <lb/>possunt in prouidentia comiti sit ut nequaquam inde aliquid accipiat
+            <lb/>Notarii autem hoc iurare debent . quod nullum scriptum <subst>
+               <del/>
+               <add>falsum</add>
+            </subst> faciant . <lb/> nec in occulto nec scriptum aliquis faciat . de unu comitatu in
+            alio <lb/>nisi per licentia illius comitis . in cuius comitatum stare debet . quod<lb
+               break="no"/>si aliter fecerit . inanis et uacuus appareat ;. Si uero necessitas <lb/>
+            euenerit itineris aliquem capulauerit aut infirmitas grauis <lb/>secundum capitularem
+            faciat domni nostri ;. </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-96v-1"
+            corresp="BK.201_14_inscriptio"><seg type="num" n="12">XII</seg> . <lb/>
+         </ab>
+         <ab type="text" rend="nota" xml:id="paris-bn-lat-4613-96v-2" corresp="BK.201_14"><seg
+               type="initial" rend="coloured">P</seg>lacuit nobis ut hec capitula que
+               <sic>exersimus</sic> de capitulis sancte <lb/>memorię <rs type="person">auii nostri
+               karoli ac domini genitoris lodouuicus <lb/>imperatoribus</rs> ab omnibus sancte dei
+            ęcclesię et nostris fidelibus <rs type="place">in regno italie</rs> . <lb/>
+            consistentibus pro lege teneantur . et conseruentur ;. Et <expan>quicumque</expan>
+            <lb/> eorum capitulorum contemtorum extiterit <num>LX</num> . solidorum mul<lb
+               break="no"/>ta <choice>
+               <abbr>conp</abbr>
+               <expan>conponat</expan>
+            </choice> sicut in capitulis predicti <rs type="person"><choice>
+                  <abbr>dni</abbr>
+                  <expan>domni</expan>
+               </choice> aui nostri karoli</rs> continetur ; <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-96v-3"
+            corresp="BK.201_13bis_inscriptio"><seg type="num" n="13">XIII</seg> . </ab>
+
+         <ab type="text" xml:id="paris-bn-lat-4613-96v-4" corresp="BK.201_13bis"><seg type="initial"
+               rend="coloured">P</seg>lacuit nobis de liberis feminis que sibi serui copulant
+            <lb/>sicut ad nostram <sic>en</sic> regiam potestatem perteneunt ita uolumus ut in<lb
+               break="no"/>ceps ad ipsos <rs>langobardos</rs> perteneant ipse et filiis suis . et
+            filiabus eorum . <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-96v-5"
+            corresp="BK.201_14bis_inscriptio"><seg type="num" n="14"><gap unit="chars" quantity="1"
+               />IIII</seg><note type="editorial">Das hier zu erwartende X am Anfang der Kapitelzahl
+               ist durch Seitenbeschnitt verloren.</note>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4613-96v-6" corresp="BK.201_14bis"><seg type="initial"
+               rend="coloured">S</seg>tatutum est ut si qua femina libera . cum seruum alterius se
+               copula<lb break="no"/>uerit . et parentes eius eam anni spatium ad uindictam non
+               dede<lb break="no"/>rit uolumus . ut curtis regia adquirat se ipsa femina cum ipso
+               ser<lb break="no"/>uum . <sic>annu</sic> et diem steterit . habeat eam cuius seruo
+            est . et <add>filii</add> qui . <lb/> ex ea nati fuerint sic serui sicut pater eorum . </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-96v-7"
+            corresp="BK.201_15bis_inscriptio"><seg type="num" n="15">XV</seg> . <lb/></ab>
+         <!-- Kapitelzählung evtl. farbig? Ggf. am Original prüfen! -->
+         <ab type="text" xml:id="paris-bn-lat-4613-96v-8" corresp="BK.201_15bis"><seg type="initial"
+               rend="coloured">S</seg>tatutum est ut si quis liber homo uxore habens liberam <choice>
+               <abbr>propr</abbr>
+               <expan>propter</expan>
+            </choice>
+            <lb/> aliquid crimen aut debitum seruitium alteri se subdidit eadem<lb break="no"/>que
+            coniux cum ipso manere noluerit ipsorum procreatio . que <cb n="97r"/> tali coniugio sit
+            libertatis . statutum non ammittat ;. Si uero <lb/>ea defuncta secunda uxor . et tamen
+            libera tali se sciens tule<lb break="no"/>rit <sic>iuncxerit</sic> coniugio liberi eorum
+            subdantur ;. </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-97r-1"
+            corresp="BK.201_16bis_inscriptio"><seg type="num" n="16">XVI</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4613-97r-2" corresp="BK.201_16bis"><seg type="initial"
+               rend="coloured">S</seg>i quis percusserit <expan>presbiter</expan> id est sacerdos <choice>
+               <abbr>conp</abbr>
+               <expan>conponat</expan>
+            </choice> aurum optime libre . <num>X</num> . <lb/>
+         </ab>
       </body>
    </text>
 </TEI>

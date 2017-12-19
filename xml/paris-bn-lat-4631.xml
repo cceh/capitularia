@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/intern/InArbeit/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
 
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-4631">
    <teiHeader>
@@ -7,9 +10,9 @@
          <titleStmt>
             <title type="main" xml:lang="ger">Paris, Bibliothèque Nationale, Lat. 4631 </title>
             <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
-               Transkription der foll. 22rb-28rb, 32vb-35rb, 78rb, 80va-b,90rb-96ra</title>
+               Transkription der foll. 22rb-28rb, 32vb-35rb, 78rb, 80va-b,88va-96ra</title>
             <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
-               transcription of fols 22rb-28rb, 32vb-35rb, 78rb, 80va-b,90rb-96ra</title>
+               transcription of fols 22rb-28rb, 32vb-35rb, 78rb, 80va-b,88va-96ra</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -24,9 +27,9 @@
                   <surname>Mischke</surname>
                </persName>
                <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
-                  Standard (foll. 22rb-28rb, 78rb, 80va-b)</resp>
+                  Standard (foll. 22rb-28rb, 78rb, 80va-b, 88va-90ra, 96ra)</resp>
                <resp xml:lang="eng">Transcription, description and text encoding according to the
-                  TEI P5 standard (fols 22rb-28rb, 78rb, 80va-b)</resp>
+                  TEI P5 standard (fols 22rb-28rb, 78rb, 80va-b, 88va-90ra, 96ra)</resp>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen (foll.
                   32vb-35rb, 90va-95vb)</resp>
                <resp xml:lang="eng">First revision of transcription and additions (fols 32vb-35rb,
@@ -41,7 +44,7 @@
                   Standard foll. 32vb-35rb, 90va-95vb</resp>
                <resp xml:lang="eng">Transcription, description and text encoding according to the
                   TEI P5 standard fols 32vb-35rb, 90va-95vb</resp>
-               <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen (fols
+               <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen (foll.
                   22rb-25va)</resp>
                <resp xml:lang="eng">First revision of transcription and additions (fols
                   22rb-25va)</resp>
@@ -52,11 +55,19 @@
                   <surname>Heinen</surname>
                </persName>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen (foll.
-                  25va-28rb (=BK 140, 141), foll. 78ra-b (=Ansegis Capitulatio), 80va-b (=Mordek 27
-                  c. 3), 82va (=BK 156 cc. 2, 3))</resp>
-               <resp xml:lang="eng">First revision of transcription and additions (fols 25va-28rb
-                  (=BK 140, 141), foll. 78ra-b (=Ansegis Capitulatio), 80va-b (=Mordek 27 c. 3),
-                  82va (=BK 156 cc. 2, 3))</resp>
+                  25va-28rb, 78ra-b, 80va-b, 82va, 88va-90va, 96ra)</resp>
+               <resp xml:lang="eng">First revision of transcription and additions (fols 25va-28rb,
+                  78ra-b, 80va-b, 82va, 88va-90va, 96ra)</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
+               </persName>
+               <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen (foll.
+                  25va-28rb, 32vb-35rb, 78r, 80v, 82va, 88va-96ra)</resp>
+               <resp xml:lang="eng">Second revision of transcription and additions (fols 25va-28rb,
+                  32vb-35rb, 78r, 80v, 82va, 88va-96ra)</resp>
             </respStmt>
             <respStmt>
                <persName key="TJ">
@@ -67,16 +78,6 @@
                   22rb-25va)</resp>
                <resp xml:lang="eng">Second revision of transcription and additions (fols
                   22rb-25va)</resp>
-            </respStmt>
-            <respStmt>
-               <persName key="SK">
-                  <forename>Sören</forename>
-                  <surname>Kaschke</surname>
-               </persName>
-               <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen (foll.
-                  25va-28rb, 32vb-35rb, 78r, 80v, 82va, 90va-95vb)</resp>
-               <resp xml:lang="eng">Second revision of transcription and additions (fols 25va-28rb,
-                  32vb-35rb, 78r, 80v, 82va, 90va-95vb)</resp>
             </respStmt>
             <respStmt>
                <persName key="SP">
@@ -166,6 +167,22 @@
                         <date/>
                      </note>
                   </altIdentifier>
+                  <altIdentifier>
+                     <settlement/>
+                     <repository/>
+                     <idno>Codex D. Antonii Faure, 114</idno>
+                     <note type="date">
+                        <date/>
+                     </note>
+                  </altIdentifier>
+                  <altIdentifier>
+                     <settlement/>
+                     <repository/>
+                     <idno>Reg. 5192.2</idno>
+                     <note type="date">
+                        <date/>
+                     </note>
+                  </altIdentifier>
                   <altIdentifier type="siglum">
                      <idno>P47</idno>
                      <note/>
@@ -181,10 +198,11 @@
                <msContents>
                   <summary>
                      <p> Bei Cod. Paris Lat. 4631 dürfte es sich um eine leicht veränderte Kopie von
-                        Cod. Paris Lat. 4628 A handeln. Auffällig ist vor allem die Ver- und
-                        zugleich wohl Abschiebung älteren Rechts (unter anderem merowingische
-                        Kapitularien, Capitulare Haristallense, kleine Lex-Salica-Texte) an das Ende
-                        der Sammlung foll. 112<hi rend="super">vb</hi> ff.</p>
+                        Cod. <ref type="internal" subtype="mss" target="paris-bn-lat-4628a">Paris
+                           Lat. 4628 A</ref> handeln. Auffällig ist vor allem die Ver- und zugleich
+                        wohl Abschiebung älteren Rechts (unter anderem merowingische Kapitularien,
+                        Capitulare Haristallense, kleine Lex-Salica-Texte) an das Ende der Sammlung
+                        foll. 112vb ff.</p>
                   </summary>
                   <msItem n="1">
                      <p>
@@ -200,37 +218,37 @@
                   </msItem>
                   <msItem n="2">
                      <p>
-                        <locus>2rb-vb</locus> Lex Salica, Langer Prolog (ed. K. A. <hi
-                           rend="smallcaps">Eckhardt, </hi>LexSalica. 100 Titel-Text, S. 82-90) und
-                        Kurzer Prolog (MGH LL nat. Germ. 4, 1, S. 2 f.).<note type="msDetail"/>
+                        <locus>2rb-vb</locus> Lex Salica, Langer Prolog (ed. K. A. Eckhardt, Lex
+                        Salica. 100 Titel-Text, S. 82-90) und Kurzer Prolog (MGH LL nat. Germ. 4, 1,
+                        S. 2 f.).<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="3" corresp="BK.39">
                      <p>
-                        <locus>2vb-3vb</locus> Ca. <hi rend="italic">1-11 -</hi>
-                        <title>Capitulare legibus additum</title> (a. 803):<hi rend="italic"
-                           >Incipiunt capitula que in lege salica domnus augustus karolus anno ab
-                           incarnatione domini nostri iesu christi octingentesimo tercio imperii
-                           vero sui anno tercio preponendo addere iussit capitula XI. De homicidiis
-                           clericorum. Qui subdiaconum occiderit tricentum solid, componat - possit
-                           indicere</hi> (MGH Capit. 1, Nr. 39, S. 112 Z. 4-6, S. 113 Z. 4 - S. 114
-                        Z. 27).<note type="msDetail"/>
+                        <locus>2vb-3vb</locus>
+                        <hi rend="italic">Ca. 1-11</hi> - <title>Capitulare legibus additum</title>
+                        (a. 803): <hi rend="italic">Incipiunt capitula que in lege salica domnus
+                           augustus karolus anno ab incarnatione domini nostri iesu christi
+                           octingentesimo tercio imperii vero sui anno tercio preponendo addere
+                           iussit capitula XI. De homicidiis clericorum. Qui subdiaconum occiderit
+                           tricentum solid. componat - possit indicere</hi> (MGH Capit. 1, Nr. 39,
+                        S. 112 Z. 4-6, S. 113 Z. 4 - S. 114 Z. 27).<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="4" corresp="BK.40">
                      <p>
                         <locus>3vb-4va</locus>
-                        <hi rend="italic">12-37, 26-28 -</hi>
-                        <title>Capitulare missorum</title> (a. 803), Rubrik,cc. 1-22, 25 - 28, 23 -
-                        24, 29: <hi rend="italic">De ca&lt;u&gt;sis ammonendis vel ecclesiis
-                           emendandis - habere volumus</hi> (MGH Capit. 1, Nr. 40, S. 115 Z. 17 - S.
-                        116 Z. 20, S. 116 Z. 23 - 27, 21 f., 28-30).<note type="msDetail"/>
+                        <hi rend="italic">12-37, 26-28</hi> - <title>Capitulare missorum</title> (a.
+                        803), Rubrik, cc. 1-22, 25-28, 23-24, 29: <hi rend="italic">De
+                           ca&lt;u&gt;sis ammonendis vel ecclesiis emendandis - habere volumus</hi>
+                        (MGH Capit. 1, Nr. 40, S. 115 Z. 17 - S. 116 Z. 20, S. 116 Z. 23-27, 21 f.,
+                           28-30).<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="5">
                      <p>
-                        <locus>4va-22rb</locus> Lex Salica (Karolina emendata), Titelverzeichnis
-                        undText (MGH LL nat. Germ. 4, 1, S. 5-234; Sigle K 36; zur Hs. S. XX). <hi
+                        <locus>4va-22rb</locus> Lex Salica (Karolina emendata), Titelverzeichnis und
+                        Text (MGH LL nat. Germ. 4, 1, S. 5-234; Sigle K 36; zur Hs. S. XX). <hi
                            rend="italic">Explicit primus liber legis salice.</hi>
                         <note type="msDetail"/>
                      </p>
@@ -240,9 +258,9 @@
                         <locus>22rb-25va</locus>
                         <title>Capitula legibus addenda</title> (a. 818/819): <hi rend="italic"
                            >Incipiunt capitula secundi libri quae constituit domnus ludouicus
-                           imperator. Primum capitulum. De honoribus ecclesiarum.</hi>
-                        <hi rend="italic">Si quis aut ex leui causa - eis complacuerit</hi> (MGH
-                        Capit.1, Nr. 139, S. 281 Anm. a, S. 281 Z. 3 - S. 285 Z. 23).<note
+                           imperator. Primum capitulum. De honoribus ecclesiarum</hi>. <hi
+                           rend="italic">Si quis aut ex leui causa - eis complacuerit</hi> (MGH
+                        Capit. 1, Nr. 139, S. 281 Anm. a, S. 281 Z. 3 - S. 285 Z. 23).<note
                            type="msDetail"/>
                      </p>
                   </msItem>
@@ -252,24 +270,24 @@
                         <title>Capitula per se scribenda</title> (a. 818/819): <hi rend="italic"
                            >Incipiunt alia capitula que per se scribenda et ab omnibus obseruanda
                            sunt. Si mancipia dominos suos fugerint - emendare studeat</hi> (MGH
-                        Capit. 1, Nr. 140, S. 287 Z. 6 - S. 288 Z. 19). Nach c. 5 folgen:<note
-                           type="msDetail"/>
-                     </p>
+                        Capit. 1, Nr. 140, S. 287 Z. 6 - S. 288 Z. 19). Nach c. 5 folgen: <note
+                           type="msDetail"/></p>
+
                   </msItem>
                   <msItem n="8" corresp="BK.141">
                      <p>
-                        <locus>26rb</locus>
+                        <locus>-- 26rb</locus>
                         <title>Capitulare missorum</title> (a. 818/819), cc. 7 (in ausführlicher
                         Form) und 14: <hi rend="italic">De locis ad claustra canonicorum facienda
                            dandis. Uolumus vt loca ad claustra - aut testificatur</hi> (MGH Capit.
-                        1, Nr. 141, S. 289 Z. 37- 43, S. 290 Z. 19-24).<note type="msDetail"/>
+                        1, Nr. 141, S. 289 Z. 37-43, S. 290 Z. 19-24).<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="9" corresp="BK.141">
                      <p>
                         <locus>26vb-28rb</locus>
                         <title>Capitulare missorum</title> (a. 818/819): <hi rend="italic">Hec sunt
-                           capitulaprecipue ad legationem missorum nostrorum causam pertinenda de
+                           capitula precipue ad legationem missorum nostrorum causam pertinenda de
                            quibus videlicet causis ipsi agere debeant. Legatio omnium missorum
                            nostrorum hec est. Primo vt sicut iam aliis missis - cauallos mod.
                            II</hi> (MGH Capit. 1, Nr. 141, S. 289 Z. 1 - S. 291 Z. 37); von den
@@ -279,19 +297,21 @@
                   </msItem>
                   <msItem n="10">
                      <p>
-                        <locus>28rb-29vb</locus> Lex Francorum Chamavorum (MGH LL 5, S. 271-276;zur
-                        Hs. S. 270); sonst nur noch in Cod. Paris Lat. 9654 überliefert und im
-                        Vorläufer Cod. Paris Lat. 4628 A.<note type="msDetail"/>
+                        <locus>28rb-29vb</locus> Lex Francorum Chamavorum (MGH LL 5, S. 271-276; zur
+                        Hs. S. 270); sonst nur noch in Cod. <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-9654">Paris Lat. 9654</ref> überliefert und im
+                        Vorläufer Cod. <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-4628a">Paris Lat. 4628 A</ref>. <note
+                           type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="11" corresp="BK.43">
                      <p>
                         <locus>29vb-30rb</locus>
-                        <hi rend="italic">1—16 -</hi>
-                        <title>Capitulare missorum in Theodonis villa datum primum, mere
-                           ecclesiasticum</title> (a. 805): <hi rend="italic">Infra ecclesiam. De
-                           lectionibus</hi> - <hi rend="italic">uero constringantur</hi> (MGH Capit.
-                        1, Nr.43, S. 121 Z. 11 - S. 122 Z. 18).<note type="msDetail"/>
+                        <hi rend="italic">1-16</hi> - <title>Capitulare missorum in Theodonis villa
+                           datum primum, mere ecclesiasticum</title> (a. 805): <hi rend="italic"
+                           >Infra ecclesiam. De lectionibus - uero constringantur</hi> (MGH Capit.
+                        1, Nr. 43, S. 121 Z. 11 - S. 122 Z. 18).<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="12" corresp="BK.44">
@@ -300,21 +320,19 @@
                         <hi rend="italic">2-22</hi> (c. 1 nicht numeriert) - <title>Capitulare
                            missorum in Theodonis villa datum secundum, generale</title> (a. 805):
                            <hi rend="italic">De pace ut omnes qui - esse cognoscitur</hi> (MGH
-                        Capit. 1, Nr.44, S. 122 Z. 30 - S. 126 Z. 3).<note type="msDetail"/>
+                        Capit. 1, Nr. 44, S. 122 Z. 30 - S. 126 Z. 3).<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="13" corresp="BK.61">
                      <p>
                         <locus>32ra-vb</locus>
-                        <hi rend="italic">Ca. 1-14 -</hi>
-                        <title>Capitulare Aquisgranense</title> (a. 809): <hi rend="italic">Capitula
-                           quae domnus karolus constituit de illis hominibus qui propter culpas
-                           eorum ad mortem diiudicati fuerint et postea vita eis fuerit concessa sub
-                           se iusticiam ab aliis requisierint aut ab eis iusticiam requirere
-                           voluerint qualiter inter eos terminetur. Primum omnium de illis causis
-                           —</hi>
-                        <hi rend="italic">venire cogantur</hi> (MGH Capit. 1, Nr. 61, S. 148 Z. 6 —
-                        S. 149 Z. 22).<note type="msDetail"/>
+                        <hi rend="italic">Ca. 1-14</hi> - <title>Capitulare Aquisgranense</title>
+                        (a. 809): <hi rend="italic">Capitula quae domnus karolus constituit de illis
+                           hominibus qui propter culpas eorum ad mortem diiudicati fuerint et postea
+                           vita eis fuerit concessa sub se iusticiam ab aliis requisierint aut ab
+                           eis iusticiam requirere voluerint qualiter inter eos terminetur. Primum
+                           omnium de illis causis - venire cogantur</hi> (MGH Capit. 1, Nr. 61, S.
+                        148 Z. 6 - S. 149 Z. 22).<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="14" corresp="BK.63">
@@ -328,14 +346,15 @@
                   </msItem>
                   <msItem n="15" corresp="BK.191">
                      <p>
-                        <locus>32vb-34ra</locus> 2 - <hi rend="italic">Capitulum 8</hi> (c. 1 nicht
-                        numeriert) - <title>Capitulare Wormatiense</title> (a. 829), ohne c. 8: <hi
+                        <locus>32vb-34ra</locus>
+                        <hi rend="italic">2 - Capitulum 8</hi> (c. 1 nicht numeriert) -
+                           <title>Capitulare Wormatiense</title> (a. 829), ohne c. 8: <hi
                            rend="italic">Hec sunt capitula que aliqui ex missis ad nostram noticiam
                            detulerunt anno XVI imperii nostri. De his qui sine consensu - venire
                            compellatur</hi> (MGH Capit. 2, Nr. 191, S. 12 Z. 15 - S. 13 Z. 26, S. 13
-                        Z. 30 - S. 14 Z. 13); cc. 3 und 4 unter <hi rend="italic">3 </hi>subsumiert.
+                        Z. 30 - S. 14 Z. 13); cc. 3 und 4 unter <hi rend="italic">3</hi> subsumiert.
                         Nach einer anderen Vorlage ist das Stück nochmals und zwar vollständig
-                        zitiert unten foll.90va-91vb.<note type="msDetail"/>
+                        zitiert unten foll. 90va-91vb.<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="16" corresp="BK.192">
@@ -344,7 +363,7 @@
                         <hi rend="italic">Cap. 2 - ca. 14</hi> (c. 1 nicht numeriert) -
                            <title>Capitulare missorum Wormatiense</title> (a. 829): <hi
                            rend="italic">Item alia capitula. De beneficiis destructis hoc obseruetur
-                           - ministerium amittat </hi>(MGH Capit. 2, Nr. 192, S. 14 Z. 34 - S. 17 Z.
+                           - ministerium amittat</hi> (MGH Capit. 2, Nr. 192, S. 14 Z. 34 - S. 17 Z.
                         9); nach einer anderen Vorlage ist das Stück nochmals zitiert unten foll.
                            91vb-93rb.<note type="msDetail"/>
                      </p>
@@ -360,15 +379,17 @@
                   <msItem n="18" corresp="BK.28">
                      <p>
                         <locus>43ra-46rb</locus>
-                        <hi rend="italic">ca. 1</hi> (= Einleitung) <hi rend="italic">- 57 - </hi>
-                        <title>Capitulare Franconofurtense</title> (a. 794): <hi rend="italic">In
+                        <hi rend="italic">ca. 1</hi> (= Einleitung) - <hi rend="italic">57</hi> -
+                           <title>Capitulare Franconofurtense</title> (a. 794): <hi rend="italic">In
                            constitutione synodali. Coniungentibus deo fauente apostolica auctoritate
                            - orationibus receperunt</hi> (MGH Capit. 1, Nr. 28, S. 73 Z. 23 - S. 78
                         Z. 22; MGH Conc. 2, 1, S. 165-171); um eins erhöhte Zählung ab <hi
-                           rend="italic">De tarentasia</hi> (in c. 8) wie Cod. Paris Lat. 4628 A.
-                        Das Kapitular ist nur hier und in den abhängigen Codd. Paris Lat. 4628 A und
-                        Lat. 4631 <!-- sk: statt "4631" wohl eher "10758", hier korrigieren? -->
-                           überliefert.<note type="msDetail"/>
+                           rend="italic">De tarentasia</hi> (in c. 8) wie Cod. <ref type="internal"
+                           subtype="mss" target="paris-bn-lat-4628a">Paris Lat. 4628 A</ref>. Das
+                        Kapitular ist nur hier und in den abhängigen Codd. Paris Lat. 4628 A und
+                        Lat. 4631<note type="corr">Gemeint ist bei letzterem wohl <ref
+                              type="internal" subtype="mss" target="paris-bn-lat-4628a">Paris Lat.
+                              10758</ref>.</note> überliefert.<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="19" corresp="Ansegis">
@@ -384,11 +405,11 @@
                         395-397, 394 [Z. 1-4], 413-449).<note type="msDetail"/>
                      </p>
                   </msItem>
-                  <msItem n="20" corresp="BK.167 Mordek.27 BK.156 BK.167">
+                  <msItem n="20" corresp="BK.167 Mordek.27 BK.156">
                      <p>Addenda wie in Cod. Paris Lat. 4628 A: vor Ansegis 1, 77, nach Ansegis 2, 32
                            (<title>Capitula Francica</title>, cc. 2 und 3; hier nur in der
                         Capitulatio, Text unten fol. 120ra), nach Ansegis 4, 14 (Benedictus Levita
-                        1, 186; aus einem echten Kapitular?; siehe unten Anhang I, Nr. 27, 3:
+                        1, 186; aus einem echten Kapitular?; siehe Mordek 1995, Anhang I, Nr. 27, 3:
                            <title>Capitula a Benedicto Levita singillatim tradita</title>, c. 3),
                         nach Ansegis 4, 24 (<title>Capitula incerta</title> wohl Ludwigs des
                         Frommen, cc. 2 und 3) und schließlich nach Ansegis 4, 69 (<title>Capitula
@@ -399,13 +420,12 @@
                      <p>
                         <locus>88va-90ra</locus>
                         <hi rend="italic">Capl. 2-21</hi> (die fehlende Kapitelzahl <hi
-                           rend="italic">1</hi> ist wohl derEinleitung zugedacht) -
+                           rend="italic">1</hi> ist wohl der Einleitung zugedacht) -
                            <title>Capitulare Aquisgranense</title> (a. 802/803): <hi rend="italic"
                            >Alia capitula. Karolus serenissimus imperator augustus a deo coronatus -
                            fidelitate sua permansit</hi> (MGH Capit. 1, Nr. 77, S. 170 Z. 28 - S.
-                        172 Z. 32); wahrscheinlich unter Ludwig dem Frommen erneuert, vgl. <hi
-                           rend="smallcaps">Seeliger, </hi>Kapitularien, S. 20 f. Anm. 1.<note
-                           type="msDetail"/>
+                        172 Z. 32); wahrscheinlich unter Ludwig dem Frommen erneuert, vgl. Seeliger,
+                        Kapitularien, S. 20 f. Anm. 1.<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="22" corresp="BK.184">
@@ -420,8 +440,8 @@
                   <msItem n="23" corresp="BK.186">
                      <p>
                         <locus>90rb-va</locus>
-                        <hi rend="italic">1-7 </hi>- <title>Capitula ab episcopis in placito
-                           tractanda</title>(a. 829): <hi rend="italic">Hec capitula ab episcopis
+                        <hi rend="italic">1-7</hi> - <title>Capitula ab episcopis in placito
+                           tractanda</title> (a. 829): <hi rend="italic">Hec capitula ab episcopis
                            tractanda sunt. De decimis quae ad capellas - noticiam deferant</hi> (MGH
                         Capit. 2, Nr. 186, S. 6 Z. 40 - S. 7 Z. 14); c. 7 (<title>Capitulum de
                            expeditione exercitali</title>) dürfte nach Form und Inhalt einem sonst
@@ -446,7 +466,7 @@
                      <p>
                         <locus>91vb-93rb</locus>
                         <hi rend="italic">Ca IIII, VII, ca 9, Ca XI, Ca XII, Caplm. 14, Capitulum
-                           15</hi> (die übrigen Kapitel wohl nicht numeriert) - <title> Capitulare
+                           15</hi> (die übrigen Kapitel wohl nicht numeriert) - <title>Capitulare
                            missorum Wormatiense</title> (a. 829): <hi rend="italic">Item sequuntur
                            alia capitula et primo de illo qui beneficium desertum fecit. De
                            beneficiis destructis obseruetur quod - ministerium amittat</hi> (MGH
@@ -459,7 +479,7 @@
                      <p>
                         <locus>93rb-94vb</locus>
                         <hi rend="italic">Ca 16, Ca XVIII, Ca XIX, Ca 21</hi> (die übrigen cc. wohl
-                        nicht numeriert) - <title> Capitulare pro lege habendum Wormatiense</title>
+                        nicht numeriert) - <title>Capitulare pro lege habendum Wormatiense</title>
                         (a. 829): <hi rend="italic">Si quis ex leui causa - inde non acrescat</hi>
                         (MGH Capit. 2, Nr. 193, S. 18 Z. 4 - S. 20 Z. 11); meist mit
                            Kapitelüberschriften.<note type="msDetail"/>
@@ -469,7 +489,7 @@
                      <p>
                         <locus>94vb</locus>
                         <hi rend="italic">Ca 24</hi> - <title>Tractoria de coniectu missis
-                           dando</title> (a. 829):<hi rend="italic">Uolumus vt tale coniectum missi
+                           dando</title> (a. 829): <hi rend="italic">Uolumus vt tale coniectum missi
                            nostri - octab. penthecosten</hi> (MGH Capit. 2, Nr. 189, S. 11 Z.
                            4-10).<note type="msDetail"/>
                      </p>
@@ -480,19 +500,22 @@
                         <hi rend="italic">25</hi> - <title>Capitulare missorum</title> (a. 829), c.
                         5: <hi rend="italic">Uolumus atque iubemus ut missi - promittere
                            faciant</hi> (MGH Capit. 2, Nr. 188, S. 10 Z. 14-16 und 18 f. mit 22
-                        [Variante, Auslassung und Zusatz wie Codd. Barcelona Ripoll 40 und natürlich
-                        Paris Lat. 10758 mit 4628 A; vgl. Anm. g, h und i]); cc. 1-2 siehe unten
-                        fol. 95vb.<note type="msDetail"/>
+                        [Variante, Auslassung und Zusatz wie Codd. <ref type="internal"
+                           subtype="mss" target="barcelona-aca-ripoll-40">Barcelona Ripoll 40</ref>
+                        und natürlich <ref type="internal" subtype="mss" target="paris-bn-lat-10758"
+                           >Paris Lat. 10758</ref> mit <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-4628a">4628 A</ref>; vgl. Anm. g, h und i]); cc. 1-2
+                        siehe unten fol. 95vb.<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="29" corresp="BK.187">
                      <p>
                         <locus>94vb-95vb</locus>
-                        <hi rend="italic">Cap. 26</hi> und <hi rend="italic">Ca 1 - </hi>
-                        <title>Capitula de missis instruendis</title> (a. 829): <hi rend="italic"
+                        <hi rend="italic">Cap. 26</hi> und <hi rend="italic">Ca 1</hi> -
+                           <title>Capitula de missis instruendis</title> (a. 829): <hi rend="italic"
                            >Dicendum est illis quia necesse est - inferius annotate sunt</hi> (MGH
                         Capit. 2, Nr. 187, S. 7 Z. 39 - S. 9 Z. 13 [S. 8 Z. 11-28 = <hi
-                           rend="italic">Cap. 26;</hi> S. 8 Z. 29 - S. 9 Z. 13 = <hi rend="italic"
+                           rend="italic">Cap. 26</hi>; S. 8 Z. 29 - S. 9 Z. 13 = <hi rend="italic"
                            >Ca I</hi>]).<note type="msDetail"/>
                      </p>
                   </msItem>
@@ -516,26 +539,29 @@
                   </msItem>
                   <msItem n="32">
                      <p>
-                        <locus>96ra-vb</locus> Lex Salica, Recapitulatio solidorum (ed. K. A. <hi
-                           rend="smallcaps">Eckhardt, </hi>Pactus legis Salicae II 2, S.
-                           529-532).<note type="msDetail"/>
+                        <locus>96ra-vb</locus> Lex Salica, Recapitulatio solidorum (ed. K. A.
+                        Eckhardt, Pactus legis Salicae II 2, S. 529-532).<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="33">
                      <p>
-                        <locus>96vb-97vb</locus>, <locus>99ra-rb</locus> Hinkmar von Reims, De villa
-                        Noviliaco (ed. O. Holder-Egger, MGH SS 15, 2 [Hannover 1888] S. 1167-1169
-                        [nach dem Druck Sirmonds, der auf einer unbekannten Hs. Claude Dupuys
-                        beruht]; Nachträge und Varianten anhand der Codd. Paris Lat. 10758 und 4628
-                        A von Holder-Egger, Zum Texte von Hincmars Schrift de villa Novilliaco, in:
-                        NA 23 [1898] S. 196-198 [mit Kenntnis dieser Hs.]).<note type="msDetail"/>
+                        <locus>96vb-97vb, 99ra-rb</locus> Hinkmar von Reims, De villa Noviliaco (ed.
+                        O. Holder-Egger, MGH SS 15, 2 [Hannover 1888] S. 1167-1169 [nach dem Druck
+                        Sirmonds, der auf einer unbekannten Hs. Claude Dupuys beruht]; Nachträge und
+                        Varianten anhand der Codd. <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-10758">Paris Lat. 10758</ref> und <ref
+                           type="internal" subtype="mss" target="paris-bn-lat-4628a">4628 A</ref>
+                        von Holder-Egger, Zum Texte von Hincmars Schrift de villa Novilliaco, in: NA
+                        23 [1898] S. 196-198 [mit Kenntnis dieser Hs.]).<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="36" corresp="BK.191 BK.192">
                      <p>
-                        <locus>99va-vb</locus>, <locus>98ra-vb</locus>, <locus>100ra-100vb</locus>
-                        Kapitularien- und Kanonessammlung über Heerbann und Kirchengut wie in Cod.
-                        Paris Lat. 10758, pp. 285 ff. bzw. Cod. Paris Lat. 4628 A, foll. 160ra ff.,
+                        <locus>99va-vb, 98ra-vb, 100ra-100vb</locus> Kapitularien- und
+                        Kanonessammlung über Heerbann und Kirchengut wie in Cod. <ref
+                           type="internal" subtype="mss" target="paris-bn-lat-10758">Paris Lat.
+                           10758</ref>, pp. 285 ff. bzw. Cod. <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-4628a">Paris Lat. 4628 A</ref>, foll. 160ra ff.,
                         wahrscheinlich von Hinkmar angeregt oder kompiliert als Dossier zur
                         voraufgehenden Schrift De villa Noviliaco bzw. zur darin dokumentierten
                         Auseinandersetzung. Allerdings endet die Sammlung hier unvollständig in c. 5
@@ -548,18 +574,19 @@
                   </msItem>
                   <msItem n="37">
                      <p>
-                        <locus>100vb-101vb</locus>, <locus>103ra-vb</locus>, <locus>102ra</locus>
-                        Benedicti Levitae capitularium collectio, Exzerpte aus Additio 3 und 4 wie
-                        in Cod. Paris Lat. 10758 bzw. Cod. Paris Lat. 4628 A (bis <hi rend="italic"
-                           >mileuitano),</hi> hier aber erst mit Add. 3, 4 einsetzend. <note
-                           type="msDetail"/>
+                        <locus>100vb-101vb, 103ra-vb, 102ra</locus> Benedicti Levitae capitularium
+                        collectio, Exzerpte aus Additio 3 und 4 wie in Cod. <ref type="internal"
+                           subtype="mss" target="paris-bn-lat-10758">Paris Lat. 10758</ref> bzw.
+                        Cod. <ref type="internal" subtype="mss" target="paris-bn-lat-4628a">Paris
+                           Lat. 4628 A</ref> (bis <hi rend="italic">mileuitano</hi>), hier aber erst
+                        mit Add. 3, 4 einsetzend. <note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="39">
                      <p>
-                        <locus>102ra-vb</locus>, <locus>104ra-105vb</locus> Protokoll der
-                        Kaiserkrönung Karls des Kahlen (a. 877) (ed. W. A. Eckhardt, Protokoll von
-                        Ravenna, S. 304-311). <note type="msDetail"/>
+                        <locus>102ra-vb, 104ra-105vb</locus> Protokoll der Kaiserkrönung Karls des
+                        Kahlen (a. 877) (ed. W. A. Eckhardt, Protokoll von Ravenna, S. 304-311).
+                           <note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="41">
@@ -584,21 +611,27 @@
                   <msItem n="44">
                      <p>
                         <locus>112va-vb</locus>
-                        <hi rend="italic">1-18 -</hi> Inhaltsverzeichnis wie in den Codd. Paris Lat.
-                        10758 und 4628 A (doch abweichende Kapitelzählung) unter der Rubrik: <hi
-                           rend="italic">Incipiunt libelli uel decreta Chlodouei et childeberti siue
-                           clotarii et karoli regum</hi> (ed. K. A. Eckhardt, Leges Alamannorum I,
-                        S. 17 f.). Auch hier begegnen unter den Lemmata, deren Texte im folgenden
-                        nicht kopiert sind, <hi rend="italic">8 ... Memoratio de octo bannis ...
-                           Inde sunt cap. viii</hi> (wohl die nur in Cod. Bamberg Jur. 35 erhaltene
-                        Summula de bannis, MGH Capit. 1, Nr. 110, S. 224) und <hi rend="italic">11
-                           ... qualiter ordinatum propter famis inopiam</hi> (das nur in der
-                        Sammlung der Codd. Vatikan Pal. Lat. 582 und Paris Lat. 9654 überlieferte
+                        <hi rend="italic">1-18</hi> - Inhaltsverzeichnis wie in den Codd. <ref
+                           type="internal" subtype="mss" target="paris-bn-lat-10758">Paris Lat.
+                           10758</ref> und <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-4628a">4628 A</ref> (doch abweichende
+                        Kapitelzählung) unter der Rubrik: <hi rend="italic">Incipiunt libelli uel
+                           decreta Chlodouei et childeberti siue clotarii et karoli regum</hi> (ed.
+                        K. A. Eckhardt, Leges Alamannorum I, S. 17 f.). Auch hier begegnen unter den
+                        Lemmata, deren Texte im folgenden nicht kopiert sind, <hi rend="italic">8
+                           ... Memoratio de octo bannis ... Inde sunt cap. viii</hi> (wohl die nur
+                        in Cod. <ref type="internal" subtype="mss" target="bamberg-sb-jur-35"
+                           >Bamberg Jur. 35</ref> erhaltene Summula de bannis, MGH Capit. 1, Nr.
+                        110, S. 224) und <hi rend="italic">11 ... qualiter ordinatum propter famis
+                           inopiam</hi> (das nur in der Sammlung der Codd. <ref type="internal"
+                           subtype="mss" target="vatikan-bav-pal-lat-582">Vatikan Pal. Lat.
+                           582</ref> und <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-9654">Paris Lat. 9654</ref> überlieferte
                         Memoratorium de exercitu in Gallia occidentali praeparando [a. 807], MGH
                         Capit. 1, Nr. 48, S. 134 f.; sein dort verbürgter Titel <hi rend="italic"
                            >Memoratorium</hi> erinnert an die <hi rend="italic">Memoratio de octo
-                           bannos</hi>, die hier drei Lemmata früher angesprochen ist). <lb/>Im
-                        folgenden häufig Rubriken, auch bei den Kapitularien der Sammlung. <note
+                           bannos</hi>, die hier drei Lemmata früher angesprochen ist). Im folgenden
+                        häufig Rubriken, auch bei den Kapitularien der Sammlung. <note
                            type="msDetail"/></p>
                   </msItem>
                   <msItem n="46">
@@ -630,7 +663,7 @@
                            childeberti regis francorum. Cvm nos in dei nomine - de dorso
                            conponat</hi> (MGH Capit. 1, Nr. 7, S. 15 Z. 14 - S. 17 Z. 24; W. A.
                         Eckhardt, Decretio Childeberti, S. 28-46; Version K); bei c. 5: <hi
-                           rend="italic">Caplm.</hi> Das Stück wird in anderer Version auszugsweise
+                           rend="italic">Caplm</hi>. Das Stück wird in anderer Version auszugsweise
                         nochmals unten foll. 120ra-121ra zitiert.<note type="msDetail"/>
                      </p>
                   </msItem>
@@ -669,7 +702,7 @@
                            rend="italic">legi</hi>) und 12-15 (1. Teil): <hi rend="italic">Incipit
                            tractatus lege salice propter tenorem pacis. De rege Chlotario. Decretum
                            est vt qui in vigiliis constitutis - de precio redimat</hi> (MGH Capit.
-                        1, Nr. 3, S.5 Z. 42, S. 5 Z. 20 - S. 6 Z.5, S. 6 Z. 11 - S. 7 Z. 1; K. A.
+                        1, Nr. 3, S. 5 Z. 42, S. 5 Z. 20 - S. 6 Z. 5, S. 6 Z. 11 - S. 7 Z. 1; K. A.
                         Eckhardt, Pactus legis Salicae II 2, S. 386-388, 394-398, 400-404); ein
                         längerer Auszug in anderer Version ist bereits oben foll. 114vb-116ra
                            zitiert.<note type="msDetail"/>
@@ -678,8 +711,10 @@
                   <msItem n="53">
                      <p>
                         <locus>119vb</locus> Datierung der Lex Salica ohne Jahreszahl (MGH LL nat.
-                        Germ. 4, 2, S. 9), vgl. Cod. Paris Lat. 10758, p. 85 und K. A. Eckhardt, Lex
-                        Salica. 100 Titel-Text, S. 65 ff. (mit Stemma S. 67).<note type="msDetail"/>
+                        Germ. 4, 2, S. 9), vgl. Cod. <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-10758">Paris Lat. 10758</ref>, p. 85 und K. A.
+                        Eckhardt, Lex Salica. 100 Titel-Text, S. 65 ff. (mit Stemma S. 67).<note
+                           type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="54" corresp="BK.167">
@@ -688,7 +723,7 @@
                         <title>Capitula Francica</title>, cc. 2 und 3 (Zusatzkapitel der „Reimser
                         Gruppe“ zu Ansegisi abbatis capitularium collectio): <hi rend="italic"
                            >Qualiter iusticie fiant pauperibus. De causis viduarum pupillorum
-                           orphanorum - iusticiam reddat </hi>(MGH Capit. 1, Nr. 167, S. 333 Z.
+                           orphanorum - iusticiam reddat</hi> (MGH Capit. 1, Nr. 167, S. 333 Z.
                         16-24 und - mit Rubriken - S. 421 f. Anm. a); ihre ursprüngliche Stellung
                         (nach Ansegis 2, 32) erhellt aus der Ansegis-Capitulatio oben fol.
                            61va.<note type="msDetail"/>
@@ -697,7 +732,7 @@
                   <msItem n="55" corresp="BK.7">
                      <p>
                         <locus>120ra-121ra</locus>
-                        <title>Childeberti II decretio</title>, (a. 596), Inskription, cc. 1-7:<hi
+                        <title>Childeberti II decretio</title>, (a. 596), Inskription, cc. 1-7: <hi
                            rend="italic">Decretio hildeberti regis. Hildebertus rex francorum vir
                            inluster - hominibus obseruetur</hi> (MGH Capit. 1, Nr. 7, S. 15 Z. 14 -
                         S. 17 Z. 3; W. A. Eckhardt, Decretio Childeberti, S. 28-40; Version D). Das
@@ -729,7 +764,6 @@
                         <extent>121 foll. (numeriert 1-9, 11-121, 85 doppelt), davon 104 aus Papier,
                            17 aus Pergament, und zwar so angeordnet, daß auf jede Papierlage
                            einzelne Pergamentblätter folgen <dimensions type="leaf" unit="mm">
-                              <!--        sk: ergänzen, dass ab fol. 26v bis 27r eine Spaltenzählung mit "99" bis "102" einsetzt?          -->
                               <height>281-284</height>
                               <width>200</width>
                            </dimensions>
@@ -738,9 +772,9 @@
                               <width>131-135</width>
                            </dimensions>
                         </extent>
-                        <collation>Lagen: <formula>V<hi rend="super">11</hi> + 2<hi rend="super"
-                                 >13</hi> + V<hi rend="super">23</hi> + 2<hi rend="super">25</hi> +
-                                 V<hi rend="super">35</hi> + 2<hi rend="super">37</hi> + V<hi
+                        <collation><formula>V<hi rend="super">11</hi> + 2<hi rend="super">13</hi> +
+                                 V<hi rend="super">23</hi> + 2<hi rend="super">25</hi> + V<hi
+                                 rend="super">35</hi> + 2<hi rend="super">37</hi> + V<hi
                                  rend="super">47</hi> + 2<hi rend="super">49</hi> + V<hi
                                  rend="super">59</hi> + 2<hi rend="super">61</hi> + V<hi
                                  rend="super">71</hi> + 2<hi rend="super">73</hi> + V<hi
@@ -748,7 +782,7 @@
                                  rend="super">94</hi> + 1<hi rend="super">95</hi> + V<hi
                                  rend="super">105</hi> (3. und 4. Doppelblatt vertauscht) + 1<hi
                                  rend="super">106</hi> + VII<hi rend="super">120</hi> + 1<hi
-                                 rend="super">121</hi>.</formula>
+                                 rend="super">121</hi></formula>
                            <catchwords>einige Reklamanten noch sichtbar</catchwords>
                         </collation>
                      </supportDesc>
@@ -765,8 +799,7 @@
                   </scriptDesc>
                   <decoDesc>
                      <p>Text in schwarzer Tinte; rote Rubriken; einfache Initialen, abwechselnd rot
-                        und blau, manchmal mit Verzierungen, z. B. 1<hi rend="super">r</hi>
-                        <hi rend="italic">P</hi>
+                        und blau, manchmal mit Verzierungen, z.B. 1r <hi rend="italic">P</hi>
                      </p>
                   </decoDesc>
                   <bindingDesc>
@@ -779,12 +812,15 @@
                <history>
                   <origin>
                      <p>
-                        <origDate notBefore="1401" notAfter="1500"> 15. Jh.</origDate>;<origPlace
+                        <origDate notBefore="1401" notAfter="1500"> 15. Jh.</origDate>; <origPlace
                            ref="http://d-nb.info/gnd/4110086-4"> Nordfrankreich (<placeName
                               ref="http://www.geonames.org/2980916/saint-denis.html http://d-nb.info/gnd/5033889-4"
-                              >Saint-Denis</placeName>?)</origPlace>.</p>
+                              >Saint-Denis</placeName>?)</origPlace></p>
                   </origin>
-                  <provenance/>
+                  <provenance>
+                     <p>Besitzvermerke auf dem Vorsatzblatt Ir: <hi rend="italic">Codex D. Antonii
+                           Faure, 114</hi>; <hi rend="italic">Reg. 5192.2</hi></p>
+                  </provenance>
                   <acquisition/>
                </history>
                <additional>
@@ -792,16 +828,16 @@
                   <listBibl>
                      <listBibl type="cap">
                         <bibl corresp="#Mordek_1995">Mordek 1995, S. 507-516</bibl>
-                        <bibl corresp="#Schmitz_1996">Schmitz 1996, <ref subtype="Ansegis"
-                              target="120" type="external">S. 120-121</ref></bibl>
+                        <bibl corresp="#Schmitz_G_1996">Schmitz G 1996, S. 120-121</bibl>
                         <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
                            der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
                               type="external" subtype="Bl" target="paris-bn-lat-4631"/></bibl>
                      </listBibl>
                      <listBibl type="lit">
-                        <bibl>siehe bei dem nahe verwandten Cod. Paris Lat. 4628 A <hi
-                              rend="smallcaps">(Holder-Egger, Higounet </hi>u. a. mit der falschen
-                           Signatur Paris Lat. 4636 statt 4631)</bibl>
+                        <bibl>siehe bei dem nahe verwandten Cod. <ref type="internal" subtype="mss"
+                              target="paris-bn-lat-4628a">Paris Lat. 4628 A</ref> (Holder-Egger,
+                           Higounet u. a. mit der falschen Signatur Paris Lat. 4636 statt
+                           4631)</bibl>
                      </listBibl>
                      <listBibl type="cat">
                         <bibl>Catalogus codicum manuscriptorum Bibliothecae Regiae 3, 3 (Paris 1744)
@@ -813,10 +849,8 @@
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage: Die Transkription wurde zunächst auf Basis eines Scans vom
-            s/w-Mikrofilm erstellt. Die Nachkollation konnte auf Farbdigitalisate in guter Qualität
-            zurückgreifen, die bei der BNF in Paris bestellt wurden. Seit März 2017 ist ein
-            Farbdigitalisat online auf Gallica.</p>
+         <p>Transkriptionsvorlage: Die Transkription wurde nach einem hochauflösenden
+            Farbdigitalisat erstellt, das online auf Gallica verfügbar ist.</p>
          <projectDesc>
             <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
                   target="http://capitularia.uni-koeln.de/project/about/"/>
@@ -836,7 +870,7 @@
       </encodingDesc>
       <revisionDesc>
          <change who="DS" when="2015-04-01">Datei erstellt aus Mordek-XML</change>
-         <change who="BM" when="2017-04-28">Datei private veröffentlicht (BK 139, 140, 141, 156,
+         <change who="BM" when="2017-12-20">Datei veröffentlicht (BK 77, 139, 140, 141, 142, 156,
             184, 186, 187, 188, 189, 191, 192, 193, Mordek 27)</change>
       </revisionDesc>
    </teiHeader>
@@ -847,9 +881,10 @@
       <front>
          <div type="content">
             <list>
+
                <item n="1">
                   <ptr type="internal" target="#paris-bn-lat-4631-22rb-4"/>Incipiunt Capitula
-                  secundi libri que constituit domnus Ludouicus Imperator<list>
+                  secundi libri que constituit domnus Ludouicus Imperator <list>
                      <item n="1.1">
                         <ptr type="internal" target="#paris-bn-lat-4631-22rb-5"/>primum capitulum De
                         honoribus Ecclesiarum</item>
@@ -912,10 +947,12 @@
                      <item n="1.21">
                         <ptr type="internal" target="#paris-bn-lat-4631-25va-1"/>de pueris inuitis
                         parentibus detonsis vel puellis</item>
-                  </list></item>
+                  </list>
+               </item>
+
                <item n="2">
                   <ptr type="internal" target="#paris-bn-lat-4631-25va-3"/>Incipiunt alia Capitula
-                  que per se scribenda et ab omnibus obseruanda sunt<list>
+                  que per se scribenda et ab omnibus obseruanda sunt <list>
                      <item n="2.1">
                         <ptr type="internal" target="#paris-bn-lat-4631-25va-5"/>de terra
                         tributaria</item>
@@ -940,13 +977,16 @@
                      <item n="2.8">
                         <ptr type="internal" target="#paris-bn-lat-4631-26va-2"/>de forestibus
                         nouiter institutis</item>
-                  </list></item>
+                  </list>
+               </item>
+
                <item n="2.9">
                   <ptr type="internal" target="#paris-bn-lat-4631-26vb-1"/>Hec sunt Capitula
                   precipue ad legationem missorum nostrorum causam pertinencia ...</item>
+
                <item n="3">
                   <ptr type="internal" target="#paris-bn-lat-4631-32vb-9"/>Hec sunt capitula que
-                  aliqui ex missis ad nostram noticiam detulerunt ...<list>
+                  aliqui ex missis ad nostram noticiam detulerunt ... <list>
                      <item n="3.1">
                         <ptr type="internal" target="#paris-bn-lat-4631-32vb-10"/>(De his qui sine
                         consensu episcopi ...)</item>
@@ -957,66 +997,122 @@
                      <item n="3.4">
                         <ptr type="internal" target="#paris-bn-lat-4631-33rb-1"/>4</item>
                      <item n="3.5">
-                        <ptr type="internal" target="#paris-bn-lat-4631-33va-1"/>5 capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-33va-1"/>5</item>
                      <item n="3.6">
-                        <ptr type="internal" target="#paris-bn-lat-4631-33va-3"/>6 capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-33va-3"/>6</item>
                      <item n="3.7">
                         <ptr type="internal" target="#paris-bn-lat-4631-33va-5"/>7</item>
                      <item n="3.8">
-                        <ptr type="internal" target="#paris-bn-lat-4631-33vb-1"/>8 Capitulum</item>
-                  </list></item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-33vb-1"/>8</item>
+                  </list>
+               </item>
+
                <item n="4">
-                  <ptr type="internal" target="#paris-bn-lat-4631-34ra-1"/>Item alia capitula<list>
+                  <ptr type="internal" target="#paris-bn-lat-4631-34ra-1"/>Item alia capitula <list>
                      <item n="4.1">
                         <ptr type="internal" target="#paris-bn-lat-4631-34ra-2"/>(De beneficiis
                         destructis ...)</item>
                      <item n="4.2">
-                        <ptr type="internal" target="#paris-bn-lat-4631-34ra-4"/>2 Capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-34ra-4"/>2 </item>
                      <item n="4.3">
-                        <ptr type="internal" target="#paris-bn-lat-4631-34ra-6"/>3 Capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-34ra-6"/>3 </item>
                      <item n="4.4">
-                        <ptr type="internal" target="#paris-bn-lat-4631-34ra-8"/>4m Capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-34ra-8"/>4</item>
                      <item n="4.5">
-                        <ptr type="internal" target="#paris-bn-lat-4631-34rb-1"/>5m Capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-34rb-1"/>5</item>
                      <item n="4.6">
-                        <ptr type="internal" target="#paris-bn-lat-4631-34rb-3"/>6m Capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-34rb-3"/>6</item>
                      <item n="4.7">
-                        <ptr type="internal" target="#paris-bn-lat-4631-34rb-5"/>7m Capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-34rb-5"/>7</item>
                      <item n="4.8">
-                        <ptr type="internal" target="#paris-bn-lat-4631-34rb-7"/>8m</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-34rb-7"/>8</item>
                      <item n="4.9">
-                        <ptr type="internal" target="#paris-bn-lat-4631-34va-1"/>9m Capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-34va-1"/>9</item>
                      <item n="4.10">
                         <ptr type="internal" target="#paris-bn-lat-4631-34vb-1"/>10</item>
                      <item n="4.11">
-                        <ptr type="internal" target="#paris-bn-lat-4631-34vb-3"/>11 Capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-34vb-3"/>11 </item>
                      <item n="4.12">
-                        <ptr type="internal" target="#paris-bn-lat-4631-35ra-1"/>12 Capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-35ra-1"/>12 </item>
                      <item n="4.13">
-                        <ptr type="internal" target="#paris-bn-lat-4631-35ra-3"/>13 Capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-35ra-3"/>13 </item>
                      <item n="4.14">
-                        <ptr type="internal" target="#paris-bn-lat-4631-35ra-5"/>14 capitulum</item>
-                  </list></item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-35ra-5"/>14 </item>
+                  </list>
+               </item>
+
                <item n="5">
-                  <ptr type="internal" target="#paris-bn-lat-4631-78ra-1"/>Incipit prefaciuncula
-                  quarti libelli<list>
+                  <ptr type="internal" target="#paris-bn-lat-4631-78ra-3"/>Incipiunt tituli
+                  capitulorum <list>
                      <item n="5.1">
                         <ptr type="internal" target="#paris-bn-lat-4631-80va-2"/>De solucione occisi
                         presbiteri</item>
                      <item n="5.2">
                         <ptr type="internal" target="#paris-bn-lat-4631-82va-1"/>Qualiter de statu
                         suo pulsatus euindicet libertatem suam</item>
+                  </list>
+               </item>
+
+               <item n="610">
+                  <ptr type="internal" target="#paris-bn-lat-4631-88va-5"/>Alia capitula <list>
+                     <item n="1300">
+                        <ptr type="internal" target="#paris-bn-lat-4631-88va-6"/>(Karolus
+                        serenissimus imperator augustus a deo coronatus magnus et pacificus
+                        ...)</item>
+                     <item n="620">
+                        <ptr type="internal" target="#paris-bn-lat-4631-88vb-1"/>2 </item>
+                     <item n="630">
+                        <ptr type="internal" target="#paris-bn-lat-4631-88vb-3"/>3</item>
+                     <item n="640">
+                        <ptr type="internal" target="#paris-bn-lat-4631-88vb-5"/>4</item>
+                     <item n="650">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89ra-1"/>5</item>
+                     <item n="660">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89ra-3"/>6</item>
+                     <item n="670">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89ra-5"/>7</item>
+                     <item n="680">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89ra-7"/>8</item>
+                     <item n="690">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89ra-9"/>9</item>
+                     <item n="700">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89rb-1"/>10</item>
+                     <item n="710">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89rb-3"/>11</item>
+                     <item n="720">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89va-1"/>12</item>
+                     <item n="730">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89va-3"/>13</item>
+                     <item n="740">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89va-5"/>14</item>
+                     <item n="750">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89va-7"/>15</item>
+                     <item n="760">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89va-9"/>16</item>
+                     <item n="770">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89vb-1"/>17</item>
+                     <item n="780">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89vb-3"/>18</item>
+                     <item n="790">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89vb-5"/>19</item>
+                     <item n="800">
+                        <ptr type="internal" target="#paris-bn-lat-4631-89vb-7"/>20</item>
+                     <item n="810">
+                        <ptr type="internal" target="#paris-bn-lat-4631-90ra-1"/>21</item>
                   </list></item>
+
                <item n="6">
                   <ptr type="internal" target="#paris-bn-lat-4631-90ra-3"/>Anno sexto decimo
-                  regnante domno nostro Ludouico<list>
+                  regnante domno nostro Ludouico <list>
                      <item n="6.1">
                         <ptr type="internal" target="#paris-bn-lat-4631-90ra-4"/>(Conuentus
                         episcoporum debet fieri ...)</item>
-                  </list></item>
+                  </list>
+               </item>
+
                <item n="7">
                   <ptr type="internal" target="#paris-bn-lat-4631-90rb-1"/>hec capitula ab episcopis
-                  tractanda sunt<list>
+                  tractanda sunt <list>
                      <item n="7.1">
                         <ptr type="internal" target="#paris-bn-lat-4631-90rb-2"/>1</item>
                      <item n="7.2">
@@ -1031,9 +1127,11 @@
                         <ptr type="internal" target="#paris-bn-lat-4631-90va-5"/>6</item>
                      <item n="7.7">
                         <ptr type="internal" target="#paris-bn-lat-4631-90va-7"/>7</item>
-                  </list></item>
+                  </list>
+               </item>
+
                <item n="8">
-                  <ptr type="internal" target="#paris-bn-lat-4631-90va-9"/>[Ohne Rubrik]<list>
+                  <ptr type="internal" target="#paris-bn-lat-4631-90va-9"/>[Liste ohne Rubrik] <list>
                      <item n="8.1">
                         <ptr type="internal" target="#paris-bn-lat-4631-90va-9"/>de eo qui sine
                         consensu episcopi ...</item>
@@ -1064,9 +1162,12 @@
                      <item n="8.10">
                         <ptr type="internal" target="#paris-bn-lat-4631-91vb-1"/>De his qui agros
                         dominicatos excolere negligunt ...</item>
-                  </list></item>
+                  </list>
+               </item>
+
                <item n="9">
-                  <ptr type="internal" target="#paris-bn-lat-4631-91vb-3"/>Item sequuntur alia capitula<list>
+                  <ptr type="internal" target="#paris-bn-lat-4631-91vb-3"/>Item sequuntur alia
+                  capitula <list>
                      <item n="9.1">
                         <ptr type="internal" target="#paris-bn-lat-4631-91vb-3"/>Et primo de illo
                         qui beneficium desertum fecit</item>
@@ -1113,7 +1214,7 @@
                         <ptr type="internal" target="#paris-bn-lat-4631-93ra-7"/>XV de inferenda a
                         vicariis vel a missis comitum exigenda ...</item>
                      <item n="9.16">
-                        <ptr type="internal" target="#paris-bn-lat-4631-93rb-2"/>16 capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-93rb-2"/>16</item>
                      <item n="9.17">
                         <ptr type="internal" target="#paris-bn-lat-4631-93vb-1"/>De eo qui propter
                         cupiditatem rerum quemcumque ... interfecerit</item>
@@ -1136,20 +1237,28 @@
                         <ptr type="internal" target="#paris-bn-lat-4631-94va-3"/>de fagdis
                         cohercendis</item>
                      <item n="9.24">
-                        <ptr type="internal" target="#paris-bn-lat-4631-94vb-1"/>24 Capitulum</item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-94vb-1"/>24</item>
                      <item n="9.25">
                         <ptr type="internal" target="#paris-bn-lat-4631-94vb-3"/>25</item>
                      <item n="9.26">
-                        <ptr type="internal" target="#paris-bn-lat-4631-95ra-1"/>26 Capitulum</item>
-                  </list></item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-95ra-1"/>26</item>
+                  </list>
+               </item>
+
                <item n="10">
                   <ptr type="internal" target="#paris-bn-lat-4631-95rb-1"/>Hec sunt capitula que
-                  volumus vt diligenter inquirant<list>
+                  volumus vt diligenter inquirant <list>
                      <item n="10.1">
-                        <ptr type="internal" target="#paris-bn-lat-4631-95rb-1"/>Capitulum I </item>
+                        <ptr type="internal" target="#paris-bn-lat-4631-95rb-1"/>I </item>
                      <item n="10.2">
                         <ptr type="internal" target="#paris-bn-lat-4631-95vb-1"/>de rebus
                         ecclesiasticis</item>
+                  </list>
+               </item>
+               <item n="1290"><ptr type="internal" target="#paris-bn-lat-4631-96ra-1"/>[Anfang der
+                  Liste verloren] <list>
+                     <item><ptr type="internal" target="#paris-bn-lat-4631-96ra-1"/>(facientes
+                        habuerunt ita et omnes qui lege salica viuunt ...) </item>
                   </list></item>
             </list>
          </div>
@@ -1160,15 +1269,15 @@
          <div type="letters">
             <p>Einzelbuchstaben: Der Schreiber gebraucht ein seitlich nach links geneigtes rundes d,
                bei dem häufiger der obere Bogenabschnitt als Schlaufe gestaltet ist. In der Regel
-               verwendet er i-Longa und setzt dort, wo er ein i ohne Unterlänge benutzt, i-Striche
+               verwendet er i-longa und setzt dort, wo er ein i ohne Unterlänge benutzt, i-Striche
                zur besseren Unterscheidung von den benachbarten Buchstabenschäften (z.B. auf
-                  <locus>fol. 22rb, Z. 34</locus> bei <mentioned>legittime</mentioned>). Schaft-s
-               kommt neben rundem s vor. Es finden sich zwei Formen von r: zum einen ein r, bei dem
-               die Fahne deutlich zu erkennen ist, zum anderen ein r, bei dem die Fahne eher einem
-               Bogen ähnelt, der zurück zum Schaft gezogen wird. Verwendung von u und v. Minuskel-v
+                  <locus>fol. 22rb, Z. 34</locus> bei <mentioned>legittime</mentioned>). Es finden
+               sich zwei Formen von r: zum einen ein r, bei dem die Fahne deutlich zu erkennen ist,
+               zum anderen ein r, bei dem die Fahne eher einem Bogen ähnelt, der zurück zum Schaft
+               gezogen wird. Schaft-s kommt neben rundem s vor. Verwendung von u und v. Minuskel-v
                fast ausschließlich am Wortanfang, besonders bei den Wörtern
                   <mentioned>vt</mentioned> sowie bei den Formen von <mentioned>venire</mentioned>
-               und <mentioned>volumus</mentioned>.</p>
+               und bei <mentioned>volumus</mentioned>.</p>
             <p>Ligaturen: Gelegentlich wird eine tis-Ligatur verwendet, bei der der t-Balken
                verlängert wird und in ein Schaft-s übergeht (z.B. <locus>fol. 22vb, Z.
                39-40</locus>: <mentioned>viduitatis</mentioned>, <locus>fol. 24ra, Z. 2</locus>:
@@ -1187,20 +1296,20 @@
                waagerechter Strich mit Ausbuchtung nach oben mit derselben Funktion (z.B. auf
                   <locus>fol. 22rb, Z. 26</locus> über gek. <mentioned>hominem</mentioned> oder auf
                   <locus>fol. 22vb, Z. 7</locus> über gek. <mentioned>ecclesiam</mentioned>). Bei
-               der Abkürzung eccla. (und deklinierte Formen analog) setzt der Schreiber den
-               Kürzungsstrich erst über den letzten Buchstaben. Das Wort
-                  <mentioned>sacramenta</mentioned> wird <mentioned>sacra.</mentioned> mit über dem
+               der Abkürzung <mentioned>eccla</mentioned> (und deklinierte Formen analog) setzt der
+               Schreiber den Kürzungsstrich erst über den letzten Buchstaben. Das Wort
+                  <mentioned>sacramenta</mentioned> wird <mentioned>sacra</mentioned> mit über einem
                Punkt übergeschriebenem <mentioned>ta</mentioned> abgekürzt (z.B. <locus>fol. 24va,
                   Z. 31 und 34</locus>). Die Kürzung <mentioned>ltimus</mentioned> (samt
                Flektionsformen) wird, der Gewohnheit des Schreibers entsprechend, mit doppeltem t
                aufgelöst (<mentioned>legittimus</mentioned>).</p>
          </div>
-         <div type="punctuation">
+         <!--         <div type="punctuation">
             <p>Interpunktionszeichen - fast ausschließlich die media distinctio - werden nur äußerst
                spärlich eingesetzt. Einmal ist ein kommaähnliches Zeichen anzutreffen (<locus>fol.
                   34rb, Z. 30</locus>), zudem finden sich wenige virgulae suspensivae (z.B.
                   <locus>fol. 90ra</locus>).</p>
-         </div>
+         </div>-->
 
          <div type="structure">
             <p>Die optische Gestaltung der Handschrift ist sehr klar und einheitlich. Überschriften
@@ -1210,14 +1319,14 @@
                späteren Arbeitsschritt hinzugefügt, weil die farbige Tinte z.T. die Texttinte
                übermalt; damit der Rubrikator wusste, welchen Buchstaben er als Initiale ausführen
                sollte, hinterließ der Schreiber kleine Minuskelbuchstaben an den entsprechenden
-               Stellen, die z.T. noch unter der farbigen Tinte hervorlugen, z.B. auf <locus>fol.
-                  26rb</locus> (im <mentioned>U</mentioned> von <mentioned>Uolumus</mentioned> ist
-               ein kleines Minuskel-v erkennbar). Freigebliebene Zeilenenden werden oft mit
-               Ornamenten (in Form von zwei ineinander gewundenen Linien) in roter Tinte
-               ausgefüllt.</p>
-            <p><locus>Foll. 22rb-25va</locus>: Nur c. 1 ist (im Kontext der Überschrift) nummeriert,
-               die übrigen Kapitel nicht. Die Kopie von BK 139 wird im Kontext der Hs. als zweites
-               Buch der Lex Salica präsentiert (<mentioned>Incipiunt capitula secundi libri
+               Stellen, die z.T. noch unter der farbigen Tinte zu erkennen sind, z.B. auf
+                  <locus>fol. 26rb</locus> (im <mentioned>U</mentioned> von
+                  <mentioned>Uolumus</mentioned> ist ein kleines Minuskel-v erkennbar).
+               Freigebliebene Zeilenenden werden oft mit Ornamenten (in Form von zwei ineinander
+               gewundenen Linien) in roter Tinte ausgefüllt. Für die Kapitelzählung werden arabische
+               Ziffern verwendet.</p>
+            <p><locus>Foll. 22rb-25va</locus>: Die Kopie von BK 139 wird im Kontext der Hs. als
+               zweites Buch der Lex Salica präsentiert (<mentioned>Incipiunt capitula secundi libri
                   ...</mentioned>, <locus>fol. 22rb Z. 20</locus>), unmittelbar anschließend an das
                Explicit zur vorangehenden Kopie der Lex Salica: <mentioned>Explicit primus liber
                   legis Salice</mentioned>.) Diese Interpretation stammt offensichtlich vom Kopisten
@@ -1229,25 +1338,24 @@
                worden, so daß die Vermutung naheliegt, der Schreiber des Latinus 4631 habe beim
                Kopieren seiner Vorlage diese, seinem Textverständnis entsprechend, mit diesen
                nachträglichen Ordnungskriterien versehen (vgl. die Hs. <ref type="internal"
-                  subtype="mss" target="paris-bn-lat-4628a">Paris, BN, lat. 4628A</ref>).</p>
+                  subtype="mss" target="paris-bn-lat-4628a">Paris lat. 4628A</ref>). Nur c. 1 ist
+               (im Kontext der Überschrift) nummeriert, die übrigen Kapitel nicht.</p>
             <p><locus>Foll. 25va-28rb</locus>: In die Kapitelliste BK 140 (<locus>foll.
                   25va-26vb</locus>) werden nach c. 5 zwei Einzelkapitel aus BK 141 (cc. 7 und 14)
                eingeschoben. Die komplette Liste BK 141 folgt auf <locus>foll. 26vb-28rb</locus>. In
                der Gestaltung weicht dieser Teil von dem oben geschilderten Muster ab: Der Text wird
-               lediglich durch eine rote Rubrik und eine rote Anfangsinitiale eingeleitet, abgesehen
-               davon ist das Stück nicht weiter unterteilt. Die Anfänge der einzelnen "Kapitel" -
-               die hier nicht als solche erkennbar sind! - werden lediglich durch Majuskeln mit
-               Doppelstrich leicht hervorgehoben; allerdings stehen diese Majuskeln auch
-               gelegentlich am Anfang eines neuen Satzes, mit dem kein neues Kapitel beginnt (z.B.
-               fol. 27rb, Z. 13 f., bei <mentioned>De periuriis et falsis testibus
-                  compescendis</mentioned> innerhalb von BK 141 c. 12).</p>
-            <p><locus>Foll. 32vb-35rb, 90va-94vb</locus>: Die Handschrift enthält die Wormser
-               Gesetzgebung mit den Kapitularien BK 184, 186, 187, 188, 191, 192 und 193, wobei BK
-               191 und 192 doppelt, aber aus unterschiedlichen Vorlagen entnommen, geboten werden.
-               Die teils nur sporadisch angebrachte Nummerierung wurde mal in arabischen Ziffern,
-               mal in römischen ausgeführt. Nicht regelmäßig steht vor den Kapitelnummern ein
-                  <mentioned>Ca</mentioned> oder <mentioned>ca</mentioned> für
-                  <mentioned>capitulum</mentioned>.</p>
+               lediglich durch eine rote Rubrik und eine rote Anfangsinitiale eingeleitet; innerhalb
+               des Textblocks werden neue Sinnabschnitte nur durch Majuskeln mit Doppelstrich
+               markiert, die größtenteils, aber nicht immer mit den Kapitelanfängen nach der
+               Einteilung bei BK zusammenfallen (eine Ausnahme findet sich z.B. fol. 27rb, Z. 13 f.,
+               bei <mentioned>De periuriis et falsis testibus compescendis</mentioned>, das bei BK
+               kein eigenes Kapitel bildet, sondern zu BK 141 c. 12 zählt).</p>
+            <p><locus>Foll. 32vb-35rb</locus>: BK 191 (ohne c. 8) und BK 192 werden als zwei
+               separate Listen im Anschluss an Kapitularien Karls des Großen (BK 44, 61, 63)
+               geboten. Die Kapitelzählung erfolgt in arabischen Ziffern, wobei bei beiden c. 1
+               nicht nummeriert wird. Beide Stücke sind in der Handschrift noch einmal enthalten,
+               und zwar im Kontext der Wormser Gesetzgebung auf foll. 90va-94vb, wo sie aus einer
+               anderen Vorlage entnommen wurden.</p>
             <p><locus>Foll. 80v, 82v</locus>: Die Einzelkapitel Mordek Anhang Nr. 27,3 und BK 156
                cc. 2 und 3 sind im Kontext der Collectio Ansegisi überliefert. In der Capitulatio zu
                Ansegis Buch 4 werden sie auf <locus>fol. 78rb</locus> an 14. und 26. Stelle geführt,
@@ -1256,6 +1364,27 @@
                Sammlung des Ansegis enthält, ist optisch ebenfalls entsprechend dem oben
                beschriebenen Schema gestaltet (rote Überschriften/Rubriken, abwechselnd rote und
                blaue Initialen).</p>
+            <p><locus>Foll. 88va-90va</locus>: BK 77 beginnt mit der roten Rubrik <mentioned>Alia
+                  capitula</mentioned>, im folgenden Text sind Initialen und Kapitelzählung
+               ebenfalls in rot gehalten. Der Prolog wird durch ein rotes Absatzzeichen eröffnet und
+               stillschweigend als c. 1 gezählt. Beim folgenden c. <mentioned>2</mentioned> (= BK 77
+               c. 1) trug der Rubrikator in den freigelassenen Platz vor der ersten Zeile des Textes
+               irrtümlich eine überflüssige U-Initiale ein; die Kapitelzählung (<mentioned>Capl.
+                  2</mentioned>) schrieb er in den freigebliebenen Raum der darüberliegenden Zeile.
+               Ab c. <mentioned>3</mentioned> (= BK 77 c. 2) ging er dazu über, jeweils nur die
+               Kapitelzahl im ausgesparten Platz vor dem Kapitelbeginn zu ergänzen und die
+               darüberliegenden frei gebliebenen Zeilenenden mit Ornamenten aufzufüllen.</p>
+            <p><locus>Foll. 90va-94vb</locus>: Die Wormser Gesetzgebung Ludwigs des Frommen von 829
+               erscheint hier fast vollständig in der Reihenfolge BK 184, 186, 191, 192, 193, 189,
+               188 c. 5, 187 und 188 cc. 1-2. BK 191 (hier mit c. 8) und 192 sind in der Handschrift
+               somit doppelt vorhanden (aus anderer Vorlage kopiert bereits oben auf <locus>foll.
+                  32vb-35rb</locus>). Die teils nur sporadisch angebrachte Nummerierung wurde mal in
+               arabischen Ziffern, mal in römischen ausgeführt. Nicht regelmäßig steht vor den
+               Kapitelnummern ein <mentioned>Ca</mentioned> oder <mentioned>ca</mentioned> für
+                  <mentioned>capitulum</mentioned>.</p>
+            <p><locus>Foll. 96ra</locus>: Der wegen vorangehenden Blattverlustes hier fragmentarisch
+               einsetzende Text von BK 142 cc. 10-12 ist weder durch Absätze noch eine
+               Kapitelzählung oder farbige Initialen unterteilt.</p>
          </div>
          <div type="other">
             <p>Benutzungsspuren: Am Rand von <locus>fol. 22r</locus>, auf Höhe von <locus>Z.
@@ -1271,9 +1400,9 @@
          </div>
       </front>
       <body>
-         <milestone unit="capitulare" n="BK.139"/>
          <cb n="22rb"/>
          <lb n="20"/>
+         <milestone unit="capitulare" n="BK.139"/>
          <ab type="meta-text" rend="coloured nota" xml:id="paris-bn-lat-4631-22rb-4"
             corresp="BK.139_inscriptio"> Incipiunt Capitula secundi libri <lb/>
             <expan>que</expan> constituit domnus <rs type="person">Ludoui<lb break="no"/>cus</rs>
@@ -1297,11 +1426,11 @@
             bannum nostrum soluere <lb/>cogatur . is vero <choice>
                <abbr>q</abbr>
                <expan>qui</expan>
-            </choice><note type="editorial">Gek. q mit darübergesetztem Strich, dieselbe Abkürzung
-               wird oben im Incipit für <mentioned>que</mentioned> verwendet.</note> interfectus <cb
-               n="22va"/> est absque compositione <lb/> iaceat ac deinde interfec<lb break="no"/>tor
-            secundum iudicium canoni<lb break="no"/>cum congruam facinori quod <lb/>admisit
-            penitenciam acci<lb break="no"/>piat Si proprius seruus hoc
+            </choice><note type="editorial">Gek. <mentioned>q</mentioned> mit darüber gesetztem
+               Strich, dieselbe Abkürzung wird oben im Incipit für <mentioned>que</mentioned>
+               verwendet.</note> interfectus <cb n="22va"/> est absque compositione <lb/> iaceat ac
+            deinde interfec<lb break="no"/>tor secundum iudicium canoni<lb break="no"/>cum congruam
+            facinori quod <lb/>admisit penitenciam acci<lb break="no"/>piat Si proprius seruus hoc
                <lb/><expan>commiserit</expan> iudicio aque <lb/>feruentis examinetur <lb/>vtrum hoc
             sponte an se de<lb break="no"/>fendendo fecisset Et si <lb/>manus eius exusta fuerit
             <lb/>interficiatur Si autem non <lb/>fuerit <expan>dominus</expan> eius iuxta quod
@@ -1360,11 +1489,7 @@
             <lb/>inuitam eam duxit legem suam <lb/>componat illam vero vlterius <lb/>non attingat </ab>
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-23ra-1"
             corresp="BK.139_5_inscriptio">de eo qui homi<lb break="no"/>nem publicam penitenciam
-               agen<lb break="no"
-            /><!-- TJ: Vor dem -tem noch ein Zeichen in rot, auf welches ich mir keinen Reim machen 
-               kann. - bm: Ich denke, das Zeichen soll die Überschrift zusätzlich von dem in derselben
-               Zeile beginnenden normalen Text absetzen. Habe das daher nicht mittranskribiert. -->tem
-            Interfecerit </ab>
+               agen<lb break="no"/>tem Interfecerit </ab>
          <ab type="text" xml:id="paris-bn-lat-4631-23ra-2" corresp="BK.139_5"><seg type="initial"
                rend="coloured">Q</seg>Vi <lb/>hominem publicam pe<lb break="no"/>nitenciam agentem
                inter<lb break="no"/>fecerit bannum nostrum in <num>triplo</num>
@@ -1377,20 +1502,15 @@
                rend="coloured">S</seg>I quis res suas pro <lb/>salute anime sue vel <lb/>ad aliquem
                venera<lb break="no"/>bilem locum vel propinquo <lb/>suo vel cuilibet alteri tra<lb
                break="no"/>dere voluerit et eo tempore <lb/>intra ipsum comitatum fuerit <lb/>in quo
-            res ille posite sunt
-            <lb/><expan>legittimam</expan><!-- TJ: Mit Doppel-t transkribiert, obwohl nur eines da 
-               steht?! Analog zum Fall ecclesia mit einem oder zwei c müsste es hier dann legitimam 
-               heißen, oder?! - bm: Da es ausgeschrieben immer mit Doppel-t wird - s.o. in der 
-               Vorbemerkung. TJ: Na gut!-->
-            traditionem facere <lb/>studeat Quodsi eodem tempore <lb/>quo illas tradere vult ex<lb
-               break="no"/>tra eundem comitatum fuerit <lb/>id est siue in <sic>excercitu</sic>
-               si<lb break="no"/>ue in palacio siue in alio <lb/>quolibet loco adhibeat sibi
-            <lb/>vel de suis pagensibus vel <lb/>de aliis qui eadem lege viuant <lb/>qua ipse viuit
-            testes ydo<lb break="no"/>neos Vel si illos habere <lb/>non potuerit tunc de aliis
-            <lb/>quales ibi meliores inue<lb break="no"/>niri possint et coram eis <lb/>rerum suarum
-            traditionem fa<lb break="no"/>ciat et fideiussores vesti<lb break="no"/>ture donet qui
-            ei qui illam <lb/>traditionem accipit vesti<cb n="23rb" break="no"/>turam faciant Et
-            postquam <choice>
+            res ille posite sunt <lb/><expan>legittimam</expan> traditionem facere <lb/>studeat
+            Quodsi eodem tempore <lb/>quo illas tradere vult ex<lb break="no"/>tra eundem comitatum
+            fuerit <lb/>id est siue in <sic>excercitu</sic> si<lb break="no"/>ue in palacio siue in
+            alio <lb/>quolibet loco adhibeat sibi <lb/>vel de suis pagensibus vel <lb/>de aliis qui
+            eadem lege viuant <lb/>qua ipse viuit testes ydo<lb break="no"/>neos Vel si illos habere
+            <lb/>non potuerit tunc de aliis <lb/>quales ibi meliores inue<lb break="no"/>niri
+            possint et coram eis <lb/>rerum suarum traditionem fa<lb break="no"/>ciat et
+            fideiussores vesti<lb break="no"/>ture donet qui ei qui illam <lb/>traditionem accipit
+               vesti<cb n="23rb" break="no"/>turam faciant Et postquam <choice>
                <abbr>hc</abbr>
                <expan>hec</expan>
             </choice>
@@ -1409,22 +1529,16 @@
                <expan>predicta</expan> here<lb break="no"/>ditate habeant quam cum alio
             <lb/>coherede suo habere debebant <lb/>Et hoc obseruetur erga <lb/>patrem et filium et
             nepotem <lb/> vsque ad annos legittimos <lb/>
-            <sic>Postca</sic><!-- bm: Oder doch Postea? 
-               DT: Sieht für mich auch eher nach postca aus 
-               TJ: Könnte auch ein verunglücktes e sein, sehen aber kein Problem darin, das vorläufig als 
-               postca stehen zu lassen. Sollte aber am Or. noch einmal geprüft werden! 
-               - bm: Auch anhand des neuen Digitalisates würde ich bei "Postca" bleiben. 
-               DT: Ja! Das c sieht aber echt etwas zittrig aus. 
-               TJ: Würde nun auch Postca sagen!-->
-            ipse res ad immuni<lb break="no"/>tatem ipsius ecclesie redeant <lb/></ab>
+            <sic>Postca</sic> ipse res ad immuni<lb break="no"/>tatem ipsius ecclesie redeant
+            <lb/></ab>
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-23rb-1"
             corresp="BK.139_7_inscriptio">de homicidiis prohibendis <lb/></ab>
          <ab type="text" xml:id="paris-bn-lat-4631-23rb-2" corresp="BK.139_7"><expan><seg
                   type="initial" rend="coloured">Q</seg>Vicumque</expan> hominem aut <lb/>ex leui
-            causa aut <lb/>sine causa interfecerit <lb/><sic>vuigildum</sic> eius ad hos ad
-            <lb/>quos ille pertinet componatur <lb/>ipse vero propter talem <expan>presump<lb
-                  break="no"/>tionem</expan> in exilium mittatur <lb/>per aliquantum tempus vt nobis
-               <cb n="23va"/>placuerit res tamen suas non <lb/>amittat </ab>
+            causa aut <lb/>sine causa interfecerit <lb/>vuigildum eius ad hos ad <lb/>quos ille
+            pertinet componatur <lb/>ipse vero propter talem <expan>presump<lb break="no"
+               />tionem</expan> in exilium mittatur <lb/>per aliquantum tempus vt nobis <cb n="23va"
+            />placuerit res tamen suas non <lb/>amittat </ab>
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-23va-1"
             corresp="BK.139_8_inscriptio">Que in <expan>composi<lb break="no"/>tionem</expan>
             vuirgildi dari non <lb/>debeant <lb/></ab>
@@ -1554,9 +1668,9 @@
                adhram<lb break="no"/>niat Et si res non habe<lb break="no"/>at fideiussores donet <choice>
                <abbr>q</abbr>
                <expan>qui</expan>
-            </choice><note type="editorial">Gek. q mit übergeschriebenem Strich; vom Schreiber
-               sowohl für <mentioned>que</mentioned> als auch für <mentioned>qui</mentioned>
-               verwendet (s.o.).</note>
+            </choice><note type="editorial">Gek. <mentioned>q</mentioned> mit übergeschriebenem
+               Strich; vom Schreiber sowohl für <mentioned>que</mentioned> als auch für
+                  <mentioned>qui</mentioned> verwendet (s.o.).</note>
             <lb/>eum adhrammire et in pla<lb break="no"/>citum adduci faciant et lice<lb break="no"
             />at ei prima vice per sacramentum <lb/>secundum legem ydoneare si <lb/>potuerit Nam si
             alia vice <lb/><num>duo</num> vel <num>tres</num> eum de furto <lb/>accusauerint liceat
@@ -1579,15 +1693,10 @@
             />nientes suscipiat quousque <lb/>animo nostro satisfactum <lb/>habeat Qui vero
             epistolam <lb/>nostram <expan>quocumque</expan> modo de<lb break="no"/>spexerit iussu
             nostro ad pa<lb break="no"/>lacium veniat et iuxta vo<lb break="no"/>luntatem nostram
-            congruam <lb/>stulticie sue castigationem<note type="editorial">Gek.
-                  <mentioned>castigatioe.</mentioned> mit Kürzungsstrich und einem weiteren
-               Kürzungsszeichen am Ende, das dem vom Schreiber für -[q]ue verwendeten ähnelt (vgl.
-                  <locus>fol. 25ra, Z. 2</locus>: <mentioned>quousque</mentioned> und <locus>ebd.,
-                  Z. 5</locus>: <mentioned>quocumque</mentioned>), aber hier keinen Sinn
-               ergibt.</note>
-            <lb/>accipiat Et si liber homo <lb/>vel ministerialis comitis <lb/>hoc fecerit honorem
-                  <expan>qua<lb break="no"/>lemcumque</expan> habuerit siue <lb/>beneficium amittat
-            Et si <lb/>seruus fuerit nudus ad <lb/>palum vapulet et caput <lb/>eius tondeatur </ab>
+            congruam <lb/>stulticie sue castigationem <lb/>accipiat Et si liber homo <lb/>vel
+            ministerialis comitis <lb/>hoc fecerit honorem <expan>qua<lb break="no"
+               />lemcumque</expan> habuerit siue <lb/>beneficium amittat Et si <lb/>seruus fuerit
+            nudus ad <lb/>palum vapulet et caput <lb/>eius tondeatur </ab>
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-25ra-1"
             corresp="BK.139_17_inscriptio">de iniustis <lb/>teloneis et consuetudinibus <lb/></ab>
          <ab type="text" xml:id="paris-bn-lat-4631-25ra-2" corresp="BK.139_17"><seg type="initial"
@@ -1645,11 +1754,7 @@
             sui vt <lb/>in tali habitu permaneant <lb/>qualis eis <expan>complacuerit</expan>
             <lb/>
          </ab>
-
-         <!-- bm: Hier Beginn der neuen Transkription zur Nachkollation. -->
-
          <milestone unit="capitulare" n="BK.140"/>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-25va-3"
             corresp="BK.140_inscriptio">Incipiunt alia Capitula que <lb/>per se scribenda et ab
             omnibus<lb/> obseruanda sunt </ab>
@@ -1660,7 +1765,6 @@
                eie<lb break="no"/>cerit et non solum hoc <lb/>sed etiam si nec reddere nec
             <lb/>foras eicere voluerit et <lb/>legittimo domino ea contra<lb break="no"/>dixerit et
             illi postea inde <lb/>fugerint secundum legem ea <lb/>soluere cogatur </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-25va-5"
             corresp="BK.140_2_inscriptio">de terra<lb/> tributaria</ab>
          <ab type="text" xml:id="paris-bn-lat-4631-25va-6" corresp="BK.140_2"><expan><seg
@@ -1670,7 +1774,6 @@
             inde <lb/>soluebatur omnimodo ad partem <lb/>nostram persoluat Nisi forte <lb/>talem
             firmitatem de parte <lb/>dominica habeat per quam <lb/>ipsum tributum sibi donatum
             <lb/>possit ostendere </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-25vb-1"
             corresp="BK.140_3_inscriptio">de beneficiis<lb/> destructis</ab>
          <ab type="text" xml:id="paris-bn-lat-4631-25vb-2" corresp="BK.140_3"><expan><seg
@@ -1678,7 +1781,6 @@
             occasione pro<lb break="no"/>prii desertum habue<lb break="no"/>rit et intra annum
             postquam <lb/>ei a comite vel misso nostro <lb/>notum factum est illud emen<lb
                break="no"/>datum non habuerit ipsum <lb/>beneficium amittat </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-25vb-3"
             corresp="BK.140_4_inscriptio">de terra<lb/> censali</ab>
          <ab type="text" xml:id="paris-bn-lat-4631-25vb-4" corresp="BK.140_4"><seg type="initial"
@@ -1696,7 +1798,6 @@
             despoliatus in <lb/> egestatem incidat vt aut <cb n="26ra"/> talem censum inde persoluat
             <lb/>qualis ei fuerit constitutus <lb/>vel portionem aliquam inde <lb/>in beneficium
             accipiat vnde <lb/> se sustentare valeat </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-26ra-1"
             corresp="BK.140_5_inscriptio">de <lb/> nonis et decimis <lb/></ab>
          <ab type="text" xml:id="paris-bn-lat-4631-26ra-2" corresp="BK.140_5"><seg type="initial"
@@ -1715,10 +1816,7 @@
             dare neglexerit <lb/>primum quidem illas cum lege <lb/> sua restituat . Insuper et
             <lb/>bannum nostrum persoluat vt <lb/>ita castigetur caueat ne <lb/> sepius iterando
             beneficium amittat <cb n="26rb"/></ab>
-
-
          <milestone unit="capitulare" n="BK.141"/>
-
          <ab type="meta-text" rend="coloured nota" xml:id="paris-bn-lat-4631-26rb-1"
             corresp="BK.141_7_inscriptio">De locis ad claustra canonicorum <lb/> facienda dandis
             <lb/></ab>
@@ -1733,7 +1831,6 @@
                break="no"/>cedatur vt nulli occasionem <lb/>habeant nec <expan>prepositi</expan> nec
             <lb/>subiecti quin iuxta suam <lb/>professionem communiter de<lb break="no"/>gere atque
             conseruare possint <lb/></ab>
-
          <ab type="meta-text" rend="coloured nota" xml:id="paris-bn-lat-4631-26rb-3"
             corresp="BK.141_14_inscriptio">De placitis qualiter liberi ho<lb break="no"/>mines
             obseruare debent <lb/>
@@ -1748,10 +1845,7 @@
             <lb/>tenent non alius venire <lb/>
             <expan>compellatur</expan> nisi aut qui li<lb break="no"/>tigat aut iudicat aut <lb/>
             testificatur </ab>
-
-
          <milestone unit="capitulare" n="BK.140_1"/>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-26rb-5"
             corresp="BK.140_6_inscriptio">de mancipiis in <lb/>villas dominicas confugientibus <cb
                n="26va"/>
@@ -1759,39 +1853,29 @@
          <ab type="text" xml:id="paris-bn-lat-4631-26va-1" corresp="BK.140_6"><seg type="initial"
                rend="coloured">S</seg>I Cuiuslibet mancipia <lb/>in villam nostram confu<lb
                break="no"/>gerint auctor eiusdem <lb/>ville querenti domino ea non con<lb break="no"
-            />tradicat sed
-            statim<!-- bm: eigentlich ein Schaft zu wenig ("statin"); aber der i-Strich und der verlängerte
-            letzte Schaft, der sonst nur bei Endungs-m vorkommt, lassen darauf schließen, das "statim" 
-            intendiert war. -->
-            ea foras <lb/>de eadem villa proiciat . et si se <lb/>putat ad ea repetenda iu<lb
-               break="no"/>sticiam habere repetat et se<lb break="no"/>cundum legem acquirat Si
-            <lb/>vero tempore <rs type="person">domni karoli ge<lb break="no"/>nitoris nostri</rs>
-            in villam illam <lb/>confugerint et dominus ea <expan>querit</expan> auctor eiusdem
-            ville aut ea <lb/>legittime contineat aut <expan>que<lb break="no"/>renti</expan> domino
-            reddat Et auctor <lb/> propter vestituram <rs type="person">domni karoli <lb/>genitoris
-               nostri</rs> eadem mancipia <lb/>contradicere non <expan>presumat</expan>
+            />tradicat sed statim ea foras <lb/>de eadem villa proiciat . et si se <lb/>putat ad ea
+            repetenda iu<lb break="no"/>sticiam habere repetat et se<lb break="no"/>cundum legem
+            acquirat Si <lb/>vero tempore <rs type="person">domni karoli ge<lb break="no"/>nitoris
+               nostri</rs> in villam illam <lb/>confugerint et dominus ea <expan>querit</expan>
+            auctor eiusdem ville aut ea <lb/>legittime contineat aut <expan>que<lb break="no"
+               />renti</expan> domino reddat Et auctor <lb/> propter vestituram <rs type="person"
+               >domni karoli <lb/>genitoris nostri</rs> eadem mancipia <lb/>contradicere non
+               <expan>presumat</expan>
             <lb/> si illius propria esse noscuntur <lb/>
          </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-26va-2"
             corresp="BK.140_7_inscriptio">de forestibus nouiter institutis <lb/>
          </ab>
          <ab type="text" xml:id="paris-bn-lat-4631-26va-3" corresp="BK.140_7 BK.140_8">
-            <milestone unit="span" corresp="BK.140_7" spanTo="paris-bn-lat-4631-26va-3_1"/><seg
+            <milestone unit="span" corresp="BK.140_7" spanTo="#paris-bn-lat-4631-26va-3_1"/><seg
                type="initial" rend="coloured">D</seg>E forestibus nouiter <lb/>institutis vt
                <expan>quicumque</expan>
             <lb/>illas habet dimittat <lb/>nisi forte iudicio veraci os<lb break="no"/>tendere
             possit quod per iussio<lb break="no"/>nem <rs type="person">domni karoli genitoris <lb/>
                nostri</rs> eas instituisset <expan>preter</expan>
             <lb/> illas que ad opus nostrum <lb/> pertinent vnde nos decernere <lb/>volumus quitquid
-            <!-- bm: eig. "quicquid", und c und t kann man bei diesem Schreiber leicht verwechseln. 
-                  Aber hier finde ich es relativ eindeutig ein t, wegen des Querbalkens, der sehr mittig
-                  am Schaft ansetzt. - Falls wir uns doch dazu entschließen sollten, es mit "quicquid" zu
-                  transkribieren, müsste man sich die anderen Stellen, wo nun "quitquid" steht, nochmal
-                  anschauen (davon gibt es nämlich einige, während "quicquid" nie auftaucht). 
-                  sh: lese auch eher quitquid - sk: ebenso  -->
             nobis <lb/>placuerit <anchor xml:id="paris-bn-lat-4631-26va-3_1"/>
-            <milestone unit="span" corresp="BK.140_8" spanTo="paris-bn-lat-4631-26va-3_2"/> Volumus
+            <milestone unit="span" corresp="BK.140_8" spanTo="#paris-bn-lat-4631-26va-3_2"/> Volumus
             vt mis<lb break="no"/>si nostri per singulas ciui<lb break="no"/>tates vna cum episcopo
             et comi<lb break="no"/>te . missos vel nostros homines <lb/>ibidem
                   <sic><expan>commanantes</expan></sic> eligant <lb/>quorum cure sit pontes per
@@ -1799,10 +1883,9 @@
             iussionem ammo<lb break="no"/>nere vt vnusquisque iuxta <cb n="26vb"/> suam
             possibilitatem et quanti<lb break="no"/>tatem eos emendare studeat<anchor
                xml:id="paris-bn-lat-4631-26va-3_2"/>
-            <lb/></ab>
-
+            <lb/>
+         </ab>
          <milestone unit="capitulare" n="BK.141_1"/>
-
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-26vb-1"
             corresp="BK.141_inscriptio_1">Hec sunt Capitula precipue <lb/>ad legationem missorum
             nostrorum <lb/>causam pertinencia de quibus <lb/>videlicet causis ipsi agere debeant
@@ -1928,11 +2011,8 @@
             />rint vel deffenderint secundum <lb/>sibi datam sentenciam diiudi<lb break="no"/>centur
             . <anchor xml:id="paris-bn-lat-4631-26vb-2_21"/>
             <milestone unit="span" corresp="BK.141_21" spanTo="#paris-bn-lat-4631-26vb-2_22"/> Vt
-            comites et <lb/>vicarii et centenarii de <lb/><choice>
-               <abbr>costitucoe</abbr>
-               <expan>constitucione</expan>
-            </choice> legis ammone<lb break="no"/>antur que iubetur . Vt propter iusticiam
-            peruertendam <lb/>munera non accipiant <lb/>
+            comites et <lb/>vicarii et centenarii de <lb/>constitucione legis ammone<lb break="no"
+            />antur que iubetur . Vt propter iusticiam peruertendam <lb/>munera non accipiant <lb/>
             <anchor xml:id="paris-bn-lat-4631-26vb-2_22"/>
             <milestone unit="span" corresp="BK.141_22" spanTo="#paris-bn-lat-4631-26vb-2_23"/>De
             forestibus nostris <expan>vbicumque</expan>
@@ -2002,15 +2082,9 @@
             <lb/>
             <num>II</num> . <anchor xml:id="paris-bn-lat-4631-26vb-2_30"/>
          </ab>
-
-
-         <!-- bm: Hier Ende der neuen Transkription. Unten weiter auf foll. 78, 80, 82. -->
-
-
-         <milestone unit="capitulare" n="BK.191"/>
-
          <cb n="32vb"/>
          <lb n="24"/>
+         <milestone unit="capitulare" n="BK.191"/>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-32vb-9" corresp="BK.191_inscriptio"
             rend="coloured">Hec sunt capitula que aliqui <lb/> ex missis ad nostram noticiam <lb/>
             detulerunt <date>anno <num>XVI</num> imperii <lb/> nostri</date>
@@ -2046,27 +2120,24 @@
             />erant Si vero per impossi<lb break="no"/>bilitatem contigit vt aut <lb/> pluriores
             sint quam necesse <lb/> sit aut maioris magni<lb break="no"/>tudinis quam vt rebus ad
             <lb/> eas pertinentibus restaura<lb break="no"/>ri possint episcopus modum <lb/>
-            inueniat qualiter congrue <lb/> emendari et consistere possint<!-- sk: der Bogen eigentlich so weit rechts
-            vom -t wie sonst die ur-Kürze, was natürlich keinen Sinn macht; evtl. prüfen, ob die Vorlage 
-            (Paris 4628a) hier auch abweicht? (ist nicht der Fall, in keiner der beiden Versionen von 
-            BK 191) -->
-            <lb/>
+            inueniat qualiter congrue <lb/> emendari et consistere possint <lb/>
             <anchor xml:id="paris-bn-lat-4631-33ra-2_1"/>
             <milestone unit="span" corresp="BK.191_4" spanTo="#paris-bn-lat-4631-33ra-2_2"/>
-            <unclear>sin</unclear>
-            <mod>d</mod>e<!-- dt: Was ist hier los? Greife Sörens Lösung mit sin hier auf 
-               bm: Ja, was Besseres fällt mir auch nicht ein! 
-            sk: Original prüfen, ob evtl. was Farbiges dabei? Korrektur? Finde mod gut, aber
-            evtl. großes D setzen. 
-            Eigentlich sollte hier ja ein Kapitelanfang mit Nummerierung stehen; Paris 4628a, 
-            fol. 147va, falls hier als Vorlage genutzt (die zweite Fassung auf fol. 43va hat ganz 
-            deutlich einen neuen Anfang mit IIII gezählt, das konnte der Kopist nicht verlesen)
-            hat erst eine Rubrik, die mit "NE DE MANSO..." anfängt, am Ende der Rubrik am 
-            Zeilenende ein Absatzzeichen (Winkel) gefolgt von IIII; mit seeeehr viel Fantasie
-            denkbar, dass der spätmittelalterliche Kopist den Winkel für ein großes Schaft-S
-            hielt, das vor einem in- (= ersten drei i's der röm. Kapitelnr. IIII nicht rechtzeitig 
-            als solche erkannt) stand ... dt: ja, möglich, aber ich denke, das müsste dann der Textvergleich mit der Vorlage zeigen. Scheue mich hier, eine note zu setzen, die das alles erklärt 
-            -->
+            <subst>
+               <del>sin†</del>
+               <add>De</add>
+            </subst><note type="editorial">korr. aus <mentioned>sin†</mentioned>; die Stelle
+               erscheint in der Handschrift als <mentioned>sinDe</mentioned>, wobei die ersten drei
+               Buchstaben sehr blass und vermutlich radiert worden sind. Auch ein Vergleich mit der
+               vermutlichen Vorlage für die Kopie, dem Codex Paris lat. 4628 A, kann die unklare
+               Stelle nicht erhellen; dort findet sich an der entsprechenden Stelle nur die
+               (eindeutig als solche zu identifizierende) Kapitelnummer <mentioned>IIII</mentioned>
+               vor dem Kapitelbeginn <mentioned>De uno manso</mentioned> (<locus>Paris lat. 4628 A,
+                  fol. 43va</locus>). Die zweite Kopie von BK 191 in derselben Handschrift hat zwar
+               für c. 4 den Kapitelanfang <mentioned>NE DE MANSO</mentioned> (<locus>Paris lat. 4628
+                  A, fol. 147va</locus>, in Paris lat. 4631 auf <locus>fol. 90vb</locus>), was der
+               vorliegenden Variante schon näher kommt (<mentioned>sine</mentioned>?), aber eine
+               überzeugende Erklärung für diesen Befund ergibt sich daraus auch nicht.</note>
             <num>vno</num> manso ad eccle<lb break="no"/>siam dato de quo aliqui homi<lb break="no"
             />nes contra statuta sibi serui<lb break="no"/>cium exigunt <expan>quicumque</expan> pro
             <lb/> hac causa accusatus <lb/> fuerit comes vel missi <lb/> hoc quod inde subtractum
@@ -2090,16 +2161,15 @@
             <lb/> decimas donent . Item in <lb/> capitulo nostro in libro . <num>II</num> . <lb/>
             capitulo <num>XXI</num> de eadem re <seg type="initial">D</seg>e <lb/> nonis quidem et
             decimis <lb/> vnde et <rs type="person">genitor noster</rs>
-            <lb/> et nos frequenter et diu<mod>er</mod>sis <lb/> placitis
-               <expan>ammonitionem</expan> feci<lb break="no"/>mus et per capitularia <lb/> nostra
-            qualiter hec obser<lb break="no"/>uentur ordinauimus Volu<lb break="no"/>mus atque
-            iubemus vt de <lb/> omni conlaboratu de vino et <lb/> feno fideliter et pleniter no<lb
-               break="no"/>na et decima ab omnibus <lb/> persoluatur <seg type="initial">D</seg>e nutrimine<!-- sk: so bei Cappelli S. 243 nicht direkt zu finden, also mit 
-            choice und abbr "nutmine"? dt: der Strich kürzt das Wort, denke ich, normal, steht statt für häufiger ter, hier für tri, würde das nicht in choice packen -->
-            <cb n="33va"/> vero pro decima sicut hacte<lb break="no"/>nus consuetudo fuit ab omnibus
-            <lb/> obseruetur Si quis tamen <lb/> episcoporum fuerit qui argentum <lb/> pro hoc
-            accipere velit in <lb/> sua maneat potestate iuxta <lb/> quod ei et illi qui hoc
-               persol<lb break="no"/>uere debet conuenerit </ab>
+            <lb/> et nos frequenter et diuersis <lb/> placitis <expan>ammonitionem</expan> feci<lb
+               break="no"/>mus et per capitularia <lb/> nostra qualiter hec obser<lb break="no"
+            />uentur ordinauimus Volu<lb break="no"/>mus atque iubemus vt de <lb/> omni conlaboratu
+            de vino et <lb/> feno fideliter et pleniter no<lb break="no"/>na et decima ab omnibus
+            <lb/> persoluatur <seg type="initial">D</seg>e nutrimine <cb n="33va"/> vero pro decima
+            sicut hacte<lb break="no"/>nus consuetudo fuit ab omnibus <lb/> obseruetur Si quis tamen
+            <lb/> episcoporum fuerit qui argentum <lb/> pro hoc accipere velit in <lb/> sua maneat
+            potestate iuxta <lb/> quod ei et illi qui hoc persol<lb break="no"/>uere debet
+            conuenerit </ab>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-33va-1" rend="coloured"><seg type="numDenom"
                >capitulum</seg>
             <lb/>
@@ -2132,29 +2202,27 @@
             capitulo <cb n="33vb"/>
             <num>XXXVIII</num> . <seg type="initial">D</seg>e opere vero et re<lb break="no"
             />stauratione ecclesiarum con<lb break="no"/>sideratum est vt de frugibus <lb/> terre et
-            animalium nutrimine<!-- sk: choice? jedenfalls wie oben dt: s.o. -->
-            <lb/> persoluantur De opere vero <lb/> vel restauratione eccle<lb break="no"/>siarum
-            comes et episcopus siue <lb/> abbas vna cum misso nostro <lb/> quem ipsi sibi ad hoc
-               elege<lb break="no"/>rint considerationem faciant <lb/> vt vnusquisque eorum tantum
-            <lb/> inde accipiat ad operandum <lb/> et restaurandum quantum ipse <lb/> de rebus
-            ecclesiarum habere <lb/> cognoscitur Similiter et vas<lb break="no"/>si nostri aut in
-               <expan>commune</expan> tantum <lb/> operis accipiant quantum rerum <lb/> ecclesiarum
-            habent vel vnusquisque <lb/> per se iuxta quantitatem quam <lb/> ipse tenet aut si inter
-            eos <lb/> conuenerit vt pro opere faci<lb break="no"/>endo argentum donent iuxta <lb/>
-            estimationem operis in argen<lb break="no"/>to persoluant Cum quo precio <lb/> rector
-            ecclesie ad predictam <lb/> restaurationem operarios <lb/> conducere et
-               materiam<unclear>en</unclear>
-            <lb/> emere possit Et qui nonas <lb/> et decimas dare neglexe<lb break="no"/>rit primum
-            quidem illas cum <lb/> sua lege restituat . Insuper <lb/> et bannum nostrum soluat vt
-            <lb/> ita castigatus caueat <lb/> ne sepius iterando benefi<lb break="no"/>cium amittat </ab>
+            animalium nutrimine <lb/> persoluantur De opere vero <lb/> vel restauratione eccle<lb
+               break="no"/>siarum comes et episcopus siue <lb/> abbas vna cum misso nostro <lb/>
+            quem ipsi sibi ad hoc elege<lb break="no"/>rint considerationem faciant <lb/> vt
+            vnusquisque eorum tantum <lb/> inde accipiat ad operandum <lb/> et restaurandum quantum
+            ipse <lb/> de rebus ecclesiarum habere <lb/> cognoscitur Similiter et vas<lb break="no"
+            />si nostri aut in <expan>commune</expan> tantum <lb/> operis accipiant quantum rerum
+            <lb/> ecclesiarum habent vel vnusquisque <lb/> per se iuxta quantitatem quam <lb/> ipse
+            tenet aut si inter eos <lb/> conuenerit vt pro opere faci<lb break="no"/>endo argentum
+            donent iuxta <lb/> estimationem operis in argen<lb break="no"/>to persoluant Cum quo
+            precio <lb/> rector ecclesie ad predictam <lb/> restaurationem operarios <lb/> conducere
+            et materiamen <lb/> emere possit Et qui nonas <lb/> et decimas dare neglexe<lb
+               break="no"/>rit primum quidem illas cum <lb/> sua lege restituat . Insuper <lb/> et
+            bannum nostrum soluat vt <lb/> ita castigatus caueat <lb/> ne sepius iterando benefi<lb
+               break="no"/>cium amittat </ab>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-33vb-1" rend="coloured"><seg type="numDenom"
                >Capitulum</seg>
             <lb/>
             <seg type="num" n="8">8</seg></ab>
          <ab type="text" xml:id="paris-bn-lat-4631-33vb-2" corresp="BK.191_10">De illo qui agros
             <lb/> dominicatos propterea negle<lb break="no"/>xit excolere vt nonas <lb/> et decimas
-            exinde non <lb/> persoluat
-            V<!-- bm: v - sk: v dt: ist vergrößert, würde V lassen -->olumus vt <num>tribus</num>
+            exinde non <lb/> persoluat Volumus vt <num>tribus</num>
             <cb n="34ra"/> annis ipsam nonam et decimam <lb/> cum sua lege persoluat Et si <lb/>
             quis contemptor aut co<lb break="no"/>mitis aut missorum nostrorum <lb/> propter hoc
             extiterit per fide<lb break="no"/>iussores ad palacium veni<lb break="no"/>re
@@ -2162,11 +2230,7 @@
          </ab>
          <milestone unit="capitulare" n="BK.192"/>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-34ra-1" corresp="BK.192_inscriptio"
-            rend="coloured">Item alia <choice>
-               <abbr>capla</abbr>
-               <expan>capitula</expan>
-            </choice>
-            <lb/>
+            rend="coloured">Item alia capitula <lb/>
          </ab>
          <ab type="text" xml:id="paris-bn-lat-4631-34ra-3" corresp="BK.192_1">
             <seg type="initial" rend="coloured">D</seg>E<note type="editorial">Die Initiale
@@ -2192,16 +2256,10 @@
          <ab type="meta-text" xml:id="paris-bn-lat-4631-34ra-6" rend="coloured"><seg type="numDenom"
                >Capitulum</seg>
             <lb/><seg type="num" n="3">3</seg></ab>
-         <ab type="text" xml:id="paris-bn-lat-4631-34ra-7" corresp="BK.192_3"
-            >Vt<!-- bm: Hier würde ich sagen: U, weil es von den übrigen V abweicht. - Siehe auch 
-               unten, "Uolumus" bei <span corresp="BK.184_b" to="paris-bn-lat-4631-90ra-4_3"
-            />  - sk: aber weicht das Prinzip wirklich ab? Vgl. den Anfang von c. 2, der Buchstabe 
-            wirkt identisch gebaut, nur dass hier der Bauch etwas breiter geworden ist, wodurch
-            der gebrochene Schaft links unten etwas waagerechter (und damit u-artiger) wirkt. Siehe
-            auch das folgende V bei c. 4. dt: ja, würde V lassen wollen -->
-            in omni comitatu <lb/> hii qui meliores inueniri <lb/> possunt eligantur a missis <lb/>
-            nostris ad inquisition<unclear>is</unclear> facien<lb break="no"/>das et rei veritatem
-            dicendam <lb/> et adiutores comitum sint <lb/> ad iusticias faciendas</ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-34ra-7" corresp="BK.192_3">Vt in omni comitatu
+            <lb/> hii qui meliores inueniri <lb/> possunt eligantur a missis <lb/> nostris ad
+               inquisition<unclear>i</unclear>s facien<lb break="no"/>das et rei veritatem dicendam
+            <lb/> et adiutores comitum sint <lb/> ad iusticias faciendas</ab>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-34ra-8" rend="coloured"><seg type="numDenom"
                >Capitulum</seg>
             <lb/>
@@ -2222,10 +2280,6 @@
          </ab>
          <ab type="text" xml:id="paris-bn-lat-4631-34rb-2" corresp="BK.192_5">
             <expan>Ubicumque</expan>
-            <!-- sk: hier U? im Vgl. mit vorhergehendem Volumus
-            hat der Buchstabe jetzt eine andere Form, insbesondere den langen, nach unten
-            gezogenen Bogen rechts, der nicht den (regulären) rechten Schaft (bei V) sondern quasi 
-            einen dritten (Zier-?) Schaft bildet dt: ja, habe U genommen -->
             <expan> commutatio<lb break="no"/>nes</expan> tam tempore nostro quamque <rs
                type="person">ge<lb break="no"/>nitoris nostri</rs>
             <expan>legittime</expan> et ra<lb break="no"/>tionabiles atque vtiles ec<lb break="no"
@@ -2260,16 +2314,9 @@
          <ab type="meta-text" xml:id="paris-bn-lat-4631-34rb-7" rend="coloured">
             <seg type="num" n="8">8<hi rend="super">m</hi></seg></ab>
          <ab type="text" xml:id="paris-bn-lat-4631-34rb-8" corresp="BK.192_8">De bonis denariis quos
-            <lb/>
-            populus<!-- sk: was ist hier der Buchstabenbestand der Kürzung? "ppl-" und dann?
-            u mit Kürzungsstrich (also eigentlich populum?), gefolgt von einem eigenartigen
-            s, wie es auch 9 Z. höher am Anfang von BK 192 c. 7 (am Ende von "contencionibus") verwendet
-            wird? oder ist der Strich über dem u die allgemeine Kürze für "pplus" insgesamt? 
-            Jedenfalls: wenn die Kürze mit pplu beginnt, dann hier auch choice, weil Cappelli S. 286
-            keine pplu-Kürze für popul- verzeichnet, es also eine ungebräuchliche ist dt: würde das so lassen, eindeutig pplus. Warum da noch choice? -->
-            recipere non vult vo<lb break="no"/>lumus vt hoc obseruetur <lb/> et teneatur quod in
-            priori <cb n="34va"/> capitulari nostro conscriptum <lb/> est id est in libro
-               <num>quarto</num> ca<lb break="no"/>pitulo <num>XXX<hi rend="super">mo</hi></num>
+            <lb/> populus recipere non vult vo<lb break="no"/>lumus vt hoc obseruetur <lb/> et
+            teneatur quod in priori <cb n="34va"/> capitulari nostro conscriptum <lb/> est id est in
+            libro <num>quarto</num> ca<lb break="no"/>pitulo <num>XXX<hi rend="super">mo</hi></num>
             <expan>Quicumque</expan>
             <lb/> liber homo vel in emp<lb break="no"/>tionem vel in debiti soluci<lb break="no"
             />onem Denarium merum et bene <lb/> pensantem recipere noluerit <lb/> bannum nostrum id
@@ -2290,8 +2337,7 @@
             nostram ne<lb break="no"/>glexerint hoc per missos <lb/> nostros ad nostram noticiam
             <lb/> perferatur </ab>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-34va-1" rend="coloured"><seg type="numDenom"
-               >Capitulum</seg><note type="editorial">mit redundantem Kürzungsstrich über
-                  <mentioned>p</mentioned></note>
+               >Capitulum</seg>
             <lb/>
             <seg type="num" n="9">9<hi rend="super">m</hi></seg></ab>
          <ab type="text" xml:id="paris-bn-lat-4631-34va-2" corresp="BK.192_9">De homicidiis vel
@@ -2309,14 +2355,10 @@
          <ab type="text" xml:id="paris-bn-lat-4631-34vb-2" corresp="BK.192_10">Collecte ad male
                fa<lb break="no"/>ciendum omnimodis fie<lb break="no"/>ri prohibeantur et
                <expan>vbicumque</expan>
-            <lb/> huiusmodi<!-- bm: Ist das gek. huioi.? Würde ich in choice setzen ... 
-            sk: ja, choice; "hmoi" wohl, das gibt es jedenfalls bei Cappelli S. 162 dt: es gibt Cappelli S. 166 huimoi, würde das hier durchgehen lassen. Es ist eine Kursivschrift, und Abkürzungen Standard, daher alles in choice zu setzen, geht am Thema vorbei... -->
-            <expan>presumptiones</expan> facte <lb/> fuerint digna emendacione<note type="editorial"
-               >Der Kürzungsstrich für <mentioned>n</mentioned> bei -<mentioned>cione</mentioned>
-               ist kaum zu erkennen.</note>
-            <lb/> corrigantur Et si per ne<lb break="no"/>gligenciam comitis vel <lb/> facte sunt
-            vel inemendate <lb/> remanserunt hoc ad nostram <lb/> noticiam perferatur Auctor <lb/>
-            vero facti si fuerit <expan>preposi<lb break="no"/>tus</expan> vel aduocatus siue <lb/>
+            <lb/> huiusmodi <expan>presumptiones</expan> facte <lb/> fuerint digna emendacione <lb/>
+            corrigantur Et si per ne<lb break="no"/>gligenciam comitis vel <lb/> facte sunt vel
+            inemendate <lb/> remanserunt hoc ad nostram <lb/> noticiam perferatur Auctor <lb/> vero
+            facti si fuerit <expan>preposi<lb break="no"/>tus</expan> vel aduocatus siue <lb/>
             centenarius vel qualibet <lb/> alia dignitate predita <lb/> libera persona post lega<lb
                break="no"/>lem emendationem in loco <lb/> factam sub fideiussoribus <lb/> ad nostram
                <expan>presenciam</expan> veniat <lb/> multitudo vero siue De <lb/> seruis siue de
@@ -2329,14 +2371,10 @@
             <lb/> destructis placuit nobis <lb/> vt hii qui iussionem no<lb break="no"/>stram in
             reparandis pon<lb break="no"/>tibus contempserunt volu<lb break="no"/>mus ac iubemus vt
             omnes <lb/> homines nostri in nostram veni<lb break="no"/>ant <expan>presenciam</expan>
-            rationes red<lb break="no"/>dere cur nostram iussionem<note type="editorial">Der
-               Kürzungsstrich für -<mentioned>m</mentioned> ist kaum zu erkennen.</note>
-            <lb/> ausi sunt contempnere Comi<lb break="no"/>tes autem reddant de eorum <lb/>
-            pagensibus cur eos aut <lb/> non constrinxerunt vt hoc <lb/> facerent aut nobis nunci<lb
-               break="no"/>are neglexerunt . Similiter<note type="editorial">Das
-                  <mentioned>r</mentioned> und der Kürzungsstrich (Kürzung:
-                  <mentioned>Silr</mentioned>) sind kaum zu erkennen.</note>
-            <cb n="35ra"/> et de Iniustis theloneis <lb/>
+            rationes red<lb break="no"/>dere cur nostram iussionem <lb/> ausi sunt contempnere
+               Comi<lb break="no"/>tes autem reddant de eorum <lb/> pagensibus cur eos aut <lb/> non
+            constrinxerunt vt hoc <lb/> facerent aut nobis nunci<lb break="no"/>are neglexerunt .
+            Similiter <cb n="35ra"/> et de Iniustis theloneis <lb/>
             <expan>vbicumque</expan> accipiuntur sciant <lb/> se . exinde . nobis rationem <lb/>
             reddituros </ab>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-35ra-1" rend="coloured">
@@ -2378,54 +2416,32 @@
             hoc est <num>duos</num> solidos pro <lb/>
             <num>vna</num> vacca hoc quod iniuste <lb/> superposuit atque abstulit <lb/> sibique
             retinuit his quibus <lb/> hoc tulit et cum sua lege <lb/> restituat et fredum nostrum <lb/>
-            <expan>componat</expan> et ministerium <lb/> amittat <lb/></ab>
-
-         <!-- Beginn von Ansegis Buch 4 -->
-
-         <cb n="78ra"/>
-         <lb n="1"/>
-
-         <ab type="meta-text" xml:id="paris-bn-lat-4631-78ra-1" rend="coloured"
-            corresp="Ansegis.4_inscriptio">
-            <seg type="initial">I</seg>ncipit <expan>prefaciuncula</expan>
-            <num>quarti</num> libelli</ab>
-
-         <!-- Capitulatio zu Ansegis Buch 4 -->
+            <expan>componat</expan> et ministerium <lb/> amittat <lb/>
+         </ab>
 
          <milestone unit="capitulatio" xml:id="paris-bn-lat-4631-78ra-capitulatio"
             spanTo="#capitulatio-finis"/>
-
          <cb n="78ra"/>
          <lb n="20"/>
-
          <ab type="meta-text" xml:id="paris-bn-lat-4631-78ra-3" rend="coloured"
-            corresp="Ansegis.4_inscriptio_c"> Incipiunt tituli capitulorum</ab>
-
+            corresp="Ansegis.4_inscriptio_c"> Incipiunt tituli capitulorum </ab>
          <cb n="78rb"/>
          <lb n="11"/>
-
          <ab type="meta-text" xml:id="paris-bn-lat-4631-78rb-9"
             corresp="Ansegis.4_14_inscriptio_c Mordek.27_3_inscriptio_c">
             <seg type="num" n="14" rend="coloured">14</seg> De iniuriis sacerdotum <lb/> vel
             quorumlibet ex clero in eccle<lb break="no"/>sia factis <lb/>
          </ab>
-
-
          <cb n="78rb"/>
          <lb n="34"/>
-
          <ab type="meta-text" xml:id="paris-bn-lat-4631-78rb-21"
             corresp="Ansegis.4_26bis_inscriptio_c BK.156_2_inscriptio_c">
             <seg type="num" n="26" rend="coloured"> 26</seg> Qualiter de statu suo <lb/>pulsatus
             euindicet liber<lb break="no"/>tatem suam </ab>
-
          <anchor xml:id="capitulatio-finis"/>
-
-
-         <milestone unit="capitulare" n="Mordek.27_3"/>
-
          <cb n="80va"/>
          <lb n="25"/>
+         <milestone unit="capitulare" n="Mordek.27_3"/>
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-80va-2"
             corresp="Mordek.27_3_inscriptio"> De s<mod>o</mod>lucione <lb/>occisi presbiteri </ab>
          <ab type="text" xml:id="paris-bn-lat-4631-80va-3" corresp="Mordek.27_3"><seg type="initial"
@@ -2438,27 +2454,21 @@
             cui <expan>prefuit</expan> tribuat et <lb/>alteram medietatem in ele<lb break="no"
             />mosina illius iuste disper<lb break="no"/>ciat quia nullus nobis eius <lb/>heres
             proximior videtur <cb n="80vb"/> quam ille qui ipsum domino sociauit </ab>
-
-
-         <milestone unit="capitulare" n="BK.156"/>
-
          <cb n="82va"/>
          <lb n="1"/>
-
+         <milestone unit="capitulare" n="BK.156"/>
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-82va-1"
             corresp="BK.156_2_inscriptio"> Qualiter de statu suo pul<lb break="no"/>satus euindicet
             libertatem <lb/> suam </ab>
-
          <ab type="text" xml:id="paris-bn-lat-4631-82va-2" corresp="BK.156_2 BK.156_3">
-            <milestone unit="span" corresp="BK.156_2" spanTo="#paris-bn-lat-4631-82va-2_1"/>
-            <seg type="initial" rend="coloured">H</seg>Omo de statu <lb/>suo pulsatus si is <lb/>
-            qui eum pulsat ad <lb/>conuincendum illum procinctum <lb/>habuerit adhibeat sibi
-                  <num>oc<lb break="no"/>to</num> coniuratores legittimos <lb/>ex ea parte vnde
-            pulsatur <lb/>siue illa paterna siue ma<lb break="no"/>terna sit et <num>IIII<hi
-                  rend="super">or</hi></num> aliunde <lb/>non minus legittimos et iu<lb break="no"
-            />rando vindicet libertatem <lb/>suam quod s<gap unit="chars" quantity="1"
-            /><!-- bm: gap wegen Insekt :) --> procinctus defuerit <lb/>assumat
-               <expan>vndecumque</expan>
+            <milestone unit="span" corresp="BK.156_2" spanTo="#paris-bn-lat-4631-82va-2_1"/><seg
+               type="initial" rend="coloured">H</seg>Omo de statu <lb/>suo pulsatus si is <lb/> qui
+            eum pulsat ad <lb/>conuincendum illum procinctum <lb/>habuerit adhibeat sibi <num>oc<lb
+                  break="no"/>to</num> coniuratores legittimos <lb/>ex ea parte vnde pulsatur
+            <lb/>siue illa paterna siue ma<lb break="no"/>terna sit et <num>IIII<hi rend="super"
+                  >or</hi></num> aliunde <lb/>non minus legittimos et iu<lb break="no"/>rando
+            vindicet libertatem <lb/>suam quod s<gap unit="chars" quantity="1"/> procinctus defuerit
+            <lb/>assumat <expan>vndecumque</expan>
             <num>XII</num>
             <lb/> liberos homines et iurando <lb/>ingenuitatem suam defendat <lb/>
             <anchor xml:id="paris-bn-lat-4631-82va-2_1"/>
@@ -2467,33 +2477,232 @@
             terre <lb/>et mancipiorum que non nisi <lb/>coram comite fieri potest <anchor
                xml:id="paris-bn-lat-4631-82va-2_2"/>
          </ab>
-
+         <cb n="88va"/>
+         <lb n="27"/>
+         <milestone unit="capitulare" n="BK.77"/>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-88va-5"
+            corresp="BK.77_inscriptio">Alia capitula <lb/>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-88va-6" corresp="BK.77_prolog"><rs type="person"
+               >Karolus serenissimus <lb/>imperator augustus a deo <lb/>coronatus magnus et pa<lb
+                  break="no"/>cificus</rs> cum episcopis . abbati<lb break="no"/>bus comitibus
+            ducibus <lb/>omnibusque fidelibus christiane <lb/>ecclesie cum consensu consilio<lb
+               break="no"/>que constituit et <rs>lege sa<lb break="no"/>lica</rs>
+            <rs>romana</rs> atque <rs>gom<lb break="no"/>bata</rs> capitula ista in <rs type="place"
+                  >pa<lb break="no"/>latio aquis</rs> Ut vnusquisque <lb/>fidelis iusticias ita
+            faceret <cb n="88vb"/> que et ipsam manu propria <lb/>firmauit capitula ista <lb/>vt
+            omnes fideles manu ro<lb break="no"/>borare studuissent </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-88vb-1"
+            corresp="BK.77_1_inscriptio"><seg type="numDenom">Capitulum </seg><seg type="num" n="2"
+               >2</seg><lb/></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-88vb-2" corresp="BK.77_1"><seg type="initial"
+               rend="coloured">U</seg>Ut<note type="editorial">Der Rubrikator trug in den für die
+               Kapitelzählung freigelassenen Platz irrtümlich eine rote
+               <mentioned>U</mentioned>-Initiale ein.</note> episcopi circumeant par<lb break="no"
+            />rochias sibi <expan>commissas</expan>
+            <lb/>et ibi inquirendi studium <lb/>habeant de incestu de patri<lb break="no"/>cidiis
+            fratricidiis adulteriis <lb/>chenodoxiis et alia mala <lb/><expan>que</expan> contraria
+            sunt deo que in <lb/>sacris scripturis leguntur <lb/>que christiani deuitare de<lb
+               break="no"/>bent et infra illorum parro<lb break="no"/>chias ecclesie quibus necesse
+            <lb/>est emendandi curam habe<lb break="no"/>ant Similiter nostras a nobis <lb/>in
+            beneficio datas quam et <lb/>aliorum vbi reliquie <expan>preesse</expan> videntur Et vt
+            monachi <lb/>per verbum episcopi et per regimen <lb/>abbatis et per bona illorum
+            <lb/>exempla regulariter viuant <lb/>prout loca locata sunt Et <lb/>vt
+               <expan>prepositus</expan> et hi qui fo<lb break="no"/>ras monasteria sunt ne
+            <lb/>venatores habeant . qui iam <lb/>frequenter iussimus ne mo<lb break="no"/>nachi
+            foras monasterio ha<lb break="no"/>bitassent <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-88vb-3"
+            corresp="BK.77_2_inscriptio"><seg type="num" n="3">3</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-88vb-4" corresp="BK.77_2">Ut ecclesie vidue pu<lb
+               break="no"/>pilli per bannum regis pa<lb break="no"/>cem habeant sin aliter in
+                  <expan>pre<lb break="no"/>sencia</expan> nostra hoc veniat <lb/>si fieri potest
+            Sin autem missi <lb/>nostri inuestigent illud quo<lb break="no"/>modo gestum sit <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-88vb-5"
+            corresp="BK.77_3_inscriptio"><seg type="num" n="4">4</seg> . </ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-88vb-6" corresp="BK.77_3">Ut iumenta pacem ha<cb
+               break="no" n="89ra"/>beant similiter per bannum <lb/>regis <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89ra-1"
+            corresp="BK.77_4_inscriptio"><seg type="num" n="5">5</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89ra-2" corresp="BK.77_4">Ut qui beneficium
+            nostrum <lb/>habent bene illud inmelio<lb break="no"/>rare in omni re studeant <lb/>Et
+            vt missi nostri hoc sci<lb break="no"/>ant <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89ra-3"
+            corresp="BK.77_5_inscriptio"><seg type="num" n="6">6</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89ra-4" corresp="BK.77_5">Ut vicarii nostri vel
+               cen<lb break="no"/>tenarii a seruo regis man<lb break="no"/>cipia ne emant Et vt ipsi
+            <lb/>vicarii de hereditate fo<lb break="no"/>ris heredibus si extiterit <lb/>ad opus
+            nostrum recipiatur <lb/>ne illud fraudetur <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89ra-5"
+            corresp="BK.77_6_inscriptio"><seg type="num" n="7">7</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89ra-6" corresp="BK.77_6">De his qui a <choice>
+               <abbr>lrarum</abbr>
+               <expan>litterarum</expan>
+            </choice> con<lb break="no"/>scriptione ingenui fuerint <lb/>si sine traditione mortui
+            <lb/>fuerint ad opus nostrum re<lb break="no"/>uocetur Similiter volumus <lb/>vt banni
+            nostri de illis vnde <lb/>censam exigunt vt ipsa cen<lb break="no"/>sa ad nostrum opus
+            vel vbi <lb/>nos iubemus veniant <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89ra-7"
+            corresp="BK.77_7_inscriptio"><seg type="num" n="8">8</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89ra-8" corresp="BK.77_7">De hereditate inter
+               he<lb break="no"/>redes si <sic>contensiose</sic> egerint <lb/>et rex missum suum ad
+            illam <lb/>diuisionem transmiserit de<lb break="no"/>cimum mancipium et decimam
+            <lb/>virgam hereditatis fisco <lb/>regis detur <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89ra-9"
+            corresp="BK.77_8_inscriptio"><seg type="num" n="9">9</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89ra-10" corresp="BK.77_8">Ut vicarii lamparios
+            <lb/>habeant vt vunusquisque in <lb/>suo ministerio <num>duos</num> et ipse <lb/>de
+            hoste pergendi et de pla<lb break="no"/>cito comitis vel vicarii <lb/>ne custodiat nisi
+            clamor <lb/>super eum eueniat et ipsa <lb/>certare studeant de hoc vt <lb/>perfectum
+            exinde habeat et <cb n="89rb"/> ipsas pelles luporum ad no<lb break="no"/>strum opus
+            ducentur et vnus<lb break="no"/>quisque de illis qui in illo <lb/>ministerio placitum
+               custo<lb break="no"/>diunt dentur eis <choice>
+               <abbr>mod</abbr>
+               <expan>modium</expan>
+            </choice> . <num>I</num> . de <lb/>annona <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89rb-1"
+            corresp="BK.77_9_inscriptio"><seg type="num" n="10">10</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89rb-2" corresp="BK.77_9">De hoste pergendi vt
+            <lb/>comiti in suo comitatu <lb/>per bannum vnumquemque hominem <lb/>per <num>LX</num>
+            solidos in hoste pergere <lb/>bannire studeat vt ad pla<lb break="no"/>citum denunciatum
+            ad illum lo<lb break="no"/>cum vbi iubetur veniant et <lb/>ipse comes
+               <expan>preuideat</expan> quo<lb break="no"/>modo sint parati id est lan<lb break="no"
+            />cem scutum aut arcum con <num>duas</num>
+            <lb/> cordas sagittas <num>duodecim</num>
+            <lb/> De his vterque habeant et <lb/>episcopi comites abbates hos <lb/>homines habeant
+            qui h<mod>o</mod>c <lb/>bene <expan>preuideant</expan> et ad diem <lb/>denunciati
+            placiti veniant <lb/>et ibi ostendant quomodo <lb/>sint parati habeant lo<lb break="no"
+            />ricas vel galeas et tem<lb break="no"/>poralem hostem id est esti<lb break="no"/>uo
+            tempore <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89rb-3"
+            corresp="BK.77_10_inscriptio"><seg type="num" n="11">11</seg> . </ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89rb-4" corresp="BK.77_10">Ut regis spensa in
+            <lb/>carra ducatur simul episcoporum <lb/>comitum abbatum et optima<lb break="no"/>tum
+            regis farinam vinum <lb/>baccones et victum habun<lb break="no"/>danter . molas .
+            dolatorias <lb/>secures . taretos . fondibu<lb break="no"/>las . et illos homines qui
+            <lb/>exinde beneficiant iacta<lb break="no"/>re et marscalci regis ad<lb break="no"
+            />ducant eis petras in sum<lb break="no"/>mas <num>XX</num> . si opus est . Et <cb
+               n="89va"/>Vnusquisque hostiliter sit pa<lb break="no"/>ratus et omnia
+               <sic>vtencilia</sic> suf<lb break="no"/>ficienter habeant Et vnusquisque <lb/>comes
+               <num>duas</num> partes de <lb/>herba in suo comitatu de<lb break="no"/>fendat ad opus
+            illius h<mod>o</mod><lb break="no"/>stis et habeat pontes bonos <lb/>et naues bonas
+            <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89va-1"
+            corresp="BK.77_11_inscriptio"><seg type="num" n="12">12</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89va-2" corresp="BK.77_11">Ut comites vnusquisque
+            <lb/>in suo comitatu carcerem ha<lb break="no"/>beant et iudices atque vicarii
+            <lb/>patibulos habeant <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89va-3"
+            corresp="BK.77_12_inscriptio"><seg type="num" n="13">13</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89va-4" corresp="BK.77_12">Ut homines boni
+            generis <lb/>qui infra comitatum inique <lb/>vel iniuste agunt in
+               <expan>presencia</expan>
+            <lb/>regis ducantur et rex super <lb/>eos districtionem faciat car<lb break="no"
+            />cerandi . exiliandi vsque ad emen<lb break="no"/>dationem illorum <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89va-5"
+            corresp="BK.77_13_inscriptio"><seg type="num" n="14">14</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89va-6" corresp="BK.77_13">Ut vicarii munera non
+            <lb/>accipiant per illos latrones <lb/>qui ante comitem iudicati <lb/>fuerint ad mortem
+            Quod si hoc <lb/>perpetrauerit tale iudicium su<lb break="no"/>stineat sicut et latro
+               iudica<lb break="no"/>tus fuit quia postquam scabini <lb/>eum diiudicauerint non est
+               li<lb break="no"/>cencia comitis vel vicarii ei <lb/>vitam concedere Sed si bannus ei
+            <lb/>iudicatus fuerit et banno perac<lb break="no"/>to stet in eo interim vsquedum
+            <lb/>comiti et eo qui clamorem <lb/>vel causam ad eum habuit et <lb/>tunc sit foris
+            banno <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89va-7"
+            corresp="BK.77_14_inscriptio"><seg type="num" n="15">15</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89va-8" corresp="BK.77_14">Ut episcopi et abbates
+               ad<lb break="no"/>uocatos habeant et ipsi ha<lb break="no"/>beant in illo comitatu
+            propriam <lb/>hereditatem et vt ipsi recti <lb/>et boni sint et habeant <lb/>voluntatem
+            recte et iuste <lb/>causas perficere <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89va-9"
+            corresp="BK.77_15_inscriptio"><seg type="num" n="16">16</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89va-10" corresp="BK.77_15">Ut vicarii eos qui
+            pro <cb n="89vb"/> furto se in seruicio tradere <lb/>cupiunt non consencient
+               se<mod>d</mod> se<lb break="no"/>cundum iustum iudicium terminentur <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89vb-1"
+            corresp="BK.77_16_inscriptio"><seg type="num" n="17">17</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89vb-2" corresp="BK.77_16">Quod nullus seniorem
+            suum <lb/>dimittat postquam ab eo ac<lb break="no"/>ceperit valente solido .
+               <num>I</num> . ex<lb break="no"/>cepto si eum vult occidere <lb/>vt cum baculo sedere
+            vel <lb/>vxorem aut filiam maculari <lb/>seu hereditatem extollere <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89vb-3"
+            corresp="BK.77_17_inscriptio"><seg type="num" n="18">18</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89vb-4" corresp="BK.77_17">Quod nullus in hoste
+               ba<lb break="no"/>culum habeat sed arcum <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89vb-5"
+            corresp="BK.77_18_inscriptio"><seg type="num" n="19">19</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89vb-6" corresp="BK.77_18">De forestis vt
+               foresta<lb break="no"/>rii bene illas deffendant <lb/>
+            <del>be</del><note type="editorial">folgt Ansatz zu <mentioned>b[e]</mentioned>-,
+               allerdings abgebrochen und nachträglich (wohl vom Rubrikator, da mit roter Tinte)
+               getilgt.</note> simul et custodiant be<lb break="no"/>stias et pisces Et si rex
+            <lb/>intus foreste foramen <num>vnum</num>
+            <lb/>aut magis dederit amplius <lb/>ne prendat quam illi datum sit <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-89vb-7"
+            corresp="BK.77_19_inscriptio"><seg type="num" n="20">20</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-89vb-8" corresp="BK.77_19">Ut villicus bonus
+            sapiens <lb/>et prudens in opus nostrum <lb/>eligatur qui sciat rationem <lb/>misso
+            nostro reddere et ser<lb break="no"/>uicium perficere prout loca da<lb break="no"/>ta
+            sunt edificia emendant <lb/>nutriant . porcos . iumenta . <lb/>animalia . ortos . apes .
+            aucas . <lb/>pullos . viuaria cum <choice>
+               <abbr>pisc</abbr>
+               <expan>piscibus</expan>
+            </choice>
+            <lb/> vennas . molina . stirpes <lb/>terram aratoriam studeant <lb/>femare in forestis
+            mansum <lb/> regale et ibi viuaria <lb/>cum piscibus et homines ibi <lb/>maneant et
+            plantent vineas <lb/>et faciant pomaria Et <lb/>vbicumque inueniunt vtiles <lb/>homines
+            detur illis silua <lb/>ad stirpandum vt nostrum <cb n="90ra"/> seruicium immelioretur et
+            vt <lb/>femine nostre que ad opus no<lb break="no"/>strum sicut seruientes habeant
+            <lb/>ex partibus nostris lanam et linum <lb/>et faciant <choice>
+               <abbr>sarcil</abbr>
+               <expan>sarciles</expan>
+            </choice> . et <choice>
+               <abbr>camisil</abbr>
+               <expan>camisiles</expan>
+            </choice>
+            <lb/>et perueniant ad cameram <lb/>nostram per rationem per vilicis <lb/>nostris vt a
+            missis eius a se <lb/>transmissis <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4631-90ra-1"
+            corresp="BK.77_20_inscriptio"><seg type="num" n="21">21</seg></ab>
+         <ab type="text" xml:id="paris-bn-lat-4631-90ra-2" corresp="BK.77_20">Et si quis fidelibus
+            suis <lb/>contra aduersarium suum pugnam <lb/>aut aliquod certamen agere <lb/>voluit et
+            cumvocauit ad se <lb/>aliquem de comparis suis <lb/>vt ei adiutorium
+               <expan>prebuisset</expan>
+            <lb/>et noluit et exinde negli<lb break="no"/>gens permansit ipsum beneficium <lb/>quod
+            habuit auferatur ab eo <lb/>et detur ei qui in stabilitate <lb/>et fidelitate sua
+            permansit <lb/></ab>
          <milestone unit="capitulare" n="BK.184"/>
-         <cb n="90ra"/>
-         <lb n="21"/>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-90ra-3" corresp="BK.184_a"
             next="#paris-bn-lat-4631-90ra-4_1" rend="coloured"><date>Anno <num>sexto decimo</num>
-               regnante <lb/><rs type="person">domno
-                  <!-- bm: domno? Wird vom Schreiber (mindestens zweimal) so ausgeschrieben. 
-                  sk: jüngste Übereinkunft war m.E.: "domnus"/"dominus", aber bei allen
-                  anderen Formen immer mit i (domino, domini, dominibus) dt: wenn es vom Schreiber so ausgeschrieben wird, nehme ich domno -->nostro
-                  Ludouico</rs></date>
+               regnante <lb/><rs type="person">domno nostro Ludouico</rs></date>
             <lb/></ab>
          <ab type="text" xml:id="paris-bn-lat-4631-90ra-4" corresp="BK.184_a BK.184_b">
             <milestone unit="span" corresp="BK.184_a" spanTo="#paris-bn-lat-4631-90ra-4_2"/>
             <seg type="initial" rend="coloured">C</seg>Onuentus episcoporum debet <lb/> fieri in
-               <num>quatuor</num> locis <lb/> id est <rs type="place"><choice>
-                  <abbr>mogociaco</abbr>
-                  <expan>mongonciaco</expan>
-               </choice></rs>
+               <num>quatuor</num> locis <lb/> id est <rs type="place">mongonciaco</rs>
             <lb/> in quo isti archiepiscopi cum eorum <lb/> suffraganeis conuenire <lb/> debent <rs
                type="person">autcarius</rs>
             <rs type="person">haldebal<lb break="no"/>dus</rs>
-            <rs type="person"
-            >heribernium</rs><!-- sk: die mutmaßliche Vorlage
-            Paris 4628a hat auf fol. 146rb "heribernuim" (so auch Steffen in seinem Apparat), 
-            also so wohl auch hier zu lesen (d.h. -uim am Ende, nicht -ium) dt: Der i-Strich lässt aber eigentlich nur eine -nium-Lesung zu. Man sollte Varianten ja nicht angleichen -->
-            in <rs type="place">parisio</rs>
+            <rs type="person">heribernium</rs> in <rs type="place">parisio</rs>
             <lb/>
             <rs type="person">ebo</rs> . <rs type="person">ragno</rs> . <rs type="person"
                >vvaldus</rs> . <rs type="person">lantram<lb break="no"/>nus</rs> . episcopus / <rs
@@ -2516,11 +2725,9 @@
             <lb/> que occasiones in vtroque <lb/> ordine id effecerint vt a <lb/> recto tramite
             deuiassent <lb/> Vt quitquid ab eis de his <lb/> causis inuentum fuerit tam <lb/>
             solerti cura custodiatur <lb/> vt nullatenus ad aliorum <lb/> noticiam peruenire
-               permit<lb break="no"/>tant ante tempu<mod>s</mod> constitutum <lb/> Et ideo
-               <num>vnus</num> notarius inter <lb/> omnes<note type="editorial">Der Kürzungsstrich
-               (Kürzung: <mentioned>omes</mentioned>) ist höchstens zu erahnen.</note> eligatur
-            quitquid <lb/> ipsi inuenerint subtiliter <lb/> describat et sub iuramento <lb/>
-            constrictus fideliter conseruet <lb/>
+               permit<lb break="no"/>tant ante tempus constitutum <lb/> Et ideo <num>vnus</num>
+            notarius inter <lb/> omnes eligatur quitquid <lb/> ipsi inuenerint subtiliter <lb/>
+            describat et sub iuramento <lb/> constrictus fideliter conseruet <lb/>
             <anchor xml:id="paris-bn-lat-4631-90ra-4_2"/>
             <milestone unit="span" corresp="BK.184_b" spanTo="#paris-bn-lat-4631-90ra-4_3"/>Nolumus
             etiam ipsorum conuen<lb break="no"/>tum fieri <date><choice>
@@ -2535,11 +2742,7 @@
          </ab>
          <milestone unit="capitulare" n="BK.186"/>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-90rb-1" corresp="BK.186_inscriptio"
-            rend="coloured">hec <choice>
-               <abbr>capitla</abbr>
-               <expan>capitula</expan>
-            </choice>
-            <lb/> ab episcopis tractanda sunt <lb/>
+            rend="coloured">hec capitula <lb/> ab episcopis tractanda sunt <lb/>
          </ab>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-90rb-2" rend="coloured"><seg type="num"
                n="1">1</seg></ab>
@@ -2604,15 +2807,13 @@
          </ab>
          <ab type="text" xml:id="paris-bn-lat-4631-90vb-1" corresp="BK.191_2">
             <seg type="initial" rend="coloured">D</seg>E ecclesiis que inter <lb/> heredes Diuise
-            sunt con<lb break="no"/>sideratum<note type="editorial">Der Kürzungsstrich für
-                  <mentioned>n</mentioned> bei <mentioned>con</mentioned>- ist nicht zu
-               erkennen.</note> est <expan>quatenus</expan> si secundum <lb/> prouidenciam et
-            admonitionem <lb/> episcopi ipsi coheredes eas vo<lb break="no"/>luerint tenere et
-            honorare <lb/> faciant Si autem hoc contra<lb break="no"/>dixerint vt in episcopi
-            potestate <lb/> maneant vtrum eas ita con<lb break="no"/>sistere permittat aut reli<lb
-               break="no"/>quias exinde auferat <lb/> et vbi ad beneficium nostrum <lb/> ecclesie
-            pertinentes ita inuen<lb break="no"/>te diuise fuerint vnde scri<lb break="no"/>bantur
-            et nobis renuncientur <lb/>
+            sunt con<lb break="no"/>sideratum est <expan>quatenus</expan> si secundum <lb/>
+            prouidenciam et admonitionem <lb/> episcopi ipsi coheredes eas vo<lb break="no"/>luerint
+            tenere et honorare <lb/> faciant Si autem hoc contra<lb break="no"/>dixerint vt in
+            episcopi potestate <lb/> maneant vtrum eas ita con<lb break="no"/>sistere permittat aut
+               reli<lb break="no"/>quias exinde auferat <lb/> et vbi ad beneficium nostrum <lb/>
+            ecclesie pertinentes ita inuen<lb break="no"/>te diuise fuerint vnde scri<lb break="no"
+            />bantur et nobis renuncientur <lb/>
          </ab>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-90vb-2" rend="coloured"
             corresp="BK.191_3_inscriptio">de destructione ecclesiarum <lb/>
@@ -2637,7 +2838,6 @@
             <lb/> pro hac causa accusatus <lb/> fuerit comes vel missi <lb/> hoc quod inde
             substractum <lb/> est <expan>presbiteris</expan> cum sua lege re<lb break="no"/>stituere
             faciant </ab>
-
          <ab type="meta-text" xml:id="paris-bn-lat-4631-91ra-1" rend="coloured"
             corresp="BK.191_5_inscriptio"> de nonis <lb/> et decimis quas quidam dare <lb/>
             negligunt <seg type="numDenom">Capitulum</seg><seg type="num" n="5">V</seg> . <lb/>
@@ -2787,7 +2987,7 @@
          </ab>
          <ab type="text" xml:id="paris-bn-lat-4631-92ra-6" corresp="BK.192_4">
             <seg type="initial" rend="coloured">U</seg>Olumus vt <expan>quicumque</expan>
-            <lb/> de scabinis <expan>deprehensus</expan><!-- dt: s2 eher verdickt als mod -->
+            <lb/> de scabinis <expan>deprehensus</expan>
             <lb/> fuerit propter munera aut <lb/> propter amiciciam vel inimiciciam <lb/> iniuste
             iudicasse vt per fide<lb break="no"/>iussores missus ad <expan>presenciam</expan>
             <lb/> nostram veniat De cetero omnibus <lb/> scabinis denuncietur ne quis <lb/> deinceps
@@ -2816,11 +3016,9 @@
          <ab type="text" xml:id="paris-bn-lat-4631-92rb-3" corresp="BK.192_6">
             <expan><seg type="initial" rend="coloured">Q</seg>Vicumque</expan>
             <expan>c<mod>u</mod>mprobatus</expan> fu<lb break="no"/>erit De eo quod scienter <lb/>
-            testes in periurium induxis<lb break="no"/>se sub fideiussione<note type="editorial"
-               >Über dem <mentioned>n</mentioned> ein (Kürzungs-)Strich ohne erkennbare
-               Funktion.</note> ad pa<lb break="no"/>lacium nostrum venire com<lb break="no"
-            />pellatur vt <expan>vbicumque</expan> fide<lb break="no"/>libus nostris consideremus
-            <lb/> quid de tali homine faciendum <lb/> sit </ab>
+            testes in periurium induxis<lb break="no"/>se sub fideiussione ad pa<lb break="no"
+            />lacium nostrum venire com<lb break="no"/>pellatur vt <expan>vbicumque</expan> fide<lb
+               break="no"/>libus nostris consideremus <lb/> quid de tali homine faciendum <lb/> sit </ab>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-92rb-4" rend="coloured"
             corresp="BK.192_7_inscriptio">de discordibus hominibus <lb/>
          </ab>
@@ -2851,10 +3049,7 @@
                <num>LX</num> solidos <expan>componat</expan> Et <lb/> ad hanc constitutionem nostram
             <lb/> adimplendam episcopi et abbates <lb/> siue reliqui q<mod>u</mod>i beneficia nostra
             <lb/> habent adiuuent comites <lb/> in suis hominibus distringendis <lb/> Et si comites
-            hanc nostram <lb/> constitucionem neglexerint <lb/> hoc per missos nostros ad
-               nostra<note type="editorial">Nach dem <mentioned>a</mentioned> des gekürzten
-                  <mentioned>nostra</mentioned> (<mentioned>nra</mentioned>) folgt ein dreiförmiges
-               Zeichen, evtl. für enklitisches <mentioned>que</mentioned>?</note>
+            hanc nostram <lb/> constitucionem neglexerint <lb/> hoc per missos nostros ad nostram
             <lb/> noticiam perferatur </ab>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-92va-1" rend="coloured"
             corresp="BK.192_9_inscriptio">de malis <lb/> que a fiscalibus fiunt <seg type="numDenom"
@@ -2881,9 +3076,7 @@
             />gantur Et si per negligen<lb break="no"/>ciam comitis vel facte <lb/> sunt vel
             inemendate reman<lb break="no"/>serunt hoc ad nostram noti<lb break="no"/>ciam
             perferatur Actor vero facti <lb/> si fuerit <expan>prepositus</expan> vel ad<lb
-               break="no"/>uocatus siue centenarius <lb/> vel qualibet alia dignitate<!-- dt: der Punkt gehört zur Kürzung, daher hier nicht transkribiert, 
-               vgl. oben -->
-            <lb/>
+               break="no"/>uocatus siue centenarius <lb/> vel qualibet alia dignitate <lb/>
             <expan>predicta</expan> libera persona post <lb/> legalem emendationem in <lb/> loco
             factam sub fideiusso<lb break="no"/>ribus ad nostram presenciam <lb/> veniat Multitudo
             vero <lb/> siue de seruis siue de libe<lb break="no"/>ris sit <expan>legittima</expan>
@@ -2903,10 +3096,8 @@
             contempnere Comites autem <lb/> reddent rationes de eorum pa<lb break="no"/>gensibus cur
             eos aut non <lb/> constrinxerunt vt hoc facerent <lb/> aut nobis nunciare neg<lb
                break="no"/>lexerunt Similiter et de iniustis <lb/> theloneis
-               <expan>vbicumque</expan> accipi<cb break="no" n="93ra"/>untur sciant se
-            exinde<!-- dt: i mod? - Oder scheint etwas von der Rückseite durch? Ich würde erstmal nichts 
-               codieren, ggf. am Original prüfen. - bm: Am neuen Digitalisat erkennbar: nur eine schwungvolle "Ligatur" vom Ausläufer des x zu i. -->
-            nobis <lb/> rationem reddituros </ab>
+               <expan>vbicumque</expan> accipi<cb break="no" n="93ra"/>untur sciant se exinde nobis
+            <lb/> rationem reddituros </ab>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-93ra-1" rend="coloured"
             corresp="BK.192_12_inscriptio">de exa<lb break="no"/>mine aque frigide <seg
                type="numDenom">Capitulum</seg><note type="editorial">gek. <mentioned>Ca</mentioned>
@@ -2968,10 +3159,8 @@
             ministerium <sic>amic<lb break="no"/>tat</sic> . <anchor
                xml:id="paris-bn-lat-4631-93rb-1_1"/>
             <milestone unit="capitulare" n="BK.193"/>
-            <milestone unit="span" corresp="BK.193_1" spanTo="#paris-bn-lat-4631-93rb-1_3"/><choice>
-               <abbr>Cap</abbr>
-               <expan>Capitulum</expan>
-            </choice> . de homicidiis <lb/> in ecclesiis vel in atriis <lb/> earum
+            <milestone unit="span" corresp="BK.193_1" spanTo="#paris-bn-lat-4631-93rb-1_3"
+            />Capitulum . de homicidiis <lb/> in ecclesiis vel in atriis <lb/> earum
                <expan>commissis</expan> hoc obser<lb break="no"/>uetur et teneatur quod in ca<lb
                break="no"/>pitulari priori constitutum <lb/> est in libro <num>IIII</num> . capitulo
                   <num>XVII<hi rend="super">o</hi></num> . <anchor
@@ -3116,11 +3305,11 @@
          <ab type="text" xml:id="paris-bn-lat-4631-94rb-2" corresp="BK.193_6">
             <seg type="initial" rend="coloured">D</seg>E liberis hominibus qui <lb/> proprium non
             habent sed in terra <lb/> dominica resident vt propter <lb/> res alterius ad testimonium
-            <lb/> non recipiantur Coniurato<lb break="no"/>res tamen aliorum liberorum <lb/>
-               hom<mod>i</mod>num ideo esse possunt <lb/> quia liberi sunt . Illi vero qui <lb/> et
-            proprium habent et tamen <cb n="94va"/> in terra dominica resident propter hoc <lb/> non
-            abiciantur quia in terra do<lb break="no"/>minica resident sed propter <lb/> hoc ad
-            testimonium recipi<lb break="no"/>antur quia proprium habent </ab>
+            <lb/> non recipiantur Coniurato<lb break="no"/>res tamen aliorum liberorum <lb/> hominum
+            ideo esse possunt <lb/> quia liberi sunt . Illi vero qui <lb/> et proprium habent et
+            tamen <cb n="94va"/> in terra dominica resident propter hoc <lb/> non abiciantur quia in
+            terra do<lb break="no"/>minica resident sed propter <lb/> hoc ad testimonium recipi<lb
+               break="no"/>antur quia proprium habent </ab>
          <ab type="meta-text" xml:id="paris-bn-lat-4631-94va-1" rend="coloured"
             corresp="BK.193_7_inscriptio">Item <lb/> de liberis hominibus </ab>
          <ab type="text" xml:id="paris-bn-lat-4631-94va-2" corresp="BK.193_7">
@@ -3129,11 +3318,8 @@
             comitatibus maneant <lb/> hinc vero ea diligencia <lb/> et hec ratio examinetur <lb/>
             per singulas centenas vt <lb/> veraciter sciant illos atque <lb/> Describant qui in
                <sic>excercitalem</sic>
-            <lb/> ire possunt expeditionem <lb/> ac Deinde videlicet <choice>
-               <abbr>scdus</abbr>
-               <expan>secundus</expan>
-            </choice>
-            <lb/> ordo de his qui per se ire <lb/> non possunt vt <num>duo</num>
+            <lb/> ire possunt expeditionem <lb/> ac Deinde videlicet secundus <lb/> ordo de his qui
+            per se ire <lb/> non possunt vt <num>duo</num>
             <num>tercio</num>
             <lb/> adiutorium <expan>preparent</expan> et <expan>qui</expan>
             <lb/> necdum fidelitatem nobis <lb/> promiserunt cum sacramento <lb/> nobis fidelitatem
@@ -3159,9 +3345,7 @@
                <expan>presenciam</expan> nostram <lb/> venire vt eum ad tempus <lb/> quod nobis
             placuerit in exi<lb break="no"/>lio mittamus donec ibi <lb/> castigetur vt comiti suo
             <lb/> inobediens esse vlterius non <lb/> audeat et maius damnum <lb/> inde non accrescat </ab>
-
          <milestone unit="capitulare" n="BK.189"/>
-
          <ab type="meta-text" xml:id="paris-bn-lat-4631-94vb-1">
             <seg type="numDenom">Capitulum<note type="editorial">gek. <mentioned>Ca</mentioned> ohne
                   erkennbaren Kürzungsstrich</note></seg>
@@ -3172,28 +3356,27 @@
             <milestone unit="span" corresp="BK.189_a" spanTo="#paris-bn-lat-4631-94vb-2_1"/>
             <seg type="initial">U</seg>Olumus vt tale con<lb break="no"/>iectum missi nostri
             <lb/>accipiant quia per missati<lb break="no"/>cum suum perrexerint . hoc est <lb/>
-            vnusquisque accipiat pa<lb break="no"/>nes <num>XL</num> frisingas <num>.II.</num>
-               por<lb break="no"/>cellos aut agnum <num>.I.</num> pul<lb break="no"/>los
-               <num>.IIII.</num> oua <num>XX.</num> vinum <lb/>
+            vnusquisque accipiat pa<lb break="no"/>nes <num>XL</num> frisingas . <num>II</num> .
+               por<lb break="no"/>cellos aut agnum . <num>I</num> . pul<lb break="no"/>los .
+               <num>IIII</num> . oua <num>XX</num> . vinum <lb/>
             <choice>
                <abbr>sext</abbr>
                <expan>sextarios</expan>
             </choice>
-            <num> VIII.</num> ceruisa <choice>
+            <num> VIII</num> . ceruisa <choice>
                <abbr>mod</abbr>
                <expan>modios </expan>
             </choice>
             <lb/>
-            <num> II.</num> annona <choice>
+            <num> II</num> . annona <choice>
                <abbr>mod</abbr>
                <expan>modios </expan>
             </choice>
-            <num> II.</num> et <lb/><choice>
+            <num> II</num> . et <lb/><choice>
                <abbr>qn</abbr>
                <expan>quando</expan>
-            </choice> prope sunt de illorum
-            <lb/>domi<mod>b</mod>us<!-- sp: b evtl. korr. aus o? dt: habe mod genommen --> nullum
-            accipiant <lb/> coniectum <anchor xml:id="paris-bn-lat-4631-94vb-2_1"/>
+            </choice> prope sunt de illorum <lb/>domi<mod>b</mod>us nullum accipiant <lb/> coniectum
+               <anchor xml:id="paris-bn-lat-4631-94vb-2_1"/>
             <milestone unit="span" corresp="BK.189_b" spanTo="#paris-bn-lat-4631-94vb-2_2"/> Volumus
             etiam vt <lb/><date>octauas pasche</date> incipiant <lb/>suam agere legationem episco<lb
                break="no"/>pi vero suum habere debent <lb/>conuentum <date><choice>
@@ -3317,9 +3500,7 @@
             causis culpabiles ad <expan>pre<lb break="no"/>senciam</expan> nostram venire debent
             <lb/> isti veniant si talibus culpis <lb/> et criminibus <expan>deprehensi</expan>
                fue<lb break="no"/>rint quales inferius anno<lb break="no"/>tate sunt </ab>
-
          <milestone unit="capitulare" n="BK.188_1"/>
-
          <ab type="meta-text" xml:id="paris-bn-lat-4631-95vb-1" rend="coloured"
             corresp="BK.188_1_inscriptio"> de rebus ecclesiasticis <lb/>
          </ab>
@@ -3340,7 +3521,28 @@
             <cb n="96ra"/>
             <anchor xml:id="paris-bn-lat-4631-95vb-2_2"/>
          </ab>
-
+         <milestone unit="capitulare" n="BK.142"/>
+         <ab type="text" xml:id="paris-bn-lat-4631-96ra-1" corresp="BK.142_10 BK.142_11 BK.142_12"
+               ><milestone unit="span" corresp="BK.142_10" spanTo="#paris-bn-lat-4631-96ra-1_1"
+               />facientes<note type="editorial">Wegen vorangehenden Blattverlustes setzt der Text
+               von BK 142 c. 10 hier fragmentarisch ein.</note> habuerunt ita et <lb/>omnes qui
+               <rs>lege salica</rs> viuunt <lb/>inantea habeant et faciant <lb/>
+            <anchor xml:id="paris-bn-lat-4631-96ra-1_1"/>
+            <milestone unit="span" corresp="BK.142_11" spanTo="#paris-bn-lat-4631-96ra-1_2"/>et hoc
+            iudicauerunt vt si <lb/>seruus cartam ingenuitatis <lb/>attulerit domino serui ipsam
+            <lb/>cartam falsare liceat <anchor xml:id="paris-bn-lat-4631-96ra-1_2"/>
+            <milestone unit="span" corresp="BK.142_12" spanTo="#paris-bn-lat-4631-96ra-1_3"/>Et
+            <lb/>hoc iudicauerunt vt omnes <lb/>qui alteri aliquid querit <lb/>licenciam habeat
+            prius sua <lb/>testimonia producere contra <lb/>eum Et si ille cui queritur <lb/>dixerit
+            quod legibus teneat <lb/>ea que tenet et talia sunt <lb/>testimonia que hoc vera<lb
+               break="no"/>citer affirmare possit iu<lb break="no"/>dicauerunt vt huius rei ve<lb
+               break="no"/>ritas secundum <choice>
+               <abbr>cap</abbr>
+               <expan>capitula</expan>
+            </choice> . <rs type="person">domni im<lb break="no"/>peratoris</rs>
+            <expan>que</expan> prius pro lege <lb/>tenenda constituit rei veri<lb break="no"/>tas
+               <expan>comprobetur</expan><anchor xml:id="paris-bn-lat-4631-96ra-1_3"/>
+         </ab>
       </body>
    </text>
 </TEI>

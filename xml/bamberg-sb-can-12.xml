@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/intern/InArbeit/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
-<!-- ACHTUNG! Kopie der Datei wird gerade bearbeitet. -->
 
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="bamberg-sb-can-12" xml:lang="de">
    <teiHeader>
@@ -9,9 +10,9 @@
          <titleStmt>
             <title type="main" xml:lang="ger">Bamberg, Staatsbibliothek, Can. 12</title>
             <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
-               Transkription der foll. 68v-75r</title>
+               Transkription der foll. 17r, 55v, 66v-75r</title>
             <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
-               transcription of fols 68v-75r</title>
+               transcription of fols 17r, 55v, 66v-75r</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -135,17 +136,17 @@
                </msIdentifier>
                <head>
                   <title type="main">Bamberg, Staatsbibliothek, Can. 12</title>
-                  <origDate notAfter="0925" notBefore="0901">10. Jh., 1. Viertel</origDate>
-                  <!--      sk: nach Hoffmann 1995, S. 124: 1. oder 2. Drittel 10. Jh., "nicht im deutschen Bereich, sondern
-                  in Frankreich (oder in Oberitalien? oder Rätien?)" -->
+                  <origDate notAfter="0925" notBefore="0901">10. Jh., 1. Viertel</origDate>,
+                     <origDate notAfter="0925" notBefore="0901" resp="Hoffmann">10. Jh., 1. oder 2.
+                     Drittel (Hoffmann)</origDate>
                   <origPlace> Frankreich (Oberitalien?, Rätien?) (Hoffmann)</origPlace>
                </head>
                <msContents>
                   <summary>
                      <p>Innerhalb der „Reimser Gruppe“ des Ansegis-Worms-Korpus zeigt sich die
-                        Bamberger Hs. Can. 12 besonders verwandt mit <ref type="internal"
-                           subtype="mss" target="paris-bn-lat-10758">Cod. Paris Lat. 10758</ref>,
-                        siehe auch dort.</p>
+                        Bamberger Hs. Can. 12 besonders verwandt mit Cod. <ref type="internal"
+                           subtype="mss" target="paris-bn-lat-10758">Paris Lat. 10758</ref>, siehe
+                        auch dort.</p>
                   </summary>
                   <msItem corresp="BK.7" n="1">
                      <p>
@@ -341,11 +342,10 @@
                               <width>140</width>
                            </dimensions>
                         </extent>
-                        <collation>Lagen: <formula>2 IV<hi rend="super">16</hi> + III<hi
-                                 rend="super">22</hi> + I<hi rend="super">24</hi> + 6 IV<hi
-                                 rend="super">72</hi> + (I+2)<hi rend="super">76</hi> + 2<hi
-                                 rend="super">78</hi>
-                           </formula>.</collation>
+                        <collation><formula>2 IV<hi rend="super">16</hi> + III<hi rend="super"
+                                 >22</hi> + I<hi rend="super">24</hi> + 6 IV<hi rend="super">72</hi>
+                              + (I+2)<hi rend="super">76</hi> + 2<hi rend="super">78</hi>
+                           </formula></collation>
                      </supportDesc>
                      <layoutDesc>
                         <layout writtenLines="26">26</layout>
@@ -372,9 +372,9 @@
                <history>
                   <origin>
                      <p>
-                        <origDate notAfter="0925" notBefore="0901">10. Jh., 1. Viertel</origDate>
-                        <!--      sk: nach Hoffmann 1995, S. 124: 1. oder 2. Drittel 10. Jh., "nicht im deutschen Bereich, sondern
-                  in Frankreich (oder in Oberitalien? oder Rätien?)" -->
+                        <origDate notAfter="0925" notBefore="0901">10. Jh., 1. Viertel</origDate>,
+                           <origDate notAfter="0925" notBefore="0901" resp="Hoffmann">10. Jh., 1.
+                           oder 2. Drittel (Hoffmann)</origDate>
                         <origPlace> Frankreich (Oberitalien?, Rätien?) (Hoffmann)</origPlace>
                      </p>
                   </origin>
@@ -399,8 +399,8 @@
                         <bibl corresp="#Schmitz_G_1996"> Schmitz G 1996, S. 73-75</bibl>
                         <bibl corresp="#Bischoff_1998">Bischoff 1998, S. 46</bibl>
                         <bibl corresp="#Hartmann_W_2008">Hartmann W 2008, S. 81, 95, 325-327</bibl>
-                        <bibl>Bibliotheca legum regni Francorum manuscripta, Karl (Hrsg.) unter der
-                           Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
+                        <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
+                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
                               subtype="Bl" target="bamberg-sb-can-12" type="external"/></bibl>
                      </listBibl>
                      <listBibl type="lit">
@@ -414,7 +414,7 @@
                         <bibl corresp="#Eckhardt_K_1954">Eckhardt K 1954, S. 35</bibl>
                         <bibl corresp="#Eckhardt_W_1967">Eckhardt W 1967, S. 8 f. </bibl>
                         <bibl corresp="#Dolezalek_1972"> Dolezalek 1972, Verzeichnis 1</bibl>
-                        <bibl corresp="#Bernhard_1989">Bernhard 1989, S. 58 und 3, S. 35</bibl>
+                        <bibl corresp="#Krämer_1989">Krämer 1989, S. 58 und 3, S. 35</bibl>
                         <bibl corresp="#Krah_1989"> Krah 1989, S. 573 mit Anm. 56 und 58, S. 574
                            Anm. 60-63 und 65, S. 578</bibl>
                         <bibl corresp="#McKitterick_1989"> McKitterick 1989, S. 34 Anm. 37, S. 47,
@@ -426,7 +426,7 @@
                            S. 873 f.</bibl>
                      </listBibl>
                      <listBibl type="abb">
-                        <bibl>MGH LL 1, Taf. IV, 8 nach S. XXIV. </bibl>
+                        <bibl>MGH LL 1, Taf. IV, 8 nach S. XXIV </bibl>
                      </listBibl>
                   </listBibl>
                </additional>
@@ -457,6 +457,8 @@
          <change when="2015-06-22" who="DS">Datei erstellt aus Mordek-XML</change>
          <change when="2015-11-03" who="BM">Datei veröffentlicht (BK 184, 186, 191, 192,
             193)</change>
+         <change when="2017-12-04" who="BM">Transkription ergänzt (BK 77, 156), Vorbemerkung
+            erweitert</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -467,202 +469,257 @@
       <front>
          <div type="content">
             <list>
-               <item n="1">
+               <item n="2">
+                  <ptr type="internal" target="#bamberg-sb-can-12-3v-1"/>INCIPIUNT CAPITULA
+                  ECCLESIASTICA DOMPNI CAROLI MAGNI INPERATORI<list>
+                     <item n="2.1">
+                        <ptr type="internal" target="#bamberg-sb-can-12-17r-1"/>DE DESPONSATIS ET AB
+                        ALIIS RAPTIS</item>
+                  </list></item>
+
+               <item n="3">
+                  <ptr type="internal" target="#bamberg-sb-can-12-48v-3"/>INCIPIVNT CAPITVLA<list>
+                     <item n="3.1">
+                        <ptr type="internal" target="#bamberg-sb-can-12-55v-1"/>XXVI QUALITER de
+                        statu suo pulsatus euindicet libertatem suam</item>
+                  </list></item>
+
+               <item n="4">
+                  <ptr type="internal" target="#bamberg-sb-can-12-66v-5"/>(Karlus serenissimus
+                  imperator ...)<list>
+                     <item n="4.1">
+                        <ptr type="internal" target="#bamberg-sb-can-12-66v-6"/>I</item>
+                     <item n="4.2">
+                        <ptr type="internal" target="#bamberg-sb-can-12-67r-1"/>II</item>
+                     <item n="4.3">
+                        <ptr type="internal" target="#bamberg-sb-can-12-67r-3"/>III</item>
+                     <item n="4.4">
+                        <ptr type="internal" target="#bamberg-sb-can-12-67r-5"/>IIII</item>
+                     <item n="4.5">
+                        <ptr type="internal" target="#bamberg-sb-can-12-67r-7"/>V</item>
+                     <item n="4.6">
+                        <ptr type="internal" target="#bamberg-sb-can-12-67r-9"/>VI</item>
+                     <item n="4.7">
+                        <ptr type="internal" target="#bamberg-sb-can-12-67r-11"/>VII</item>
+                     <item n="4.8">
+                        <ptr type="internal" target="#bamberg-sb-can-12-67r-13"/>VIII</item>
+                     <item n="4.9">
+                        <ptr type="internal" target="#bamberg-sb-can-12-67v-1"/>VIIII</item>
+                     <item n="4.10">
+                        <ptr type="internal" target="#bamberg-sb-can-12-67v-3"/>X</item>
+                     <item n="4.11">
+                        <ptr type="internal" target="#bamberg-sb-can-12-67v-5"/>XI</item>
+                     <item n="4.12">
+                        <ptr type="internal" target="#bamberg-sb-can-12-68r-1"/>XII</item>
+                     <item n="4.13">
+                        <ptr type="internal" target="#bamberg-sb-can-12-68r-3"/>XIII</item>
+                     <item n="4.14">
+                        <ptr type="internal" target="#bamberg-sb-can-12-68r-5"/>XIIII</item>
+                     <item n="4.15">
+                        <ptr type="internal" target="#bamberg-sb-can-12-68r-7"/>XV</item>
+                     <item n="4.16">
+                        <ptr type="internal" target="#bamberg-sb-can-12-68r-9"/>XVI</item>
+                     <item n="4.17">
+                        <ptr type="internal" target="#bamberg-sb-can-12-68r-11"/>XVII</item>
+                     <item n="4.18">
+                        <ptr type="internal" target="#bamberg-sb-can-12-68r-13"/>XVIII</item>
+                     <item n="4.19">
+                        <ptr type="internal" target="#bamberg-sb-can-12-68v-1"/>XVIIII</item>
+                     <item n="4.20">
+                        <ptr type="internal" target="#bamberg-sb-can-12-68v-3"/>XX</item>
+                  </list></item>
+
+               <item n="5">
                   <ptr target="#bamberg-sb-can-12-68v-5" type="internal"/>Anno sexto Xmo regnante
                   domno nostro hludouuico</item>
-               <item n="2">
+               <item n="6">
                   <ptr target="#bamberg-sb-can-12-69r-1" type="internal"/>HAE CAPITVLA AB EPISCOPIS
                   TRACTANDA SVNT <list>
-                     <item n="2.1">
+                     <item n="6.1">
                         <ptr target="#bamberg-sb-can-12-69r-2" type="internal"/>I</item>
-                     <item n="2.2">
+                     <item n="6.2">
                         <ptr target="#bamberg-sb-can-12-69v-1" type="internal"/>II</item>
-                     <item n="2.3">
+                     <item n="6.3">
                         <ptr target="#bamberg-sb-can-12-69v-3" type="internal"/>III</item>
-                     <item n="2.4">
+                     <item n="6.4">
                         <ptr target="#bamberg-sb-can-12-69v-5" type="internal"/>IIII</item>
-                     <item n="2.5">
+                     <item n="6.5">
                         <ptr target="#bamberg-sb-can-12-69v-7" type="internal"/>V</item>
-                     <item n="2.6">
+                     <item n="6.6">
                         <ptr target="#bamberg-sb-can-12-69v-9" type="internal"/>VI</item>
-                     <item n="2.7">
+                     <item n="6.7">
                         <ptr target="#bamberg-sb-can-12-69v-11" type="internal"/>VII</item>
                   </list></item>
-               <item n="3">[Ohne Rubrik] <list>
-                     <item n="3.1">
+               <item n="7">
+                  <ptr target="#bamberg-sb-can-12-69v-13" type="internal"/>[Liste ohne Rubrik] <list>
+                     <item n="7.1">
                         <ptr target="#bamberg-sb-can-12-69v-13" type="internal"/>I</item>
-                     <item n="3.2">
+                     <item n="7.2">
                         <ptr target="#bamberg-sb-can-12-69v-15" type="internal"/>II</item>
-                     <item n="3.3">
+                     <item n="7.3">
                         <ptr target="#bamberg-sb-can-12-70r-1" type="internal"/>III</item>
-                     <item n="3.4">
+                     <item n="7.4">
                         <ptr target="#bamberg-sb-can-12-70r-3" type="internal"/>IIII</item>
-                     <item n="3.5">
+                     <item n="7.5">
                         <ptr target="#bamberg-sb-can-12-70r-5" type="internal"/>V</item>
-                     <item n="3.6">
+                     <item n="7.6">
                         <ptr target="#bamberg-sb-can-12-70v-1" type="internal"/>VI</item>
-                     <item n="3.7">
+                     <item n="7.7">
                         <ptr target="#bamberg-sb-can-12-70v-3" type="internal"/>VII</item>
-                     <item n="3.8">
+                     <item n="7.8">
                         <ptr target="#bamberg-sb-can-12-71r-1" type="internal"/>VIII</item>
-                     <item n="3.9">
+                     <item n="7.9">
                         <ptr target="#bamberg-sb-can-12-71r-3" type="internal"/>VIIII</item>
-                     <item n="3.10">
+                     <item n="7.10">
                         <ptr target="#bamberg-sb-can-12-71r-5" type="internal"/>X</item>
                   </list></item>
-               <item n="4">
+               <item n="8">
                   <ptr target="#bamberg-sb-can-12-71v-1" type="internal"/>ITEM alia capitula <list>
-                     <item n="4.1">
+                     <item n="8.1">
                         <ptr target="#bamberg-sb-can-12-71v-2" type="internal"/>I</item>
-                     <item n="4.2">
+                     <item n="8.2">
                         <ptr target="#bamberg-sb-can-12-71v-4" type="internal"/>II</item>
-                     <item n="4.3">
+                     <item n="8.3">
                         <ptr target="#bamberg-sb-can-12-71v-6" type="internal"/>III</item>
-                     <item n="4.4">
+                     <item n="8.4">
                         <ptr target="#bamberg-sb-can-12-71v-8" type="internal"/>IIII</item>
-                     <item n="4.5">
+                     <item n="8.5">
                         <ptr target="#bamberg-sb-can-12-71v-10" type="internal"/>V</item>
-                     <item n="4.6">
+                     <item n="8.6">
                         <ptr target="#bamberg-sb-can-12-72r-1" type="internal"/>VI</item>
-                     <item n="4.7">
+                     <item n="8.7">
                         <ptr target="#bamberg-sb-can-12-72r-3" type="internal"/>VII</item>
-                     <item n="4.8">
+                     <item n="8.8">
                         <ptr target="#bamberg-sb-can-12-72r-5" type="internal"/>VIII</item>
-                     <item n="4.9">
+                     <item n="8.9">
                         <ptr target="#bamberg-sb-can-12-72v-1" type="internal"/>VIIII</item>
-                     <item n="4.10">
+                     <item n="8.10">
                         <ptr target="#bamberg-sb-can-12-72v-3" type="internal"/>X</item>
-                     <item n="4.11">
+                     <item n="8.11">
                         <ptr target="#bamberg-sb-can-12-72v-5" type="internal"/>XI</item>
-                     <item n="4.12">
+                     <item n="8.12">
                         <ptr target="#bamberg-sb-can-12-73r-1" type="internal"/>XII</item>
-                     <item n="4.13">
+                     <item n="8.13">
                         <ptr target="#bamberg-sb-can-12-73r-3" type="internal"/>XIII</item>
-                     <item n="4.14">
+                     <item n="8.14">
                         <ptr target="#bamberg-sb-can-12-73r-5" type="internal"/>XIIII</item>
-                     <item n="4.15">
+                     <item n="8.15">
                         <ptr target="#bamberg-sb-can-12-73r-7" type="internal"/>XV</item>
-                     <item n="4.16">
+                     <item n="8.16">
                         <ptr target="#bamberg-sb-can-12-73v-1" type="internal"/>XVI</item>
-                     <item n="4.17">
+                     <item n="8.17">
                         <ptr target="#bamberg-sb-can-12-73v-3" type="internal"/>XVII</item>
-                     <item n="4.18">
+                     <item n="8.18">
                         <ptr target="#bamberg-sb-can-12-74r-1" type="internal"/>XVIII</item>
-                     <item n="4.19">
+                     <item n="8.19">
                         <ptr target="#bamberg-sb-can-12-74r-3" type="internal"/>XVIIII</item>
-                     <item n="4.20">
+                     <item n="8.20">
                         <ptr target="#bamberg-sb-can-12-74r-5" type="internal"/>XX</item>
-                     <item n="4.21">
+                     <item n="8.21">
                         <ptr target="#bamberg-sb-can-12-74v-1" type="internal"/>XXI</item>
                   </list></item>
             </list>
          </div>
          <div type="mshist"/>
          <div type="scribe">
-            <p>Der hier transkribierte Teil der Hs. (foll. 68v-75r) ist von einem Schreiber
-               geschrieben, der als letzter von drei beteiligten Schreibern ab <locus>fol. 45v, Z.
-                  18</locus> (ab <mentioned>pręsumat</mentioned>) bis zum Ende der Hs. arbeitete
-               (Hoffmann 1995, S. 124). Er verwendet eine gut lesbare karolingische Minuskel, die
-               noch zahlreiche Doppelformen aufweist.</p>
+            <p>Insgesamt waren drei Schreiber an der Erstellung der Handschrift beteiligt, die nach
+               Hoffmann 1995 für folgende Teile verantwortlich waren: Hand A = <locus>foll.
+                  1r-24v</locus>, <locus>75r</locus> (darin enthalten: BK 156 c. 1 auf <locus>fol.
+                  17r</locus>), Hand B = <locus>foll. 25r-45v (bis Z. 18</locus>
+               <mentioned>exactare</mentioned>; in diesem Teil der Handschrift keine Kapitularien),
+               Hand C = ab <locus>fol. 45v Z. 18</locus> (<mentioned>pręsumat</mentioned>) bis zum
+               Ende (hier finden sich alle übrigen hier transkribierten Texte). Alle Schreiber
+               schreiben eine gut lesbare karolingische Minuskel, die noch zahlreiche Doppelformen
+               aufweist.</p>
          </div>
          <div type="letters">
-            <p>Foll. 68v-75r:</p>
-            <p>Einzelbuchstaben: d ist überwiegend gerade, es findet sich aber auch noch unziales D;
-               beide Formen treten auch innerhalb eines Wortes auf (<locus>fol. 69v, Z. 12</locus>:
-                  <mentioned>additur</mentioned>). Ungewöhnlich sind das e und das f: das e besteht
-               aus einem senkrechten unteren Bogenabschnitt, an den der obere Bogen mit
-               Balkenfortsatz angebracht wird (<locus>fol. 69r, Z. 14</locus>:
-                  <mentioned>inuenire</mentioned>); gelegentlich auch mit einem nach oben rechts
-               ausschwingenden Ansatz versehen (<locus>fol. 69r, Z. 14</locus>:
-                  <mentioned>occasiones</mentioned> und <locus>Z. 23</locus>:
-                  <mentioned>peragere</mentioned>). Der obere Bogen des f wirkt ebenfalls
-               nachträglich an den Schaft angesetzt und schwungvoll ausgeführt (<locus>fol. 71r, Z.
-                  9</locus>: <mentioned>frugibus</mentioned> und <locus>Z. 18</locus>:
-                  <mentioned>faciendo</mentioned>). Minuskel-n dominiert, die Majuskelform findet
-               sich jedoch ebenfalls.</p>
-            <p>Ligaturen: Insgesamt weist die Schrift wenige Ligaturen auf. Es findet sich
-               hauptsächlich eine st- und ct-Ligatur. Regelmäßiger Gebrauch einer ausgeprägten
-               e-caudata (z.B. <locus>fol. 73v, Z. 13</locus>:
-               <mentioned>pęnitentiam</mentioned>).</p>
+            <p>Hand A:</p>
+            <p>Insgesamt sehr eckige Schrift, bei der auch Buchstaben mit Bogenelementen aus
+               senkrechten Schaftansätzen (mit Anstrich) heraus gebildet werden (z.B. bei c, d, e,
+               o). Die Cauda von e-caudata hat die Form eines spitzen Winkels. Der sichelförmige
+               untere Bogen des g ist z.T. ohne Übergang an den oberen Bogen angesetzt (z.B.
+                  <locus>fol. 17r, Z. 13</locus>: uirginibus, <locus>Z. 15</locus>: cognouimus).</p>
+            <p>Hand C:</p>
+            <p>Einzelbuchstaben: Das Minuskel-e ähnelt demjenigen von Hand A, die übrigen Buchstaben
+               mit Bogenelementen (c, d, o) werden aber im Unterschied zu Hand A rund ausgeführt.
+               Verwendung von geradem und unzialem d. Gelegentlich wird e mit einem nach oben rechts
+               ausschwingenden Aufsatz versehen, wohl, um einen zu eng geratenen oberen Bogen zu
+               verdeutlichen (<locus>fol. 69r, Z. 14</locus>: <mentioned>occasiones</mentioned> und
+                  <locus>Z. 23</locus>: <mentioned>peragere</mentioned>). Regelmäßiger Gebrauch
+               einer ausgeprägten e-caudata mit blitzförmiger Cauda (z.B. <locus>fol. 73v, Z.
+                  13</locus>: <mentioned>pęnitentiam</mentioned>). Der obere Bogen des f ist
+               sichelförmig (<locus>fol. 71r, Z. 9</locus>: <mentioned>frugibus</mentioned> und
+                  <locus>Z. 18</locus>: <mentioned>faciendo</mentioned>). Minuskel-n dominiert, die
+               Majuskelform findet sich jedoch ebenfalls (auch im Wort).</p>
             <p>Besonderheiten: Für die Auszeichnungsbuchstaben und Kapitelüberschriften wurde auf
                ein Mischalphabet aus Capitalis rustica und Unziale zurückgegriffen (<locus>fol. 69r,
                   Z. 24</locus>: <mentioned>CAPITULA</mentioned>). Ebenso finden sich gelegentlich
                Unzialbuchstaben bei Satzbeginn (<locus>fol. 69r, Z. 22</locus>:
-                  <mentioned>Missi</mentioned>). Bei der Verzierung mit roter Farbe und Ausführung
-               der einzelnen Initialbuchstaben lässt sich ebenfalls eine große Varianz erkennen: die
-               Buchstaben aus Capitalis Quadrata, Rustica und Unziale wurden teilweise vertikal und
-               horizontal mit einer roten Ausmalung versehen (z.B. <locus>foll. 69v</locus> und
-                  <locus>73r</locus>).</p>
+                  <mentioned>Missi</mentioned>). </p>
          </div>
          <div type="abbreviations">
-            <p>Foll. 68v-75r: Abkürzungen werden insgesamt eher sparsam verwendet und betreffen
-               meist den Nasalstrich am Wortende, enklitisches –que sowie die herkömmlichen
-               Kürzungen für per-, pro-, -us und Nomina sacra. Gekürztes com/n- vor p wurde mit con-
-               aufgelöst, wie in der Mehrzahl der ausgeschriebenen Fälle. Auffallend ist die aus der
-               Stenographie abgeleitete Abkürzung ÷ für est, die insulare Gewohnheit ist (z.B.
-                  <locus>foll. 71r, Z. 8</locus> und <locus>73r, Z. 9</locus>).</p>
+            <p>Abkürzungen werden insgesamt eher sparsam verwendet. Gekürztes com/n- vor p wurde mit
+               con- aufgelöst, wie in der Mehrzahl der ausgeschriebenen Fälle. Für est verwendet
+               Hand C oft die Abkürzung ÷, die insulare Gewohnheit ist (z.B. <locus>foll. 71r, Z.
+                  8</locus> und <locus>73r, Z. 9</locus>). </p>
          </div>
-         <div type="punctuation">
-            <p>Foll. 68v-75r: Das übliche Interpunktionszeichen ist die media distinctio, vereinzelt
-               findet sich auch ein punctus elevatus. An vielen Stellen ergänzte ein neuzeitlicher
-               Bearbeiter die Striche bei punctus elevatus nachträglich mit Blei (z.B. auf
-                  <locus>fol. 70r</locus>, am Ende von <locus>Zeile 1 und 12</locus>); diese
-               späteren Ergänzungen wurden in der Transkription außer Acht gelassen. Einmal wird
-               auch ein an ein Komma erinnerndes Zeichen verwendet (<locus>fol. 69r, Z. 2</locus>
-               nach <mentioned>in tolosa</mentioned>), das aber sonst nicht begegnet und evtl. eher
-               als ein Einfügungszeichen zu deuten ist (vgl. <locus>fol. 72r, Z. 5</locus>:
-                  <mentioned>quęlibet</mentioned> mit Einfügungszeichen ergänzt), das aber dann doch
-               nicht gebraucht wurde.</p>
-         </div>
+         <div type="punctuation"/>
          <div type="structure">
-            <p>Zu BK 184-193; foll. 68v-75r: Die einzelnen Kapitellisten sind (bis auf BK 191 und
-               193) mit einer roten Rubrik überschrieben. Die Kapitel werden mit römischen Ziffern
-               in roter Tinte am Rand nummeriert und mit ausgerückten Initialen (Capitalis) in
-               schwarzer Texttinte mit roten Verzierungen/Füllungen eingeleitet.</p>
-            <p>Während BK 186 c. 1 (<locus>fol. 69r</locus>) zunächst demselben Gliederungsmuster
-               folgt, werden bei den cc. 2-7 (<locus>fol. 69v</locus>) statt der auffälligen
-               Capitalis-Initialen nur noch schlanke, zweifarbige Versalien in Capitalis rustica
-               verwendet, was diese Kapitelliste optisch von der auf demselben Folio anschließenden
-               Liste BK 191 unterscheidet (der die einleitende Überschrift fehlt).</p>
-            <p>Auf <locus>fol. 71v</locus> ist jede zweite Initiale (zu cc.
-                  <mentioned>II</mentioned> und <mentioned>IV</mentioned>) in umgekehrtem
-               Farbverhältnis - mehr rot als schwarz - gestaltet, doch dieser Ansatz zur Variation
-               wird auf den folgenden Seiten nicht mehr weitergeführt.</p>
-            <p>Die mit <mentioned>I</mentioned> einsetzende neue Kapitelzählung von BK 192 c. 1
-                  (<locus>fol. 71v, Z. 7</locus>) ist durch ein Paragraphenzeichen
-               hervorgehoben.</p>
-            <p>Bei BK 192 c. 10 (<locus>fol. 72v</locus>) ist die Anfangsinitiale einfarbig in
-               Texttinte gehalten.</p>
-            <p>Gelegentlich werden Majuskeln am Satzanfang, die am Zeilenbeginn stehen, etwas
-               ausgerückt (z.B. auf <locus>fol. 70r, Z. 1</locus> oder <locus>fol. 71r, Z. 9 und
-                  20</locus>), wobei jedoch keine zusätzliche Gliederungsfunktion beabsichtigt
-               gewesen zu sein scheint.</p>
+            <p>Zu BK 156 c. 1 (<locus>fol. 17r</locus>):</p>
+            <p>Der erste, von Hand A geschriebene Teil der Hs., der die Kopie von Ansegis Buch 1
+               sowie den Beginn von Buch 2 enthält, ist durchgängig in Texttinte gestaltet.
+               Initialen sind vergrößert und aus dem Textblock ausgerückt, Rubriken in
+               Majuskelbuchstaben stehen meist am Zeilenende und waren wohl ursprünglich durch eine
+               Übermalung mit farbiger Tinte hervorgehoben, die aber heute nur noch als gelblicher
+               Schatten erscheint. Als Zusatzkapitel nach Ansegis 1, 99 erscheint hier BK 156 c. 1,
+               gezählt als <mentioned>XCVII</mentioned>; allerdings nur in der Capitulatio auf
+                  <locus>fol. 4v</locus>. Im Teil mit den ausgeschriebenen Kapiteln von Buch 1 fehlt
+               eine Kapitelzählung.</p>
+            <p>Zu BK 156 c. 2 und 3 (<locus>fol. 55v</locus>) sowie BK 77, 184, 186 und 191-193
+                  (<locus>foll. 66v-75r</locus>):</p>
+            <p>Der von Hand C geschriebene Teil der Hs. wird durch an den Rand ausgerückte
+               Kapitelzahlen in roter Tinte, ebenfalls ausgerückte Initialen in Texttinte mit roter
+               Verzierung sowie rote Rubriken strukturiert.</p>
+            <p>BK 156 cc. 2 und 3 sind in ein Kapitel zusammengezogen und erscheinen als
+               Zusatzkapitel nach Ansegis 4, 24 als <mentioned>XXVI</mentioned> (sowohl in der
+               Capitulatio auf <mentioned>fol. 49r</mentioned> als auch im Text auf <mentioned>fol.
+                  55v</mentioned>).</p>
+            <p>BK 77 hat keine einleitende Rubrik; allerdings beginnt der Text erst nach einer
+               Leerzeile. Eventuell sollte dort noch eine Rubrik ergänzt werden.</p>
+            <p>BK 184 wird durch eine rote Rubrik sowie eine rot verzierte Initiale eingeleitet und
+               ist nicht in Kapitel unterteilt. Während BK 186 c. 1 (<locus>fol. 69r</locus>) dem
+               oben beschriebenen Layout entspricht, werden bei den cc. 2-7 (<locus>fol.
+               69v</locus>) statt der auffälligen Capitalis-Initialen nur noch schlanke, zweifarbige
+               Versalien in Capitalis rustica verwendet, was diese Kapitelliste optisch von der
+               direkt folgenden Liste BK 191 unterscheidet, die ohne Rubrik mit neuer Zählung
+               anschließt. </p>
             <p>Zum Ende des hier transkribierten Abschnittes, beginnend beim ersten Ansegis-Zitat in
                BK 193 c. 5 (<locus>fol. 74v, Z. 23</locus>), werden auch im Kapiteltext einzelne
                Zahlen und Majuskeln am Satzanfang mit roter Tinte verziert und dadurch optisch
                hervorgehoben.</p>
-            <p>Die Kapitelliste BK 193 ist nicht als eine separate Liste erkennbar, da es neben der
-               fehlenden Rubrik auch sonst keinen erkennbaren Einschnitt gibt und die Nummerierung
-               der vorigen Liste (BK 192) fortgeführt wird: BK 193 cc. 1-5 sind hier = cc.
+            <p>Die Kapitelliste BK 193 ist nicht als eine separate Liste erkennbar, da sie als
+               Fortsetzung der vorigen Liste (BK 192) erscheint: BK 193 cc. 1-5 sind hier = cc.
                   <mentioned>XVI-XXI</mentioned>, wobei das Ansegis-Zitat aus BK 193 c. 1 als
-               eigenes Kapitel <mentioned>XVII</mentioned> gezählt wird. Letzteres läßt sich evtl.
+               eigenes Kapitel <mentioned>XVII</mentioned> gezählt wird. Letzteres lässt sich evtl.
                aus dem inhaltlichen Kontext erklären, da das aus Ansegis zitierte Kapitel auch mit
-                  <mentioned>XVII</mentioned> gezählt wurde (<mentioned>In libro .IIII. capitulo
+                  <mentioned>XVII</mentioned> gezählt wurde (<mentioned>In libro . IIII . capitulo
                   XVII.</mentioned>), was den Kopisten zu diesem Versehen verleitet haben mag.</p>
             <p>Der Text bricht auf <locus>fol. 75r</locus> in c. <mentioned>XXI</mentioned> (= BK
-               193 c. 5) offenbar bewußt ab, denn auf das letzte Wort
-                  (<mentioned>Iudicat</mentioned>) folgen einige aus Punkten und Kommata gebildeten
-               Pausen- oder Auslassungszeichen (vgl. Mordek 1995 S. 15); der Rest der Zeile bleibt
-               frei. Danach folgen die Capitula Hinkmars von Reims von anderer Hand.</p>
+               193 c. 5) mitten im Satz ab. Dem Kopist war aber offenbar bewusst, dass noch etwas
+               folgen musste, denn nach dem letzten Wort (<mentioned>Iudicat</mentioned>) wurden
+               einige aus Punkten und Kommata gebildete Pausen- oder Auslassungszeichen gesetzt
+               (vgl. Mordek 1995, S. 15); der Rest der Zeile blieb frei. Danach folgen die Capitula
+               Hinkmars von Reims von anderer Hand.</p>
          </div>
          <div type="annotations">
-            <p>Zu BK 184-193; foll. 68v-75r: Zu Beginn der Kopien von BK 184 (<locus>fol.
-                  68v</locus>) und 191 (<locus>fol. 69v</locus>) finden sich in Blei am Rand
-               Hinweise auf die Seitenzahlen der entsprechenden Stücke in der Edition von Baluze
-                  (<mentioned>p. 654</mentioned>, <mentioned>p. 664</mentioned>). Ebenfalls in Blei,
-               daher wahrscheinlich vom selben Benutzer der Hs. (der auch die Striche über den
-               Punkten ergänzt haben könnte, s.o.), wurde zu Beginn von BK 192 c. 15 (fol. 73r, Z.
-               21) das fehlende <mentioned>vicarii</mentioned> über der Zeile ergänzt (Hand X).</p>
+            <p>Zu BK 77, 184, 186 und 191-193; <locus>foll. 66v-75r</locus>: Zu Beginn der Kopien
+               von BK 77 (<locus>fol. 66v</locus>), 184 (<locus>fol. 68v</locus>) und 191
+                  (<locus>fol. 69v</locus>) finden sich in Blei Hinweise auf die Seitenzahlen der
+               entsprechenden Stücke in der Edition von Baluze. Ebenfalls in Blei, daher
+               wahrscheinlich vom selben Benutzer der Hs. (der auch öfters Sinnabschnitte im Text
+               durch senkrechte Striche markierte, z.B. auf <locus>fol. 70r</locus>), wurde zu
+               Beginn von BK 192 c. 15 (<locus>fol. 73r, Z. 21</locus>) das fehlende
+                  <mentioned>vicarii</mentioned> über der Zeile ergänzt.</p>
             <p>An drei Stellen findet sich vor bzw. hinter einer Textzeile ein verblaßtes Zeichen
                (zwei Punkte mit daruntergesetztem, senkrechtem Strich), dessen Funktion unklar ist.
                Vielleicht interessierte sich der Benutzer, der sie notierte, für mittelalterliche
@@ -671,6 +728,11 @@
                einer <mentioned>inferenda</mentioned> genannten Abgabe (<mentioned>duos solidos pro
                   una uacca</mentioned>, <locus>fol. 73r, Z. 24</locus>) und
                   <mentioned>fredum</mentioned> (<locus>fol. 73v, Z. 1</locus>).</p>
+            <p>Am unteren Seitenrand von <locus>fol. 67v</locus> finden sich einige getilgte
+               Buchstaben (<mentioned>De</mentioned>(oder <mentioned>c</mentioned>?) ...
+                  <mentioned>ii</mentioned>?). Die Position (nah am Rand, mittig) spricht für eine
+               Kustode, zumal ein Lagenwechsel folgt; allerdings wäre die vermutliche Zahl
+                  (<mentioned>DC[II]</mentioned>?) für eine Kustodenzählung ungewöhnlich hoch.</p>
          </div>
          <div type="other">
             <p>Die Tinte ist an einigen Stellen verblaßt oder abgerieben (z.B. <locus>fol.
@@ -679,11 +741,298 @@
 
       </front>
       <body>
+         <cb n="3v"/>
+         <lb n="1"/>
+         <milestone unit="capitulatio" xml:id="bamberg-sb-can-12-3v-capitulatio"
+            spanTo="#capitulatio-finis"/>
+         <ab type="meta-text" xml:id="bamberg-sb-can-12-3v-1" corresp="Ansegis.1_inscriptio_c"
+            >INCIPIUNT . CAPITULA<note type="editorial">gek. <mentioned>CAPILA</mentioned>, aber
+               ohne Kürzungszeichen.</note>
+            <lb/>ECCLESIASTICA . <rs type="person">DOMPNI CAROLI . <lb/>MAGNI INPERATORI</rs> .
+            <lb/></ab>
+         <cb n="4va"/>
+         <lb n="22"/>
+         <ab type="meta-text" xml:id="bamberg-sb-can-12-4va-20"
+            corresp="Ansegis.1_102bis_inscriptio_c BK.156_1_inscriptio_c"><seg type="num" n="97"
+               rend="coloured">XCVII </seg> De desponsatis et ab <sic>alliis</sic> raptis .
+            <lb/></ab>
+         <anchor xml:id="capitulatio-finis"/>
+         <!-- bm: Eine Rubrik zum Beginn der ausgeschriebenen Kapitel existiert nicht; auch keine Kapitelzählung. -->
+         <milestone n="BK.156" unit="capitulare"/>
+         <cb n="17r"/>
+         <lb n="4"/>
+         <ab type="meta-text" xml:id="bamberg-sb-can-12-17r-1"
+            corresp="Ansegis.1_102bis_inscriptio BK.156_1_inscriptio">DE DESPONSATIS ET AB ALIIS
+            RAPTIS . <lb/></ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-17r-2" corresp="Ansegis.1_102bis_b BK.156_1"><seg
+               type="initial">Q</seg>ui sponsam alienam ipsa non <choice>
+               <abbr>consentient</abbr>
+               <expan>consentienter</expan>
+            </choice> rapuerit <lb/>licet cum ea concubuerit reddat eam ei cui sponsa est . et is
+            uelit . <lb/>quia uim passa potius quam uiolata uidetur ; Quodsi etiam <lb/> ducere
+            noluerit accipiat alteram feminam . tamen et ipsa nubere <lb/>uoluerit . excepto raptore
+            cui uoluerit alteri legitime copuletur . <lb/>Raptor uero adulterii crimine reus .
+            Quodsi et ipsa <del>ce</del> consensit <lb/>similiter ut raptor et nuptiis in ulterius
+            prohibeatur . et his qui eam <lb/>accepturus erat alia quam uoluerit accipiat ; </ab>
+
+         <cb n="48v"/>
+         <lb n="11"/>
+
+         <milestone unit="capitulatio" xml:id="bamberg-sb-can-12-48v-capitulatio"
+            spanTo="#capitulatio-finis_1"/>
+         <ab type="meta-text" xml:id="bamberg-sb-can-12-48v-3" corresp="Ansegis.4_inscriptio_c"
+            rend="coloured">INCIPIVNT CAPITVLA . <lb/></ab>
+         <cb n="49r"/>
+         <lb n="14"/>
+         <ab type="meta-text" xml:id="bamberg-sb-can-12-49r-13"
+            corresp="Ansegis.4_26bis_inscriptio_c BK.156_2_inscriptio_c">
+            <seg type="num" n="26" rend="coloured">XXVI </seg><seg type="initial">Q</seg>ualiter de
+            statu suo pulsatus euindicetur libertatem suam <lb/></ab>
+         <anchor xml:id="capitulatio-finis_1"/>
+         <cb n="55v"/>
+         <lb n="1"/>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-55v-1"
+            corresp="Ansegis.4_26bis_inscriptio BK.156_2_inscriptio"> QUALITER de statu suo pulsa<lb
+               break="no"/>tus euindicet libertatem suam . <lb/><seg type="num" n="26"
+            >XXVI</seg></ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-55v-2"
+            corresp="BK.156_2 BK.156_3 Ansegis.4_26bis_a Ansegis.4_26bis_b">
+            <milestone unit="span" corresp="BK.156_2 Ansegis.4_26bis_a"
+               spanTo="#bamberg-sb-can-12-55v-2_1"/>
+            <seg type="initial" rend="coloured">H</seg>omo de statu suo pulsatus . si is qui eum
+            pulsat ad conuincendum <lb/>illum procinctum habuerit . adhibeat sibi <num>octo</num>
+            coniuratores <lb/>legitimos . ex ea parte unde pulsatur . siue illa paterna . <lb/>siue
+            materna sit . et <num>quatuor</num> aliunde non minus legiti<lb break="no"/>mos . et
+            iurando uindicet libertatem suam . quodsi pro<lb break="no"/>cinctus defuerit . adsumat
+               <expan>undecumque</expan>
+            <num>duodecim</num> liberos <lb/>homines . et iurando ingenuitatem suam defendat .
+               <anchor xml:id="bamberg-sb-can-12-55v-2_1"/>
+            <milestone unit="span" corresp="BK.156_3 Ansegis.4_26bis_b"
+               spanTo="#bamberg-sb-can-12-55v-2_2"/> omnis <lb/>controuersia coram centenario
+            definiri potest . excepta <lb/>redditione terrę et mancipiorum . quę nonnisi coram co<lb
+               break="no"/>mite fieri potest . <anchor xml:id="bamberg-sb-can-12-55v-2_2"/></ab>
+         <cb n="66v"/>
+         <lb n="9"/>
+         <milestone unit="capitulare" n="BK.77"/>
+         <ab type="text" xml:id="bamberg-sb-can-12-66v-5" corresp="BK.77_prolog"><rs type="person"
+                  ><seg type="initial" rend="coloured">K</seg>arlus serenissimus imperator .
+               augustus . a deo coronatus magnus <lb/>et pacificus</rs> . cum episcopis . abbatibus
+            comitibus ducibus omni<mod>b</mod>usque <lb/>fidelibus christianę ecclesiae . cum
+            consensu consilio statuit . <lb/>ex <rs>lege salica</rs> . <rs>romana</rs> atque
+               <rs>gombata</rs> capitula ista <lb/>in <rs type="place">palatio aquis</rs> . ut
+            unusquisque fidelis iusticias ita faceret . <lb/>que et ipsa manu propria firmauit
+            capitula ista . ut <lb/>omnes fideles manu roborare studuissent . <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-66v-6"
+            corresp="BK.77_1_inscriptio"><seg type="num" n="1">I</seg></ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-66v-7" corresp="BK.77_1"><seg type="initial"
+               rend="coloured">U</seg>t episcopi circu<mod>m</mod>eant parrochias sibi
+               <expan>commissas</expan> . et ibi inqui<lb break="no"/>rendi studium habeant de
+            incestu . de patricidi<add>i</add>s . fra<lb break="no"/>tricidiis . adulteriis .
+            cenodoxiis . et alia mala quę con<lb break="no"/>traria sunt deo . quę in sacris
+            scripturis leguntur . quę <lb/>christiani deuitare debent . et infra illorum parrochias
+            <lb/>ecclesiae quibus necesse est . emendandi curam habeant . <lb/>
+            <seg type="initial">S</seg>imiliter nostras a nobis in benefitio datas . quam et
+            <lb/>aliorum ubi reliquiae preesse uidentur . et ut mo<lb break="no"/>nachi per uerbum
+            episcopi . et per regimen abbatis . et per bona <lb/>illorum exempla regulariter uiuant
+            . prout loca <lb/>locata sunt . et ut <expan>prepositus</expan> et hi qui foras
+            monasteria sunt . <cb n="67r"/> ne uenatores habeant . quia iam frequenter iussimus
+            <lb/>ne monachi foras monasterio habitassent . <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-67r-1"
+            corresp="BK.77_2_inscriptio"><seg type="num" n="2">II</seg></ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-67r-2" corresp="BK.77_2"><seg type="initial"
+               rend="coloured">U</seg>t ecclesiae <subst>
+               <del>pupilli . uiduae</del>
+               <add hand="X">uiduae . pupilli</add>
+            </subst> . per bannum regis pacem habeant . <lb/>sin aliter in pręsentia nostra hoc
+            ueniat si fieri potest ! <lb/> sin autem missi nostri inuestigent illud quomodo gestum
+            sit . <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-67r-3"
+            corresp="BK.77_3_inscriptio"><seg type="num" n="3">III</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-67r-4" corresp="BK.77_3"><seg type="initial"
+               rend="coloured">U</seg>t iumenta pacem habeant . similiter per bannum regis .
+            <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-67r-5"
+            corresp="BK.77_4_inscriptio"><seg type="num" n="4">IIII</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-67r-6" corresp="BK.77_4"><seg type="initial"
+               rend="coloured">U</seg>t hi qui benefitium nostrum habent . bene illud inmelio<lb
+               break="no"/>rare in omni re studeant . et ut missi nostri hoc sciant . <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-67r-7"
+            corresp="BK.77_5_inscriptio"><seg type="num" n="5">V</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-67r-8" corresp="BK.77_5"><seg type="initial"
+               rend="coloured">U</seg>t uicarii nostri uel centenarii . a seruo regis mancipia
+            <lb/>ne emant . et ut ipsi uicarii de hereditate foris here<lb break="no"/>dibus si
+            extiterit . ad opus nostrum recipiatur ne illud <lb/>fraudetur . <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-67r-9"
+            corresp="BK.77_6_inscriptio"><seg type="num" n="6">VI</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-67r-10" corresp="BK.77_6"><seg type="initial"
+               rend="coloured">D</seg>e his qui a litterarum conscriptione ingenui fuerint . <lb/>si
+            sine traditione mortui fuerint . hereditas eorum <lb/>ad opus nostrum recipiatur . nec
+            comes . nec uicarius <lb/>illud sibi sotiet sed ad opus nostrum reuocetur . Similiter
+            <lb/>uolumus ut banni nostri de illis unde censa exigunt . <lb/>ut ipsa censa ad nostrum
+            opus . uel ubi nos iubemus ueniant . <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-67r-11"
+            corresp="BK.77_7_inscriptio"><seg type="num" n="7">VII</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-67r-12" corresp="BK.77_7"><seg type="initial"
+               rend="coloured">D</seg>e hereditate inter heredes si contentiosę egerint . <lb/>et
+            rex missum suum ad illam diuisionem transmi<lb break="no"/>serit . decimum mancipium .
+            et decimam uirgam heredi<lb break="no"/>tatis fisco regis detur . <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-67r-13"
+            corresp="BK.77_8_inscriptio"><seg type="num" n="8">VIII</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-67r-14" corresp="BK.77_8"><seg type="initial"
+               rend="coloured">U</seg>t <sic>uicari</sic> luparios habeant unusquisque in suo
+               minis<lb break="no"/>terio <num>duos</num> . et ipsę de hoste pergendi . et de
+            placito comitis <lb/>et uicarii ne custodiat . nisi clamor super eum eueniat . <lb/>et
+            ipsi certare studeant de hoc . ut perfectum exinde <cb n="67v"/> habeat . et ipsas
+            pelles luporum ad nostrum opus dentur . <lb/>et unusquisque de illis qui in illo
+            minysterio placitum <lb/>custodiunt . detur eis <choice>
+               <abbr>mod</abbr>
+               <expan>modium</expan>
+            </choice> . <num>I</num> de annona . <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-67v-1"
+            corresp="BK.77_9_inscriptio"><seg type="num" n="9">VIIII</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-67v-2" corresp="BK.77_9"><seg type="initial"
+               rend="coloured">D</seg>e hoste pergendi ut comiti in suo comitatu per bannum
+            <lb/>unumquemque hominem . per <num>LX</num> solidos in hostem pergere <lb/>bannire
+            studeat . ut ad placitum denuntiatum . ad il<lb break="no"/>lum locum ubi iubetur
+            ueniant . et ipse comes <expan>preuideat</expan>
+            <lb/> quomodo sint parati . id est lanceam . scutum . aut arcum . <lb/>cum
+               <num>duas</num> cordas . sagittas <num>XII</num> . <hi rend="coloured">D</hi>e his
+            uterque habeant . <lb/>et episcopi . comites . abbates . hos homines habeant . qui hoc
+            <lb/>bene preuideant . et ad diem denuntiati placiti <lb/>ueniant . et ibi ostendant
+            quomodo sint parati . ha<lb break="no"/>beant loricas et galeas . et temporalem hostem
+            id est <lb/>aestiuo tempore . <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-67v-3"
+            corresp="BK.77_10_inscriptio"><seg type="num" n="10">X</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-67v-4" corresp="BK.77_10"><seg type="initial"
+               rend="coloured">U</seg>t regis spensa in carra ducatur<note type="editorial">Über dem
+               Wort eine Korrektur/Glosse (?) von ca. 10 Buchstaben
+            getilgt.</note><!-- Ggf. am Original prüfen! --> . simul episcoporum . abbatum .
+            <lb/>comitum . et optimatum regis . farinam . uictum . baco<lb break="no"/>nes . et
+            uinum abundanter . molas . dolatorias . secures . <lb/>taretros . fundibulas . et illos
+            homines . qui exinde <lb/>bene sciant iactare . et marscalci regis adducant eis
+            <lb/>petras . in saumas . <num>XX</num> . si opus est . et unusquisque hostili<lb
+               break="no"/>ter sit paratus . et omnia utensilia sufficienter habeant <lb/>et
+            unusquisque comis <num>duas</num> partes de herba in suo comi<lb break="no"/>tatu
+            defendat . ad opus illius hosti . et habeat . <sic>p<subst>
+                  <del>t</del>
+                  <add>otes</add>
+               </subst></sic>
+            <lb/> bonos . naues bonas . <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-67v-5"
+            corresp="BK.77_11_inscriptio"><seg type="num" n="11">XI</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-67v-6" corresp="BK.77_11"><seg type="initial"
+               rend="coloured">U</seg>t comites unusquisque in suo comitatu carcerem habe<lb
+               break="no"/>ant . et iudices atque uicarii patibulos habeant . <cb n="68r"/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-68r-1"
+            corresp="BK.77_12_inscriptio"><seg type="num" n="12">XII</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-68r-2" corresp="BK.77_12"><seg type="initial"
+               rend="coloured">U</seg>t homines boni generis qui infra comitatum inique uel iniustę
+            <lb/>agunt . in <expan>presentia</expan>
+            <subst>
+               <del/>
+               <add>r</add>
+            </subst>egis ducantur . et rex super eos distric<lb break="no"/>tionem faciat .
+            carcerandi . exiliandi usque ad emenda<lb break="no"/>tionem illorum . <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-68r-3"
+            corresp="BK.77_13_inscriptio"><seg type="num" n="13">XIII</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-68r-4" corresp="BK.77_13"><seg type="initial"
+               rend="coloured">U</seg>t uicarii munera non accipiant pro illos latrones qui
+            <lb/>ante comitem iudicati fuerint ad mortem . Quod si <lb/>hoc perpetrauerit tale
+            iuditium sustineat . sicut et latro <lb/>iudicatus fuit . quia postquam scabini eum
+            diiudicati <lb/>fuerint . non est licentia comitis uel uicarii ei uitam <lb/>concedere .
+            Sed si bannus ei iudicatus fuerit . et ban<lb break="no"/>no peracto . stet in eo
+            interim usquedum comiti . et eo <lb/>qui clamorem uel causam ad eum habuit . et tunc sit
+            <lb/>foris banno . <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-68r-5"
+            corresp="BK.77_14_inscriptio"><seg type="num" n="14">XIIII</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-68r-6" corresp="BK.77_14"><seg type="initial"
+               rend="coloured">U</seg>t episcopi et abbates aduocatos habeant . et ipsi habeant
+            <lb/>in illo comitatu propriam hereditatem . et ut ipsi recti <lb/>et boni sint . et
+            habeant uoluntatem rectę et iustę <lb/>causas perficere . <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-68r-7"
+            corresp="BK.77_15_inscriptio"><seg type="num" n="15">XV</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-68r-8" corresp="BK.77_15"><seg type="initial"
+               rend="coloured">U</seg>t uicarii eos qui pro furto se in seruitio tradere cupi<lb
+               break="no"/>unt . non consentiant sed secundum iustum iudicium terminetur .
+            <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-68r-9"
+            corresp="BK.77_16_inscriptio"><seg type="num" n="16">XVI</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-68r-10" corresp="BK.77_16"><seg type="initial"
+               rend="coloured">Q</seg>uod nullus seniorem suum dimittat . postquam ab eo
+            <lb/>ualente . solido . <num>I</num> . excepto si eum uult occidere . aut cum
+            <lb/>baculo cedere . uel uxorem aut filiam maculari . seu <lb/>hereditatem ei tollere .
+            <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-68r-11"
+            corresp="BK.77_17_inscriptio"><seg type="num" n="17">XVII</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-68r-12" corresp="BK.77_17"><seg type="initial"
+               rend="coloured">Q</seg>uod nullus in hoste baculum habeat sed arcum . <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-68r-13"
+            corresp="BK.77_18_inscriptio"><seg type="num" n="18">XVIII</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-68r-14" corresp="BK.77_18"><seg type="initial"
+               rend="coloured">D</seg>e forestis ut forestarii bene illas defendant simul <lb/>et
+            custodiant . bestias et pisces . et si rex intus foreste <cb n="68v"/>feramen
+               <num>unum</num> aut magis dederit . amplius ne prendat <lb/>quam illi datum sit
+            <lb/></ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-68v-1"
+            corresp="BK.77_19_inscriptio"><seg type="num" n="19">XVIIII</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-68v-2" corresp="BK.77_19"><seg type="initial"
+               rend="coloured">U</seg>t uillicus bonus sapiens et prudens in opus nostrum eligatur
+            <lb/>qui sciat rationem misso nostro reddere et perficere seruitium <lb/>p<subst>
+               <del/>
+               <add>r</add>
+            </subst>out loca locata sunt . edifitia emendent . nutriant <lb/>porcos . animalia
+            iumenta . ortos . apes . aucas . <choice>
+               <abbr>pull</abbr>
+               <expan>pullos</expan>
+            </choice> . <lb/>uiuaria cum <choice>
+               <abbr>pc</abbr>
+               <expan>pisces</expan>
+            </choice> . vennas . molina . stirpes . terram arato<lb break="no"/>riam studeant femare
+            . In forestis mansum regale . <lb/> et ibi uiuaria cum pisces . et homines ibi maneant .
+            et plan<lb break="no"/>tent uineas . faciant pomaria . et ubicumque inueni<lb break="no"
+            />unt utiles homines detur illis silua ad stirpandum <lb/>ut nostrum seruitium
+            inmeliorentur . et ut feminę <lb/>nostrae quę ad opus nostrum sunt seruientes . habeant
+            ex <lb/>parte nostra . lanam et <choice>
+               <abbr>lin</abbr>
+               <expan>linum</expan>
+            </choice> . et faciant <choice>
+               <abbr>sarcil</abbr>
+               <expan>sarciles</expan>
+            </choice> . et camisile <lb/> et perueniant ad cameram nostram per rationem . per
+            uilicis nostris <lb/>aut a missis eius a se transmissis . <lb/>
+         </ab>
+         <ab type="meta-text" rend="coloured" xml:id="bamberg-sb-can-12-68v-3"
+            corresp="BK.77_20_inscriptio"><seg type="num" n="20">XX</seg>
+         </ab>
+         <ab type="text" xml:id="bamberg-sb-can-12-68v-4" corresp="BK.77_20"><seg type="initial"
+               >E</seg>t si quis fidelibus suis contra aduersarium suum pugnam <lb/>aut aliquid
+            certamen agere uoluit . et conuocauit <lb/>ad s<mod>e</mod> aliquem de conparis suis .
+            ut ei adiutorium prebuisset . <lb/>et noluit . et exinde neglegens permansit . ipsum
+               bene<lb break="no"/>fitium quod habuit auferatur ab eo . et detur ei qui in sta<lb
+               break="no"/>bilitate et fidelitate sua permansit . <lb/></ab>
 
          <milestone n="BK.184" unit="capitulare"/>
-
-         <cb n="68v"/>
-         <lb n="23"/>
 
          <ab corresp="BK.184_a" rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-68v-5"
             next="#bamberg-sb-can-12-68v-6_1"><date>Anno <num>sexto X<hi rend="super">mo</hi></num>
@@ -741,50 +1090,42 @@
                   <abbr>octab</abbr>
                   <expan>octabas</expan>
                </choice> paschę</date> . <anchor xml:id="bamberg-sb-can-12-68v-6_3"/><lb/></ab>
-
          <milestone n="BK.186" unit="capitulare"/>
-
          <ab corresp="BK.186_inscriptio" rend="coloured" type="meta-text"
             xml:id="bamberg-sb-can-12-69r-1"><sic>HAE</sic> CAPITVLA AB EPISCOPIS TRACTANDA SVNT
             <lb/></ab>
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-69r-2"><seg n="1" type="num"
-               >I</seg> . </ab>
+         <ab corresp="BK.186_1_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-69r-2"><seg n="1" type="num">I</seg> . </ab>
          <ab corresp="BK.186_1" type="text" xml:id="bamberg-sb-can-12-69r-3"><seg rend="coloured"
                type="initial">D</seg>e decimis quę ad capellas dominicas dantur . et hominibus
             <lb/>qui eas habent . et in suos usus conuertunt . <cb n="69v"/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-69v-1"><seg n="2" type="num"
-               >II </seg></ab>
+         <ab corresp="BK.186_2_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-69v-1"><seg n="2" type="num">II </seg></ab>
          <ab corresp="BK.186_2" type="text" xml:id="bamberg-sb-can-12-69v-2"><seg rend="coloured"
                type="initial">D</seg>e feminis que in quibusdam locis Inracionabiliter uelamen
             <lb/>sibi sanctum inponunt . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-69v-3"><seg n="3" type="num"
-               >III </seg></ab>
+         <ab corresp="BK.186_3_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-69v-3"><seg n="3" type="num">III </seg></ab>
          <ab corresp="BK.186_3" type="text" xml:id="bamberg-sb-can-12-69v-4"><seg rend="coloured"
                type="initial">S</seg>imiliter de monasteriolis puellarum in legatione <rs
                type="person">aut<lb break="no"/>garii</rs> in quibus nullus ordo bone conuersationis
             tenetur . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-69v-5"><seg n="4" type="num"
-               >IIII </seg></ab>
+         <ab corresp="BK.186_4_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-69v-5"><seg n="4" type="num">IIII </seg></ab>
          <ab corresp="BK.186_4" type="text" xml:id="bamberg-sb-can-12-69v-6"><seg rend="coloured"
                type="initial">D</seg>e monasteriolis etiam diuersis in missatico <rs type="person"
                >albrici</rs> . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-69v-7"><seg n="5" type="num"
-               >V </seg></ab>
+         <ab corresp="BK.186_5_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-69v-7"><seg n="5" type="num">V </seg></ab>
          <ab corresp="BK.186_5" type="text" xml:id="bamberg-sb-can-12-69v-8"><seg rend="coloured"
                type="initial">D</seg>e iuditio aquę frigide . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-69v-9"><seg n="6" type="num"
-               >VI </seg></ab>
+         <ab corresp="BK.186_6_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-69v-9"><seg n="6" type="num">VI </seg></ab>
          <ab corresp="BK.186_6" type="text" xml:id="bamberg-sb-can-12-69v-10"><seg rend="coloured"
                type="initial">D</seg>e his qui usuris inseruiunt . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-69v-11"><seg n="7"
-               type="num">VII </seg></ab>
+         <ab corresp="BK.186_7_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-69v-11"><seg n="7" type="num">VII </seg></ab>
          <ab corresp="BK.186_7" type="text" xml:id="bamberg-sb-can-12-69v-12"><seg rend="coloured"
                type="initial">U</seg>olumus atque iubemus ut missi nostri diligenter inquirant
             <lb/>quanti homines liberi in singulis comitatibus maneant <lb/>qui per se possint
@@ -797,11 +1138,9 @@
             <lb/>exercitalem facere possint . et eorum summam ad nostram <lb/>noticiam deferant .
             <lb/>
          </ab>
-
          <milestone n="BK.191" unit="capitulare"/>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-69v-13"><seg n="1"
-               type="num">I </seg></ab>
+         <ab corresp="BK.191_1_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-69v-13"><seg n="1" type="num">I </seg></ab>
          <ab corresp="BK.191_1" type="text" xml:id="bamberg-sb-can-12-69v-14"><seg rend="coloured"
                type="initial">D</seg>e his qui sine consensu episcopi <expan>presbiteros</expan> in
             ecclesiis suis constitu<lb break="no"/>unt . uel de ecclesiis eiciunt . et ab episcopo
@@ -809,9 +1148,8 @@
                reuua<lb break="no"/>diare cogantur . et per fideiussores ad palatium nostrum
             <lb/>uenire iubeantur . et tunc nos decernamus utrum nobis <lb/>placeat . ut aut illum
             bannum persoluat . aut aliam har<lb break="no"/>miscaram sustineat . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-69v-15"><seg n="2"
-               type="num">II </seg></ab>
+         <ab corresp="BK.191_2_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-69v-15"><seg n="2" type="num">II </seg></ab>
          <ab corresp="BK.191_2" type="text" xml:id="bamberg-sb-can-12-69v-16"><seg rend="coloured"
                type="initial">D</seg>e ecclesiis quę inter coheredes diuisę sunt . consideratum est
             <lb/>quatinus si secundum prouidentiam et admonitionem episcopi ipsi <lb/>coheredes eas
@@ -820,9 +1158,8 @@
             permittat . aut reliquias exinde <lb/>auferat . et ubi ad benefitium nostrum ecclesiae
                pertinen<lb break="no"/>tes . Ita inuentę diuisę fuerint ! ut describantur et nobis
             <lb/>renuntietur . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-70r-1"><seg n="3" type="num"
-               >III </seg></ab>
+         <ab corresp="BK.191_3_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-70r-1"><seg n="3" type="num">III </seg></ab>
          <ab corresp="BK.191_3" type="text" xml:id="bamberg-sb-can-12-70r-2"><seg rend="coloured"
                type="initial">D</seg>e eclesiis destructis ut episcopi et missi inquisitionem
             faciant <lb/>utrum per neglegentiam aut inpossibilitatem destruc<lb break="no"/>te sunt
@@ -832,18 +1169,16 @@
             magnitudinis <lb/>quam ut ex rebus ad eas pertinentibus restaurari possint .
             <lb/>episcopus modum inueniat . qualiter congruae emendari <lb/>et consistere possit .
             <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-70r-3"><seg n="4" type="num"
-               >IIII </seg></ab>
+         <ab corresp="BK.191_4_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-70r-3"><seg n="4" type="num">IIII </seg></ab>
          <ab corresp="BK.191_4" type="text" xml:id="bamberg-sb-can-12-70r-4"><seg rend="coloured"
                type="initial">D</seg>e <num>uno</num> manso ad ecclesiam dato . de quo aliqui
             homines contra <lb/>statuta sibi seruitium exigunt . <expan>Quicumque</expan> pro hac
             causa <lb/>accusatus fuerit . comes uel missi . hoc quod inde subtractum <lb/>est .
             presbiteris cum sua lege restituere faciant . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-70r-5"><seg n="5" type="num"
-               >V </seg></ab>
+         <ab corresp="BK.191_5_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-70r-5"><seg n="5" type="num">V </seg></ab>
          <ab corresp="BK.191_5" type="text" xml:id="bamberg-sb-can-12-70r-6"><seg rend="coloured"
                type="initial">D</seg>e his qui nonas et decimas iam per multos annos . aut ex parte
             <lb/>aut ex toto dare neglexerunt . Uolumus ut per missos nostros <lb/>constringantur .
@@ -853,46 +1188,32 @@
                <del quantity="1" unit="chars"/> unde haec nona et de<lb break="no"/>cima persolui
             debuit . amissurum se sciat . Ita enim <lb/>continetur in capitulare bonę memoriae <rs
                type="person">genitoris nostri</rs> . <cb n="70v"/>In libro . <num>I</num> . capitulo
-               <num>CLVII</num> . <cit>
-               <quote>Ut qui ecclesiarum benefitia habent . nonam <lb/>et decimam ex eis ecclesię
-                  cuius res sunt donent . Et qui talem <lb/>benefitium habent . ut ad medietatem
-                  laborent . et de eorum <lb/>portione proprio <expan>presbitero</expan> decimas
-                  donent . </quote>
-               <ref>Ansegis 1,157 (MGH Capit. N. S. 1 <ref
-                     target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._514"
-                     type="external">S. 514</ref>).</ref>
-            </cit> Item in <choice>
+               <num>CLVII</num> . Ut qui ecclesiarum benefitia habent . nonam <lb/>et decimam ex eis
+            ecclesię cuius res sunt donent . Et qui talem <lb/>benefitium habent . ut ad medietatem
+            laborent . et de eorum <lb/>portione proprio <expan>presbitero</expan> decimas donent .
+            Item in <choice>
                <abbr>cap</abbr>
                <expan>capitulare</expan>
             </choice> nostro . <lb/>In libro . <num>II</num> . capitulo <num>XXI</num> . de eadem re
-            . <cit>
-               <quote>De nonis quidem et decimis <lb/>unde et <rs type="person">genitor noster</rs>
-                  . et nos frequenter et in diuersis placitis <lb/>admonitionem fecimus . et per
-                  capitularia nostra qualiter hęc <lb/>obseruentur ordinauimus . Volumus atque
-                  iubemus atque <lb/>iubemus<note type="editorial">doppeltes <mentioned>atque
-                        iubemus</mentioned> in Hs.</note> ut de omni conlaborato . et de uino . et
-                  de feno fideliter <lb/>et pleniter ab omnibus nona et decima persoluantur . De
-                     nu<lb break="no"/>trimine uero pro decima . sicut hactenus consuetudo fuit
-                  <lb/>ab omnibus obseruetur . sicque tamen episcoporum fuerit qui ar<lb break="no"
-                  />gentum pro hoc accipere uelit . in sua maneat potestate . <lb/>iuxta quod ei et
-                  illi qui hoc persoluere debet conuenerit . <lb/></quote>
-               <ref>Ansegis 2,21 (MGH Capit. N. S. 1 <ref
-                     target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._538"
-                     type="external">S. 538 f.</ref>).</ref>
-            </cit>
+            . De nonis quidem et decimis <lb/>unde et <rs type="person">genitor noster</rs> . et nos
+            frequenter et in diuersis placitis <lb/>admonitionem fecimus . et per capitularia nostra
+            qualiter hęc <lb/>obseruentur ordinauimus . Volumus atque iubemus <sic>atque
+               <lb/>iubemus</sic> ut de omni conlaborato . et de uino . et de feno fideliter <lb/>et
+            pleniter ab omnibus nona et decima persoluantur . De nu<lb break="no"/>trimine uero pro
+            decima . sicut hactenus consuetudo fuit <lb/>ab omnibus obseruetur . sicque tamen
+            episcoporum fuerit qui ar<lb break="no"/>gentum pro hoc accipere uelit . in sua maneat
+            potestate . <lb/>iuxta quod ei et illi qui hoc persoluere debet conuenerit . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-70v-1"><seg n="6" type="num"
-               >VI </seg></ab>
+         <ab corresp="BK.191_6_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-70v-1"><seg n="6" type="num">VI </seg></ab>
          <ab corresp="BK.191_6" type="text" xml:id="bamberg-sb-can-12-70v-2"><expan><seg
                   rend="coloured" type="initial">Q</seg>uicumque</expan> decimam abstrait de
             ecclesia ad quam per iusticiam <lb/>debet dari . et eam pręsumptiosę et propter munera
             aut <lb/>amicitiam . uel aliam quamlibet occasionem ad alteram ec<lb break="no"/>clesiam
             dederit . a comite uel a misso nostro distringatur . ut <lb/>eiusdem decimę quantitatem
             cum sua lege restituat . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-70v-3"><seg n="7" type="num"
-               >VII </seg></ab>
+         <ab corresp="BK.191_7_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-70v-3"><seg n="7" type="num">VII </seg></ab>
          <ab corresp="BK.191_7" type="text" xml:id="bamberg-sb-can-12-70v-4"><seg rend="coloured"
                type="initial">D</seg>e decimis quę dare populus non uult . <note type="editorial"
                >Aus unerfindlichen Gründen blieb der Rest der Zeile (Platz für ca. 15 Buchstaben)
@@ -904,46 +1225,37 @@
                <expan>conpellatur</expan> . Ceteri uero distrin<lb break="no"/>gantur ut inuiti
             ecclesię restituant . quę uoluntariae da<lb break="no"/>re neglexerunt . <cb n="71r"
             /></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-71r-1"><seg n="8" type="num"
-               >VIII </seg></ab>
+         <ab corresp="BK.191_8_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-71r-1"><seg n="8" type="num">VIII </seg></ab>
          <ab corresp="BK.191_8" type="text" xml:id="bamberg-sb-can-12-71r-2"><seg rend="coloured"
                type="initial">V</seg>t de rebus ecclesiarum que ab eis per <num>XXX</num> . annorum
             spatium sine ulla <lb/>interpellatione possessa sunt . testimonia non recipiantur . sed
             eo <lb/>modo contineantur sicut res ad fiscum dominicum pertinentes <lb/>contineri
             solent . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-71r-3"><seg n="9" type="num"
-               >VIIII </seg></ab>
+         <ab corresp="BK.191_9_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-71r-3"><seg n="9" type="num">VIIII </seg></ab>
          <ab corresp="BK.191_9" type="text" xml:id="bamberg-sb-can-12-71r-4"><expan><seg
                   rend="coloured" type="initial">Q</seg>uicumque</expan> de rebus ecclesiarum quas
             in benefitium habent restaura<lb break="no"/>tiones earum facere neglexerint . iuxta
             capitularem anterio<lb break="no"/>rem . in quo de operibus ac nonis et decimis
             constitutum est . <lb/>sic de illis adimpleatur id est in libro <num>quarto</num> .
-            capitulo <num>XXXVIII</num> . <lb/><cit>
-               <quote><seg type="initial">D</seg>e oper<del>a</del>e et restauratione consideratum
-                  est . ut de frugibus <lb/>terrę et animalium nutriminę persoluantur . de opere
-                  uero <lb/>uel restauratione ecclesiarum . comes et episcopus siue abbas una
-                  <lb/>cum misso nostro quem ipsi sibi ad hoc eligerint . considerationem
-                  <lb/>faciant . ut unusquisque eorum tantum inde accipiat ad operan<lb break="no"
-                  />dum et restaurandum . quantum ipsę de rebus ecclesiarum <lb/>habere cognoscitur
-                  . Similiter et uassi nostri . ut in commune <lb/>tantum operis accipiant . quantum
-                  rerum ecclesiasticarum <lb/>habent . uel unusquisque per se iuxta quantitatem quam
-                  ipse tenet <lb/>aut si inter eos conuenerit . ut pro opere faciendo argentum
-                  <lb/>donent . iuxta aestimationem operis . in argento persoluant . <lb/><seg
-                     type="initial">C</seg>um quo precio rector ecclesię ad <expan>predictam</expan>
-                  restaurationem <lb/>operarios conducere . et materiamen emere possit . et qui
-                  <lb/>nonas et decimas dare neglexerit primum quidem illas <lb/>cum lege sua
-                  restituat . et insuper bannum nostrum soluat . <lb/>ut ita castigatus caueat . ne
-                  sepius iterando benefitium <lb/>amittat . </quote>
-               <ref>Ansegis 4,38 (MGH Capit. N. S. 1 <ref
-                     target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._645"
-                     type="external">S. 645</ref>)</ref>
-            </cit><lb/>
+            capitulo <num>XXXVIII</num> . <lb/><seg type="initial">D</seg>e oper<del>a</del>e et
+            restauratione consideratum est . ut de frugibus <lb/>terrę et animalium nutriminę
+            persoluantur . de opere uero <lb/>uel restauratione ecclesiarum . comes et episcopus
+            siue abbas una <lb/>cum misso nostro quem ipsi sibi ad hoc eligerint . considerationem
+            <lb/>faciant . ut unusquisque eorum tantum inde accipiat ad operan<lb break="no"/>dum et
+            restaurandum . quantum ipsę de rebus ecclesiarum <lb/>habere cognoscitur . Similiter et
+            uassi nostri . ut in commune <lb/>tantum operis accipiant . quantum rerum
+            ecclesiasticarum <lb/>habent . uel unusquisque per se iuxta quantitatem quam ipse tenet
+            <lb/>aut si inter eos conuenerit . ut pro opere faciendo argentum <lb/>donent . iuxta
+            aestimationem operis . in argento persoluant . <lb/><seg type="initial">C</seg>um quo
+            precio rector ecclesię ad <expan>predictam</expan> restaurationem <lb/>operarios
+            conducere . et materiamen emere possit . et qui <lb/>nonas et decimas dare neglexerit
+            primum quidem illas <lb/>cum lege sua restituat . et insuper bannum nostrum soluat .
+            <lb/>ut ita castigatus caueat . ne sepius iterando benefitium <lb/>amittat . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-71r-5"><seg n="10"
-               type="num">X </seg></ab>
+         <ab corresp="BK.191_10_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-71r-5"><seg n="10" type="num">X </seg></ab>
          <ab corresp="BK.191_10" type="text" xml:id="bamberg-sb-can-12-71r-6"><seg rend="coloured"
                type="initial">D</seg>e illis qui agros dominicos propterea <choice>
                <abbr>neglex</abbr>
@@ -954,32 +1266,23 @@
             . aut missorum nostrorum propter hoc <lb/>extiterit . per fideiussores ad palatium
             uenire <expan>conpellatur</expan> . <lb/>
          </ab>
-
          <milestone n="BK.192" unit="capitulare"/>
-
          <ab corresp="BK.192_inscriptio" rend="coloured" type="meta-text"
             xml:id="bamberg-sb-can-12-71v-1">ITEM alia capitula . <lb/></ab>
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-71v-2"><seg n="1" type="num"
-               >I </seg></ab>
+         <ab corresp="BK.192_1_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-71v-2"><seg n="1" type="num">I </seg></ab>
          <ab corresp="BK.192_1" type="text" xml:id="bamberg-sb-can-12-71v-3"><seg rend="coloured"
                type="initial">D</seg>e benefitiis destructis hoc obseruetur quod in capitulare
                <lb/>pri<mod>or</mod>i continetur . id est in libro . <num>IIII</num> capitulo
-               <num>XXXVI</num> . <cit>
-               <quote>
-                  <expan>Quicumque</expan><note type="editorial">Über dem teilweise verblaßten
-                        <mentioned>Q</mentioned> ist noch ein kurzer, senkrechter Strich zu
-                     erkennen; evtl. eine frühere (jetzt redundante) Qui-Kürzung?</note>
-                  <lb/> benefitium suum occasione proprii desertum habuerit . <lb/>et intra annum
-                  postquam ei a comite uel misso nostro notum factum <lb/>fuerit . illud emendatum
-                  non habuerit . ipsum be<unclear>n</unclear>efitium <lb/>amittat . </quote>
-               <ref>Ansegis 4,36 (MGH Capit. N. S. 1 <ref
-                     target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._644"
-                     type="external">S. 644</ref>).</ref>
-            </cit><lb/>
+               <num>XXXVI</num> . <expan>Quicumque</expan><note type="editorial">Über dem teilweise
+               verblaßten <mentioned>Q</mentioned> ist noch ein kurzer, senkrechter Strich zu
+               erkennen; evtl. eine frühere (jetzt redundante) Qui-Kürzung?</note>
+            <lb/> benefitium suum occasione proprii desertum habuerit . <lb/>et intra annum postquam
+            ei a comite uel misso nostro notum factum <lb/>fuerit . illud emendatum non habuerit .
+            ipsum be<unclear>n</unclear>efitium <lb/>amittat . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-71v-4"><seg n="2" type="num"
-               >II </seg></ab>
+         <ab corresp="BK.192_2_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-71v-4"><seg n="2" type="num">II </seg></ab>
          <ab corresp="BK.192_2" type="text" xml:id="bamberg-sb-can-12-71v-5"><seg rend="coloured"
                type="initial">V</seg>t<note type="editorial">Evtl. <mentioned>V</mentioned> auf
                Rasur. Der unter dem rechten Schaft erkennbare Schatten könnte allerdings auch nur
@@ -994,18 +1297,16 @@
             </subst>m eorum bonos eligant et <lb/>cum electi fuerint iurare faciant . ut scienter
             iniustę <lb/>iudicare non debeant . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-71v-6"><seg n="3" type="num"
-               >III </seg></ab>
+         <ab corresp="BK.192_3_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-71v-6"><seg n="3" type="num">III </seg></ab>
          <ab corresp="BK.192_3" type="text" xml:id="bamberg-sb-can-12-71v-7"><seg rend="coloured"
                type="initial">V</seg>t in omni comitatu hi<note type="editorial">Über
                   <mentioned>i</mentioned> ein schräger (Betonungs-?) Strich.</note> qui meliores et
             ueratiores inueniri <lb/>possunt eligantur a missis nostris ad inquisitiones facien<lb
                break="no"/>das . et rei ueritatem dicendam . et ut adiutores comitum <lb/>sint ad
             iusticias faciendas . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-71v-8"><seg n="4" type="num"
-               >IIII </seg></ab>
+         <ab corresp="BK.192_4_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-71v-8"><seg n="4" type="num">IIII </seg></ab>
          <ab corresp="BK.192_4" type="text" xml:id="bamberg-sb-can-12-71v-9"><seg rend="coloured"
                type="initial">V</seg>olumus ut <expan>quicumque</expan> de scabinis
                <expan>deprehensus</expan> fuerit propter <lb/>munera . aut propter amititiam uel
@@ -1013,9 +1314,8 @@
             <lb/>nostram ueniat . de cetero omnibus scabinis denuntietur <lb/>ne quis deinceps etiam
             iustum iuditium uendere presumat . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-71v-10"><seg n="5"
-               type="num"><mod>V</mod></seg></ab>
+         <ab corresp="BK.192_5_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-71v-10"><seg n="5" type="num"><mod>V</mod></seg></ab>
          <ab corresp="BK.192_5" type="text" xml:id="bamberg-sb-can-12-71v-11"><seg rend="coloured"
                type="initial">V</seg>bicumque <expan>commutationes</expan> . tam <choice>
                <abbr>tepr</abbr>
@@ -1028,54 +1328,46 @@
             rebellis esse uideatur inuenta fuerit . dili<lb break="no"/>genter scribatur . et ad
             nostram noticiam perferatur . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-72r-1"><seg n="6" type="num"
-               >VI </seg></ab>
+         <ab corresp="BK.192_6_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-72r-1"><seg n="6" type="num">VI </seg></ab>
          <ab corresp="BK.192_6" type="text" xml:id="bamberg-sb-can-12-72r-2"><seg rend="coloured"
                type="initial">Q</seg>uicumque comprobatus fuerit de eo quod scienter <lb/>testes in
             periurium induxisset sub fideiussione ad pala<lb break="no"/>tium nostrum uenire
             conpellatur . ut ibi cum fidelibus nostris <lb/>consideremus . quid de tali homine
             faciendum sit . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-72r-3"><seg n="7" type="num"
-               >VII </seg></ab>
+         <ab corresp="BK.192_7_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-72r-3"><seg n="7" type="num">VII </seg></ab>
          <ab corresp="BK.192_7" type="text" xml:id="bamberg-sb-can-12-72r-4"><seg rend="coloured"
                type="initial">D</seg>e his qui discordiis et contentionibus studere solent . et in
             <lb/>pace uiuere nolunt . et inde conuicti fuerint . similiter <lb/>uolumus ut sub
             fideiussoribus . ad nostrum placitum ueniant . <lb/>ut ibi cum fidelibus nostris
             consideremus quid de talibus <lb/>faciendum sit . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-72r-5"><seg n="8" type="num"
-               >VIII </seg></ab>
+         <ab corresp="BK.192_8_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-72r-5"><seg n="8" type="num">VIII </seg></ab>
          <ab corresp="BK.192_8" type="text" xml:id="bamberg-sb-can-12-72r-6"><seg rend="coloured"
                type="initial">D</seg>e bonis denariis quos populus recipere non uult . uolumus
             <lb/>ut hoc obseruetur et teneatur . quod in priori capitu<lb break="no"/>lare nostro
-            constitutum est . id est in libro . <num>IIII</num> capitulo <num>XXX</num> . <lb/><cit>
-               <quote><seg type="initial">Q</seg>uicumque liber homo uel in emptione . uel in debiti
-                     solutio<lb break="no"/>ne . <choice>
-                     <abbr>denr</abbr>
-                     <expan>denarium</expan>
-                  </choice> merum et bene pensantem recipere noluerit . <lb/>bannum nostrum . id est
-                     <num>LX</num> solidos <expan>conponat</expan> . Si uero serui eccle<lb
-                     break="no"/>siastici aut fiscalini nostri . aut comitum . aut uassallorum
-                  <lb/>nostrorum . hoc facere <expan>presumpserint</expan> . <num>LX</num> . ictus
-                  uapulent . <lb/><seg type="initial">E</seg>t si auctores nostri au<gap
-                     quantity="2" unit="chars"/><unclear>l</unclear>iorum uel aduocati eos missis
-                  nostris . <lb/>uel comitibus iussi pręsentare noluerint . <expan>predictum</expan>
-                  bannum <lb/>id est <num><hi rend="coloured">L</hi>X</num> solidos
-                     <expan>conponat</expan> . </quote>
-               <ref>Ansegis 4,30 (MGH Capit. N. S. 1 <ref
-                     target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._641"
-                     type="external">S. 641</ref>).</ref>
-            </cit> Et ad hanc constitutionem nostram <cb n="72v"/>adimplendam . episcopi<note
-               type="editorial">gek. <mentioned>epi</mentioned>.; <mentioned>pi</mentioned> korr.
-               (?)</note> et abbates . siue reliqui qui benefitia <lb/>nostra habent . adiuuent
-            comites in suis hominibus dis<lb break="no"/>tringendis . Et si comites hanc nostram
-            constitutionem <lb/>neglexerint . hoc <del>a</del> missos nostros ad nostram noticiam
-            <lb/>perferatur . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-72v-1"><seg n="9" type="num"
-               >VIIII </seg></ab>
+            constitutum est . id est in libro . <num>IIII</num> capitulo <num>XXX</num> . <lb/><seg
+               type="initial">Q</seg>uicumque liber homo uel in emptione . uel in debiti solutio<lb
+               break="no"/>ne . <choice>
+               <abbr>denr</abbr>
+               <expan>denarium</expan>
+            </choice> merum et bene pensantem recipere noluerit . <lb/>bannum nostrum . id est
+               <num>LX</num> solidos <expan>conponat</expan> . Si uero serui eccle<lb break="no"
+            />siastici aut fiscalini nostri . aut comitum . aut uassallorum <lb/>nostrorum . hoc
+            facere <expan>presumpserint</expan> . <num>LX</num> . ictus uapulent . <lb/><seg
+               type="initial">E</seg>t si auctores nostri au<gap quantity="2" unit="chars"
+               /><unclear>l</unclear>iorum uel aduocati eos missis nostris . <lb/>uel comitibus
+            iussi pręsentare noluerint . <expan>predictum</expan> bannum <lb/>id est <num><hi
+                  rend="coloured">L</hi>X</num> solidos <expan>conponat</expan> . Et ad hanc
+            constitutionem nostram <cb n="72v"/>adimplendam . episcopi<note type="editorial">gek.
+                  <mentioned>epi</mentioned>.; <mentioned>pi</mentioned> korr. (?)</note> et abbates
+            . siue reliqui qui benefitia <lb/>nostra habent . adiuuent comites in suis hominibus
+               dis<lb break="no"/>tringendis . Et si comites hanc nostram constitutionem
+            <lb/>neglexerint . hoc <del>a</del> missos nostros ad nostram noticiam <lb/>perferatur .
+            <lb/></ab>
+         <ab corresp="BK.192_9_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-72v-1"><seg n="9" type="num">VIIII </seg></ab>
          <ab corresp="BK.192_9" type="text" xml:id="bamberg-sb-can-12-72v-2"><seg rend="coloured"
                type="initial">D</seg>e homicidiis uel aliis iniusticiis . quę a fiscalinis nostris
                fi<lb break="no"/>unt . quia inpune se ea <expan>committere</expan> se posse
@@ -1083,9 +1375,8 @@
                in<lb break="no"/>pune fiant . ita ut <expan>ubicumque</expan> facta fuerint .
             soluere cum <lb/>disciplina precipiemus . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-72v-3"><seg n="10"
-               type="num">X </seg></ab>
+         <ab corresp="BK.192_10_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-72v-3"><seg n="10" type="num">X </seg></ab>
          <ab corresp="BK.192_10" type="text" xml:id="bamberg-sb-can-12-72v-4"><seg type="initial"
                >C</seg>ollectę ad malum faciendum fieri omnimodis prohi<lb break="no"/>beantur . et
                <expan>ubicumque</expan> huiusmodi pręsumptiones factę fue<lb break="no"/>rint .
@@ -1097,9 +1388,8 @@
             presentiam ueniat . <lb/><seg type="initial">M</seg>ultitudo uero siue de seruis . siue
             de liberis sit . legit<lb break="no"/>tima emendatione multetur . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-72v-5"><seg n="11"
-               type="num">XI</seg> . </ab>
+         <ab corresp="BK.192_11_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-72v-5"><seg n="11" type="num">XI</seg> . </ab>
          <ab corresp="BK.192_11" type="text" xml:id="bamberg-sb-can-12-72v-6"><seg rend="coloured"
                type="initial">D</seg>e pontibus publicis destructis . placuit nobis ut <mod>h</mod>i
             <lb/>qui iussionem nostram in reparandis pontibus contemp<lb break="no"/>serunt .
@@ -1110,21 +1400,18 @@
             nobis nuntiare <lb/>neglexerunt . Similiter et de iniustis theloneis . ubi<lb break="no"
             />cumque accipiuntur . sciant se exinde nobis rationem red<lb break="no"/>dituros .
             <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-73r-1"><seg n="12"
-               type="num">XII </seg></ab>
+         <ab corresp="BK.192_12_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-73r-1"><seg n="12" type="num">XII </seg></ab>
          <ab corresp="BK.192_12" type="text" xml:id="bamberg-sb-can-12-73r-2"><seg rend="coloured"
                type="initial">V</seg>t examen aquę frigidę quod actenus faciebant . a missis
             <lb/>nostris omnibus interdicatur ne ulterius fiat . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-73r-3"><seg n="13"
-               type="num">XIII </seg></ab>
+         <ab corresp="BK.192_13_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-73r-3"><seg n="13" type="num">XIII </seg></ab>
          <ab corresp="BK.192_13" type="text" xml:id="bamberg-sb-can-12-73r-4"><seg rend="coloured"
                type="initial">P</seg>ostquam comes et pagenses de qualibet expeditione <lb/>hostili
             reuersi fuerint . ex eo die super <num>XL</num> noctes . sit banus <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-73r-5"><seg n="14"
-               type="num">XIIII </seg></ab>
+         <ab corresp="BK.192_14_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-73r-5"><seg n="14" type="num">XIIII </seg></ab>
          <ab corresp="BK.192_14" type="text" xml:id="bamberg-sb-can-12-73r-6"><seg rend="coloured"
                type="initial">H</seg>oc missi nostri notum faciant comitibus et populo . quod nos
             <lb/>in omni ebdomada <num>unum</num> diem ad causas audiend<mod>as</mod> . <lb/>et
@@ -1134,74 +1421,62 @@
             ut caueat . <lb/>de aliis causis se ad nos reclamare . nisi de quibus aut <lb/>missi
             nostri aut comites eis iusticias facere noluerint . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-73r-7"><seg n="15"
-               type="num">XV </seg></ab>
+         <ab corresp="BK.192_15_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-73r-7"><seg n="15" type="num">XV </seg></ab>
          <ab corresp="BK.192_15" type="text" xml:id="bamberg-sb-can-12-73r-8"><expan><seg
-                  rend="coloured" type="initial">Q</seg>uicumque</expan>
-            <add hand="X">vicarii</add> uel alii ministri comitum . tributum quod infe<lb break="no"
-            />renda uocatur maioris precii a populo exigere <lb/>presumpsit . quam a missis bonę
-            memoriae <rs type="person">genitoris <lb/>nostri</rs> . constitutum fuit . hoc est
-               <num>duos</num> solidos pro <num>una</num> uac<lb break="no"/>ca . hoc quod iniustę
-            superposuit atque abstulit . sibique <lb/>retinuit . his quibus hoc tulit . cum sua lege
-            restituat . <cb n="73v"/><mod>et</mod> insuper fredum nostrum <expan>conponat</expan> .
-            <lb/></ab>
-
-
+                  rend="coloured" type="initial">Q</seg>uicumque</expan><note type="editorial">Ein
+               neuzeitlicher Benutzer ergänzte über der Zeile das hier fehlende
+                  <mentioned>vicarii</mentioned> in Blei.</note> uel alii ministri comitum .
+            tributum quod infe<lb break="no"/>renda uocatur maioris precii a populo exigere
+            <lb/>presumpsit . quam a missis bonę memoriae <rs type="person">genitoris
+               <lb/>nostri</rs> . constitutum fuit . hoc est <num>duos</num> solidos pro
+               <num>una</num> uac<lb break="no"/>ca . hoc quod iniustę superposuit atque abstulit .
+            sibique <lb/>retinuit . his quibus hoc tulit . cum sua lege restituat . <cb n="73v"
+               /><mod>et</mod> insuper fredum nostrum <expan>conponat</expan> . <lb/></ab>
          <milestone n="BK.193" unit="capitulare"/>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-73v-1"><seg n="16"
-               type="num">XVI </seg></ab>
+         <ab corresp="BK.193_1_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-73v-1"><seg n="16" type="num">XVI </seg></ab>
          <ab corresp="BK.193_1" type="text" xml:id="bamberg-sb-can-12-73v-2"
             next="#bamberg-sb-can-12-73v-4"><seg rend="coloured" type="initial">D</seg>e homicidiis
             in ecclesiis . uel in atriis earum commissis . hoc <lb/>obseruetur et teneatur . quod in
             capitulare priori <lb/>constitutum est . In libro . <num>IIII</num> . capitulo
                <num>XVII</num> . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-73v-3"><seg n="17"
-               type="num">XVII </seg></ab>
+         <ab corresp="BK.193_1_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-73v-3"><seg n="17" type="num">XVII </seg></ab>
          <ab corresp="BK.193_1" type="text" xml:id="bamberg-sb-can-12-73v-4"
-            prev="#bamberg-sb-can-12-73v-2"><cit>
-               <quote><seg rend="coloured" type="initial">S</seg>i quis ex leui causa . aut sine
-                  causa hominem in ecclesia <lb/>interfecerit . de uita <expan>conponat</expan> . Si
-                  uero foris rixati <lb/>fuerint . et unus alterum in ecclesia fugerit . et ibi se
-                  <lb/>defendendo interfecerit . et si huius facti testes non ha<lb break="no"
-                  />buerit . cum <num>XII</num> coniuratoribus legitimis per sacramentum
-                  <lb/>adfirmet . se defendendo eum interfecisse . Et si ipse <lb/>auctor
-                     <expan>commotę</expan> inter eos rixę extiterit . leudem inter<lb break="no"
-                  />fecti . et insuper bannum nostrum soluere cogatur et publicam <lb/>agat
-                  pęnitentiam . Sin autem non ille qui eum inter<lb break="no"/>fecit . sed is qui
-                  interfectus est . eandem rixam com<lb break="no"/>mouit . absque
-                     <expan>conpositione</expan> iaceat . et his qui eum inter<lb break="no"/>fecit
-                  secundum iuditium canonicum publicam habeat <lb/>pęnitentiam . Si cuiuslibet
-                  proprius seruus hoc <expan>com<lb break="no"/>miserit</expan> . iuditio aquę
-                  feruentis examinetur . utrum <lb/>hoc sponte an se defendendo fecisset . Et si
-                  manus <lb/>eius exusta fuerit interficiatur . si autem non fue<lb break="no"/>rit
-                  publica poenitentia multetur . nisi forte et ipse <lb/>auctor
-                     <expan>commotę</expan> inter eos rixę fuerit inuentus . <lb/><seg
-                     type="initial">T</seg>unc dominus eius iuxta quod uuidregildus illius est
-                  <lb/>ad ecclesiam persoluat . aut eum si uoluerit eidem ecclesię <lb/>tradat . De
-                  ecclesiastico et fiscalino . et benefitiario <lb/>seruo . uolumus ut pro una uice <choice>
-                     <abbr>uuidrigild</abbr>
-                     <expan>uuidrigildus</expan>
-                  </choice> eius <cb n="74r"/>pro eo <expan>conponatur</expan> . Altera uice ipse
-                  seruus ad supli<lb break="no"/>cium tradatur . Hereditas tamen liberi hominis
-                  <lb/>qui propter tale facinus ad mortem fuerit iudicatus <lb/>ad legitimos heredes
-                  illius perueniat . Si in atrio <lb/>ecclesię cuius porta reliquiis sanctorum
-                  consecrata est <lb/>huiuscemodi homicidium perpetratum fuerit . simili <lb/>modo
-                  emendetur et <expan>conponatur</expan> . Si uero porta ecclesię <lb/>non est
-                  consecrata eo modo <expan>conponatur</expan> . Quod in <lb/>atrio
-                     <expan>committitur</expan> . sicut <expan>conponi</expan> debet .- quod
-                        <sic>immu<lb break="no"/>tate</sic> uiolata
-                  <expan>committitur</expan></quote>
-               <ref>Ansegis 4,13 (MGH Capit. N. S. 1 <ref
-                     target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._625"
-                     type="external">S. 625-627</ref>).</ref>
-            </cit> sicut continetur in libro <lb/>superiori . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-74r-1"><seg n="18"
-               type="num">XVIII </seg></ab>
+            prev="#bamberg-sb-can-12-73v-2"><seg rend="coloured" type="initial">S</seg>i quis ex
+            leui causa . aut sine causa hominem in ecclesia <lb/>interfecerit . de uita
+               <expan>conponat</expan> . Si uero foris rixati <lb/>fuerint . et unus alterum in
+            ecclesia fugerit . et ibi se <lb/>defendendo interfecerit . et si huius facti testes non
+               ha<lb break="no"/>buerit . cum <num>XII</num> coniuratoribus legitimis per
+            sacramentum <lb/>adfirmet . se defendendo eum interfecisse . Et si ipse <lb/>auctor
+               <expan>commotę</expan> inter eos rixę extiterit . leudem inter<lb break="no"/>fecti .
+            et insuper bannum nostrum soluere cogatur et publicam <lb/>agat pęnitentiam . Sin autem
+            non ille qui eum inter<lb break="no"/>fecit . sed is qui interfectus est . eandem rixam
+               com<lb break="no"/>mouit . absque <expan>conpositione</expan> iaceat . et his qui eum
+               inter<lb break="no"/>fecit secundum iuditium canonicum publicam habeat
+            <lb/>pęnitentiam . Si cuiuslibet proprius seruus hoc <expan>com<lb break="no"
+               />miserit</expan> . iuditio aquę feruentis examinetur . utrum <lb/>hoc sponte an se
+            defendendo fecisset . Et si manus <lb/>eius exusta fuerit interficiatur . si autem non
+               fue<lb break="no"/>rit publica poenitentia multetur . nisi forte et ipse <lb/>auctor
+               <expan>commotę</expan> inter eos rixę fuerit inuentus . <lb/><seg type="initial"
+               >T</seg>unc dominus eius iuxta quod uuidregildus illius est <lb/>ad ecclesiam
+            persoluat . aut eum si uoluerit eidem ecclesię <lb/>tradat . De ecclesiastico et
+            fiscalino . et benefitiario <lb/>seruo . uolumus ut pro una uice <choice>
+               <abbr>uuidrigild</abbr>
+               <expan>uuidrigildus</expan>
+            </choice> eius <cb n="74r"/>pro eo <expan>conponatur</expan> . Altera uice ipse seruus
+            ad supli<lb break="no"/>cium tradatur . Hereditas tamen liberi hominis <lb/>qui propter
+            tale facinus ad mortem fuerit iudicatus <lb/>ad legitimos heredes illius perueniat . Si
+            in atrio <lb/>ecclesię cuius porta reliquiis sanctorum consecrata est <lb/>huiuscemodi
+            homicidium perpetratum fuerit . simili <lb/>modo emendetur et <expan>conponatur</expan>
+            . Si uero porta ecclesię <lb/>non est consecrata eo modo <expan>conponatur</expan> .
+            Quod in <lb/>atrio <expan>committitur</expan> . sicut <expan>conponi</expan> debet .-
+            quod <sic>immu<lb break="no"/>tate</sic> uiolata <expan>committitur</expan> sicut
+            continetur in libro <lb/>superiori . <lb/></ab>
+         <ab corresp="BK.193_2_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-74r-1"><seg n="18" type="num">XVIII </seg></ab>
          <ab corresp="BK.193_2" type="text" xml:id="bamberg-sb-can-12-74r-2"><expan><seg
                   rend="coloured" type="initial">Q</seg>uicumque</expan> propter cupiditatem rerum .
             patrem . aut ma<lb break="no"/>trem . aut fratrem . aut sororem . uel nepotem uel alium
@@ -1209,18 +1484,16 @@
             />fecti ad alios suos legitimos heredes perueniat . <lb/><seg type="initial"
             >I</seg>nterfectoris uero hereditas in fiscum redigatur . ipsi <lb/>uero ordinante
             episcopo . publicę penitentiae subdatur . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-74r-3"><seg n="19"
-               type="num">XVIIII </seg></ab>
+         <ab corresp="BK.193_3_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-74r-3"><seg n="19" type="num">XVIIII </seg></ab>
          <ab corresp="BK.193_3" type="text" xml:id="bamberg-sb-can-12-74r-4"><expan><seg
                   rend="coloured" type="initial">Q</seg>uicumque</expan> propria uxore derelicta .
             uel sine culpa in<lb break="no"/>terfecta . aliam duxerit uxorem . armis depositis
             <lb/>publicam agat poenitentiam . et si contumax fuerit <lb/>conprehendatur a comite et
             ferro uinciatur . et in <lb/>custodia mittatur . donec res ad nostram noticiam de<lb
                break="no"/>ducatur . <lb/></ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-74r-5"><seg n="20"
-               type="num">XX </seg></ab>
+         <ab corresp="BK.193_4_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-74r-5"><seg n="20" type="num">XX </seg></ab>
          <ab corresp="BK.193_4" type="text" xml:id="bamberg-sb-can-12-74r-6"><expan><seg
                   rend="coloured" type="initial">Q</seg>uicumque</expan> res alienas cuilibet homini
             uendiderit . et ipse <lb/>homo easdem res alicui alteri dederit . siue uendi<lb
@@ -1242,47 +1515,34 @@
             postea sicut contemptores iussionis nostrę . sub fideius<lb break="no"/>soribus . ad
             nostram <expan>presentiam</expan> uenire conpellantur . <lb/>
          </ab>
-
-         <ab rend="coloured" type="meta-text" xml:id="bamberg-sb-can-12-74v-1"><seg n="21"
-               type="num">XXI </seg></ab>
+         <ab corresp="BK.193_5_inscriptio" rend="coloured" type="meta-text"
+            xml:id="bamberg-sb-can-12-74v-1"><seg n="21" type="num">XXI </seg></ab>
          <ab corresp="BK.193_5" type="text" xml:id="bamberg-sb-can-12-74v-2"><seg rend="coloured"
                type="initial">D</seg>e uicariis et centenariis qui magis propter cupiditatem !
             <lb/>quam propter iusticiam faciendam sepissimę placita tenent <lb/>et exinde populum
             nimis affligunt . Ita teneatur sicut <lb/>in capitulare domni <rs type="person"
                >Karoli</rs> . imperatoris continetur in libro <lb/><num><hi rend="coloured"
                   >IIII</hi><hi rend="super">o</hi></num> . capitulo <num><hi rend="coloured"
-                  >XL</hi></num> . <cit>
-               <quote><seg rend="coloured" type="initial">U</seg>t nullus ad placitum manniatur
-                  <lb/>nisi qui causam suam quęrit . aut si alter ei conquęrere <lb/>debet .
-                  exceptis scabiniis . <num><hi rend="coloured">VII</hi></num> . qui ad omnia
-                  placita <lb/>esse debent . </quote>
-               <ref>Ansegis 3,40 (MGH Capit. N. S. 1 <ref
-                     target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._590"
-                     type="external">S. 590</ref>). </ref>
-            </cit>
-            <seg rend="coloured" type="initial">I</seg>tem de eadem re<note type="editorial">Über
-                  <mentioned>e</mentioned> ein schräger (Betonungs-?) Strich.</note> in capitulare
-            nostro . <cb n="75r"/>In libro . <num><hi rend="coloured">IIII</hi></num> . capitulo .
-                  <num><hi rend="coloured">LV</hi></num> . <cit>
-               <quote><seg rend="coloured" type="initial">D</seg>e placitis siquidem quę liberi
-                  <lb/>homines obseruare debent . constitutio <rs type="person">genitoris
-                     nostri</rs>
-                  <lb/> penitus obseruanda atque tenenda est . <seg rend="coloured" type="initial"
-                     >U</seg>t uidelicet <lb/>in anno <num>tria</num> solummodo generalia placita
-                  obseruent . <lb/><seg rend="coloured" type="initial">E</seg>t nullus eos amplius
-                  placita obseruare <expan>conpellat</expan> . <lb/>nisi forte quilibet aut
-                  accusatus fuerit . aut alium <lb/>accusauerit . aut ad testimonium perhibendum
-                  uocatus <lb/>fuerit . <seg rend="coloured" type="initial">A</seg>d cetera uero quę
-                  centenarii tenent ! <lb/>non alius uenire iubeatur . nisi qui aut litigat aut
-                  <lb/>Iudicat . <note type="editorial">Der Rest der Zeile ist freigeblieben, und in
-                     der nächsten Zeile wechselt die Hand; s.o. die Vorbemerkung.</note> ; ; ; ; </quote>
-               <ref>Ansegis 4,55 (MGH Capit. N. S. 1 <ref
-                     target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._653"
-                     type="external">S. 653</ref>).</ref>
-            </cit><lb/>
+                  >XL</hi></num> . <seg rend="coloured" type="initial">U</seg>t nullus ad placitum
+            manniatur <lb/>nisi qui causam suam quęrit . aut si alter ei conquęrere <lb/>debet .
+            exceptis scabiniis . <num><hi rend="coloured">VII</hi></num> . qui ad omnia placita
+            <lb/>esse debent . <seg rend="coloured" type="initial">I</seg>tem de eadem re<note
+               type="editorial">Über <mentioned>e</mentioned> ein schräger (Betonungs-?)
+               Strich.</note> in capitulare nostro . <cb n="75r"/>In libro . <num><hi
+                  rend="coloured">IIII</hi></num> . capitulo . <num><hi rend="coloured"
+               >LV</hi></num> . <seg rend="coloured" type="initial">D</seg>e placitis siquidem quę
+            liberi <lb/>homines obseruare debent . constitutio <rs type="person">genitoris
+               nostri</rs>
+            <lb/> penitus obseruanda atque tenenda est . <seg rend="coloured" type="initial"
+            >U</seg>t uidelicet <lb/>in anno <num>tria</num> solummodo generalia placita obseruent .
+               <lb/><seg rend="coloured" type="initial">E</seg>t nullus eos amplius placita
+            obseruare <expan>conpellat</expan> . <lb/>nisi forte quilibet aut accusatus fuerit . aut
+            alium <lb/>accusauerit . aut ad testimonium perhibendum uocatus <lb/>fuerit . <seg
+               rend="coloured" type="initial">A</seg>d cetera uero quę centenarii tenent ! <lb/>non
+            alius uenire iubeatur . nisi qui aut litigat aut <lb/>Iudicat . <note type="editorial"
+               >Der Rest der Zeile ist freigeblieben, und in der nächsten Zeile wechselt die Hand;
+               s.o. die Vorbemerkung.</note> ; ; ; ; <lb/>
          </ab>
-
-
       </body>
    </text>
 </TEI>

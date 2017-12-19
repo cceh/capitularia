@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
-
-<!-- sh: Achtung! Datei in Bearbeitung. -->
+<?xml-model href="http://capitularia.uni-koeln.de/cap/intern/InArbeit/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="muenchen-bsb-lat-3853">
    <teiHeader>
@@ -79,10 +79,11 @@
                   <surname>Heinen</surname>
                </persName>
                <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
-                  Standard (fol. 245v-246v=BK 157, 247r-v=BK 165, 293r-295v=BK 157, 163, 165)</resp>
+                  Standard (fol. 245v-246v=BK 157, 247r-v=BK 165, 262v= 195 c. 1, 293r-295v=BK 157,
+                  163, 165)</resp>
                <resp xml:lang="eng">Transcription, description and text encoding according to the
-                  TEI P5 standard (fols 245v-246v=BK 157, 247r-v=BK 165, 293r-295v=BK 157, 163,
-                  165)</resp>
+                  TEI P5 standard (fols 245v-246v=BK 157, 247r-v=BK 165, 262v= 195 ch. 1,
+                  293r-295v=BK 157, 163, 165)</resp>
             </respStmt>
             <respStmt>
                <persName key="FF">
@@ -333,10 +334,9 @@
                   </msItem>
                   <msItem n="4">
                      <p>
-                        <locus>44r-69v</locus> Hrabanus Maurus, Paenitentiale ad Heribaldum<hi
-                           rend="smallcaps"> (Migne, </hi>PL 110, Sp. 467 C - 494 C; dazu der in der
-                        Teiledition MGH Epp. 5, S. 514 berücksichtigte Schluß).<note type="msDetail"
-                        />
+                        <locus>44r-69v</locus> Hrabanus Maurus, Paenitentiale ad Heribaldum (Migne,
+                        PL 110, Sp. 467 C - 494 C; dazu der in der Teiledition MGH Epp. 5, S. 514
+                        berücksichtigte Schluß).<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="5">
@@ -382,7 +382,7 @@
                   <msItem n="10">
                      <p>
                         <locus>81v-128v</locus> Nach der Inskription <hi rend="italic">INCIPIUNT
-                           CAPITULA SINODI UUORMACENSIS:</hi> Sammlung von 178 (de facto 181)
+                           CAPITULA SINODI UUORMACENSIS</hi>: Sammlung von 178 (de facto 181)
                         Kapiteln mit vorangestellter Capitulatio, Kanones des Konzils von Worms (a.
                         868) und patristisch-kanonistischen Anhängen (Capitula I Theodulfs von
                         Orléans, Capitula I und II Hinkmars von Reims u.a.), vgl. die ausführliche
@@ -420,8 +420,11 @@
                   <msItem n="13">
                      <p>
                         <locus>157r-v</locus> Drei Kanones von Mainz, Arles und Tours (a. 813) <hi
-                           rend="italic">DE PACE ECCLESIARVM,</hi> wie in Cod. Berlin Lat. qu. 931,
-                        fol. 89r (und Kopie Cod. München Lat. 6360).<note type="msDetail"/>
+                           rend="italic">DE PACE ECCLESIARVM,</hi> wie in Cod. <ref type="internal"
+                           subtype="mss" target="berlin-sb-lat-qu-931">Berlin Lat. qu. 931</ref>,
+                        fol. 89r (und Kopie Cod. <ref type="internal" subtype="mss"
+                           target="muenchen-bsb-lat-6360">München Lat. 6360</ref>).<note
+                           type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="14">
@@ -549,8 +552,10 @@
                         Rubrik <hi rend="italic">DE FRATRIBUS CAP.</hi>, nach 4, 74 <hi
                            rend="italic">R. prope post duo fol.</hi>, mit Kapitelzahlen) beziehen
                         sich auf die bis fol. 247v folgenden Kapitularienexzerpte, die einer
-                        Ansegis-Vorlage wie Codd. Berlin Lat. qu. 931 und München Lat. 6360
-                        entnommen sind.<note type="msDetail"/>
+                        Ansegis-Vorlage wie Codd. <ref type="internal" subtype="mss"
+                           target="berlin-sb-lat-qu-931">Berlin Lat. qu. 931</ref> und <ref
+                           type="internal" subtype="mss" target="muenchen-bsb-lat-6360">München Lat.
+                           6360</ref> entnommen sind.<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="25" corresp="BK.157">
@@ -1075,7 +1080,7 @@
                         <locus>292v-293r</locus>
                         <hi rend="italic">V-VIII</hi> - <title>Capitulare Italicum</title> (a. 801),
                         cc. 3, 4, 7, 5: <hi rend="italic">Si quis adeo contumax aut superbus -
-                           emendatione conponatur</hi> (MGH Capit. 1, Nr. 98, S. 205 Z. 20 - 27, S.
+                           emendatione conponatur</hi> (MGH Capit. 1, Nr. 98, S. 205 Z. 20-27, S.
                         205 Z. 36 - S. 206 Z. 2, S. 205 Z. 28-32).<note type="msDetail"/>
                      </p>
                   </msItem>
@@ -1190,14 +1195,16 @@
                                  >Heiligenkreuz 217</ref> nachweisbar. Der Monacensis bzw. seine in
                               fünf Teilen verfertigte Kopie dürften also im endenden 10. Jh.
                               demselben südostdeutschen Skriptorium angehört haben, in dem der
-                              Sancrucensis geschrieben wurde.</p> 40 Lagen: <formula>(IV-3)<hi
-                                 rend="super">5</hi> + 3 IV<hi rend="super">29</hi> + (IV+2+II)<hi
-                                 rend="super">43</hi> + (IV-1)<hi rend="super">50</hi> + (IV-2)<hi
-                                 rend="super">56</hi> + 10 IV<hi rend="super">136</hi> + 2 (IV-1)<hi
-                                 rend="super">150</hi> + 8 IV<hi rend="super">214</hi> + (IV-1)<hi
-                                 rend="super">221</hi> + 3 IV<hi rend="super">245</hi> + (I+IV)<hi
-                                 rend="super">255</hi> + 3 IV<hi rend="super">279</hi> + (IV-1)<hi
-                                 rend="super">286</hi> + 4 IV<hi rend="super">318</hi>.</formula>
+                              Sancrucensis geschrieben wurde.</p>
+                           <!--40 Lagen:-->
+                           <formula>(IV-3)<hi rend="super">5</hi> + 3 IV<hi rend="super">29</hi> +
+                                 (IV+2+II)<hi rend="super">43</hi> + (IV-1)<hi rend="super">50</hi>
+                              + (IV-2)<hi rend="super">56</hi> + 10 IV<hi rend="super">136</hi> + 2
+                                 (IV-1)<hi rend="super">150</hi> + 8 IV<hi rend="super">214</hi> +
+                                 (IV-1)<hi rend="super">221</hi> + 3 IV<hi rend="super">245</hi> +
+                                 (I+IV)<hi rend="super">255</hi> + 3 IV<hi rend="super">279</hi> +
+                                 (IV-1)<hi rend="super">286</hi> + 4 IV<hi rend="super"
+                              >318</hi></formula>
                            <catchwords>Kustoden am Lagenende, z.T. abgeschnitten: <hi rend="italic"
                                  >A</hi> bis <hi rend="italic">Z</hi> (174<hi rend="super">v</hi>)
                               und <hi rend="italic">&lt;A&gt;</hi> bis <hi rend="italic">S
@@ -1246,7 +1253,7 @@
                            ref="http://d-nb.info/gnd/4078022-3 http://viaf.org/viaf/235489154"
                            >Süddeutschland (<placeName
                               ref="http://www.geonames.org/6557107/augsburg.html http://d-nb.info/gnd/4003614-5 http://viaf.org/viaf/153139306"
-                              >Augsburg</placeName>?)</origPlace>.</p>
+                              >Augsburg</placeName>?)</origPlace></p>
                   </origin>
                   <provenance>
                      <p>Wohl schon um die Mitte des 11. Jh. in der Dombibliothek Augsburg (vgl. zum
@@ -1264,7 +1271,7 @@
                         <bibl corresp="#Mordek_1995"> Mordek 1995, S. 287-305</bibl>
                         <bibl corresp="#Schmitz_G_1996"> Schmitz G 1996, S. 102-104</bibl>
                         <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
-                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
+                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012ff. <ref
                               subtype="Bl" target="muenchen-bsb-lat-3853" type="external"/></bibl>
                      </listBibl>
 
@@ -1325,7 +1332,7 @@
                         <bibl corresp="#Mordek_1992">Mordek 1992, S. 611 f. Anm. 17 und 20</bibl>
                         <bibl corresp="#Körntgen_1993">Körntgen 1993, S. 238 ff.</bibl>
                         <bibl corresp="#Sousa_Costa_1993">Sousa Costa 1993, S. 55 u. ö.</bibl>
-                        <bibl> K. Zechiel-Eckes, Neue Aspekte zur Geschichte Bischof Hermanns von
+                        <bibl>K. Zechiel-Eckes, Neue Aspekte zur Geschichte Bischof Hermanns von
                            Augsburg (1096-1133), in: Zs. für bayerische Landesgeschichte 57 (1994)
                            S. 29 f., 36</bibl>
                      </listBibl>
@@ -1345,8 +1352,8 @@
       <encodingDesc>
          <p>Transkriptionsvorlage: Die Transkription der foll. 248r-254r wurde begonnen auf Basis
             des online verfügbaren Schwarz/Weiß-Digitalisates, während die Nachkollationen bereits
-            auf ein von der Münchener BSB angefertigtes Farbdigitalisat zurückgreifen konnten, das
-            auch die Grundlage für die Fortführung der Transkription bildete.</p>
+            auf ein von der BSB angefertigtes Farbdigitalisat zurückgreifen konnten, das auch die
+            Grundlage für die Fortführung der Transkription bildete. </p>
          <projectDesc>
             <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
                   target="http://capitularia.uni-koeln.de/project/about/"/>
@@ -1370,7 +1377,8 @@
             Benedictus Levita 1, 279)</change>
          <change when="2017-05-09" who="BM">Vorbemerkung überarbeitet</change>
          <change when="2017-06-01" who="SH">Transkriptionen ergänzt (BK 157, 163, 165), Vorbemerkung
-            erweitert.</change>
+            erweitert</change>
+         <change when="2017-12-05" who="SH">Transkription ergänzt (BK 195)</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -1534,6 +1542,9 @@
                         />XXXVII</item>
                      <item n="40.45"><ptr target="#muenchen-bsb-lat-3853-262v-1" type="internal"
                         />XLV Anno XVI Regnante Hludouuicco</item>
+                     <item n="40.46">
+                        <ptr type="internal" target="#muenchen-bsb-lat-3853-262v-3"/>XLVI De
+                        inscriptione temporum</item>
                   </list>
                </item>
                <item n="93">
@@ -1599,17 +1610,18 @@
                neu einsetzt. Eventuell findet mit dem Seitenwechsel auf <locus>fol. 252v</locus> ein
                Wechsel zu einer weiteren Hand (F) statt, die dann allerdings wohl nur die ersten
                zehn Zeilen geschrieben hätte. <locus>Foll. 293r-294v</locus>: Hand G, mit einigen
-               Korrekturen und Ergänzungen von einer anderen Hand X; ab <locus>fol. 295r</locus>:
-               Hand H, die deutlich öfter Kürzungen einsetzt als die Hände auf foll. 245-247.</p>
+               Korrekturen und Ergänzungen von einer anderen Hand; ab <locus>fol. 295r</locus>: Hand
+               H, die deutlich öfter Kürzungen einsetzt als die Hände auf <locus>foll.
+                  245-247</locus>.</p>
          </div>
          <div type="letters">
             <p>Einzelbuchstaben:</p>
             <p>Hand A: Der Schaft des doppelstöckigen a steht fast senkrecht. Die Cauda von
-               e-caudata hat einen zweiten Ausläufer, der rechtwinklig am ersten ansetzt. f und
-               gerades s haben einen knotigen Ansatz. Bei g sind unterer und oberer Bogen
+               e-caudata hat einen zweiten Ausläufer, der rechtwinklig am ersten ansetzt. Das f und
+               das Schaft-s haben einen verdickten Ansatz. Bei g sind unterer und oberer Bogen
                geschlossen und senkrecht übereinander angeordnet.</p>
-            <p>Hand B: Leicht nach rechts geneigte Schrift; Verwendung einer blitzförmigen e-Cauda.
-               Das r ist jeweils mit leichter Unterlänge ausgeführt.</p>
+            <p>Hand B: Leicht nach rechts geneigte Schrift; Verwendung einer blitzförmigen Cauda bei
+               e. Das r ist jeweils mit leichter Unterlänge ausgeführt.</p>
             <p>Hand C: Sehr gerade bis leicht nach links geneigte Schrift; oft -US- und
                -NT-Ligaturen am Wortende.</p>
             <p>Hand D: Zeigt große Ähnlichkeit mit Hand A samt der oben beschriebenen
@@ -1621,14 +1633,14 @@
                wellenförmig nach rechts ausgezogen.</p>
             <p>Hand F: Die Buchstaben sind insgesamt breiter und runder ausgeführt als bei Hand E.
                Die Ausläufer bei Endungs-e oder -r fehlen. Das q hat eine nach links unten
-               ausschwingende Unterlänge sowie einen rechts oben angesetzten Haken.</p>
+               ausschwingende Unterlänge sowie einen rechts oben angesetzten Schrägstrich.</p>
             <p>Hand G: Schreibt leicht nach rechts geneigt und etwas oberhalb der Blindlinierung.
                Die Balken bei Endungs-e oder -r werden ausgezogen wie bei Hand E, allerdings ist die
                e-caudata hier im Unterschied zu Hand E sehr klein und unauffällig gestaltet. Das g
                hat einen geschlossenen, etwas eckigen unteren Bogen.</p>
             <p>Hand H: Hat große Ähnlichkeit mit Hand A, allerdings fehlen sowohl die für Hand A
-               typischen, auffälligen e-caudata als auch der ausgeprägte knotige Ansatz beim geraden
-               s.</p>
+               typischen, auffälligen e-caudata als auch der ausgeprägte verdickte Ansatz beim
+               Schaft-s.</p>
 
             <p>Ligaturen:</p>
             <p>Es werden nur wenige Ligaturen verwendet, z.B. st- und et-Ligaturen. Bei Hand A
@@ -1665,10 +1677,11 @@
             <p>Ergänzt zu <locus>foll. 245v-247v</locus>: Im Anschluss an die Kapitulariensammlung
                des Ansegis folgen als Nachträge Auszüge aus italienischen Kapitularien, die durch
                Inskriptionen und Kapitelnummern bestimmten Stellen des Ansegis zugeordnet werden
-               (vgl. Schmitz G 1996, S. 102-104 und 213 f.) Sie erscheinen nicht in den
+               (vgl. Schmitz G 1996, S. 102-104 und 213 f.). Sie erscheinen nicht in den
                Rubrikenverzeichnissen, dort und im Text selbst finden sich aber an den Stellen,
-               denen sie zugeordnet wurden, Require-Vermerke. Die Ansegis-Rubrik 4.76bis = BK 165 c.
-               5 bricht nach "aliena" (hier geändert zu "alienam") unvollständig ab. </p>
+               denen sie zugeordnet wurden, Require-Vermerke. Die Rubrik zum Zusatzkapitel zu
+               Ansegis 4, 76 = BK 165 c. 5 bricht nach <mentioned>aliena</mentioned> (hier geändert
+               zu <mentioned>alienam</mentioned>) unvollständig ab.</p>
             <p><locus>Foll. 248r-254r</locus>: Eine Auswahl der Kapitularien Ludwigs des Frommen von
                829 wird hier in einer 33 Kapitel umfassenden Liste zusammengestellt: BK 188 c. 4; BK
                191 ohne c. 8; Benedictus Levita 1, 279; BK 193 cc. 1-6 und 8; BK 188 cc. 1-2 sowie
@@ -1680,8 +1693,8 @@
                jeweiligen Absätze mit Initialen in roter Tinte hervorgehoben. Diese Initialen fügen
                sich in einigen wenigen Fällen in den Satzspiegel ein, zumeist werden sie jedoch
                etwas seitlich ausgerückt.</p>
-            <p>Die der Kapitelliste vorangestellte Capitulatio stammt offenbar vom selben Schreiber,
-               der den Großteil der Abschrift vorgenommen hat. Bei den Nummern von cc.
+            <p>Die der Kapitelliste vorangestellte Capitulatio stammt offenbar von denselbem
+               Schreiber, der den Großteil der Abschrift vorgenommen hat. Bei den Nummern von cc.
                   <mentioned>XVII-XVIIII</mentioned> (<locus>fol. 248r unten</locus>) sind die
                letzten Ziffern jeweils übergeschrieben, was aber wohl nicht auf eine Korrektur
                hindeutet, sondern dem mangelnden Platz geschuldet sein dürfte. Bei der
@@ -1690,23 +1703,22 @@
                eines Zeichens zu sehen, das evtl. den Ansatz zu einer irrtümlichen Korrektur zu
                   <mentioned>VII</mentioned> darstellen könnte. An dieser Stelle des Textes ließe
                sich eine Unsicherheit bei der korrekten Nummerierung evtl. dadurch erklären, dass in
-               c. <mentioned>VI</mentioned> zwei Texte zusammengefasst sind, die in anderen Hss. als
-               separate Kapitel erscheinen: BK 191 c. 5 (ohne die beiden Ansegis-Zitate) und c. 6.
-               Auf <locus>fol. 251v</locus> fehlt die Nummerierung ganz (cc.
-                  <mentioned>XV</mentioned> und <mentioned>XVI</mentioned>; die Anfänge der Kapitel
-               sind aber jeweils durch Initialen hervorgehoben), und dort, wo sie auf <locus>fol.
-                  252r</locus> wieder einsetzt, könnte die <mentioned>XVII</mentioned> korrigiert
-               worden sein (das zweite <mentioned>I</mentioned> steht im Bauch der folgenden
-                  <mentioned>D</mentioned>-Initiale). Die Nummerierung von c.
-                  <mentioned>XXI</mentioned> fehlt, die Zählung wird aber auf der folgenden Seite
-                  (<locus>fol. 252v</locus>) korrekt mit c. <mentioned>XXII</mentioned> fortgeführt.
-               Die letzten beiden Kapitel (auf <locus>fol. 253v</locus>) sind wiederum nicht
-               nummeriert.</p>
-            <p><locus>Foll. 261v, 262v</locus>: Die in der Zusammenstellung der 33-Kapitel-Liste
-               fehlenden Kapitel BK 191 c. 8 und BK 192 c. 12 folgen als cc.
-                  <mentioned>XXXVII</mentioned> und <mentioned>XLV</mentioned> einer aus 46 Kapiteln
-               bestehenden, separaten Liste, die ebenfalls mit einer eigenen Capitulatio auf
-                  <locus>fol. 256r</locus> eröffnet wird.</p>
+               c. <mentioned>VI</mentioned> zwei Kapitel zusammengefasst sind, die in anderen Hss.
+               als separate Kapitel erscheinen: BK 191 c. 5 (ohne die beiden Ansegis-Zitate) und c.
+               6. Auf <locus>fol. 251v</locus> fehlt die Nummerierung ganz (cc. XV und XVI; die
+               Anfänge der Kapitel sind aber jeweils durch Initialen hervorgehoben), und dort, wo
+               sie auf <locus>fol. 252r</locus> wieder einsetzt, könnte die
+                  <mentioned>XVII</mentioned> korrigiert worden sein (das zweite
+                  <mentioned>I</mentioned> steht im Bogen der folgenden
+               <mentioned>D</mentioned>-Initiale). Die Nummerierung von c. XXI fehlt, die Zählung
+               wird aber auf der folgenden Seite (<locus>fol. 252v</locus>) korrekt mit c.
+                  <mentioned>XXII</mentioned> fortgeführt. Die letzten beiden Kapitel (auf
+                  <locus>fol. 253v</locus>) sind wiederum nicht nummeriert.</p>
+            <p><locus>Foll. 256r-262v</locus>: Eine 46-Kapitel-Sammlung mit eigener Capitulatio. BK
+               191 c. 8 und c. 12 nehmen hier die Nummern <mentioned>XXXVII</mentioned> und
+                  <mentioned>XLV</mentioned> ein, die oben in der 33-Kapitel-Sammlung (<locus>foll.
+                  248r-254r</locus>) fehlen. Das letzte Stück der Reihe (c.
+                  <mentioned>XLVI</mentioned>) ist BK 195 c. 1.</p>
             <p><locus>Foll. 293r-295v</locus>: Die Auszüge aus den Kapitularien Lothars der Jahre
                822/23 und 825 (BK 157, 163, 165) erscheinen als cc. <mentioned>X-XXVIIII</mentioned>
                einer insgesamt 70 Kapitel zählenden Liste, die Auszüge aus Kapitularien von Pippin
@@ -1720,24 +1732,26 @@
                   <mentioned>XV</mentioned> (= BK 163 c. 5) ist auf den <locus>foll.
                   293v-294r</locus> unter dem Schriftspiegel in seitenübergreifenden Langzeilen
                nachgetragen. Entsprechend sind nach c. <mentioned>XIIII</mentioned> auf dem linken
-               Rand ein <mentioned>hic deest</mentioned> von Hand X, auf dem rechten Rand ein
-                  <mentioned>s</mentioned> (für <mentioned>signum</mentioned>?) vermerkt, das
-               wiederum mit einem von vier Punkten umgebenen Kreuz auf dem linken Rand vor dem
-               Nachtrag korrespondieren dürfte.</p>
+               Rand ein <mentioned>hic deest</mentioned> von anderer Hand, auf dem rechten Rand ein
+                  <mentioned>s</mentioned> (für
+               <mentioned>signum</mentioned>?)<!-- dt: eher "scribe"? --> vermerkt, das wiederum mit
+               einem von vier Punkten umgebenen Kreuz auf dem linken Rand vor dem Nachtrag
+               korrespondieren dürfte.</p>
          </div>
          <div type="annotations">
-
             <p>Auf <locus>fol. 249v</locus> dünn (mit Blei?) ein <mentioned>NB</mentioned> auf dem
-               linken Rand auf Höhe von <locus>Z. 5-6</locus> (neben c. VI, in dem BK 191 cc. 5 und
-               6 zusammengezogen werden); schräg rechts darüber, vor <locus>Z. 5</locus> und evtl.
-               im Zusammenhang mit dem <mentioned>NB</mentioned>-Zeichen, ein kleiner Schrägstrich
-               (mit Blei?). Auf <locus>fol. 182r-v</locus> Bleistiftnotizen am Rand der beiden
-               Kapitel aus BK 134, jeweils verweisend auf die Edition von Baluze, mit einer
-               Anstreichung von gleicher Hand der Passage zur Kreuzprobe.</p>
+               linken Rand auf Höhe von <locus>Z. 5-6</locus> (neben c. <mentioned>VI</mentioned>,
+               in dem BK 191 cc. 5 und 6 zusammengezogen werden); schräg rechts darüber, vor
+                  <locus>Z. 5</locus> und evtl. im Zusammenhang mit dem
+               <mentioned>NB</mentioned>-Zeichen, ein kleiner Schrägstrich (mit Blei?). Auf
+                  <locus>fol. 182r-v</locus> Bleistiftnotizen am Rand der beiden Kapitel aus BK 134,
+               jeweils verweisend auf die Edition von Baluze, mit einer Anstreichung von gleicher
+               Hand der Passage zur Kreuzprobe.</p>
             <p>Ein späterer Annotator hat mehrere Kapitel mit einem Monogramm markiert, das entweder
-               aus den Buchstaben <mentioned>NOT</mentioned> für NOTA oder aus den Buchstaben
-                  <mentioned>HOT</mentioned> und vllt. einem <mentioned>L</mentioned> (= evtl. die
-               verlängerte Unterlänge) für HLOTHAR (?) gebildet wurde. Folgende der hier
+               aus den Buchstaben <mentioned>NOT</mentioned> für <mentioned>NOTA</mentioned> oder
+               aus den Buchstaben <mentioned>HOT</mentioned> und vllt. einem
+                  <mentioned>L</mentioned> (= evtl. die verlängerte Unterlänge) für
+                  <mentioned>HLOTHAR</mentioned> (?) gebildet wurde. Folgende der hier
                transkribierten Kapitel sind gekennzeichnet:</p>
             <p> - auf dem <locus>fol. 250v</locus> c. <mentioned>X</mentioned> (= Benedictus Levita
                1 c. 279) mit der Glosse <mentioned>De ImmvniTate</mentioned>.</p>
@@ -1747,17 +1761,12 @@
                   <mentioned>XVIIII</mentioned> (= BK 165 c. 2), <mentioned>XXI</mentioned> (= BK
                165 c. 4), <mentioned>XXIII</mentioned> (= BK 165 c. 6) und
                   <mentioned>XXVI</mentioned> (= BK 165 c. 9).</p>
-            <p>Auf <locus>fol. 246v Z. 20</locus> ist über dem Vokal des Pronomens
-                  <mentioned>se</mentioned> ein Akzentzeichen angebracht, genauso auf <locus>fol.
-                  294r Z. 15</locus> über dem Silbengipfel des Wortes <mentioned>re</mentioned>
-               (Ablativ Singular).</p>
+            <p>Auf <locus>fol. 262v</locus> steht nach dem Ende der 46-Kapitel-Sammlung auf dem Rand
+                  <mentioned>hic semiscriptum</mentioned> von der Haupthand geschrieben, um
+               anzuzeigen, dass die Hälfte des letzten Kapitels fehlt.</p>
          </div>
          <div type="other">
-            <p>Die Tintenfarbe ist braun, allerdings erscheinen auf dem Farbscan einzelne Passagen
-               auf <locus>fol. 250r-251r</locus> dunkler. Die Rubriken, Initialen und die
-               Kapitelzählung sind in roter Tinte gestaltet. Die Nachträge zum ersten Buch des
-               Ansegis auf <locus>fol. 245v</locus> sind nur in Texttinte geschrieben. Auf
-                  <locus>fol. 247 Z. 15f.</locus> befinden sich zwei Löcher von ca. der Größe der
+            <p>Auf <locus>fol. 247 Z. 15f.</locus> befinden sich zwei Löcher von ca. der Größe der
                Zeilenhöhe ohne Textverlust.</p>
          </div>
 
@@ -1814,24 +1823,20 @@
                </add><metamark function="insertion"/> quę ab eo quę<lb break="no"/>ritur . pater ei
             suus dereliqu<mod>er</mod>it . <lb/>
          </ab>
-
          <cb n="231r"/>
          <lb n="17"/>
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-231r-6" corresp="Ansegis.4_inscriptio_c"
             >INCIPIUNT CAPITULA . <lb/></ab>
-
          <cb n="232vb"/>
          <lb n="12"/>
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-232vb-17" corresp="Ansegis.4_inscriptio"
             >INCIPIT SUPRASCRIPTORUM . <lb/>TEXTUS CAPITULORUM <lb/></ab>
-
          <milestone unit="capitulare" n="BK.157"/>
-
          <cb n="245v"/>
          <lb n="1"/>
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-245v-1"
             corresp="Ansegis.1_inscriptio BK.157_inscriptio Ansegis.1_79bis_inscriptio BK.157_1_inscriptio">
-            <milestone spanTo="muenchen-bsb-lat-3853-245v-1_1" unit="span"
+            <milestone spanTo="#muenchen-bsb-lat-3853-245v-1_1" unit="span"
                corresp="Ansegis.1_inscriptio BK.157_inscriptio"/>
             <handShift new="B"/>DE PRIMO LIBRO . <choice>
                <abbr>CAPL</abbr>
@@ -1967,11 +1972,11 @@
             corresp="BK.201_11_inscriptio Ansegis.3_43bis_inscriptio" rend="coloured"><seg
                type="num" n="43">XLIII</seg> ITEM DE EADEM . </ab>
          <ab type="text" xml:id="muenchen-bsb-lat-3853-246v-7" corresp="BK.201_11 Ansegis.3_43bis">
-            <seg type="initial" rend="coloured">D</seg>ece<add>r</add>nimus<metamark
-               function="insertion"/> ut quisquis <lb/>aliter testes habere non potuerit . uolumus
-            ut per co<lb break="no"/>mitis iussionem quos in suo testimonio necessarios quis<lb
-               break="no"/>que habuerit ueritatem prolaturi publico conuentu <lb/>adducantur . ut
-            per ipsos rei ueritas cum iuramento uale<lb break="no"/>at inquiri . quodsi de <num>du<subst>
+            <seg type="initial" rend="coloured">D</seg>ece<add>r</add><metamark function="insertion"
+            />nimus ut quisquis <lb/>aliter testes habere non potuerit . uolumus ut per co<lb
+               break="no"/>mitis iussionem quos in suo testimonio necessarios quis<lb break="no"
+            />que habuerit ueritatem prolaturi publico conuentu <lb/>adducantur . ut per ipsos rei
+            ueritas cum iuramento uale<lb break="no"/>at inquiri . quodsi de <num>du<subst>
                   <del>o</del>
                   <add>a</add>
                </subst>bus</num> partibus fuerit inquisicio <lb/> facta idcirco quod nullus eorum
@@ -2039,8 +2044,8 @@
             tectum <lb/> tale constitua<mod>t</mod>ur quod in hieme et in aestate obser<lb
                break="no"/>uandum esse possit ; <lb/>
          </ab>
-         <milestone xml:id="muenchen-bsb-lat-3853-248r-capitulatio-1" unit="capitulatio"
-            n="Capitulatio_foll. 248r-v" spanTo="#capitulatio-finis_1"/>
+         <milestone unit="capitulatio" xml:id="muenchen-bsb-lat-3853-248r-capitulatio-1"
+            spanTo="#capitulatio-finis_1"/>
          <cb n="248r"/>
          <lb n="1"/>
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-248r-1" rend="coloured"><seg
@@ -2269,12 +2274,11 @@
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-249r-8" rend="coloured"
             corresp="BK.191_5_inscriptio"> De his qui nonas et decimas dare neglexerunt ; <cb
                n="249v"/>
-            <seg type="num" n="6">VI<note type="editorial">Nach <mentioned>I</mentioned> folgt ein
-                  Punkt oder der Ansatz zu einem weiteren Schaft. Evtl. hat der Korrektor, der auf
-                  derselben Seite weiter unten die <mentioned>VII</mentioned> zu
-                     <mentioned>VIII</mentioned> verbessert hat, an dieser Stelle irrtümlich auch zu
-                  einer Verbesserung angesetzt und diese nicht mehr getilgt?</note>
-            </seg>
+            <seg type="num" n="6">VI </seg><note type="editorial">Nach <mentioned>I</mentioned>
+               folgt ein Punkt oder der Ansatz zu einem weiteren Schaft. Evtl. hat der Korrektor,
+               der auf derselben Seite weiter unten die <mentioned>VII</mentioned> zu
+                  <mentioned>VIII</mentioned> verbessert hat, an dieser Stelle irrtümlich auch zu
+               einer Verbesserung angesetzt und diese nicht mehr getilgt?</note>
          </ab>
          <ab type="text" xml:id="muenchen-bsb-lat-3853-249v-1" corresp="BK.191_5 BK.191_6"
                ><milestone unit="span" corresp="BK.191_5" spanTo="#muenchen-bsb-lat-3853-249v-1_1"
@@ -2320,26 +2324,20 @@
             in beneficium habent restaurati<lb break="no"/>ones earum facere neglexerint . iuxta
             capitularem anteriorem . <lb/>In quo de operibus ac nonis et decimis constitutum est sic
             de <lb/>illis adimpleatur id est in libro <num>IIII<hi rend="super">o</hi></num> .
-            capitulum <num>XXXVIII</num> . <cit>
-               <quote>De opere<cb n="250r"/> uel restauratione ecclesiarum constitutum est ut de
-                  frugibus terrę et anima<lb break="no"/>lium nutrimine persoluantur : De opere uel
-                  restauratione ecclesiarum <lb/> comes et episcopus siue abba una cum misso nostro
-                  quem ipsi sibi ad hoc <lb/> elegerint considerationem faciant ut unusquisque eorum
-                  tantum <lb/> inde accipia<del>n</del>t ad operandum et restaurandum quantum ipse
-                  <lb/> de rebus ęcclesiarum habere cognoscitur . Similiter et uassi nostri aut in
-                  <lb/> commune tantum operis accipiant . quantum rerum ecclesiastica<lb break="no"
-                  />rum habent uel unusquisque per se iuxta quantitatem quam ipse te<lb break="no"
-                  />net . aut si inter eos conuenerit ut pro opere faciendo argen<lb break="no"/>tum
-                  donent . iuxta estimationem operis in argento persoluant . <lb/>cum quo
-                     <expan>precio</expan> rector ęcclesiae ad <expan>predictam</expan>
-                  restaurationem operarios <lb/> conducere et materiam emere possit . Et qui nonas
-                  et decimas <lb/> dare neglexerit . primum quidem illas cum sua lege restituat .
-                  <lb/>et insuper bannum nostrum soluat . ut ita castigatus caueat ne sepius <lb/>
-                  iterando beneficium amittat ; </quote>
-               <ref>Ansegis 4,38 (MGH Capit. N. S. 1 <ref type="external"
-                     target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._645">S.
-                     645</ref>)</ref>
-            </cit></ab>
+            capitulum <num>XXXVIII</num> . De opere<cb n="250r"/> uel restauratione ecclesiarum
+            constitutum est ut de frugibus terrę et anima<lb break="no"/>lium nutrimine persoluantur
+            : De opere uel restauratione ecclesiarum <lb/> comes et episcopus siue abba una cum
+            misso nostro quem ipsi sibi ad hoc <lb/> elegerint considerationem faciant ut
+            unusquisque eorum tantum <lb/> inde accipia<del>n</del>t ad operandum et restaurandum
+            quantum ipse <lb/> de rebus ęcclesiarum habere cognoscitur . Similiter et uassi nostri
+            aut in <lb/> commune tantum operis accipiant . quantum rerum ecclesiastica<lb break="no"
+            />rum habent uel unusquisque per se iuxta quantitatem quam ipse te<lb break="no"/>net .
+            aut si inter eos conuenerit ut pro opere faciendo argen<lb break="no"/>tum donent .
+            iuxta estimationem operis in argento persoluant . <lb/>cum quo <expan>precio</expan>
+            rector ęcclesiae ad <expan>predictam</expan> restaurationem operarios <lb/> conducere et
+            materiam emere possit . Et qui nonas et decimas <lb/> dare neglexerit . primum quidem
+            illas cum sua lege restituat . <lb/>et insuper bannum nostrum soluat . ut ita castigatus
+            caueat ne sepius <lb/> iterando beneficium amittat ; </ab>
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-250r-1" rend="coloured"
             corresp="BK.191_10_inscriptio"> De his qui agros neglexerunt . <lb/><seg type="num"
                n="9">VIIII</seg> . </ab>
@@ -2363,7 +2361,6 @@
                wie Benedict, "aber nicht von diesem" (ebd.). Vgl. dazu auch Patzold 2014.</note>
             intellegatur in quo facto inmunitas frangatur ; <cb n="250v"/>
             <seg type="num" n="10">X </seg></ab>
-
          <ab type="text" xml:id="muenchen-bsb-lat-3853-250v-1" corresp="Benedictus.Levita.1_279"
                ><seg type="initial" rend="coloured">P</seg>eruenit<note type="editorial">Das Kapitel
                ist auf dem Rand von Hand X mit einem Notazeichen (oberer Teil beschnitten) und der
@@ -2426,9 +2423,9 @@
             perueniat . Interfectoris uero he<lb break="no"/>reditas ad fiscum redigatur . Ipse uero
                ordina<add>n</add><metamark function="insertion"/>te<note type="editorial"
                   ><mentioned>n</mentioned><hi rend="super">2</hi> mit Einfügungszeichen
-               ergänzt.</note> episcopo <sic>pulblicę</sic><note type="editorial">Über dem ersten
-               Schaft des <mentioned>u</mentioned> ein kleiner, leicht gebogener Strich, fast wie
-               ein Hochkomma. Unklar, wie er zu erklären ist.</note> peniten<lb break="no"/>tię
+               ergänzt.</note> episcopo <sic>pulblicę<note type="editorial">Über dem ersten Schaft
+                  des <mentioned>u</mentioned> ein kleiner, leicht gebogener Strich, fast wie ein
+                  Hochkomma. Unklar, wie er zu erklären ist.</note></sic> peniten<lb break="no"/>tię
             subdatur ; </ab>
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-251r-5" rend="coloured"
             corresp="BK.193_3_inscriptio"> Qui uxorem interfecerit uel relinquerit . <lb/><seg
@@ -2456,7 +2453,7 @@
             de aliis omnibus iusticiis ad eum pertinentibus excepta sua legiti<lb break="no"/>ma
             hereditate quę ei per successionem parentum suorum legitime eue<lb break="no"/>nire
             debuit . Quodsi quis hanc nostram iussionem contempserit uel neglex<lb break="no"/>erit
-            . sicut de ceteris contemptoribus ita de eo agatur. Is uero qui easdem <lb/> res primus
+            . sicut de ceteris contemptoribus ita de eo agatur . Is uero qui easdem <lb/> res primus
             inuasit . et iniuste uendidit necnon et em<add>p</add>tores excep<lb break="no"/>ta sola
             persona paruuli . hoc quod fraudulenter a<add>d</add><metamark function="insertion"
             />miserunt . intra <lb/> prouintiam emendare cogantur et postea sicut contemptores <lb/>
@@ -2493,25 +2490,18 @@
             hoc ad <lb/> testimonium recipiantur quia proprium habent . </ab>
          <lb/>
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-252r-1" rend="coloured"
-            corresp="BK.193_8_inscriptio"> De faidis coercendis . <seg type="num" n="17">XVII<note
-                  type="editorial"><mentioned>I</mentioned><hi rend="super">2</hi> steht im Bauch
-                  der <mentioned>D</mentioned>-Initiale und wurde vermutlich nachgetragen; siehe
-                  dazu oben die Vorbemerkung.</note>
-            </seg></ab>
+            corresp="BK.193_8_inscriptio"> De faidis coercendis . <seg type="num" n="17">XVII
+               </seg><note type="editorial"><mentioned>I</mentioned><hi rend="super">2</hi> steht im
+               Bauch der <mentioned>D</mentioned>-Initiale und wurde vermutlich nachgetragen; siehe
+               dazu oben die Vorbemerkung.</note></ab>
          <ab type="text" xml:id="muenchen-bsb-lat-3853-252r-2" corresp="BK.193_8">
             <seg type="initial" rend="coloured">D</seg>e faidis coercendis hoc obseruetur <lb/> et
             teneatur quod in capitulari nostro in libro <num>IIII</num> . capitulo <num>XXV</num> .
-            continetur <lb/>
-            <cit>
-               <quote>Si quis aliqua necessitate et <choice>
-                     <abbr>rel</abbr>
-                     <expan>reliqua</expan>
-                  </choice> . </quote>
-               <ref>Ansegis 4,25 (MGH Capit. N. S. 1 <ref type="external"
-                     target="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._637">S.
-                     637</ref>).</ref>
-            </cit><note type="editorial">Ansegis-Zitat nur im Anlaut wiedergegeben; der Rest durch
-                  <mentioned>et reliqua</mentioned> gekürzt.</note></ab>
+            continetur <lb/> Si quis aliqua necessitate et <choice>
+               <abbr>rel</abbr>
+               <expan>reliqua</expan>
+            </choice><note type="editorial">Ansegis-Zitat nur im Anlaut wiedergegeben; der Rest
+               durch <mentioned>et reliqua</mentioned> gekürzt.</note> . </ab>
          <milestone unit="capitulare" n="BK.188_1"/>
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-252r-3" rend="coloured"
             corresp="BK.188_1_inscriptio"> De rebus ecclesiasticis ut contineantur . <lb/><seg
@@ -2722,10 +2712,10 @@
                Kürzungsstrich</note> fuit . hoc quod iniuste<cb n="254r"/> superposuit atque
             abstulit sibique retinuit . his quibus hoc tulit <lb/> cum sua lege restituat et insuper
             fredum nostrum conponat et minis<lb break="no"/>terium amittat ; </ab>
-         <milestone xml:id="muenchen-bsb-lat-3853-256r-capitulatio-2" unit="capitulatio"
-            n="Capitulatio_foll. 256r-257v" spanTo="#capitulatio-finis_2"/>
          <cb n="256r"/>
          <lb n="13"/>
+         <milestone xml:id="muenchen-bsb-lat-3853-256r-capitulatio-2" unit="capitulatio"
+            spanTo="#capitulatio-finis_2"/>
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-256r-9" rend="coloured">INCIPIUNT
             CAPITULA . <lb/></ab>
          <cb n="257r"/>
@@ -2737,11 +2727,14 @@
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-257r-19" rend="coloured"><date>ANNO
                   <sic>. <num>VIX</num> .</sic> Regnante <rs type="person">hludouuico</rs></date> ;
             <lb/></ab>
-         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-257r-20" corresp="BK.192_12_inscriptio">
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-257r-20"
+            corresp="BK.192_12_inscriptio_c">
             <seg type="num" n="45" rend="coloured">XLV </seg>Ut examen frigidę aquę non fiat ;
             <lb/></ab>
-         <cb n="257v"/>
-         <lb n="1"/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-257r-21" corresp="BK.195_1_inscriptio_c">
+            <seg type="num" n="46" rend="coloured">XLVI</seg> De in<del>c</del>scriptione temporum ;
+               <cb n="257v"/>
+         </ab>
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-257v-1" rend="coloured">INCIPIT DECRETUM
             quod FACTUM FUIT AD CONPEN<lb break="no"/>DUM PALATII PUBLICUM / <lb/></ab>
          <anchor xml:id="capitulatio-finis_2"/>
@@ -2766,6 +2759,33 @@
          <ab type="text" xml:id="muenchen-bsb-lat-3853-262v-2" corresp="BK.192_12"><seg
                type="initial" rend="coloured">V</seg>t examen aquę frigidę quid actenus faciebant a
             missis nostris om<lb break="no"/>nibus interdicatur ne ulterius fiat ; <lb/>
+         </ab>
+         <milestone n="BK.195" unit="capitulare"/>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3853-262v-3" corresp="BK.195_1_inscriptio"
+            rend="coloured">De inscriptione temporum ; <seg type="num" n="46">XLVI</seg> .
+            <lb/></ab>
+         <ab type="text" xml:id="muenchen-bsb-lat-3853-262v-4" corresp="BK.195_1" rend="glossa"><seg
+               type="initial" rend="coloured">L</seg>icet<note type="editorial">auf dem Rand ein
+                  <mentioned>l</mentioned> als Anweisung für den Rubrikator, ausgeführt von der
+               Haupthand.</note> iampridem a nobis fuerat ordinatum ut si quis in popu<lb break="no"
+            />lo nostro barbarę nationis persona . aut in re sua consisteret inui<lb break="no"
+               />tasset<note type="editorial">auf dem Rand ein Haken in Texttinte (=r für
+                  <mentioned>require</mentioned>?).</note> . aut si terram ad habitaculum
+            uoluntarius deputasset . ei<lb break="no"/>quę per annos <num>XV</num> . sine terciis
+            habuisset in uoluntate ipsius <lb/>permaneret . Neque exinde quiquam sibi ille qui
+            dederat scire <lb/>esse reddendum tamen <subst>
+               <del>ulla absque</del>
+               <add>absque ulla</add>
+            </subst> permutatione . omni tempore <lb/>generaliter memorata condicio debeat custodiri
+               <expan>presenti</expan>
+            <lb/> placuit constitui . Si quis terram uero ab altero uiolenter <lb/>dixerit et
+            conuicerit fuisse sublatum . priusquam <num>XXX</num> . <lb/>annorum numerus compleatur
+            . et rem constiterit occupatam <lb/>et requirere pote<mod>r</mod>it et
+               repeten<mod>s</mod> partibus reformare Ceterum <lb/>si inpletis <num>XXX</num> annis
+            terra a <expan>quocumque</expan> etiam peruasa<note type="editorial">auf dem Rand von
+               der Haupthand: <mentioned>hic semiscriptum</mentioned>. Die letzten drei Zeilen der
+               Seite bleiben leer.</note>
+            <lb/>
          </ab>
          <cb n="292r"/>
          <lb n="2"/>

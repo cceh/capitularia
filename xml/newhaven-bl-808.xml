@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/intern/InArbeit/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="newhaven-bl-808" xml:lang="de">
@@ -7,8 +10,10 @@
          <titleStmt>
             <title type="main" xml:lang="ger">New Haven, Yale University, The Beinecke Rare Book and
                Manuscript Library, MS 808 </title>
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek</title>
-            <title type="sub" xml:lang="eng">Manuscript description according to Mordek</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+               Transkription</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+               transcription</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -18,9 +23,9 @@
                <resp xml:lang="eng">Project lead</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
                </persName>
                <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
                   Standard</resp>
@@ -28,17 +33,17 @@
                   TEI P5 standard</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="DT">
+                  <forename>Dominik</forename>
+                  <surname>Trump</surname>
                </persName>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">First revision of transcription and additions</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SH">
+                  <forename>Semih</forename>
+                  <surname>Heinen</surname>
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
@@ -118,35 +123,39 @@
                      <settlement>Düsseldorf</settlement>
                      <repository>Privatbesitz Alex Bender</repository>
                      <idno>Fragment o. Nr.</idno>
-                     
                      <note type="date">
                         <date/>
                      </note>
-                     
                   </altIdentifier>
                   <altIdentifier type="siglum">
-                     <idno>Nh1, olim D</idno>
-                     <note type="comment">Nach Angabe von Michael Glatthaar
-                        muss Mordek noch vor 2003 (vermutlich von Volker de Vry, Katholische Hochschule NRW) erfahren haben, dass die ehemals Düsseldorfer Handschrift (alte Sigle in Mordeks Bibliotheca: D) heute in der Beinecke Library in New Haven liegt. 
-                        Ein <ref type="external" target="http://brbl-net.library.yale.edu/pre1600ms/docs/ms808.pdf"/> Katalogeintrag von Derolez ist als PDF verfügbar.</note>
-                     
-                     </altIdentifier>
+                     <idno>Nh1</idno>
+                     <note type="corr">Alte Sigle bei Mordek 1995: D</note>
+                  </altIdentifier>
+                  <altIdentifier type="former">
+                     <idno>D</idno>
+                  </altIdentifier>
                </msIdentifier>
                <head>
                   <title type="main">New Haven, Yale University, The Beinecke Rare Book and
                      Manuscript Library, MS 808 </title>
                   <origDate notAfter="0850" notBefore="0826">9. Jh., 2. Viertel</origDate>
-                  <origPlace ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"> Frankreich</origPlace>
+                  <origPlace
+                     ref="http://www.geonames.org/3017382/republic-of-france.html 
+                     http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
+                     > Frankreich</origPlace>
                </head>
                <msContents>
                   <summary>
                      <p>Der gegenwärtige Besitzer gab leider keine Erlaubnis zur Einsicht des
-                        Blattes.<note type="corr">Die Angabe bezieht sich auf die Zeit, als sich die Handschrift in Privatbesitz befand.</note> Letztes Blatt einer Hs.? Palimpsest?</p>
+                           Blattes.<note type="corr">Die Angabe bezieht sich auf die Zeit, als sich
+                           die Handschrift in Privatbesitz befand.</note> Letztes Blatt einer Hs.?
+                        Palimpsest?</p>
                   </summary>
                   <msItem n="1">
                      <p>Singuläre Überlieferung eines Kapitulars (Fragment, wahrscheinlich letztes
                         Kapitel) und eines Memorandums, wohl aus einer unbekannten
-                        Kapitulariensammlung der Zeit Ludwigs des Frommen († 840).<note type="msDetail"/>
+                        Kapitulariensammlung der Zeit Ludwigs des Frommen († 840).<note
+                           type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem corresp="Mordek.18" n="2">
@@ -155,32 +164,31 @@
                         <hi rend="italic">CAP</hi>. <hi rend="italic">XV</hi> - <title>Capitulare
                            legibus seu legi Ribuariae addendum</title> (Ludwigs des Frommen, a.
                         816-819?), nur Schlußkapitel 15 erhalten: <hi rend="italic">Vt qui
-                           hereditatem hominis suspendio mortui acceperint</hi>, <hi rend="italic">capitali et dilatura soluere non cogantur</hi> (ed. <hi rend="smallcaps">Mordek, </hi>Unbekannte Texte, S. 468; <hi rend="smallcaps">ders.,
-                        </hi>Recently Discovered Capitulary Texts, S. 451, Apparat S. 452; siehe
-                        auch unten Anhang I, Nr. 18). <note type="msDetail"/>
+                           hereditatem hominis suspendio mortui acceperint, capitali et dilatura
+                           soluere non cogantur</hi> (ed. Mordek, Unbekannte Texte, S. 468; ders.,
+                        Recently Discovered Capitulary Texts, S. 451, Apparat S. 452; siehe auch
+                        Mordek 1995, Anhang I, Nr. 18). <note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem corresp="Mordek.19" n="3">
                      <p>
                         <locus>recto-verso</locus>
                         <title>Capitula adhuc conferenda</title> (ca. a. 819): <hi rend="italic">De
-                           his capitalis </hi>(= <hi rend="italic">capitulis) interrogandum est
-                           Qualiter homo mannien</hi>- <hi rend="italic">dus sit de statu suo</hi> -
-                           <hi rend="italic">in totum excusat</hi> (ed. <hi rend="smallcaps">Mordek,
-                        </hi>Unbekannte Texte, S. 469 f.; <hi rend="smallcaps">ders., </hi>Recently
-                        Discovered Capitulary Texts, S. 452, Apparat S. 453; siehe auch unten Anhang
-                        I, Nr. 19).<note type="msDetail"/>
+                           his capitalis</hi> (= <hi rend="italic">capitulis</hi>) <hi rend="italic"
+                           >interrogandum est. Qualiter homo manniendus sit de statu suo - in totum
+                           excusat</hi> (ed. Mordek, Unbekannte Texte, S. 469 f.; ders., Recently
+                        Discovered Capitulary Texts, S. 452, Apparat S. 453; siehe auch Mordek 1995,
+                        Anhang I, Nr. 19).<note type="msDetail"/>
                      </p>
                   </msItem>
                </msContents>
                <physDesc>
                   <objectDesc form="codex">
-                     <supportDesc>
+                     <supportDesc material="parch">
                         <support>
-                           <material>Pergamentblatt</material>
+                           <material>Pergament</material>
                         </support>
-                        <extent>
-                           <dimensions type="leaf" unit="mm">
+                        <extent>Einzelblatt ohne Paginierung <dimensions type="leaf" unit="mm">
                               <height>240</height>
                               <width>182</width>
                            </dimensions>
@@ -191,8 +199,7 @@
                         </extent>
                      </supportDesc>
                      <layoutDesc>
-                        <layout writtenLines="27">27 Zeilen (Rückseite nur 7 Zeilen
-                           beschrieben)</layout>
+                        <layout writtenLines="27">27 (Rückseite nur 7 Zeilen beschrieben)</layout>
                         <layout columns="1"/>
                      </layoutDesc>
                   </objectDesc>
@@ -204,7 +211,7 @@
                   </scriptDesc>
                   <decoDesc>
                      <p>Text in brauner Tinte; Kapitelzählung und Initiale des Kapitularienfragments
-                        in Rot.</p>
+                        in Rot</p>
                   </decoDesc>
                   <bindingDesc>
                      <binding>
@@ -215,11 +222,17 @@
                <history>
                   <origin>
                      <p>
-                        <origDate notAfter="0850" notBefore="0826">9. Jh., 2.
-                           Viertel</origDate>;<origPlace ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"> Frankreich</origPlace>.</p>
+                        <origDate notAfter="0850" notBefore="0826">9. Jh., 2. Viertel</origDate>;
+                           <origPlace
+                           ref="http://www.geonames.org/3017382/republic-of-france.html 
+                           http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
+                           > Frankreich</origPlace></p>
                   </origin>
                   <provenance>
-                     <p>Am 25. Juni 1985 bei Sotheby´s ersteigert. <note type="corr">Die Handschrift befand sich bis vor einigen Jahren in Privatbesitz von Alex Bender in Düsseldorf. Nach dessen Tod war ihr Verbleib zunächst unbekannt.</note></p>
+                     <p>Am 25. Juni 1985 bei Sotheby´s ersteigert.<note type="corr">Die Handschrift
+                           befand sich bis vor einigen Jahren im Privatbesitz von Alex Bender in
+                           Düsseldorf. Nach dessen Tod war ihr Verbleib zunächst
+                        unbekannt.</note></p>
                   </provenance>
                   <acquisition/>
                </history>
@@ -227,8 +240,8 @@
                   <surrogates/>
                   <listBibl>
                      <listBibl type="cat">
-                        <bibl>Auktionskatalog: Sotheby’s London. Western Manuscripts and Miniatures,
-                           Day of Sale: Tuesday, 25th June 1985, Nr. 49.</bibl>
+                        <bibl>Sotheby’s London. Western Manuscripts and Miniatures, Day of Sale:
+                           Tuesday, 25th June 1985, Nr. 49 (Auktionskatalog)</bibl>
                      </listBibl>
                      <listBibl type="lit">
                         <bibl> Mordek 1986a, S. 42 Anm. 90</bibl>
@@ -237,11 +250,11 @@
                         <bibl> Siems 1992, S. 436</bibl>
                      </listBibl>
                      <listBibl type="abb">
-                        <bibl>Auktionskatalog Sotheby’s London, Nr. 49</bibl>
-                        <bibl> Mordek 1990, Fig. 27 (jeweils Vorderseite)</bibl>
+                        <bibl>Sotheby’s London, Nr. 49 (Vorderseite)</bibl>
+                        <bibl> Mordek 1990, Fig. 27 (Vorderseite)</bibl>
                      </listBibl>
                      <listBibl type="cap">
-                        <bibl>Mordek 1995 S. 123-124</bibl>
+                        <bibl>Mordek 1995, S. 123-124</bibl>
                      </listBibl>
                   </listBibl>
                </additional>
@@ -249,11 +262,18 @@
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage:</p>
+         <p>Transkriptionsvorlage: Die Transkription erfolgte anhand eines guten Farbdigitalisats
+            der Beinecke Rare Book and Manuscript Library.
+            <!--   Evtl. ist bald ein Online-Digitalisat verfügbar; dann hier ergänzen. Der Link 
+               zum Katalogeintrag von Derolez (http://brbl-net.library.yale.edu/pre1600ms/docs/ms808.pdf)
+               funktioniert leider nicht mehr (18.12.17); später noch einmal testen und dann ggf. bei der
+               Literatur ergänzen!  --></p>
          <projectDesc>
-            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
-            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
          </projectDesc>
          <editorialDecl>
@@ -267,7 +287,7 @@
       </encodingDesc>
       <revisionDesc>
          <change when="2016-03-01" who="DS">Datei erstellt aus Mordek-XML</change>
-         <change when="2016" who="XXX"/>
+         <change who="SK" when="2017-12-20">Datei veröffentlicht (Mordek 18, Mordek 19)</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -275,17 +295,205 @@
    </facsimile>
    <text>
       <front>
+         <div type="content">
+            <list>
+
+               <item n="10">
+                  <ptr type="internal" target="#newhaven-bl-808-r-1"/>[Fragment einer Liste, Anfang
+                  verloren] <list>
+                     <item n="10.15">
+                        <ptr type="internal" target="#newhaven-bl-808-r-1"/>XV CAPITULUM</item>
+                  </list>
+               </item>
+
+               <item n="20">
+                  <ptr type="internal" target="#newhaven-bl-808-r-3_1"/>[Liste ohne Rubrik] <list>
+                     <item n="20.1">
+                        <ptr type="internal" target="#newhaven-bl-808-r-3_2"/>(qualiter homo
+                        manniendus sit ...) </item>
+                     <item n="20.2">
+                        <ptr type="internal" target="#newhaven-bl-808-r-4"/>(De maxima et minima
+                        conpositione ...) </item>
+                     <item n="20.3">
+                        <ptr type="internal" target="#newhaven-bl-808-r-5"/>(Similiter de maximo et
+                        minimo sacramento ...) </item>
+                     <item n="20.4">
+                        <ptr type="internal" target="#newhaven-bl-808-r-6"/>(Similiter de maximo et
+                        minimo numero ...) </item>
+                     <item n="20.5">
+                        <ptr type="internal" target="#newhaven-bl-808-r-7"/>(Utrum nepus interfectus
+                        ...) </item>
+                     <item n="20.6">
+                        <ptr type="internal" target="#newhaven-bl-808-r-8"/>(Quod hominem
+                        sacramentum ...) </item>
+                     <item n="20.7">
+                        <ptr type="internal" target="#newhaven-bl-808-r-9"/>(De aduenis res proprias
+                        habentibus ...) </item>
+                     <item n="20.8">
+                        <ptr type="internal" target="#newhaven-bl-808-r-10"/>(De partu in utero
+                        feminae occiso ...) </item>
+                     <item n="20.9">
+                        <ptr type="internal" target="#newhaven-bl-808-r-11"/>(De ingenua puella ...) </item>
+                     <item n="20.10">
+                        <ptr type="internal" target="#newhaven-bl-808-r-12"/>(De homine intertiato
+                        ...) </item>
+                     <item n="20.11">
+                        <ptr type="internal" target="#newhaven-bl-808-r-13"/>(De libertis qui ceram
+                        ...) </item>
+                     <item n="20.12">
+                        <ptr type="internal" target="#newhaven-bl-808-r-14"/>(De proprio liberi
+                        hominis ...) </item>
+                     <item n="20.13">
+                        <ptr type="internal" target="#newhaven-bl-808-r-15"/>(De puellis si semper
+                        in defensoris potestate ...) </item>
+                     <item n="20.14">
+                        <ptr type="internal" target="#newhaven-bl-808-r-16"/>(De rebus
+                        ecclesiasticis in bannum missis ...) </item>
+                     <item n="20.15">
+                        <ptr type="internal" target="#newhaven-bl-808-r-17"/>(De libertis qui nihil
+                        aliud ...) </item>
+                     <item n="20.16">
+                        <ptr type="internal" target="#newhaven-bl-808-r-18"/>(De cartis denarialibus
+                        ...) </item>
+                     <item n="20.17">
+                        <ptr type="internal" target="#newhaven-bl-808-v-1"/>(De longa uestitura
+                        ecclesiarum ...) </item>
+                     <item n="20.18">
+                        <ptr type="internal" target="#newhaven-bl-808-v-2"/>(De liberis hominibus
+                        qui super terram ecclesiasticam ...) </item>
+                  </list>
+               </item>
+
+            </list>
+
+
+         </div>
          <div type="mshist"/>
-         <div type="scribe"/>
+         <div type="scribe">
+            <p>Regelmäßige und gut lesbare karolingische Minuskel mit sehr wenigen Korrekturen.</p>
+         </div>
          <div type="letters"/>
-         <div type="abbreviations"/>
+         <!--         <div type="abbreviations">
+            <p>Der Schreiber verwendet generell kaum Abkürzungen.</p>
+         </div>-->
          <div type="punctuation"/>
-         <div type="structure"/>
+         <div type="structure">
+            <p> Das einzelne Kapitel von Mordek Nr. 18 wird durch eine rote Kapitelzählung
+               und eine vergrößerte rote Initiale eingeleitet. Nach einer Leerzeile folgt ohne
+               Rubrik und ohne jegliche Hervorhebung durch farbige Tinte, Initialen oder Versalien
+               der Text von Mordek Nr. 19. Darin beginnt jedes Kapitel mit einer neuen
+               Zeile, wobei die Einleitung zum Stück und c. 1 zu einem Absatz verbunden sind, der
+               sich optisch in keiner Weise von den folgenden Absätzen unterscheidet. Eine
+               Kapitelzählung ist nicht vorhanden.</p>
+         </div>
          <div type="annotations"/>
          <div type="other"/>
       </front>
+
       <body>
-         <ab type="text"/>
+
+         <cb n="recto"/>
+         <lb n="1"/>
+
+         <milestone unit="capitulare" n="Mordek.18"/>
+
+         <ab type="meta-text" xml:id="newhaven-bl-808-r-1" corresp="Mordek.18_15_inscriptio"
+            rend="coloured">
+            <seg type="numDenom">CAPITULUM</seg>
+            <seg type="num" n="15">XV</seg> . </ab>
+         <ab type="text" xml:id="newhaven-bl-808-r-2" corresp="Mordek.18_15">
+            <seg type="initial" rend="coloured">V</seg>t qui hereditatem hominis suspendio mortui
+               accepe<lb break="no"/>rint . capitali et dilatura soluere non cogantur . <lb/><lb/>
+         </ab>
+
+         <milestone unit="capitulare" n="Mordek.19"/>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-3" corresp="Mordek.19_inscriptio Mordek.19_1">
+            <milestone unit="span" corresp="Mordek.19_inscriptio" spanTo="#newhaven-bl-808-r-3_1"/>
+            De his <sic>capitalis</sic> interrogandum . est . <anchor xml:id="newhaven-bl-808-r-3_1"/>
+            <milestone unit="span" corresp="Mordek.19_1" spanTo="#newhaven-bl-808-r-3_2"/> qualiter
+            homo manniendus sit de <lb/> statu suo uel hereditate . <lb/>
+            <anchor xml:id="newhaven-bl-808-r-3_2"/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-4" corresp="Mordek.19_2"> De maxima et minima
+            conpositione quod solidorum esse debeat . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-5" corresp="Mordek.19_3"> Similiter de maximo et
+            minimo sacramento cum quod hominibus <lb/> iurandum sit . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-6" corresp="Mordek.19_4"> Similiter de maximo et
+            minimo numero testium <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-7" corresp="Mordek.19_5"> Utrum nepus interfectus
+            fratri uel auo solui debeat . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-8" corresp="Mordek.19_6"> Quod hominem
+            sacramentum pro unaquaque conpositione . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-9" corresp="Mordek.19_7"> De aduenis res proprias
+            habentibus si intestatis discesserint . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-10" corresp="Mordek.19_8"> De partu in utero
+            feminae occiso et nato nondum nomen habentem <lb/> adhuc conferendum est . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-11" corresp="Mordek.19_9"> De ingenua puella uel
+            ecclesiastica quae in uerbo regis est adhuc <lb/> conferendum est antequam scribatur .
+            <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-12" corresp="Mordek.19_10"> De homine intertiato
+            et cum retorta sepulto adhuc conferendum . est . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-13" corresp="Mordek.19_11"> De libertis qui ceram
+            uel alium censum ad ecclesia soluunt et pro seruis tenentur . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-14" corresp="Mordek.19_12"> De proprio liberi
+            hominis a dominicis seruis occupato . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-15" corresp="Mordek.19_13"> De puellis si semper
+            in defensoris potestate . esse . debeant adhuc con<lb break="no"/>ferendum est . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-16" corresp="Mordek.19_14"> De rebus
+            ecclesiasticis in bannum missis quid fieri debeat ut eas eccle<lb break="no"/>sia non
+            perdat . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-17" corresp="Mordek.19_15"> De libertis qui nihil
+            aliud nisi res ecclesiasticas habuerunt et intes<add>ta</add><lb break="no"/>ti mortui
+            sunt ad quem eorum conlaboratus pertinere debeat . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-r-18" corresp="Mordek.19_16"> De cartis
+            denarialibus quas quidam homines sicut alias cartas <lb/> quae coram comite factae sunt
+            frangere uolunt . <cb n="verso"/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-v-1" corresp="Mordek.19_17"> De longa uestitura
+            ecclesiarum quae per annos defendi non potest <lb/> sicut est quod nos in <rs
+               type="place">coloni<add>a</add><metamark function="insertion"/></rs> habemus <subst>
+               <del/>
+               <add>et traditum fuit</add>
+            </subst> ad <rs type="person">sanctum bauo<lb break="no"/>nem</rs> tempore <rs
+               type="person">pipini regis</rs> . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="newhaven-bl-808-v-2" corresp="Mordek.19_18"> De liberis hominibus
+            qui super terram ecclesiasticam sedent et <lb/> de proprio nihil habent in quantum eos
+            comes uel centenarius <lb/> distringere debeat quia praeceptum inmunitatis eos in totum
+            <lb/> excusat . <lb/>
+         </ab>
       </body>
    </text>
 </TEI>

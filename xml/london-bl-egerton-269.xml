@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
-
-<!-- ACHTUNG! Kopie der Datei ist gerade in Bearbeitung. -->
+<?xml-model href="http://capitularia.uni-koeln.de/cap/intern/InArbeit/capitularia.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="london-bl-egerton-269">
    <teiHeader>
@@ -15,9 +14,9 @@
                      subtype="mss">Paris, Bibliothèque Nationale, Lat. 7561</ref></note>
             </title>
             <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
-               Transkription der foll. 9r-13v</title>
+               Transkription der foll. 9r-14r</title>
             <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
-               transcription of fols 9r-13v</title>
+               transcription of fols 9r-14r</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -157,11 +156,11 @@
                         versprengten Teile sichtbar, die immerhin noch 183 Blätter ausmachen.
                         Demnach folgen auf das fränkische Recht der Salier und Ribuarier, dem sich
                         die seltene Lex Saxonum anschließt, der knappe Kapitularienteil mit Erlassen
-                        Karls des Großen (in gleicher Abfolge schon in <ref type="internal"
-                           subtype="mss" target="montpellier-biu-h-136">Cod. Montpellier H
-                        136</ref>) und Ludwigs des Frommen (bis a. 818/819) sowie weitere Leges
-                        (Alamannorum, Baiuvariorum, Burgundionum) und römisches Recht. Vielleicht
-                        sind nach der fragmentarischen Divisio regnorum am Schluß noch Kapitularien
+                        Karls des Großen (in gleicher Abfolge schon in Cod. <ref type="internal"
+                           subtype="mss" target="montpellier-biu-h-136">Montpellier H 136</ref>) und
+                        Ludwigs des Frommen (bis a. 818/819) sowie weitere Leges (Alamannorum,
+                        Baiuvariorum, Burgundionum) und römisches Recht. Vielleicht sind nach der
+                        fragmentarischen Divisio regnorum am Schluß noch Kapitularien
                         verlorengegangen. </p><p>Daß der (erhaltene) Kapitularienblock von Leges
                         eingerahmt wird, ist keine Besonderheit. Ungewöhnlicher schon scheint die
                         Position der Lex Romana Visigothorum<note type="corr">Es handelt sich bei
@@ -169,22 +168,25 @@
                            Aegidii.</note> gegen Ende zwischen zwei Leges und der danach
                         vorgenommene erneute Rückgriff auf Kapitularienrecht. Dies dürfte die
                         Annahme Kruschs bestätigen, das in zwei Teilen geschaffene Werk (Teil II ab
-                           <ref target="paris-bn-lat-4633" subtype="mss" type="internal">Cod. Paris
+                        Cod. <ref target="paris-bn-lat-4633" subtype="mss" type="internal">Paris
                            Lat. 4633</ref>, fol. 36, inmitten der Lex Baiuvariorum) sei nicht
                         ursprünglich so geplant gewesen.</p></summary>
-                  <msItem n="1">
+                  <msItem n="1" xml:id="london-bl-egerton-269_f3r">
                      <p>
                         <locus>3r</locus> Fortsetzung der Lex Ribuaria ab Titel 91, 1 <hi
                            rend="italic">de uita componat</hi> (MGH LL nat. Germ. 3, 2, S. 133 f.;
-                        Sigle B 17; zur Hs. S. 38).<note type="msDetail"/>
+                        Sigle B 17; zur Hs. S. 38).<note type="corr">Beginn der Lex Ribuaria in der
+                           Hs. <ref type="internal" subtype="mss"
+                              target="london-bl-egerton-2832_f3r">London Egerton 2832, fol.
+                           3r</ref>.</note>
                      </p>
                   </msItem>
                   <msItem n="2">
                      <p>
                         <locus>3r-8v</locus> Lex Saxonum (MGH LL 5, S. 47-83; zur Hs. [= Codex
-                        Spangenbergianus] S. 1-3); sonst handschriftlich nur noch in <ref
-                           target="muenster-sa-msc-vii-5201" type="internal" subtype="mss">Cod.
-                           Münster VII. 5201</ref> erhalten.<note type="msDetail"/>
+                        Spangenbergianus] S. 1-3); sonst handschriftlich nur noch in Cod.<ref
+                           target="muenster-sa-msc-vii-5201" type="internal" subtype="mss"> Münster
+                           VII. 5201</ref> erhalten.<note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="3" corresp="BK.39">
@@ -195,7 +197,11 @@
                            LEGE SALICA TENENDA SUNT DE HOMICIDIIS CLERICORUM. Si quis subdiaconum
                            occiderit CCC sol. culpabilis iudicetur - homicidium uel quolibet</hi>
                         (MGH Capit. 1, Nr. 39, S. 111 Z. 45 - S. 112 Z. 1, S. 113 Z. 4-8).<note
-                           type="msDetail"/>
+                           type="corr">
+                           <hi rend="italic"> III - XI </hi> - Fortsetzung des Kapitulars c. 2 ohne
+                           den Anfang bis c. 11 in der Hs. <ref type="internal" subtype="mss"
+                              target="london-bl-egerton-2832_f45r">London Egerton 2832, fol.
+                              45r</ref>.</note>
                      </p>
                   </msItem>
                   <msItem n="4" xml:id="london-bl-egerton-269_f9r" corresp="BK.139">
@@ -235,7 +241,10 @@
                      <p>
                         <locus>14r-16v</locus> Lex Alamannorum (Klasse B), Titelverzeichnis und Text
                         bis Titel 2, 1 <hi rend="italic">ad ecle. persoluat</hi> (MGH LL nat. Germ.
-                        5, 1, S. 54-67; Sigle B1; zur Hs. S. 14).<note type="msDetail"/>
+                        5, 1, S. 54-67; Sigle B1; zur Hs. S. 14).<note type="corr">Fortsetzung der
+                           Lex Alamannorum (Klasse B), Text ab Titel 2, 2 in der Hs. <ref
+                              type="internal" subtype="mss" target="paris-bn-lat-4633_f1r">Paris
+                              Lat. 4633, fol. 1r</ref>.</note>
                      </p>
                   </msItem>
                   <msItem n="8">
@@ -254,17 +263,18 @@
                         <title>Divisio regnorum</title> (a. 806), Einleitung: <hi rend="italic"
                            >INCIPIT DIUISIONES REGNORUM. IN NOMINE PATRIS ET FILII ET SPIRITUS
                            SANCTI. Carolus serenissimus augustus a deo coronatus - ut suo
-                           quisque</hi> (danach Blattverlust) (MGH Capit. 1, Nr. 45, S. 126 Z. 32 -
-                        S. 127 Z. 10).<note type="msDetail"/>
+                           quisque</hi> (danach Blattverlust)<note type="corr">Inzwischen ist ein
+                           hier anschließendes Doppelblatt im Cod. Paris Lat. 7561 auf p. 29-32
+                           gefunden worden, das den Text bis MGH Capit. 1, Nr. 34, S. 129 Z. 27
+                           fortsetzt, vgl. Tischler 2008, S. 244 f.</note> (MGH Capit. 1, Nr. 45, S.
+                        126 Z. 32 - S. 127 Z. 10).<note type="msDetail"/>
                      </p>
                   </msItem>
                </msContents>
                <physDesc>
                   <objectDesc form="codex">
-                     <supportDesc>
-                        <support>
-                           <material>Pergament</material>
-                        </support>
+                     <supportDesc material="parch">
+                        <support>Pergament</support>
                         <extent>insgesamt noch 183 foll., hier 15 foll. (gezählt 3-17)<dimensions
                               type="leaf" unit="mm" precision="medium">
                               <height>240-245</height>
@@ -323,6 +333,7 @@
                   <listBibl>
                      <listBibl type="cap">
                         <bibl corresp="#Mordek_1995">Mordek 1995, S. 226-231</bibl>
+                        <bibl corresp="#Tischler_2008">Tischler 2008, S. 244-246</bibl>
                         <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
                            der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
                               type="external" subtype="Bl" target="london-bl-egerton-269"/></bibl>
@@ -384,6 +395,7 @@
       <revisionDesc>
          <change who="DS" when="2015-03-26">Datei erstellt aus Mordek-XML</change>
          <change who="BM" when="2016-10-12">Datei veröffentlicht (BK 138, 139, 140)</change>
+         <change who="BM" when="2017-12-04">Transkription ergänzt (BK 156)</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -441,12 +453,15 @@
                      <item n="1.15">
                         <ptr target="#london-bl-egerton-269-12r-5" type="internal"/>XXI DE PUERIS
                         INUITIS PARENTIBUS DETONSIS AC PUELLIS UELATIS</item>
-                  </list></item>
+                  </list>
+               </item>
+
                <item n="2">
                   <ptr target="#london-bl-egerton-269-12r-7" type="internal"/>Ista superscripta
                   capitula in lege sunt addenda</item>
+
                <item n="3">
-                  <ptr target="#london-bl-egerton-269-12r-8" type="internal"/>[Ohne Rubrik]<list>
+                  <ptr target="#london-bl-egerton-269-12r-8" type="internal"/>[Liste ohne Rubrik]<list>
                      <item n="3.1">
                         <ptr target="#london-bl-egerton-269-12r-8" type="internal"/>I DE SERUIS AD
                         SACROS ORDINES NON MITTENDIS</item>
@@ -471,88 +486,98 @@
                      <item n="3.8">
                         <ptr target="#london-bl-egerton-269-13v-1" type="internal"/>VIII DE
                         FORESTIBUS NOUITER INSTITUTIS</item>
-                  </list></item>
+                     <item n="3.9">
+                        <ptr type="internal" target="#london-bl-egerton-269-13v-3"/>IX DE EO QUI
+                        SPONSAM ALIENAM RAPUERIT</item>
+                     <item n="3.10">
+                        <ptr type="internal" target="#london-bl-egerton-269-13v-5"/>X DE EO QUI
+                        HOMINEM DE STATU SUO INTERPELLAT</item>
+                  </list>
+               </item>
             </list>
          </div>
          <div type="mshist"/>
          <div type="scribe">
-            <p><locus>Foll. 9r-13v</locus>: Der Schreiber verwendet eine kleine und gedrängte
-               karolingische Minuskel und für die Rubriken Capitalis rustica. Gelegentlich finden
-               sich am Ende der Rubriken an eine Triskele erinnernde Zeichen, so bei den Rubriken zu
-               BK 139 c. 7 und BK 140 c. 3. Vereinzelte kleinere Korrekturen scheinen von einer
-               zweiten Hand (X) vorgenommen worden zu sein; so etwa die Ergänzung des
-                  <mentioned>ad</mentioned> auf <locus>fol. 11v, Z. 1</locus> oder die Korrektur zu
-                  <mentioned>premium</mentioned> auf <locus>fol. 12v, Z. 6</locus>, evtl. auch die
-               Nachzeichnung (?) des <mentioned>DC</mentioned> auf dem ersten Blatt der Kopie von BK
-               139, die sich heute in der Hs. <ref type="internal" subtype="mss"
-                  target="london-bl-egerton-2832">London Egerton 2832</ref> befindet (<locus>fol.
-                  52v, Z. 17</locus>). Bei diesen Korrekturen wird etwas dunklere Tinte und unziales
-               d verwendet, das sich bei der Haupthand nicht findet.</p>
-            <p>Mit dem Seitenwechsel zu <locus>fol. 13v</locus> hat evtl. der Schreiber gewechselt.
-               Indizien: Eine etwas größere, nach rechts geneigte Schrift, die nicht mehr so
-               gedrängt wirkt; Majuskel-E mit geradem Schaft statt rundem, eine ae-Ligatur (bei
-                  <mentioned>uillae</mentioned>, <locus>fol. 13v Z. 3</locus>) sowie eine ct-Ligatur
-               mit Überschlag, q(ue)-Kürzung mit q; auch im Wort (z.B. bei
-                  <mentioned>querenti</mentioned>, <locus>fol. 13v Z. 4</locus>).</p>
+            <p>Der hier transkribierte Teil (<locus>foll. 9r-14r</locus>) wurde von einer Hand in
+               einer kleinen karolingischen Minuskel geschrieben, die vornehmlich das Mittelband
+               einnimmt, über das die Ober- und Unterlängen weit herausragen. Vereinzelte kleinere
+               Korrekturen scheinen von einer anderen Hand vorgenommen worden zu sein; so etwa die
+               Ergänzung des <mentioned>ad</mentioned> auf <locus>fol. 11v, Z. 1</locus>, die
+               Korrektur zu <mentioned>premium</mentioned> auf <locus>fol. 12v, Z. 6</locus> oder
+               die Ergänzung des -<mentioned>ti</mentioned>- über <mentioned>legimos</mentioned> auf
+                  <locus>fol. 13v, letzte Zeile</locus>; evtl. auch die Nachzeichnung (?) des
+                  <mentioned>DC</mentioned> auf dem ersten Blatt der Kopie von BK 139, die sich
+               heute in der Hs. <ref type="internal" subtype="mss" target="london-bl-egerton-2832"
+                  >London Egerton 2832</ref> befindet (<locus>fol. 52v, Z. 17</locus>). Bei diesen
+               Korrekturen wurde etwas dunklere Tinte und unziales D verwendet, das sich bei der
+               Haupthand nicht findet.</p>
          </div>
          <div type="letters">
-            <p><locus>Foll. 9r-13v</locus>: Das e hat oft einen am oberen Bogenabschnitt
-               ansetzenden, nach rechts ausgreifenden Balkenfortsatz (z.B. <locus>fol. 10r Z.
-                  15</locus>: <mentioned>per</mentioned>, <locus>fol. 11v Z. 21</locus>:
+            <p>Einzelbuchstaben: Das e hat oft einen am oberen Bogenabschnitt ansetzenden, nach
+               rechts ausgreifenden Balkenfortsatz (z.B. <locus>fol. 10r Z. 15</locus>:
+                  <mentioned>per</mentioned>, <locus>fol. 11v Z. 21</locus>:
                   <mentioned>et</mentioned>). Gelegentliche Verwendung von cc-a (z.B. <locus>fol. 9r
                   Z. 2, 4, 5</locus>: <mentioned>quales</mentioned>,
                   <mentioned>traditionem</mentioned>, <mentioned>traditio</mentioned>) und
-               Majuskel-N (z.B. <locus>fol. 11v Z. 18</locus>: <mentioned>nequę</mentioned>.
+               Majuskel-N (z.B. <locus>fol. 11v Z. 18</locus>: <mentioned>nequę</mentioned>).
                Zwischen Doppel-s steht oft ein sehr großer Abstand (z.B. <locus>fol. 9r, Z.
                   3</locus>: <mentioned>fideiussores</mentioned>, <locus>fol. 10r, Z. 21</locus>:
                   <mentioned>com(m)issum</mentioned>).</p>
+            <p>Besonderheiten: Für die Rubriken wird die Capitalis rustica verwendet. Gelegentlich
+               finden sich am Ende der Rubriken an eine Triskele erinnernde Zeichen, so bei den
+               Rubriken zu BK 139 c. 7 und BK 140 c. 3. </p>
          </div>
          <div type="abbreviations"/>
          <div type="punctuation"/>
          <div type="structure">
-            <p><locus>Foll. 9r-13v</locus>: (Zur Gliederung und zur der Kapitelliste vorangehenden
-               Capitulatio vgl. auch die Beschreibung bei <ref type="internal" subtype="mss"
-                  target="london-bl-egerton-2832">London Egerton 2832</ref>.) Die Nummerierung und
-               die Kapitelüberschriften sind in roter, allerdings stark nachgedunkelter und heute
-               eher dunkelbraun erscheinender Tinte geschrieben; daß es sich um rote Tinte handelt,
-               lassen heute am besten die Digitalaufnahmen von <locus>fol. 10r-11r</locus> erkennen.
-               Die jedes Kapitel einleitenden, in der Höhe über zwei Zeilen reichenden
-               Anfangsinitialen sind hingegen in hellbrauner Texttinte gehalten. Die Zwischenräume
-               der Doppelstriche, mit denen die Initialen ausgeführt wurden, werden hier ausgefüllt,
-               wie schon auf dem letzten Blatt des ersten Teils der Kopie (<locus>fol. 53v der Hs.
-                  London Egerton 2832</locus>) zu beobachten ist; Ausnahmen bilden die Initialen zu
-               c. VIIII auf <locus>fol. 9v</locus> und zu c. XVII auf <locus>fol. 11v</locus>. An
-               Satzanfängen werden gelegentlich vergrößerte Majuskeln verwendet, die aber keine
-               zusätzliche Gliederungsfunktion zu haben scheinen.</p>
+            <p>Der Beginn der Kapitelliste BK 139 befindet sich heute in der Hs. <ref
+                  type="internal" subtype="mss" target="london-bl-egerton-2832">London Egerton
+                  2832</ref> (mit der dazugehörigen Capitulatio für BK 139 und die im Anschluss
+               folgende Liste auf <locus>fol. 52r-v</locus>). Die Nummerierung und die
+               Kapitelrubriken sind in roter Tinte geschrieben, während die jedes Kapitel
+               einleitenden, in der Höhe über zwei Zeilen reichenden Anfangsinitialen in Texttinte
+               gehalten sind.</p>
+            <p>Direkt im Anschluss folgt eine von <mentioned>I-X</mentioned> gezählte Kapitelliste,
+               die aus BK 140 cc. 1-7 mit vorangestelltem Zusatzkapitel (Auszug aus BK 138 c. 6)
+               sowie nachfolgendem BK 156 cc. 1-3 (letzteres zusammegefasst zu c.
+                  <mentioned>X</mentioned>) besteht. Die Liste wird zwar neu nummeriert, ist aber
+               weder durch einen Absatz noch eine Rubrik von der vorangehenden Liste abgesetzt; die
+               optische Gestaltung entspricht der oben bei BK 139 beschriebenen.</p>
+            <p>Die Kapitelzählung weicht von derjenigen ab, die in der vorgeschalteten Capitulatio
+               vorgesehen war: Dort werden die Rubriken der beiden aufeinanderfolgenden
+               Kapitellisten BK 139 und 140 durchgehend als cc. <mentioned>I-XXVIIII</mentioned>
+               gezählt, wobei die letzten beiden Kapitel (<mentioned>IX</mentioned> und
+                  <mentioned>X</mentioned> = BK 156 c. 1 und 2/3) hier gar nicht erscheinen.</p>
+            <p/>
          </div>
-         <div type="other">
-            <p><locus>Foll. 9r-13v</locus>: Benutzungsspuren: Zu Beginn der Fortsetzung von BK 139
-               auf <locus>fol. 9r</locus>, dessen Anfang sich heute in der Hs. London Egerton 2832
-               befindet, sind am Seitenrand mehrere Identifizierungsversuche des fragmentarischen
-               Textes von neuzeitlichen Händen zu finden. Am oberen Seitenrand rechts:
-                  <mentioned>Extant integri in Ms. Cod. ... [iii No.?] ... LL. Salica. Ripuar.
-                  Alamannorum fine.</mentioned>. Links daneben, offenbar später hinzugefügt, da die
-               erstgenannte Notiz teilweise überschreibend: <mentioned>Leges capitulares Caroli
-                  Magni</mentioned>. Am rechten Seitenrand: <mentioned>Capitula Caroli Magni p.
+         <div type="annotations">
+            <p>Zu Beginn der Fortsetzung von BK 139 auf <locus>fol. 9r</locus>, dessen Anfang sich
+               heute in der Hs. London Egerton 2832 befindet, sind am Seitenrand mehrere
+               Identifizierungsversuche des (in dieser Hs.) fragmentarisch beginnenden Textes von
+               neuzeitlichen Händen zu finden. Am oberen Seitenrand rechts: <mentioned>Extant
+                  integri in Ms. Cod. ... [iii No.?] ... LL. Salica. Ripuar. Alamannorum
+                  fine.</mentioned>. Links daneben, offenbar später hinzugefügt, da die erstgenannte
+               Notiz teilweise überschreibend: <mentioned>Leges capitulares Caroli
+               Magni</mentioned>. Am rechten Seitenrand: <mentioned>Capitula Caroli Magni p.
                   62.</mentioned> Auf derselben Seite findet sich am unteren Seitenrand links ein
                nur noch teilweise lesbarer, neuzeitlicher Eintrag: <mentioned>...00...n. 13
                   [15?]</mentioned>. </p>
-            <p>Beobachtungen zur Vorlagenbenutzung: Der Schreiber scheint eine schriftliche Vorlage
-               verwendet zu haben, deren Kürzungen er gelegentlich nicht korrekt auflösen konnte,
-               z.B. <locus>fol. 10v Z. 14</locus>: <mentioned>prietatem</mentioned> statt
-                  <mentioned>proprietatem</mentioned>, <locus>fol. 10v Z. 16</locus>:
-                  <mentioned>auttorem</mentioned> statt <mentioned>auctoritatem</mentioned>,
-                  <locus>fol. 12r Z. 4</locus>: <mentioned>adoutus</mentioned> statt
-                  <mentioned>aduocatus</mentioned>.</p>
+         </div>
+         <div type="other">
+            <p>Beobachtungen zur Vorlagenbenutzung: Der Schreiber konnte offenbar die Kürzungen
+               seiner Vorlage nicht immer korrekt auflösen, z.B. <locus>fol. 10v Z. 14</locus>:
+                  <mentioned>prietatem</mentioned> statt <mentioned>proprietatem</mentioned>,
+                  <locus>fol. 10v Z. 16</locus>: <mentioned>auttorem</mentioned> statt
+                  <mentioned>auctoritatem</mentioned>, <locus>fol. 12r Z. 4</locus>:
+                  <mentioned>aduotus</mentioned> statt <mentioned>aduocatus</mentioned>, <locus>fol.
+                  13v, vorletzte Zeile</locus>: <mentioned>huerit</mentioned> statt
+                  <mentioned>habuerit</mentioned>.</p>
          </div>
       </front>
       <body>
-
          <milestone unit="capitulare" n="BK.139"/>
-
          <cb n="9r"/>
          <lb n="1"/>
-
          <ab type="text" xml:id="london-bl-egerton-269-9r-1" corresp="BK.139_6">uiuit testes idoneos
             . uel si illos habere non potuerit . tunc de aliis <lb/>quales sibi meliores inuenire
             possit . et coram eis rerum suarum <lb/>traditionem fatiat . et fideiussores uestiture
@@ -576,7 +601,6 @@
             <lb/>debeat . Et hoc obseruetur erga patrem . et filium . et ne<lb break="no"/>potem .
             usque ad annos legitimos . Postea ipse res ad inmu<lb break="no"/>nitatem ipsius
             ecclesiae redeant . </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-9r-2"
             corresp="BK.139_7_inscriptio"><seg type="num" n="7">VII</seg> . <lb/>
             <unclear>D</unclear>E HOMICIDIIS PROHIBENDIS . <lb/></ab>
@@ -588,7 +612,6 @@
             <lb/>uero propter t<unclear>ale</unclear>m pr<unclear>ę</unclear>sumptionem . in exilium
             mittatur <lb/>ad quantum tempus nobis placuerit . Res tamen suas . non admittat .
             <lb/></ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-9r-4"
             corresp="BK.139_8_inscriptio">QUICQUID IN <sic><expan>COMPOSIONEM</expan></sic>
             UUIRGILDI DARE NON <lb/>DEBEAT <seg type="num" n="8"><unclear>V</unclear>III </seg></ab>
@@ -597,7 +620,6 @@
             continentur . excepto accipitre et spata . quia <lb/>propter illa <num>duo</num>
             aliquotiens periurium mittitur quando maioris <expan>pretii</expan> . <lb/>quia illa
             sint esse . iurantur . </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-9v-1"
             corresp="BK.139_9_inscriptio"><seg type="num" n="9">VIIII</seg> . DE RAPTU ALIENARUM
             SPONSARUM <lb/></ab>
@@ -614,7 +636,6 @@
                </choice></add> soluat . uel in <expan>presentiam</expan> nostram comis eum adueni<lb
                break="no"/>re fatiat . Et quanto tempore nobis placuerit . in exilio maneat <lb/>Et
             illam feminam ei habere non licet . </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-9v-3"
             corresp="BK.139_10_inscriptio"><seg type="num" n="10">X </seg><lb/>DE FALSIS TESTIBUS
             CONUINCENDIS . <lb/></ab>
@@ -653,7 +674,6 @@
             . <lb/>in <sic>confinito</sic>
             <num>duorum</num> comitatum fuerit liceat eis de uicina <lb/>centene adiacentis
             comitatus . ad causam suam testes <expan>querere</expan> . <lb/></ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-10r-1"
             corresp="BK.139_11_inscriptio"><seg type="num" n="11">XI</seg> . <lb/>DE PROPRIO IN
             BANNO MISSO . <lb/></ab>
@@ -691,7 +711,6 @@
             <add>nostris</add>
             <sic>auttorem</sic> iniuste et po<unclear>t</unclear>estatem hominis qui eam querebat .
             <lb/> faciam<unclear>us</unclear> peruenire </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-10v-1"
             corresp="BK.139_12_inscriptio"><seg type="num" n="12">XII</seg> . <lb/>DE MANNIRE .
             <lb/></ab>
@@ -702,7 +721,6 @@
             secondam comitis ammonitionem <lb/>aliquis ad mallum uenire noluerit rebus eius in
                <sic>bamnum</sic> missis <lb/>uenire et iustitiam facere <expan>compellatur</expan>
          </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-10v-3"
             corresp="BK.139_13_inscriptio"><seg type="num" n="13">XIII </seg><lb/>DE FAIDIS
             COHERCENDIS . </ab>
@@ -719,7 +737,6 @@
             eum ad tem<lb break="no"/>pus quod nobis placuerit in exilium
                mittam<unclear>us</unclear> donec ibi casti<lb break="no"/>getur . ut comiti suo
             inobediens . esse . ulterius non audeat . <lb/>et maius damnum inde non adcrescat . </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-11r-1"
             corresp="BK.139_14_inscriptio"><seg type="num" n="14">XIIII </seg><lb/>UBI SACRAMENTI
             IURANDI SUNT . <lb/></ab>
@@ -734,7 +751,6 @@
                <add>i</add>
             </subst>ntra suam potestatem uel ubi <lb/>impetra uoluerit habeat et domus . a comite in
             loco ubi <lb/>mallum tenere debet construatur . </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-11r-3"
             corresp="BK.139_15_inscriptio"><seg type="num" n="15">XV</seg> . <lb/>DE HIS QUI DE
             FURTU ACCUSATI FUERINT <lb/></ab>
@@ -758,7 +774,6 @@
             </choice> eius pro eo <lb/>emendare fatiat . aut eum sacramento excusat . <cb n="11v"
             />Nisi tale furtu perpetratum habeat . propter quod <add hand="X">ad</add><metamark
                function="insertion"/> suplicium tra<lb break="no"/>ditus esse debet . </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-11v-1"
             corresp="BK.139_16_inscriptio"><seg type="num" n="16">XVI</seg> . DE DISPECTU LITTERARUM <choice>
                <abbr>DOM</abbr>
@@ -776,7 +791,6 @@
             . Et si homo liber uel ministerialis comitis <lb/>hoc fecerit . honorem
                <expan>qualemcumque</expan> habuerit siue benefitium amittat . <lb/>Et si seruus
             fuerit . Nudus ad palum uapulet . et caput eius tondatur . <lb/></ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-11v-3"
             corresp="BK.139_17_inscriptio"><seg type="num" n="17">XVII</seg> . DE INIUSTIS TELONEIS
             ET <sic>CONSUETUDIBUS</sic> . <lb/></ab>
@@ -791,7 +805,6 @@
             locis uel de his qui ad palatium seu in <lb/>hostem pergant teloneum exactauerint . cum
             sua lege ipsum telo<lb break="no"/>neum reddat . et bannum nostrum . id est . solidos .
                <num>LX</num> . <expan>componat</expan> . </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-11v-5"
             corresp="BK.139_18_inscriptio"><seg type="num" n="18">XVIII</seg> . <lb/>DE HIS QUI
             BONOS DENARIOS ACCIPERE NOLUNT . <lb/></ab>
@@ -804,7 +817,6 @@
                <sic>aduotus</sic> . qui liber . est . eos . uel comiti . uel misso nostro .
                   <expan>presen<lb break="no"/>tare</expan> noluerit . <expan>predictum</expan> .
             bannum . <num>LX</num> . solidorum . <expan>componat</expan> . </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-12r-1"
             corresp="BK.139_19_inscriptio"><seg type="num" n="19">XVIIII</seg> . <lb/>DE
                <sic>ADUITERATORIBUS</sic> MONETE . <lb/></ab>
@@ -815,7 +827,6 @@
             . Et qui hoc consenseri<add>n</add>t . similibus <lb/>est . solidos . . <num>LX</num> .
                <expan>componat</expan> . Et si seruus est . <num>LX</num> . percussionibus accipiat
             . <lb/></ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-12r-3"
             corresp="BK.139_20_inscriptio"><seg type="num" n="20">XX</seg> . DE PROPRIO DOMI<add
                rend="default">NI</add>CO . SINE <add rend="default">iussione</add><metamark
@@ -830,7 +841,6 @@
             </subst>um atquirere . temptauerit pro infidele teneatur . <lb/>quia sacramentum
             fidelitatis quod nobis promisit . irritum fecit . et ideo <lb/>secundum nostram
             uoluntatem . et potestatem diiudicatus est . </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-12r-5"
             corresp="BK.139_21_inscriptio"><seg type="num" n="21">XXI</seg> . <lb/>DE PUERIS INUITIS
             PARENTIBUS <lb/>DETONSIS AC PUELLIS UELATIS . <lb/></ab>
@@ -838,16 +848,12 @@
                type="initial">S</seg>i quis puerum inuitis parentibus . totonderit . aut puellam
             <lb/>uelauerit . legem suam in <num>triplo</num> componat . Aut ipsi puero <lb/>si iam
             suae potestis est . aut illi in cui potestate fuerit . </ab>
-
          <ab type="meta-text" xml:id="london-bl-egerton-269-12r-7"><seg type="initial">I</seg>sta
                super<lb break="no"/>scripta capitula . in le<add>ge</add> sunt addenda . </ab>
-
          <milestone unit="capitulare" n="BK.138"/>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-12r-8"
             corresp="BK.138_6_inscriptio"><seg type="num" n="1">I</seg> . DE SER<lb break="no"/>UIS
             AD SACROS ORDINES NON MITTENDIS . <lb/></ab>
-
          <ab type="text" xml:id="london-bl-egerton-269-12r-9" corresp="BK.138_6"><seg type="initial"
                >V</seg>t nullus episcoporum seruos ad sacros ordines permouere
                <lb/><expan>presumat</expan> nisi prius a dominis propriis libertatem consecutus
@@ -855,50 +861,40 @@
                <sic>fuiens</sic> aut latitans <lb/>adhibitis testibus mannire conductis uel
             corruptis aut qua<lb break="no"/>libet calliditate uel fraude ad grados ecclesiasticos
             peruenerit . <lb/>deponatur . et dominus eius eum recipiat . </ab>
-
-
          <milestone unit="capitulare" n="BK.140"/>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-12v-1"
             corresp="BK.140_1_inscriptio"><seg type="num" n="2">II</seg> . DE FORCAPIIS . <lb/></ab>
-
          <ab type="text" xml:id="london-bl-egerton-269-12v-2" corresp="BK.140_1"><seg type="initial"
                >S</seg>i mancipia dominos suos fugerint in alienam potes<lb break="no"/>tatem . ut
             propter hoc nullum pr<subst>
                <del>i</del>
-               <add>e</add>
+               <add hand="X">e</add>
             </subst>mium quęrat ille in cuius potes<lb break="no"/>tate fuerint inuenta pro eo quod
             ea uel reddiderit uel foras <lb/>eiecerit . et non solum hoc . sed etiam si ea nec
             reddere . nec foras <lb/>eicere uoluerit . legitimo domino ea contradixerit . si inde
             <lb/>postea effugerint . secundum legem ea soluere cogatur . <lb/>
          </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-12v-3"
             corresp="BK.140_2_inscriptio"><seg type="num" n="3">III</seg> . DE TERRA TRIBUTARIA
             <lb/></ab>
-
          <ab type="text" xml:id="london-bl-egerton-269-12v-4" corresp="BK.140_2"><expan><seg
                   type="initial">Q</seg>uicumque</expan> terra tributaria unde tributum ad partem
             nostram <lb/>exire solebat uel ad ecclesiam cuilibet tradiderit . is qui eam
             <lb/>susceperit tributum quod inde soluatur omnimodo ad partem nostram <lb/>persoluat .
             Nisi forte talem firmitatem de parte dominica habeat <lb/>per quam ipsum tributum sibi
             perdonatum possit ostendere </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-12v-5"
             corresp="BK.140_3_inscriptio"><seg type="num" n="4">IIII</seg>
             <lb/> DE BE<add rend="default">ne</add>FITIIS DESTRUCTIS . <lb/>
          </ab>
-
          <ab type="text" xml:id="london-bl-egerton-269-12v-6" corresp="BK.140_3"><expan><seg
                   type="initial">Q</seg>uicumque</expan> beneficium suum occasionem proprii de<lb
                break="no"/>sertum habuerit et intra annum . postquam ei a comite uel <lb/>misso
             nostro notum factum fuerit illuc ei emendatum non habue<lb break="no"/>rit . ipsum
             beneficium perdat . </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-12v-7"
             corresp="BK.140_4_inscriptio"><seg type="num" n="5">V</seg> . DE TERRA CENSALI .
             <lb/></ab>
-
          <ab type="text" xml:id="london-bl-egerton-269-12v-8" corresp="BK.140_4"><seg type="initial"
                >S</seg>i quis terram censalem habuerit quam anticessores sui uel <lb/>ad aliquam
             eclesiam uel ad uillam nostram dederit . nullatenus secundum legem <lb/>tenere
@@ -912,7 +908,6 @@
             proprium . <lb/>et qui horum neutrum habet . Ergo censum inde persol<lb break="no"/>uat
             . qualis ei fuerit constitutus uel portionem aliquam <lb/>inde in beneficium accipiat .
             unde se <sic>sustare</sic> ualeat . <lb/></ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-13r-1"
             corresp="BK.140_5_inscriptio BK.140_5"><seg type="num" n="6">VI</seg> . <milestone
                unit="span" corresp="BK.140_5_inscriptio" spanTo="#london-bl-egerton-269-13r-1_1"/>DE
@@ -921,7 +916,6 @@
                />CONSIDE<lb break="no"/>RANDUM EST UT DE FRUGIBUS PERSOLUANT<anchor
                xml:id="london-bl-egerton-269-13r-1_2"/>
             <lb/></ab>
-
          <ab type="text" xml:id="london-bl-egerton-269-13r-2" corresp="BK.140_5"><seg type="initial"
                >D</seg>e opere uero uel de restaurationem eclesiarum <lb/>comis . et episcopus . et
             abbas . una cum misso nostro quem ipsi sibi . adhuc <lb/>elegerint considerationem
@@ -940,11 +934,9 @@
             restaurationem operari<lb break="no"/>os conducere . et materiam emere possit . Et qui
             nonas et deci<lb break="no"/>mas dare ne<mod>g</mod>lexerit . illas cum lege sua
             restituat . insuper bannum <lb/>nostrum soluat . </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-13r-3"
             corresp="BK.140_6_inscriptio"><seg type="num" n="7">VII</seg> . DE MANCIPIIS IN
             <lb/>VILLIS DOMINICIS CONFUGIENTIBUS <lb/></ab>
-
          <ab type="text" xml:id="london-bl-egerton-269-13r-4" corresp="BK.140_6"><seg type="initial"
                >S</seg>i quislibet mancipia in uillam nostram confugerint . autor eius<lb break="no"
             />dem uille querendi domino ea non contradicat . sed statim <lb/>eam foris de eadem
@@ -962,11 +954,9 @@
                <del>e</del>
                <add>ice</add>
             </subst>re non <lb/>audeat . si illius proprię . esse . noscuntur . </ab>
-
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-13v-1"
             corresp="BK.140_7_inscriptio"><seg type="num" n="8">VIII</seg> . <lb/>DE FORESTIBUS .
             NOUITER INSTITUTIS . <lb/></ab>
-
          <ab type="text" xml:id="london-bl-egerton-269-13v-2" corresp="BK.140_7"><seg type="initial"
                >V</seg>t <expan>quicumque</expan> illa habet dimittat . nisi forte iuditium .
             ueritatis <lb/>ostendere possit . quod per iussionem siue permissionem <rs type="person"
@@ -977,7 +967,47 @@
                doppeltem Kürzungszeichen für die Endungskürzung (sowohl us-Haken als auch
                Punktstrich)</note> quicquid nos placuerit . <lb/>
          </ab>
-
+         <milestone unit="capitulare" n="BK.156"/>
+         <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-13v-3"
+            corresp="BK.156_1_inscriptio Ansegis.1_102bis_inscriptio">
+            <seg type="num" n="9">IX</seg> . DE EO QUI SPONSAM ALIENAM RAPUERIT . <lb/></ab>
+         <ab type="text" xml:id="london-bl-egerton-269-13v-4" corresp="BK.156_1 Ansegis.1_102bis.b"
+               ><seg type="initial">S</seg>I quis sponsam alienam ipsa non consentiente rapuerit
+            licet <lb/>cum ea concubuerit . et reddat eam ei . cuius sponsa est . <lb/>et eis ducat
+            eam si uelit . quia uim passa potius quam uiolata <lb/>uidetur . Quodsi eam ducere
+            uoluerit accipiat aliam feminam . <lb/>tamen si <add>et</add><metamark
+               function="insertion"/> ipsa nubere uoluerit excepto raptore cui uoluerit <lb/>alteri
+            legitimo copuletur . Raptor uero . adulterii . crimine <lb/>reus teneatur<note
+               type="editorial">Die beiden Worte <mentioned>reus teneatur</mentioned> wurden
+               offenbar nachträglich durch einen Strich auf Höhe des t-Balkens verbunden.</note> .
+            Quodsi ipsa consenserit . similiter ut raptor <lb/>et nuptiis . ulterius prohibeatur .
+            Et is <subst>
+               <del>quia</del>
+               <add>qui eam</add>
+            </subst> accepturus <lb/>erat . aliam quam uoluerit accipiat . </ab>
+         <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-13v-5"
+            corresp="BK.156_2_inscriptio Ansegis.4_26bis_inscriptio">
+            <seg type="num" n="10">X</seg> . DE EO QUI <lb/>HOMINEM DE STATU SUO INTERPELLAT
+            <lb/></ab>
+         <ab type="text" xml:id="london-bl-egerton-269-13v-6"
+            corresp="BK.156_2 BK.156_3 Ansegis.4_26bis_a Ansegis.4_26bis_b">
+            <milestone unit="span" corresp="BK.156_2 Ansegis.4_26bis_a"
+               spanTo="#london-bl-egerton-269-13v-6_1"/>
+            <seg type="initial">H</seg>omo de statu suo . pulsatus si is qui eum pulsat ad
+               conuincen<lb break="no"/>dum illum procinctum <sic>huerit</sic> . athibeat sibi .
+               <num>VIII</num> . coniura<lb break="no"/>tores legi<add hand="X">ti</add>mos ex ea
+            parte unde pulsatur . siue illa paterna . siue <cb n="14r"/> materna sit . et .
+                  <num>IIII<hi rend="super">or</hi></num> . aliunde . non minus . legitimos . et
+            iurando uin<lb break="no"/>dicet . libertatem suam . Quodsi de propinqui defuerint .
+            adsumat <lb/>
+            <expan>undecumquę</expan>
+            <num>duodecim</num> lib<add>e</add>ros homines idoneos . et iurando inge<lb break="no"
+            />nuitatem suam defendat . <anchor xml:id="london-bl-egerton-269-13v-6_1"/>
+            <milestone unit="span" corresp="BK.156_3 Ansegis.4_26bis_b"
+               spanTo="#london-bl-egerton-269-13v-6_2"/>Omnis controuersia . coram centena<lb
+               break="no"/>rio diffiniri potest . Excepto . redditione terrae et mancipiorum . <lb/>
+            quę nonnisi coram comite fieri potest . <lb/><anchor
+               xml:id="london-bl-egerton-269-13v-6_2"/></ab>
       </body>
    </text>
 </TEI>
