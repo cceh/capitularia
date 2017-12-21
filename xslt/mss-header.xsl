@@ -368,12 +368,26 @@
   </xsl:template>
 
   <xsl:template match="tei:msItem[@corresp]//tei:title" priority="2.0">
-    <xsl:variable name="corresp" select="ancestor::tei:msItem/@corresp" />
+    <!-- get the first of multiple corresp
+         FIXME: how should we handle multiple corresps? -->
+    <xsl:variable name="corresp"
+                  select="substring-before (concat (ancestor::tei:msItem/@corresp, ' '), ' ')" />
+
+    <xsl:variable name="path">
+      <xsl:choose>
+        <xsl:when test="starts-with ($corresp, 'BK.')">
+          <xsl:value-of select="concat ('/bk/', $corresp)" />
+        </xsl:when>
+        <xsl:when test="starts-with ($corresp, 'Mordek.')">
+          <xsl:value-of select="concat ('/mordek/', $corresp)" />
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
 
     <xsl:call-template name="if-visible-then-else">
-      <xsl:with-param name="path" select="concat ('/bk/', $corresp)"/>
+      <xsl:with-param name="path" select="$path"/>
       <xsl:with-param name="then">
-        <a class="semibold" href="/bk/{$corresp}" title="{cap:human-readable-siglum ($corresp)}">
+        <a class="semibold" href="{$path}" title="{cap:human-readable-siglum ($corresp)}">
           <xsl:apply-templates/>
         </a>
       </xsl:with-param>

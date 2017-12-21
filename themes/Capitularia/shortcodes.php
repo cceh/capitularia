@@ -95,14 +95,14 @@ function get_parent_path ($path)
 }
 
 /**
- * Get the Capitular page url corresponding to a BK No.
+ * Get the Capitular page url corresponding to a BK or Mordek No.
  *
  * This function figures out which subdirectory the Capitular page is in,
  * eg. pre814/ or ldf/ or post840/ ...
  *
- * @param string $corresp eg. BK.42a
+ * @param string $corresp eg. "BK.42a" or "Mordek_15"
  *
- * @return string The url to the page, eg. http:// ... /capit/pre814/bk-nr-042a
+ * @return string The url to the page, eg. "http://.../capit/pre814/bk-nr-042a" or null
  */
 
 function bk_to_permalink ($corresp)
@@ -115,11 +115,17 @@ function bk_to_permalink ($corresp)
         return $cache[$corresp];
     }
 
+    $post_name = null;
     if (preg_match ('/^BK[._](\d+)(\w?)$/', $corresp, $matches)) {
+        $post_name = 'bk-nr-' . str_pad ($matches[1], 3, '0', STR_PAD_LEFT) . $matches[2];
+    }
+    if (preg_match ('/^Mordek[._](\d+)(\w?)$/', $corresp, $matches)) {
+        $post_name = 'mordek-nr-' . str_pad ($matches[1], 2, '0', STR_PAD_LEFT) . $matches[2];
+    }
+    if ($post_name) {
         $sql = $wpdb->prepare (
-            "SELECT ID FROM {$wpdb->posts} " .
-            'WHERE post_name = %s',
-            'bk-nr-' . str_pad ($matches[1], 3, '0', STR_PAD_LEFT) . $matches[2]
+            "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s",
+            $post_name
         );
         foreach ($wpdb->get_results ($sql) as $row) {
             $url = get_permalink ($row->ID);
@@ -127,7 +133,7 @@ function bk_to_permalink ($corresp)
             return $url;
         }
     }
-    return false;
+    return null;
 }
 
 /**
@@ -245,6 +251,12 @@ function if_visible ($path)
     // Also look for 'virtual pages' like /bk/42
     if (preg_match ('!^bk/(BK[._])?(\d+\w?)$!', $path, $matches)) {
         $url = bk_to_permalink ('BK.' . $matches[2]);
+        if ($url) {
+            $path = trim (parse_url ($url, PHP_URL_PATH), '/');
+        }
+    }
+    if (preg_match ('!^mordek/(Mordek[._])?(\d+\w?)$!', $path, $matches)) {
+        $url = bk_to_permalink ('Mordek.' . $matches[2]);
         if ($url) {
             $path = trim (parse_url ($url, PHP_URL_PATH), '/');
         }

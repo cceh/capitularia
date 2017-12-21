@@ -430,6 +430,13 @@ function on_do_parse_request ($do_parse, $dummy_wp, $dummy_extra_query_vars)
             exit ();
         }
     }
+    if (preg_match ('!^/mordek/(Mordek[._])?(\d+\w?)$!', $request, $matches)) {
+        $url = bk_to_permalink ('Mordek.' . $matches[2]);
+        if ($url) {
+            wp_redirect ($url);
+            exit ();
+        }
+    }
     return $do_parse;
 }
 
