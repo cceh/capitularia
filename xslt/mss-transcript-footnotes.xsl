@@ -619,7 +619,7 @@ footnotes will be joined to the preceding word.
         </xsl:variable>
         <xsl:if test="cap:is-phrase (exsl:node-set ($phrase))">
           <span class="{$rend}" data-shortcuts="1">
-            <xsl:value-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
+            <xsl:copy-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
           </span>
         </xsl:if>
         <span class="generated">
@@ -640,7 +640,7 @@ footnotes will be joined to the preceding word.
         </xsl:variable>
         <xsl:if test="cap:is-phrase (exsl:node-set ($phrase))">
           <span class="{$rend}" data-shortcuts="1">
-            <xsl:value-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
+            <xsl:copy-of select="cap:shorten-phrase (exsl:node-set ($phrase))"/>
           </span>
         </xsl:if>
         <span class="generated">
