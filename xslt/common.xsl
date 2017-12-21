@@ -237,31 +237,27 @@
   <!-- Verlinkungen zu Resourcen -->
   <xsl:template name="make-link-to-resource">
     <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
-    <a class="external" href="{string ($target/prefix)}{@target}" target="_blank" title="{string ($target/caption)}">
-      <xsl:apply-templates/>
-    </a>
+    <xsl:choose>
+      <xsl:when test="$target">
+        <a class="external" href="{string ($target/prefix)}{@target}" target="_blank" title="{string ($target/caption)}">
+          <xsl:apply-templates/>
+        </a>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="tei:ref[@type='external']">
     <xsl:choose>
-      <!-- bibl with @corresp already generates an <a> -->
+      <!-- bibl with @corresp already generates an <a>.  do not generate nested
+           <a>s here -->
       <xsl:when test="ancestor::tei:bibl[@corresp]">
         <xsl:apply-templates/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:choose>
-          <!-- generate links to Ansegis and Bl and Werminghoff -->
-          <xsl:when test="@subtype='Ansegis' or @subtype='Bl' or @subtype='Werminghoff'">
-            <xsl:call-template name="make-link-to-resource" />
-          </xsl:when>
-          <!-- generate links in capitular pages -->
-          <xsl:when test="ancestor::tei:note[@type='titles' or @type='annotation'] or ancestor::tei:list[@type='transmission']">
-            <xsl:call-template name="make-link-to-resource" />
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates />
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:call-template name="make-link-to-resource" />
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
