@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/intern/InArbeit/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="turin-bnu-fragment" xml:lang="de">
    <teiHeader>
@@ -8,8 +10,10 @@
          <titleStmt>
             <title type="main" xml:lang="ger">Turin, Biblioteca Nazionale Universitaria, †
                Fragment</title>
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek</title>
-            <title type="sub" xml:lang="eng">Manuscript description according to Mordek</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+               Transkription</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+               transcription</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -141,26 +145,23 @@
                   <msItem corresp="BK.201" n="1">
                      <p>
                         <locus>recto-verso</locus>
-                        <hi rend="italic">CAP. XI</hi> - <hi rend="italic">CAP. XIII</hi> -
-                           <title>Hlotharii capitulare Papiense</title> (a. 832), cc. 11-14: <hi
-                           rend="italic">Decernimus ut quisquis aliter testes habere</hi> - <hi
-                           rend="italic">auioni nostri Karoli continetur</hi> (MGH Capit. 2, Nr.
-                        201, S. 61 Z. 38 - S. 62 Z. 27, wie das folgende Kapitular ohne Kenntnis des
-                        Fragments ediert; Cipolla, Frammento, S. 207-209). <note type="msDetail"/>
-                     </p>
+                        <hi rend="italic">CAP. XI-CAP. XIII</hi> - <title>Hlotharii capitulare
+                           Papiense</title> (a. 832), cc. 11-14: <hi rend="italic">Decernimus ut
+                           quisquis aliter testes habere - auioni nostri Karoli continetur</hi> (MGH
+                        Capit. 2, Nr. 201, S. 61 Z. 38 - S. 62 Z. 27, wie das folgende Kapitular
+                        ohne Kenntnis des Fragments ediert; Cipolla, Frammento, S. 207-209).</p>
                   </msItem>
                   <msItem corresp="BK.159" n="2">
                      <p>
                         <locus>verso</locus>
                         <hi rend="italic">CAP.</hi> - <title>Concessio generalis</title> (a. 823?),
                         Einleitung und c. 1, von c. 2 nur der Anfang: <hi rend="italic">Cum enim in
-                           tam paruo spatio</hi> - <hi rend="italic">pignorare in bouibus</hi> (MGH
-                        Capit. 1, Nr. 159, S. 320 Z. 20-31; Cipolla, Frammento, S. 209; Cipolla,
-                        Codici Bobbiesi, S. 140). Dem großen Brand von 1904 fiel übrigens auch Cod.
-                        Turin, Biblioteca Nazionale Universitaria, J. IV. 24 (14. Jh.) zum Opfer,
-                        der nach Patetta, Sull'introduzione, in: ders., Studi, S. 723 einen
-                        Ansegis-Auszug mit 1, 119-125 und 2, 18 bot.<note type="msDetail"/>
-                     </p>
+                           tam paruo spatio - pignorare in bouibus</hi> (MGH Capit. 1, Nr. 159, S.
+                        320 Z. 20-31; Cipolla, Frammento, S. 209; Cipolla, Codici Bobbiesi, S. 140).
+                        Dem großen Brand von 1904 fiel übrigens auch Cod. Turin, Biblioteca
+                        Nazionale Universitaria, J. IV. 24 (14. Jh.) zum Opfer, der nach Patetta,
+                        Sull'introduzione, in: ders., Studi, S. 723 einen Ansegis-Auszug mit 1,
+                        119-125 und 2, 18 bot.</p>
                   </msItem>
                </msContents>
                <physDesc>
@@ -274,7 +275,7 @@
       </encodingDesc>
       <revisionDesc>
          <change when="2016-03-01" who="DS">Datei erstellt aus Mordek-XML</change>
-         <change when="2017-12-20" who="DS">Datei veröffentlicht (BK 159, 201)</change>
+         <change when="2017-12-22" who="DS">Datei veröffentlicht (BK 159, 201)</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>

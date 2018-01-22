@@ -1,15 +1,17 @@
 <?xml version="1.0"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
-<!-- dt: ACHTUNG! KOPIE IN BEARBEITUNG -->
+<?xml-model href="http://capitularia.uni-koeln.de/cap/intern/InArbeit/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="st-paul-abs-4-1">
    <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main" xml:lang="ger">Sankt Paul im Lavanttal, Stiftsarchiv, 4/1</title>
             <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
-               Transkription der foll. 166rb-167vb, 169va-183v</title>
+               Transkription der foll. 166rb-167vb, 169va-184r</title>
             <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
-               transcription of fols 166rb-167vb, 169va-183v</title>
+               transcription of fols 166rb-167vb, 169va-184r</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -29,12 +31,19 @@
                <resp xml:lang="eng">Transcription (making use of a preliminary transcription of BK
                   139 chs. 1-4 by Markus Jansen in a seminary by Prof. Ubl during winter semester
                   2014/15), description and text encoding according to the TEI P5 standard</resp>
+               <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen (fol.
+                  184r)</resp>
+               <resp xml:lang="eng">Second revision of transcription and additions (fol 184r)</resp>
             </respStmt>
             <respStmt>
                <persName key="DT">
                   <forename>Dominik</forename>
                   <surname>Trump</surname>
                </persName>
+               <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
+                  Standard (fol. 184r)</resp>
+               <resp xml:lang="eng">Transcription, description and text encoding according to the
+                  TEI P5 standard (fol 184r)</resp>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">First revision of transcription and additions</resp>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen foll.
@@ -71,6 +80,10 @@
                   180v-181r (=BK 158 cc. 1-14) und 182r-183v (=BK 165)</resp>
                <resp xml:lang="eng">Second revision of transcription and additions fols 180v-181r
                   (=BK 158 chs. 1-14) and 182r-183v (=BK 165)</resp>
+               <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen fol. 184ra-e
+                  (=BK 181)</resp>
+               <resp xml:lang="eng">First revision of transcription and additions fols 184ra-e (=BK
+                  181)</resp>
             </respStmt>
             <respStmt>
                <persName key="FF">
@@ -172,7 +185,8 @@
                      Oberitalien (<placeName
                         ref="http://www.geonames.org/6539930/aquileia.html http://d-nb.info/gnd/4002522-6 http://viaf.org/viaf/247150887"
                         >Aquileia</placeName>? Nach B. Bischoff in demselben Skriptorium entstanden
-                     wie die unten angeführte Kanoneshs. Vatikan Barb. Lat. 679)</origPlace>
+                     wie die unten angeführte Kanoneshs. <ref type="internal" subtype="mss"
+                        target="vatikan-bav-barb-lat-679">Vatikan Barb. Lat. 679</ref>)</origPlace>
                </head>
                <msContents>
                   <summary>
@@ -194,44 +208,40 @@
                         erfolgte die Niederschrift der Blätter 1<hi rend="super">v</hi>-169<hi
                            rend="super">r</hi>, wohl nachdem König Bernhard, dessen Name fol. 2<hi
                            rend="super">r</hi> unterdrückt scheint (damnatio memoriae?), im Dezember
-                        817 abgedankt hatte († 17. April 818). Ludwigs des Frommen Kapitularien der
-                        Jahreswende 818/819 (foll. 169<hi rend="super">v</hi>-180<hi rend="super"
-                           >r</hi>) sind von einer anderen Hand kopiert. Weitere Schreiber
-                        arbeiteten am Ende des Codex (foll. 180<hi rend="super">v</hi>-184<hi
-                           rend="super">r</hi> mit den Olonneser Kapitularien Lothars I. von 822/823
-                        und 825 samt Zusatz und dem Indiculus eorum qui sacramentum fidelitatis
-                        iuraverunt), alle in Oberitalien. Cod. St. Paul 4/1 gehört damit zu den
-                        seltenen Handschriften, an denen die sukzessive Ergänzung ihrer Sammlungen
-                        paläographisch noch sichtbar ist. Zur Verwandtschaft der Collectio
-                        capitularium Sancti Pauli mit anderen italienischen Kapitulariensammlungen
-                        siehe bei Cod. St. Gallen 733. Zur Nachwirkung am Ende von Cod. Vatikan,
-                        Biblioteca Apostolica Vaticana, Chigi F. IV. 75 siehe dort.</p>
+                        817 abgedankt hatte († 17. April 818).</p>
+                     <p>Ludwigs des Frommen Kapitularien der Jahreswende 818/819 (foll. 169<hi
+                           rend="super">v</hi>-180<hi rend="super">r</hi>) sind von einer anderen
+                        Hand kopiert. Weitere Schreiber arbeiteten am Ende des Codex (foll. 180<hi
+                           rend="super">v</hi>-184<hi rend="super">r</hi> mit den Olonneser
+                        Kapitularien Lothars I. von 822/823 und 825 samt Zusatz und dem Indiculus
+                        eorum qui sacramentum fidelitatis iuraverunt), alle in Oberitalien. Cod. St.
+                        Paul 4/1 gehört damit zu den seltenen Handschriften, an denen die sukzessive
+                        Ergänzung ihrer Sammlungen paläographisch noch sichtbar ist. Zur
+                        Verwandtschaft der Collectio capitularium Sancti Pauli mit anderen
+                        italienischen Kapitulariensammlungen siehe bei Cod. <ref type="internal"
+                           subtype="mss" target="st-gallen-sb-733">St. Gallen 733</ref>. Zur
+                        Nachwirkung am Ende von Cod. <ref type="internal" subtype="mss"
+                           target="vatikan-bav-chigi-f-iv-75"> Vatikan, Biblioteca Apostolica
+                           Vaticana, Chigi F. IV. 75</ref> siehe dort.</p>
                   </summary>
                   <msItem n="1">
                      <p>
-                        <locus>1r</locus> Leer bis auf zwei St. Pauler Archivstempel.<note
-                           type="msDetail"/>
-                     </p>
+                        <locus>1r</locus> Leer bis auf zwei St. Pauler Archivstempel. </p>
                   </msItem>
                   <msItem n="2">
                      <p>
                         <locus>1v-2r</locus> Zwei Miniaturen: wohl durch König Bernhard von Italien
                         motivierte Darstellung des Herrschers als Gesetzgeber, ihm zur Seite die
                         personifizierte Ecclesia, beide unter einem ornamentalen Bogenpaar stehend
-                        (zur Deutung <hi rend="smallcaps">Mordek, </hi>Ein Bildnis König Bernhards
-                        von Italien?, auch <bibl corresp="#Mordek_1995a"><hi rend="smallcaps"
-                              >Mordek, </hi>Frühmittelalterliche Gesetzgeber</bibl>). Auf der
-                        gegenüberliegenden Seite ein Kreuz in gleichfalls verziertem Rundbogen; hier
-                        war in der Vorlage vielleicht die Überschrift des folgenden Kapitulars
-                        plaziert, von dem auch die Miniatur thematisch angeregt sein dürfte.<note
-                           type="msDetail"/>
-                     </p>
+                        (zur Deutung Mordek, Ein Bildnis König Bernhards von Italien?, auch Mordek,
+                        Frühmittelalterliche Gesetzgeber). Auf der gegenüberliegenden Seite ein
+                        Kreuz in gleichfalls verziertem Rundbogen; hier war in der Vorlage
+                        vielleicht die Überschrift des folgenden Kapitulars plaziert, von dem auch
+                        die Miniatur thematisch angeregt sein dürfte. </p>
                   </msItem>
                   <msItem n="3">
                      <p>
-                        <locus>2v</locus> Leer bis auf St. Pauler Archivstempel.<note
-                           type="msDetail"/>
-                     </p>
+                        <locus>2v</locus> Leer bis auf St. Pauler Archivstempel. </p>
                   </msItem>
                   <msItem n="4" corresp="BK.92">
                      <p>
@@ -241,8 +251,7 @@
                         in der auf Bernhard von Italien zurückgeführten Form des Cod. Vercelli
                         CLXXIV, aber ohne Rubrik: <hi rend="italic">Placuit primis omnium ut
                            uitia</hi> - <hi rend="italic">episcopo inferatur</hi> (MGH Capit. 1, Nr.
-                        92, S. 194 Z. 35 - S. 195 Z. 33).<note type="msDetail"/>
-                     </p>
+                        92, S. 194 Z. 35 - S. 195 Z. 33). </p>
                   </msItem>
                   <msItem n="5" corresp="BK.93">
                      <p>
@@ -252,29 +261,24 @@
                         Bernhard-Version von Nr. 92 passenden Form: <hi rend="italic">Uolumus primo
                            ut neque abbates</hi> - <hi rend="italic">deo duce inueniatur</hi> (MGH
                         Capit. 1, Nr. 93, S. 196 Z. 13 - S. 198 Z. 3); danach Rest der Spalte (6
-                        Zeilen) leer.<note type="msDetail"/>
-                     </p>
+                        Zeilen) leer. </p>
                   </msItem>
                   <msItem n="6">
                      <p>
                         <locus>6vb - 26vb</locus> Lex Ribuaria (Klasse B), Titelverzeichnis und
-                        Text(MGH LL nat. Germ. 3, 2, S. 52-134; Sigle B 2; zur Hs. S. 36).<note
-                           type="msDetail"/>
-                     </p>
+                        Text(MGH LL nat. Germ. 3, 2, S. 52-134; Sigle B 2; zur Hs. S. 36). </p>
                   </msItem>
                   <msItem n="7">
                      <p>
                         <locus>27ra-57va</locus> Lex Salica (Karolina emendata), Titelverzeichnis
-                        undText (MGH LL nat. Germ. 4, 1, S. 5 - 234; Sigle K 19; zur Hs. S.
-                           XVIII).<note type="msDetail"/>
+                        undText (MGH LL nat. Germ. 4, 1, S. 5 - 234; Sigle K 19; zur Hs. S. XVIII).
                      </p>
                   </msItem>
                   <msItem n="8">
                      <p>
                         <locus>57va-93va</locus> Lex Baiuvariorum (Klasse E), Titelverzeichnis und
                         Text(MGH LL nat. Germ. 5, 2, S. 204-473; Sigle sP [= E1 in der Edition
-                        Merkels]; zur Hs. S. 183).<note type="msDetail"/>
-                     </p>
+                        Merkels]; zur Hs. S. 183). </p>
                   </msItem>
                   <msItem n="9">
                      <p>
@@ -285,20 +289,17 @@
                         Überlieferungsgeschichte der Chronik des Regino von Prüm (Quellen und Abh.
                         zur mittelrheinischen Kirchengeschichte 31, 1977) S. 50 Anm. 230, in Cod.
                         St. Paul 81/2 (10. Jh.), pp. 178 ff. liege wohl eine Kopie dieser
-                        Lex-Alamannorum-Überlieferung vor.<note type="msDetail"/>
-                     </p>
+                        Lex-Alamannorum-Überlieferung vor. </p>
                   </msItem>
                   <msItem n="10">
                      <p>
                         <locus>116vb-134rb</locus> Epitome Aegidii der Lex Romana Visigothorum bis
                         Cod. Theod. V, 1 (ed. <hi rend="smallcaps">Hänel, </hi>S. 3-136; zur Hs. S.
-                        LXXVIII); anschließend Rest der Spalte leer.<note type="msDetail"/>
-                     </p>
+                        LXXVIII); anschließend Rest der Spalte leer. </p>
                   </msItem>
                   <msItem n="11">
                      <p>
-                        <locus>134v</locus> Leer bis auf St. Pauler Archivstempel (Ende der
-                           Lage).<note type="msDetail"/>
+                        <locus>134v</locus> Leer bis auf St. Pauler Archivstempel (Ende der Lage).
                      </p>
                   </msItem>
                   <msItem n="12">
@@ -310,7 +311,6 @@
                         nat. Germ. 2, 1, S. 140 f.) und ohne Rubrik unmittelbar anschließend Lex
                         Burgundionum, Titel 48 (ohne den Anfang), 50 und 52 (Auszug) (MGH LL nat.
                         Germ. 2,1, S. 79 f., 80 ff.); <hi rend="italic">DEO GRATIAS AMEN.</hi>
-                        <note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="13">
@@ -318,9 +318,7 @@
                         sämtliche Texte, abgesehen von der Notitia Liutprandi, auf Karl den Großen
                         und Pippin von Italien zurückgehen (jüngstes sicher zu datierendes Stück ist
                         das Kapitular von Nimwegen a. 806); die Collectio dürfte noch zu deren Zeit
-                        entstanden sein, mit Sicherheit, wie der Gesamtcodex, in Oberitalien:<note
-                           type="msDetail"/>
-                     </p>
+                        entstanden sein, mit Sicherheit, wie der Gesamtcodex, in Oberitalien: </p>
                   </msItem>
                   <msItem n="14" corresp="BK.20a">
                      <p>
@@ -333,8 +331,7 @@
                            CAUSIS OPORTUNIS CONSENSERUNT DECRETUM DE METROPOLITANIS. De
                            metropolitans episcopis ut suffraganis episcopis eis secundum canones -
                            emendauerit moriatur</hi> (MGH Capit. 1, Nr. 20, S. 47 Z. 18 - S. 51 Z.
-                           26).<note type="msDetail"/>
-                     </p>
+                        26). </p>
                   </msItem>
                   <msItem n="15" corresp="BK.94">
                      <p>
@@ -344,8 +341,7 @@
                         Kapitelrubriken: <hi rend="italic">Placuit nobis adque conuenit ut - bannum
                            nostrum conp.</hi> (MGH Capit. 1, Nr. 94, S. 198 Z. 25 - S. 200 Z. 9); c.
                         4 beginnt, obwohl ohne Kapitelzahl und -rubrik, mit Initiale <hi
-                           rend="italic">D</hi> in neuer Zeile.<note type="msDetail"/>
-                     </p>
+                           rend="italic">D</hi> in neuer Zeile. </p>
                   </msItem>
                   <msItem n="16" corresp="BK.95">
                      <p>
@@ -355,9 +351,7 @@
                         Kapitelrubriken: <hi rend="italic">CAPITULARE QUEM DOMNU&lt;S&gt; REX CEPIT
                            DE QUIBUSDAM CAUSIS. DE SINODOCHIA. Iussit ut quicumque sinodochia habent
                            - nunc sic</hi> (!) <hi rend="italic">factum</hi> (MGH Capit. 1, Nr. 95,
-                        S. 200 Z. 29 - S. 201 Z. 40); c. 9 steht vor dem unvollständigen c. 8.<note
-                           type="msDetail"/>
-                     </p>
+                        S. 200 Z. 29 - S. 201 Z. 40); c. 9 steht vor dem unvollständigen c. 8. </p>
                   </msItem>
                   <msItem n="17" corresp="BK.88">
                      <p>
@@ -365,9 +359,7 @@
                         <hi rend="italic">LV - </hi>
                         <title>Karoli Magni notitia Italica</title> (a. 776), c. 1: <hi
                            rend="italic">Placuit nobis de cartulas illas - sicut primitus
-                           fuerunt</hi> (MGH Capit. 1, Nr. 88, S. 187 Z. 22 - 24).<note
-                           type="msDetail"/>
-                     </p>
+                           fuerunt</hi> (MGH Capit. 1, Nr. 88, S. 187 Z. 22 - 24). </p>
                   </msItem>
                   <msItem n="18" corresp="BK.44">
                      <p>Mit neuer Lage, auch dunkleren Inskriptionen und Kapitelrubriken beginnt:
@@ -379,8 +371,7 @@
                         S. 123 Z. 9-12, S. 123 Z. 22 - S. 125 Z. 2, S. 125 Z. 5-15, 23-35). Zu c. 16
                         wurde fol. 160rb marginal in hellerer Tinte die Rubrik <hi rend="italic">De
                            conspirati</hi> (danach Ende des Blattrands) notiert, die eigentlich bei
-                        c. 10 (fol. 159rb) zu erwarten wäre.<note type="msDetail"/>
-                     </p>
+                        c. 10 (fol. 159rb) zu erwarten wäre. </p>
                   </msItem>
                   <msItem n="19" corresp="BK.46">
                      <p>
@@ -391,8 +382,7 @@
                            episcopis abbatibus si - quicquam tribuere praesumat</hi> (MGH Capit. 1,
                         Nr. 46, S. 130 Z. 38, S. 131 Z. 23-26, 35-39, S. 132 Z. 3-6; <hi
                            rend="smallcaps">de Clercq, </hi>Neuf capitulaires, Teile von S. 62 -
-                           64).<note type="msDetail"/>
-                     </p>
+                        64). </p>
                   </msItem>
                   <msItem n="20" corresp="BK.67">
                      <p>
@@ -402,16 +392,14 @@
                         cc. 1-3: <hi rend="italic">Hec capitula missi nostri cognota faciant omnibus
                            hominibus partibus. Ut</hi>
                         <hi rend="italic">nullus ad mallum uel - est eius senior</hi> (MGH Capit. 1,
-                        Nr. 67, S. 156 Z. 26 - S. 157 Z. 3).<note type="msDetail"/>
-                     </p>
+                        Nr. 67, S. 156 Z. 26 - S. 157 Z. 3). </p>
                   </msItem>
                   <msItem n="21" corresp="BK.98">
                      <p>
                         <locus>161va</locus>
                         <hi rend="italic">LXXIII</hi> - <title>Capitulare Italicum</title> (a. 801),
-                        c. 8, ohneRubrik: <hi rend="italic">Hubicumque intra italia sibe regius -
-                           antiquitus est constituta</hi> (MGH Capit. 1, Nr. 98, S. 206 Z.
-                           3-7).<note type="msDetail"/>
+                        c. 8, ohne Rubrik: <hi rend="italic">Hubicumque intra italia sibe regius -
+                           antiquitus est constituta</hi> (MGH Capit. 1, Nr. 98, S. 206 Z. 3-7).
                      </p>
                   </msItem>
                   <msItem n="22" corresp="BK.99">
@@ -421,8 +409,7 @@
                            missorum Italicum</title> (a. 802/810), cc. 6-9, 12, 13: <hi
                            rend="italic">De prauis iudicibus et aduocati - illum ariuannum
                            requirat</hi> (MGH Capit. 1, Nr. 99, S. 206 Z. 31 - S. 207 Z. 2, S. 207
-                        Z. 6-11).<note type="msDetail"/>
-                     </p>
+                        Z. 6-11). </p>
                   </msItem>
                   <msItem n="23" corresp="BK.41">
                      <p>
@@ -431,9 +418,7 @@
                         <title>Capitulare legi Ribuariae additum</title> (a. 803), cc. 3 und 4: <hi
                            rend="italic">Homo ingenuus</hi> (zweites <hi rend="italic">u</hi> über
                         der Zeile nachgetragen) <hi rend="italic">qui multas qualibet soluere -
-                           contra eum discernent</hi> (MGH Capit. 1, Nr. 41, S. 117 Z. 27-32).<note
-                           type="msDetail"/>
-                     </p>
+                           contra eum discernent</hi> (MGH Capit. 1, Nr. 41, S. 117 Z. 27-32). </p>
                   </msItem>
                   <msItem n="24" corresp="BK.43">
                      <p>
@@ -442,9 +427,7 @@
                         <title>Capitulare missorum in Theodonis villadatum primum, mere
                            ecclesiasticum</title> (a. 805), c. 10 (Version Spalte b): <hi
                            rend="italic">De relinquentibus saeculum ut unum - institutionem uibere
-                           debeant</hi> (MGH Capit. 1, Nr. 43, S. 122 Z. 1-4).<note type="msDetail"
-                        />
-                     </p>
+                           debeant</hi> (MGH Capit. 1, Nr. 43, S. 122 Z. 1-4). </p>
                   </msItem>
                   <msItem n="25" corresp="BK.44">
                      <p>
@@ -453,15 +436,13 @@
                         <title>Capitulare missorum in Theodonis villa datum secundum,
                            generale</title> (a. 805), c. 2: <hi rend="italic">De iustitia
                            ecclesiarum dei uiduarum - set diligenter audiuntur </hi>(MGH Capit. 1,
-                        Nr. 44, S. 122 Z. 31 f.).<note type="msDetail"/>
-                     </p>
+                        Nr. 44, S. 122 Z. 31 f.). </p>
                   </msItem>
                   <msItem n="26">
                      <p>
                         <locus>162rb-164ra</locus>
                         <hi rend="italic">LXXXIII-LXXXVII - </hi> Liutprandi notitia de actoribus
-                        regis (a. 733), cc. 3-5, 1 -2 (MGH LL 4, S. 180-182).<note type="msDetail"/>
-                     </p>
+                        regis (a. 733), cc. 3-5, 1 -2 (MGH LL 4, S. 180-182). </p>
                   </msItem>
                   <msItem n="27" corresp="BK.39">
                      <p>
@@ -471,8 +452,7 @@
                         Kapitelrubriken: <hi rend="italic">DE HOMICIDIIS CLERICORUM. Si quis
                            subdiaconum occiderit CCC sol. conponat - dei examinandus accedat</hi>
                         (MGH Capit. 1, Nr. 39, S. 113 Z. 4-35); 3 Zeilen am Ende von fol. 164vb
-                           leer.<note type="msDetail"/>
-                     </p>
+                        leer. </p>
                   </msItem>
                   <msItem n="28" corresp="BK.98">
                      <p>Anhang zur 92-Kapitel-Sammlung: <locus>165ra-166rb</locus>
@@ -480,9 +460,7 @@
                            NOMINE DOMINI NOSTRI IESU CHRISTI KARULUS DIUINO CORONATUS ROMANUM regens
                            inperium serenissimus augus&lt;tus&gt; - conponere cogatur</hi> (MGH
                         Capit. 1, Nr. 98, S. 204 Z. 27 - S. 206 Z. 2); die Rubriken der cc. 2-7 sind
-                        mit <hi rend="italic">CAP.</hi> ohne Zählung markiert.<note type="msDetail"
-                        />
-                     </p>
+                        mit <hi rend="italic">CAP.</hi> ohne Zählung markiert. </p>
                   </msItem>
                   <msItem n="29" corresp="BK.134">
                      <p>
@@ -494,9 +472,7 @@
                            producti fuer. si ille falsos </hi>(<hi rend="italic">producti -
                            falsos</hi> in den beiden letzten Zeilen der Spalte von anderer Hand und
                         mit hellerer Tinte) - <hi rend="italic">legibus pertinet hec solbat</hi>
-                        (MGH Capit. 1, Nr. 134, S. 268 Anm. f, S. 268 Z. 3 - S. 269 Z. 9).<note
-                           type="msDetail"/>
-                     </p>
+                        (MGH Capit. 1, Nr. 134, S. 268 Anm. f, S. 268 Z. 3 - S. 269 Z. 9). </p>
                   </msItem>
                   <msItem n="30" corresp="BK.90">
                      <p>
@@ -506,9 +482,9 @@
                            capitulis qualiter mantua placitur de</hi> (!) <hi rend="italic">generale
                            hominibus notum fecimus. De iustitiis ecclesiarum dei uiduarum -
                            recipiant et reddant</hi> (MGH Capit. 1, Nr. 90, S. 190 Z. 9 - S. 191 Z.
-                        13); sonst nur noch überliefert in der Sammlung der Hss. Cava dei Tirreni 4
-                        und Vatikan Chigi F. IV. 75.<note type="msDetail"/>
-                     </p>
+                        13); sonst nur noch überliefert in der Sammlung der Hss. <ref
+                           type="internal" subtype="mss" target="cava-dei-tirreni-bdb-4">Cava dei
+                           Tirreni 4</ref> und Vatikan Chigi F. IV. 75. </p>
                   </msItem>
                   <msItem n="31" corresp="BK.113">
                      <p>
@@ -521,18 +497,16 @@
                            officio cesset</hi> (MGH Capit. 1, Nr. 113, S. 231 Z. 2 f., 6-26;
                         Teiledition: <hi rend="smallcaps">Mordek, </hi>Kirchenrecht und Reform, S.
                         132). C. 7, der letzte Kanon, ist unter der Inskription <hi rend="italic"
-                           >Lotharius rex</hi> auch in die unten bei Cod. Vatikan Vat. Lat. 1339
-                        vorgestellte Collectio V librorum, III, 250, 2 übergegangen; dies könnte ein
-                        Hinweis darauf sein, daß die Kapitularienvorlage der systematischen Sammlung
-                        zumindest in Teilen verwandt war mit dem in Cod. St. Paul 4/1 greifbaren
-                           Werk.<note type="msDetail"/>
-                     </p>
+                           >Lotharius rex</hi> auch in die unten bei Cod. <ref type="internal"
+                           subtype="mss" target="vatikan-bav-vat-lat-1339">Vatikan Vat. Lat.
+                           1339</ref> vorgestellte Collectio V librorum, III, 250, 2 übergegangen;
+                        dies könnte ein Hinweis darauf sein, daß die Kapitularienvorlage der
+                        systematischen Sammlung zumindest in Teilen verwandt war mit dem in Cod. St.
+                        Paul 4/1 greifbaren Werk. </p>
                   </msItem>
                   <msItem n="32">
                      <p> Foll. 169v-180r sind von anderer Hand und mit brauner, nicht schwarzer
-                        Tinte geschrieben (hellgelbe Inskriptionen und Rubriken).<note
-                           type="msDetail"/>
-                     </p>
+                        Tinte geschrieben (hellgelbe Inskriptionen und Rubriken). </p>
                   </msItem>
                   <msItem n="33" corresp="BK.139">
                      <p>
@@ -544,12 +518,11 @@
                            DEBENT. DE HONORE ECCLESIARUM. Si quis aut ex leui causa - eis
                            conplacuerit</hi> (MGH Capit. 1, Nr. 139, S. 281 Z. 1 - S. 285 Z. 23);
                         Rubrik von c. 8 als <hi rend="italic">VIII</hi>, Text von c. 8 als <hi
-                           rend="italic">VIIII</hi> gezählt.<note type="msDetail"/>
-                     </p>
+                           rend="italic">VIIII</hi> gezählt. </p>
                   </msItem>
                   <msItem n="34" corresp="BK.140">
                      <p>
-                        <locus>&gt;175rb- 176vb</locus>
+                        <locus>175rb- 176vb</locus>
                         <hi rend="italic">I-VIII</hi> - <title>Capitula per se scribenda</title> (a.
                         818/819), ohne c. 3: <hi rend="italic">ITEM INCIPIT ALIA CAPITULA QUE PER SE
                            SCRIBENDA ET AB OMNIBUS OBSERUANDA SUNT. DE FURCAPIIS. Si mancipia
@@ -558,8 +531,7 @@
                         frei) wird zwar mitgezählt, erscheint aber optisch separiert durch das groß
                         geschriebene Ende von c. 7 (fol. 176va): <hi rend="italic">UNDE NOS
                            DECERNERE UOLUMUS QUICQUID NOBIS PLACUERIT </hi>(darüber von anderer Hand
-                        nochmals dasselbe in Minuskeln).<note type="msDetail"/>
-                     </p>
+                        nochmals dasselbe in Minuskeln). </p>
                   </msItem>
                   <msItem n="35" corresp="BK.141">
                      <p>
@@ -571,8 +543,7 @@
                         </hi>(MGH Capit. 1, Nr. 141, Teile von S. 289 Z. 4 - S. 291 Z. 29); cc. 2
                         und 6 nicht gezählt; c. 12 ab <hi rend="italic">De homicidiis </hi>mit c. 13
                         zu <hi rend="italic">X</hi> vereint; c. 25 zweigeteilt; keine Kapitelzahl
-                           <hi rend="italic">XXVII</hi>. <note type="msDetail"/>
-                     </p>
+                           <hi rend="italic">XXVII</hi>. </p>
                   </msItem>
                   <msItem n="36" corresp="BK.140">
                      <p>
@@ -581,8 +552,7 @@
                         <title>Capitula per se scribenda</title> (a. 818/819), c. 3 (unvollständig):
                            <hi rend="italic">DE BENEFITIIS DISTRUCTIS. Quicumque beneficium
                            occassione proprii desertum habuerit, ipsum beneficium amittet</hi> (MGH
-                        Capit. 1, Nr. 140, S. 287 Z. 18-20).<note type="msDetail"/>
-                     </p>
+                        Capit. 1, Nr. 140, S. 287 Z. 18-20). </p>
                   </msItem>
                   <msItem n="37" corresp="BK.139">
                      <p>
@@ -591,7 +561,6 @@
                         <title>Capitula legibus addenda</title> (a. 818/819),c. 18, ohne Rubrik: <hi
                            rend="italic">Quicumque homo liber dinarium merum - LX solidos conp.</hi>
                         (MGH Capit. 1, Nr. 139, S. 285 Z. 4-9); restliche 21 Zeilen der Spalte leer.
-                           <note type="msDetail"/>
                      </p>
                   </msItem>
                   <msItem n="38" corresp="BK.158">
@@ -603,8 +572,7 @@
                         Kapitelzahl <hi rend="italic">I </hi>und <hi rend="italic">Inprimis</hi>:
                         Chrismon) <hi rend="italic">Inprimis instituit si liber homo - antiquas
                            langubardos fuit</hi> (MGH Capit. 1, Nr. 158, S. 318 Z. 27 - S. 319 Z.
-                           18).<note type="msDetail"/>
-                     </p>
+                        18). </p>
                   </msItem>
                   <msItem n="39" corresp="BK.140">
                      <p>
@@ -612,8 +580,7 @@
                         <title>Capitula per se scribenda</title> (a. 818/819), c. 5: <hi
                            rend="italic">De nonis et decimis. Considerandum est ut de frugibus -
                            beneficia amitat</hi> (MGH Capit. 1, Nr. 140, S. 287 Z. 30 - S. 288 Z.
-                           3).<note type="msDetail"/>
-                     </p>
+                        3). </p>
                   </msItem>
                   <msItem n="40" corresp="BK.165">
                      <p>Auf dem Rest der Rückseite von fol. 181 (mehr als die Hälfte), dessen
@@ -622,8 +589,7 @@
                         <hi rend="italic">Capl. I - Capl. XIIII</hi> - <title>Capitulare Olonnense
                            mundanum</title>(a. 825): <hi rend="italic">Statuimus ut liberi homines
                            qui tantum - ita sit</hi> (MGH Capit. 1, Nr. 165, S. 329 Z. 33 - S. 331
-                        Z. 20).<note type="msDetail"/>
-                     </p>
+                        Z. 20). </p>
                   </msItem>
                   <msItem n="41" corresp="BK.181">
                      <p>Wiederum von anderer Hand, in mehreren Kolumnen eingetragen:<lb/>
@@ -632,15 +598,12 @@
                         Capit. 1, Nr. 181, S. 377 Z. 25 - S. 378 Z. 20); mit dem mehrmals
                         wiederkehrenden Lemma <hi rend="italic">(item) Ladini</hi> könnte eine
                         inhaltliche Stütze gefunden sein für die paläographische Bestimmung, die
-                        Cod. St. Paul 4/1 dem Nordosten Oberitaliens zuweist.<note type="msDetail"/>
-                     </p>
+                        Cod. St. Paul 4/1 dem Nordosten Oberitaliens zuweist. </p>
                   </msItem>
                   <msItem n="43">
                      <p>
                         <locus>184v</locus> Federprobe <hi rend="italic">inop quoniam uiuit</hi>
-                        (darüber <hi rend="italic">D</hi>); zwei St. Pauler Archivstempel.<note
-                           type="msDetail"/>
-                     </p>
+                        (darüber <hi rend="italic">D</hi>); zwei St. Pauler Archivstempel. </p>
                   </msItem>
                </msContents>
                <physDesc>
@@ -658,9 +621,9 @@
                               <width>155</width>
                            </dimensions>
                         </extent>
-                        <collation>Lagen: <formula>(III+1)<hi rend="super">7</hi> + 15 IV<hi
-                                 rend="super">127</hi> + (IV-1)<hi rend="super">134</hi> + 6 IV<hi
-                                 rend="super">182</hi> + I<hi rend="super">184</hi></formula>
+                        <collation><formula>(III+1)<hi rend="super">7</hi> + 15 IV<hi rend="super"
+                                 >127</hi> + (IV-1)<hi rend="super">134</hi> + 6 IV<hi rend="super"
+                                 >182</hi> + I<hi rend="super">184</hi></formula>
                            <catchwords>Kustoden: <hi rend="italic">A </hi>(7<hi rend="super">v</hi>)
                               bis <hi rend="italic">X</hi> (166<hi rend="super">v</hi>). Am oberen
                               Rand von fol. 74<hi rend="super">r</hi> der Name <hi rend="italic"
@@ -716,7 +679,9 @@
                               werden auch verschiedene andere Entstehungsorte diskutiert; s.u. in
                               der Editorischen Vorbemerkung - Zur Handschrift.</note> Nach B.
                            Bischoff in demselben Skriptorium entstanden wie die unten angeführte
-                           Kanoneshs. Vatikan Barb. Lat. 679)</origPlace>.</p>
+                           Kanoneshs. <ref type="internal" subtype="mss"
+                              target="vatikan-bav-barb-lat-679">Vatikan Barb. Lat.
+                           679</ref>)</origPlace>.</p>
                   </origin>
                   <provenance>
                      <p>Provenienz: Andreas Adolph von Krufft, Hofrat an der geheimen Haus-, Hof-
@@ -738,158 +703,98 @@
                      <listBibl type="cap">
                         <bibl corresp="#Gontrum_1993">Gontrum 1993, S. 52-68</bibl>
                         <bibl corresp="#Mordek_1995">Mordek 1995, Nr. 5934, S. 685-695</bibl>
-                        <bibl corresp="#Gla&#xDF;ner_2002">Glaßner 2002</bibl>
+                        <bibl corresp="#Glaßner_2002">Glaßner 2002</bibl>
                         <bibl corresp="#Pohl_2003">Pohl 2003, S. 428</bibl>
                         <bibl corresp="#Pani_2006">Pani 2006, S. 52</bibl>
                         <bibl corresp="#Bischoff_2014">Bischoff 2014, S. 342</bibl>
-                        <bibl corresp="#Esders_2015">Esders, Stefan: Verwaltete Treue. Ein
-                           oberitalinisches Originalverzeichnis (breve) mit den Namen von 173
-                           vereidigten Personen aus der Zeit um 825 (im Druck), S. 16 f.</bibl>
+                        <bibl corresp="#Esders_2015">Esders 2015, S. 16 f.</bibl>
                         <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
                            der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
                               type="external" subtype="Bl" target="st-paul-abs-4-1"/></bibl>
                      </listBibl>
 
                      <listBibl type="lit">
-                        <bibl>
-                           <hi rend="smallcaps">Clemen, </hi>Porträtdarstellungen Karls des Großen,
-                           S. 72-74</bibl>
-                        <bibl>R. <hi rend="smallcaps">Eisler, </hi>Die illuminierten Handschriften
-                           in Kärnten (Beschreibendes Verzeichnis der illuminierten Handschriften in
-                           Österreich 3, Leipzig 1907) S. 100-102 Nr. 56</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Schramm,</hi> Die zeitgenössischen Bildnisse Karls
-                           des Großen, S. 52 f.</bibl>
-                        <bibl> O. <hi rend="smallcaps">Homburger,</hi> Ein vernichtetes Denkmal
-                           merowingischer Buchkunst aus frühkarolingischer Zeit, der «Rachio-Kodex»
-                           der Bongarsiana, in: Festschrift Hans R. Hahnloser zum 60. Geburtstag,
-                           hg. von E. J. <hi rend="smallcaps">Beer - P. Hofer - L. Mojon</hi> (Basel
-                           - Stuttgart 1961) S. 192 f. mit Anm. 26-29 (auf S. 204 f.)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Holter,</hi> Buchschmuck, S. 80, 93</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">B. Bischoff,</hi> Kreuz und Buch im Frühmittelalter
-                           und in den ersten Jahrhunderten der spanischen Reconquista, in: <hi
-                              rend="smallcaps">ders.,</hi> Mittelalterliche Studien 2, S. 290</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">K. Holter,</hi> Die Bibliothek. Handschriften und
-                           Inkunabeln, in: Die Kunstdenkmäler des Benediktinerstiftes St. Paul im
-                           Lavanttal und seiner Filialkirchen, bearb. von K. <hi rend="smallcaps"
-                              >Ginhart</hi> (Österreichische Kunsttopographie 37, Wien 1969) S.
-                           360</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Bischoff,</hi> Panorama der
-                           Handschriftenüberlieferung, in: <hi rend="smallcaps">ders.,</hi>
-                           Mittelalterliche Studien 3, S. 34</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">ders.,</hi> Die Rolle von Einflüssen in der
-                           Schriftgeschichte, in: Paläographie 1981. Colloquium des Comité
-                           International de Paléographie. München, 15.-18. September 1981, hg. von
-                           G. <hi rend="smallcaps">Silagi</hi> (Münchener Beiträge zur Mediävistik
-                           und Renaissance-Forschung 32, München 1982) S. 97 f.</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Schramm - Mütherich,</hi> Die deutschen Kaiser und
-                           Könige, S. 152</bibl>
+                        <bibl> G. H. Pertz, in: Archiv 3 (1821-1822) S. 78-81</bibl>
+                        <bibl> MGH LL 1 (1835), S. XXII </bibl>
+                        <bibl corresp="#Pardessus_1843"> Pardessus 1843, S. LXIV</bibl>
+                        <bibl corresp="#Baudi_di_Vesme_1855"> Baudi di Vesme 1855, S. CVI-CIX und
+                           Sp. 444-446</bibl>
+                        <bibl corresp="#Merkel_1858"> Merkel 1858, S. 574-577</bibl>
+                        <bibl> MGH LL 3 (1863), S. 7, 188, 514</bibl>
+                        <bibl corresp="#Boretius_1864"> Boretius 1864, S. 29-32, 187 f.</bibl>
+                        <bibl> MGH LL 5 (1875-1889), S. 199</bibl>
+                        <bibl corresp="#Clemen_1890"> Clemen 1890, S. 72-74</bibl>
+                        <bibl> R. Eisler, Die illuminierten Handschriften in Kärnten (Beschreibendes
+                           Verzeichnis der illuminierten Handschriften in Österreich 3, Leipzig
+                           1907) S. 100-102 Nr. 56</bibl>
+                        <bibl corresp="#Besta_1923"> Besta 1923, S. 245 Anm. 1</bibl>
+                        <bibl corresp="#Krusch_1924"> Krusch 1924, S. 80 ff.</bibl>
+                        <bibl corresp="#Goldmann_1928"> Goldmann 1928, S. 112-119 (S. 114 f.
+                           briefliche Mitteilung Karl von Amiras)</bibl>
+                        <bibl corresp="#Schramm_1928"> Schramm 1928, S. 52 f.</bibl>
+                        <bibl corresp="#de_Clercq_C_1936"> de Clercq C 1936, S. 160 Anm. 3, S. 229
+                           Anm. 1</bibl>
+                        <bibl corresp="#Buchner_1940"> Buchner 1940, S. 74-78</bibl>
+                        <bibl corresp="#Eckhardt_K_1954"> Eckhardt K 1954, S. 28</bibl>
+                        <bibl> O. Homburger, Ein vernichtetes Denkmal merowingischer Buchkunst aus
+                           frühkarolingischer Zeit, der «Rachio-Kodex» der Bongarsiana, in:
+                           Festschrift Hans R. Hahnloser zum 60. Geburtstag, hg. von E. J. Beer - P.
+                           Hofer - L. Mojon (Basel - Stuttgart 1961) S. 192 f. mit Anm. 26-29 (auf
+                           S. 204 f.)</bibl>
+                        <bibl corresp="#Holter_1965"> Holter 1965, S. 80, 93</bibl>
+                        <bibl> B. Bischoff, Kreuz und Buch im Frühmittelalter und in den ersten
+                           Jahrhunderten der spanischen Reconquista, in: ders., Mittelalterliche
+                           Studien 2 (Stuttgart 1967) S. 290</bibl>
+                        <bibl corresp="#Patetta_1967i"> Patetta 1967i, S. 727 (dazu die Rezension
+                           von A B. Schmidt, in: ZRG Germ. Abt. 16 [1895] S. 259)</bibl>
+                        <bibl> K. Holter, Die Bibliothek. Handschriften und Inkunabeln, in: Die
+                           Kunstdenkmäler des Benediktinerstiftes St. Paul im Lavanttal und seiner
+                           Filialkirchen, bearb. von K. Ginhart (Österreichische Kunsttopographie
+                           37, Wien 1969) S. 360</bibl>
+                        <bibl corresp="#Mordek_1975"> Mordek 1975, S. 132 f.</bibl>
+                        <bibl corresp="#Bischoff_1981"> Bischoff 1981, S. 34</bibl>
+                        <bibl> B. Bischoff, Die Rolle von Einflüssen in der Schriftgeschichte, in:
+                           Paläographie 1981. Colloquium des Comité International de Paléographie.
+                           München, 15.-18. September 1981, hg. von G. Silagi (Münchener Beiträge
+                           zur Mediävistik und Renaissance-Forschung 32, München 1982) S. 97
+                           f.</bibl>
+                        <bibl corresp="#Schramm_1983"> Schramm 1983, S. 152</bibl>
+                        <bibl> G. Schmitz, Rezension zu Kerff, Quadripartitus, in: ZRG Kan. Abt. 70
+                           (1984) S. 413 f.</bibl>
+                        <bibl corresp="#Mordek_1986a"> Mordek 1986a, S. 41 Anm. 86</bibl>
+                        <bibl corresp="#Kottje_1986"> Kottje 1986, S. 20</bibl>
+                        <bibl corresp="#Bühler_A_1986"> Bühler A 1986, S. 343 f. u. ö.</bibl>
+                        <bibl corresp="#Kottje_1987"> Kottje 1987, S. 373</bibl>
+                        <bibl corresp="#Mordek_1988"> Mordek 1988, S. 81 Anm. 60</bibl>
+                        <bibl corresp="#McKitterick_1989"> McKitterick 1989, S. 46, 49 Tab. A, S.
+                           59</bibl>
                         <bibl> Schatzhaus Kärntens. Landesausstellung St. Paul 1991. 900 Jahre
                            Benediktinerstift, 1: Katalog (Klagenfurt 1991) S. 128 f. (P. H.
                            Pascher)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Mordek,</hi> Ein Bildnis König Bernhards von
-                           Italien?, S. 547-555</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Mütherich,</hi> Frühmittelalterliche
-                           Rechtshandschriften, S. 84-86</bibl>
+                        <bibl corresp="#Mordek_1994c"> Mordek 1994c, S. 547-555</bibl>
+                        <bibl corresp="#Mütherich_1994"> Mütherich 1994, S. 84-86</bibl>
                         <bibl corresp="#Mordek_1995a">Mordek 1995a</bibl>
-                        <bibl> G. <hi rend="smallcaps">H. Pertz,</hi> in: Archiv 3 (1821-1822) S.
-                           78-81</bibl>
-                        <bibl>MGH LL 1, <hi rend="smallcaps">S. XXII</hi>
-                        </bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Pardessus,</hi> Loi Salique, S. LXIV</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Baudi di Vesme,</hi> Edicta regum Langobardorum, S.
-                           CVI-CIX und Sp. 444-446</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Merkel,</hi> Das Bairische Volksrecht, S.
-                           574-577</bibl>
-                        <bibl>MGH LL 3, S. 7, 188, 514</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Boretius</hi>, Capitularien im Langobardenreich, S.
-                           29-32, 187 f.</bibl>
-                        <bibl>MGH LL 5, S. 199</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Patetta,</hi> Sull’introduzione, in: <hi
-                              rend="smallcaps">ders.,</hi> Studi, S. 727 (dazu die Rezension von A
-                           B. <hi rend="smallcaps">Schmidt,</hi> in: ZRG Germ. Abt. 16 [1895] S.
-                           259)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Besta,</hi> Fonti, S. 245 Anm. 1</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Krusch,</hi> Lex Bajuvariorum, S. 80 ff.</bibl>
-                        <bibl> E. <hi rend="smallcaps">Goldmann,</hi> Neue Beiträge zur Geschichte
-                           des fränkischen Rechts (Deutschrechtliche Beiträge 12, 1, Heidelberg
-                           1928) S. 112-119 (S. 114 f. briefliche Mitteilung Karl von Amiras)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">de Clercq,</hi> La législation religieuse franque 1,
-                           S. 160 Anm. 3, S. 229 Anm. 1</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Buchner,</hi> Textkritische Untersuchungen, S.
-                           74-78</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">K. A. Eckhardt,</hi> Pactus legis Salicae 11, S.
-                           28</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">G. Schmitz,</hi> Rezension zu Kerff, Quadripartitus,
-                           in: ZRG Kan. Abt. 70 (1984) S. 413 f.</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Mordek,</hi> Karolingische Kapitularien, S. 41 Anm.
-                           86</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Kottje,</hi> Lex Baiuvariorum, S. 20</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Bühler,</hi> Capitularia Relecta, S. 343 f. u.
-                           ö.</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Kottje,</hi> Lex Alamannorum, S. 373</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Mordek,</hi> Weltliches Recht, S. 81 Anm. 60</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">McKitterick,</hi> The Carolingians and the written
-                           word, S. 46, 49 Tab. A, S. 59</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Mordek, </hi>Kirchenrecht und Reform, S. 132
-                           f.</bibl>
                      </listBibl>
 
                      <listBibl type="abb">
-                        <bibl><hi rend="smallcaps">Eisler</hi>, Die illuminierten Handschriften in
-                           Kärnten, S. 100 Fig. 54-55 (foll. 1v, 2<hi rend="smallcaps">r</hi>) S.
-                           101 Fig. 56-57 (foll. 95v [Ausschnitt], 116v)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Krusch</hi>, Neue Forschungen, Taf. I-VI (foll. 1v,
-                           116v, 119r, 122r, 183v, 184r)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Homburger</hi>, Ein vernichtetes Denkmal, S. 195
-                           Abb. 10 (fol. 1v) und S. 200 Abb. 16 (fol. 2r)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Holter</hi>, Buchschmuck, S. 83 Abb. 23 -26
-                           (Ausschnitte einzelner Seiten mit Initialen)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">ders</hi>., Die Bibliothek, S. 365 Abb. 506, 507
-                           (foll. 1v, 2r)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Schramm - Mütherich, </hi>Die deutschen Kaiser und
-                           Könige, S. 286 Abb. 10 (fol. 1v)</bibl>
-                        <bibl> Kerff, Quadripartitus, Frontispiz (fol. 1v, in Farbe)</bibl>
+                        <bibl>Eisler, Die illuminierten Handschriften in Kärnten, S. 100 Fig. 54-55
+                           (foll. 1v, 2r) S. 101 Fig. 56-57 (foll. 95v [Ausschnitt], 116v)</bibl>
+                        <bibl corresp="#Krusch_1927"> Krusch 1927, Taf. I-VI (foll. 1v, 116v, 119r,
+                           122r, 183v, 184r)</bibl>
+                        <bibl> Homburger, Ein vernichtetes Denkmal, S. 195 Abb. 10 (fol. 1v) und S.
+                           200 Abb. 16 (fol. 2r)</bibl>
+                        <bibl corresp="#Holter_1965"> Holter 1965, S. 83 Abb. 23 -26 (Ausschnitte
+                           einzelner Seiten mit Initialen)</bibl>
+                        <bibl> K. Holter, Die Bibliothek, S. 365 Abb. 506, 507 (foll. 1v, 2r)</bibl>
+                        <bibl corresp="#Schramm_1983"> Schramm 1983, S. 286 Abb. 10 (fol. 1v)</bibl>
+                        <bibl corresp="#Kerff_1982"> Kerff 1982, Frontispiz (fol. 1v, in
+                           Farbe)</bibl>
                         <bibl> Schatzhaus Kärntens, Abb. 7.3 auf S. 128 und 129 (foll. 1v und
                            122r)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Mordek, </hi>Ein Bildnis König Bernhards von
-                           Italien?, Taf. I und IVa-c nach S. 556 (fol. 1v und Ausschnitte von foll.
-                           117v, 10v, 136r)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Mütherich, </hi>Frühmittelalterliche
-                           Rechtshandschriften, S. 84 Abb. 7 (fol. 1v)</bibl>
+                        <bibl corresp="#Mordek_1994c"> Mordek 1994c, Taf. I und IVa-c nach S. 556
+                           (fol. 1v und Ausschnitte von foll. 117v, 10v, 136r)</bibl>
+                        <bibl corresp="#Mütherich_1994"> Mütherich 1994, S. 84 Abb. 7 (fol.
+                           1v)</bibl>
                         <bibl corresp="#Mordek_1995a">Mordek 1995a, Abb. 6 und 8 (foll. 1v,
                            2r)</bibl>
                      </listBibl>
@@ -926,8 +831,9 @@
       </encodingDesc>
       <revisionDesc>
          <change who="DS" when="2015-04-01">Datei erstellt aus Mordek-XML</change>
-         <change who="BM" when="2017-06-01">Datei private veröffentlicht (BK 134, 139, 140, 141,
-            158, 165)</change>
+         <change who="BM" when="2017-12-22">Datei veröffentlicht (BK 134, 139, 140, 141, 158, 165,
+            181)</change>
+         <change who="DT" when="2017-12-19">Transkription ergänzt (BK 181)</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -943,7 +849,7 @@
                         <ptr target="#st-paul-abs-4-1-166rb-6" type="internal"/>(Si quis cum altero
                         ...)</item>
                      <item n="1.2">
-                        <ptr target="#st-paul-abs-4-1-166vb-1" type="internal"/>capitulum II</item>
+                        <ptr target="#st-paul-abs-4-1-166vb-1" type="internal"/>II capitulum</item>
                      <item n="1.3">
                         <ptr target="#st-paul-abs-4-1-167rb-1" type="internal"/>capitulum</item>
                      <item n="1.4">
@@ -957,70 +863,70 @@
                   <ptr target="#st-paul-abs-4-1-169va-1" type="internal"/>INCIPIUNT CAPITULA DOMNO
                   LUDOICO AUGUSTUS YMPERATORE QUE LEGIBUS ADDENDA SUNT ... <list>
                      <item n="2.1">
-                        <ptr target="#st-paul-abs-4-1-169va-2" type="internal"/>DE HONORE
-                        ECCLESIARUM I</item>
+                        <ptr target="#st-paul-abs-4-1-169va-2" type="internal"/>I DE HONORE
+                        ECCLESIARUM</item>
                      <item n="2.2">
-                        <ptr target="#st-paul-abs-4-1-170ra-1" type="internal"/>DE INIURIIS
-                        SACERDOTUM IN ECLESIIS FACTIS II</item>
+                        <ptr target="#st-paul-abs-4-1-170ra-1" type="internal"/>II DE INIURIIS
+                        SACERDOTUM IN ECLESIIS FACTIS</item>
                      <item n="2.3">
-                        <ptr target="#st-paul-abs-4-1-170rb-3" type="internal"/>DE UIDUIS ET
-                        PUPILLIS ET PAUPERIBUS III</item>
+                        <ptr target="#st-paul-abs-4-1-170rb-3" type="internal"/>III DE UIDUIS ET
+                        PUPILLIS ET PAUPERIBUS</item>
                      <item n="2.4">
-                        <ptr target="#st-paul-abs-4-1-170va-1" type="internal"/>DE RAPTU UIDUARUM
-                        IIII</item>
+                        <ptr target="#st-paul-abs-4-1-170va-1" type="internal"/>IIII DE RAPTU
+                        UIDUARUM</item>
                      <item n="2.5">
-                        <ptr target="#st-paul-abs-4-1-170va-3" type="internal"/>DE HOMINEM PUBLICAN
-                        PENITENTIAM AGENTEM INTERFECTO V</item>
+                        <ptr target="#st-paul-abs-4-1-170va-3" type="internal"/>V DE HOMINEM
+                        PUBLICAN PENITENTIAM AGENTEM INTERFECTO</item>
                      <item n="2.6">
-                        <ptr target="#st-paul-abs-4-1-170vb-2" type="internal"/>UT OMNIS HOMO LIBER
-                        POTESTATEM HABEAT ... VI</item>
+                        <ptr target="#st-paul-abs-4-1-170vb-2" type="internal"/>VI UT OMNIS HOMO
+                        LIBER POTESTATEM HABEAT ...</item>
                      <item n="2.7">
-                        <ptr target="#st-paul-abs-4-1-171rb-1" type="internal"/>DE HOMICIDIIS
-                        PROHIBENDIS VII</item>
+                        <ptr target="#st-paul-abs-4-1-171rb-1" type="internal"/>VII DE HOMICIDIIS
+                        PROHIBENDIS</item>
                      <item n="2.8">
                         <ptr target="#st-paul-abs-4-1-171va-2" type="internal"/>VIII QUID IN
                         CONPOSITIONEM UUIRGILDI DARI ...</item>
                      <item n="2.9">
                         <ptr target="#st-paul-abs-4-1-171va-3" type="internal"/>VIIII</item>
                      <item n="2.10">
-                        <ptr target="#st-paul-abs-4-1-171va-5" type="internal"/>DE RAPTU ALIARUM
-                        SPONSARUM X</item>
+                        <ptr target="#st-paul-abs-4-1-171va-5" type="internal"/>X DE RAPTU ALIARUM
+                        SPONSARUM</item>
                      <item n="2.11">
-                        <ptr target="#st-paul-abs-4-1-171vb-1" type="internal"/>DE FALSIS TESTIBUS
-                        CONUINCENDIS XI</item>
+                        <ptr target="#st-paul-abs-4-1-171vb-1" type="internal"/>XI DE FALSIS
+                        TESTIBUS CONUINCENDIS</item>
                      <item n="2.12">
-                        <ptr target="#st-paul-abs-4-1-172va-1" type="internal"/>DE PROPIO IN BANNUM
-                        EMISSO XII</item>
+                        <ptr target="#st-paul-abs-4-1-172va-1" type="internal"/>XII DE PROPIO IN
+                        BANNUM EMISSO</item>
                      <item n="2.13">
-                        <ptr target="#st-paul-abs-4-1-173ra-1" type="internal"/>DE MANNIRE
-                        XIII</item>
+                        <ptr target="#st-paul-abs-4-1-173ra-1" type="internal"/>XIII DE
+                        MANNIRE</item>
                      <item n="2.14">
-                        <ptr target="#st-paul-abs-4-1-173rb-2" type="internal"/>DE FAIDIS
-                        COHERCENDUM XIIII</item>
+                        <ptr target="#st-paul-abs-4-1-173rb-2" type="internal"/>XIIII DE FAIDIS
+                        COHERCENDUM</item>
                      <item n="2.15">
                         <ptr target="#st-paul-abs-4-1-173va-1" type="internal"/>XV (Ubi sagramenta
                         iuranda sint)</item>
                      <item n="2.16">
-                        <ptr target="#st-paul-abs-4-1-173vb-1" type="internal"/>E HIS QUI DE FURTU
-                        ACUSATI FUERIT XVI</item>
+                        <ptr target="#st-paul-abs-4-1-173vb-1" type="internal"/>XVI E HIS QUI DE
+                        FURTU ACUSATI FUERIT</item>
                      <item n="2.17">
-                        <ptr target="#st-paul-abs-4-1-174ra-1" type="internal"/>DE DISPECTU
-                        LITTERARUM DOMINICARUM XVII</item>
+                        <ptr target="#st-paul-abs-4-1-174ra-1" type="internal"/>XVII DE DISPECTU
+                        LITTERARUM DOMINICARUM</item>
                      <item n="2.18">
-                        <ptr target="#st-paul-abs-4-1-174rb-1" type="internal"/>DE INIUSTIS TELONEIS
-                        ET CONSUETUDINIBUS XVIII</item>
+                        <ptr target="#st-paul-abs-4-1-174rb-1" type="internal"/>XVIII DE INIUSTIS
+                        TELONEIS ET CONSUETUDINIBUS</item>
                      <item n="2.19">
-                        <ptr target="#st-paul-abs-4-1-174va-1" type="internal"/>DE HIS QUI BONOS
-                        DENARIOS ACCIPERE NOLUNT XVIIII</item>
+                        <ptr target="#st-paul-abs-4-1-174va-1" type="internal"/>XVIIII DE HIS QUI
+                        BONOS DENARIOS ACCIPERE NOLUNT</item>
                      <item n="2.20">
-                        <ptr target="#st-paul-abs-4-1-174vb-1" type="internal"/>DE ADULTERATORIBUS
-                        MONETE XX</item>
+                        <ptr target="#st-paul-abs-4-1-174vb-1" type="internal"/>XX DE
+                        ADULTERATORIBUS MONETE</item>
                      <item n="2.21">
-                        <ptr target="#st-paul-abs-4-1-174vb-3" type="internal"/>DE PROPRIO DOMINICO
-                        SINE IUSSIONEM REDDITO XXI</item>
+                        <ptr target="#st-paul-abs-4-1-174vb-3" type="internal"/>XXI DE PROPRIO
+                        DOMINICO SINE IUSSIONEM REDDITO</item>
                      <item n="2.22">
-                        <ptr target="#st-paul-abs-4-1-175ra-1" type="internal"/>DE PUERIS INUITIS
-                        PARENTIBUS DETONSIS XXII</item>
+                        <ptr target="#st-paul-abs-4-1-175ra-1" type="internal"/>XXII DE PUERIS
+                        INUITIS PARENTIBUS DETONSIS</item>
                   </list>
                </item>
 
@@ -1181,28 +1087,17 @@
                         Capitulum</item>
                   </list>
                </item>
-
+               <item n="920">
+                  <ptr type="internal" target="#st-paul-abs-4-1-184ra-1"/>(ortgrimo gastaldo iurauit
+                  ...) </item>
             </list>
          </div>
 
          <div type="mshist">
             <p>Die Lokalisierung der Handschrift ist unsicher; nach Bischoff Oberitalien
-               (Aquileia?), in der jüngeren Forschung wird neben Mittel-/Norditalien (Aosta? Lucca?
-               Toskana?) auch der Südosten Frankreichs (Pani 2006, S. 52) und Rätien (Pohl 2003, S.
-               428) diskutiert.
-               <!-- bm: Pani 2006 (Katalogbeitrag): Frankreich wegen paläographischer und inhaltlicher Aspekte
-                  (kein langobardisches Recht); Italien (Monatmiata? Raum um Piacenza?) wegen Stil der Miniaturen u.a.
-                              - Lucca, Aquileia, Aosta: siehe Ubl, Katalogbeitrag "Credo" Nr. 366. 
-                              - Eine Übersicht über die jüngeren (Neu-)Lokalisierungsversuche findet sich bei Esders - Haubrichs, 
-                              Verwaltete Treue (noch nicht erschienen; Ms. vorab von Esders erhalten); am besten alles mit Verweis
-                              auf Esders angeben, falls nicht, einzelne Literaturtitel ggf. in der Bibliographie ergänzen.
-                              Dort: Entstehungsort "oberitalienisches Zentrum kirchlicher und weltlicher Rechtskenntnis",
-                              "also wohl wenigstens einen Bischofssitz, dessen Skriptorium angelsächsisch beeinflusst gewesen
-                              sein muss"; nach Robert Eisler und Kurt Holter zwischen 817 und 823 entstanden. 
-                  sk: Falls möglich zumindest einen Literaturverweis für "Mittel-/Norditalien (Aosta? Lucca? Toskana?)"
-                      ergänzen, analog zum Verfahren bei "Südosten Frankreichs" und "Rätien"; habe Pohl und Pani
-                      oben bei der projektspezifischen Literatur ergänzt.
-               --></p>
+               (Aquileia?), in der jüngeren Forschung wird auch der Südosten Frankreichs (Pani 2006,
+               S. 52) und Rätien (Pohl 2003, S. 428) diskutiert. Vgl. dazu auch Esders/Haubrichs
+               (Esders 2015; im Druck).</p>
          </div>
          <div type="scribe">
             <p>An der Entstehung der Handschrift waren mehrere Schreiber beteiligt, die alle eine
@@ -1240,19 +1135,12 @@
                nur als grobe Orientierung. Der Schreiber schreibt <mentioned>propietas</mentioned>
                ohne das zweite r (wie Hand A) und oft <mentioned>distrigere</mentioned> ohne n.
                Dieselbe Hand scheint auch das Capitulare Olonnense mundanum (BK 165) auf
-                  <locus>foll. 182r-183r</locus> kopiert zu haben, bevor auf <locus>fol.
-                  184r</locus> eine neue Hand einsetzt. Dieser einspaltige, letzte Teil scheint erst
-               beschrieben worden zu sein, nachdem die Handschrift bereits gebunden war, da Hand E
-               mehrfach auf den Verso-Seiten, wo das Zeilenende auf die Bindung trifft, die letzten
-               Buchstaben des Wortes interlinear darübergesetzt hat. Wahrscheinlich erschwerte es
-               die durch die Bindung verursachte Wölbung des Pergaments, den in der Zeile
-               verbliebenen Platz auszunutzen.
-               <!--      sk: die Logik erschließt sich mir nicht ganz; warum hätte der Schreiber dann nicht einfach
-               früher die Zeile gewechselt, anstatt am Zeilenende jeweils interlinear aufzustocken?
-               Es sei denn, er wollte eine Vorlage zeilengenau kopieren und deshalb unbedingt eine
-               bestimmte Textmenge in jede Zeile quetschen?  -->
-            </p>
-
+                  <locus>foll. 182r-183r</locus> kopiert zu haben.</p>
+            <p><locus>Fol. 184r</locus>: Die Eidliste (BK 181) wurde wieder von einer anderen Hand
+               (F) geschrieben, die eine karolingische Minuskel verwendet, bei der das g auffällig
+               ist, dessen unterer Bogen mal geschlossen, mal offen ist. Hinzu kommt ein in
+               Ligaturen hoch aufragendes und zudem unter die Zeile reichendes r. Ein Handwechsel
+               innerhalb der Liste ist nicht anzunehmen. Vgl. hierzu auch Esders 2015.</p>
          </div>
          <div type="letters">
             <p><locus>Foll. 166rb-167vb</locus>:</p>
@@ -1293,7 +1181,8 @@
                Stelle eine ungewöhnliche nt-Ligatur, bei der der zweite Schaft des n von einem
                diagonalen Strich durchkreuzt wird (<locus>fol. 182r, Z. 2</locus>:
                   <mentioned>possint</mentioned>). Die Unterlänge bei ri-Ligaturen ist z.T. sehr
-               weit nach links ausgezogen.
+               weit nach links ausgezogen. Hand F verwendet gerne Ligaturen mit r, daneben ist die
+               st-Ligatur zu beobachten.
                <!--    sk: evtl. verdeutlichen: die Unterlänge welches Buchstabens? r? oder wahrscheinlicher i? 
                   oder gar beide??       -->
             </p>
@@ -1370,7 +1259,7 @@
                firmiert. Die Liste beginnt auf <locus>fol. 177ra</locus> und trägt die Überschrift:
                   <mentioned>LEGATIO OMNIUM MISSORUM NOSTRORUM</mentioned> (<locus>fol. 177ra Z.
                   1-2</locus>). Sie setzt sich zusammen aus verschiedenen Kapiteln des Capitulare
-               missorum von 818/19 (BK 141)(cc. <mentioned>I-XXVI</mentioned> = BK 141 cc. 1-8, 10,
+               missorum von 818/19 (BK 141) (cc. <mentioned>I-XXVI</mentioned> = BK 141 cc. 1-8, 10,
                9, 12-16, 18, 19, 17, 20-28; in dieser Reihenfolge) sowie aus BK 140 c. 3
                (unvollständig) und BK 139 c. 18 als den beiden letzten Kapiteln (cc.
                   <mentioned>XXVIII-XXVIIII</mentioned>).</p>
@@ -1414,6 +1303,14 @@
                   <mentioned>CAPL</mentioned> eingeleitete Zählung (in Texttinte) hervorgehoben
                sind. Zusätzlich sind einige Anfangsmajuskeln im Text etwas vergrößert und mit
                breiterem Strich ausgeführt. </p>
+            <p><locus>Fol. 184r</locus>: Die Eidliste (BK 181) ist in insgesamt vier voneinander
+               durch Tintenstriche abgetrennte Spalten unterteilt. Die Trennstriche folgen der Länge
+               der eingetragenen Namen und sind deswegen nicht gerade gezogen worden. Die erste
+               Spalte ist zudem breiter angelegt als die übrigen. Als quasi fünfte Spalte kommen
+               ganz am rechten Rand der Seite durch Tintenstriche gerahmte Abschnitte hinzu, in
+               denen ebenfalls Namen stehen, die teilweise aber mit mehreren Zeilen Abstand
+               voneinander folgen. Das Erscheinungsbild der Seite lässt insgesamt eine sukzessive
+               Entstehung der Liste annehmen. Vgl. hierzu auch Esders 2015.</p>
          </div>
 
          <div type="annotations">
@@ -1445,7 +1342,11 @@
                   <locus>fol. 167ra, erste Zeile</locus>: <mentioned>qua</mentioned>-), doch die
                Schrift bleibt hinreichend gut lesbar. Auf <locus>fol. 181v</locus> hingegen ist die
                Schrift der ersten beiden Zeilen fast vollständig abgerieben, so dass es hier zu
-               Textverlust kommt.</p>
+               Textverlust kommt. <locus>Fol. 184</locus> weist mehrere Pergamentfalten auf, durch
+               die gerade im unteren Bereich mehrere Buchstaben nicht mehr oder nicht sicher gelesen
+               werden können. Da es sich um das letzte Blatt des Codex handelt, das stärker
+               beansprucht wurde, ist die Tinte teilweise verblasst, was das Entziffern
+               erschwert.</p>
          </div>
       </front>
       <body>
@@ -1700,8 +1601,8 @@
             />tium eidem aecclesie<lb/> usque dum totum debitum<lb/> persoluat ; <lb/></ab>
          <ab type="meta-text" rend="coloured" xml:id="st-paul-abs-4-1-170rb-3"
             corresp="BK.139_3_inscriptio"> DE UIDUIS ET PUPIL<lb break="no"/>LIS ET PAUPERIBUS
-               <lb/><seg type="num" n="3" rend="default">III<note type="editorial">Die Kapitelnummer
-                  ist in Texttinte am rechten Rand nachgetragen.</note></seg></ab>
+               <lb/><seg type="num" n="3" rend="default">III</seg><note type="editorial">Die
+               Kapitelnummer ist in Texttinte am rechten Rand nachgetragen.</note></ab>
          <ab type="text" xml:id="st-paul-abs-4-1-170rb-4" corresp="BK.139_3"><expan><seg
                   type="initial">P</seg>recipimus</expan><note type="editorial">Die Anfangsinitiale
                ist in Texttinte geschrieben und gegenüber den übrigen Initialen größer.</note> ut
@@ -1726,7 +1627,7 @@
                ban<lb break="no"/>num nostrum id est . <num>LX</num> solidos<lb/> in
                <num>triplo</num> conponat . et<lb/> si inuitam eam duxit<lb/> legem suam ei conponat
             . <lb/>illam uero ulterius . <lb/>non adtingat<note type="editorial">Tinte bei
-                  <mentioned>non adtingat</mentioned>leicht verlaufen.</note> ; <lb/></ab>
+                  <mentioned>non adtingat</mentioned> leicht verlaufen.</note> ; <lb/></ab>
          <ab type="meta-text" rend="coloured" xml:id="st-paul-abs-4-1-170va-3"
             corresp="BK.139_5_inscriptio">DE HOMINEM <lb/>
             <sic>PUBLICAN</sic> PENI<lb break="no"/>TENTIAM AGENTEM<lb/> INTERFECTO ;. <cb n="170vb"
@@ -1802,11 +1703,10 @@
             ad <lb/>quantum tempus nobis <lb/>placuerit res tamen <lb/>suas non a<del unit="chars"
                quantity="1"/>mittat ;. <lb/></ab>
          <ab type="meta-text" rend="coloured" xml:id="st-paul-abs-4-1-171va-2"
-            corresp="BK.139_8_inscriptio"><seg type="num" n="8">VIII<note type="editorial">Die
-                  Kapitelüberschrift wurde fälschlicherweise bei der Nummerierung mitgezählt, so
-                  dass die folgenden Kapitelnummern jeweils um eins zu hoch angesetzt sind.</note>
-            </seg>QUID IN CONPOSI<lb break="no"/>TIONEM . UUIRGILDI <lb/>DARI NON DEBEAT .
-            <lb/></ab>
+            corresp="BK.139_8_inscriptio"><seg type="num" n="8">VIII</seg><note type="editorial">Die
+               Kapitelüberschrift wurde fälschlicherweise bei der Nummerierung mitgezählt, so dass
+               die folgenden Kapitelnummern jeweils um eins zu hoch angesetzt sind.</note> QUID IN
+               CONPOSI<lb break="no"/>TIONEM . UUIRGILDI <lb/>DARI NON DEBEAT . <lb/></ab>
          <ab type="meta-text" rend="coloured" xml:id="st-paul-abs-4-1-171va-3"><seg type="num" n="9"
                >VIIII </seg></ab>
          <ab type="text" xml:id="st-paul-abs-4-1-171va-4" corresp="BK.139_8"><seg type="initial"
@@ -2035,10 +1935,8 @@
                <abbr>temp</abbr>
                <expan>tempore</expan>
             </choice> aui nostri <rs type="person">pipini</rs>
-            <lb/>consuetudo fuit telo<lb break="no"/>neum <subst>
-               <del>s#</del>
-               <add>dare</add>
-            </subst> ibi et in futu<lb break="no"/>rum detur non ubi <sic>nobitur</sic>
+            <lb/>consuetudo fuit telo<lb break="no"/>neum <del>s</del> dare ibi et in futu<lb
+               break="no"/>rum detur non ubi <sic>nobitur</sic>
             <lb/>inceptum est ulterius non <lb/>agatur et ubi necesse non est <lb/>fluuium aliquem
                trans<lb break="no"/>meare ponte uel ubi nabis <lb/>per mediam aquam ; <lb/>aut sub
             pontem ierit <lb/>et ad ripam nam non adpropin<cb n="174va" break="no"/>quauerit neque
@@ -2842,8 +2740,8 @@
 
          <ab xml:id="st-paul-abs-4-1-181r-15" type="text" corresp="BK.140_5_inscriptio BK.140_5">
             <milestone unit="span" corresp="BK.140_5_inscriptio" spanTo="#st-paul-abs-4-1-181r-15_1"
-               /><handShift new="E"/>
-            <seg type="initial">D</seg>e nonis et decimis<anchor xml:id="st-paul-abs-4-1-181r-15_1"/>
+               /><handShift new="E"/><seg type="initial">D</seg>e nonis et decimis<anchor
+               xml:id="st-paul-abs-4-1-181r-15_1"/>
             <milestone unit="span" corresp="BK.140_5" spanTo="#st-paul-abs-4-1-181r-15_2"
             />Considerandum : est . ut de frugibus <lb/>terre et animalium nutrimine persoluantur .
             De opere : uer<gap unit="chars" quantity="1"/>
@@ -3051,7 +2949,336 @@
                type="numDenom"><seg type="initial">C</seg>apitulum </seg><seg type="num" n="14"
                >XIIII</seg> . </ab>
          <ab xml:id="st-paul-abs-4-1-183v-10" type="text" corresp="BK.165_14"><seg type="initial"
-               >U</seg>idetur nobis de aldionibus ut sicut <lb/>lex abet ita sit <cb n="184r"/></ab>
+               >U</seg>idetur nobis de aldionibus ut sicut <lb/>lex abet ita sit <cb n="184ra"
+            /></ab>
+
+         <milestone unit="capitulare" n="BK.181"/>
+
+         <ab type="text" xml:id="st-paul-abs-4-1-184ra-1" corresp="BK.181"><handShift new="F"/><rs
+               type="person">ortgrimo gastaldo</rs> . iurauit . <lb/>
+            <rs type="person">petrus scauinus</rs>
+            <choice>
+               <abbr>simil</abbr>
+               <expan>similiter</expan>
+            </choice> . <lb/>
+            <rs type="person">andreas . scauinus</rs> . <lb/>
+            <rs type="person">bruno</rs>
+            <lb/>
+            <rs type="person">urso infante</rs> . <lb/>
+            <rs type="person">raginardo</rs> . <lb/>
+            <rs type="person">urso gastaldo</rs> . <lb/>
+            <rs type="person">grimoaldus</rs>
+            <lb/>
+            <rs type="person">audefr<subst>
+                  <del/>
+                  <add>e</add>
+               </subst>dus</rs>
+            <lb/>
+            <rs type="person">urso ambrosio</rs>
+            <lb/>
+            <rs type="person">gauso</rs>
+            <lb/> item <rs type="person">aufredo</rs>
+            <lb/>
+            <rs type="person">leo filius uualprandi</rs>
+            <lb/>
+            <rs type="person">arderigo</rs>
+            <lb/>
+            <rs type="person">boso</rs> . <lb/>
+            <rs type="person">nordemanne</rs>
+            <lb/>
+            <rs type="person">aldo</rs>
+            <lb/>
+            <rs type="person">ardemanne</rs>
+            <lb/>
+            <rs type="person">leo filio andrei</rs>
+            <lb/>
+            <rs type="person">ardemanno</rs>
+            <lb/> item alio <rs type="person">andrea</rs>
+            <lb/>
+            <rs type="person">landeperto <choice>
+                  <abbr>not</abbr>
+                  <expan>notario</expan>
+               </choice></rs>
+            <lb/>
+            <rs type="person">urso <choice>
+                  <abbr>not</abbr>
+                  <expan>notario</expan>
+               </choice></rs> . <lb/>
+            <rs type="person">pertefuso</rs>
+            <lb/>
+            <rs type="person">ladini</rs>
+            <lb/>
+            <rs type="person">sasprando</rs>
+            <lb/>
+            <rs type="person">leo bunia</rs>
+            <lb/>
+            <rs type="person">adalpr<unclear>a</unclear>nd</rs>
+            <lb/>
+            <rs type="person">ardo</rs>
+            <lb/> item <rs type="person">pertefuso</rs> . <lb/>
+            <rs type="person">giso</rs> . <lb/>
+            <rs type="person"><gap unit="chars" quantity="1"/>aurentius</rs>
+            <lb/>
+            <rs type="person">arnigauso</rs> . <lb/>
+            <rs type="person"><unclear>ri</unclear>perto</rs> . <lb/>
+            <rs type="person"><gap unit="chars" quantity="2"/>ndefredo</rs>
+            <lb/>
+            <rs type="person"><gap unit="chars" quantity="6"/>o</rs>
+            <lb/>
+            <rs type="person"><unclear>g</unclear>unfredo</rs>
+            <lb/>
+            <rs type="person"><gap unit="chars" quantity="2"/><unclear>i</unclear>stulfo</rs>
+            <lb/>
+            <rs type="person">h<gap unit="chars" quantity="1"/>ringo</rs>
+            <lb/>
+            <rs type="person">pe<gap unit="chars" quantity="2"/><unclear>o</unclear></rs>
+            <lb/>
+            <rs type="person"><gap unit="chars" quantity="5"/>uiso</rs>
+            <cb n="184rb"/>
+            <rs type="person">froimundo</rs>
+            <lb/>
+            <rs type="person">gaus<subst>
+                  <del/>
+                  <add>p</add>
+               </subst>rando</rs>
+            <lb/>
+            <rs type="person">roipert</rs> . <lb/>
+            <rs type="person">eruigo</rs><!-- dt: bei Esders "ervigo"! -->
+            <lb/>
+            <rs type="person">donesdei</rs>
+            <lb/>
+            <rs type="person">allo<subst>
+                  <del/>
+                  <add>lldo</add>
+               </subst></rs>
+            <lb/>
+            <rs type="person">heldeprando</rs> . <lb/>
+            <rs type="person">alluido</rs> . <lb/>
+            <rs type="person">teudelasio</rs> . <lb/>
+            <rs type="person">apolenare</rs>
+            <lb/> item . <rs type="person">and<subst>
+                  <del/>
+                  <add>r</add>
+               </subst>ea</rs> . <lb/>
+            <rs type="person">ladini</rs>
+            <lb/>
+            <rs type="person">mauro</rs>
+            <lb/>
+            <rs type="person">petro</rs>
+            <lb/>
+            <rs type="person">anso filius andrei</rs>
+            <lb/>
+            <rs type="person">gaido</rs> . <lb/>
+            <rs type="person">landari</rs>
+            <lb/>
+            <rs type="person">guntulo</rs>
+            <lb/>
+            <rs type="person">farago</rs> . <lb/>
+            <rs type="person">cateruio</rs>
+            <lb/>
+            <rs type="person">ausari</rs>
+            <lb/>
+            <rs type="person">tragulfo</rs>
+            <lb/>
+            <rs type="person">roprande</rs>
+            <lb/>
+            <rs type="person">ladini</rs>
+            <lb/> item <rs type="person">cateruio</rs> . <lb/>
+            <rs type="person">heldeberto</rs>
+            <lb/>
+            <rs type="person">petrus</rs>
+            <lb/>
+            <rs type="person">andrea</rs>
+            <lb/>
+            <rs type="person">saxo</rs><!-- dt: Esders 2015 "sax"! -->
+            <lb/>
+            <rs type="person">tarro</rs>
+            <lb/>
+            <rs type="person">leom<unclear>a</unclear>llo</rs>
+            <lb/>
+            <rs type="person">petro</rs> . <lb/>
+            <rs type="person">deusdedi</rs> . <lb/>
+            <rs type="person">liupalde</rs>
+            <lb/>
+            <rs type="person">adalbaldo</rs>
+            <lb/>
+            <rs type="person">landeperto</rs> . <lb/>
+            <rs type="person">manifredo</rs>
+            <cb n="184rc"/>
+            <rs type="person">giselprando</rs>
+            <lb/>
+            <rs type="person">rachiperto</rs> . <lb/>
+            <rs type="person">gun<mod>t</mod>eramno</rs>
+            <lb/>
+            <rs type="person">liuprande</rs>
+            <lb/>
+            <rs type="person">rago</rs> . <lb/>
+            <rs type="person">pilicho</rs>
+            <lb/> item <rs type="person">ladini</rs>
+            <lb/>
+            <rs type="person">gisulfo</rs> . <lb/>
+            <rs type="person">urso</rs> . <lb/>
+            <rs type="person">uuippilo</rs>
+            <lb/>
+            <rs type="person">zaraldo</rs>
+            <lb/> item <rs type="person">britcio</rs>
+            <lb/>
+            <rs type="person">hilpert</rs>
+            <lb/>
+            <rs type="person">honorifico</rs>
+            <lb/>
+            <rs type="person">alprand</rs> . <lb/>
+            <rs type="person">anto</rs> . <lb/>
+            <rs type="person">cristiano</rs>
+            <lb/>
+            <rs type="person">andrea</rs>
+            <lb/>
+            <rs type="person">leo</rs>
+            <lb/>
+            <rs type="person">alfard</rs> . <lb/>
+            <rs type="person">petrus</rs>
+            <lb/>
+            <rs type="person">roselmi</rs>
+            <lb/>
+            <rs type="person">postfredo</rs>
+            <lb/>
+            <rs type="person">berterigo</rs>
+            <lb/>
+            <rs type="person">heldeberto</rs>
+            <lb/>
+            <rs type="person">rotchildo</rs>
+            <lb/>
+            <rs type="person">urso</rs>
+            <lb/>
+            <rs type="person">gumprando</rs>
+            <lb/>
+            <rs type="person">urso</rs> . <lb/> et alio . <rs type="person">urso</rs>
+            <lb/>
+            <rs type="person">stefanus</rs>
+            <lb/>
+            <rs type="person">urso</rs> . <lb/>
+            <rs type="person">urso * <rs type="place">de cornitulo</rs></rs> . <lb/>
+            <rs type="person">anso</rs> . <lb/>
+            <rs type="person">adelmo</rs>
+            <lb/>
+            <rs type="person">teudo</rs>
+            <lb/>
+            <rs type="person">tasprand</rs> . <lb/>
+            <rs type="person">luciano</rs>
+            <lb/>
+            <rs type="person">uualprande</rs>
+            <lb/>
+            <rs type="person">ragimbodo</rs>
+            <lb/>
+            <rs type="person">d<mod>o</mod>no</rs>
+            <cb n="184rd"/>
+            <rs type="person">uerbodo</rs> . <lb/>
+            <rs type="person">tachiprando</rs>
+            <lb/>
+            <rs type="person"><mod>a</mod>deraldo</rs>
+            <lb/> et <rs type="person">uuaningo</rs>
+            <lb/>
+            <rs type="person">petrus</rs>
+            <lb/>
+            <rs type="person">aripaldo</rs>
+            <lb/>
+            <rs type="person">garimaro . <choice>
+                  <abbr>not</abbr>
+                  <expan>notario</expan>
+                  <!-- dt: Esders 2015 "notarius"! -->
+               </choice></rs>
+            <lb/>
+            <rs type="person">appo</rs> . <lb/>
+            <rs type="person">gudiperto</rs>
+            <lb/>
+            <rs type="person">adalo</rs> . <lb/>
+            <rs type="person">uualpulo</rs>
+            <lb/>
+            <rs type="person">adelperto</rs>
+            <lb/>
+            <rs type="person">sindefredo</rs> . <lb/>
+            <rs type="person">per<mod>e</mod>deo</rs> . <lb/>
+            <rs type="person">araualdus</rs>
+            <lb/>
+            <rs type="person">lanfredo</rs>
+            <lb/>
+            <rs type="person">petro</rs> . <lb/>
+            <rs type="person">iohanne</rs>
+            <lb/>
+            <rs type="person">leoprando</rs>
+            <lb/>
+            <rs type="person">petro</rs> . <lb/>
+            <rs type="person">ansegiso</rs>
+            <lb/>
+            <rs type="person">tachiperte</rs>
+            <lb/>
+            <rs type="person">lagiperto</rs>
+            <lb/>
+            <rs type="person">graffilado</rs>
+            <lb/>
+            <rs type="person">petro</rs>
+            <lb/>
+            <rs type="person">almeprando</rs>
+            <lb/>
+            <rs type="person">lamp<unclear>u</unclear>lo</rs>
+            <lb/>
+            <rs type="person">urso</rs>
+            <lb/>
+            <rs type="person">scelestino</rs>
+            <lb/>
+            <rs type="person">austrefuso</rs>
+            <lb/>
+            <rs type="person">hildulo</rs>
+            <lb/>
+            <rs type="person">anseperto</rs>
+            <lb/>
+            <rs type="person">petro</rs>
+            <lb/>
+            <rs type="person">raginaldo</rs>
+            <lb/>
+            <rs type="person">gauseprando</rs>
+            <lb/>
+            <rs type="person">heldeprando</rs>
+            <lb/>
+            <rs type="person">adrolo</rs> . <lb/>
+            <rs type="person">leoperto</rs>
+            <lb/>
+            <rs type="person">arduiso</rs>
+            <lb/>
+            <rs type="person">urso</rs>
+            <lb/>
+            <rs type="person">iohanne</rs>
+            <lb/>
+            <rs type="person">freaus<unclear>o</unclear></rs>
+            <lb/>
+            <rs type="person">ansolo</rs>
+            <lb/>
+            <rs type="person">allo</rs>
+            <cb n="184re"/>
+            <rs type="person">ardeperto</rs>
+            <lb/>
+            <rs type="person">ardeperto</rs>
+            <lb/>
+            <rs type="person">tagulo</rs>
+            <lb/>
+            <rs type="person">lanfred</rs>
+            <lb n="9"/>
+            <rs type="person"><expan>gumprand</expan></rs>
+            <lb n="25"/>
+            <rs type="person">cano</rs>
+            <lb n="30"/>
+            <rs type="person">hermulo</rs>
+            <lb/>
+            <rs type="person">adini</rs>
+            <lb/>
+            <rs type="person"><unclear>liudefredo</unclear></rs>
+            <lb/>
+            <rs type="person"><gap unit="chars" quantity="1"/><unclear>eria</unclear><gap
+                  unit="chars" quantity="1"/>d</rs>
+            <lb/>
+            <rs type="person">iohanne</rs>
+         </ab>
+
       </body>
    </text>
 </TEI>
