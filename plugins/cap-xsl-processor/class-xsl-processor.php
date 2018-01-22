@@ -160,11 +160,6 @@ class XSL_Processor
 
             $content = null; // release some mem
 
-            // get_the_content () may get called more than once per HTTP
-            // request, eg. it may get called by the dynamic menu plugin.  Make
-            // sure we regenerate the page only once.
-            $this->force_reload = false;
-
             global $wpdb;
             $sql = $wpdb->prepare ("SELECT post_content FROM $wpdb->posts WHERE ID = %d", $this->post_id);
             // error_log ("SQL: $sql");
@@ -213,6 +208,12 @@ class XSL_Processor
 
             do_action ('cap_xsl_page_refreshed', $this->post_id);
             // error_log ('on_the_content_early () after update_post ...');
+
+            // get_the_content () may get called more than once per HTTP
+            // request, eg. it may get called by the dynamic menu plugin.  Make
+            // sure we regenerate the page only once.
+            $this->force_reload = false;
+
         } else {
             increment_metadata ($this->post_id, 'cap_xsl_cache_hits');
             increment_metadata ($this->post_id, 'cap_xsl_cache_hits_temp');
@@ -289,7 +290,7 @@ class XSL_Processor
 
         // do a transform if any of page, xml, or xsl changed
         $do_transform = $this->cache_time < max ($this->page_modified_time, $xml_file_time, $xslt_file_time);
-        $do_transform = $do_transform || $this->force_reload;
+        $do_transform |= $this->force_reload;
         $this->is_stale |= $do_transform;
 
         // do a revision only if page or xml changed
