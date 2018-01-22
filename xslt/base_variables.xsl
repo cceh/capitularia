@@ -155,7 +155,7 @@
     </item>
     <item key="KatBNF">
       <prefix></prefix>
-      <caption>[:de]Zum Katalog der BnF[:en]To the BnF catalogue[:]</caption>
+      <caption>[:de]Zum Katalog der BN[:en]To the BN catalogue[:]</caption>
       <alt>Zu KatBNF</alt>
     </item>
     <item key="Gallica">
@@ -191,9 +191,13 @@
       <title>Badische Landesbibliothek</title>
       <caption>Badische Landesbibliothek</caption>
     </item>
+    <item key="brbl-dl.library.yale.edu">
+      <title>Beinecke Digital Collections</title>
+      <caption>Beinecke Digital Collections</caption>
+    </item>
     <item key=".bnf.fr">
-      <title>Bibliothèque nationale de France</title>
-      <caption>BnF</caption>
+      <title>Gallica</title>
+      <caption>Gallica</caption>
     </item>
     <item key="bodley.ox.ac.uk">
       <title>Bodleian Library Oxford</title>
@@ -251,7 +255,7 @@
       <title>PARES - Portal de Archivos Españoles</title>
       <caption>PARES</caption>
     </item>
-    <item key="parkerweb.stanford.edu">
+    <item key="parker.stanford.edu">
       <title>Parker Library</title>
       <caption>Parker Library</caption>
     </item>
