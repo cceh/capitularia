@@ -105,9 +105,15 @@
       <caption>[:de]Zur Ansegis-Edition (dMGH)[:en]To the edition of Ansegis (dMGH)[:]</caption>
       <alt>dMGH</alt>
     </item>
-    <item key="Werminghoff">
+    <item key="Werminghoff1">
       <!-- FIXME hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
-      <prefix>http://www.mgh.de/dmgh/resolving/</prefix>
+      <prefix>http://www.mgh.de/dmgh/resolving/MGH_Conc._2,1_S._</prefix>
+      <caption>[:de]Zur Edition von Werminghoff (dMGH)[:en]To the edition of Werminghoff (dMGH)[:]</caption>
+      <alt>dMGH</alt>
+    </item>
+    <item key="Werminghoff2">
+      <!-- FIXME hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
+      <prefix>http://www.mgh.de/dmgh/resolving/MGH_Conc._2,2_S._</prefix>
       <caption>[:de]Zur Edition von Werminghoff (dMGH)[:en]To the edition of Werminghoff (dMGH)[:]</caption>
       <alt>dMGH</alt>
     </item>
