@@ -78,7 +78,7 @@ footnotes will be joined to the preceding word.
 
 -->
 
-  <xsl:param name="include-later-hand" select="false ()" />
+  <xsl:param name="include-later-hand" select="true ()" />
 
   <func:function name="cap:contains-whitespace">
     <xsl:param name="s"/>
@@ -259,6 +259,30 @@ footnotes will be joined to the preceding word.
     </xsl:choose>
   </func:function>
 
+  <func:function name="cap:translate-hand">
+    <!--
+        Translate hand siglum into human-readable stuff.
+    -->
+    <xsl:param name="hand"/>
+
+    <xsl:choose>
+      <xsl:when test="normalize-space ($hand) and contains ('XYZ', $hand)">
+        <xsl:choose>
+          <xsl:when test="//@hand[contains ('YZ', .)]">
+            <xsl:variable name="name" select="exsl:node-set ($hand-names)/item[$hand = @key]"/>
+            <func:result select="string ($name/name)"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <func:result select="'anderer Hand'" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <func:result select="concat ('Hand ', $hand)" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </func:function>
+
   <func:function name="cap:is-normal-hand">
     <!-- If these hands made corrections we display them in the
          text and put the old text in the apparatus. -->
@@ -275,8 +299,8 @@ footnotes will be joined to the preceding word.
 
   <xsl:template name="hand-blurb">
     <xsl:if test="cap:get-hand ()">
-      <xsl:text> von Hand </xsl:text>
-      <xsl:value-of select="cap:get-hand ()"/>
+      <xsl:text> von </xsl:text>
+      <xsl:value-of select="cap:translate-hand (cap:get-hand ())"/>
     </xsl:if>
     <xsl:if test="following-sibling::*[1][self::tei:metamark]">
       <xsl:text> mit Einfügungszeichen</xsl:text>

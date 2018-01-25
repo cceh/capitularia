@@ -305,4 +305,16 @@
     </item>
   </xsl:variable>
 
+  <xsl:variable name="hand-names">
+    <item key="X">
+      <name>Korrekturhand 1</name>
+    </item>
+    <item key="Y">
+      <name>Korrekturhand 2</name>
+    </item>
+    <item key="Z">
+      <name>Korrekturhand 3</name>
+    </item>
+  </xsl:variable>
+
 </xsl:stylesheet>
