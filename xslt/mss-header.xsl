@@ -399,6 +399,35 @@
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match="tei:msItem//tei:title[@corresp]" priority="2.0">
+    <!-- New version to handle explicit @corresp on title -->
+
+    <xsl:variable name="path">
+      <xsl:choose>
+        <xsl:when test="starts-with (@corresp, 'BK.')">
+          <xsl:value-of select="concat ('/bk/', @corresp)" />
+        </xsl:when>
+        <xsl:when test="starts-with (@corresp, 'Mordek.')">
+          <xsl:value-of select="concat ('/mordek/', @corresp)" />
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+
+    <xsl:call-template name="if-visible-then-else">
+      <xsl:with-param name="path" select="$path"/>
+      <xsl:with-param name="then">
+        <a class="semibold" href="{$path}" title="{cap:human-readable-siglum (@corresp)}">
+          <xsl:apply-templates/>
+        </a>
+      </xsl:with-param>
+      <xsl:with-param name="else">
+        <span class="semibold" title="{cap:human-readable-siglum (@corresp)}">
+          <xsl:apply-templates/>
+        </span>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+
   <xsl:template match="tei:msItem//tei:title">
     <span class="semibold">
       <xsl:apply-templates/>
