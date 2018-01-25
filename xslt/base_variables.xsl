@@ -199,6 +199,10 @@
       <title>Gallica</title>
       <caption>Gallica</caption>
     </item>
+    <item key="www.bl.uk">
+      <title>British Library</title>
+      <caption>British Library</caption>
+    </item>
     <item key="bodley.ox.ac.uk">
       <title>Bodleian Library Oxford</title>
       <caption>Bodleian</caption>
@@ -270,6 +274,10 @@
     <item key="stgallplan.org">
       <title>Carolingian Culture at Reichenau &amp; St. Gall</title>
       <caption>Reichenau &amp; St. Gall</caption>
+    </item>
+    <item key="sub.uni-hamburg.de">
+      <title>Staats- und Universitätsbibliothek Hamburg</title>
+      <caption>SUB Hamburg</caption>
     </item>
     <item key="trierer-handschriften.de">
       <title>Die ältesten deutschsprachigen Texte der Trierer Stadtbibliothek</title>
