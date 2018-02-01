@@ -208,13 +208,14 @@
     <xsl:param name="path"/> <!-- test path -->
     <xsl:param name="text"/>
     <xsl:param name="href"   select="$path" />
+    <xsl:param name="class" select="'internal'"/>
     <xsl:param name="title"  select="''"/>
     <xsl:param name="target" select="''"/>
 
     <xsl:call-template name="if-visible-then-else">
       <xsl:with-param name="path" select="$path"/>
       <xsl:with-param name="then">
-        <a class="internal" href="{$href}">
+        <a class="{$class}" href="{$href}">
           <xsl:if test="$title">
             <xsl:attribute name="title">
               <xsl:value-of select="$title"/>
@@ -265,6 +266,42 @@
   <xsl:template match="tei:ref[@type='internal']">
     <xsl:choose>
       <xsl:when test="@subtype='mss'">
+        <xsl:variable name="class">
+          <xsl:choose>
+            <xsl:when test="normalize-space (.)">
+              <xsl:text>internal</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:choose>
+                <xsl:when test="preceding-sibling::*">
+                  <xsl:text>internal next-transcription</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:text>internal prev-transcription</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+
+        <xsl:variable name="title">
+          <xsl:choose>
+            <xsl:when test="normalize-space (.)">
+              <xsl:text>[:de]Zur Handschrift[:en]To the manuscript[:]</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:choose>
+                <xsl:when test="preceding-sibling::*">
+                  <xsl:text>[:de]Zur Fortsetzung der Transkription[:en]To the next part of the transcription[:]</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:text>[:de]Zum vorangehenden Teil der Transkription[:en]To the previous part of the transcription[:]</xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+
         <xsl:choose>
           <xsl:when test="@target">
             <xsl:variable name="target">
@@ -274,14 +311,15 @@
             <xsl:call-template name="if-visible">
               <xsl:with-param name="path"  select="substring-before (concat ('/mss/', $target, '#'), '#')"/>
               <xsl:with-param name="href"  select="concat ('/mss/', $target)"/>
-              <xsl:with-param name="title" select="'[:de]Zur Handschrift[:en]To the manuscript[:]'"/>
+              <xsl:with-param name="title" select="$title"/>
+              <xsl:with-param name="class" select="$class"/>
               <xsl:with-param name="text">
                 <xsl:apply-templates />
               </xsl:with-param>
             </xsl:call-template>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:apply-templates/>
+            <xsl:apply-templates />
           </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
