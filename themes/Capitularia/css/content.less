@@ -512,18 +512,11 @@ div.content-col {
         left: 0 !important;
         right: 0 !important;
     }
-    div.ab a.milestone-chapter {
-        /* This <a> is empty and Chrome will remove it if embedded in spaces and the
-           link will then point to the enclosing <div> instead.  This
-           declaration seems to prevent it.  */
-        display: inline-block;
-        height: 1.5em;
-    }
     a {
         &.milestone {
-            /* Must be block otherwise Firefox Quantum will scroll to the middle of the line
-               before it. */
-            display: block;
+            display: inline-block;
+            height: 1.5em;
+            float: left;
         }
         &.internal {
             &::after {

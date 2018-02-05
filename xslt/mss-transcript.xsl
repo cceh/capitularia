@@ -168,7 +168,7 @@
     <xsl:for-each select="str:split ($corresp)">
       <xsl:variable name="hr" select="cap:make-human-readable-bk (substring-before (concat (., '_'), '_'))" />
       <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
-        <a id="x-menu-{$id}" class="milestone milestone-capitulatio"
+        <a id="x-menu-{$id}" class="milestone"
            data-shortcuts="0" data-level="6">
           <span style="display: none">
             <xsl:value-of select="$hr" />
