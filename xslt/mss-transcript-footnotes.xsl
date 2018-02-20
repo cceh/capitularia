@@ -690,7 +690,10 @@ footnotes will be joined to the preceding word.
         <span class="generated">
           <xsl:choose>
             <xsl:when test="$before = '' and $after = ''">
-              <xsl:text>folgt</xsl:text>
+              <xsl:text> folgt </xsl:text>
+              <xsl:if test="@place='inspace'">
+                <xsl:text> in Lücke </xsl:text>
+              </xsl:if>
               <xsl:call-template name="hand-blurb"/>
               <xsl:text> ergänztes </xsl:text>
             </xsl:when>
@@ -732,6 +735,9 @@ footnotes will be joined to the preceding word.
           </xsl:choose>
         </span>
         <span class="generated">
+          <xsl:if test="@place='inspace'">
+            <xsl:text> in Lücke </xsl:text>
+          </xsl:if>
           <xsl:call-template name="hand-blurb"/>
           <xsl:text> ergänzt</xsl:text>
         </span>
