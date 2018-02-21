@@ -486,6 +486,14 @@ footnotes will be joined to the preceding word.
     </span>
   </xsl:template>
 
+  <xsl:template match="tei:gap[@reason='editorial']">
+    <div class="tei-gap-editorial" data-shortcuts="0">
+      <xsl:text>[</xsl:text>
+      <span class="tei-gap-editorial-inner">Nicht transkribierter Text</span>
+      <xsl:text>]</xsl:text>
+    </div>
+  </xsl:template>
+
   <xsl:template match="tei:sic">
     <span class="tei-sic">
       <xsl:apply-templates/>
