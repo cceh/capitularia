@@ -99,7 +99,8 @@ nicht herausfiltern, bis auf das erste meta-text-Element (Beginn der Capitulatio
     <xsl:choose>
       <xsl:when test="number (@quantity) &lt; 3">
         <xsl:text>[</xsl:text>
-        <xsl:value-of select="str:padding (number (@quantity), '.')"/>
+        <!-- xsl:value-of select="str:padding (number (@quantity), '.')"/ -->
+        <xsl:value-of select="string-join ((for $i in 1 to @quantity return '.'), '')"/>
         <xsl:text>]</xsl:text>
       </xsl:when>
       <xsl:otherwise>
