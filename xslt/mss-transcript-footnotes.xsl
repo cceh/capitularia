@@ -895,11 +895,7 @@ footnotes will be joined to the preceding word.
 
   <xsl:template match="tei:handShift" mode="auto-note">
     <span class="generated">
-      <xsl:text>Im folgenden Schreiberwechsel zu Hand </xsl:text>
-      <span class="rend-italic">
-        <xsl:value-of select="@new"/>
-      </span>
-      <xsl:text>.</xsl:text>
+      <xsl:text>Ab hier Wechsel der Schreiberhand, vgl. die Vorbemerkung.</xsl:text>
     </span>
   </xsl:template>
 
