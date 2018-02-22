@@ -1047,6 +1047,37 @@ div.annotation-content .float-right {
   float: left;
   margin: 0 0 1em 1em;
 }
+div.content-col span.initial,
+div.annotation-content span.initial {
+  display: inline-block;
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 110%;
+}
+div.content-col span.initial-word-wrapper,
+div.annotation-content span.initial-word-wrapper {
+  white-space: nowrap;
+}
+div.content-col span.versalie,
+div.annotation-content span.versalie {
+  font-size: 110%;
+  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-weight: normal;
+  font-style: normal;
+}
+div.content-col span.tei-gap,
+div.annotation-content span.tei-gap {
+  white-space: nowrap;
+}
+div.content-col div.tei-gap-editorial,
+div.annotation-content div.tei-gap-editorial {
+  font-weight: bold;
+}
+div.content-col div.tei-gap-editorial span.tei-gap-editorial-inner,
+div.annotation-content div.tei-gap-editorial span.tei-gap-editorial-inner {
+  font-style: italic;
+}
 div.content-col div.xsl-output ul,
 div.annotation-content div.xsl-output ul {
   list-style: disc outside;
@@ -1150,29 +1181,6 @@ div.annotation-content div.xsl-output div.mss-transcript-xsl span.folio {
   font-weight: normal;
   font-style: normal;
   color: #4e4c4f;
-}
-div.content-col div.xsl-output div.mss-transcript-xsl span.initial,
-div.annotation-content div.xsl-output div.mss-transcript-xsl span.initial {
-  display: inline-block;
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 110%;
-}
-div.content-col div.xsl-output div.mss-transcript-xsl span.initial-word-wrapper,
-div.annotation-content div.xsl-output div.mss-transcript-xsl span.initial-word-wrapper {
-  white-space: nowrap;
-}
-div.content-col div.xsl-output div.mss-transcript-xsl span.versalie,
-div.annotation-content div.xsl-output div.mss-transcript-xsl span.versalie {
-  font-size: 110%;
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.content-col div.xsl-output div.mss-transcript-xsl span.tei-gap,
-div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-gap {
-  white-space: nowrap;
 }
 div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness,
 div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness {

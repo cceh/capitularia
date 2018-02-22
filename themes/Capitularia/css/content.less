@@ -854,6 +854,21 @@ div.content-col, div.annotation-content {
         margin: 0 0 1em 1em;
     }
 
+    span.initial {
+        display: inline-block;
+        .semibold;
+        font-size: 110%;
+    }
+    span.initial-word-wrapper {
+        white-space: nowrap;
+    }
+    span.versalie {
+        font-size: 110%;
+        .semibold;
+    }
+    span.tei-gap {
+        white-space: nowrap;
+    }
     div.tei-gap-editorial {
         margin: 1em 0;
         font-weight: bold;
@@ -943,21 +958,6 @@ div.content-col, div.annotation-content {
                 .regular;
                 .semibold;
                 color: @color-gray;
-            }
-            span.initial {
-                display: inline-block;
-                .semibold;
-                font-size: 110%;
-            }
-            span.initial-word-wrapper {
-                white-space: nowrap;
-            }
-            span.versalie {
-                font-size: 110%;
-                .semibold;
-            }
-            span.tei-gap {
-                white-space: nowrap;
             }
             /* CTE */
             span.tei-witness {
