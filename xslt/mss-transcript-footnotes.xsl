@@ -481,7 +481,14 @@ footnotes will be joined to the preceding word.
   <xsl:template match="tei:gap">
     <span class="tei-gap break-word" data-shortcuts="0">
       <xsl:text>[</xsl:text>
-      <xsl:value-of select="str:padding (number (@quantity) * 2 + 1, '&#x2009;.')"/>
+      <xsl:choose>
+        <xsl:when test="ancestor::tei:del">
+          <xsl:value-of select="str:padding (number (@quantity) * 2 + 1, '&#x2020;')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="str:padding (number (@quantity) * 2 + 1, '&#x2009;.')"/>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:text>]</xsl:text>
     </span>
   </xsl:template>
