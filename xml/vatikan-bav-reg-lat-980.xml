@@ -1,5 +1,17 @@
 <?xml version="1.0"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/intern/InArbeit/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+
+<!--
+
+##########  Datei z.Zt. in Bearbeitung - nicht verändern!!!   ##############
+
+
+-->
+
+
 
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="vatikan-bav-reg-lat-980">
     <teiHeader>
@@ -138,6 +150,7 @@
                                 belegt.</note>
                         </altIdentifier>
                     </msIdentifier>
+                    
                     <msPart n="foll. 13-14">
                         <msIdentifier>
                             <settlement>Vatikan</settlement>
@@ -145,7 +158,7 @@
                             <idno>Reg. Lat. 980, foll. 13-14</idno>
                         </msIdentifier>
                         <head><title type="main"/>
-                            <origDate notAfter="0900" notBefore="0850">9. Jh., 2. Hälfte</origDate>
+                            <origDate notBefore="0851" notAfter="0900">9. Jh., 2. Hälfte</origDate>;
                             <origPlace
                                 ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
                                 >Frankreich</origPlace>
@@ -155,8 +168,7 @@
                                 <p>Dank dieses Fragments hat sich ein sonst nirgends überliefertes
                                     Kapitular erhalten, die reichspolitisch wichtige <ref
                                         type="internal" subtype="capit" target="ldf/bk-nr-194">Regni
-                                        divisio</ref> Ludwigs des Frommen vom Jahre 831.
-                                [V21]</p></summary>
+                                        divisio</ref> Ludwigs des Frommen vom Jahre 831.</p></summary>
                             <msItem xml:id="vatikan-bav-reg-lat-980_f13" n="1">
                                 <p><locus>13</locus> Leer.</p>
                             </msItem>
@@ -215,17 +227,57 @@
                         <history>
                             <origin>
                                 <p><origDate notBefore="0851" notAfter="0900">9. Jh., 2.
-                                        Hälfte</origDate>
+                                        Hälfte</origDate>;
                                     <origPlace
                                         ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
-                                        > Frankreich</origPlace></p>
+                                        > Frankreich</origPlace><note type="corr">
+                                            <origDate notBefore="0851" notAfter="0900">9. Jh., ca. 3./4. Viertel</origDate>; 
+                                            <origPlace>Frankreich (Auxerre?)</origPlace> (Bischoff 2014);
+                                            <origDate notBefore="0901" notAfter="1000">10. Jh.</origDate>;
+                                            <origPlace>Westfranken</origPlace> (Tischler 2008)</note>
+                                </p>
                             </origin>
                             <provenance>Fleury (?); Pierre Daniel von Orléans, Bailli von Fleury
                                 (?); Paul und Alexandre Petau; Königin Christine von Schweden
                                 (Montfaucon Nrn. 264)</provenance>
                             <acquisition/>
                         </history>
+                        <additional>
+                            <listBibl>
+                                <listBibl type="lit">
+                                    <bibl>L. Bethmann, in: Archiv 12 (1858-1874) S. 311 und 315</bibl>
+                                    <bibl>E. Berger, Notice sur divers manuscrits de la Bibliothèque
+                                        Vaticane, in: Bibliothèque des Écoles Françaises d’Athènes
+                                        et de Rome 6 (Paris 1879) S. 31, 33</bibl>
+                                    <bibl corresp="#Boretius_1897"> Boretius 1897, S. XXIX</bibl>
+                                    <bibl>A. Poncelet, Catalogus codicum hagiographicorum latinorum
+                                        bibliothecae Vaticanae (Subsidia hagiographica 11, Brüssel
+                                        1910) S. 406</bibl>
+                                    <bibl corresp="#Pellegrin_1959">Pellegrin 1959, S. 43 und 
+                                        S. 44 Anm. 4</bibl>
+                                    <bibl corresp="#Schlesinger_1963"> Schlesinger 1963, S. 14 bzw.
+                                        197 u. ö.</bibl>
+                                    <bibl corresp="#Montfaucon_1964">Montfaucon 1964, S. 20 Nr. 264</bibl>
+                                    <bibl corresp="#Bignami_Odier_1973">Bignami Odier 1973, S. 588
+                                        Anm. 2</bibl>
+                                    <bibl corresp="#Pellegrin_1978">Pellegrin 1978, S. 135 f. und 159 f. 
+                                        (jeweils Nr. 5)</bibl>
+                                    <bibl corresp="#Mostert_1989">Mostert 1989, S. 277 (BF 1470) und
+                                        S. 280 (BF 1489) (dort weitere Literatur, die jedoch nicht
+                                        auf diese beiden Blätter eingeht)</bibl>
+                                </listBibl>
+                                
+                                <listBibl type="cap">
+                                    <bibl corresp="#Mordek_1995">Mordek 1995, S. 834-835</bibl>
+                                    <bibl corresp="#Tischler_2008">Tischler 2008, S. 225-226</bibl>
+                                    <bibl corresp="#Bischoff_2014">Bischoff 2014, S. 436, Nr. 6744</bibl>
+                                </listBibl>
+                                
+                            </listBibl>
+                        </additional>
+                        
                     </msPart>
+                    
                     <msPart n="foll. 19-37">
                         <msIdentifier>
                             <settlement>Vatikan</settlement>
@@ -387,11 +439,14 @@
                         </physDesc>
                         <history>
                             <origin>
-                                <p><origDate notBefore="0851" notAfter="0900"> 9. Jh., 3.
-                                        Drittel</origDate>
+                                <p><origDate notBefore="0867" notAfter="0900"> 9. Jh., 3.
+                                        Drittel</origDate>;
                                     <origPlace
                                         ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
-                                        > Frankreich</origPlace></p>
+                                        > Frankreich</origPlace><note type="corr">
+                                            <origDate notBefore="0840" notAfter="0875">9. Jh., Mitte/3. Viertel</origDate>; 
+                                            <origPlace>Frankreich</origPlace> (Bischoff 2014)</note>
+                                </p>
                             </origin>
                             <provenance>Beauvais (fol. 35<hi rend="super">v</hi> leicht radierter
                                 Besitzvermerk wohl des beginnenden 13. Jh.: <hi rend="italic">Sancti
@@ -407,32 +462,22 @@
                         <additional>
                             <listBibl>
                                 <listBibl type="lit">
-                                    <bibl>L. Bethmann, in: Archiv 12 (1858-1874) S. 311 und 315
-                                        [V21] sowie S. 312 [V7]</bibl>
+                                    <bibl>L. Bethmann, in: Archiv 12 (1858-1874) S. 312</bibl>
                                     <bibl>E. Berger, Notice sur divers manuscrits de la Bibliothèque
                                         Vaticane, in: Bibliothèque des Écoles Françaises d’Athènes
-                                        et de Rome 6 (Paris 1879) S. 31, 33 [V21] sowie S. 31, 35 f.
-                                        [V7]</bibl>
-                                    <bibl corresp="#Boretius_1897"> Boretius 1897, S. XXIX [V7,
-                                        V21]</bibl>
-                                    <bibl>A. Poncelet, Catalogus codicum hagiographicorum latinorum
-                                        bibliothecae Vaticanae (Subsidia hagiographica 11, Brüssel
-                                        1910) S. 406 [V21]</bibl>
-                                    <bibl corresp="#Pellegrin_1959">Pellegrin 1959, S. 43 [V7, V21]
-                                        und S. 44 Anm. 4 [V21]</bibl>
-                                    <bibl corresp="#Schlesinger_1963"> Schlesinger 1963, S. 14 bzw.
-                                        197 u. ö. (fälschlich Cod. 283 statt 1283) [V21]</bibl>
-                                    <bibl corresp="#Montfaucon_1964">Montfaucon 1964, S. 20 Nr. 264
-                                        [V7, V21]</bibl>
-                                    <bibl corresp="#Bignami_Odier_1973">Bignami Odier 1973, S. 588
-                                        Anm. 2 [V21]</bibl>
-                                    <bibl corresp="#Pellegrin_1978">Pellegrin 1978, S. 135 f. Nr. 9
-                                        [V7] sowie S. 135 f. und 159 f. (jeweils Nr. 5) [V21]</bibl>
-                                    <bibl corresp="#Mostert_1989">Mostert 1989, S. 277 (BF 1470) und
-                                        S. 280 (BF 1489) (dort weitere Literatur, die jedoch nicht
-                                        auf diese beiden Blätter eingeht) [V21] sowie S. 278 (BF
-                                        1471) [V7]</bibl>
+                                        et de Rome 6 (Paris 1879) S. 31, 35 f.</bibl>
+                                    <bibl corresp="#Boretius_1897"> Boretius 1897, S. XXIX</bibl>
+                                    <bibl corresp="#Pellegrin_1959">Pellegrin 1959, S. 43</bibl>
+                                    <bibl corresp="#Montfaucon_1964">Montfaucon 1964, S. 20 Nr. 264</bibl>
+                                    <bibl corresp="#Pellegrin_1978">Pellegrin 1978, S. 135 f. Nr. 9</bibl>
+                                    <bibl corresp="#Mostert_1989">Mostert 1989, S. 278 (BF 1471)</bibl>
                                 </listBibl>
+                                
+                                <listBibl type="cap">
+                                    <bibl corresp="#Mordek_1995">Mordek 1995, S. 835-838</bibl>
+                                    <bibl corresp="#Bischoff_2014">Bischoff 2014, S. 436, Nr. 6745</bibl>
+                                </listBibl>
+                                
                             </listBibl>
                         </additional>
                     </msPart>
@@ -682,8 +727,8 @@
             <ab type="text" xml:id="vatikan-bav-reg-lat-980-14r-3" corresp="BK.194_1"><seg
                     type="initial">H</seg>ec autem tali ordinatione disposuimus ut
                     <add>si</add><metamark function="insertion"/><!-- DT: hand B? --> post nostrum
-                de hac luce discessum aliquis eorum
-                priusquam<!-- DT: Hier wirkt der Strich auch wieder sehr blass. Vgl. oben bei diuisionem -->
+                de hac luce discessum aliquis eorum prius
+                quam<!-- DT: Hier wirkt der Strich auch wieder sehr blass. Vgl. oben bei diuisionem -->
                 fratres sui die<add>m</add><metamark function="insertion"/><note type="editorial">
                     <mentioned>m</mentioned> mit Einfügungszeichen ergänzt, obwohl zugleich auch ein
                     Kürzungsstrich über dem <mentioned>e</mentioned> erkennbar
@@ -730,19 +775,19 @@
                     >III</seg> . </ab>
             <ab type="text" xml:id="vatikan-bav-reg-lat-980-14r-7" corresp="BK.194_3"><seg
                     type="initial">N</seg>e<unclear>que</unclear> aliquis illorum
-                    <add>h</add><metamark function="insertion"/>ominum<!-- DT: hand B? -->
+                    <add>h</add><metamark function="insertion"/>ominum
                     fratris<note type="editorial">Die ursprüngliche Kürzung
                         <mentioned>fras</mentioned> (mit Kürzungsstrich über dem Wort) wurde durch
                     Überschreiben des <mentioned>a</mentioned> mit einem <mentioned>i</mentioned>
-                    korrigiert. </note><!-- DT: hand B? --> sui pro quibuslibet causis uel culpis ad
-                se confugientem suscipiat et intercessione pro eo <lb/> faciend<unclear>um</unclear>
+                    korrigiert. </note> sui pro quibuslibet causis uel culpis ad
+                se confugientem suscipiat et intercessione pro eo <lb/> faciend<unclear>am</unclear>
                 <unclear>quia</unclear>
                 <unclear>uo</unclear>lumus ut qu<subst>
                     <del>a</del>
                     <add>i</add>
-                </subst>libet<!-- DT: hand B? --> homo peccans et intercescionem indigens intra
+                </subst>libet homo peccans et intercescionem indigens intra
                 regnum domini sui uel ad loca sancta <lb/>uel ad <unclear>ono</unclear>ratos
-                    <add>h</add><metamark function="insertion"/>omines<!-- DT: hand B? --> confugiat
+                    <add>h</add><metamark function="insertion"/>omines confugiat
                 et inde iu<mod>st</mod>am intercessionem mereatur . <lb/>
             </ab>
 
@@ -752,13 +797,13 @@
                     type="initial">S</seg>imil<subst>
                     <del>e</del>
                     <add>i</add>
-                </subst>ter<!-- DT: hand B? -->
+                </subst>ter
                 <expan>precipimus</expan> ut quem libe<mod>r</mod> illum qui dominum suum contra
                 uoluntatem eius dimiserit et de uno regno in ali<add>v</add>d profectus fuerit
                 <lb/>neque ipse rex suscipiat neque hominibus suis consentiat ut talem hominem
                 recipiant uel inuste reti<unclear>ni</unclear>re<note type="editorial">Schwer
                     lesbare Stelle, möglicherweise auf starker Rasur; das
-                    <mentioned>i</mentioned><!-- DT: hand B? --> von <mentioned>-nire</mentioned>
+                    <mentioned>i</mentioned> von <mentioned>-nire</mentioned>
                     mit noch zu erkennender Unterlänge, möglicherweise ein ursprüngliches
                         <mentioned>e</mentioned> überschreibend.</note>
                 <expan><unclear>pre</unclear>sumant</expan> nec <lb/>non sol<subst>
@@ -766,10 +811,6 @@
                     <add>vm</add>
                 </subst>
                 <mod>d</mod>e illis set etiam de seruis fugitiuis statuimus
-                <!-- sk: diese mehrfach verwendete ungewöhnlich a-Form in der Vorbemerkung
-                anführen? Und hat die einen etablierten Namen? "ci-a"? 
-                DT: Ich würde es erwähnen, das a hat ja generell eine auffallende Form. Spezieller Name fällt mir nicht ein
-                sk: jetzt oben ergänzt, aber noch ohne "richtigen" Namen -->
                 obseruandum ut nulla discordiis <sic>lelinquatur</sic> quicquam <lb/> Et hoc
                     <expan>precipimus</expan> ut nullus <mod>ex</mod><note type="editorial">korr.
                     aus einer et-Ligatur (?)</note> is <num>tribus</num> fratribus nobis in corpore
@@ -785,30 +826,22 @@
                 nostrum ex hac mortalitate discessum<del quantity="1" unit="chars"/>
                 <add>homines</add> uniuscuiusque <lb/>eorum accipiat beneficia unusquisque in regno
                 domini sui et non alterius ne quando per
-                hoc<!-- sk: oder doch "hac"? DT: Plädiere für hoc --> si aliter <lb/>fuerit
+                hoc si aliter <lb/>fuerit
                 scandalum aliquod possit ac<mod>cide</mod>re . ereditatem autem suam habeat
                 unusquisque hominum illorum <lb/>a<mod>b</mod>sque contradictione in
                     <expan>quocumque</expan>
-                <!--            <note type="editorial">BK konjizieren <mentioned>quocumque regno</mentioned>.</note> -->
                 hoc <subst>
                     <del>l</del>
-                    <add>e</add>
-                </subst>um
-                <!-- sk: bei solchen Stellen evtl. zu überlegen, statt eines subst, dass den Eindruck erweckt, der 
-                Schreiber hätte ein völlig unsinniges "lum" zu "eum" korrigiert, nur ein alleinstehendes 
-                <del>l</del> zu setzen, so dass Nutzer leichter erkennen können, dass der Schreiber hier 
-                mutmaßlich nur das "eum" übersehen hatte und direkt mit "l(egitime" fortfahren wollte?   
-                -->
-                legitime habere cognouerit . <!-- DT: Die Punkte sind teilweise so weit weg, dass man überlegen kann, ob man sie überhaupt setzt -->
+                    <add>eum</add>
+                </subst>
+                legitime habere cognouerit . 
                 <lb/>
             </ab>
 
             <ab type="meta-text" xml:id="vatikan-bav-reg-lat-980-14r-12"> . <seg type="num" n="6"
                     >VI</seg> . </ab>
             <ab type="text" xml:id="vatikan-bav-reg-lat-980-14r-13" corresp="BK.194_6"><seg
-                    type="initial">E</seg>t
-                unusquisque<!-- DT: Soll das ein übergeschriebener Buchstabe sein?  sk: würde es für Fleck / Feuchtigkeit
-                halten -->
+                    type="initial">E</seg>t unusquisque
                 liber homo post mortem domini su<unclear>o</unclear> licentiam
                     <add>habeat</add><metamark function="insertion"/> se
                 commendandum<!-- DT: expan?  sk: kommt "conmendandum" denn vor? --> inter hęc
@@ -857,7 +890,7 @@
                     <del/>
                     <add>posc</add>
                 </subst>entibus set liceat eas uicissim dare et accipere et adfinitatibus populos
-                inter se sociar<unclear>i</unclear>
+                inter se sociar<gap unit="chars" quantity="1"/>
                 <lb/> ipse uero feminę potestatem habeant reru<unclear>m</unclear> suarum in regno
                 unde exiet quamquam in alio propter mariti societ<gap unit="chars" quantity="1"/><lb
                     break="no"/>tem <subst>
@@ -924,11 +957,7 @@
             <ab type="text" xml:id="vatikan-bav-reg-lat-980-14v-8" corresp="BK.194_11"><seg
                     type="initial">S</seg>uper <mod>o</mod>mnia autem iubemus a<mod>d</mod>que
                     <expan>precipimus</expan> ut ipsi <num>tres</num> fratres curam et defensionem
-                    <rs type="person">ęcclesiam sancti petri</rs>
-                <!-- sk: oder placeName? oder gar nicht taggen? 
-                    DT: Gute Frage! Hmm...Also ecclesiam würde ich generell rauslassen. 
-                    Wenn überhaupt taggen, dann vielleicht nur petri als persName. 
-                    Aber da sollten wir uns allgemein mal drauf verständigen, was wir da machen. -->
+                ęcclesiam <rs type="person">sancti petri</rs>
                 <lb/>simul suscipiant sicut quoddam a proauo nostro <rs type="person"
                         >ka<mod>rolo</mod></rs> et auo nostro <rs type="person">pipino</rs> et beate
                 memorie <rs type="person">genitoris <lb/>nostri karolo imperatoris</rs>
@@ -940,11 +969,7 @@
                 <lb/>nitantur et iustitiam suam quantum ad ipsos pertinet ratio postulauerit abere
                 faciant . <lb/>Similiter de ceteris ecclesiis que sub illorum f<add>u</add>erint
                 potestate
-                <expan><mod>p</mod>recipimus</expan><!-- DT: -re- auch noch in mod? 
-                sk: knifflig. Eher nein, da die 2 Buchstaben ja gar nicht da stehen,
-                sondern nur in der Kürzung angelegt sind. Ist aber ein generelles Problem
-                bei Korrekturen, die Kürzungen betreffen: was nimmt man in ein tag auf?
-                das Gemeinte? nur den tatsächlichen Zeichenbestand? -->
+                <expan><mod>pre</mod>cipimus</expan>
                 ut iustitiam suam et <sic>hononor<unclear>e</unclear><gap unit="chars" quantity="1"
                         /><note type="editorial">Wohl <mentioned>hononorem</mentioned>, aber nicht
                         mehr zu erkennen, da der Schluss des Wortes bei der Neubindung mit dem
@@ -961,7 +986,7 @@
                     >XII</seg> . </ab>
             <ab type="text" xml:id="vatikan-bav-reg-lat-980-14v-10" corresp="BK.194_12"><seg
                     type="initial">Q</seg>uod<mod>s</mod>i de his statuti<add>s</add> adque
-                consentiis aliquid casu quolibet uel ignorantię quod non obtamus <sic>inrutum</sic>
+                consentiis aliquid casu quolibet uel ignorantię quod non obtamus inru<unclear>tu</unclear>m
                     f<gap unit="chars" quantity="5"/><note type="editorial">Nach BK
                         <mentioned>fuerit</mentioned>, was aber nicht zu erkennen ist, da der
                     Schluss des Wortes bei der Neubindung mit dem Falzstreifen überklebt
@@ -972,13 +997,11 @@
             <ab type="meta-text" xml:id="vatikan-bav-reg-lat-980-14v-11"><seg type="num" n="13">XIII
                 </seg></ab>
             <ab type="text" xml:id="vatikan-bav-reg-lat-980-14v-12" corresp="BK.194_13"><seg
-                    type="initial">H</seg>ęc
-                <!-- bm: ein Fleck über dem H; evtl. etwas Übergeschriebenes, 
-                das wieder getilgt wurde? - sk: Neuer Scan hilft nicht viel; Tintenfarbe wirkt 
-                gleich bzw. sehr ähnlich, mehr aber nicht zu erkennen.  -->autem
-                omnia ita disposuimus adque eo ordine adfirmare decreuimus et quamdiu diuina <!-- DT: Muss Dativ sein, aber ae erkenne ich nicht. Oder folgt da was Schwaches nach -a? 
+                    type="initial">H</seg>ęc autem
+                omnia ita disposuimus adque eo ordine adfirmare decreuimus et quamdiu diuina <!-- DT: Muss 
+                    Dativ sein, aber ae erkenne ich nicht. Oder folgt da was Schwaches nach -a? 
                 sk: kann danach nichts erkennen; das a ist schon nicht ganz deutlich, kann aber 
-                eigentlich nicht ein e (diuine) sein -->
+                eigentlich kein e (diuine) sein -->
                 <lb/>maiestati placuerit hanc corporalem nos hagere uitam potestas nostra sit super
                 a deo conserua<lb break="no"/>tum regnum adque <choice>
                     <abbr>imprm</abbr>
