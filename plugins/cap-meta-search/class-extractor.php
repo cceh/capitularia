@@ -61,6 +61,24 @@ class Extractor
     }
 
     /**
+     * Extract the Mordek page number.
+     *
+     * @param string $in The full tei:bibl entry.
+     *
+     * @return string The page numbers: "42-69".
+     *
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
+
+    private function mordek_page ($in)
+    {
+        if (preg_match ('/S\.\s*(\d+(-\d+)?)/i', $in, $matches)) {
+            return $matches[1];
+        }
+        return null;
+    }
+
+    /**
      * Get geonames.org place names hierarchy from id.
      *
      * @param string $in One or more URLs to geoname services separated by ' '.
@@ -190,6 +208,13 @@ class Extractor
             $xpath->query ('//tei:head/tei:origPlace/@ref'),
             array ($this, 'geonames')
         );
+        $this->meta (
+            $post_id,
+            'mordek-1995-pages',
+            $xpath->query ('//tei:bibl[@corresp="#Mordek_1995"]'),
+            array ($this, 'mordek_page')
+        );
+
 
         // get tei:changes
 

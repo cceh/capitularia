@@ -530,18 +530,20 @@ function on_shortcode_cap_downloads ($atts, $dummy_content)
         array (
             'th1' => '[:de]Handschrift[:en]Manuscript[:]',
             'th2' => '[:de]XML-Dateien[:en]XML Files[:]',
-            'th3' => '[:de]Beschreibung (Mordek 1995)[:en]Description (Mordek 1995)[:]',
+            'th3' => '[:de]Beschreibung (Mordek 1995)[:en]Description (Mordek 1995)[:]',
         ),
         $atts,
         'downloads'
     );
 
-    $publish = current_user_can ('read_private_pages') ? '' : "AND p.post_status = 'publish'";
+    $publish = current_user_can ('read_private_pages') ? '1' : "p.post_status = 'publish'";
 
     $sql = $wpdb->prepare (
-        "SELECT p.ID as post_id, p.post_title, p.post_status, pm.meta_value as xml_id " .
-        "FROM wp_posts p, wp_postmeta as pm " .
-        "WHERE p.ID = pm.post_id AND pm.meta_key = 'tei-xml-id' $publish" .
+        "SELECT p.ID as post_id, p.post_title, p.post_status, pm.meta_value as xml_id, pm2.meta_value as mordek_page " .
+        "FROM wp_posts p " .
+        "JOIN      wp_postmeta pm  ON (p.ID = pm.post_id  AND pm.meta_key  = 'tei-xml-id') " .
+        "LEFT JOIN wp_postmeta pm2 ON (p.ID = pm2.post_id AND pm2.meta_key = 'mordek-1995-pages') " .
+        "WHERE $publish " .
         "ORDER BY xml_id",
         array ($cutoff)
     );
@@ -593,7 +595,13 @@ function on_shortcode_cap_downloads ($atts, $dummy_content)
         $res[] = "<tr class='mss-status-post-status-{$row->post_status}'>";
         $res[] = "  <td class='title'><a href='/mss/{$row->xml_id}'>{$row->post_title}</a></td>";
         $res[] = "  <td class='xml-download'>(<a href='/cap/publ/mss/{$row->xml_id}.xml' target='_blank'>xml</a>)</td>";
-        $res[] = "  <td class='pdf-download'>(<a href='/cap/publ/resources/Mordek_pdf/{$row->xml_id}.pdf' target='_blank'>pdf</a>)</td>";
+        $pdf_page = intval ($row->mordek_page);
+        if ($pdf_page > 0) {
+            $pdf_page += 45; // 45 == pdf offset
+            $res[] = "  <td class='pdf-download'>(<a href='/cap/publ/resources/Mordek_Bibliotheca_1995.pdf#page={$pdf_page}' target='_blank'>pdf S. {$row->mordek_page}</a>)</td>";
+        } else {
+            $res[] = "  <td class='pdf-download'></td>";
+        }
         $res[] = "</tr>";
     }
     $res[] = "</tbody>";
