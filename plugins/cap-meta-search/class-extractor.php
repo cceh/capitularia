@@ -191,6 +191,16 @@ class Extractor
             array ($this, 'geonames')
         );
 
+        // get tei:changes
+
+        delete_post_meta ($post_id, 'change');
+        foreach ($xpath->query ('//tei:revisionDesc/tei:change') as $node) {
+            $when = $node->attributes->getNamedItem ('when')->nodeValue;
+            $who  = $node->attributes->getNamedItem ('who')->nodeValue;
+            $what = trim (preg_replace ('/\s+/', ' ', $node->nodeValue));
+            add_post_meta ($post_id, 'change', "$when/$who/$what");
+        }
+
         $errors = libxml_get_errors ();
         libxml_clear_errors ();
 

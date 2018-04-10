@@ -689,7 +689,13 @@ div.content-col {
         }
     }
 
-    div.capit-list-xsl, div.mss-table-xsl, div.mss-capit-xsl, div.mss-idno-xsl, div.mss-key-xsl {
+    div.capit-list-xsl,
+    div.mss-table-xsl,
+    div.mss-capit-xsl,
+    div.mss-idno-xsl,
+    div.mss-key-xsl,
+    div.mss-changes,
+    div.resources-downloads {
         font-size: 90%;
         table {
             table-layout: fixed;
@@ -768,6 +774,24 @@ div.content-col {
             &.siglum {
                 width: 15%;
             }
+        }
+    }
+
+    div.mss-changes {
+        table {
+            table-layout: auto;
+            td.date {
+                width: 15%;
+            }
+            td.what {
+                width: 84%;
+            }
+        }
+    }
+
+    div.resources-downloads {
+        table {
+            table-layout: auto;
         }
     }
 

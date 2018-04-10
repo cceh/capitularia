@@ -117,3 +117,9 @@ add_shortcode ('current_date',     'cceh\capitularia\theme\on_shortcode_current_
 
 /* output a short description of how to cite the article */
 add_shortcode ('cite_as',          'cceh\capitularia\theme\on_shortcode_cite_as');
+
+/* output a table of the tei:change elements in all mss. */
+add_shortcode ('cap_changes',      'cceh\capitularia\theme\on_shortcode_cap_changes');
+
+/* output a table of downloadable TEI files */
+add_shortcode ('cap_downloads',    'cceh\capitularia\theme\on_shortcode_cap_downloads');

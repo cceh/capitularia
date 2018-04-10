@@ -409,3 +409,196 @@ function on_shortcode_cite_as ($atts, $dummy_content)
 EOF;
     return $res;
 }
+
+/**
+ * The changes shortcode.
+ *
+ * This shortcode outputs a table of the tei:change entries in all the mss.
+ *
+ * @param array  $atts          The shortocde attributes.
+ * @param string $dummy_content The shortcode content. (empty)
+ *
+ * @return string A HTML table.
+ */
+
+function on_shortcode_cap_changes ($atts, $dummy_content)
+{
+    global $wpdb;
+
+    $atts = shortcode_atts (
+        array (
+            'cutoff' => '1970-01-01',
+            'prefix' => 'A',
+        ),
+        $atts,
+        'changes'
+    );
+
+    $cutoff = date ('Y-m-d', strtotime ($atts['cutoff']));
+    $prefix = htmlspecialchars ($atts['prefix']);
+    $publish = current_user_can ('read_private_pages') ? '' : "AND p.post_status = 'publish'";
+    $date_format = __ ('Y-m-d', 'capitularia'); // ISO 8601
+
+    $sql = $wpdb->prepare (
+        "SELECT p.ID as post_id, p.post_title, p.post_status, pm2.meta_value as xml_id, pm.meta_value as cchange " .
+        "FROM wp_posts p, wp_postmeta pm, wp_postmeta as pm2 " .
+        "WHERE p.ID = pm.post_id  AND pm.meta_key  = 'change' AND pm.meta_value >= %s $publish " .
+        "  AND p.ID = pm2.post_id AND pm2.meta_key = 'tei-xml-id'" .
+        "ORDER BY xml_id, cchange",
+        array ($cutoff)
+    );
+    $old_post_id = -1;
+    $old_alpha = '_';
+    $rows = $wpdb->get_results ($sql);
+
+    // Add a key to all objects in the array that allows for sensible
+    // sorting of numeric substrings.
+    foreach ($rows as $row) {
+        $row->key = preg_replace_callback (
+            '|\d+|',
+            function ($match) {
+                return 'zz' . strval (strlen ($match[0])) . $match[0];
+            },
+            $row->xml_id
+        ) . $row->cchange;
+    }
+
+    // Sort the array according to key.
+    usort (
+        $rows,
+        function ($row1, $row2) {
+            return strcoll ($row1->key, $row2->key);
+        }
+    );
+    $res = [];
+
+    $res[] = "<div class='mss-changes'>";
+    if (count ($rows)) {
+        $res[] = "<table>";
+        foreach ($rows as $row) {
+            if ($old_post_id != $row->post_id) {
+                if ($old_alpha != $row->post_title[0]) {
+                    $id = $row->post_title[0];
+                    $res[] = "<tr>";
+                    $res[] = "  <th id='{$prefix}{$id}' colspan='2'>$id</th>";
+                    $res[] = "<tr>";
+                    $old_alpha = $id;
+                }
+                $res[] = "<tr>";
+                $res[] = "  <td colspan='2' class='mss-status-post-status-{$row->post_status}'>";
+                $res[] = "<a href='/mss/{$row->xml_id}'>{$row->post_title}</a>";
+                $res[] = "</td>";
+                $res[] = "</tr>";
+                $old_post_id = $row->post_id;
+            };
+            list ($date, $who, $what) = explode ('/', $row->cchange);
+            $date = date_i18n ($date_format, strtotime ($date));
+            if (!empty ($what)) {
+                $res[] = "<tr>";
+                $res[] = "  <td class='date'>{$date}</td>";
+                $res[] = "  <td class='what'>{$what}</td>";
+                $res[] = "</tr>";
+            }
+        }
+        $res[] = "</table>";
+    } else {
+        $res[] = '<p>';
+        $res[] = __ ('None', 'capitularia');
+        $res[] = "</p>";
+    }
+    $res[] = "</div>";
+
+    return join ("\n", $res);
+}
+
+/**
+ * The downloads shortcode.
+ *
+ * This shortcode outputs a table of the downloadable xml files.
+ *
+ * @param array  $atts          The shortocde attributes.
+ * @param string $dummy_content The shortcode content. (empty)
+ *
+ * @return string A HTML table.
+ */
+
+function on_shortcode_cap_downloads ($atts, $dummy_content)
+{
+    global $wpdb;
+
+    $atts = shortcode_atts (
+        array (
+            'th1' => '[:de]Handschrift[:en]Manuscript[:]',
+            'th2' => '[:de]XML-Dateien[:en]XML Files[:]',
+            'th3' => '[:de]Beschreibung (Mordek 1995)[:en]Description (Mordek 1995)[:]',
+        ),
+        $atts,
+        'downloads'
+    );
+
+    $publish = current_user_can ('read_private_pages') ? '' : "AND p.post_status = 'publish'";
+
+    $sql = $wpdb->prepare (
+        "SELECT p.ID as post_id, p.post_title, p.post_status, pm.meta_value as xml_id " .
+        "FROM wp_posts p, wp_postmeta as pm " .
+        "WHERE p.ID = pm.post_id AND pm.meta_key = 'tei-xml-id' $publish" .
+        "ORDER BY xml_id",
+        array ($cutoff)
+    );
+    $old_alpha = '_';
+    $rows = $wpdb->get_results ($sql);
+
+    // Add a key to all objects in the array that allows for sensible
+    // sorting of numeric substrings.
+    foreach ($rows as $row) {
+        $row->key = preg_replace_callback (
+            '|\d+|',
+            function ($match) {
+                return 'zz' . strval (strlen ($match[0])) . $match[0];
+            },
+            $row->xml_id
+        );
+    }
+
+    // Sort the array according to key.
+    usort (
+        $rows,
+        function ($row1, $row2) {
+            return strcoll ($row1->key, $row2->key);
+        }
+    );
+    $res = [];
+
+    $res[] = "<div class='resources-downloads'>";
+    $res[] = "<table>";
+    $res[] = "<thead>";
+        $res[] = "<tr>";
+        $res[] = "  <th class='title'>{$atts['th1']}</th>";
+        $res[] = "  <th class='xml-download'>{$atts['th2']}</th>";
+        $res[] = "  <th class='pdf-download'>{$atts['th3']}</th>";
+        $res[] = "</tr>";
+    $res[] = "</thead>";
+    $res[] = "</tbody>";
+    foreach ($rows as $row) {
+        if ($row->xml_id[0] === '_') { // BK Superstruktur
+            continue;
+        }
+        if ($old_alpha != $row->post_title[0]) {
+            $id = $row->post_title[0];
+            $res[] = "<tr>";
+            $res[] = "  <th id='{$prefix}{$id}' colspan='3'>$id</th>";
+            $res[] = "<tr>";
+            $old_alpha = $id;
+        }
+        $res[] = "<tr class='mss-status-post-status-{$row->post_status}'>";
+        $res[] = "  <td class='title'><a href='/mss/{$row->xml_id}'>{$row->post_title}</a></td>";
+        $res[] = "  <td class='xml-download'>(<a href='/cap/publ/mss/{$row->xml_id}.xml' target='_blank'>xml</a>)</td>";
+        $res[] = "  <td class='pdf-download'>(<a href='/cap/publ/resources/Mordek_pdf/{$row->xml_id}.pdf' target='_blank'>pdf</a>)</td>";
+        $res[] = "</tr>";
+    }
+    $res[] = "</tbody>";
+    $res[] = "</table>";
+    $res[] = "</div>";
+
+    return join ("\n", $res);
+}

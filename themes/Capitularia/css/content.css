@@ -833,14 +833,18 @@ div.content-col div.capit-list-xsl,
 div.content-col div.mss-table-xsl,
 div.content-col div.mss-capit-xsl,
 div.content-col div.mss-idno-xsl,
-div.content-col div.mss-key-xsl {
+div.content-col div.mss-key-xsl,
+div.content-col div.mss-changes,
+div.content-col div.resources-downloads {
   font-size: 90%;
 }
 div.content-col div.capit-list-xsl table,
 div.content-col div.mss-table-xsl table,
 div.content-col div.mss-capit-xsl table,
 div.content-col div.mss-idno-xsl table,
-div.content-col div.mss-key-xsl table {
+div.content-col div.mss-key-xsl table,
+div.content-col div.mss-changes table,
+div.content-col div.resources-downloads table {
   table-layout: fixed;
   font-size: 90%;
 }
@@ -848,14 +852,18 @@ div.content-col div.capit-list-xsl table td,
 div.content-col div.mss-table-xsl table td,
 div.content-col div.mss-capit-xsl table td,
 div.content-col div.mss-idno-xsl table td,
-div.content-col div.mss-key-xsl table td {
+div.content-col div.mss-key-xsl table td,
+div.content-col div.mss-changes table td,
+div.content-col div.resources-downloads table td {
   padding: 4px 8px;
 }
 div.content-col div.capit-list-xsl table th,
 div.content-col div.mss-table-xsl table th,
 div.content-col div.mss-capit-xsl table th,
 div.content-col div.mss-idno-xsl table th,
-div.content-col div.mss-key-xsl table th {
+div.content-col div.mss-key-xsl table th,
+div.content-col div.mss-changes table th,
+div.content-col div.resources-downloads table th {
   padding: 16px 8px;
   border-bottom: solid 1px #1a171b;
 }
@@ -932,6 +940,18 @@ div.content-col div.mss-idno-xsl span.siglum a[href]:hover {
 div.content-col div.mss-key-xsl th.siglum,
 div.content-col div.mss-key-xsl td.siglum {
   width: 15%;
+}
+div.content-col div.mss-changes table {
+  table-layout: auto;
+}
+div.content-col div.mss-changes table td.date {
+  width: 15%;
+}
+div.content-col div.mss-changes table td.what {
+  width: 84%;
+}
+div.content-col div.resources-downloads table {
+  table-layout: auto;
 }
 div.content-col .bib-short-title {
   font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
@@ -1072,6 +1092,7 @@ div.annotation-content span.tei-gap {
 }
 div.content-col div.tei-gap-editorial,
 div.annotation-content div.tei-gap-editorial {
+  margin: 1em 0;
   font-weight: bold;
 }
 div.content-col div.tei-gap-editorial span.tei-gap-editorial-inner,
