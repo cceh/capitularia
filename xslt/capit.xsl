@@ -37,6 +37,14 @@ Output URL: /capit/ldf/bk-nr-186/
 
       <xsl:call-template name="hr"/>
 
+      <xsl:if test="tei:text/tei:body//tei:ref[@subtype='com']">
+        <div id="com">
+          <h5>[:de]Artikel[:en]Articles[:]</h5>
+          <!-- Link zum Artikel: Kapitular des Monats -->
+          <xsl:apply-templates select="tei:text/tei:body//tei:ref[@subtype='com']"/>
+        </div>
+      </xsl:if>
+
       <div id="download">
         <h5>[:de]Download[:en]Downloads[:]</h5>
         <ul class="downloads">
@@ -55,6 +63,7 @@ Output URL: /capit/ldf/bk-nr-186/
           </li>
         </ul>
       </div>
+
     </div>
   </xsl:template>
 
