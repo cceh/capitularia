@@ -331,7 +331,7 @@
       </xsl:when>
 
       <xsl:when test="@subtype='mom'">
-        <a class="internal" href="{$blog}{@target}">
+        <a class="internal mom" href="{$blog}{@target}">
           <xsl:text>
             [:de]Zum Artikel in der Rubrik "Handschrift des Monats"
             [:en]To the "Manuscript of the Month" blogpost
@@ -341,7 +341,7 @@
       </xsl:when>
 
       <xsl:when test="@subtype='com'">
-        <a class="internal" href="{$blog}{@target}">
+        <a class="internal com" href="{$blog}{@target}">
           <xsl:text>
             [:de]Zum Artikel in der Rubrik "Kapitular des Monats"
             [:en]To the "Capitulary of the Month" blogpost

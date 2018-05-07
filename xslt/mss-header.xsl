@@ -106,6 +106,8 @@
         <xsl:apply-templates select=".//tei:msItem/tei:note[@type='annotation']"/>
         <!-- Handschrift des Monats -->
         <xsl:apply-templates select=".//tei:ref[@subtype='mom']"/>
+        <!-- Kapitular des Monats -->
+        <xsl:apply-templates select=".//tei:ref[@subtype='com']"/>
       </div>
 
       <xsl:call-template name="page-break"/>
