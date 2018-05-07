@@ -35,15 +35,33 @@ Output URL: /capit/ldf/bk-nr-186/
       <xsl:apply-templates select="tei:text/tei:body/tei:div/tei:listBibl[@type='literature']"/>
       <xsl:apply-templates select="tei:text/tei:body/tei:div/tei:listBibl[@type='translation']"/>
 
-      <xsl:call-template name="hr"/>
-
       <xsl:if test="tei:text/tei:body//tei:ref[@subtype='com']">
         <div id="com">
-          <h5>[:de]Artikel[:en]Articles[:]</h5>
           <!-- Link zum Artikel: Kapitular des Monats -->
           <xsl:apply-templates select="tei:text/tei:body//tei:ref[@subtype='com']"/>
         </div>
       </xsl:if>
+
+      <xsl:call-template name="hr"/>
+
+      <xsl:variable name="title">
+        <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']"/>
+      </xsl:variable>
+
+      <div id="citation">
+        <h5>[:de]Empfohlene Zitierweise[:en]How to cite[:]</h5>
+        <p>
+          <xsl:value-of select="normalize-space ($title)"/>
+          <xsl:text>, [:de]in: Capitularia. Edition der fränkischen Herrschererlasse, bearb. von
+          Karl Ubl und Mitarb., Köln 2014 ff.[:en]in: Capitularia. Edition of the Frankish
+          Capitularies, ed. by Karl Ubl and collaborators, Cologne 2014 ff.[:] </xsl:text>
+          <!-- http://capitularia.uni-koeln.de/capit/ldf/bk-nr-182/ -->
+          <xsl:value-of select="concat ('URL: ', $capit, @corresp, '/')"/>
+          <xsl:text> [:de](abgerufen am [current_date])[:en](accessed on [current_date])[:]</xsl:text>
+        </p>
+      </div>
+
+      <xsl:call-template name="hr"/>
 
       <div id="download">
         <h5>[:de]Download[:en]Downloads[:]</h5>
