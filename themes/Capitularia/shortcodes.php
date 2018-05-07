@@ -538,14 +538,21 @@ function on_shortcode_cap_downloads ($atts, $dummy_content)
 
     $publish = current_user_can ('read_private_pages') ? '1' : "p.post_status = 'publish'";
 
+    // Get the /mss page id.
     $sql = $wpdb->prepare (
-        "SELECT p.ID as post_id, p.post_title, p.post_status, pm.meta_value as xml_id, pm2.meta_value as mordek_page " .
+        "SELECT id FROM wp_posts WHERE post_name = 'mss' AND post_parent = 0;",
+        array ()
+    );
+    $mss_page_id = $wpdb->get_var ($sql);
+
+    $sql = $wpdb->prepare (
+        "SELECT DISTINCT p.post_title, p.post_status, pm.meta_value as xml_id, pm2.meta_value as mordek_page " .
         "FROM wp_posts p " .
         "JOIN      wp_postmeta pm  ON (p.ID = pm.post_id  AND pm.meta_key  = 'tei-xml-id') " .
         "LEFT JOIN wp_postmeta pm2 ON (p.ID = pm2.post_id AND pm2.meta_key = 'mordek-1995-pages') " .
-        "WHERE $publish " .
+        "WHERE p.post_parent = %d AND $publish " .
         "ORDER BY xml_id",
-        array ($cutoff)
+        array ($mss_page_id)
     );
     $old_alpha = '_';
     $rows = $wpdb->get_results ($sql);
