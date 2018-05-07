@@ -483,7 +483,8 @@ footnotes will be joined to the preceding word.
       <xsl:text>[</xsl:text>
       <xsl:choose>
         <xsl:when test="ancestor::tei:del">
-          <xsl:value-of select="str:padding (number (@quantity) * 2 + 1, '&#x2020;')"/>
+          <!-- &#x2009; = 1/5 em -->
+          <xsl:value-of select="str:padding (number (@quantity) * 2 + 1, '&#x2009;†')"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="str:padding (number (@quantity) * 2 + 1, '&#x2009;.')"/>
