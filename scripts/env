@@ -1,0 +1,11 @@
+#!/bin/bash
+
+PUBL=~/uni/capitularia/http/docs/cap/publ/mss/*.xml
+INARBEIT=~/uni/capitularia/http/docs/cap/intern/InArbeit/*/*.xml
+
+sel() {
+    xmlstarlet sel -N tei='http://www.tei-c.org/ns/1.0' "$@"
+}
+ed() {
+    xmlstarlet ed --pf -N tei='http://www.tei-c.org/ns/1.0' "$@"
+}

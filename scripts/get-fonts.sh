@@ -3,12 +3,7 @@
 # Downloads the open-sans ttf bundle and generates the webfonts.
 #
 # prerequisites:
-#   sudo apt-get install fontforge ttfautohint lcdf-typetools
-#   mkdir newdir; cd newdir
-#   git clone --recursive https://github.com/google/woff2.git
-#   cd woff2
-#   make clean all
-#   cp woff2_compress <DIR_IN_PATH>
+#   sudo apt-get install fontforge ttfautohint lcdf-typetools woff2
 #
 
 FONTDIR=../themes/Capitularia/webfonts
