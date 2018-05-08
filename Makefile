@@ -22,7 +22,7 @@ TRANSFORM := $(AFS)/http/docs/cap/publ/transform
 
 WPCONTENTLOCAL := $(LOCALFS)/wp-content
 
-.PHONY: lint phplint jslint csslint
+.PHONY: lint phplint jslint csslint docs
 
 %.css : %.less
 	lessc --include-path=themes/Capitularia/css:themes/Capitularia/bower_components/bootstrap/less --autoprefix="last 2 versions" --source-map $? $@
@@ -32,6 +32,10 @@ all: lint
 lint: phplint csslint jslint
 
 doc: phpdoc phpmd phpmetrics sami
+
+docs:
+	-rm docs/_images/*
+	cd doc_src; make html; cd ..
 
 csslint: css
 
