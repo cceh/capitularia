@@ -35,6 +35,8 @@ Output URL: /capit/ldf/bk-nr-186/
       <xsl:apply-templates select="tei:text/tei:body/tei:div/tei:listBibl[@type='literature']"/>
       <xsl:apply-templates select="tei:text/tei:body/tei:div/tei:listBibl[@type='translation']"/>
 
+      <xsl:call-template name="hr"/>
+
       <xsl:if test="tei:text/tei:body//tei:ref[@subtype='com']">
         <div id="com">
           <!-- Link zum Artikel: Kapitular des Monats -->
