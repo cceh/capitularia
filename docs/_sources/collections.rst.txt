@@ -83,8 +83,19 @@ which are here represented by their document vectors :math:`\vec{V}(d_1)` and
 where :math:`\cdot` represents the :term:`dot product`.
 
 The cosine similarities of all pairs of documents are entered into a similarity
-(affinity) matrix.  This matrix is used as the input to the clustering
-algorithms. (scikit-learn, Gephi)
+(affinity) matrix.  This matrix is used as the input to the graph layout software.
+
+.. raw:: html
+
+   <object data="_images/ms-graph.svg" type="image/svg+xml" align="center" style="width: 100%"></object>
+
+   <p align="center">The document affinity graph (Gephi Force Atlas).</p>
 
 This algorithm is also used to get the similarity between capitularies, instead
 of documents, by switching capitularies with documents.
+
+.. raw:: html
+
+   <object data="_images/bk-graph.svg" type="image/svg+xml" align="center" style="width: 100%"></object>
+
+   <p align="center">The capitulary affinity graph (Gephi Force Atlas).</p>

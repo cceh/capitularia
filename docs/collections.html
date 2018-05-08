@@ -201,11 +201,14 @@ which are here represented by their document vectors <span class="math">\(\vec{V
 \[\mbox{sim}(d_1,d_2)= \frac{\vec{V}(d_1)\cdot \vec{V}(d_2)}{\vert\vec{V}(d_1)\vert \vert\vec{V}(d_2)\vert}\]</div>
 <p>where <span class="math">\(\cdot\)</span> represents the <span class="xref std std-term">dot product</span>.</p>
 <p>The cosine similarities of all pairs of documents are entered into a similarity
-(affinity) matrix.  This matrix is used as the input to the clustering
-algorithms. (scikit-learn, Gephi)</p>
-<p>This algorithm is also used to get the similarity between capitularies, instead
+(affinity) matrix.  This matrix is used as the input to the graph layout software.</p>
+<object data="_images/ms-graph.svg" type="image/svg+xml" align="center" style="width: 100%"></object>
+
+<p align="center">The document affinity graph (Gephi Force Atlas).</p><p>This algorithm is also used to get the similarity between capitularies, instead
 of documents, by switching capitularies with documents.</p>
-</div>
+<object data="_images/bk-graph.svg" type="image/svg+xml" align="center" style="width: 100%"></object>
+
+<p align="center">The capitulary affinity graph (Gephi Force Atlas).</p></div>
 </div>
 
 

@@ -35,6 +35,7 @@ doc: phpdoc phpmd phpmetrics sami
 
 docs:
 	-rm docs/_images/*
+	cp doc_src/_images/*svg docs/_images/
 	cd doc_src; make html; cd ..
 
 csslint: css
