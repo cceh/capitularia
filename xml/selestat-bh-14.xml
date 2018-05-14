@@ -205,7 +205,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         <p>Zusätze der „Reimser Gruppe“:
                         </p>
                      </msItem>
-                     <msItem n="4" corresp="BK.104">
+                     <msItem n="4" corresp="BK.167">
                         <p>
                            <locus>-- 88r</locus> (Capitulatio, nach Ansegis 2, 32) <hi rend="italic"
                               >XXXIII</hi> und <hi rend="italic">XXXIIII</hi> - Kapitelzahlen und
@@ -238,7 +238,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                            Verweiszeichen, kein Text
                         </p>
                      </msItem>
-                     <msItem n="7" corresp="BK.104">
+                     <msItem n="7" corresp="BK.167">
                         <p>
                            <locus>-- 114r</locus> (Capitulatio, nach Ansegis 4, 69) <hi
                               rend="italic">LXXI</hi> - Kapitelzahl und Rubrik <hi rend="italic">De
@@ -570,9 +570,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      <msItem n="30" corresp="BK.138 BK.140">
                         <p>
                            <locus>145v-146v</locus>
-                           <hi rend="italic">I-VIII</hi> - <title>Capitula per se scribenda</title>
+                           <hi rend="italic">I-VIII</hi> - <title corresp="BK.138">Capitula per se scribenda</title>
                            (a. 818/819), cc. 1-7 (Fragment), wie in einigen anderen Hss. mit
-                           vorangestelltem Zusatzkapitel (Auszug aus c. 6 des <title>Capitulare
+                           vorangestelltem Zusatzkapitel (Auszug aus c. 6 des <title corresp="BK.140">Capitulare
                               ecclesiasticum</title> a. 818/819, mit Inskription): <hi rend="italic"
                               >ITEM ALIA CAPITULA. DE SERUIS AD SACROS ORDINES NON MITTENDIS. Vt
                               nullus episcoporum seruos ad sacros ordines - DE FORESTIBUS NOUITER
@@ -905,14 +905,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   </list>
                </item>
                <item n="5"><ptr target="#selestat-bh-14-112v-3" type="internal"/>[Capitulatio:]
-                  INCIPIUNT CAPITVLA<list>
+                  INCIPIUNT CAPITVLA<!--<list>
                      <item n="5.25">
                         <ptr type="internal" target="#selestat-bh-14-113r-11"/>XXV qualiter de statu
                         suo pulsatus ... </item>
-                     <!--        sk: ausnahmsweise hier den Wortlaut einer Capitulatio-Rubrik ins Inhaltsverzeichnis aufgenommen,
-                     weil es der einzige Textbestandteil von BK 156 ist, der in der gesamten Hs. vorhanden
-                     ist  -->
-                  </list>
+                  sk: ausnahmsweise hier den Wortlaut einer Capitulatio-Rubrik ins Inhaltsverzeichnis aufgenommen,
+                     weil es der einzige Textbestandteil von BK 156 ist, der in der gesamten Hs. vorhanden ist  
+                  </list>-->
                </item>
                <item n="10"><ptr target="#selestat-bh-14-127r-7" type="internal"/>ANNO SEXTO DECIMO
                   REGNANTE DOMINO NOSTRO LUDOUUICO <list>
@@ -932,7 +931,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         <ptr target="#selestat-bh-14-127v-13" type="internal"/>VII</item>
                   </list>
                </item>
-               <item n="11"><ptr target="#selestat-bh-14-128r-1" type="internal"/>[Capitulatio]
+               <item n="11"><ptr target="#selestat-bh-14-128r-1" type="internal"/>[Capitulatio ohne Rubrik]
                   <!--                  <list>
                      <item n="11.1"><ptr target="#selestat-bh-14-128r-1" type="internal"/>Deo qui
                         aliena patria de qualibet causa ...</item>
@@ -1721,9 +1720,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             eiusdem carte auc<lb break="no"/>torem <del>h</del> legi<add>ti</add>mum habere non
             potuerit . domi<lb break="no"/>no serui ipsam cartam falsare liceat . <lb/>
          </ab>
+         
          <cb n="112v"/>
          <lb n="10"/>
-         <milestone xml:id="selestat-bh-14-112v-capitulatio" spanTo="#capitulatio-finis"/>
+         
+         <milestone xml:id="selestat-bh-14-112v-capitulatio" unit="capitulatio" spanTo="#capitulatio-finis"/>
+         
          <ab type="meta-text" xml:id="selestat-bh-14-112v-3" corresp="Ansegis.4_inscriptio_c">
             INCIPIUNT CAPITVLA .! <lb/>
          </ab>
@@ -1845,8 +1847,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             TJ: Ja, würde ich auch sagen, da die Zeile abgeschlossen wurde und die neue mit 
             einer Initiale/größeren Majuskel beginnt! DT: Alles bestens! -->
          </ab>
+         
          <milestone xml:id="selestat-bh-14-128r-capitulatio" unit="capitulatio"
-            spanTo="#capitulatio-finis_1"/>
+            spanTo="#capitulatio-finis_1"/>         
          <ab type="meta-text" xml:id="selestat-bh-14-128r-1" corresp="Ansegis.4_71_inscriptio_c">Deo
             qui aliena patria de qualibet causa fuerit interpellatus <lb/>
          </ab>
@@ -1859,7 +1862,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <ab type="meta-text" xml:id="selestat-bh-14-128r-4" corresp="Ansegis.4_74_inscriptio_c">De
             proprietate hominis que ab aliquid In bannum fuerit missa . <lb/></ab>
          <anchor xml:id="capitulatio-finis_1"/>
+         
          <milestone unit="capitulare" n="Ansegis.4,71-74"/>
+         
          <ab type="meta-text" xml:id="selestat-bh-14-128r-5" corresp="Ansegis.4_71_inscriptio">DEO
             QUI IN ALIENA PATRIA DE QUALIBET CAUSA FUERIT INTERPELLATUS <lb/><seg type="num" n="38"
                >XXXVIII</seg></ab>
