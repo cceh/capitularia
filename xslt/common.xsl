@@ -240,7 +240,8 @@
     <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
     <xsl:choose>
       <xsl:when test="$target">
-        <a class="external" href="{string ($target/prefix)}{@target}" target="_blank" title="{string ($target/caption)}">
+        <a class="external" href="{string ($target/prefix)}{@target}{string ($target/postfix)}"
+           target="_blank" title="{string ($target/caption)}">
           <xsl:apply-templates/>
         </a>
       </xsl:when>

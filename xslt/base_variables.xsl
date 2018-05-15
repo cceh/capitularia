@@ -68,6 +68,23 @@
   <xsl:variable name="trl"/>
 
   <xsl:variable name="tei-ref-external-targets">
+    <item key="Baluze">
+      <prefix></prefix>
+      <caption>[:de]Zur Edition von Baluze[:en]To Baluze's edition[:]</caption>
+      <alt>Zu Baluze</alt>
+    </item>
+    <item key="Baluze1">
+      <prefix>http://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10489967_</prefix>
+      <postfix>.html</postfix>
+      <caption>[:de]Zur Edition von Baluze[:en]To Baluze's edition[:]</caption>
+      <alt>Zu Baluze</alt>
+    </item>
+    <item key="Baluze2">
+      <prefix>http://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10489967_</prefix>
+      <postfix>.html</postfix>
+      <caption>[:de]Zur Edition von Baluze[:en]To Baluze's edition[:]</caption>
+      <alt>Zu Baluze</alt>
+    </item>
     <item key="BK1">
       <!-- Boretius-Krause, 1. Teil;
            hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
@@ -96,6 +113,12 @@
     <item key="Pertz2">
       <!-- Alte Capitularien-Edition von Pertz, 2. Teil -->
       <prefix>http://www.mgh.de/dmgh/resolving/MGH_LL_2_S._2_</prefix>
+      <caption>[:de]Zur Edition von Pertz (dMGH)[:en]To the edition by Pertz (dMGH)[:]</caption>
+      <alt>dMGH</alt>
+    </item>
+    <item key="Pertz3">
+      <!-- Alte Capitularien-Edition von Pertz, 3. Teil -->
+      <prefix>http://www.mgh.de/dmgh/resolving/MGH_LL_2_S._</prefix>
       <caption>[:de]Zur Edition von Pertz (dMGH)[:en]To the edition by Pertz (dMGH)[:]</caption>
       <alt>dMGH</alt>
     </item>
@@ -147,11 +170,6 @@
       <prefix></prefix>
       <caption>[:de]Zur Digizeitschriften-Webseite[:en]To the Digizeitschriften website[:]</caption>
       <alt>Zu DZ</alt>
-    </item>
-    <item key="Baluze">
-      <prefix></prefix>
-      <caption>[:de]Zur Edition von Baluze[:en]To Baluze's edition[:]</caption>
-      <alt>Zu Baluze</alt>
     </item>
     <item key="KatBNF">
       <prefix></prefix>
