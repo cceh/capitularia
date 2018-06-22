@@ -1,15 +1,20 @@
 # -*- encoding: utf-8 -*-
 
 import collections
+import itertools
 import math
+import operator
 import re
 
+import pandas as pd
+import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
+from sklearn.feature_extraction.text import TfidfTransformer
+
 import lxml
 from lxml import etree
-import numpy as np
 import sklearn.cluster
 from sklearn.metrics import pairwise_distances
 import networkx as nx
@@ -71,31 +76,21 @@ ALL_MSS = """
 """.split ()
 
 
-def group_capitular (text):
-    text = text.split (' ')[0]
-    text = text.split ('_')[0]
-    return text
-
-
-def group_chapter (text):
-    text = text.split (' ')[0]
-    return text
-
-
-def group_ms (text):
-    text = text.split ('_')[0]
-    return text
-
-
-def group_mspart (text):
-    return text
-
-
 def natural_sort_key (key):
     def f (mo):
         s = mo.group (0)
         return str (len (s)) + s
     return re.sub ('([0-9]+)', f, key)
+
+
+def natural_sort_bk (key):
+    m = re.match ('^BK.([0-9]+)(.*)$', key)
+    if m:
+        return m.group (1).zfill (3) + m.group (2)
+    m = re.match ('^Mordek.([0-9]+)(.*)$', key)
+    if m:
+        return 'M' + m.group (1).zfill (2) + m.group (2)
+    return key
 
 
 def classify (bk):
@@ -123,14 +118,20 @@ def classify (bk):
     return { 'label' : bk, 'class' : 'Unclassified' }
 
 
+def tf_idf (args, df):
+    transformer = TfidfTransformer (norm=None) # we normalize in to_similarity_matrix ()
+    return pd.DataFrame (transformer.fit_transform (df.values).toarray (),
+                         index = df.index, columns = df.columns)
+
+
 METRICS = ('cosine', 'jaccard')
 
-def to_similarity_matrix (M, metric):
-    D = sklearn.metrics.pairwise_distances (M, metric=metric)
+def to_similarity_matrix (df, metric):
+    D = sklearn.metrics.pairwise_distances (df.values, metric=metric)
     if metric == 'jaccard':
         D[np.isnan (D)] = 1.0
     D = 1.0 - D
-    return D
+    return pd.DataFrame (D, index = df.index, columns = df.index)
 
 
 def hierarchical_cluster (D, labels):
@@ -162,29 +163,36 @@ def colormap_sequence ():
     return plt.cm.jet
 
 
-def scan_xml_file (filename, group_ms, group_cap):
+def unique_justseen (iterable, key=None):
+    "List unique elements, preserving order. Remember only the element just seen."
+    # unique_justseen('AAAABBBCCDAABBB') --> A B C D A B
+    # unique_justseen('ABBCcAD', str.lower) --> A B C A D
+    return map (next, map (operator.itemgetter (1), itertools.groupby (iterable, key)))
+
+
+def scan_xml_file (filename, unit = 'ms', type_ = 'capitulare'):
+    """
+    Scan the TEI file.  Return dict of doc contents.
+
+    """
     parser = etree.XMLParser (recover = True, remove_blank_text = True)
     doc = etree.parse (filename, parser = parser)
 
     ms_seq = collections.defaultdict (list)
 
-    old_ms_id = None
-    old_cap_id = None
     ms_id = None
 
     for e in doc.xpath (
-            "//tei:milestone[@unit='ms' or @unit='msPart']|//tei:item[@type='capitulare' or @type='capitulum']",
+            "//tei:milestone[@unit='{unit}']|//tei:item[@type='{type_}']"
+            .format (unit = unit, type_ = type_),
             namespaces = NAMESPACES):
         if e.tag == ('{%s}milestone' % NAMESPACES['tei']):
-            ms_id = group_ms (e.get ('n'))
-            if old_ms_id != ms_id:
-                old_cap_id = None
-                old_ms_id = ms_id
+            ms_id = e.get ('n')
         else:
-            cap_id = group_cap (e.get ('corresp') or e.text)
-            if old_cap_id != cap_id:
-                ms_seq[ms_id].append (cap_id)
-                old_cap_id = cap_id
+            ms_seq[ms_id] += (e.get ('corresp') or e.text).split ()
+
+    for ms in ms_seq:
+        ms_seq[ms] = list (unique_justseen (ms_seq[ms]))
 
     return ms_seq
 
@@ -222,6 +230,10 @@ def heat_matrix (f, ax, m, caption,
     return im
 
 
+def heat_matrix_df (f, ax, df, caption, yticks, xticks, **kw):
+    return heat_matrix (f, ax, df.values, caption, df.index, yticks, df.columns, xticks, **kw)
+
+
 def colorbar (im, cmap, cbarlabel=None, cbarticks = None):
     cbar = im.axes.figure.colorbar (im, cmap=cmap, fraction=0.1, pad=0.05)
     if cbarticks:
@@ -232,7 +244,7 @@ def colorbar (im, cmap, cbarlabel=None, cbarticks = None):
     return cbar
 
 
-def label_matrix (im, labels, colors, **text_kw):
+def annotate (im, labels, colors, **text_kw):
     kw = dict (
         horizontalalignment="center",
         verticalalignment="center",
@@ -245,20 +257,18 @@ def label_matrix (im, labels, colors, **text_kw):
             im.axes.text (j, i, labels[i,j], color=colors[i,j], **kw)
 
 
-def process (args, tf_kd, bklabels, mslabels):
-
-    assert len (tf_kd.shape) == 2
-    assert len (bklabels) == tf_kd.shape[0]
-    assert len (mslabels) == tf_kd.shape[1]
-
+def process (args, df):
     np.set_printoptions (threshold=np.nan)
+    mslabels = df.index
+    bklabels = df.columns
+    tf_kd    = df.values
 
     # the number of capitulars
-    K = len (bklabels)
+    K = df.shape[0]
     print ('No. of Capitulars: %d (rows)' % K)
 
     # the number of documents
-    D = len (mslabels)
+    D = df.shape[1]
     print ('No. of Documents: %d (columns)' % D)
 
     # the number of documents that include capitular k
@@ -300,86 +310,4 @@ def process (args, tf_kd, bklabels, mslabels):
     Dms[metric] = to_similarity_matrix (tf_kd.T, metric)
     Dbk[metric] = to_similarity_matrix (tf_kd,   metric)
 
-    nlabels = 100
-    metric = 'cosine'
-
-    ###
-
-    f1, axes = plt.subplots (1, 1, figsize = PAPER)
-    m = tf_idf_kd.T.copy ()
-    vmin = m[m > 0].min ()
-    m[m==0] = -np.inf # make background white
-
-    im = heat_matrix (f1, axes, m,
-                      "Manuscripts (%s) × Capitulars" % args.sorted_by,
-                      mslabels, nlabels, bklabels, nlabels,
-                      cmap=colormap_idf (),
-                      vmin = vmin)
-    colorbar (im, cmap = colormap_idf (),
-              cbarlabel="Inverse Document Frequency of Capitular")
-
-    ###
-
-    f2, axes = plt.subplots (1, 1, figsize = PAPER)
-    im = heat_matrix (f2, axes, Dms[metric],
-                      "Manuscript (%s) Similarity" % args.sorted_by,
-                      mslabels, nlabels, mslabels, nlabels,
-                      cmap=colormap_affinity ())
-    colorbar (im, cmap = colormap_affinity (),
-              cbarlabel = 'Manuscript Similarity (cosine metric)')
-
-    labels = np.around (Dms[metric], decimals = 2)
-    colors = np.empty (Dms[metric].shape, object)
-    colors[:] = "black"
-    colors[Dms[metric] > 0.6] = "white"
-    label_matrix (im, labels, colors, fontweight = "bold")
-
-    ###
-
-    f3, axes = plt.subplots (1, 1, figsize = PAPER)
-    im = heat_matrix (f3, axes, Dbk[metric],
-                      "Capitularia Similarity",
-                      bklabels, nlabels, bklabels, nlabels,
-                      cmap=colormap_affinity ())
-    colorbar (im, cmap = colormap_affinity (),
-              cbarlabel = 'Capitularia Similarity (cosine metric)')
-
-
-    if args.output:
-        for f, fn in ((f1, 'idf'), (f2, 'ms_sim'), (f3, 'cap_sim')):
-            f.savefig (args.output % fn, dpi=300, transparent=False)
-
-    if args.plot:
-        plt.show ()
-
-    if args.hierarchical_cluster:
-        for i, metric in enumerate (METRICS):
-            hierarchical_cluster (Dms[metric], mslabels)
-
-        for i, metric in enumerate (METRICS):
-            hierarchical_cluster (Dbk[metric], bklabels)
-
-    if args.gephi:
-        # Gephi graph of capitulars
-        G = nx.Graph (Dbk['cosine'])
-        for n, label in enumerate (bklabels):
-            data = G.nodes[n]
-            data.update (classify (label))
-            data['size'] = 15 + math.sqrt (df_k[n,0] * 100)
-
-        G.remove_edges_from (nx.selfloop_edges (G))
-        G.remove_nodes_from (list (nx.isolates (G)))
-
-        nx.write_gexf (G, "/tmp/bk.gexf")
-
-        # Gephi graph of documents
-        G = nx.Graph (Dms['cosine'])
-        for n, label in enumerate (mslabels):
-            data = G.nodes[n]
-            data['label'] = label
-            data['size'] = 15 + math.sqrt (tf_d[0,n] * 100)
-
-        G.remove_edges_from (nx.selfloop_edges (G))
-        G.remove_nodes_from (list (nx.isolates (G)))
-
-        nx.write_gexf (G, "/tmp/ms.gexf")
+    return Dms, Dbk, tf_idf_kd, df_itf_kd
