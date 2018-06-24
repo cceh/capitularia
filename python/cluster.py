@@ -19,7 +19,6 @@ import sklearn.cluster
 from sklearn.metrics import pairwise_distances
 import networkx as nx
 
-
 NAMESPACES = {
     'tei' : 'http://www.tei-c.org/ns/1.0',
     'xml' : 'http://www.w3.org/XML/1998/namespace',
@@ -91,6 +90,138 @@ def natural_sort_bk (key):
     if m:
         return 'M' + m.group (1).zfill (2) + m.group (2)
     return key
+
+RE_BK = re.compile (r'^(BK|Mordek|Ansegis)?(?:[.\s]*)([0-9]*)(.*)$')
+
+BK_SERIES = [
+    ('1', 'BK',      ''),
+    ('2', 'Mordek',  'M'),
+    ('3', 'Ansegis', 'A'),
+]
+
+BK_TO_KEY     = dict ([(v[1], v[0]) for v in BK_SERIES])
+KEY_TO_SERIES = dict ([(v[0], v[1]) for v in BK_SERIES])
+KEY_TO_SHORT  = dict ([(v[0], v[2]) for v in BK_SERIES])
+
+def bk_to_key (bk):
+    """ Return a natural sorting key for BKs """
+    m = RE_BK.match (bk)
+    if m:
+        series, n, suffix = m.group (1, 2, 3)
+        series = series or 'BK'
+        res = BK_TO_KEY[series]
+        res += str (n or 0).zfill (3)
+        res += str (ord (suffix) - 96) if suffix else '0'
+        #if chapter:
+        #    res += str (chapter).zfill (2)
+        return res
+    raise ValueError (bk)
+
+
+def key_to_bk (key):
+    """ Inverse of bk_to_key """
+
+    series = KEY_TO_SERIES[key[0]]
+    bk = key[1:4]
+    suffix = int (key[4])
+    suffix = chr (suffix + 96) if suffix > 0 else ''
+
+    return series + str (int (bk)) + suffix.strip ()
+
+
+def key_to_short (key):
+    """ Return a short for of BK number """
+    series = KEY_TO_SHORT[key[0]]
+    bk = str (int (key[1:4]))
+    suffix = int (key[4])
+    suffix = chr (suffix + 96) if suffix > 0 else ''
+
+    return series + bk + suffix
+
+
+def key_to_df (key):
+    """ Return a BK in a form suited for dataframes """
+    series = KEY_TO_SHORT[key[0]]
+    bk = key[1:4]
+    suffix = int (key[4])
+    suffix = chr (suffix + 96) if suffix > 0 else ''
+
+    return series + bk + suffix
+
+
+def fix_include_bks (args, ms_seq):
+    """ Convert a range from user input into list of bks. """
+
+    bks = []
+
+    if args.include_bks:
+        last_bk = get_max_bk (ms_seq)
+        try:
+            for value in re.split (r'[\s,]+', args.include_bks):
+                r = value.split ('-')
+                if len (r) == 1:
+                    bks.append (bk_to_key (value))
+                elif len (r) == 2:
+                    r[0] = r[0] or 'BK.1'
+                    r[1] = r[1] or last_bk
+
+                    m1 = RE_BK.match (r[0])
+                    m2 = RE_BK.match (r[1])
+                    series1, n1, suffix1 = m1.group (1, 2, 3)
+                    series2, n2, suffix2 = m2.group (1, 2, 3)
+                    series1 = series1 or 'BK.'
+                    series2 = series2 or series1
+                    n1 = int (n1)
+                    n2 = int (n2)
+
+                    if series1 != series2:
+                        raise ValueError ("only one series allowed in range")
+                    if 0 >= n1 >= n2:
+                        raise ValueError ("start >= stop in range")
+                    if suffix1 or suffix2:
+                        raise ValueError ("no suffixes allowed in range")
+
+                    bks.extend ([bk_to_key (series1 + str (n)) for n in range (n1, n2 + 1)])
+                else:
+                    raise ValueError
+
+        except ValueError:
+            raise ValueError ("error in range parameter")
+
+    if args.include_mss:
+        bks_ms = set ()
+        for ms in args.include_mss.split (','):
+            bks_ms.update (map (cluster.bk_to_key (ms_seq[ms])))
+        bks.append (sorted (bks_ms))
+
+    if args.output:
+        include_bks = pretty_print (bks)
+        args.output = args.output.format (**{ 'include-bks': include_bks.replace (' ', '_') })
+
+    args.include_bks = bks
+
+
+def add_range_args (parser):
+    parser.add_argument ('--include-bks',
+                         help = "BK range to convert: eg. BK.20a BK.39-41 BK.201-")
+    parser.add_argument ('--include-mss',
+                         help = "Only Capitulars from Mss. in this list (eg. st-gallen-sb-733,...)")
+
+
+def pretty_print (bks):
+    """ Return list of BKs as pretty string. """
+
+    result = []
+    for dummy_k, group in itertools.groupby (enumerate (bks), lambda x: 10 * int (x[0]) - int (x[1])):
+        subrange = [g[1] for g in group]
+        if len (subrange) == 1:
+            result.append (key_to_short (subrange[0]))
+        elif len (subrange) == 2:
+            result.append (key_to_short (subrange[0]))
+            result.append (key_to_short (subrange[1]))
+        else:
+            result.append ('%s-%s' % (key_to_short (subrange[0]), key_to_short (subrange[-1])))
+    return ' '.join (result)
 
 
 def classify (bk):
@@ -192,12 +323,16 @@ def scan_xml_file (filename, unit = 'ms', type_ = 'capitulare'):
             ms_seq[ms_id] += (e.get ('corresp') or e.text).split ()
 
     for ms in ms_seq:
-        ms_seq[ms] = list (unique_justseen (ms_seq[ms]))
+        ms_seq[ms] = list (map (bk_to_key, unique_justseen (ms_seq[ms])))
 
     return ms_seq
 
 
-def heat_matrix (f, ax, m, caption,
+def get_max_bk (ms_seq):
+    return max (itertools.chain.from_iterable (ms_seq.values ()))
+
+
+def heat_matrix (f, ax, m,
                  ylabels, yticks, xlabels, xticks,
                  cmap = colormap_affinity (),
                  vmin = None, vmax = None):
@@ -225,13 +360,11 @@ def heat_matrix (f, ax, m, caption,
     ax.set_xticklabels (xlabels, size=5, rotation=90)
     ax.set_yticklabels (ylabels, size=5)
 
-    ax.set_title (caption, y = -0.08, size=10, fontweight="bold")
-
     return im
 
 
-def heat_matrix_df (f, ax, df, caption, yticks, xticks, **kw):
-    return heat_matrix (f, ax, df.values, caption, df.index, yticks, df.columns, xticks, **kw)
+def heat_matrix_df (f, ax, df, yticks, xticks, **kw):
+    return heat_matrix (f, ax, df.values, df.index, yticks, df.columns, xticks, **kw)
 
 
 def colorbar (im, cmap, cbarlabel=None, cbarticks = None):
@@ -242,6 +375,17 @@ def colorbar (im, cmap, cbarlabel=None, cbarticks = None):
     if cbarlabel:
         cbar.ax.set_ylabel (cbarlabel, rotation=-90, va="bottom", size=8, fontweight="bold")
     return cbar
+
+
+def title (axes, args, default_title, **kw):
+    kw_args = { 'y' : -0.08, 'size' : 10, 'fontweight' : 'bold' }
+    kw_args.update (kw)
+    format_data = {
+        'include-bks': pretty_print (args.include_bks),
+        'sorted-by'  : args.sorted_by,
+    }
+    title = (args.title or default_title).format (**format_data)
+    axes.set_title (title, **kw_args)
 
 
 def annotate (im, labels, colors, **text_kw):

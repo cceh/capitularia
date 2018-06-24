@@ -102,16 +102,24 @@ class Node (object):
         """
 
         self.is_left_diverse = None
-        """A node :math:`v` of :math:`T` is called *left diverse* if at least two leaves
-        in :math:`v`'s subtree have different left characters.  By definition a
-        leaf cannot be left diverse.  [Gusfield1997]_ §7.12.1, 144ff
+        """A node :math:`v` of :math:`T` is called *left diverse* if at least two
+        leaves in :math:`v`'s subtree have different left characters.  By
+        definition a leaf cannot be left diverse.  [Gusfield1997]_ §7.12.1,
+        144ff
+
+        For each position :math:`i` in string :math:`S`, character
+        :math:`S(i-1)` is called the *left character* of :math:`i`. The *left
+        character of a leaf* of :math:`T` is the left character of the suffix
+        position represented by that leaf.  [Gusfield1997]_ §7.12.1, 144ff
+
+        N.B. This suffix tree operates on any python hashable object, not just
+        characters, so left_characters usually are objects.
 
         N.B. This being a generalized suffix tree, leafs *can be* left diverse,
-        if the left characters in at least two strings are different.
-        """
+        if the left characters in two strings are different or the leafs are at
+        the beginning of the string.
 
-    def __str__ (self):
-        raise NotImplementedError ()
+        """
 
     def string_depth (self):
         """For any node :math:`v` in a suffix-tree, the *string-depth* of :math:`v` is
@@ -119,25 +127,18 @@ class Node (object):
         """
         return len (self.path)
 
+    def __str__ (self):
+        raise NotImplementedError ()
+
     def is_leaf (self):
         raise NotImplementedError ()
 
     def calc_cv (self):
-        """ Calculate :math:`C(v)` numbers for all nodes.
-
-        See: [Gusfield1997]_ §7.6.1
-        """
+        """ Calculate :math:`C(v)` numbers for all nodes. """
         raise NotImplementedError ()
 
     def calc_left_diverse (self):
-        """For each position :math:`i` in string :math:`S`, character :math:`S(i-1)` is
-        called the *left character* of :math:`i`. The *left character of a leaf*
-        of :math:`T` is the left character of the suffix position represented by that
-        leaf.  [Gusfield1997]_ §7.12.1, 144ff
-
-        N.B. This suffix tree operates on any python hashable object, not just
-        characters, so left_characters usually are objects.
-        """
+        """ Calculate the left_diversity of this node. """
         raise NotImplementedError ()
 
     def pre_order (self, f):
@@ -159,7 +160,7 @@ class Node (object):
     def maximal_repeats (self, a):
         """Get a list of maximal repeats.
 
-        From [Gusfield1997]_ §7.12.1, 144ff.
+        See [Gusfield1997]_ §7.12.1, 144ff.
 
         """
         raise NotImplementedError ()

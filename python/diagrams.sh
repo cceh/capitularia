@@ -1,31 +1,63 @@
-XML="$HOME/uni/prj/capitularia/Documents/Italische Sammlungen 6.xml"
+XML="$HOME/uni/prj/capitularia/Documents/Italische Sammlungen 7.xml"
 
-rm /tmp/*.png
+rm /tmp/idf-*.png
+rm /tmp/ms-sim-*.png
+rm /tmp/bk-sim-*.png
+rm /tmp/sequence-group-*.png
 
-./sequential.py    -o /tmp/sequence-date.png  "$XML" &
-#./sequential.py -s -o /tmp/sequence-alpha.png "$XML" &
+python3 -m compileall ./
 
-L1=BK.20a,BK.22,BK.23,BK.89,BK.94,BK.97
-L2=$L1,BK.39,BK.40,BK.95,BK.98
-L3=$L2,BK.41,BK.43,BK.44,BK.112,BK.129
-L4=$L3,BK.139,BK.140,BK.141
+L1="20a 22 23 89 94 97"
+L2="$L1 39 40 95 98"
+L3="$L2 41 43 44 112 129"
+L4="$L3 139 140 141"
 
-for i in 1 2 3 4
+L5="40 44 139 201-203 208-219"
+L6="39 40"
+L7="41 43 44 112 129"
+L8="$L6 $L7"
+
+# SEQUENCES
+
+./sequential.py -o /tmp/sequence-date.png  "$XML" &
+
+# collections by Britta
+for i in 1 2 3 4 5 6 7 8
 do
     eval BKS=\"\$L$i\"
-    ./sequential.py    -o /tmp/sequence-group$i-date.png  --include-bks="$BKS" "$XML" &
+    ./sequential.py --include-bks="$BKS" \
+                    --title="Capitulars {include-bks} in Manuscripts" \
+                    -o /tmp/sequence-group-$i-{include-bks}-date.png "$XML" &
 done
 
-for n in 1 3
+# CLUSTERS
+
+./italic_cluster.py --idf -o /tmp/idf-date.png     "$XML" &
+./italic_cluster.py --mss -o /tmp/ms-sim-date.png  "$XML" &
+
+for n in 2 3 4 5
 do
-    ./italic_cluster.py --idf --min-ngrams=$n --max-ngrams=$n -o /tmp/idf-date-${n}grams.png     "$XML" &
-    ./italic_cluster.py --mss --min-ngrams=$n --max-ngrams=$n -o /tmp/ms-sim-date-${n}grams.png  "$XML" &
-   #./italic_cluster.py --idf --ngrams $n -s -o /tmp/idf-alpha-${n}grams.png    "$XML" &
-   #./italic_cluster.py --mss --ngrams $n -s -o /tmp/ms-sim-alpha-${n}grams.png "$XML" &
+    ./italic_cluster.py --idf --min-ngrams=$n --max-ngrams=$n \
+                        --title="Manuscripts × Capitulars using $n-grams" \
+                        -o /tmp/idf-date-${n}grams.png     "$XML" &
+
+    ./italic_cluster.py --mss --min-ngrams=$n --max-ngrams=$n \
+                        --title="Similarity of Manuscripts using $n-grams" \
+                        -o /tmp/ms-sim-date-${n}grams.png  "$XML" &
 done
 
-for i in 1 2 3 4
+for i in 1 2 3 4 5
 do
     eval BKS=\"\$L$i\"
-    ./italic_cluster.py --bks -o /tmp/bk-sim-group$i.png  --include-bks="$BKS" "$XML" &
+    ./italic_cluster.py --bks --include-bks="$BKS" \
+                        --title="Similarity of Capitulars with {include-bks}" \
+                        -o /tmp/bk-sim-group-$i-{include-bks}.png "$XML" &
 done
+
+./italic_cluster.py --idf --include-bks="$L5" \
+                    --title="Manuscripts × Capitulars {include-bks}" \
+                    -o /tmp/idf-date-5-{include-bks}.png    "$XML" &
+
+./italic_cluster.py --mss --include-bks="$L5" \
+                    --title="Similarity of Manuscripts using {include-bks}" \
+                    -o /tmp/ms-sim-date-5-{include-bks}.png "$XML" &
