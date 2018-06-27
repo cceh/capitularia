@@ -20,8 +20,6 @@ from lxml import etree
 
 import networkx as nx
 
-import suffix_tree
-
 import cluster
 
 def debug (*a, **kw):
@@ -76,22 +74,20 @@ def main (args):
             df.loc[ms, j] = palette.get (bk, 0)
             labels[i, j] = cluster.key_to_short (bk)
 
-    if 0:
-        # suffix tree
+    if args.repeats:
+        # look for maximal repeats
         ms_tree = {}
         for ms in mss:
             ms_tree[ms] = []
             for bk in ms_seq[ms]:
-                ms_tree[ms].append (bk)
+                ms_tree[ms].append (cluster.key_to_df (bk))
 
+        import suffix_tree
         tree = suffix_tree.Tree (ms_tree)
-        tree.root.calc_cv ()
-        tree.root.calc_left_diverse ()
-        # print (tree.to_dot ())
-        R = tree.maximal_repeats ()
-        for cv, path in R:
+        for cv, path in tree.maximal_repeats ():
             if cv > 1 and len (path) > 1:
-                print ("%2d %s" % (cv, path))
+                print ("%d %s" % (cv, path))
+        return
 
     f1, axes = plt.subplots (1, 1, figsize = cluster.PAPER)
 
@@ -125,6 +121,8 @@ if __name__ == '__main__':
                          help="Sort manuscripts alphabetically (default: by age)")
     parser.add_argument ('-p', '--plot', action='store_true',
                          help="Show plot on screen")
+    parser.add_argument ('-r', '--repeats', action='store_true',
+                         help="Output maximal repeats")
     parser.add_argument ('-o', '--output',
                          help="Output file (default: stdout)")
     parser.add_argument ('-t', '--title',

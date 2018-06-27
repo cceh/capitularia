@@ -33,7 +33,7 @@ st-gallen-sb-733
 st-paul-abs-4-1
 ivrea-bc-xxxiv
 ivrea-bc-xxxiii
-vatikan-bav-reg-lat-5359
+vatikan-bav-vat-lat-5359
 vercelli-bce-clxxiv
 wolfenbuettel-hab-blankenb-130
 muenchen-bsb-lat-19416
@@ -67,7 +67,7 @@ ALL_MSS = """
     vatikan-bav-chigi-f-iv-75
 ++    vatikan-bav-reg-lat-1000b
     vatikan-bav-reg-lat-263
-    vatikan-bav-reg-lat-5359
+    vatikan-bav-vat-lat-5359
     vercelli-bce-clxxiv
     vercelli-bce-clxxv
     wien-oenb-ser-n-3761
