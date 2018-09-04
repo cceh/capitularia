@@ -1,0 +1,717 @@
+<?xml version="1.0"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-7561">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main" xml:lang="ger">Paris, Bibliothèque Nationale, Lat. 7561<note
+                  type="filiation"><ref target="london-bl-egerton-269" type="internal" subtype="mss"
+                     >London, British Library, Egerton 269</ref>, <ref
+                     target="london-bl-egerton-2832" type="internal" subtype="mss">London, British
+                     Library, Egerton 2832</ref> und <ref target="paris-bn-lat-4633" type="internal"
+                     subtype="mss">Paris, Bibliothèque Nationale, Lat. 4633</ref></note>
+            </title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek (zu London
+               Egerton 269, geringfügig angepasst) und Transkription der S. 29-32</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek (for London
+               Egerton 269, slightly modified) and transcription of pp 29-32</title>
+            <respStmt>
+               <persName key="KU">
+                  <forename>Karl</forename>
+                  <surname>Ubl</surname>
+               </persName>
+               <resp xml:lang="ger">Projektleitung</resp>
+               <resp xml:lang="eng">Project lead</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
+               </persName>
+               <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
+                  Standard</resp>
+               <resp xml:lang="eng">Transcription, description and text encoding according to the
+                  TEI P5 standard</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="DT">
+                  <forename>Dominik</forename>
+                  <surname>Trump</surname>
+               </persName>
+               <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
+               <resp xml:lang="eng">First revision of transcription and additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
+               </persName>
+               <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
+               <resp xml:lang="eng">Second revision of transcription and additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="FF">
+                  <forename>Franz</forename>
+                  <surname>Fischer</surname>
+                  <affiliation>Cologne Center for eHumanities (CCeH), Universität zu
+                     Köln</affiliation>
+               </persName>
+               <resp xml:lang="ger">Datenmodellierung</resp>
+               <resp xml:lang="eng">Data Modelling</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="CR">
+                  <forename>Clemens</forename>
+                  <surname>Radl</surname>
+               </persName>
+               <resp xml:lang="ger">Kodierung von Mordek, Bibliotheca in TEI, Vorbereitung für
+                  Übergabe an Capitularia</resp>
+               <resp xml:lang="eng">TEI encoding of Mordek, Bibliotheca, preparation of data</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="DS">
+                  <forename>Daniela</forename>
+                  <surname>Schulz</surname>
+               </persName>
+               <resp xml:lang="ger">Technische Umsetzung, Generierung der
+                  Handschriftenbeschreibungen aus Mordek, Bibliotheca</resp>
+               <resp xml:lang="eng">technical support, generating of manuscript description
+                  according to Mordek, Bibliotheca</resp>
+            </respStmt>
+            <funder>Akademie der Wissenschaften und Künste Nordrhein-Westfalen</funder>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>
+               <persName>Karl Ubl</persName>
+               <orgName xml:lang="ger">Historisches Institut, Lehrstuhl für Geschichte des
+                  Mittelalters, Universität zu Köln</orgName>
+               <orgName xml:lang="eng">History Department, Chair for Medieval History, Cologne
+                  University</orgName>
+               <address xml:lang="ger">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Köln</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Raum 4.108</addrLine>
+                  <addrLine>0221-470 2717</addrLine>
+                  <country>Deutschland</country>
+               </address>
+               <address xml:lang="eng">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Cologne</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Room 4.108</addrLine>
+                  <addrLine>+49 221-470 2717</addrLine>
+                  <country>Germany</country>
+               </address>
+            </publisher>
+            <availability>
+               <p xml:lang="ger">Die Inhalte sind frei zugänglich und nicht-kommerziell. Einige
+                  Digitalisate und Texte sind aus rechtlichen Gründen jedoch Mitarbeitern
+                  vorbehalten.</p>
+               <p xml:lang="eng">Content is freely available on a non-commercial basis. Some digital
+                  images and texts are only available to staff due to copyright issues.</p>
+            </availability>
+            <date when="2015-03-26">26.03.2015</date>
+         </publicationStmt>
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <settlement>Paris</settlement>
+                  <repository>Bibliothèque Nationale</repository>
+                  <idno>Lat. 7561</idno>
+                  <msName/>
+                  <altIdentifier>
+                     <settlement/>
+                     <repository/>
+                     <idno/>
+                     <note type="date">
+                        <date/>
+                     </note>
+                  </altIdentifier>
+                  <altIdentifier type="siglum">
+                     <idno>L</idno>
+                     <note>Diese Sigle bezieht sich auch auf die Handschriften <ref type="internal"
+                           subtype="mss" target="london-bl-egerton-269">London, British Library,
+                           Egerton 269</ref>, <ref type="internal" subtype="mss"
+                           target="london-bl-egerton-2832">London, British Library, Egerton
+                           2832</ref> und <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-4633">Paris, Bibliothèque Nationale, Lat.
+                        4633</ref></note>
+                  </altIdentifier>
+               </msIdentifier>
+               <head>
+                  <title type="main">Paris, Bibliothèque Nationale, Lat. 7561 <ref
+                        target="london-bl-egerton-269" subtype="mss" type="internal">London, British
+                        Library, Egerton 269</ref><ref target="london-bl-egerton-2832" subtype="mss"
+                        type="internal">London, British Library, Egerton 2832</ref>
+                     <ref target="paris-bn-lat-4633" type="internal" subtype="mss">Paris,
+                        Bibliothèque Nationale, Lat. 4633</ref></title>
+                  <origDate notBefore="0901" notAfter="0920">10. Jh., Anfang</origDate>
+                  <origPlace ref="http://d-nb.info/gnd/4110086-4 http://d-nb.info/gnd/4044063-1">
+                     Nordostfrankreich</origPlace>
+               </head>
+               <msContents>
+                  <summary><p>Der Umfang dieses auch für die Textüberlieferung wichtigen
+                        spätkarolingischen Rechtsbuches wird erst aus der Rekonstruktion der heute
+                        versprengten Teile sichtbar, die immerhin noch 185 Blätter ausmachen.
+                        Demnach folgen auf das fränkische Recht der Salier und Ribuarier, dem sich
+                        die seltene Lex Saxonum anschließt, der knappe Kapitularienteil mit Erlassen
+                        Karls des Großen (in gleicher Abfolge schon in Cod. <ref type="internal"
+                           subtype="mss" target="montpellier-biu-h-136">Montpellier H 136</ref>) und
+                        Ludwigs des Frommen (bis a. 818/819) sowie weitere Leges (Alamannorum,
+                        Baiuvariorum, Burgundionum) und römisches Recht. Vielleicht sind nach der
+                        fragmentarischen Divisio regnorum am Schluß noch Kapitularien
+                        verlorengegangen. </p><p>Daß der (erhaltene) Kapitularienblock von Leges
+                        eingerahmt wird, ist keine Besonderheit. Ungewöhnlicher schon scheint die
+                        Position der Lex Romana Visigothorum<note type="corr">Es handelt sich bei
+                           dem Text nicht um die Lex Romana Visigothorum, sondern um die Epitome
+                           Aegidii.</note> gegen Ende zwischen zwei Leges und der danach
+                        vorgenommene erneute Rückgriff auf Kapitularienrecht. Dies dürfte die
+                        Annahme Kruschs bestätigen, das in zwei Teilen geschaffene Werk (Teil II ab
+                        Cod. <ref target="paris-bn-lat-4633" subtype="mss" type="internal">Paris
+                           Lat. 4633</ref>, fol. 36, inmitten der Lex Baiuvariorum) sei nicht
+                        ursprünglich so geplant gewesen.</p></summary>
+                  <msItem n="1" xml:id="paris-bn-lat-7561_p29">
+                     <p>
+                        <locus>29-32</locus> Fortsetzung der <title>Divisio regnorum</title> (a.
+                        806), Prolog ab <mentioned>portionem contentus</mentioned> - c. 15 Anfang
+                           <mentioned>curam et defensionem</mentioned> (MGH Capit. 1, Nr. 45, S. 127
+                        Z. 10 - S. 129 Z. 27), Anfang in der Hs. <ref type="internal" subtype="mss"
+                           target="london-bl-egerton-269_f17v">London Egerton 269, fol. 17v</ref>.
+                     </p>
+                  </msItem>
+               </msContents>
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc material="parch">
+                        <support>Pergament</support>
+                        <extent>insgesamt noch 185 foll., hier 2 foll. (gezählt 29-32)<dimensions
+                              type="leaf" unit="mm" precision="medium">
+                              <height>240-245</height>
+                              <width>175</width>
+                           </dimensions>
+                           <dimensions type="written" unit="mm">
+                              <height>175-180</height>
+                              <width>115</width>
+                           </dimensions>
+                        </extent>
+                        <collation><formula/>
+                        </collation>
+                     </supportDesc>
+                     <layoutDesc>
+                        <layout writtenLines="27">27</layout>
+                        <layout columns="1"/>
+                     </layoutDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote/>
+                  </handDesc>
+                  <scriptDesc>
+                     <scriptNote>karolingische Minuskel</scriptNote>
+                  </scriptDesc>
+                  <decoDesc>
+                     <p/>
+                  </decoDesc>
+                  <bindingDesc>
+                     <binding>
+                        <p/>
+                     </binding>
+                  </bindingDesc>
+               </physDesc>
+               <history>
+                  <origin>
+                     <p>
+                        <origDate notBefore="0901" notAfter="0920">10. Jh.,
+                           Anfang</origDate>;<origPlace
+                           ref="http://d-nb.info/gnd/4110086-4 http://d-nb.info/gnd/4044063-1">
+                           Nordostfrankreich</origPlace></p>
+                  </origin>
+                  <provenance>
+                     <p>Corbie (?). Das Gesamtkorpus wurde zu einem unbekannten Zeitpunkt in mehrere
+                        Teile zerlegt und getrennt verkauft. Pierre und François Pithou dürften,
+                        entgegen der bei Mordek zu findenden Aussage, bereits nicht mehr im Besitz
+                        des Gesamtkorpus gewesen sein, da sie das Londoner Einzelblatt offenbar
+                        nicht kannten (Tischler 2008 S. 244 f. mit Anm. 152). Das hier beschriebene
+                        Fragment, das unabhängig voneinander von D. Ganz und M. Tischler entdeckt
+                        wurde, erweitert die bei Mordek genannten, bis dahin bekannten drei Teile um
+                        ein weiteres Bifolium; vgl. Tischler 2008, S. 199.</p>
+                  </provenance>
+                  <acquisition/>
+               </history>
+               <additional>
+                  <surrogates/>
+                  <listBibl>
+                     <listBibl type="cap">
+                        <bibl corresp="#Mordek_1995">Mordek 1995, S. 226-231</bibl>
+                        <bibl corresp="#Tischler_2008">Tischler 2008, S. 199 f., 244-246</bibl>
+                     </listBibl>
+                     <listBibl>
+                        <listBibl type="cap">
+                           <bibl corresp="#Mordek_1995">Mordek 1995, S. 226-231</bibl>
+                           <bibl corresp="#Tischler_2008">Tischler 2008, S. 244-246</bibl>
+                           <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.)
+                              unter der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012
+                              ff. <ref type="external" subtype="Bl" target="london-bl-egerton-269"
+                              /></bibl>
+                        </listBibl>
+                        <listBibl type="lit">
+                           <bibl> E. Spangenberg, Beyträge zu den Teutschen Rechten des Mittelalters
+                              (Halle 1822, Nachdruck Amsterdam 1970) S. 185-191</bibl>
+                           <bibl>MGH LL 1 (1835), S. XXIII</bibl>
+                           <bibl corresp="#Pardessus_1843"> Pardessus 1843, S. XXXIX f.</bibl>
+                           <bibl corresp="#Pertz_G_1858"> Pertz G 1858, S. 87-96</bibl>
+                           <bibl>MGH LL 3 (1863), S. 5, 184, 514-516</bibl>
+                           <bibl> K. Freiherr von Richthofen, Zur Lex Saxonum (Berlin 1868) S. 18
+                              ff.</bibl>
+                           <bibl>MGH LL 5 (1875-1889), S. 200 f., 202</bibl>
+                           <bibl corresp="#Boretius_1897">Boretius 1897, S. XII, XVII</bibl>
+                           <bibl corresp="#Krusch_1924"> Krusch 1924, S. 40-44</bibl>
+                           <bibl corresp="#Buchner_1940"> Buchner 1940, S. 89 f.</bibl>
+                           <bibl corresp="#Eckhardt_K_1954"> Eckhardt K 1954, S. 33</bibl>
+                           <bibl corresp="#Theuerkauf_1968"> Theuerkauf 1968, S. 49, 67 f. (mit
+                              weiterer Literatur)</bibl>
+                           <bibl corresp="#Kottje_1987"> Kottje 1987, S. 373</bibl>
+                           <bibl corresp="#Mordek_1988"> Mordek 1988, S. 81</bibl>
+                           <bibl corresp="#McKitterick_1989"> McKitterick 1989, S. 46, 52 Tab.
+                              A</bibl>
+                        </listBibl>
+                        <listBibl type="cat">
+                           <bibl>Catalogus codicum manuscriptorum Bibliothecae Regiae 3, 3 (Paris
+                              1744) S. 617</bibl>
+                           <bibl>F. Madden, Index to the Additional Manuscripts, with those of the
+                              Egerton Collection, preserved in the British Museum, and acquired in
+                              the years 1783-1835 (London 1849)</bibl>
+                           <bibl>Catalogue of Additions to the Manuscripts in the British Museum in
+                              the Years MDCCCC-MDCCCCV (London 1907) S. 386 f.</bibl>
+                        </listBibl>
+                     </listBibl>
+                  </listBibl>
+               </additional>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>Transkriptionsvorlage: Die Transkription wurde erstellt nach hochauflösenden
+            Farbdigitalisaten der Bibliothèque nationale de France.</p>
+         <projectDesc>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
+            </p>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
+            </p>
+         </projectDesc>
+         <editorialDecl>
+            <p xml:lang="ger">Die Transkription folgt den Richtlinien des Capitularia-Projektes:
+                  <ptr target="http://capitularia.uni-koeln.de/project/workflow/"/>
+            </p>
+            <p xml:lang="eng">The transcription adheres to the guidelines of the Capitularia
+               project: <ptr target="http://capitularia.uni-koeln.de/project/workflow/"/>
+            </p>
+         </editorialDecl>
+      </encodingDesc>
+      <revisionDesc>
+         <change who="BM" when="2018-06-26">Datei erstellt aus Mordek-XML</change>
+         <change who="BM" when="2018-08-21">Datei veröffentlicht (BK
+            45)<!-- Datum aktualisieren! --></change>
+      </revisionDesc>
+   </teiHeader>
+   <facsimile>
+      <graphic url="http://gallica.bnf.fr/ark:/12148/btv1b107210836"/>
+   </facsimile>
+   <text>
+      <front>
+         <div type="content">
+            <list>
+               <item n="10">
+                  <ptr type="internal" target="#paris-bn-lat-7561-29-2"/>[Fortsetzung des Textes aus
+                  London Egerton 269]<list>
+                     <item n="10.1">
+                        <ptr type="internal" target="#paris-bn-lat-7561-29-2"/>(Italiam uero
+                        ...)</item>
+                     <item n="10.2">
+                        <ptr type="internal" target="#paris-bn-lat-7561-29-3"/>(Quicquid autem de
+                        regno nostro ...) </item>
+                     <item n="10.3">
+                        <ptr type="internal" target="#paris-bn-lat-7561-31-1"/>I CAPITULUM</item>
+                     <item n="10.4">
+                        <ptr type="internal" target="#paris-bn-lat-7561-31-3"/>II</item>
+                     <item n="10.5">
+                        <ptr type="internal" target="#paris-bn-lat-7561-31-5"/>III</item>
+                     <item n="10.6">
+                        <ptr type="internal" target="#paris-bn-lat-7561-31-7"/>IIII</item>
+                     <item n="10.7">
+                        <ptr type="internal" target="#paris-bn-lat-7561-32-1"/>VIII</item>
+                  </list></item>
+            </list>
+         </div>
+         <div type="mshist"/>
+         <div type="scribe">
+            <p>Das hier transkribierte Bifolium (<locus>S. 29-32</locus>) gehörte ursprünglich zu
+               der heute versprengten Handschrift <ref target="london-bl-egerton-269"
+                  type="internal" subtype="mss">London, British Library, Egerton 269</ref> und <ref
+                  target="london-bl-egerton-2832" type="internal" subtype="mss">Egerton 2832</ref>
+               sowie <ref target="paris-bn-lat-4633" type="internal" subtype="mss">Paris,
+                  Bibliothèque Nationale, Lat. 4633</ref> und wurde von derselben Hand geschrieben,
+               die auch in den anderen Teilstücken anzutreffen ist.</p>
+         </div>
+         <div type="letters">
+            <p>Einzelbuchstaben: Gelegentliche Verwendung von cc-a (z.B. <locus>S. 29, Z.
+               13</locus>: <mentioned>Italiam</mentioned>, <locus>ebd. Z. 14</locus>:
+                  <mentioned>nomina</mentioned>) und Majuskel-N (z.B. <locus>S. 29, Z. 16</locus>:
+                  <mentioned>alamanie</mentioned>). Zwischen Doppel-s wurde oft ein sehr großer
+               Abstand gelassen (z.B. <locus>S. 30, Z. 1</locus>:
+               <mentioned>necessitas</mentioned>).</p>
+         </div>
+         <div type="abbreviations"/>
+         <div type="punctuation"/>
+         <div type="structure">
+            <p>Die Divisio regnorum (BK 45) war in der Hs. kein Bestandteil des Kapitularienblocks,
+               sondern folgte erst am Ende im Anschluss an die Lex Burgundionum. Da der Text
+               allerdings wegen Blattverlustes in c. 15 fragmentarisch abbricht, ist unklar, ob
+               evtl. noch weitere Kapitularien folgten. Der Text beginnt in der Hs. <ref
+                  target="london-bl-egerton-269" type="internal" subtype="mss">London, British
+                  Library, Egerton 269</ref> auf <locus>fol. 17v</locus> mit der Rubrik
+                  <mentioned>INCIPIT DIUISIONES REGNORUM</mentioned>. Der erste Teil des Textes, der
+               die eigentlichen Teilungsmodalitäten enthält (BK 45 cc. 1-5), ist lediglich durch
+               vereinzelte Initialen in Absätze unterteilt, die sich am Anfang von BK 45 c. 2 (in
+               ehemals roter Tinte) und c. 3 (in Texttinte) befinden. BK 45 c. 1 beginnt hingegen
+               mitten im Fließtext und ist nicht als neuer Textabschnitt kenntlich gemacht,
+               ebensowenig BK 45 cc. 4 und 5. Eine Kapitelzählung, jeweils am Rand in ehemals roter,
+               heute schwarz erscheinender Tinte, setzt erst mit BK 45 c. 6 ein und wird nicht
+               konsequent durchgeführt: BK 45 c. 6 wird als <mentioned>CAP. I</mentioned> gezählt,
+               cc. 7-9 als <mentioned>II-IIII</mentioned>, danach setzt die Zählung erst wieder mit
+                  <mentioned>VIII</mentioned> (= BK 45 c. 11) ein. Die übrigen Kapitel wurden
+               offensichtlich nicht gezählt. Die Zählung erfolgte wohl erst nachträglich, da der
+               Text nicht durch Absätze strukturiert wird; lediglich die Anfangsmajuskeln einzelner
+               Sätze (manchmal mit dem Anfang eines Kapitels nach BK zusammenfallend) wurden etwas
+               größer geschrieben oder nachträglich (wohl im Zusammenhang mit der Kapitelzählung)
+               mit roter Tinte übermalt.</p>
+         </div>
+         <div type="annotations">
+            <p>Auf <locus>S. 29</locus> am oberen Rand steht von neuzeitlicher Hand
+                  <mentioned>Testamentum Karoli Magni</mentioned>. Auf <locus>S. 32</locus> findet
+               sich am unteren Seitenrand eine größtenteils verwischte Federprobe
+               (spätmittelalterlich?): <mentioned>clerici tempore p...sch(?)...di/li(?) debent
+                  poe... pileos s... S... dne(?) qu...m</mentioned>.</p>
+         </div>
+         <div type="other">
+            <p>Die Schrift auf <locus>S. 30</locus> und <locus>S. 31</locus> ist teils durch
+               Feuchtigkeitseinfluß verlaufen, teils verblasst, so dass sich manche Passagen am
+               Digitalisat nur schwer entziffern lassen.
+               <!-- bm: Evtl. am Original nachkollationieren? --> An einigen Stellen verursachen
+               Pergamentlöcher kleinere Textverluste, z.B. auf <locus>S. 32 Z. 17</locus>:
+                  <mentioned>[a]uxilium</mentioned></p>
+         </div>
+      </front>
+      <body>
+         <cb n="29"/>
+         <lb n="1"/>
+         
+         <milestone unit="capitulare" n="BK.45"/>
+         
+         <ab type="text" xml:id="paris-bn-lat-7561-29-1" corresp="BK.45_prolog BK.45_1">
+            <milestone unit="span" corresp="BK.45_prolog" spanTo="#paris-bn-lat-7561-29-1_1"/>
+            portionem contentus iuxta ordinationem uestram
+            et fines regni sui qui ad alie<lb break="no"/>genas extenduntur cum dei adiutorio
+            nitatur defendere et pacem atque caritatem <lb/> cum fratre custodire <anchor
+               xml:id="paris-bn-lat-7561-29-1_1"/>
+            
+            <milestone unit="span" corresp="BK.45_1" spanTo="#paris-bn-lat-7561-29-1_2"/> 
+            diuisiones
+            uero a deo conseruati atque confirmandi imperii <lb/> uel regni nostri tales facere
+            placuit ut <rs type="place">aquitaniam</rs>
+            <choice>
+               <abbr>excep</abbr>
+               <expan>excepto</expan>
+            </choice>
+            <rs type="place">pago turico</rs> cum <rs type="place">uuas<lb break="no"/>conia</rs> et
+            quicquid inde ad occidentem atque <rs type="place">hispaniam</rs> respicit et de <rs
+               type="place">ciuitatem <lb/> niuernis</rs>
+            <expan>que</expan>
+            <mod>est</mod> sita super <rs type="place">fluuium ligerem</rs> cum ipso <rs
+               type="place">pago niuersem</rs>
+            <rs type="place">pagum ualen<lb break="no"/>sem</rs>
+            <rs type="place">cabilionensem</rs> . <rs type="place">lugdonensem</rs> . <rs
+               type="place">soboiam</rs> . <rs type="place">moriennam</rs>
+            <rs type="place">daramtasiam</rs>
+            <lb/>
+            <rs type="place">montem cinisium</rs>
+            <rs type="place">uallem setgusianam</rs> que ad <rs type="place">clusas</rs> pertinet et
+            inde per terminos <rs type="place">itali<lb break="no"/>corum montium</rs> usque ad mare
+            hos pagos cum suis ciuitatibus et quicquid ab eis <lb/> contra meridiem <mod>et</mod>
+            occidentem usque ad mare uel usque ad <rs type="place">hispaniis</rs> continetur <lb/>
+            hoc est illum portionem <rs type="place">burgundię</rs> . id est <rs type="place"
+               >prouintiam</rs> ac <rs type="place">septimaniam</rs> uel <lb/>
+            <rs type="place">negotiam</rs>
+            <rs type="person"><sic>chodouuico</sic> dilecto filio nostro</rs> consignauimus * <lb/>
+            <anchor xml:id="paris-bn-lat-7561-29-1_2"/>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-7561-29-2" corresp="BK.45_2">
+            <rs type="place"><seg
+                  type="initial" rend="coloured">I</seg>taliam</rs> uero que et <rs type="place"
+               >longobardia</rs> dicitur et <rs type="place">baiouariam</rs> sicut <rs type="person"
+               >tasilo</rs> tenuit <lb/> excepto duabus uillis quarum nomina sunt <rs type="place"
+               >ingultestat</rs> et <rs type="place">hlutarahof</rs>
+            <lb/> quas nos quondam <rs type="person">tassilone</rs> beneficiauimus et pertinunt ad
+            pagum <choice>
+               <abbr>q</abbr>
+               <expan>qui</expan>
+            </choice> dicitur <lb/>
+            <rs type="place">nor<add>d</add>cauue</rs> . et partem <rs type="place">alamanie</rs>
+            <expan>que</expan> in <rs type="place">australi parte ripa danubiis <lb/> fluminis</rs>
+            est et de <rs type="place">fonte danubi</rs> currente limite usque ad <rs type="place"
+               >renum fluuium</rs>
+            <lb/> in confine <rs type="place">pagorum chledcauuę</rs> et <rs type="place"
+               >heccauuę</rs> in loco qui dicitur <rs type="place">engi</rs>
+            <lb/> et inde per <rs type="place">renum fluuium</rs> sursum uersus usque ad <rs
+               type="place">alpaes</rs> . quicquid intra <lb/> os terminos fu<subst>
+               <del>r</del>
+               <add>erit</add>
+            </subst> et ad meridiem uel occidentem respicit una cum <lb/>
+            <rs type="place"><sic>ducatur</sic> aeriensi</rs>
+            <rs type="person">pippino dilecto filio nostro</rs> . <lb/>
+         </ab>
+         <ab type="text" rend="nota" xml:id="paris-bn-lat-7561-29-3"
+            corresp="BK.45_3 BK.45_4 BK.45_5">
+            <milestone unit="span" corresp="BK.45_3" spanTo="#paris-bn-lat-7561-29-3_1"/>
+            <seg type="initial">Q</seg>uicquid autem <subst>
+               <del/>
+               <add>de re</add>
+            </subst>gno nostro extra os terminos fuerit . id est <lb/>
+            <rs type="place">frantiam</rs> et <rs type="place">burgundiam</rs> excepto illa parte
+            quam <rs type="person">chlodouico</rs> didimus <lb/> atque <rs type="place"
+                  >al<mod>a</mod>m<mod>a</mod>niam</rs> excepto portionem q<mod>ua</mod>m <rs
+               type="person">pippino</rs> adscrip<lb break="no"/>simus <rs type="place"
+               >austriam</rs> . et <rs type="place">niustriam</rs>
+            <rs type="place">turingiam</rs>
+            <rs type="place">saxaniam</rs>
+            <lb/>
+            <rs type="place">frisiam</rs> et part<subst>
+               <del>ę</del>
+               <add>em</add>
+            </subst>
+            <rs type="place">baiouariae</rs> que dicitur <rs type="place">nordgaui</rs>
+            <rs type="person">dilecto <lb/> filio nostro ca<subst>
+                  <del>l</del>
+                  <add>rolo</add>
+               </subst></rs> concessimus . Ita ut <rs type="person">carolus</rs> et <rs
+               type="person">chlodouuicus</rs> . <cb n="30"/> uia<unclear>m</unclear> habere possint
+            in <rs type="place">i<unclear>ta</unclear>liam</rs> ad auxilium
+            fer<unclear>e</unclear>ndum fratri suo s<gap unit="chars" quantity="3"/>a necessitas
+            <lb/> extiterit . <rs type="person">Carolus</rs> per <rs type="place"><gap unit="chars"
+                  quantity="2"/>llem agust<gap unit="chars" quantity="3"/>m</rs> quę ad regnum
+            pertinet . <rs type="person">chlodouuicus</rs>
+            <lb/> per <rs type="place">ualla<note type="editorial">evtl. verblasster Nasalstrich
+                  über dem Endungs-a, also <mentioned>-am</mentioned>?</note> segusiam</rs> . <rs
+               type="person">Pipinus</rs> uero exitum . et ingressum per <rs type="place">alpes
+                  noric<unclear>a</unclear>s</rs>
+            <lb/> atque <rs type="place">curiam</rs> * <anchor xml:id="paris-bn-lat-7561-29-3_1"/>
+            
+            <milestone unit="span" corresp="BK.45_4" spanTo="#paris-bn-lat-7561-29-3_2"/>
+            H<unclear>e</unclear>c autem tali ordinatione dispon<gap unit="chars" quantity="3"
+               /><unclear>t</unclear> si <rs type="person">carolus</rs> qui mai<unclear>or</unclear>
+            <lb/> natus est prius quam cęteris fratres su<unclear>i</unclear> diem obierit pars
+            regni q<unclear>u</unclear>am hab<unclear>e</unclear>at <lb/> diuiditur inter <rs
+               type="person">pippinum</rs> et <rs type="person">chlouicum</rs>
+            <mod>s</mod>icut qu<unclear>a</unclear>ndam diuisum est inter nos et <lb/>
+            <rs type="person">fratrem nostrum Carlomann<unclear>e</unclear>m </rs> quomodo ut <rs
+               type="person">pipinus</rs> portionem habeat <lb/> quam <rs type="person">frater
+                  <unclear>noster</unclear> carlomannus</rs> habuit <rs type="person"
+                  >chlod<unclear>iui</unclear>cus</rs> uero illam partem accipi<unclear>at</unclear>
+            <lb/> quam nos in illam portione suscipimus . Si autem <rs type="person">carolo</rs> et
+               <rs type="person">chlodouico</rs> uiuen<lb break="no"/>tibus <rs type="person"
+               >pippinus</rs> debitum sortis humane conpleuerit . <rs type="person">Carolus</rs> et <lb/>
+            <rs type="person">chlodouicus</rs> diuidant inter se regnum quod ille habuit et eo
+            diuisio tal<unclear>i</unclear> modo <lb/> fiat ut ab ingressu <rs type="place"
+               >italie</rs> per <rs type="place">agustam ciuitatem</rs>
+            <gap unit="chars" quantity="3"/>ipiat . <rs type="person">carolus</rs>
+            <rs type="place">eboreiam</rs>
+            <lb/>
+            <rs type="place">uercellis</rs>
+            <rs type="place">papiami</rs> et inde per <rs type="place">padum fluuium</rs>
+            <unclear>ter</unclear><gap unit="chars" quantity="4"/> currente usque ad finem <lb/>
+            <rs type="place">reg<unclear>e</unclear>nsium</rs> et ipsam <rs type="place">regiam</rs>
+            et <rs type="place">ciui<unclear>ta</unclear>tem nou<unclear>am</unclear></rs> atque <rs
+               type="place">mutinam</rs> usque <rs type="place">ad terminos <lb/>
+               <rs type="person">sancti petri</rs></rs> has c<gap unit="chars" quantity="5"/>tes cum
+            suburbanis et <sic>terratoriis</sic> suis atque comitatibus <lb/>
+            <expan>que</expan> ad ipsas pertin<gap unit="chars" quantity="1"/>nt et quicquid inde
+               <rs type="place">romam</rs> pergenti ad leuam respicit de regno <lb/> quod<note
+               type="editorial">gek. <mentioned>qd</mentioned> ohne erkennbaren
+               Kürzungsstrich</note>
+            <rs type="person">pipinus</rs> hab<gap unit="chars" quantity="2"/>t una cum <rs
+               type="place">ducatu spolitano</rs> hanc portionem quod <expan>prediximus</expan>
+            <lb/> accipiat <rs type="person">carolus</rs> . Quicquid a<unclear>ut</unclear>em a
+            prędictis ciuitatibus uel comitatibus <lb/>
+            <rs type="place">romam</rs> eunti a dextram iacet<unclear>ur</unclear> de
+               <expan>predicto</expan> regno id est portionem quę re<lb break="no"/>mansit de <rs
+               type="place">regione transpadane</rs> una cum <rs type="place">tuscane ducatu</rs>
+            usque <lb/> ad <rs type="place">mare australe</rs> et usque ad <rs type="place"
+               >prouintiam</rs> . hoc <rs type="person">chlouicus</rs>
+            <del>fuer<gap unit="chars" quantity="2"/> defunctus</del>
+            <lb/> ad <sic>aumentum</sic> sui regni sortiatur . quod si ceteris superstitibus . <rs
+               type="person">chlodouuicus</rs>
+            <lb/> fuerit defunctus eam partem <rs type="place">burgundi<mod>a</mod>e</rs> quam regno
+            eius adiuncximus <lb/> cum <rs type="place">prouintia</rs> et <rs type="place"
+               >septimania</rs> siue <rs type="place">negotiam</rs> usque ad <rs type="place"
+               >hispaniam</rs>
+            <rs type="person">pippinus</rs>
+            <lb/> accipiat . <rs type="person"><hi rend="coloured">C</hi>arolus</rs> uero <rs
+               type="place">aquitaniam</rs> atque <rs type="place">uuasconiam</rs> . <anchor
+               xml:id="paris-bn-lat-7561-29-3_2"/>
+            <milestone unit="span" corresp="BK.45_5" spanTo="#paris-bn-lat-7561-29-3_3"/> quod si
+               t<unclear>ali</unclear>s <lb/> filius cuiuslibet horum t<mod>r</mod>ium fratrem .
+            natus fuerit quam populus <lb/> elegere uellit . ut patri suo
+            succ<unclear>e</unclear>dit in regni hereditate uolumus . <cb n="31"/> ut omnia
+            consentiunt patrui <choice>
+               <abbr>ips</abbr>
+               <expan>ipsius</expan>
+            </choice> pueri et regnare permittant filium fratris sui <lb/> in portione regnare quam
+            pater eius frater eorum habuit . <lb/>
+            <anchor xml:id="paris-bn-lat-7561-29-3_3"/>
+         </ab>
+         
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-7561-31-1"
+            corresp="BK.45_6_inscriptio"><seg type="numDenom">CAPITULUM </seg>
+            <seg type="num" n="1">I</seg>
+         </ab>
+
+         <ab type="text" xml:id="paris-bn-lat-7561-31-2" corresp="BK.45_6">
+            Post hanc nostrae
+            auctoritatis dispositione placuit inter <expan>predictos</expan> filios nostros <lb/>
+            statuere atque <expan>precipere</expan> propter pacem et concordiam quam inter eos
+            permanere <lb/> perpetuo desideramus ut nu<mod>l</mod>lus eorum fratris sui terminos uel
+            regni limites <lb/> inuadere <expan>presumat</expan> . nequę fraudulenter ingrediantur
+               <sic>bandum</sic> eius <lb/> regnum uel marcas minuendas sed adiuuet unusquisque <subst>
+               <del>un</del>
+               <add>illorum</add>
+            </subst> fratrem <lb/> suum et auxilium ei ferat contra inimicos eius iuxta rationem et
+               possi<lb break="no"/>bilitatem siue infra patriam siue contra exteras nationes . </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-7561-31-3"
+            corresp="BK.45_7_inscriptio"><seg type="num" n="2">II</seg>
+         </ab>
+
+         <ab type="text" xml:id="paris-bn-lat-7561-31-4" corresp="BK.45_7">
+            <hi rend="coloured">N</hi>eque ali<lb break="no"/>quis illorum hominem fratris<note
+               type="editorial">gek. <mentioned>fris</mentioned> ohne erkennbares
+               Kürzungszeichen</note> sui quamuis pro culpis aliquibus ad se confu<lb break="no"
+            />gientem suscipiat . Nec intercessionem quidem pro eo fatiat quia uolumus <lb/> ut
+            cuilibet homo pecans et intercessiones <sic>indiens</sic> intra regni domini sui <lb/>
+            uel ad sancta loca uel <unclear>ad h</unclear>onoratos homines confugiat et inde iuxta
+               in<lb break="no"/>tercessione mereatur . </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-7561-31-5"
+            corresp="BK.45_8_inscriptio"><seg type="num" n="3">III</seg></ab>
+
+         <ab type="text" xml:id="paris-bn-lat-7561-31-6" corresp="BK.45_8">
+            <choice>
+               <abbr><hi rend="coloured">S</hi>imlt</abbr>
+               <expan><hi rend="coloured">S</hi>imiliter</expan>
+            </choice>
+            <expan>precipimus</expan> ut quemlibet liberum hominem <lb/> qui dominum suum contra
+            uoluntatem eius dimiserit et de uno regno <lb/> in aliud profectus neque ipse rex
+            suscipiat neque hominibus suis <lb/> consentiat ut talem hominem uel recipiant uel
+            iniuste retinere <expan>presu<lb break="no"/>mat</expan> hoc non solum de liberis sed
+            etiam de seruis fugitiuis statuimus <lb/> obseruandum ut nulla discordiis relinquatur
+            occasio . </ab>
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-7561-31-7"
+            corresp="BK.45_9_inscriptio"><seg type="num" n="4">IIII</seg></ab>
+
+         <ab type="text" xml:id="paris-bn-lat-7561-31-8" corresp="BK.45_9 BK.45_10">
+            <milestone unit="span" corresp="BK.45_9" spanTo="#paris-bn-lat-7561-31-8_1"/>
+            Quapropter
+            <lb/> percipiendum nobis uidetur ut post nostrum ex hac mortalitate discessum <lb/>
+            homines unuscuiusque eorum accipiant benefitia unusquisque in regno <lb/> domini sui et
+            non in alterius . Ne forte per hoc si aliter fuerint scandalum <lb/> aliquid possint
+            accedere hereditatem suam habeat unusquisque hominum <lb/> illorum . absque
+            contradictione in <expan>quocumque</expan> regno hoc eum legitime <lb/> habere
+               cont<mod>i</mod>ngerint . <anchor xml:id="paris-bn-lat-7561-31-8_1"/>
+            <milestone unit="span" corresp="BK.45_10" spanTo="#paris-bn-lat-7561-31-8_2"/>
+            <sic>E</sic> unusquisque liber homo post mortem domini sui <lb/> licentiam
+               h<unclear>a</unclear>beat se <expan>commendandi</expan> inter haec tria regna ad quem
+               u<gap unit="chars" quantity="1"/>l<unclear>ue</unclear>rit <lb/> similiter et ille
+            qui nondum alicui <expan>commendatus</expan> est <anchor
+               xml:id="paris-bn-lat-7561-31-8_2"/><cb n="32"/>
+         </ab>
+         
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-7561-32-1"
+            corresp="BK.45_11_inscriptio"><seg type="num" n="8">VIII</seg>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-7561-32-2"
+            corresp="BK.45_11 BK.45_12 BK.45_13 BK.45_14">
+            <milestone unit="span" corresp="BK.45_11" spanTo="#paris-bn-lat-7561-32-2_1"/>
+            <seg
+               type="initial"> D</seg>e traditionibus <unclear>autem</unclear> atque uenditionibus
+               <expan>que</expan> inter partes fi<del unit="chars" quantity="1"/>eri solent
+               <expan>precipimus</expan>
+            <lb/> ut nullus ex tribus fratribus suscipiat de regno alt<unclear>e</unclear>rius a
+            quolibet homine <lb/> traditionem seu uinditionem rerum inmobilium hoc est terrarum
+            uinearum <lb/> atque siluarum seruorumque qui <subst>
+               <del/>
+               <add>i</add>
+            </subst>am <unclear>ca</unclear>ssati sunt siue terrarum rerumque heredi<lb break="no"
+            />tatis <choice>
+               <abbr>nome</abbr>
+               <expan>nominem</expan>
+            </choice> censentur <choice>
+               <abbr>excep</abbr>
+               <expan>excepto</expan>
+            </choice> auro argento gemmas armis ac uestibus . <lb/> Necnon et mancipiis non cassatis
+            et his speciebus quę proprię ad negotiatoribus <lb/> pertinere noscuntur . Ceteris uero
+            liberis hominibus hoc minime interdi<lb break="no"/>cendum uindicauimus . 
+            <anchor xml:id="paris-bn-lat-7561-32-2_1"/>
+            <milestone unit="span" corresp="BK.45_12" spanTo="#paris-bn-lat-7561-32-2_2"/>
+            <seg
+               type="initial">S</seg>i quę autem femine sicut fieri solet inter partes et regni
+            <lb/> limites fuerint ad coniugium postulate non deregentur iuxte poscentibus <lb/> sed
+            liceat eas uicissim dare et accipe et adfinitatibus populos inter se sociari <lb/> ipse
+            uero femine potestatem habeant rerum suar<gap unit="chars" quantity="3"/> regno unde
+               exi<lb break="no"/>erant quamquam in alio propter mariti
+               so<unclear>ti</unclear>et<gap unit="chars" quantity="2"/>em <gap unit="chars"
+               quantity="3"/>itare debe<del>a</del>nt 
+            <anchor xml:id="paris-bn-lat-7561-32-2_2"/>
+            <milestone unit="span" corresp="BK.45_13" spanTo="#paris-bn-lat-7561-32-2_3"/>
+            <seg type="initial" rend="coloured">D</seg>e obsidibus autem qui <choice>
+               <abbr>prop</abbr>
+               <expan>propter</expan>
+            </choice> credentias dati sunt et <gap unit="chars" quantity="3"/>bis <gap unit="chars"
+               quantity="2"/>uersa loca ad <lb/> custodiendum distinati uolumus ut ille rex in cuius
+               regn<gap unit="chars" quantity="1"/> sunt absque uolun<lb break="no"/>tate fratris
+            sui de cuius regno sublati sunt in patria<unclear>m</unclear> eos redire non permittat
+            <lb/> sed potius in futurum in suscipiendis obsidibus alter alteri mutuum ferat <lb/>
+            <gap unit="chars" quantity="1"/>uxilium si frater fratrem hoc facere rationabiliter
+            postulauerit id est <lb/> iubemus et de his qui <mod>pro</mod> suis fatinoribus in
+            exilium misse uel mittendi sunt . <lb/>
+            <anchor xml:id="paris-bn-lat-7561-32-2_3"/>
+            <milestone unit="span" corresp="BK.45_14" spanTo="#paris-bn-lat-7561-32-2_4"/>
+            <seg
+               type="initial">S</seg>i causam uel intentio siue contr<mod>a</mod>uersia talis inter
+            partes propter terminos <lb/> aut confinio regnorum orta fuerit que hominum testimonio
+            declarari <lb/> uel difinire non possit . tunc uolumus ut ad declarationem dubiae
+            iuditio <lb/> crucis dei uoluntas et rerum ueritas inquiratur . Nec umquam pro tali
+            <lb/> cuiuslibet generis pugna uel campus ad examinationem iudicetur . <lb/>
+            <seg type="initial">S</seg>i uero quislibet homo uno reg<mod>n</mod>o hominem de altero
+            regno de infi<lb break="no"/>delitate contra fra<mod>t</mod>rem domini sui aput dominum
+            suum accusauerit mittit <lb/> eum d<gap unit="chars" quantity="3"/>nus eius ad fratrem
+            suum ut ibi probet quod de homin<gap unit="chars" quantity="1"/> illius <choice>
+               <abbr>dix</abbr>
+               <expan>dixit</expan>
+            </choice>
+            <lb/>
+            <anchor xml:id="paris-bn-lat-7561-32-2_4"/>
+            <milestone unit="span" corresp="BK.45_15"
+               spanTo="#paris-bn-lat-7561-32-2_5"/>
+            <seg type="initial">S</seg>uper <gap unit="chars" quantity="4"/>omnia<note
+               type="editorial">gek. <mentioned>oma</mentioned> ohne erkennbares
+               Kürzungszeichen.</note> autem iubemus atque <expan>precipimus</expan> ut ipsi . III .
+            fratres curam et defensionem<note type="editorial">An dieser Stelle endet der Text
+               fragmentarisch.</note>
+            <anchor xml:id="paris-bn-lat-7561-32-2_5"/>
+         </ab>
+         
+      </body>
+   </text>
+</TEI>

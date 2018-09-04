@@ -1,0 +1,449 @@
+<?xml version="1.0"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="nauclerus-1514">
+      
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main" xml:lang="ger">Nauclerus, Johannes: Memorabilium Omnis Aetatis Et Omnium 
+               Gentium Chronici Commentarii (Tübingen 1514)</title>
+            <title type="sub" xml:lang="ger">Transkription der fol. 126v–127r.</title>
+            <title type="sub" xml:lang="eng">Transcription of fols 126v-127r.</title>
+            <respStmt>
+               <persName key="KU">
+                  <forename>Karl</forename>
+                  <surname>Ubl</surname>
+               </persName>
+               <resp xml:lang="ger">Projektleitung</resp>
+               <resp xml:lang="eng">Project lead</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
+               </persName>
+               <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
+                  Standard</resp>
+               <resp xml:lang="eng">Transcription, description and text encoding according to the
+                  TEI P5 standard</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="NN">
+                  <forename>NN</forename>
+                  <surname>NN</surname>
+               </persName>
+               <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
+               <resp xml:lang="eng">First revision of transcription and additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="NN">
+                  <forename>NN</forename>
+                  <surname>NN</surname>
+               </persName>
+               <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
+               <resp xml:lang="eng">Second revision of transcription and additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="FF">
+                  <forename>Franz</forename>
+                  <surname>Fischer</surname>
+                  <affiliation>Cologne Center for eHumanities (CCeH), Universität zu
+                     Köln</affiliation>
+               </persName>
+               <resp xml:lang="ger">Datenmodellierung</resp>
+               <resp xml:lang="eng">Data Modelling</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="CR">
+                  <forename>Clemens</forename>
+                  <surname>Radl</surname>
+               </persName>
+               <resp xml:lang="ger">Kodierung von Mordek, Bibliotheca in TEI, Vorbereitung für
+                  Übergabe an Capitularia</resp>
+               <resp xml:lang="eng">TEI encoding of Mordek, Bibliotheca, preparation of data</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="DS">
+                  <forename>Daniela</forename>
+                  <surname>Schulz</surname>
+               </persName>
+               <resp xml:lang="ger">Technische Umsetzung, Generierung der
+                  Handschriftenbeschreibungen aus Mordek, Bibliotheca</resp>
+               <resp xml:lang="eng">technical support, generating of manuscript description
+                  according to Mordek, Bibliotheca</resp>
+            </respStmt>
+            <funder>Akademie der Wissenschaften und Künste Nordrhein-Westfalen</funder>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>
+               <persName>Karl Ubl</persName>
+               <orgName xml:lang="ger">Historisches Institut, Lehrstuhl für Geschichte des
+                  Mittelalters, Universität zu Köln</orgName>
+               <orgName xml:lang="eng">History Department, Chair for Medieval History, Cologne
+                  University</orgName>
+               <address xml:lang="ger">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Köln</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Raum 4.009</addrLine>
+                  <addrLine>0221-470 2717</addrLine>
+                  <country>Deutschland</country>
+               </address>
+               <address xml:lang="eng">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Cologne</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Room 4.009</addrLine>
+                  <addrLine>+49 221-470 2717</addrLine>
+                  <country>Germany</country>
+               </address>
+            </publisher>
+            <availability>
+               <p xml:lang="ger">Die Inhalte sind frei zugänglich und nicht-kommerziell. Einige
+                  Digitalisate und Texte sind aus rechtlichen Gründen jedoch Mitarbeitern
+                  vorbehalten.</p>
+               <p xml:lang="eng">Content is freely available on a non-commercial basis. Some digital
+                  images and texts are only available to staff due to copyright issues.</p>
+            </availability>
+            <date when="2018-08-21">21.08.2018</date>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl corresp="capitu01861">
+               <title/><!-- Muß der Titel hier noch mal wiederholt werden, wenn wir durch das @corresp auf
+                  den Eintrag in der Bibliographie verweisen? -->
+               <biblScope/><!-- Seitenangabe -->
+               <note>Nauclerus hat in seine Darstellung der Zeit von 810-840 auf <locus>fol. 126v-127r</locus>
+                  Auszüge von BK 45 eingeschoben. Nach Tischler 2008, S. 251, weist die von Nauclerus 
+                  benutzte unbekannte handschriftliche 
+                  Vorlage Ähnlichkeiten mit den Textfassungen auf, die in der Handschrift
+                  Simancas, Archivo General, Patronato Real 29-29 I, Caja 29-6<!-- sk: Signaturfassung
+                  noch prüfen / aktualisieren; anschließend hier verlinken  --> überliefert sind.
+                  Die Handschriften Hamburg, Staats- und Universitätsbibliothek, Cod. hist. 292 und
+                  <ref type="internal" subtype="mss" target="rom-bv-c-16">Rom, Biblioteca Vallicelliana, C. 16</ref>
+                  wiederum seien Abschriften des Drucks von Nauclerus. 
+
+                  <!-- sk: Braucht es noch eine genauere Beschreibung des Werks, etwa ein
+                     Inhaltsverzeichnis, oder eine Beschreibung des unmittelbaren Kontextes von BK 45?
+                     Ggf. einmal prüfen, ob sein Text noch weitere inserierte Kapitularien enthält?                       -->
+                  
+               </note>
+            </bibl>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>Die Transkription gibt den Druck Nauclerus' nach einem Online-Digitalisat der BSB München
+            wieder.</p>
+         <projectDesc>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/projekt/ueber-das-projekt/"/>
+            </p>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/projekt/ueber-das-projekt/"/>
+            </p>
+         </projectDesc>
+         <editorialDecl>
+            <p xml:lang="ger">Die Transkription folgt den Richtlinien des Capitularia-Projektes:
+                  <ptr target="http://capitularia.uni-koeln.de/projekt/dokumentation/"/>
+            </p>
+            <p xml:lang="eng">The transcription adheres to the guidelines of the Capitularia
+               project: <ptr target="http://capitularia.uni-koeln.de/projekt/dokumentation/"/>
+            </p>
+         </editorialDecl>
+      </encodingDesc>
+      <revisionDesc>
+         <change who="SK" when="2018-08-21">Datei erstellt</change>
+         <change who="XXX" when="2018"/>
+      </revisionDesc>
+   </teiHeader>
+   <facsimile>
+      <graphic
+         url="http://daten.digitale-sammlungen.de/~db/0002/bsb00020132/images/"/>
+   </facsimile>
+   <text>
+      <front>
+         <div type="scribe" xml:id="divScribe"/>
+         <div type="letters" xml:id="divLett">
+            <p/>
+         </div>
+         <div type="abbreviations" xml:id="divAbbr">
+            <p>Kürzungen sind, wie in den Transkriptionen der Handschriften, stillschweigend
+               aufgelöst, das im Druck verwendete Zeichen für et wurde mit <mentioned>et</mentioned>
+               transkribiert.</p>
+
+         </div>
+         <div type="punctuation" xml:id="divPunct">
+            <p>Die Interpunktionszeichen erfüllen hier nicht, wie in den Transkriptionen der
+               handschriftlichen Überlieferung, die Funktion von Platzhaltern, sondern entsprechen
+               den tatsächlich im Druck verwendeten Zeichen (moderne Interpunktion). </p>
+         </div>
+         <div type="structure" xml:id="divStruct">
+            <p>Der Text von BK 45 ist in den Abschnitt zur 28. Generation eingebettet (<locus>fol. 125v-130v</locus>),
+               die eigenartigerweise die Jahre 810-840 umspannt. Dabei ist die erste Hälfte 
+               (<locus>fol. 125v-128v</locus>) den Taten Karls des Großen gewidmet, die zweite
+               Hälfte der Regierung Ludwigs des Frommen. Im Anschluss an eine Auflistung der Frauen 
+               und Kinder Karls leitet Nauclerus seinen Auszug der Divisio regnorum (BK 45) mit
+               der Bemerkung ein: <mentioned><expan>Quod</expan> autem solum habuerit tres legitimos 
+               filios inducit me ad credendum forma testamenti ipsius Caroli cuius fuit talis 
+               tenor.</mentioned> Zahlreiche Kapitel sind mehrfach gekürzt, zudem fehlen die
+               Kapitel 12, 13, 16 und 18 komplett. Eine Untergliederung in Kapitel oder gar eine
+               Kapitelzählung findet nicht statt. Auf dem Rand befinden sich jedoch sieben 
+               stichwortartige Inhaltsangaben zu Abschnitten, die ein oder mehrere Kapitel 
+               umfassen, z.B. <locus>fol. 127r</locus> <mentioned>De fratrum concordia</mentioned>
+               für die Kapitel 6-11 und 14 mit ihren Bestimmungen zum Verhältnis der Söhne 
+               untereinander.
+               Im Anschluss folgt <locus>fol. 127r-v</locus> ein Textblock (ab <mentioned>Quia uero duos 
+               filios Pipinum et Carolum antequam moreretur</mentioned> bis <mentioned>ut sunt cortinae 
+               stragula tapetia coria saginata</mentioned>), der teilweise auch in den beiden Textfassungen 
+               der Simancas Handschrift begegnet und offenbar auf Grundlage der Vita Karoli Einhards 
+               formuliert wurde. Nach der angeführten Stelle weicht die Fassung des Nauclerus 
+               von jener in Simancas ab, trotz weiterhin deutlicher wörtlicher Anklänge. 
+            </p>
+         </div>
+      </front>
+      <body>
+
+         <cb n="126v"/>
+         <lb n="17"/>
+         
+         <milestone unit="capitulare" n="BK.45"/>
+
+         <!-- sk: Hinweis für die Nachkollationen: 
+            
+            Da die Satzzeichen die moderne Interpunktion des Druckes wiedergeben und später nicht, wie bei 
+            den Hss., durch andere Zeichen ersetzt werden, sind hier die Leerzeichen vor den 
+            Interpunktionszeichen weglassen.
+            
+         -->
+
+         <ab type="meta-text" xml:id="nauclerus-1514-126v-2" corresp="BK.45_inscriptio">
+            Caroli testamentum.
+         </ab>
+
+         <ab type="text" xml:id="nauclerus-1514-126v-3" corresp="BK.45_prolog">
+            In nomine patris et filii et spiritus sancti. <rs type="person"><choice>
+               <abbr>Imp</abbr><expan>Imperator</expan></choice> 
+            Caesar Carolus rex <lb/> Francorum inuictissimus et <choice>
+               <abbr>Ro</abbr><expan>Romani</expan>
+            </choice> rector imperii pius foelix uictor ac triumphator semper
+            Augustus</rs> omni<lb break="no"/>bus fidelibus sanctę dei ecclesie
+            <expan>que</expan> sub nostro imperio constituti sunt. 
+            Sicut omnibus uobis notum esse credi<lb break="no"/>mus <choice>
+               <abbr>quo</abbr><expan>quomodo</expan></choice> diuina clementia cuius
+            nutu ad occasum tendentia secula per successiones generationum
+            re<lb break="no"/>parationes generant tres nobis dando filios magno
+            nos miserationis ac benedictionis suę ditauit mu<lb break="no"/>nere, 
+            quia per eos secundum uota nostra spem nostram de regno confirmauit, et
+            curam obliuioni obnoxiae <lb/> posteritatis leuiorem fecit. Ita et hoc 
+            uobis notum fieri uolumus <expan>quod</expan> eosdem per dei gratiam filios 
+            nostros re<lb break="no"/>gni a deo nobis concessi donec in corpore sumus, 
+            et post nostrum ab hac mortalitate discessum hu<lb break="no"/>ius a deo 
+            conseruati et conseruandi regni uel imperii nostri hęredes relinquere, si 
+            sic diuina maiestas an<lb break="no"/>nuerit optamus non ut confuse atque 
+            inordinate aut sub totius regni iurgium uel litis controuersiam eis <lb/>
+            relinquamus, sed trina partitione totum regnum diuidentes quam quisque illorum
+            tueri uel regere debeat <lb/> describere et designare uolumus, eo uidelicet 
+            modo ut sua quisque portione contentus iuxta ordina<lb break="no"/>tionem 
+            nostram et fines regni sui qui ad alienigenas extenduntur cum dei adiutorio
+            nitatur defendere et pa<lb break="no"/>cem atque charitatem cum fratre custodire.
+         </ab>
+         
+         <ab type="meta-text" xml:id="nauclerus-1514-126v-4" corresp="BK.45_1_inscriptio">
+            Triplex regni Francorum diuisio.
+         </ab>
+         
+         <ab type="meta-text" xml:id="nauclerus-1514-126v-5" corresp="BK.45_1_inscriptio">
+            Ludouici regnum.
+         </ab>
+         <ab xml:id="nauclerus-1514-126v-6" corresp="BK.45_1" type="text">
+            Diuisiones uero a deo conseruati et conseruandi imperii uel regni <lb/>
+            nostri tales facere placuit, ut Aquitaniam totam atque Vasconiam excepto 
+            pago Turonico, et quicquid <lb/> inde ad occidentem atque Hispaniam respicit
+            et de ciuitate Niuernis <expan>que</expan> est sita super fluuium Ligerem
+            cum <lb/> ipso pago Niuernensi pagum Analensem atque Alsensem, Cabillonensem,
+            Matisconensem, Lugdunen<lb break="no"/>sem, Sabaudiam, Tarentasiam, montem
+            Cinisium, uallem Segusianam usque ad Clusas, et inde per terminos
+            Ita<lb break="no"/>licorum montium usque ad mare uel usque ad Hispanias 
+            continetur, hoc est illam portionem Burgundię et prouinciam et <lb/> Septimaniam
+            uel Gotthiam Ludouico dilecto filio nostro consignauimus.
+         </ab>
+
+         <ab type="meta-text" xml:id="nauclerus-1514-126v-7" corresp="BK.45_2_inscriptio">
+            Pipini regnum.
+         </ab>
+         <ab xml:id="nauclerus-1514-126v-8" corresp="BK.45_2" type="text">
+            Italiam uero <expan>que</expan> et Longobar<lb break="no"/>dia dicitur
+            et Boioariam sicut Tassillo tenuit exceptis duabus uillis quarum nomina 
+            sunt Ingoldestat et <lb/> Lutrahahof, quas quondam Tassilloni beneficio
+            nostro tenuit, et pertinent ad pagum Nortgouue, <lb/> de Alamania partem 
+            <expan>que</expan> in Australi ripa Danubii fluminis est, et de ipso fonte
+            Danubii currente li<lb break="no"/>mite usque ad Rhenum fluuium in confinio
+            pagorum Cletgoue et Hegoue in locum qui dicitur Auge et inde <lb/> per Rhenum
+            fluuium sursum uersus usque ad alpes quicquid intra hos terminos fuerit et
+            ad meridiem <lb/> uel orientem respicit, una cum ducatu Curiensi et pago 
+            Durgoue Pipino dilecto filio nostro ordina<lb break="no"/>mus.
+         </ab>
+         
+         <ab type="meta-text" xml:id="nauclerus-1514-126v-9" corresp="BK.45_3_inscriptio">
+            Caroli regnum.
+         </ab>
+         <ab xml:id="nauclerus-1514-126v-10" corresp="BK.45_3 BK.45_4 BK.45_5" type="text">
+            <milestone unit="span" corresp="BK.45_3" spanTo="#nauclerus-1514-126v-10_1"/>
+            Quicquid autem de regno nostro extra hos terminos fuerit, id est 
+            Franciam et Burgundiam excepta <lb/> illa parte quam Ludouico dedimus,
+            atque Alamaniam excepta portione quam Pipino dedimus, Austriam <lb/>
+            et Neustriam, Thuringiam, Saxoniam, Frisiam, et partem Boioarię <expan>que</expan>
+            dicitur Nortgoue dilecto filio nostro <lb/> Carolo concessimus, ita ut
+            Carolus et Ludouicus uiam habere possint in Italiam ad auxilium
+            ferendum <lb/> fratri suo si ita necessitas extiterit, Carolus per 
+            uallem Augustanam <expan>que</expan> ad regnum eius pertinet, et 
+            Ludoui<lb break="no"/>cus per uallem Segusianam, Pipinus uero et exitum
+            et ingressum per alpes Noricas atque Curiam.
+            <anchor xml:id="nauclerus-1514-126v-10_1"/>
+            
+            <milestone unit="span" corresp="BK.45_4" spanTo="#nauclerus-1514-126v-10_2"/>
+            Hęc autem ta<lb break="no"/>li ordine disposuimus, ut si Carolus qui maior
+            natu est prius quam caeteri fratres sui obierit pars regni <lb/> quam habebat
+            diuidatur inter Pipinum et Ludouicum sicut quondam diuisum est regnum inter 
+            nos et fratrem <lb/> nostrum Carolomannum, eo modo, ut Pipinus illam portionem
+            habeat quam frater noster Carolomannus <cb n="127r"/> habuit, Ludouicus uero
+            illam partem quam nos suscepimus, Si uero Carolo et Ludouico uiuentibus <lb/>
+            Pipinus debitum sortis humanę <expan>conpleverit</expan>, Carolus et Ludouicus 
+            diuidant inter se regnum quod ille <lb/> habuit ut ab ingressu Italię per 
+            Augustam ciuitatem accipiat Carolus Vercellas et Papiam et inde per <lb/>
+            Padum fluuium termino currente usque ad fines Regiensium et ipsam Regium et 
+            ciuitatem nouam atque Mu<lb break="no"/>tinam usque ad terminos Sancti
+            Petri, has ciuitates cum suburbanis territoriis et quicquid inde Romam 
+            per<lb break="no"/>genti est ad lęuam una cum ducatu Spoletino accipiat
+            Carolus. Quicquid autem a <expan>predictis</expan> ciuitatibus Romam <lb/>
+            eunti ad dextram iacet de <expan>predicto</expan> regno id est portionem 
+            <expan>que</expan> remansit de regione transpadana una cum duca<lb break="no"/>tu
+            Tusco usque ad mare Australe et usque ad illius prouinciam ludouico cedat. 
+            Quod si cęteris superstitibus <lb/> Ludouicus fuerit defunctus eam partem
+            Burgundię quam regno eius adiunximus cum prouincia et Se<lb break="no"/>ptimania
+            siue Gotthia usque ad Hispaniam Pipinus accipiat, Carolus uero Aquitaniam atque 
+            Vasconiam, <lb/>
+            <anchor xml:id="nauclerus-1514-126v-10_2"/>
+            
+            <milestone unit="span" corresp="BK.45_5" spanTo="#nauclerus-1514-126v-10_3"/>
+            quod si filius cuilibet horum trium fratrum natus fuerit, quem populus eligere 
+            uelit ut patri suo succedat <lb/> in regni hęreditate, uolumus ut consentiant
+            patrui ipsius et regnare permittant filium fratris sui in por<lb break="no"/>tione 
+            regni paterni.
+            <anchor xml:id="nauclerus-1514-126v-10_3"/>
+         </ab>
+         
+         <ab type="meta-text" xml:id="nauclerus-1514-127r-1" corresp="BK.45_6_inscriptio">
+            De fratrum concordia
+         </ab>
+         <ab xml:id="nauclerus-1514-127r_2" corresp="BK.45_6 BK.45_7 BK.45_9 BK.45_9 BK.45_10 BK.45_11 BK.45_14" type="text">
+            <milestone unit="span" corresp="BK.45_6" spanTo="#nauclerus-1514-127r-2_1"/>
+            Placuit etiam inter <expan>predictos</expan> statuere atque <expan>precipere</expan>
+            propter pacem quam inter eos perpe<lb break="no"/>tuo manere desyderamus ut nullus 
+            eorum fratris sui terminos uel regni limites inuadere <expan>presumat</expan>, <lb/>
+            neque fraudulenter ingredi ad conturbandum regnum eius uel marcas muniendas sed adiuuet
+            unus<lb break="no"/>quisque illorum fratrem suum et auxilium ei ferat contra inimicos 
+            eius iuxta rationem et possibilitatem siue in <lb/> patria siue contra caeteras 
+            nationes.
+            <anchor xml:id="nauclerus-1514-127r-2_1"/>
+            
+            <milestone unit="span" corresp="BK.45_7" spanTo="#nauclerus-1514-127r-2_2"/>
+            Neque aliquis illorum homines fratris sui pro quibuslibet causis seu 
+            cul<lb break="no"/>pis ad se confugientes suscipiat ad intercessionem pro eis
+            faciendam, quia uolumus ut quilibet homo pec<lb break="no"/>catis et intercessione 
+            indigens intra regnum domini sui uel ad loca sancta uel ad honoratos homines
+            con<lb break="no"/>fugiat et inde iustam intercessionem mereatur.
+            <anchor xml:id="nauclerus-1514-127r-2_2"/>
+            
+            <milestone unit="span" corresp="BK.45_8" spanTo="#nauclerus-1514-127r-2_3"/>
+            Similiter uolumus ut quemlibet liberum hominem qui dominum <lb/> suum contra
+            uoluntatem eius dimiserit et de uno regno ad aliud profectus fuerit, neque ipse 
+            rex suscipi<lb break="no"/>at neque hominibus suis consentiat ut talem recipiant,
+            hoc non solum de liberis sed etiam de seruis fugitiuis sta<lb break="no"/>tuimus
+            obseruandum.
+            <anchor xml:id="nauclerus-1514-127r-2_3"/>
+            
+            <milestone unit="span" corresp="BK.45_9" spanTo="#nauclerus-1514-127r-2_4"/>
+            Quapropter <expan>precipimus</expan> ut post nostrum discessum unusquisque accipiat
+            beneficia <lb/> in regno domini sui et non alterius ne forte per hoc si aliter fiat
+            scandalum possit aliquod accidere, haeredi<lb break="no"/>tatem autem suam habeat 
+            unusquisque illorum hominum absque contradictione in quocunque regno hoc eum legitime
+            <lb/> habere contigerit.
+            <anchor xml:id="nauclerus-1514-127r-2_4"/>
+            
+            <milestone unit="span" corresp="BK.45_10" spanTo="#nauclerus-1514-127r-2_5"/>
+            Vt unusquisque liber homo licentiam habeat post mortem domini sui se commendandi
+            in<lb break="no"/>ter haec tria regna ad quodcunque uoluerit, similiter et ille qui
+            nondum alicui commendatus est.
+            <anchor xml:id="nauclerus-1514-127r-2_5"/>
+            
+            <milestone unit="span" corresp="BK.45_11" spanTo="#nauclerus-1514-127r-2_6"/>
+            De traditi<lb break="no"/>onibus autem et uenditionibus <expan>que</expan> inter 
+            partes fieri solent, <expan>precipimus</expan> ut nullus ex his tribus fratribus <lb/>
+            suscipiat de regno alterius aliquam traditionem uel uenditionem a quolibet homine
+            rerum immobilium hoc est <lb/> terrarum uinearum syluarum <sic>suorumque</sic> qui 
+            iam casati sunt siue cęterorum <expan>que</expan> hęreditatis nomine censentur ex 
+            auro <lb/> et argento et gemmis armis ac uestibus necnon et mancipiis non casatis et 
+            his speciebus <expan>que</expan> proprie ad <lb/> negociatores pertinere noscuntur,
+            cęteris uero liberis hominibus hoc minime interdicendum iudicauimus. <lb/>
+            <anchor xml:id="nauclerus-1514-127r-2_6"/>
+            
+            <milestone unit="span" corresp="BK.45_14" spanTo="#nauclerus-1514-127r-2_7"/>
+            Si causa controuersię inter partes propter terminos aut confinia regnorum orta fuerit
+            <expan>que</expan> hominum testi<lb break="no"/>monio diffiniri non potest uolumus 
+            quod ad declarationem rei dubiae iudicio crucis dei uoluntas et <lb/> rerum ueritas 
+            inquiratur nec unquam pro tali causa cuiuslibet generis pugna uel campus ad examinationem
+            indi<lb break="no"/>catur, si uero homo de uno regno hominem de altero de infidelitate 
+            contra fratrem domini sui apud dominum suum <lb/> accusauerit mittat eum dominus eius 
+            ad fratrem suum ut ibi <expan>conprobet</expan> quod dixit.
+            <anchor xml:id="nauclerus-1514-127r-2_7"/>
+         </ab>
+         
+         <ab type="meta-text" xml:id="nauclerus-1514-127r-3" corresp="BK.45_15_inscriptio">
+            Principibus tuenda ecclesia.
+         </ab>
+         
+         <ab xml:id="nauclerus-1514-127r_4" corresp="BK.45_15 BK.45_17 BK.45_19 BK.45_20" type="text">
+            <milestone unit="span" corresp="BK.45_15" spanTo="#nauclerus-1514-127r-4_1"/>
+            Super omnia autem iubemus ut ipsi <lb/> tres fratres curam et defensionem ecclesię
+            Sancti Petri simul suscipiant, sicut quondam ab auo nostro Carolo <lb/> et beatę 
+            memorię Pipino rege et a nobis postea suscepta est, ut eam cum dei adiutorio ab 
+            hostibus de<lb break="no"/>fendere nitantur, et iusticiam suam quantum ad ipsos 
+            pertinet et ratio postulauerit habere faciant. Similiter <lb/> et de cęteris
+            ecclesiis <expan>que</expan> sub illorum fuerint potestate <expan>precipimus</expan>
+            ut iusticiam suam et honorem habeant, et pa<lb break="no"/>stores atque rectores
+            uenerabilium locorum habeant potestatem rerum <expan>que</expan> ad ipsa pia loca
+            pertinent in <expan>quocunque</expan> <lb/> de his tribus regnis illarum ecclesiarum
+            possessiones fuerint.
+            <anchor xml:id="nauclerus-1514-127r-4_1"/>
+            
+            <milestone unit="span" corresp="BK.45_17" spanTo="#nauclerus-1514-127r-4_2"/>
+            De filiabus autem nostris iubemus ut post <lb/> nostrum decessum licentiam habeat
+            unaquaeque eligendi sub cuius fratris tutelam se conferre uelit et <lb/> quęcunque 
+            ex illis monasticam uitam elegerit liceat ei honorifice uiuere. Quę autem iuste et
+            rationabili<lb break="no"/>ter a condigno uiro ad coniugium quęsita fuerit eique coniugalis 
+            uita placuerit non ei denegetur a fratri<lb break="no"/>bus suis si et uiri postulantis
+            et foeminę consentientis honesta et rationabilis fuerit uoluntas.
+            <anchor xml:id="nauclerus-1514-127r-4_2"/>
+            
+            <milestone unit="span" corresp="BK.45_19" spanTo="#nauclerus-1514-127r-4_3"/>
+            Postre<lb break="no"/>mo statuimus ut quicquid adhuc de rebus ac constitutionibus his 
+            nostris decretis addere uoluerimus <lb/> sic a <expan>predictis</expan> dilectis filiis 
+            nostris obseruetur, sicut ea <expan>que</expan> in his iam statuta sunt atque scripta.
+            <anchor xml:id="nauclerus-1514-127r-4_3"/>
+            
+            <milestone unit="span" corresp="BK.45_20" spanTo="#nauclerus-1514-127r-4_4"/>
+            Haec autem omnia <lb/> ita disposuimus atque in ordinem firmare decreuimus, ut quandiu
+            diuinę maiestati placuerit hanc corpo<lb break="no"/>ralem agere uitam, potestas nostra 
+            sit super a deo conseruatum regnum atque imperium istud, sicut hactenus fuit <lb/> et 
+            ut obedientes habeamus <expan>predictos</expan> filios nostros atque deo amabilem populum
+            nostrum cum omni subiecti<lb break="no"/>one <expan>que</expan> patri a filiis et 
+            imperatori ac regi a suis populis exhibetur. Amen.
+            <anchor xml:id="nauclerus-1514-127r-4_4"/>
+         </ab>
+         
+      </body>
+   </text>
+</TEI>

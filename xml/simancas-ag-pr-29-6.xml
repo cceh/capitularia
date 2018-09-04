@@ -1,0 +1,1270 @@
+<?xml version="1.0"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<!-- bm: Achtung: Die Datei ist an mehreren Stellen noch unvollständig, insbesondere in der Hss.-Beschreibung,
+   da diese nicht aus Mordek übernommen werden konnte. Da es zunächst darum ging, möglichst schnell mit der
+Transkription fertig zu werden, habe ich nur Kommentare an den entsprechenden Stellen gesetzt, die mit 
+Informationen aufgefüllt werden müssen, wenn die Hs. später einmal online geht! -->
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="simancas-ag-pr-29-6">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main" xml:lang="ger">Simancas, Archivo General, Patronato Real 29-29 I,
+               Caja 29-6
+               <!--   sk jetzt Korrektur: beide Simancas-Hss. sind Teil der gleichen Signatur und entsprechend, auch
+               als lose Blätter in einer Box, 2 Teile einer Hs., d.h. der Zusatz "I" ist nicht mehr nötig,
+               stattdessen ggf. hier 2 ms-parts einrichten.
+               Womöglich hat sich die Signatur seit den Zeiten Beinerts (+ 1981) auch geändert und es 
+               heißt gar nicht mehr "Patronato Real 29-29" (etc) sondern, wie auf der Pares-Seite
+               "PTR [Patronato Real] LEG 29 DOC 6" o.ä.  -->
+            </title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift
+               <!-- Nicht bei Mordek; Beschreibung ergänzen! Vgl. Tischler 2008 S. 247 f. mit Literaturhinweisen. -->
+               und Transkription der foll. 33r-36v
+               <!-- bm: Falls wir den letzten Teil ab "Quia vero duos filios", der 
+                     offenbar eine spätere Ergänzung ist, obwohl er hier als Fortsetzung der 
+                     Liste erscheint, doch nicht mittranskribieren wollen, dann nur bis 35v. 
+               sk: Bei der zweiten Fassung (ehemals "II", alte Signatur "& 509-2", während "I" irritierender weise "& 509-3" war)
+                   entspricht den Scans auf Pares zufolge S. 1-11 (Paginierung Mordeks) den fol. 37r-42r, gefolgt von 4 von
+                   Beinert nicht kopierten leeren Blättern und schließlich S. 12 als fol. 44v; der Text von BK 45
+                   endet aber eh bereits vorher, d.h. hier nur fol. 37r-40v, d.h. oben und im Folgenden zu ändern in
+                   "Transkription der foll. 33r-40v", bzw. (s.u.) "33r-35v, 37r-40v"
+               --></title>
+            <title type="sub" xml:lang="eng">Manuscript description and transcription of fols
+               33r-36v<!-- bm: S.o.; evtl. nur bis 35v. --></title>
+            <respStmt>
+               <persName key="KU">
+                  <forename>Karl</forename>
+                  <surname>Ubl</surname>
+               </persName>
+               <resp xml:lang="ger">Projektleitung</resp>
+               <resp xml:lang="eng">Project lead</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
+               </persName>
+               <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung von foll.
+                  33r-36v<!-- sk: s.o., "33r-35v"? --> nach TEI P5 Standard</resp>
+               <resp xml:lang="eng">Transcription, description and text encoding of fols 33r-36v
+                  according to the TEI P5 standard</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
+               </persName>
+               <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung von foll.
+                  37r-40v<!-- sk: s.o., "33r-35v"? --> nach TEI P5 Standard</resp>
+               <resp xml:lang="eng">Transcription, description and text encoding of fols 37r-40v
+                  according to the TEI P5 standard</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="SH">
+                  <forename>Semih</forename>
+                  <surname>Heinen</surname>
+               </persName>
+               <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
+               <resp xml:lang="eng">First revision of transcription and additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="DT">
+                  <forename>Dominik</forename>
+                  <surname>Trump</surname>
+               </persName>
+               <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
+               <resp xml:lang="eng">Second revision of transcription and additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="FF">
+                  <forename>Franz</forename>
+                  <surname>Fischer</surname>
+                  <affiliation>Cologne Center for eHumanities (CCeH), Universität zu
+                     Köln</affiliation>
+               </persName>
+               <resp xml:lang="ger">Datenmodellierung</resp>
+               <resp xml:lang="eng">Data Modelling</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="CR">
+                  <forename>Clemens</forename>
+                  <surname>Radl</surname>
+               </persName>
+               <resp xml:lang="ger">Kodierung von Mordek, Bibliotheca in TEI, Vorbereitung für
+                  Übergabe an Capitularia</resp>
+               <resp xml:lang="eng">TEI encoding of Mordek, Bibliotheca, preparation of data</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="DS">
+                  <forename>Daniela</forename>
+                  <surname>Schulz</surname>
+               </persName>
+               <resp xml:lang="ger">Technische Umsetzung, Generierung der
+                  Handschriftenbeschreibungen aus Mordek, Bibliotheca</resp>
+               <resp xml:lang="eng">technical support, generating of manuscript description
+                  according to Mordek, Bibliotheca</resp>
+            </respStmt>
+            <funder>Akademie der Wissenschaften und Künste Nordrhein-Westfalen</funder>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>
+               <persName>Karl Ubl</persName>
+               <orgName xml:lang="ger">Historisches Institut, Lehrstuhl für Geschichte des
+                  Mittelalters, Universität zu Köln</orgName>
+               <orgName xml:lang="eng">History Department, Chair for Medieval History, Cologne
+                  University</orgName>
+               <address xml:lang="ger">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Köln</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Raum 4.108</addrLine>
+                  <addrLine>0221-470 2717</addrLine>
+                  <country>Deutschland</country>
+               </address>
+               <address xml:lang="eng">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Cologne</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Room 4.108</addrLine>
+                  <addrLine>+49 221-470 2717</addrLine>
+                  <country>Germany</country>
+               </address>
+            </publisher>
+            <availability>
+               <p xml:lang="ger">Die Inhalte sind frei zugänglich und nicht-kommerziell. Einige
+                  Digitalisate und Texte sind aus rechtlichen Gründen jedoch Mitarbeitern
+                  vorbehalten.</p>
+               <p xml:lang="eng">Content is freely available on a non-commercial basis. Some digital
+                  images and texts are only available to staff due to copyright issues.</p>
+            </availability>
+            <date when="2016-03-03"><!-- Datum ergänzen --></date>
+         </publicationStmt>
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <settlement>Simancas</settlement>
+                  <repository>Archivo General</repository>
+                  <idno>Patronato Real 29-29 I, Caja 29-6 <!-- sk: Signatur anpassen, s.o. -->
+                  </idno>
+                  <msName/>
+                  <altIdentifier type="former">
+                     <settlement/>
+                     <repository/>
+                     <idno/>
+                     <note type="date">
+                        <date/>
+                     </note>
+                  </altIdentifier>
+                  <altIdentifier type="siglum">
+                     <idno>Si<!-- bm: In Mordeks Siglenliste (Server: cap/intern/Handschriften/Siglenliste_Mordek/)
+                           existiert noch eine zweite Sigle "Si1", die sich auf eine nur minimal abweichende
+                           Signatur bezieht: Arch. Gen., PR n. 2929 II [statt, wie die vorliegende Hs., I] Caja 29-6.
+                           Im Inventar auf Pares war nur diese eine Kopie zu finden (Suche nach "Carlo Magno"). 
+                     Prüfen, welche Signatur für diese Kopie die richtige ist!
+                     sk: Hat sich geklärt - die zweite Fassung ist bei Pares einfach direkt an den Scan der ersten
+                     angehängt (und fortlaufend foliiert). Frage: ist es künftig sinnvoll, für effektive eine Hs. mit
+                     2 Fassungen eines Kapitulars zwei Siglen (Si, Si1) zu vergeben, oder sollte man sich nun auf
+                     eine Sigle beschränken?
+                     --></idno>
+                     <note/>
+                  </altIdentifier>
+               </msIdentifier>
+               <head>
+                  <title type="main">Simancas, Archivo General, Patronato Real 29-29 I, Caja
+                     29-6</title>
+                  <origDate notBefore="1501" notAfter="1600">16. Jh.</origDate>; <origPlace
+                     ref="http://www.geonames.org/2510769/kingdom-of-spain.html http://viaf.org/viaf/133609710 http://d-nb.info/gnd/4055964-6"
+                     >Spanien.</origPlace></head>
+               <msContents>
+                  <summary/>
+                  <!-- bm: IHV muss noch ergänzt werden -->
+                  <msItem n="1">
+                     <p>
+                        <locus>33r-35v</locus>
+                        <title corresp="BK.45">Divisio regnorum</title> (MGH Capit. 1, Nr. 45, S.
+                        126 Z. 32 - S. 130 Z.
+                        15).<!-- sk: Hier und beim Folgeeintrag noch überlegen: differenzieren
+                        hinsichtlich der ausgelassen Kapitel, anstatt pauschal den gesamten Editionstext von BK anzugeben?  -->
+                     </p>
+                  </msItem>
+                  <msItem n="5">
+                     <p>
+                        <locus>37r-40v</locus>
+                        <title corresp="BK.45">Divisio regnorum</title> (MGH Capit. 1, Nr. 45, S.
+                        126 Z. 32 - S. 130 Z. 15).</p>
+                  </msItem>
+               </msContents>
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc>
+                        <support>
+                           <material>Papier</material>
+                        </support>
+                        <!-- bm: Angaben ergänzen -->
+                        <extent>XX foll. <dimensions type="leaf" unit="mm">
+                              <height>XX</height>
+                              <width>XX</width>
+                           </dimensions>
+                           <dimensions type="written" unit="mm">
+                              <height>XX</height>
+                              <width>XX</width>
+                           </dimensions>
+                        </extent>
+                        <collation>
+                           <formula/>
+                           <catchwords/>
+                        </collation>
+                     </supportDesc>
+                     <layoutDesc>
+                        <layout writtenLines="30">30 (30-31)</layout>
+                        <layout columns="1"/>
+
+
+                     </layoutDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote/>
+                  </handDesc>
+                  <scriptDesc>
+                     <scriptNote>humanistische Kursive</scriptNote>
+                  </scriptDesc>
+                  <decoDesc>
+                     <decoNote/>
+                  </decoDesc>
+                  <bindingDesc>
+                     <binding>
+                        <p/>
+                     </binding>
+                  </bindingDesc>
+               </physDesc>
+               <history>
+                  <origin>
+                     <p><origDate notBefore="1501" notAfter="1600">16. Jh.</origDate>; <origPlace
+                           ref="http://www.geonames.org/2510769/kingdom-of-spain.html http://viaf.org/viaf/133609710 http://d-nb.info/gnd/4055964-6"
+                           >Spanien</origPlace></p>
+                  </origin>
+                  <provenance/>
+                  <acquisition/>
+               </history>
+               <additional>
+                  <surrogates/>
+                  <listBibl>
+                     <listBibl type="cap">
+                        <bibl corresp="#Tischler_2008">Tischler 2008, S. 247 f.</bibl>
+                        <!-- Prüfen, ob die ebd. S. 247 Anm. 159 genannte Literatur von
+                           dem Entdecker der Überlieferung, B. Beinert, evtl. eine Beschreibung
+                           der Hs. enthält oder anderweitig für uns verwendbar ist.
+                        sk: Fernleihe bzw. Vormerkung läuft (30.7.18).
+                        Beinert 1958 ("Testamento politico") enthält dem ersten Anschein nach 
+                        nichts zu BK 45 (S. 405 ff. zu Hss. d. Testaments Karls V.); due Fußnote von 
+                        Tischler ließe sich dahin verstehen, dass dort lediglich Literatur zu
+                        Beinerts Forschung zu Karl V. gesammelt ist, nicht zu seinem "Beifang"
+                        -->
+                     </listBibl>
+                  </listBibl>
+               </additional>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>Transkriptionsvorlage: Graustufendigitalisat
+            <!-- bm: oder sogar eine Farbaufnahme?! 
+         sk: nein, nur s/w, in mittlerer Qualität (ca. 250kb pro Bilddatei, wenn man speichert).  -->
+            im spanischen Archivportal PARES.
+            <!-- bm: Suche: Inventario Dinámico – Archivo 
+               General de Simancas – Collecciones (Achtung: NICHT Novedades!) – Patronato Real – 
+               Testamentos Reales – Testamento del Emperador Carlo Magno. --></p>
+         <projectDesc>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
+            </p>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
+            </p>
+         </projectDesc>
+         <editorialDecl>
+            <p xml:lang="ger">Die Transkription folgt den Richtlinien des Capitularia-Projektes:
+                  <ptr target="http://capitularia.uni-koeln.de/project/workflow/"/>
+            </p>
+            <p xml:lang="eng">The transcription adheres to the guidelines of the Capitularia
+               project: <ptr target="http://capitularia.uni-koeln.de/project/workflow/"/>
+            </p>
+         </editorialDecl>
+      </encodingDesc>
+      <revisionDesc>
+         <change who="BM" when="2018-05-08">Datei erstellt</change>
+      </revisionDesc>
+   </teiHeader>
+   <!-- <facsimile><graphic url="XXX"/></facsimile>
+   bm: Eine direkte Verlinkung gibt es leider nicht. -->
+   <text>
+      <front>
+
+         <div type="content"/>
+         <div type="mshist">
+            <p>Die Überlieferung ist nicht bei Mordek 1995 beschrieben. Die Kopie auf vier
+               Papierdoppelblättern wurde im 20. Jh. von Berthold Beinert, wohl im Zuge seiner
+               Studien zu den politischen Testamenten Karls V., im Königlichen Staatsarchiv von
+               Simancas entdeckt. Eine nahezu identische Textfassung findet sich auch in der
+               Weltchronik des Johannes Nauclerus; beide Kopien gehen auf eine verlorene
+               handschriftliche Vorlage zurück, in der die Divisio regnorum am Ende eines
+               historiographischen oder biographischen Textes zu Karl dem Großen stand (vgl.
+               Tischler 2008 S. 247 f.).</p>
+         </div>
+         <div type="scribe">
+            <!--    sk: das Folgende noch überall umstellen, als Beschreibung von Hand A (fol. 33r ff.) und Hand B (fol. 37r ff.),
+            sowie einem nur im ersten Teil tätigen Korrektor, der nicht mit Hand B identisch ist,
+            vgl. sein fol. 33v über Z. 1 nachgetragenes "sicut" mit rund-S gegenüber dem "sicut"
+            von Hand B auf fol. 37v. 
+            Vorläufig: Hand B grundsätzlich ähnlich Hand A, aber ohne die spanischen Besonderheiten
+            (rr, c-cedille)            
+            -->
+            <p>Geschrieben in einer Humanistenkursive des 16. Jhs., wohl von einem Spanier (er
+               schreibt z.B. <mentioned>santi</mentioned> statt <mentioned>sancti</mentioned>,
+                  <mentioned>oblibioni</mentioned> statt <mentioned>oblivioni</mentioned> und
+                  <mentioned>magestas</mentioned> statt <mentioned>maiestas</mentioned> sowie
+               gelegentlich c mit cedilla und am Wortanfang doppeltes r; vgl. auch Tischler 2008 S.
+               248 m. Anm. 161). Er neigt zu Haplographie, vor allem bei Doppel-s
+                  (<mentioned>posint</mentioned> statt <mentioned>possint</mentioned> etc.). Über
+               den Formen von <mentioned>ipsum</mentioned> steht regelmäßig ein an einen
+               Kürzungsstrich erinnerender senkrechter Strich, obwohl keine Buchstaben ausgefallen
+               sind; gelegentlich auch waagerechte Striche über anderen Worten, die offensichtlich
+               nicht gekürzt sind (z.B. <locus>fol. 33r Z. 26-28</locus> bei
+                  <mentioned>montium</mentioned>, <mentioned>mare</mentioned>). An einigen Stellen
+               wurden Lesehilfen eingefügt (z.B. Striche zur Worttrennung) und Wörter verbessert
+               bzw. verschlimmbessert. Ob diese Korrekturen vom Schreiber selbst oder einem
+               Korrektor stammen, ist nicht sicher zu entscheiden; im Zweifelsfall werden sie in den
+               Anmerkungen einer "anderen Hand" zugeschrieben.
+               <!-- bm: Oder könnte es doch der Schreiber selber gewesen sein? Ich habe jetzt vorläufig
+               alle Korrekturen Hand X zugewiesen, außer solchen, die m.E. eindeutig vom Schreiber stammen.
+               Paläographisch oder von der Tintenfarbe her ist allerdings kaum ein Unterschied festzustellen;
+               nur erschienen mir einige Korrekturen so absurd, dass man sich kaum vorstellen kann, dass der
+               Schreiber seinen eigenen Text derart verschlechterte. Bitte bei den Nachkollationen darauf
+               achten, ob ihr eine zweite Korrekturhand für plausibel haltet oder nicht! 
+               - sh: die Korrekturhand ist der Haupthand schon sehr ähnlich, wenn auch wesentlich kursiver;
+               eine zweite Hand möchte ich aber nicht ausschließen.
+               Verschlimmbesserungen müssen nicht immer ein Ausschluss-Kriterium sein, - je nach Dosis Rotwein. =D
+               Ich würde Hand X beibehalten. 
+               dt: schwierig, muss nicht, kann lautet hier wohl die Devise. Es wirkt aber schon so, als ob da 
+               jemand hinterher nochmal alles durchgegangen ist. hand X ist vertretbar, oder aber man 
+               beschreibt es in der Vorbem. und kodiert es nicht, um sich nicht direkt festzulegen 
+               
+               sk: Die zweite Fassung von anderer Hand, entsprechend handshift zu B dort kodiert. Beschreibung 
+               folgt noch.
+               
+               --></p>
+
+         </div>
+         <div type="letters"/>
+         <div type="abbreviations">
+            <p>Gekürztes <mentioned>nro</mentioned> = <mentioned>nostro</mentioned> ohne
+               Kürzungsstrich bzw. stattdessen mit darübergesetztem Punkt; z.B. <locus>fol. 33v Z.
+                  16</locus>.</p>
+         </div>
+         <div type="punctuation"/>
+         <div type="structure">
+            <p>Der Text wird durch Absätze mit jeweils vorangehender Leerzeile in Abschnitte
+               gegliedert, die der Kapiteleinteilung entsprechen. Die Kapitel werden allerdings
+               nicht gezählt, sondern nur durch Paragraphenzeichen eröffnet. Gelegentlich finden
+               sich vergrößerte Majuskeln im Stil von Initialen am Kapitelanfang.</p>
+            <p>Es fehlen die Kapitel 12, 13, 16 und 18 von BK 45, dafür folgen auf das mit
+                  <mentioned>Amen</mentioned> abschließende letzte Kapitel sechs weitere Abschnitte,
+               die durch die jeweils vorangestellten Paragraphenzeichen als Fortführung der Liste
+               erscheinen. Dabei handelt es sich um eine Einordnung in einen umfassenderen
+               biographischen Kontext, wohl eine Paraphrase der Vita Karoli (Tischler 2008 S. 207
+               f.). In diesem letzten Teil (ab <locus>fol. 35v</locus>) scheint die vom Kopisten
+               benutzte Vorlage z.T. schlecht lesbar gewesen zu sein, da er an mehreren Stellen
+               Lücken lässt, die ausgelassenen Text anzeigen (z.B. auf <locus>fol. 36r Z. 16, 18,
+                  19</locus>).<!-- bm: Ich habe diesen letzten Teil
+                  mittranskribiert, da mir anfangs nicht klar war, wie man ihn beurteilen sollte.
+                  Nun denke ich, dass er eher nicht als Fortführung der Liste gedacht war - die 
+                  Paragraphenzeichen sind ja auch nicht eindeutig als "Aufzählungszeichen" zu deuten - , 
+                  daher soll Sören entscheiden, ob es sich lohnt, den Teil mitzunehmen. --></p>
+         </div>
+         <div type="annotations">
+            <p>Auf <locus>fol. 35v</locus> findet sich am Rand eine Notiz in Spanisch
+               <!-- bm: ... die ich leider nicht sicher lesen kann; "Esta/o tlia. (?) debe estan eguir orada (???)" - 
+               Spanischkenntnisse würden da sicherlich weiterhelfen ... -->,
+               die sich evtl. auf eine durch einen Auslassungsstrich angezeigte Lücke im Text
+               beziehen könnte (<locus>Z. 14</locus>, im auf den Kapitularientext folgenden Teil,
+               der eine Paraphrase der Vita Karoli bietet).</p>
+         </div>
+         <div type="other"/>
+
+      </front>
+      <body>
+         <milestone unit="capitulare" n="BK.45"/>
+         <cb n="33r"/>
+         <lb n="1"/>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-33r-1" corresp="BK.45_prolog"><seg
+               type="initial">I</seg>n nomine patris et filii et spiritu<add hand="X">s</add>
+            <sic>ssanti</sic>
+            <rs type="person">Imperator cesar carolus . Rex francorum <lb/>inuictissimus . et
+               rromani rector imperii pius felix autor ac tr<mod>iu</mod>mphator <lb/>semper
+               augustus</rs> . omnibus fidelibus sante dei ecclesie qui sub nostro imperio . <lb/>constitut<subst>
+               <del>e</del>
+               <add hand="X">i</add>
+            </subst> sunt sicut omnibus vobis notum esse credimus quomodo . <lb/>diuina clementia
+            cuius m<subst>
+               <del>e</del>
+               <add>u</add>
+            </subst>tu ad occasum . tendentia secula per successiones <lb/>generationum .
+            reparationis generantur <rs type="person">tres nobis filios</rs> dando magno nos
+            <lb/>miserationis ac benedicionis sue ditauerit munere quia per <subst>
+               <del>v</del>
+               <add hand="X">e</add>
+            </subst>os secundum <lb/>vota nostra et spem nostram de rregno confirmauit et curam
+            oblibioni obnoxie <lb/>posteritatis leuiorem fecit ita et hoc vobis notum fieri volumus <subst>
+               <del><unclear>quia</unclear></del>
+               <add hand="X">quod</add>
+            </subst> eo<subst>
+               <del>d</del>
+               <add>sdem</add>
+            </subst>
+            <lb/>per dei gratiam filios nostros regni a deo nobis concessi . donec in corpore
+            <lb/>sumus et post nostrum ab hac mortalitate discessum huius a deo con<lb break="no"
+            />seruati et conseruandi Regni vel imperii nostri heredes rrelinquere <lb/>si sic diuina
+            . magestas . annuerit optamus / non vt confuse atque inordinate <lb/>aut sub totius
+            rregni iurg<unclear>ui</unclear> . vel litis controuersia eis rrelinquamus sed .
+            <lb/>trina partitione totum regnum diuidentes . quam . quisque illorum * <lb/>tueri vel
+            rregere debeat . porciones describere et de<subst>
+               <del>s</del>
+               <add hand="X">s</add>
+            </subst>ignare<note type="editorial">rundes s von anderer Hand durch Schaft-s
+               ersetzt</note> volumus eo <lb/>videlicet modo . ut sua quisque porcione contentus .
+               iu<mod>x</mod>ta ordinationem <lb/>nostram fines rregni sui qui ad alienigenas .
+            extenduntur cum dei ad<lb break="no"/>iutorio nitatur . defendere et pacem et caritatem
+            cum fratre custodire <lb/><lb/></ab>
+         
+         <ab type="text" xml:id="simancas-ag-pr-29-6-33r-2" corresp="BK.45_1">
+            diuisiones vero a deo
+            conseruati et conseruandi imperii vel rregni nostri tales <lb/>facere placuit vt <rs
+               type="place">aquitaniam</rs> totam . atque <rs type="place">vasconiam</rs> . excepto
+               <rs type="place">pago toronito</rs>
+            <lb/>et <sic>quiquid</sic> inde ad <sic>occidemtem</sic> atque ad <rs type="place"
+               >hispaniam</rs> respicit et de <rs type="place">ciuitate <lb/>niuernis</rs> que est
+            sita super <rs type="place">fluuium ligerim</rs> cum ipso <rs type="place">pago
+               niuernensi</rs>
+            <lb/><rs type="place">pagum analensem</rs> atque <rs type="place">alsensem</rs>
+            <rs type="place">cobilonensem</rs>
+            <rs type="place">matristinensem</rs>
+            <rs type="place">lugd<unclear>i</unclear><lb break="no"/>nensem</rs>
+            <rs type="place">saboiam</rs>
+            <rs type="place">mariennam</rs> . <rs type="place"><subst>
+                  <del>t</del>
+                  <add>c</add>
+               </subst>arentasiam</rs> . <rs type="place">montem cin<mod>i</mod>sie</rs>
+            <rs type="place">vallem segu<lb break="no"/>siatiam</rs> vsque ad <rs type="place"
+               >clusas</rs> . et inde per <rs type="place">terminos italicorum montium</rs> vsque .
+            <lb/>ad ma<mod>r</mod>e . hos pagos cum suis ciuitatibus et quicquid ab eis contra
+            <lb/>meridiem et <sic>occidemtem</sic> vsque ad mare . vel usque ad <rs type="place"
+               >hispanias</rs> continetur <lb/>hoc est illam portionem . <rs type="place"
+               >burgundie</rs> et <rs type="place">prouinciam</rs> et <rs type="place"
+               >septimaniam</rs> vel <lb/><rs type="place">gothiam</rs>
+            <rs type="person">lu<mod>do</mod>uico dilecto nostro filio</rs>
+            <sic>cosignamus</sic>
+            <cb n="33v"/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-33v-1" corresp="BK.45_2">
+            <rs type="place"><seg
+                  type="initial">I</seg>taliam</rs> vero que et <rs type="place">Longobardia</rs>
+            dicitur et <rs type="place">Baruaria</rs>
+            <subst>
+               <del>sucut</del>
+               <add hand="X">sicut</add>
+            </subst>
+            <rs type="person">tassilo</rs>
+            <lb/>tenuit exceptis duabus villis quarum nomina sunt <rs type="place">ingoltstat</rs>
+            et <lb/><rs type="place">lutrahahaff</rs> quas nos quond<mod>am</mod>
+            <rs type="person">tassioloni</rs> beneficiauimus et pertinent <lb/>ad <rs type="place"
+               >pagum . nortgouuem</rs> . et de <rs type="place">almania</rs> partem que est in <rs
+               type="place">australi ripa danubii <lb/>fluminis</rs> est et de ipso <rs type="place"
+               >danubii</rs> turrente limite vsque ad <rs type="place">rrenum fluuium</rs> . <lb/>in
+            confinio <rs type="place">pag<mod>o</mod>rum cletgo<subst>
+                  <del/>
+                  <add hand="X">uue</add>
+               </subst></rs> et <rs type="place">hogouue</rs>
+            <sic>inlatum</sic> qui dicitur <rs type="place">enge</rs>
+            <lb/>et inde per <rs type="place">Renum fluuium</rs>
+            <sic>surgum</sic> versus usque ad <rs type="place">Alpes</rs> quicquid intra <lb/>hos .
+            terminos . fuerit et ad meridie vel orientem rrespicit vna <lb/>cum <rs type="place"
+               >ducatu guriensi</rs> et <rs type="place">pago turgouue</rs>
+            <rs type="person">pipino . dilecto . filio nostro</rs> . <lb/>ordinamus <lb/><lb/></ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-33v-2" corresp="BK.45_3">Quicquid autem de
+            rregno nostro extra hos terminos fuerit id est <lb/><rs type="place">francia</rs> et <rs
+               type="place">burgundia</rs> excepta illa parte quam <rs type="person">ludobico</rs>
+            dedimus atque <lb/><rs type="place">Almania</rs> excepta porcione illa quam <rs
+               type="person">pi<mod>p</mod>ino</rs> dedimus <rs type="place">Austria</rs> et
+               <lb/><rs type="place">nestria</rs>
+            <rs type="place">turingia</rs>
+            <rs type="place">saxonia</rs>
+            <rs type="place">frisiam</rs> et parte <rs type="place">Baruarie</rs> qu<mod>ę</mod>
+            dicitur <rs type="place">nort<lb break="no"/>gouue</rs> . <rs type="person">dilecto
+               filio nostro carolo</rs> concessimus ita ut <rs type="person">carolus</rs>
+            <del hand="X">est</del> et <rs type="person">ludo<del unit="chars" quantity="1"/><lb
+                  break="no"/>uicus</rs> viam habere posint in <rs type="place">Italia</rs> ad a<add
+               hand="X">u</add><metamark function="insertion"/>xilium ferendum <rs type="person"
+               >fratri suo</rs>
+            <lb/>si ita necessitas extiterit / <rs type="person">carolus</rs> . per <rs type="place"
+               >uallem Augustantiam</rs> que ad . <lb/>rregnum eius pertinet et <rs type="person">ludo<subst>
+                  <del>lu</del>
+                  <add>ui</add>
+               </subst>cus</rs> per <rs type="place">vallem segusianam</rs>
+            <rs type="person">pipinus</rs>
+            <lb/>vero et exitum et ingresum per <rs type="place">alpes noricas</rs> atque <rs
+               type="place">curiam</rs>
+            <lb/><lb/>
+         </ab>
+         
+         <ab type="text" xml:id="simancas-ag-pr-29-6-33v-3" corresp="BK.45_4 BK.45_5">
+            <milestone unit="span" corresp="BK.45_4" spanTo="#simancas-ag-pr-29-6-33v-3_1"/>
+            Hec autem tali
+            hordine disposuimus ut si <rs type="person">carolus</rs> qui maior natu est . <lb/>prius
+            quam ceteri fratres sui obierit p<mod>a</mod>rs regni quam <mod>h</mod>abebat diuidatur
+            <lb/>inter <rs type="person">pipinum</rs> et <rs type="person">lu<mod>do</mod>uicum</rs>
+            . sicut quondam diuisum est rregnum inter <lb/>nos et <rs type="person">fratrem nostrum
+               carolomannum</rs> . eo modo . vt <rs type="person">pipinius</rs> illam <lb/>partionem
+            habeat quam <rs type="person">frater noster carolomannu<mod>s</mod></rs> habuit <rs
+               type="person">ludouicus</rs>
+            <lb/> vero illam partem quam nos suscepimus / si vero <rs type="person">carolo</rs> . et
+               <rs type="person">ludouico</rs>
+            <lb/>viuentibus . <rs type="person">pipin<del hand="X">i</del>us</rs> debitum sortis
+            humane compleuerit <rs type="person">carolus</rs> et <lb/><rs type="person"
+               >ludouicus</rs> diuidant inter se rregnum quod ille habuit vt ab ingresu <lb/><rs
+               type="place">Italie</rs> per <rs type="place">augustam ciuitatem</rs> accipiat <rs
+               type="person">carolus</rs> . <rs type="place">ebortiam</rs> . <rs type="place"
+               >vercellos</rs>
+            <lb/>et <rs type="place">papiam</rs> . et inde per <rs type="place">padum . fluuium</rs>
+            . termino currente usque ad . <cb n="34r"/><rs type="place">Fines Regiensium</rs> et
+            ipsum Regnum et <rs type="place">ciuitatem nouam</rs> atque <lb/><rs type="place"
+               >mutinam</rs> vsque ad <rs type="place">terminos <rs type="person">sancti
+               petri</rs></rs> has ciuitates cum suburbanis <lb/>territoriis atque comitatibus suis
+            et quicquid inde <rs type="place">rroma</rs> pergenti <lb/>ad leuam respiçit vna cum <rs
+               type="place">ducatu spoletano</rs> accipiat <rs type="person">carolus</rs> quicquid
+            <lb/>autem . a <expan>predictis</expan> ciuitatibus vel comitatibus . <rs type="place"
+               >Romam</rs> . eunti ad dextera<unclear>m</unclear>
+            <lb/>iaçet de predicto rregno id est porcioni que remansit de <rs type="place">rregione <lb/>ins<subst>
+                  <del>o</del>
+                  <add hand="X">e</add>
+               </subst>danda</rs> vna cum <rs type="place">ducatu tastano</rs> usque ad <rs
+               type="place">mare Australe</rs> et usque <lb/>ad <rs type="place">prouinciam</rs>
+            <rs type="person"><mod>l</mod>udobicus</rs> sortiatur Quod si ceteris super<del
+               unit="chars" quantity="1"/>stitibus <rs type="person">ludouicus</rs>
+            <lb/>fuerit defunctus . eam partem <rs type="place">Burgundię</rs> quam Regno eius ad<lb
+               break="no"/>iungimus cum <rs type="place">prouincia</rs> et <rs type="place"
+                  >septima<mod>nia</mod></rs> siue <rs type="place">gothia</rs> vsque ad <rs
+               type="place">hispaniam</rs>
+            <lb/><rs type="person">pipinus</rs> accipiat <rs type="person">carolus</rs> vero <rs
+               type="place">Aquitaniam</rs> atque <rs type="place">vasconiam</rs><anchor
+               xml:id="simancas-ag-pr-29-6-33v-3_1"/>
+            <milestone unit="span" corresp="BK.45_5" spanTo="#simancas-ag-pr-29-6-33v-3_2"/> 
+            Quod si filius <lb/>cuilibet horum trium
+            fratrum natus fuerit quem populus eligere <lb/>velit vt patri suo succedat . in Regni
+            hereditate volumus vt hoc <lb/>consentiant patrui ipsius pueri et rregnare premittant
+            filium <lb/>fratris sui in portione Regni Paterna <anchor
+               xml:id="simancas-ag-pr-29-6-33v-3_2"/><lb/><lb/>
+         </ab>
+         
+         <ab type="text" xml:id="simancas-ag-pr-29-6-34r-1" corresp="BK.45_6">
+            Placuit etiam mihi
+            statuere atque precipere Preter pacem quam <lb/>inter eos . Perpetuo manere desideramus
+            . vt nullus eorum fratris <lb/>sui terminos vel rregni limites inuadere presumat neque
+               frau<lb break="no"/>dulenter ingredi ad conturbandum Regnum eius vel marcas minuendas
+            <lb/>sed adiuuet vnusquisque illorum fratrem suum . et auxilium ei ferat <lb/>contra
+            inimicos eius iuxta rationem et posibilitatem suam siue inter <lb/>Patriam siue contra
+            ceteras nationes <lb/><lb/>
+         </ab>
+         
+         <ab type="text" xml:id="simancas-ag-pr-29-6-34r-2" corresp="BK.45_7">
+            neque aliquis illorum
+            . hominum fratris sui pro quibuslibet causis <lb/>seu culpis ad se confugentium .
+            suscipiat ad intercessionem pro eo faciendam <lb/>quia volumus vt quilibet homo Precibus
+            et intercessione <lb/>indigens in<mod>t</mod>ra Regnum domini sui vel ad loca sancta
+            <lb/>vel <add>ad</add> honoratos homines confugiat et inde Iustam inter<lb break="no"
+            />cessionem : mere<subst>
+               <del/>
+               <add>atur</add>
+            </subst><cb n="34v"/>
+         </ab>
+         
+         <ab type="text" xml:id="simancas-ag-pr-29-6-34v-1" corresp="BK.45_8">
+            <seg type="initial"
+               >S</seg>imiliter volumus . vt quemlibet liberum hominem qui <lb/>dominum suum contra
+               <sic>volumtatem</sic> eius dimiserit et de <lb/>vno rregno ad aliud profectus fuerit
+            neque ipse Rex susçipiat <lb/>neque hominibus suis consentiat vt talem rrecipiat hoc non
+            solum <lb/>de liberis sed etiam de seruis fugitiuis <add hand="X"
+               >statuimus</add><metamark function="insertion"/> obseruandum <lb/><lb/></ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-34v-2" corresp="BK.45_9"><seg type="initial"
+               >Q</seg>uapropter Percipimus vt post nostrum discesum vnusquisque <lb/>accipiat
+            beneficia in rregno domini sui et non alterius ne forte <lb/>Per hoc si aliter fiat
+            scandalum posset aliquod accidere / hereditatem . <lb/>autem suam / habeat vnusquisque
+            illorum hominum absque <sic>contra<lb break="no"/>discione</sic> in quocumque Regno hoc
+            eum legitime habere contigerit <lb/><lb/></ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-34v-3" corresp="BK.45_10">Vt vnusquisque liber
+            homo licencia habeat post mortem domini sui . <lb/>se comendandi inter hec tria rregna
+            ad quecumque voluerit similiter <lb/>et ille qui <subst>
+               <del/>
+               <add hand="X">nondum . </add>
+            </subst> alicui comendatus est <lb/><lb/>
+         </ab>
+         
+         <ab type="text" xml:id="simancas-ag-pr-29-6-34v-4" corresp="BK.45_11">
+            de tradicionibus
+            autem et vendicionibus que inter partes fieri <lb/>solent . precipimus vt nullus ex hiis
+            tribus fratribus susçipiat <lb/>de rregno alterius Aliquam tradicionem vel vendiçionem a
+            quolibet <lb/>homine rerum immobilium hoc est terrarum vinearum atque siluarum
+            <lb/>suarumque qui Iam <subst>
+               <del>casati</del>
+               <add hand="X">cassati</add>
+            </subst> sunt siue <subst>
+               <del>ceterorum</del>
+               <add hand="X">ceterorum . </add>
+            </subst><note type="editorial">Von anderer Hand korr. aus
+                  <mentioned>ceterorum</mentioned>, das offenbar vorher bereits korrigiert, dann
+               aber gestrichen und durch übergeschriebenes <mentioned>ceterorum</mentioned> ersetzt
+               wurde.</note> quę hereditatis nomine <lb/>censentur Auro et argento et gemis armis ac <subst>
+               <del>b</del>
+               <add hand="X">v</add>
+            </subst>estibus necnon <lb/>et mancipiis non cas<mod>a</mod>ti ex hiis speçiebus que
+            proprie ad negotiatores <lb/>pertinere noscuntur çeteris vero liberis hominibus hoc
+            minime <lb/>interdicendum Iudicauimus <lb/><lb/></ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-34v-5" corresp="BK.45_14">Si causa controuersie
+            inter partes propter terminos aut confinia <lb/>Regnorum orta fuerit que hominum
+            testimonio difiniri non p<add>o</add>test . <lb/>volumus <choice>
+               <abbr>q</abbr>
+               <expan>quod</expan>
+            </choice> ad declarationem vel dubie Iudicio cruçis dei voluntas <lb/>et <subst>
+               <del/>
+               <add>R</add>
+            </subst>erum veritas inquiratur nec vnquam . pro tali causa cuiusl<mod>i</mod>bet <cb
+               n="35r"/>generis Pugna vel campus ad examinationem Iudicetur si vero <lb/>homo de vno
+            rregno hominem . de altero de infidelitate contra <lb/>fratrem domini sui ipsum dominum
+            . suum . accusauerit mittat <lb/>eum dominus eius ad fratrem suum vt ibi comprobet quod
+            . <lb/>dixit <lb/><lb/>
+         </ab>
+         
+         <ab type="text" xml:id="simancas-ag-pr-29-6-35r-1" corresp="BK.45_15">
+            <seg type="initial"
+               >S</seg>uper omnia Autem Iubemus . vt ipsi tres fratres curam et <lb/>defensionem
+            ecclesie . <rs type="person">sancti petri</rs> simul suscipiant sicut quondam . <lb/>ab
+               <rs type="person">auo nostro car<mod>o</mod>lo</rs> et beate memor<mod>i</mod>e <rs
+               type="person">pipino rrege</rs> et a nobis postea <lb/>susçepta est . v<mod>t</mod>
+            eam cum dei adiutorio ab hostibus defendere <lb/>nitantur et Iusticiam suam . quantum ad
+            ipsos pertinet et rratio postu<lb break="no"/>lauerit habere façiat similiter et de
+            ceteris ecclesiis que sub illorum <lb/>fuerint potestate precipimus vt Iustiçiam suam et
+            honorem habeant <lb/>et pastores atque rrectores venerabilium habeant <subst>
+               <del>potesta rrerum</del>
+               <add hand="X">potestatem verum</add>
+            </subst>
+            <lb/>que ex ipsa propria loca pertinent in quocumque de hiis tribus rregnis <lb/>illarum
+            ecclesiarum possessiones fuerint <lb/><lb/>
+         </ab>
+         
+         <ab type="text" xml:id="simancas-ag-pr-29-6-35r-2" corresp="BK.45_17">
+            de filiabus autem
+            nostris Iubemus vt post nostrum discessum liçençiam <lb/>habeat vnaqueque eligendi sub
+            cuius fratris tutela se conferre velit <lb/>et qualiscunque ex illis monasticam vitam .
+            elegerit
+            liçeat<!-- dt: ganz doofe Frage, aber dieses c mit Cedille sozusagen hatten wir ja noch nicht, kommt diese Cauda links oder rechts rum? In der Hs. ist er andersherum als hier
+            - bm: Keine Ahnung ... war das einzige einigermaßen ähnlich aussehende Zeichen. Wenn die Hs. irgendwann einmal online geht, können wir ja noch nach dem korrekten Unicode-Zeichen suchen! -->
+            ei honorifiçe <lb/>vibere que autem Iuste et rrationabiliter a condigno viro ad
+               con<mod>i</mod>ugium . <lb/>quesita fuerit et ei ipsa vita coniugalis placuerit non
+            ei denegetur <lb/>a fratribus suis si et viri postulantis et femine consentientis
+            <lb/>honesta et rrationabilis fuerit voluntas <lb/><lb/>
+         </ab>
+         
+         <ab type="text" xml:id="simancas-ag-pr-29-6-35r-3" corresp="BK.45_19">
+            Postremo statuimus ut
+            quicquid adhuc de rrebus et constitutionibus <lb/>hiis nostris docetis addere voluerimus
+            sic a predictis nostris <lb/>filiis dilectis obseruetur sicut ea que in his Iam statuta
+            sunt atque <lb/>scripta <lb/><lb/></ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-35r-4" corresp="BK.45_20">
+            Hec autem
+               om<mod>ni</mod>a ita disposuimus . atque in ordine firmare decreuimus <cb n="35v"/>Vt
+            quamdiu diuine <choice>
+               <abbr>mti</abbr>
+               <expan>maiestati</expan>
+            </choice> . placuerit hanc corporalem agere vitam <lb/>potestas nostra sit <add hand="X"
+               >super</add><metamark function="insertion"/> a deo conseruatum Regnum atque imperium
+            istud . <add hand="X">sicut</add>
+            <lb/>hactenus . fuit et ut obedientes habeamus . predictos filios nostros <lb/>atque a
+            deo amabilem populum nostrum cum omni subiectione qua patri <lb/>a filiis et imperatori
+            ac Regi a su<subst>
+               <del>s</del>
+               <add>is</add>
+            </subst> populis exibetur Amen * <lb/><lb/></ab>
+         <!--  <ab type="text" xml:id="simancas-ag-pr-29-6-35v-1" rend="glossa">Quia<note type="editorial"
+               >Der folgende Teil gehört nicht mehr zum eigentlichen Text des Kapitulars; vgl. die
+               Vorbemerkung.</note> vero duos filios <rs type="person">pipinum</rs> et <rs
+               type="person">carolum</rs> antequam moreretur <lb/>Amisit quorum <rs type="person"
+               >pipinus</rs> vnum <rs type="person">filium suum bernhardum</rs> rreliquit
+            <lb/>filios autem quinque ipse <rs type="person">carolus</rs> postea <rs type="person">lud<subst>
+                  <del>u</del>
+                  <add hand="X">o</add>
+               </subst>bicum</rs> qui solus super<lb break="no"/>erat consortem sibi rregni et <subst>
+               <del>su</del>
+               <add hand="X">im</add>
+            </subst>perialis nominis herede <sic>inistituit</sic>
+            <lb/><rs type="person">bernhardum . vero nepotem Regem <rs type="place">italie</rs></rs>
+            fecit vltimamque voluntatem . in <lb/>aliis sub hoc tenore verbum condidit <date>Anno ab
+               incarnatione Domini . <lb/> . Nostri . iesu christi . M<hi rend="super"
+                  >o</hi>CCCXI<hi rend="super">o</hi> . Regni <rs type="place">francie<del
+                     unit="chars" quantity="1"/></rs> Anno XLIIII<hi rend="super">o</hi> . et in <rs
+                  type="place">Italia</rs>
+               <lb/> XXXVI imperii autem XI<hi rend="super">o</hi></date><space unit="chars"
+               quantity="9"/><note type="editorial">Es folgt eine durch einen Strich angezeigte
+               Lücke, die offenbar eine Textauslassung anzeigt; evtl. war die Vorlage an dieser
+               Stelle schlecht lesbar?
+               <!-\- Die Randnotiz könnte sich darauf beziehen; s.o. in der Vorbemerkung. -\-></note>
+            de thesauris suis atque pecunia que <lb/>illa die in camera moneta <add hand="X"
+               >inventa</add> fuit in qua id precipue cauere voluit vt non solum <lb/>elimosinarum
+            largitio perficeretur sed etiam vt heredes sui omni ambigui<lb break="no"/>tate remota
+            quid ad <del unit="chars" quantity="1"/> se pertinere deberet liquide cognoscere
+            potuissent * <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-35v-2">Hac igitur intentione omnem substantiam
+            atque suppellectilem suam que <lb/>in Auro Argento gemisque et ornatu Regio in illa die
+            adesset prima <lb/>quidem trina diuisione partitus est . demum easdem partes
+            subdiuidendo . <lb/>de duabus partibus XX et vnam . feçit terçiam integram rreseruauit
+            <lb/>vt quia in rregno illius metropolitane çiuitates XX et vna esse noscatur *
+            <lb/>vnaqueque metropol<mod>i</mod>s vnam ex XXI partibus . habeat et archiepiscopus qui
+            <lb/>tunc Rector illius ecclesie extiterit <subst>
+               <del>partemque</del>
+               <add hand="X">partem que</add>
+            </subst> ad suam ecclesiam data est <lb/>suscipiens <choice>
+               <abbr>tu</abbr>
+               <expan>trium</expan>
+            </choice>
+            <!-\-   sk: "tum", zu erklären als verlesene Kürze "cu" für "cum"?         -\-> suis
+            sufraganeis parciatur eo sciliçet modo . ut pars tertia sue . <lb/>sit ecclesie due vero
+            partes inter suffraganeos . diuidantur nomina <lb/>metropolitarum ad quas eadem
+            elimosina siue largitio facienda est <lb/>sunt hec <rs type="place">Rauena</rs>
+            <rs type="place">Mediolanum</rs>
+            <rs type="place">forum Iulii</rs>
+            <rs type="place">gradus</rs> . <rs type="place">colonia</rs>
+            <rs type="place">Maguntiatus</rs>
+            <lb/>
+            <rs type="place">Inuamum</rs> . <rs type="place">salzburg</rs> . <rs type="place"
+               >treneris</rs>
+            <rs type="place">senones</rs>
+            <rs type="place">vesuncio</rs>
+            <rs type="place">lugdunum</rs> . <rs type="place">futaga</rs>
+            <cb n="36r"/>
+            <rs type="place">Renus</rs>
+            <rs type="place">Arelis</rs>
+            <rs type="place">vienna</rs>
+            <rs type="place">tarentasia</rs>
+            <rs type="place">ebrodunum</rs>
+            <rs type="place">burdigla</rs>
+            <rs type="place">tironis</rs>
+            <lb/><rs type="place">Biturges</rs>
+            <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-36r-1">Vnius autem partis quam integram
+               <sic>rreseuari</sic> voluit talis est ratio hec terçiam <lb/>in vsu cotidiano
+            versaretur velut res que nulla . ei obligatione ad non possidente <lb/>alienatam esse
+            constaret et hoc tandiu quousque vel ille mansisset in corpore <lb/>vel usum eius sibi <subst>
+               <del>ncerui</del>
+               <add hand="X">necessarium</add>
+            </subst> iudicaret post obitum vero ipsius aut voluntariam . <lb/>secularium rrerum
+            carentiam eadem pars quatuor subdiuisionibus se careretur <lb/>et vna quidem earum
+            supradictarum XX et vna partium adderetur altera a filiis <lb/>et filiabus suis
+            filiisque et fi<mod>l</mod>iabus . filiorum suorum iusta et rationabili inter <lb/>eos
+            partitione diuideret tercia vero in usum pauperum . erogaret quarta <lb/>simili modo in
+            nomine . elimosine et seruorum et ançillarum vsibus palacii famu<lb break="no"/>lantium
+            sustentationem distributa venerit ad hac terçiam totius summe <lb/>portionem adiungere
+            voluit omnia ex ere et ferro aliisque metallis vasa atque <lb/>vtensilia cum armis et
+            vestibus ac suppelectili vt sunt cortine stragula <lb/>tapetia feltra coria saginata
+               <space unit="chars" quantity="9"
+            /><!-\- bm: Hier müsste noch einiges folgen, nämlich "et quidquod in camera atque vestiario
+               eius eo die fuisset inventum" etc., daher habe ich hier wie bei den folgenden Lücken
+            eine absichtliche Lückensetzung wegen nicht lesbarer Stellen in der Vorlage = space codiert. dt: ja, ok, obwohl er ja die ganze Zeit paraphasiert, die Anzeige der Lücken
+            hier könnte wirklich bedeuten, dass er hier eigentlich was schreiben wollte, aber nicht konnte. Oder er fängt unvermittelt an, anzuzeigen, dass er was auslässt -\->
+            capellam id est . ecclesiasticum mi<add hand="X">ni</add>sterium . <lb/>vt integrum
+            esset ordinauit si qua autoritate inuenirentur aut <sic>ubri</sic> aut <lb/>vasa aut
+            alia ornamenta que <space unit="chars" quantity="10"/> collocata non essent hec qui
+            habere <lb/>vellet dato . estimationis pretio emere posset <space unit="chars"
+               quantity="7"/> de libris in bibliotheca <lb/><choice>
+               <abbr>q</abbr>
+               <expan>que</expan>
+            </choice> possent Iusto preçio emi preciumque in pauperes erogari tres mensas
+            <lb/>argenteas vna ecclesie <rs type="person">sancti petri</rs> in <rs type="place">vrbe
+               Altera
+            Rauenali</rs><!-\- bm: Ich glaube, das ist das Resultat heftiger Verlesungen; aber so, 
+                  wie es hier steht, ist damit eine Stadt dieses fiktiven Namens gemeint, oder?! 
+                  dt: Ja, alles Grütze, aber Ravenna scheint noch durch, so lassen -\->
+            terciam que <lb/>ceteris operis pulcritudine et ponderis grauitate exçelit ex tribus
+            <lb/>orbibus . connexa totius mundi descriptionem completitur et quartam <lb/>auream .
+            in terçie illius et inter heredes suos atque in elimosinam diuidende <lb/>partis
+            Augmentum esse constituit hanc ut etiam infra dicetur / ! / . <lb/><lb/></ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-36r-2">hanc constitutionem coram episcopis
+            abbatibus comitibus quorum hec nomina <lb/>subscripta sunt feçit atque constituit de quo
+            in longum <rs type="person">enhardus aulicus</rs>
+            <lb/>de vita et gestis <rs type="person">caroli magni</rs> et
+            <unclear>liet</unclear><!-\- bm: ??? dt: puh, keine Ahnung, het? verunglücktes hec? oder wirklich liet -\->
+            vltima voluntas . <rs type="person">caroli</rs>
+            <date>terçi<mod>o</mod> anno <lb/>ante obitum eius</date> facta est <lb/></ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-36r-3">Postea vero in uita sua mortui sunt <rs
+               type="person">carolus</rs> et <rs type="person">pipinus</rs> Reliquit <rs
+               type="person"><rs type="person">pipinus</rs>
+               <lb/>filium . nomine bernhardum</rs> vnde factum est <choice>
+               <abbr>q</abbr>
+               <expan>quod</expan>
+            </choice> in extremo vite sue <rs type="person">carolus <lb/>imperator</rs> euocatum <rs
+               type="person">filium suum</rs>
+            <rs type="place">Aquitanie</rs> rregem et congregatis de toto rregno <lb/>prinçipibus ac
+               <sic>cuntorum</sic> consilio rregni consortem et imperialis nominis <cb n="36v"
+            />Heredem <sic>inistituit</sic> impositoque capite eius diademate imperatorem et
+            <lb/>augustum appelari Iussit <rs type="person">bernhardum</rs> vero nepotem premortui
+               <rs type="person">pipini</rs> filium <lb/><rs type="place">italie</rs> prefeçit et
+            rregem appelari Iussit <lb/></ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-36v-1">Item tres habuit mensas . Argenteas .
+            quarum vna in qua <rs type="place">urbs . <sic>constinoplitana</sic></rs>
+            <lb/>sculpta erat basiliçe in vrbe <rs type="person">beati p<mod>e</mod>tri</rs> / aliam
+            in qua imago <rs type="place">vrbis rrome</rs>
+            <lb/>cernebatur / <rs type="place">ecclesie Rauennate</rs> dono dedit terçia / liberis
+            suis reliquit <lb/>in qua orbis terrarum describebatur hanc fuisse auream quidam
+               <sic>escribunt</sic>
+            <lb/>mortuus est . autem <date>Anno etatis sue . septuagessimo . secundo quinto kalendas
+               <lb/>februarii hora diei tertia</date> cuius corpus . maximo totius populi planctu
+            <lb/>ecclesie quam ipse . construxit illatum . Ac rregali more ibi sepultum est <lb/><rs
+               type="place">aquisgrani</rs> deo gratias </ab>-->
+
+         <cb n="37r"/>
+         <lb n="1"/>
+         <milestone unit="capitulare" n="BK.45_1"/>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-37r-1" corresp="BK.45_prolog">
+            <handShift new="B"/>
+            <seg type="initial">I</seg>n nomine patris et filii et spiritus sancti / <rs
+               type="person">Imperator<!-- dt: seg? --> Cesar Carolus / <lb/> Rex Francorum
+               Inuictissimus / et Romani rector Imperii<!-- dt: folgt danach "/"? -->
+               pius<!-- dt: folgt Punkt? --> Felix <lb/> Au<!-- sh: c -->tor / ac Triumphator semper
+               Augustus</rs> / omnibus fidelibus sancte dei <lb/> e<!-- sh: E? dt: ja -->cclesie /
+            qui sub nostro Imperio constituti sunt / sicut omnibus vobis notum <lb/> esse credimus /
+            quomodo Diuina Clementia . cuius nutu ad occasum <lb/> tendentia secula per successiones
+            generationum reparationis generantur / <lb/> Tres nobis filios dando / magno nos
+            miserationis . ac <mod>b</mod>enedictionis<!-- dt: sieht aus wie B korr. zu b -->
+            <lb/> sue<!-- dt: e mod? --> ditauerit munere / quia per eos secundum vota nostra / et
+            spem nostram<!-- dt: folgt Punkt? -->
+            <lb/> de Regno confirmauit / et Curam obliuioni obnoxie posteritatis <lb/> leuiorem
+            fecit / Ita et hoc vobis notum fieri volumus / <expan>quia</expan>
+            <!-- sk: könnte
+            natürlich auch quod sein... sh: eher quod dt: laut BK quod, hier einfach choice? -->
+            eosdem <lb/> per dei gratiam filios nostros / regni a deo nobis concessi / donec In
+            <lb/> corpore sumus / et post nostrum<!-- dt: bei n irgendwas? korr.? --> ab Hac
+            mortalitate discessum / <lb/> huius a deo conseruati et conseruandi Regni vel Imperii
+            nostri ./ <lb/> Heredes relinquere si sic Diuina
+            <expan>Maiestas</expan><!-- dt: warum expan? davor Punkt? --> annuerit optamus / non
+            <lb/> vt confuse atque inordinate<!-- dt: In-? --> / aut sub totius regni iurgium vel
+            litis con<lb break="no"/>trouersiam eis relinquamus / Sed trina partitione totum regnum
+            <lb/> diuidentes / quam quisque illorum tueri vel regere debeat porciones <lb/>
+            describere et designare volumus / eo videlicet modo / vt sua quis<lb break="no"/>que
+            porcione<!-- sk: oder hier "portione"? - sh: nö. "porcione". dt: ja --> contentus /
+            Iuxta ordinationem nostram / Fines regni <lb/> sui qui ad alienigenas extenduntur / cum
+            dei adiutorio nitatur <lb/> defendere / et pacem / et Caritatem cum fratre Custodire ./
+               <cb n="37v"/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-37v-1" corresp="BK.45_1">
+            <seg type="initial">D</seg>iuisiones vero a deo Conseruati et conseruandi Imperii vel
+            Regni nostri / <lb/> tales facere placuit<!-- dt: folgt "/" --> vt<!-- dt: Vt? -->
+            <rs type="place">Aquitaniam</rs> totam / atque <rs type="place">Vasconiam</rs> / excepto
+               <rs type="place">pa<lb break="no"/>go Toronito</rs> / et quicquid inde ad occidentem
+            atque ad <rs type="place">Hyspaniam</rs>
+            <lb/> respicit / et de <rs type="place">Ciuitate Niuernis</rs>
+            <!-- sk: im Vgl. mit Hyspaniam hier kein H sondern N dt: oki --> / que est sita super
+               <rs type="place">fluuium Lige<lb break="no"/>rim</rs> cum Ipso <rs type="place">pago
+               Niuernensi</rs> / <rs type="place">Pagum Analensem</rs><!-- dt: p-? --> atque <rs
+               type="place">Alsen<lb break="no"/>sem</rs> / <rs type="place">Cobilonensem</rs> . <rs
+               type="place">Matristinensem</rs> . <rs type="place">Lugdonensem</rs> . <rs
+               type="place">Saboiam</rs> . <lb/>
+            <rs type="place">Mariennam</rs> . <rs type="place"
+            ><mod>C</mod>arentasiam</rs><!-- dt: ich denke eher subst von C zu T, laut BK sollte da ja Tarentasiam stehen -->
+            / <rs type="place">Montem Cinisie</rs> / <rs type="place">Vallem Segusiaciam</rs> /
+            <lb/> vsque ad <rs type="place">Clusas</rs> / et Inde per <rs type="place">terminos
+               Italicorum Montium</rs> / vsque ad <lb/> Mare / Hos pagos cum suis Ciuitatibus . et
+            quicquid ab eis contra <lb/> Meridiem et Occidentem vsque ad Mare vel vsque ad <rs
+               type="place">Hyspanias</rs>
+            <lb/> continetur / hoc est illam portionem<!-- sk: verwischt? oder korr. porti- zu porci-?  - sh: normales "porcionem". dt: hmm, sieht
+            tatsächlich komisch aus! Korrektur weiß man natürlich nicht sicher. Man könnte daher mod nehmen oder aber man setzt unclear -->
+            <rs type="place">Burgundie</rs><!-- dt: e mod? --> / et <rs type="place"
+            >Prouinciam</rs><!-- dt: p-? Finde das echt nicht so leicht mit dem P! --> / <lb/> et
+               <rs type="place">Septimaniam</rs> ,<!-- dt: könnte "/" sein? --> vel <rs type="place"
+               >Gothiam</rs> / <rs type="person">Ludouico Dilecto nostro filio</rs> consignamus
+            <lb/><lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-37v-2" corresp="BK.45_2">
+            <rs type="place"><seg type="initial">I</seg>taliam</rs> vero /
+            que<!-- dt: e-caudata?! --> et <rs type="place">Longobardia</rs> dicitur / et <rs
+               type="place">Bauariam</rs> / sicut <lb/>
+            <rs type="person">Tassilo</rs> tenuit / exceptis duabus villis quarum nomina sunt <lb/>
+            <rs type="place">Ingoltstat</rs> / et <rs type="place">Lutrahahaff</rs> / quas nos
+            quondam <rs type="person">Tassioloni</rs> bene<lb break="no"/>ficiauimus / et pertinent
+            ad <rs type="place">pagum Nortgouue</rs> / et de <rs type="place">Almania</rs>
+            <lb/> partem / quę est in <rs type="place">Australi ripa Danubii fluminis</rs>
+            /<!-- dt: oder eher Trennstrich? --> est<!-- dt: e mod? --> et<!-- dt: e mod? --> de
+            <lb/> Ipso fonte<!-- dt: das noch ins folgende rs? -->
+            <rs type="place">Danubii</rs>
+            currente<!-- sk: allerdings
+               nahe an "turrente" (wie oben in der 1. Fassung, laut Transkription) dt: ja, vllt. hier auch eher setzen? Man könnte es vertreten -->
+            limite ,<!-- dt: "/"? --> vsque ad <rs type="place">Renum fluuium</rs> . in <lb/>
+            confinio <rs type="place">pagorum Cletgouue</rs> / et <rs type="place">Hogouue</rs> / in
+            lacum<!-- sk: "latum"? "Iacum"?? (wohl "locum" verlesen) 
+            - sh: ich lese auch "lacum". dt: ja, ich würde da "Lacum" auch drin sehen eher, aber ist das L korr.? P? Ich bilde mir aber diesen Bogen wohl nur ein -->
+            qui dicitur <lb/>
+            <rs type="place">Enge</rs> / et inde per <rs type="place">Renum fluuium</rs> sursum
+            versus vsque ad <rs type="place">Alpes</rs>
+            <cb n="38r"/> quicquid intra hos terminos fuerit / et ad Meridiem vel orientem <lb/>
+            respicit vna cum <rs type="place">Ducatu Guriensi</rs> ,<!-- dt: eher "/" --> et <rs
+               type="place">Pago<!-- dt: p-? --> Turgouue</rs> / <rs type="person">Pipino <lb/>
+               Dilecto filio Nostro</rs> ordinamus /:<!-- dt: das wären ja ganz neue Interpunktionszeichen, oder? Mit Leerzeichen transkribieren? Auch bei "./" -->
+            <lb/><lb/><!-- dt: ich glaube, hier fehlt ein lb --></ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-38r-1" corresp="BK.45_3">
+            <seg type="initial">Q</seg>uicquid autem de Regno Nostro extra hos terminos fuerit / id
+            <lb/> est <sic><rs type="place">Fraciam</rs></sic> et <rs type="place">Burgundiam</rs> /
+            excepta illa parte quam <rs type="person">Ludouico</rs> de<lb break="no"/>dimus / atque
+               <rs type="place">Almaniam</rs> / excepta porcione illa quam <rs type="person"
+               >Pipino</rs> dedi<lb break="no"/>mus / <rs type="place">Austriam</rs> / et <rs
+               type="place">Nerstriam</rs> / <rs type="place">Turingiam</rs> / <rs type="place"
+               >Saxoniam</rs> ,<!-- dt: "/"? -->
+            <rs type="place">Frisiam</rs> / et partem <lb/>
+            <rs type="place">Bauarie</rs> quę dicitur <rs type="place">Nortgouue</rs> / <rs
+               type="person">Dilecto filio nostro Carolo</rs> concessi<lb break="no"/>mus / Ita vt
+               <rs type="person">Carolus</rs> / et <rs type="person">Ludouicus</rs> / viam habere
+            possint in <rs type="place">Italiam</rs> / <lb/> ad auxilium ferendum <rs type="person"
+               >fratri suo</rs> si ita necessitas extiterit / <rs type="person">Carolus</rs>
+            <lb/> per <rs type="place">vallem
+            Augustant<unclear>i</unclear>am</rs><!-- dt: ich würde sagen eher kein tag notwendig -->
+            / quę ad Regnum eius pertinet / et <rs type="person">Ludo<lb break="no"/>uicus</rs> per
+               <rs type="place">vallem
+               Segusi<mod>a</mod><!-- sh: mod nicht nötig. dt: denke auch -->nam</rs> / <rs
+               type="person">Pipinus</rs> vero et exitum et In<lb break="no"/>gressum per <rs
+               type="place">Alpes Noricas</rs> atque <rs type="place">Curiam</rs> /: <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-38r-2" corresp="BK.45_4 BK.45_5">
+            <milestone unit="span" corresp="BK.45_4" spanTo="#simancas-ag-pr-29-6-38r-2_1"/> 
+            Hec
+            autem tali ordine disposuimus vt si <rs type="person">Carolus</rs> qui maior natu<!-- dt: folgt "/"? -->
+            <lb/> est priusquam ceteri fratres sui obierit / pars Regni quam habebat <lb/> diuidatur
+            Inter <rs type="person">Pipinum</rs> et <rs type="person">Ludouicum</rs> sicut quondam
+            diuisum est <lb/> regnum inter nos et <rs type="person">fratrem nostrum
+               Carolomamium</rs><!-- sk:
+            oder könnte das hier und in der nächsten Zeile jeweils eine nni-Ligatur sein?? 
+            - sh: habe auch daran gedacht. dt: keine Ahnung, ob es sowas ist. Einfaches -nn- m.E. auch möglich, vgl. nn oben bei Mariennam, da sieht
+               das genauso aus, außer, dass der Punkt fehlt, Punkte gibt es ja auch so, ohne Funktion, aber wirkt tatsächlich wie i... Da mi in anderen Fällen auch so aussieht, würde ich es so lassen, wie Du es hast -->
+            eo modo vt <lb/>
+            <rs type="person">Pipinius</rs> illam porcionem habeat quam <rs type="person">frater
+               noster Carolomami<lb break="no"/>us</rs> habuit <rs type="person">Ludouicus</rs> vero
+            illam partem quam nos suscepimus <cb n="38v"/> Si vero <rs type="person">Carolo</rs> et
+               <rs type="person">Ludouico</rs> viuentibus <rs type="person">Pipinius</rs> debitum
+            sortis <lb/> humane compleuerit <rs type="person">Carolus</rs> et <rs type="person"
+               >Ludouicus</rs> diuidant inter se <lb/> regnum quod ille habuit / vt ab Ingressu <rs
+               type="place">Italie</rs> per <rs type="place">Augustam <lb/> Ciuitatem</rs> accipiat
+               <rs type="person">Carolus</rs>
+            <rs type="place">Eboreiam</rs>
+            <rs type="place">vercellos</rs> et <rs type="place">Papiam</rs>
+            <lb/> et inde per <rs type="place">padum fluuium</rs> termino currente vsque ad <rs
+               type="place">fines <lb/> Regiensium</rs> et Ipsum Regnum et <rs type="place"
+               >Ciuitatem Nouam</rs> atque <rs type="place">Mutinam</rs>
+            <lb/> vsque ad <rs type="place">terminos . <rs type="person">sancti
+                  <unclear>p</unclear>etri
+                  <!-- sk: was ist das bei dem p/q? 
+               - sh: mod? dt: oder erst a? Ich würde auch mod nehmen -->
+               </rs></rs><!-- dt: geschachtelte rs? --> Has Ciuitates cum Suburbanis <lb/>
+            Territoriis atque Comitatibus suis / et quicquid inde <rs type="place">Romam</rs>
+            <lb/> pergenti ad leuam respicit vna cum <rs type="place">Ducatu Spoletano</rs> accipiat <lb/>
+            <rs type="person">Carolus</rs> Quicquid autem a <expan>predictis</expan> Ciuitatibus vel
+               Comitati<lb break="no"/>bus <rs type="place">Romam</rs>
+            <unclear>e</unclear>unti<!-- dt: unclear m.E. unnötig --> ad dexteram iacet de predicto
+            Regno id<!-- dt: folgt Punkt oder Trennzeichen? -->
+            <lb/> est porcioni quę remansit de <rs type="place">Regione
+            transsedanda</rs><!-- sk: deute das als tns = trans-Kürze - sh: ja. dt: ja --> vna cum<!-- dt: folgt lb -->
+            <rs type="place">Ducatu Tastano</rs> vsque ad <rs type="place">Mare Australe</rs> et
+            vsque ad <rs type="place">prouinciam</rs>
+            <lb/>
+            <rs type="person">Ludouicus</rs> sortiatur Quod<!-- sk: ? - sh: ja. dt: choice? -->
+            si<!-- dt: Si? --> ceteris superstitibus <rs type="person">Ludouicus</rs>
+            <lb/> fuerit defunctus eam partem <rs type="place">Burgundie</rs> quam Regno eius <lb/>
+            adiungimus cum <rs type="place">Prouincia</rs> et <rs type="place">Septimania</rs> siue
+               <rs type="place">Gothia</rs> vsque <lb/> ad <rs type="place">Hyspaniam</rs>
+            <rs type="person">Pipinus</rs> accipiat <rs type="person">Carolus</rs> vero <rs
+               type="place">Aquitaniam</rs>
+            <lb/> atque <rs type="place">Vasconiam</rs>
+            <anchor xml:id="simancas-ag-pr-29-6-38r-2_1"/>
+            <milestone unit="span" corresp="BK.45_5" spanTo="#simancas-ag-pr-29-6-38r-2_2"/>
+            Quod<!-- sk: s.o. dt: choice? --> si filius Cuilibet horum trium fratrum <lb/> natus
+            fuerit quem populus eligere velit vt patri suo succe<lb break="no"/>dat in Regni
+            hereditatem volumus vt hoc consentiant <lb/> patrui Ipsius pueri et regnare permittant
+            filium fratris <lb/> sui In porcione Regni Paterna <cb n="39r"/>
+            <anchor xml:id="simancas-ag-pr-29-6-38r-2_2"/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-39r-1" corresp="BK.45_6">
+            Placuit<!-- dt: seg? --> etiam mihi statuere atque precipere preter pacem quam inter
+            <lb/> eos perpetuo manere desideramus vt nullus eorum fratris sui <lb/> terminos vel
+            Regni limites inuadere presumat / neque fraudulenter <lb/> ingredi ad conturbandum
+            Regnum eius vel Marcas minuendas / <lb/> Sed adiuuet vnusquisque illorum fratrem suum et
+            auxilium ei ferat <lb/> contra Inimicos eius Iuxta rationem et possibilitatem suam siue
+            intra <lb/> patriam siue contra Ceteras nationes : <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-39r-2" corresp="BK.45_7">
+            Neque<!-- dt: seg? --> aliquis illorum hominum fratris sui pro quibuslibet causis <lb/>
+            seu<!-- dt: S-? --> culpis ad se confug<!-- sh: i -->en<mod>tiu</mod>m suscipiat ad
+            intercessionem pro eo <lb/> faciendam quia volumus vt quilibet homo precibus et Inter<lb
+               break="no"/>cessione indigens intra regnum Domini sui vel ad loca<!-- dt: Loca -->
+            sancta <lb/> vel ad honoratos homines confugiat / et inde Iustam
+               intercessio<!-- dt: r mod? --><lb break="no"/>nem mereatur <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-38r-3" corresp="BK.45_8">
+            <seg type="initial">S</seg>imiliter<!-- dt: hier auch seg genommen --> volumus vt
+            quemlibet liberum hominem qui Dominum <lb/> suum contra voluntatem eius dimiserit et de
+            vno Regno ad aliud <lb/> profectus fuerit / neque Ipse Rex suscipiat / neque hominibus
+            suis <lb/> consentiat vt talem recipiat<!-- dt: recipiant --> Hoc non solum de liberis
+            sed etiam <lb/> de seruis fugitiuis statuimus<!-- dt: a mod? --> obseruandum <cb n="39v"
+            />
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-39v-1" corresp="BK.45_9">
+            <seg type="initial">Q</seg>uapropter <expan>precipimus</expan> vt post nostrum discessum
+            vnusquisque accipiat <lb/> beneficia in Regno Domini<!-- sh: i dt: ja --> sui et non
+            alterius / ne forte per hoc <lb/> si aliter fiat scandalum posset aliquod accidere
+            Hereditatem autem <lb/> suam habeat vnusquisque illorum hominum absque contradictione In <lb/>
+            <expan>quocumque</expan> Regno hoc eum legitime habere contigerit <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-39v-2" corresp="BK.45_10"> Vt<!-- dt: seg? -->
+            vnusquisque liber Homo licenciam habeat post mortem Domini <lb/> sui se
+            commendandi<!-- dt: expan --> inter hec tria<!-- dt: a mod? --> Regna ad
+            que<!-- sh: m -->cunque volue<lb break="no"/>rit<!-- dt: folgt wohl "/" --> similiter et
+            ille qui <sic>nundum</sic> alicui commendatus<!-- dt: expan --> est <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-39v-3" corresp="BK.45_11">
+            <seg type="initial">D</seg>e traditionibus autem et venditionibus quę inter partes fieri
+            <lb/> solent precipimus vt
+            nullus<!-- sh: -is korr. aus -us? dt: ja, sieht danach aus, kann natürlich auch nur verwischt sein, mod im Zweifel? -->
+            ex hiis tribus fratribus suscipiat de <lb/> Regno alterius aliquam traditionem vel
+            venditionem a quolibet ho<lb break="no"/>mine rerum Immobilium hoc est Terrarum vinearum
+            atque Siluarum <lb/> suarumque qui Iam Casati sunt siue Ceterorum que hereditatis no<lb
+               break="no"/>mine censentur Auro et Argento et Gemmis Armis ac vestibus <lb/> necnon
+            et mancipiis non Casati ex hiis speciebus que proprie <lb/> ad Negociatores pertinere
+            noscuntur Ceteris vero liberis <lb/> hominibus hoc minime interdicendum Iudicauimus
+            <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-39v-4" corresp="BK.45_14">
+            <seg type="initial">S</seg>i Causa controuersie inter partes propter terminos aut con<cb
+               n="40r" break="no"/>finia Regnorum orta fuerit quę hominum testimonio diffiniri non
+            <lb/> potest volumus <choice>
+               <abbr>q</abbr>
+               <expan>quod</expan>
+            </choice><!-- sk: kam nach dem q noch mehr? Und ist das folgende a korr.? 
+            - sh: quod ohne choice, a vllt. mit mod? dt: ich würde choice lassen, a mod gute Sache, da könnte vllt. mal qui gestanden haben allerdings -->
+            ad declarationem
+            vel<!-- sh: ich lese "rei" statt "vel". dt: genau, muss laut BK auch dahin --> dubie
+            Iudicio crucis dei <lb/> voluntas et rerum veritas inquiratur / nec
+            vnquam<!-- dt: choice? --> pro tali causa <lb/> cuiuslibet generis pugna vel Campus ad
+            examinationem Iudice<lb break="no"/>tur Si vero homo de vno Regno hominem de altero de
+               infide<lb break="no"/>litate contra fratrem domini sui Ipsum Dominum suum accusauerit
+            <lb/> mittat eum dominus <subst>
+               <del/>
+               <add>ei</add>
+            </subst>us<!-- sk: evtl. suus korr. zu eius?  
+            - sh: ja. dt: sieht danach aus, ja -->
+            ad fratrem suum vt Ibi comprobet quod <lb/> dixit : <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-40r-1" corresp="BK.45_15">
+            <seg type="initial">S</seg>uper omnia autem Iubemus vt Ipsi Tres fratres curam et
+               defensio<lb break="no"/>nem ecclesie <rs type="person">sancti Petri</rs>
+               simu<unclear>l</unclear><!-- sk: unklar; wo endet das s der Zeile darüber, wo beginnt das l, wenn
+            überhaupt? Oder ist da ein Kürzungsstrich über dem u ("simum"??) und das vermeintliche
+            l ist durchgängig noch der Ausläufer aus der Zeile darüber? - sh: unclear nicht nötig. dt: ja, stimmt, ich würde hier auch nichts kodieren, die Buchstaben gehen eben ineinander über, kein Kürzungsstrich -->
+            suscipiant sicut quondam ab <rs type="person">Auo nostro <lb/> Carolo</rs> et Beate Memorie<!-- sh: Wer ist diese Beate? xD -->
+            <rs type="person">Pipino Rege</rs> et a Nobis postea suscepta <lb/> est vt eam cum Dei
+            adiutorio<!-- sk: bei -or- Korrektur oder Tintenfleck / Pergamentschaden? - sh: Fleck? dt: Fleck eher oder Loch, jedenfalls keine Korrektur m.E. -->
+            ab Hostibus defendere nitantur et <lb/> Iustitiam suam quantum ad Ipsos pertinet et
+            ratio postulauerit habere <lb/> faciant Similiter et de Ceteris ecclesiis quę sub
+            illorum fuerint <lb/> potestate precipimus vt Iusticiam suam et Honorem habeant /
+            et<!-- sk: auf Rasur? 
+            - sh: eher nicht. dt: schwer zu entscheiden, ich würde tendenziell auch nichts unternehmen -->
+               Pa<lb break="no"/>stores atque Rectores venerabilium habeant potestatem rerum que
+            <lb/> ex Ipsa propria loca pertinent in
+            <expan>quocumque</expan><!-- dt: eben hatte es der Schreiber selbst -cun- ausgeschrieben, in expan anpasssen? -->
+            de hiis tribus regnis <lb/> illarum Ecclesiarum possessiones fuerint : <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-40r-2" corresp="BK.45_17">
+            <seg type="initial">D</seg>e filiabus autem nostris Iubemus / vt post nostrum discessum
+            licentiam <lb/> habeat vnaquęque eligendi sub Cuius fratris Tutelam se conferre <cb
+               n="40v"/> velit / et <expan>qualiscumque</expan><!-- dt: s.o. --> ex illis Monasticam
+            vitam elegerit liceat ei ho<lb break="no"/>norifice viuere / Quę autem Iuste et
+            rationabiliter a Condigno <lb/> viro ad Coniugium quesita fuerit et ei Ipsa vita
+            coniugalis pla<lb break="no"/>cuerit non ei denegetur a fratribus suis si et viri
+            postulantis <lb/> et femine consentientis honesta et rationabilis fuerit voluntas
+            <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-40v-1" corresp="BK.45_19">
+            Postremo<!-- dt: seg --> statuimus vt quicquid adhuc de rebus et constitutioni<lb
+               break="no"/>bus hiis nostris docetis addere voluerimus sic a predictis nostris <lb/>
+            filiis dilectis obseruetur sicut ea quę In hiis Iam statuta sunt <lb/> atque scripta
+            <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-40v-2" corresp="BK.45_20"> Hec<!-- dt: seg? -->
+            autem omnia Ita disposuimus atque In ordinem firmare de<lb break="no"/>creuimus vt
+            quamdiu Di<mod>u</mod>ine<!-- dt: oder nur unclear? -->
+            <choice>
+               <abbr>Mti</abbr>
+               <expan>Maiestati</expan>
+            </choice><!-- dt: mir fällt jetzt erst auf, dass man auch bei sancti nie die Punkte mit transkribiert hat -->
+            placuerit hanc Corporalem <lb/> agere vitam potestas nostra sit super a deo conseruatum
+            Regnum <lb/> atque Imperium Istud sicut hactenus fuit / et vt obedientes ha<lb
+               break="no"/>beamus predictos filios nostros atque deo amabilem
+            popolum<!-- dt: sic? --> nostrum <lb/> cum omni subiectione qua patri a filiis et
+            Imperatori ac Regi <lb/> a suis populis exibetur Amen <lb/><lb/>
+         </ab>
+         <!--  sk: das Folgende beibehalten? Eigentlich ja nur eine Paraphrase von Einhards Vita Karoli?  
+         - sh: m. E. kann es weg. Das Folgende gehört ja nicht mehr zum Text: anderer Autor. -->
+         <!-- <ab type="text" xml:id="simancas-ag-pr-29-6-40v-3" rend="glossa"> Qvia<note
+               type="editorial">Der folgende Teil gehört nicht mehr zum eigentlichen Text des
+               Kapitulars; vgl. die Vorbemerkung.</note> vero duos filios <rs type="person"
+               >pipinum</rs> et <rs type="person">Carolum</rs> antequam moreretur <lb/> amisit
+            Quorum <rs type="person">pipinus</rs> vnum <rs type="person">filium suum Bernhardum</rs>
+               reli<lb break="no"/>quit , <sic>filios</sic> autem quinque Ipse <rs type="person"
+               >Carolus</rs> postea <rs type="person">Ludovicum</rs> qui <lb/> solus supererat
+            Consortem sibi Regni et Imperialis nominis <cb n="41r"/> Heredem instituit <rs
+               type="person">Bernhardum vero Nepotem Regem <rs type="place">Italie</rs></rs> fecit /
+               vlti<lb break="no"/>mamque voluntatem in aliis sub hoc tenore verborum condidit <lb/>
+            <!-\-     sk: Randglosse v. anderer Hand: "Este ano [ario??] está equivocado debiendo [f?]er la M. una D";
+              Den folgenden Teil ("Anno...potuissent") evtl. als eigenen <ab>? - sh: eher nicht. -\->
+            <date>Anno ab Incarnatione Domini . Nostri . Iesu christi . M<hi rend="super"
+                  >o</hi>CCCXI<hi rend="super">o</hi> Regni <lb/>
+               <rs type="place">Frant<!-\- sh: c statt t -\->ie</rs> Anno XLIIII<hi rend="super"
+                  >o</hi> et In <rs type="place">Italia</rs> XXXVI Imperii autem XI<hi rend="super"
+                  >o</hi></date>
+            <lb/>
+            <seg type="initial">D</seg>e Thesauris suis atque pecunia que illa die In Camera inventa
+            <lb/> fuit in qua id precipue cauere<!-\- sk: auf Rasur? - sh: ? -\-> voluit vt non solum
+            elemosinarum <lb/> largitio perficeretur sed etiam vt heredes sui omni ambiguita<lb
+               break="no"/>te remota quid ad se pertinere debe<mod>r</mod>et liquide cognoscere
+            <lb/> potuissent <lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-41r-1"> Hac Igitur Intentione omnem substantiam
+            atque suppellectilem suam <lb/> quę in Auro Argento Gemmisque et ornatu Regio in illa
+            die ades<lb break="no"/>set prima quidem trina diuisione partitus est / Demum easdem
+            partes <lb/> subdiuidendo de du<mod>a</mod>bus partibus XX et vnam fecit Terciam <lb/>
+            Integram reseruauit vt quia In Regno illius Metropolitane Ciui<lb break="no"
+               />tat<mod>e</mod><!-\- sh: eher i -\->s XX et vna esse noscantur vnaquęque <choice>
+               <abbr>Metropol</abbr>
+               <expan>Metropolis</expan>
+            </choice> vnam ex XXI <lb/> partibus habeat / et Archiepiscopus qui tunc Rector Illius
+            ecclesie extite<lb break="no"/>rit partem quę ad suam ecclesiam data est suscipiens
+            cum<!-\- sk: oder wie oben "tum"? - sh: nein. -\-> suis suffra<lb break="no"/>ganeis
+            partiatur eo scilicet modo vt pars
+            <expan>tercia</expan><!-\- 
+               sh: warum nicht "3<hi rend super>a</hi>"? -\->
+            sue sit ecclesie / <lb/> Due vero partes inter suffraganeos diuidantur Nomina Metro<lb
+               break="no"/>politarum ad quas eadem elemosina siue largitio facienda est sunt <lb/>
+            Hec <rs type="place">Rauenna</rs>
+            <rs type="place">Mediolanum</rs>
+            <rs type="place">Forum Iulii</rs>
+            <rs type="place">Gradus</rs>
+            <rs type="place">Colonia</rs>
+            <rs type="place">Magunciatus</rs>
+            <lb/>
+            <rs type="place">Inuamum</rs>
+            <rs type="place">Salzburg</rs>
+            <rs type="place">Treneris</rs>
+            <rs type="place">Senones</rs>
+            <rs type="place">Vesuncio</rs>
+            <rs type="place">Lugdunum</rs>
+            <rs type="place">Fu<lb break="no"/>taga</rs> / <rs type="place">Renus</rs>
+            <rs type="place">Arelis</rs>
+            <rs type="place">Vienna</rs>
+            <rs type="place">Tarentasia</rs>
+            <rs type="place">Ebrodunum</rs>
+            <rs type="place">Burdigla</rs>
+            <lb/>
+            <rs type="place">Tironis</rs>
+            <rs type="place">Biturges</rs> : <cb n="41v"/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-41v-1"> Vnius autem partis quam Integram
+            reseruari voluit talis est
+            ratio<!-\- sk: Strich über dem Wort? 
+            - sh: nö. -\-> Hec tercia <lb/> in vsum
+            cottidiano versaretur velut res quę nulla ei obligatione ad non <lb/> possidente
+            alienatam esse constaret et hoc tamdiu quousque vel ille mansisset <lb/> in corpore vel
+            vsum eius sibi necessarium iudicaret post obitum vero ipsius <lb/> aut voluntariam
+            secularium rerum carentiam eadem pars quatuor <subst>
+               <del/>
+               <add>sub</add>
+            </subst>diuisionibus <lb/> se caretur et vna quidem earum supradictarum XX et vna
+            partium adderetur al<lb break="no"/>tera a filiis et filiabus suis filiisque et filiabus
+            filiorum suorum Iusta et <lb/> rationabili inter eos particione diuideret<del>ur</del>
+               T<mod>e</mod>rcia vero In vsum paupe<lb break="no"/>rum erogaret<del>ur</del> Quarta
+            simili modo <subst>
+               <del/>
+               <add>I</add>
+            </subst>n nomine elemosine et seruorum et <lb/> Ancillarum vsibus palacii famulantium
+            sustentationem distributa venerit <lb/> ad hanc terciam totius summe porcionem adiungere
+            voluit omnia ex ere et <lb/> ferro aliisque<!-\- sk: auf Rasur? 
+            - sh: ? -\->
+            metallis vasa atque vtensilia cum armis et vestibus ac sup<lb break="no"/>pellectili vt
+            sunt Cortine Stragula Ta<mod>p</mod>etia Feltra Coria Saginata <lb/>
+            <seg type="initial">C</seg>apellam<!-\- sh: -ani statt -am. -\-> id est ecclesiasticum
+            ministerium vt Integrum esset ordinauit si qua <lb/> Autoritate
+            Inuenirent<del>ur</del><!-\- sh: vllt. doch "-tur /"? -\-> aut <unclear>l</unclear>ibri
+            aut vasa aut alia ornamenta / quę <lb/>
+            <space unit="chars" quantity="5"/> collocata non essent hec qui habere vellet dato
+            estimationis <lb/> precio emere posset <space unit="chars" quantity="6"/> de libris in
+            Bibliotheca <choice>
+               <!-\- sh: choice nicht nötig.  -\->
+               <abbr>q</abbr>
+               <expan>que</expan>
+            </choice> possent Iusto <lb/> precio <mod>e</mod>mi preciumque in pauperes erogari Tres
+            mensas Argenteas <lb/> vnam ecclesie <rs type="person">Sancti Petri</rs> in <rs
+               type="place">vrbe Alteram
+            Rauen<mod>n</mod>ali</rs><!-\- sk: oder subst, -ri- zu n korr.? - sh: ok so. -\-> Terciam
+            <lb/> quę ceteris operis pulchritudine et ponderis grauitate excel<lb break="no"/>lit ex
+            tribus orbibus Conuexa<!-\- sk: deutlich, obwohl Einhard "conexa" hat -\-> totius mundi
+            descriptionem <lb/> complectitur et Quartam
+            Auream<!-\- sk: was soll der umgedrehte Bogen
+            über dem A? Satzzeichen? - sh: Serife. -\->
+            in tercie illius et inter here<lb break="no"/>des suos atque in elemosinam diuidende
+            partis Augmentum esse <lb/> constituit hanc vt etiam Inf<mod>r</mod>a dicetur :
+            <lb/><lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-41v-2"> Hanc Constitutionem Coram Episcopis
+            Abbatibus<!-\- sk: wieder dieser Bogen über A... fast Arabisch. -\-> Comitibus quorum <cb
+               n="42r"/> hec nomina subscripta sunt fecit atque Constituit de quo In longum <lb/>
+            <rs type="person">Enhardus Aulicus</rs> de vita et gestis <rs type="person">Caroli
+               Magni</rs> Et hec vltima <lb/> voluntas <rs type="person">Caroli</rs> Tercio anno
+            ante obitum eius facta est <lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-42r-1"> Postea vero In vita sua mortui sunt <rs
+               type="person">Carolus</rs> et <rs type="person">Pipinus</rs> Reliquit <lb/>
+            <rs type="person"><rs type="person">Pipinus</rs> filium nomine Bernhardum</rs> vnde
+            factum est <choice>
+               <!-\- sh: choice nicht nötig.  -\->
+               <abbr>q</abbr>
+               <expan>quod</expan>
+            </choice> in ex<lb break="no"/>tr<mod>e</mod>mo vite sue <rs type="person">Carolus
+               Imperator</rs>
+            <rs type="person">euocatum filium suum</rs>
+            <rs type="place">Aqui<lb break="no"/>tanię</rs> Rege et Congregatis de toto Regno
+            Principibus ac <lb/> cunctorum Consilio Regni consortem et Imperialis nominis he<lb
+               break="no"/>redem instituit Impositoque capite eius Dyademate Imperato<lb break="no"
+            />rem et Augustum appellari Iussit <rs type="person">Bernhardum vero Nepotem <lb/>
+               premortui <rs type="person">Pipini</rs> filium</rs>
+            <rs type="place">Italie</rs> prefecit et Regem appellari <lb/> Iussit <lb/>
+         </ab>
+         <ab type="text" xml:id="simancas-ag-pr-29-6-42r-2"> Item t<mod>r</mod>es habuit mensas
+            Argenteas Quarum vnam In qua <rs type="place">vrbs <lb/> Constantinopolitana</rs>
+            sculpta erat Basilice in vrbe <rs type="person">Beati Petri</rs>
+            <lb/> Aliam In qua Imago <rs type="place">vrbis Rome</rs> cernebatur <rs type="place"
+               >ecclesie Rauen<lb break="no"/>nate</rs> dono dedit Terciam liberis suis reliquit In
+            qua orbis <lb/> Terrarum describebatur Hanc fuisse auream quidam scribunt <lb/> Mortuus
+            est autem <date>Anno etatis sue Septuagesimo secundo <lb/> Quinto
+                  <expan>kalendas</expan> Februarii Hora diei Tercia</date> Cuius Corpus maxi<lb
+               break="no"/>mo totius populi planctu Ecclesie quam Ipse Construxit illatum <lb/> Ac
+            Regali more ibi sepultum est <rs type="place">Aquisgrani</rs> Deo Gratias <lb/> Cui
+            omnipotens Misereatur </ab>-->
+      </body>
+   </text>
+</TEI>
