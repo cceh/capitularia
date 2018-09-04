@@ -18,7 +18,7 @@
 
   <xsl:output method="xml" indent="no" encoding="UTF-8" />
 
-  <!-- @corresp contains no spaces -->
+  <!-- if @corresp contains no spaces, add corresp to all titles within -->
   <xsl:template match="tei:msItem[not (contains (@corresp, ' '))]//tei:title[not (@corresp)]">
     <xsl:copy>
       <xsl:attribute name="corresp">

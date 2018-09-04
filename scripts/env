@@ -1,8 +1,9 @@
 #!/bin/bash
 
-CAP="~/uni/capitularia/http/docs/cap"
+CAP="/home/highlander/uni/capitularia/http/docs/cap"
 PUBL="$CAP/publ/mss/*.xml"
-INARBEIT="$CAP/intern/InArbeit/*/*.xml"
+IA="$CAP/intern/InArbeit"
+INARBEIT="$IA/Britta/*.xml $IA/Semih/*.xml $IA/Lea/*.xml $IA/Soeren/*.xml $IA/Dominik*/*.xml"
 
 sel() {
     xmlstarlet sel -N tei='http://www.tei-c.org/ns/1.0' "$@"
