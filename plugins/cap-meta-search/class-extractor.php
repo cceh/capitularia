@@ -194,6 +194,12 @@ class Extractor
         $this->meta ($post_id, 'origDate-notBefore',    $xpath->query ('//tei:head/tei:origDate/@notBefore'), 'intval');
         $this->meta ($post_id, 'origDate-notAfter',     $xpath->query ('//tei:head/tei:origDate/@notAfter'),  'intval');
         $this->meta ($post_id, 'origPlace',             $xpath->query ('//tei:head/tei:origPlace'));
+
+        $this->meta ($post_id, 'leaf-width',            $xpath->query ('//tei:dimensions[@type="leaf"]/tei:width'));
+        $this->meta ($post_id, 'leaf-height',           $xpath->query ('//tei:dimensions[@type="leaf"]/tei:height'));
+        $this->meta ($post_id, 'written-width',         $xpath->query ('//tei:dimensions[@type="written"]/tei:width'));
+        $this->meta ($post_id, 'written-height',        $xpath->query ('//tei:dimensions[@type="written"]/tei:height'));
+
         $this->meta ($post_id, 'head-title-main',       $xpath->query ('//tei:head/tei:title[@type="main"]'));
         $this->meta ($post_id, 'facsimile-graphic-url', $xpath->query ('/tei:TEI/tei:facsimile/tei:graphic/@url'));
         $this->meta (

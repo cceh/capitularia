@@ -19,7 +19,7 @@
   <xsl:output method="xml" indent="no" encoding="UTF-8" />
 
   <!-- @corresp contains no spaces -->
-  <xsl:template match="tei:msItem[not (contains (@corresp, ' '))]//tei:title">
+  <xsl:template match="tei:msItem[not (contains (@corresp, ' '))]//tei:title[not (@corresp)]">
     <xsl:copy>
       <xsl:attribute name="corresp">
         <xsl:value-of select="ancestor::tei:msItem/@corresp"/>

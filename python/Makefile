@@ -1,4 +1,4 @@
-XML=$(HOME)/uni/prj/capitularia/Documents/"Italische Sammlungen 8.xml"
+XML=$(HOME)/uni/prj/capitularia/Documents/"Italische Sammlungen 9.xml"
 OUT=/tmp
 DEST=mperatho@dialog.rrz.uni-koeln.de:~/capitularia/http/docs/cap/intern/workspace/grafics/
 

@@ -29,25 +29,6 @@ A4R = (11.692, 8.267) # inches
 PAPER = A4R
 
 MSS = """
-st-gallen-sb-733
-st-paul-abs-4-1
-ivrea-bc-xxxiv
-ivrea-bc-xxxiii
-vatikan-bav-vat-lat-5359
-vercelli-bce-clxxiv
-wolfenbuettel-hab-blankenb-130
-muenchen-bsb-lat-19416
-paris-bn-lat-4613
-vatikan-bav-reg-lat-263
-muenchen-bsb-lat-3853
-heiligenkreuz-sb-217
-modena-bc-o-i-2
-gotha-flb-memb-i-84
-vatikan-bav-chigi-f-iv-75
-cava-dei-tirreni-bdb-4
-""".split ()
-
-ALL_MSS = """
     berlin-sb-lat-qu-931
     cava-dei-tirreni-bdb-4
     gotha-flb-memb-i-84
@@ -56,7 +37,7 @@ ALL_MSS = """
     ivrea-bc-xxxiv
     modena-bc-o-i-2
     muenchen-bsb-lat-19416
-++    muenchen-bsb-lat-29555-1
+    muenchen-bsb-lat-29555-1
     muenchen-bsb-lat-3853
     muenchen-bsb-lat-6360
     paris-bn-lat-3878
@@ -65,7 +46,7 @@ ALL_MSS = """
     st-gallen-sb-733
     st-paul-abs-4-1
     vatikan-bav-chigi-f-iv-75
-++    vatikan-bav-reg-lat-1000b
+    vatikan-bav-reg-lat-1000b
     vatikan-bav-reg-lat-263
     vatikan-bav-vat-lat-5359
     vercelli-bce-clxxiv
@@ -149,8 +130,8 @@ def key_to_df (key):
     return series + bk + suffix
 
 
-def fix_include_bks (args, ms_seq):
-    """ Convert a range from user input into list of bks. """
+def do_include_args (args, ms_seq):
+    """ Handle the --include-bks and --include-mss commandline arguments. """
 
     bks = []
 
@@ -188,24 +169,38 @@ def fix_include_bks (args, ms_seq):
         except ValueError:
             raise ValueError ("error in range parameter")
 
-    if args.include_mss:
-        bks_ms = set ()
-        for ms in args.include_mss.split (','):
-            bks_ms.update (map (cluster.bk_to_key (ms_seq[ms])))
-        bks.append (sorted (bks_ms))
+    ms_seq_old = dict (ms_seq.items ())
+    ms_seq = collections.OrderedDict ()
+    mss = re.split (r'[\s,]+', args.include_mss) if args.include_mss else MSS
+
+    if args.sort:
+        mss = sorted (mss, key = cluster.natural_sort_key)
+
+    for ms in mss:
+        if ms in ms_seq_old:
+            ms_seq[ms] = ms_seq_old[ms]
+
+    if args.mss_must_contain:
+        bk_set = set (map (bk_to_key, re.split (r'[\s,]+', args.mss_must_contain)))
+        for ms in list (ms_seq):
+            if len (bk_set.intersection (ms_seq[ms])) == 0:
+                del ms_seq[ms]
 
     if args.output:
         include_bks = pretty_print (bks)
         args.output = args.output.format (**{ 'include-bks': include_bks.replace (' ', '_') })
 
     args.include_bks = bks
+    return ms_seq
 
 
 def add_range_args (parser):
     parser.add_argument ('--include-bks',
                          help = "BK range to convert: eg. BK.20a BK.39-41 BK.201-")
     parser.add_argument ('--include-mss',
-                         help = "Only Capitulars from Mss. in this list (eg. st-gallen-sb-733,...)")
+                         help = "Only Mss. in this list (eg. st-gallen-sb-733 ...)")
+    parser.add_argument ('--mss-must-contain',
+                         help="Exclude all Mss. that don't contain any of these BK")
 
 
 def pretty_print (bks):

@@ -10,11 +10,11 @@ namespace cceh\capitularia\theme;
 
 ?>
 
-      <footer id="footer">
-        <ul class="logo-bar logo-bar-1">
-            <?php dynamic_sidebar ('logobar') ?>
-        </ul>
-      </footer>
+<footer id="footer">
+  <ul class="logo-bar logo-bar-1">
+    <?php dynamic_sidebar ('logobar'); ?>
+  </ul>
+</footer>
 
 <?php
           /* Always have wp_footer() just before the closing </body>

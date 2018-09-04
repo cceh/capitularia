@@ -41,12 +41,9 @@ def main (args):
         type_ = 'capitulare'
     )
 
-    cluster.fix_include_bks (args, ms_seq)
+    ms_seq = cluster.do_include_args (args, ms_seq)
 
-    mss = cluster.MSS
-    if args.sort:
-        mss = sorted (mss, key = cluster.natural_sort_key)
-
+    mss = ms_seq.keys () # do not sort!
     bks = sorted (set (itertools.chain.from_iterable (ms_seq.values ())))
 
     debug ('mss: %d' % len (mss))

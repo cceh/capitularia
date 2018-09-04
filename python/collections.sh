@@ -6,6 +6,8 @@ OUT="$2"
 
 ./sequential.py --repeats "$XML" | sed "s/ \\$//g" | sort > $OUT/max_repeats.txt
 
+exit
+
 # collections found by maximal repeats
 while read line
 do

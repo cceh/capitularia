@@ -11,8 +11,13 @@ import pandas as pd
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.decomposition import TruncatedSVD
+from sklearn.preprocessing import Normalizer
+from sklearn.pipeline import make_pipeline
 
 import cluster
 
@@ -35,7 +40,7 @@ def natural_sort_bk (key):
 def load_feature_matrix (args):
     ms_seq = cluster.scan_xml_file (args.input, 'ms', 'capitulare')
 
-    cluster.fix_include_bks (args, ms_seq)
+    ms_seq = cluster.do_include_aegs (args, ms_seq)
 
     mss = cluster.MSS
     if args.sort:
@@ -159,6 +164,8 @@ if __name__ == '__main__':
                          help="Include a Manuscript Similarity diagram")
     parser.add_argument ('--bks', action='store_true',
                          help="Include a Capitulary Similarity diagram")
+    parser.add_argument ('--lsa', action='store_true',
+                         help="Latent Semantic Analysis")
     cluster.add_range_args (parser)
     parser.add_argument ('--min-ngrams', type=int, default = 1,
                          help="Use n-grams of size=MIN (default=1)")
@@ -180,9 +187,11 @@ if __name__ == '__main__':
     feat = load_feature_matrix (args)
     mss  = feat.index
     bks  = feat.columns
-    debug (feat)
     tf_idf_ms = cluster.tf_idf (args, feat)
-    debug (tf_idf_ms)
+
+    with pd.option_context ('display.max_rows', None, 'display.max_columns', None):
+        debug (feat)
+        debug (tf_idf_ms)
 
     columns = list (map (cluster.key_to_df, args.include_bks))
 
@@ -219,4 +228,30 @@ if __name__ == '__main__':
         f.savefig (args.output, dpi=300, transparent=False)
 
     if args.plot:
+        plt.show ()
+
+    if args.lsa:
+        transformer = TfidfTransformer (sublinear_tf=True, use_idf=True)
+        svd = TruncatedSVD (2)
+        normalizer = Normalizer (copy=False)
+        lsa = make_pipeline (transformer, svd) #, normalizer)
+
+        X = pd.DataFrame (lsa.fit_transform (feat.values), index = mss, columns = ['X', 'Y'])
+        print (X)
+
+        fig = plt.figure ()
+        ax = fig.add_subplot (111) # , projection='3d')
+
+        x, y = X.values[:,0], X.values[:,1]
+        # x, y, c = X.values[:,0], X.values[:,1], X.values[:,2]
+        # x, y, z, c = X.values[:,0], X.values[:,1], X.values[:,2], X.values[:,3]
+        plt.scatter (x, y, s = 200, marker='o', alpha = 0.5)
+
+        for i in X.index:
+            x, y = X.loc[i,:]
+            ax.text (x, y, i, size = 8, ha = 'center', va = 'center', alpha = 0.5)
+
+        plt.xlim (0, 1)
+        plt.ylim (-1, 1)
+        # plt.zlim (-1, 1)
         plt.show ()
