@@ -253,6 +253,10 @@
       <title>Herzog August Bibliothek</title>
       <caption>HAB</caption>
     </item>
+    <item key="internetculturale.it">
+      <title>Internet Culturale</title>
+      <caption>Internet Culturale</caption>
+    </item>
     <item key="landesarchiv-nrw.de">
       <title>Landesarchiv NRW</title>
       <caption>Landesarchiv NRW</caption>
