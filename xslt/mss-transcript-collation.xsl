@@ -53,6 +53,8 @@
     <xsl:value-of select="str:padding (number (@quantity), '·')" />
   </xsl:template>
 
+  <xsl:template match="tei:ref[@type='internal' and @subtype='mss']" />
+
   <xsl:template name="empty-del" />
 
   <xsl:template name="page-break" />
