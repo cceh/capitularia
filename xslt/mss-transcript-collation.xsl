@@ -23,13 +23,9 @@
     <xsl:apply-templates select="/tei:TEI/tei:text/tei:body"/>
   </xsl:template>
 
-  <!-- Normalize V to U except in <tei:num> and <tei:seg type="num"> -->
+  <!-- Normalize V to U except in <tei:seg type="num"> -->
   <xsl:template match="text ()">
     <xsl:value-of select="translate (., 'Vv', 'Uu')"/>
-  </xsl:template>
-
-  <xsl:template match="tei:num//text ()">
-    <xsl:value-of select="."/>
   </xsl:template>
 
   <xsl:template match="tei:seg[@type='num']//text ()">
@@ -57,12 +53,15 @@
     <xsl:value-of select="str:padding (number (@quantity), '·')" />
   </xsl:template>
 
-  <xsl:template name="make-chapter-mark" />
-
-  <xsl:template name="make-sidebar-entry" />
-
   <xsl:template name="empty-del" />
 
   <xsl:template name="page-break" />
+
+  <!-- don't output special markup for wordpress sidebar menu -->
+  <xsl:template name="make-chapter-mark" />
+
+  <xsl:template name="make-sidebar-bk" />
+
+  <xsl:template name="make-sidebar-bk-chapter" />
 
 </xsl:stylesheet>

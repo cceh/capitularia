@@ -512,12 +512,6 @@ footnotes will be joined to the preceding word.
     </span>
   </xsl:template>
 
-  <xsl:template match="tei:num">
-    <span class="tei-num">
-      <xsl:apply-templates/>
-    </span>
-  </xsl:template>
-
   <xsl:template match="tei:ex">
     <span class="tei-ex rend-italic italic">
       <xsl:apply-templates/>
