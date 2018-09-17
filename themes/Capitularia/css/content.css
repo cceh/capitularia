@@ -1,136 +1,142 @@
-html {
-  /* otherwise bootstrap makes this very small */
-  font-size: 100%;
-}
+@charset "UTF-8";
+/* bootstrap custom theme                                          */
+/* See: https://getbootstrap.com/docs/4.1/getting-started/theming/ */
+/* color definitions */
+/* Font mixins */
+/* More styles */
 body {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   color: #1a171b;
   background: #fff;
-  /* otherwise bootstrap makes this very small */
-  font-size: 100%;
   line-height: 1.3;
 }
+
 p {
   margin: 1em 0;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+
+h1, h2, h3, h4, h5, h6 {
   margin: 3em 0 2em 0;
   line-height: 1.5em;
   text-align: left;
 }
-h4,
-h5,
-h6 {
+
+h4, h5, h6 {
   margin: 2em 0 1em 0;
 }
+
 h1 {
-  font-family: 'OpenSans-Light', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Light", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   font-size: 3em;
   margin: 0;
 }
+
 h2 {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   font-size: 2.4em;
 }
+
 h3 {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   font-size: 2em;
 }
+
 h4 {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   font-size: 1.3em;
 }
+
 h5 {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
+
 h6 {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   text-decoration: underline;
 }
-ol,
-ul {
+
+ol, ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
+
 img {
   max-width: 100%;
 }
+
 a[href] {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   color: #b92900;
   text-decoration: none;
 }
+
 a[href]:active,
 a[href]:focus,
 a[href]:hover {
   text-decoration: underline;
 }
+
 .regular {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
-i,
-em,
-.italic {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+
+i, em, .italic {
+  font-family: "OpenSans-Italic", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
 i a[href],
-em a[href],
-.italic a[href],
 i a[href]:active,
-em a[href]:active,
-.italic a[href]:active,
 i a[href]:focus,
+i a[href]:hover, em a[href],
+em a[href]:active,
 em a[href]:focus,
+em a[href]:hover, .italic a[href],
+.italic a[href]:active,
 .italic a[href]:focus,
-i a[href]:hover,
-em a[href]:hover,
 .italic a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-SemiboldItalic", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
-b,
-strong,
-.bold {
-  font-family: 'OpenSans-Bold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+
+b, strong, .bold {
+  font-family: "OpenSans-Bold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
+
 .small {
   font-size: small;
 }
+
 .black {
   color: #1a171b;
 }
+
 .red {
   color: #b92900;
 }
+
 .sup {
   font-size: 75%;
   line-height: 0;
@@ -138,6 +144,7 @@ strong,
   vertical-align: baseline;
   top: -0.5em;
 }
+
 .sub {
   font-size: 75%;
   line-height: 0;
@@ -145,19 +152,23 @@ strong,
   vertical-align: baseline;
   bottom: -0.25em;
 }
+
 .justify {
   text-align: justify;
 }
+
 @media print {
   .screen-only {
     display: none;
   }
 }
+
 @media screen {
   .print-only {
     display: none;
   }
 }
+
 @media print {
   /* undo bootstrap madness */
   a[href]:after {
@@ -168,156 +179,153 @@ strong,
 /* Headers */
 /***********/
 div.container > header {
-  margin-left: -15px;
+  display: flex;
+  flex-wrap: wrap;
   margin-right: -15px;
+  margin-left: -15px;
   /* see: https://getbootstrap.com/css/ */
 }
-div.container > header:before,
-div.container > header:after {
-  content: " ";
-  display: table;
-}
-div.container > header:after {
+div.container > header::after {
+  display: block;
   clear: both;
+  content: "";
 }
 div.container > main {
-  margin-left: -15px;
+  display: flex;
+  flex-wrap: wrap;
   margin-right: -15px;
+  margin-left: -15px;
 }
-div.container > main:before,
-div.container > main:after {
-  content: " ";
-  display: table;
-}
-div.container > main:after {
+div.container > main::after {
+  display: block;
   clear: both;
+  content: "";
 }
 div.container > footer {
-  margin-left: -15px;
+  display: flex;
+  flex-wrap: wrap;
   margin-right: -15px;
+  margin-left: -15px;
 }
-div.container > footer:before,
-div.container > footer:after {
-  content: " ";
-  display: table;
-}
-div.container > footer:after {
+div.container > footer::after {
+  display: block;
   clear: both;
+  content: "";
 }
+
 .cap-row {
-  margin-left: -15px;
+  display: flex;
+  flex-wrap: wrap;
   margin-right: -15px;
+  margin-left: -15px;
 }
+
 .cap-left-col {
   position: relative;
-  float: left;
   width: 100%;
   min-height: 1px;
-  padding-left: 15px;
   padding-right: 15px;
-  /* see: https://getbootstrap.com/css/ */
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 @media (min-width: 768px) {
   .cap-left-col {
-    float: left;
-    width: 66.66666667%;
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%;
   }
 }
+
 .cap-right-col {
   position: relative;
-  float: left;
   width: 100%;
   min-height: 1px;
-  padding-left: 15px;
   padding-right: 15px;
-  /* see: https://getbootstrap.com/css/ */
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 @media (min-width: 768px) {
   .cap-right-col {
-    float: left;
-    width: 33.33333333%;
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
   }
 }
+
 .cap-left-col-pull {
-  /* a column that comes on bottom on mobile but on the left on desktop */
-  float: left;
-  width: 100%;
-  /* see: https://getbootstrap.com/css/ */
   position: relative;
+  width: 100%;
   min-height: 1px;
-  padding-left: 15px;
   padding-right: 15px;
-  /* pull 4 to the left */
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 @media (min-width: 768px) {
   .cap-left-col-pull {
-    float: left;
-    width: 66.66666667%;
+    /* a column that comes on bottom on mobile but on the left on desktop */
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%;
+    order: 0;
   }
 }
-@media (min-width: 768px) {
-  .cap-left-col-pull {
-    right: 33.33333333%;
-  }
-}
+
 .cap-right-col-push {
-  /* a column that comes on top on mobile but on the right on desktop */
-  float: left;
-  width: 100%;
-  /* see: https://getbootstrap.com/css/ */
   position: relative;
+  width: 100%;
   min-height: 1px;
-  padding-left: 15px;
   padding-right: 15px;
-  /* push 8 to the right */
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 @media (min-width: 768px) {
   .cap-right-col-push {
-    float: left;
-    width: 33.33333333%;
+    /* a column that comes on top on mobile but on the right on desktop */
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+    order: 8;
   }
 }
-@media (min-width: 768px) {
-  .cap-right-col-push {
-    left: 66.66666667%;
-  }
-}
+
 nav.horiz-nav {
   position: relative;
-  float: left;
   width: 100%;
   min-height: 1px;
-  padding-left: 15px;
   padding-right: 15px;
-  /* see: https://getbootstrap.com/css/ */
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
-nav.horiz-nav:before,
-nav.horiz-nav:after {
-  content: " ";
-  display: table;
-}
-nav.horiz-nav:after {
+nav.horiz-nav::after {
+  display: block;
   clear: both;
+  content: "";
 }
 @media print {
   nav {
     display: none;
   }
 }
+
 #bottom-nav {
   padding-top: 20px;
   border-bottom: solid 1px #1a171b;
 }
+
 #main > div {
   padding-top: 40px;
   padding-bottom: 40px;
 }
+
 #main.home > div {
   padding-top: 15px;
 }
+
 #header2 > div {
   padding-top: 40px;
 }
+
 /**********/
 /* Footer */
 /**********/
@@ -331,26 +339,27 @@ nav.horiz-nav:after {
     display: none;
   }
 }
+
 .logo-bar {
-  margin-left: -15px;
+  display: flex;
+  flex-wrap: wrap;
   margin-right: -15px;
+  margin-left: -15px;
   /* see: https://getbootstrap.com/css/ */
 }
-.logo-bar:before,
-.logo-bar:after {
-  content: " ";
-  display: table;
-}
-.logo-bar:after {
+.logo-bar::after {
+  display: block;
   clear: both;
+  content: "";
 }
 .logo-bar li.widget {
   position: relative;
-  float: left;
-  width: 25%;
+  width: 100%;
   min-height: 1px;
-  padding-left: 15px;
   padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 25%;
+  max-width: 25%;
   /* see: https://getbootstrap.com/css/ */
 }
 .logo-bar li.widget a {
@@ -361,16 +370,15 @@ nav.horiz-nav:after {
 .logo-bar li.widget a img {
   width: 100%;
 }
-.gdpr {
-  margin-top: 1em;
-  text-align: center;
-}
+
 /**************/
 /* Front page */
 /**************/
 .front-splash {
-  margin-left: -15px;
+  display: flex;
+  flex-wrap: wrap;
   margin-right: -15px;
+  margin-left: -15px;
   /* see: https://getbootstrap.com/css/ */
   position: relative;
   margin-top: 40px;
@@ -378,30 +386,27 @@ nav.horiz-nav:after {
   background: #beac86;
   color: #fff;
 }
-.front-splash:before,
-.front-splash:after {
-  content: " ";
-  display: table;
-}
-.front-splash:after {
+.front-splash::after {
+  display: block;
   clear: both;
+  content: "";
 }
 .front-splash div.front-splash-caption {
-  float: left;
-  width: 100%;
-  /* see: https://getbootstrap.com/css/ */
   position: relative;
+  width: 100%;
   min-height: 1px;
-  padding-left: 15px;
   padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
   /* undo the bootstrap default of position: relative because we need to position
-           at the bottom of div.front-splash */
+     at the bottom of div.front-splash */
   position: static;
 }
 @media (min-width: 768px) {
   .front-splash div.front-splash-caption {
-    float: left;
-    width: 66.66666667%;
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%;
   }
 }
 .front-splash div.front-splash-caption h1 {
@@ -415,26 +420,31 @@ nav.horiz-nav:after {
   }
 }
 .front-splash div.front-splash-caption h1 span {
-  font-size: 75%;
+  font-size: 50%;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
+  .front-splash div.front-splash-caption h1 span {
+    font-size: 75%;
+  }
+}
+@media (min-width: 1200px) {
   .front-splash div.front-splash-caption h1 span {
     font-size: 100%;
   }
 }
 .front-splash ul.front-splash-image {
-  float: left;
-  width: 100%;
-  /* see: https://getbootstrap.com/css/ */
   position: relative;
+  width: 100%;
   min-height: 1px;
-  padding-left: 15px;
   padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 @media (min-width: 768px) {
   .front-splash ul.front-splash-image {
-    float: left;
-    width: 33.33333333%;
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
   }
 }
 .front-splash ul.front-splash-image img {
@@ -443,33 +453,32 @@ nav.horiz-nav:after {
   display: block;
   width: 100%;
 }
+
 ul.teaser-bar {
-  margin-left: -15px;
+  display: flex;
+  flex-wrap: wrap;
   margin-right: -15px;
+  margin-left: -15px;
   /* see: https://getbootstrap.com/css/ */
   margin: 0 auto;
   margin: 2em 0;
   line-height: 1.5em;
 }
-ul.teaser-bar:before,
-ul.teaser-bar:after {
-  content: " ";
-  display: table;
-}
-ul.teaser-bar:after {
+ul.teaser-bar::after {
+  display: block;
   clear: both;
+  content: "";
 }
 ul.teaser-bar li.widget {
   margin-bottom: 1em;
-  /* @media (min-width: @screen-sm-min) { */
 }
 ul.teaser-bar h2 {
   color: #4e4c4f;
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   margin-top: 0;
-  margin-bottom: .7ex;
+  margin-bottom: 0.7ex;
 }
 ul.teaser-bar p {
   margin-bottom: 0.35em;
@@ -478,14 +487,12 @@ ul.teaser-bar a {
   color: #b92900;
   transition: color 300ms;
 }
-ul.teaser-bar a:focus,
-ul.teaser-bar a:active,
-ul.teaser-bar a:hover {
+ul.teaser-bar a:focus, ul.teaser-bar a:active, ul.teaser-bar a:hover {
   color: #000;
   text-decoration: none;
 }
 ul.teaser-bar a.mehr-lesen {
-  font-family: 'OpenSans-Bold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Bold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   text-transform: uppercase;
@@ -501,52 +508,55 @@ ul.teaser-bar img {
   margin-right: 32px;
   margin-bottom: 32px;
 }
+
 ul.teaser-bar-1 {
   padding-top: 1em;
   text-align: center;
 }
 ul.teaser-bar-1 li.widget {
-  float: left;
-  width: 100%;
-  /* see: https://getbootstrap.com/css/ */
   position: relative;
+  width: 100%;
   min-height: 1px;
-  padding-left: 15px;
   padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 @media (min-width: 768px) {
   ul.teaser-bar-1 li.widget {
-    float: left;
-    width: 33.33333333%;
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
   }
 }
 ul.teaser-bar-1 h2 {
   font-size: 2em;
   text-align: center;
 }
+
 ul.teaser-bar-2 {
   border-top: solid 1px #1a171b;
   padding-top: 2em;
 }
 ul.teaser-bar-2 li.widget {
-  float: left;
-  width: 100%;
-  /* see: https://getbootstrap.com/css/ */
   position: relative;
+  width: 100%;
   min-height: 1px;
-  padding-left: 15px;
   padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
   text-align: left;
 }
 @media (min-width: 768px) {
   ul.teaser-bar-2 li.widget {
-    float: left;
-    width: 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
   }
 }
 ul.teaser-bar-2 h2 {
   font-size: 1.3em;
 }
+
 /***********/
 /* Gadgets */
 /***********/
@@ -558,6 +568,7 @@ div.hr {
 div.hr .compact {
   margin: 1em 0;
 }
+
 div.page-break {
   /* a horizontal rule on screen and a page break on print */
   page-break-before: always;
@@ -571,10 +582,12 @@ div.page-break {
     margin: 1em 0;
   }
 }
+
 div.page-break + div.page-break {
   /* Quick fix for duplicated page-breaks. */
   display: none;
 }
+
 div.back-to-top {
   margin: 3em 0;
   text-align: right;
@@ -583,7 +596,7 @@ div.back-to-top {
 div.back-to-top a::after {
   font-family: "dashicons";
   font-size: 12px;
-  content: " \f343";
+  content: " ";
 }
 div.back-to-top.back-to-top-with-rule {
   border-top: 1px solid #000;
@@ -596,6 +609,7 @@ div.back-to-top.back-to-top-compact {
     display: none;
   }
 }
+
 div.pagination-nav {
   margin: 14px 0;
   padding: 14px 0;
@@ -605,45 +619,48 @@ div.pagination-nav {
 div.pagination-nav .screen-reader-text {
   display: none;
 }
+
 div.pagination-nav-top {
   border-width: 1px 0;
 }
+
 div.pagination-nav-bottom {
   border-width: 1px 0 0 0;
 }
-div.search-results,
-.index-results {
+
+div.search-results, .index-results {
   margin: 2em 0;
 }
-div.search-results li,
-.index-results li {
+div.search-results li, .index-results li {
   padding: 10px 0;
 }
-div.search-results p,
-.index-results p {
+div.search-results p, .index-results p {
   padding-top: 6px;
 }
-div.search-results b,
-.index-results b {
-  font-family: 'OpenSans-Bold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+div.search-results b, .index-results b {
+  font-family: "OpenSans-Bold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
+
 .downloads li a {
   text-decoration: none;
   transition: color 300ms;
 }
+
 .downloads li a:hover,
 .downloads li a:focus,
 .downloads li a:active {
   color: #000;
 }
+
 /***********/
 /* Content */
 /***********/
 span.break-word {
   overflow-wrap: break-word;
 }
+
 @media print {
   div.content-col {
     /* otherwise we get no page-breaks because this is floated by bootstrap */
@@ -664,13 +681,13 @@ div.content-col a.internal::after {
   color: #b92900;
 }
 div.content-col a.internal.bib {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   color: inherit;
 }
 div.content-col a.internal.bib::after {
-  content: "\00a0\00a0\f330";
+  content: "  ";
 }
 div.content-col a.internal.mom {
   display: block;
@@ -679,19 +696,19 @@ div.content-col a.internal.com {
   display: block;
 }
 div.content-col a.internal.transcription::after {
-  content: "\00a0\00a0\f464";
+  content: "  ";
 }
 div.content-col a.internal.prev-transcription::after {
-  content: "\f141\00a0";
+  content: " ";
 }
 div.content-col a.internal.next-transcription::after {
-  content: "\00a0\f139";
+  content: " ";
 }
 div.content-col a.external::after {
   font-family: "dashicons";
   line-height: 1;
   color: #b92900;
-  content: "\00a0\00a0\f504";
+  content: "  ";
 }
 div.content-col article {
   margin: 0 0 32px 0;
@@ -711,9 +728,8 @@ div.content-col table {
 div.content-col thead {
   border-bottom: solid 1px #1a171b;
 }
-div.content-col thead th,
-div.content-col thead td {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+div.content-col thead th, div.content-col thead td {
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   padding-bottom: 16px;
@@ -724,29 +740,18 @@ div.content-col tr {
 div.content-col tr:nth-child(even) {
   background: #fff;
 }
-div.content-col th,
-div.content-col td {
+div.content-col th, div.content-col td {
   text-align: left;
   padding: 6px;
 }
-div.content-col th p,
-div.content-col td p,
-div.content-col th ul,
-div.content-col td ul,
-div.content-col th ol,
-div.content-col td ol {
+div.content-col th p, div.content-col th ul, div.content-col th ol, div.content-col td p, div.content-col td ul, div.content-col td ol {
   margin-top: 0;
 }
-div.content-col th p:last-child,
-div.content-col td p:last-child,
-div.content-col th ul:last-child,
-div.content-col td ul:last-child,
-div.content-col th ol:last-child,
-div.content-col td ol:last-child {
+div.content-col th p:last-child, div.content-col th ul:last-child, div.content-col th ol:last-child, div.content-col td p:last-child, div.content-col td ul:last-child, div.content-col td ol:last-child {
   margin-bottom: 0;
 }
 div.content-col th {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
@@ -756,17 +761,15 @@ div.content-col table.new-style thead {
 }
 div.content-col table.new-style tr {
   background: #fff;
-  /* border: 1px solid @color-lightrule;
-        &:first-child {
-        border-top: 0 solid @color-lightrule;
-        } */
+  /* border: 1px solid $color-lightrule;
+          &:first-child {
+          border-top: 0 solid $color-lightrule;
+          } */
 }
-div.content-col table.new-style tr:first-child td,
-div.content-col table.new-style tr:first-child th {
+div.content-col table.new-style tr:first-child td, div.content-col table.new-style tr:first-child th {
   padding-top: 12px;
 }
-div.content-col table.new-style tr:last-child td,
-div.content-col table.new-style tr:last-child th {
+div.content-col table.new-style tr:last-child td, div.content-col table.new-style tr:last-child th {
   padding-bottom: 12px;
 }
 div.content-col table.new-style tbody {
@@ -789,33 +792,17 @@ div.content-col .annotation-ref span.footnote-siglum {
   color: #b92900;
 }
 div.content-col span.tei-mentioned {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.content-col span.tei-mentioned a[href],
-div.content-col span.tei-mentioned a[href]:active,
-div.content-col span.tei-mentioned a[href]:focus,
-div.content-col span.tei-mentioned a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Italic", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
 div.content-col div.tei-front {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.content-col div.tei-front a[href],
-div.content-col div.tei-front a[href]:active,
-div.content-col div.tei-front a[href]:focus,
-div.content-col div.tei-front a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Italic", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
 div.content-col div.tei-front span.tei-mentioned {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
@@ -884,15 +871,7 @@ div.content-col div.capit-list-xsl table .title {
   width: 65%;
 }
 div.content-col div.capit-list-xsl table td.title {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.content-col div.capit-list-xsl table td.title a[href],
-div.content-col div.capit-list-xsl table td.title a[href]:active,
-div.content-col div.capit-list-xsl table td.title a[href]:focus,
-div.content-col div.capit-list-xsl table td.title a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Italic", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
@@ -906,15 +885,7 @@ div.content-col div.mss-capit-xsl table .capit {
   width: 35%;
 }
 div.content-col div.mss-capit-xsl table td.capit {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.content-col div.mss-capit-xsl table td.capit a[href],
-div.content-col div.mss-capit-xsl table td.capit a[href]:active,
-div.content-col div.mss-capit-xsl table td.capit a[href]:focus,
-div.content-col div.mss-capit-xsl table td.capit a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Italic", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
@@ -922,7 +893,7 @@ div.content-col div.mss-capit-xsl table td.mss {
   line-height: 120%;
 }
 div.content-col div.mss-capit-xsl .mss-capit-capitular-siglum {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
@@ -930,25 +901,16 @@ div.content-col div.mss-capit-xsl div.note {
   margin-top: 1em;
   text-align: justify;
   font-size: 85%;
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
 div.content-col div.mss-idno-xsl span.siglum {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Italic", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.mss-idno-xsl span.siglum a[href],
-div.content-col div.mss-idno-xsl span.siglum a[href]:active,
-div.content-col div.mss-idno-xsl span.siglum a[href]:focus,
-div.content-col div.mss-idno-xsl span.siglum a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.content-col div.mss-key-xsl th.siglum,
-div.content-col div.mss-key-xsl td.siglum {
+div.content-col div.mss-key-xsl th.siglum, div.content-col div.mss-key-xsl td.siglum {
   width: 15%;
 }
 div.content-col div.mss-changes table {
@@ -964,323 +926,244 @@ div.content-col div.resources-downloads table {
   table-layout: auto;
 }
 div.content-col .bib-short-title {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
-div.content-col,
-div.annotation-content {
+
+div.content-col, div.annotation-content {
   text-align: justify;
   line-height: 1.4em;
 }
-div.content-col ul,
-div.annotation-content ul,
-div.content-col ol,
-div.annotation-content ol {
+div.content-col ul, div.content-col ol, div.annotation-content ul, div.annotation-content ol {
   margin: 1.5em 0;
 }
-div.content-col li,
-div.annotation-content li {
+div.content-col li, div.annotation-content li {
   margin-left: 1.5em;
   list-style: disc outside;
 }
-div.content-col ul.bare > li,
-div.annotation-content ul.bare > li {
+div.content-col ul.bare > li, div.annotation-content ul.bare > li {
   margin-left: 0;
   list-style-type: none;
 }
-div.content-col ul.dash > li,
-div.annotation-content ul.dash > li {
+div.content-col ul.dash > li, div.annotation-content ul.dash > li {
   position: relative;
   margin-left: 2em;
   list-style-type: none;
 }
-div.content-col ul.dash > li::before,
-div.annotation-content ul.dash > li::before {
+div.content-col ul.dash > li::before, div.annotation-content ul.dash > li::before {
   position: absolute;
   margin-left: -1em;
   content: "-";
 }
-div.content-col hr,
-div.annotation-content hr {
+div.content-col hr, div.annotation-content hr {
   margin: 3em 0;
 }
 div.content-col .rend-red,
-div.annotation-content .rend-red,
 div.content-col .rend-colored,
+div.content-col .rend-coloured, div.annotation-content .rend-red,
 div.annotation-content .rend-colored,
-div.content-col .rend-coloured,
 div.annotation-content .rend-coloured {
   color: #b92900;
 }
-div.content-col .rend-default,
-div.annotation-content .rend-default {
+div.content-col .rend-default, div.annotation-content .rend-default {
   color: #1a171b;
 }
-div.content-col .rend-italic,
-div.annotation-content .rend-italic {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+div.content-col .rend-italic, div.annotation-content .rend-italic {
+  font-family: "OpenSans-Italic", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
-div.content-col .rend-italic a[href],
-div.annotation-content .rend-italic a[href],
-div.content-col .rend-italic a[href]:active,
-div.annotation-content .rend-italic a[href]:active,
-div.content-col .rend-italic a[href]:focus,
-div.annotation-content .rend-italic a[href]:focus,
-div.content-col .rend-italic a[href]:hover,
-div.annotation-content .rend-italic a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+div.content-col .rend-semibold, div.annotation-content .rend-semibold {
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
-div.content-col .rend-semibold,
-div.annotation-content .rend-semibold {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.content-col .rend-super,
-div.annotation-content .rend-super {
+div.content-col .rend-super, div.annotation-content .rend-super {
   font-size: 75%;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
   top: -0.5em;
 }
-div.content-col .align-left,
-div.annotation-content .align-left {
+div.content-col .align-left, div.annotation-content .align-left {
   text-align: left;
 }
-div.content-col .align-center,
-div.annotation-content .align-center {
+div.content-col .align-center, div.annotation-content .align-center {
   text-align: center;
 }
-div.content-col .align-right,
-div.annotation-content .align-right {
+div.content-col .align-right, div.annotation-content .align-right {
   text-align: right;
 }
-div.content-col .align-bottom,
-div.annotation-content .align-bottom {
+div.content-col .align-bottom, div.annotation-content .align-bottom {
   vertical-align: bottom;
 }
-div.content-col .float-left,
-div.annotation-content .float-left {
+div.content-col .float-left, div.annotation-content .float-left {
   display: block;
   float: left;
   margin: 0 1em 1em 0;
 }
-div.content-col .float-right,
-div.annotation-content .float-right {
+div.content-col .float-right, div.annotation-content .float-right {
   display: block;
   float: left;
   margin: 0 0 1em 1em;
 }
-div.content-col span.initial,
-div.annotation-content span.initial {
+div.content-col span.initial, div.annotation-content span.initial {
   display: inline-block;
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   font-size: 110%;
 }
-div.content-col span.initial-word-wrapper,
-div.annotation-content span.initial-word-wrapper {
+div.content-col span.initial-word-wrapper, div.annotation-content span.initial-word-wrapper {
   white-space: nowrap;
 }
-div.content-col span.versalie,
-div.annotation-content span.versalie {
+div.content-col span.versalie, div.annotation-content span.versalie {
   font-size: 110%;
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
-div.content-col span.tei-gap,
-div.annotation-content span.tei-gap {
+div.content-col span.tei-gap, div.annotation-content span.tei-gap {
   white-space: nowrap;
 }
-div.content-col div.tei-gap-editorial,
-div.annotation-content div.tei-gap-editorial {
+div.content-col div.tei-gap-editorial, div.annotation-content div.tei-gap-editorial {
   margin: 1em 0;
   font-weight: bold;
 }
-div.content-col div.tei-gap-editorial span.tei-gap-editorial-inner,
-div.annotation-content div.tei-gap-editorial span.tei-gap-editorial-inner {
+div.content-col div.tei-gap-editorial span.tei-gap-editorial-inner, div.annotation-content div.tei-gap-editorial span.tei-gap-editorial-inner {
   font-style: italic;
 }
-div.content-col div.xsl-output ul,
-div.annotation-content div.xsl-output ul {
+div.content-col div.xsl-output ul, div.annotation-content div.xsl-output ul {
   list-style: disc outside;
 }
-div.content-col div.xsl-output ol,
-div.annotation-content div.xsl-output ol {
+div.content-col div.xsl-output ol, div.annotation-content div.xsl-output ol {
   list-style: decimal outside;
 }
-div.content-col div.xsl-output ol.alphabetisch,
-div.annotation-content div.xsl-output ol.alphabetisch {
+div.content-col div.xsl-output ol.alphabetisch, div.annotation-content div.xsl-output ol.alphabetisch {
   list-style-type: lower-alpha;
 }
-div.content-col div.xsl-output ol ol,
-div.annotation-content div.xsl-output ol ol {
+div.content-col div.xsl-output ol ol, div.annotation-content div.xsl-output ol ol {
   list-style-type: upper-alpha;
 }
-div.content-col div.xsl-output ol ol ol,
-div.annotation-content div.xsl-output ol ol ol {
+div.content-col div.xsl-output ol ol ol, div.annotation-content div.xsl-output ol ol ol {
   list-style-type: lower-roman;
 }
-div.content-col div.xsl-output ol ol ol ol,
-div.annotation-content div.xsl-output ol ol ol ol {
+div.content-col div.xsl-output ol ol ol ol, div.annotation-content div.xsl-output ol ol ol ol {
   list-style-type: lower-alpha;
 }
-div.content-col div.xsl-output ol li,
-div.annotation-content div.xsl-output ol li {
+div.content-col div.xsl-output ol li, div.annotation-content div.xsl-output ol li {
   margin-left: 2em;
   padding-left: 0.5em;
 }
 div.content-col div.xsl-output ul.tei-msItem li,
-div.annotation-content div.xsl-output ul.tei-msItem li,
-div.content-col div.xsl-output ul.downloads li,
+div.content-col div.xsl-output ul.downloads li, div.annotation-content div.xsl-output ul.tei-msItem li,
 div.annotation-content div.xsl-output ul.downloads li {
   margin-left: 0;
   list-style: none;
 }
-div.content-col div.xsl-output .xml-comment,
-div.annotation-content div.xsl-output .xml-comment {
+div.content-col div.xsl-output .xml-comment, div.annotation-content div.xsl-output .xml-comment {
   background-color: yellow;
 }
-div.content-col div.xsl-output div.mss-header-xsl,
-div.annotation-content div.xsl-output div.mss-header-xsl {
+div.content-col div.xsl-output div.mss-header-xsl, div.annotation-content div.xsl-output div.mss-header-xsl {
   font-size: 90%;
 }
-div.content-col div.xsl-output div.mss-header-xsl img,
-div.annotation-content div.xsl-output div.mss-header-xsl img {
+div.content-col div.xsl-output div.mss-header-xsl img, div.annotation-content div.xsl-output div.mss-header-xsl img {
   vertical-align: middle;
 }
-div.content-col div.xsl-output div.mss-header-xsl table.tei-physDesc-table,
-div.annotation-content div.xsl-output div.mss-header-xsl table.tei-physDesc-table {
+div.content-col div.xsl-output div.mss-header-xsl table.tei-physDesc-table, div.annotation-content div.xsl-output div.mss-header-xsl table.tei-physDesc-table {
   table-layout: fixed;
   width: 100%;
 }
-div.content-col div.xsl-output div.mss-header-xsl table.tei-physDesc-table th,
-div.annotation-content div.xsl-output div.mss-header-xsl table.tei-physDesc-table th {
+div.content-col div.xsl-output div.mss-header-xsl table.tei-physDesc-table th, div.annotation-content div.xsl-output div.mss-header-xsl table.tei-physDesc-table th {
   width: 25%;
 }
-div.content-col div.xsl-output div.mss-header-xsl div.tei-msDesc div.mss-of-the-month,
-div.annotation-content div.xsl-output div.mss-header-xsl div.tei-msDesc div.mss-of-the-month {
+div.content-col div.xsl-output div.mss-header-xsl div.tei-msDesc div.mss-of-the-month, div.annotation-content div.xsl-output div.mss-header-xsl div.tei-msDesc div.mss-of-the-month {
   margin-top: 1em;
 }
-div.content-col div.xsl-output div.mss-header-xsl div.tei-listBibl li,
-div.annotation-content div.xsl-output div.mss-header-xsl div.tei-listBibl li {
+div.content-col div.xsl-output div.mss-header-xsl div.tei-listBibl li, div.annotation-content div.xsl-output div.mss-header-xsl div.tei-listBibl li {
   font-size: 90%;
   list-style-type: square;
 }
-div.content-col div.xsl-output div.mss-header-xsl span.tei-note-corr,
-div.annotation-content div.xsl-output div.mss-header-xsl span.tei-note-corr {
+div.content-col div.xsl-output div.mss-header-xsl span.tei-note-corr, div.annotation-content div.xsl-output div.mss-header-xsl span.tei-note-corr {
   color: #b92900;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl,
-div.annotation-content div.xsl-output div.mss-transcript-xsl {
+div.content-col div.xsl-output div.mss-transcript-xsl, div.annotation-content div.xsl-output div.mss-transcript-xsl {
   font-size: 90%;
   /* CTE */
 }
-div.content-col div.xsl-output div.mss-transcript-xsl div.tei-body,
-div.annotation-content div.xsl-output div.mss-transcript-xsl div.tei-body {
+div.content-col div.xsl-output div.mss-transcript-xsl div.tei-body, div.annotation-content div.xsl-output div.mss-transcript-xsl div.tei-body {
   font-size: 120%;
   line-height: 200%;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl div.ab-meta-text,
-div.annotation-content div.xsl-output div.mss-transcript-xsl div.ab-meta-text,
-div.content-col div.xsl-output div.mss-transcript-xsl div.abMETA,
-div.annotation-content div.xsl-output div.mss-transcript-xsl div.abMETA {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+div.content-col div.xsl-output div.mss-transcript-xsl div.ab-meta-text, div.content-col div.xsl-output div.mss-transcript-xsl div.abMETA, div.annotation-content div.xsl-output div.mss-transcript-xsl div.ab-meta-text, div.annotation-content div.xsl-output div.mss-transcript-xsl div.abMETA {
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl div.corresp,
-div.annotation-content div.xsl-output div.mss-transcript-xsl div.corresp {
+div.content-col div.xsl-output div.mss-transcript-xsl div.corresp, div.annotation-content div.xsl-output div.mss-transcript-xsl div.corresp {
   font-size: 70%;
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   color: #4e4c4f;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl span.folio,
-div.annotation-content div.xsl-output div.mss-transcript-xsl span.folio {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+div.content-col div.xsl-output div.mss-transcript-xsl span.folio, div.annotation-content div.xsl-output div.mss-transcript-xsl span.folio {
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
+  font-weight: normal;
+  font-style: normal;
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   color: #4e4c4f;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness,
-div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness, div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness {
+  font-family: "OpenSans-Italic", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href],
-div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness a[href],
-div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:active,
-div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:active,
-div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:focus,
-div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:focus,
-div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:hover,
-div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness-siglum,
-div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness-siglum {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+div.content-col div.xsl-output div.mss-transcript-xsl span.tei-witness-siglum, div.annotation-content div.xsl-output div.mss-transcript-xsl span.tei-witness-siglum {
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   color: #b92900;
 }
-div.content-col div.xsl-output div.mss-transcript-xsl li.compact,
-div.annotation-content div.xsl-output div.mss-transcript-xsl li.compact,
-div.content-col div.xsl-output div.mss-transcript-xsl ul.compact,
-div.annotation-content div.xsl-output div.mss-transcript-xsl ul.compact {
+div.content-col div.xsl-output div.mss-transcript-xsl li.compact, div.content-col div.xsl-output div.mss-transcript-xsl ul.compact, div.annotation-content div.xsl-output div.mss-transcript-xsl li.compact, div.annotation-content div.xsl-output div.mss-transcript-xsl ul.compact {
   margin-top: 0;
   margin-bottom: 0;
 }
 div.content-col div.xsl-output div.mss-footer-xsl,
-div.annotation-content div.xsl-output div.mss-footer-xsl,
-div.content-col div.xsl-output div.capit-xsl,
+div.content-col div.xsl-output div.capit-xsl, div.annotation-content div.xsl-output div.mss-footer-xsl,
 div.annotation-content div.xsl-output div.capit-xsl {
   font-size: 90%;
 }
 div.content-col div.xsl-output div.mss-footer-xsl div.tei-revisionDesc table .col-1,
-div.annotation-content div.xsl-output div.mss-footer-xsl div.tei-revisionDesc table .col-1,
-div.content-col div.xsl-output div.capit-xsl div.tei-revisionDesc table .col-1,
+div.content-col div.xsl-output div.capit-xsl div.tei-revisionDesc table .col-1, div.annotation-content div.xsl-output div.mss-footer-xsl div.tei-revisionDesc table .col-1,
 div.annotation-content div.xsl-output div.capit-xsl div.tei-revisionDesc table .col-1 {
   width: 20%;
 }
 div.content-col div.xsl-output div.mss-footer-xsl ul.downloads li,
-div.annotation-content div.xsl-output div.mss-footer-xsl ul.downloads li,
-div.content-col div.xsl-output div.capit-xsl ul.downloads li,
+div.content-col div.xsl-output div.capit-xsl ul.downloads li, div.annotation-content div.xsl-output div.mss-footer-xsl ul.downloads li,
 div.annotation-content div.xsl-output div.capit-xsl ul.downloads li {
   padding: 16px 12px;
   background: #e9e1c1;
   border-bottom: solid 1px #fff;
 }
 div.content-col div.xsl-output div.mss-footer-xsl ul.downloads li.download-icon::before,
-div.annotation-content div.xsl-output div.mss-footer-xsl ul.downloads li.download-icon::before,
-div.content-col div.xsl-output div.capit-xsl ul.downloads li.download-icon::before,
+div.content-col div.xsl-output div.capit-xsl ul.downloads li.download-icon::before, div.annotation-content div.xsl-output div.mss-footer-xsl ul.downloads li.download-icon::before,
 div.annotation-content div.xsl-output div.capit-xsl ul.downloads li.download-icon::before {
   font-family: "dashicons";
   font-size: 24px;
-  content: "\f316";
+  content: "";
   float: left;
   padding-right: 1em;
 }
 div.content-col div.xsl-output div.mss-footer-xsl ul.downloads li:last-child,
-div.annotation-content div.xsl-output div.mss-footer-xsl ul.downloads li:last-child,
-div.content-col div.xsl-output div.capit-xsl ul.downloads li:last-child,
+div.content-col div.xsl-output div.capit-xsl ul.downloads li:last-child, div.annotation-content div.xsl-output div.mss-footer-xsl ul.downloads li:last-child,
 div.annotation-content div.xsl-output div.capit-xsl ul.downloads li:last-child {
   border-bottom: none;
 }
+
 /*************/
 /* Footnotes */
 /*************/
@@ -1293,7 +1176,7 @@ div.annotation-content {
 @media print {
   div.annotation-content:first-child::before {
     display: block;
-    content: '';
+    content: "";
     margin-top: 1ex;
     border-top: 1px solid #000;
     padding-top: 1ex;
@@ -1312,25 +1195,17 @@ div.annotation-content .annotation-backref {
   }
 }
 div.annotation-content .annotation-text {
-  font-family: 'OpenSans-Italic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
-  font-weight: normal;
-  font-style: normal;
-}
-div.annotation-content .annotation-text a[href],
-div.annotation-content .annotation-text a[href]:active,
-div.annotation-content .annotation-text a[href]:focus,
-div.annotation-content .annotation-text a[href]:hover {
-  font-family: 'OpenSans-SemiboldItalic', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Italic", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
 div.annotation-content .annotation-text span.tei-mentioned {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
 div.annotation-content .annotation-text sup.mentioned-index {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
 }
@@ -1339,6 +1214,7 @@ div.annotation-content .annotation-text sup.mentioned-index {
     margin-left: 3em;
   }
 }
+
 div.ui-widget.ui-widget-content.ui-tooltip-footnote {
   background-color: #e9e1c1;
   padding: 8px;
@@ -1346,6 +1222,7 @@ div.ui-widget.ui-widget-content.ui-tooltip-footnote {
   box-shadow: 5px 5px 5px #978f7d;
   border-width: 0;
 }
+
 /***********/
 /* Sidebar */
 /***********/
@@ -1388,6 +1265,7 @@ div.ui-widget.ui-widget-content.ui-tooltip-footnote {
   text-align: center;
   border-bottom: none;
 }
+
 /*******************/
 /* Legend Slideout */
 /*******************/
@@ -1397,17 +1275,17 @@ div.ui-widget.ui-widget-content.ui-tooltip-footnote {
 #legend table .legend-col-1 {
   width: 33%;
 }
-#legend table th,
-#legend table td {
+#legend table th, #legend table td {
   text-align: left;
   padding: 4px;
 }
 #legend table th {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   border-bottom: 1px solid white;
 }
+
 div.slideout {
   position: fixed;
   top: 40px;
@@ -1448,4 +1326,5 @@ div.slideout .slideout-tab h5 {
   box-shadow: -5px 5px 5px #978f7d;
   z-index: 20;
 }
+
 /*# sourceMappingURL=content.css.map */

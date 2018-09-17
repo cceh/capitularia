@@ -47,7 +47,7 @@ function on_enqueue_scripts ()
     wp_register_script (
         'cap-dynamic-menu-front',
         plugins_url ('js/front.js', __FILE__),
-        array ('cap-jquery', 'cap-jquery-ui')
+        array ('cap-jquery')
     );
     wp_enqueue_script  ('cap-dynamic-menu-front');
     // wp_enqueue_style   ('cap-dynamic-menu-front');

@@ -127,46 +127,11 @@ function get_content_end ()
 }
 
 /**
- * Register jquery and jquery-ui scripts and CSS
- *
- * Quandary: Wordpress (as of 4.3) comes with a version of jquery and jquery-ui
- * but lacks the jquery-ui css styles.  If we provide just our own jquery-ui css
- * styles, we may get out of sync with the jquery-ui javascript provided by
- * Wordpress.  But if we provide the whole jquery-ui of our own we may get out
- * of sync with Wordpress' assumptions of the actual jquery-ui version.
- *
- * For now we provide our own jquery / jquery-ui.
- *
- * @return void
- */
-
-function register_jquery ()
-{
-    wp_register_script (
-        'cap-jquery',
-        get_template_directory_uri () . '/bower_components/jquery/dist/jquery.js'
-    );
-    wp_register_script (
-        'cap-jquery-ui',
-        get_template_directory_uri () . '/bower_components/jquery-ui/jquery-ui.js',
-        array ('cap-jquery')
-    );
-    wp_register_script (
-        'cap-jquery-sticky',
-        get_template_directory_uri () . '/bower_components/jquery-sticky/jquery.sticky.js',
-        array ('cap-jquery-ui')
-    );
-    wp_register_style (
-        'cap-jquery-ui-css',
-        get_template_directory_uri () . '/bower_components/jquery-ui/themes/cupertino/jquery-ui.css',
-        array ()
-    );
-}
-
-/**
  * Enqueue scripts and CSS
  *
  * Add JS and CSS the wordpress way.
+ *
+ * N.B. We use our own copy of jquery and bootstrap on the front.
  *
  * @return void
  */
@@ -175,40 +140,29 @@ function on_enqueue_scripts ()
 {
     $template_dir = get_template_directory_uri ();
 
-    $styles = array ();
-    $styles[] = array ('cap-bootstrap',            '/bower_components/bootstrap/dist/css/bootstrap.css');
-    $styles[] = array ('cap-webfonts',             '/webfonts/webfonts.css',    array ('cap-bootstrap'));
-    $styles[] = array ('cap-fonts',                '/css/fonts.css',            array ('cap-bootstrap'));
-    $styles[] = array ('cap-content',              '/css/content.css',          array ('cap-bootstrap'));
-    $styles[] = array ('cap-navigation',           '/css/navigation.css',       array ('cap-bootstrap'));
-    $styles[] = array ('cap-qtranslate',           '/css/qtranslate-x.css',     array ('cap-bootstrap'));
-    $styles[] = array ('cap-jquery-ui-custom-css', '/css/jquery-ui-custom.css', array ('cap-jquery-ui-css'));
-
-    register_jquery ();
-    foreach ($styles as $a) {
-        wp_enqueue_style (
-            $a[0],
-            $template_dir . $a[1],
-            count ($a) > 2 ? $a[2] : array ()
-        );
-    };
+    wp_enqueue_style ('cap-front',    "$template_dir/css/front.css");
+    wp_enqueue_style ('cap-webfonts', "$template_dir/webfonts/webfonts.css", array ('cap-front'));
     wp_enqueue_style ('dashicons');
 
-    $scripts = array ();
-    $scripts[] = array ('cap-piwik',     '/js/piwik-wrapper.js');
-    $scripts[] = array ('cap-custom-js', '/js/custom.js', array ('cap-jquery', 'cap-jquery-ui', 'cap-jquery-sticky'));
+    wp_enqueue_script ('cap-jquery',    "$template_dir/node_modules/jquery/dist/jquery.js");
+    wp_enqueue_script ('cap-custom-js', "$template_dir/js/custom.js", array ('cap-jquery'));
+    wp_enqueue_script ('cap-piwik',     "$template_dir/js/piwik-wrapper.js");
 
-    foreach ($scripts as $a) {
-        wp_enqueue_script (
-            $a[0],
-            $template_dir . $a[1],
-            count ($a) > 2 ? $a[2] : array ()
-        );
-    };
+    $bs_dep = array ('cap-jquery', 'cap-popper-js', 'cap-bs-util-js');
+
+    wp_enqueue_script ('cap-popper-js',      "$template_dir/node_modules/popper.js/dist/umd/popper.js");
+    wp_enqueue_script ('cap-bs-util-js',     "$template_dir/node_modules/bootstrap/js/dist/util.js");
+    wp_enqueue_script ('cap-bs-tooltip-js',  "$template_dir/node_modules/bootstrap/js/dist/tooltip.js",  $bs_dep);
+    wp_enqueue_script ('cap-bs-collapse-js', "$template_dir/node_modules/bootstrap/js/dist/collapse.js", $bs_dep);
 }
 
 /**
  * Enqueue admin scripts and CSS
+ *
+ * Add JS and CSS the wordpress way.
+ *
+ * N.B. We use wordpress' copy of jquery and jquery-ui on the admin pages, and
+ * no bootstrap because it breaks too many things.
  *
  * @return void
  */
@@ -217,20 +171,21 @@ function on_admin_enqueue_scripts ()
 {
     $template_dir = get_template_directory_uri ();
 
-    $styles = array ();
-    $styles[] = array ('cap-admin', '/css/admin.css');
+    wp_enqueue_style ('cap-admin',   "$template_dir/css/admin.css");
 
-    register_jquery ();
-    foreach ($styles as $a) {
-        wp_enqueue_style (
-            $a[0],
-            $template_dir . $a[1],
-            count ($a) > 2 ? $a[2] : array ()
-        );
-    };
+    /*
+     * Register jquery-ui CSS for the use of plugins
+     *
+     * Quandary: Wordpress (as of 4.3) comes with a version of jquery and jquery-ui
+     * but lacks the jquery-ui css styles.  If we provide just our own jquery-ui css
+     * styles, we may get out of sync with the jquery-ui javascript provided by
+     * Wordpress.  But if we provide the whole jquery-ui of our own we may get out
+     * of sync with Wordpress' assumptions of the actual jquery-ui version.
+     *
+     * Currently we provide our own jquery-ui CSS file.
+     */
 
-    // NOTE: Wordpress' own jquery-ui does not include jquery-ui.css.
-    wp_enqueue_script ('cap-jquery-ui');
+    wp_register_style ('cap-jquery-ui-css', "$template_dir/css/jquery-ui.css");
 }
 
 /**

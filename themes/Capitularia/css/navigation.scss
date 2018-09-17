@@ -1,6 +1,3 @@
-@import (reference) "fonts.less";
-@import (reference) "colors.less";
-
 /*******************/
 /* navigation bars */
 /*******************/
@@ -45,33 +42,33 @@ nav.horiz-nav ul ul li {
 /* top navbar colors */
 
 #header {
-    background-color: @background-menubar-top;
+    background-color: $background-menubar-top;
 }
 
 .top-nav a {
-    .font-menubar-top;
-    color: @color-menubar-top;
-    background-color: @background-menubar-top;
+    @include font-menubar-top;
+    color: $color-menubar-top;
+    background-color: $background-menubar-top;
 }
 
 .top-nav a:active,
 .top-nav a:focus,
 .top-nav a:hover,
 .top-nav li.current-menu-item a {
-    color: @color-menubar-top-hover;
-    background: @background-menubar-top-hover;
+    color: $color-menubar-top-hover;
+    background: $background-menubar-top-hover;
 }
 
 /* bottom navbar colors */
 
 .bottom-nav {
-    background-color: @background-menubar-bottom;
+    background-color: $background-menubar-bottom;
 }
 
 .bottom-nav a {
-    .font-menubar-bottom;
-    color: @color-menubar-bottom;
-    background-color: @background-menubar-bottom;
+    @include font-menubar-bottom;
+    color: $color-menubar-bottom;
+    background-color: $background-menubar-bottom;
 }
 
 .bottom-nav a:active,
@@ -81,8 +78,8 @@ nav.horiz-nav ul ul li {
 .bottom-nav li.current_page_item > a,
 .bottom-nav li.current-page-ancestor > a,
 .bottom-nav li.current_page_ancestor > a {
-    color: @color-menubar-bottom-hover;
-    background: @background-menubar-bottom-hover;
+    color: $color-menubar-bottom-hover;
+    background: $background-menubar-bottom-hover;
 }
 
 /* the qTranslate-X language drop-down menu */
@@ -123,7 +120,7 @@ nav.horiz-nav ul ul li {
 /************************/
 
 form.searchform {
-    .regular;
+    @include regular;
     background: linear-gradient(to bottom, #f8f8f8, #ccc);
     table {
         width: 100%;
@@ -161,6 +158,6 @@ form.searchform {
         display: block;
     }
     &:hover {
-        background: @color-highlight;
+        background: $color-highlight;
     }
 }

@@ -141,7 +141,7 @@ class Page_Generator
         wp_register_script (
             'cap-page-gen-admin',
             plugins_url ('js/admin.js', __FILE__),
-            array ('cap-jquery', 'cap-jquery-ui')
+            array ('jquery-ui-tabs')
         );
         wp_enqueue_script ('cap-page-gen-admin');
 

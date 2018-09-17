@@ -1,35 +1,37 @@
-@color-black:     #000;
-@color-darkgray:  #1a171b;
-@color-gray:      #4e4c4f;
-@color-lightgray: #978f7d;
-@color-red:       #b92900;
-@color-beige:     #e9e1c1;
-@color-white:     #fff;
+/* color definitions */
 
-@background:      @color-white;
+$color-black:     #000;
+$color-darkgray:  #1a171b;
+$color-gray:      #4e4c4f;
+$color-lightgray: #978f7d;
+$color-red:       #b92900;
+$color-beige:     #e9e1c1;
+$color-white:     #fff;
 
-@color-text:      @color-darkgray;
-@color-link:      @color-red;
-@color-highlight: @color-red;
+$background:      $color-white;
 
-@color-startpage-box:  #beac86;
+$color-text:      $color-darkgray;
+$color-link:      $color-red;
+$color-highlight: $color-red;
 
-@color-row-odd:   #f6f3f3;
-@color-row-even:  @color-white;
+$color-startpage-box:  #beac86;
 
-@color-rule:      @color-darkgray;
-@color-lightrule: @color-lightgray;
+$color-row-odd:   #f6f3f3;
+$color-row-even:  $color-white;
 
-@background-menubar-top:             @color-red;
-@background-menubar-top-hover:       shade(@background-menubar-top, 20%);
-@color-menubar-top:                  tint(@background-menubar-top, 80%);
-@color-menubar-top-hover:            @color-white;
+$color-rule:      $color-darkgray;
+$color-lightrule: $color-lightgray;
 
-@color-menubar-bottom:               @color-lightgray;
-@color-menubar-bottom-hover:         @color-red;
-@background-menubar-bottom:          @color-white;
-@background-menubar-bottom-hover:    @background-menubar-bottom;
+$background-menubar-top:             $color-red;
+$background-menubar-top-hover:       mix(black, $background-menubar-top, 20%);
+$color-menubar-top:                  mix(white, $background-menubar-top, 80%);
+$color-menubar-top-hover:            $color-white;
 
-@background-box:  @color-beige;
+$color-menubar-bottom:               $color-lightgray;
+$color-menubar-bottom-hover:         $color-red;
+$background-menubar-bottom:          $color-white;
+$background-menubar-bottom-hover:    $background-menubar-bottom;
 
-@shadow-box:      5px 5px 5px @color-lightgray;
+$background-box:  $color-beige;
+
+$shadow-box:      5px 5px 5px $color-lightgray;

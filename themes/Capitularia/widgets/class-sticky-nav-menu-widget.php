@@ -38,7 +38,7 @@ class Sticky_Nav_Menu_Widget extends \WP_Nav_Menu_Widget
     {
         if (!empty ($args['mirsn'])) {                          // pick out *our* menu
             $nav_menu_args['container_class'] = 'sidebar-toc';  // this makes the widget sticky
-            $nav_menu_args['menu_class']      = 'menu ui-helper-clearfix';
+            $nav_menu_args['menu_class']      = 'menu clearfix';
         }
         return $nav_menu_args;
     }
@@ -48,7 +48,7 @@ class Sticky_Nav_Menu_Widget extends \WP_Nav_Menu_Widget
         wp_enqueue_script (
             'class-sticky-nav-menu-widget-js',
             get_template_directory_uri () . '/widgets/class-sticky-nav-menu-widget.js',
-            array ('cap-jquery', 'cap-jquery-ui')
+            array ('cap-jquery')
         );
     }
 }

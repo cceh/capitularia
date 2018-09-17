@@ -1,3 +1,17 @@
+/* bootstrap custom theme                                          */
+/* See: https://getbootstrap.com/docs/4.1/getting-started/theming/ */
+
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
+@import "../node_modules/bootstrap/scss/_mixins";
+
+@import "colors";
+@import "fonts";
+
+$theme-colors: (
+    "brand-color": $color-red
+);
+
 input.resizable {
     resize: both;
     overflow: hidden;

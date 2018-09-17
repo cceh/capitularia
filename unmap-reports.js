@@ -22,18 +22,21 @@ while (m = re.exec (stdin)) {
     messages.push ( [m[1], m[2], m[3], m[4]] );
 };
 
+// group by path
 _.forEach (_.groupBy (messages, '0'), function (messages, path) {
     var dir = pth.dirname (path)
-    path = path + '.map';
-    var map = fs.readFileSync (path, 'utf8');
+    var map = fs.readFileSync (path + '.map', 'utf8');
     if (map) {
         var smc = new source_map.SourceMapConsumer (map);
         _.forEach (messages, function (msg) {
-            var o = smc.originalPositionFor ({
-                line   : parseInt (msg[1]),
-                column : parseInt (msg[2])
-            });
-            console.log (dir + '/' + o.source + ':' + o.line + ':' + (o.column + 1) + ':' + msg[3]);
+            const line   = parseInt (msg[1]) || 1; // smc doesn't like line 0
+            const column = parseInt (msg[2]) || 1;
+            const o      = smc.originalPositionFor ({ line : line, column : column });
+            if (o.source) {
+                console.log (pth.normalize (dir + '/' + o.source) + ':' + o.line + ':' + (o.column + 1) + ':' + msg[3]);
+            } else {
+                console.log (msg[0] + ':' + msg[1] + ':' + msg[2] + ':' + msg[3]);
+            }
         });
     } else {
         _.forEach (messages, function (msg) {

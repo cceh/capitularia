@@ -1,20 +1,24 @@
-PHP_DIRS   := plugins themes
-JS_DIRS	   := plugins themes/Capitularia/js
-JSON_DIRS  := .
-LESS_DIRS  := plugins themes/Capitularia/css
+THEME      := themes/Capitularia
 
-PHP_FILES  := $(shell find $(PHP_DIRS)	-name '*.php')
-JS_FILES   := $(shell find $(JS_DIRS)	-name '*.js')
-JSON_FILES := $(shell find $(JSON_DIRS) -maxdepth 1 -name '*.json')
-LESS_FILES := $(shell find $(LESS_DIRS) -name '*.less')
-CSS_FILES  := $(patsubst %.less,%.css,$(LESS_FILES))
+PHP_DIRS   := plugins themes
+JS_DIRS	   := plugins $(THEME)/js
+JSON_DIRS  := .
+SCSS_DIRS  := plugins $(THEME)/css
+
+PHP_FILES   := $(shell find $(PHP_DIRS)	-name '*.php')
+JS_FILES    := $(shell find $(JS_DIRS)	-name '*.js')
+JSON_FILES  := $(shell find $(JSON_DIRS) -maxdepth 1 -name '*.json')
+SCSS_FILES  := $(shell find . -name 'front.scss' -or -name 'admin.scss')
+CSS_FILES   := $(patsubst %.scss,%.css,$(SCSS_FILES))
 
 AFS     := $(or $(CAPITULARIA_AFS),/afs/rrz/vol/www/projekt/capitularia)
 LOCALFS := $(or $(CAPITULARIA_LOCALFS),/var/www/capitularia)
 BROWSER := $(or $(BROWSER),firefox)
 GITUSER := $(CAPITULARIA_GITUSER)
 
-RSYNC := rsync -rlptz --exclude='*~' --exclude='.*' --exclude='*.less' --exclude='node_modules'
+SASS    := node_modules/.bin/sass -I $(THEME)/css/
+POSTCSS := node_modules/.bin/postcss
+RSYNC   := rsync -rlptz --exclude='*~' --exclude='.*'
 
 WPCONTENT := $(AFS)/http/docs/wp-content
 PUBL	  := $(AFS)/http/docs/cap/publ
@@ -23,9 +27,6 @@ TRANSFORM := $(AFS)/http/docs/cap/publ/transform
 WPCONTENTLOCAL := $(LOCALFS)/wp-content
 
 .PHONY: lint phplint jslint csslint docs
-
-%.css : %.less
-	lessc --include-path=themes/Capitularia/css:themes/Capitularia/bower_components/bootstrap/less --autoprefix="last 2 versions" --source-map $? $@
 
 all: lint
 
@@ -38,9 +39,15 @@ docs:
 	cp doc_src/_images/*svg docs/_images/
 	cd doc_src; make html; cd ..
 
-csslint: css
+css: $(CSS_FILES) $(THEME)/css/jquery-ui.css
+	mkdir -p $(THEME)/css/images/
+	cp $(THEME)/node_modules/jquery-ui/themes/base/images/*.png $(THEME)/css/images/
 
-css: $(CSS_FILES)
+%.css : %.scss
+	$(SASS) $< | $(POSTCSS) --use autoprefixer -b 'last 2 versions' > $@
+
+$(THEME)/css/front.css: $(THEME)/css/front.scss $(THEME)/css/colors.scss $(THEME)/css/fonts.scss \
+						$(THEME)/css/content.scss $(THEME)/css/navigation.scss $(THEME)/css/qtranslate-x.scss
 
 phplint:
 	for f in $(PHP_FILES); do php -l $$f || exit; done
@@ -49,25 +56,23 @@ jslint:
 	eslint --format=unix $(JS_FILES)
 	jshint --reporter=unix $(JSON_FILES)
 
-# csslint --quiet --format=compact $(CSS_FILES) | sed -r -e 's/: line ([0-9]+), col ([0-9]+), /:\1:\2:/g'
-csslint:
+csslint: css
 	csslint --quiet --format=compact $(CSS_FILES) | node unmap-reports
 
 deploy: lint mo
-	$(RSYNC) themes/Capitularia/* $(WPCONTENT)/themes/Capitularia/
+	$(RSYNC) $(THEME)/* $(WPCONTENT)/themes/Capitularia/
 	$(RSYNC) plugins/cap-* $(WPCONTENT)/plugins/
 	$(RSYNC) xslt/*.xsl xslt/test/*xml $(TRANSFORM)/
 	$(RSYNC) scripts $(PUBL)
-
-testdeploy: lint mo
-	$(RSYNC) themes/Capitularia/* $(WPCONTENTLOCAL)/themes/Capitularia/
-	$(RSYNC) plugins/cap-* $(WPCONTENTLOCAL)/plugins/
 
 deploy_xml:
 	$(RSYNC) xml/*xml $(PUBL)/mss/
 
 import_xml:
 	$(RSYNC) $(PUBL)/mss/*xml xml/
+
+import_backups:
+	$(RSYNC) $(AFS)/backups/* backups/
 
 
 # PHP_CodeSniffer https://github.com/squizlabs/PHP_CodeSniffer
@@ -97,7 +102,7 @@ git-fetch-collation:
 
 TRANSLATIONS := de_DE  # space-separated list of translations we have eg. de_ED fr_FR
 
-LANGDIR := themes/Capitularia/languages
+LANGDIR := $(THEME)/languages
 
 define LOCALE_TEMPLATE
 

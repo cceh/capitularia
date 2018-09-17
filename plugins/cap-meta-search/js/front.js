@@ -6,11 +6,7 @@ var cap_meta_search_front = (function ($) { // eslint-disable-line no-unused-var
             $ ('div.cap-meta-search-help-text').toggle ();
         });
         $ ('div.cap-meta-search-box [title]').tooltip ({
-            'tooltipClass' : 'ui-tooltip-search',
-            'position'     : {
-                'my' : 'right top',
-                'at' : 'right bottom+5',
-            },
+            'placement' : 'bottom',
         });
     }
 

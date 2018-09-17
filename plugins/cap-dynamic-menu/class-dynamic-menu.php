@@ -105,6 +105,12 @@ class Dynamic_Menu
             return $items;
         }
 
+        // avoid PHP 7.2 warning
+        global $pages;
+        if (!$pages) {
+            return $items;
+        }
+
         // Check if the menu contains a dynamic element.  Also get the highest
         // menu id while we are at it.
         $is_dynamic_menu = false;

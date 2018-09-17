@@ -8,12 +8,18 @@
 
         toc.css ('display', 'none');
 
-        // Initializes the menu accordions
+        // Initializes the sidebar menu collapsibles
 
         $ ('li.dynamic-menu-item').each (function () {
-            if ($ (this).children ('ul').length > 0) {
-                $ (this).accordion ({ 'collapsible' : true, 'active' : false, 'heightStyle' : 'content' });
-                $ (this).addClass ('big-accordion');
+            var $this = $ (this);
+            var id = $this.attr ('id');
+            if ($this.children ('ul').length > 0) {
+                $ ('<a class="opener"/>').prependTo ($this)
+                    .attr ('data-toggle', 'collapse')
+                    .attr ('data-target', '#' + id + '-ul')
+                    .addClass ('collapsed');
+                $this.children ('a').addClass ('has-opener');
+                $this.children ('ul').attr ('id', id + '-ul').addClass ('collapse');
             }
         });
 
@@ -37,10 +43,11 @@
         // FIXME: somehow extract this value from bootstrap files
         // if ($('body').css ('content') == 'sm')
         if (window.matchMedia ('(min-width: 768px)').matches) {
-            var viewport_height = $ (window).height ();
+            var height = $ (window).height () + 'px';
             var sidebar = $ ('div.sidebar-toc');
-            sidebar.css ('height', viewport_height + 'px');
-            sidebar.sticky ({ 'topSpacing' : 0 });
+            sidebar.css ('max-height', height);
+            sidebar.closest ('li').css ('height', '100%');
+            sidebar.closest ('ul').css ('height', '100%');
         }
     }
 

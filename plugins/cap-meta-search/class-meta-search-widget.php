@@ -204,7 +204,7 @@ class Widget extends \WP_Widget
         $tooltip = __ ('Only show manuscripts that contain this capitulary.', 'capitularia');
         $this->echo_select ($label, 'capit',     'msitem-corresp', $tooltip);
 
-        echo ("<div class='ui-helper-clearfix'>\n");
+        echo ("<div class='clearfix'>\n");
         $label   = __ ('After', 'capitularia');
         $tooltip = __ ('Only show manuscripts created after this year.', 'capitularia');
         $this->echo_input  ($label, 'notbefore', '700',  $tooltip);
@@ -223,7 +223,7 @@ class Widget extends \WP_Widget
         $placeholder = __ ('Free Text', 'capitularia');
         $this->echo_input  ($label, 's', $placeholder, $tooltip);
 
-        echo ("<div class='cap-meta-search-buttons ui-helper-clearfix'>\n");
+        echo ("<div class='cap-meta-search-buttons clearfix'>\n");
 
         $label   = __ ('Search', 'capitularia');
         $tooltip = __ ('Start the search', 'capitularia');

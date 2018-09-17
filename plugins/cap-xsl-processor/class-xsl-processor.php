@@ -268,20 +268,27 @@ class XSL_Processor
             ),
             $atts
         );
-        $xml          = urljoin (get_opt ('xmlroot'),  $atts['xml']);
-        $xslt         = urljoin (get_opt ('xsltroot'), $atts['xslt']);
-        $params       = wp_parse_args ($atts['params']);
-        $stringparams = wp_parse_args ($atts['stringparams']);
-        $xsltproc     = get_opt ('xsltproc');
+        $xml            = urljoin (get_opt ('xmlroot'),  $atts['xml']);
+        $xslt           = urljoin (get_opt ('xsltroot'), $atts['xslt']);
+        $params         = wp_parse_args ($atts['params']);
+        $stringparams   = wp_parse_args ($atts['stringparams']);
+        $xsltproc       = get_opt ('xsltproc');
+        $xml_file_time  = 0;
+        $xslt_file_time = 0;
 
-        $xml_file_time  = intval (filemtime ($xml));
-        $xslt_file_time = intval (filemtime ($xslt));
+        if (is_readable ($xml)) {
+            $xml_file_time  = intval (filemtime ($xml));
+        }
+        if (is_readable ($xslt)) {
+            $xslt_file_time = intval (filemtime ($xslt));
+        }
 
         if (!$xml_file_time) {
-            return "XML file $xml not found.";
+            // file not found, at least return cached copy
+            $this->do_xslt = false;
         }
         if (!$xslt_file_time) {
-            return "XSLT file $xslt not found.";
+            $this->do_xslt = false;
         }
 
         // phpinfo ();

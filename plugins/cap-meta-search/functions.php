@@ -196,13 +196,13 @@ function on_enqueue_scripts ()
 
     wp_register_style  (
         'jstree-style-default',
-        get_template_directory_uri () . '/bower_components/jstree/dist/themes/default/style.css'
+        get_template_directory_uri () . '/node_modules/jstree/dist/themes/default/style.css'
     );
     wp_enqueue_style   ('jstree-style-default');
 
     wp_register_script (
         'jstree',
-        get_template_directory_uri () . '/bower_components/jstree/dist/jstree.js',
+        get_template_directory_uri () . '/node_modules/jstree/dist/jstree.js',
         array ('cap-jquery')
     );
     wp_enqueue_script  ('jstree');
@@ -210,7 +210,7 @@ function on_enqueue_scripts ()
     wp_register_script (
         'cap-meta-search-front',
         plugins_url ('js/front.js', __FILE__),
-        array ('cap-jquery', 'cap-jquery-ui')
+        array ('cap-jquery')
     );
     wp_enqueue_script  ('cap-meta-search-front');
 
@@ -241,7 +241,7 @@ function on_admin_enqueue_scripts ()
     wp_register_script (
         'cap-meta-search-admin',
         plugins_url ('js/admin.js', __FILE__),
-        array ('cap-jquery', 'cap-jquery-ui')
+        array ('jquery')
     );
     wp_enqueue_script  ('cap-meta-search-admin');
     wp_localize_script (

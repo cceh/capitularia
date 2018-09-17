@@ -1,20 +1,7 @@
-@import (reference) "../bower_components/bootstrap/less/variables.less";
-@import (reference) "../bower_components/bootstrap/less/mixins/grid.less";
-@import (reference) "../bower_components/bootstrap/less/mixins/clearfix.less";
-@import (reference) "fonts.less";
-@import (reference) "colors.less";
-
-html {
-    /* otherwise bootstrap makes this very small */
-    font-size: 100%;
-}
-
 body {
-    .regular;
-    color: @color-text;
-    background: @background;
-    /* otherwise bootstrap makes this very small */
-    font-size: 100%;
+    @include regular;
+    color: $color-text;
+    background: $background;
     line-height: 1.3;
 }
 
@@ -33,32 +20,34 @@ h4, h5, h6 {
 }
 
 h1 {
-    .light;
+    @include light;
     font-size: 3em;
     margin: 0;
 }
 
 h2 {
-    .regular;
+    @include regular;
     font-size: 2.4em;
 }
 
 h3 {
-    .regular;
+    @include regular;
     font-size: 2em;
 }
 
 h4 {
-    .semibold;
+    @include semibold;
     font-size: 1.3em;
 }
 
 h5 {
-    .semibold;
+    @include semibold;
+    font-size: 1em;
 }
 
 h6 {
-    .regular;
+    @include regular;
+    font-size: 0.85em;
     text-decoration: underline;
 }
 
@@ -73,8 +62,8 @@ img {
 }
 
 a[href] {
-    .semibold;
-    color: @color-link;
+    @include semibold;
+    color: $color-link;
     text-decoration: none;
 }
 
@@ -85,41 +74,53 @@ a[href]:hover {
 }
 
 .regular {
-    .regular;
+    @include regular;
 }
 
 i, em, .italic {
-    .italic;
+    @include italic;
     a[href],
     a[href]:active,
     a[href]:focus,
     a[href]:hover {
-        .semibold-italic;
+        @include semibold-italic;
     }
 }
 
 b, strong, .bold {
-    .bold;
+    @include bold;
 }
 
 .small {
     font-size: small;
 }
 
-.black {
-    color: @color-text;
+@mixin black {
+    color: $color-text;
 }
 
-.red {
-    color: @color-red;
+@mixin red {
+    color: $color-red;
 }
 
-.sup {
+@mixin sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
     vertical-align: baseline;
     top: -0.5em;
+}
+
+.black {
+    @include black;
+}
+
+.red {
+    @include red;
+}
+
+.sup {
+    @include sup;
 }
 
 .sub {
@@ -157,54 +158,77 @@ b, strong, .bold {
 /* Headers */
 /***********/
 
-div.container {
-    > header {
-        .make-row(); /* see: https://getbootstrap.com/css/ */
-        .clearfix();
+@media not print {
+
+    div.container {
+        > header {
+            @include make-row(); /* see: https://getbootstrap.com/css/ */
+            @include clearfix();
+        }
+        > main {
+            @include make-row();
+            @include clearfix();
+        }
+        > footer {
+            @include make-row();
+            @include clearfix();
+        }
     }
-    > main {
-        .make-row();
-        .clearfix();
+
+    .cap-row {
+        @include make-row();
     }
-    > footer {
-        .make-row();
-        .clearfix();
+
+    .cap-left-col {
+        @include make-col-ready();
+        @include make-col(12);
+
+        @include media-breakpoint-up(md) {
+            @include make-col(8);
+        }
     }
-}
 
-.cap-row {
-    .make-row();
-}
+    .cap-right-col {
+        @include make-col-ready();
+        @include make-col(12);
 
-.cap-left-col {
-    .make-sm-column(8);
-    .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
-}
+        @include media-breakpoint-up(md) {
+            @include make-col(4);
+        }
+    }
 
-.cap-right-col {
-    .make-sm-column(4);
-    .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
-}
+    .cap-left-col-pull {
+        @include make-col-ready();
+        @include make-col(12);
 
-.cap-left-col-pull {
-    /* a column that comes on bottom on mobile but on the left on desktop */
-    .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
-    .make-sm-column(8);
-    .make-sm-column-pull(4); /* pull 4 to the left */
-}
+        @include media-breakpoint-up(md) {
+            /* a column that comes on bottom on mobile but on the left on desktop */
+            @include make-col(8);
+            order: 0;
+        }
+    }
 
-.cap-right-col-push {
-    /* a column that comes on top on mobile but on the right on desktop */
-    .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
-    .make-sm-column(4);
-    .make-sm-column-push(8); /* push 8 to the right */
+    .cap-right-col-push {
+        @include make-col-ready();
+        @include make-col(12);
+
+        @include media-breakpoint-up(md) {
+            /* a column that comes on top on mobile but on the right on desktop */
+            @include make-col(4);
+            order: 8;
+        }
+    }
+
+    nav {
+        &.horiz-nav {
+            @include make-col-ready();
+            @include make-col(12);
+            @include clearfix();
+        }
+    }
 }
 
 nav {
-    &.horiz-nav {
-        .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
-        .clearfix();
-    }
     @media print {
         display: none
     }
@@ -212,14 +236,7 @@ nav {
 
 #bottom-nav {
     padding-top: 20px;
-    border-bottom: solid 1px @color-rule;
-}
-
-#main {
-    > div {
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
+    border-bottom: solid 1px $color-rule;
 }
 
 #main.home > div {
@@ -235,8 +252,8 @@ nav {
 /**********/
 
 #footer {
-    background: @color-gray;
-    color: @color-white;
+    background: $color-gray;
+    color: $color-white;
     font-size: 0.825em;
     @media print {
         display: none;
@@ -244,11 +261,12 @@ nav {
 }
 
 .logo-bar {
-    .make-row(); /* see: https://getbootstrap.com/css/ */
-    .clearfix();
+    @include make-row();
+    @include clearfix();
 
     li.widget {
-        .make-xs-column(3); /* see: https://getbootstrap.com/css/ */
+        @include make-col-ready();
+        @include make-col(3);
         a {
             display: block;
             width: 33%;
@@ -265,57 +283,46 @@ nav {
 /* Front page */
 /**************/
 
-.ribbon() {
-    height: auto;
-    font-size: 75%;
-    @media (min-width: @screen-sm-min) {
-        height: ((@screen-sm-min / 3) - @grid-gutter-width) * 276 / 352;
-        font-size: 100%;
-    }
-    @media (min-width: @screen-md-min) {
-        height: ((@screen-md-min / 3) - @grid-gutter-width) * 276 / 352;
-        font-size: 100%;
-    }
-    @media (min-width: @screen-lg-min) {
-        height: ((@screen-lg-min / 3) - @grid-gutter-width) * 276 / 352;
-        font-size: 100%;
-    }
-}
-
 .front-splash {
-    .make-row(); /* see: https://getbootstrap.com/css/ */
-    .clearfix();
+    @include make-row();
+    @include clearfix();
     position: relative;
 
     margin-top:    40px;
     margin-bottom: 40px;
-    background: @color-startpage-box;
-    color: @color-white;
+    background: $color-startpage-box;
+    color: $color-white;
 
     div.front-splash-caption {
-        .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
-        .make-sm-column(8);
+        @include make-col-ready();
+        @include make-col(12);
+        @include media-breakpoint-up(md) {
+            @include make-col(8);
+        }
         /* undo the bootstrap default of position: relative because we need to position
            at the bottom of div.front-splash */
         position: static;
         h1 {
             line-height: 1;
-            @media (min-width: @screen-sm-min) {
+            @include media-breakpoint-up(md) {
                 position: absolute;
                 bottom: 15px;
                 width: 60%;
             }
             span {
                 font-size: 75%;
-                @media (min-width: @screen-md-min) {
+                @include media-breakpoint-up(xl) {
                     font-size: 100%;
                 }
             }
         }
     }
     ul.front-splash-image {
-        .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
-        .make-sm-column(4);
+        @include make-col-ready();
+        @include make-col(12);
+        @include media-breakpoint-up(md) {
+            @include make-col(4);
+        }
         img {
             margin-bottom: -12%;
             margin-top: 2%;
@@ -326,19 +333,18 @@ nav {
 }
 
 ul.teaser-bar {
-    .make-row(); /* see: https://getbootstrap.com/css/ */
-    .clearfix();
+    @include make-row(); /* see: https://getbootstrap.com/css/ */
+    @include clearfix();
 
     margin: 0 auto;
     margin: 2em 0;
     line-height: 1.5em;
     li.widget {
         margin-bottom: 1em;
-        /* @media (min-width: @screen-sm-min) { */
     }
     h2 {
-        color: @color-gray;
-        .semibold;
+        color: $color-gray;
+        @include semibold;
         margin-top: 0;
         margin-bottom: .7ex;
     }
@@ -346,16 +352,16 @@ ul.teaser-bar {
         margin-bottom: 0.35em;
     }
     a {
-        color: @color-link;
+        color: $color-link;
         transition: color 300ms;
         &:focus,
         &:active,
         &:hover {
-            color: @color-black;
+            color: $color-black;
             text-decoration: none;
         }
         &.mehr-lesen {
-            .bold;
+            @include bold;
             text-transform: uppercase;
             font-size: 0.7em;
             letter-spacing: 2px;
@@ -375,8 +381,11 @@ ul.teaser-bar {
 
 ul.teaser-bar-1 {
     li.widget {
-        .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
-        .make-sm-column(4);
+        @include make-col-ready();
+        @include make-col(12);
+        @include media-breakpoint-up(md) {
+            @include make-col(4);
+        }
     }
     padding-top: 1em;
     text-align: center;
@@ -388,11 +397,14 @@ ul.teaser-bar-1 {
 
 ul.teaser-bar-2 {
     li.widget {
-        .make-xs-column(12); /* see: https://getbootstrap.com/css/ */
-        .make-sm-column(6);
+        @include make-col-ready();
+        @include make-col(12);
+        @include media-breakpoint-up(md) {
+            @include make-col(6);
+        }
         text-align: left;
     }
-    border-top: solid 1px @color-rule;
+    border-top: solid 1px $color-rule;
     padding-top: 2em;
     h2 {
         font-size: 1.3em;
@@ -407,7 +419,7 @@ ul.teaser-bar-2 {
 div.hr {
     /* a horizontal rule always */
     margin: 3em 0;
-    border-top: 1px solid @color-black;
+    border-top: 1px solid $color-black;
     .compact {
         margin: 1em 0;
     }
@@ -417,7 +429,7 @@ div.page-break {
     /* a horizontal rule on screen and a page break on print */
     @media screen {
         margin: 3em 0;
-        border-top: 1px solid @color-black;
+        border-top: 1px solid $color-black;
         .compact {
             margin: 1em 0;
         }
@@ -440,7 +452,7 @@ div.back-to-top {
         content: " \f343";
     }
     &.back-to-top-with-rule {
-        border-top: 1px solid @color-black;
+        border-top: 1px solid $color-black;
     }
     &.back-to-top-compact {
         margin: 0;
@@ -456,7 +468,7 @@ div.search-your-search {
 div.pagination-nav {
     margin:  14px 0;
     padding: 14px 0;
-    border: solid 1px @color-rule;
+    border: solid 1px $color-rule;
     font-size: smaller;
 
     .screen-reader-text {
@@ -481,7 +493,7 @@ div.search-results, .index-results {
         padding-top:6px;
     }
     b {
-        .bold;
+        @include bold;
     }
 }
 
@@ -493,7 +505,7 @@ div.search-results, .index-results {
 .downloads li a:hover,
 .downloads li a:focus,
 .downloads li a:active {
-    color:@color-black;
+    color:$color-black;
 }
 
 /***********/
@@ -502,6 +514,13 @@ div.search-results, .index-results {
 
 span.break-word {
     overflow-wrap: break-word;
+}
+
+.content-col, .sidebar-col {
+    margin-bottom: 40px;
+    h2 {
+        margin-top: 32px;
+    }
 }
 
 div.content-col {
@@ -522,10 +541,10 @@ div.content-col {
             &::after {
                 font-family: "dashicons";
                 line-height: 1;
-                color: @color-link;
+                color: $color-link;
             }
             &.bib {
-                .regular;
+                @include regular;
                 color: inherit;
                 &::after {
                     content: "\00a0\00a0\f330";
@@ -557,7 +576,7 @@ div.content-col {
             &::after {
                 font-family: "dashicons";
                 line-height: 1;
-                color: @color-link;
+                color: $color-link;
                 content: "\00a0\00a0\f504";
             }
         }
@@ -569,8 +588,7 @@ div.content-col {
 
     header {
         h2 {
-            color: @color-highlight;
-            margin: 0 0 32px 0;
+            color: $color-highlight;
         }
         &.excerpt-header {
             h2 {
@@ -586,17 +604,17 @@ div.content-col {
     }
 
     thead {
-        border-bottom: solid 1px @color-rule;
+        border-bottom: solid 1px $color-rule;
         th, td {
-            .semibold;
+            @include semibold;
             padding-bottom: 16px;
         }
     }
 
     tr {
-        background: @color-row-odd;
+        background: $color-row-odd;
         &:nth-child(even) {
-            background: @color-row-even;
+            background: $color-row-even;
         }
     }
 
@@ -612,16 +630,16 @@ div.content-col {
     }
 
     th {
-        .semibold;
+        @include semibold;
     }
 
     table.new-style {
         thead {
-            border-top:    1px solid @color-rule;
-            border-bottom: 0 solid @color-rule;
+            border-top:    1px solid $color-rule;
+            border-bottom: 0 solid $color-rule;
         }
         tr {
-            background: @color-white;
+            background: $color-white;
             &:first-child {
                 td, th {
                     padding-top: 12px;
@@ -632,14 +650,14 @@ div.content-col {
                     padding-bottom: 12px;
                 }
             }
-/* border: 1px solid @color-lightrule;
+/* border: 1px solid $color-lightrule;
         &:first-child {
-        border-top: 0 solid @color-lightrule;
+        border-top: 0 solid $color-lightrule;
         } */
         }
         tbody {
-            border-top:    1px solid @color-rule;
-            border-bottom: 1px solid @color-rule;
+            border-top:    1px solid $color-rule;
+            border-bottom: 1px solid $color-rule;
         }
     }
 
@@ -650,20 +668,23 @@ div.content-col {
     }
 
     .annotation-ref {
-        .sup;
+        @include sup;
+        span.footnote-number-ref {
+            @include black;
+        }
         span.footnote-siglum {
-            .red;
+            @include red;
         }
     }
 
     span.tei-mentioned {
-        .italic;
+        @include italic;
     }
 
     div.tei-front {
-        .italic;
+        @include italic;
         span.tei-mentioned {
-            .regular;
+            @include regular;
         }
     }
 
@@ -712,7 +733,7 @@ div.content-col {
             }
             th {
                 padding: 16px 8px;
-                border-bottom: solid 1px @color-rule;
+                border-bottom: solid 1px $color-rule;
             }
         }
     }
@@ -726,7 +747,7 @@ div.content-col {
                 width: 65%;
             }
             td.title {
-                .italic;
+                @include italic;
             }
             td.internal {
             }
@@ -752,26 +773,26 @@ div.content-col {
                 width: 35%;
             }
             td.capit {
-                .italic;
+                @include italic;
             }
             td.mss {
                 line-height: 120%;
             }
         }
         .mss-capit-capitular-siglum {
-            .regular;
+            @include regular;
         }
         div.note {
             margin-top: 1em;
             text-align: justify;
             font-size: 85%;
-            .regular;
+            @include regular;
         }
     }
 
     div.mss-idno-xsl {
         span.siglum {
-            .italic;
+            @include italic;
         }
     }
 
@@ -802,7 +823,7 @@ div.content-col {
     }
 
     .bib-short-title {
-        .semibold;
+        @include semibold;
     }
 }
 
@@ -842,23 +863,23 @@ div.content-col, div.annotation-content {
     .rend-red,
     .rend-colored,
     .rend-coloured {
-        .red;
+        @include red;
     }
 
     .rend-default {
-        .black;
+        @include black;
     }
 
     .rend-italic {
-        .italic;
+        @include italic;
     }
 
     .rend-semibold {
-        .semibold;
+        @include semibold;
     }
 
     .rend-super {
-        .sup;
+        @include sup;
     }
 
     .align-left {
@@ -886,7 +907,7 @@ div.content-col, div.annotation-content {
 
     span.initial {
         display: inline-block;
-        .semibold;
+        @include semibold;
         font-size: 110%;
     }
     span.initial-word-wrapper {
@@ -894,7 +915,7 @@ div.content-col, div.annotation-content {
     }
     span.versalie {
         font-size: 110%;
-        .semibold;
+        @include semibold;
     }
     span.tei-gap {
         white-space: nowrap;
@@ -964,7 +985,7 @@ div.content-col, div.annotation-content {
                 list-style-type: square;
             }
             span.tei-note-corr {
-                .red;
+                @include red;
             }
         }
 
@@ -977,25 +998,25 @@ div.content-col, div.annotation-content {
             }
 
             div.ab-meta-text, div.abMETA {
-                .semibold;
+                @include semibold;
             }
             div.corresp {
                 font-size: 70%;
-                .semibold;
-                color: @color-gray;
+                @include semibold;
+                color: $color-gray;
             }
             span.folio {
-                .regular;
-                .semibold;
-                color: @color-gray;
+                @include regular;
+                @include semibold;
+                color: $color-gray;
             }
             /* CTE */
             span.tei-witness {
-                .italic;
+                @include italic;
             }
             span.tei-witness-siglum {
-                .semibold;
-                color: @color-highlight;
+                @include semibold;
+                color: $color-highlight;
             }
             li, ul {
                 &.compact {
@@ -1018,8 +1039,8 @@ div.content-col, div.annotation-content {
             }
             ul.downloads li {
                 padding: 16px 12px;
-                background: @color-beige;
-                border-bottom: solid 1px @color-white;
+                background: $color-beige;
+                border-bottom: solid 1px $color-white;
 
                 &.download-icon::before {
                     font-family: "dashicons";
@@ -1040,10 +1061,26 @@ div.content-col, div.annotation-content {
 /* Footnotes */
 /*************/
 
+div.tooltip {
+    &.show {
+        opacity: 1;
+    }
+    div.arrow {
+        display: none;
+    }
+    div.tooltip-inner {
+        opacity: 1;
+        background-color: $background-box;
+        color: $color-text;
+        box-shadow: $shadow-box;
+        padding: 8px;
+        max-width: 400px;
+        border-width: 0;
+    }
+}
+
 div.annotation-content {
-    /* gets copied by jquery-ui tooltip () so it is not necessarily inside content-col */
     text-align: left;
-    font-size: 80%;
     line-height: 1.5em;
 
     @media print {
@@ -1051,40 +1088,33 @@ div.annotation-content {
             display: block;
             content: '';
             margin-top: 1ex;
-            border-top: 1px solid @color-black;
+            border-top: 1px solid $color-black;
             padding-top: 1ex;
             width: 25%;
         }
     }
-    .annotation-backref {
+    a.annotation-backref {
         display: none;
         @media print {
             display: block;
             float: left;
             width: 2.5em;
+            color: $color-text;
             text-align: right;
         }
     }
-    .annotation-text {
-        .italic;
+    div.annotation-text {
+        @include italic;
         span.tei-mentioned {
-            .regular;
+            @include regular;
         }
         sup.mentioned-index {
-            .regular;
+            @include regular;
         }
         @media print {
             margin-left: 3em;
         }
     }
-}
-
-div.ui-widget.ui-widget-content.ui-tooltip-footnote {
-    background-color: @background-box;
-    padding: 8px;
-    max-width: 400px;
-    box-shadow: @shadow-box;
-    border-width: 0;
 }
 
 /***********/
@@ -1095,24 +1125,49 @@ div.ui-widget.ui-widget-content.ui-tooltip-footnote {
     @media print {
         display: none;
     }
+    div.sidebar-toc {
+        position: sticky;
+        top: 24px;
+        overflow-y: auto;
+    }
     h2 {
         font-size: 1.3em;
         margin: 1.5em 0 1em;
     }
+    ul.sub-menu {
+        padding-left: 16px;
+        @include clearfix;
+    }
     ul.menu {
-        background:  @color-beige;
+        background: $color-beige;
         li {
-            border-bottom: 1px solid @color-white;
-            &:last-child {
-                border-bottom: none;
-            }
+            background: $color-beige; // keep floats beige
+            position: relative;
             a {
                 display: block;
+                border-bottom: 1px solid $color-white;
+                color:  $color-link;
                 line-height: 1.3;
-                padding: 16px 8px;
-                color:  @color-link;
-                background:  @color-beige;
-            }
+                &.has-opener {
+                    padding-left: 24px;
+                }
+                &.opener {
+                    position: absolute;
+                    left: 0;
+                    width: 24px;
+                    padding-left: 0;
+                    padding-bottom: 0;
+                    border-bottom: 0;
+	                &::before {
+                        @include dashicons;
+                        font-size: 24px;
+                        content: "\f140";
+	                }
+                    &.collapsed::before {
+                        content: "\f139";
+                    }
+                }
+	        }
             /* HACK for Alphabet Menus */
             &.dynamic-menu-item-level-2.dynamic-menu-item-inline {
                 float: left;
@@ -1128,16 +1183,24 @@ div.ui-widget.ui-widget-content.ui-tooltip-footnote {
                 border-bottom: none;
             }
         }
+        li a {
+	        padding: 16px 8px;
+        }
+        li li a {
+	        padding: 4px 8px;
+        }
+        li li li li a {
+	        font-size: 85%;
+        }
     }
 }
-
 
 /*******************/
 /* Legend Slideout */
 /*******************/
 
-@slideout-width:     600px;
-@slideout-tab-width: 100px;
+$slideout-width:     600px;
+$slideout-tab-width: 100px;
 
 #legend {
     table {
@@ -1150,7 +1213,7 @@ div.ui-widget.ui-widget-content.ui-tooltip-footnote {
             padding: 4px;
         }
         th {
-            .semibold;
+            @include semibold;
             border-bottom: 1px solid white;
         }
     }
@@ -1159,20 +1222,20 @@ div.ui-widget.ui-widget-content.ui-tooltip-footnote {
 div.slideout {
     position: fixed;
     top: 40px;
-    width: @slideout-width;
-    right: @slideout-tab-width - @slideout-width;
+    width: $slideout-width;
+    right: $slideout-tab-width - $slideout-width;
     z-index: 20;
     transition-duration: 0.5s;
     &.slideout-active {
         right: 0;
     }
     .slideout-inner {
-        background: @background-box;
-        margin-left: @slideout-tab-width;
+        background: $background-box;
+        margin-left: $slideout-tab-width;
         padding: 1em;
         border-top-left-radius: 1em;
         border-bottom-left-radius: 1em;
-        box-shadow: @shadow-box;
+        box-shadow: $shadow-box;
         position: relative;
         z-index: 21;
         div.hr {
@@ -1181,17 +1244,17 @@ div.slideout {
     }
     .slideout-tab {
         float: left;
-        width: @slideout-tab-width;
+        width: $slideout-tab-width;
         transform-origin: 100% 100%;
         transform: rotate(270deg);
         h5 {
             margin: 0;
             text-align: center;
-            background: @background-box;
+            background: $background-box;
             padding: 0.5em 1em;
             border-top-left-radius: 1em;
             border-top-right-radius: 1em;
-            box-shadow: -5px 5px 5px @color-lightgray;
+            box-shadow: -5px 5px 5px $color-lightgray;
             z-index: 20;
         }
     }

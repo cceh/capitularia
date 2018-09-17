@@ -35,39 +35,53 @@
             if (io !== 0) {
                 return;
             }
-            $ (this).addClass ('sscontrolled');
 
-            $ (this).click (function () {
-                var target = $ (href);
-                if (target.length > 0) {
-                    var off = target.first ().offset ().top;
-                    $ ('body,html').animate ({ 'scroll-top' : off }, 600);
-                    return false;
-                }
+            // only act on existing targets
+            var target;
+            try {
+                target = $ (href);
+            } catch (e) {
+                return;
+            }
+            if (target.length === 0) {
+                return;
+            }
+
+            $ (this).addClass ('sscontrolled');
+            $ (this).on ('click', function (event) {
+                var off = target.first ().offset ().top;
+                $ ('body,html').animate ({ 'scroll-top' : off }, 600);
+                event.preventDefault ();
                 return true;
             });
         });
     }
 
     function initFootnoteTooltips () {
-        $ ('a.annotation-ref').cap_tooltip ({
-            'items'   : 'a',
-            'content' : function () {
+        $ ('a.annotation-ref').tooltip ({
+            'placement' : 'top',
+            'title'     : function () {
                 var href = $ (this).attr ('href');
-                // jquery appends the content to a 'log file' div.  Printing
-                // footnotes would not work any more after that.  We let jquery
-                // grab a clone instead so we still have the footnotes where we
-                // want to print them.
-                return $ (href).closest ('div.annotation-content').clone ();
+                return $ (href).closest ('div.annotation-content').prop ('outerHTML');
             },
-            'show'         : false,
-            'hide'         : true,
-            'tooltipClass' : 'ui-tooltip-footnote',
-            'position'     : {
-                'my'        : 'center bottom-10',
-                'at'        : 'center top',
-                'collision' : 'fit',
-            },
+            'html'    : true,
+            'trigger' : 'manual',
+            // 'boundary'   : 'window',
+        }).on ('mouseenter', function () {
+            // keeps the tooltip open as long as the user hovers over it,
+            // the user may click on links
+            var that = this;
+            $ (this).tooltip ('show');
+            $ ('.tooltip').on ('mouseleave', function () {
+                $ (that).tooltip ('hide');
+            });
+        }).on ('mouseleave', function () {
+            var that = this;
+            setTimeout (function () {
+                if (!$ ('.tooltip:hover').length) {
+                    $ (that).tooltip ('hide');
+                }
+            }, 300);
         });
     }
 
@@ -87,47 +101,6 @@
             });
         }
     }
-
-    //
-    // a custom tooltip jquery widget that stays open while the user is hovering
-    // on the popup, allowing her to click on links in the popup
-    //
-
-    $.widget ('custom.cap_tooltip', $.ui.tooltip, {
-        'open' : function (event) {
-            var that = this;
-            var ret = this._super (event);
-            var target = $ (event ? event.currentTarget : this.element);
-            this._off (target, 'mouseleave');
-            this.capTimeoutId = 0;
-
-            target.off ('mouseleave');
-            target.on ('mouseleave', function () {
-                var id = setTimeout (function () {
-                    // console.log ('a mouseleave timeout');
-                    that.close ();
-                }, 500);
-                target.data ('capTimeoutId', id);
-                // console.log ('a mouseleave id=' + id);
-            });
-
-            var tooltipData = this._find (target);
-            if (tooltipData) {
-                var tt = $ (tooltipData.tooltip);
-                tt.off ('mouseenter mouseleave');
-                tt.on ('mouseenter', function () {
-                    var id = target.data ('capTimeoutId');
-                    clearTimeout (id);
-                    // console.log ('div mouseenter id=' + id);
-                });
-                tt.on ('mouseleave', function () {
-                    // console.log ('div mouseleave');
-                    that.close ();
-                });
-            }
-            return ret;
-        },
-    });
 
     $ (document).ready (function () {
         setTimeout (initBackToTop, 0);

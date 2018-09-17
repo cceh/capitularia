@@ -47,11 +47,11 @@
       <!-- This is for automatically generating the sidebar menu,
            not for users' eyes. -->
       <div id="inhaltsverzeichnis" style="display: none">
-        <h5 id="contents-rubrics">
+        <h5>
           [:de]Inhalt (Rubriken)[:en]Contents (Rubrics)[:]
         </h5>
         <xsl:apply-templates select="tei:front/tei:div[@type='content']" mode="toc"/>
-        <h5 id="contents-bknos">
+        <h5>
           [:de]Inhalt (BK-Nummern)[:en]Contents (BK-Nos.)[:]
         </h5>
       </div>

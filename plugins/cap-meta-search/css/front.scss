@@ -1,9 +1,5 @@
-@import (reference) "variables.less";
-@import (reference) "mixins/grid.less";
-@import (reference) "mixins/clearfix.less";
-
-@import (reference) "fonts.less";
-@import (reference) "colors.less";
+@import "fonts.scss";
+@import "colors.scss";
 
 #wp-admin-bar-cap_meta_search_extract_metadata > .ab-item::before {
     content: "\f536";
@@ -27,20 +23,20 @@ div.search-results-excerpt {
 }
 
 div.cap-meta-search-box {
-    background: @background-box;
+    background: $background-box;
     padding: 16px 8px;
 
     label {
 	    display: block;
         margin-bottom: 0;
         font-weight: normal;
-	    color: @color-black; /*#6e6b6f;*/
+	    color: $color-black; /*#6e6b6f;*/
     }
 
     div.cap-meta-search-buttons {
 	    input {
-	        background: @color-red;
-	        color: @color-white;
+	        background: $color-red;
+	        color: $color-white;
 	        margin: 16px 0;
 	        padding: 4px 12px;
 	        cursor: pointer;
@@ -52,7 +48,7 @@ div.cap-meta-search-box {
 	        text-align: center;
 	        transition: background-color 500ms;
 	        &:hover {
-		        background-color: @color-black;
+		        background-color: $color-black;
 	        }
 	        &.cap-meta-search-submit {
 		        float: left;
@@ -75,7 +71,7 @@ div.cap-meta-search-box {
         width: 100%;
         margin: 8px 0 16px;
         padding: 4px 8px;
-        border: 1px solid @color-lightrule;
+        border: 1px solid $color-lightrule;
     }
 
     div.cap-meta-search-field-notbefore {
@@ -90,11 +86,11 @@ div.cap-meta-search-box {
 
     div.cap-meta-search-places {
         margin: 8px 0 16px;
-        border: 1px solid @color-lightrule;
+        border: 1px solid $color-lightrule;
         padding: 4px 0;
         background-color: white;
         div.jstree-wholerow-clicked {
-            background: @background-box;
+            background: $background-box;
         }
     }
 
@@ -105,12 +101,4 @@ div.cap-meta-search-box {
 	        font-size: 90%;
 	    }
     }
-}
-
-div.ui-widget.ui-widget-content.ui-tooltip-search {
-    background-color: @background-box;
-    padding: 8px;
-    max-width: 400px;
-    box-shadow: @shadow-box;
-    border-width: 0;
 }

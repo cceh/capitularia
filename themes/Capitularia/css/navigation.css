@@ -1,3 +1,9 @@
+@charset "UTF-8";
+/* bootstrap custom theme                                          */
+/* See: https://getbootstrap.com/docs/4.1/getting-started/theming/ */
+/* color definitions */
+/* Font mixins */
+/* More styles */
 /*******************/
 /* navigation bars */
 /*******************/
@@ -8,41 +14,49 @@
 .bottom-nav ul {
   margin-right: -14px;
 }
+
 nav.horiz-nav ul {
   display: block;
   float: right;
   position: relative;
   z-index: 10;
 }
+
 nav.horiz-nav li {
   float: left;
   position: relative;
   padding: 0;
 }
+
 nav.horiz-nav a {
   display: block;
   text-decoration: none;
   padding: 7px 14px;
   transition: color 300ms, background 300ms;
 }
+
 nav.horiz-nav a:hover {
   text-decoration: none;
 }
+
 nav.horiz-nav ul ul li {
   /* <li> in language drop-down menu */
   float: none;
 }
+
 /* top navbar colors */
 #header {
   background-color: #b92900;
 }
+
 .top-nav a {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   color: #f1d4cc;
   background-color: #b92900;
 }
+
 .top-nav a:active,
 .top-nav a:focus,
 .top-nav a:hover,
@@ -50,18 +64,21 @@ nav.horiz-nav ul ul li {
   color: #fff;
   background: #942100;
 }
+
 /* bottom navbar colors */
 .bottom-nav {
   background-color: #fff;
 }
+
 .bottom-nav a {
-  font-family: 'OpenSans-Semibold', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans-Semibold", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   text-transform: uppercase;
   color: #978f7d;
   background-color: #fff;
 }
+
 .bottom-nav a:active,
 .bottom-nav a:focus,
 .bottom-nav a:hover,
@@ -72,6 +89,7 @@ nav.horiz-nav ul ul li {
   color: #b92900;
   background: #fff;
 }
+
 /* the qTranslate-X language drop-down menu */
 .qtranxs-lang-menu ul.sub-menu {
   position: absolute;
@@ -80,29 +98,34 @@ nav.horiz-nav ul ul li {
   min-width: 100%;
   display: none;
 }
+
 .qtranxs-lang-menu:hover ul.sub-menu {
   display: block;
 }
+
 .qtranxs-lang-menu > a > img {
   /* the flag image in the horizontal menu */
   padding-left: 0.5em;
 }
+
 .qtranxs-lang-menu-item > a > img {
   /* the flag images in the drop-down menu */
   padding-right: 0.5em;
 }
+
 /* the login menu entry */
 .login a:before {
   font-family: "dashicons";
-  content: "\f110";
+  content: "";
   padding-right: 0.5em;
   vertical-align: top;
 }
+
 /************************/
 /* the search form      */
 /************************/
 form.searchform {
-  font-family: 'OpenSans', 'Helvetica', 'Arial', 'sans-serif', 'sans';
+  font-family: "OpenSans", "Helvetica", "Arial", "sans-serif", "sans";
   font-weight: normal;
   font-style: normal;
   background: linear-gradient(to bottom, #f8f8f8, #ccc);
@@ -113,8 +136,7 @@ form.searchform table {
 form.searchform td.submit-cell {
   width: 2.5em;
 }
-form.searchform input,
-form.searchform button {
+form.searchform input, form.searchform button {
   font-size: 1.1em;
   width: 100%;
   height: 2.5em;
@@ -124,19 +146,21 @@ form.searchform button {
   background: transparent;
   transition: background 500ms;
 }
+
 #searchinput {
   padding: 0 1em;
 }
 #searchinput:hover {
   background: rgba(0, 0, 0, 0.05);
 }
+
 #searchsubmit {
   margin-left: 1px;
   background: rgba(0, 0, 0, 0.1);
 }
 #searchsubmit::after {
   font-family: "dashicons";
-  content: "\f179";
+  content: "";
   color: white;
   font-size: 1.5em;
   display: block;
@@ -144,4 +168,5 @@ form.searchform button {
 #searchsubmit:hover {
   background: #b92900;
 }
+
 /*# sourceMappingURL=navigation.css.map */

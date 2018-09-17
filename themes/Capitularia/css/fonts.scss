@@ -1,60 +1,60 @@
 /* Font mixins */
 
-.light {
+@mixin light {
     font-family: 'OpenSans-Light','Helvetica','Arial','sans-serif','sans';
     font-weight: normal;
     font-style: normal;
 }
 
-.regular {
+@mixin regular {
     font-family: 'OpenSans','Helvetica','Arial','sans-serif','sans';
     font-weight: normal;
     font-style: normal;
 }
 
-.semibold {
+@mixin semibold {
     font-family: 'OpenSans-Semibold','Helvetica','Arial','sans-serif','sans';
     font-weight: normal;
     font-style: normal;
 }
 
-.bold {
+@mixin bold {
     font-family: 'OpenSans-Bold','Helvetica','Arial','sans-serif','sans';
     font-weight: normal;
     font-style: normal;
 }
 
-.extrabold {
+@mixin extrabold {
     font-family: 'OpenSans-ExtraBold','Helvetica','Arial','sans-serif','sans';
     font-weight: normal;
     font-style: normal;
 }
 
-.light-italic {
+@mixin light-italic {
     font-family: 'OpenSans-LightItalic','Helvetica','Arial','sans-serif','sans';
     font-weight: normal;
     font-style: normal;
 }
 
-.italic {
+@mixin italic {
     font-family: 'OpenSans-Italic','Helvetica','Arial','sans-serif','sans';
     font-weight: normal;
     font-style: normal;
 }
 
-.semibold-italic {
+@mixin semibold-italic {
     font-family: 'OpenSans-SemiboldItalic','Helvetica','Arial','sans-serif','sans';
     font-weight: normal;
     font-style: normal;
 }
 
-.bold-italic {
+@mixin bold-italic {
     font-family: 'OpenSans-BoldItalic','Helvetica','Arial','sans-serif','sans';
     font-weight: normal;
     font-style: normal;
 }
 
-.extrabold-italic {
+@mixin extrabold-italic {
     font-family: 'OpenSans-ExtraBoldItalic','Helvetica','Arial','sans-serif','sans';
     font-weight: normal;
     font-style: normal;
@@ -62,11 +62,16 @@
 
 /* More styles */
 
-.font-menubar-top {
-    .semibold;
+@mixin font-menubar-top {
+    @include semibold;
 }
 
-.font-menubar-bottom {
-    .semibold;
+@mixin font-menubar-bottom {
+    @include semibold;
     text-transform: uppercase;
+}
+
+@mixin dashicons {
+    font-family: "dashicons";
+    line-height: 1;
 }

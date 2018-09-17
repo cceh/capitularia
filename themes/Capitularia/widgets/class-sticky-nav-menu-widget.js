@@ -1,10 +1,11 @@
 (function ($) {
 
     function initSidebarToc () {
-        var viewport_height = $(window).height ();
+        var height = $(window).height () + "px";
         var sidebar = $("div.sidebar-toc");
-        sidebar.css ("height", viewport_height + "px");
-        sidebar.sticky ({topSpacing: 0});
+        sidebar.css ("max-height", height);
+        sidebar.closest ('li').css ("height", "100%");
+        sidebar.closest ('ul').css ("height", "100%");
     }
 
     $(document).ready (function () {
