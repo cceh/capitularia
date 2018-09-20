@@ -57,7 +57,7 @@ function on_admin_enqueue_scripts ()
     wp_register_script (
         'cap-collation-admin',
         plugins_url ('js/admin.js', __FILE__),
-        array ('jquery-ui-accordion')
+        array ('jquery-ui-accordion', 'jquery-ui-sortable')
     );
     wp_enqueue_script ('cap-collation-admin');
 

@@ -29,32 +29,44 @@ table.collation {
 
     tbody tr {
         background-color: #fff;
-        &:nth-child(even) {
-            background-color: #eee;
-        }
+
         &:first-child {
             background-color: LightSkyBlue;
         }
+
+        &:nth-child(even) {
+            background-color: #eee;
+        }
+
+        &:nth-child(odd) {
+            background-color: WhiteSmoke;
+        }
+
         &.highlight-witness.highlight-witness {
             background-color: #eea;
         }
     }
 
-    td, th {
+    td,
+    th {
         border: 1px solid gray;
         background-color: inherit;
         white-space: nowrap;
         padding: 0.2em 0.3em;
     }
+
     th {
         text-align: left;
     }
+
     td {
         text-align: center;
+
         &.equal {
-            color: fade(#444, 33%);
+            color: lighten(#444, 33%);
         }
     }
+
     span.missing::before {
         content: '\2014';
     }
@@ -79,12 +91,16 @@ div.collation-load-params {
 @media print {
     #adminmenumain,
     div.no-print {
-        display: none;
+        display: none !important;
     }
-    #wpcontent, #wpfooter {
+
+    #wpcontent,
+    #wpfooter {
         margin-left: 0;
     }
-    html, body {
+
+    html,
+    body {
         background-color: white;
         font-size: 10pt;
     }
@@ -92,9 +108,6 @@ div.collation-load-params {
 
 div.options {
     margin-top: 1em;
-}
-
-div.debug-options {
 }
 
 div.ui-accordion {
@@ -107,9 +120,11 @@ div.ui-accordion {
         border-radius: 0;
         outline: none;
     }
+
     .ui-accordion-icons .ui-accordion-icons {
         padding: 0 0 0 2.2em;
     }
+
     .ui-accordion-content {
         border: 1px solid grey;
         border-radius: 0;
@@ -123,14 +138,6 @@ div.collation {
         border-collapse: collapse;
     }
 
-    tr:nth-child(odd) {
-        background-color: WhiteSmoke;
-    }
-
-    tr:first-child {
-        background-color: LightSkyBlue;
-    }
-
     th {
         white-space: nowrap;
     }
@@ -138,12 +145,10 @@ div.collation {
     td {
         border-left: solid 2px gray;
         border-right: solid 2px gray;
-
         padding-left: 0.3em;
         padding-right: 0.3em;
         padding-top: 0.2em;
         padding-bottom: 0.2em;
-
         white-space: nowrap;
         text-align: center;
     }

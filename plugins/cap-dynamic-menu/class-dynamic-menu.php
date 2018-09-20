@@ -105,12 +105,6 @@ class Dynamic_Menu
             return $items;
         }
 
-        // avoid PHP 7.2 warning
-        global $pages;
-        if (!$pages) {
-            return $items;
-        }
-
         // Check if the menu contains a dynamic element.  Also get the highest
         // menu id while we are at it.
         $is_dynamic_menu = false;
@@ -123,13 +117,19 @@ class Dynamic_Menu
                     $is_dynamic_menu = true;
                 }
                 if (stristr ($item->url, '#cap_login_menu#') !== false) {
-                    $is_dynamic_menu = true;
+                    $item->url = wp_login_url (get_permalink ());
                 }
             }
         }
 
         // Bail out if the menu does not contain dynamic elements.
         if (!$is_dynamic_menu) {
+            return $items;
+        }
+
+        // avoid PHP 7.2 warning
+        global $pages;
+        if (!$pages) {
             return $items;
         }
 
@@ -222,14 +222,6 @@ class Dynamic_Menu
 
                         // error_log ("Menu Item: $new_item->title $new_item->post_name $new_item->menu_item_parent");
                     }
-                    continue;
-                }
-
-                // Build menu entry that points to the login page.
-                if (stristr ($item->url, '#cap_login_menu#') !== false) {
-                    $item->url = wp_login_url (get_permalink ());
-                    // error_log ("Login menu url: {$item->url}");
-                    $new_items[$key] = $item;
                     continue;
                 }
             }

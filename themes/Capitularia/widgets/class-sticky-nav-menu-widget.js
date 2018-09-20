@@ -1,8 +1,9 @@
 (function ($) {
 
     function initSidebarToc () {
-        var height = $(window).height () + "px";
         var sidebar = $("div.sidebar-toc");
+        var top = parseInt (sidebar.css ('top'));
+        var height = $(window).height () - 2 * top + "px";
         sidebar.css ("max-height", height);
         sidebar.closest ('li').css ("height", "100%");
         sidebar.closest ('ul').css ("height", "100%");

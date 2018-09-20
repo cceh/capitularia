@@ -1,10 +1,11 @@
-/* bootstrap custom theme                                          */
-/* See: https://getbootstrap.com/docs/4.1/getting-started/theming/ */
+/*
+   bootstrap custom theme
+   See: https://getbootstrap.com/docs/4.1/getting-started/theming/
+*/
 
-@import "../node_modules/bootstrap/scss/_functions";
-@import "../node_modules/bootstrap/scss/_variables";
-@import "../node_modules/bootstrap/scss/_mixins";
-
+@import "_functions";
+@import "_variables";
+@import "_mixins";
 @import "colors";
 @import "fonts";
 
@@ -39,8 +40,7 @@ $container-max-widths: (
     x4l: 2440px
 );
 
-@import "../node_modules/bootstrap/scss/bootstrap";
-
+@import "bootstrap";
 @import "content";
 @import "navigation";
 @import "qtranslate-x";
