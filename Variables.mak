@@ -9,7 +9,8 @@ TRANSFORM := $(AFS)/http/docs/cap/publ/transform
 
 WPCONTENTLOCAL := $(LOCALFS)/wp-content
 
-NODE       := ../../node_modules/.bin
+NODE_MODULES := ../../node_modules
+NODE         := $(NODE_MODULES)/.bin
 
 BABEL           = $(NODE)/babel
 BABELFLAGS      = --source-maps true

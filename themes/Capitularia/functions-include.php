@@ -140,8 +140,7 @@ function on_enqueue_scripts ()
 {
     $template_dir = get_template_directory_uri ();
 
-    wp_enqueue_style ('cap-front',    "$template_dir/css/front.css");
-    wp_enqueue_style ('cap-webfonts', "$template_dir/webfonts/webfonts.css", array ('cap-front'));
+    wp_enqueue_style ('cap-front',       "$template_dir/css/front.css");
     wp_enqueue_style ('dashicons');
 
     wp_enqueue_script ('cap-jquery',    "$template_dir/node_modules/jquery/dist/jquery.js");

@@ -14,11 +14,11 @@
             var $this = $ (this);
             var id = $this.attr ('id');
             if ($this.children ('ul').length > 0) {
+                $this.children ('a').addClass ('has-opener');
                 $ ('<a class="opener"/>').prependTo ($this)
                     .attr ('data-toggle', 'collapse')
                     .attr ('data-target', '#' + id + '-ul')
                     .addClass ('collapsed');
-                $this.children ('a').addClass ('has-opener');
                 $this.children ('ul').attr ('id', id + '-ul').addClass ('collapse');
             }
         });

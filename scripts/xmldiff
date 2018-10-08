@@ -1,0 +1,5 @@
+#!/bin/bash
+
+LINT="xmllint --encode utf-8 --format"
+
+diff -U 2 <($LINT $1) <($LINT $2)

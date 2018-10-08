@@ -47,13 +47,15 @@
       <!-- This is for automatically generating the sidebar menu,
            not for users' eyes. -->
       <div id="inhaltsverzeichnis" style="display: none">
-        <h5 id="contents-rubrics">
+        <!-- The following id will not function as target since display: none.
+             The real id we jump to is down below. -->
+        <a data-level="5" href="#start-of-text">
           [:de]Inhalt (Rubriken)[:en]Contents (Rubrics)[:]
-        </h5>
+        </a>
         <xsl:apply-templates select="tei:front/tei:div[@type='content']" mode="toc"/>
-        <h5 id="contents-bknos">
+        <a data-level="5" href="#start-of-text">
           [:de]Inhalt (BK-Nummern)[:en]Contents (BK-Nos.)[:]
-        </h5>
+        </a>
       </div>
 
       <xsl:call-template name="page-break" />
@@ -79,7 +81,8 @@
   </xsl:template>
 
   <xsl:template match="tei:body">
-    <div class="tei-body">
+    <!-- This is the target for the "Contents *" links in the sidebar. -->
+    <div class="tei-body" id="start-of-text">
       <xsl:apply-templates/>
     </div>
   </xsl:template>
