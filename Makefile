@@ -5,7 +5,7 @@ PLUGINS = $(wildcard plugins/cap-*)
 
 lint: phplint csslint jslint
 
-deploy: lint mo deploy_xslt deploy_scripts
+deploy: css js lint mo deploy_xslt deploy_scripts
 
 deploy_xslt:
 	$(RSYNC) xslt/*.xsl xslt/test/*xml $(TRANSFORM)/

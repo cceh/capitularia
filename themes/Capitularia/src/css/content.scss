@@ -512,10 +512,6 @@ div.search-results, .index-results {
 /* Content */
 /***********/
 
-span.break-word {
-    overflow-wrap: break-word;
-}
-
 .content-col, .sidebar-col {
     margin-bottom: 40px;
     h2 {
@@ -917,8 +913,11 @@ div.content-col, div.annotation-content {
         font-size: 110%;
         @include semibold;
     }
+    span.break-word {
+        word-break: break-all;
+    }
     span.tei-gap {
-        white-space: nowrap;
+        letter-spacing: 0.2em;
     }
     div.tei-gap-editorial {
         margin: 1em 0;

@@ -479,15 +479,27 @@ footnotes will be joined to the preceding word.
   </xsl:template>
 
   <xsl:template match="tei:gap">
-    <span class="tei-gap break-word" data-shortcuts="0">
-      <xsl:text>[</xsl:text>
+    <xsl:variable name="char">
       <xsl:choose>
         <xsl:when test="ancestor::tei:del">
-          <!-- &#x2009; = 1/5 em -->
-          <xsl:value-of select="str:padding (number (@quantity) * 2 + 1, '&#x2009;†')"/>
+          <xsl:text>†</xsl:text>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="str:padding (number (@quantity) * 2 + 1, '&#x2009;.')"/>
+          <xsl:text>.</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <span class="tei-gap" data-shortcuts="0">
+      <xsl:text>[</xsl:text>
+      <xsl:choose>
+        <xsl:when test="number (@quantity) &lt; 6">
+          <xsl:value-of select="str:padding (number (@quantity), $char)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="str:padding (3, $char)"/>
+          <xsl:value-of select="str:padding ((number (@quantity) - 6) * 2 + 1, concat ('&#x200b;', $char))"/>
+          <xsl:value-of select="str:padding (3, $char)"/>
         </xsl:otherwise>
       </xsl:choose>
       <xsl:text>]</xsl:text>
