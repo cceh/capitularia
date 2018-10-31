@@ -10,7 +10,7 @@
 					</persName><persName key="BM">
 						<forename>Britta</forename>
 						<surname>Mischke</surname>
-					</persName><persName key="SP">
+					</persName><persName key="SP">note
 						<forename>Sarah</forename>
 						<surname>Patt</surname>
 					</persName><persName key="DT">
@@ -807,7 +807,7 @@ Version für das <ref target="http://capitularia.uni-koeln.de/vol/www/projekt/ca
 									<desc>Beginn eines neuen Kapitulars</desc>
 								</valItem>
 								<valItem ident="capitulatio">
-									<desc>...</desc>
+									<desc>Beginn einer Capitulatio</desc>
 								</valItem>
 								<valItem ident="span">
 									<desc>Beginn eines neuen Kapitulars/Kapitels innerhalb eines ab</desc>
@@ -863,6 +863,9 @@ Version für das <ref target="http://capitularia.uni-koeln.de/vol/www/projekt/ca
 								</valItem>
 								<valItem ident="msDetail">
 									<desc>[Besser "corr" nutzen. Dieser Wert soll langfristig entfallen]</desc>
+								</valItem>
+								<valItem ident="filiation">
+									<desc>Note verweist auf weitere Hs./Hss., die ursprünglich zusammengehörten, deren Einzelteile aber aktuell auf mehrere kodikologische Einheiten/Sammelhandschriften verteilt sind.</desc>
 								</valItem>
 							</valList>
 						</attDef>
@@ -1126,7 +1129,6 @@ Version für das <ref target="http://capitularia.uni-koeln.de/vol/www/projekt/ca
 						<attDef ident="ana" mode="delete"/>
 						<attDef ident="change" mode="delete"/>
 						<attDef ident="copyOf" mode="delete"/>
-						<attDef ident="corresp" mode="delete"/>
 						<attDef ident="exclude" mode="delete"/>
 						<attDef ident="facs" mode="delete"/>
 						<attDef ident="key" mode="delete"/>
@@ -1144,7 +1146,13 @@ Version für das <ref target="http://capitularia.uni-koeln.de/vol/www/projekt/ca
 						<attDef ident="xml:base" mode="delete"/>
 						<attDef ident="xml:id" mode="delete"/>
 						<attDef ident="xml:space" mode="delete"/>
-					</attList>
+						<attDef ident="corresp" mode="change" usage="opt">
+							<defaultVal>BK.XY</defaultVal>
+							<valList type="open" mode="replace">
+								<valItem ident="BK.XY"><desc>Platzhalter "XY" für die BK-Nummer</desc></valItem>
+							</valList>
+						</attDef>
+						</attList>
 				</elementSpec>
 				<elementSpec ident="unclear" module="core" mode="change">
 					<attList>

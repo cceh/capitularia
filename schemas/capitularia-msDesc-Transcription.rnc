@@ -6,7 +6,7 @@ default namespace tei = "http://www.tei-c.org/ns/1.0"
 namespace teix = "http://www.tei-c.org/ns/Examples"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2018-05-01T12:28:17Z. .
+# Schema generated from ODD source 2018-09-11T14:16:55Z. .
 # TEI Edition: Version 3.2.0. Last updated on
 #	10th July 2017, revision 0fcf651
 # TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.2.0/
@@ -1615,6 +1615,9 @@ note =
       | 
         ## [Besser "corr" nutzen. Dieser Wert soll langfristig entfallen]
         "msDetail"
+      | 
+        ## Note verweist auf weitere Hs./Hss., die ursprünglich zusammengehörten, deren Einzelteile aber aktuell auf mehrere kodikologische Einheiten/Sammelhandschriften verteilt sind.
+        "filiation"
     }?,
     empty
   }
@@ -1651,7 +1654,7 @@ milestone =
       ## Beginn eines neuen Kapitulars
       "capitulare"
       | 
-        ## ...
+        ## Beginn einer Capitulatio
         "capitulatio"
       | 
         ## Beginn eines neuen Kapitulars/Kapitels innerhalb eines ab
@@ -1733,6 +1736,13 @@ title =
     att.global.responsibility.attribute.resp,
     att.global.source.attribute.source,
     att.datable.attributes,
+    
+    ## (corresponds) points to elements that correspond to the current element in some way.
+    ## Sample values include: 1] BK.XY
+    [ a:defaultValue = "BK.XY" ]
+    attribute corresp {
+      list { xsd:anyURI+ }
+    }?,
     
     ## classifies the title according to some convenient typology.
     ## Sample values include: 1] main; 2] sub(subordinate) ; 3] alt(alternate) ; 4] short; 5] desc(descriptive) 
