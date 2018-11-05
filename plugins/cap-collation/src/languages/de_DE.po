@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2018-10-08 11:23+0200\n"
+"POT-Creation-Date: 2018-10-11 14:45+0200\n"
 "PO-Revision-Date: 2018-05-22 10:48+0200\n"
 "Last-Translator: Marcello Perathoner <marcello@perathoner.de>\n"
 "Language-Team: German <>\n"
@@ -19,255 +19,191 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.7\n"
 
-#: header.php:62
-msgid "Search"
-msgstr "Suchen"
+#: cap-collation.php:22
+msgid "Capitularia Collation"
+msgstr "Capitularia Kollation"
 
-#: index.php:24 search.php:46
-msgid "Page:"
-msgstr "Seite:"
+#: cap-collation.php:46
+msgctxt "Collation Algorithm"
+msgid "Dekker"
+msgstr "Dekker"
 
-#: index.php:31 search.php:52
-msgid "« Previous"
-msgstr "« Vorherige Seite"
+#: cap-collation.php:47
+msgctxt "Collation Algorithm"
+msgid "Greedy String Tiling"
+msgstr "Greedy String Tiling"
 
-#: index.php:32 search.php:53
-msgid "Next »"
-msgstr "Nächste Seite »"
+#: cap-collation.php:48
+msgctxt "Collation Algorithm"
+msgid "MEDITE"
+msgstr "MEDITE"
 
-#: functions.php:42
-msgid "January"
-msgstr "Januar"
+#: cap-collation.php:49
+msgctxt "Collation Algorithm"
+msgid "Needleman-Wunsch"
+msgstr "Needleman-Wunsch"
 
-#: functions.php:43
-msgid "February"
-msgstr "Februar"
+#: cap-collation.php:50
+msgctxt "Collation Algorithm"
+msgid "Needleman-Wunsch-Gotoh"
+msgstr "Needleman-Wunsch-Gotoh"
 
-#: functions.php:44
-msgid "March"
-msgstr "März"
+#: dashboard.php:38
+msgctxt "Button: Show manuscripts"
+msgid "Show manuscripts"
+msgstr "Handschriften anzeigen"
 
-#: functions.php:45
-msgid "April"
-msgstr "April"
+#: dashboard.php:44
+msgctxt "Button: Start the collation"
+msgid "Collate"
+msgstr "Kollationieren"
 
-#: functions.php:46
-msgid "May"
-msgstr "Mai"
+#: dashboard.php:53
+msgctxt "Button: Load the collation config"
+msgid "Load Config"
+msgstr "Konfiguration Laden"
 
-#: functions.php:47
-msgid "June"
-msgstr "Juni"
+#: dashboard.php:64
+msgctxt "Button: Save the collation config"
+msgid "Save Config"
+msgstr "Konfiguration Speichern"
 
-#: functions.php:48
-msgid "July"
-msgstr "Juli"
+#: dashboard.php:96
+msgctxt "H2 caption"
+msgid "Capitulary"
+msgstr "Kapitular"
 
-#: functions.php:49
-msgid "August"
-msgstr "August"
+#: dashboard.php:97
+msgctxt "Label: for select"
+msgid "Select Capitulary and Section"
+msgstr "Wählen Sie Kapitular und Abschnitt"
 
-#: functions.php:50
-msgid "September"
-msgstr "September"
+#: dashboard.php:138
+msgctxt "H2 caption"
+msgid "Manuscripts"
+msgstr "Handschriften"
 
-#: functions.php:51
-msgid "October"
-msgstr "Oktober"
+#: dashboard.php:139
+msgid "Include edits by later hands"
+msgstr "Einschließlich Edits von späterer Hand"
 
-#: functions.php:52
-msgid "November"
-msgstr "November"
+#: dashboard.php:156
+msgctxt "H3 caption"
+msgid "Advanced Options"
+msgstr "Optionen für Fortgeschrittene"
 
-#: functions.php:53
-msgid "December"
-msgstr "Dezember"
+#: dashboard.php:157
+msgctxt "Label: for drop-down"
+msgid "Select Collation Algorithm"
+msgstr "Wählen Sie den Kollations-Algorithmus"
 
-#: search.php:27
+#: dashboard.php:178
+msgctxt "Label: for drop-down"
+msgid "Select Levenshtein distance"
+msgstr "Wählen Sie den Levenshtein-Abstand"
+
+#: dashboard.php:179
+msgctxt "Either this or that, not both."
+msgid "or"
+msgstr "oder"
+
+#: dashboard.php:197
+msgctxt "Label: for drop-down"
+msgid "Select Levenshtein ratio"
+msgstr "Wählen Sie die Levenshtein-Ähnlichkeit"
+
+#: dashboard.php:218
+msgctxt "Label: for drop-down"
+msgid "Use segmentation"
+msgstr "Mit Segmentierung"
+
+#: dashboard.php:234
+msgctxt "Label: for drop-down"
+msgid "Use transpositions"
+msgstr "Mit Transpositionen"
+
+#: dashboard.php:247
+msgctxt "Label: for textarea"
+msgid "Normalizations"
+msgstr "Normalisierungen"
+
+#: dashboard.php:248
+msgctxt "Help text"
+msgid "One or more lines in the form: raw=normalized"
+msgstr "Eine oder mehrere Zeilen in der Form: original=normalisiert"
+
+#: functions.php:112
+msgctxt "Admin bar button caption"
+msgid "Collation"
+msgstr "Kollation"
+
+#: functions.php:414
+msgid "on"
+msgstr "an"
+
+#: functions.php:414
+msgid "off"
+msgstr "aus"
+
+#: class-witness-list-table.php:36
+msgid "Manuscript"
+msgstr "Handschrift"
+
+#: class-witness-list-table.php:37
+msgid "Manuscripts"
+msgstr "Handschriften"
+
+#: class-witness-list-table.php:88
+msgid "No manuscripts found."
+msgstr "Keine Handschriften gefunden."
+
+#: class-witness-list-table.php:117
+msgctxt "column heading"
+msgid "Manuscript Id"
+msgstr "Siglum"
+
+#: class-witness-list-table.php:157
 #, php-format
-msgid "Your search for: %1$s gave one result."
-msgid_plural "Your search for: %1$s gave %2$d results."
-msgstr[0] "Ihre Suche nach: %1$s ergab einen Treffer."
-msgstr[1] "Ihre Suche nach: %1$s ergab %2$d Treffer."
+msgctxt "Select a witness by id (screen reader only)"
+msgid "Select %s"
+msgstr "%s auswählen"
 
-#: search.php:38
+#: dashboard-ajax.php:115
 #, php-format
-msgid "Your search for %1$s gave no results."
-msgstr "Ihre Suche nach: %1$s ergab keine Treffer."
+msgid "Algorithm: %s"
+msgstr "Algorithmus: %s"
 
-#: search.php:59
-msgid "Search Results"
-msgstr "Suchergebnisse"
-
-#: shortcodes.php:440
-msgid "Y-m-d"
-msgstr "Y-m-d"
-
-#: shortcodes.php:506
-msgid "None"
-msgstr "Keine"
-
-#: functions-include.php:92
+#: dashboard-ajax.php:145
 #, php-format
-msgid "Permalink to %s"
-msgstr "Permalink zu %s"
+msgid "Levenshtein distance: %s"
+msgstr "Levenshtein-Abstand: %s"
 
-#: functions-include.php:224
+#: dashboard-ajax.php:155
 #, php-format
-msgid "Page %s"
-msgstr "Seite %s"
+msgid "Levenshtein ratio: %s"
+msgstr "Levenshtein-Ähnlichkeit: %s"
 
-#: functions-include.php:245
-msgid "Wiki: "
-msgstr "Wiki: "
+#: dashboard-ajax.php:161
+#, php-format
+msgctxt "%s = on off"
+msgid "Segmentation: %s"
+msgstr "Segmentierung: %s"
 
-#: functions-include.php:295
-msgid "Top horizontal navigation bar"
-msgstr "Obere horizontale Navigationsleiste"
+#: dashboard-ajax.php:165
+#, php-format
+msgctxt "%s = on off"
+msgid "Transpositions: %s"
+msgstr "Transpositionen: %s"
 
-#: functions-include.php:296
-msgid "Bottom horizontal navigation bar"
-msgstr "Untere horizontale Navigationsleiste"
+#: dashboard-ajax.php:176
+#, php-format
+msgid "Collation output for %s"
+msgstr "Kollation für %s"
 
-#: functions-include.php:310
-msgid "Capitularia Sidebar"
-msgstr "Capitularia Sidebar"
-
-#: sidebars.php:22
-msgid "Frontpage Image"
-msgstr "Titelseiten-Bild"
-
-#: sidebars.php:23
-msgid ""
-"The big splash image on the front page. Takes one Capitularia Logo Widget."
-msgstr ""
-"Das große Bild auf der Titelseite. Enthält ein Capitularia Logo-Widget."
-
-#: sidebars.php:27
-msgid "Frontpage Teaser Bar 1"
-msgstr "Titelseiten-Teaser-Band 1"
-
-#: sidebars.php:28
-msgid ""
-"The top teaser bar on the front page. Normally takes 3 Capitularia Text "
-"Widgets."
-msgstr ""
-"Das obere Vorschau-Band auf der Titelseite. Enthält typischerweise 3 "
-"Capitularia Text-Widgets."
-
-#: sidebars.php:32
-msgid "Frontpage Teaser Bar 2"
-msgstr "Titelseiten-Teaser-Band 2"
-
-#: sidebars.php:33
-msgid ""
-"The bottom teaser bar on the front page. Normally takes 2 Capitularia Image "
-"Widgets."
-msgstr ""
-"Das untere Vorschau-Band auf der Titelseite. Enthält typischerweise 2 "
-"Capitularia Bild-Widgets."
-
-#: sidebars.php:37
-msgid "Logo Bar"
-msgstr "Logo-Band"
-
-#: sidebars.php:38
-msgid ""
-"The logo bar in the footer of every page. Takes one or more Capitularia Logo "
-"Widgets."
-msgstr ""
-"Das Logo-Band im Fußteil einer jeden Seite. Enthält ein oder mehrere "
-"Capitularia Logo-Widgets."
-
-#: sidebars.php:48
-msgid "Post Sidebar"
-msgstr "Post Sidebar"
-
-#: sidebars.php:49
-msgid "The sidebar on posts."
-msgstr "Die Sidebar auf Posts."
-
-#: sidebars.php:53
-msgid "Page Sidebar"
-msgstr "Page Sidebar"
-
-#: sidebars.php:54
-msgid "The sidebar on pages. Output below the more specialized page sidebars."
-msgstr ""
-"Die Sidebar auf Pages. Wird unter den spezielleren Sidebars ausgegeben."
-
-#: sidebars.php:58
-msgid "Post and Page Sidebar"
-msgstr "Sidebar auf Posts und Pages"
-
-#: sidebars.php:59
-msgid "The sidebar on posts and pages. Output below the other sidebars."
-msgstr ""
-"Die Sidebar auf Pages und Posts. Wird unter den anderen Sidebars ausgegeben."
-
-#: sidebars.php:70
-msgid "Capitularies Sidebar"
-msgstr "Kapitularien-Sidebar"
-
-#: sidebars.php:71
-msgid "The sidebar on /capit/ pages."
-msgstr "Die Sidebar auf /capit/ Seiten."
-
-#: sidebars.php:75
-msgid "Manuscripts Sidebar"
-msgstr "Handschriften-Sidebar"
-
-#: sidebars.php:76
-msgid "The sidebar on /mss/ pages."
-msgstr "Die Sidebar auf /mss/ Seiten."
-
-#: sidebars.php:80
-msgid "Resources Sidebar"
-msgstr "Materialien-Sidebar"
-
-#: sidebars.php:81
-msgid "The sidebar on /resources/ pages."
-msgstr "Die Sidebar auf /resource/ Seiten."
-
-#: sidebars.php:85
-msgid "Project Sidebar"
-msgstr "Projekt-Sidebar"
-
-#: sidebars.php:86
-msgid "The sidebar on /project/ pages."
-msgstr "Die Sidebar auf /project/ Seiten."
-
-#: sidebars.php:90
-msgid "Internal Sidebar"
-msgstr "Intern-Sidebar"
-
-#: sidebars.php:91
-msgid "The sidebar on /internal/ pages."
-msgstr "Die Sidebar auf /internal/ Seiten."
-
-#: sidebars.php:95
-msgid "Capitular Sidebar"
-msgstr "Kapitularie-Sidebar"
-
-#: sidebars.php:96
-msgid "The sidebar on single capitular pages"
-msgstr "Die Sidebar auf Kapitular-Seiten"
-
-#: sidebars.php:100
-msgid "Transcription Sidebar"
-msgstr "Transkriptions-Sidebar"
-
-#: sidebars.php:101
-msgid "The sidebar on transcription pages"
-msgstr "Die Sidebar auf Transkriptionsseiten"
-
-#: sidebars.php:105
-msgid "Search Page Sidebar"
-msgstr "Such-Seiten-Sidebar"
-
-#: sidebars.php:106
-msgid "The sidebar on the search page"
-msgstr "Die Sidebar auf den Such-Seiten"
+#: dashboard-ajax.php:204
+msgctxt "H3"
+msgid "Debug Output"
+msgstr "Debug Ausgabe"
 
 #~ msgid "Capitularia Meta Search"
 #~ msgstr "Capitularia Meta-Suche"
@@ -325,6 +261,9 @@ msgstr "Die Sidebar auf den Such-Seiten"
 #~ msgid "Free text search"
 #~ msgstr "Freie Textsuche"
 
+#~ msgid "Search"
+#~ msgstr "Suchen"
+
 #~ msgid "Start the search"
 #~ msgstr "Suche starten"
 
@@ -351,147 +290,6 @@ msgstr "Die Sidebar auf den Such-Seiten"
 
 #~ msgid "New title"
 #~ msgstr "Neuer Titel"
-
-#~ msgctxt "Button: Show manuscripts"
-#~ msgid "Show manuscripts"
-#~ msgstr "Handschriften anzeigen"
-
-#~ msgctxt "Button: Start the collation"
-#~ msgid "Collate"
-#~ msgstr "Kollationieren"
-
-#~ msgctxt "Button: Load the collation config"
-#~ msgid "Load Config"
-#~ msgstr "Konfiguration Laden"
-
-#~ msgctxt "Button: Save the collation config"
-#~ msgid "Save Config"
-#~ msgstr "Konfiguration Speichern"
-
-#~ msgctxt "H2 caption"
-#~ msgid "Capitulary"
-#~ msgstr "Kapitular"
-
-#~ msgctxt "Label: for select"
-#~ msgid "Select Capitulary and Section"
-#~ msgstr "Wählen Sie Kapitular und Abschnitt"
-
-#~ msgctxt "H2 caption"
-#~ msgid "Manuscripts"
-#~ msgstr "Handschriften"
-
-#~ msgid "Include edits by later hands"
-#~ msgstr "Einschließlich Edits von späterer Hand"
-
-#~ msgctxt "H3 caption"
-#~ msgid "Advanced Options"
-#~ msgstr "Optionen für Fortgeschrittene"
-
-#~ msgctxt "Label: for drop-down"
-#~ msgid "Select Collation Algorithm"
-#~ msgstr "Wählen Sie den Kollations-Algorithmus"
-
-#~ msgctxt "Label: for drop-down"
-#~ msgid "Select Levenshtein distance"
-#~ msgstr "Wählen Sie den Levenshtein-Abstand"
-
-#~ msgctxt "Either this or that, not both."
-#~ msgid "or"
-#~ msgstr "oder"
-
-#~ msgctxt "Label: for drop-down"
-#~ msgid "Select Levenshtein ratio"
-#~ msgstr "Wählen Sie die Levenshtein-Ähnlichkeit"
-
-#~ msgctxt "Label: for drop-down"
-#~ msgid "Use segmentation"
-#~ msgstr "Mit Segmentierung"
-
-#~ msgctxt "Label: for drop-down"
-#~ msgid "Use transpositions"
-#~ msgstr "Mit Transpositionen"
-
-#~ msgctxt "Label: for textarea"
-#~ msgid "Normalizations"
-#~ msgstr "Normalisierungen"
-
-#~ msgctxt "Help text"
-#~ msgid "One or more lines in the form: raw=normalized"
-#~ msgstr "Eine oder mehrere Zeilen in der Form: original=normalisiert"
-
-#~ msgctxt "Admin bar button caption"
-#~ msgid "Collation"
-#~ msgstr "Kollation"
-
-#~ msgid "on"
-#~ msgstr "an"
-
-#~ msgid "off"
-#~ msgstr "aus"
-
-#~ msgid "Algorithm: %s"
-#~ msgstr "Algorithmus: %s"
-
-#~ msgid "Levenshtein distance: %s"
-#~ msgstr "Levenshtein-Abstand: %s"
-
-#~ msgid "Levenshtein ratio: %s"
-#~ msgstr "Levenshtein-Ähnlichkeit: %s"
-
-#~ msgctxt "%s = on off"
-#~ msgid "Segmentation: %s"
-#~ msgstr "Segmentierung: %s"
-
-#~ msgctxt "%s = on off"
-#~ msgid "Transpositions: %s"
-#~ msgstr "Transpositionen: %s"
-
-#~ msgid "Collation output for %s"
-#~ msgstr "Kollation für %s"
-
-#~ msgctxt "H3"
-#~ msgid "Debug Output"
-#~ msgstr "Debug Ausgabe"
-
-#~ msgid "Capitularia Collation"
-#~ msgstr "Capitularia Kollation"
-
-#~ msgctxt "Collation Algorithm"
-#~ msgid "Dekker"
-#~ msgstr "Dekker"
-
-#~ msgctxt "Collation Algorithm"
-#~ msgid "Greedy String Tiling"
-#~ msgstr "Greedy String Tiling"
-
-#~ msgctxt "Collation Algorithm"
-#~ msgid "MEDITE"
-#~ msgstr "MEDITE"
-
-#~ msgctxt "Collation Algorithm"
-#~ msgid "Needleman-Wunsch"
-#~ msgstr "Needleman-Wunsch"
-
-#~ msgctxt "Collation Algorithm"
-#~ msgid "Needleman-Wunsch-Gotoh"
-#~ msgstr "Needleman-Wunsch-Gotoh"
-
-#~ msgid "Manuscript"
-#~ msgstr "Handschrift"
-
-#~ msgid "Manuscripts"
-#~ msgstr "Handschriften"
-
-#~ msgid "No manuscripts found."
-#~ msgstr "Keine Handschriften gefunden."
-
-#~ msgctxt "column heading"
-#~ msgid "Manuscript Id"
-#~ msgstr "Siglum"
-
-#~ msgctxt "Select a witness by id (screen reader only)"
-#~ msgid "Select %s"
-#~ msgstr "%s auswählen"
 
 #~ msgid "TEI file"
 #~ msgstr "TEI-Datei"
@@ -751,6 +549,194 @@ msgstr "Die Sidebar auf den Such-Seiten"
 
 #~ msgid "Capitularia Text Widget"
 #~ msgstr "Capitularia Text-Widget"
+
+#~ msgid "January"
+#~ msgstr "Januar"
+
+#~ msgid "February"
+#~ msgstr "Februar"
+
+#~ msgid "March"
+#~ msgstr "März"
+
+#~ msgid "April"
+#~ msgstr "April"
+
+#~ msgid "May"
+#~ msgstr "Mai"
+
+#~ msgid "June"
+#~ msgstr "Juni"
+
+#~ msgid "July"
+#~ msgstr "Juli"
+
+#~ msgid "August"
+#~ msgstr "August"
+
+#~ msgid "September"
+#~ msgstr "September"
+
+#~ msgid "October"
+#~ msgstr "Oktober"
+
+#~ msgid "November"
+#~ msgstr "November"
+
+#~ msgid "December"
+#~ msgstr "Dezember"
+
+#~ msgid "Your search for: %1$s gave one result."
+#~ msgid_plural "Your search for: %1$s gave %2$d results."
+#~ msgstr[0] "Ihre Suche nach: %1$s ergab einen Treffer."
+#~ msgstr[1] "Ihre Suche nach: %1$s ergab %2$d Treffer."
+
+#~ msgid "Your search for %1$s gave no results."
+#~ msgstr "Ihre Suche nach: %1$s ergab keine Treffer."
+
+#~ msgid "Page:"
+#~ msgstr "Seite:"
+
+#~ msgid "« Previous"
+#~ msgstr "« Vorherige Seite"
+
+#~ msgid "Next »"
+#~ msgstr "Nächste Seite »"
+
+#~ msgid "Search Results"
+#~ msgstr "Suchergebnisse"
+
+#~ msgid "Y-m-d"
+#~ msgstr "Y-m-d"
+
+#~ msgid "None"
+#~ msgstr "Keine"
+
+#~ msgid "Permalink to %s"
+#~ msgstr "Permalink zu %s"
+
+#~ msgid "Page %s"
+#~ msgstr "Seite %s"
+
+#~ msgid "Wiki: "
+#~ msgstr "Wiki: "
+
+#~ msgid "Top horizontal navigation bar"
+#~ msgstr "Obere horizontale Navigationsleiste"
+
+#~ msgid "Bottom horizontal navigation bar"
+#~ msgstr "Untere horizontale Navigationsleiste"
+
+#~ msgid "Capitularia Sidebar"
+#~ msgstr "Capitularia Sidebar"
+
+#~ msgid "Frontpage Image"
+#~ msgstr "Titelseiten-Bild"
+
+#~ msgid ""
+#~ "The big splash image on the front page. Takes one Capitularia Logo Widget."
+#~ msgstr ""
+#~ "Das große Bild auf der Titelseite. Enthält ein Capitularia Logo-Widget."
+
+#~ msgid "Frontpage Teaser Bar 1"
+#~ msgstr "Titelseiten-Teaser-Band 1"
+
+#~ msgid ""
+#~ "The top teaser bar on the front page. Normally takes 3 Capitularia Text "
+#~ "Widgets."
+#~ msgstr ""
+#~ "Das obere Vorschau-Band auf der Titelseite. Enthält typischerweise 3 "
+#~ "Capitularia Text-Widgets."
+
+#~ msgid "Frontpage Teaser Bar 2"
+#~ msgstr "Titelseiten-Teaser-Band 2"
+
+#~ msgid ""
+#~ "The bottom teaser bar on the front page. Normally takes 2 Capitularia "
+#~ "Image Widgets."
+#~ msgstr ""
+#~ "Das untere Vorschau-Band auf der Titelseite. Enthält typischerweise 2 "
+#~ "Capitularia Bild-Widgets."
+
+#~ msgid "Logo Bar"
+#~ msgstr "Logo-Band"
+
+#~ msgid ""
+#~ "The logo bar in the footer of every page. Takes one or more Capitularia "
+#~ "Logo Widgets."
+#~ msgstr ""
+#~ "Das Logo-Band im Fußteil einer jeden Seite. Enthält ein oder mehrere "
+#~ "Capitularia Logo-Widgets."
+
+#~ msgid "Post Sidebar"
+#~ msgstr "Post Sidebar"
+
+#~ msgid "The sidebar on posts."
+#~ msgstr "Die Sidebar auf Posts."
+
+#~ msgid "Page Sidebar"
+#~ msgstr "Page Sidebar"
+
+#~ msgid ""
+#~ "The sidebar on pages. Output below the more specialized page sidebars."
+#~ msgstr ""
+#~ "Die Sidebar auf Pages. Wird unter den spezielleren Sidebars ausgegeben."
+
+#~ msgid "Post and Page Sidebar"
+#~ msgstr "Sidebar auf Posts und Pages"
+
+#~ msgid "The sidebar on posts and pages. Output below the other sidebars."
+#~ msgstr ""
+#~ "Die Sidebar auf Pages und Posts. Wird unter den anderen Sidebars "
+#~ "ausgegeben."
+
+#~ msgid "Capitularies Sidebar"
+#~ msgstr "Kapitularien-Sidebar"
+
+#~ msgid "The sidebar on /capit/ pages."
+#~ msgstr "Die Sidebar auf /capit/ Seiten."
+
+#~ msgid "Manuscripts Sidebar"
+#~ msgstr "Handschriften-Sidebar"
+
+#~ msgid "The sidebar on /mss/ pages."
+#~ msgstr "Die Sidebar auf /mss/ Seiten."
+
+#~ msgid "Resources Sidebar"
+#~ msgstr "Materialien-Sidebar"
+
+#~ msgid "The sidebar on /resources/ pages."
+#~ msgstr "Die Sidebar auf /resource/ Seiten."
+
+#~ msgid "Project Sidebar"
+#~ msgstr "Projekt-Sidebar"
+
+#~ msgid "The sidebar on /project/ pages."
+#~ msgstr "Die Sidebar auf /project/ Seiten."
+
+#~ msgid "Internal Sidebar"
+#~ msgstr "Intern-Sidebar"
+
+#~ msgid "The sidebar on /internal/ pages."
+#~ msgstr "Die Sidebar auf /internal/ Seiten."
+
+#~ msgid "Capitular Sidebar"
+#~ msgstr "Kapitularie-Sidebar"
+
+#~ msgid "The sidebar on single capitular pages"
+#~ msgstr "Die Sidebar auf Kapitular-Seiten"
+
+#~ msgid "Transcription Sidebar"
+#~ msgstr "Transkriptions-Sidebar"
+
+#~ msgid "The sidebar on transcription pages"
+#~ msgstr "Die Sidebar auf Transkriptionsseiten"
+
+#~ msgid "Search Page Sidebar"
+#~ msgstr "Such-Seiten-Sidebar"
+
+#~ msgid "The sidebar on the search page"
+#~ msgstr "Die Sidebar auf den Such-Seiten"
 
 #~ msgid "Datenschutzerklärung"
 #~ msgstr "Data privacy statement"

@@ -79,7 +79,7 @@ po: $(LANG_SRC)/$(1).po
 
 $(LANG_SRC)/$(1).po: $(LANG_SRC)/capitularia.pot
 	if test -e $$@; \
-	then msgmerge -U --backup=numbered $$@ $$?; \
+	then msgmerge -U --force-po --backup=numbered $$@ $$?; \
 	else msginit --locale=$(1) -i $$? -o $$@; \
 	fi
 

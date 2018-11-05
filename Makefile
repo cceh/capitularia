@@ -22,7 +22,7 @@ import_xml:
 import_backups:
 	$(RSYNC) $(AFS)/backups/* backups/
 
-TARGETS = css js csslint jslint phplint mo deploy clean
+TARGETS = css js csslint jslint phplint mo po pot deploy clean
 
 define TARGETS_TEMPLATE
 
