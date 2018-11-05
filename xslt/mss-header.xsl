@@ -601,28 +601,12 @@
   </xsl:template>
 
   <xsl:template match="tei:hi">
-    <xsl:choose>
-      <xsl:when test="@rend='italic'">
-        <span class="tei-hi rend-italic italic">
-          <xsl:apply-templates/>
-        </span>
-      </xsl:when>
-      <xsl:when test="@rend='smallcaps'">
-        <span class="tei-hi rend-smallcaps smallcaps">
-          <xsl:apply-templates/>
-        </span>
-      </xsl:when>
-      <xsl:when test="@rend='super' and (ancestor::tei:bibl or ancestor::tei:formula)">
-        <sup class="tei-hi rend-super">
-          <xsl:apply-templates/>
-        </sup>
-      </xsl:when>
-      <xsl:otherwise>
-        <span class="tei-hi">
-          <xsl:apply-templates/>
-        </span>
-      </xsl:otherwise>
-    </xsl:choose>
+    <span>
+      <xsl:call-template name="handle-rend">
+        <xsl:with-param name="extra-class" select="'tei-hi'"/>
+      </xsl:call-template>
+      <xsl:apply-templates />
+    </span>
   </xsl:template>
 
 </xsl:stylesheet>
