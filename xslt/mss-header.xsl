@@ -389,12 +389,12 @@
     <xsl:call-template name="if-visible-then-else">
       <xsl:with-param name="path" select="$path"/>
       <xsl:with-param name="then">
-        <a class="semibold" href="{$path}" title="{cap:human-readable-siglum ($corresp)}">
+        <a class="rend-semibold" href="{$path}" title="{cap:human-readable-siglum ($corresp)}">
           <xsl:apply-templates/>
         </a>
       </xsl:with-param>
       <xsl:with-param name="else">
-        <span class="semibold" title="{cap:human-readable-siglum ($corresp)}">
+        <span class="rend-semibold" title="{cap:human-readable-siglum ($corresp)}">
           <xsl:apply-templates/>
         </span>
       </xsl:with-param>
@@ -418,12 +418,12 @@
     <xsl:call-template name="if-visible-then-else">
       <xsl:with-param name="path" select="$path"/>
       <xsl:with-param name="then">
-        <a class="semibold" href="{$path}" title="{cap:human-readable-siglum (@corresp)}">
+        <a class="rend-semibold" href="{$path}" title="{cap:human-readable-siglum (@corresp)}">
           <xsl:apply-templates/>
         </a>
       </xsl:with-param>
       <xsl:with-param name="else">
-        <span class="semibold" title="{cap:human-readable-siglum (@corresp)}">
+        <span class="rend-semibold" title="{cap:human-readable-siglum (@corresp)}">
           <xsl:apply-templates/>
         </span>
       </xsl:with-param>
@@ -431,13 +431,13 @@
   </xsl:template>
 
   <xsl:template match="tei:msItem//tei:title">
-    <span class="semibold">
+    <span class="rend-semibold">
       <xsl:apply-templates/>
     </span>
   </xsl:template>
 
   <xsl:template match="tei:msItem//tei:locus">
-    <span class="semibold">
+    <span class="rend-semibold">
       <xsl:if test="@target">
         <a class="internal" href="{$mss}{str:replace (@target, '_', '#')}"
            target="_blank"
