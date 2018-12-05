@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="muenchen-bsb-lat-3851">
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="muenchen-bsb-lat-3851">
    <teiHeader>
       <fileDesc>
          <titleStmt>
@@ -132,8 +133,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <origDate notAfter="0900" notBefore="0881"> Ende 9. Jh. (Brommer),</origDate>
                   <origDate notAfter="0900" notBefore="0876"> 4. Viertel 9. Jh.
                      (Bischoff);</origDate>
-                  <origPlace> Westdeutschland/Ostfrankreich (Brommer)</origPlace> bzw.
-                     <origPlace>Lothringen (Bischoff)</origPlace>
+                  <origPlace> Westdeutschland/Ostfrankreich (Brommer)</origPlace> bzw. <origPlace
+                     ref="http://www.geonames.org/2997551/region-lorraine.html http://d-nb.info/gnd/4036377-6 http://viaf.org/viaf/244072377"
+                     >Lothringen (Bischoff)</origPlace>
                   <!--    sk: hier noch Geodatenreferenzen hinzufügen            -->
                </head>
                <msContents>
@@ -151,17 +153,16 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         (a. 818/819), c. 17, mit Inskription: <hi rend="italic">IN CAPITULARE
                            GLORIOSISSIMORUM PRINCIPUM KAROLI ET HLUDUUUICI. Statutum est ab
                            episcopis de presbiteris - canonica inuectione feriantur</hi> (MGH Capit.
-                        1, Nr. 138, S. 278 Z. 9-12). 
-                     </p>
+                        1, Nr. 138, S. 278 Z. 9-12). </p>
                   </msItem>
                   <msItem n="20" corresp="BK.138">
                      <p><locus>65v</locus>
                         <hi rend="italic">CAP. XXVII</hi> - <title>Capitulare ecclesiasticum</title>
-                        (a. 818/819), c. 27, mit Inskription und leicht verändertem Wortlaut: <hi rend="italic">EX CAPITLR. KAROLI ET HLUDUUUICI. Sanccitum est et modis
+                        (a. 818/819), c. 27, mit Inskription und leicht verändertem Wortlaut: <hi
+                           rend="italic">EX CAPITLR. KAROLI ET HLUDUUUICI. Sanccitum est et modis
                            omnibus prohibitum ut nullus omnino quamlibet examinationem crucis facere
                            presumat ne christi passio glorificata cuiuslibet temeritate obtentui
-                           habeatur</hi> (MGH Capit. 1, Nr. 138, S. 279 Z. 29-31). 
-                     </p>
+                           habeatur</hi> (MGH Capit. 1, Nr. 138, S. 279 Z. 29-31). </p>
                   </msItem>
                </msContents>
                <physDesc>
@@ -208,8 +209,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <origDate notAfter="0900" notBefore="0876"> 4. Viertel 9. Jh.
                            (Bischoff);</origDate>
                         <origPlace> Westdeutschland/Ostfrankreich (Brommer)</origPlace> bzw.
-                           <origPlace>Lothringen (Bischoff)</origPlace>
-                        <!--    sk: hier noch Geodatenreferenzen hinzufügen            -->
+                           <origPlace
+                           ref="http://www.geonames.org/2997551/region-lorraine.html http://d-nb.info/gnd/4036377-6 http://viaf.org/viaf/244072377"
+                           >Lothringen (Bischoff)</origPlace>
                      </p>
                   </origin>
                   <provenance>
@@ -248,9 +250,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
          <p>Transkriptionsvorlage: Transkription nach einem guten Farbdigitalisat, online bereit
             gestellt von der Bayerischen Staatsbibliothek.</p>
          <projectDesc>
-            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
-            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
          </projectDesc>
          <editorialDecl>
@@ -315,13 +319,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
          <div type="letters">
             <p>Zu fol. 4r: Häufigere Verwendung von unzialem bzw. Majuskel-N, besonders am
                Wortanfang und bei Verneinungen, z.T. aber auch innerhalb von Worten (z.B. <locus>Z.
-                  9</locus>). Der Schreiber verwendet Doppelformen bei a (ein- und doppelstöckig) 
-               und d. Aufgrund der Neigung des Schreibers, ein c extrem dicht an den Folgebuchstaben 
-               heranzurücken (bei ci wie bei cl) besteht so häufiger eine Verwechslungsgefahr mit 
-               a bzw. d. Das g ist dreiförmig, oberer und unterer Bogen bleiben geöffnet. 
-               Überschriften in unzialer Schrift, mit
-               Unterlängen bei P. Selten dort auch einzelne Worte in Capitalis rustica.
-               </p>
+                  9</locus>). Der Schreiber verwendet Doppelformen bei a (ein- und doppelstöckig)
+               und d. Aufgrund der Neigung des Schreibers, ein c extrem dicht an den Folgebuchstaben
+               heranzurücken (bei ci wie bei cl) besteht so häufiger eine Verwechslungsgefahr mit a
+               bzw. d. Das g ist dreiförmig, oberer und unterer Bogen bleiben geöffnet.
+               Überschriften in unzialer Schrift, mit Unterlängen bei P. Selten dort auch einzelne
+               Worte in Capitalis rustica. </p>
          </div>
          <div type="abbreviations"/>
          <div type="punctuation"/>
@@ -363,9 +366,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
             SACERDOTUM CETERORUMQUE CLERICORUM EX <rs type="place">NICENO</rs> . <choice>
                <abbr>CCL</abbr>
                <expan>CONCILIO</expan>
-            </choice> CAPITULUM III . DE <sic>SUBTR<mod>O</mod>DUC</sic>
-            <!-- jb: Kürzungsstrich über dem d?
-               sk: möglich, aber sehr blass; am Original prüfen? --><lb/>
+            </choice> CAPITULUM III . DE <abbr>SUBTR<mod>O</mod>DUC</abbr><note type="editorial"
+               >Über <mentioned>D</mentioned> ein Kürzungsstrich; nicht auflösbare Abkürzung.</note>
+            <lb/>
          </ab>
 
          <!--        <ab type="text" xml:id="muenchen-bsb-lat-3851-4r-2"><seg type="initial">I</seg>nterdicit
@@ -379,10 +382,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
 
 
          <ab type="meta-text" xml:id="muenchen-bsb-lat-3851-4r-3" corresp="BK.138_17_inscriptio">IN
-            CAPITULARE GLORIOSISSIMORUM <lb/><rs type="person">PRINCIPUM KAROLI</rs> ET <rs type="person">HLUDUUUICI</rs> . CAPITULUM XVII . <lb/>
+            CAPITULARE GLORIOSISSIMORUM <lb/><rs type="person">PRINCIPUM KAROLI</rs> ET <rs
+               type="person">HLUDUUUICI</rs> . CAPITULUM XVII . <lb/>
          </ab>
 
-         <ab type="text" xml:id="muenchen-bsb-lat-3851-4r-4" corresp="BK.138_17"><seg type="initial">S</seg>tatutum est ab episcopis de <expan>presbiteris</expan> qui feminas secum
+         <ab type="text" xml:id="muenchen-bsb-lat-3851-4r-4" corresp="BK.138_17"><seg type="initial"
+               >S</seg>tatutum est ab episcopis de <expan>presbiteris</expan> qui feminas secum
             indiscrete habitare <lb/>permittunt . Et propter hoc malae opinionis suspitiones
             denotantur . <lb/>Ut si deinceps admoniti non se corre<mod>x</mod>erint . Uelud
             contemptores <lb/> sacrorum canonum canonica Inuectione feriantur . </ab>
@@ -410,14 +415,16 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
             "Haec quia canones prohibent qui perpetrauerit . eorum se sciat sententia 
             plecti . Explici[t]" -->
 
-         <ab type="meta-text" xml:id="muenchen-bsb-lat-3851-65v-11" corresp="BK.138_27_inscriptio">EX <choice>
+         <ab type="meta-text" xml:id="muenchen-bsb-lat-3851-65v-11" corresp="BK.138_27_inscriptio"
+            >EX <choice>
                <abbr>CAPITLR</abbr>
                <expan>CAPITULARE</expan>
             </choice> . <rs type="person">KAROLI</rs> . ET <rs type="person">HLUDUUUICI</rs> .
             CAPITULUM . XXVII . <lb/>
          </ab>
 
-         <ab type="text" xml:id="muenchen-bsb-lat-3851-65v-12" corresp="BK.138_27"><seg type="initial">S</seg>anccitum est et modis omnibus prohibitum . Ut nullus omnino
+         <ab type="text" xml:id="muenchen-bsb-lat-3851-65v-12" corresp="BK.138_27"><seg
+               type="initial">S</seg>anccitum est et modis omnibus prohibitum . Ut nullus omnino
                quam<lb break="no"/>libet examinationem crucis facere presumat . ne christi passio
             glorificata <lb/> cuiuslibet temeritate obtentui habeatur ; </ab>
 
