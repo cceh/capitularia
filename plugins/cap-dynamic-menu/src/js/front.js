@@ -31,7 +31,7 @@
             if (href[0] === '#') {
                 href = '#' + $.escapeSelector (href.slice (1));
                 if ($ (href).length === 0) {
-                    $ (this).parent ().parent ().css ('display', 'none');
+                    $ (this).removeAttr ('href');
                 }
             }
         });

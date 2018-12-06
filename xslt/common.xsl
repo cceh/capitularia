@@ -98,8 +98,7 @@
   <func:function name="cap:make-human-readable-bk">
     <!-- Make a human readable BK string.
 
-         Transform the @corresp 'BK.123_4' to 'BK 123 c. 4' and remove entries
-         containing '_inscriptio' and '_incipit'.
+         Transform the @corresp 'BK.123_4' to 'BK 123 c. 4'.
     -->
 
     <xsl:param name="corresp" select="@corresp" />
@@ -124,15 +123,33 @@
 
     <xsl:variable name="hr">
       <xsl:for-each select="str:split ($corresp)">
+        <xsl:value-of select="normalize-space (str:replace (., exsl:node-set ($search)/tei:item, exsl:node-set ($replace)/tei:item))"/>
+          <xsl:text> </xsl:text>
+      </xsl:for-each>
+    </xsl:variable>
+
+    <func:result>
+      <xsl:value-of select="normalize-space ($hr)"/>
+    </func:result>
+  </func:function>
+
+  <func:function name="cap:strip-ignored-corresp">
+    <!-- Remove @corresp tokens containing '_inscriptio' '_incipit', and 'explicit'.
+    -->
+
+    <xsl:param name="corresp" select="@corresp" />
+
+    <xsl:variable name="result">
+      <xsl:for-each select="str:split ($corresp)">
         <xsl:if test="not (contains (., '_inscriptio') or contains (., '_incipit') or contains (., 'explicit'))">
-          <xsl:value-of select="normalize-space (str:replace (., exsl:node-set ($search)/tei:item, exsl:node-set ($replace)/tei:item))"/>
+          <xsl:value-of select="."/>
           <xsl:text> </xsl:text>
         </xsl:if>
       </xsl:for-each>
     </xsl:variable>
 
     <func:result>
-      <xsl:value-of select="normalize-space ($hr)"/>
+      <xsl:value-of select="normalize-space ($result)"/>
     </func:result>
   </func:function>
 

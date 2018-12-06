@@ -146,8 +146,9 @@
   </xsl:template>
 
   <xsl:template name="make-chapter-mark">
+    <!-- Insert the [BK 42 c. 69] at the top of each chapter. -->
     <xsl:variable name="corresp">
-      <xsl:value-of select="cap:make-human-readable-bk (@corresp)" />
+      <xsl:value-of select="cap:make-human-readable-bk (cap:strip-ignored-corresp (@corresp))" />
     </xsl:variable>
 
     <xsl:if test="normalize-space ($corresp)"> <!-- is filtered by inscriptio incipit explicit etc. -->
@@ -169,11 +170,11 @@
     <xsl:variable name="id" select="generate-id ()" />
 
     <xsl:for-each select="str:split ($corresp)">
-      <xsl:variable name="hr" select="cap:make-human-readable-bk (substring-before (concat (., '_'), '_'))" />
+      <xsl:variable name="hr" select="cap:make-human-readable-bk (cap:strip-ignored-corresp (substring-before (concat (., '_'), '_')))" />
+      <a id="{cap:make-id (.)}" class="milestone"></a>
       <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
-        <a id="{cap:make-id (.)}" class="milestone"></a>
         <a id="x-menu-{$id}" class="milestone"
-           data-shortcuts="0" data-level="6">
+           data-shortcuts="0" data-level="6"><!-- dyn menu looks for data-level -->
           <span style="display: none">
             <xsl:value-of select="$hr" />
           </span>
@@ -191,11 +192,11 @@
     <xsl:variable name="id" select="generate-id ()" />
 
     <xsl:for-each select="str:split ($corresp)">
-      <xsl:variable name="hr" select="cap:make-human-readable-bk (.)" />
+      <xsl:variable name="hr" select="cap:make-human-readable-bk (cap:strip-ignored-corresp (.))" />
+      <a id="{cap:make-id (.)}" class="milestone milestone-chapter"></a>
       <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
-        <a id="{cap:make-id (.)}" class="milestone milestone-chapter"></a>
         <a id="x-menu-{$id}" class="milestone milestone-chapter"
-           data-shortcuts="0" data-fold-menu-entry="1" data-level="7">
+           data-shortcuts="0" data-fold-menu-entry="1" data-level="7"><!-- dyn menu looks for data-level -->
           <span style="display: none">
             <xsl:value-of select="$hr" />
           </span>
@@ -342,6 +343,9 @@
   </xsl:template>
 
   <xsl:template match="tei:milestone[@unit='span' and @corresp and @spanTo]">
+    <xsl:if test="@xml:id">
+      <a id="{@xml:id}" class="milestone milestone-span milestone-span-start"/>
+    </xsl:if>
     <xsl:call-template name="make-sidebar-bk-chapter" />
   </xsl:template>
 
