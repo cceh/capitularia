@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# Usage:
+#   xsltdiff xsl-file xml-file
+#
+# Compare the transformation of xml-file with the original.  Account for stupid
+# Oxygen formatting of xml files.
+#
+
+XSL="$1"
+XML="$2"
+
+DIFF="diff -U 2 --color=always"
+DIFF="meld"
+
+LINT="xmllint --encode utf-8 --format"
+
+$DIFF <($LINT $XML) \
+      <(xsltproc $XSL $XML | $LINT -)

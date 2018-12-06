@@ -18,18 +18,18 @@
 
   <xsl:output method="xml" indent="no" encoding="UTF-8" />
 
-  <!-- if @corresp contains no spaces, add corresp to all titles within -->
-  <xsl:template match="tei:msItem[not (contains (@corresp, ' '))]//tei:title[not (@corresp)]">
-    <xsl:copy>
-      <xsl:attribute name="corresp">
-        <xsl:value-of select="ancestor::tei:msItem/@corresp"/>
-      </xsl:attribute>
-      <xsl:apply-templates select="node()|@*"/>
-    </xsl:copy>
-  </xsl:template>
-
-  <!-- remove attribute from msItem -->
-  <xsl:template match="tei:msItem[.//tei:title]/@corresp[not (contains (., ' '))]">
+  <!-- remove all hi rend=super tags around these texts -->
+  <xsl:template match="//tei:teiHeader//tei:hi[@rend='super'][not (ancestor::tei:collation)]">
+    <xsl:choose>
+      <xsl:when test=". = 'r' or . = 'ra' or . = 'rb' or . = 'v' or . = 'va' or . = 'vb' or . = 'r-v'">
+        <xsl:apply-templates />
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:copy>
+          <xsl:apply-templates select="node()|@*" />
+        </xsl:copy>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <!-- copy everything else -->
