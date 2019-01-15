@@ -1,0 +1,109 @@
+<Map background-color="steelblue" srs="+init=epsg:3857">
+  <Style name="earth">
+    <Rule>
+      <RasterSymbolizer />
+    </Rule>
+  </Style>
+
+  <Style name="ocean">
+    <Rule>
+      <PolygonSymbolizer fill="steelblue" />
+    </Rule>
+  </Style>
+
+  <Style name="rivers">
+    <Rule>
+      <LineSymbolizer stroke="steelblue" stroke-width="2" />
+    </Rule>
+  </Style>
+
+  <Style name="rivers_sm">
+    <Rule>
+      <LineSymbolizer stroke="steelblue" stroke-width="1" />
+    </Rule>
+  </Style>
+
+  <Style name="lakes">
+    <Rule>
+      <PolygonSymbolizer fill="steelblue" />
+      <LineSymbolizer stroke="steelblue" stroke-width="2" />
+    </Rule>
+  </Style>
+
+  <Style name="lakes_sm">
+    <Rule>
+      <PolygonSymbolizer fill="steelblue" />
+      <LineSymbolizer stroke="steelblue" stroke-width="1" />
+    </Rule>
+  </Style>
+
+  <Style name="boundaries">
+    <Rule>
+      <LineSymbolizer stroke="#ff0000" stroke-width="10" stroke-opacity="0.2" />
+      <LineSymbolizer stroke="#ff0000" stroke-width="2"  stroke-opacity="0.5" />
+    </Rule>
+  </Style>
+
+  <Layer name="earth" srs="+init=epsg:4326">
+    <StyleName>earth</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">../../../mapnik/downloads/NE2_HR_LC_SR/NE2_HR_LC_SR.tif</Parameter>
+      <Parameter name="lox">min_x</Parameter>
+      <Parameter name="loy">min_y</Parameter>
+      <Parameter name="hix">max_x</Parameter>
+      <Parameter name="hiy">max_y</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="ocean" srs="+init=epsg:4326">
+    <StyleName>ocean</StyleName>
+    <Datasource>
+      <Parameter name="type">shape</Parameter>
+      <Parameter name="file">../../../mapnik/downloads/10m_physical/ne_10m_ocean.shp</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="rivers" srs="+init=epsg:4326">
+    <StyleName>rivers</StyleName>
+    <Datasource>
+      <Parameter name="type">shape</Parameter>
+      <Parameter name="file">../../../mapnik/downloads/10m_physical/ne_10m_rivers_lake_centerlines.shp</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="rivers_sm" srs="+init=epsg:4326">
+    <StyleName>rivers_sm</StyleName>
+    <Datasource>
+      <Parameter name="type">shape</Parameter>
+      <Parameter name="file">../../../mapnik/downloads/10m_physical/ne_10m_rivers_europe.shp</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="lakes" srs="+init=epsg:4326">
+    <StyleName>lakes</StyleName>
+    <Datasource>
+      <Parameter name="type">shape</Parameter>
+      <Parameter name="file">../../../mapnik/downloads/10m_physical/ne_10m_lakes.shp</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="lakes_sm" srs="+init=epsg:4326">
+    <StyleName>lakes_sm</StyleName>
+    <Datasource>
+      <Parameter name="type">shape</Parameter>
+      <Parameter name="file">../../../mapnik/downloads/10m_physical/ne_10m_lakes_europe.shp</Parameter>
+    </Datasource>
+  </Layer>
+
+  <!--
+  <Layer name="boundaries" srs="+init=epsg:4326">
+    <StyleName>boundaries</StyleName>
+    <Datasource>
+      <Parameter name="type">shape</Parameter>
+      <Parameter name="file">../../../mapnik/downloads/10m_cultural/ne_10m_admin_0_boundary_lines_land.shp</Parameter>
+    </Datasource>
+  </Layer>
+  -->
+
+</Map>
