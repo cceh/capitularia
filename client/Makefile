@@ -1,3 +1,5 @@
+include ../Variables.mak
+
 WEBPACK := node_modules/.bin/webpack --no-color
 WEBPACK_DEV_SERVER := node_modules/.bin/webpack-dev-server --no-color
 ESLINT := node_modules/.bin/eslint -f unix
@@ -7,7 +9,9 @@ STYLELINT := node_modules/.bin/stylelint --custom-formatter ./stylelint-unix-for
 
 GEODATA_SRC_DIR    = src/geodata
 GEODATA_DEST_DIR   = build/geodata
-GEODATA_JSON_FILES = $(GEODATA_DEST_DIR)/10m_cultural/ne_10m_admin_0_boundary_lines_land.json
+GEODATA_JSON_FILES = $(GEODATA_DEST_DIR)/10m_cultural/ne_10m_admin_0_boundary_lines_land.json \
+					 $(GEODATA_DEST_DIR)/10m_cultural/ne_10m_admin_0_countries.json           \
+					 $(GEODATA_DEST_DIR)/10m_cultural/ne_10m_admin_1_states_provinces.json
 
 AUX := build/index.html build/api.conf.js $(GEODATA_JSON_FILES)
 
@@ -25,6 +29,9 @@ dev-server-debug: $(AUX)
 
 dev-server-production: clean $(AUX)
 	$(WEBPACK_DEV_SERVER) --config webpack.prod.js
+
+upload: build
+	$(RSYNC) --exclude "api.conf.js" build/* $(HOST_CLIENT)
 
 lint: eslint csslint
 
@@ -50,20 +57,8 @@ geodata: $(GEODATA_JSON_FILES)
 
 $(GEODATA_DEST_DIR)/%.json : $(GEODATA_SRC_DIR)/%.shp
 	-mkdir -p $(GEODATA_DEST_DIR)/10m_cultural
-	ogr2ogr -f GeoJSON -spat -30 30 60 90 -t_srs epsg:4326 $@ $<
+	ogr2ogr -f GeoJSON -simplify 0.01 -spat -30 30 60 90 -t_srs epsg:4326 $@ $<
 
-
-NEDATA = http://naciscdn.org/naturalearth
 
 install_prereq:
 	sudo apt-get install gdal-bin
-
-download_geodata:
-	mkdir -p src/geodata
-	cd src/geodata ;						\
-	for zip in 10m/raster/NE2_HR_LC_SR 10m/cultural/10m_cultural 10m/physical/10m_physical ; do \
-		wget "$(NEDATA)/$$zip.zip" ; 		\
-	done									\
-	unzip NE2_HR_LC_SR.zip					\
-	unzip 10m_cultural.zip					\
-	unzip -d 10m_physical 10m_physical.zip

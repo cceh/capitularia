@@ -16,14 +16,14 @@ import Vuex         from 'vuex';
 import BootstrapVue from 'bootstrap-vue';
 import url          from 'url';
 
-import map          from '../components/map.vue';
+import maps         from '../components/maps.vue';
 
 Vue.use (Vuex);
 Vue.use (BootstrapVue);
 Vue.use (VueRouter);
 
 const routes = [
-    { 'path' : '/client/map', 'component' : map, },
+    { 'path' : '/client/maps', 'component' : maps, },
 ];
 
 const router = new VueRouter ({

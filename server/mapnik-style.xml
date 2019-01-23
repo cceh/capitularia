@@ -48,7 +48,7 @@
     <StyleName>earth</StyleName>
     <Datasource>
       <Parameter name="type">gdal</Parameter>
-      <Parameter name="file">../../../mapnik/downloads/NE2_HR_LC_SR/NE2_HR_LC_SR.tif</Parameter>
+      <Parameter name="file">geodata/NE2_HR_LC_SR/NE2_HR_LC_SR.tif</Parameter>
       <Parameter name="lox">min_x</Parameter>
       <Parameter name="loy">min_y</Parameter>
       <Parameter name="hix">max_x</Parameter>
@@ -60,7 +60,7 @@
     <StyleName>ocean</StyleName>
     <Datasource>
       <Parameter name="type">shape</Parameter>
-      <Parameter name="file">../../../mapnik/downloads/10m_physical/ne_10m_ocean.shp</Parameter>
+      <Parameter name="file">geodata/10m_physical/ne_10m_ocean.shp</Parameter>
     </Datasource>
   </Layer>
 
@@ -68,7 +68,7 @@
     <StyleName>rivers</StyleName>
     <Datasource>
       <Parameter name="type">shape</Parameter>
-      <Parameter name="file">../../../mapnik/downloads/10m_physical/ne_10m_rivers_lake_centerlines.shp</Parameter>
+      <Parameter name="file">geodata/10m_physical/ne_10m_rivers_lake_centerlines.shp</Parameter>
     </Datasource>
   </Layer>
 
@@ -76,7 +76,7 @@
     <StyleName>rivers_sm</StyleName>
     <Datasource>
       <Parameter name="type">shape</Parameter>
-      <Parameter name="file">../../../mapnik/downloads/10m_physical/ne_10m_rivers_europe.shp</Parameter>
+      <Parameter name="file">geodata/10m_physical/ne_10m_rivers_europe.shp</Parameter>
     </Datasource>
   </Layer>
 
@@ -84,7 +84,7 @@
     <StyleName>lakes</StyleName>
     <Datasource>
       <Parameter name="type">shape</Parameter>
-      <Parameter name="file">../../../mapnik/downloads/10m_physical/ne_10m_lakes.shp</Parameter>
+      <Parameter name="file">geodata/10m_physical/ne_10m_lakes.shp</Parameter>
     </Datasource>
   </Layer>
 
@@ -92,18 +92,8 @@
     <StyleName>lakes_sm</StyleName>
     <Datasource>
       <Parameter name="type">shape</Parameter>
-      <Parameter name="file">../../../mapnik/downloads/10m_physical/ne_10m_lakes_europe.shp</Parameter>
+      <Parameter name="file">geodata/10m_physical/ne_10m_lakes_europe.shp</Parameter>
     </Datasource>
   </Layer>
-
-  <!--
-  <Layer name="boundaries" srs="+init=epsg:4326">
-    <StyleName>boundaries</StyleName>
-    <Datasource>
-      <Parameter name="type">shape</Parameter>
-      <Parameter name="file">../../../mapnik/downloads/10m_cultural/ne_10m_admin_0_boundary_lines_land.shp</Parameter>
-    </Datasource>
-  </Layer>
-  -->
 
 </Map>

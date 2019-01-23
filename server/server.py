@@ -20,9 +20,9 @@ import mapnik
 import requests
 import cairo
 
-import db_tools
-from db_tools import execute, log
-import db
+from . import db_tools
+from .db_tools import execute, log
+from . import db
 
 MAX_ZOOM = 18
 TILE_SIZE = 256
@@ -30,7 +30,7 @@ METATILE_SIZE = 8
 
 app  = flask.Flask (__name__)
 map_ = mapnik.Map (TILE_SIZE, TILE_SIZE)
-mapnik.load_map (map_, "mapnik-style.xml")
+mapnik.load_map (map_, os.path.join (os.path.dirname (os.path.abspath (__file__)), "mapnik-style.xml"))
 
 epsg3857 = mapnik.Projection ("+init=epsg:3857") # OpenstreetMap  https://epsg.io/3857
 epsg4326 = mapnik.Projection ("+init=epsg:4326") # WGS84 / GPS    https://epsg.io/4326
@@ -43,9 +43,43 @@ def make_json_response (json = None, status = 200, message = None):
     if message:
         d['message'] = message
     return flask.make_response (flask.json.jsonify (d), status, {
-        'content-type' : 'application/json;charset=utf-8',
+        'Content-Type' : 'application/json;charset=utf-8',
         'Access-Control-Allow-Origin' : '*',
     })
+
+
+def make_geojson_response (rows, fields):
+    """Make a geoJSON response.
+
+    The geometry must be in the first field.  All other fields become
+    properties.
+
+    GeoJSON specs: https://tools.ietf.org/html/rfc7946
+
+    """
+
+    fields = collections.namedtuple ('GeoJSONFields', fields)
+    geo_field_name = fields._fields[0]
+
+    features = []
+    for row in rows:
+        d = fields._make (row)
+        properties = d._asdict ()
+        del properties[geo_field_name]
+        feature = {
+            'type'       : 'Feature',
+            'geometry'   : d[0],
+            'properties' : properties,
+        }
+        features.append (feature)
+
+    response = flask.make_response (flask.json.jsonify ({
+        'type'     : 'FeatureCollection',
+        'features' : features,
+    }), 200)
+    response.headers['Content-Type'] = 'application/geo+json;charset=utf-8'
+    response.headers['Access-Control-Allow-Origin'] =  '*'
+    return response
 
 
 def openstreetmap_zoom (level, lat = 0.0):
@@ -133,26 +167,27 @@ def tile_png (zoom, xtile, ytile, type_='png'):
     return flask.Response (png, mimetype = 'image/png')
 
 
-@app.endpoint ('manuscripts.json')
-def manuscripts_json ():
-    """ Return location of all manuscripts. """
+@app.endpoint ('places.json')
+def places_json ():
+    """ Return all places. """
+
+    FIELDS = 'geo, name, geo_id'
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
-        SELECT geo, name, count
-        FROM msparts_geo_view
+        SELECT %s
+        FROM geonames_view
         ORDER BY name
-        """, {})
+        """ % FIELDS, {})
 
-        Manuscripts = collections.namedtuple ('Manuscripts', 'geo, name, count')
-        return make_json_response ([ Manuscripts._make (r)._asdict () for r in res ])
+        return make_geojson_response (res, FIELDS)
 
 
 @app.endpoint ('msparts.json')
 def msparts_json ():
     """ Return location of all manuscript parts. """
 
-    FIELDS = 'ms_id, title, ms_part, notbefore, notafter, geo_id, name, fcode, geo, blob'
+    FIELDS = 'geo, ms_id, title, ms_part, notbefore, notafter, geo_id, name, fcode'
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
@@ -161,8 +196,7 @@ def msparts_json ():
         ORDER BY ms_id, ms_part
         """ % FIELDS, {})
 
-        MsParts = collections.namedtuple ('MsParts', FIELDS)
-        return make_json_response ([ MsParts._make (r)._asdict () for r in res ])
+        return make_geojson_response (res, FIELDS)
 
 
 def build_parser ():
@@ -183,6 +217,11 @@ def build_parser ():
     return parser
 
 
+class DefaultConfig (object):
+    APPLICATION_HOST = 'localhost'
+    APPLICATION_PORT = 5000
+
+
 if __name__ == "__main__":
     from werkzeug.routing import Map, Rule
     from werkzeug.wsgi import DispatcherMiddleware
@@ -193,22 +232,24 @@ if __name__ == "__main__":
 
     app.logger.setLevel (args.log_level)
 
+    app.config.from_object (DefaultConfig)
     app.config.from_pyfile (args.config_path)
-    app.config['server_start_time'] = str (int (args.start_time.timestamp ()))
 
+    app.config['server_start_time'] = str (int (args.start_time.timestamp ()))
     app.config.dba = db_tools.PostgreSQLEngine (**app.config)
 
     app.url_map = Map ([
         Rule ('/',                                             endpoint = 'index'),
         Rule ('/tile/<int:zoom>/<int:xtile>/<int:ytile>.png',  endpoint = 'tile.png'),
-        Rule ('/manuscripts.json',                             endpoint = 'manuscripts.json'),
+        Rule ('/places.json',                                  endpoint = 'places.json'),
         Rule ('/msparts.json',                                 endpoint = 'msparts.json'),
     ])
 
-    log (logging.INFO, "Mounted {name} at {path} from conf {conf}".format (
+    log (logging.INFO, "Mounted {name} at {host}:{port} from conf {conf}".format (
         name = app.config['APPLICATION_NAME'],
-        path = app.config['APPLICATION_ROOT'],
+        host = app.config['APPLICATION_HOST'],
+        port = app.config['APPLICATION_PORT'],
         conf = args.config_path)
     )
 
-    run_simple ('localhost', 5000, app)
+    run_simple (app.config['APPLICATION_HOST'], app.config['APPLICATION_PORT'], app)

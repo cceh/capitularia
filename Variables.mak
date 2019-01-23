@@ -1,3 +1,8 @@
+PRJ_DIR := prj/capitularia/capitularia
+
+ROOT      := $(UNI_DIR)/$(PRJ_DIR)
+HOST_ROOT := $(CAPITULARIA_HOST_USER)@$(CAPITULARIA_HOST)
+
 AFS     := $(or $(CAPITULARIA_AFS),/afs/rrz/vol/www/projekt/capitularia)
 LOCALFS := $(or $(CAPITULARIA_LOCALFS),/var/www/capitularia)
 BROWSER := $(or $(BROWSER),firefox)
@@ -9,8 +14,15 @@ TRANSFORM := $(AFS)/http/docs/cap/publ/transform
 
 WPCONTENTLOCAL := $(LOCALFS)/wp-content
 
-NODE_MODULES := ../../node_modules
+CLIENT       := $(ROOT)/client
+SERVER       := $(ROOT)/server
+HOST_CLIENT  := $(AFS)/http/docs/client
+HOST_SERVER  := $(HOST_ROOT):~/$(PRJ_DIR)/server
+
+NODE_MODULES := $(ROOT)/node_modules
 NODE         := $(NODE_MODULES)/.bin
+
+NAT_EARTH    := http://naciscdn.org/naturalearth
 
 BABEL           = $(NODE)/babel
 BABELFLAGS      = --source-maps true
@@ -25,6 +37,7 @@ JSHINTFLAGS     = --reporter=unix
 STYLELINT       = $(NODE)/stylelint $(STYLELINTFLAGS)
 STYLELINTFLAGS  = -f unix
 RSYNC          := rsync -rlptz --exclude='*~' --exclude='.*'
+RSYNCPY        := $(RSYNC) --exclude "**/__pycache__"  --exclude "*.pyc"
 
 PHP_FILES         ?= $(wildcard $(PHP_SRC)/*.php)
 JS_SRC_FILES      ?= $(wildcard $(JS_SRC)/*.js)

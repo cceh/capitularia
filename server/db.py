@@ -205,13 +205,6 @@ class MsParts (Base):
     )
 
 
-view ('msparts_geo_view', Base.metadata, '''
-    SELECT count(distinct ms_id) as count, geonames.name AS name, ST_AsGeoJSON (geonames.geo)::json AS geo
-    FROM msparts
-      JOIN geonames USING (geo_id)
-    GROUP BY geonames.geo, geonames.name
-    ''')
-
 view ('msparts_view', Base.metadata, '''
     SELECT ms.ms_id, ms.title, p.ms_part, lower (p.date) as notbefore, upper (p.date) as notafter,
            g.geo_id, g.name, g.fcode, ST_AsGeoJSON (g.geo)::json AS geo, g.blob
