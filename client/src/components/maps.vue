@@ -24,25 +24,28 @@
 
     <div class="info-panels">
       <div v-for="p in info_panels" class="card info-panel">
-        <div class="card-body">
+        <div class="card-header text-white" :data-fcode="p.fcode">
           <h5 class="card-title">{{ p.title }}</h5>
+          <h6 class="card-subtitle">{{ p.subtitle }}</h6>
         </div>
-        <table class="table table-sm">
-          <thead>
-            <tr>
-              <th>Manuscript</th>
-              <th>Part</th>
-              <th>Created</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="row in p.rows">
-              <td>{{ row.ms_id }}</td>
-              <td>{{ row.ms_part }}</td>
-              <td>{{ row.date_range }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper mb-0">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>Manuscript</th>
+                <th>Part</th>
+                <th>Created</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in p.rows">
+                <td>{{ row.ms_id }}</td>
+                <td>{{ row.ms_part }}</td>
+                <td>{{ row.date_range }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -62,25 +65,6 @@ import _   from 'lodash';
 import map        from 'map.vue';
 import toolbar    from 'widgets/toolbar.vue';
 
-/**
- * Transform a string so that numbers in the string sort naturally.
- *
- * Transform any contiguous run of digits so that it sorts
- * naturally during an alphabetical sort. Every run of digits gets
- * the length of the run prepended, eg. 123 => 3123, 123456 =>
- * 6123456.
- *
- * @function natural_sort
- *
- * @param {String} s - The input string
- *
- * @returns {String} The transformed string
- */
-
-export function natural_sort (s) {
-    return s.replace (/\d+/g, (match, dummy_offset, dummy_string) => match.length + match);
-}
-
 export default {
     'components' : {
         'toolbar'    : toolbar,
@@ -98,27 +82,11 @@ export default {
     },
     'methods' : {
         on_mss_tooltip_open (event) {
-            const data  = event.detail.data;
-            const mss = data.properties.mss;
-            const rows = [];
-
-            for (const ms of _.sortBy (mss, o => { return natural_sort (o.properties.ms_id + o.properties.ms_part); })) {
-                const props = ms.properties;
-                rows.push ({
-                    'ms_id'      : props.ms_id,
-                    'ms_part'    : props.ms_part,
-                    'date_range' : `${props.notbefore}-${props.notafter}`,
-                });
-            }
-            const p = {
-                'title' : data.properties.name,
-                'rows' : rows,
-            };
             this.info_panels.pop ();
-            this.info_panels.push (p);
+            this.info_panels.push (event.detail.data);
         },
         on_mss_tooltip_close (event) {
-            // this.info_panels.pop ();
+            this.info_panels.pop ();
         },
     },
     'mounted' : function () {
@@ -135,18 +103,28 @@ export default {
     width: 5em;
 }
 
-div.info-pane-control {
-    pointer-events: none;
-}
-
 div.info-panel {
 	background: rgba(255,255,255,0.9);
-    .card-body {
-        padding-left: 0.3rem;
+
+    .card-header {
+        opacity: 0.5;
+        background: red;
+        &[data-fcode^="PCL"] {
+            background: blue;
+        };
+        &[data-fcode^="ADM"] {
+            background: green;
+        };
     }
-    .card-title {
-        margin-bottom: 0;
+
+    div.table-wrapper {
+        max-height: 30em;
+        overflow-y: auto;
+        table.table {
+	        background: transparent;
+        }
     }
 }
+
 
 </style>

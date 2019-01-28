@@ -11,7 +11,7 @@ GEODATA_SRC_DIR    = src/geodata
 GEODATA_DEST_DIR   = build/geodata
 GEODATA_JSON_FILES = $(GEODATA_DEST_DIR)/10m_cultural/ne_10m_admin_0_boundary_lines_land.json \
 					 $(GEODATA_DEST_DIR)/10m_cultural/ne_10m_admin_0_countries.json           \
-					 $(GEODATA_DEST_DIR)/10m_cultural/ne_10m_admin_1_states_provinces.json
+					 $(GEODATA_DEST_DIR)/countries-843.geojson
 
 AUX := build/index.html build/api.conf.js $(GEODATA_JSON_FILES)
 
@@ -58,6 +58,9 @@ geodata: $(GEODATA_JSON_FILES)
 $(GEODATA_DEST_DIR)/%.json : $(GEODATA_SRC_DIR)/%.shp
 	-mkdir -p $(GEODATA_DEST_DIR)/10m_cultural
 	ogr2ogr -f GeoJSON -simplify 0.01 -spat -30 30 60 90 -t_srs epsg:4326 $@ $<
+
+$(GEODATA_DEST_DIR)/%.geojson : $(GEODATA_SRC_DIR)/%.geojson
+	cp $< $@
 
 
 install_prereq:

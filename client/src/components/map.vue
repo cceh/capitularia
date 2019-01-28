@@ -1,5 +1,7 @@
 <template>
-  <div id="map"></div>
+    <div id="map"
+       @mss-tooltip-open="on_mss_tooltip_open">
+    </div>
 </template>
 
 <script>
@@ -10,6 +12,13 @@
  * @author Marcello Perathoner
  *
  * GeoJSON specs: https://tools.ietf.org/html/rfc7946
+ *
+ * Geonames: FCODE http://www.geonames.org/export/codes.html
+ *
+ * Georeferenced Maps: http://www.naturalearthdata.com/
+ *
+ * Atlas General Vidal de la Blache as PDF with exportable maps:
+ * http://bibliotheque-virtuelle.clermont-universite.fr/item/BCU_Atlas_general_Vidal_Lablache_1898
  */
 
 import $        from 'jquery';
@@ -18,6 +27,29 @@ import L        from 'leaflet';
 import _        from 'lodash';
 
 import '../../node_modules/leaflet/dist/leaflet.css';
+
+/**
+ * Transform a string so that numbers in the string sort naturally.
+ *
+ * Transform any contiguous run of digits so that it sorts
+ * naturally during an alphabetical sort. Every run of digits gets
+ * the length of the run prepended, eg. 123 => 3123, 123456 =>
+ * 6123456.
+ *
+ * @function natural_sort
+ *
+ * @param {String} s - The input string
+ *
+ * @returns {String} The transformed string
+ */
+
+export function natural_sort (s) {
+    return s.replace (/\d+/g, (match, dummy_offset, dummy_string) => match.length + match);
+}
+
+function fcode (d) {
+    return d.properties.fcode || d.properties.featurecla.replace ('Admin-0 country', 'PCLI');
+}
 
 // A Leaflet layer that uses D3 to display features.  Easily styleable with CSS.
 
@@ -83,8 +115,17 @@ L.D3_geoJSON = L.GeoJSON.extend ({
 
 L.Layer_Borders = L.D3_geoJSON.extend ({
     d3_init (geojson) {
+        const vm = this.options.vm;
+
         const updated = this.g.selectAll ('path').data (geojson.features);
-        this.features = updated.enter ().append ('path');
+        this.features = updated.enter ()
+            .append ('path')
+            .attr ('data-fcode', fcode);
+
+        this.features.on ('click', function (d) {
+            d3.event.stopPropagation ();
+            vm.$trigger ('mss-tooltip-open', d);
+        });
     },
     d3_update (geojson) {
         this.features.attr ('d', this.transform_path);
@@ -113,9 +154,10 @@ L.Layer_Places = L.D3_geoJSON.extend ({
 
         entered.append ('circle')
             .attr ('class', 'count')
+            .attr ('data-fcode', fcode);
 
         entered.append ('text')
-            .attr ('class', 'count')
+            .attr ('class', 'count');
 
         entered.append ('text')
             .attr ('class', 'name')
@@ -124,12 +166,9 @@ L.Layer_Places = L.D3_geoJSON.extend ({
                 return d.properties.name;
             });
 
-        entered.on ('mouseover', function (d) {
+        entered.on ('click', function (d) {
+            d3.event.stopPropagation ();
             vm.$trigger ('mss-tooltip-open', d);
-        });
-
-        entered.on ('mouseout', function (d) {
-            vm.$trigger ('mss-tooltip-close', d);
         });
 
         entered.merge (g).attr ('transform', (d) => {
@@ -149,6 +188,8 @@ L.Layer_Places = L.D3_geoJSON.extend ({
 L.Control.Info_Pane = L.Control.extend ({
     onAdd (map) {
 	    this._div = L.DomUtil.create ('div', 'info-pane-control');
+        L.DomEvent.disableClickPropagation (this._div);
+        L.DomEvent.disableScrollPropagation (this._div);
 	    $ (this._div).append ($ ('div.info-panels'));
 	    // this._div.innerHTML = '<h4>hello, world</h4>';
 	    return this._div;
@@ -180,33 +221,68 @@ export default {
         },
     },
     'methods' : {
-        geo_filter (features, polygon) {
-            // include only features located inside polygon
+        date_filter (features, tb) {
+            // filter by date range
             return _.filter (
                 features,
-                function (o) {
-                    d3.geoContains (polygon, o.geometry.coordinates);
-                }
-            );
-        },
-        update_map () {
-            const tb = this.toolbar;
-
-            // filter by date range
-            let features = _.filter (
-                this.parts_data.features,
                 function (o) {
                     const p = o.properties;
                     return (p.notbefore < tb.notafter) && (tb.notbefore < p.notafter);
                 }
             );
-            // group by place
-            features = _.groupBy (
+        },
+        geo_filter (features, polygon) {
+            // include only features located inside polygon
+            return _.filter (
                 features,
+                function (o) {
+                    return d3.geoContains (polygon, o.geometry.coordinates);
+                }
+            );
+        },
+        on_mss_tooltip_open (event) {
+            event.stopPropagation ();
+
+            const data  = event.detail.data;
+            let mss = null;
+
+            if (data.geometry.type === 'Point') {
+                // get manuscripts from data
+                mss = data.properties.mss;
+            } else {
+                // get manuscripts inside polygon
+                mss = this.date_filter (this.parts_data.features, this.toolbar);
+                mss = this.geo_filter (mss, data);
+            }
+
+            const rows = [];
+            for (const ms of _.sortBy (mss, o => { return natural_sort (o.properties.ms_id + o.properties.ms_part); })) {
+                const props = ms.properties;
+                rows.push ({
+                    'ms_id'      : props.ms_id,
+                    'ms_part'    : props.ms_part,
+                    'date_range' : `${props.notbefore}-${props.notafter}`,
+                });
+            }
+            const p = {
+                'title'    : `${data.properties.name || data.properties.NAME}`,
+                'subtitle' : `${fcode (data)} - ${rows.length} mss.`,
+                'fcode'    : fcode (data),
+                'rows'  : rows,
+            };
+            this.$parent.$trigger ("mss-tooltip-open", p);
+        },
+        update_map () {
+            // filter by date range
+            let ms_parts = this.date_filter (this.parts_data.features, this.toolbar);
+
+            // group by place
+            ms_parts = _.groupBy (
+                ms_parts,
                 function (o) { return o.properties.geo_id; }
             );
             // join with geo data
-            features = _.map (Object.entries (features), (o) => {
+            ms_parts = _.map (Object.entries (ms_parts), (o) => {
                 const [geo_id, grouped] = o;
                 const g = this.geo_data[geo_id];
                 return {
@@ -214,13 +290,14 @@ export default {
                     'properties' : {
                         'geo_id' : geo_id,
                         'name'   : g.properties.name,
+                        'fcode'  : fcode (g),
                         'count'  : grouped.length,
                         'mss'    : grouped,
                     },
                     'type' : 'Feature'
                 };
             });
-            this.layer_mss.addData ({ 'type' : 'FeatureCollection', 'features' : features });
+            this.layer_mss.addData ({ 'type' : 'FeatureCollection', 'features' : ms_parts });
         },
     },
     'mounted' : function () {
@@ -231,27 +308,29 @@ export default {
             'zoomControl' : false,
         });
 
-        const capitularia = L.tileLayer (
-            vm.build_full_api_url ('tile/{z}/{x}/{y}.png'), {
-                'attribution' : '&copy; Capitularia'
+        const natural_earth = L.tileLayer (
+            vm.build_full_api_url ('tile/ne/{z}/{x}/{y}.png'), {
+                'attribution' : '&copy; <a href="http://www.naturalearthdata.com/">Natural Earth</a>'
             }).addTo (map);
+
+        const vidal_lablache = L.tileLayer (
+            vm.build_full_api_url ('tile/vl/{z}/{x}/{y}.png'), {
+                'attribution' : 'Atlas VIDAL-LABLACHE - Anno 843'
+            });
 
         const openstreetmap = L.tileLayer (
             'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 'attribution' : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             });
 
-        const toolserver = L.tileLayer (
-            'http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
-                'attribution' : '&copy; toolserver.org Mapnik'
-            });
-
         const layer_countries = new L.Layer_Borders (null, {
-            'class' : 'countries',
+            'class' : 'countries countries-modern',
+            'vm'    : vm,
         });
 
-        const layer_provinces = new L.Layer_Borders (null, {
-            'class' : 'provinces',
+        const layer_countries_843 = new L.Layer_Borders (null, {
+            'class' : 'countries countries-843',
+            'vm'    : vm,
         });
 
         const layer_mss = new L.Layer_Places (null, {
@@ -262,28 +341,28 @@ export default {
         this.layer_mss = layer_mss;
 
         const baseLayers = {
-            'Capitularia'   : capitularia,
+            'Natural Earth' : natural_earth,
             'OpenStreetMap' : openstreetmap,
-            'Mapnik'        : toolserver,
         };
         const overlays   = {
-            'Manuscripts' : layer_mss,
-            'Countries'   : layer_countries,
-            'Provinces'   : layer_provinces,
+            'Atlas Vidal de la Blache - Anno 843' : vidal_lablache,
+            'Manuscripts'          : layer_mss,
+            'Countries - Modern'   : layer_countries,
+            'Countries - Anno 843' : layer_countries_843,
         };
         L.control.layers (baseLayers, overlays).addTo (map);
         new L.Control.Info_Pane ({ position: 'bottomleft' }).addTo (map);
 
-        const xhr_countries = d3.json ('/client/geodata/10m_cultural/ne_10m_admin_0_countries.json');
-        const xhr_provinces = d3.json ('/client/geodata/10m_cultural/ne_10m_admin_1_states_provinces.json');
+        const xhr_countries     = d3.json ('/client/geodata/10m_cultural/ne_10m_admin_0_countries.json');
+        const xhr_countries_843 = d3.json ('/client/geodata/countries-843.geojson');
         const xhr_places    = d3.json (vm.build_full_api_url ('places.json'));
         const xhr_parts     = d3.json (vm.build_full_api_url ('msparts.json'));
 
-        Promise.all ([xhr_countries, xhr_provinces, xhr_places, xhr_parts]).then ((responses) => {
-            const [data_countries, data_provinces, data_places, data_parts] = responses;
+        Promise.all ([xhr_countries, xhr_countries_843, xhr_places, xhr_parts]).then ((responses) => {
+            const [data_countries, data_countries_843, data_places, data_parts] = responses;
 
             layer_countries.addData (data_countries);
-            layer_provinces.addData (data_provinces);
+            layer_countries_843.addData (data_countries_843);
 
             this.geo_data = Object ();
             for (const o of data_places.features) {
@@ -297,6 +376,11 @@ export default {
 
             this.update_map ();
         });
+
+        d3.select (vm.$el).on ('click', function () {
+            vm.$trigger ('mss-tooltip-close');
+        });
+
     },
 };
 </script>
@@ -306,8 +390,8 @@ export default {
 @import "bootstrap-custom";
 
 #map {
-  width: 100%;
-  height: 960px;
+    width: 100%;
+    height: 960px;
 }
 
 .leaflet-control-layers-toggle {
@@ -326,7 +410,7 @@ svg {
         &.countries {
             z-index: 200;
         }
-        &.provinces {
+        &.countries-843 {
             z-index: 201;
         }
         &.mss {
@@ -344,18 +428,14 @@ svg {
             path {
                 stroke: white;
                 &:hover {
+                    fill-opacity: .7;
                     fill: red;
-                    fill-opacity: .7;
-                }
-            }
-        }
-
-        &.provinces {
-            path {
-                stroke: white;
-                &:hover {
-                    fill: #f0f;
-                    fill-opacity: .7;
+                    &[data-fcode^="PCL"] {
+                        fill: blue;
+                    };
+                    &[data-fcode^="ADM"] {
+                        fill: green;
+                    };
                 }
             }
         }
@@ -369,7 +449,13 @@ svg {
             &:hover {
                 fill: red;
                 fill-opacity: .7;
-            }
+            };
+            &[data-fcode^="PCL"] {
+                fill: blue;
+            };
+            &[data-fcode^="ADM"] {
+                fill: green;
+            };
         }
 
         text {
@@ -401,15 +487,6 @@ svg.countries[data-zoom^="ZZZZZZZZ"] {
     path {
         stroke-width: 3px;
     }
-}
-
-div.info-pane-control-xxx {
-	padding: 6px 8px;
-	font: 14px/16px Arial, Helvetica, sans-serif;
-	background: white;
-	background: rgba(255,255,255,0.8);
-	box-shadow: 0 0 15px rgba(0,0,0,0.2);
-	border-radius: 5px;
 }
 
 </style>

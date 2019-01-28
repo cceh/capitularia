@@ -1,7 +1,26 @@
 #!/usr/bin/python3
 # -*- encoding: utf-8 -*-
 
-"""API server for Capitularia."""
+"""API server for Capitularia.
+
+Georeferencing Maps
+-------------------
+
+- Find a suitable map
+
+- Open the Gimp
+- Perspective correct the map
+- Crop the map
+
+- Open QGIS
+- Select Raster | Georeferencer
+- Add GCPs
+- Settings
+- Start Georeferencing
+
+Paris Meridian: 2.337208333333°
+
+"""
 
 import argparse
 import collections
@@ -24,17 +43,26 @@ from . import db_tools
 from .db_tools import execute, log
 from . import db
 
+MAP_STYLES = {
+    'ne' : 'mapnik-natural-earth.xml',
+    'vl' : 'mapnik-vidal-lablache.xml',
+}
+
 MAX_ZOOM = 18
 TILE_SIZE = 256
 METATILE_SIZE = 8
-
-app  = flask.Flask (__name__)
-map_ = mapnik.Map (TILE_SIZE, TILE_SIZE)
-mapnik.load_map (map_, os.path.join (os.path.dirname (os.path.abspath (__file__)), "mapnik-style.xml"))
+DIR = os.path.dirname (os.path.abspath (__file__))
 
 epsg3857 = mapnik.Projection ("+init=epsg:3857") # OpenstreetMap  https://epsg.io/3857
 epsg4326 = mapnik.Projection ("+init=epsg:4326") # WGS84 / GPS    https://epsg.io/4326
 
+app  = flask.Flask (__name__)
+MAPS = {}
+
+for mapid in MAP_STYLES:
+    map_ = mapnik.Map (TILE_SIZE, TILE_SIZE)
+    mapnik.load_map (map_, os.path.join (DIR, MAP_STYLES[mapid]))
+    MAPS[mapid] = map_
 
 def make_json_response (json = None, status = 200, message = None):
     d = dict (status = status)
@@ -158,10 +186,10 @@ class Render:
 
 
 @app.endpoint ('tile.png')
-def tile_png (zoom, xtile, ytile, type_='png'):
+def tile_png (mapid, zoom, xtile, ytile, type_='png'):
     """ Return a png tile. """
 
-    rd  = Render (map_)
+    rd  = Render (MAPS[mapid])
     png = rd.render_tile (xtile, ytile, zoom)
 
     return flask.Response (png, mimetype = 'image/png')
@@ -171,7 +199,7 @@ def tile_png (zoom, xtile, ytile, type_='png'):
 def places_json ():
     """ Return all places. """
 
-    FIELDS = 'geo, name, geo_id'
+    FIELDS = 'geo, name, fcode, geo_id'
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
@@ -239,10 +267,10 @@ if __name__ == "__main__":
     app.config.dba = db_tools.PostgreSQLEngine (**app.config)
 
     app.url_map = Map ([
-        Rule ('/',                                             endpoint = 'index'),
-        Rule ('/tile/<int:zoom>/<int:xtile>/<int:ytile>.png',  endpoint = 'tile.png'),
-        Rule ('/places.json',                                  endpoint = 'places.json'),
-        Rule ('/msparts.json',                                 endpoint = 'msparts.json'),
+        Rule ('/',                                                     endpoint = 'index'),
+        Rule ('/tile/<mapid>/<int:zoom>/<int:xtile>/<int:ytile>.png',  endpoint = 'tile.png'),
+        Rule ('/places.json',                                          endpoint = 'places.json'),
+        Rule ('/msparts.json',                                         endpoint = 'msparts.json'),
     ])
 
     log (logging.INFO, "Mounted {name} at {host}:{port} from conf {conf}".format (
