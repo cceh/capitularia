@@ -10,13 +10,14 @@
  * @author Marcello Perathoner
  */
 
+import _            from 'lodash';
 import Vue          from 'vue';
 import VueRouter    from 'vue-router';
 import Vuex         from 'vuex';
 import BootstrapVue from 'bootstrap-vue';
 import url          from 'url';
 
-import maps         from '../components/maps.vue';
+import maps         from 'maps.vue';
 
 Vue.use (Vuex);
 Vue.use (BootstrapVue);
@@ -33,32 +34,34 @@ const router = new VueRouter ({
 
 const store = new Vuex.Store ({
     'state' : {
-        'ranges'    : [],
-        'leitzeile' : [],
-        'passage'   : {
-            'pass_id' : 0,
-            'hr'      : '',
+        'dates' : {    // date range of manuscripts to consider
+            'notbefore' :  500,
+            'notafter'  : 2000,
         },
-        'current_application' : {
-            'name' : 'ntg',
-        },
-        'current_user' : {
-            'is_logged_in' : false,
-            'is_editor'    : false,
-            'username'     : 'anonymous',
-        },
+        'capitularies' : '', // space separated list of capitularies
+        'type' : 'mss',      // type of artifacts to show mss, msp or cap
     },
     'mutations' : {
-        passage (state, data) {
-            Object.assign (state, data);
+        toolbar_range (state, data) {
+            _.merge (state, {
+                'dates' : {
+                    'notbefore' : Number (data.dates.notbefore),
+                    'notafter'  : Number (data.dates.notafter),
+                },
+                'capitularies' : data.capitularies,
+            });
         },
-        current_app_and_user (state, data) {
-            state.current_application = data[0];
-            state.current_user        = data[1];
+        toolbar_type (state, data) {
+            this.state.type = data.type;
         },
     },
     'getters' : {
-        'passage' : state => state.passage,
+        'xhr_params' : state => ({
+            'notbefore'    : state.dates.notbefore,
+            'notafter'     : state.dates.notafter,
+            'capitularies' : state.capitularies,
+        }),
+        'type' : state => state.type,
     },
 });
 
@@ -73,32 +76,12 @@ export default {
     'computed' : {
         api_url () { return url.resolve (api_base_url, '/'); },
     },
-    'watch' : {
-        api_url () { return this.update_globals; },
-    },
-    'methods' : {
-        update_globals () {
-            const requests = [
-                this.get ('application.json'),
-                this.get ('user.json'),
-            ];
-            Promise.all (requests).then ((responses) => {
-                store.commit ('current_app_and_user', [
-                    responses[0].data.data,
-                    responses[1].data.data,
-                ]);
-            });
-        },
-    },
-    mounted () {
-        // this.update_globals ();
-    },
 };
 
 </script>
 
 <style lang="scss">
-@import "../css/bootstrap-custom.scss";
+@import "bootstrap-custom";
 
 /* bootstrap */
 @import "../../node_modules/bootstrap/scss/bootstrap";
@@ -106,6 +89,6 @@ export default {
 
 /* List of icons at: http://astronautweb.co/snippet/font-awesome/ */
 @import "../../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css";
-@import "../../node_modules/@fortawesome/fontawesome-free/css/solid.css";
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 
 </style>

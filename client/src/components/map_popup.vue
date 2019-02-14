@@ -1,0 +1,390 @@
+<template>
+  <card :card_id="d.card_id"
+        :position_target="d.position_target" :data-fcode="geo_fcode"
+        class="map-popup-vm card-closable card-draggable card-floating">
+
+    <card-caption class="bg-fcode" slot="caption">
+      <h5 class="card-title">{{ geo_name }} ({{ geo_fcode }})</h5>
+    </card-caption>
+
+    <div class="card-slidable">
+
+      <div class="card-header">
+        <toolbar :toolbar="toolbar">
+          <button-group type="radio" v-model="toolbar.type"
+                        :options="options.type" />
+        </toolbar>
+      </div>
+
+      <template v-if="toolbar.type == 'mss'">
+        <div class="card-header">
+          <h6 class="card-subtitle">{{ rows.length }} Manuscripts</h6>
+        </div>
+
+        <c3-chart :options="chart_options.mss" />
+
+        <div class="scroller mb-0">
+          <table class="table table-sm table-mss">
+            <thead>
+              <tr>
+                <th>Manuscript</th>
+                <th>Created</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in rows" :title="row.ms_title">
+                <td><a :href="'/mss/' + row.ms_id">{{ row.ms_id }}</a></td>
+                <td>{{ row.notbefore }}-{{ row.notafter }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </template>
+
+      <template v-if="toolbar.type == 'msp'">
+        <div class="card-header">
+          <h6 class="card-subtitle">{{ rows.length }} Manuscript Parts</h6>
+        </div>
+
+        <c3-chart :options="chart_options.msp" />
+
+        <div class="scroller mb-0">
+          <table class="table table-sm table-mss">
+            <thead>
+              <tr>
+                <th>Manuscript</th>
+                <th>Part</th>
+                <th>Created</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in rows" :title="row.msp_head">
+                <td><a :href="'/mss/' + row.ms_id">{{ row.ms_id }}</a></td>
+                <td>{{ row.ms_part }}</td>
+                <td>{{ row.notbefore }}-{{ row.notafter }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </template>
+
+      <template v-if="toolbar.type == 'cap'">
+        <div class="card-header">
+          <h6 class="card-subtitle">{{ rows.length }} Capitularies</h6>
+        </div>
+
+        <c3-chart :options="chart_options.cap" />
+
+        <div class="scroller mb-0">
+          <table class="table table-sm table-cap">
+            <thead>
+              <tr>
+                <th>Capitulary</th>
+                <th>Count</th>
+                <th>Created</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="row in rows" :title="row.cap_title">
+                <td><a :href="'/bk/' + row.cap_id">{{ row.cap_id }}</a></td>
+                <td>{{ row.count }}</td>
+                <td>{{ row.notbefore }}-{{ row.notafter }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </template>
+
+    </div>
+  </card>
+</template>
+
+<script>
+/**
+ * This module implements the map popup.
+ *
+ * @component map_popup
+ *
+ * @author Marcello Perathoner
+ */
+
+import { mapGetters } from 'vuex'
+
+import $         from 'jquery';
+import _         from 'lodash';
+import * as d3   from 'd3';
+import csv_parse from 'csv-parse/lib/sync';
+
+import card          from 'widgets/card.vue';
+import card_caption  from 'widgets/card_caption.vue';
+import toolbar       from 'widgets/toolbar.vue';
+import button_group  from 'widgets/button_group.vue';
+import frappe_charts from 'widgets/frappe_charts.vue';
+import c3_charts     from 'widgets/c3_charts.vue';
+
+import options       from 'toolbar_options.js';
+
+/**
+ * Transform a string so that numbers in the string sort naturally.
+ *
+ * Transform any contiguous run of digits so that it sorts
+ * naturally during an alphabetical sort. Every run of digits gets
+ * the length of the run prepended, eg. 123 => 3123, 123456 =>
+ * 6123456.
+ *
+ * @function natural_sort
+ *
+ * @param {String} s - The input string
+ *
+ * @returns {String} The transformed string
+ */
+
+export function natural_sort (s) {
+    s = s.replace ('foll.', 'fol.');
+    s = s.replace ('pp.',   'p.');
+    return s.replace (/\d+/g, (match, dummy_offset, dummy_string) => match.length + match);
+}
+
+const SORTFUNCS = {
+    'mss' : (d) => natural_sort (d.ms_id),
+    'msp' : (d) => natural_sort (d.ms_id + d.ms_part),
+    'cap' : (d) => natural_sort (d.cap_id),
+}
+
+const ENDPOINTS = {
+    'mss' : 'geo/mss.csv',
+    'msp' : 'geo/msparts.csv',
+    'cap' : 'geo/capitularies.csv',
+}
+
+export default {
+    'components' : {
+        'card'         : card,
+        'card-caption' : card_caption,
+        'toolbar'      : toolbar,
+        'button-group' : button_group,
+        'c3-chart'     : c3_charts,
+        'frappe-chart' : frappe_charts,
+    },
+    'props' : ['d'],
+    data () {
+        return {
+            'geo_name'  : '',
+            'geo_fcode' : '',
+            'rows'      : [],
+            'options'   : options,
+            'toolbar'   : {
+                'type'  : this.$store.state.type,
+            },
+            'chart_options' : {
+                'mss' : this.default_c3_chart_options (),
+                'msp' : this.default_c3_chart_options (),
+                'cap' : this.default_c3_chart_options (),
+            },
+        };
+    },
+    'computed' : {
+        ... mapGetters ([
+            'xhr_params',
+        ])
+    },
+    'watch' : {
+        'xhr_params' : function () {
+            this.update ();
+        },
+        'toolbar.type' : function () {
+            this.update ();
+        },
+    },
+    'methods' : {
+        default_c3_chart_options () {
+            return {
+                data: {
+                    columns: [],
+                    type: 'bar',
+                    labels: true,
+                },
+                axis: {
+                    rotated: true,
+                    x: {
+                        type: 'category',
+                        categories: [],
+                    },
+                    y: {
+                        show: false
+                    },
+                },
+                legend: {
+                    show: false
+                },
+                size: {
+                    height: 10,
+                },
+            };
+        },
+        calc_date (d) {
+            if (d.notbefore && d.notafter) {
+                return Math.floor ((+d.notbefore + +d.notafter) / 2.0)
+            }
+            return 0; // outside domain
+        },
+        category_name (bin) {
+            if (bin.x0 == 0) {
+                return 'undated';
+            }
+            if (bin.x0 == 1) {
+                return `-${bin.x1}`
+            }
+            if (bin.x1 >= 2000) {
+                return `${bin.x0}-`
+            }
+            return `${bin.x0}-${bin.x1}`
+        },
+        update () {
+            const vm   = this;
+            const type = vm.toolbar.type;
+
+            // get manuscripts inside area described by layer and id
+            vm.get (vm.build_url (vm.d)).then ((response) => {
+                vm.rows = _.sortBy (csv_parse (response.data, { 'columns' : true }), [SORTFUNCS[type]]);
+
+                const bins = vm.hist[type] (vm.rows);
+                const data = [type].concat (bins.map ((bin) => bin.length));
+
+                _.merge (vm.chart_options[type], this.default_c3_chart_options (), {
+                    'data' : {
+                        'columns' : [data],
+                    },
+                    'axis' : {
+                        'x' : {
+                            'categories' : bins.map (vm.category_name),
+                        },
+                    },
+                    'size' : {
+                        'height' : 24 * bins.length,
+                    },
+                });
+            });
+        },
+        build_url () {
+            const xhr_params = {
+                ... this.$store.getters.xhr_params,
+                'layer' : this.d.layer,
+                'id'    : this.d.id,
+            };
+            return ENDPOINTS[this.toolbar.type] + '?' + $.param (xhr_params);
+        },
+        download () {
+            window.open (this.build_full_api_url (this.build_url (), '_blank'));
+        },
+    },
+    created () {
+        this.hist = {
+            'mss' : d3.histogram ()
+                .domain ([0, 2000])
+                .thresholds ([1, 800, 900, 1000, 1100, 1200])
+                .value (this.calc_date),
+            'msp' : d3.histogram ()
+                .domain ([0, 2000])
+                .thresholds ([1, 800, 900, 1000, 1100, 1200])
+                .value (this.calc_date),
+            'cap' : d3.histogram ()
+                .domain ([0, 2000])
+                .thresholds ([1, 768, 814, 840])
+                .value (this.calc_date),
+        };
+    },
+    mounted () {
+        const vm = this;
+
+        // this.toolbar.csv = () => this.download ('geo/msparts.csv');
+        const p = vm.d.properties;
+        vm.geo_name  = p.geo_name;
+        vm.geo_fcode = p.geo_fcode;
+
+        vm.update ();
+    },
+};
+</script>
+
+<style lang="scss">
+/* map_popup.vue */
+@import "bootstrap-custom";
+
+div.map-popup-vm {
+    position: absolute;
+	background: rgba(255,255,255,0.9);
+
+    .card-header {
+        color: black;
+    }
+    .card-title {
+        margin-bottom: 0;
+    }
+    .card-subtitle {
+        margin-top: 0;
+    }
+
+    div.scroller {
+        max-height: 40em;
+        overflow-y: scroll;
+    }
+
+    table.relatives {
+        margin-bottom: 0;
+
+        th,
+        td {
+            padding-left: 0;
+            padding-right: 0;
+            text-align: right;
+
+            &:first-child {
+                padding-left: 1em;
+            }
+
+            &:last-child {
+                padding-right: 1em;
+            }
+
+            &.ms {
+                text-align: left;
+            }
+        }
+    }
+
+    &[data-fcode] {
+        div.bg-fcode {
+            opacity: 0.8;
+            background: $place-color;
+        }
+    }
+    &[data-fcode^="PCL"] {
+        div.bg-fcode {
+            background: $country-color;
+        }
+    }
+    &[data-fcode^="ADM"] {
+        div.bg-fcode {
+            background: $region-color;
+        }
+    }
+
+    div.chart-wrapper {
+        max-height: 30em;
+        overflow-y: auto;
+        path {
+            fill: none;
+        }
+    }
+
+    div.scroller {
+        max-height: 30em;
+        overflow-y: auto;
+        table.table {
+	        background: transparent;
+        }
+    }
+}
+
+</style>

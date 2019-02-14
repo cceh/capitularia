@@ -132,12 +132,46 @@ def compile (element, compiler, **kw):
     return element.drop
 
 def generic (metadata, create_cmd, drop_cmd, create_when='after-create', drop_when='before-drop'):
-    CreateGeneric (create_cmd).execute_at (create_when, metadata)
-    DropGeneric (drop_cmd).execute_at (drop_when, metadata)
+    if create_cmd:
+        CreateGeneric (create_cmd).execute_at (create_when, metadata)
+    if drop_cmd:
+        DropGeneric (drop_cmd).execute_at (drop_when, metadata)
 
 
 Base = declarative_base ()
 Base.metadata.schema = 'capitularia'
+
+Base_geolayers = declarative_base ()
+Base_geolayers.metadata.schema = 'capitularia'
+
+generic (Base.metadata, '''
+ALTER DEFAULT PRIVILEGES IN SCHEMA capitularia GRANT SELECT ON TABLES TO capitularia;
+''', None);
+
+class Geonames (Base):
+    r"""Geonames
+
+    Data scraped from geonames.org et al. and cached here.
+
+    .. sauml::
+       :include: geonames
+
+    """
+
+    __tablename__ = 'geonames'
+
+    geo_id      = Column (String ())
+    geo_source  = Column (String ()) # geonames, dnb, viaf
+
+    geo_name    = Column (String ())
+    geo_fcode   = Column (String ())
+    geom        = Column (Geometry ('POINT', srid=4326))
+    blob        = Column (JSONB)
+
+    __table_args__ = (
+        PrimaryKeyConstraint (geo_source, geo_id),
+    )
+
 
 class Manuscripts (Base):
     r"""Manuscripts
@@ -149,32 +183,8 @@ class Manuscripts (Base):
 
     __tablename__ = 'manuscripts'
 
-    ms_id   = Column (String, primary_key = True)
-    title   = Column (String)
-
-    __table_args__ = (
-    )
-
-
-class Geonames (Base):
-    r"""Geonames
-
-    Data scraped from geonames.org and cached here.
-
-    .. sauml::
-       :include: geonames
-
-    """
-
-    __tablename__ = 'geonames'
-
-    geo_id = Column (Integer,  primary_key = True)
-
-    name   = Column (String ())
-    fcode  = Column (String ())
-    geo    = Column (Geometry ('POINT', srid=4326))
-
-    blob   = Column (JSONB)
+    ms_id    = Column (String, primary_key = True)
+    ms_title = Column (String)
 
     __table_args__ = (
     )
@@ -192,28 +202,113 @@ class MsParts (Base):
 
     ms_id   = Column (String)
     ms_part = Column (String)
-    geo_id  = Column (Integer)
 
-    date    = Column (INT4RANGE)
-    leaf    = Column (ARRAY (String))
-    written = Column (ARRAY (String))
+    msp_head    = Column (String)
+    msp_date    = Column (INT4RANGE)
+    msp_leaf    = Column (ARRAY (String))
+    msp_written = Column (ARRAY (String))
 
     __table_args__ = (
         PrimaryKeyConstraint (ms_id, ms_part),
         ForeignKeyConstraint ([ms_id],  ['manuscripts.ms_id']),
-        ForeignKeyConstraint ([geo_id], ['geonames.geo_id']),
+    )
+
+
+class Capitularies (Base):
+    r"""Capitularies
+
+    .. sauml::
+       :include: capitularies
+
+    """
+
+    __tablename__ = 'capitularies'
+
+    cap_id    = Column (String, primary_key = True)
+    cap_title = Column (String)
+    cap_date  = Column (INT4RANGE)
+
+    __table_args__ = (
+    )
+
+
+class MnMsPartsGeonames (Base):
+    r"""The M:N relationship between msparts and geonames
+
+    .. sauml::
+       :include: mn_msparts_geonames
+
+    """
+
+    __tablename__ = 'mn_msparts_geonames'
+
+    ms_id      = Column (String)
+    ms_part    = Column (String)
+    geo_id     = Column (String)
+    geo_source = Column (String)
+
+    __table_args__ = (
+        PrimaryKeyConstraint (ms_id, ms_part, geo_source, geo_id),
+        ForeignKeyConstraint ([ms_id, ms_part], ['msparts.ms_id', 'msparts.ms_part']),
+        ForeignKeyConstraint ([geo_source, geo_id], ['geonames.geo_source', 'geonames.geo_id']),
+    )
+
+
+class MnMsPartsCapitularies (Base):
+    r"""The M:N relationship between msparts and capitularies
+
+    .. sauml::
+       :include: mn_msparts_capitularies
+
+    """
+
+    __tablename__ = 'mn_msparts_capitularies'
+
+    ms_id   = Column (String)
+    ms_part = Column (String)
+    cap_id  = Column (String)
+
+    __table_args__ = (
+        PrimaryKeyConstraint (ms_id, ms_part, cap_id),
+        ForeignKeyConstraint ([ms_id, ms_part], ['msparts.ms_id', 'msparts.ms_part']),
+        ForeignKeyConstraint ([cap_id],         ['capitularies.cap_id']),
     )
 
 
 view ('msparts_view', Base.metadata, '''
-    SELECT ms.ms_id, ms.title, p.ms_part, lower (p.date) as notbefore, upper (p.date) as notafter,
-           g.geo_id, g.name, g.fcode, ST_AsGeoJSON (g.geo)::json AS geo, g.blob
-    FROM msparts p
+    SELECT ms.ms_id, ms.ms_title, msp.ms_part, msp.msp_head,
+           msp.msp_date, lower (msp.msp_date) as msp_notbefore, upper (msp.msp_date) as msp_notafter,
+           g.geo_id, g.geo_source, g.geo_name, g.geo_fcode, g.geom
+    FROM msparts msp
       JOIN manuscripts ms USING (ms_id)
-      JOIN geonames g USING (geo_id)
+      JOIN mn_msparts_geonames mn USING (ms_id, ms_part)
+            JOIN geonames g USING (geo_source, geo_id)
     ''')
 
-view ('geonames_view', Base.metadata, '''
-    SELECT geo_id, name, fcode, ST_AsGeoJSON (geonames.geo)::json AS geo, blob
-    FROM geonames
+
+view ('capitularies_view', Base.metadata, '''
+    SELECT ms.ms_id, ms.ms_title, msp.ms_part, msp.msp_head,
+           msp.msp_date, lower (msp.msp_date) as msp_notbefore, upper (msp.msp_date) as msp_notafter,
+           cap.cap_id, cap.cap_title,
+           cap.cap_date, lower (cap.cap_date) as cap_notbefore, upper (cap.cap_date) as cap_notafter
+    FROM msparts msp
+      JOIN manuscripts ms USING (ms_id)
+      JOIN mn_msparts_capitularies mn USING (ms_id, ms_part)
+            JOIN capitularies cap USING (cap_id)
     ''')
+
+
+for table in 'countries_843 countries_870 countries_888 countries_modern regions_843'.split ():
+    fulltable = 'capitularia.' + table
+    generic (Base_geolayers.metadata, '''
+        CREATE TABLE {fulltable} (
+            geo_id    serial PRIMARY KEY,
+            geo_name  character varying,
+            geo_fcode character varying,
+            geom      geometry(MultiPolygon,4326)
+        );
+        CREATE INDEX {table}_geom_idx ON {fulltable} USING gist (geom);
+        '''.format (table = table, fulltable = fulltable), '''
+        DROP TABLE IF EXISTS {table} CASCADE;
+        '''.format (table = table)
+    );

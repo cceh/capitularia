@@ -1,7 +1,7 @@
 PRJ_DIR := prj/capitularia/capitularia
 
 ROOT      := $(UNI_DIR)/$(PRJ_DIR)
-HOST_ROOT := $(CAPITULARIA_HOST_USER)@$(CAPITULARIA_HOST)
+HOST_ROOT := $(CAPITULARIA_SSHUSER)@$(CAPITULARIA_SSHHOST)
 
 AFS     := $(or $(CAPITULARIA_AFS),/afs/rrz/vol/www/projekt/capitularia)
 LOCALFS := $(or $(CAPITULARIA_LOCALFS),/var/www/capitularia)
@@ -16,6 +16,8 @@ WPCONTENTLOCAL := $(LOCALFS)/wp-content
 
 CLIENT       := $(ROOT)/client
 SERVER       := $(ROOT)/server
+GIS          := $(ROOT)/gis
+
 HOST_CLIENT  := $(AFS)/http/docs/client
 HOST_SERVER  := $(HOST_ROOT):~/$(PRJ_DIR)/server
 
@@ -36,7 +38,7 @@ JSHINT         := jshint
 JSHINTFLAGS     = --reporter=unix
 STYLELINT       = $(NODE)/stylelint $(STYLELINTFLAGS)
 STYLELINTFLAGS  = -f unix
-RSYNC          := rsync -rlptz --exclude='*~' --exclude='.*'
+RSYNC          := rsync -v -rlptz --exclude='*~' --exclude='.*'
 RSYNCPY        := $(RSYNC) --exclude "**/__pycache__"  --exclude "*.pyc"
 
 PHP_FILES         ?= $(wildcard $(PHP_SRC)/*.php)

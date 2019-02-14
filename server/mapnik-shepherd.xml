@@ -1,0 +1,20 @@
+<Map background-color="transparent" srs="+init=epsg:3857">
+  <Style name="earth">
+    <Rule>
+      <RasterSymbolizer />
+    </Rule>
+  </Style>
+
+  <Layer name="earth" srs="+init=epsg:4326">
+    <StyleName>earth</StyleName>
+    <Datasource>
+      <Parameter name="type">gdal</Parameter>
+      <Parameter name="file">geodata/Shepherd-Carolingian-Empire-843-888.tif</Parameter>
+      <Parameter name="lox">min_x</Parameter>
+      <Parameter name="loy">min_y</Parameter>
+      <Parameter name="hix">max_x</Parameter>
+      <Parameter name="hiy">max_y</Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>

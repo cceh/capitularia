@@ -1,6 +1,5 @@
 <template>
-    <div id="map"
-       @mss-tooltip-open="on_mss_tooltip_open">
+    <div id="map">
     </div>
 </template>
 
@@ -21,6 +20,8 @@
  * http://bibliotheque-virtuelle.clermont-universite.fr/item/BCU_Atlas_general_Vidal_Lablache_1898
  */
 
+import { mapGetters } from 'vuex'
+
 import $        from 'jquery';
 import * as d3  from 'd3';
 import L        from 'leaflet';
@@ -28,27 +29,71 @@ import _        from 'lodash';
 
 import '../../node_modules/leaflet/dist/leaflet.css';
 
-/**
- * Transform a string so that numbers in the string sort naturally.
- *
- * Transform any contiguous run of digits so that it sorts
- * naturally during an alphabetical sort. Every run of digits gets
- * the length of the run prepended, eg. 123 => 3123, 123456 =>
- * 6123456.
- *
- * @function natural_sort
- *
- * @param {String} s - The input string
- *
- * @returns {String} The transformed string
- */
+const AREA_LAYERS = [
+    {
+        'layer'      : 'countries_843',
+        'title'      : 'Countries - Anno 843',
+        'class'      : 'countries countries-843',
+        'datasource' : '/client/geodata/countries_843.geojson',
+    },
+    {
+        'layer'      : 'regions_843',
+        'title'      : 'Regions - Anno 843',
+        'class'      : 'regions regions-843',
+        'datasource' : '/client/geodata/regions_843.geojson',
+    },
+    {
+        'layer'      : 'countries_870',
+        'title'      : 'Countries - Anno 870',
+        'class'      : 'countries countries-870',
+        'datasource' : '/client/geodata/countries_870.geojson',
+    },
+    {
+        'layer'      : 'countries_888',
+        'title'      : 'Countries - Anno 888',
+        'class'      : 'countries countries-888',
+        'datasource' : '/client/geodata/countries_888.geojson',
+    },
+    {
+        'layer'      : 'countries_modern',
+        'title'      : 'Countries - Modern',
+        'class'      : 'countries countries-modern',
+        'datasource' : '/client/geodata/countries_modern.geojson',
+    },
+];
 
-export function natural_sort (s) {
-    return s.replace (/\d+/g, (match, dummy_offset, dummy_string) => match.length + match);
-}
+const PLACE_LAYERS = [
+    {
+        'layer'      : 'geonames',
+        'title'      : 'Manuscripts',
+        'class'      : 'places mss',
+        'datasource' : 'geo/places/mss.json',
+        'type'       : 'mss',
+    },
+    {
+        'layer'      : 'geonames',
+        'title'      : 'Manuscript Parts',
+        'class'      : 'places msparts',
+        'datasource' : 'geo/places/msparts.json',
+        'type'       : 'msp',
+    },
+    {
+        'layer'      : 'geonames',
+        'title'      : 'Capitularies',
+        'class'      : 'places capitularies',
+        'datasource' : 'geo/places/capitularies.json',
+        'type'       : 'cap',
+    },
+];
 
-function fcode (d) {
-    return d.properties.fcode || d.properties.featurecla.replace ('Admin-0 country', 'PCLI');
+const RE_CAP = new RegExp ('^(\w+)[._](\d+)');
+
+function add_centroids (feature_collection) {
+    if (feature_collection.type == 'FeatureCollection') {
+        for (const feature of feature_collection.features) {
+            feature.properties.centroid = d3.geoCentroid (feature);
+        }
+    }
 }
 
 // A Leaflet layer that uses D3 to display features.  Easily styleable with CSS.
@@ -86,6 +131,7 @@ L.D3_geoJSON = L.GeoJSON.extend ({
         this.svg = null;
         this.g   = null;
         this.map = null;
+        L.GeoJSON.prototype.onRemove.call (this, map);
     },
     addData (geojson) {
         this.geojson = geojson;
@@ -114,16 +160,29 @@ L.D3_geoJSON = L.GeoJSON.extend ({
 });
 
 L.Layer_Borders = L.D3_geoJSON.extend ({
+    onAdd (map) {
+        L.D3_geoJSON.prototype.onAdd.call (this, map);
+        this.update ();
+    },
+    update () {
+        const layer = this;
+        const opt = this.options;
+        d3.json (opt.datasource).then (function (json) {
+            layer.addData (json);
+        });
+    },
     d3_init (geojson) {
+        const that = this;
         const vm = this.options.vm;
 
         const updated = this.g.selectAll ('path').data (geojson.features);
         this.features = updated.enter ()
             .append ('path')
-            .attr ('data-fcode', fcode);
+            .attr ('data-fcode', d => d.properties.geo_fcode);
 
         this.features.on ('click', function (d) {
             d3.event.stopPropagation ();
+            d.layer = that.options.layer;
             vm.$trigger ('mss-tooltip-open', d);
         });
     },
@@ -133,17 +192,39 @@ L.Layer_Borders = L.D3_geoJSON.extend ({
 })
 
 L.Layer_Places = L.D3_geoJSON.extend ({
+    onAdd (map) {
+        L.D3_geoJSON.prototype.onAdd.call (this, map);
+        this.update ();
+    },
+    onRemove (map) {
+        const t = d3.transition ()
+            .duration (300)
+            .ease (d3.easeLinear);
+        const that = this;
+        const g = this.g.selectAll ('g');
+        g.transition (t).attr ('opacity', 0).end ().then (function () {
+            L.D3_geoJSON.prototype.onRemove.call (that, map);
+        });
+    },
+    update () {
+        const layer = this;
+        const opt = this.options;
+        const vm = opt.vm;
+        d3.json (opt.datasource + '?' + $.param (vm.xhr_params)).then (function (json) {
+            layer.addData (json);
+        });
+    },
     d3_init (geojson) {
     },
     d3_update (geojson) {
         const that = this;
         const vm = this.options.vm;
 
-        const t = d3.transition()
+        const t = d3.transition ()
             .duration (500)
             .ease (d3.easeLinear);
 
-        const g = this.g.selectAll ('g').data (geojson.features, (d) => { return d.properties.geo_id; });
+        const g = this.g.selectAll ('g').data (geojson.features, (d) => { return d.id; });
 
         g.exit ().transition (t).attr ('opacity', 0).remove ();
 
@@ -154,7 +235,7 @@ L.Layer_Places = L.D3_geoJSON.extend ({
 
         entered.append ('circle')
             .attr ('class', 'count')
-            .attr ('data-fcode', fcode);
+            .attr ('data-fcode', d => d.properties.geo_fcode);
 
         entered.append ('text')
             .attr ('class', 'count');
@@ -163,11 +244,12 @@ L.Layer_Places = L.D3_geoJSON.extend ({
             .attr ('class', 'name')
             .attr ('y', '16px')
             .text (function (d) {
-                return d.properties.name;
+                return d.properties.geo_name;
             });
 
         entered.on ('click', function (d) {
             d3.event.stopPropagation ();
+            d.layer = that.options.layer;
             vm.$trigger ('mss-tooltip-open', d);
         });
 
@@ -191,7 +273,6 @@ L.Control.Info_Pane = L.Control.extend ({
         L.DomEvent.disableClickPropagation (this._div);
         L.DomEvent.disableScrollPropagation (this._div);
 	    $ (this._div).append ($ ('div.info-panels'));
-	    // this._div.innerHTML = '<h4>hello, world</h4>';
 	    return this._div;
     },
 
@@ -212,92 +293,57 @@ export default {
             'parts_data' : null,
         };
     },
+    'computed' : {
+        ... mapGetters ([
+            'xhr_params',
+            'type',
+        ])
+    },
     'watch' : {
-        'toolbar' : {
-            handler () {
-                this.update_map ();
-            },
-            'deep' : true,
+        'xhr_params' : function () {
+            this.update_map ();
+        },
+        'type' : function () {
+            this.register_place_layers ();
         },
     },
     'methods' : {
-        date_filter (features, tb) {
-            // filter by date range
-            return _.filter (
-                features,
-                function (o) {
-                    const p = o.properties;
-                    return (p.notbefore < tb.notafter) && (tb.notbefore < p.notafter);
-                }
-            );
-        },
-        geo_filter (features, polygon) {
-            // include only features located inside polygon
-            return _.filter (
-                features,
-                function (o) {
-                    return d3.geoContains (polygon, o.geometry.coordinates);
-                }
-            );
-        },
-        on_mss_tooltip_open (event) {
-            event.stopPropagation ();
-
-            const data  = event.detail.data;
-            let mss = null;
-
-            if (data.geometry.type === 'Point') {
-                // get manuscripts from data
-                mss = data.properties.mss;
-            } else {
-                // get manuscripts inside polygon
-                mss = this.date_filter (this.parts_data.features, this.toolbar);
-                mss = this.geo_filter (mss, data);
-            }
-
-            const rows = [];
-            for (const ms of _.sortBy (mss, o => { return natural_sort (o.properties.ms_id + o.properties.ms_part); })) {
-                const props = ms.properties;
-                rows.push ({
-                    'ms_id'      : props.ms_id,
-                    'ms_part'    : props.ms_part,
-                    'date_range' : `${props.notbefore}-${props.notafter}`,
-                });
-            }
-            const p = {
-                'title'    : `${data.properties.name || data.properties.NAME}`,
-                'subtitle' : `${fcode (data)} - ${rows.length} mss.`,
-                'fcode'    : fcode (data),
-                'rows'  : rows,
-            };
-            this.$parent.$trigger ("mss-tooltip-open", p);
-        },
         update_map () {
-            // filter by date range
-            let ms_parts = this.date_filter (this.parts_data.features, this.toolbar);
-
-            // group by place
-            ms_parts = _.groupBy (
-                ms_parts,
-                function (o) { return o.properties.geo_id; }
-            );
-            // join with geo data
-            ms_parts = _.map (Object.entries (ms_parts), (o) => {
-                const [geo_id, grouped] = o;
-                const g = this.geo_data[geo_id];
-                return {
-                    'geometry' : g.geometry,
-                    'properties' : {
-                        'geo_id' : geo_id,
-                        'name'   : g.properties.name,
-                        'fcode'  : fcode (g),
-                        'count'  : grouped.length,
-                        'mss'    : grouped,
-                    },
-                    'type' : 'Feature'
-                };
+            const vm = this;
+            vm.map.eachLayer (function (layer) {
+                if (layer instanceof L.Layer_Places && vm.map.hasLayer (layer)) {
+                    layer.update ();
+                }
             });
-            this.layer_mss.addData ({ 'type' : 'FeatureCollection', 'features' : ms_parts });
+        },
+        register_place_layers () {
+            const vm = this;
+            vm.map.eachLayer (function (layer) {
+                if (layer instanceof L.Layer_Places) {
+                    layer.remove ();
+                }
+            });
+            for (const opt of PLACE_LAYERS) {
+                if (opt.type == this.type) {
+                    const layer = new L.Layer_Places (null, {
+                        'layer'               : opt.layer,
+                        'class'               : opt.class,
+                        'type'                : opt.type,
+                        'datasource'          : vm.build_full_api_url (opt.datasource),
+                        'vm'                  : vm,
+                        'interactive'         : true,
+                        'bubblingMouseEvents' : false,
+                    });
+                    layer.addTo (vm.map);
+                }
+            };
+        },
+        zoom_extent (json) {
+            const vm = this;
+            d3.json (vm.build_full_api_url ('geo/extent')).then (function (json) {
+                const [[l, b], [r, t]] = d3.geoPath ().bounds (json);
+                vm.map.fitBounds (L.latLngBounds (L.latLng (b, r), L.latLng (t, l)));
+            });
         },
     },
     'mounted' : function () {
@@ -307,15 +353,21 @@ export default {
             'renderer'    : L.svg (),
             'zoomControl' : false,
         });
+        vm.map = map;
 
         const natural_earth = L.tileLayer (
             vm.build_full_api_url ('tile/ne/{z}/{x}/{y}.png'), {
                 'attribution' : '&copy; <a href="http://www.naturalearthdata.com/">Natural Earth</a>'
             }).addTo (map);
 
-        const vidal_lablache = L.tileLayer (
+        const lablache = L.tileLayer (
             vm.build_full_api_url ('tile/vl/{z}/{x}/{y}.png'), {
-                'attribution' : 'Atlas VIDAL-LABLACHE - Anno 843'
+                'attribution' : 'Vidal-Lablache, Paul. Atlas général. Paris, 1898'
+            });
+
+        const shepherd = L.tileLayer (
+            vm.build_full_api_url ('tile/sh/{z}/{x}/{y}.png'), {
+                'attribution' : 'Shepherd, William. Historical Atlas. New York, 1911'
             });
 
         const openstreetmap = L.tileLayer (
@@ -323,64 +375,33 @@ export default {
                 'attribution' : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             });
 
-        const layer_countries = new L.Layer_Borders (null, {
-            'class' : 'countries countries-modern',
-            'vm'    : vm,
-        });
-
-        const layer_countries_843 = new L.Layer_Borders (null, {
-            'class' : 'countries countries-843',
-            'vm'    : vm,
-        });
-
-        const layer_mss = new L.Layer_Places (null, {
-            'class' : 'mss',
-            'vm'    : vm,
-        }).addTo (map);
-
-        this.layer_mss = layer_mss;
-
         const baseLayers = {
             'Natural Earth' : natural_earth,
             'OpenStreetMap' : openstreetmap,
         };
+
         const overlays   = {
-            'Atlas Vidal de la Blache - Anno 843' : vidal_lablache,
-            'Manuscripts'          : layer_mss,
-            'Countries - Modern'   : layer_countries,
-            'Countries - Anno 843' : layer_countries_843,
+            'LaBlache - Empire de Charlemagne 843'  : lablache,
+            'Shepherd - Carolingian Empire 843-888' : shepherd,
         };
-        L.control.layers (baseLayers, overlays).addTo (map);
-        new L.Control.Info_Pane ({ position: 'bottomleft' }).addTo (map);
 
-        const xhr_countries     = d3.json ('/client/geodata/10m_cultural/ne_10m_admin_0_countries.json');
-        const xhr_countries_843 = d3.json ('/client/geodata/countries-843.geojson');
-        const xhr_places    = d3.json (vm.build_full_api_url ('places.json'));
-        const xhr_parts     = d3.json (vm.build_full_api_url ('msparts.json'));
+        for (const opt of AREA_LAYERS) {
+            const layer = new L.Layer_Borders (null, {
+                'layer'      : opt.layer,
+                'class'      : 'areas ' + opt.class,
+                'datasource' : opt.datasource,
+                'vm'         : vm,
+            });
+            overlays[opt.title] = layer;
+        };
 
-        Promise.all ([xhr_countries, xhr_countries_843, xhr_places, xhr_parts]).then ((responses) => {
-            const [data_countries, data_countries_843, data_places, data_parts] = responses;
+        L.control.layers (baseLayers, overlays, { 'collapsed' : true }).addTo (map);
+        new L.Control.Info_Pane ({ position: 'topleft' }).addTo (map);
 
-            layer_countries.addData (data_countries);
-            layer_countries_843.addData (data_countries_843);
-
-            this.geo_data = Object ();
-            for (const o of data_places.features) {
-                this.geo_data[o.properties.geo_id] = o;
-            };
-
-            this.parts_data = data_parts;
-
-            const [[l, b], [r, t]] = d3.geoPath ().bounds (data_places);
-            map.fitBounds (L.latLngBounds (L.latLng (b, r), L.latLng (t, l)));
-
-            this.update_map ();
-        });
-
-        d3.select (vm.$el).on ('click', function () {
-            vm.$trigger ('mss-tooltip-close');
-        });
-
+        this.is_zoomed = false;
+        this.zoom_extent ();
+        this.register_place_layers ();
+        this.update_map ();
     },
 };
 </script>
@@ -413,29 +434,59 @@ svg {
         &.countries-843 {
             z-index: 201;
         }
-        &.mss {
+        &.countries-870 {
+            z-index: 202;
+        }
+        &.countries-888 {
+            z-index: 203;
+        }
+        &.countries-modern {
+            z-index: 204;
+        }
+        &.regions {
             z-index: 300;
+        }
+        &.regions-843 {
+            z-index: 301;
+        }
+        &.places.mss {
+            z-index: 400;
+        }
+        &.places.msparts {
+            z-index: 401;
+        }
+        &.places.capitularies {
+            z-index: 402;
         }
 
         path {
             stroke-opacity: .7;
             stroke-width: 1.5px;
-            fill: transparent;
+            fill: none;
             pointer-events: all;
+        }
+
+        &.areas {
+            opacity: 0.5;
+            path {
+                stroke-width: 6px;
+            }
         }
 
         &.countries {
             path {
-                stroke: white;
+                stroke: $country-color;
                 &:hover {
-                    fill-opacity: .7;
-                    fill: red;
-                    &[data-fcode^="PCL"] {
-                        fill: blue;
-                    };
-                    &[data-fcode^="ADM"] {
-                        fill: green;
-                    };
+                    fill: $country-color;
+                }
+            }
+        }
+
+        &.regions {
+            path {
+                stroke: $region-color;
+                &:hover {
+                    fill: $region-color;
                 }
             }
         }
@@ -443,18 +494,18 @@ svg {
         circle.count {
             stroke: white;
             stroke-width: 1.5px;
-            fill: red;
             fill-opacity: 0.5;
             pointer-events: all;
-            &:hover {
-                fill: red;
-                fill-opacity: .7;
-            };
+
+            fill: $place-color;
             &[data-fcode^="PCL"] {
-                fill: blue;
+                fill: $country-color;
             };
             &[data-fcode^="ADM"] {
-                fill: green;
+                fill: $region-color;
+            };
+            &:hover {
+                fill-opacity: .7;
             };
         }
 
@@ -480,12 +531,6 @@ svg {
             x: -16px;
             y: -16px;
         }
-    }
-}
-
-svg.countries[data-zoom^="ZZZZZZZZ"] {
-    path {
-        stroke-width: 3px;
     }
 }
 

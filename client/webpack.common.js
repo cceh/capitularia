@@ -20,7 +20,7 @@ module.exports = {
             },
             {
                 test: /\.vue$/,
-                exclude: /node_modules/,
+                /* exclude: /node_modules/, */
                 use: [
                     'vue-loader',
                 ],
@@ -105,6 +105,7 @@ module.exports = {
         modules: [
             path.resolve (__dirname, 'src'),
             path.resolve (__dirname, 'src/components'),
+            path.resolve (__dirname, 'src/components/widgets'),
             path.resolve (__dirname, 'src/css'),
             path.resolve (__dirname, 'src/js'),
             'node_modules',
@@ -112,6 +113,7 @@ module.exports = {
         alias: {
             /* See: https://webpack.js.org/configuration/resolve/#resolve-alias */
             'vue$' : path.resolve (__dirname, 'node_modules/vue/dist/vue.esm.js'),
+            'frappe-charts$' : path.resolve (__dirname, 'node_modules/frappe-charts/dist/frappe-charts.esm.js'),
             'bootstrap-custom' : path.resolve (
                 __dirname, 'src/css/bootstrap-custom.scss'
             ),

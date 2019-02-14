@@ -71,6 +71,10 @@ div.btn-toolbar {
         }
     }
 
+    .btn-group > .btn.active {
+        z-index: 0;
+    }
+
     label.btn.active {
         @media print {
             color: black !important;

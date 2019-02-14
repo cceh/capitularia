@@ -16,30 +16,43 @@ deploy_scripts:
 deploy_xml:
 	$(RSYNC) xml/*xml $(PUBL)/mss/
 
-upload_client:
+upload_client: client
 	cd $(CLIENT); make upload; cd ..
 
 upload_server:
-	$(RSYNCPY) --exclude "server.conf" $(SERVER)/* $(HOST_SERVER)
+	cd $(SERVER); make upload; cd ..
 
 import_xml:
-	$(RSYNC) $(PUBL)/mss/*xml xml/
+	$(RSYNC) $(PUBL)/mss/*xml   xml/
+	$(RSYNC) $(PUBL)/capit/*    capit/
 
 import_backups:
 	$(RSYNC) $(AFS)/backups/* backups/
 
-.PHONY:  server
-server:
+.PHONY: server
+server: geodata-server
+	export PYTHONPATH=$(ROOT)/server; \
 	python3 -m server.server -vvv
 
-download_geodata:
-	for zip in 10m/raster/NE2_HR_LC_SR 10m/cultural/10m_cultural 10m/physical/10m_physical ; do \
-		wget -P /tmp "$(NAT_EARTH)/$$zip.zip" ;     \
-	done
-	mkdir -p server/geodata client/src/geodata
-	unzip -d server/geodata              /tmp/NE2_HR_LC_SR.zip
-	unzip -d server/geodata/10m_physical /tmp/10m_physical.zip
-	unzip -d client/src/geodata          /tmp/10m_cultural.zip
+.PHONY: client
+client: geodata-client
+	cd $(CLIENT); make build; cd ..
+
+.PHONY: dev-server
+dev-server: geodata-client
+	cd $(CLIENT); make dev-server; cd ..
+
+.PHONY: geodata-server geodata-client
+geodata-server:
+	cd $(GIS); make geodata-server; cd ..
+
+geodata-client:
+	cd $(GIS); make geodata-client; cd ..
+
+init_geodata_db: import_xml
+	cd $(SERVER); make init_geodata_db
+	cd $(GIS); make import-geodata-to-postgres
+
 
 TARGETS = css js csslint jslint phplint mo po pot deploy clean
 

@@ -26,8 +26,6 @@ import $ from 'jquery';
 import _ from 'lodash';
 import 'bootstrap';
 
-import tools from 'tools';
-
 export default {
     'props' : {
         'eventname' : {

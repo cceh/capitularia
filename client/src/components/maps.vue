@@ -1,53 +1,51 @@
 <template>
   <div class="maps-vm"
        @mss-tooltip-open="on_mss_tooltip_open"
-       @mss-tooltip-close="on_mss_tooltip_close">
-    <toolbar :toolbar="toolbar">
+       @destroy-card="on_destroy_map_popup">
+
+    <toolbar :toolbar="toolbar" class="mx-2 my-2">
       <form class="form-inline">
         <div class="form-group">
-          <label class="mr-2" for="notbefore">From Year: </label>
-          <b-form-input id="notbefore" v-model="toolbar.notbefore"
+          <label class="mr-2" for="notbefore">Consider only mss. created between </label>
+          <b-form-input id="notbefore"
+                        v-model="toolbar.dates.notbefore"
                         type="number"
-                        placeholder="Not before this year"></b-form-input>
+                        v-b-tooltip.hover
+                        title="Enter a year."
+                        ></b-form-input>
         </div>
         <div class="form-group">
-          <label class="mr-2" for="notafter">To Year: </label>
+          <label class="mr-2" for="notafter">and</label>
           <b-form-input id="notafter"
-                        v-model="toolbar.notafter"
+                        v-model="toolbar.dates.notafter"
                         type="number"
-                        placeholder="Not after this year"></b-form-input>
+                        v-b-tooltip.hover
+                        title="Enter a year."
+                        ></b-form-input>
         </div>
+        <div class="form-group">
+          <label class="mr-2" for="capitularies">and containing any of these Capitularies: </label>
+          <b-form-input id="capitularies"
+                        v-model="toolbar.capitularies"
+                        type="text"
+                        v-b-tooltip.hover
+                        title="Enter a space-separated list of BK nos (eg. 39 40 BK139-141 M1 M10-25)."
+                        ></b-form-input>
+        </div>
+
+        <label class="mr-2" for="type">Show count of</label>
+        <button-group id="type" type="radio" v-model="toolbar.type"
+                      :options="options.type" />
       </form>
+
     </toolbar>
 
     <slippy-map :toolbar="toolbar" />
 
     <div class="info-panels">
-      <div v-for="p in info_panels" class="card info-panel">
-        <div class="card-header text-white" :data-fcode="p.fcode">
-          <h5 class="card-title">{{ p.title }}</h5>
-          <h6 class="card-subtitle">{{ p.subtitle }}</h6>
-        </div>
-        <div class="table-wrapper mb-0">
-          <table class="table table-sm">
-            <thead>
-              <tr>
-                <th>Manuscript</th>
-                <th>Part</th>
-                <th>Created</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="row in p.rows">
-                <td>{{ row.ms_id }}</td>
-                <td>{{ row.ms_part }}</td>
-                <td>{{ row.date_range }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <map-popup v-for="d in info_panels" :key="d.card_id" :d="d" />
     </div>
+
   </div>
 </template>
 
@@ -59,38 +57,66 @@
  * @author Marcello Perathoner
  */
 
-import $   from 'jquery';
-import _   from 'lodash';
+import _         from 'lodash';
 
-import map        from 'map.vue';
-import toolbar    from 'widgets/toolbar.vue';
+import map       from 'map.vue';
+
+import toolbar       from 'widgets/toolbar.vue';
+import button_group  from 'widgets/button_group.vue';
+import map_popup     from 'map_popup.vue';
+
+import options       from 'toolbar_options.js';
 
 export default {
     'components' : {
-        'toolbar'    : toolbar,
-        'slippy-map' : map,
+        'slippy-map'   : map,
+        'toolbar'      : toolbar,
+        'map-popup'    : map_popup,
+        'button-group' : button_group,
     },
     'data'  : function () {
         return {
             'toolbar' : {
-                'notbefore' :  700,
-                'notafter'  : 1500,
-
+                'dates' : {
+                    'notbefore' :  500,
+                    'notafter'  : 2000,
+                },
+                'capitularies' : '',
+                'type'         : 'mss',
             },
             'info_panels' : [],
+            'options'     : options,
+            'next_id'     : 1,
         };
+    },
+    'watch' : {
+        'toolbar.dates' : {
+            handler : _.debounce (function () {
+                this.$store.commit ('toolbar_range', this.toolbar);
+            }, 500),
+            'deep' : true,
+        },
+        'toolbar.capitularies' : {
+            handler : _.debounce (function () {
+                this.$store.commit ('toolbar_range', this.toolbar);
+            }, 500),
+            'deep' : true,
+        },
+        'toolbar.type' : function () {
+            this.$store.commit ('toolbar_type', this.toolbar);
+        },
     },
     'methods' : {
         on_mss_tooltip_open (event) {
-            this.info_panels.pop ();
-            this.info_panels.push (event.detail.data);
+            // event.detail.data = the d3 data on the SVG element
+            const d = _.cloneDeep (event.detail.data);
+            d.card_id = this.next_id++;
+            this.info_panels.push (d);
         },
-        on_mss_tooltip_close (event) {
-            this.info_panels.pop ();
+        on_destroy_map_popup (event) {
+            const card_id = event.detail.data;
+            this.info_panels = this.info_panels.filter (d => d.card_id !== card_id)
         },
-    },
-    'mounted' : function () {
-        const vm = this;
     },
 };
 </script>
@@ -99,32 +125,13 @@ export default {
 /* maps.vue */
 @import "bootstrap-custom";
 
+div.info-panels {
+    height: 0;
+    width: 30em;
+}
+
 #notbefore, #notafter {
     width: 5em;
 }
-
-div.info-panel {
-	background: rgba(255,255,255,0.9);
-
-    .card-header {
-        opacity: 0.5;
-        background: red;
-        &[data-fcode^="PCL"] {
-            background: blue;
-        };
-        &[data-fcode^="ADM"] {
-            background: green;
-        };
-    }
-
-    div.table-wrapper {
-        max-height: 30em;
-        overflow-y: auto;
-        table.table {
-	        background: transparent;
-        }
-    }
-}
-
 
 </style>
