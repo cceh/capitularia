@@ -105,7 +105,7 @@ class Render:
 
 
 @tile_app.endpoint ('tile.png')
-def tile_png (mapid, zoom, xtile, ytile, type_='png'):
+def tile_png (mapid, zoom, xtile, ytile):
     """ Return a png tile. """
 
     rd  = Render (MAPS[mapid])
