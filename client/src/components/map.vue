@@ -29,39 +29,6 @@ import _        from 'lodash';
 
 import '../../node_modules/leaflet/dist/leaflet.css';
 
-const AREA_LAYERS = [
-    {
-        'layer'      : 'countries_843',
-        'title'      : 'Countries - Anno 843',
-        'class'      : 'countries countries-843',
-        'datasource' : '/client/geodata/countries_843.geojson',
-    },
-    {
-        'layer'      : 'regions_843',
-        'title'      : 'Regions - Anno 843',
-        'class'      : 'regions regions-843',
-        'datasource' : '/client/geodata/regions_843.geojson',
-    },
-    {
-        'layer'      : 'countries_870',
-        'title'      : 'Countries - Anno 870',
-        'class'      : 'countries countries-870',
-        'datasource' : '/client/geodata/countries_870.geojson',
-    },
-    {
-        'layer'      : 'countries_888',
-        'title'      : 'Countries - Anno 888',
-        'class'      : 'countries countries-888',
-        'datasource' : '/client/geodata/countries_888.geojson',
-    },
-    {
-        'layer'      : 'countries_modern',
-        'title'      : 'Countries - Modern',
-        'class'      : 'countries countries-modern',
-        'datasource' : '/client/geodata/countries_modern.geojson',
-    },
-];
-
 const PLACE_LAYERS = [
     {
         'layer'      : 'geonames',
@@ -340,7 +307,7 @@ export default {
         },
         zoom_extent (json) {
             const vm = this;
-            d3.json (vm.build_full_api_url ('geo/extent')).then (function (json) {
+            d3.json (vm.build_full_api_url ('geo/extent.json')).then (function (json) {
                 const [[l, b], [r, t]] = d3.geoPath ().bounds (json);
                 vm.map.fitBounds (L.latLngBounds (L.latLng (b, r), L.latLng (t, l)));
             });
@@ -349,59 +316,63 @@ export default {
     'mounted' : function () {
         const vm = this;
 
-        const map = L.map ('map', {
-            'renderer'    : L.svg (),
-            'zoomControl' : false,
+        const xhrs = [
+            d3.json (vm.build_full_api_url ('geo/')),
+            d3.json (vm.build_full_api_url ('tile/'))
+        ];
+
+        Promise.all (xhrs).then (function (responses) {
+            const [json_geo, json_tile] = responses;
+
+            vm.map = L.map ('map', {
+                'renderer'    : L.svg (),
+                'zoomControl' : false,
+                'minZoom'     : json_tile.min_zoom,
+                'maxZoom'     : json_tile.max_zoom,
+            });
+
+            const baseLayers = {};
+            const overlays   = {};
+
+            for (const layer_info of json_tile.layers) {
+                const layer = L.tileLayer (
+                    vm.build_full_api_url (`tile/${layer_info.id}/{z}/{x}/{y}.png`),
+                    {
+                        'attribution' : layer_info.attribution,
+                    }
+                );
+                if (layer_info.type === 'base') {
+                    baseLayers[layer_info.title] = layer;
+                    layer.addTo (vm.map);
+                } else {
+                    overlays[layer_info.title] = layer;
+                }
+            }
+
+            baseLayers['OpenStreetMap'] = L.tileLayer (
+                'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    'attribution' : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                });
+
+            for (const layer_info of json_geo.layers) {
+                const layer = new L.Layer_Borders (null,
+                    {
+                        'layer'       : layer_info.id,
+                        'class'       : 'areas ' + layer_info.classes,
+                        'datasource'  : layer_info.url,
+                        'attribution' : layer_info.attribution,
+                        'vm'          : vm,
+                    }
+                );
+                overlays[layer_info.title] = layer;
+            };
+
+            L.control.layers (baseLayers, overlays, { 'collapsed' : true }).addTo (vm.map);
+            new L.Control.Info_Pane ({ position: 'topleft' }).addTo (vm.map);
+
+            vm.register_place_layers ();
+            vm.zoom_extent ();
         });
-        vm.map = map;
-
-        const natural_earth = L.tileLayer (
-            vm.build_full_api_url ('tile/ne/{z}/{x}/{y}.png'), {
-                'attribution' : '&copy; <a href="http://www.naturalearthdata.com/">Natural Earth</a>'
-            }).addTo (map);
-
-        const lablache = L.tileLayer (
-            vm.build_full_api_url ('tile/vl/{z}/{x}/{y}.png'), {
-                'attribution' : 'Vidal-Lablache, Paul. Atlas général. Paris, 1898'
-            });
-
-        const shepherd = L.tileLayer (
-            vm.build_full_api_url ('tile/sh/{z}/{x}/{y}.png'), {
-                'attribution' : 'Shepherd, William. Historical Atlas. New York, 1911'
-            });
-
-        const openstreetmap = L.tileLayer (
-            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                'attribution' : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            });
-
-        const baseLayers = {
-            'Natural Earth' : natural_earth,
-            'OpenStreetMap' : openstreetmap,
-        };
-
-        const overlays   = {
-            'LaBlache - Empire de Charlemagne 843'  : lablache,
-            'Shepherd - Carolingian Empire 843-888' : shepherd,
-        };
-
-        for (const opt of AREA_LAYERS) {
-            const layer = new L.Layer_Borders (null, {
-                'layer'      : opt.layer,
-                'class'      : 'areas ' + opt.class,
-                'datasource' : opt.datasource,
-                'vm'         : vm,
-            });
-            overlays[opt.title] = layer;
-        };
-
-        L.control.layers (baseLayers, overlays, { 'collapsed' : true }).addTo (map);
-        new L.Control.Info_Pane ({ position: 'topleft' }).addTo (map);
-
-        this.is_zoomed = false;
-        this.zoom_extent ();
-        this.register_place_layers ();
-        this.update_map ();
     },
 };
 </script>
@@ -428,35 +399,36 @@ svg {
         overflow: visible;
         pointer-events: none;
 
-        &.countries {
+        &.areas {
             z-index: 200;
         }
-        &.countries-843 {
+        &.areas.countries_843 {
             z-index: 201;
         }
-        &.countries-870 {
+        &.areas.countries_870 {
             z-index: 202;
         }
-        &.countries-888 {
+        &.areas.countries_888 {
             z-index: 203;
         }
-        &.countries-modern {
+        &.areas.countries_modern {
             z-index: 204;
         }
-        &.regions {
-            z-index: 300;
+        &.areas.regions_843 {
+            z-index: 205;
         }
-        &.regions-843 {
-            z-index: 301;
-        }
-        &.places.mss {
+
+        &.places {
             z-index: 400;
         }
-        &.places.msparts {
+        &.places.mss {
             z-index: 401;
         }
-        &.places.capitularies {
+        &.places.msparts {
             z-index: 402;
+        }
+        &.places.capitularies {
+            z-index: 403;
         }
 
         path {
@@ -473,7 +445,7 @@ svg {
             }
         }
 
-        &.countries {
+        &.areas.countries {
             path {
                 stroke: $country-color;
                 &:hover {
@@ -482,7 +454,7 @@ svg {
             }
         }
 
-        &.regions {
+        &.areas.regions {
             path {
                 stroke: $region-color;
                 &:hover {

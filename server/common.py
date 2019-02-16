@@ -17,15 +17,9 @@ LAST_BK      = 307
 LAST_MORDEK  = 27
 
 
-def make_json_response (json = None, status = 200, message = None):
-    d = dict (status = status)
-    if json:
-        d['data'] = json
-    if message:
-        d['message'] = message
-    return flask.make_response (flask.json.jsonify (d), status, {
+def make_json_response (json = None, status = 200):
+    return flask.make_response (flask.json.jsonify (json), status, {
         'Content-Type' : 'application/json;charset=utf-8',
-        'Access-Control-Allow-Origin' : '*',
     })
 
 
@@ -59,7 +53,6 @@ def make_geojson_response (rows, fields, geometry_field_name = 'geom', id_field_
         'features' : features,
     }), 200, {
         'Content-Type' : 'application/geo+json;charset=utf-8',
-        'Access-Control-Allow-Origin' : '*',
     })
     return response
 
@@ -71,8 +64,7 @@ def make_csv_response (rows, fields):
     rows = list (map (fields._make, rows))
 
     return flask.make_response (to_csv (fields._fields, rows), 200, {
-        'Content-Type'                : 'text/csv;charset=utf-8',
-        'Access-Control-Allow-Origin' : '*',
+        'Content-Type' : 'text/csv;charset=utf-8',
     })
 
 

@@ -3,14 +3,18 @@
 
 """Geo queries API server for Capitularia."""
 
-import flask
-from flask import request, current_app, Blueprint
+from flask import abort, current_app, request, Blueprint
 
 import common
 from db_tools import execute
 
 
-geo_app  = Blueprint ('geo_server',  __name__)
+class geoBlueprint (Blueprint):
+    def init_app (self, app):
+        pass
+
+geo_app  = geoBlueprint ('geo',  __name__)
+
 
 def init_geo_query_params (conn):
     try:
@@ -26,7 +30,7 @@ def init_geo_query_params (conn):
             params['where'] += 'AND cap_id IN :capitularies '
 
     except ValueError:
-        flask.abort (400)
+        abort (400)
 
     return params
 
@@ -47,13 +51,13 @@ def init_geo_query_params_layer (conn):
         """, params)
 
         if res.rowcount == 0:
-            flask.abort (400)
+            abort (400)
 
     return params
 
 
-@geo_app.endpoint ('geo_places_mss.json')
-def geo_places_mss_json ():
+@geo_app.route ('/places/mss.json')
+def places_mss_json ():
     """ Return all places along with mss count. """
 
     with current_app.config.dba.engine.begin () as conn:
@@ -70,8 +74,8 @@ def geo_places_mss_json ():
         return common.make_geojson_response (res, 'geom, geo_id, geo_name, geo_fcode, count')
 
 
-@geo_app.endpoint ('geo_places_msparts.json')
-def geo_places_msparts_json ():
+@geo_app.route ('/places/msparts.json')
+def places_msparts_json ():
     """ Return all places along with ms_part count. """
 
     with current_app.config.dba.engine.begin () as conn:
@@ -88,8 +92,8 @@ def geo_places_msparts_json ():
         return common.make_geojson_response (res, 'geom, geo_id, geo_name, geo_fcode, count')
 
 
-@geo_app.endpoint ('geo_places_capitularies.json')
-def geo_places_capitularies_json ():
+@geo_app.route ('/places/capitularies.json')
+def places_capitularies_json ():
     """ Return all places along with capitularies count. """
 
     with current_app.config.dba.engine.begin () as conn:
@@ -142,8 +146,8 @@ def _mss ():
         return res
 
 
-@geo_app.endpoint ('geo_mss.json')
-def geo_mss_json ():
+@geo_app.route ('/mss.json')
+def mss_json ():
     """ Return location of manuscripts as geojson response. """
 
     FIELDS = 'ms_id, ms_title, notbefore, notafter'
@@ -151,8 +155,8 @@ def geo_mss_json ():
     return common.make_geojson_response (_mss (), FIELDS)
 
 
-@geo_app.endpoint ('geo_mss.csv')
-def geo_mss_csv ():
+@geo_app.route ('/mss.csv')
+def mss_csv ():
     """ Return location of manuscripts as CSV response. """
 
     FIELDS = 'ms_id, ms_title, notbefore, notafter'
@@ -197,8 +201,8 @@ def _msparts ():
         return res
 
 
-@geo_app.endpoint ('geo_msparts.json')
-def geo_msparts_json ():
+@geo_app.route ('/msparts.json')
+def msparts_json ():
     """ Return location of manuscript parts as geojson response. """
 
     FIELDS = 'ms_id, ms_part, ms_title, msp_head, notbefore, notafter'
@@ -206,8 +210,8 @@ def geo_msparts_json ():
     return common.make_geojson_response (_msparts (), FIELDS)
 
 
-@geo_app.endpoint ('geo_msparts.csv')
-def geo_msparts_csv ():
+@geo_app.route ('/msparts.csv')
+def msparts_csv ():
     """ Return location of manuscript parts as CSV response. """
 
     FIELDS = 'ms_id, ms_part, ms_title, msp_head, notbefore, notafter'
@@ -257,8 +261,8 @@ def _capitularies ():
         return res
 
 
-@geo_app.endpoint ('geo_capitularies.json')
-def geo_capitularies_json ():
+@geo_app.route ('/capitularies.json')
+def capitularies_json ():
     """ Return capitularies in geometry as geojson response. """
 
     FIELDS = 'geom, geo_id, geo_name, geo_fcode, cap_id, cap_title, notbefore, notafter, count'
@@ -266,8 +270,8 @@ def geo_capitularies_json ():
     return common.make_geojson_response (_capitularies (), FIELDS)
 
 
-@geo_app.endpoint ('geo_capitularies.csv')
-def geo_capitularies_csv ():
+@geo_app.route ('/capitularies.csv')
+def capitularies_csv ():
     """ Return capitularies in geometry as CSV response. """
 
     FIELDS = 'cap_id, cap_title, notbefore, notafter, count'
@@ -275,8 +279,8 @@ def geo_capitularies_csv ():
     return common.make_csv_response (_capitularies (), FIELDS)
 
 
-@geo_app.endpoint ('geo_extent_all.json')
-def geo_extent_all_json ():
+@geo_app.route ('/extent.json')
+def extent_json ():
     """ Return the max. extent of all data points. """
 
     with current_app.config.dba.engine.begin () as conn:
@@ -287,3 +291,14 @@ def geo_extent_all_json ():
         """, {})
 
         return common.make_geojson_response (res, 'geom, geo_id')
+
+
+@geo_app.route ('/')
+def info_json ():
+    """ Info endpoint: send information about server and available layers. """
+
+    i = {
+        'title'    : 'Capitularia Geo Server',
+        'layers'   : current_app.config['GEO_LAYERS'],
+    }
+    return common.make_json_response (i, 200)
