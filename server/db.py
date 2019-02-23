@@ -141,9 +141,6 @@ def generic (metadata, create_cmd, drop_cmd, create_when='after-create', drop_wh
 Base = declarative_base ()
 Base.metadata.schema = 'capitularia'
 
-Base_geolayers = declarative_base ()
-Base_geolayers.metadata.schema = 'capitularia'
-
 generic (Base.metadata, '''
 ALTER DEFAULT PRIVILEGES IN SCHEMA capitularia GRANT SELECT ON TABLES TO capitularia;
 ''', None);
@@ -160,11 +157,12 @@ class Geonames (Base):
 
     __tablename__ = 'geonames'
 
-    geo_id      = Column (String ())
-    geo_source  = Column (String ()) # geonames, dnb, viaf
+    geo_id      = Column (String)
+    geo_source  = Column (String) # geonames, dnb, viaf, countries_843
 
-    geo_name    = Column (String ())
-    geo_fcode   = Column (String ())
+    geo_name    = Column (String)
+    geo_fcode   = Column (String)
+
     geom        = Column (Geometry ('POINT', srid=4326))
     blob        = Column (JSONB)
 
@@ -298,17 +296,49 @@ view ('capitularies_view', Base.metadata, '''
     ''')
 
 
-for table in 'countries_843 countries_870 countries_888 countries_modern regions_843'.split ():
-    fulltable = 'capitularia.' + table
-    generic (Base_geolayers.metadata, '''
-        CREATE TABLE {fulltable} (
-            geo_id    serial PRIMARY KEY,
-            geo_name  character varying,
-            geo_fcode character varying,
-            geom      geometry(MultiPolygon,4326)
-        );
-        CREATE INDEX {table}_geom_idx ON {fulltable} USING gist (geom);
-        '''.format (table = table, fulltable = fulltable), '''
-        DROP TABLE IF EXISTS {table} CASCADE;
-        '''.format (table = table)
-    );
+class GeoAreas (Base):
+    r"""GeoAreas
+
+    Custom defined geographic areas
+
+    .. sauml::
+       :include: geoareas
+
+    """
+
+    __tablename__ = 'geoareas'
+
+    geo_id      = Column (String)
+    geo_source  = Column (String) # geonames, dnb, viaf, countries_843
+
+    geo_name    = Column (String)
+    geo_fcode   = Column (String)
+
+    geo_color   = Column (String)
+    geo_label_x = Column (Float (precision = 53))
+    geo_label_y = Column (Float (precision = 53))
+
+    geom        = Column (Geometry ('MULTIPOLYGON', srid=4326))
+
+    __table_args__ = (
+        PrimaryKeyConstraint (geo_source, geo_id),
+        Index ('ix_geoareas_geom', geom, postgresql_using = 'gist'),
+    )
+
+# for table in 'countries_843 countries_870 countries_888 countries_modern regions_843'.split ():
+#     fulltable = 'capitularia.' + table
+#     generic (Base_geolayers.metadata, '''
+#         CREATE TABLE {fulltable} (
+#             geo_id      serial PRIMARY KEY,
+#             geo_name    character varying,
+#             geo_fcode   character varying,
+#             geo_color   character varying,
+#             geo_label_x double precision,
+#             geo_label_y double precision,
+#             geom        geometry(MultiPolygon,4326)
+#         );
+#         CREATE INDEX {table}_geom_idx ON {fulltable} USING gist (geom);
+#         '''.format (table = table, fulltable = fulltable), '''
+#         DROP TABLE IF EXISTS {table} CASCADE;
+#         '''.format (table = table)
+#     );

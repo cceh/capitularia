@@ -39,19 +39,9 @@ def init_geo_query_params_layer (conn):
 
     params = init_geo_query_params (conn)
 
-    params['layer'] = request.args.get ('layer')
-    params['id']    = request.args.get ('id')
-
-    if params['layer'] is not None:
-        # sanity check for layer
-        res = execute (conn, """
-        SELECT f_table_name
-        FROM geometry_columns
-        WHERE f_table_name = :layer
-        """, params)
-
-        if res.rowcount == 0:
-            abort (400)
+    params['geo_source'] = request.args.get ('geo_source')
+    params['geo_id']     = request.args.get ('geo_id')
+    params['table']      = 'geonames' if params['geo_source'] == 'geonames' else 'geoareas'
 
     return params
 
@@ -62,16 +52,16 @@ def places_mss_json ():
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
-        SELECT ST_AsGeoJSON (geom)::json AS geom, geo_id, geo_name, geo_fcode, count (distinct ms_id) as count
+        SELECT ST_AsGeoJSON (geom)::json AS geom, geo_id, geo_source, geo_name, geo_fcode, count (distinct ms_id) as count
         FROM msparts_view
           JOIN mn_msparts_capitularies USING (ms_id, ms_part)
         WHERE geo_source = 'geonames'
               {where}
-        GROUP BY geom, geo_id, geo_name, geo_fcode
+        GROUP BY geom, geo_id, geo_source, geo_name, geo_fcode
         ORDER BY count DESC
         """, init_geo_query_params (conn))
 
-        return common.make_geojson_response (res, 'geom, geo_id, geo_name, geo_fcode, count')
+        return common.make_geojson_response (res, 'geom, geo_id, geo_source, geo_name, geo_fcode, count')
 
 
 @geo_app.route ('/places/msparts.json')
@@ -80,16 +70,16 @@ def places_msparts_json ():
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
-        SELECT ST_AsGeoJSON (geom)::json AS geom, geo_id, geo_name, geo_fcode, count (distinct ms_id || ms_part) as count
+        SELECT ST_AsGeoJSON (geom)::json AS geom, geo_id, geo_source, geo_name, geo_fcode, count (distinct ms_id || ms_part) as count
         FROM msparts_view
           JOIN mn_msparts_capitularies USING (ms_id, ms_part)
         WHERE geo_source = 'geonames'
               {where}
-        GROUP BY geom, geo_id, geo_name, geo_fcode
+        GROUP BY geom, geo_id, geo_source, geo_name, geo_fcode
         ORDER BY count DESC
         """, init_geo_query_params (conn))
 
-        return common.make_geojson_response (res, 'geom, geo_id, geo_name, geo_fcode, count')
+        return common.make_geojson_response (res, 'geom, geo_id, geo_source, geo_name, geo_fcode, count')
 
 
 @geo_app.route ('/places/capitularies.json')
@@ -98,16 +88,16 @@ def places_capitularies_json ():
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
-        SELECT ST_AsGeoJSON (geom)::json AS geom, geo_id, geo_name, geo_fcode, count (distinct cap_id) as count
+        SELECT ST_AsGeoJSON (geom)::json AS geom, geo_id, geo_source, geo_name, geo_fcode, count (distinct cap_id) as count
         FROM msparts_view msp
           JOIN mn_msparts_capitularies USING (ms_id, ms_part)
         WHERE geo_source = 'geonames'
               {where}
-        GROUP BY geom, geo_id, geo_name, geo_fcode
+        GROUP BY geom, geo_id, geo_source, geo_name, geo_fcode
         ORDER BY count DESC
         """, init_geo_query_params (conn))
 
-        return common.make_geojson_response (res, 'geom, geo_id, geo_name, geo_fcode, count')
+        return common.make_geojson_response (res, 'geom, geo_id, geo_source, geo_name, geo_fcode, count')
 
 
 def _mss ():
@@ -118,7 +108,7 @@ def _mss ():
         params = init_geo_query_params_layer (conn)
 
         # if no layer is specified get all mss
-        if params['layer'] is None or params['id'] is None:
+        if params['geo_source'] is None or params['geo_id'] is None:
             res = execute (conn, """
             SELECT ms_id, ms_title, min (msp_notbefore) as ms_notbefore, max (msp_notafter) - 1 as ms_notafter
             FROM msparts_view msp
@@ -131,13 +121,13 @@ def _mss ():
 
             return res
 
-        # get all msparts contained in the geometry of layer:id
+        # get all msparts contained in the geometry of layer:geo_id
         res = execute (conn, """
         SELECT ms_id, ms_title, min (msp_notbefore) as ms_notbefore, max (msp_notafter) - 1 as ms_notafter
         FROM msparts_view msp
           JOIN mn_msparts_capitularies mn USING (ms_id, ms_part)
-          JOIN "{layer}" ly ON (ST_contains (ly.geom, msp.geom))
-        WHERE ly.geo_id = :id AND msp.geo_source = 'geonames'
+          JOIN {table} ly ON (ST_contains (ly.geom, msp.geom))
+        WHERE ly.geo_id = :geo_id AND ly.geo_source = :geo_source AND msp.geo_source = 'geonames'
           {where}
         GROUP BY ms_id, ms_title
         ORDER BY ms_id
@@ -172,7 +162,7 @@ def _msparts ():
         params = init_geo_query_params_layer (conn)
 
         # if no layer is specified get all msparts
-        if params['layer'] is None or params['id'] is None:
+        if params['geo_source'] is None or params['geo_id'] is None:
             res = execute (conn, """
             SELECT ms_id, ms_part, ms_title, msp_head,
                    min (msp_notbefore) as ms_notbefore, max (msp_notafter) - 1 as ms_notafter
@@ -185,14 +175,14 @@ def _msparts ():
 
             return res
 
-        # get all msparts contained in the geometry of layer:id
+        # get all msparts contained in the geometry of layer:geo_id
         res = execute (conn, """
         SELECT ms_id, ms_part, ms_title, msp_head,
                min (msp_notbefore) as ms_notbefore, max (msp_notafter) - 1 as ms_notafter
         FROM msparts_view msp
           JOIN mn_msparts_capitularies mn USING (ms_id, ms_part)
-          JOIN "{layer}" ly ON (ST_contains (ly.geom, msp.geom))
-        WHERE ly.geo_id = :id AND msp.geo_source = 'geonames'
+          JOIN {table} ly ON (ST_contains (ly.geom, msp.geom))
+        WHERE ly.geo_id = :geo_id AND ly.geo_source = :geo_source AND msp.geo_source = 'geonames'
           {where}
         GROUP BY ms_id, ms_part, ms_title, msp_head
         ORDER BY ms_id, ms_part
@@ -227,7 +217,7 @@ def _capitularies ():
         params = init_geo_query_params_layer (conn)
 
         # if no layer is specified get all capitularies
-        if params['layer'] is None or params['id'] is None:
+        if params['geo_source'] is None or params['geo_id'] is None:
             res = execute (conn, """
             SELECT cap.cap_id, cap_title, lower (cap_date) as cap_notbefore, upper (cap_date) - 1as cap_notafter, count
             FROM capitularies cap
@@ -243,7 +233,7 @@ def _capitularies ():
 
             return res
 
-        # get all capitularies contained in any mss. originated in the geometry of layer:id
+        # get all capitularies contained in any mss. originated in the geometry of layer:geo_id
         res = execute (conn, """
         SELECT cap.cap_id, cap_title, lower (cap_date) as cap_notbefore, upper (cap_date) - 1 as cap_notafter, count
         FROM capitularies cap
@@ -251,8 +241,8 @@ def _capitularies ():
           SELECT cap_id, count (*) as count
           FROM msparts_view msp
             JOIN mn_msparts_capitularies mn USING (ms_id, ms_part)
-            JOIN "{layer}" ly ON (ST_contains (ly.geom, msp.geom))
-          WHERE ly.geo_id = :id AND msp.geo_source = 'geonames'
+            JOIN {table} ly ON (ST_contains (ly.geom, msp.geom))
+          WHERE ly.geo_id = :geo_id AND ly.geo_source = :geo_source AND msp.geo_source = 'geonames'
             {where}
           GROUP BY cap_id
         ) AS foo USING (cap_id)

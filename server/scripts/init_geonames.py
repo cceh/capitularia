@@ -17,6 +17,7 @@ import requests
 import lxml
 from lxml import etree
 
+import common
 from common import text_content, fix_ws, fix_cap
 import db_tools
 from db_tools import execute, executemany, log
@@ -298,7 +299,7 @@ def process_cap (conn, item):
     """, row)
 
 
-def build_parser ():
+def build_parser (default_config_file):
     """ Build the commandline parser. """
 
     parser = argparse.ArgumentParser (description = __doc__)
@@ -309,9 +310,9 @@ def build_parser ():
         help='increase output verbosity', default=0
     )
     parser.add_argument (
-        '-c', '--config-path', dest='config_path',
-        default=config_path, metavar='CONFIG_PATH',
-        help="the config file (default='./server.conf')"
+        '-c', '--config-file', dest='config_file',
+        default=default_config_file, metavar='CONFIG_FILE',
+        help="the config file (default='%s')" % default_config_file
     )
     parser.add_argument (
         '--init', action='store_true',
@@ -347,7 +348,10 @@ def build_parser ():
 if __name__ == "__main__":
     import logging
 
-    args, config = db_tools.init_cmdline (build_parser ())
+    args = build_parser ('server.conf').parse_args ()
+    args = common.init_logging (args)
+
+    config = common.config_from_pyfile (args.config_file)
 
     log (logging.INFO, "Connecting to Postgres database ...")
 
@@ -366,8 +370,8 @@ if __name__ == "__main__":
     if args.init_geolayers:
         log (logging.INFO, "Creating Postgres geo layer tables ...")
 
-        db.Base_geolayers.metadata.drop_all   (dba.engine)
-        db.Base_geolayers.metadata.create_all (dba.engine)
+        db.Base.metadata.drop_all   (dba.engine, tables = [db.GeoAreas.__table__])
+        db.Base.metadata.create_all (dba.engine, tables = [db.GeoAreas.__table__])
 
     if args.mss:
         log (logging.INFO, "Parsing TEI Manuscript files ...")

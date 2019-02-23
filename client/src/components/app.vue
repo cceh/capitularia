@@ -10,11 +10,13 @@
  * @author Marcello Perathoner
  */
 
-import _            from 'lodash';
 import Vue          from 'vue';
 import VueRouter    from 'vue-router';
 import Vuex         from 'vuex';
 import BootstrapVue from 'bootstrap-vue';
+
+import _            from 'lodash';
+import * as d3      from 'd3';
 import url          from 'url';
 
 import maps         from 'maps.vue';
@@ -35,11 +37,14 @@ const router = new VueRouter ({
 const store = new Vuex.Store ({
     'state' : {
         'dates' : {    // date range of manuscripts to consider
-            'notbefore' :  500,
-            'notafter'  : 2000,
+            'notbefore' : 0, // year
+            'notafter'  : 0,
         },
-        'capitularies' : '', // space separated list of capitularies
-        'type' : 'mss',      // type of artifacts to show mss, msp or cap
+        'capitularies'      : '',  // space separated list of capitularies
+        'area_layer_shown'  : '',  // map areas to show
+        'place_layer_shown' : '',  // type of artifacts to count: mss, msp or cap
+        'geo_layers'        : [],
+        'tile_layers'       : [],
     },
     'mutations' : {
         toolbar_range (state, data) {
@@ -51,8 +56,11 @@ const store = new Vuex.Store ({
                 'capitularies' : data.capitularies,
             });
         },
-        toolbar_type (state, data) {
-            this.state.type = data.type;
+        toolbar_area_layer_shown (state, data) {
+            this.state.area_layer_shown = data.area_layer_shown;
+        },
+        toolbar_place_layer_shown (state, data) {
+            this.state.place_layer_shown = data.place_layer_shown;
         },
     },
     'getters' : {
@@ -61,7 +69,8 @@ const store = new Vuex.Store ({
             'notafter'     : state.dates.notafter,
             'capitularies' : state.capitularies,
         }),
-        'type' : state => state.type,
+        'area_layer_shown'  : state => state.area_layer_shown,
+        'place_layer_shown' : state => state.place_layer_shown,
     },
 });
 
@@ -75,6 +84,18 @@ export default {
     },
     'computed' : {
         api_url () { return url.resolve (api_base_url, '/'); },
+    },
+    mounted () {
+        const vm = this;
+        const xhrs = [
+            d3.json (vm.build_full_api_url ('geo/')),
+            d3.json (vm.build_full_api_url ('tile/')),
+        ];
+        Promise.all (xhrs).then (function (responses) {
+            const [json_geo, json_tile] = responses;
+            vm.$store.state.geo_layers  = json_geo.layers;
+            vm.$store.state.tile_layers = json_tile.layers;
+        });
     },
 };
 

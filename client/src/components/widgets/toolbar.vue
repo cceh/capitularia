@@ -1,9 +1,9 @@
 <template>
-  <div @button-group-click="on_click">
+  <nav class="toolbar-vm" @button-group-click="on_click">
     <b-button-toolbar class="justify-content-between">
       <slot></slot>
     </b-button-toolbar>
-  </div>
+  </nav>
 </template>
 
 <script>

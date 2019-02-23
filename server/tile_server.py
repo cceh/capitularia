@@ -4,22 +4,21 @@
 """A tile server for Capitularia.
 
 This is a simple OpenStreetMap-style tile server using mapnik to render the
-tiles.  The server has 2 levels of caching.
+tiles.
 
 The probability of the client requesting adjacent tiles is very high.  To speed
-things up, we ask mapnik to render a bigger "metatile", which we cache.  To make
-a tile we find the cached metatile and cut the requested tile out.  We also add
-some padding around the metatile, which helps avoiding broken labels when a
-label is placed at a metatile border.
+things up, we ask mapnik to render a bigger "metatile", which we cut into tiles
+and then cache the tiles.  We also add some padding around the metatile, which
+helps avoiding ugly label placement when a label is near a metatile border.
 
 """
 
-import functools
 import math
 import os.path
 
 from flask import abort, current_app, make_response, Blueprint
 from werkzeug.routing import Map, Rule, Submount
+from werkzeug.contrib.cache import SimpleCache, FileSystemCache
 import mapnik
 import cairo
 
@@ -29,11 +28,11 @@ MIN_ZOOM = 5
 MAX_ZOOM = 9
 
 TILE_SIZE       = 256     # standard openstreetmap tile size
-METATILE_FACTOR =   4     # size of a metatile is N x N tiles
+METATILE_FACTOR =   8     # size of a metatile is N x N tiles
 PADDING_FACTOR  =   0.25  # padding added around metatile
 
-METATILE_CACHE_SIZE =   32  # how many metatiles to cache (as raw images)
 TILE_CACHE_SIZE     = 4096  # how many tiles to cache (as png)
+TILE_CACHE_TIMEOUT  = 3600  # in seconds
 
 PADDING_SIZE  = int (PADDING_FACTOR * TILE_SIZE)
 METATILE_SIZE = (METATILE_FACTOR * TILE_SIZE) + (2 * PADDING_SIZE)
@@ -46,14 +45,8 @@ class Render:
         self.app   = app
         self.mapid = layer ['id']
 
-        map_style_dir = os.path.dirname (os.path.abspath (__file__))
         self.map = mapnik.Map (METATILE_SIZE, METATILE_SIZE)
-        mapnik.load_map (self.map, os.path.join (map_style_dir, layer['map_style']))
-
-
-    def __hash__ (self):
-        """ Make class usable with lru_cache. """
-        return hash (self.mapid)
+        mapnik.load_map (self.map, os.path.join (app.root_path, layer['map_style']))
 
     def render_with_agg (self, tile_size):
         """ Render tile with Agg renderer. """
@@ -88,7 +81,9 @@ class Render:
         lat_deg = math.degrees (lat_rad)
         return (lat_deg, lon_deg)
 
-    @functools.lru_cache (maxsize = METATILE_CACHE_SIZE)
+    def key (self, zoom, xtile, ytile):
+        return "T/%s/%d/%d/%d" % (self.mapid, zoom, xtile, ytile)
+
     def render_metatile (self, zoom, xtile, ytile):
         """Render a tile N times bigger than delivered ones."""
 
@@ -107,10 +102,16 @@ class Render:
         img = self.render_with_agg (METATILE_SIZE)
         #img = self.render_with_cairo (METATILE_SIZE)
 
-        return img
+        # cut up the metatile and cache it
+        for i in range (0, METATILE_FACTOR):
+            for j in range (0, METATILE_FACTOR):
+                key = self.key (zoom, xtile + i, ytile + j)
+                x = i * TILE_SIZE + PADDING_SIZE
+                y = j * TILE_SIZE + PADDING_SIZE
+                tile = img.view (x, y, TILE_SIZE, TILE_SIZE)
+                current_app.tile_cache.set (key, tile.tostring ('png256'))
 
 
-    @functools.lru_cache (maxsize = TILE_CACHE_SIZE)
     def render_tile (self, zoom, xtile, ytile):
         """ Render one tile.
 
@@ -118,21 +119,21 @@ class Render:
         cache it, then cut it up and deliver the requested piece.
         """
 
+        key = self.key (zoom, xtile, ytile)
+        tile = current_app.tile_cache.get (key)
+        if tile is not None:
+            return tile
+
         self.app.logger.info ("render_tile: {mapid}/{zoom}/{x}/{y}".format (
              mapid = self.mapid, zoom = zoom, x = xtile, y = ytile))
 
+        # render the metatile and cache its pieces
         meta_xtile = (xtile // METATILE_FACTOR) * METATILE_FACTOR
         meta_ytile = (ytile // METATILE_FACTOR) * METATILE_FACTOR
+        self.render_metatile (zoom, meta_xtile, meta_ytile)
 
-        # get eventually cached metatile
-        metatile_img = self.render_metatile (zoom, meta_xtile, meta_ytile)
-
-        x = (xtile - meta_xtile) * TILE_SIZE + PADDING_SIZE
-        y = (ytile - meta_ytile) * TILE_SIZE + PADDING_SIZE
-
-        # cut the metatile up
-        tile = metatile_img.view (x, y, TILE_SIZE, TILE_SIZE)
-        return tile.tostring ('png256')
+        # retrieve the tile
+        return current_app.tile_cache.get (key)
 
 
 renderers = {}
@@ -141,6 +142,13 @@ class tileBlueprint (Blueprint):
     def init_app (self, app):
         for layer in app.config['TILE_LAYERS']:
             renderers[layer['id']] = Render (app, layer)
+
+        app.tile_cache = SimpleCache (
+            threshold = TILE_CACHE_SIZE,
+            default_timeout = TILE_CACHE_TIMEOUT
+        )
+        # app.tile_cache = FileSystemCache ('cache' ...)
+
 
 tile_app = tileBlueprint ('tile_server', __name__)
 
@@ -155,9 +163,9 @@ def tile_png (mapid, zoom, xtile, ytile):
     if mapid not in renderers:
         abort (400, "No such map")
 
-    png = renderers[mapid].render_tile (zoom, xtile, ytile)
+    tile = renderers[mapid].render_tile (zoom, xtile, ytile)
 
-    return make_response (png, 200, {
+    return make_response (tile, 200, {
         'Content-Type'  : 'image/png',
         'Cache-Control' : 'public, max-age=3600',
     })

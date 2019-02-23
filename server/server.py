@@ -4,7 +4,6 @@
 """The API server for Capitularia."""
 
 import argparse
-import os.path
 import time
 
 from flask import current_app, Flask
@@ -18,20 +17,20 @@ from geo_server  import geo_app
 
 
 class Config (object):
-    def __init__ (self):
-        self.APPLICATION_HOST  = 'localhost'
-        self.APPLICATION_PORT  = 5000
-        self.USE_RELOADER      = False
-        self.USE_DEBUGGER      = False
-        self.SERVER_START_TIME = str (time.time ()) # for cache busting
+    APPLICATION_HOST  = 'localhost'
+    APPLICATION_PORT  = 5000
+    CONFIG_FILE       = 'server.conf' # default relative to server.py
+    USE_RELOADER      = False
+    USE_DEBUGGER      = False
+    SERVER_START_TIME = str (int (time.time ())) # for cache busting
 
-CONFIG = Config ()
 
-SHEPHERD1911 = 'Shepherd, William. Historical Atlas. New York, 1911'
+DROYSEN1886  = 'Droysen, Gustav. Historischer Handatlas. Leipzig, 1886'
 VIDAL1898    = 'Vidal-Lablache, Paul. Atlas général. Paris, 1898'
+SHEPHERD1911 = 'Shepherd, William. Historical Atlas. New York, 1911'
 NATEARTH2019 = '&copy; <a href="http://www.naturalearthdata.com/">Natural Earth</a>'
 
-CONFIG.TILE_LAYERS = [
+Config.TILE_LAYERS = [
     {
         'id'          : 'ne',
         'title'       : 'Natural Earth',
@@ -52,25 +51,24 @@ CONFIG.TILE_LAYERS = [
         'attribution' : SHEPHERD1911,
         'map_style'   : 'mapnik-shepherd.xml',
         'type'        : 'overlay',
-    }
+    },
+    {
+        'id'          : 'dr',
+        'title'       : 'Droysen - Deutschland um das Jahr 1000',
+        'attribution' : DROYSEN1886,
+        'map_style'   : 'mapnik-droysen-1886.xml',
+        'type'        : 'overlay',
+    },
 ]
 
-CONFIG.GEO_LAYERS = [
+Config.GEO_LAYERS = [
     {
         'id'          : 'countries_843',
         'title'       : 'Countries Anno 843',
         'classes'     : 'countries',
         'url'         : '/client/geodata/countries_843.geojson',
         'attribution' : VIDAL1898,
-        'type'        : 'overlay',
-    },
-    {
-        'id'          : 'regions_843',
-        'title'       : 'Regions Anno 843',
-        'classes'     : 'regions',
-        'url'         : '/client/geodata/regions_843.geojson',
-        'attribution' : VIDAL1898,
-        'type'        : 'overlay',
+        'type'        : 'area',
     },
     {
         'id'          : 'countries_870',
@@ -78,7 +76,7 @@ CONFIG.GEO_LAYERS = [
         'classes'     : 'countries',
         'url'         : '/client/geodata/countries_870.geojson',
         'attribution' : SHEPHERD1911,
-        'type'        : 'overlay',
+        'type'        : 'area',
     },
     {
         'id'          : 'countries_888',
@@ -86,7 +84,23 @@ CONFIG.GEO_LAYERS = [
         'classes'     : 'countries',
         'url'         : '/client/geodata/countries_888.geojson',
         'attribution' : SHEPHERD1911,
-        'type'        : 'overlay',
+        'type'        : 'area',
+    },
+    {
+        'id'          : 'regions_843',
+        'title'       : 'Regions Anno 843',
+        'classes'     : 'regions',
+        'url'         : '/client/geodata/regions_843.geojson',
+        'attribution' : VIDAL1898,
+        'type'        : 'area',
+    },
+    {
+        'id'          : 'regions_1000',
+        'title'       : 'Regions Anno 1000',
+        'classes'     : 'regions',
+        'url'         : '/client/geodata/droysen_1886_22_23.geojson',
+        'attribution' : DROYSEN1886,
+        'type'        : 'area',
     },
     {
         'id'          : 'countries_modern',
@@ -94,36 +108,58 @@ CONFIG.GEO_LAYERS = [
         'classes'     : 'countries',
         'url'         : '/client/geodata/countries_modern.geojson',
         'attribution' : NATEARTH2019,
-        'type'        : 'overlay',
+        'type'        : 'area',
+    },
+    {
+        'id'          : 'mss',
+        'title'       : 'Manuscripts',
+        'classes'     : 'places mss',
+        'url'         : 'geo/places/mss.json',
+        'attribution' : 'Capitularia',
+        'type'        : 'place',
+    },
+    {
+        'id'          : 'msp',
+        'title'       : 'Manuscript Parts',
+        'classes'     : 'places msparts',
+        'url'         : 'geo/places/msparts.json',
+        'attribution' : 'Capitularia',
+        'type'        : 'place',
+    },
+    {
+        'id'          : 'cap',
+        'title'       : 'Capitularies',
+        'classes'     : 'places capitularies',
+        'url'         : 'geo/places/capitularies.json',
+        'attribution' : 'Capitularia',
+        'type'        : 'place',
     },
 ]
 
-
-def build_parser ():
+def build_parser (default_config_file):
     """ Build the commandline parser. """
 
     parser = argparse.ArgumentParser (description = __doc__)
-    config_path = os.path.abspath (os.path.dirname (__file__) + '/server.conf')
 
     parser.add_argument (
         '-v', '--verbose', dest='verbose', action='count',
         help='increase output verbosity', default=0
     )
     parser.add_argument (
-        '-c', '--config-path', dest='config_path',
-        default=config_path, metavar='CONFIG_PATH',
-        help="the config file (default='./server.conf')"
+        '-c', '--config-file', dest='config_file',
+        default=default_config_file, metavar='CONFIG_FILE',
+        help="the config file (default='%s')" % default_config_file
     )
     return parser
 
 
-def create_app (config_path):
+def create_app (Config):
     app = Flask (__name__)
 
-    app.config.from_object (CONFIG)
-    app.config.from_pyfile (config_path)
+    app.config.from_object (Config)
+    app.config.from_pyfile (Config.CONFIG_FILE)
 
-    app.logger.setLevel (CONFIG.LOG_LEVEL)
+    app.logger.setLevel (Config.LOG_LEVEL)
 
     app.config.dba = PostgreSQLEngine (**app.config)
 
@@ -139,12 +175,13 @@ def create_app (config_path):
 if __name__ == "__main__":
     from werkzeug.serving import run_simple
 
-    args = build_parser ().parse_args ()
+    args = build_parser (Config.CONFIG_FILE).parse_args ()
     args = common.init_logging (args)
 
-    CONFIG.LOG_LEVEL = args.log_level
+    Config.LOG_LEVEL   = args.log_level
+    Config.CONFIG_FILE = args.config_file
 
-    app = create_app (args.config_path)
+    app = create_app (Config)
 
     @app.after_request
     def add_headers (response):
@@ -156,7 +193,7 @@ if __name__ == "__main__":
         name = app.config['APPLICATION_NAME'],
         host = app.config['APPLICATION_HOST'],
         port = app.config['APPLICATION_PORT'],
-        conf = args.config_path
+        conf = Config.CONFIG_FILE
     ))
 
     run_simple (
@@ -164,5 +201,6 @@ if __name__ == "__main__":
         app.config['APPLICATION_PORT'],
         app,
         use_reloader=app.config['USE_RELOADER'],
-        use_debugger=app.config['USE_DEBUGGER']
+        use_debugger=app.config['USE_DEBUGGER'],
+        extra_files=[Config.CONFIG_FILE],
     )

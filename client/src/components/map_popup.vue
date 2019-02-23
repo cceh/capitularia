@@ -11,16 +11,13 @@
 
       <div class="card-header">
         <toolbar :toolbar="toolbar">
-          <button-group type="radio" v-model="toolbar.type"
-                        :options="options.type" />
+          <layer-selector v-model="toolbar.place_layer_shown"
+                          layer_type="place"
+                          :layers="this.$store.state.geo_layers"><h6 class="card-subtitle">{{ rows.length }}</h6></layer-selector>
         </toolbar>
       </div>
 
-      <template v-if="toolbar.type == 'mss'">
-        <div class="card-header">
-          <h6 class="card-subtitle">{{ rows.length }} Manuscripts</h6>
-        </div>
-
+      <template v-if="toolbar.place_layer_shown == 'mss'">
         <c3-chart :options="chart_options.mss" />
 
         <div class="scroller mb-0">
@@ -41,11 +38,7 @@
         </div>
       </template>
 
-      <template v-if="toolbar.type == 'msp'">
-        <div class="card-header">
-          <h6 class="card-subtitle">{{ rows.length }} Manuscript Parts</h6>
-        </div>
-
+      <template v-if="toolbar.place_layer_shown == 'msp'">
         <c3-chart :options="chart_options.msp" />
 
         <div class="scroller mb-0">
@@ -68,11 +61,7 @@
         </div>
       </template>
 
-      <template v-if="toolbar.type == 'cap'">
-        <div class="card-header">
-          <h6 class="card-subtitle">{{ rows.length }} Capitularies</h6>
-        </div>
-
+      <template v-if="toolbar.place_layer_shown == 'cap'">
         <c3-chart :options="chart_options.cap" />
 
         <div class="scroller mb-0">
@@ -115,14 +104,15 @@ import _         from 'lodash';
 import * as d3   from 'd3';
 import csv_parse from 'csv-parse/lib/sync';
 
-import card          from 'widgets/card.vue';
-import card_caption  from 'widgets/card_caption.vue';
-import toolbar       from 'widgets/toolbar.vue';
-import button_group  from 'widgets/button_group.vue';
-import frappe_charts from 'widgets/frappe_charts.vue';
-import c3_charts     from 'widgets/c3_charts.vue';
+import card           from 'widgets/card.vue';
+import card_caption   from 'widgets/card_caption.vue';
+import toolbar        from 'widgets/toolbar.vue';
+import button_group   from 'widgets/button_group.vue';
+import layer_selector from 'widgets/layer_selector.vue';
+import frappe_charts  from 'widgets/frappe_charts.vue';
+import c3_charts      from 'widgets/c3_charts.vue';
 
-import options       from 'toolbar_options.js';
+import options        from 'toolbar_options.js';
 
 /**
  * Transform a string so that numbers in the string sort naturally.
@@ -159,12 +149,13 @@ const ENDPOINTS = {
 
 export default {
     'components' : {
-        'card'         : card,
-        'card-caption' : card_caption,
-        'toolbar'      : toolbar,
-        'button-group' : button_group,
-        'c3-chart'     : c3_charts,
-        'frappe-chart' : frappe_charts,
+        'card'           : card,
+        'card-caption'   : card_caption,
+        'toolbar'        : toolbar,
+        'button-group'   : button_group,
+        'layer-selector' : layer_selector,
+        'c3-chart'       : c3_charts,
+        'frappe-chart'   : frappe_charts,
     },
     'props' : ['d'],
     data () {
@@ -174,7 +165,7 @@ export default {
             'rows'      : [],
             'options'   : options,
             'toolbar'   : {
-                'type'  : this.$store.state.type,
+                'place_layer_shown' : this.$store.state.place_layer_shown,
             },
             'chart_options' : {
                 'mss' : this.default_c3_chart_options (),
@@ -186,13 +177,15 @@ export default {
     'computed' : {
         ... mapGetters ([
             'xhr_params',
+            'area_layer_shown',
+            'place_layer_shown',
         ])
     },
     'watch' : {
         'xhr_params' : function () {
             this.update ();
         },
-        'toolbar.type' : function () {
+        'toolbar.place_layer_shown' : function () {
             this.update ();
         },
     },
@@ -242,16 +235,16 @@ export default {
         },
         update () {
             const vm   = this;
-            const type = vm.toolbar.type;
+            const place_layer_shown = vm.toolbar.place_layer_shown;
 
-            // get manuscripts inside area described by layer and id
+            // get manuscripts inside area described by layer and geo_id
             vm.get (vm.build_url (vm.d)).then ((response) => {
-                vm.rows = _.sortBy (csv_parse (response.data, { 'columns' : true }), [SORTFUNCS[type]]);
+                vm.rows = _.sortBy (csv_parse (response.data, { 'columns' : true }), [SORTFUNCS[place_layer_shown]]);
 
-                const bins = vm.hist[type] (vm.rows);
-                const data = [type].concat (bins.map ((bin) => bin.length));
+                const bins = vm.hist[place_layer_shown] (vm.rows);
+                const data = [place_layer_shown].concat (bins.map ((bin) => bin.length));
 
-                _.merge (vm.chart_options[type], this.default_c3_chart_options (), {
+                _.merge (vm.chart_options[place_layer_shown], this.default_c3_chart_options (), {
                     'data' : {
                         'columns' : [data],
                     },
@@ -267,12 +260,13 @@ export default {
             });
         },
         build_url () {
+            const p = this.d.properties;
             const xhr_params = {
-                ... this.$store.getters.xhr_params,
-                'layer' : this.d.layer,
-                'id'    : this.d.id,
+                ... this.xhr_params,
+                'geo_source' : p.geo_source,
+                'geo_id'     : p.geo_id,
             };
-            return ENDPOINTS[this.toolbar.type] + '?' + $.param (xhr_params);
+            return ENDPOINTS[this.toolbar.place_layer_shown] + '?' + $.param (xhr_params);
         },
         download () {
             window.open (this.build_full_api_url (this.build_url (), '_blank'));
@@ -323,6 +317,11 @@ div.map-popup-vm {
     }
     .card-subtitle {
         margin-top: 0;
+    }
+    .layer-selector-vm {
+        label {
+            width: 2em;
+        }
     }
 
     div.scroller {

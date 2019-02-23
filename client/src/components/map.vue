@@ -27,31 +27,9 @@ import * as d3  from 'd3';
 import L        from 'leaflet';
 import _        from 'lodash';
 
-import '../../node_modules/leaflet/dist/leaflet.css';
+import options  from 'toolbar_options.js';
 
-const PLACE_LAYERS = [
-    {
-        'layer'      : 'geonames',
-        'title'      : 'Manuscripts',
-        'class'      : 'places mss',
-        'datasource' : 'geo/places/mss.json',
-        'type'       : 'mss',
-    },
-    {
-        'layer'      : 'geonames',
-        'title'      : 'Manuscript Parts',
-        'class'      : 'places msparts',
-        'datasource' : 'geo/places/msparts.json',
-        'type'       : 'msp',
-    },
-    {
-        'layer'      : 'geonames',
-        'title'      : 'Capitularies',
-        'class'      : 'places capitularies',
-        'datasource' : 'geo/places/capitularies.json',
-        'type'       : 'cap',
-    },
-];
+import '../../node_modules/leaflet/dist/leaflet.css';
 
 const RE_CAP = new RegExp ('^(\w+)[._](\d+)');
 
@@ -63,10 +41,47 @@ function add_centroids (feature_collection) {
     }
 }
 
+const colorScale = d3.scaleOrdinal (d3.schemeSet2);
+
+function wrap (text, width) {
+    // Credit: adapted from https://bl.ocks.org/mbostock/7555321
+    text.each (function () {
+        var text = d3.select (this),
+            words = text.text ().split (/\s+/).reverse (),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.3, // ems
+            y = text.attr ("y"),
+            dy = parseFloat (text.attr ("dy") || '0');
+        let tspan = text.text (null)
+            .append ("tspan")
+            .attr ("x", 0)
+            .attr ("y", y)
+            .attr ("dy", dy + "em");
+        while (word = words.pop ()) {
+            line.push (word);
+            tspan.text (line.join (" "));
+            if (tspan.node ().getComputedTextLength () > width) {
+                line.pop ();
+                tspan.text (line.join (" "));
+                line = [word];
+                tspan = text.append ("tspan")
+                    .attr ("x", 0)
+                    .attr ("y", y)
+                    .attr ("dy", (++lineNumber * lineHeight + dy) + "em")
+                    .text (word);
+            }
+        }
+    });
+}
+
 // A Leaflet layer that uses D3 to display features.  Easily styleable with CSS.
 
 L.D3_geoJSON = L.GeoJSON.extend ({
     onAdd (map) {
+        const that = this;
+
         L.GeoJSON.prototype.onAdd.call (this, map);
         this.map = map;
 
@@ -75,7 +90,14 @@ L.D3_geoJSON = L.GeoJSON.extend ({
               .classed ('d3', true)
               .classed (this.options.class, true);
 
-        this.g = this.svg.append ('g').classed ('leaflet-zoom-hide', true);
+        this.g = this.svg.append ('g')
+            .classed ('leaflet-zoom-hide', true)
+            .on ('mousedown', function (d) {
+                that.last_pos = { 'x' : d3.event.x, 'y' : d3.event.y };
+            })
+            .on ('mouseup', function (d) {
+                that.last_pos = { 'x' : 0, 'y' : 0 };
+            });
 
         function projectPoint (x, y) {
             const point = map.latLngToLayerPoint (new L.LatLng (y, x));
@@ -86,7 +108,6 @@ L.D3_geoJSON = L.GeoJSON.extend ({
         this.transform_path = d3.geoPath ().projection (transform);
 
         this.view_init ();
-        this.view_update ();
 
         map.on ('viewreset zoom', this.view_update, this);
         map.on ('zoomend',        this.zoom_end, this);
@@ -104,6 +125,28 @@ L.D3_geoJSON = L.GeoJSON.extend ({
         this.geojson = geojson;
         this.view_init ();
         this.view_update ();
+    },
+    setDatasource (url) {
+        this.url = url;
+        if (this.svg) {
+            this.load_data ();
+        }
+    },
+    load_data () {
+        const that = this;
+        if (this.url) {
+            d3.json (this.url).then (function (json) {
+                that.addData (json);
+            });
+        } else {
+            that.addData ({ 'features' : [] });
+        }
+    },
+    getAttribution () {
+        return this.options.attribution;
+    },
+    setAttribution (attribution) {
+        return this.options.attribution = attribution;
     },
     getBounds () {
         const [[l, b], [r, t]] = d3.geoPath ().bounds (this.geojson);
@@ -124,64 +167,96 @@ L.D3_geoJSON = L.GeoJSON.extend ({
             this.svg.attr ('data-zoom', 'Z'.repeat (event.target._zoom));
         }
     },
-});
-
-L.Layer_Borders = L.D3_geoJSON.extend ({
-    onAdd (map) {
-        L.D3_geoJSON.prototype.onAdd.call (this, map);
-        this.update ();
-    },
-    update () {
-        const layer = this;
-        const opt = this.options;
-        d3.json (opt.datasource).then (function (json) {
-            layer.addData (json);
-        });
+    is_dragging () {
+        if (this.last_pos) {
+            const dx = d3.event.x - this.last_pos.x;
+            const dy = d3.event.y - this.last_pos.y;
+            return Math.sqrt (dx * dx + dy * dy) > 5;
+        } else {
+            return true;
+        }
     },
     d3_init (geojson) {
+        // override this
+    },
+    d3_update (geojson) {
+        // override this
+    },
+});
+
+L.Layer_Areas = L.D3_geoJSON.extend ({
+    onAdd (map) {
+        L.D3_geoJSON.prototype.onAdd.call (this, map);
+
+        this.g_areas  = this.g.append ('g').classed ('areas',  true);
+        this.g_labels = this.g.append ('g').classed ('labels', true);
+
+        this.load_data ();
+    },
+    d3_update (geojson) {
         const that = this;
         const vm = this.options.vm;
 
-        const updated = this.g.selectAll ('path').data (geojson.features);
-        this.features = updated.enter ()
-            .append ('path')
-            .attr ('data-fcode', d => d.properties.geo_fcode);
+        // areas
+        let g = that.g_areas.selectAll ('path').data (
+            geojson.features,
+            function (d) {
+                const p = d.properties;
+                return p.geo_source + '-' + p.geo_id;
+            });
 
-        this.features.on ('click', function (d) {
-            d3.event.stopPropagation ();
-            d.layer = that.options.layer;
-            vm.$trigger ('mss-tooltip-open', d);
-        });
-    },
-    d3_update (geojson) {
-        this.features.attr ('d', this.transform_path);
+        g.exit ().remove ();
+
+        let entered = g.enter ()
+            .append ('path')
+            .on ('mouseup', function (d) {
+                if (that.is_dragging ()) {
+                    return;
+                }
+                vm.$trigger ('mss-tooltip-open', d);
+            });
+
+        entered.merge (g)
+            .attr ('d', that.transform_path)
+            .attr ('data-fcode', d => d.properties.geo_fcode)
+            .style ('fill', d => {
+                const fill = d.properties.geo_color || 'none';
+                if (/^\d+$/.test (fill)) {
+                    return colorScale (parseInt (fill) / 8.0);
+                }
+                return fill;
+            });
+
+        // labels
+        g = that.g_labels.selectAll ('text').data (
+            geojson.features.filter (d => d.properties.geo_label_y !== null),
+            function (d) {
+                const p = d.properties;
+                return p.geo_source + '-' + p.geo_id;
+            });
+
+        g.exit ().remove ();
+
+        g.enter ()
+            .append ('text')
+            .classed ('caption', true)
+            .merge (g)
+            .text (d => d.properties.geo_name)
+            .call (wrap, 200)
+            .attr ('data-fcode', d => d.properties.geo_fcode)
+            .attr ('transform', (d) => {
+                const p = d.properties;
+                const ll = new L.LatLng (p.geo_label_y, p.geo_label_x);
+                const pp = that.map.latLngToLayerPoint (ll);
+                return `translate(${pp.x},${pp.y})`;
+            });
     },
 })
 
 L.Layer_Places = L.D3_geoJSON.extend ({
     onAdd (map) {
         L.D3_geoJSON.prototype.onAdd.call (this, map);
-        this.update ();
-    },
-    onRemove (map) {
-        const t = d3.transition ()
-            .duration (300)
-            .ease (d3.easeLinear);
-        const that = this;
-        const g = this.g.selectAll ('g');
-        g.transition (t).attr ('opacity', 0).end ().then (function () {
-            L.D3_geoJSON.prototype.onRemove.call (that, map);
-        });
-    },
-    update () {
-        const layer = this;
-        const opt = this.options;
-        const vm = opt.vm;
-        d3.json (opt.datasource + '?' + $.param (vm.xhr_params)).then (function (json) {
-            layer.addData (json);
-        });
-    },
-    d3_init (geojson) {
+        this.load_data ();
     },
     d3_update (geojson) {
         const that = this;
@@ -191,14 +266,18 @@ L.Layer_Places = L.D3_geoJSON.extend ({
             .duration (500)
             .ease (d3.easeLinear);
 
-        const g = this.g.selectAll ('g').data (geojson.features, (d) => { return d.id; });
+        const g = this.g.selectAll ('g').data (geojson.features,
+            function (d) {
+                const p = d.properties;
+                return p.geo_source + '-' + p.geo_id;
+            });
 
-        g.exit ().transition (t).attr ('opacity', 0).remove ();
+        g.exit ().transition (t).style ('opacity', 0).remove ();
 
         const entered = g.enter ()
               .append ('g')
               .attr ('class', 'place')
-              .attr ('opacity', 0);
+              .style ('opacity', 0);
 
         entered.append ('circle')
             .attr ('class', 'count')
@@ -214,9 +293,10 @@ L.Layer_Places = L.D3_geoJSON.extend ({
                 return d.properties.geo_name;
             });
 
-        entered.on ('click', function (d) {
-            d3.event.stopPropagation ();
-            d.layer = that.options.layer;
+        entered.on ('mouseup', function (d) {
+            if (that.is_dragging ()) {
+                return;
+            }
             vm.$trigger ('mss-tooltip-open', d);
         });
 
@@ -230,7 +310,7 @@ L.Layer_Places = L.D3_geoJSON.extend ({
             g.selectAll ('text.count').text (d.properties.count);
         });
 
-        entered.transition (t).attr ('opacity', 1);
+        entered.transition (t).style ('opacity', 1);
     },
 })
 
@@ -263,47 +343,54 @@ export default {
     'computed' : {
         ... mapGetters ([
             'xhr_params',
-            'type',
+            'area_layer_shown',
+            'place_layer_shown',
         ])
     },
     'watch' : {
         'xhr_params' : function () {
-            this.update_map ();
+            this.update_place_layer ();
         },
-        'type' : function () {
-            this.register_place_layers ();
+        'place_layer_shown' : function (new_val) {
+            this.register_place_layer (new_val);
+        },
+        'area_layer_shown' : function (new_val) {
+            this.register_area_layer (new_val);
         },
     },
     'methods' : {
-        update_map () {
+        update_place_layer () {
             const vm = this;
-            vm.map.eachLayer (function (layer) {
-                if (layer instanceof L.Layer_Places && vm.map.hasLayer (layer)) {
-                    layer.update ();
-                }
-            });
+            if (vm.place_layer.options.url) {
+                vm.place_layer.setDatasource (
+                    vm.build_full_api_url (vm.place_layer.options.url) + '?' + $.param (vm.xhr_params)
+                );
+            } else {
+                vm.place_layer.setDatasource (null);
+            }
         },
-        register_place_layers () {
-            const vm = this;
-            vm.map.eachLayer (function (layer) {
-                if (layer instanceof L.Layer_Places) {
-                    layer.remove ();
+        register_place_layer (new_id) {
+            for (const layer_info of this.place_layer_infos) {
+                if (layer_info.id == new_id) {
+                    this.place_layer.options.layer = layer_info.id;
+                    this.place_layer.options.url   = layer_info.url;
+                    this.place_layer.setAttribution (layer_info.attribution);
+                    break;
                 }
-            });
-            for (const opt of PLACE_LAYERS) {
-                if (opt.type == this.type) {
-                    const layer = new L.Layer_Places (null, {
-                        'layer'               : opt.layer,
-                        'class'               : opt.class,
-                        'type'                : opt.type,
-                        'datasource'          : vm.build_full_api_url (opt.datasource),
-                        'vm'                  : vm,
-                        'interactive'         : true,
-                        'bubblingMouseEvents' : false,
-                    });
-                    layer.addTo (vm.map);
+            }
+            this.update_place_layer ();
+            this.update_attribution ();
+        },
+        register_area_layer (new_id) {
+            for (const layer_info of this.area_layer_infos) {
+                if (layer_info.id == new_id) {
+                    this.area_layer.options.layer = layer_info.id;
+                    this.area_layer.setAttribution (layer_info.attribution);
+                    this.area_layer.setDatasource  (layer_info.url);
+                    this.update_attribution ();
+                    break;
                 }
-            };
+            }
         },
         zoom_extent (json) {
             const vm = this;
@@ -312,9 +399,20 @@ export default {
                 vm.map.fitBounds (L.latLngBounds (L.latLng (b, r), L.latLng (t, l)));
             });
         },
+        update_attribution () {
+            const ac = this.map.attributionControl;
+            if (ac) {
+                ac._attributions = {};
+                this.map.eachLayer (function (layer) {
+                    ac.addAttribution (layer.getAttribution ());
+                });
+            }
+        },
     },
     'mounted' : function () {
         const vm = this;
+
+        vm.area_layer_infos = vm.place_layer_infos = [ { 'id' : 'none', 'url' : null, 'attribution' : '' } ];
 
         const xhrs = [
             d3.json (vm.build_full_api_url ('geo/')),
@@ -354,24 +452,39 @@ export default {
                     'attribution' : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 });
 
-            for (const layer_info of json_geo.layers) {
-                const layer = new L.Layer_Borders (null,
-                    {
-                        'layer'       : layer_info.id,
-                        'class'       : 'areas ' + layer_info.classes,
-                        'datasource'  : layer_info.url,
-                        'attribution' : layer_info.attribution,
-                        'vm'          : vm,
-                    }
-                );
-                overlays[layer_info.title] = layer;
-            };
+            vm.area_layer_infos.push (... json_geo.layers.filter (d => d.type == 'area'));
+
+            vm.place_layer_infos.push (... json_geo.layers.filter (d => d.type == 'place'));
+
+            vm.area_layer = new L.Layer_Areas (null, {
+                'class'               : 'areas',
+                'vm'                  : vm,
+                'interactive'         : true,
+                'bubblingMouseEvents' : false,
+            });
+            vm.area_layer.addTo (vm.map);
+
+            vm.register_area_layer (vm.area_layer_shown);
+
+            vm.place_layer = new L.Layer_Places (null, {
+                'class'               : 'places',
+                'vm'                  : vm,
+                'interactive'         : true,
+                'bubblingMouseEvents' : false,
+            });
+            vm.place_layer.addTo (vm.map);
+
+            vm.register_place_layer (vm.place_layer_shown);
+            vm.update_place_layer ();
 
             L.control.layers (baseLayers, overlays, { 'collapsed' : true }).addTo (vm.map);
             new L.Control.Info_Pane ({ position: 'topleft' }).addTo (vm.map);
 
-            vm.register_place_layers ();
             vm.zoom_extent ();
+
+            vm.$store.commit ('toolbar_range',  vm.toolbar);
+            vm.$store.commit ('toolbar_area_layer_shown',  vm.toolbar);
+            vm.$store.commit ('toolbar_place_layer_shown', vm.toolbar);
         });
     },
 };
@@ -382,8 +495,11 @@ export default {
 @import "bootstrap-custom";
 
 #map {
+    position: absolute;
+    overflow: hidden;
     width: 100%;
-    height: 960px;
+    top: 55px;
+    bottom: 0;
 }
 
 .leaflet-control-layers-toggle {
@@ -402,51 +518,21 @@ svg {
         &.areas {
             z-index: 200;
         }
-        &.areas.countries_843 {
-            z-index: 201;
-        }
-        &.areas.countries_870 {
-            z-index: 202;
-        }
-        &.areas.countries_888 {
-            z-index: 203;
-        }
-        &.areas.countries_modern {
-            z-index: 204;
-        }
-        &.areas.regions_843 {
-            z-index: 205;
-        }
 
         &.places {
             z-index: 400;
         }
-        &.places.mss {
-            z-index: 401;
-        }
-        &.places.msparts {
-            z-index: 402;
-        }
-        &.places.capitularies {
-            z-index: 403;
-        }
 
         path {
-            stroke-opacity: .7;
-            stroke-width: 1.5px;
-            fill: none;
-            pointer-events: all;
+            stroke-width: 1px;
         }
 
-        &.areas {
+        g.areas {
             opacity: 0.5;
             path {
-                stroke-width: 6px;
-            }
-        }
-
-        &.areas.countries {
-            path {
+                cursor: pointer;
+                pointer-events: all;
+                stroke-width: 2px;
                 stroke: $country-color;
                 &:hover {
                     fill: $country-color;
@@ -454,12 +540,12 @@ svg {
             }
         }
 
-        &.areas.regions {
-            path {
-                stroke: $region-color;
-                &:hover {
-                    fill: $region-color;
-                }
+        g.labels {
+            text {
+                font: bold 16px sans-serif;
+                text-align: center;
+                fill: black;
+                text-shadow: 1px 1px 0 white, 1px -1px 0 white, -1px 1px 0 white, -1px -1px 0 white;
             }
         }
 
@@ -468,6 +554,7 @@ svg {
             stroke-width: 1.5px;
             fill-opacity: 0.5;
             pointer-events: all;
+            cursor: pointer;
 
             fill: $place-color;
             &[data-fcode^="PCL"] {
@@ -497,11 +584,6 @@ svg {
                 fill: black;
                 text-shadow: 1px 1px 0 white, 1px -1px 0 white, -1px 1px 0 white, -1px -1px 0 white;
             }
-        }
-
-        image {
-            x: -16px;
-            y: -16px;
         }
     }
 }

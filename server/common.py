@@ -8,6 +8,8 @@ import csv
 import io
 import logging
 import re
+import types
+
 import flask
 
 RE_WS    = re.compile ('(\s+)')
@@ -23,7 +25,7 @@ def make_json_response (json = None, status = 200):
     })
 
 
-def make_geojson_response (rows, fields, geometry_field_name = 'geom', id_field_name = 'geo_id'):
+def make_geojson_response (rows, fields, geometry_field_name = 'geom', id_field_name='geo_id'):
     """Make a geoJSON response.
 
     All fields except the id and geometry fields become properties.
@@ -45,7 +47,7 @@ def make_geojson_response (rows, fields, geometry_field_name = 'geom', id_field_
             'properties' : properties,
         }
         del properties[geometry_field_name]
-        del properties[id_field_name]
+        # del properties[id_field_name]
         features.append (feature)
 
     response = flask.make_response (flask.json.jsonify ({
@@ -146,7 +148,7 @@ def config_from_pyfile (filename):
     """Mimic Flask config files.
 
     Emulate the Flask config file parser so we can use the same config files for both,
-    the server and this script.
+    the Flask server and non-server scripts.
 
     """
 
