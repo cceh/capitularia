@@ -29,6 +29,7 @@ DROYSEN1886  = 'Droysen, Gustav. Historischer Handatlas. Leipzig, 1886'
 VIDAL1898    = 'Vidal-Lablache, Paul. Atlas général. Paris, 1898'
 SHEPHERD1911 = 'Shepherd, William. Historical Atlas. New York, 1911'
 NATEARTH2019 = '&copy; <a href="http://www.naturalearthdata.com/">Natural Earth</a>'
+CAPITULARIA  = 'capitularia.uni-koeln.de'
 
 Config.TILE_LAYERS = [
     {
@@ -64,7 +65,8 @@ Config.TILE_LAYERS = [
 Config.GEO_LAYERS = [
     {
         'id'          : 'countries_843',
-        'title'       : 'Countries Anno 843',
+        'title'       : 'Empire 843',
+        'long_title'  : 'Empire de Charlemagne au Traité de Verdun 843',
         'classes'     : 'countries',
         'url'         : '/client/geodata/countries_843.geojson',
         'attribution' : VIDAL1898,
@@ -72,7 +74,8 @@ Config.GEO_LAYERS = [
     },
     {
         'id'          : 'countries_870',
-        'title'       : 'Countries Anno 870',
+        'title'       : 'Boundaries 870',
+        'long_title'  : 'Disruption of the Carolingian Empire, 843-888 (Mersen 870)',
         'classes'     : 'countries',
         'url'         : '/client/geodata/countries_870.geojson',
         'attribution' : SHEPHERD1911,
@@ -80,7 +83,8 @@ Config.GEO_LAYERS = [
     },
     {
         'id'          : 'countries_888',
-        'title'       : 'Countries Anno 888',
+        'title'       : 'Boundaries 888',
+        'long_title'  : 'Disruption of the Carolingian Empire, 843-888 (888)',
         'classes'     : 'countries',
         'url'         : '/client/geodata/countries_888.geojson',
         'attribution' : SHEPHERD1911,
@@ -88,7 +92,8 @@ Config.GEO_LAYERS = [
     },
     {
         'id'          : 'regions_843',
-        'title'       : 'Regions Anno 843',
+        'title'       : 'Empire 843 (Pagi)',
+        'long_title'  : 'Empire de Charlemagne au Traité de Verdun 843 (Pagi)',
         'classes'     : 'regions',
         'url'         : '/client/geodata/regions_843.geojson',
         'attribution' : VIDAL1898,
@@ -96,7 +101,7 @@ Config.GEO_LAYERS = [
     },
     {
         'id'          : 'regions_1000',
-        'title'       : 'Regions Anno 1000',
+        'title'       : 'Deutschland um das Jahr 1000',
         'classes'     : 'regions',
         'url'         : '/client/geodata/droysen_1886_22_23.geojson',
         'attribution' : DROYSEN1886,
@@ -104,7 +109,7 @@ Config.GEO_LAYERS = [
     },
     {
         'id'          : 'countries_modern',
-        'title'       : 'Countries Modern',
+        'title'       : 'Modern Countries',
         'classes'     : 'countries',
         'url'         : '/client/geodata/countries_modern.geojson',
         'attribution' : NATEARTH2019,
@@ -115,7 +120,7 @@ Config.GEO_LAYERS = [
         'title'       : 'Manuscripts',
         'classes'     : 'places mss',
         'url'         : 'geo/places/mss.json',
-        'attribution' : 'Capitularia',
+        'attribution' : CAPITULARIA,
         'type'        : 'place',
     },
     {
@@ -123,7 +128,7 @@ Config.GEO_LAYERS = [
         'title'       : 'Manuscript Parts',
         'classes'     : 'places msparts',
         'url'         : 'geo/places/msparts.json',
-        'attribution' : 'Capitularia',
+        'attribution' : CAPITULARIA,
         'type'        : 'place',
     },
     {
@@ -131,7 +136,7 @@ Config.GEO_LAYERS = [
         'title'       : 'Capitularies',
         'classes'     : 'places capitularies',
         'url'         : 'geo/places/capitularies.json',
-        'attribution' : 'Capitularia',
+        'attribution' : CAPITULARIA,
         'type'        : 'place',
     },
 ]

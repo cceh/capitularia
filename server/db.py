@@ -163,7 +163,7 @@ class Geonames (Base):
     geo_name    = Column (String)
     geo_fcode   = Column (String)
 
-    geom        = Column (Geometry ('POINT', srid=4326))
+    geom        = Column (Geometry ('GEOMETRY', srid=4326))
     blob        = Column (JSONB)
 
     __table_args__ = (
@@ -318,7 +318,7 @@ class GeoAreas (Base):
     geo_label_x = Column (Float (precision = 53))
     geo_label_y = Column (Float (precision = 53))
 
-    geom        = Column (Geometry ('MULTIPOLYGON', srid=4326))
+    geom        = Column (Geometry ('GEOMETRY', srid=4326))
 
     __table_args__ = (
         PrimaryKeyConstraint (geo_source, geo_id),

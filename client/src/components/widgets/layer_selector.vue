@@ -2,7 +2,11 @@
   <form class="layer-selector-vm form-inline">
     <div class="form-group">
       <label class="mr-2"><slot /></label>
-      <b-form-select size="sm" :value="value" :options="filtered_layers" @input="on_input" />
+      <select class="form-control form-control-sm" :value="value" @change="on_change ($event)">
+        <option v-for="d in filtered_layers" :value="d.id" :title="d.long_title"
+                :selected="d.id == value"
+                >{{ d.title }}</option>
+      </select>
     </div>
   </form>
 </template>
@@ -59,19 +63,18 @@ export default {
         },
     },
     'methods' : {
-        on_input (value) {
+        on_change (event) {
+            const value = event.target.value;
             this.$trigger (this.eventname, value);
             this.$emit ('input', value);  // makes it work with v-model
         },
         filter_layers (layers, type, addnone) {
             const res = [];
             if (addnone) {
-                res.push ({ value : 'none', text : 'None' });
+                res.push ({ 'id': 'none', 'title' : 'None' });
             }
             if (this.layers) {
-                res.push (... this.layers
-                          .filter (d => d.type === this.layer_type)
-                          .map (d => ({ 'value' : d.id, 'text' : d.title })));
+                res.push (... this.layers.filter (d => d.type === this.layer_type));
             }
             return res;
         },

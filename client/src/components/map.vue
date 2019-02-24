@@ -242,7 +242,7 @@ L.Layer_Areas = L.D3_geoJSON.extend ({
             .classed ('caption', true)
             .merge (g)
             .text (d => d.properties.geo_name)
-            .call (wrap, 200)
+            .call (wrap, 150)
             .attr ('data-fcode', d => d.properties.geo_fcode)
             .attr ('transform', (d) => {
                 const p = d.properties;
