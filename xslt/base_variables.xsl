@@ -13,14 +13,13 @@
     exclude-result-prefixes="xs">
 
   <!-- #### grundlegende interne Verlinkungen #### -->
-
-  <xsl:variable name="base">http://capitularia.uni-koeln.de</xsl:variable>
+  <xsl:variable name="base">//capitularia.uni-koeln.de</xsl:variable>
 
   <!-- Verlinkungen zu den englischen Seiten -->
-  <xsl:variable name="base_en">http://capitularia.uni-koeln.de/en/</xsl:variable>
+  <xsl:variable name="base_en">//capitularia.uni-koeln.de/en/</xsl:variable>
 
   <!-- #### Kapitularien #### -->
-  <xsl:variable name="capit"><xsl:value-of select="$base"/>/capit/</xsl:variable>
+  <xsl:variable name="capit">/capit/</xsl:variable>
   <!-- Kapitularien - Einleitungstext; darunter hängen die einzelnen Übersichten -->
   <xsl:variable name="capit_all"><xsl:value-of select="$capit"/>list/</xsl:variable>
   <!-- Kapitulariengesamtliste -->
@@ -36,7 +35,7 @@
   <!-- undatierte Kapitularien -->
 
   <!-- #### Handschriften #### -->
-  <xsl:variable name="mss"><xsl:value-of select="$base"/>/mss/</xsl:variable>
+  <xsl:variable name="mss">/mss/</xsl:variable>
   <!-- Handschriften - Einleitungstext; darunter hängen die entsprechenden Übersichten sowie die einzelnen Handschriftenseiten (=ID)-->
   <xsl:variable name="mss_table"><xsl:value-of select="$mss"/>table</xsl:variable>
   <!-- tabellarische Übersicht über die Handschriften -->
@@ -48,7 +47,7 @@
   <!-- Handschriften nach Sigle Mordek (1995)/Konkordanz -->
 
   <!-- #### Materialien/Ressourcen ####-->
-  <xsl:variable name="resources"><xsl:value-of select="$base"/>/resources/</xsl:variable>
+  <xsl:variable name="resources">/resources/</xsl:variable>
   <xsl:variable name="biblio"><xsl:value-of select="$resources"/>biblio/</xsl:variable>
   <!-- Verlinkung zur Bibliographie -->
   <!-- Verlinkung zu Verzeichnissen/Indices - langfristig: Personen, Orte, Glossar??? -->
@@ -59,11 +58,11 @@
   <!-- Verlinkung zu eventuellen Studien, die aus dem Projekt raus entstehen -->
   <xsl:variable name="downloads"><xsl:value-of select="$resources"/>downloads/</xsl:variable>
   <!-- Verlinkung zur Downloadseite, auf der alle Downloads gesammelt angeboten werden; ??? Wo liegen diese auf dem Server ??? -->
-  <xsl:variable name="mss_downloads"><xsl:value-of select="$base"/>/cap/publ/mss/</xsl:variable>
-  <xsl:variable name="capit_downloads"><xsl:value-of select="$base"/>/cap/publ/capit/</xsl:variable>
+  <xsl:variable name="mss_downloads">/cap/publ/mss/</xsl:variable>
+  <xsl:variable name="capit_downloads">/cap/publ/capit/</xsl:variable>
   <!-- #### Projekt - unklar, ob diese notwendig sind #### -->
-  <xsl:variable name="project"><xsl:value-of select="$base"/>/project/</xsl:variable>
-  <xsl:variable name="blog"><xsl:value-of select="$base"/>/blog/</xsl:variable>
+  <xsl:variable name="project">/project/</xsl:variable>
+  <xsl:variable name="blog">/blog/</xsl:variable>
   <!-- Aus jeder Datei führen Links zu den Tranksriptionsrichtlinien - Muss noch angepasst werden, wo diese genau liegen - welches Format? -->
   <xsl:variable name="trl"/>
 
