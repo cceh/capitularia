@@ -77,12 +77,12 @@
       <!-- The main title is already supplied by Wordpress.  Eventually add filiation here. -->
       <xsl:apply-templates select="tei:titleStmt//tei:note[@type='filiation']"/>
 
-      <!-- "Beschreibung nach Mordek" -->
-      <h4 id="description-mordek" class="tei-titleStmt">
-        <xsl:text>[:de]Beschreibung[:en]Description</xsl:text>
-        <xsl:if test="tei:sourceDesc//tei:listBibl[@type='cap']/tei:bibl[starts-with (., 'Mordek 1995')]">
-          <xsl:text>[:de] nach Mordek[:en] according to Mordek</xsl:text>
-        </xsl:if>
+      <!-- "Beschreibung nach ..." -->
+      <h4 id="description" class="tei-titleStmt">
+        <xsl:text>[:de]</xsl:text>
+        <xsl:value-of select="substring-before (normalize-space (tei:titleStmt/tei:title[@type='sub' and @xml:lang='ger']), ' und Trans')"/>
+        <xsl:text>[:en]</xsl:text>
+        <xsl:value-of select="substring-before (normalize-space (tei:titleStmt/tei:title[@type='sub' and @xml:lang='eng']), ' and trans')"/>
         <xsl:text>[:]</xsl:text>
       </h4>
 
