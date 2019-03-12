@@ -33,3 +33,16 @@ $(CSS_DEST)/front.css: $(CSS_SRC)/content.scss $(CSS_SRC)/navigation.scss $(CSS_
 
 deploy:
 	$(RSYNC) * $(WPCONTENT)/themes/Capitularia/
+
+
+define LOCALE_TEMPLATE
+
+mo: $(LANG_DEST)/$(1).mo
+
+$(LANG_DEST)/$(1).mo: $(LANG_SRC)/$(1).po
+	-mkdir -p $$(dir $$@)
+	msgfmt -o $$@ $$?
+
+endef
+
+$(foreach lang,$(TRANSLATIONS),$(eval $(call LOCALE_TEMPLATE,$(lang))))

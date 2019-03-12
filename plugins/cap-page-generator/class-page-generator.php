@@ -47,8 +47,9 @@ class Page_Generator
 
     public function __construct ()
     {
-        $this->name   = __ ('Capitularia Page Generator', 'capitularia');
+        $this->name   = __ ('Capitularia Page Generator', 'cap-page-generator');
 
+        add_action ('init',                        array ($this, 'on_init'));
         add_action ('wp_enqueue_scripts',          array ($this, 'on_enqueue_scripts'));
         add_action ('admin_menu',                  array ($this, 'on_admin_menu'));
         add_action ('admin_bar_menu',              array ($this, 'on_admin_bar_menu'), 200);
@@ -69,7 +70,7 @@ class Page_Generator
         check_ajax_referer (NONCE_SPECIAL_STRING, NONCE_PARAM_NAME);
         if (!current_user_can ('edit_posts')) {
             wp_send_json_error (
-                array ('message' => __ ('You have no permission to edit posts.', 'capitularia'))
+                array ('message' => __ ('You have no permission to edit posts.', 'cap-page-generator'))
             );
             exit ();
         }
@@ -88,6 +89,17 @@ class Page_Generator
         // no user permission checks because we are just reading
         $this->dashboard_page = new Dashboard_Page ();
         $this->dashboard_page->on_cap_load_section ();
+    }
+
+    /**
+     * Register the translations
+     *
+     * @return void
+     */
+
+    public function on_init ()
+    {
+        load_plugin_textdomain ('cap-page-generator', false, basename (dirname ( __FILE__ )) . '/languages/');
     }
 
     /**

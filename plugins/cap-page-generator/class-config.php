@@ -67,51 +67,51 @@ class Config
         $section_general = array (
             array (
                 'section_id_list',
-                __ ('List of section ids', 'capitularia'),
+                __ ('List of section ids', 'cap-page-generator'),
                 sprintf (
-                    __ ('List of section ids (space-separated). Eg.: %s', 'capitularia'),
+                    __ ('List of section ids (space-separated). Eg.: %s', 'cap-page-generator'),
                     'mss mss_internal capit_ldf capit_ldf_internal'
                 ),
                 "$namespace\cap_sanitize_key_list",
             ),
             array (
                 'xml_root',
-                __ ('XML root', 'capitularia'),
+                __ ('XML root', 'cap-page-generator'),
                 sprintf (
-                    __ ('Root directory for XML files in the AFS, eg.: %s', 'capitularia'),
+                    __ ('Root directory for XML files in the AFS, eg.: %s', 'cap-page-generator'),
                     AFS_ROOT . 'http/docs/cap'
                 ),
                 "$namespace\cap_sanitize_path",
             ),
             array (
                 'xsl_root',
-                __ ('XSL root', 'capitularia'),
+                __ ('XSL root', 'cap-page-generator'),
                 sprintf (
-                    __ ('Root directory for XSL files in the AFS, eg.: %s', 'capitularia'),
+                    __ ('Root directory for XSL files in the AFS, eg.: %s', 'cap-page-generator'),
                     AFS_ROOT . 'http/docs/cap'
                 ),
                 "$namespace\cap_sanitize_path",
             ),
             array (
                 'schema_root',
-                __ ('Schema root', 'capitularia'),
+                __ ('Schema root', 'cap-page-generator'),
                 sprintf (
-                    __ ('Root directory for schema files in the AFS, eg.: %s', 'capitularia'),
+                    __ ('Root directory for schema files in the AFS, eg.: %s', 'cap-page-generator'),
                     AFS_ROOT . 'http/docs/cap'
                 ),
                 "$namespace\cap_sanitize_path",
             ),
             array (
                 'shortcode',
-                __ ('Shortcode',                   'capitularia'),
-                __ ('The shortcode, eg.: cap_xsl', 'capitularia'),
+                __ ('Shortcode',                   'cap-page-generator'),
+                __ ('The shortcode, eg.: cap_xsl', 'cap-page-generator'),
                 "$namespace\cap_sanitize_key",
             ),
             array (
                 'xmllint_path',
-                __ ('xmllint path', 'capitularia'),
+                __ ('xmllint path', 'cap-page-generator'),
                 sprintf (
-                    __ ('The full path to the xmllint utility as seen from the server, eg.: %s', 'capitularia'),
+                    __ ('The full path to the xmllint utility as seen from the server, eg.: %s', 'cap-page-generator'),
                     AFS_ROOT . 'local/bin/xmllint'
                 ),
                 "$namespace\cap_sanitize_path",
@@ -120,63 +120,63 @@ class Config
         $section_transform = array (
             array (
                 'section_caption',
-                __ ('Section name', 'capitularia'),
-                __ ('Name of this section', 'capitularia'),
+                __ ('Section name', 'cap-page-generator'),
+                __ ('Name of this section', 'cap-page-generator'),
                 "$namespace\cap_sanitize_caption",
             ),
             array (
                 'xml_dir',
-                __ ('XML files directory', 'capitularia'),
+                __ ('XML files directory', 'cap-page-generator'),
                 sprintf (
-                    __ ('Directory (relative to XML root), eg.: %s', 'capitularia'),
+                    __ ('Directory (relative to XML root), eg.: %s', 'cap-page-generator'),
                     'publ/mss'
                 ),
                 "$namespace\cap_sanitize_path",
             ),
             array (
                 'xsl_path_list',
-                __ ('XSL files list', 'capitularia'),
-                __ ('A list of xsl files to run (relative to XSL root) (space-separated list).', 'capitularia'),
+                __ ('XSL files list', 'cap-page-generator'),
+                __ ('A list of xsl files to run (relative to XSL root) (space-separated list).', 'cap-page-generator'),
                 "$namespace\cap_sanitize_path_list",
             ),
             array (
                 'schema_path',
-                __ ('XSL schema', 'capitularia'),
-                __ ('The path to the xsl schema file (relative to schema root).', 'capitularia'),
+                __ ('XSL schema', 'cap-page-generator'),
+                __ ('The path to the xsl schema file (relative to schema root).', 'cap-page-generator'),
                 "$namespace\cap_sanitize_path",
             ),
             array (
                 'slug_path',
-                __ ('Slug path', 'capitularia'),
+                __ ('Slug path', 'cap-page-generator'),
                 sprintf (
-                    __ ('The URL path to the page, eg.: %s', 'capitularia'),
+                    __ ('The URL path to the page, eg.: %s', 'cap-page-generator'),
                     'capit/ldf'
                 ),
                 "$namespace\cap_sanitize_path",
             ),
             array (
                 'slug_prefix',
-                __ ('Slug prefix', 'capitularia'),
+                __ ('Slug prefix', 'cap-page-generator'),
                 sprintf (
-                    __ ('The slug prefix for the pages, eg.: %s', 'capitularia'),
+                    __ ('The slug prefix for the pages, eg.: %s', 'cap-page-generator'),
                     'capit-ldf-'
                 ),
                 "$namespace\cap_sanitize_key",
             ),
             array (
                 'page_status_list',
-                __ ('Page statuses list', 'capitularia'),
+                __ ('Page statuses list', 'cap-page-generator'),
                 sprintf (
-                    __ ('The allowed page statuses (space-separated list). Eg.: %s', 'capitularia'),
+                    __ ('The allowed page statuses (space-separated list). Eg.: %s', 'cap-page-generator'),
                     'publish private'
                 ),
                 "$namespace\cap_sanitize_caption",
             ),
             array (
                 'sidebars',
-                __ ('Sidebars', 'capitularia'),
+                __ ('Sidebars', 'cap-page-generator'),
                 sprintf (
-                    __ ('The sidebars (space-separated list). Eg.: %s', 'capitularia'),
+                    __ ('The sidebars (space-separated list). Eg.: %s', 'cap-page-generator'),
                     'transcription'
                 ),
                 "$namespace\cap_sanitize_caption",

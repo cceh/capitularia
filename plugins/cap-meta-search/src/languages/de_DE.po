@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2018-10-11 14:45+0200\n"
-"PO-Revision-Date: 2018-05-22 10:48+0200\n"
+"POT-Creation-Date: 2019-02-25 16:55+0100\n"
+"PO-Revision-Date: 2019-02-25 16:57+0100\n"
 "Last-Translator: Marcello Perathoner <marcello@perathoner.de>\n"
 "Language-Team: German <>\n"
 "Language: de_DE\n"
@@ -17,26 +17,43 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: class-settings-page.php:34
 msgid "General Settings"
 msgstr "Allgemeine Einstellungen"
 
-#: class-settings-page.php:72
+#: class-settings-page.php:41
+msgid "Path for the XML Places file"
+msgstr "Pfad der XML-Datei der Ortschaften"
+
+#: class-settings-page.php:67
+msgctxt "Button: Save Setting"
+msgid "Save Changes"
+msgstr "Konfiguration Speichern"
+
+#: class-settings-page.php:71
+msgid "Places File"
+msgstr "Datei der Ortschaften"
+
+#: class-settings-page.php:74
 msgctxt "Button: Admin reload the places file"
 msgid "Reload Places File"
 msgstr "Ortschaften neu laden"
+
+#: class-settings-page.php:105
+msgid "File path in the AFS, eg.:"
+msgstr "Dateipfad im AFS, z.B.:"
 
 #: functions.php:45
 msgid "Capitularia Meta Search"
 msgstr "Capitularia Meta-Suche"
 
-#: functions.php:444
+#: functions.php:456
 msgid "You have no permission to manage options."
 msgstr "Sie haben keine Berechtigung Einstellungen zu verändern."
 
-#: functions.php:454
+#: functions.php:466
 #, php-format
 msgid "Could not load XML file %s."
 msgstr "Die XML-Datei %s konnte nicht geladen werden."
@@ -149,10 +166,6 @@ msgstr "Neuer Titel"
 #~ msgctxt "Button: Load the collation config"
 #~ msgid "Load Config"
 #~ msgstr "Konfiguration Laden"
-
-#~ msgctxt "Button: Save the collation config"
-#~ msgid "Save Config"
-#~ msgstr "Konfiguration Speichern"
 
 #~ msgctxt "H2 caption"
 #~ msgid "Capitulary"
@@ -385,10 +398,8 @@ msgstr "Neuer Titel"
 #~ msgid "xmllint path"
 #~ msgstr "xmllint Pfad"
 
-#~ msgid ""
-#~ "The full path to the xmllint utility as seen from the server, eg.: %s"
-#~ msgstr ""
-#~ "Pfad- und Dateiname des xmllint-tools vom Server aus gesehen, z.B.: %s"
+#~ msgid "The full path to the xmllint utility as seen from the server, eg.: %s"
+#~ msgstr "Pfad- und Dateiname des xmllint-tools vom Server aus gesehen, z.B.: %s"
 
 #~ msgid "Section name"
 #~ msgstr "Name der Sektion"
@@ -405,24 +416,17 @@ msgstr "Neuer Titel"
 #~ msgid "XSL files list"
 #~ msgstr "Liste der XSL-Dateien"
 
-#~ msgid ""
-#~ "A list of xsl files to run (relative to XSL root) (space-separated list)."
-#~ msgstr ""
-#~ "Liste der anzuwendenden XSL-Dateien (relativ zum XSL-Stammverzeichnis) "
-#~ "(mit Leerzeichen getrennt)."
+#~ msgid "A list of xsl files to run (relative to XSL root) (space-separated list)."
+#~ msgstr "Liste der anzuwendenden XSL-Dateien (relativ zum XSL-Stammverzeichnis) (mit Leerzeichen getrennt)."
 
 #~ msgid "XSL schema"
 #~ msgstr "XSL Schema"
 
 #~ msgid "The path to the xsl schema file (relative to schema root)."
-#~ msgstr ""
-#~ "Der Pfad zur XSL-Schema-Datei (relativ zum Schema-Stammverzeichnis)."
+#~ msgstr "Der Pfad zur XSL-Schema-Datei (relativ zum Schema-Stammverzeichnis)."
 
 #~ msgid "Slug path"
 #~ msgstr "Slug-Pfad"
-
-#~ msgid "The URL path to the page, eg.: %s"
-#~ msgstr "Der URL-Pfad zur Seite, z.B.: %s"
 
 #~ msgid "Slug prefix"
 #~ msgstr "Slug Prefix"
@@ -440,9 +444,7 @@ msgstr "Neuer Titel"
 #~ msgstr "Sidebars"
 
 #~ msgid "The sidebars (space-separated list). Eg.: %s"
-#~ msgstr ""
-#~ "Welche Sidebars sollen angezeigt werden (mit Leerzeichen getrennt)? Z.B.: "
-#~ "%s"
+#~ msgstr "Welche Sidebars sollen angezeigt werden (mit Leerzeichen getrennt)? Z.B.: %s"
 
 #~ msgid "General"
 #~ msgstr "Allgemein"
@@ -472,8 +474,7 @@ msgstr "Neuer Titel"
 #~ msgstr "Fehler: die Seite %s konnte nicht erstellt werden."
 
 #~ msgid "Error while extracting metadata: no page with slug %s."
-#~ msgstr ""
-#~ "Fehler beim Extrahieren der Meta-Daten: es gibt keine Seite mit Slug: %s."
+#~ msgstr "Fehler beim Extrahieren der Meta-Daten: es gibt keine Seite mit Slug: %s."
 
 #~ msgid "Errors while extracting metadata from file %s."
 #~ msgstr "Fehler beim Extrahieren der Meta-Daten aus Datei %s."
@@ -621,40 +622,26 @@ msgstr "Neuer Titel"
 #~ msgid "Frontpage Image"
 #~ msgstr "Titelseiten-Bild"
 
-#~ msgid ""
-#~ "The big splash image on the front page. Takes one Capitularia Logo Widget."
-#~ msgstr ""
-#~ "Das große Bild auf der Titelseite. Enthält ein Capitularia Logo-Widget."
+#~ msgid "The big splash image on the front page. Takes one Capitularia Logo Widget."
+#~ msgstr "Das große Bild auf der Titelseite. Enthält ein Capitularia Logo-Widget."
 
 #~ msgid "Frontpage Teaser Bar 1"
 #~ msgstr "Titelseiten-Teaser-Band 1"
 
-#~ msgid ""
-#~ "The top teaser bar on the front page. Normally takes 3 Capitularia Text "
-#~ "Widgets."
-#~ msgstr ""
-#~ "Das obere Vorschau-Band auf der Titelseite. Enthält typischerweise 3 "
-#~ "Capitularia Text-Widgets."
+#~ msgid "The top teaser bar on the front page. Normally takes 3 Capitularia Text Widgets."
+#~ msgstr "Das obere Vorschau-Band auf der Titelseite. Enthält typischerweise 3 Capitularia Text-Widgets."
 
 #~ msgid "Frontpage Teaser Bar 2"
 #~ msgstr "Titelseiten-Teaser-Band 2"
 
-#~ msgid ""
-#~ "The bottom teaser bar on the front page. Normally takes 2 Capitularia "
-#~ "Image Widgets."
-#~ msgstr ""
-#~ "Das untere Vorschau-Band auf der Titelseite. Enthält typischerweise 2 "
-#~ "Capitularia Bild-Widgets."
+#~ msgid "The bottom teaser bar on the front page. Normally takes 2 Capitularia Image Widgets."
+#~ msgstr "Das untere Vorschau-Band auf der Titelseite. Enthält typischerweise 2 Capitularia Bild-Widgets."
 
 #~ msgid "Logo Bar"
 #~ msgstr "Logo-Band"
 
-#~ msgid ""
-#~ "The logo bar in the footer of every page. Takes one or more Capitularia "
-#~ "Logo Widgets."
-#~ msgstr ""
-#~ "Das Logo-Band im Fußteil einer jeden Seite. Enthält ein oder mehrere "
-#~ "Capitularia Logo-Widgets."
+#~ msgid "The logo bar in the footer of every page. Takes one or more Capitularia Logo Widgets."
+#~ msgstr "Das Logo-Band im Fußteil einer jeden Seite. Enthält ein oder mehrere Capitularia Logo-Widgets."
 
 #~ msgid "Post Sidebar"
 #~ msgstr "Post Sidebar"
@@ -665,18 +652,14 @@ msgstr "Neuer Titel"
 #~ msgid "Page Sidebar"
 #~ msgstr "Page Sidebar"
 
-#~ msgid ""
-#~ "The sidebar on pages. Output below the more specialized page sidebars."
-#~ msgstr ""
-#~ "Die Sidebar auf Pages. Wird unter den spezielleren Sidebars ausgegeben."
+#~ msgid "The sidebar on pages. Output below the more specialized page sidebars."
+#~ msgstr "Die Sidebar auf Pages. Wird unter den spezielleren Sidebars ausgegeben."
 
 #~ msgid "Post and Page Sidebar"
 #~ msgstr "Sidebar auf Posts und Pages"
 
 #~ msgid "The sidebar on posts and pages. Output below the other sidebars."
-#~ msgstr ""
-#~ "Die Sidebar auf Pages und Posts. Wird unter den anderen Sidebars "
-#~ "ausgegeben."
+#~ msgstr "Die Sidebar auf Pages und Posts. Wird unter den anderen Sidebars ausgegeben."
 
 #~ msgid "Capitularies Sidebar"
 #~ msgstr "Kapitularien-Sidebar"

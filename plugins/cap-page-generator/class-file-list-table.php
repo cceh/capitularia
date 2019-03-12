@@ -72,8 +72,8 @@ class File_List_Table extends \WP_List_Table
 
         parent::__construct (
             array (
-                'singular' => __ ('TEI file',  'capitularia'),
-                'plural'   => __ ('TEI files', 'capitularia'),
+                'singular' => __ ('TEI file',  'cap-page-generator'),
+                'plural'   => __ ('TEI files', 'cap-page-generator'),
                 'ajax'     => false, // do not use the ajax built-in in table
                 'screen'   => isset ($args['screen']) ? $args['screen'] : null,
             )
@@ -86,21 +86,21 @@ class File_List_Table extends \WP_List_Table
             // do not make public children of private pages
             && cap_get_section_page_status ($section_id) == 'publish'
         ) {
-            $this->bulk_actions['publish']  = _x ('Publish',           'bulk action', 'capitularia');
+            $this->bulk_actions['publish']  = _x ('Publish',           'bulk action', 'cap-page-generator');
         }
         if ($cap_page_generator_config->section_can ($section_id, 'private')) {
-            $this->bulk_actions['private']  = _x ('Publish privately', 'bulk action', 'capitularia');
+            $this->bulk_actions['private']  = _x ('Publish privately', 'bulk action', 'cap-page-generator');
         }
-        $this->bulk_actions['delete']   = _x ('Unpublish',         'bulk action', 'capitularia');
-        $this->bulk_actions['refresh']  = _x ('Refresh',           'bulk action', 'capitularia');
+        $this->bulk_actions['delete']   = _x ('Unpublish',         'bulk action', 'cap-page-generator');
+        $this->bulk_actions['refresh']  = _x ('Refresh',           'bulk action', 'cap-page-generator');
         if ($cap_page_generator_config->get_opt ($section_id, 'schema_path')) {
-            $this->bulk_actions['validate'] = _x ('Validate',          'bulk action', 'capitularia');
+            $this->bulk_actions['validate'] = _x ('Validate',          'bulk action', 'cap-page-generator');
         }
-        $this->bulk_actions['metadata'] = _x ('Extract metadata',  'bulk action', 'capitularia');
+        $this->bulk_actions['metadata'] = _x ('Extract metadata',  'bulk action', 'cap-page-generator');
 
-        $this->statuses['publish'] = _x ('Published',           'file status', 'capitularia');
-        $this->statuses['private'] = _x ('Published privately', 'file status', 'capitularia');
-        $this->statuses['delete']  = _x ('Not published',       'file status', 'capitularia');
+        $this->statuses['publish'] = _x ('Published',           'file status', 'cap-page-generator');
+        $this->statuses['private'] = _x ('Published privately', 'file status', 'cap-page-generator');
+        $this->statuses['delete']  = _x ('Not published',       'file status', 'cap-page-generator');
 
         $this->paths = array ();
     }
@@ -198,7 +198,7 @@ class File_List_Table extends \WP_List_Table
 
     public function no_items ()
     {
-        _e ('No TEI files found.', 'capitularia');
+        _e ('No TEI files found.', 'cap-page-generator');
     }
 
     /**
@@ -226,9 +226,9 @@ class File_List_Table extends \WP_List_Table
     {
         return array (
             'cb'         => '<input type="checkbox" />',
-            'slug'       => _x ('Slug',     'column heading', 'capitularia'),
-            'status'     => _x ('Status',   'column heading', 'capitularia'),
-            'title'      => _x ('Title',    'Manuscript title column heading',    'capitularia'),
+            'slug'       => _x ('Slug',     'column heading', 'cap-page-generator'),
+            'status'     => _x ('Status',   'column heading', 'cap-page-generator'),
+            'title'      => _x ('Title',    'Manuscript title column heading',    'cap-page-generator'),
         );
     }
 
@@ -272,7 +272,7 @@ class File_List_Table extends \WP_List_Table
         $filename = esc_attr ($manuscript->get_filename ());
         $select   = esc_html (
             sprintf (
-                _x ('Select %s', 'Select a filename (screen reader only)', 'capitularia'),
+                _x ('Select %s', 'Select a filename (screen reader only)', 'cap-page-generator'),
                 $filename
             )
         );

@@ -8,13 +8,13 @@ lint: phplint csslint jslint
 deploy: css js lint mo deploy_xslt deploy_scripts
 
 deploy_xslt:
-	$(RSYNC) xslt/*.xsl xslt/test/*xml $(TRANSFORM)/
+	$(RSYNC) xslt/*.xsl  $(TRANSFORM)/
+
+deploy_xml:
+	$(RSYNC) xml/*.xml $(PUBL)/mss/
 
 deploy_scripts:
 	$(RSYNC) scripts $(PUBL)
-
-deploy_xml:
-	$(RSYNC) xml/*xml $(PUBL)/mss/
 
 upload_client: client
 	cd $(CLIENT); make upload; cd ..

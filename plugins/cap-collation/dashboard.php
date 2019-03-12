@@ -35,13 +35,13 @@ function on_menu_dashboard_page ()
     // buttons so they will match the look of the theme.
 
     $button_manuscripts = get_submit_button (
-        _x ('Show manuscripts', 'Button: Show manuscripts', 'capitularia'),
+        _x ('Show manuscripts', 'Button: Show manuscripts', 'cap-collation'),
         'primary',
         'show-manuscripts',
         false
     );
     $button_collate = get_submit_button (
-        _x ('Collate', 'Button: Start the collation', 'capitularia'),
+        _x ('Collate', 'Button: Start the collation', 'cap-collation'),
         'primary',
         'collate',
         false
@@ -50,7 +50,7 @@ function on_menu_dashboard_page ()
         'type="submit"',
         'type="button"',
         get_submit_button (
-            _x ('Load Config', 'Button: Load the collation config', 'capitularia'),
+            _x ('Load Config', 'Button: Load the collation config', 'cap-collation'),
             'load',
             'load-config',
             false,
@@ -61,7 +61,7 @@ function on_menu_dashboard_page ()
         'type="submit"',
         'type="button"',
         get_submit_button (
-            _x ('Save Config', 'Button: Save the collation config', 'capitularia'),
+            _x ('Save Config', 'Button: Save the collation config', 'cap-collation'),
             'save',
             'save-config',
             false,
@@ -93,8 +93,8 @@ EOT;
     // selection of a section or user hitting submit will AJAX-load the list of
     // manuscripts into the next form.
 
-    $caption    = _x ('Capitulary', 'H2 caption', 'capitularia');
-    $caption2   = _x ('Select Capitulary and Section', 'Label: for select', 'capitularia');
+    $caption    = _x ('Capitulary', 'H2 caption', 'cap-collation');
+    $caption2   = _x ('Select Capitulary and Section', 'Label: for select', 'cap-collation');
     $page       = DASHBOARD_PAGE_ID;
 
     $html[] = <<<EOT
@@ -135,8 +135,8 @@ EOT;
     // manuscripts should collate through drag-and-drop of the table rows.  On
     // user submit the next step will collate the selected manuscripts.
 
-    $caption  = _x ('Manuscripts', 'H2 caption', 'capitularia');
-    $label1   = __ ('Include edits by later hands', 'capitularia');
+    $caption  = _x ('Manuscripts', 'H2 caption', 'cap-collation');
+    $label1   = __ ('Include edits by later hands', 'cap-collation');
 
     $html[] = <<<EOT
     <div id="manuscripts-div" class="manuscripts-div no-print" style="display: none">
@@ -153,8 +153,8 @@ EOT;
 
     // Collation algorithm drop-down menu
 
-    $caption  = _x ('Advanced Options', 'H3 caption', 'capitularia');
-    $caption2 = _x ('Select Collation Algorithm', 'Label: for drop-down', 'capitularia');
+    $caption  = _x ('Advanced Options', 'H3 caption', 'cap-collation');
+    $caption2 = _x ('Select Collation Algorithm', 'Label: for drop-down', 'cap-collation');
 
     $html[] = <<<EOT
         <div class="accordion advanced-options">
@@ -175,8 +175,8 @@ EOT;
 
     // Levenshtein distance drop-down menu
 
-    $caption = _x ('Select Levenshtein distance', 'Label: for drop-down', 'capitularia');
-    $or      = _x ('or', 'Either this or that, not both.', 'capitularia');
+    $caption = _x ('Select Levenshtein distance', 'Label: for drop-down', 'cap-collation');
+    $or      = _x ('or', 'Either this or that, not both.', 'cap-collation');
 
     $html[] = <<<EOT
                   </select>
@@ -194,7 +194,7 @@ EOT;
 
     // Levenshtein ratio drop-down menu
 
-    $caption = _x ('Select Levenshtein ratio', 'Label: for drop-down', 'capitularia');
+    $caption = _x ('Select Levenshtein ratio', 'Label: for drop-down', 'cap-collation');
 
     $html[] = <<<EOT
                   </select>
@@ -215,7 +215,7 @@ EOT;
 
     // Use segmentation checkbox
 
-    $caption = _x ('Use segmentation', 'Label: for drop-down', 'capitularia');
+    $caption = _x ('Use segmentation', 'Label: for drop-down', 'cap-collation');
 
     $html[] = <<<EOT
                   </select>
@@ -231,7 +231,7 @@ EOT;
 
     // Transpositions checkbox
 
-    $caption = _x ('Use transpositions', 'Label: for drop-down', 'capitularia');
+    $caption = _x ('Use transpositions', 'Label: for drop-down', 'cap-collation');
 
     $html[] = <<<EOT
               <tr>
@@ -244,8 +244,8 @@ EOT;
 
     // Normalizations textbox
 
-    $caption  = _x ('Normalizations', 'Label: for textarea', 'capitularia');
-    $caption2 = _x ('One or more lines in the form: raw=normalized', 'Help text', 'capitularia');
+    $caption  = _x ('Normalizations', 'Label: for textarea', 'cap-collation');
+    $caption2 = _x ('One or more lines in the form: raw=normalized', 'Help text', 'cap-collation');
 
     $html[] = <<<EOT
                 <tr>

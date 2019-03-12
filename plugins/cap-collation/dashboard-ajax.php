@@ -112,7 +112,7 @@ function on_cap_load_collation ()
     if (!array_key_exists ($algorithm, $cap_collation_algorithms)) {
         $algorithm = 'needleman-wunsch-gotoh';
     }
-    $status[] = sprintf (__ ('Algorithm: %s', 'capitularia'), $cap_collation_algorithms[$algorithm]);
+    $status[] = sprintf (__ ('Algorithm: %s', 'cap-collation'), $cap_collation_algorithms[$algorithm]);
 
     $segmentation   = $_REQUEST['segmentation']   == 'true';
     $transpositions = $_REQUEST['transpositions'] == 'true';
@@ -142,7 +142,7 @@ function on_cap_load_collation ()
             'type' => 'levenshtein',
             'distance' => $dist,
         );
-        $status[] = sprintf (__ ('Levenshtein distance: %s', 'capitularia'), $dist);
+        $status[] = sprintf (__ ('Levenshtein distance: %s', 'cap-collation'), $dist);
     }
 
     if (isset ($_REQUEST['levenshtein_ratio'])) {
@@ -152,17 +152,17 @@ function on_cap_load_collation ()
             'type' => 'levenshtein',
             'ratio' => $ratio,
         );
-        $status[] = sprintf (__ ('Levenshtein ratio: %s', 'capitularia'), $ratio);
+        $status[] = sprintf (__ ('Levenshtein ratio: %s', 'cap-collation'), $ratio);
     }
 
     $json['joined']         = $segmentation;
     $json['transpositions'] = $transpositions;
     $status[] = sprintf (
-        _x ('Segmentation: %s',   '%s = on off', 'capitularia'),
+        _x ('Segmentation: %s',   '%s = on off', 'cap-collation'),
         on_off ($segmentation)
     );
     $status[] = sprintf (
-        _x ('Transpositions: %s', '%s = on off', 'capitularia'),
+        _x ('Transpositions: %s', '%s = on off', 'cap-collation'),
         on_off ($transpositions)
     );
 
@@ -173,7 +173,7 @@ function on_cap_load_collation ()
     $collatex = new CollateX ();
     $ret = $collatex->call_collatex_pipes ($json_in);
     if ($ret['error_code'] == 0) {
-        $caption = sprintf (__ ('Collation output for %s', 'capitularia'), $corresp);
+        $caption = sprintf (__ ('Collation output for %s', 'cap-collation'), $corresp);
         $html[] = "<h2>$caption</h2>";
         $data = json_decode ($ret['stdout'], true);
         $tables = $collatex->split_table ($data['table'], 80);
@@ -201,7 +201,7 @@ function on_cap_load_collation ()
 
     /* Debug section */
     $html[] = '<div class="accordion debug-options no-print">';
-    $caption = _x ('Debug Output', 'H3', 'capitularia');
+    $caption = _x ('Debug Output', 'H3', 'cap-collation');
     $html[] = "<h3>$caption</h3>";
     $html[] = '<div>';
 

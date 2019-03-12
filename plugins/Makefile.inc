@@ -12,7 +12,23 @@ include ../../Makefile.inc
 
 THEME  = ../../themes/Capitularia
 
+PLUGIN = $(notdir $(CURDIR))
+TEXT_DOMAIN = $(PLUGIN)
+
 SASSFLAGS   = -I $(THEME)/src/css
 
 deploy:
 	$(RSYNC) * $(WPCONTENT)/plugins/$(notdir $(CURDIR))
+
+
+define LOCALE_TEMPLATE
+
+mo: $(LANG_DEST)/$(TEXT_DOMAIN)-$(1).mo
+
+$(LANG_DEST)/$(TEXT_DOMAIN)-$(1).mo: $(LANG_SRC)/$(1).po
+	-mkdir -p $$(dir $$@)
+	msgfmt -o $$@ $$?
+
+endef
+
+$(foreach lang,$(TRANSLATIONS),$(eval $(call LOCALE_TEMPLATE,$(lang))))

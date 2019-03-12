@@ -42,8 +42,9 @@ function init ()
 {
     /** @var string The name of the plugin */
     global $plugin_name;
-    $plugin_name = __ ('Capitularia Meta Search', 'capitularia');
+    $plugin_name = __ ('Capitularia Meta Search', 'cap-meta-search');
 
+    add_action ('init',                  ns ('on_init'));
     add_action ('wp_enqueue_scripts',    ns ('on_enqueue_scripts'));
     add_action ('admin_menu',            ns ('on_admin_menu'));
     add_action ('admin_enqueue_scripts', ns ('on_admin_enqueue_scripts'));
@@ -91,6 +92,17 @@ function get_opt ($name, $default = '')
 function sanitize ($text)
 {
     return empty ($text) ? '' : strip_tags ($text);
+}
+
+/**
+ * Register the translations.
+ *
+ * @return void
+ */
+
+function on_init ()
+{
+    load_plugin_textdomain ('cap-meta-search', false, basename (dirname ( __FILE__ )) . '/languages/');
 }
 
 /**
@@ -441,7 +453,7 @@ function on_ajax_cap_reload_places ()
     check_ajax_referer (NONCE_SPECIAL_STRING, NONCE_PARAM_NAME);
     if (!current_user_can ('manage_options')) {
         wp_send_json_error (
-            array ('message' => __ ('You have no permission to manage options.', 'capitularia'))
+            array ('message' => __ ('You have no permission to manage options.', 'cap-meta-search'))
         );
     }
 
@@ -451,7 +463,7 @@ function on_ajax_cap_reload_places ()
     $xml = simplexml_load_file ($path);
     if ($xml === false) {
         wp_send_json_error (
-            array ('message' => sprintf (__ ('Could not load XML file %s.', 'capitularia'), $path))
+            array ('message' => sprintf (__ ('Could not load XML file %s.', 'cap-meta-search'), $path))
         );
     }
 
@@ -517,7 +529,7 @@ function on_ajax_cap_reload_places ()
 
     // give feedbak to the user
     $places_cnt = count ($places);
-    $messages[] = __ ("<p>{$places_cnt} places processed.</p>", 'capitularia');
+    $messages[] = __ ("<p>{$places_cnt} places processed.</p>", 'cap-meta-search');
 
     wp_send_json (
         array ('success' => count ($errors) == 0,

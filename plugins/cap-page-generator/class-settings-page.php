@@ -164,7 +164,7 @@ class Settings_Page
                 }
             }
         }
-        $output['general.section_caption'] = __ ('General', 'capitularia');
+        $output['general.section_caption'] = __ ('General', 'cap-page-generator');
         // Merge with old options
         return array_merge (get_option (OPTIONS_PAGE_ID, array ()), $output);
     }

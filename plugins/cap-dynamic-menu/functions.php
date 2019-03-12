@@ -36,6 +36,17 @@ function load_html ()
 }
 
 /**
+ * Register the translations.
+ *
+ * @return void
+ */
+
+function on_init ()
+{
+    load_plugin_textdomain ('cap-dynamic-menu', false, basename (dirname ( __FILE__ )) . '/languages/');
+}
+
+/**
  * Enqueue Javascript and CSS for the front page.
  *
  * @return void

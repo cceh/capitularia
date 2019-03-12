@@ -10,7 +10,8 @@
  * Author:      Marcello Perathoner
  * Author URI:
  * License:     GPLv2 or later
- * Text Domain: capitularia
+ * Text Domain: cap-meta-search
+ * Domain Path: /languages
  *
  * @package Capitularia
  */

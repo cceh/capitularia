@@ -33,8 +33,8 @@ class Witness_List_Table extends \WP_List_Table
     {
         parent::__construct (
             array (
-                'singular' => __ ('Manuscript',  'capitularia'),
-                'plural'   => __ ('Manuscripts', 'capitularia'),
+                'singular' => __ ('Manuscript',  'cap-collation'),
+                'plural'   => __ ('Manuscripts', 'cap-collation'),
                 'ajax'     => false, // do not use the ajax built-in in table
                 'screen'   => isset ($args['screen']) ? $args['screen'] : null,
             )
@@ -85,7 +85,7 @@ class Witness_List_Table extends \WP_List_Table
 
     public function no_items ()
     {
-        _e ('No manuscripts found.', 'capitularia');
+        _e ('No manuscripts found.', 'cap-collation');
     }
 
     /**
@@ -114,7 +114,7 @@ class Witness_List_Table extends \WP_List_Table
         return array (
             'sort' => '',
             'cb'   => '<input type="checkbox" />',
-            'id'   => _x ('Manuscript Id',  'column heading', 'capitularia'),
+            'id'   => _x ('Manuscript Id',  'column heading', 'cap-collation'),
         );
     }
 
@@ -154,7 +154,7 @@ class Witness_List_Table extends \WP_List_Table
         $id = esc_attr ($witness->get_id ());
         $select   = esc_html (
             sprintf (
-                _x ('Select %s', 'Select a witness by id (screen reader only)', 'capitularia'),
+                _x ('Select %s', 'Select a witness by id (screen reader only)', 'cap-collation'),
                 $id
             )
         );

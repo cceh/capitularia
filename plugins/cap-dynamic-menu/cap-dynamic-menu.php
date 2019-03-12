@@ -10,7 +10,8 @@
  * Author:      Marcello Perathoner
  * Author URI:
  * License:     GPLv2 or later
- * Text Domain: capitularia
+ * Text Domain: cap-dynamic-menu
+ * Domain Path: /languages
  *
  * @package Capitularia
  */
@@ -24,7 +25,8 @@ require_once 'class-dynamic-menu.php';
 
 $cap_dynamic_menu = new Dynamic_Menu ();
 
-add_action ('wp_enqueue_scripts',    __NAMESPACE__ . '\on_enqueue_scripts');
+add_action ('init',                   __NAMESPACE__ . '\on_init');
+add_action ('wp_enqueue_scripts',     __NAMESPACE__ . '\on_enqueue_scripts');
 
 register_activation_hook   (__FILE__, __NAMESPACE__ . '\on_activation');
 register_deactivation_hook (__FILE__, __NAMESPACE__ . '\on_deactivation');

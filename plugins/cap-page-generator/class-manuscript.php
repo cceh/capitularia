@@ -155,7 +155,7 @@ class Manuscript
             }
             $tmp[] = "[:{$lang}]{$title}";
         }
-        $this->title = sanitize_text_field (__ (join (' ', $tmp), 'capitularia'), null, 'display');
+        $this->title = sanitize_text_field (__ (join (' ', $tmp), 'cap-page-generator'), null, 'display');
         return $this->title;
     }
 
@@ -198,12 +198,12 @@ class Manuscript
         exec (join (' ', $cmdline), $messages, $retval); // 0 = ok, 3 = error
         switch ($retval) {
             case 0:
-                return array (0, sprintf (__ ('File %s is valid TEI.', 'capitularia'), $link));
+                return array (0, sprintf (__ ('File %s is valid TEI.', 'cap-page-generator'), $link));
             case 3:
             case 4:
-                return array (2, sprintf (__ ('File %s is invalid TEI.', 'capitularia'), $link), $messages);
+                return array (2, sprintf (__ ('File %s is invalid TEI.', 'cap-page-generator'), $link), $messages);
             default:
-                return array (1, sprintf (__ ('Validity of file %s is unknown.', 'capitularia'), $link), $messages);
+                return array (1, sprintf (__ ('Validity of file %s is unknown.', 'cap-page-generator'), $link), $messages);
         }
     }
 
@@ -281,12 +281,12 @@ class Manuscript
             return array (
                 2,
                 sprintf (
-                    __ ('Error: could not unpublish page %s.', 'capitularia'),
+                    __ ('Error: could not unpublish page %s.', 'cap-page-generator'),
                     $this->get_slug_with_link ()
                 )
             );
         }
-        return array (0, sprintf (__ ('Page %s unpublished.', 'capitularia'), $slug));
+        return array (0, sprintf (__ ('Page %s unpublished.', 'cap-page-generator'), $slug));
     }
 
     /**
@@ -307,7 +307,7 @@ class Manuscript
 
         $title = $this->get_title ();
         if (empty ($title)) {
-            $title = __ ('No title', 'capitularia');
+            $title = __ ('No title', 'cap-page-generator');
         }
 
         // do not make public children of private pages
@@ -355,14 +355,14 @@ class Manuscript
                 return array (
                     0,
                     sprintf (
-                        __ ('Page %1$s created with status set to %2$s.', 'capitularia'),
+                        __ ('Page %1$s created with status set to %2$s.', 'cap-page-generator'),
                         $this->get_slug_with_link (),
                         $status
                     )
                 );
             }
         }
-        return array (2, sprintf (__ ('Error: could not create page %s.', 'capitularia'), $slug));
+        return array (2, sprintf (__ ('Error: could not create page %s.', 'cap-page-generator'), $slug));
     }
 
     /**
@@ -381,7 +381,7 @@ class Manuscript
         if ($page_id === false) {
             return array (
                 2,
-                sprintf (__ ('Error while extracting metadata: no page with slug %s.', 'capitularia'), $slug)
+                sprintf (__ ('Error while extracting metadata: no page with slug %s.', 'cap-page-generator'), $slug)
             );
         }
         // We proxy this action to the Meta Search plugin.
@@ -390,7 +390,7 @@ class Manuscript
             return array (
                 2,
                 sprintf (
-                    __ ('Errors while extracting metadata from file %s.', 'capitularia'),
+                    __ ('Errors while extracting metadata from file %s.', 'cap-page-generator'),
                     $this->get_slug_with_link ()
                 ),
                 $errors
@@ -398,7 +398,7 @@ class Manuscript
         }
         return array (
             0,
-            sprintf (__ ('Metadata extracted from file %s.', 'capitularia'), $this->get_slug_with_link ())
+            sprintf (__ ('Metadata extracted from file %s.', 'cap-page-generator'), $this->get_slug_with_link ())
         );
     }
 
@@ -431,7 +431,7 @@ class Manuscript
 
         if ($action == $status) {
             // nothing to do
-            return array (1, sprintf (__ ('The post is already %s.', 'capitularia'), $action));
+            return array (1, sprintf (__ ('The post is already %s.', 'cap-page-generator'), $action));
         }
 
         switch ($action) {

@@ -31,14 +31,14 @@ class Settings_Page
     {
         add_settings_section (
             'cap_meta_search_options_section_general',
-            __ ('General Settings', 'capitularia'),
+            __ ('General Settings', 'cap-meta-search'),
             array ($this, 'on_options_section_general'),
             OPTIONS_PAGE_ID
         );
 
         add_settings_field (
             'cap_meta_search_options_places_path',
-            'Path for the XML Places file',
+            __ ('Path for the XML Places file', 'cap-meta-search'),
             array ($this, 'on_options_field_places_path'),
             OPTIONS_PAGE_ID,
             'cap_meta_search_options_section_general'
@@ -63,13 +63,15 @@ class Settings_Page
         echo ("<form method='post' action='options.php'>\n");
         settings_fields (OPTIONS_PAGE_ID);
         do_settings_sections (OPTIONS_PAGE_ID);
-        submit_button ();
+        submit_button (
+            _x ('Save Changes', 'Button: Save Setting', 'cap-meta-search')
+        );
         echo ("</form>\n");
 
-        echo ("<h3>Places File</h3>\n");
+        echo ('<h3>' . __ ('Places File', 'cap-meta-search') . "</h3>\n");
         echo ("<div>\n");
         submit_button (
-            _x ('Reload Places File', 'Button: Admin reload the places file', 'capitularia'),
+            _x ('Reload Places File', 'Button: Admin reload the places file', 'cap-meta-search'),
             'secondary',
             'reload-places',
             true,
@@ -100,7 +102,8 @@ class Settings_Page
     {
         $setting = get_opt ('places_path');
         echo "<input class='file-input' type='text' name='cap_meta_search_options[places_path]' value='$setting' />";
-        echo '<p>File path in the AFS, eg.: ' . AFS_ROOT . 'http/docs/cap/intern/workspace/places.xml</p>';
+        echo '<p>' . __ ('File path in the AFS, eg.:', 'cap-meta-search') .
+                   ' ' . AFS_ROOT . 'http/docs/cap/intern/workspace/places.xml</p>';
     }
 
     /**

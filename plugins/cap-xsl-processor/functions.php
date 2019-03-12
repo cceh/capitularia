@@ -103,6 +103,7 @@ function on_enqueue_scripts ()
 
 function on_init ()
 {
+    load_plugin_textdomain ('cap-xsl-processor', false, basename (dirname ( __FILE__ )) . '/languages/');
 }
 
 /**

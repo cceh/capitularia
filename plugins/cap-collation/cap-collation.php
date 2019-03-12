@@ -10,7 +10,8 @@
  * Author:      Marcello Perathoner
  * Author URI:
  * License:     GPLv2 or later
- * Text Domain: capitularia
+ * Text Domain: cap-collation
+ * Domain Path: /languages
  *
  * @package Capitularia
  */
@@ -19,7 +20,7 @@ namespace cceh\capitularia\collation;
 
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
-$cap_collation_name = __ ('Capitularia Collation', 'capitularia');
+$cap_collation_name = __ ('Capitularia Collation', 'cap-collation');
 
 require_once 'functions.php';
 
@@ -43,13 +44,14 @@ if (is_admin ()) {
      */
 
     $cap_collation_algorithms = array (
-        'dekker'                 => _x ('Dekker',                 'Collation Algorithm', 'capitularia'),
-        'gst'                    => _x ('Greedy String Tiling',   'Collation Algorithm', 'capitularia'),
-        'medite'                 => _x ('MEDITE',                 'Collation Algorithm', 'capitularia'),
-        'needleman-wunsch'       => _x ('Needleman-Wunsch',       'Collation Algorithm', 'capitularia'),
-        'needleman-wunsch-gotoh' => _x ('Needleman-Wunsch-Gotoh', 'Collation Algorithm', 'capitularia'),
+        'dekker'                 => _x ('Dekker',                 'Collation Algorithm', 'cap-collation'),
+        'gst'                    => _x ('Greedy String Tiling',   'Collation Algorithm', 'cap-collation'),
+        'medite'                 => _x ('MEDITE',                 'Collation Algorithm', 'cap-collation'),
+        'needleman-wunsch'       => _x ('Needleman-Wunsch',       'Collation Algorithm', 'cap-collation'),
+        'needleman-wunsch-gotoh' => _x ('Needleman-Wunsch-Gotoh', 'Collation Algorithm', 'cap-collation'),
     );
 
+    add_action ('init',                            __NAMESPACE__ . '\on_init');
     add_action ('admin_menu',                      __NAMESPACE__ . '\on_admin_menu');
     add_action ('admin_enqueue_scripts',           __NAMESPACE__ . '\on_admin_enqueue_scripts');
     add_action ('wp_ajax_on_cap_load_sections',    __NAMESPACE__ . '\on_cap_load_sections');

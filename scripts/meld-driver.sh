@@ -7,8 +7,9 @@
 #   meld-driver.sh tei-file
 #
 
-XSLT1=xslt/mss-transcript.xsl
-XSLT2=~/uni/capitularia/http/docs/cap/publ/transform/mss-transcript.xsl
+XSLT="${2-mss-transcript.xsl}"
+XSLT1="xslt/$XSLT"
+XSLT2=~/uni/capitularia/http/docs/cap/publ/transform/$XSLT
 
 meld <(xsltproc "$XSLT1" "$1") \
      <(xsltproc "$XSLT2" "$1")

@@ -71,6 +71,17 @@ function on_admin_enqueue_scripts ()
 }
 
 /**
+ * Register the translations.
+ *
+ * @return void
+ */
+
+function on_init ()
+{
+    load_plugin_textdomain ('cap-collation', false, basename (dirname ( __FILE__ )) . '/languages/');
+}
+
+/**
  * Add menu entries to the Wordpress admin menu.
  *
  * Adds menu entries for the settings (options) and the dashboard pages to
@@ -109,7 +120,7 @@ function on_admin_bar_menu ($wp_admin_bar)
     if (!is_admin () && current_user_can ('edit_pages')) {
         $args = array (
             'id'    => 'cap_collation_open',
-            'title' => _x ('Collation', 'Admin bar button caption', 'capitularia'),
+            'title' => _x ('Collation', 'Admin bar button caption', 'cap-collation'),
             'href'  => '/wp-admin/index.php?page=' . DASHBOARD_PAGE_ID,
             'meta'  => array ('class' => 'cap-collation',
                               'title' => $cap_collation_name),
@@ -411,7 +422,7 @@ function cap_sanitize_key_list ($key_list)
 
 function on_off ($bool)
 {
-    return $bool ? __ ('on', 'capitularia') : __ ('off', 'capitularia');
+    return $bool ? __ ('on', 'cap-collation') : __ ('off', 'cap-collation');
 }
 
 /**

@@ -4,6 +4,7 @@ clean:
 	find . -name '*~' -delete
 	-rm src/css/*.css
 	-rm src/css/*.map
+	-rm languages/*.mo
 
 doc: phpdoc phpmd phpmetrics sami
 
@@ -14,7 +15,7 @@ $(CSS_DEST)/%.css : $(CSS_SRC)/%.scss
 	$(POSTCSS) $(POSTCSSFLAGS) -u autoprefixer -o $@ $@.tmp.css
 	-rm $@.tmp.css
 
-# node-sass doe not work !!!! it royally botches @include media-breakpoint-up(md) {...}
+# node-sass does not work !!!! it royally botches @include media-breakpoint-up(md) {...}
 #$(CSS_DEST)/%.css : $(CSS_SRC)/%.scss
 #	$(POSTCSS) $(POSTCSSFLAGS) -o $@ $<
 
@@ -37,7 +38,6 @@ jslint:
 
 phplint:
 	for f in $(PHP_FILES); do php -l $$f || exit; done
-
 
 # PHP_CodeSniffer https://github.com/squizlabs/PHP_CodeSniffer
 phpcs:
@@ -66,12 +66,6 @@ LANG_SRC  := src/languages
 LANG_DEST := languages
 
 define LOCALE_TEMPLATE
-
-mo: $(LANG_DEST)/$(1).mo
-
-$(LANG_DEST)/$(1).mo: $(LANG_SRC)/$(1).po
-	-mkdir -p $$(dir $$@)
-	msgfmt -o $$@ $$?
 
 .PRECIOUS: $(LANG_SRC)/$(1).po
 

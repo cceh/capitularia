@@ -107,7 +107,7 @@ class Dashboard_Page
         $xml_dir    = $cap_page_generator_config->get_opt_path ('xml_root', $section_id, 'xml_dir');
         echo ("<div id='tabs-$section_id' class='section'>\n");
         echo ("<h2>$caption</h2>\n");
-        echo ('<p>' . sprintf (__ ('Reading directory: %s', 'capitularia'), $xml_dir) . "</p>\n");
+        echo ('<p>' . sprintf (__ ('Reading directory: %s', 'cap-page-generator'), $xml_dir) . "</p>\n");
 
         $page = DASHBOARD_PAGE_ID;
         $page_url = '/wp-admin/index.php';
