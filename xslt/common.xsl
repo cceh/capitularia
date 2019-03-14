@@ -103,11 +103,21 @@
 
     <xsl:param name="corresp" select="@corresp" />
 
+    <!-- FIXME: after we switch to saxon use regexps -->
+
     <xsl:variable name="search">
       <tei:item>_prolog</tei:item>
       <tei:item>_praefatio</tei:item>
       <tei:item>_epilog</tei:item>
       <tei:item>_explicit</tei:item>
+      <tei:item>_a_</tei:item>
+      <tei:item>_b_</tei:item>
+      <tei:item>_c_</tei:item>
+      <tei:item>_d_</tei:item>
+      <tei:item>_e_</tei:item>
+      <tei:item>_f_</tei:item>
+      <tei:item>_g_</tei:item>
+      <tei:item>_h_</tei:item>
       <tei:item>.</tei:item>
       <tei:item>_</tei:item>
     </xsl:variable>
@@ -117,6 +127,14 @@
       <tei:item> Praefatio</tei:item>
       <tei:item> Epilog</tei:item>
       <tei:item> Explicit</tei:item>
+      <tei:item> Abschnitt A c. </tei:item>
+      <tei:item> Abschnitt B c. </tei:item>
+      <tei:item> Abschnitt C c. </tei:item>
+      <tei:item> Abschnitt D c. </tei:item>
+      <tei:item> Abschnitt E c. </tei:item>
+      <tei:item> Abschnitt F c. </tei:item>
+      <tei:item> Abschnitt G c. </tei:item>
+      <tei:item> Abschnitt H c. </tei:item>
       <tei:item> </tei:item>
       <tei:item> c. </tei:item>
     </xsl:variable>
