@@ -63,6 +63,7 @@ Old name:   IdnoSynopse.xsl
         </table>
       </div>
 
+      <!--
       <div>
         <h4 id="no_sigla">
           [:de]Handschriften ohne Sigle
@@ -82,6 +83,8 @@ Old name:   IdnoSynopse.xsl
           </tbody>
         </table>
       </div>
+      -->
+
     </div>
   </xsl:template>
 
