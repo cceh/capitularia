@@ -33,7 +33,7 @@
     -->
     <xsl:param name="table"/>
     <xsl:param name="key"/>
-    <func:result select="exsl:node-set ($table)/item[@key=$key]"/>
+    <func:result select="exsl:node-set ($table)/item[@key=string ($key)]"/>
   </func:function>
 
   <func:function name="cap:lookup-value">
@@ -45,7 +45,7 @@
     -->
     <xsl:param name="table"/>
     <xsl:param name="key"/>
-    <func:result select="exsl:node-set ($table)/item[@key=$key]/@value"/>
+    <func:result select="exsl:node-set ($table)/item[@key=string ($key)]/@value"/>
   </func:function>
 
   <func:function name="cap:human-readable-siglum">
