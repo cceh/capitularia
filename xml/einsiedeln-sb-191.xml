@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="einsiedeln-sb-191">
+   <teiHeader>
+      <fileDesc>
+
+         <titleStmt>
+            <title type="main" xml:lang="ger">Einsiedeln, Stiftsbibliothek, 191(277)</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Trump und
+               Transkription der foll. 232r-v</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Trump and
+               transcription of fols 232r-v</title>
+            <respStmt>
+               <persName key="KU">
+                  <forename>Karl</forename>
+                  <surname>Ubl</surname>
+               </persName>
+               <resp xml:lang="ger">Projektleitung</resp>
+               <resp xml:lang="eng">Project lead</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="DT">
+                  <forename>Dominik</forename>
+                  <surname>Trump</surname>
+               </persName>
+               <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
+                  Standard</resp>
+               <resp xml:lang="eng">Transcription, description and text encoding according to the
+                  TEI P5 standard</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
+               </persName>
+               <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
+               <resp xml:lang="eng">First revision of transcription and additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
+               </persName>
+               <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
+               <resp xml:lang="eng">Second revision of transcription and additions</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="FF">
+                  <forename>Franz</forename>
+                  <surname>Fischer</surname>
+                  <affiliation>Cologne Center for eHumanities (CCeH), Universität zu
+                     Köln</affiliation>
+               </persName>
+               <resp xml:lang="ger">Datenmodellierung</resp>
+               <resp xml:lang="eng">Data Modelling</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="CR">
+                  <forename>Clemens</forename>
+                  <surname>Radl</surname>
+               </persName>
+               <resp xml:lang="ger">Kodierung von Mordek, Bibliotheca in TEI, Vorbereitung für
+                  Übergabe an Capitularia</resp>
+               <resp xml:lang="eng">TEI encoding of Mordek, Bibliotheca, preparation of data</resp>
+            </respStmt>
+            <respStmt>
+               <persName key="DS">
+                  <forename>Daniela</forename>
+                  <surname>Schulz</surname>
+               </persName>
+               <resp xml:lang="ger">Technische Umsetzung, Generierung der
+                  Handschriftenbeschreibungen aus Mordek, Bibliotheca</resp>
+               <resp xml:lang="eng">technical support, generating of manuscript description
+                  according to Mordek, Bibliotheca</resp>
+            </respStmt>
+            <funder>Akademie der Wissenschaften und Künste Nordrhein-Westfalen</funder>
+         </titleStmt>
+         <publicationStmt>
+            <publisher>
+               <persName>Karl Ubl</persName>
+               <orgName xml:lang="ger">Historisches Institut, Lehrstuhl für Geschichte des
+                  Mittelalters, Universität zu Köln</orgName>
+               <orgName xml:lang="eng">History Department, Chair for Medieval History, Cologne
+                  University</orgName>
+               <address xml:lang="ger">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Köln</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Raum 4.108</addrLine>
+                  <addrLine>0221-470 2717</addrLine>
+                  <country>Deutschland</country>
+               </address>
+               <address xml:lang="eng">
+                  <addrLine>Albertus-Magnus-Platz</addrLine>
+                  <addrLine>50923 <settlement>Cologne</settlement>
+                  </addrLine>
+                  <addrLine>Philosophikum Room 4.108</addrLine>
+                  <addrLine>+49 221-470 2717</addrLine>
+                  <country>Germany</country>
+               </address>
+            </publisher>
+            <availability>
+               <p xml:lang="ger">Die Inhalte sind frei zugänglich und nicht-kommerziell. Einige
+                  Digitalisate und Texte sind aus rechtlichen Gründen jedoch Mitarbeitern
+                  vorbehalten.</p>
+               <p xml:lang="eng">Content is freely available on a non-commercial basis. Some digital
+                  images and texts are only available to staff due to copyright issues.</p>
+            </availability>
+            <date when="2016-03-03">01.04.2019</date>
+         </publicationStmt>
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier>
+                  <settlement>Einsiedeln</settlement>
+                  <repository>Stiftsbibliothek</repository>
+                  <idno>191(277)</idno>
+                  <msName/>
+                  <altIdentifier type="former">
+                     <settlement/>
+                     <repository/>
+                     <idno>II. 1</idno>
+                     <note type="date">
+                        <date/>
+                     </note>
+                  </altIdentifier>
+                  <altIdentifier type="former">
+                     <settlement/>
+                     <repository/>
+                     <idno>Folio Numero 105. B. V. Einsidlensis</idno>
+                     <note type="date">
+                        <date/>
+                     </note>
+                  </altIdentifier>
+                  <!-- <altIdentifier type="siglum">
+                     <idno/>
+                     <note/>
+                  </altIdentifier> -->
+               </msIdentifier>
+
+               <head>
+                  <title type="main">Einsiedeln, Stiftsbibliothek, 191(277)</title>
+                  <origDate notAfter="0805" notBefore="0795">8./9. Jh.</origDate>
+                  <origPlace ref="http://www.geonames.org/3017382/republic-of-france.html"
+                     >wahrscheinlich Nordostfrankreich</origPlace>
+               </head>
+               <msContents>
+                  <summary>
+                     <p>Als einzigen kapitulariennahen Text enthält die Handschrift die <hi
+                           rend="italic">Capitula ab episcopis Attiniaci data</hi> (<ref
+                           type="internal"
+                           target="https://capitularia.uni-koeln.de/capit/ldf/bk-nr-174/">BK
+                           174</ref>) als Nachtrag hinter der Collectio canonum Quesnelliana. Diese
+                        Überlieferung wurde weder von Georg Heinrich Pertz noch von Alfred Boretius
+                        für die Edition der Capitula herangezogen. Erst Albert Werminghoff benutzte
+                        die Handschrift für die Edition des Stücks in MGH Concilia 2, 2. Werminghoff
+                        glaubte zuerst sogar, drei Textzeugen der Capitula ausfindig gemacht zu
+                        haben, da er noch eine Handschrift aus Valenciennes verzeichnete (Cod. 154;
+                        Werminghoff 1899, S. 484). Dabei handelt es sich um den heutigen Codex <ref
+                           type="internal" subtype="mss" target="valenciennes-bm-162">Valenciennes
+                           162</ref>, der aber die Admonitio ad omnes regni ordines (<ref
+                           type="internal"
+                           target="https://capitularia.uni-koeln.de/capit/ldf/bk-nr-150/">BK
+                           150</ref>) enthält, was von Werminghoff später selbst berichtigt wurde
+                        (Werminghoff 1901a, S. 25).</p>
+                     <p>Trotz des schon lange vorhandenen Wissens um die Existenz des Codex
+                        verzeichnet Hubert Mordek den Einsidlensis nicht in seiner Bibliotheca
+                        capitularium. Die andere Überlieferung des Stücks, der <ref type="internal"
+                           subtype="mss" target="wolfenbuettel-hab-blankenb-130">Blankenburgensis
+                           130</ref> in Wolfenbüttel, bezeichnet er daher zu Unrecht als "Unikat"
+                        (Mordek 1995, S. 933).</p>
+                  </summary>
+
+                  <msItem n="1">
+                     <p>
+                        <locus>Ir</locus> verschiedene Einträge und Federproben, u.a. zum Inhalt des
+                        Codex (z.B. <hi rend="italic">CANONES ECLESIASTICI ET DECRETO A
+                           PONTIFICUM</hi> [!])</p>
+                  </msItem>
+                  <msItem n="2">
+                     <p>
+                        <locus>Iv-IIv</locus> Konzil von Frankfurt (a. 794): <hi rend="italic"
+                           >EXPOSITIO CATHOLICAE FIDEI</hi> [...] <hi rend="italic">CREDIMUS IN UNUM
+                           DEUM PATREM OMNIPOTENTEM factorem caeli</hi> - <hi rend="italic">et in
+                           reprehensibiles et perpetuae beatitudinis heredes pariter perficiat in
+                           eternum amen</hi> (MGH Conc. 2, 1, Nr. 19, S. 163, Z. 19 - S. 164, Z.
+                        38)</p>
+                  </msItem>
+                  <msItem n="3">
+                     <p>
+                        <locus>IIv-IIIv</locus> Auslegung von Ep. Pauli ad Timotheum I, 3, 1-13: <hi
+                           rend="italic">Fidelis sermo si quis episcopatum desiderat expo. prius
+                           laicus statuit</hi> - <hi rend="italic">et apud homines docendi uel etiam
+                           arguendi</hi></p>
+                  </msItem>
+                  <msItem n="4">
+                     <p>
+                        <locus>IVr-Vr</locus> Gregor d. Gr., Moralia in Iob, 31, 45, 89-91: (beginnt
+                        fragmentarisch) <hi rend="italic">membrum tangitur. Idcirco oppositę
+                           actionis manus uelut grauius praessa sentitur</hi> - <hi rend="italic"
+                           >Nunc per auium speciem cognoscamus quantum per contemplationem
+                           uolat</hi> (ed. M. Adriaen, CCSL 143B [1985], S. 1611, Z. 48 - S. 1613,
+                        Z. 115)</p>
+                  </msItem>
+                  <msItem n="5">
+                     <p>
+                        <locus>Vv</locus> Farbige, ganzseitige Zeichnung: Rundbogen auf zwei
+                        Säulen</p>
+                  </msItem>
+                  <msItem n="6">
+                     <p>
+                        <locus>VIr-1v</locus> Papstliste von Petrus bis Hadrian I.: <hi
+                           rend="italic">BREB</hi> (!) <hi rend="italic">NOMINVM EPISCOPORVM URBIS
+                           ROME</hi> [...] <hi rend="italic">Petrus sed. AN. XXV M. II Dies III</hi>
+                        - <hi rend="italic">Adrianus sed. an.</hi>; daran schließt unmittelbar
+                        Cassiodor, Institutiones 1, 11, 1 an: <hi rend="italic">DE QUATTUOR SINODIS
+                           RECEPTIS. Dicamus nunc quemammodum uniuersalia</hi> - <hi rend="italic"
+                           >iniuriam recte fidei non ferentes regulas</hi> (ed. R.A.B. Mynors
+                        [1937], S. 35, Z. 10-20)</p>
+                  </msItem>
+                  <msItem n="7">
+                     <p>
+                        <locus>2r</locus> Leer</p>
+                  </msItem>
+                  <msItem n="8">
+                     <p>
+                        <locus>2v</locus> Farbige, ganzseitige Zeichnung: Rundbogen auf zwei
+                        Säulen</p>
+                  </msItem>
+                  <msItem n="9">
+                     <p>
+                        <locus>3r-7v</locus> Titelverzeichnis zur Collectio canonum Quesnelliana:
+                           <hi rend="italic">+ CONTINET CODEX ISTE CANONES ECCLESIASTICOS ET
+                           CONSTITUTA SEDIS APOSTOLICAE ID EST.</hi> (Zierseite fol. 3r,
+                        Monumentalcapitalis, alternierend rote und schwarze Tinte) <hi rend="italic"
+                           >I. Canones niceni concilii cum praefatione uel expositione fidei</hi> -
+                           <hi rend="italic">XCVIII. Ad dorum beneuentanae ciuitatis episcoporum
+                           obiurgationis epistl.</hi> (Migne, PL 56, Sp. 359A-368A) </p>
+
+                  </msItem>
+                  <msItem n="10">
+                     <p>
+                        <locus>8r</locus> Leer</p>
+                  </msItem>
+                  <msItem n="11">
+                     <p>
+                        <locus>8v</locus> Auflistung von sechs spätantiken Synoden (gezählt <hi
+                           rend="italic">I</hi>-<hi rend="italic">VI</hi>) und deren wichtigsten
+                        Teilnehmern (Reihenfolge: Papst, östliche Bischöfe, Kaiser): <hi
+                           rend="italic">I Sancta synodus</hi> (folgt getilgtes <hi rend="italic"
+                           >in</hi>) <hi rend="italic">nicęna in qua siluester papa romanus
+                           alexander alexandrinus</hi> - <hi rend="italic">theofanus antiochiae
+                           theodorus cypro Constantinus imperator</hi>; Federprobe</p>
+                  </msItem>
+                  <msItem n="12">
+                     <p>
+                        <locus>9r-229r</locus> Collectio canonum Quesnelliana: (beginnt
+                        fragmentarisch) <hi rend="italic">isti omnimodo tempora statuta complere
+                           debent</hi> - <hi rend="italic">ut omnia illi quemadmodum constituimus
+                           roborentur. DATA VIII ID. MAR. POSTUMIANO UC. CONS.</hi> (Migne, PL 54
+                        [genaue Nachweise bei <ref type="external"
+                           target="https://www.e-codices.unifr.ch/en/description/sbe/0191/"
+                           >Lang</ref>]; Migne, PL 56, Sp. 396B-746C)</p>
+                  </msItem>
+                  <msItem n="13">
+                     <p>
+                        <locus>229v-230v</locus> Notitia Galliarum: <hi rend="italic">HIC
+                           CONTINENTUR PROUIN. GALLIGANIS QUAE CIUITATES SUNT. Metropolis ciuitas
+                           lugdunensium</hi> - <hi rend="italic">ciuitas eloronensium ciuitas
+                           elufacium</hi> (MGH AA 9, S. 584-607)</p>
+                  </msItem>
+                  <msItem n="14">
+                     <p>
+                        <locus>231r-232r</locus> verschiedene Hymnen: <hi rend="italic">YMNUS IN
+                           PRIMA FERIA. Lucis creator</hi> (korr. aus <hi rend="italic"
+                           >craeator</hi>) <hi rend="italic">optime lucem</hi> - <hi rend="italic"
+                           >spiritus alme deus unus omni tempore saecli</hi> (genaue Nachweise bei
+                           <ref type="external"
+                           target="https://www.e-codices.unifr.ch/en/description/sbe/0191/"
+                           >Lang</ref>)</p>
+                  </msItem>
+                  <msItem n="15">
+                     <p>
+                        <locus>232r-232v</locus>
+                        <hi rend="italic">I-VI</hi> - <title corresp="BK.174">Capitula ab episcopis
+                           Attiniaci data</title> (a. 822): <hi rend="italic">Dei igitur
+                           omnipotentis inspiratione uestro piissimo studio ammoniti</hi> - <hi
+                           rend="italic">aut obsequii causa deinceps ullus proueatur</hi> (MGH Conc.
+                        2, 2, Nr. 42, S. 471, Z. 8 - S. 472, Z. 12; MGH Capit. 1, Nr. 174, S. 357,
+                        Z. 24 - S. 358, Z. 13) </p>
+                  </msItem>
+                  <msItem n="16">
+                     <p>
+                        <locus>232v</locus> neumierter Marienhymnus (11. Jh.): <hi rend="italic"
+                           >Fecunda uerbo tu uirginum uirgo MARIA dei mater</hi> - <hi rend="italic"
+                           >Per quam solam solus omnibus uitam dat saluandis</hi> (-<hi
+                           rend="italic">s</hi> auf Rasur?) (genauer Nachweis bei <ref
+                           type="external"
+                           target="https://www.e-codices.unifr.ch/en/description/sbe/0191/"
+                           >Lang</ref>)</p>
+                  </msItem>
+                  <msItem n="17">
+                     <p>
+                        <locus>233r</locus> Leer bis auf Federproben</p>
+                  </msItem>
+                  <msItem n="18">
+                     <p>
+                        <locus>233v</locus> Astronomischer Text: <hi rend="italic">DE MODIS ANNORUM.
+                           Primus modus est annus secundum stellam quae uocatur mercurius</hi> - <hi
+                           rend="italic">Luna post XXVII dies et VIII horis</hi>; Federproben</p>
+                  </msItem>
+               </msContents>
+               <physDesc>
+                  <objectDesc form="codex">
+                     <supportDesc>
+                        <support>
+                           <material>Pergament</material>
+                        </support>
+                        <extent>237 foll. (VI + 231; gezählt I-VI, 1-165, 165bis-233; 81, 203, 204
+                           ausgeschnitten) <dimensions type="leaf" unit="mm">
+                              <height>317</height>
+                              <width>225-230</width>
+                           </dimensions><dimensions precision="medium" type="written" unit="mm">
+                              <height>240</height>
+                              <width>150-155</width>
+                           </dimensions>
+                        </extent>
+                        <collation><formula>(IV-2)<hi rend="super">VI</hi> + 10 IV<hi rend="super"
+                                 >80</hi> + (IV-1)<hi rend="super">88</hi> + 14 IV<hi rend="super"
+                                 >199</hi> + (IV-2)<hi rend="super">207</hi> + 2 IV<hi rend="super"
+                                 >223</hi> + 2 (III-1)<hi rend="super">233</hi>; weder Kustoden noch
+                              Reklamanten </formula>
+                        </collation>
+                     </supportDesc>
+                     <layoutDesc>
+                        <layout columns="1">einspaltig bis auf foll. 229v-230v (dort zweispaltige
+                           Anlage)</layout>
+                        <layout writtenLines="29">29</layout>
+                     </layoutDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote>mehrere Hände</handNote>
+                  </handDesc>
+                  <scriptDesc>
+                     <scriptNote>karolingische Minuskel</scriptNote>
+                  </scriptDesc>
+                  <decoDesc>
+                     <p>Überschriften in roter Tinte oder Texttinte unter Verwendung von Unziale und
+                        Capitalis rustica, darüber hinaus Monumentalcapitalis (fol. 3r); einfache
+                        Initialen</p>
+                  </decoDesc>
+                  <bindingDesc>
+                     <binding>
+                        <p>Holzdeckeleinband</p>
+                        <p/>
+                     </binding>
+                  </bindingDesc>
+               </physDesc>
+               <history>
+                  <origin>
+                     <p>
+                        <origDate notAfter="0805" notBefore="0795">8./9. Jahrhundert</origDate>;
+                           <origPlace ref="http://www.geonames.org/3017382/republic-of-france.html"
+                           >wahrscheinlich Nordostfrankreich</origPlace></p>
+                  </origin>
+                  <provenance>
+                     <p>Bernhard Bischoff ordnete die Handschrift der Hofbibliothek Karls des Großen
+                        zu. Im 11. Jahrhundert gehörte sie der Konstanzer Dombibliothek, wo sie
+                        später im Besitz des Weihbischofs Jakob Johann Mirgel (1559-1629) war. Aus
+                        der Konstanzer Zeit stammen zudem die Annotationen und Glossen, die u.a. auf
+                        Bernold von Konstanz zurückgehen († 1100; Autenrieth 1956, S. 42-50). Im 17.
+                        Jahrhundert gelangte der Codex in die Stiftsbibliothek des Klosters
+                        Einsiedeln.</p>
+                  </provenance>
+                  <acquisition/>
+               </history>
+               <additional>
+                  <surrogates/>
+                  <listBibl>
+                     <listBibl type="cat">
+                        <bibl>Catalogus codicum manu scriptorum qui in Bibliotheca monasterii
+                           Einsidlensis O.S.B. servantur, descr. Gabriel Meier. Tomus I complectens
+                           centurias quinque priores, Leipzig 1899, S. 150-151.</bibl>
+                     </listBibl>
+                     <listBibl type="cap">
+                        <bibl corresp="#Pertz_G_1835">Pertz G 1835, S. 231</bibl>
+                        <bibl corresp="#Boretius_1883">Boretius 1883, S. 357-358</bibl>
+                        <bibl corresp="#Werminghoff_1899">Werminghoff 1899, S. 484</bibl>
+                        <bibl corresp="#Werminghoff_1901a">Werminghoff 1901a, S. 25</bibl>
+                        <bibl corresp="#Werminghoff_1908">Werminghoff 1908, S. 468-472</bibl>
+                        <bibl>Johanne Autenrieth, Die Domschule von Konstanz zur Zeit des
+                           Investiturstreits. Die wissenschaftliche Arbeitsweise Bernolds von
+                           Konstanz und zweier Kleriker dargestellt auf Grund von
+                           Handschriftenstudien (Forschungen zur Kirchen- und Geistesgeschichte N.F.
+                           3), Stuttgart 1956, S. 41-50</bibl>
+                        <bibl>Elias Avery Lowe, Codices Latini Antiquiores. A palaeographical guide
+                           to latin manuscripts prior to the ninth century. Part VII: Switzerland,
+                           Oxford 1956, S. 12. (<ref type="external"
+                              target="https://www.e-codices.unifr.ch/de/description/sbe/0191/Lowe"
+                              >online</ref> bei e-codices)</bibl>
+                        <bibl corresp="#Mordek_1995">Mordek 1995, S. 932-933</bibl>
+                        <bibl corresp="#Bischoff_1998">Bischoff 1998, S. 239, Nr. 1116</bibl>
+                        <bibl corresp="#Kéry_1999">Kéry 1999, S. 27-29</bibl>
+                        <bibl><ref type="external"
+                              target="https://www.e-codices.unifr.ch/en/description/sbe/0191/"
+                              >Beschreibung</ref> für e-codices von P. Dr. Odo Lang OSB,
+                           Stiftsbibliothek Einsiedeln, 2011 (ausführlichere Beschreibung sowie
+                           weitere Literaturhinweise)</bibl>
+                        <bibl resp="capit">
+                           <ref type="internal" subtype="mom"
+                              target="handschrift-des-monats-mai-2019"/></bibl>
+                     </listBibl>
+                  </listBibl>
+               </additional>
+
+
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>Transkriptionsvorlage: Sehr gutes Farbdigitalisat bei e-codices.</p>
+         <projectDesc>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
+            </p>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
+            </p>
+         </projectDesc>
+         <editorialDecl>
+            <p xml:lang="ger">Die Transkription folgt den Richtlinien des Capitularia-Projektes:
+                  <ptr target="http://capitularia.uni-koeln.de/project/workflow/"/>
+            </p>
+            <p xml:lang="eng">The transcription adheres to the guidelines of the Capitularia
+               project: <ptr target="http://capitularia.uni-koeln.de/project/workflow/"/>
+            </p>
+         </editorialDecl>
+      </encodingDesc>
+      <revisionDesc>
+         <change who="DT" when="2019-04-01">Datei erstellt</change>
+         <change who="DT" when="2019-04-04">Erstellung der Handschriftenbeschreibung, der
+            Vorbemerkung sowie der Transkription von BK 174</change>
+         <change who="DT" when="2019-05-01">Datei veröffentlicht</change>
+      </revisionDesc>
+   </teiHeader>
+   <facsimile>
+      <graphic url="https://www.e-codices.unifr.ch/de/list/one/sbe/0191"/>
+   </facsimile>
+   <text>
+      <front>
+         <div type="content">
+            <list>
+               <item n="70">
+                  <ptr type="internal" target="#einsiedeln-sb-191-232r-1"/>[Liste ohne Rubrik] <list>
+                     <item n="10">
+                        <ptr type="internal" target="#einsiedeln-sb-191-232r-1"/>I</item>
+                     <item n="20">
+                        <ptr type="internal" target="#einsiedeln-sb-191-232r-3"/>II</item>
+                     <item n="30">
+                        <ptr type="internal" target="#einsiedeln-sb-191-232r-5"/>III</item>
+                     <item n="40">
+                        <ptr type="internal" target="#einsiedeln-sb-191-232v-1"/>IIII</item>
+                     <item n="50">
+                        <ptr type="internal" target="#einsiedeln-sb-191-232v-3"/>V</item>
+                     <item n="60">
+                        <ptr type="internal" target="#einsiedeln-sb-191-232v-5"/>VI</item>
+                  </list></item>
+            </list>
+         </div>
+
+         <div type="mshist"/>
+         <div type="scribe">
+            <p>Eine (Nachtrags-)Hand des früheren 9. Jahrhunderts, die eine gut lesbare
+               karolingische Minuskel mit recht breiter Feder in schwarzer Tinte schreibt.</p>
+         </div>
+         <div type="letters">
+            <p>Der Schreiber verwendet sowohl cc-a als auch unziales a. Der obere Bogen des e ist
+               gelegentlich zu einem lang ausgezogenen Strich aufgelöst. Der markante Bogen des g
+               ist mal geschlossen, mal geöffnet. Die Oberlängen und Schäfte sind häufig verdickt.
+               Gelegentlich findet sich e-caudata. Es werden nur gängige Abkürzungen und Ligaturen
+               verwendet.</p>
+         </div>
+         <div type="abbreviations"/>
+         <div type="punctuation"/>
+         <div type="structure">
+            <p>Die Capitula stehen eingebettet zwischen verschiedenen Hymnen, die wiederum von
+               anderen Händen stammen, und haben keine Inskription. Die Kapitel sind korrekt von
+                  <mentioned>I</mentioned> bis <mentioned>VI</mentioned> durchgezählt und werden
+               jeweils durch schlichte, in Texttinte geschriebene Initialen eingeleitet.</p>
+         </div>
+         <div type="annotations"/>
+         <div type="other">
+            <p>Im Pergament befinden sich einige kleine Löcher, die an einer Stelle zu einem
+               Textverlust von einem Buchstaben geführt haben.</p>
+         </div>
+      </front>
+      <body>
+
+         <cb n="232r"/>
+         <lb n="5"/>
+
+         <milestone unit="capitulare" n="BK.174"/>
+
+         <ab type="meta-text" xml:id="einsiedeln-sb-191-232r-1" corresp="BK.174_1_inscriptio"><seg
+               type="num" n="1">I</seg></ab>
+
+         <ab type="text" xml:id="einsiedeln-sb-191-232r-2" corresp="BK.174_1"><seg type="initial"
+               >D</seg>ei igitur omnipotentis inspiratione uestro piissimo studio am<lb break="no"
+            />moniti uestroque saluberrimo exemplo prouocati confitemur nos <lb/> in pluribus locis
+            quam modo aut ratio aut possibilitas enumerare <lb/> permittat tam in uita quamque
+            doctrina et ministerio negle<lb break="no"/>gentes extitisse . Quamobrem sicut hactenus
+            in his nos negle<lb break="no"/>gentes fuisse non de<subst>
+               <del/>
+               <add>n</add>
+            </subst>egamus . Ita abhinc domino opitulante da<lb break="no"/>ta nobis a uestra
+            benignitate congruenti facultate uel li<lb break="no"/>bertate diligentiorem curam in
+            his omnibus pro captu intelle<lb break="no"/>gentiae nostrae nos uelle adhibere
+            profitemur . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="einsiedeln-sb-191-232r-3" corresp="BK.174_2_inscriptio"><seg
+               type="num" n="2">II</seg></ab>
+
+         <ab type="text" xml:id="einsiedeln-sb-191-232r-4" corresp="BK.174_2"><seg type="initial"
+               >Q</seg>uia uero liquido constat quod salus populi maxime in doc<lb break="no"/>trina
+            et prędicatione consistat et predicatio eadem imple<lb break="no"/>ri ita ut oportet non
+            potest nisi a doctis necesse est ut ordo <lb/> talis in singulis sedibus inueniatur .
+            per quem et presens emen<lb break="no"/>datio et futura utilitas sanctae ecclesiae
+            preparetur . Qualiter <lb/> autem hoc fieri debeat et possit in sequenti capitulo
+            demonstrabitur <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="einsiedeln-sb-191-232r-5" corresp="BK.174_3_inscriptio"><seg
+               type="num" n="3">III</seg></ab>
+
+         <ab type="text" xml:id="einsiedeln-sb-191-232r-6" corresp="BK.174_3"><seg type="initial"
+               >S</seg>colas itaque de quibus hactenus minus studiosi fui<lb break="no"/>mus quam
+            debueramus omnino studiosissime emendare . <lb/> cupimus qualiter omnis homo siue
+            maioris siue minoris aeta<lb break="no"/>tis qui ad hoc nutritur ut in aliquo gradu in
+               ecclesia<del>e</del> promo<lb break="no"/>ueatur locum denominatu<subst>
+               <del>s</del>
+               <add>m</add>
+            </subst> et magistrum congruum habeat <lb/> Parentes tamen uel domini singulorum de
+            uictu uel substantia <lb/> corporali unde subsistant prouidere studeant qualiter ita
+            <lb/> solatium habeant ut propter rerum inopiam a doctrinę studio <lb/> non recedant .
+            Si uero necessitas fuerit propter amplitudinem <lb/> parrochiae eo quod in uno loco
+            collegi non possint propter <cb n="232v"/> amministrationem quam eis procuratores eorum
+            fieri debent <lb/> fiat locis duabus aut tribus uel prout necessitas et ratio dictauerit
+            . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="einsiedeln-sb-191-232v-1" corresp="BK.174_4_inscriptio"><seg
+               type="num" n="4">IIII</seg></ab>
+
+         <ab type="text" xml:id="einsiedeln-sb-191-232v-2" corresp="BK.174_4"><seg type="initial"
+               >S</seg>ed quia huiusmodi doctrina minus utiliter agitur si qualiter <lb/> his qui
+            docere debent docendi oportunitas non ordinatur <lb/> Necesse est ut his presulibus
+            quibus omnimodis agendi facul<lb break="no"/>tas aut fund<gap unit="chars" quantity="1"
+            />tus aut certe magna ex parte per dyoceses suas deest <lb/> a dominis rerum ut id fieri
+            congrue possit prouideatur . Hi autem <lb/> qui res ecclesiasticas aut baptismales
+            ecclesias iure suo in promp<lb break="no"/>tu habent officium praedicationis
+            inexcusabiliter emplere ualent . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="einsiedeln-sb-191-232v-3" corresp="BK.174_5_inscriptio"><seg
+               type="num" n="5">V</seg></ab>
+
+         <ab type="text" xml:id="einsiedeln-sb-191-232v-4" corresp="BK.174_5"><seg type="initial"
+               >D</seg>e potentibus qui ad predicationem uenire nolunt . et idcirco mul<lb
+               break="no"/>ti eos imitantes uel sequentes ad audiendum uerbum diuinum non ue<lb
+               break="no"/>niunt qui interdum etiam familiam suam his diebus quibus ad audiendum
+            <lb/> uerbum diuinum uenire debuerant seruitiis propriis detinent <lb/> Nonnulli etiam
+            ex ipsis presbiteros absque consensu episcopi in ecclesiis <lb/> con<add>s</add>tituunt
+            uel expellunt . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="einsiedeln-sb-191-232v-5" corresp="BK.174_6_inscriptio"><seg
+               type="num" n="6">VI</seg></ab>
+
+         <ab type="text" xml:id="einsiedeln-sb-191-232v-6" corresp="BK.174_6"><seg type="initial"
+               >V</seg>t hereses simoniaca ita caueatur ut non solum propter mune<lb break="no"/>rum
+            acceptionem . sed neque consanguinitatis familiaritatis <lb/> aut cuiuslibet amicitiae
+            aut obsequii causa deinceps ullus proueatur <lb/>
+         </ab>
+
+      </body>
+   </text>
+</TEI>
