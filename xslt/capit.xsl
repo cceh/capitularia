@@ -151,7 +151,7 @@ Output URL: /capit/ldf/bk-nr-186/
     <tr>
       <td class="value">
         <xsl:if test="@corresp">
-          <xsl:variable name="id" select="str:replace (substring-before (../../tei:head, ':'), ' Nr. ', '_')"/>
+          <xsl:variable name="id" select="str:replace (str:replace (substring-before (../../tei:head, ':'), ' Nr. ', '_'), ' ', '_')"/>
           <xsl:variable name="path"  select="concat ('/mss/', @corresp)"/>
           <xsl:variable name="href"  select="concat ('/mss/', @corresp, '#', str:replace ($id, 'BK_185', 'BK_185A'))"/>
           <xsl:variable name="bk"    select="concat ('BK.', substring-after (/tei:TEI/@corresp, 'bk-nr-'))"/>
