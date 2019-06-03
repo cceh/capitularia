@@ -13,10 +13,7 @@
     exclude-result-prefixes="xs">
 
   <!-- #### grundlegende interne Verlinkungen #### -->
-  <xsl:variable name="base">//capitularia.uni-koeln.de</xsl:variable>
-
-  <!-- Verlinkungen zu den englischen Seiten -->
-  <xsl:variable name="base_en">//capitularia.uni-koeln.de/en/</xsl:variable>
+  <xsl:variable name="base_url">https://capitularia.uni-koeln.de</xsl:variable>
 
   <!-- #### Kapitularien #### -->
   <xsl:variable name="capit">/capit/</xsl:variable>
