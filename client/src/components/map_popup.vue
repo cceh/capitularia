@@ -13,7 +13,7 @@
         <toolbar :toolbar="toolbar">
           <layer-selector v-model="toolbar.place_layer_shown"
                           layer_type="place"
-                          :layers="this.$store.state.geo_layers"><h6 class="card-subtitle">{{ rows.length }}</h6></layer-selector>
+                          :layers="geo_layers.layers"><h6 class="card-subtitle">{{ rows.length }}</h6></layer-selector>
         </toolbar>
       </div>
 
@@ -179,6 +179,7 @@ export default {
             'xhr_params',
             'area_layer_shown',
             'place_layer_shown',
+            'geo_layers',
         ])
     },
     'watch' : {

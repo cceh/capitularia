@@ -10,7 +10,7 @@
                         size="sm"
                         layer_type="place"
                         :addnone="true"
-                        :layers="this.$store.state.geo_layers">Show count of</layer-selector>
+                        :layers="geo_layers.layers">Show count of</layer-selector>
 
         <div class="form-group">
           <label class="mr-2" for="notbefore">considering mss. created between</label>
@@ -49,7 +49,7 @@
                         size="sm"
                         layer_type="area"
                         :addnone="true"
-                        :layers="this.$store.state.geo_layers">Map overlay:</layer-selector>
+                        :layers="geo_layers.layers">Map overlay:</layer-selector>
       </form>
 
     </toolbar>
@@ -70,6 +70,8 @@
  * @component maps
  * @author Marcello Perathoner
  */
+
+import { mapGetters } from 'vuex'
 
 import $        from 'jquery';
 import * as d3  from 'd3';
@@ -105,6 +107,12 @@ export default {
             'next_id'        : 1,
             'toolbar_height' : 50,
         };
+    },
+    'computed' : {
+        ... mapGetters ([
+            'geo_layers',
+            'tile_layers',
+        ])
     },
     'watch' : {
         'toolbar.dates' : {

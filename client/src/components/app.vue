@@ -21,9 +21,9 @@ import url          from 'url';
 
 import maps         from 'maps.vue';
 
+Vue.use (VueRouter);
 Vue.use (Vuex);
 Vue.use (BootstrapVue);
-Vue.use (VueRouter);
 
 const routes = [
     { 'path' : '/client/maps', 'component' : maps, },
@@ -43,8 +43,8 @@ const store = new Vuex.Store ({
         'capitularies'      : '',  // space separated list of capitularies
         'area_layer_shown'  : '',  // map areas to show
         'place_layer_shown' : '',  // type of artifacts to count: mss, msp or cap
-        'geo_layers'        : [],
-        'tile_layers'       : [],
+        'geo_layers'        : { 'layers' : [] },
+        'tile_layers'       : { 'layers' : [] },
     },
     'mutations' : {
         toolbar_range (state, data) {
@@ -71,6 +71,8 @@ const store = new Vuex.Store ({
         }),
         'area_layer_shown'  : state => state.area_layer_shown,
         'place_layer_shown' : state => state.place_layer_shown,
+        'geo_layers'        : state => state.geo_layers,
+        'tile_layers'       : state => state.tile_layers,
     },
 });
 
@@ -83,18 +85,18 @@ export default {
         };
     },
     'computed' : {
-        api_url () { return url.resolve (api_base_url, '/'); },
+        api_url () { return api_base_url; },
     },
     mounted () {
         const vm = this;
         const xhrs = [
-            d3.json (vm.build_full_api_url ('geo/')),
-            d3.json (vm.build_full_api_url ('tile/')),
+            d3.json (vm.build_full_api_url ('geo/'),  { 'credentials' : 'include' }),
+            d3.json (vm.build_full_api_url ('tile/'), { 'credentials' : 'include' }),
         ];
         Promise.all (xhrs).then (function (responses) {
             const [json_geo, json_tile] = responses;
-            vm.$store.state.geo_layers  = json_geo.layers;
-            vm.$store.state.tile_layers = json_tile.layers;
+            vm.$store.state.geo_layers  = json_geo;
+            vm.$store.state.tile_layers = json_tile;
         });
     },
 };

@@ -73,8 +73,8 @@ export default {
             if (addnone) {
                 res.push ({ 'id': 'none', 'title' : 'None' });
             }
-            if (this.layers) {
-                res.push (... this.layers.filter (d => d.type === this.layer_type));
+            if (layers) {
+                res.push (... layers.filter (d => d.type === type));
             }
             return res;
         },

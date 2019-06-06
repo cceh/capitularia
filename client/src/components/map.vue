@@ -338,6 +338,8 @@ export default {
         return {
             'geo_data' : null,
             'parts_data' : null,
+            'area_layer_infos' : [],
+            'place_layer_infos' : [],
         };
     },
     'computed' : {
@@ -345,6 +347,8 @@ export default {
             'xhr_params',
             'area_layer_shown',
             'place_layer_shown',
+            'geo_layers',
+            'tile_layers',
         ])
     },
     'watch' : {
@@ -356,6 +360,12 @@ export default {
         },
         'area_layer_shown' : function (new_val) {
             this.register_area_layer (new_val);
+        },
+        'geo_layers' : function (new_val) {
+            this.init_geo_layers (new_val);
+        },
+        'tile_layers' : function (new_val) {
+            this.init_tile_layers (new_val);
         },
     },
     'methods' : {
@@ -392,6 +402,55 @@ export default {
                 }
             }
         },
+        init_tile_layers () {
+            const vm = this;
+
+            const baseLayers = {};
+            const overlays   = {};
+
+            for (const layer_info of vm.tile_layers.layers) {
+                const layer = L.tileLayer (
+                    vm.build_full_api_url (`tile/${layer_info.id}/{z}/{x}/{y}.png`),
+                    {
+                        'attribution' : layer_info.attribution,
+                    }
+                );
+                if (layer_info.type === 'base') {
+                    baseLayers[layer_info.title] = layer;
+                    layer.addTo (vm.map);
+                } else {
+                    overlays[layer_info.title] = layer;
+                }
+            }
+
+            baseLayers['OpenStreetMap'] = L.tileLayer (
+                'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    'attribution' : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                });
+
+            L.control.layers (baseLayers, overlays, { 'collapsed' : true }).addTo (vm.map);
+
+            vm.map.options.minZoom = vm.tile_layers.min_zoom;
+            vm.map.options.maxZoom = vm.tile_layers.max_zoom;
+
+            vm.zoom_extent ();
+        },
+        init_geo_layers () {
+            const vm = this;
+
+            vm.area_layer_infos = vm.place_layer_infos = [ { 'id' : 'none', 'url' : null, 'attribution' : '' } ];
+            vm.area_layer_infos.push  (... vm.geo_layers.layers.filter (d => d.type == 'area'));
+            vm.place_layer_infos.push (... vm.geo_layers.layers.filter (d => d.type == 'place'));
+
+            vm.area_layer.addTo (vm.map);
+
+            vm.register_area_layer (vm.area_layer_shown);
+
+            vm.place_layer.addTo (vm.map);
+
+            vm.register_place_layer (vm.place_layer_shown);
+            vm.update_place_layer ();
+        },
         zoom_extent (json) {
             const vm = this;
             d3.json (vm.build_full_api_url ('geo/extent.json')).then (function (json) {
@@ -412,80 +471,28 @@ export default {
     'mounted' : function () {
         const vm = this;
 
-        vm.area_layer_infos = vm.place_layer_infos = [ { 'id' : 'none', 'url' : null, 'attribution' : '' } ];
-
-        const xhrs = [
-            d3.json (vm.build_full_api_url ('geo/')),
-            d3.json (vm.build_full_api_url ('tile/'))
-        ];
-
-        Promise.all (xhrs).then (function (responses) {
-            const [json_geo, json_tile] = responses;
-
-            vm.map = L.map ('map', {
-                'renderer'    : L.svg (),
-                'zoomControl' : false,
-                'minZoom'     : json_tile.min_zoom,
-                'maxZoom'     : json_tile.max_zoom,
-            });
-
-            const baseLayers = {};
-            const overlays   = {};
-
-            for (const layer_info of json_tile.layers) {
-                const layer = L.tileLayer (
-                    vm.build_full_api_url (`tile/${layer_info.id}/{z}/{x}/{y}.png`),
-                    {
-                        'attribution' : layer_info.attribution,
-                    }
-                );
-                if (layer_info.type === 'base') {
-                    baseLayers[layer_info.title] = layer;
-                    layer.addTo (vm.map);
-                } else {
-                    overlays[layer_info.title] = layer;
-                }
-            }
-
-            baseLayers['OpenStreetMap'] = L.tileLayer (
-                'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    'attribution' : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                });
-
-            vm.area_layer_infos.push (... json_geo.layers.filter (d => d.type == 'area'));
-
-            vm.place_layer_infos.push (... json_geo.layers.filter (d => d.type == 'place'));
-
-            vm.area_layer = new L.Layer_Areas (null, {
-                'class'               : 'areas',
-                'vm'                  : vm,
-                'interactive'         : true,
-                'bubblingMouseEvents' : false,
-            });
-            vm.area_layer.addTo (vm.map);
-
-            vm.register_area_layer (vm.area_layer_shown);
-
-            vm.place_layer = new L.Layer_Places (null, {
-                'class'               : 'places',
-                'vm'                  : vm,
-                'interactive'         : true,
-                'bubblingMouseEvents' : false,
-            });
-            vm.place_layer.addTo (vm.map);
-
-            vm.register_place_layer (vm.place_layer_shown);
-            vm.update_place_layer ();
-
-            L.control.layers (baseLayers, overlays, { 'collapsed' : true }).addTo (vm.map);
-            new L.Control.Info_Pane ({ position: 'topleft' }).addTo (vm.map);
-
-            vm.zoom_extent ();
-
-            vm.$store.commit ('toolbar_range',  vm.toolbar);
-            vm.$store.commit ('toolbar_area_layer_shown',  vm.toolbar);
-            vm.$store.commit ('toolbar_place_layer_shown', vm.toolbar);
+        vm.map = L.map ('map', {
+            'renderer'    : L.svg (),
+            'zoomControl' : false,
         });
+        vm.area_layer = new L.Layer_Areas (null, {
+            'class'               : 'areas',
+            'vm'                  : vm,
+            'interactive'         : true,
+            'bubblingMouseEvents' : false,
+        });
+        vm.place_layer = new L.Layer_Places (null, {
+            'class'               : 'places',
+            'vm'                  : vm,
+            'interactive'         : true,
+            'bubblingMouseEvents' : false,
+        });
+
+        new L.Control.Info_Pane ({ position: 'topleft' }).addTo (vm.map);
+
+        vm.$store.commit ('toolbar_range',             vm.toolbar);
+        vm.$store.commit ('toolbar_area_layer_shown',  vm.toolbar);
+        vm.$store.commit ('toolbar_place_layer_shown', vm.toolbar);
     },
 };
 </script>
