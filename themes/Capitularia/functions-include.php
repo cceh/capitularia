@@ -143,7 +143,22 @@ function on_enqueue_scripts ()
     wp_enqueue_style ('cap-front',       "$template_dir/css/front.css");
     wp_enqueue_style ('dashicons');
 
-    wp_enqueue_script ('cap-jquery',    "$template_dir/node_modules/jquery/dist/jquery.js");
+    /*
+     * Register jquery-ui CSS for the use of plugins
+     *
+     * Quandary: Wordpress (as of 4.3) comes with a version of jquery and jquery-ui
+     * but lacks the jquery-ui css styles.  If we provide just our own jquery-ui css
+     * styles, we may get out of sync with the jquery-ui javascript provided by
+     * Wordpress.  But if we provide the whole jquery-ui of our own we may get out
+     * of sync with Wordpress' assumptions of the actual jquery-ui version.
+     *
+     * Currently we provide our own jquery-ui CSS file.
+     */
+
+    wp_register_style ('cap-jquery-ui-css', "$template_dir/css/jquery-ui.css");
+
+    // make our modern jquery overrride wp's ancient query
+    wp_enqueue_script ('cap-jquery',    "$template_dir/node_modules/jquery/dist/jquery.js", array ('jquery'));
     wp_enqueue_script ('cap-custom-js', "$template_dir/js/custom.js", array ('cap-jquery'));
     wp_enqueue_script ('cap-piwik',     "$template_dir/js/piwik-wrapper.js");
 
@@ -153,7 +168,11 @@ function on_enqueue_scripts ()
     wp_enqueue_script ('cap-bs-util-js',     "$template_dir/node_modules/bootstrap/js/dist/util.js");
     wp_enqueue_script ('cap-bs-tooltip-js',  "$template_dir/node_modules/bootstrap/js/dist/tooltip.js",  $bs_dep);
     wp_enqueue_script ('cap-bs-collapse-js', "$template_dir/node_modules/bootstrap/js/dist/collapse.js", $bs_dep);
+
+    wp_register_script ('cap-underscore', "$template_dir/node_modules/underscore/underscore.js");
+    wp_register_script ('cap-vue',        "$template_dir/node_modules/vue/dist/vue.js");
 }
+
 
 /**
  * Enqueue admin scripts and CSS
@@ -171,20 +190,6 @@ function on_admin_enqueue_scripts ()
     $template_dir = get_template_directory_uri ();
 
     wp_enqueue_style ('cap-admin',   "$template_dir/css/admin.css");
-
-    /*
-     * Register jquery-ui CSS for the use of plugins
-     *
-     * Quandary: Wordpress (as of 4.3) comes with a version of jquery and jquery-ui
-     * but lacks the jquery-ui css styles.  If we provide just our own jquery-ui css
-     * styles, we may get out of sync with the jquery-ui javascript provided by
-     * Wordpress.  But if we provide the whole jquery-ui of our own we may get out
-     * of sync with Wordpress' assumptions of the actual jquery-ui version.
-     *
-     * Currently we provide our own jquery-ui CSS file.
-     */
-
-    wp_register_style ('cap-jquery-ui-css', "$template_dir/css/jquery-ui.css");
 }
 
 /**
