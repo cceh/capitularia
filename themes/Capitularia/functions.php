@@ -63,6 +63,16 @@ add_action ('admin_enqueue_scripts',               'cceh\capitularia\theme\on_ad
 add_action ('registered_post_type',                ns ('on_registered_post_type'), 10, 2);
 add_action ('pre_get_posts',                       ns ('on_pre_get_posts'));
 
+add_action ('rest_api_init', function () {
+    register_rest_route ('capitularia/v1', '/user_info/', array (
+        'methods' => 'GET',
+        'callback' => ns ('cap_rest_user_info'),
+        'args' => array (
+            'auth_cookie' => array ('default' => false)
+        ),
+    ));
+});
+
 /*
  * Wordpress Filters
  */

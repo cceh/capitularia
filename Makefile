@@ -14,7 +14,7 @@ deploy_xml:
 	$(RSYNC) xml/*.xml $(PUBL)/mss/
 
 deploy_scripts:
-	$(RSYNC) scripts $(PUBL)
+	$(RSYNC) --exclude='env' scripts $(PUBL)
 
 upload_client: client
 	cd $(CLIENT); make upload; cd ..
@@ -27,7 +27,18 @@ import_xml:
 	$(RSYNC) $(PUBL)/capit/*    capit/
 
 import_backups:
-	$(RSYNC) $(AFS)/backups/* backups/
+	$(RSYNC) $(AFS)/backups/* ../backups/
+
+import_backup_mysql: import_backups
+	bzcat $(AFS)/backups/mysql/capitularia-mysql-$(shell date +%F).sql.bz2 | $(MYSQL_LOCAL)
+
+.PHONY: mysql-remote mysql-local
+
+mysql-remote:
+	$(MYSQL_REMOTE)
+
+mysql-local:
+	$(MYSQL_LOCAL)
 
 .PHONY: server
 server: geodata-server

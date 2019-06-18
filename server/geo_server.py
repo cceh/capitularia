@@ -283,9 +283,11 @@ def extent_json ():
         return common.make_geojson_response (res, 'geom, geo_id')
 
 
-@geo_app.route ('/')
+@geo_app.route ('/', methods = ['GET', 'OPTIONS'])
 def info_json ():
     """ Info endpoint: send information about server and available layers. """
+
+    # FIXME: common.assert_map ()
 
     i = {
         'title'    : 'Capitularia Geo Server',

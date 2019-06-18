@@ -222,7 +222,7 @@ function on_enqueue_scripts ()
     wp_register_script (
         'cap-meta-search-front',
         plugins_url ('js/front.js', __FILE__),
-        array ('cap-jquery')
+        array ('cap-jquery', 'jquery-ui-tooltip')
     );
     wp_enqueue_script  ('cap-meta-search-front');
 

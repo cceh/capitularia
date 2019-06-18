@@ -86,6 +86,11 @@ $sidebars[] = array (
     __ ('The sidebar on /project/ pages.', 'capitularia')
 );
 $sidebars[] = array (
+    'tools',
+    __ ('Tools Sidebar', 'capitularia'),
+    __ ('The sidebar on /tools/ pages.', 'capitularia')
+);
+$sidebars[] = array (
     'internal',
     __ ('Internal Sidebar', 'capitularia'),
     __ ('The sidebar on /internal/ pages.', 'capitularia')

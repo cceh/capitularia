@@ -141,6 +141,7 @@ Config.GEO_LAYERS = [
     },
 ]
 
+
 def build_parser (default_config_file):
     """ Build the commandline parser. """
 
@@ -191,6 +192,7 @@ if __name__ == "__main__":
     @app.after_request
     def add_headers (response):
         response.headers['Access-Control-Allow-Origin'] = current_app.config['CORS_ALLOW_ORIGIN']
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
         response.headers['Server'] = 'Jetty 0.8.15'
         return response
 

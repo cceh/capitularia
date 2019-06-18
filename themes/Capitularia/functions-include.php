@@ -140,9 +140,6 @@ function on_enqueue_scripts ()
 {
     $template_dir = get_template_directory_uri ();
 
-    wp_enqueue_style ('cap-front',       "$template_dir/css/front.css");
-    wp_enqueue_style ('dashicons');
-
     /*
      * Register jquery-ui CSS for the use of plugins
      *
@@ -157,6 +154,12 @@ function on_enqueue_scripts ()
 
     wp_register_style ('cap-jquery-ui-css', "$template_dir/css/jquery-ui.css");
 
+    $dep = array ('cap-jquery-ui-css');
+    // note: bootstrap is @imported in front.css
+
+    wp_enqueue_style ('cap-front',       "$template_dir/css/front.css", $dep);
+    wp_enqueue_style ('dashicons');
+
     // make our modern jquery overrride wp's ancient query
     wp_enqueue_script ('cap-jquery',    "$template_dir/node_modules/jquery/dist/jquery.js", array ('jquery'));
     wp_enqueue_script ('cap-custom-js', "$template_dir/js/custom.js", array ('cap-jquery'));
@@ -168,6 +171,7 @@ function on_enqueue_scripts ()
     wp_enqueue_script ('cap-bs-util-js',     "$template_dir/node_modules/bootstrap/js/dist/util.js");
     wp_enqueue_script ('cap-bs-tooltip-js',  "$template_dir/node_modules/bootstrap/js/dist/tooltip.js",  $bs_dep);
     wp_enqueue_script ('cap-bs-collapse-js', "$template_dir/node_modules/bootstrap/js/dist/collapse.js", $bs_dep);
+    wp_enqueue_script ('cap-bs-dropdown-js', "$template_dir/node_modules/bootstrap/js/dist/dropdown.js", $bs_dep);
 
     wp_register_script ('cap-underscore', "$template_dir/node_modules/underscore/underscore.js");
     wp_register_script ('cap-vue',        "$template_dir/node_modules/vue/dist/vue.js");
@@ -190,6 +194,8 @@ function on_admin_enqueue_scripts ()
     $template_dir = get_template_directory_uri ();
 
     wp_enqueue_style ('cap-admin',   "$template_dir/css/admin.css");
+
+    wp_register_style ('cap-jquery-ui-css', "$template_dir/css/jquery-ui.css");
 }
 
 /**
@@ -418,7 +424,6 @@ function on_registered_post_type ($post_type, $post_type_object)
     };
 }
 
-
 /**
  * Search only wiki pages if search string contains 'wiki:'
  *
@@ -440,4 +445,35 @@ function on_pre_get_posts ($query)
             }
         }
     }
+}
+
+/**
+ * REST endpoint to get user information from auth cookie
+ *
+ * @param string $cookie The auth cookie
+ */
+
+function cap_rest_user_info (\WP_REST_Request $request)
+{
+    $cookie = $request['auth_cookie'];
+    if ($cookie === false) {
+        foreach ($_COOKIE as $name => $value) {
+            if (strncmp ($name, 'wordpress_logged_in_', 20) === 0) {
+                // error_log ($name);
+                // error_log ($value);
+                $cookie = $value;
+                break;
+            }
+        }
+    }
+    if ($cookie !== false) {
+        $user_id = wp_validate_auth_cookie ($cookie, 'logged_in');
+        if ($user_id !== false) {
+            $data = get_userdata ($user_id);
+            if (is_object ($data)) {
+                wp_send_json_success ($data);
+            }
+        }
+    }
+    wp_send_json_error ();
 }

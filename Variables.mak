@@ -32,7 +32,7 @@ SASS            = $(NODE)/sass
 SASSFLAGS       = -I $(CSS_SRC)
 POSTCSS         = $(NODE)/postcss
 POSTCSSFLAGS    =
-ESLINT         := eslint
+ESLINT         := ~/.npm-global/bin/eslint
 ESLINTFLAGS     = -f unix
 JSHINT         := jshint
 JSHINTFLAGS     = --reporter=unix
@@ -40,6 +40,9 @@ STYLELINT       = $(NODE)/stylelint $(STYLELINTFLAGS)
 STYLELINTFLAGS  = -f unix
 RSYNC          := rsync -v -rlptz --exclude='*~' --exclude='.*'
 RSYNCPY        := $(RSYNC) --exclude "**/__pycache__"  --exclude "*.pyc"
+
+MYSQL_REMOTE   := mysql --defaults-file=~/.my.cnf.capitularia
+MYSQL_LOCAL    := mysql --defaults-file=~/.my.cnf.capitularia-local
 
 PHP_FILES         ?= $(wildcard $(PHP_SRC)/*.php)
 JS_SRC_FILES      ?= $(wildcard $(JS_SRC)/*.js)

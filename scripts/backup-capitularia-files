@@ -1,0 +1,9 @@
+ROOT=/afs/rrz/vol/www/projekt/capitularia
+BACKUP_ROOT=$ROOT/backups
+BACKUP_FILES=$BACKUP_ROOT/files
+TARBALL=$BACKUP_FILES/capitularia-files-`date +%F`.tar.bz2
+
+mkdir -p $BACKUP_FILES
+
+cd $ROOT
+tar -cjvf $TARBALL -X $BACKUP_ROOT/exclude.txt .

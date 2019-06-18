@@ -1,0 +1,8 @@
+ROOT=/afs/rrz/vol/www/projekt/capitularia
+BACKUP_ROOT=$ROOT/backups
+BACKUP_FILES=$BACKUP_ROOT/mysql
+mkdir -p $BACKUP_FILES
+
+BACKUP_FILE=$BACKUP_FILES/capitularia-mysql-`date +%F`.sql.bz2
+
+mysqldump --add-drop-table --databases capitularia | bzip2 -c > $BACKUP_FILE

@@ -1,0 +1,5 @@
+ROOT=/afs/rrz/vol/www/projekt/capitularia
+
+# delete backups older than 30 days
+find $ROOT/backups -name "*bz2" -mtime +30
+# -delete

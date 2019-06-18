@@ -26,7 +26,7 @@ if (have_posts ()) {
     // You can override the default selection by slug if you assign terms in the
     // cap-sidebar taxonomy.  These are the sidebars you can choose from.  (Only one
     // of each gets displayed).
-    $cap_sidebars = array ('capit', 'mss', 'resources', 'project', 'internal', 'transcription', 'capitular');
+    $cap_sidebars = array ('capit', 'mss', 'resources', 'project', 'internal', 'tools', 'transcription', 'capitular');
 
     $terms = get_the_terms ($post->ID, 'cap-sidebar');
     if ($terms && !is_wp_error ($terms)) {

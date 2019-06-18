@@ -1,3 +1,15 @@
+Find a suitable map
+
+Scan and clean it
+
+Georeference it
+
+Draw polygons
+
+Add as layers
+
+
+
 ==========================
  Georefererencing of Maps
 ==========================

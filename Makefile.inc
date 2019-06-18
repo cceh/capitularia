@@ -87,4 +87,4 @@ $(LANG_SRC)/capitularia.pot: $(PHP_FILES)
 	xgettext --default-domain=capitularia --from-code=utf-8 \
 	--copyright-holder="CCeH Cologne" --package-name=Capitularia --package-version=2.0 \
 	--msgid-bugs-address=marcello@perathoner.de \
-	-k'__' -k'_e' -k'_n:1,2' -k'_x:1,2c' -o $@ $^
+	-k'__' -k'_e' -k'_n:1,2' -k'_x:1,2c' -k'_ex:1,2c' -o $@ $^

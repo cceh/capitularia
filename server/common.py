@@ -8,9 +8,11 @@ import csv
 import io
 import logging
 import re
+import requests
 import types
 
 import flask
+from flask import abort, current_app, request
 
 RE_WS    = re.compile ('(\s+)')
 RE_CAP   = re.compile ('^([bkmorde]*)[._ ]*(\d+)', re.IGNORECASE)
@@ -200,3 +202,22 @@ def init_logging (args):
         sqlalchemy_logger.setLevel (logging.WARN)
 
     return args
+
+
+def get_user_info_from_wp ():
+    current_app.logger.info (request.cookies)
+    r = requests.get (current_app.config['USER_INFO_ENDPOINT'], cookies = request.cookies)
+    current_app.logger.info (r.text)
+
+    if r.json ()['success']:
+        return r.json ()['data']
+    return {}
+
+
+def assert_map ():
+    info = get_user_info_from_wp ()
+    if 'allcaps' in info and 'edit_pages' in info['allcaps']:
+        return
+    #abort (401, 'You have no "edit_pages" capability.')
+
+    # FIXME: put this on the session
