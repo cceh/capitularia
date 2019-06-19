@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2019-06-18 00:13+0200\n"
-"PO-Revision-Date: 2019-06-18 00:17+0200\n"
+"POT-Creation-Date: 2019-06-19 13:58+0200\n"
+"PO-Revision-Date: 2019-06-19 13:58+0200\n"
 "Last-Translator: Marcello Perathoner <marcello@perathoner.de>\n"
 "Language-Team: German <>\n"
 "Language: de_DE\n"
@@ -19,40 +19,35 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: dashboard.php:43
+#: dashboard.php:49
 msgctxt "H3"
 msgid "Capitulary"
 msgstr "Kapitular"
 
-#: dashboard.php:59
-msgctxt "Label: for select"
+#: dashboard.php:65
+msgctxt "Label for select"
 msgid "Select Capitulary"
 msgstr "Kapitular wählen"
 
-#: dashboard.php:77
-msgctxt "Label: for select"
+#: dashboard.php:83
+msgctxt "Label for select"
 msgid "Select Section"
 msgstr "Abschnitt wählen"
 
-#: dashboard.php:97
-msgctxt "Label for checkbox"
-msgid "Include later hands"
-msgstr "Spätere Korrekturen berücksichtigen"
-
 #: dashboard.php:103
-msgctxt "Label for checkbox"
-msgid "Include all copies"
-msgstr "Mehrfache Bezeugungen berücksichtigen"
+msgctxt "Checkbox"
+msgid "Include corrections by different hands"
+msgstr "Korrekturen von anderer Hand einschließen"
 
 #: dashboard.php:110
-msgctxt "Button: Show manuscripts"
-msgid "Show manuscripts"
-msgstr "Handschriften anzeigen"
+msgctxt "Button"
+msgid "Show Textual Witnesses"
+msgstr "Textzeugen anzeigen"
 
 #: dashboard.php:114
-msgctxt "Button: Load the collation config"
-msgid "Load Config"
-msgstr "Konfiguration Laden"
+msgctxt "Button"
+msgid "Load Configuration"
+msgstr "Konfiguration laden"
 
 #: dashboard.php:120
 msgctxt "H4"
@@ -60,13 +55,13 @@ msgid "Advanced Options"
 msgstr "Optionen für Fortgeschrittene"
 
 #: dashboard.php:126
-msgctxt "Label: for drop-down"
+msgctxt "Label for drop-down"
 msgid "Select Collation Algorithm"
 msgstr "Wählen Sie den Kollations-Algorithmus"
 
 #: dashboard.php:143
-msgctxt "Label: for drop-down"
-msgid "Select Levenshtein distance"
+msgctxt "Label for drop-down"
+msgid "Select Levenshtein Distance"
 msgstr "Wählen Sie den Levenshtein-Abstand"
 
 #: dashboard.php:157
@@ -75,22 +70,22 @@ msgid "or"
 msgstr "oder"
 
 #: dashboard.php:162
-msgctxt "Label: for drop-down"
-msgid "Select Levenshtein ratio"
+msgctxt "Label for drop-down"
+msgid "Select Levenshtein Ratio"
 msgstr "Wählen Sie die Levenshtein-Ähnlichkeit"
 
 #: dashboard.php:181
-msgctxt "Label: for drop-down"
-msgid "Use segmentation"
+msgctxt "Label for drop-down"
+msgid "Use Segmentation"
 msgstr "Mit Segmentierung"
 
 #: dashboard.php:189
-msgctxt "Label: for drop-down"
-msgid "Use transpositions"
+msgctxt "Label for drop-down"
+msgid "Use Transpositions"
 msgstr "Mit Transpositionen"
 
 #: dashboard.php:197
-msgctxt "Label: for textarea"
+msgctxt "Label for textarea"
 msgid "Normalizations"
 msgstr "Normalisierungen"
 
@@ -99,49 +94,54 @@ msgctxt "Help text"
 msgid "One or more lines in the form: raw=normalized"
 msgstr "Eine oder mehrere Zeilen in der Form: original=normalisiert"
 
-#: dashboard.php:220
+#: dashboard.php:219
 msgctxt "H3"
-msgid "Manuscripts"
-msgstr "Handschriften"
+msgid "Textual Witnesses"
+msgstr "Textzeugen"
 
 #: dashboard.php:225
 msgctxt "Label for table"
-msgid "Select Manuscripts"
-msgstr "Handschriften wählen"
+msgid "Select Textual Witnesses"
+msgstr "Textzeugen wählen"
 
-#: dashboard.php:229
-msgctxt "Caption for table"
-msgid "Manuscripts that contain {{ corresp }}"
-msgstr "Handschriften, die {{ corresp }} enthalten."
-
-#: dashboard.php:236
+#: dashboard.php:234
 msgctxt "Checkbox"
-msgid "Select all manuscripts"
-msgstr "Alle Handschriften auswählen"
+msgid "Select all textual witnesses"
+msgstr "Alle Textzeugen auswählen"
 
-#: dashboard.php:239
+#: dashboard.php:237
 msgctxt "TH"
-msgid "Manuscript"
-msgstr "Handschrift"
+msgid "Textual Witness"
+msgstr "Textzeuge"
 
-#: dashboard.php:247
+#: dashboard.php:246
 msgctxt "message in table"
-msgid "No Manuscripts Found"
-msgstr "Keine Handschriften gefunden"
+msgid "No textual witnesses found."
+msgstr "Keine Textzeugen gefunden."
 
-#: dashboard.php:264
-msgctxt "Button: Start the collation"
+#: dashboard.php:252 dashboard.php:302
+msgctxt "title of grip-lines icon"
+msgid "Drag row to reorder the textual witness."
+msgstr "Die Reihenfolge der Textzeugen verändern."
+
+#: dashboard.php:259
+msgctxt "Checkbox"
+msgid "Include this textual witness in the collation."
+msgstr "Diesen Textzeugen in die Kollation einbeziehen."
+
+#: dashboard.php:270
+msgctxt "Button"
 msgid "Collate"
 msgstr "Kollationieren"
 
-#: dashboard.php:268
-msgctxt "Button: Save the collation config"
-msgid "Save Config"
-msgstr "Konfiguration Speichern"
+#: dashboard.php:274
+msgctxt "Button"
+msgid "Save Configuration"
+msgstr "Konfiguration speichern"
 
-#: dashboard.php:286
+#: dashboard.php:291
 msgctxt "H3"
-msgid "Collation Result for: {{ corresp }}"
+msgid "Collation for: {{ corresp }}"
 msgstr "Ergebnis der Kollation für: {{ corresp }}"
 
 #: functions.php:355
@@ -156,15 +156,20 @@ msgstr "aus"
 msgid "Capitularia Collation"
 msgstr "Capitularia Kollation"
 
+#: dashboard-ajax.php:13
+msgctxt "title of the edition"
+msgid "Edition by Boretius/Krause"
+msgstr "Boretius/Krause Edition"
+
 #: dashboard-ajax.php:16
-msgctxt "extra copies of capitularies"
-msgid " ${1}. copy"
-msgstr " ${1}. Bezeugung"
+msgctxt "2., 3., etc. copy of capitularies"
+msgid " (${1}. copy)"
+msgstr " (${1}. Kopie)"
 
 #: dashboard-ajax.php:17
-msgctxt "corrected version"
-msgid " corrected"
-msgstr " korrigiert"
+msgctxt "corrected version of capitularies"
+msgid " (corrected)"
+msgstr " (korrigiert)"
 
 #: dashboard-ajax.php:133
 #, php-format
@@ -192,6 +197,50 @@ msgstr "Segmentierung: %s"
 msgctxt "%s = on off"
 msgid "Transpositions: %s"
 msgstr "Transpositionen: %s"
+
+#~ msgctxt "H3"
+#~ msgid "Witnesses"
+#~ msgstr "Textzeugen"
+
+#~ msgctxt "Label for table"
+#~ msgid "Select Witnesses"
+#~ msgstr "Textzeugen auswählen"
+
+#~ msgctxt "TH"
+#~ msgid "Witness"
+#~ msgstr "Textzeuge"
+
+#~ msgctxt "message in table"
+#~ msgid "No Witnesses Found"
+#~ msgstr "Keine Textzeugen gefunden"
+
+#~ msgctxt "Label for checkbox"
+#~ msgid "Include later hands"
+#~ msgstr "Spätere Korrekturen berücksichtigen"
+
+#~ msgctxt "Label for checkbox"
+#~ msgid "Include all copies"
+#~ msgstr "Mehrfache Bezeugungen berücksichtigen"
+
+#~ msgctxt "Button: Show manuscripts"
+#~ msgid "Show manuscripts"
+#~ msgstr "Textzeugen anzeigen"
+
+#~ msgctxt "H3"
+#~ msgid "Manuscripts"
+#~ msgstr "Textzeugen"
+
+#~ msgctxt "Label for table"
+#~ msgid "Select Manuscripts"
+#~ msgstr "Textzeugen wählen"
+
+#~ msgctxt "Caption for table"
+#~ msgid "Manuscripts that contain {{ corresp }}"
+#~ msgstr "Textzeugen, die {{ corresp }} enthalten."
+
+#~ msgctxt "TH"
+#~ msgid "Manuscript"
+#~ msgstr "Textzeuge"
 
 #~ msgctxt "Collation Algorithm"
 #~ msgid "Dekker"
@@ -223,10 +272,6 @@ msgstr "Transpositionen: %s"
 #~ msgctxt "column heading"
 #~ msgid "Manuscript Id"
 #~ msgstr "Siglum"
-
-#~ msgctxt "Select a witness by id (screen reader only)"
-#~ msgid "Select %s"
-#~ msgstr "%s auswählen"
 
 #~ msgctxt "H3 caption"
 #~ msgid "Manuscripts"

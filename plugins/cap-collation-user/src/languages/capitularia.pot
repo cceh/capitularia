@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Capitularia 2.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2019-06-18 00:17+0200\n"
+"POT-Creation-Date: 2019-06-19 13:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,39 +17,34 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dashboard.php:43
+#: dashboard.php:49
 msgctxt "H3"
 msgid "Capitulary"
 msgstr ""
 
-#: dashboard.php:59
-msgctxt "Label: for select"
+#: dashboard.php:65
+msgctxt "Label for select"
 msgid "Select Capitulary"
 msgstr ""
 
-#: dashboard.php:77
-msgctxt "Label: for select"
+#: dashboard.php:83
+msgctxt "Label for select"
 msgid "Select Section"
 msgstr ""
 
-#: dashboard.php:97
-msgctxt "Label for checkbox"
-msgid "Include later hands"
-msgstr ""
-
 #: dashboard.php:103
-msgctxt "Label for checkbox"
-msgid "Include all copies"
+msgctxt "Checkbox"
+msgid "Include corrections by different hands"
 msgstr ""
 
 #: dashboard.php:110
-msgctxt "Button: Show manuscripts"
-msgid "Show manuscripts"
+msgctxt "Button"
+msgid "Show Textual Witnesses"
 msgstr ""
 
 #: dashboard.php:114
-msgctxt "Button: Load the collation config"
-msgid "Load Config"
+msgctxt "Button"
+msgid "Load Configuration"
 msgstr ""
 
 #: dashboard.php:120
@@ -58,13 +53,13 @@ msgid "Advanced Options"
 msgstr ""
 
 #: dashboard.php:126
-msgctxt "Label: for drop-down"
+msgctxt "Label for drop-down"
 msgid "Select Collation Algorithm"
 msgstr ""
 
 #: dashboard.php:143
-msgctxt "Label: for drop-down"
-msgid "Select Levenshtein distance"
+msgctxt "Label for drop-down"
+msgid "Select Levenshtein Distance"
 msgstr ""
 
 #: dashboard.php:157
@@ -73,22 +68,22 @@ msgid "or"
 msgstr ""
 
 #: dashboard.php:162
-msgctxt "Label: for drop-down"
-msgid "Select Levenshtein ratio"
+msgctxt "Label for drop-down"
+msgid "Select Levenshtein Ratio"
 msgstr ""
 
 #: dashboard.php:181
-msgctxt "Label: for drop-down"
-msgid "Use segmentation"
+msgctxt "Label for drop-down"
+msgid "Use Segmentation"
 msgstr ""
 
 #: dashboard.php:189
-msgctxt "Label: for drop-down"
-msgid "Use transpositions"
+msgctxt "Label for drop-down"
+msgid "Use Transpositions"
 msgstr ""
 
 #: dashboard.php:197
-msgctxt "Label: for textarea"
+msgctxt "Label for textarea"
 msgid "Normalizations"
 msgstr ""
 
@@ -97,49 +92,54 @@ msgctxt "Help text"
 msgid "One or more lines in the form: raw=normalized"
 msgstr ""
 
-#: dashboard.php:220
+#: dashboard.php:219
 msgctxt "H3"
-msgid "Manuscripts"
+msgid "Textual Witnesses"
 msgstr ""
 
 #: dashboard.php:225
 msgctxt "Label for table"
-msgid "Select Manuscripts"
+msgid "Select Textual Witnesses"
 msgstr ""
 
-#: dashboard.php:229
-msgctxt "Caption for table"
-msgid "Manuscripts that contain {{ corresp }}"
-msgstr ""
-
-#: dashboard.php:236
+#: dashboard.php:234
 msgctxt "Checkbox"
-msgid "Select all manuscripts"
+msgid "Select all textual witnesses"
 msgstr ""
 
-#: dashboard.php:239
+#: dashboard.php:237
 msgctxt "TH"
-msgid "Manuscript"
+msgid "Textual Witness"
 msgstr ""
 
-#: dashboard.php:247
+#: dashboard.php:246
 msgctxt "message in table"
-msgid "No Manuscripts Found"
+msgid "No textual witnesses found."
 msgstr ""
 
-#: dashboard.php:264
-msgctxt "Button: Start the collation"
+#: dashboard.php:252 dashboard.php:302
+msgctxt "title of grip-lines icon"
+msgid "Drag row to reorder the textual witness."
+msgstr ""
+
+#: dashboard.php:259
+msgctxt "Checkbox"
+msgid "Include this textual witness in the collation."
+msgstr ""
+
+#: dashboard.php:270
+msgctxt "Button"
 msgid "Collate"
 msgstr ""
 
-#: dashboard.php:268
-msgctxt "Button: Save the collation config"
-msgid "Save Config"
+#: dashboard.php:274
+msgctxt "Button"
+msgid "Save Configuration"
 msgstr ""
 
-#: dashboard.php:286
+#: dashboard.php:291
 msgctxt "H3"
-msgid "Collation Result for: {{ corresp }}"
+msgid "Collation for: {{ corresp }}"
 msgstr ""
 
 #: functions.php:355
@@ -154,14 +154,19 @@ msgstr ""
 msgid "Capitularia Collation"
 msgstr ""
 
+#: dashboard-ajax.php:13
+msgctxt "title of the edition"
+msgid "Edition by Boretius/Krause"
+msgstr ""
+
 #: dashboard-ajax.php:16
-msgctxt "extra copies of capitularies"
-msgid " ${1}. copy"
+msgctxt "2., 3., etc. copy of capitularies"
+msgid " (${1}. copy)"
 msgstr ""
 
 #: dashboard-ajax.php:17
-msgctxt "corrected version"
-msgid " corrected"
+msgctxt "corrected version of capitularies"
+msgid " (corrected)"
 msgstr ""
 
 #: dashboard-ajax.php:133

@@ -512,11 +512,16 @@ div.search-results, .index-results {
 /* Content */
 /***********/
 
-.content-col, .sidebar-col {
-    margin-bottom: 40px;
+header {
     h2 {
         margin-top: 32px;
+        color: $color-highlight;
+        margin-bottom: 20px;
     }
+}
+
+.content-col, .sidebar-col {
+    margin-bottom: 40px;
 }
 
 div.content-col {
@@ -529,9 +534,6 @@ div.content-col {
     }
     &.no-sidebar {
         width: 100%;
-        h2 {
-            margin-bottom: 20px;
-        }
     }
     a {
         &.milestone {
@@ -589,9 +591,6 @@ div.content-col {
     }
 
     header {
-        h2 {
-            color: $color-highlight;
-        }
         &.excerpt-header {
             h2 {
                 font-size: 1.3em;

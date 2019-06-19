@@ -10,11 +10,11 @@ namespace cceh\capitularia\collation_user;
 $map_sigla = function ($siglum)
 {
     $xlate = array (
-        '_bk-textzeuge' => 'Boretius-Krause Edition',
+        '_bk-textzeuge' => _x ('Edition by Boretius/Krause', 'title of the edition', 'cap-collation-user'),
     );
     $title = $xlate[$siglum] ?? $siglum;
-    $copy = _x (' ${1}. copy',  'extra copies of capitularies', 'cap-collation-user');
-    $corr = _x (' corrected',   'corrected version',            'cap-collation-user');
+    $copy = _x (' (${1}. copy)', '2., 3., etc. copy of capitularies', 'cap-collation-user');
+    $corr = _x (' (corrected)',  'corrected version of capitularies', 'cap-collation-user');
 
     $title = preg_replace ('/#(\d+)/',       $copy, $title);
     $title = preg_replace ('/[?]hands=XYZ/', $corr, $title);
@@ -80,8 +80,8 @@ function on_cap_collation_user_load_corresps ()
 function on_cap_collation_user_load_manuscripts ()
 {
     $corresp     = $_REQUEST['corresp'];
-    $later_hands = $_REQUEST['later_hands'] == 'true';
-    $all_copies  = $_REQUEST['all_copies']  == 'true';
+    $later_hands = ($_REQUEST['later_hands'] ?? 'false') == 'true';
+    $all_copies  = ($_REQUEST['all_copies']  ?? 'true')  == 'true';
 
     global $map_sigla;
     wp_send_json (array (
@@ -126,8 +126,8 @@ function on_cap_collation_user_load_collation ()
 
     $corresp     = $_REQUEST['corresp'];
     $manuscripts = $_REQUEST['manuscripts'];
-    $later_hands = $_REQUEST['later_hands'] == 'true';
-    $all_copies  = $_REQUEST['all_copies']  == 'true';
+    $later_hands = ($_REQUEST['later_hands'] ?? 'false') == 'true';
+    $all_copies  = ($_REQUEST['all_copies']  ?? 'true')  == 'true';
 
     $algorithm = $_REQUEST['algorithm'] ?? 'needleman-wunsch-gotoh';
     $status[] = sprintf (__ ('Algorithm: %s', 'cap-collation-user'), $algorithm);

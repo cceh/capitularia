@@ -1,12 +1,15 @@
 div.cap-collation-user {
+    width: 100%;
+
+    h2 {
+        @media print {
+            display: none !important;
+        }
+    }
 
     h3 {
         margin-top: 1em;
         margin-bottom: 1em;
-    }
-
-    table {
-        margin: 1em 0;
     }
 
     button.dropdown-toggle {
@@ -20,7 +23,6 @@ div.cap-collation-user {
         overflow-y: scroll;
     }
 
-    /* div.advanced-options, */
     p.status,
     div.debug-options {
         display: none;
@@ -41,80 +43,13 @@ div.cap-collation-user {
         word-wrap: normal !important;
     }
 
-    .spinner {
-	    background: url(/wp-admin/images/spinner-2x.gif) no-repeat;
-        background-size: 1ex 1ex;
-        /* visibility: hidden; */
-        opacity: 0.7;
-        width: 1ex;
-        height: 1ex;
-        margin: 2px 5px 0;
-    }
-
-    h3 span.spinner {
-        display: inline-block;
-        vertical-align: baseline;
-        margin: 0 1ex 0 -2ex;
-    }
-
-    .step .spinner {
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 15px;
-    }
-
-    table.collation {
-        border-collapse: collapse;
-        page-break-inside: avoid;
-        width: 100%;
-
-        &.last {
-            width: 1%;
-        }
-
-        tbody tr {
-            &:first-child {
-                background-color: var(--brand-beige);
-            }
-
-            &.highlight-witness.highlight-witness {
-                background-color: #eea;
-            }
-        }
-
-        td,
-        th {
-            border: 1px solid gray;
-            background-color: inherit;
-            white-space: nowrap;
-            padding: 0.2em 0.3em;
-        }
-
-        th {
-            text-align: left;
-            width: 1%;
-        }
-
-        td {
-            text-align: center;
-
-            &.equal {
-                color: lighten(#444, 33%);
-            }
-        }
-
-        td.missing::before {
-            content: '\2014';
-        }
-    }
-
     div.collation-panel {
         margin: 1em 0;
         position: relative;
     }
 
     /* hide the 'Choose File' button */
-    #load-params {
+    #load-config {
         position: absolute;
         top: 0;
         visibility: hidden;
@@ -126,7 +61,7 @@ div.cap-collation-user {
     }
 
     @media print {
-        div.no-print {
+        .no-print {
             display: none !important;
         }
 
@@ -168,36 +103,76 @@ div.cap-collation-user {
         }
     }
 
-    table.manuscripts {
-        margin-top: 0;
-        tbody tr {
-            cursor: move;
-            cursor: grab;
+    .spinner {
+        &::before {
+            content: '\f013'; /* fa-cog */
         }
     }
 
-    table.collation {
-        border: solid 1px;
-        border-collapse: collapse;
+    table {
+        margin: 1em 0;
+        th, td {
+            &.slim {
+                width: 32px;
+                text-align: center;
+            }
+            &.handle {
+                width: 32px;
+                text-align: center;
+                cursor: move;
+                cursor: grab;
+                i::before {
+                    content: '\f0dc'; /* fa-sort */
+                }
+            }
+        }
+    }
 
-        tbody tr {
-            cursor: move;
-            cursor: grab;
+    table.manuscripts {
+        margin-top: 0;
+    }
+
+    table.collation {
+        page-break-inside: avoid;
+        width: 100%;
+
+        &.last {
+            width: 1%;
+            width: max-content;
         }
 
+        tbody tr {
+            &:first-child {
+                background-color: var(--brand-beige);
+            }
+
+            &.highlight-witness.highlight-witness {
+                background-color: #eea;
+            }
+        }
+
+        td,
         th {
             white-space: nowrap;
         }
 
-        td {
-            border-left: solid 2px gray;
-            border-right: solid 2px gray;
-            padding-left: 0.3em;
-            padding-right: 0.3em;
-            padding-top: 0.2em;
-            padding-bottom: 0.2em;
-            white-space: nowrap;
-            text-align: center;
+        th {
+            &.title {
+                width: 1%;
+            }
         }
+
+        td {
+            text-align: center;
+
+            &.equal {
+                color: lighten(#444, 33%);
+            }
+
+            &.missing::before {
+                content: '\2014';
+            }
+        }
+
     }
 }

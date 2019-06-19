@@ -57,7 +57,6 @@
                 'corresp'     : '',
                 'corresps'    : [],
                 'later_hands' : false,
-                'all_copies'  : false,
                 'advanced'    : false, // don't show advanced options menu
 
                 'algorithm'            : cap_collation_algorithms[cap_collation_algorithms.length - 1],
@@ -81,16 +80,13 @@
                 'later_hands' : function () {
                     this.load_manuscripts ();
                 },
-                'all_copies' : function () {
-                    this.load_manuscripts ();
-                },
             },
             'methods' : {
                 get_corresps_params () {
                     return _.pick (this.$data, 'bk');
                 },
                 get_manuscripts_params () {
-                    return _.pick (this.$data, 'bk', 'corresp', 'later_hands', 'all_copies');
+                    return _.pick (this.$data, 'bk', 'corresp', 'later_hands');
                 },
                 get_collation_params () {
                     const data = _.pick (
@@ -160,7 +156,6 @@
                             vm.bk          = json.bk;
                             vm.corresp     = json.corresp;
                             vm.later_hands = json.later_hands;
-                            vm.all_copies  = json.all_copies;
 
                             mss_vue.checked = json.manuscripts;
 
@@ -181,7 +176,7 @@
                  * type=file is not styleable.
                  */
                 on_load_params (event) {
-                    $ ('#load-params').click ();
+                    $ ('#load-config').click ();
                 },
                 on_algorithm (event) {
                     const index = $ (event.target).attr ('data-index');
@@ -311,9 +306,11 @@
             updated () {
                 const vm = this;
                 vm.$tbody.disableSelection ().sortable ({
-                    'items'       : 'tr[data-siglum]',
+                    'items'       : 'tr[data-siglum]:not(:first-child)',
+                    'handle'      : 'th.handle',
                     'axis'        : 'y',
-                    'containment' : vm.$tbody.closest ('table'),
+                    'cursor'      : 'move',
+                    'containment' : 'parent',
                     'update'      : function (event) {
                         vm.sort_according_to_list (vm.get_new_order ());
                         coll_vue.order = vm.get_checked_sigla ();
@@ -512,8 +509,9 @@
                 },
 
                 update_tables (witnesses) {
+                    const max_width = 120 - Math.max (... witnesses.manuscripts.map (ms => ms.title.length));
                     this.unsorted_tables = this
-                        .split_table (witnesses.table, 80)
+                        .split_table (witnesses.table, max_width)
                         .map (table => this.transpose (table));
                 },
 
@@ -536,8 +534,15 @@
                     })
                         .get ();
                 },
-                row_class (row) {
-                    return this.hovered === row.siglum ? 'highlight-witness' : '';
+                row_class (row, index) {
+                    const cls = [];
+                    if (index > 0) {
+                        cls.push ('sortable');
+                    }
+                    if (this.hovered === row.siglum) {
+                        cls.push ('highlight-witness');
+                    }
+                    return cls;
                 },
             },
             mounted () {
@@ -546,8 +551,10 @@
                 const vm = this;
                 const $tbodies = $ (this.$el).find ('table.collation tbody');
                 $tbodies.disableSelection ().sortable ({
-                    'items'       : 'tr[data-siglum]',
+                    'items'       : 'tr[data-siglum]:not(:first-child)',
+                    'handle'      : 'th.handle',
                     'axis'        : 'y',
+                    'cursor'      : 'move',
                     'containment' : 'parent',
                     'update'      : function (event, ui) {
                         const order = vm.get_sigla (ui.item);

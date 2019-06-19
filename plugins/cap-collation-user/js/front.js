@@ -79,7 +79,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         'corresp': '',
         'corresps': [],
         'later_hands': false,
-        'all_copies': false,
         'advanced': false,
         // don't show advanced options menu
         'algorithm': cap_collation_algorithms[cap_collation_algorithms.length - 1],
@@ -101,9 +100,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         },
         'later_hands': function later_hands() {
           this.load_manuscripts();
-        },
-        'all_copies': function all_copies() {
-          this.load_manuscripts();
         }
       },
       'methods': {
@@ -111,7 +107,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
           return _.pick(this.$data, 'bk');
         },
         get_manuscripts_params: function get_manuscripts_params() {
-          return _.pick(this.$data, 'bk', 'corresp', 'later_hands', 'all_copies');
+          return _.pick(this.$data, 'bk', 'corresp', 'later_hands');
         },
         get_collation_params: function get_collation_params() {
           var data = _.pick(this.$data, 'levenshtein_distance', 'levenshtein_ratio', 'segmentation', 'transpositions');
@@ -184,7 +180,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
               vm.bk = json.bk;
               vm.corresp = json.corresp;
               vm.later_hands = json.later_hands;
-              vm.all_copies = json.all_copies;
               mss_vue.checked = json.manuscripts;
               $('#algorithm').val(json.algorithm);
               $('#levenshtein_distance').val(json.levenshtein_distance);
@@ -207,7 +202,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
          * type=file is not styleable.
          */
         on_load_params: function on_load_params(event) {
-          $('#load-params').click();
+          $('#load-config').click();
         },
         on_algorithm: function on_algorithm(event) {
           var index = $(event.target).attr('data-index');
@@ -379,9 +374,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       updated: function updated() {
         var vm = this;
         vm.$tbody.disableSelection().sortable({
-          'items': 'tr[data-siglum]',
+          'items': 'tr[data-siglum]:not(:first-child)',
+          'handle': 'th.handle',
           'axis': 'y',
-          'containment': vm.$tbody.closest('table'),
+          'cursor': 'move',
+          'containment': 'parent',
           'update': function update(event) {
             vm.sort_according_to_list(vm.get_new_order());
             coll_vue.order = vm.get_checked_sigla();
@@ -661,7 +658,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         update_tables: function update_tables(witnesses) {
           var _this3 = this;
 
-          this.unsorted_tables = this.split_table(witnesses.table, 80).map(function (table) {
+          var max_width = 120 - Math.max.apply(Math, _toConsumableArray(witnesses.manuscripts.map(function (ms) {
+            return ms.title.length;
+          })));
+          this.unsorted_tables = this.split_table(witnesses.table, max_width).map(function (table) {
             return _this3.transpose(table);
           });
         },
@@ -683,8 +683,18 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             return $(this).attr('data-siglum');
           }).get();
         },
-        row_class: function row_class(row) {
-          return this.hovered === row.siglum ? 'highlight-witness' : '';
+        row_class: function row_class(row, index) {
+          var cls = [];
+
+          if (index > 0) {
+            cls.push('sortable');
+          }
+
+          if (this.hovered === row.siglum) {
+            cls.push('highlight-witness');
+          }
+
+          return cls;
         }
       },
       mounted: function mounted() {},
@@ -692,8 +702,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         var vm = this;
         var $tbodies = $(this.$el).find('table.collation tbody');
         $tbodies.disableSelection().sortable({
-          'items': 'tr[data-siglum]',
+          'items': 'tr[data-siglum]:not(:first-child)',
+          'handle': 'th.handle',
           'axis': 'y',
+          'cursor': 'move',
           'containment': 'parent',
           'update': function update(event, ui) {
             var order = vm.get_sigla(ui.item);
