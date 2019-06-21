@@ -19,6 +19,14 @@ const NONCE_PARAM_NAME     = '_ajax_nonce';
 /** @var string Where our Wordpress is in the filesystem */
 const AFS_ROOT             = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
 
+/** The ID of the /mss/ page in our wordpress database. */
+const MSS_PAGE_ID = 58;         //  /mss
+const BKPARENT_PAGE_ID = 4890;  //  /internal/mss
+
+const RE_PUBLISH = 'publish';
+const RE_PRIVATE = 'publish|private';
+const RE_EXCLUDE = "_inscriptio|_incipit|_explicit";
+
 /**
  * Add an AJAX action on both the admin and the front side.
  *
@@ -120,6 +128,22 @@ function sort_results ($unsorted)
     );
 }
 
+const SQL = <<<EOF
+FROM (
+SELECT meta_value, post_parent
+FROM wp_postmeta pm
+  JOIN wp_posts p ON p.id = pm.post_id
+WHERE meta_key = 'corresp'
+  AND meta_value REGEXP %s
+  AND meta_value NOT REGEXP %s
+  AND post_status REGEXP %s
+  AND post_parent IN (%d, %d)
+GROUP BY meta_value
+HAVING count(DISTINCT post_name) > 1
+) AS t1
+ORDER BY post_parent DESC, meta_value;
+EOF;
+
 /**
  * Get a list of all capitulars
  *
@@ -131,12 +155,16 @@ function get_capitulars ()
     global $wpdb;
 
     $bk = "^(BK|Mordek)\.\d+(_|$)";
+    if (get_current_user_id () != 0) {
+        $exclude = "^$";
+        $status = RE_PRIVATE;
+    } else {
+        $exclude = RE_EXCLUDE;
+        $status  = RE_PUBLISH;
+    }
 
-    $sql = $wpdb->prepare (
-        'SELECT DISTINCT REGEXP_REPLACE (meta_value, \'_.*$\', \'\') as meta_value FROM wp_postmeta ' .
-        'WHERE meta_key = \'corresp\' AND meta_value REGEXP \'%s\' ORDER BY meta_value;',
-        $bk
-    );
+    $sql = "SELECT DISTINCT REGEXP_REPLACE (meta_value, '_.*$', '') AS meta_value " . SQL;
+    $sql = $wpdb->prepare ($sql, $bk, $exclude, $status, MSS_PAGE_ID, BKPARENT_PAGE_ID);
 
     return sort_results ($wpdb->get_results ($sql));
 }
@@ -154,16 +182,16 @@ function get_corresps ($bk)
     global $wpdb;
 
     $bk      = "{$bk}(_|$)";
-    $exclude = "_inscriptio|_incipit|_explicit";
     if (get_current_user_id () != 0) {
         $exclude = "^$";
+        $status = RE_PRIVATE;
+    } else {
+        $exclude = RE_EXCLUDE;
+        $status  = RE_PUBLISH;
     }
 
-    $sql = $wpdb->prepare (
-        'SELECT DISTINCT meta_value FROM wp_postmeta ' .
-        'WHERE meta_key = \'corresp\' AND meta_value REGEXP \'%s\' AND meta_value NOT REGEXP \'%s\' ORDER BY meta_value;',
-        $bk, $exclude
-    );
+    $sql = 'SELECT DISTINCT meta_value ' . SQL;
+    $sql = $wpdb->prepare ($sql, $bk, $exclude, $status, MSS_PAGE_ID, BKPARENT_PAGE_ID);
 
     return sort_results ($wpdb->get_results ($sql));
 }
@@ -177,7 +205,7 @@ function get_corresps ($bk)
  * and slug among the valid ones.
  *
  * @param string  $corresp     The corresp eg. 'BK123_4'
- * @param boolean $later_hands Whether to synthetize manuscripts as edited by later hands
+ * @param boolean $later_hands Whether to synthetize witnesses as edited by later hands
  * @param boolean $all         Include all if corresp is contained more than once,
  *                             else include first only.
  *
@@ -189,37 +217,50 @@ function get_witnesses ($corresp, $later_hands = false, $all_copies = false)
     global $wpdb;
     $items = array ();
 
-    $sql = $wpdb->prepare (
-        'SELECT DISTINCT meta_value AS xml_id ' .
-        'FROM wp_postmeta ' .
-        'WHERE meta_key = \'tei-xml-id\' AND post_id IN (' .
-        '  SELECT post_id FROM wp_postmeta ' .
-        '  WHERE meta_key = \'corresp\' AND meta_value = %s)',
-        $corresp
-    );
+    if (get_current_user_id () != 0) {
+        $exclude = "^$";
+        $status = RE_PRIVATE;
+    } else {
+        $exclude = RE_EXCLUDE;
+        $status  = RE_PUBLISH;
+    }
+
+    $sql = <<<EOF
+SELECT p.id AS post_id, p.post_name AS xml_id
+FROM wp_posts p
+WHERE p.id IN (
+    SELECT DISTINCT post_id
+    FROM wp_postmeta
+    WHERE meta_key = 'corresp'
+    AND meta_value = %s
+  )
+  AND p.post_status REGEXP %s
+  AND p.post_parent IN (%d, %d)
+ORDER BY p.post_parent DESC, post_name;
+EOF;
+
+    $sql = $wpdb->prepare ($sql, $corresp, $status, MSS_PAGE_ID, BKPARENT_PAGE_ID);
 
     foreach ($wpdb->get_results ($sql) as $row) {
-        $post_id = $wpdb->get_var (
-            $wpdb->prepare (
-                'SELECT post_id FROM wp_postmeta ' .
-                "WHERE meta_key = 'tei-xml-id' AND meta_value = %s ORDER BY post_id",
-                $row->xml_id
-            )
-        );
         $filename = $wpdb->get_var (
             $wpdb->prepare (
                 'SELECT meta_value FROM wp_postmeta ' .
                 "WHERE meta_key = 'tei-filename' AND post_id = %d ORDER BY meta_value",
-                $post_id
+                $row->post_id
             )
         );
+
+        // error_log ("Trying file: $filename");
+
         if (!is_readable ($filename)) {
             // orphaned page without file
+            error_log ("Error: Cannot read file: $filename");
             continue;
         }
-        $slug = get_page_uri ($post_id);
+        $slug = get_page_uri ($row->post_id);
 
-        $items[] = $witness = new Witness ($corresp, $row->xml_id, $filename, $slug);
+        $xml_id = $row->xml_id == 'bk-textzeuge' ? '_bk-textzeuge' : $row->xml_id;
+        $items[] = $witness = new Witness ($corresp, $xml_id, $filename, $slug);
 
         $do_hands = $later_hands && $witness->has_later_hands ();
         if ($do_hands) {

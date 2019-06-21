@@ -33,7 +33,7 @@ class Witness
      * @param string $corresp      The corresp, eg. "BK.184_a"
      * @param string $xml_id       The xml:id of the TEI file, eg. "bamberg-sb-can-12"
      * @param string $xml_filename The full path to the TEI file.
-     * @param string $slug         Slug of manuscript page
+     * @param string $slug         Slug of the manuscript page
      * @param int    $sub_id       Sub-Id of witness. @See: clone_witness ().
      * @param bool   $later_hands  True if corrections by later hands should be included.
      *
@@ -61,12 +61,12 @@ class Witness
     /**
      * Clone the witness structure with a different sub_id.
      *
-     * Manuscripts may contain more than one copy of the same capitular.  In
+     * Witnesses may contain more than one copy of the same capitular.  In
      * that case we want to collate each copy separately and need to duplicate
      * this structure.  The sub_id indicates which copy of the capitular this
      * instance respresents.  The first or only copy gets a sub_id of 1.
      *
-     * Manuscripts may contain corrections by later hands, in which case we want
+     * Witnesses may contain corrections by later hands, in which case we want
      * to collate the earlier and later versions separately.
      *
      * @param integer $sub_id      The new sub_id. Should be > 1.
@@ -90,7 +90,7 @@ class Witness
     /**
      * Build an id containing a sub_id.
      *
-     * To distinguish different copies of the same capitular in one manuscript.
+     * To distinguish different copies of the same capitular in one witness.
      *
      * @return string The id including the sub_id.
      */
@@ -380,9 +380,9 @@ class Witness
     /**
      * Count how many copies of a corresp there are.
      *
-     * Manuscripts may contain more than one copy of the same capitular.  In
+     * Witnesses may contain more than one copy of the same capitular.  In
      * that case we want to collate each copy separately.  This function counts
-     * how many copies of a corresp there are in this manuscript.
+     * how many copies of a corresp there are in this witness.
      *
      * @param string $corresp The corresp
      *
@@ -402,9 +402,9 @@ class Witness
     }
 
     /**
-     * Check for later hands in manuscript
+     * Check for later hands in this witness
      *
-     * Sometimes we want to collate a manuscript in the version corrected by a
+     * Sometimes we want to collate a witness in the version corrected by a
      * later hand.  A later hand is defined as hand in 'X', 'Y', or Z.
      *
      * @return True if there are later hands.

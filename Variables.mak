@@ -32,9 +32,9 @@ SASS            = $(NODE)/sass
 SASSFLAGS       = -I $(CSS_SRC)
 POSTCSS         = $(NODE)/postcss
 POSTCSSFLAGS    =
-ESLINT         := ~/.npm-global/bin/eslint
+ESLINT         := $(NODE)/eslint
 ESLINTFLAGS     = -f unix
-JSHINT         := jshint
+JSHINT         := $(NODE)/jshint
 JSHINTFLAGS     = --reporter=unix
 STYLELINT       = $(NODE)/stylelint $(STYLELINTFLAGS)
 STYLELINTFLAGS  = -f unix

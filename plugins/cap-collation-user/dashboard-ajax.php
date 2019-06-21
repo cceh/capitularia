@@ -67,17 +67,17 @@ function on_cap_collation_user_load_corresps ()
 
 
 /**
- * AJAX endpoint to load the manuscript list
+ * AJAX endpoint to load the list of witnesses
  *
- * Loads the manuscript list after the user selected a capitular and corresp.
+ * Loads the list of witnesses after the user selected a capitular and corresp.
  *
  * Input:  query parameter corresp, eg. 'BK.139_1'
- * Output: JSON list of manuscripts that witness corresp.
+ * Output: JSON list of witnesses that contain corresp.
  *
  * @return void
  */
 
-function on_cap_collation_user_load_manuscripts ()
+function on_cap_collation_user_load_witnesses ()
 {
     $corresp     = $_REQUEST['corresp'];
     $later_hands = ($_REQUEST['later_hands'] ?? 'false') == 'true';
@@ -106,9 +106,9 @@ function on_cap_collation_user_load_manuscripts ()
  *
  * Input: query parameters
  *   corresp: which corresp to collate, eg. 'BK.139_1'
- *   manuscripts: a list of manuscript ids to collate,
- *   later_hands: whether to synthetize manuscripts as edited by later hands
- *   all_copies: whether to collate more than one copy per manuscript
+ *   witnesses: a list of witness ids to collate,
+ *   later_hands: whether to synthetize witnesses as edited by later hands
+ *   all_copies: whether to collate more than one copy per witness
  *   algorithm: which algorithm to use,
  *   segmentation: do a segmentation step,
  *   transpositions: try to recognize transpositions,
@@ -125,7 +125,7 @@ function on_cap_collation_user_load_collation ()
     $errors = array (); // the error messages for the user
 
     $corresp     = $_REQUEST['corresp'];
-    $manuscripts = $_REQUEST['manuscripts'];
+    $selected    = $_REQUEST['selected'];
     $later_hands = ($_REQUEST['later_hands'] ?? 'false') == 'true';
     $all_copies  = ($_REQUEST['all_copies']  ?? 'true')  == 'true';
 
@@ -140,7 +140,7 @@ function on_cap_collation_user_load_collation ()
     $witnesses = get_witnesses ($corresp, $later_hands, $all_copies);
     $texts = array ();
     foreach ($witnesses as $item) {
-        if (in_array ($item->get_id (), $manuscripts)) {
+        if (in_array ($item->get_id (), $selected)) {
             $item->extract_corresp ($item->get_corresp (), $errors);
             $item->xml_to_text ();
             // Q: why is pure_text sometimes empty? A: because of bogus markup.
@@ -197,17 +197,12 @@ function on_cap_collation_user_load_collation ()
     wp_send_json (array (
         'success'     => true,
         'corresp'     => $corresp,
-        // the ms ids in the requested order.  we have to roundtrip the order
-        // because the user may have messed with the selection while waiting
-        'order'       => $manuscripts,
         'later_hands' => $later_hands,
         'all_copies'  => $all_copies,
         'witnesses'   => array (
-            'manuscripts' => array_map ($map_sigla, $data['witnesses']),
-            'table'       => $data['table'],
+            'metadata' => array_map ($map_sigla, $data['witnesses']),
+            'table'    => $data['table'],
         ),
-        // the ms ids in the requested order.  we have to roundtrip the order
-        // because the user may have messed with the selection while waiting
         'status' => $status,
         'errors' => $errors,
     ));

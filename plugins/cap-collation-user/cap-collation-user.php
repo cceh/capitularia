@@ -38,7 +38,7 @@ add_action ('wp_enqueue_scripts',              __NAMESPACE__ . '\on_enqueue_scri
 
 add_nopriv_action ('load_bks');
 add_nopriv_action ('load_corresps');
-add_nopriv_action ('load_manuscripts');
+add_nopriv_action ('load_witnesses');
 add_nopriv_action ('load_collation');
 
 add_shortcode ('cap_collation_dashboard', __NAMESPACE__ . '\on_shortcode');

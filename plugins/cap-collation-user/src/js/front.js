@@ -1,17 +1,16 @@
 'use strict';
 
-(function ($) {
-    const ajaxurl = cap_collation_user_front_ajax_object.ajaxurl;
+/** cap_collation_user_front_ajax_object is set by wp_localize_script in function.php. */
+/* global cap_collation_user_front_ajax_object */
 
-    let cap_vue = null;
-    let mss_vue = null;
-    let coll_vue = null;
+(function ($) {
+    /** The id of the "Obertext". */
+    const bk_id = '_bk-textzeuge';
 
     /**
      * The collation algorithms we support.  The Needleman-Wunsch-Gotoh algorithm
      * is available only with our special patched version of CollateX.
      */
-
     const cap_collation_algorithms = [
         { 'key' : 'dekker',                 'name' : 'Dekker' },
         { 'key' : 'gst',                    'name' : 'Greedy String Tiling' },
@@ -20,12 +19,24 @@
         { 'key' : 'needleman-wunsch-gotoh', 'name' : 'Needleman-Wunsch-Gotoh' },
     ];
 
-    function add_ajax_action (data, action) {
-        data.action = action;
-        $.extend (data, cap_collation_user_front_ajax_object); // eslint-disable-line no-undef
-        return data;
+    /**
+     * Encapsulate AJAX functionality
+     */
+    function ajax (action, data) {
+        data.action = 'on_cap_collation_user_' + action;
+        // add the nonce
+        $.extend (data, cap_collation_user_front_ajax_object);
+        return $.ajax ({
+            'method' : 'POST',
+            'url'    : cap_collation_user_front_ajax_object.ajaxurl,
+            'data'   : data,
+        });
+        return p;
     }
 
+    /**
+     * Build a valid filename to save the config.
+     */
     function encodeRFC5987ValueChars (str) {
         return encodeURIComponent (str)
         // Note that although RFC3986 reserves '!', RFC5987 does not,
@@ -37,26 +48,365 @@
             .replace (/%(?:7C|60|5E)/g, unescape);
     }
 
-    function handle_message (div, response) {
-        if (response) {
-            const msg = $ (response.message).hide ().prependTo (div);
-            msg.fadeIn ();
-            /* Adds a 'dismiss this notice' button. */
-            $ (document).trigger ('wp-plugin-update-error');
-        }
-    }
+    /* The vue.js instance for the witness selection section. */
+    Vue.component ('cap-collation-user-witnesses', {
+        'props' : ['corresp', 'later_hands', 'order'],
+        'data' : function () {
+            return {
+                'witnesses'  : [],     // list of all { siglum, title, checked } in order
+                'pre_select' : [],     // list of sigla set by on_load_config
+                'spinner'    : false,
+                'select_all' : false,
+                'bk_id'      : bk_id,
+            }
+        },
+        'computed' : {
+            'selected' : function () { return this.get_selected (); },
+        },
+        'watch' : {
+            /* props */
+            'corresp'     : function ()      { this.ajax_load_witnesses (); },
+            'later_hands' : function ()      { this.ajax_load_witnesses (); },
+            'order'       : function (order) { this.sort_like (order); },
+            /* own authority */
+            'select_all'  : function (val) { this.check_all (val); },
+        },
+        'methods' : {
+            ajax_load_witnesses () {
+                const data = this.$parent.ajax_params ();
+                const vm = this;
+                const pre_select = vm.pre_select;
+                vm.spinner = true;
+                vm.select_all = false;
+
+                ajax ('load_witnesses', data).done (function (response) {
+                    vm.witnesses  = response.witnesses;
+                    vm.check_all (false);
+                    vm.check_these (pre_select);
+                    vm.pre_select = [];
+                    vm.$emit ('reordered', vm.get_sigla ());
+                }).always (function () {
+                    vm.spinner = false;
+                });
+            },
+            ajax_params () {
+                return { 'selected' : this.get_selected () };
+            },
+            /**
+             * Return the sigla of the loaded witnesses
+             *
+             * @returns List of sigla
+             */
+            get_sigla () {
+                return this.witnesses.map (e => e.siglum);
+            },
+            /**
+             * Return the sigla of the currently checked witnesses in the
+             * correct order
+             *
+             * @returns List of sigla
+             */
+            get_selected () {
+                return this.witnesses.filter (w => w.checked).map (w => w.siglum);
+            },
+            /**
+             * Check all boxes in list but don't uncheck any.
+             */
+            check_these (sigla) {
+                this.witnesses.map (w => { if (sigla.includes (w.siglum)) { w.checked = true; }} );
+            },
+            /**
+             * Check or uncheck all boxes but never uncheck BK.
+             */
+            check_all (val) {
+                this.witnesses.map (w => { w.checked = (val || w.siglum == bk_id) } );
+            },
+            /**
+             * Sort the sigla in list to the top of the table.
+             *
+             * @param sigla   List of sigla of the witnesses
+             */
+            sort_like (sigla) {
+                const vm = this;
+                let elems = [];
+                for (const siglum of sigla) {
+                    const index = vm.witnesses.findIndex (e => e.siglum === siglum);
+                    if (index !== -1) { // found
+                        elems = elems.concat (vm.witnesses.splice (index, 1));
+                    }
+                }
+                vm.witnesses.unshift (... elems);
+            },
+            /**
+             * The class(es) to apply to the table rows.
+             */
+            row_class (w, index) {
+                const cls = [];
+                if (w.siglum != bk_id) {
+                    cls.push ('sortable');
+                }
+                return cls;
+            },
+        },
+        updated () {
+            const vm = this;
+            const $tbody = $ (vm.$el).find ('table.witnesses tbody');
+            $tbody.disableSelection ().sortable ({
+                'items'       : 'tr.sortable',
+                'handle'      : 'th.handle',
+                'axis'        : 'y',
+                'cursor'      : 'move',
+                'containment' : 'parent',
+                'update'      : function (/* event, ui */) {
+                    const new_order = $tbody.find ('tr[data-siglum]').map (function () {
+                        return $ (this).attr ('data-siglum');
+                    }).get ();
+                    vm.sort_like (new_order);
+                    vm.$emit ('reordered', vm.get_sigla ());
+                },
+            });
+        },
+    });
+
+    /* The vue.js instance for the collation output section. */
+    Vue.component ('cap-collation-user-results', {
+        'props' : ['corresp', 'order'],
+        'data' : function () {
+            return {
+                'witnesses' : {
+                    'metadata' : [],
+                    'table'    : [],
+                },
+                'unsorted_tables' : [],
+                'tables'          : [],
+                'hovered'         : null,  // siglum of hovered witness
+                'spinner'         : false,
+            }
+        },
+        'watch' : {
+            'witnesses' : {
+                'deep'    : true,
+                'handler' : function (newVal) {
+                    this.update_tables (newVal);
+                    this.sort_like (this.order);
+                },
+            },
+            'order' : function (newVal) {
+                this.sort_like (newVal);
+            },
+            'corresp' : function () {
+                this.unsorted_tables = [];
+            },
+        },
+        'methods' : {
+            collate () {
+                const vm   = this;
+                const data = this.$parent.ajax_params ();
+
+                vm.spinner = true;
+
+                const p = ajax ('load_collation', data);
+                $.when (p).done (function () {
+                    vm.witnesses = p.responseJSON.witnesses;
+                }).always (function () {
+                    vm.spinner   = false;
+                });
+            },
+            /**
+             * Transpose a table returned by CollateX
+             *
+             * Turn rows into columns and vice versa.
+             *
+             * @param array matrix The CollateX table
+             *
+             * @return array
+             */
+
+            transpose (matrix) {
+                return _.zip (...matrix);
+            },
+
+            /**
+             * Calculate the cell width in characters
+             *
+             * @param array $cell The array of tokens in the cell
+             *
+             * @return integer The width in characters
+             */
+
+            cell_width (cell) {
+                const tokens = cell.map (token => token.t.trim ());
+                return tokens.join (' ').length;
+            },
+
+            /**
+             * Split a table in columns every n characters
+             *
+             * @param array   $in_table  The table to split
+             * @param integer $max_width Split after this many characters
+             *
+             * @return array An array of tables
+             */
+
+            split_table (table, max_width) {
+                const out_tables = [];
+                let tmp_table = [];
+                let width = 0;
+
+                for (const column of table) {
+                    const column_width = 2 + Math.max (... column.map (cell => this.cell_width (cell)));
+                    if (width + column_width > max_width) {
+                        // start a new table
+                        out_tables.push (tmp_table.slice ());
+                        tmp_table = [];
+                        width = 0;
+                    }
+                    tmp_table.push (column);
+                    width += column_width;
+                }
+                if (tmp_table.length > 0) {
+                    out_tables.push (tmp_table);
+                }
+                return out_tables;
+            },
+
+            /**
+             * Format a CollateX table into HTML
+             *
+             * @param string[] sigla The witnesses' sigla in table order
+             * @param array    table The collation table in column-major orientation
+             * @param string[] order The witnesses' sigla in the order they should be displayed
+             *
+             * @return string[] The rows of the formatted table
+             *
+             * @return void
+             *
+             * The Collate-X response:
+             *
+             * {
+             *   "witnesses":["A","B"],
+             *   "table":[
+             *     [ [ {"t":"A","ref":123 } ],      [ {"t":"A" } ] ],
+             *     [ [ {"t":"black","adj":true } ], [ {"t":"white","adj":true } ] ],
+             *     [ [ {"t":"cat","id":"xyz" } ],   [ {"t":"kitten.","n":"cat" } ] ]
+             *   ]
+             * }
+             */
+
+            format_table (witnesses, table, order) {
+                if (order.length === 0) {
+                    return  [];
+                }
+                const sigla  = witnesses.map (ms => ms.siglum);
+                const titles = witnesses.map (ms => ms.title);
+                const out_table = {
+                    'class' : '',
+                    'rows'  : [],
+                };
+                let is_master = true;
+
+                // first witness is the master text
+                const master_text = table[sigla.indexOf (order[0])];
+
+                // ouput the witnesses in the correct order
+                for (const siglum of order) {
+                    const index = sigla.indexOf (siglum);
+                    if (index === -1) {
+                        continue; // user messed with mss. list but didn't start another collation
+                    }
+                    const row = {
+                        'siglum' : siglum,
+                        'title'  : titles[index],
+                        'class'  : '',
+                        'cells'  : [],
+                    };
+                    const ms_text = table[index];
+
+                    for (const [ms_set, master_set] of _.zip (ms_text, master_text)) {
+                        let class_ = 'tokens';
+                        const master = master_set.map (token => token.t).join (' ').trim ();
+                        const text   = ms_set.map     (token => token.t).join (' ').trim ();
+                        if (!is_master && (master.toLowerCase () === text.toLowerCase ())) {
+                            class_ += ' equal';
+                        }
+                        if (text === '') {
+                            class_ += ' missing';
+                        }
+                        row.cells.push ({ 'class' : class_, 'text' : text });
+                    }
+                    out_table.rows.push (row);
+                    is_master = false;
+                }
+                return out_table;
+            },
+
+            update_tables (witnesses) {
+                const max_width = 120 - Math.max (... witnesses.metadata.map (ms => ms.title.length));
+                this.unsorted_tables = this
+                    .split_table (witnesses.table, max_width)
+                    .map (table => this.transpose (table));
+            },
+
+            sort_like (order) {
+                this.tables = this.unsorted_tables.map (table => this.format_table (
+                    this.witnesses.metadata,
+                    table,
+                    order
+                ));
+                if (this.tables.length > 0) {
+                    this.tables[0].class = 'first';
+                    this.tables[this.tables.length - 1].class = 'last';
+                }
+            },
+
+            get_sigla (item) {
+                // Get the sigla of all witnesses to collate in user-specified order
+                return $ (item).closest ('table').find ('tr[data-siglum]').map (function () {
+                    return $ (this).attr ('data-siglum');
+                })
+                    .get ();
+            },
+            row_class (row, index) {
+                const cls = [];
+                if (row.siglum != bk_id) {
+                    cls.push ('sortable');
+                }
+                if (this.hovered === row.siglum) {
+                    cls.push ('highlight-witness');
+                }
+                return cls;
+            },
+        },
+        mounted () {
+        },
+        updated () {
+            const vm = this;
+            const $tbodies = $ (this.$el).find ('table.collation tbody');
+            $tbodies.disableSelection ().sortable ({
+                'items'       : 'tr.sortable',
+                'handle'      : 'th.handle',
+                'axis'        : 'y',
+                'cursor'      : 'move',
+                'containment' : 'parent',
+                'update'      : function (event, ui) {
+                    vm.$emit ('reordered', vm.get_sigla (ui.item));
+                },
+            });
+        },
+    });
 
     $ (document).ready (function () {
-        /* The vue.js instance for the capitulary selection section. */
-
-        cap_vue = new Vue ({
-            'el'   : '#collation-bk',
+        /* The vue.js instance for the whole page. */
+        new Vue ({
+            'el'   : '#vm-cap-collation-user',
             'data' : {
                 'bk'          : '',
-                'bks'         : [],
                 'corresp'     : '',
-                'corresps'    : [],
                 'later_hands' : false,
+                'order'       : [],     // list of sigla in correct order
+
+                'bks'         : [],
+                'corresps'    : [],
                 'advanced'    : false, // don't show advanced options menu
 
                 'algorithm'            : cap_collation_algorithms[cap_collation_algorithms.length - 1],
@@ -72,111 +422,55 @@
             },
             'watch' : {
                 'bk' : function () {
-                    this.load_corresps ();
-                },
-                'corresp' : function () {
-                    this.load_manuscripts ();
-                },
-                'later_hands' : function () {
-                    this.load_manuscripts ();
+                    this.ajax_load_corresps ();
                 },
             },
             'methods' : {
-                get_corresps_params () {
-                    return _.pick (this.$data, 'bk');
-                },
-                get_manuscripts_params () {
-                    return _.pick (this.$data, 'bk', 'corresp', 'later_hands');
-                },
-                get_collation_params () {
-                    const data = _.pick (
-                        this.$data, 'levenshtein_distance', 'levenshtein_ratio',
-                        'segmentation', 'transpositions'
-                    );
-                    data.algorithm      = this.algorithm.key;
-                    data.normalizations = this.normalizations.split ('\n');
-                    return data;
-                },
-                load_bks () {
+                /**
+                 * Load the bk dropdown.  Called once during setup.
+                 */
+                ajax_load_bks () {
                     const vm = this;
-
-                    $.ajax ({
-                        'method' : 'POST',
-                        'url'    : ajaxurl,
-                        'data'   : add_ajax_action ({}, 'on_cap_collation_user_load_bks'),
-                    }).done (function (response) {
+                    ajax ('load_bks', {}).done (function (response) {
                         vm.bks = response.bks;
-                        if (!vm.bk && vm.bks.length) {
-                            vm.bk = vm.bks[0];
-                        }
+                        vm.bk  = vm.bks[0] || '';
                     });
                 },
-                on_load_corresps (event) {
-                    this.bk = $ (event.target).attr ('data-bk');
-                    this.load_corresps ();
-                },
-                load_corresps () {
+                ajax_load_corresps () {
                     const vm = this;
-                    const data = vm.get_corresps_params ();
+                    const data = this.ajax_params ();
+                    const corresp = vm.corresp;
 
-                    $.ajax ({
-                        'method' : 'POST',
-                        'url'    : ajaxurl,
-                        'data'   : add_ajax_action (data, 'on_cap_collation_user_load_corresps'),
-                    }).done (function (response) {
-                        const corresp = vm.corresp;
+                    ajax ('load_corresps', data).done (function (response) {
                         vm.corresps = response.corresps;
+                        // set a default corresp if corresp is not in corresps
+                        // in on_load_config () corresp will be set before corresps arrive
                         if (!vm.corresps.includes (corresp)) {
                             vm.corresp  = vm.corresps[0] || '';
                         }
                     });
                 },
-                on_load_manuscripts (event) {
-                    const corresp = $ (event.target).attr ('data-corresp');
-                    if (corresp) {
-                        this.corresp = corresp;
-                    }
-                    this.load_manuscripts ();
-                },
-                load_manuscripts () {
-                    mss_vue.load_manuscripts ();
-                },
                 /**
-                 * Load parameters from a user-local file. Called from the file
-                 * dialog ok button.
+                 * Bundle all useful params for ajax calls and save config.
                  */
-                on_load_file_chosen (event) {
-                    const vm = this;
-                    const file_input = event.target;
-                    const files = file_input.files;
-                    if (files.length === 1) {
-                        const reader = new FileReader ();
-                        reader.onload = function (e) {
-                            const json = JSON.parse (e.target.result);
-                            vm.bk          = json.bk;
-                            vm.corresp     = json.corresp;
-                            vm.later_hands = json.later_hands;
-
-                            mss_vue.checked = json.manuscripts;
-
-                            $ ('#algorithm').val (json.algorithm);
-                            $ ('#levenshtein_distance').val (json.levenshtein_distance);
-                            $ ('#levenshtein_ratio').val (json.levenshtein_ratio);
-                            $ ('#segmentation').prop ('checked', json.segmentation);
-                            $ ('#transpositions').prop ('checked', json.transpositions);
-                            $ ('#normalizations').val (json.normalizations.join ('\n'));
-                        };
-                        reader.readAsText (files[0]);
-                    }
-                    file_input.value = null;  // make it fire again even on the same file
-                    return false; // don't submit form
+                ajax_params () {
+                    const data = _.pick (this.$data,
+                                         'bk', 'corresp', 'later_hands',
+                                         'levenshtein_distance', 'levenshtein_ratio',
+                                         'segmentation', 'transpositions'
+                                        );
+                    data.algorithm      = this.algorithm.key;
+                    data.normalizations = this.normalizations.split ('\n');
+                    return $.extend (data, this.$refs.witnesses.ajax_params ());
                 },
-                /**
-                 * Redirect click so we can use a normal bootstrap button.  The button
-                 * type=file is not styleable.
-                 */
-                on_load_params (event) {
-                    $ ('#load-config').click ();
+
+                on_select_bk (event) {
+                    // click on button in dropdown
+                    this.bk = $ (event.target).attr ('data-bk');
+                },
+                on_select_corresp (event) {
+                    // click on button in dropdown
+                    this.corresp = $ (event.target).attr ('data-corresp');
                 },
                 on_algorithm (event) {
                     const index = $ (event.target).attr ('data-index');
@@ -188,108 +482,58 @@
                 on_lr (event) {
                     this.levenshtein_ratio = $ (event.target).attr ('data-lr');
                 },
-            },
-            mounted () {
-                this.load_bks ();
-            },
-        });
-
-        /* The vue.js instance for the manuscript selection section. */
-
-        mss_vue = new Vue ({
-            'el'   : '#collation-manuscripts',
-            'data' : {
-                'corresp'     : '',
-                'manuscripts' : [],  // list of [siglum, title] in order
-                'checked'     : ['_bk-textzeuge'],  // list of checked sigla (unordered)
-                'spinner'     : false,
-            },
-            'methods' : {
-                load_manuscripts () {
-                    const data = cap_vue.get_manuscripts_params ();
-                    const vm = this;
-                    vm.spinner = true;
-
-                    $.ajax ({
-                        'method' : 'POST',
-                        'url'    : ajaxurl,
-                        'data'   : add_ajax_action (data, 'on_cap_collation_user_load_manuscripts'),
-                    }).done (function (response) {
-                        vm.corresp = data.corresp;
-                        vm.manuscripts = response.witnesses;
-                    }).always (function () {
-                        vm.spinner = false;
-                    });
-                },
-                /**
-                 * Activate the 'select all' checkboxes on the tables.
-                 */
-                make_cb_select_all () {
-                    const vm = this;
-                    const $el = $ (vm.$el);
-                    const $cbs = $el.find ('thead, tfoot').find ('.check-column :checkbox');
-                    $cbs.on ('click', function (event) { // eslint-disable-line no-unused-vars
-                        const checked = $ (this).prop ('checked');
-                        if (checked) {
-                            vm.checked = vm.manuscripts.map (e => e.siglum);
-                        } else {
-                            vm.checked = [];
-                        }
-                    });
-                },
-                /**
-                 * Get the new manuscript ordering after a user drag.
-                 *
-                 * Since sorting is still implemented with jquery-ui, vue.js has
-                 * no idea the DOM changed.
-                 *
-                 * @returns List of sigla
-                 */
-                get_new_order () {
-                    // Get the sigla of all manuscript in user-specified order
-                    return this.$tbody.find ('tr[data-siglum]').map (function () {
-                        return $ (this).attr ('data-siglum');
-                    }).get ();
-                },
-                /**
-                 * Return the checked items in the correct order.
-                 *
-                 * Unfortunately vue.js returns the checked items in random order.
-                 *
-                 * @returns List of sigla
-                 */
-                get_checked_sigla () {
-                    return this.manuscripts
-                        .filter (e => this.checked.includes (e.siglum))
-                        .map (e => e.siglum);
-                },
-
-                /**
-                 * Sort the sigla to the top of the table.
-                 *
-                 * @param sigla   List of sigla of the manuscripts
-                 */
-
-                sort_according_to_list (sigla) {
-                    const vm = this;
-                    let elems = [];
-                    for (const siglum of sigla) {
-                        const index = vm.manuscripts.findIndex (e => e.siglum === siglum);
-                        if (index !== -1) { // found
-                            elems = elems.concat (vm.manuscripts.splice (index, 1));
-                        }
-                    }
-                    vm.manuscripts.unshift (... elems);
+                on_reordered (new_order) {
+                    this.order = new_order;
                 },
                 on_collate () {
-                    coll_vue.collate ();
+                    this.$refs.results.collate ();
+                },
+                /**
+                 * Load configuration from a user-local file.  Called from the
+                 * file dialog ok button.
+                 */
+                on_load_config (event) {
+                    const vm = this;
+                    const file_input = event.target;
+                    const files = file_input.files;
+                    if (files.length === 1) {
+                        const reader = new FileReader ();
+                        reader.onload = function (e) {
+                            const json = JSON.parse (e.target.result);
+
+                            vm.bk             = json.bk;
+                            vm.corresp        = json.corresp;
+                            vm.later_hands    = json.later_hands;
+                            vm.segmentation   = json.segmentation;
+                            vm.transpositions = json.transpositions;
+
+                            $ ('#algorithm').val (json.algorithm);
+                            $ ('#levenshtein_distance').val (json.levenshtein_distance);
+                            $ ('#levenshtein_ratio').val (json.levenshtein_ratio);
+                            $ ('#normalizations').val (json.normalizations.join ('\n'));
+
+                            const vmw = vm.$refs.witnesses;
+                            vmw.pre_select = json.selected || [];
+                            vmw.ajax_load_witnesses ();
+                        };
+                        reader.readAsText (files[0]);
+                    }
+                    file_input.value = null;  // make it fire again even on the same file
+                    return false; // don't submit form
+                },
+                /**
+                 * Redirect click so we can use a normal bootstrap button.  The button
+                 * type=file is not styleable.
+                 */
+                on_load_config_redirect (/* event */) {
+                    $ ('#load-config').click ();
                 },
                 /**
                  * Save parameters to a user-local file.  Initialize a hidden <a> with a
                  * download link and fake a click on it.
                  */
-                on_save_params () {
-                    const params = coll_vue.get_collation_params ();
+                on_save_config () {
+                    const params = this.ajax_params ();
                     const url = 'data:text/plain,' + encodeURIComponent (JSON.stringify (params, null, 2));
                     const $e = $ ('#save-fake-download');
                     $e.attr ({
@@ -300,271 +544,9 @@
                 },
             },
             mounted () {
-                this.$tbody = $ (this.$el).find ('table.manuscripts tbody');
-                this.make_cb_select_all ();
+                this.ajax_load_bks ();
             },
-            updated () {
-                const vm = this;
-                vm.$tbody.disableSelection ().sortable ({
-                    'items'       : 'tr[data-siglum]:not(:first-child)',
-                    'handle'      : 'th.handle',
-                    'axis'        : 'y',
-                    'cursor'      : 'move',
-                    'containment' : 'parent',
-                    'update'      : function (event) {
-                        vm.sort_according_to_list (vm.get_new_order ());
-                        coll_vue.order = vm.get_checked_sigla ();
-                    },
-                });
-            },
-        });
-
-        /* The vue.js instance for the collation output section. */
-
-        coll_vue = new Vue ({
-            'el'   : '#collation-results',
-            'data' : {
-                'witnesses' : {
-                    'manuscripts' : [],
-                    'table'       : [],
-                },
-                'corresp'         : '',
-                'order'           : [],
-                'unsorted_tables' : [],
-                'tables'          : [],
-                'hovered'         : null,
-                'spinner'         : false,
-            },
-            'watch' : {
-                'witnesses' : {
-                    'deep'    : true,
-                    'handler' : function (newVal) {
-                        this.update_tables (newVal);
-                    },
-                },
-                'order' : function (newVal) {
-                    this.sort_rows (newVal);
-                },
-            },
-            'methods' : {
-                get_collation_params () {
-                    const data = {
-                        'manuscripts' : mss_vue.get_checked_sigla (),
-                    };
-                    return $.extend (
-                        data,
-                        cap_vue.get_manuscripts_params (),
-                        cap_vue.get_collation_params ()
-                    );
-                },
-                collate () {
-                    const vm = this;
-                    const data = vm.get_collation_params ();
-
-                    vm.spinner = true;
-                    vm.order   = [];
-                    vm.corresp = '';
-
-                    const p = $.ajax ({
-                        'method' : 'POST',
-                        'url'    : ajaxurl,
-                        'data'   : add_ajax_action (data, 'on_cap_collation_user_load_collation'),
-                    });
-                    $.when (p).done (function () {
-                        vm.witnesses = p.responseJSON.witnesses;
-                        vm.order     = p.responseJSON.order;
-                        vm.corresp   = p.responseJSON.corresp;
-                    }).always (function () {
-                        vm.spinner   = false;
-                        const $div = $ ('#collation-results');
-                        handle_message ($div, p.responseJSON);
-                    });
-                },
-                /**
-                 * Transpose a table returned by CollateX
-                 *
-                 * Turn rows into columns and vice versa.
-                 *
-                 * @param array matrix The CollateX table
-                 *
-                 * @return array
-                 */
-
-                transpose (matrix) {
-                    return _.zip (...matrix);
-                },
-
-                /**
-                 * Calculate the cell width in characters
-                 *
-                 * @param array $cell The array of tokens in the cell
-                 *
-                 * @return integer The width in characters
-                 */
-
-                cell_width (cell) {
-                    const tokens = cell.map (token => token.t.trim ());
-                    return tokens.join (' ').length;
-                },
-
-                /**
-                 * Split a table in columns every n characters
-                 *
-                 * @param array   $in_table  The table to split
-                 * @param integer $max_width Split after this many characters
-                 *
-                 * @return array An array of tables
-                 */
-
-                split_table (table, max_width) {
-                    const out_tables = [];
-                    let tmp_table = [];
-                    let width = 0;
-
-                    for (const column of table) {
-                        const column_width = 2 + Math.max (... column.map (cell => this.cell_width (cell)));
-                        if (width + column_width > max_width) {
-                            // start a new table
-                            out_tables.push (tmp_table.slice ());
-                            tmp_table = [];
-                            width = 0;
-                        }
-                        tmp_table.push (column);
-                        width += column_width;
-                    }
-                    if (tmp_table.length > 0) {
-                        out_tables.push (tmp_table);
-                    }
-                    return out_tables;
-                },
-
-                /**
-                 * Format a CollateX table into HTML
-                 *
-                 * @param string[] sigla The witnesses' sigla in table order
-                 * @param array    table The collation table in column-major orientation
-                 * @param string[] order The witnesses' sigla in the order they should be displayed
-                 *
-                 * @return string[] The rows of the formatted table
-                 *
-                 * @return void
-                 *
-                 * The Collate-X response:
-                 *
-                 * {
-                 *   "witnesses":["A","B"],
-                 *   "table":[
-                 *     [ [ {"t":"A","ref":123 } ],      [ {"t":"A" } ] ],
-                 *     [ [ {"t":"black","adj":true } ], [ {"t":"white","adj":true } ] ],
-                 *     [ [ {"t":"cat","id":"xyz" } ],   [ {"t":"kitten.","n":"cat" } ] ]
-                 *   ]
-                 * }
-                 */
-
-                format_table (manuscripts, table, order) {
-                    if (order.length === 0) {
-                        return  [];
-                    }
-                    const sigla  = manuscripts.map (ms => ms.siglum);
-                    const titles = manuscripts.map (ms => ms.title);
-                    const out_table = {
-                        'class' : '',
-                        'rows'  : [],
-                    };
-                    let is_master = true;
-
-                    // first witness is the master text
-                    const master_text = table[sigla.indexOf (order[0])];
-
-                    // ouput the witnesses in the correct order
-                    for (const siglum of order) {
-                        const index = sigla.indexOf (siglum);
-                        if (index === -1) {
-                            continue; // user messed with mss. list but didn't start another collation
-                        }
-                        const row = {
-                            'siglum' : siglum,
-                            'title'  : titles[index],
-                            'class'  : '',
-                            'cells'  : [],
-                        };
-                        const ms_text = table[index];
-
-                        for (const [ms_set, master_set] of _.zip (ms_text, master_text)) {
-                            let class_ = 'tokens';
-                            const master = master_set.map (token => token.t).join (' ').trim ();
-                            const text   = ms_set.map     (token => token.t).join (' ').trim ();
-                            if (!is_master && (master.toLowerCase () === text.toLowerCase ())) {
-                                class_ += ' equal';
-                            }
-                            if (text === '') {
-                                class_ += ' missing';
-                            }
-                            row.cells.push ({ 'class' : class_, 'text' : text });
-                        }
-                        out_table.rows.push (row);
-                        is_master = false;
-                    }
-                    return out_table;
-                },
-
-                update_tables (witnesses) {
-                    const max_width = 120 - Math.max (... witnesses.manuscripts.map (ms => ms.title.length));
-                    this.unsorted_tables = this
-                        .split_table (witnesses.table, max_width)
-                        .map (table => this.transpose (table));
-                },
-
-                sort_rows (order) {
-                    this.tables = this.unsorted_tables.map (table => this.format_table (
-                        this.witnesses.manuscripts,
-                        table,
-                        order
-                    ));
-                    if (this.tables.length > 0) {
-                        this.tables[0].class = 'first';
-                        this.tables[this.tables.length - 1].class = 'last';
-                    }
-                },
-
-                get_sigla (item) {
-                    // Get the sigla of all manuscript to collate in user-specified order
-                    return $ (item).closest ('table').find ('tr[data-siglum]').map (function () {
-                        return $ (this).attr ('data-siglum');
-                    })
-                        .get ();
-                },
-                row_class (row, index) {
-                    const cls = [];
-                    if (index > 0) {
-                        cls.push ('sortable');
-                    }
-                    if (this.hovered === row.siglum) {
-                        cls.push ('highlight-witness');
-                    }
-                    return cls;
-                },
-            },
-            mounted () {
-            },
-            updated () {
-                const vm = this;
-                const $tbodies = $ (this.$el).find ('table.collation tbody');
-                $tbodies.disableSelection ().sortable ({
-                    'items'       : 'tr[data-siglum]:not(:first-child)',
-                    'handle'      : 'th.handle',
-                    'axis'        : 'y',
-                    'cursor'      : 'move',
-                    'containment' : 'parent',
-                    'update'      : function (event, ui) {
-                        const order = vm.get_sigla (ui.item);
-                        vm.order = order;
-                        mss_vue.sort_according_to_list (order);
-                    },
-                });
-            },
-        });
+        })
     });
 
-    return {};
 } (jQuery));
