@@ -56,7 +56,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       'url': cap_collation_user_front_ajax_object.ajaxurl,
       'data': data
     });
-    return p;
   }
   /**
    * Build a valid filename to save the config.
@@ -71,198 +70,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     // so we can allow for a little better readability over the wire: |`^
     .replace(/%(?:7C|60|5E)/g, unescape);
   }
-  /* The vue.js instance for the witness selection section. */
-
-
-  Vue.component('cap-collation-user-witnesses', {
-    'props': ['corresp', 'later_hands', 'order'],
-    'data': function data() {
-      return {
-        'witnesses': [],
-        // list of all { siglum, title, checked } in order
-        'pre_select': [],
-        // list of sigla set by on_load_config
-        'spinner': false,
-        'select_all': false,
-        'bk_id': bk_id
-      };
-    },
-    'computed': {
-      'selected': function selected() {
-        return this.get_selected();
-      }
-    },
-    'watch': {
-      /* props */
-      'corresp': function corresp() {
-        this.ajax_load_witnesses();
-      },
-      'later_hands': function later_hands() {
-        this.ajax_load_witnesses();
-      },
-      'order': function order(_order) {
-        this.sort_like(_order);
-      },
-
-      /* own authority */
-      'select_all': function select_all(val) {
-        this.check_all(val);
-      }
-    },
-    'methods': {
-      ajax_load_witnesses: function ajax_load_witnesses() {
-        var data = this.$parent.ajax_params();
-        var vm = this;
-        var pre_select = vm.pre_select;
-        vm.spinner = true;
-        vm.select_all = false;
-        ajax('load_witnesses', data).done(function (response) {
-          vm.witnesses = response.witnesses;
-          vm.check_all(false);
-          vm.check_these(pre_select);
-          vm.pre_select = [];
-          vm.$emit('reordered', vm.get_sigla());
-        }).always(function () {
-          vm.spinner = false;
-        });
-      },
-      ajax_params: function ajax_params() {
-        return {
-          'selected': this.get_selected()
-        };
-      },
-
-      /**
-       * Return the sigla of the loaded witnesses
-       *
-       * @returns List of sigla
-       */
-      get_sigla: function get_sigla() {
-        return this.witnesses.map(function (e) {
-          return e.siglum;
-        });
-      },
-
-      /**
-       * Return the sigla of the currently checked witnesses in the
-       * correct order
-       *
-       * @returns List of sigla
-       */
-      get_selected: function get_selected() {
-        return this.witnesses.filter(function (w) {
-          return w.checked;
-        }).map(function (w) {
-          return w.siglum;
-        });
-      },
-
-      /**
-       * Check all boxes in list but don't uncheck any.
-       */
-      check_these: function check_these(sigla) {
-        this.witnesses.map(function (w) {
-          if (sigla.includes(w.siglum)) {
-            w.checked = true;
-          }
-        });
-      },
-
-      /**
-       * Check or uncheck all boxes but never uncheck BK.
-       */
-      check_all: function check_all(val) {
-        this.witnesses.map(function (w) {
-          w.checked = val || w.siglum == bk_id;
-        });
-      },
-
-      /**
-       * Sort the sigla in list to the top of the table.
-       *
-       * @param sigla   List of sigla of the witnesses
-       */
-      sort_like: function sort_like(sigla) {
-        var _vm$witnesses;
-
-        var vm = this;
-        var elems = [];
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-          var _loop = function _loop() {
-            var siglum = _step.value;
-            var index = vm.witnesses.findIndex(function (e) {
-              return e.siglum === siglum;
-            });
-
-            if (index !== -1) {
-              // found
-              elems = elems.concat(vm.witnesses.splice(index, 1));
-            }
-          };
-
-          for (var _iterator = sigla[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            _loop();
-          }
-        } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-              _iterator["return"]();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
-        }
-
-        (_vm$witnesses = vm.witnesses).unshift.apply(_vm$witnesses, _toConsumableArray(elems));
-      },
-
-      /**
-       * The class(es) to apply to the table rows.
-       */
-      row_class: function row_class(w, index) {
-        var cls = [];
-
-        if (w.siglum != bk_id) {
-          cls.push('sortable');
-        }
-
-        return cls;
-      }
-    },
-    updated: function updated() {
-      var vm = this;
-      var $tbody = $(vm.$el).find('table.witnesses tbody');
-      $tbody.disableSelection().sortable({
-        'items': 'tr.sortable',
-        'handle': 'th.handle',
-        'axis': 'y',
-        'cursor': 'move',
-        'containment': 'parent',
-        'update': function update()
-        /* event, ui */
-        {
-          var new_order = $tbody.find('tr[data-siglum]').map(function () {
-            return $(this).attr('data-siglum');
-          }).get();
-          vm.sort_like(new_order);
-          vm.$emit('reordered', vm.get_sigla());
-        }
-      });
-    }
-  });
   /* The vue.js instance for the collation output section. */
 
+
   Vue.component('cap-collation-user-results', {
-    'props': ['corresp', 'order'],
+    'props': ['corresp', 'sigla'],
     'data': function data() {
       return {
         'witnesses': {
@@ -281,10 +93,10 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         'deep': true,
         'handler': function handler(newVal) {
           this.update_tables(newVal);
-          this.sort_like(this.order);
+          this.sort_like(this.sigla);
         }
       },
-      'order': function order(newVal) {
+      'sigla': function sigla(newVal) {
         this.sort_like(newVal);
       },
       'corresp': function corresp() {
@@ -297,7 +109,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         var data = this.$parent.ajax_params();
         vm.spinner = true;
         var p = ajax('load_collation', data);
-        $.when(p).done(function () {
+        p.done(function () {
           vm.witnesses = p.responseJSON.witnesses;
         }).always(function () {
           vm.spinner = false;
@@ -347,13 +159,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         var out_tables = [];
         var tmp_table = [];
         var width = 0;
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
 
         try {
-          for (var _iterator2 = table[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-            var column = _step2.value;
+          for (var _iterator = table[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var column = _step.value;
             var column_width = 2 + Math.max.apply(Math, _toConsumableArray(column.map(function (cell) {
               return _this.cell_width(cell);
             })));
@@ -369,16 +181,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             width += column_width;
           }
         } catch (err) {
-          _didIteratorError2 = true;
-          _iteratorError2 = err;
+          _didIteratorError = true;
+          _iteratorError = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-              _iterator2["return"]();
+            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+              _iterator["return"]();
             }
           } finally {
-            if (_didIteratorError2) {
-              throw _iteratorError2;
+            if (_didIteratorError) {
+              throw _iteratorError;
             }
           }
         }
@@ -431,13 +243,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
         var master_text = table[sigla.indexOf(order[0])]; // ouput the witnesses in the correct order
 
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
 
         try {
-          for (var _iterator3 = order[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-            var siglum = _step3.value;
+          for (var _iterator2 = order[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var siglum = _step2.value;
             var index = sigla.indexOf(siglum);
 
             if (index === -1) {
@@ -451,15 +263,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
               'cells': []
             };
             var ms_text = table[index];
-            var _iteratorNormalCompletion4 = true;
-            var _didIteratorError4 = false;
-            var _iteratorError4 = undefined;
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
 
             try {
-              for (var _iterator4 = _.zip(ms_text, master_text)[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                var _step4$value = _slicedToArray(_step4.value, 2),
-                    ms_set = _step4$value[0],
-                    master_set = _step4$value[1];
+              for (var _iterator3 = _.zip(ms_text, master_text)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                var _step3$value = _slicedToArray(_step3.value, 2),
+                    ms_set = _step3$value[0],
+                    master_set = _step3$value[1];
 
                 var class_ = 'tokens';
                 var master = master_set.map(function (token) {
@@ -483,16 +295,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                 });
               }
             } catch (err) {
-              _didIteratorError4 = true;
-              _iteratorError4 = err;
+              _didIteratorError3 = true;
+              _iteratorError3 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
-                  _iterator4["return"]();
+                if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+                  _iterator3["return"]();
                 }
               } finally {
-                if (_didIteratorError4) {
-                  throw _iteratorError4;
+                if (_didIteratorError3) {
+                  throw _iteratorError3;
                 }
               }
             }
@@ -501,16 +313,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             is_master = false;
           }
         } catch (err) {
-          _didIteratorError3 = true;
-          _iteratorError3 = err;
+          _didIteratorError2 = true;
+          _iteratorError2 = err;
         } finally {
           try {
-            if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
-              _iterator3["return"]();
+            if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+              _iterator2["return"]();
             }
           } finally {
-            if (_didIteratorError3) {
-              throw _iteratorError3;
+            if (_didIteratorError2) {
+              throw _iteratorError2;
             }
           }
         }
@@ -542,13 +354,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       get_sigla: function get_sigla(item) {
         // Get the sigla of all witnesses to collate in user-specified order
         return $(item).closest('table').find('tr[data-siglum]').map(function () {
-          return $(this).attr('data-siglum');
+          return this.getAttribute('data-siglum');
         }).get();
       },
-      row_class: function row_class(row, index) {
+      row_class: function row_class(row, dummy_index) {
         var cls = [];
 
-        if (row.siglum != bk_id) {
+        if (row.siglum !== bk_id) {
           cls.push('sortable');
         }
 
@@ -583,12 +395,22 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         'bk': '',
         'corresp': '',
         'later_hands': false,
-        'order': [],
-        // list of sigla in correct order
+        // list of all { siglum, title, checked }
+        // always kept in the correct order
+        'witnesses': [],
+        'select_all': false,
+        'pre_select': null,
+        // list of witnesses to select after next ajax load
         'bks': [],
+        // the list of bks shown in the dropdown
         'corresps': [],
+        // the list of corresps shown in the dropdown
         'advanced': false,
         // don't show advanced options menu
+        'bk_id': bk_id,
+        // make it known to the template
+        'spinner': false,
+        // if set true shows a spinner
         'algorithm': cap_collation_algorithms[cap_collation_algorithms.length - 1],
         'levenshtein_distance': 0,
         'levenshtein_ratio': 1.0,
@@ -599,27 +421,62 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         'levenshtein_distances': [0, 1, 2, 3, 4, 5],
         'levenshtein_ratios': [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1]
       },
-      'watch': {
-        'bk': function bk() {
-          this.ajax_load_corresps();
+      'computed': {
+        // list of shown sigla in correct order
+        'sigla': function sigla() {
+          return this.witnesses.map(function (w) {
+            return w.siglum;
+          });
+        },
+        // list of selected sigla in correct order
+        'selected': function selected() {
+          return this.witnesses.filter(function (w) {
+            return w.checked;
+          }).map(function (w) {
+            return w.siglum;
+          });
         }
       },
       'methods': {
+        /**
+         * Bundle all parameters for ajax calls and save config.
+         */
+        ajax_params: function ajax_params() {
+          var data = _.pick(this.$data, 'bk', 'corresp', 'later_hands', 'levenshtein_distance', 'levenshtein_ratio', 'segmentation', 'transpositions');
+
+          data.algorithm = this.algorithm.key;
+          data.normalizations = this.normalizations.split('\n');
+          data.selected = this.selected;
+          return data;
+        },
+
         /**
          * Load the bk dropdown.  Called once during setup.
          */
         ajax_load_bks: function ajax_load_bks() {
           var vm = this;
-          ajax('load_bks', {}).done(function (response) {
+          var p = ajax('load_bks', {});
+          p.done(function (response) {
             vm.bks = response.bks;
             vm.bk = vm.bks[0] || '';
+            vm.ajax_load_corresps().done(function () {
+              vm.load_witnesses_carry_selection();
+            });
           });
+          return p;
         },
+
+        /**
+         * Load the corresps dropdown.  Called if bk changes.
+         */
         ajax_load_corresps: function ajax_load_corresps() {
           var vm = this;
-          var data = this.ajax_params();
           var corresp = vm.corresp;
-          ajax('load_corresps', data).done(function (response) {
+
+          var data = _.pick(vm.ajax_params(), 'bk');
+
+          var p = ajax('load_corresps', data);
+          p.done(function (response) {
             vm.corresps = response.corresps; // set a default corresp if corresp is not in corresps
             // in on_load_config () corresp will be set before corresps arrive
 
@@ -627,40 +484,174 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
               vm.corresp = vm.corresps[0] || '';
             }
           });
+          return p;
         },
 
         /**
-         * Bundle all useful params for ajax calls and save config.
+         * Load the witnesses table.  Called if corresps changes.
          */
-        ajax_params: function ajax_params() {
-          var data = _.pick(this.$data, 'bk', 'corresp', 'later_hands', 'levenshtein_distance', 'levenshtein_ratio', 'segmentation', 'transpositions');
+        ajax_load_witnesses: function ajax_load_witnesses() {
+          var vm = this;
 
-          data.algorithm = this.algorithm.key;
-          data.normalizations = this.normalizations.split('\n');
-          return $.extend(data, this.$refs.witnesses.ajax_params());
+          var data = _.pick(vm.ajax_params(), 'corresp', 'later_hands');
+
+          vm.spinner = true;
+          var p = ajax('load_witnesses', data);
+          p.done(function (response) {
+            // must add check to all objects in list or no reactivity
+            vm.witnesses = response.witnesses.map(function (w) {
+              w.checked = false;
+              return w;
+            });
+          });
+          p.always(function () {
+            vm.spinner = false;
+          });
+          return p;
         },
+
+        /**
+         * Reload the witnesses table while keeping selected items intact (if possible).
+         */
+        load_witnesses_carry_selection: function load_witnesses_carry_selection() {
+          var vm = this;
+          var selected = vm.selected.slice();
+          vm.ajax_load_witnesses().done(function () {
+            vm.select_all = false;
+            vm.check_all(false);
+            vm.check_these(selected);
+          });
+        },
+
+        /**
+         * Check or uncheck all witnesses (but never uncheck BK).
+         */
+        check_all: function check_all(val) {
+          this.witnesses.map(function (w) {
+            w.checked = val || w.siglum === bk_id;
+            return w;
+          });
+        },
+
+        /**
+         * Check all witnesses in list but don't uncheck any.
+         */
+        check_these: function check_these(sigla) {
+          this.witnesses.map(function (w) {
+            if (sigla.includes(w.siglum)) {
+              w.checked = true;
+            }
+
+            return w;
+          });
+        },
+
+        /**
+         * Sort the witnesses in the list to the top of the table.
+         *
+         * @param sigla   List of sigla of the witnesses
+         */
+        sort_like: function sort_like(sigla) {
+          var _vm$witnesses;
+
+          var vm = this;
+          var elems = [];
+          var _iteratorNormalCompletion4 = true;
+          var _didIteratorError4 = false;
+          var _iteratorError4 = undefined;
+
+          try {
+            var _loop = function _loop() {
+              var siglum = _step4.value;
+              var index = vm.witnesses.findIndex(function (e) {
+                return e.siglum === siglum;
+              });
+
+              if (index !== -1) {
+                // found
+                elems = elems.concat(vm.witnesses.splice(index, 1));
+              }
+            };
+
+            for (var _iterator4 = sigla[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+              _loop();
+            }
+          } catch (err) {
+            _didIteratorError4 = true;
+            _iteratorError4 = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
+                _iterator4["return"]();
+              }
+            } finally {
+              if (_didIteratorError4) {
+                throw _iteratorError4;
+              }
+            }
+          }
+
+          (_vm$witnesses = vm.witnesses).unshift.apply(_vm$witnesses, _toConsumableArray(elems));
+        },
+
+        /**
+         * The class(es) to apply to the witnesses table rows.
+         */
+        row_class: function row_class(w, dummy_index) {
+          var cls = [];
+
+          if (w.siglum !== bk_id) {
+            cls.push('sortable');
+          }
+
+          return cls;
+        },
+
+        /*
+         * User Interface handlers
+         */
         on_select_bk: function on_select_bk(event) {
           // click on button in dropdown
-          this.bk = $(event.target).attr('data-bk');
+          var vm = this;
+          vm.bk = event.target.getAttribute('data-bk');
+          vm.ajax_load_corresps().done(function () {
+            vm.load_witnesses_carry_selection();
+          });
         },
         on_select_corresp: function on_select_corresp(event) {
           // click on button in dropdown
-          this.corresp = $(event.target).attr('data-corresp');
+          this.corresp = event.target.getAttribute('data-corresp');
+          this.load_witnesses_carry_selection();
+        },
+        on_later_hands: function on_later_hands(event) {
+          // click on later hands checkbox
+          // much easier to implement this by hand than to figure out
+          // the vue.js timing of watched variables
+          this.later_hands = event.target.checked;
+          this.load_witnesses_carry_selection();
+        },
+        on_select_all: function on_select_all(event) {
+          // click on select all checkbox
+          // much easier to implement this by hand than to figure out
+          // the vue.js timing of watched variables
+          this.check_all(event.target.checked);
         },
         on_algorithm: function on_algorithm(event) {
-          var index = $(event.target).attr('data-index');
-          this.algorithm = this.algorithms[index];
+          // user selected algorithm
+          this.algorithm = this.algorithms[event.target.getAttribute('data-index')];
         },
         on_ld: function on_ld(event) {
-          this.levenshtein_distance = $(event.target).attr('data-ld');
+          this.levenshtein_distance = event.target.getAttribute('data-ld');
         },
         on_lr: function on_lr(event) {
-          this.levenshtein_ratio = $(event.target).attr('data-lr');
+          this.levenshtein_ratio = event.target.getAttribute('data-lr');
         },
         on_reordered: function on_reordered(new_order) {
-          this.order = new_order;
+          // the user reordered the witnesses in the results table
+          this.sort_like(new_order);
         },
         on_collate: function on_collate() {
+          // click on collate button
           this.$refs.results.collate();
         },
 
@@ -687,9 +678,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
               $('#levenshtein_distance').val(json.levenshtein_distance);
               $('#levenshtein_ratio').val(json.levenshtein_ratio);
               $('#normalizations').val(json.normalizations.join('\n'));
-              var vmw = vm.$refs.witnesses;
-              vmw.pre_select = json.selected || [];
-              vmw.ajax_load_witnesses();
+              vm.ajax_load_corresps().done(function () {
+                vm.ajax_load_witnesses().done(function () {
+                  vm.select_all = false;
+                  vm.check_all(false);
+                  vm.check_these(json.selected || []);
+                });
+              });
             };
 
             reader.readAsText(files[0]);
@@ -727,6 +722,25 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       },
       mounted: function mounted() {
         this.ajax_load_bks();
+      },
+      updated: function updated() {
+        var vm = this;
+        var $tbody = $(vm.$el).find('table.witnesses tbody');
+        $tbody.disableSelection().sortable({
+          'items': 'tr.sortable',
+          'handle': 'th.handle',
+          'axis': 'y',
+          'cursor': 'move',
+          'containment': 'parent',
+          'update': function update()
+          /* event, ui */
+          {
+            var new_order = $tbody.find('tr[data-siglum]').map(function () {
+              return $(this).attr('data-siglum');
+            }).get();
+            vm.sort_like(new_order);
+          }
+        });
       }
     });
   });
