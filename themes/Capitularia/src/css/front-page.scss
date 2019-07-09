@@ -1,0 +1,131 @@
+/**************/
+/* Front page */
+/**************/
+
+.front-splash {
+    @include make-row();
+    @include clearfix();
+    position: relative;
+
+    margin-top:    40px;
+    margin-bottom: 40px;
+    background: $color-startpage-box;
+    color: $color-white;
+
+    div.front-splash-caption {
+        @include make-col-ready();
+        @include make-col(12);
+        @include media-breakpoint-up(md) {
+            @include make-col(8);
+        }
+        /* undo the bootstrap default of position: relative because we need to position
+           at the bottom of div.front-splash */
+        position: static;
+        h1 {
+            line-height: 1;
+            @include media-breakpoint-up(md) {
+                position: absolute;
+                bottom: 15px;
+                width: 60%;
+            }
+            span {
+                font-size: 75%;
+                @include media-breakpoint-up(xl) {
+                    font-size: 100%;
+                }
+            }
+        }
+    }
+    ul.front-splash-image {
+        @include make-col-ready();
+        @include make-col(12);
+        @include media-breakpoint-up(md) {
+            @include make-col(4);
+        }
+        img {
+            margin-bottom: -12%;
+            margin-top: 2%;
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+ul.teaser-bar {
+    @include make-row(); /* see: https://getbootstrap.com/css/ */
+    @include clearfix();
+
+    margin: 0 auto;
+    margin: 2em 0;
+    line-height: 1.5em;
+    li.widget {
+        margin-bottom: 1em;
+    }
+    h2 {
+        color: $color-gray;
+        @include semibold;
+        margin-top: 0;
+        margin-bottom: .7ex;
+    }
+    p {
+        margin-bottom: 0.35em;
+    }
+    a {
+        color: $color-link;
+        transition: color 300ms;
+        &:focus,
+        &:active,
+        &:hover {
+            color: $color-black;
+            text-decoration: none;
+        }
+        &.mehr-lesen {
+            @include bold;
+            text-transform: uppercase;
+            font-size: 0.7em;
+            letter-spacing: 2px;
+
+            transition:color 300ms;
+            display: block;
+            margin-top: 1ex;
+        }
+    }
+    img {
+        float: left;
+        max-width: 33%;
+        margin-right: 32px;
+        margin-bottom: 32px;
+    }
+}
+
+ul.teaser-bar-1 {
+    li.widget {
+        @include make-col-ready();
+        @include make-col(12);
+        @include media-breakpoint-up(md) {
+            @include make-col(4);
+        }
+    }
+    padding-top: 1em;
+    text-align: center;
+    h2 {
+        font-size: 2em;
+        text-align: center;
+    }
+}
+
+ul.teaser-bar-2 {
+    li.widget {
+        @include make-col-ready();
+        @include make-col(12);
+        @include media-breakpoint-up(md) {
+            @include make-col(6);
+        }
+        text-align: left;
+    }
+    border-top: solid 1px $color-rule;
+    padding-top: 2em;
+    h2 {
+        font-size: 1.3em;
+    }
+}

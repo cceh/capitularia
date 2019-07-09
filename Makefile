@@ -5,7 +5,7 @@ PLUGINS = $(wildcard plugins/cap-*)
 
 lint: phplint csslint jslint
 
-deploy: css js lint mo deploy_xslt deploy_scripts
+deploy: css js_prod lint mo deploy_xslt deploy_scripts
 
 deploy_xslt:
 	$(RSYNC) xslt/*.xsl  $(TRANSFORM)/
@@ -32,7 +32,10 @@ import_backups:
 import_backup_mysql: import_backups
 	bzcat $(AFS)/backups/mysql/capitularia-mysql-$(shell date +%F).sql.bz2 | $(MYSQL_LOCAL)
 
-.PHONY: mysql-remote mysql-local
+.PHONY: docs mysql-remote mysql-local
+
+docs:
+	cd doc_src; make html; cd ..
 
 mysql-remote:
 	$(MYSQL_REMOTE)
@@ -65,7 +68,7 @@ init_geodata_db: import_xml
 	cd $(GIS); make import-geodata-to-postgres
 
 
-TARGETS = css js csslint jslint phplint mo po pot deploy clean
+TARGETS = css js js_prod csslint jslint phplint mo po pot deploy clean
 
 define TARGETS_TEMPLATE
 

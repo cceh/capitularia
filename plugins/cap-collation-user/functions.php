@@ -60,7 +60,6 @@ function on_enqueue_scripts ()
         plugins_url ('js/front.js', __FILE__),
         array ('cap-underscore', 'cap-vue', 'cap-jquery', 'jquery-ui-accordion', 'jquery-ui-sortable', 'cap-bs-dropdown-js')
     );
-    wp_enqueue_script ('cap-collation-user-front');
 
     wp_localize_script (
         'cap-collation-user-front',
@@ -85,7 +84,9 @@ function on_init ()
 
 function on_shortcode ($atts, $content = '')
 {
-    dashboard_page ();
+    // include vue.js, underscore.js, front.js only if needed
+    wp_enqueue_script ('cap-collation-user-front');
+    return dashboard_page ();
 }
 
 /**

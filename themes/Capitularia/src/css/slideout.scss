@@ -1,0 +1,64 @@
+/*******************/
+/* Legend Slideout */
+/*******************/
+
+$slideout-width:     600px;
+$slideout-tab-width: 100px;
+
+#legend {
+    table {
+        font-size: 80%;
+        .legend-col-1 {
+            width: 33%;
+        }
+        th, td {
+            text-align: left;
+            padding: 4px;
+        }
+        th {
+            @include semibold;
+            border-bottom: 1px solid white;
+        }
+    }
+}
+
+div.slideout {
+    position: fixed;
+    top: 40px;
+    width: $slideout-width;
+    right: $slideout-tab-width - $slideout-width;
+    z-index: 20;
+    transition-duration: 0.5s;
+    &.slideout-active {
+        right: 0;
+    }
+    .slideout-inner {
+        background: $background-box;
+        margin-left: $slideout-tab-width;
+        padding: 1em;
+        border-top-left-radius: 1em;
+        border-bottom-left-radius: 1em;
+        box-shadow: $shadow-box;
+        position: relative;
+        z-index: 21;
+        div.hr {
+            display: none;
+        }
+    }
+    .slideout-tab {
+        float: left;
+        width: $slideout-tab-width;
+        transform-origin: 100% 100%;
+        transform: rotate(270deg);
+        h5 {
+            margin: 0;
+            text-align: center;
+            background: $background-box;
+            padding: 0.5em 1em;
+            border-top-left-radius: 1em;
+            border-top-right-radius: 1em;
+            box-shadow: -5px 5px 5px $color-lightgray;
+            z-index: 20;
+        }
+    }
+}

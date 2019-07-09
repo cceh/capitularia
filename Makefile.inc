@@ -29,6 +29,10 @@ css: $(CSS_DEST_FILES)
 
 js: $(JS_DEST_FILES)
 
+js_prod: WEBPACK_CONFIG=webpack.prod.js
+
+js_prod: $(JS_DEST_FILES)
+
 csslint:
 	$(STYLELINT) $(CSS_SRC_FILES)
 
