@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Capitularia Documentation &mdash; Capitularia 0.1.1 documentation</title>
+  <title>Collation Tool &mdash; Capitularia 0.1.1 documentation</title>
   
 
   
@@ -38,7 +38,8 @@
   <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Collation Tool" href="collation_tool.html" /> 
+    <link rel="next" title="Collections" href="collections.html" />
+    <link rel="prev" title="Capitularia Documentation" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +53,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> Capitularia
+            <a href="index.html" class="icon icon-home"> Capitularia
           
 
           
@@ -79,10 +80,10 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="collation_tool.html">Collation Tool</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="collation_tool.html#needleman-wunsch-algorithm">Needleman-Wunsch Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Collation Tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#needleman-wunsch-algorithm">Needleman-Wunsch Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#word-comparison-function">Word Comparison Function</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a><ul>
@@ -103,7 +104,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">Capitularia</a>
+          <a href="index.html">Capitularia</a>
         
       </nav>
 
@@ -132,15 +133,15 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Capitularia Documentation</li>
+      <li>Collation Tool</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/collation_tool.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -153,23 +154,44 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="capitularia-documentation">
-<span id="contents"></span><h1>Capitularia Documentation<a class="headerlink" href="#capitularia-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="developer-manual">
-<h2>Developer Manual<a class="headerlink" href="#developer-manual" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="collation_tool.html">Collation Tool</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="collation_tool.html#needleman-wunsch-algorithm">Needleman-Wunsch Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="collections.html#algorithm">Algorithm</a></li>
-</ul>
-</li>
-</ul>
+  <div class="section" id="collation-tool">
+<h1>Collation Tool<a class="headerlink" href="#collation-tool" title="Permalink to this headline">¶</a></h1>
+<p>The collation tool runs as a javascript frontend with a backend that does the
+actual collation.  The backend uses a custom version of Collate-X that
+implements the Needleman-Wunsch-Gotoh alignment algorithm and a custom word
+comparison function.</p>
+<p>The stock Collate-X only uses word comparison functions that return binary
+values, signalling either a match or a mismatch.  Our custom word comparison
+function returns a similarity value between 0 and 1.  This works much better
+when aligning variant orthographies of the same word.</p>
+<div class="section" id="needleman-wunsch-algorithm">
+<h2>Needleman-Wunsch Algorithm<a class="headerlink" href="#needleman-wunsch-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>The Needleman-Wunsch-Gotoh algorithm was implemented according to <a class="reference internal" href="#gotoh1982" id="id1">[Gotoh1982]</a>.</p>
 </div>
+<div class="section" id="word-comparison-function">
+<h2>Word Comparison Function<a class="headerlink" href="#word-comparison-function" title="Permalink to this headline">¶</a></h2>
+<p>The word comparison function returns a similarity between 0 and 1.</p>
+<p>All words in the texts are split into trigrams.  Only the resulting set of
+trigrams is used in the similarity calculation.  The trigrams are obtained by
+first prefixing and suffixing the string with two spaces respectively, then
+cutting it into all possible strings of length 3.  Trigrams partially overlap
+each other.</p>
+<p>To calculate the similarity between two words, a set is built containing only
+the trigrams common to both words.  The magnitude of this set is then compared
+against the number of trigrams in both words:</p>
+<blockquote>
+<div>similarity = 2.0 * triAB.size() / (triA.size() + triB.size());</div></blockquote>
+<p>This value can be calculated much faster than eg. the Levenshtein distance.  The
+sets of trigrams for each input word are calculated only once.  If you presort
+these sets, the common set can be found in O(n) time.</p>
+<table class="docutils citation" frame="void" id="gotoh1982" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[Gotoh1982]</a></td><td>Gotoh, O. 1982,  <em>An Improved Algorithm for Matching Biological
+Sequences,</em> J. Mol. Biol. 162, 705-708
+<a class="reference external" href="http://jaligner.sourceforge.net/references/gotoh1982.pdf">http://jaligner.sourceforge.net/references/gotoh1982.pdf</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -181,8 +203,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="collation_tool.html" class="btn btn-neutral float-right" title="Collation Tool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="collections.html" class="btn btn-neutral float-right" title="Collections" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Capitularia Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -19,6 +19,7 @@ Developer Manual
 .. toctree::
    :maxdepth: 2
 
+   collation_tool
    collections
 
 

@@ -17,43 +17,38 @@
   
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Capitularia 0.1.1 documentation" href="index.html"/>
-        <link rel="prev" title="Capitularia Documentation" href="index.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Collation Tool" href="collation_tool.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -85,6 +80,11 @@
             
             
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="collation_tool.html">Collation Tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="collation_tool.html#needleman-wunsch-algorithm">Needleman-Wunsch Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Collections</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#algorithm">Algorithm</a></li>
 </ul>
@@ -100,7 +100,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Capitularia</a>
@@ -108,9 +108,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -156,50 +157,50 @@
 <h1>Collections<a class="headerlink" href="#collections" title="Permalink to this headline">¶</a></h1>
 <p>We want to find <em>collections</em> of capitularies, currently very vaguely defined as
 capitularies that are often copied together.</p>
-<p>The python script <code class="code docutils literal"><span class="pre">cluster.py</span></code> reads the Wordpress database and writes a
+<p>The python script <code class="code docutils literal notranslate"><span class="pre">cluster.py</span></code> reads the Wordpress database and writes a
 Gephi graph file.  The graph is then imported into Gephi and laid out using a
 force field algorithm.  The resulting plot is used to visually identify
 potential collections of capitularies.</p>
 <div class="section" id="algorithm">
 <h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h2>
-<p>Description of the algorithm used by the <code class="code docutils literal"><span class="pre">cluster.py</span></code> script.</p>
-<p>We define <span class="math">\(K\)</span> as the number of capitularies and <span class="math">\(D\)</span> as the number of
+<p>Description of the algorithm used by the <code class="code docutils literal notranslate"><span class="pre">cluster.py</span></code> script.</p>
+<p>We define <span class="math notranslate nohighlight">\(K\)</span> as the number of capitularies and <span class="math notranslate nohighlight">\(D\)</span> as the number of
 documents.</p>
-<p>The number of occurrences of capitulary <span class="math">\(k\)</span> in document <span class="math">\(d\)</span> is
+<p>The number of occurrences of capitulary <span class="math notranslate nohighlight">\(k\)</span> in document <span class="math notranslate nohighlight">\(d\)</span> is
 referred to as <span class="xref std std-term">term frequency</span> and is denoted:</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\mbox{tf}_{k,d}\]</div>
 <p>The term frequency of capitularies is either 0 (if not contained in the
 document) or 1 (if contained in the document).  Technically, a document may
 contain more than one copy of the same capitulary, but we ignore that for our
 calculations.</p>
-<p>The number of documents that include the capitulary <span class="math">\(k\)</span> is referred to as
+<p>The number of documents that include the capitulary <span class="math notranslate nohighlight">\(k\)</span> is referred to as
 its <span class="xref std std-term">document frequency</span> and is denoted:</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[\mbox{df}_k\]</div>
-<p>The <span class="xref std std-term">inverse document frequency</span> of capitulary <span class="math">\(k\)</span> is defined as:</p>
-<div class="math">
+<p>The <span class="xref std std-term">inverse document frequency</span> of capitulary <span class="math notranslate nohighlight">\(k\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
 \[\mbox{idf}_k = \log { D \over \mbox{df}_k }.\]</div>
 <p>We assign a weight to each pair of capitulary and document
-<span class="math">\(k \times d\)</span>, given by:</p>
-<div class="math">
+<span class="math notranslate nohighlight">\(k \times d\)</span>, given by:</p>
+<div class="math notranslate nohighlight">
 \[\mbox{tf-idf}_{k,d} = \mbox{tf}_{k,d} \times \mbox{idf}_k\]</div>
-<p>We define the <span class="xref std std-term">document vector</span> <span class="math">\(\vec{V}(d)\)</span> as:</p>
-<div class="math">
+<p>We define the <span class="xref std std-term">document vector</span> <span class="math notranslate nohighlight">\(\vec{V}(d)\)</span> as:</p>
+<div class="math notranslate nohighlight">
 \[\begin{pmatrix} \mbox{tf-idf}_{1,d} &amp; \mbox{tf-idf}_{2,d} &amp; \dots &amp; \mbox{tf-idf}_{K,d} \end{pmatrix}\]</div>
-<p>the vector of the weights of all capitularies relative to the document <span class="math">\(d\)</span>.</p>
-<p>The <span class="xref std std-term">Euclidean length</span> <span class="math">\(\vert\vec{V}(d)\vert\)</span> of a document vector
-<span class="math">\(\vec{V}(d)\)</span> is defined as:</p>
-<div class="math">
+<p>the vector of the weights of all capitularies relative to the document <span class="math notranslate nohighlight">\(d\)</span>.</p>
+<p>The <span class="xref std std-term">Euclidean length</span> <span class="math notranslate nohighlight">\(\vert\vec{V}(d)\vert\)</span> of a document vector
+<span class="math notranslate nohighlight">\(\vec{V}(d)\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
 \[\sqrt{\sum_{i=1}^K\vec{V}_i^2(d)}\]</div>
 <p>Because the term frequency can only be 0 or 1, this is simply the square root of
 the number of capitularies in the document.</p>
-<p>The <span class="xref std std-term">cosine similarity</span> of two documents <span class="math">\(d_1\)</span> and <span class="math">\(d_2\)</span>,
-which are here represented by their document vectors <span class="math">\(\vec{V}(d_1)\)</span> and
-<span class="math">\(\vec{V}(d_2)\)</span>, is now calculated as:</p>
-<div class="math">
+<p>The <span class="xref std std-term">cosine similarity</span> of two documents <span class="math notranslate nohighlight">\(d_1\)</span> and <span class="math notranslate nohighlight">\(d_2\)</span>,
+which are here represented by their document vectors <span class="math notranslate nohighlight">\(\vec{V}(d_1)\)</span> and
+<span class="math notranslate nohighlight">\(\vec{V}(d_2)\)</span>, is now calculated as:</p>
+<div class="math notranslate nohighlight">
 \[\mbox{sim}(d_1,d_2)= \frac{\vec{V}(d_1)\cdot \vec{V}(d_2)}{\vert\vec{V}(d_1)\vert \vert\vec{V}(d_2)\vert}\]</div>
-<p>where <span class="math">\(\cdot\)</span> represents the <span class="xref std std-term">dot product</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\cdot\)</span> represents the <span class="xref std std-term">dot product</span>.</p>
 <p>The cosine similarities of all pairs of documents are entered into a similarity
 (affinity) matrix.  This matrix is used as the input to the graph layout software.</p>
 <object data="_images/ms-graph.svg" type="image/svg+xml" align="center" style="width: 100%"></object>
@@ -213,16 +214,14 @@ of documents, by switching capitularies with documents.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="index.html" class="btn btn-neutral" title="Capitularia Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="collation_tool.html" class="btn btn-neutral float-left" title="Collation Tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -231,11 +230,11 @@ of documents, by switching capitularies with documents.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018 CCeH - Licensed under the GNU GPL v3 or later.
+        &copy; Copyright 2018 CCeH - Licensed under the GNU GPL v3 or later
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -248,37 +247,15 @@ of documents, by switching capitularies with documents.</p>
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1.1',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

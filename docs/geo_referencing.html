@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; Capitularia 0.1.1 documentation</title>
+  <title>Georefererencing of Maps &mdash; Capitularia 0.1.1 documentation</title>
   
 
   
@@ -26,7 +26,6 @@
         <script type="text/javascript" src="_static/doctools.js"></script>
         <script type="text/javascript" src="_static/language_data.js"></script>
         <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/javascript" src="_static/searchtools.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -38,7 +37,7 @@
   <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -62,7 +61,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -134,12 +133,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Search</li>
+      <li>Georefererencing of Maps</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/geo_referencing.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -151,19 +152,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <p>Find a suitable map</p>
+<p>Scan and clean it</p>
+<p>Georeference it</p>
+<p>Draw polygons</p>
+<p>Add as layers</p>
+<div class="section" id="georefererencing-of-maps">
+<h1>Georefererencing of Maps<a class="headerlink" href="#georefererencing-of-maps" title="Permalink to this headline">¶</a></h1>
+<p>Open the map in Gimp.</p>
+<p>Check View | Show Grid</p>
+<p>Select Tools | Transform Tools | Perspective</p>
+<p>View | Snap to Grid</p>
+<p>R</p>
+<p>Image | Crop to Selection</p>
+<p>File | Save</p>
+<p>File | Export As .png</p>
+<p>Open QGIS</p>
+<p>Snapping Toolbar | Advanced Configuration | Open Snapping Options</p>
+<p>Raster | Georefrencer</p>
+<p>File | Open Raster</p>
+<p>Select WGS84</p>
+<p>Edit | Add Point (Ctrl+A)</p>
+<p>Select From Map Canvas</p>
+</div>
 
-  
-  <div id="search-results">
-  
-  </div>
 
            </div>
            
@@ -201,14 +213,7 @@
   
   
     
-  
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
    
-
 
 </body>
 </html>

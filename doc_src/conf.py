@@ -36,7 +36,7 @@ extensions = [
     'sphinx.ext.graphviz',
     'sphinx.ext.mathjax',
     'sphinx.ext.imgconverter',
-    'sphinx_js',
+    # 'sphinx_js',
     'sphinxcontrib.plantuml',
     #'sauml.sauml',
 ]
