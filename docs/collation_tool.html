@@ -82,8 +82,10 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Collation Tool</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#needleman-wunsch-algorithm">Needleman-Wunsch Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#word-comparison-function">Word Comparison Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-version-of-collatex">Custom Version of CollateX</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#word-comparison-function">Word Comparison Function</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a><ul>
@@ -156,42 +158,84 @@
             
   <div class="section" id="collation-tool">
 <h1>Collation Tool<a class="headerlink" href="#collation-tool" title="Permalink to this headline">¶</a></h1>
-<p>The collation tool runs as a javascript frontend with a backend that does the
-actual collation.  The backend uses a custom version of Collate-X that
-implements the Needleman-Wunsch-Gotoh alignment algorithm and a custom word
-comparison function.</p>
-<p>The stock Collate-X only uses word comparison functions that return binary
-values, signalling either a match or a mismatch.  Our custom word comparison
-function returns a similarity value between 0 and 1.  This works much better
-when aligning variant orthographies of the same word.</p>
-<div class="section" id="needleman-wunsch-algorithm">
-<h2>Needleman-Wunsch Algorithm<a class="headerlink" href="#needleman-wunsch-algorithm" title="Permalink to this headline">¶</a></h2>
-<p>The Needleman-Wunsch-Gotoh algorithm was implemented according to <a class="reference internal" href="#gotoh1982" id="id1">[Gotoh1982]</a>.</p>
+<p>The collation tool has a frontend and a backend component.
+The collatables are stored in TEI files.</p>
+<div class="figure align-center" id="id3">
+<p class="plantuml">
+<img src="_images/plantuml-cca4f0b156e14931a26696e99f8e3c1db0cdd4eb.png" alt="skinparam backgroundColor transparent
+skinparam DefaultTextAlignment center
+
+component &quot;Frontend\n\n(Javascript)&quot; as client
+
+component &quot;Backend\n\n(Wordpress Plugin)&quot; as api
+component &quot;CollateX\n\n(Java)&quot;  as cx
+component &quot;Transformation\n\n(XSLT)&quot;       as xslt
+
+database &quot;TEI Files&quot;   as tei
+
+client &lt;-&gt; api
+api &lt;-&gt; cx
+api &lt;-- xslt
+xslt &lt;-- tei"/>
+</p>
+<p class="caption"><span class="caption-text">Collation Tool</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
+<p>The frontend is written in Javascript using the VueJS library.  It communicates
+with the backend using AJAX calls.  The frontend displays the data to the user
+and lets the user manipulate it, while the backend does the actual collation.</p>
+<p>The collatables are stored in TEI files.  The backend has to be preprocessed
+them to obtain streams of words with all markup stripped.  The streams of words
+are then sent to CollateX to do the collation and finally to the frontend, who
+formats and displays them.</p>
+<p>The collatables are subdivided into capitularies and sections, so that only
+short texts need to be collated, saving much processing time.  The backend also
+extracts the wanted sections from the TEI files.</p>
+<p>Currently and for historical reasons the backend is implemented as Wordpress
+Plugin in PHP.  We plan to rewrite it ASAP using a Python application framework
+and at the same time we’ll rewrite all the functionality we need of CollateX in
+Python and drop the dependency on CollateX and Java.</p>
+<div class="section" id="custom-version-of-collatex">
+<h2>Custom Version of CollateX<a class="headerlink" href="#custom-version-of-collatex" title="Permalink to this headline">¶</a></h2>
+<p>Our custom version of CollateX uses a custom word comparison function.</p>
+<p>The stock version of CollateX <a class="reference internal" href="#collatex" id="id1">[CollateX]</a> uses word comparison functions that
+only return binary values, signalling either a match or a mismatch.  Our custom
+version uses a word comparison function that returns a similarity value between
+0 and 1.  This works much better when aligning variant orthographies of the same
+word.</p>
+<p>In our custom CollateX we also implemented an enhancement of the
+Needleman-Wunsch algorithm by Gotoh. <a class="reference internal" href="#gotoh1982" id="id2">[Gotoh1982]</a></p>
 <div class="section" id="word-comparison-function">
-<h2>Word Comparison Function<a class="headerlink" href="#word-comparison-function" title="Permalink to this headline">¶</a></h2>
-<p>The word comparison function returns a similarity between 0 and 1.</p>
-<p>All words in the texts are split into trigrams.  Only the resulting set of
-trigrams is used in the similarity calculation.  The trigrams are obtained by
-first prefixing and suffixing the string with two spaces respectively, then
-cutting it into all possible strings of length 3.  Trigrams partially overlap
-each other.</p>
+<h3>Word Comparison Function<a class="headerlink" href="#word-comparison-function" title="Permalink to this headline">¶</a></h3>
+<p>The word comparison function returns a similarity value between 0 and 1.</p>
+<p>All words in the input texts are split into sets of trigrams.  This is done only
+once.  The trigrams are obtained by first prefixing and suffixing the word with
+two spaces respectively, then cutting the resulting string it into all possible
+strings of length 3.  This means that trigrams may partially overlap each other.</p>
+<p>The resulting sets of trigrams are then used in the similarity calculation.</p>
 <p>To calculate the similarity between two words, a set is built containing only
 the trigrams common to both words.  The magnitude of this set is then compared
 against the number of trigrams in both words:</p>
 <blockquote>
 <div>similarity = 2.0 * triAB.size() / (triA.size() + triB.size());</div></blockquote>
-<p>This value can be calculated much faster than eg. the Levenshtein distance.  The
-sets of trigrams for each input word are calculated only once.  If you presort
-these sets, the common set can be found in O(n) time.</p>
+<p>This similarity value can be calculated much faster than eg. the Levenshtein
+distance.  The sets of trigrams for each input word are calculated only once and
+if you presort these sets, the common set can be found in O(n) time.</p>
 <table class="docutils citation" frame="void" id="gotoh1982" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[Gotoh1982]</a></td><td>Gotoh, O. 1982,  <em>An Improved Algorithm for Matching Biological
+<tr><td class="label"><a class="fn-backref" href="#id2">[Gotoh1982]</a></td><td>Gotoh, O. 1982,  <em>An Improved Algorithm for Matching Biological
 Sequences,</em> J. Mol. Biol. 162, 705-708
 <a class="reference external" href="http://jaligner.sourceforge.net/references/gotoh1982.pdf">http://jaligner.sourceforge.net/references/gotoh1982.pdf</a></td></tr>
 </tbody>
 </table>
+<table class="docutils citation" frame="void" id="collatex" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[CollateX]</a></td><td>Dekker, R.H. et al. 2010-2019, <em>CollateX – Software for Collating
+Textual Sources,</em> <a class="reference external" href="https://collatex.net/">https://collatex.net/</a></td></tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 
