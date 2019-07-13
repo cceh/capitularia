@@ -40,7 +40,7 @@ short texts need to be collated, saving much processing time.  The backend also
 extracts the wanted sections from the TEI files.
 
 Currently and for historical reasons the backend is implemented as Wordpress
-Plugin in PHP.  We plan to rewrite it ASAP using a Python application framework
+plugin in PHP.  We aim to rewrite it ASAP using a Python application framework
 and at the same time we'll rewrite all the functionality we need of CollateX in
 Python and drop the dependency on CollateX and Java.
 
@@ -78,9 +78,13 @@ against the number of trigrams in both words:
 
   similarity = 2.0 * triAB.size() / (triA.size() + triB.size());
 
-This similarity value can be calculated much faster than eg. the Levenshtein
-distance.  The sets of trigrams for each input word are calculated only once and
-if you presort these sets, the common set can be found in O(n) time.
+The similarity based on trigrams was chosen because its calculation can be done
+in O(n) time whereas a similarity based on Levenshtein distance needs O(n²)
+time.  The sets of trigrams for each input word are calculated only once and if
+you presort the trigrams in these sets, the common set can be found in O(n)
+time.  To be implemented: in a first step gather all trigrams, give each one an
+integer id, and later operate on the ids only.  (Maybe hash each trigram onto a
+value 0..63 and build a bitmask for each word, later operate on the masks only.)
 
 
 .. [Gotoh1982] Gotoh, O. 1982,  *An Improved Algorithm for Matching Biological
