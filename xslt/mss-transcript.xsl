@@ -20,6 +20,7 @@
 
       @author: MP
   -->
+  <xsl:param name="title" select="'[:de]Transkription[:en]Transcription[:]'"/>
 
   <xsl:include href="common.xsl"/>                    <!-- common templates and functions -->
   <xsl:include href="mss-transcript-footnotes.xsl"/>  <!-- generates footnotes / tooltips -->
@@ -39,7 +40,7 @@
 
   <xsl:template match="tei:text">
     <div class="tei-text">
-      <h4 id="transcription">[:de]Transkription[:en]Transcription[:]</h4>
+      <h4 id="transcription"><xsl:value-of select="$title"/></h4>
 
       <xsl:apply-templates select="tei:front"/>
       <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc"/>
