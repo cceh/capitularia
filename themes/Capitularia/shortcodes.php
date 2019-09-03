@@ -539,10 +539,7 @@ function on_shortcode_cap_downloads ($atts, $dummy_content)
     $publish = current_user_can ('read_private_pages') ? '1' : "p.post_status = 'publish'";
 
     // Get the /mss page id.
-    $sql = $wpdb->prepare (
-        "SELECT id FROM wp_posts WHERE post_name = 'mss' AND post_parent = 0;",
-        array ()
-    );
+    $sql = "SELECT id FROM wp_posts WHERE post_name = 'mss' AND post_parent = 0;";
     $mss_page_id = $wpdb->get_var ($sql);
 
     $sql = $wpdb->prepare (
@@ -595,7 +592,7 @@ function on_shortcode_cap_downloads ($atts, $dummy_content)
         if ($old_alpha != $row->post_title[0]) {
             $id = $row->post_title[0];
             $res[] = "<tr>";
-            $res[] = "  <th id='{$prefix}{$id}' colspan='3'>$id</th>";
+            $res[] = "  <th id='{$id}' colspan='3'>$id</th>";
             $res[] = "<tr>";
             $old_alpha = $id;
         }
