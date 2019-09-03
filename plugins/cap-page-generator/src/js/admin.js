@@ -113,7 +113,8 @@ var cap_page_generator_admin = (function ($) { // eslint-disable-line no-unused-
                         }
                         if (toggle) {
                             return !$ (this).prop ('checked');
-                        } else if (controlChecked) {
+                        }
+                        if (controlChecked) {
                             return true;
                         }
                         return false;
@@ -127,7 +128,8 @@ var cap_page_generator_admin = (function ($) { // eslint-disable-line no-unused-
                     .prop ('checked', function () {
                         if (toggle) {
                             return false;
-                        } else if (controlChecked) {
+                        }
+                        if (controlChecked) {
                             return true;
                         }
                         return false;
@@ -166,8 +168,8 @@ var cap_page_generator_admin = (function ($) { // eslint-disable-line no-unused-
          * Remove lots of troublesome jQuery-ui styles that we would otherwise have
          * to undo in css because they clash with Wordpress style.
          */
-        tabs.parent ().find ('*').removeClass ('ui-widget-content ui-widget-header ui-tabs-panel' +
-                                               ' ui-corner-all ui-corner-top ui-corner-bottom');
+        tabs.parent ().find ('*').removeClass ('ui-widget-content ui-widget-header ui-tabs-panel'
+                                               + ' ui-corner-all ui-corner-top ui-corner-bottom');
 
         /* open the right tab */
         var section = get_url_parameter ('section');

@@ -89,8 +89,8 @@
         // the Key (Legend) slide-out
         var legend = $ ('#legend');
         if (legend.length) {
-            var wrapper = $ ('<div class="slideout screen-only"><div class="slideout-tab"></div>' +
-                             '<div class="slideout-inner"></div></div>');
+            var wrapper = $ ('<div class="slideout screen-only"><div class="slideout-tab"></div>'
+                             + '<div class="slideout-inner"></div></div>');
             $ ('body').append (wrapper);
             var legend_copy = legend.clone ();
             legend.addClass ('print-only');

@@ -111,16 +111,20 @@ div.cap-collation-user {
 
     table {
         margin: 1em 0;
-        th, td {
+
+        th,
+        td {
             &.slim {
                 width: 32px;
                 text-align: center;
             }
         }
+
         tr.sortable {
             th.handle {
                 cursor: move;
                 cursor: grab;
+
                 i.fas::before {
                     content: '\f0dc'; /* fa-sort */
                 }
@@ -173,6 +177,5 @@ div.cap-collation-user {
                 content: '\2014';
             }
         }
-
     }
 }

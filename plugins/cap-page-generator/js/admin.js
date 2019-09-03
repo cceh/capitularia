@@ -103,7 +103,9 @@ var cap_page_generator_admin = function ($) {
 
         if (toggle) {
           return !$(this).prop('checked');
-        } else if (controlChecked) {
+        }
+
+        if (controlChecked) {
           return true;
         }
 
@@ -112,7 +114,9 @@ var cap_page_generator_admin = function ($) {
       $table.children('thead,  tfoot').filter(':visible').children().children('.check-column').find(':checkbox').prop('checked', function () {
         if (toggle) {
           return false;
-        } else if (controlChecked) {
+        }
+
+        if (controlChecked) {
           return true;
         }
 

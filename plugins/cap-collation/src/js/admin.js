@@ -316,7 +316,8 @@ var cap_collation_admin = (function ($) { // eslint-disable-line no-unused-vars
 
                         if (toggle) {
                             return !$ (this).prop ('checked');
-                        } else if (controlChecked) {
+                        }
+                        if (controlChecked) {
                             return true;
                         }
 
@@ -331,7 +332,8 @@ var cap_collation_admin = (function ($) { // eslint-disable-line no-unused-vars
                     .prop ('checked', function () {
                         if (toggle) {
                             return false;
-                        } else if (controlChecked) {
+                        }
+                        if (controlChecked) {
                             return true;
                         }
                         return false;
