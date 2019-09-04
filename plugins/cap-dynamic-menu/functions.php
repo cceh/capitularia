@@ -61,7 +61,6 @@ function on_enqueue_scripts ()
         array ('cap-jquery')
     );
     wp_enqueue_script  ('cap-dynamic-menu-front');
-    // wp_enqueue_style   ('cap-dynamic-menu-front');
 }
 
 /**
