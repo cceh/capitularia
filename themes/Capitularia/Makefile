@@ -3,6 +3,8 @@ JS_SRC      := src/js
 CSS_SRC     := src/css
 CSSIMG_SRC  := src/css/images
 
+PHP_FILES   := $(wildcard $(PHP_SRC)/*.php) $(wildcard $(PHP_SRC)/widgets/*.php)
+
 JS_DEST     := js
 CSS_DEST    := css
 CSSIMG_DEST := css/images
