@@ -104,7 +104,7 @@
 			<assert test="tei:add and tei:del" role="error">subst soll add und del enthalten, eins von beiden fehlt</assert>
 		</rule>
 	</pattern>
-	<!--  -->	
+	<!--  -->
 	<!--  -->
 	<!--  -->
 	<!-- Notes-->
@@ -113,7 +113,7 @@
 			<assert test="@type" role="warning">Alle notes im text-Element sollen über ein @type verfügen</assert>
 		</rule>
 	</pattern>
-	<!--  -->	
+	<!--  -->
 	<!--  -->
 	<!--  -->
 	<!-- supportDesc-->
@@ -122,7 +122,7 @@
 			<assert test="@type" role="warning">Alle supportDesc im text-Element sollen über ein @material verfügen</assert>
 		</rule>
 	</pattern>
-	<!--  -->	
+	<!--  -->
 	<!--  -->
 	<!--  -->
 	<!-- Sic mit Anmerkungen-->
@@ -131,7 +131,7 @@
 			<report test="following-sibling::node()[1][self::tei:note]" role="warning">note folgt direkt auf sic, soll aber innerhalb stehen</report>
 		</rule>
 	</pattern>
-	<!--  -->	
+	<!--  -->
 	<!--  -->
 	<!--  -->
 	<!--Abbildungen-->
@@ -140,7 +140,7 @@
 			<report test="tei:figDesc and tei:graphic" role="warning">figure soll figDesc und  graphic enthalten, eins von beiden fehlt</report>
 		</rule>
 	</pattern>
-	<!--  -->	
+	<!--  -->
 	<!--  -->
 	<!--  -->
 	<!--anchor-->
@@ -149,7 +149,7 @@
 			<report test="text()" role="warning">Soll keinen Text enthalten</report>
 		</rule>
 	</pattern>
-	<!--  -->	
+	<!--  -->
 	<!--  -->
 	<!--  -->
 	<!--milestone-->
@@ -178,6 +178,20 @@
 			<report test="parent::*/parent::tei:ab" role="warning">milestone innerhalb von ab darf in kein anderes Element geschachtelt sein</report>
 		</rule>
 	</pattern>
+	<!--  -->
+	<!--  -->
+	<!--  -->
+	<!--  Capitulatio -->
+    <pattern id="inscriptio_c">
+      <rule context="tei:*[@corresp and not (contains (@corresp, 'inscriptio_c'))]">
+        <report test="following::tei:anchor[concat ('#', @xml:id) = current()/preceding::tei:milestone[@unit='capitulatio'][1]/@spanTo]">
+          @corresp innerhalb einer Capitulatio muss "inscriptio_c" enthalten
+        </report>
+      </rule>
+    </pattern>
+	<!--  -->
+	<!--  -->
+	<!--  -->
 	<!--ab-->
 	<pattern id="ab_prev">
 		<rule context="tei:ab/@prev">
@@ -189,7 +203,7 @@
 			<assert test="starts-with(.,'#')" role="warning">Attributwert soll mit # starten</assert>
 		</rule>
 	</pattern>
-	<!--  -->	
+	<!--  -->
 	<!--  -->
 	<!--  -->
 	<!--ptr-->
@@ -198,7 +212,7 @@
 			<assert test="starts-with(.,'#')" role="warning">Attributwert soll mit # starten</assert>
 		</rule>
 	</pattern>
-	<!--  -->	
+	<!--  -->
 	<!--  -->
 	<!--  -->
 	<!--metamark-->
@@ -208,7 +222,7 @@
 			<assert test="preceding-sibling::node()[1][self::tei:add]">metamark soll direkt auf ein schließendes "add" folgen</assert>
 		</rule>
 	</pattern>
-	<!--  -->	
+	<!--  -->
 	<!--  -->
 	<!--  -->
 	<!--seg-->
@@ -221,7 +235,7 @@
 			<report test="contains(.,'/')" role="warning">Inhalt darf keine Interpunktionszeichen enthalten </report>
 		</rule>
 	</pattern>
-	<!--  -->	
+	<!--  -->
 	<!--  -->
 	<!--  -->
 	<!--num-->
@@ -234,12 +248,12 @@
 			<report test="contains(.,'/')" role="warning">Inhalt darf keine Interpunktionszeichen enthalten </report>
 		</rule>
 	</pattern>
-	<!--  -->	
 	<!--  -->
 	<!--  -->
-<pattern id="altIdentifier-idno">
+	<!--  -->
+    <pattern id="altIdentifier-idno">
 		<rule context="tei:altIdentifier[@type='siglum']/tei:idno">
 			<report test="contains(.,' ')" role="warning">Inhalt darf keine Leerstellen enthalten</report>
 		</rule>
-	</pattern>
+    </pattern>
 </schema>
