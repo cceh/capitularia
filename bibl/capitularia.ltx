@@ -1,0 +1,60 @@
+\documentclass[12pt,a4paper,titlepage]{article}
+
+\usepackage[ngerman]{babel}
+\babelprovide[import]{english}
+\babelprovide[import]{french}
+\babelprovide[import]{spanish}
+
+\babelfont{rm}[Numbers={OldStyle,Proportional}]{Linux Libertine O}
+\babelfont{sf}[Numbers={OldStyle,Proportional}]{Linux Libertine O}
+\babelfont{tt}[Numbers={OldStyle,Proportional}]{Linux Libertine O}
+
+\usepackage{csquotes}
+\usepackage[style=capitularia,related=false,sortlocale=auto]{biblatex}
+\addbibresource{capitularia.bib}
+
+\usepackage[toc]{multitoc}
+\columnsep=2cm
+
+\usepackage{xcolor}
+\usepackage[bookmarks=true,colorlinks=false,urlcolor=black,urlbordercolor=white,linkbordercolor=white]{hyperref}
+\usepackage[open,openlevel=2]{bookmark}
+
+\hypersetup{
+  pdfinfo={
+    Title=Capitularia Bibliographie,
+    Subject=Bibliographie,
+  }
+}
+
+\pretolerance=1000
+\tolerance=9000
+\hbadness=5000   % report underfull boxes
+\hfuzz=2pt       % report overfull boxes
+\fontdimen3\font=0.25em % increase allowed word separation to avoid overfull boxes
+
+\begin{document}
+
+\title{
+  Capitularia \\[0.5cm]
+  {\small Edition der fränkischen Herrschererlasse} \\[1.5cm]
+  Bibliographie \\[5cm]
+}
+
+\date{\small{Stand: \today}}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\nocite{*} % adds all entries in the bib file to the bibliography
+
+\originalTeX % turn off "x-macros of package ngerman
+
+\printbibliography[env=shorthand,keyword=Literatur,heading=bibintoc,title={Literatur}]
+\addtocontents{toc}{\protect\columnbreak}
+\printbibliography[env=shorthand,keyword=Katalog,  heading=bibintoc,title={Handschriftenkataloge}]
+
+\end{document}

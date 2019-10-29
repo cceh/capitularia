@@ -1,0 +1,74 @@
+\ProvidesFile{capitularia.bbx}
+
+%% Docs: http://mirror.physik-pool.tu-berlin.de/pub/CTAN/macros/latex/contrib/biblatex/doc/biblatex.pdf
+
+\RequireBibliographyStyle{alphabetic}
+
+\defbibenvironment{shorthand}
+  {\list
+     {\printfield[shorthandwidth]{shorthand}}
+     {\setlength{\labelwidth}{\shorthandwidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}%
+      \renewcommand*{\makelabel}[1]{##1\hss}}}
+  {\endlist}
+  {\blx@imc@iffieldequals{sortinithash}\blx@previnit
+    {}
+    %% add alphabetic subsection headings
+    {\subsection*{\hfil\abx@field@sortinit\hfil}%
+      \addcontentsline{toc}{subsection}{\abx@field@sortinit}%
+      \global\let\blx@previnit\abx@field@sortinithash}\item}
+
+%% make the shorthand bold
+\DeclareFieldFormat{shorthandwidth}{\textbf{#1}}
+
+%% reverse all names
+%% \DeclareNameAlias{sortname}{family-given}
+
+%% separate units by a comma
+\renewcommand\newunitpunct{\addcomma\space}
+
+%% separate subtitle by a colon
+\renewcommand\subtitlepunct{\addcolon\space}
+
+%% put series and number in parens
+\renewbibmacro*{series+number}{%
+  \ifboolexpr{
+    test {\iffieldundef{series}}
+    and
+    test {\iffieldundef{number}}
+  }
+  {}
+  {\printtext[parens]{%
+      \printfield{series}%
+      \setunit*{\addspace}%
+      \printfield{number}}}%
+  \newunit}
+
+%% put date in parens
+\renewbibmacro*{issue+date}{%
+    \printfield{issue}%
+    \setunit*{\addspace}%
+    \printtext[parens]{\usebibmacro{date}}%
+  \newunit}
+
+%% no comma after location
+\renewbibmacro*{publisher+location+date}{%
+  \printlist{location}%
+  \iflistundef{publisher}
+    {}
+    {\setunit*{\addcolon\space}\printlist{publisher}}%
+  \setunit*{\space}%
+  \usebibmacro{date}%
+  \newunit}
+
+%% related items (not used yet)
+\NewBibliographyString{continuationof,continuedby}
+
+\DefineBibliographyStrings{german}{%
+  continuationof = {Forts\adddotspace von},
+  continuedby    = {Forts\adddotspace in},
+}
