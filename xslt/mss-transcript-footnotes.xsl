@@ -734,7 +734,9 @@ footnotes will be joined to the preceding word.
       <xsl:otherwise>
         <!-- not (cap:is-later-hand ()) -->
         <xsl:variable name="phrase">
-          <xsl:apply-templates/>
+          <!-- tentative fix for #125.  A milestone gets a <span display:none>
+               into $phrase but cap:shorten-phrase doesn't know enough to throw it out -->
+          <xsl:apply-templates select="node ()[not (self::tei:milestone)]" />
         </xsl:variable>
         <span class="{$rend}" data-shortcuts="1">
           <xsl:choose>
