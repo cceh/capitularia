@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2019-06-25 18:26+0200\n"
-"PO-Revision-Date: 2019-06-21 16:56+0200\n"
+"POT-Creation-Date: 2019-11-06 20:05+0100\n"
+"PO-Revision-Date: 2019-11-06 20:05+0100\n"
 "Last-Translator: Marcello Perathoner <marcello@perathoner.de>\n"
 "Language-Team: German <>\n"
 "Language: de_DE\n"
@@ -17,7 +17,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.4\n"
+
+#: class-settings-page.php:43
+msgid "General Settings"
+msgstr "Allgemeine Einstellungen"
+
+#: class-settings-page.php:50
+msgid "CollateX executable"
+msgstr "CollateX Aufruf"
+
+#: class-settings-page.php:57
+msgid "API Entrypoint"
+msgstr "API Entrypoint"
+
+#: class-settings-page.php:103
+#, php-format
+msgid "The CollateX executable, eg.: %s"
+msgstr "Wie CollateX ausgeführt werden soll, z.B.: %s"
+
+#: class-settings-page.php:119
+#, php-format
+msgid "The API entrypoint to use, eg.: %s"
+msgstr "Wie die API aufgerufen werden soll, z.B.: %s"
 
 #: dashboard.php:45
 msgctxt "H3"
@@ -139,17 +161,34 @@ msgctxt "H3"
 msgid "Collation for: {{ corresp }}"
 msgstr "Ergebnis der Kollation für: {{ corresp }}"
 
-#: functions.php:397
+#: functions.php:32
+msgctxt "Button: Save Changes in setting page"
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
+#: functions.php:147
+msgid "Capitularia Collation Tool Settings"
+msgstr "Capitularia Kollationstool Einstellungen"
+
+#: functions.php:148 cap-collation-user.php:100
+msgid "Capitularia Collation Tool"
+msgstr "Capitularia Kollationstool"
+
+#: functions.php:173
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: functions.php:483
 msgid "on"
 msgstr "an"
 
-#: functions.php:397
+#: functions.php:483
 msgid "off"
 msgstr "aus"
 
-#: cap-collation-user.php:23
-msgid "Capitularia Collation"
-msgstr "Capitularia Kollation"
+#: cap-collation-user.php:101
+msgid "Collates TEI files."
+msgstr "Kollationiert TEI-Dateien."
 
 #: dashboard-ajax.php:13
 msgctxt "title of the edition"
@@ -192,6 +231,12 @@ msgstr "Segmentierung: %s"
 msgctxt "%s = on off"
 msgid "Transpositions: %s"
 msgstr "Transpositionen: %s"
+
+#~ msgid "Capitularia Collation for Users"
+#~ msgstr "Capitularia Kollationstool"
+
+#~ msgid "Generate collations from TEI files."
+#~ msgstr "Kollationiert TEI-Dateien."
 
 #~ msgctxt "Button"
 #~ msgid "Show Textual Witnesses"
@@ -304,9 +349,6 @@ msgstr "Transpositionen: %s"
 #~ msgid "Could not load XML file %s."
 #~ msgstr "Die XML-Datei %s konnte nicht geladen werden."
 
-#~ msgid "General Settings"
-#~ msgstr "Allgemeine Einstellungen"
-
 #~ msgctxt "Button: Admin reload the places file"
 #~ msgid "Reload Places File"
 #~ msgstr "Ortschaften neu laden"
@@ -380,9 +422,6 @@ msgstr "Transpositionen: %s"
 
 #~ msgid "TEI file"
 #~ msgstr "TEI-Datei"
-
-#~ msgid "TEI files"
-#~ msgstr "TEI-Dateien"
 
 #~ msgctxt "bulk action"
 #~ msgid "Publish"
@@ -484,10 +523,8 @@ msgstr "Transpositionen: %s"
 #~ msgid "xmllint path"
 #~ msgstr "xmllint Pfad"
 
-#~ msgid ""
-#~ "The full path to the xmllint utility as seen from the server, eg.: %s"
-#~ msgstr ""
-#~ "Pfad- und Dateiname des xmllint-tools vom Server aus gesehen, z.B.: %s"
+#~ msgid "The full path to the xmllint utility as seen from the server, eg.: %s"
+#~ msgstr "Pfad- und Dateiname des xmllint-tools vom Server aus gesehen, z.B.: %s"
 
 #~ msgid "Section name"
 #~ msgstr "Name der Sektion"
@@ -504,18 +541,14 @@ msgstr "Transpositionen: %s"
 #~ msgid "XSL files list"
 #~ msgstr "Liste der XSL-Dateien"
 
-#~ msgid ""
-#~ "A list of xsl files to run (relative to XSL root) (space-separated list)."
-#~ msgstr ""
-#~ "Liste der anzuwendenden XSL-Dateien (relativ zum XSL-Stammverzeichnis) "
-#~ "(mit Leerzeichen getrennt)."
+#~ msgid "A list of xsl files to run (relative to XSL root) (space-separated list)."
+#~ msgstr "Liste der anzuwendenden XSL-Dateien (relativ zum XSL-Stammverzeichnis) (mit Leerzeichen getrennt)."
 
 #~ msgid "XSL schema"
 #~ msgstr "XSL Schema"
 
 #~ msgid "The path to the xsl schema file (relative to schema root)."
-#~ msgstr ""
-#~ "Der Pfad zur XSL-Schema-Datei (relativ zum Schema-Stammverzeichnis)."
+#~ msgstr "Der Pfad zur XSL-Schema-Datei (relativ zum Schema-Stammverzeichnis)."
 
 #~ msgid "Slug path"
 #~ msgstr "Slug-Pfad"
@@ -539,9 +572,7 @@ msgstr "Transpositionen: %s"
 #~ msgstr "Sidebars"
 
 #~ msgid "The sidebars (space-separated list). Eg.: %s"
-#~ msgstr ""
-#~ "Welche Sidebars sollen angezeigt werden (mit Leerzeichen getrennt)? Z.B.: "
-#~ "%s"
+#~ msgstr "Welche Sidebars sollen angezeigt werden (mit Leerzeichen getrennt)? Z.B.: %s"
 
 #~ msgid "General"
 #~ msgstr "Allgemein"
@@ -571,8 +602,7 @@ msgstr "Transpositionen: %s"
 #~ msgstr "Fehler: die Seite %s konnte nicht erstellt werden."
 
 #~ msgid "Error while extracting metadata: no page with slug %s."
-#~ msgstr ""
-#~ "Fehler beim Extrahieren der Meta-Daten: es gibt keine Seite mit Slug: %s."
+#~ msgstr "Fehler beim Extrahieren der Meta-Daten: es gibt keine Seite mit Slug: %s."
 
 #~ msgid "Errors while extracting metadata from file %s."
 #~ msgstr "Fehler beim Extrahieren der Meta-Daten aus Datei %s."
@@ -720,40 +750,26 @@ msgstr "Transpositionen: %s"
 #~ msgid "Frontpage Image"
 #~ msgstr "Titelseiten-Bild"
 
-#~ msgid ""
-#~ "The big splash image on the front page. Takes one Capitularia Logo Widget."
-#~ msgstr ""
-#~ "Das große Bild auf der Titelseite. Enthält ein Capitularia Logo-Widget."
+#~ msgid "The big splash image on the front page. Takes one Capitularia Logo Widget."
+#~ msgstr "Das große Bild auf der Titelseite. Enthält ein Capitularia Logo-Widget."
 
 #~ msgid "Frontpage Teaser Bar 1"
 #~ msgstr "Titelseiten-Teaser-Band 1"
 
-#~ msgid ""
-#~ "The top teaser bar on the front page. Normally takes 3 Capitularia Text "
-#~ "Widgets."
-#~ msgstr ""
-#~ "Das obere Vorschau-Band auf der Titelseite. Enthält typischerweise 3 "
-#~ "Capitularia Text-Widgets."
+#~ msgid "The top teaser bar on the front page. Normally takes 3 Capitularia Text Widgets."
+#~ msgstr "Das obere Vorschau-Band auf der Titelseite. Enthält typischerweise 3 Capitularia Text-Widgets."
 
 #~ msgid "Frontpage Teaser Bar 2"
 #~ msgstr "Titelseiten-Teaser-Band 2"
 
-#~ msgid ""
-#~ "The bottom teaser bar on the front page. Normally takes 2 Capitularia "
-#~ "Image Widgets."
-#~ msgstr ""
-#~ "Das untere Vorschau-Band auf der Titelseite. Enthält typischerweise 2 "
-#~ "Capitularia Bild-Widgets."
+#~ msgid "The bottom teaser bar on the front page. Normally takes 2 Capitularia Image Widgets."
+#~ msgstr "Das untere Vorschau-Band auf der Titelseite. Enthält typischerweise 2 Capitularia Bild-Widgets."
 
 #~ msgid "Logo Bar"
 #~ msgstr "Logo-Band"
 
-#~ msgid ""
-#~ "The logo bar in the footer of every page. Takes one or more Capitularia "
-#~ "Logo Widgets."
-#~ msgstr ""
-#~ "Das Logo-Band im Fußteil einer jeden Seite. Enthält ein oder mehrere "
-#~ "Capitularia Logo-Widgets."
+#~ msgid "The logo bar in the footer of every page. Takes one or more Capitularia Logo Widgets."
+#~ msgstr "Das Logo-Band im Fußteil einer jeden Seite. Enthält ein oder mehrere Capitularia Logo-Widgets."
 
 #~ msgid "Post Sidebar"
 #~ msgstr "Post Sidebar"
@@ -764,18 +780,14 @@ msgstr "Transpositionen: %s"
 #~ msgid "Page Sidebar"
 #~ msgstr "Page Sidebar"
 
-#~ msgid ""
-#~ "The sidebar on pages. Output below the more specialized page sidebars."
-#~ msgstr ""
-#~ "Die Sidebar auf Pages. Wird unter den spezielleren Sidebars ausgegeben."
+#~ msgid "The sidebar on pages. Output below the more specialized page sidebars."
+#~ msgstr "Die Sidebar auf Pages. Wird unter den spezielleren Sidebars ausgegeben."
 
 #~ msgid "Post and Page Sidebar"
 #~ msgstr "Sidebar auf Posts und Pages"
 
 #~ msgid "The sidebar on posts and pages. Output below the other sidebars."
-#~ msgstr ""
-#~ "Die Sidebar auf Pages und Posts. Wird unter den anderen Sidebars "
-#~ "ausgegeben."
+#~ msgstr "Die Sidebar auf Pages und Posts. Wird unter den anderen Sidebars ausgegeben."
 
 #~ msgid "Capitularies Sidebar"
 #~ msgstr "Kapitularien-Sidebar"

@@ -7,18 +7,6 @@
 
 namespace cceh\capitularia\meta_search;
 
-const NONCE_SPECIAL_STRING  = 'cap_meta_search_nonce';
-const NONCE_PARAM_NAME      = '_ajax_nonce';
-const OPTIONS_PAGE_ID       = 'cap_meta_search_options';
-/** Default path to the project directory on AFS. */
-const AFS_ROOT              = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
-
-const GEO_INFO = array (
-    'viaf'     => 'http://viaf.org/viaf/',
-    'geonames' => 'http://www.geonames.org/',
-    'gnd'      => 'http://d-nb.info/gnd/',
-);
-
 /**
  * Add current namespace
  *
@@ -33,33 +21,15 @@ function ns ($function_name)
 }
 
 /**
- * Init the plugin
+ * Output a localized 'save changes' button
  *
- * @return void
+ * @return
  */
 
-function init ()
-{
-    /** @var string The name of the plugin */
-    global $plugin_name;
-    $plugin_name = __ ('Capitularia Meta Search', 'cap-meta-search');
-
-    add_action ('init',                  ns ('on_init'));
-    add_action ('wp_enqueue_scripts',    ns ('on_enqueue_scripts'));
-    add_action ('admin_menu',            ns ('on_admin_menu'));
-    add_action ('admin_enqueue_scripts', ns ('on_admin_enqueue_scripts'));
-    add_action ('widgets_init',          ns ('on_widgets_init'));
-
-    add_action ('wp_ajax_nopriv_on_cap_places',     ns ('on_ajax_cap_places'));
-    add_action ('wp_ajax_on_cap_places',            ns ('on_ajax_cap_places'));
-    add_action ('wp_ajax_on_cap_reload_places',     ns ('on_ajax_cap_reload_places'));
-
-    add_filter ('the_content',                      ns ('on_the_content'));
-    add_filter ('get_the_excerpt',                  ns ('on_get_the_excerpt'));
-    add_filter ('query_vars',                       ns ('on_query_vars'));
-
-    add_action ('cap_xsl_transformed',              ns ('on_cap_xsl_transformed'),              10, 2);
-    add_filter ('cap_meta_search_extract_metadata', ns ('on_cap_meta_search_extract_metadata'), 10, 3);
+function save_button () {
+    submit_button (
+        _x ('Save Changes', 'Button: Save Changes in setting page', LANG)
+    );
 }
 
 /**
@@ -76,7 +46,7 @@ function get_opt ($name, $default = '')
     static $options = null;
 
     if ($options === null) {
-        $options = get_option ('cap_meta_search_options', array ());
+        $options = get_option (OPTIONS, array ());
     }
     return $options[$name] ? $options[$name] : $default;
 }
@@ -102,7 +72,7 @@ function sanitize ($text)
 
 function on_init ()
 {
-    load_plugin_textdomain ('cap-meta-search', false, basename (dirname ( __FILE__ )) . '/languages/');
+    load_plugin_textdomain (LANG, false, basename (dirname ( __FILE__ )) . '/languages/');
 }
 
 /**
@@ -273,18 +243,13 @@ function on_admin_enqueue_scripts ()
 
 function on_admin_menu ()
 {
-    /** @var Settings_Page|null The settings page */
-    global $settings_page;
-    $settings_page = new Settings_Page ();
-    global $plugin_name;
-
     // adds a menu entry to the settings menu
     add_options_page (
-        $plugin_name . ' Options',
-        $plugin_name,
+        __ (NAME, LANG) . ' ' . __ ('Settings', LANG),
+        __ (NAME, LANG),
         'manage_options',
-        'cap_meta_search_options',
-        array ($settings_page, 'display')
+        OPTIONS,
+        array (new Settings_Page (), 'display')
     );
 }
 
@@ -453,7 +418,7 @@ function on_ajax_cap_reload_places ()
     check_ajax_referer (NONCE_SPECIAL_STRING, NONCE_PARAM_NAME);
     if (!current_user_can ('manage_options')) {
         wp_send_json_error (
-            array ('message' => __ ('You have no permission to manage options.', 'cap-meta-search'))
+            array ('message' => __ ('You have no permission to manage options.', LANG))
         );
     }
 
@@ -463,7 +428,7 @@ function on_ajax_cap_reload_places ()
     $xml = simplexml_load_file ($path);
     if ($xml === false) {
         wp_send_json_error (
-            array ('message' => sprintf (__ ('Could not load XML file %s.', 'cap-meta-search'), $path))
+            array ('message' => sprintf (__ ('Could not load XML file %s.', LANG), $path))
         );
     }
 
@@ -529,7 +494,7 @@ function on_ajax_cap_reload_places ()
 
     // give feedbak to the user
     $places_cnt = count ($places);
-    $messages[] = __ ("<p>{$places_cnt} places processed.</p>", 'cap-meta-search');
+    $messages[] = '<p>' . sprintf (__ ('%s places processed.', LANG), $places_cnt) . '</p>';
 
     wp_send_json (
         array ('success' => count ($errors) == 0,
@@ -537,6 +502,22 @@ function on_ajax_cap_reload_places ()
                // 'data'    => array ('message' => json_encode ($places, JSON_PRETTY_PRINT + JSON_UNESCAPED_UNICODE)),
         ), 200
     );
+}
+
+/**
+ * Add a link to our settings page to the plugins admin dashboard.
+ *
+ * Adds hack value.
+ *
+ * @return array
+ */
+
+function on_plugin_action_links ($links) {
+	array_push (
+		$links,
+		'<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>'
+	);
+	return $links;
 }
 
 /**

@@ -42,48 +42,19 @@ Output URL: /capit/ldf/bk-nr-186/
           <!-- Link zum Artikel: Kapitular des Monats -->
           <xsl:apply-templates select="tei:text/tei:body//tei:ref[@subtype='com']"/>
         </div>
+
+        <xsl:call-template name="hr"/>
       </xsl:if>
 
-      <xsl:call-template name="hr"/>
-
-      <xsl:variable name="title">
-        <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']"/>
-      </xsl:variable>
-
-      <div id="citation">
-        <h5>[:de]Empfohlene Zitierweise[:en]How to cite[:]</h5>
-        <p>
-          <xsl:value-of select="normalize-space ($title)"/>
-          <xsl:text>, [:de]in: Capitularia. Edition der fränkischen Herrschererlasse, bearb. von
-          Karl Ubl und Mitarb., Köln 2014 ff.[:en]in: Capitularia. Edition of the Frankish
-          Capitularies, ed. by Karl Ubl and collaborators, Cologne 2014 ff.[:] </xsl:text>
-          <!-- http://capitularia.uni-koeln.de/capit/ldf/bk-nr-182/ -->
-          <xsl:value-of select="concat ('URL: ', $capit, @corresp, '/')"/>
-          <xsl:text> [:de](abgerufen am [current_date])[:en](accessed on [current_date])[:]</xsl:text>
-        </p>
-      </div>
+      <xsl:call-template name="cite_as">
+        <xsl:with-param name="author" select="''" />
+      </xsl:call-template>
 
       <xsl:call-template name="hr"/>
 
-      <div id="download">
-        <h5>[:de]Download[:en]Downloads[:]</h5>
-        <ul class="downloads">
-          <li class="download-icon">
-            <!-- http://capitularia.uni-koeln.de/cap/publ/capit/ldf/bk-nr-148.xml -->
-            <xsl:variable name="url"
-                          select="concat ($capit_downloads, @corresp, '.xml')"/>
-            <a class="screen-only ssdone" href="{$url}"
-               title='[:de]Rechtsklick zum "Speichern unter"[:en]right button click to save file[:]'>
-              <xsl:text>[:de]Datei in XML[:en]File in XML[:]</xsl:text>
-            </a>
-            <div class="print-only">
-              <xsl:text>[:de]Datei in XML[:en]File in XML[:] </xsl:text>
-              <xsl:value-of select="$url"/>
-            </div>
-          </li>
-        </ul>
-      </div>
-
+      <xsl:call-template name="downloads">
+        <xsl:with-param name="url" select="concat ($capit_downloads, @corresp, '.xml')"/>
+      </xsl:call-template>
     </div>
   </xsl:template>
 

@@ -11,6 +11,9 @@ const COLLATION_ROOT  = AFS_ROOT . '/local/capitularia-collation';
 const COLLATEX_JAR    = AFS_ROOT . '/local/bin/collatex-tools-1.8-SNAPSHOT.jar';
 const COLLATEX        = AFS_ROOT . '/local/bin/java -jar ' . COLLATEX_JAR;
 
+// const API_SERVER_ENTRYPOINT  = 'https://api.capitularia.uni-koeln.de/collatex/collate';
+// const API_SERVER_ENTRYPOINT  = 'http://api.capitularia.fritz.box:5002/collatex/collate';
+
 /**
  * Implements the CollateX interface
  */
@@ -64,8 +67,36 @@ class CollateX
 
         return array (
             'error_code' => $error_code,
-            'stdout'     => $stdout,
+            'stdout'     => json_decode ($stdout, true),
             'stderr'     => $stderr,
+        );
+    }
+
+    /**
+     * Call CollateX on the API server
+     *
+     * Call the CollateX API running on the API server.
+     *
+     * @param string $json_in The JSON input
+     *
+     * @return array The error code, stdout, and stderr
+     */
+
+    public function call_collatex_api ($json_in)
+    {
+
+        $request = new \WP_Http ();
+        $result = $request->request (get_opt ('api'), array ('method' => 'POST', 'body' => $json_in));
+        $body = $result['body'];
+        if ($result['response'] !== 200) {
+            error_log ($body);
+        }
+        $body = json_decode ($body, true);
+
+        return array (
+            'error_code' => $body['status'] !== 200,
+            'stdout'     => $body['stdout'],
+            'stderr'     => $body['stderr'],
         );
     }
 
@@ -100,7 +131,7 @@ class CollateX
 
         return array (
             'error_code' => $error_code,
-            'stdout'     => implode ("\n", $output),
+            'stdout'     => json_decode (implode ("\n", $output), true),
             'stderr'     => '',
         );
     }

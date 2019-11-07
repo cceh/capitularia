@@ -190,8 +190,15 @@ function on_cap_collation_user_load_collation ()
     $json_in = json_encode ($json, JSON_PRETTY_PRINT);
 
     $collatex = new CollateX ();
-    $data = $collatex->call_collatex_pipes ($json_in);
-    $data = json_decode ($data['stdout'], true);
+    $api = get_opt ('api');
+    $exe = get_opt ('executable');
+    if ($api) {
+        $data = $collatex->call_collatex_api ($json_in);
+        $data = $data['stdout'];
+    } elseif ($exe) {
+        $data = $collatex->call_collatex_pipes ($json_in);
+        $data = json_decode ($data['stdout'], true);
+    }
 
     global $map_sigla;
     wp_send_json (array (

@@ -8,6 +8,31 @@
 namespace cceh\capitularia\page_generator;
 
 /**
+ * Add current namespace
+ *
+ * @param string $function_name The class or function name without namespace
+ *
+ * @return string Name with namespace
+ */
+
+function ns ($function_name)
+{
+    return __NAMESPACE__ . '\\' . $function_name;
+}
+
+/**
+ * Output a localized 'save changes' button
+ *
+ * @return
+ */
+
+function save_button () {
+    submit_button (
+        _x ('Save Changes', 'Button: Save Changes in setting page', LANG)
+    );
+}
+
+/**
  * Get ID of the parent page of a section
  *
  * Returns the ID of the parent page of a section.
@@ -19,9 +44,9 @@ namespace cceh\capitularia\page_generator;
 
 function cap_get_parent_id ($section_id)
 {
-    global $cap_page_generator_config;
+    global $config;
 
-    $page = get_page_by_path ($cap_page_generator_config->get_opt ($section_id, 'slug_path'));
+    $page = get_page_by_path ($config->get_opt ($section_id, 'slug_path'));
     return $page ? $page->ID : false;
 }
 
@@ -76,6 +101,19 @@ function cap_make_path_relative_to ($path, $base)
         return substr ($path, strlen ($base));
     }
     return $path;
+}
+
+/**
+ * Do nothing
+ *
+ * @param string $s
+ *
+ * @return string The same string
+ */
+
+function cap_sanitize_nothing ($s)
+{
+    return $s;
 }
 
 /**
@@ -151,6 +189,189 @@ function cap_sanitize_key_list ($key_list)
         $result[] = cap_sanitize_key ($key);
     }
     return implode (' ', $result);
+}
+
+/**
+ * Initialize the plugin.
+ *
+ * @return void
+ */
+
+function on_init ()
+{
+    load_plugin_textdomain (LANG, false, basename (dirname ( __FILE__ )) . '/languages/');
+
+    global $config;
+    $config = new Config ();
+    $config->init ();
+}
+
+/**
+ * AJAX hook
+ *
+ * @return void
+ */
+
+function on_cap_action_file ()
+{
+    check_ajax_referer (NONCE_SPECIAL_STRING, NONCE_PARAM_NAME);
+    if (!current_user_can ('edit_posts')) {
+        wp_send_json_error (
+            array ('message' => __ ('You have no permission to edit posts.', LANG))
+        );
+        exit ();
+    }
+    $dashboard_page = new Dashboard_Page ();
+    $dashboard_page->on_cap_action_file ();
+}
+
+/**
+ * AJAX hook
+ *
+ * @return void
+ */
+
+function on_cap_load_section ()
+{
+    // we do no user permission checks because we are just reading
+    $dashboard_page = new Dashboard_Page ();
+    $dashboard_page->on_cap_load_section ();
+}
+
+/**
+ * Enqueue the public pages scripts and styles
+ *
+ * @return void
+ */
+
+function on_enqueue_scripts ()
+{
+    wp_register_style ('cap-page-gen-front', plugins_url ('css/front.css', __FILE__));
+    wp_enqueue_style  ('cap-page-gen-front');
+}
+
+/**
+ * Register _cap\_page\_gen_ as valid HTTP GET parameter
+ *
+ * We use the _cap\_page\_gen_ parameter to call the dashboard from the
+ * _Page Generator_ button on the user's tool bar on the public pages.
+ *
+ * @param string[] $vars Already registered parameter names
+ *
+ * @return string[] Augmented registered parameter names.
+ */
+
+function on_query_vars ($vars)
+{
+    $vars[] = 'cap_page_gen';
+    return $vars;
+}
+
+/*
+ * Administration page stuff
+ */
+
+/**
+ * Enqueue the admin page scripts and styles
+ *
+ * @return void
+ */
+
+function on_admin_enqueue_scripts ()
+{
+    wp_register_style (
+        'cap-page-gen-admin',
+        plugins_url ('css/admin.css', __FILE__),
+        array ('cap-jquery-ui-css')
+    );
+    wp_enqueue_style  ('cap-page-gen-admin');
+
+    wp_register_script (
+        'cap-page-gen-admin',
+        plugins_url ('js/admin.js', __FILE__),
+        array ('jquery-ui-tabs', 'jquery-ui-progressbar')
+    );
+    wp_enqueue_script ('cap-page-gen-admin');
+
+    wp_localize_script (
+        'cap-page-gen-admin',
+        'cap_page_gen_admin_ajax_object',
+        array (
+            NONCE_PARAM_NAME => wp_create_nonce (NONCE_SPECIAL_STRING),
+        )
+    );
+}
+
+/**
+ * Add menu entries to the Wordpress admin menu.
+ *
+ * Adds menu entries for the settings (options) and the dashboard pages to
+ * the Wordpress settings and dashboard admin page menus respectively.
+ *
+ * @return void
+ */
+
+function on_admin_menu ()
+{
+    // adds a menu entry to the settings menu
+    add_options_page (
+        __ (NAME, LANG) . ' ' . __ ('Settings', LANG),
+        __ (NAME, LANG),
+        'manage_options',
+        OPTIONS,
+        array (new Settings_Page (), 'display')
+    );
+
+    // adds a menu entry to the dashboard menu
+    add_submenu_page (
+        'index.php',
+        __ (NAME, LANG) . ' ' . __ ('Dashboard', LANG),
+        __ (NAME, LANG),
+        'edit_pages',
+        DASHBOARD,
+        array (new Dashboard_Page (), 'display')
+    );
+}
+
+/**
+ * Add a dashboard button to the Wordpress toolbar.
+ *
+ * @param \WP_Admin_Bar $wp_admin_bar The \WP_Admin_Bar object
+ *
+ * @return void
+ */
+
+function on_admin_bar_menu ($wp_admin_bar)
+{
+    if (!is_admin () && current_user_can ('edit_pages')) {
+        $args = array (
+            'id'    => 'cap_page_gen_open',
+            'title' => __ ('Page Generator', LANG),
+            'href'  => '/wp-admin/index.php?page=' . DASHBOARD,
+            'meta'  => array (
+                'class' => 'cap-page-gen',
+                'title' => __ (NAME, LANG)
+            )
+        );
+        $wp_admin_bar->add_node ($args);
+    }
+}
+
+
+/**
+ * Add a link to our settings page to the plugins admin dashboard.
+ *
+ * Adds hack value.
+ *
+ * @return array
+ */
+
+function on_plugin_action_links ($links) {
+	array_push (
+		$links,
+		'<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>'
+	);
+	return $links;
 }
 
 /**

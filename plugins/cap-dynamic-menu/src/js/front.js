@@ -39,13 +39,13 @@
  * functions.
  */
 
-const magic = '#cap_dynamic_menu#';
+const MAGIC = '#cap_dynamic_menu#';
 
 (function ($) {
     function init_dynamic_menues () {
         let menu_id = 1;
         let last_id = 1;
-        for (const menu of document.querySelectorAll (`a[href="${magic}"]`)) {
+        for (const menu of document.querySelectorAll (`a[href="${MAGIC}"]`)) {
             const target = (menu.getAttribute ('target')
                             // default xpath expressions (a §-separated list)
                             || '//h3[@id]§//h4[@id]§//h5[@id]§//h6[@id]')

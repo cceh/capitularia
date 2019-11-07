@@ -8,7 +8,8 @@ lint: phplint csslint jslint
 deploy: css js_prod lint mo deploy_xslt deploy_scripts
 
 deploy_xslt:
-	$(RSYNC) xslt/*.xsl  $(TRANSFORM)/
+	$(RSYNC) xslt/*.xsl $(TRANSFORM)/
+	$(RSYNC) xslt/Makefile $(HOST_SERVER)/../xslt/
 
 deploy_xml:
 	$(RSYNC) xml/*.xml $(PUBL)/mss/
@@ -66,6 +67,11 @@ geodata-client:
 init_geodata_db: import_xml
 	cd $(SERVER); make init_geodata_db
 	cd $(GIS); make import-geodata-to-postgres
+
+# PhpMetrics http://www.phpmetrics.org/
+phpmetrics:
+	vendor/bin/phpmetrics --config="tools/phpmetrics/config.yml" .
+	$(BROWSER) tools/reports/phpmetrics/index.html
 
 
 TARGETS = css js js_prod csslint jslint phplint mo po pot deploy clean

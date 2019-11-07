@@ -10,13 +10,14 @@
 
 namespace cceh\capitularia\theme;
 
-/** The URL to the Capitularia image server. */
-const IMAGE_SERVER_URL = 'http://images.cceh.uni-koeln.de/capitularia/';
-
 /**
  * Add the logged_in shortcode.
  *
  * This shortcode outputs its content only to logged-in users.
+ *
+ * [logged_in]You are logged in![/logged_in]
+ *
+ * @shortcode logged_in
  *
  * @param array  $dummy_atts (unused) The shortocde attributes.
  * @param string $content    The shortcode content.
@@ -36,6 +37,10 @@ function on_shortcode_logged_in ($dummy_atts, $content)
  * Add the logged_out shortcode.
  *
  * This shortcode outputs its content only to logged-out users.
+ *
+ * [logged_out]Please log in![/logged_out]
+ *
+ * @shortcode logged_out
  *
  * @param array  $dummy_atts (unused) The shortocde attributes.
  * @param string $content    The shortcode content.
@@ -78,62 +83,6 @@ function on_shortcode_cap_image_server ($atts, $content)
         }
     }
     return $content;
-}
-
-/**
- * Get the path of the parent page.
- *
- * @param string $path The path of the page.
- *
- * @return string The path of the parent page.
- */
-
-function get_parent_path ($path)
-{
-    $a = explode ('/', trim ($path, '/'));
-    return implode ('/', array_slice ($a, 0, -1));
-}
-
-/**
- * Get the Capitular page url corresponding to a BK or Mordek No.
- *
- * This function figures out which subdirectory the Capitular page is in,
- * eg. pre814/ or ldf/ or post840/ ...
- *
- * @param string $corresp eg. "BK.42a" or "Mordek_15"
- *
- * @return string The url to the page, eg. "http://.../capit/pre814/bk-nr-042a" or null
- */
-
-function bk_to_permalink ($corresp)
-{
-    static $cache = array ();
-
-    global $wpdb;
-
-    if (array_key_exists ($corresp, $cache)) {
-        return $cache[$corresp];
-    }
-
-    $post_name = null;
-    if (preg_match ('/^BK[._](\d+)(\w?)$/', $corresp, $matches)) {
-        $post_name = 'bk-nr-' . str_pad ($matches[1], 3, '0', STR_PAD_LEFT) . $matches[2];
-    }
-    if (preg_match ('/^Mordek[._](\d+)(\w?)$/', $corresp, $matches)) {
-        $post_name = 'mordek-nr-' . str_pad ($matches[1], 2, '0', STR_PAD_LEFT) . $matches[2];
-    }
-    if ($post_name) {
-        $sql = $wpdb->prepare (
-            "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s",
-            $post_name
-        );
-        foreach ($wpdb->get_results ($sql) as $row) {
-            $url = get_permalink ($row->ID);
-            $cache[$corresp] = $url;
-            return $url;
-        }
-    }
-    return null;
 }
 
 /**
@@ -201,6 +150,12 @@ function if_status ($atts)
  *
  * This shortcode outputs its content if the ms. has that status.
  *
+ * [if_status path="/mss/wien" status="publish"]
+ *   <p>Wien is published!</p>
+ * [/if_status]
+ *
+ * @shortcode if_status
+ *
  * @param array  $atts    The shortocde attributes.  status = status, path = path of page
  * @param string $content The shortcode content.
  *
@@ -219,6 +174,12 @@ function on_shortcode_if_status ($atts, $content)
  * Add the if_not_status shortcode.
  *
  * This shortcode outputs its content if the ms. doesn't have that status.
+ *
+ * [if_not_status path="/mss/wien" status="publish"]
+ *   <p>Wien is not published!</p>
+ * [/if_not_status]
+ *
+ * @shortcode if_not_status
  *
  * @param array  $atts    The shortocde attributes.  status = status, path = path of page
  * @param string $content The shortcode content.
@@ -276,9 +237,23 @@ function if_visible ($path)
 /**
  * Add the if_visible shortcode.
  *
- * This shortcode outputs its content if the current user can see the page in path.
+ * This shortcode outputs its content if the current user can see *any* one of
+ * the pages in the path attribute.
  *
- * @param array  $atts    The shortocde attributes.  path = path of page
+ * [if_visible path="/mss/secret.html"]
+ *   <div>The secret manuscript.</div>
+ * [/if_visible]
+ *
+ * Use this with multiple pages to find out when to print headers, etc.
+ *
+ * [if_any_visible path="/mss/leo1.html /mss/leo2.html"]
+ *   <h2>Hic sunt leones</h2>
+ * [/if_any_visible]
+ *
+ * @shortcode if_visible
+ * @shortcode if_any_visible
+ *
+ * @param array  $atts    The shortocde attributes.  path = space separated paths of pages
  * @param string $content The shortcode content.
  *
  * @return string The shortcode content if the user can see the page in path.
@@ -286,8 +261,10 @@ function if_visible ($path)
 
 function on_shortcode_if_visible ($atts, $content)
 {
-    if (if_visible ($atts['path'])) {
-        return do_shortcode ($content);
+    foreach (preg_split ('/[\s,]+/', $atts['path']) as $path) {
+        if (if_visible ($path)) {
+            return do_shortcode ($content);
+        }
     }
     return '';
 }
@@ -295,9 +272,17 @@ function on_shortcode_if_visible ($atts, $content)
 /**
  * Add the if_not_visible shortcode.
  *
- * This shortcode outputs its content if the current user cannot see the page in path.
+ * This shortcode outputs its content if the current user cannot see *any* one
+ * of the pages in the path attribute.
  *
- * @param array  $atts    The shortocde attributes.  path = path of page
+ * [if_not_visible path="/premium.html"]
+ *   <p>Pay to see our boring premium content!</p>
+ * [/if_not_visible]
+ *
+ * @shortcode if_not_visible
+ * @shortcode if_any_not_visible
+ *
+ * @param array  $atts    The shortocde attributes.  path = space separated paths of pages
  * @param string $content The shortcode content.
  *
  * @return string The shortcode content if the current user cannot see the page in path.
@@ -305,8 +290,10 @@ function on_shortcode_if_visible ($atts, $content)
 
 function on_shortcode_if_not_visible ($atts, $content)
 {
-    if (!if_visible ($atts['path'])) {
-        return do_shortcode ($content);
+    foreach (preg_split ('/[\s,]+/', $atts['path']) as $path) {
+        if (!if_visible ($path)) {
+            return do_shortcode ($content);
+        }
     }
     return '';
 }
@@ -315,7 +302,11 @@ function on_shortcode_if_not_visible ($atts, $content)
  * Add the if_transcribed shortcode.
  *
  * This shortcode outputs its content if the capitular was already transcribed
- * on that page (in that manuscript).
+ * on that page (in the manuscript with an xml:id equal to the slot of the page).
+ *
+ * [if_transcribed path="/mss/barcelona" bk="BK.42"] and <a>here</a>[/if_transcribed]
+ *
+ * @shortcode if_transcribed
  *
  * @param array  $atts    The shortocde attributes.  path = path of page, bk = BK No.
  * @param string $content The shortcode content.
@@ -329,7 +320,7 @@ function on_shortcode_if_transcribed ($atts, $content)
 
     $page  = get_page_by_path (trim ($atts['path'], '/'));
     if ($page) {
-        $re_bk = '^' . $atts['bk'];
+        $re_bk = "^{$atts['bk']}(_|$)";
         $sql = $wpdb->prepare (
             "SELECT post_id FROM {$wpdb->postmeta} " .
             "WHERE meta_key = 'milestone-capitulare' AND post_id = %d " .
@@ -347,7 +338,16 @@ function on_shortcode_if_transcribed ($atts, $content)
 /**
  * Add the current_date shortcode.
  *
- * This shortcode outputs the current date.
+ * This shortcode outputs the current date using the preferred date
+ * representation for the current locale without the time.
+ *
+ * <p>Accessed on: [current_date]</p>
+ *
+ * yields:
+ *
+ * <p>Accessed on: Jan 1, 1970</p>
+ *
+ * @shortcode current_date
  *
  * @param array  $atts          The shortocde attributes.
  * @param string $dummy_content The shortcode content. (empty)
@@ -369,248 +369,20 @@ function on_shortcode_current_date ($atts, $dummy_content)
 }
 
 /**
- * Add the cite_as shortcode.
+ * Add the permalink shortcode.
  *
- * This shortcode outputs a short description of how to cite the post.
+ * This shortcode outputs the permalink for the current page.
  *
- * @param array  $atts          The shortocde attributes.
- * @param string $dummy_content The shortcode content. (empty)
+ * <p>URL: [permalink]</p>
  *
- * @return string A description of how to cite.
+ * yields:
+ *
+ * <p>URL: https://example.org/post/123</p>
+ *
+ * @shortcode permalink
  */
 
-function on_shortcode_cite_as ($atts, $dummy_content)
+function on_shortcode_permalink ($dummy_atts, $dummy_content)
 {
-    $atts = shortcode_atts (
-        array (
-            'author' => get_the_author (),
-            'title'  => get_the_title (),
-            'url'    => get_permalink (),
-            'date'   => strftime ('%x')
-        ),
-        $atts,
-        'cite_as'
-    );
-
-    $res = <<<EOF
-       <div class="cite_as">
-         <h5>[:de]Empfohlene Zitierweise[:en]How to cite[:]</h5>
-         <div>
-           <span class="author">{$atts['author']}</author>,
-           <span class="title">{$atts['title']}</title>,
-           [:de]in: Capitularia. Edition der fränkischen Herrschererlasse, bearb. von
-           Karl Ubl und Mitarb., Köln 2014 ff.
-           [:en]in: Capitularia. Edition of the Frankish Capitularies, ed. by
-           Karl Ubl and collaborators, Cologne 2014 ff.
-           [:]
-           URL: {$atts['url']} ([:de]abgerufen am[:en]accessed on[:] {$atts['date']})
-         </div>
-       </div>
-EOF;
-    return $res;
-}
-
-/**
- * The changes shortcode.
- *
- * This shortcode outputs a table of the tei:change entries in all the mss.
- *
- * @param array  $atts          The shortocde attributes.
- * @param string $dummy_content The shortcode content. (empty)
- *
- * @return string A HTML table.
- */
-
-function on_shortcode_cap_changes ($atts, $dummy_content)
-{
-    global $wpdb;
-
-    $atts = shortcode_atts (
-        array (
-            'cutoff' => '1970-01-01',
-            'prefix' => 'A',
-        ),
-        $atts,
-        'changes'
-    );
-
-    $cutoff = date ('Y-m-d', strtotime ($atts['cutoff']));
-    $prefix = htmlspecialchars ($atts['prefix']);
-    $publish = current_user_can ('read_private_pages') ? '' : "AND p.post_status = 'publish'";
-    $date_format = __ ('Y-m-d', 'capitularia'); // ISO 8601
-
-    $sql = $wpdb->prepare (
-        "SELECT p.ID as post_id, p.post_title, p.post_status, pm2.meta_value as xml_id, pm.meta_value as cchange " .
-        "FROM wp_posts p, wp_postmeta pm, wp_postmeta as pm2 " .
-        "WHERE p.ID = pm.post_id  AND pm.meta_key  = 'change' AND pm.meta_value >= %s $publish " .
-        "  AND p.ID = pm2.post_id AND pm2.meta_key = 'tei-xml-id'" .
-        "ORDER BY xml_id, cchange",
-        array ($cutoff)
-    );
-    $old_post_id = -1;
-    $old_alpha = '_';
-    $rows = $wpdb->get_results ($sql);
-
-    // Add a key to all objects in the array that allows for sensible
-    // sorting of numeric substrings.
-    foreach ($rows as $row) {
-        $row->key = preg_replace_callback (
-            '|\d+|',
-            function ($match) {
-                return 'zz' . strval (strlen ($match[0])) . $match[0];
-            },
-            $row->xml_id
-        ) . $row->cchange;
-    }
-
-    // Sort the array according to key.
-    usort (
-        $rows,
-        function ($row1, $row2) {
-            return strcoll ($row1->key, $row2->key);
-        }
-    );
-    $res = [];
-
-    $res[] = "<div class='mss-changes'>";
-    if (count ($rows)) {
-        $res[] = "<table>";
-        foreach ($rows as $row) {
-            if ($old_post_id != $row->post_id) {
-                if ($old_alpha != $row->post_title[0]) {
-                    $id = $row->post_title[0];
-                    $res[] = "<tr>";
-                    $res[] = "  <th id='{$prefix}{$id}' colspan='2'>$id</th>";
-                    $res[] = "<tr>";
-                    $old_alpha = $id;
-                }
-                $res[] = "<tr>";
-                $res[] = "  <td colspan='2' class='mss-status-post-status-{$row->post_status}'>";
-                $res[] = "<a href='/mss/{$row->xml_id}'>{$row->post_title}</a>";
-                $res[] = "</td>";
-                $res[] = "</tr>";
-                $old_post_id = $row->post_id;
-            };
-            list ($date, $who, $what) = explode ('/', $row->cchange);
-            $date = date_i18n ($date_format, strtotime ($date));
-            if (!empty ($what)) {
-                $res[] = "<tr>";
-                $res[] = "  <td class='date'>{$date}</td>";
-                $res[] = "  <td class='what'>{$what}</td>";
-                $res[] = "</tr>";
-            }
-        }
-        $res[] = "</table>";
-    } else {
-        $res[] = '<p>';
-        $res[] = __ ('None', 'capitularia');
-        $res[] = "</p>";
-    }
-    $res[] = "</div>";
-
-    return join ("\n", $res);
-}
-
-/**
- * The downloads shortcode.
- *
- * This shortcode outputs a table of the downloadable xml files.
- *
- * @param array  $atts          The shortocde attributes.
- * @param string $dummy_content The shortcode content. (empty)
- *
- * @return string A HTML table.
- */
-
-function on_shortcode_cap_downloads ($atts, $dummy_content)
-{
-    global $wpdb;
-
-    $atts = shortcode_atts (
-        array (
-            'th1' => '[:de]Handschrift[:en]Manuscript[:]',
-            'th2' => '[:de]XML-Dateien[:en]XML Files[:]',
-            'th3' => '[:de]Beschreibung (Mordek 1995)[:en]Description (Mordek 1995)[:]',
-        ),
-        $atts,
-        'downloads'
-    );
-
-    $publish = current_user_can ('read_private_pages') ? '1' : "p.post_status = 'publish'";
-
-    // Get the /mss page id.
-    $sql = "SELECT id FROM wp_posts WHERE post_name = 'mss' AND post_parent = 0;";
-    $mss_page_id = $wpdb->get_var ($sql);
-
-    $sql = $wpdb->prepare (
-        "SELECT DISTINCT p.post_title, p.post_status, pm.meta_value as xml_id, pm2.meta_value as mordek_page " .
-        "FROM wp_posts p " .
-        "JOIN      wp_postmeta pm  ON (p.ID = pm.post_id  AND pm.meta_key  = 'tei-xml-id') " .
-        "LEFT JOIN wp_postmeta pm2 ON (p.ID = pm2.post_id AND pm2.meta_key = 'mordek-1995-pages') " .
-        "WHERE p.post_parent = %d AND $publish " .
-        "ORDER BY xml_id",
-        array ($mss_page_id)
-    );
-    $old_alpha = '_';
-    $rows = $wpdb->get_results ($sql);
-
-    // Add a key to all objects in the array that allows for sensible
-    // sorting of numeric substrings.
-    foreach ($rows as $row) {
-        $row->key = preg_replace_callback (
-            '|\d+|',
-            function ($match) {
-                return 'zz' . strval (strlen ($match[0])) . $match[0];
-            },
-            $row->xml_id
-        );
-    }
-
-    // Sort the array according to key.
-    usort (
-        $rows,
-        function ($row1, $row2) {
-            return strcoll ($row1->key, $row2->key);
-        }
-    );
-    $res = [];
-
-    $res[] = "<div class='resources-downloads'>";
-    $res[] = "<table>";
-    $res[] = "<thead>";
-        $res[] = "<tr>";
-        $res[] = "  <th class='title'>{$atts['th1']}</th>";
-        $res[] = "  <th class='xml-download'>{$atts['th2']}</th>";
-        $res[] = "  <th class='pdf-download'>{$atts['th3']}</th>";
-        $res[] = "</tr>";
-    $res[] = "</thead>";
-    $res[] = "</tbody>";
-    foreach ($rows as $row) {
-        if ($row->xml_id[0] === '_') { // BK Superstruktur
-            continue;
-        }
-        if ($old_alpha != $row->post_title[0]) {
-            $id = $row->post_title[0];
-            $res[] = "<tr>";
-            $res[] = "  <th id='{$id}' colspan='3'>$id</th>";
-            $res[] = "<tr>";
-            $old_alpha = $id;
-        }
-        $res[] = "<tr class='mss-status-post-status-{$row->post_status}'>";
-        $res[] = "  <td class='title'><a href='/mss/{$row->xml_id}'>{$row->post_title}</a></td>";
-        $res[] = "  <td class='xml-download'>(<a href='/cap/publ/mss/{$row->xml_id}.xml' target='_blank'>xml</a>)</td>";
-        $pdf_page = intval ($row->mordek_page);
-        if ($pdf_page > 0) {
-            $pdf_page += 45; // 45 == pdf offset
-            $res[] = "  <td class='pdf-download'>(<a href='/cap/publ/resources/Mordek_Bibliotheca_1995.pdf#page={$pdf_page}' target='_blank'>pdf S. {$row->mordek_page}</a>)</td>";
-        } else {
-            $res[] = "  <td class='pdf-download'></td>";
-        }
-        $res[] = "</tr>";
-    }
-    $res[] = "</tbody>";
-    $res[] = "</table>";
-    $res[] = "</div>";
-
-    return join ("\n", $res);
+    return get_permalink ();
 }

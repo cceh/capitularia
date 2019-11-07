@@ -12,37 +12,27 @@ get_header ();
 
 get_main_start ('search-php');
 
-get_sidebar_start ();
-dynamic_sidebar ('search');
-get_sidebar_end ();
+/*
+ * Build Messages
+ */
 
-get_content_start ();
-
+// retrieve the 'You searched for: X' message
 $your_search = apply_filters ('cap_meta_search_your_search', '');
+
+// build the 'how many results' message
 $n_results = $wp_query->found_posts;
+$your_search = sprintf (
+    _n (
+        'Your search for: %1$s gave %2$d result.',
+        'Your search for: %1$s gave %2$d results.',
+        $n_results,
+        'capitularia'
+    ),
+    $your_search,
+    $n_results
+);
 
-if ($n_results) {
-    $your_search = sprintf (
-        _n (
-            'Your search for: %1$s gave one result.',
-            'Your search for: %1$s gave %2$d results.',
-            $n_results,
-            'capitularia'
-        ),
-        $your_search,
-        $n_results
-    );
-} else {
-    $your_search = sprintf (
-        __ (
-            'Your search for %1$s gave no results.',
-            'capitularia'
-        ),
-        $your_search
-    );
-}
-
-
+// initialize pagination
 $page_msg = __ ('Page:', 'capitularia');
 $pagination = paginate_links (
     array (
@@ -53,6 +43,20 @@ $pagination = paginate_links (
         'next_text'          => __ ('Next »', 'capitularia'),
     )
 );
+
+/*
+ * Add the 'search' sidebar.
+ */
+
+get_sidebar_start ();
+dynamic_sidebar ('search');
+get_sidebar_end ();
+
+/*
+ * Page Content
+ */
+
+get_content_start ();
 
 echo (
     "<header class='search-header cap-page-header'>\n  <h2>" .

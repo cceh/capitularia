@@ -43,9 +43,9 @@ class Dashboard_Page
      * @return void
      */
 
-    public function on_menu_dashboard_page ()
+    public function display ()
     {
-        global $cap_page_generator_config;
+        global $config;
 
         $title = esc_html (get_admin_page_title ());
         echo ("<div class='wrap'>\n");
@@ -67,16 +67,16 @@ class Dashboard_Page
 
         // output sections
 
-        $sections = array_slice ($cap_page_generator_config->sections, 1);
+        $sections = array_slice ($config->sections, 1);
         $paged = isset ($_REQUEST['paged']) ? $_REQUEST['paged'] : 1;
 
         echo ("<div id='tabs'>\n");
         echo ("<ul>\n");
         foreach ($sections as $section) {
             $section_id = $section[0];
-            $caption    = __ ($cap_page_generator_config->get_opt ($section_id, 'section_caption'));
+            $caption    = __ ($config->get_opt ($section_id, 'section_caption'));
             $ajax_url   = admin_url ('admin-ajax.php');
-            $class = $cap_page_generator_config->section_can ($section_id, 'publish')
+            $class = $config->section_can ($section_id, 'publish')
                    ? ' cap_can_publish' : ' cap_can_private';
             echo ("  <li>\n");
             echo ("    <a class='navtab $class' data-section='$section_id' ");
@@ -100,16 +100,20 @@ class Dashboard_Page
 
     public function display_section ($section, $paged)
     {
-        global $cap_page_generator_config;
+        global $config;
 
-        $section_id = $section[0];
-        $caption    = __ ($cap_page_generator_config->get_opt ($section_id, 'section_caption'));
-        $xml_dir    = $cap_page_generator_config->get_opt_path ('xml_root', $section_id, 'xml_dir');
+        $section_id  = $section[0];
+        $caption     = __ ($config->get_opt ($section_id, 'section_caption'));
+        $xml_dir     = $config->get_opt_path ('xml_root', $section_id, 'xml_dir');
+        $parent_page = get_home_url (
+            null, $config->get_opt ($section_id, 'slug_path', ''), 'https') . '/';
         echo ("<div id='tabs-$section_id' class='section'>\n");
         echo ("<h2>$caption</h2>\n");
-        echo ('<p>' . sprintf (__ ('Reading directory: %s', 'cap-page-generator'), $xml_dir) . "</p>\n");
+        echo ('<p>' . sprintf (__ ('Reading directory: %s', LANG), $xml_dir) . "</p>\n");
+        echo ('<p>' . sprintf (__ ('Generating pages under: %s', LANG),
+                               "<a href='$parent_page'>$parent_page</a>") . "</p>\n");
 
-        $page = DASHBOARD_PAGE_ID;
+        $page = DASHBOARD;
         $page_url = '/wp-admin/index.php';
 
         $table = new File_List_Table ($section_id, $xml_dir);
@@ -181,10 +185,10 @@ class Dashboard_Page
 
     private function process_bulk_actions ($action, $section_id, $filenames)
     {
-        global $cap_page_generator_config;
+        global $config;
 
         $messages = array ();
-        $path = $cap_page_generator_config->get_opt_path ('xml_root', $section_id, 'xml_dir');
+        $path = $config->get_opt_path ('xml_root', $section_id, 'xml_dir');
         foreach ($filenames as $filename) {
             $manuscript = new Manuscript ($section_id, $path . $filename);
             $result = $manuscript->do_action ($action);
@@ -210,13 +214,13 @@ class Dashboard_Page
 
     public function on_cap_action_file ()
     {
-        global $cap_page_generator_config;
+        global $config;
 
         $user_action = sanitize_key       ($_POST['user_action']);
         $section_id  = sanitize_key       ($_POST['section']);
         $filename    = sanitize_file_name ($_POST['filename']);
 
-        $path = $cap_page_generator_config->get_opt_path ('xml_root', $section_id, 'xml_dir');
+        $path = $config->get_opt_path ('xml_root', $section_id, 'xml_dir');
         $manuscript = new Manuscript ($section_id, $path . $filename);
         $result = $manuscript->do_action ($user_action);
         $this->send_json ($section_id, $result);
@@ -233,12 +237,12 @@ class Dashboard_Page
 
     public function on_cap_load_section ()
     {
-        global $cap_page_generator_config;
+        global $config;
 
         $section_id = sanitize_key ($_REQUEST['section']);
         $paged = isset ($_REQUEST['paged']) ? intval ($_REQUEST['paged']) : 1;
 
-        foreach ($cap_page_generator_config->sections as $section) {
+        foreach ($config->sections as $section) {
             if ($section[0] == $section_id) {
                 $this->display_section ($section, $paged);
                 wp_die ();
@@ -263,7 +267,7 @@ class Dashboard_Page
 
     private function send_json ($section_id, $error_struct)
     {
-        global $cap_page_generator_config;
+        global $config;
 
         $json = array (
             'success' => $error_struct[0] < 2, // 0 == success, 1 == warning, 2 == error
@@ -273,7 +277,7 @@ class Dashboard_Page
         if ($json['success']) {
             // capture HTML output in string
             ob_start ();
-            $xml_dir = $cap_page_generator_config->get_opt_path ('xml_root', $section_id, 'xml_dir');
+            $xml_dir = $config->get_opt_path ('xml_root', $section_id, 'xml_dir');
             $table = new File_List_Table ($section_id, $xml_dir);
             $table->set_pagination_args ($this->pagination_args);
             $table->prepare_items ();

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2019-02-25 16:58+0100\n"
-"PO-Revision-Date: 2018-05-22 10:48+0200\n"
+"POT-Creation-Date: 2019-11-06 20:05+0100\n"
+"PO-Revision-Date: 2019-11-06 20:05+0100\n"
 "Last-Translator: Marcello Perathoner <marcello@perathoner.de>\n"
 "Language-Team: German <>\n"
 "Language: de_DE\n"
@@ -17,193 +17,66 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.2.4\n"
 
-#: cap-collation.php:23
-msgid "Capitularia Collation"
-msgstr "Capitularia Kollation"
+#: class-settings-page.php:43
+msgid "General Settings"
+msgstr "Allgemeine Einstellungen"
 
-#: cap-collation.php:47
-msgctxt "Collation Algorithm"
-msgid "Dekker"
-msgstr "Dekker"
+#: class-settings-page.php:50
+msgid "Root directory"
+msgstr "Stammverzeichnis"
 
-#: cap-collation.php:48
-msgctxt "Collation Algorithm"
-msgid "Greedy String Tiling"
-msgstr "Greedy String Tiling"
+#: class-settings-page.php:57
+msgid "Shortcode"
+msgstr "Shortcode"
 
-#: cap-collation.php:49
-msgctxt "Collation Algorithm"
-msgid "MEDITE"
-msgstr "MEDITE"
-
-#: cap-collation.php:50
-msgctxt "Collation Algorithm"
-msgid "Needleman-Wunsch"
-msgstr "Needleman-Wunsch"
-
-#: cap-collation.php:51
-msgctxt "Collation Algorithm"
-msgid "Needleman-Wunsch-Gotoh"
-msgstr "Needleman-Wunsch-Gotoh"
-
-#: dashboard.php:38
-msgctxt "Button: Show manuscripts"
-msgid "Show manuscripts"
-msgstr "Handschriften anzeigen"
-
-#: dashboard.php:44
-msgctxt "Button: Start the collation"
-msgid "Collate"
-msgstr "Kollationieren"
-
-#: dashboard.php:53
-msgctxt "Button: Load the collation config"
-msgid "Load Config"
-msgstr "Konfiguration Laden"
-
-#: dashboard.php:64
-msgctxt "Button: Save the collation config"
-msgid "Save Config"
-msgstr "Konfiguration Speichern"
-
-#: dashboard.php:96
-msgctxt "H2 caption"
-msgid "Capitulary"
-msgstr "Kapitular"
-
-#: dashboard.php:97
-msgctxt "Label: for select"
-msgid "Select Capitulary and Section"
-msgstr "Wählen Sie Kapitular und Abschnitt"
-
-#: dashboard.php:138
-msgctxt "H2 caption"
-msgid "Manuscripts"
-msgstr "Handschriften"
-
-#: dashboard.php:139
-msgid "Include edits by later hands"
-msgstr "Einschließlich Edits von späterer Hand"
-
-#: dashboard.php:156
-msgctxt "H3 caption"
-msgid "Advanced Options"
-msgstr "Optionen für Fortgeschrittene"
-
-#: dashboard.php:157
-msgctxt "Label: for drop-down"
-msgid "Select Collation Algorithm"
-msgstr "Wählen Sie den Kollations-Algorithmus"
-
-#: dashboard.php:178
-msgctxt "Label: for drop-down"
-msgid "Select Levenshtein distance"
-msgstr "Wählen Sie den Levenshtein-Abstand"
-
-#: dashboard.php:179
-msgctxt "Either this or that, not both."
-msgid "or"
-msgstr "oder"
-
-#: dashboard.php:197
-msgctxt "Label: for drop-down"
-msgid "Select Levenshtein ratio"
-msgstr "Wählen Sie die Levenshtein-Ähnlichkeit"
-
-#: dashboard.php:218
-msgctxt "Label: for drop-down"
-msgid "Use segmentation"
-msgstr "Mit Segmentierung"
-
-#: dashboard.php:234
-msgctxt "Label: for drop-down"
-msgid "Use transpositions"
-msgstr "Mit Transpositionen"
-
-#: dashboard.php:247
-msgctxt "Label: for textarea"
-msgid "Normalizations"
-msgstr "Normalisierungen"
-
-#: dashboard.php:248
-msgctxt "Help text"
-msgid "One or more lines in the form: raw=normalized"
-msgstr "Eine oder mehrere Zeilen in der Form: original=normalisiert"
-
-#: functions.php:123
-msgctxt "Admin bar button caption"
-msgid "Collation"
-msgstr "Kollation"
-
-#: functions.php:425
-msgid "on"
-msgstr "an"
-
-#: functions.php:425
-msgid "off"
-msgstr "aus"
-
-#: class-witness-list-table.php:36
-msgid "Manuscript"
-msgstr "Handschrift"
-
-#: class-witness-list-table.php:37
-msgid "Manuscripts"
-msgstr "Handschriften"
-
-#: class-witness-list-table.php:88
-msgid "No manuscripts found."
-msgstr "Keine Handschriften gefunden."
-
-#: class-witness-list-table.php:117
-msgctxt "column heading"
-msgid "Manuscript Id"
-msgstr "Siglum"
-
-#: class-witness-list-table.php:157
+#: class-settings-page.php:102
 #, php-format
-msgctxt "Select a witness by id (screen reader only)"
-msgid "Select %s"
-msgstr "%s auswählen"
+msgid ""
+"Root directory of the files you want to include, eg.: %s/http/docs/cap/publ/"
+"cache"
+msgstr ""
+"Stammverzeichnis der Dateien die Sie einbinden wollen, z.B.: %s/http/docs/"
+"cap/publ/cache"
 
-#: dashboard-ajax.php:115
+#: class-settings-page.php:115
+msgid "The shortcode to use, eg.: cap_include"
+msgstr "Der Shortcode, den Sie benützen wollen, z.B.: cap_include"
+
+#: functions.php:38
 #, php-format
-msgid "Algorithm: %s"
-msgstr "Algorithmus: %s"
+msgctxt "Plugin name"
+msgid "%s: Illegal path."
+msgstr "%s: Ungültiger Pfad."
 
-#: dashboard-ajax.php:145
+#: functions.php:44
 #, php-format
-msgid "Levenshtein distance: %s"
-msgstr "Levenshtein-Abstand: %s"
+msgid "File not found: %s"
+msgstr "Datei %s nicht gefunden"
 
-#: dashboard-ajax.php:155
-#, php-format
-msgid "Levenshtein ratio: %s"
-msgstr "Levenshtein-Ähnlichkeit: %s"
+#: functions.php:86
+msgctxt "Button: Save Changes in setting page"
+msgid "Save Changes"
+msgstr "Änderungen speichern"
 
-#: dashboard-ajax.php:161
-#, php-format
-msgctxt "%s = on off"
-msgid "Segmentation: %s"
-msgstr "Segmentierung: %s"
+#: functions.php:182 functions.php:201
+msgid "Settings"
+msgstr "Einstellungen"
 
-#: dashboard-ajax.php:165
-#, php-format
-msgctxt "%s = on off"
-msgid "Transpositions: %s"
-msgstr "Transpositionen: %s"
+#: cap-file-includer.php:45
+msgid "Capitularia File Includer"
+msgstr "Capitularia Datei-Includer"
 
-#: dashboard-ajax.php:176
-#, php-format
-msgid "Collation output for %s"
-msgstr "Kollation für %s"
+#: cap-file-includer.php:46
+msgid "Includes external HTML files in Wordpress pages."
+msgstr "Bindet externe HTML-Dateien in Wordpress-Seiten ein."
 
-#: dashboard-ajax.php:204
-msgctxt "H3"
-msgid "Debug Output"
-msgstr "Debug Ausgabe"
+#~ msgid "Capitularia File Includer Settings"
+#~ msgstr "Capitularia Datei-Includer Einstellungen"
+
+#~ msgid "Root directory for included files"
+#~ msgstr "Stammverzeichnis der einzubindenden Dateien"
 
 #~ msgid "Capitularia Meta Search"
 #~ msgstr "Capitularia Meta-Suche"
@@ -213,9 +86,6 @@ msgstr "Debug Ausgabe"
 
 #~ msgid "Could not load XML file %s."
 #~ msgstr "Die XML-Datei %s konnte nicht geladen werden."
-
-#~ msgid "General Settings"
-#~ msgstr "Allgemeine Einstellungen"
 
 #~ msgctxt "Button: Admin reload the places file"
 #~ msgid "Reload Places File"
@@ -291,6 +161,140 @@ msgstr "Debug Ausgabe"
 #~ msgid "New title"
 #~ msgstr "Neuer Titel"
 
+#~ msgctxt "Button: Show manuscripts"
+#~ msgid "Show manuscripts"
+#~ msgstr "Handschriften anzeigen"
+
+#~ msgctxt "Button: Start the collation"
+#~ msgid "Collate"
+#~ msgstr "Kollationieren"
+
+#~ msgctxt "Button: Load the collation config"
+#~ msgid "Load Config"
+#~ msgstr "Konfiguration Laden"
+
+#~ msgctxt "H2 caption"
+#~ msgid "Capitulary"
+#~ msgstr "Kapitular"
+
+#~ msgctxt "Label: for select"
+#~ msgid "Select Capitulary and Section"
+#~ msgstr "Wählen Sie Kapitular und Abschnitt"
+
+#~ msgctxt "H2 caption"
+#~ msgid "Manuscripts"
+#~ msgstr "Handschriften"
+
+#~ msgid "Include edits by later hands"
+#~ msgstr "Einschließlich Edits von späterer Hand"
+
+#~ msgctxt "H3 caption"
+#~ msgid "Advanced Options"
+#~ msgstr "Optionen für Fortgeschrittene"
+
+#~ msgctxt "Label: for drop-down"
+#~ msgid "Select Collation Algorithm"
+#~ msgstr "Wählen Sie den Kollations-Algorithmus"
+
+#~ msgctxt "Label: for drop-down"
+#~ msgid "Select Levenshtein distance"
+#~ msgstr "Wählen Sie den Levenshtein-Abstand"
+
+#~ msgctxt "Either this or that, not both."
+#~ msgid "or"
+#~ msgstr "oder"
+
+#~ msgctxt "Label: for drop-down"
+#~ msgid "Select Levenshtein ratio"
+#~ msgstr "Wählen Sie die Levenshtein-Ähnlichkeit"
+
+#~ msgctxt "Label: for drop-down"
+#~ msgid "Use segmentation"
+#~ msgstr "Mit Segmentierung"
+
+#~ msgctxt "Label: for drop-down"
+#~ msgid "Use transpositions"
+#~ msgstr "Mit Transpositionen"
+
+#~ msgctxt "Label: for textarea"
+#~ msgid "Normalizations"
+#~ msgstr "Normalisierungen"
+
+#~ msgctxt "Help text"
+#~ msgid "One or more lines in the form: raw=normalized"
+#~ msgstr "Eine oder mehrere Zeilen in der Form: original=normalisiert"
+
+#~ msgctxt "Admin bar button caption"
+#~ msgid "Collation"
+#~ msgstr "Kollation"
+
+#~ msgid "on"
+#~ msgstr "an"
+
+#~ msgid "off"
+#~ msgstr "aus"
+
+#~ msgid "Algorithm: %s"
+#~ msgstr "Algorithmus: %s"
+
+#~ msgid "Levenshtein distance: %s"
+#~ msgstr "Levenshtein-Abstand: %s"
+
+#~ msgid "Levenshtein ratio: %s"
+#~ msgstr "Levenshtein-Ähnlichkeit: %s"
+
+#~ msgctxt "%s = on off"
+#~ msgid "Segmentation: %s"
+#~ msgstr "Segmentierung: %s"
+
+#~ msgctxt "%s = on off"
+#~ msgid "Transpositions: %s"
+#~ msgstr "Transpositionen: %s"
+
+#~ msgid "Collation output for %s"
+#~ msgstr "Kollation für %s"
+
+#~ msgctxt "H3"
+#~ msgid "Debug Output"
+#~ msgstr "Debug Ausgabe"
+
+#~ msgctxt "Collation Algorithm"
+#~ msgid "Dekker"
+#~ msgstr "Dekker"
+
+#~ msgctxt "Collation Algorithm"
+#~ msgid "Greedy String Tiling"
+#~ msgstr "Greedy String Tiling"
+
+#~ msgctxt "Collation Algorithm"
+#~ msgid "MEDITE"
+#~ msgstr "MEDITE"
+
+#~ msgctxt "Collation Algorithm"
+#~ msgid "Needleman-Wunsch"
+#~ msgstr "Needleman-Wunsch"
+
+#~ msgctxt "Collation Algorithm"
+#~ msgid "Needleman-Wunsch-Gotoh"
+#~ msgstr "Needleman-Wunsch-Gotoh"
+
+#~ msgid "Manuscript"
+#~ msgstr "Handschrift"
+
+#~ msgid "Manuscripts"
+#~ msgstr "Handschriften"
+
+#~ msgid "No manuscripts found."
+#~ msgstr "Keine Handschriften gefunden."
+
+#~ msgctxt "column heading"
+#~ msgid "Manuscript Id"
+#~ msgstr "Siglum"
+
+#~ msgctxt "Select a witness by id (screen reader only)"
+#~ msgid "Select %s"
+#~ msgstr "%s auswählen"
+
 #~ msgid "TEI file"
 #~ msgstr "TEI-Datei"
 
@@ -361,9 +365,6 @@ msgstr "Debug Ausgabe"
 #~ msgid "Page Generator"
 #~ msgstr "Seitengenerator"
 
-#~ msgid "Reading directory: %s"
-#~ msgstr "Gelesenes Verzeichnis: %s"
-
 #~ msgid "List of section ids"
 #~ msgstr "Liste der Sektion-Ids"
 
@@ -373,9 +374,6 @@ msgstr "Debug Ausgabe"
 #~ msgid "XML root"
 #~ msgstr "XML Stammverzeichnis"
 
-#~ msgid "Root directory for XML files in the AFS, eg.: %s"
-#~ msgstr "Stammverzeichnis der XML-Dateien im AFS, z.B.: %s"
-
 #~ msgid "XSL root"
 #~ msgstr "XSL Stammverzeichnis"
 
@@ -384,15 +382,6 @@ msgstr "Debug Ausgabe"
 
 #~ msgid "Schema root"
 #~ msgstr "Schema Stammverzeichnis"
-
-#~ msgid "Root directory for schema files in the AFS, eg.: %s"
-#~ msgstr "Stammverzeichnis der Schema-Dateien im AFS, z.B.: %s"
-
-#~ msgid "Shortcode"
-#~ msgstr "Shortcode"
-
-#~ msgid "The shortcode, eg.: cap_xsl"
-#~ msgstr "Der Shortcode, z.B.: cap_xsl"
 
 #~ msgid "xmllint path"
 #~ msgstr "xmllint Pfad"
@@ -626,9 +615,6 @@ msgstr "Debug Ausgabe"
 
 #~ msgid "Bottom horizontal navigation bar"
 #~ msgstr "Untere horizontale Navigationsleiste"
-
-#~ msgid "Capitularia Sidebar"
-#~ msgstr "Capitularia Sidebar"
 
 #~ msgid "Frontpage Image"
 #~ msgstr "Titelseiten-Bild"

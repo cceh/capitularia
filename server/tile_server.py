@@ -38,6 +38,7 @@ PADDING_SIZE  = int (PADDING_FACTOR * TILE_SIZE)
 METATILE_SIZE = (METATILE_FACTOR * TILE_SIZE) + (2 * PADDING_SIZE)
 
 epsg3857 = mapnik.Projection ("+init=epsg:3857") # OpenstreetMap  https://epsg.io/3857
+#epsg3857 = mapnik.Projection ("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over")
 #epsg4326 = mapnik.Projection ("+init=epsg:4326") # WGS84 / GPS    https://epsg.io/4326
 
 class Render:

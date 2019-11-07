@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2019-02-25 16:58+0100\n"
-"PO-Revision-Date: 2018-05-22 10:48+0200\n"
+"POT-Creation-Date: 2019-11-06 21:04+0100\n"
+"PO-Revision-Date: 2019-11-06 20:06+0100\n"
 "Last-Translator: Marcello Perathoner <marcello@perathoner.de>\n"
 "Language-Team: German <>\n"
 "Language: de_DE\n"
@@ -17,9 +17,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.2.4\n"
 
-#: class-settings-page.php:167
+#: cap-page-generator.php:98
+msgid "Capitularia Page Generator"
+msgstr "Capitularia Seiten-Generator"
+
+#: cap-page-generator.php:99
+msgid "Generate Wordpress pages for our TEI files."
+msgstr "Generiert Wordpress-Seiten aus unseren TEI-Dateien."
+
+#: class-settings-page.php:171
 msgid "General"
 msgstr "Allgemein"
 
@@ -48,194 +56,188 @@ msgstr "Un-veröffentlichen"
 
 #: class-file-list-table.php:95
 msgctxt "bulk action"
+msgid "Delete Revisions"
+msgstr "Revisionen löschen"
+
+#: class-file-list-table.php:96
+msgctxt "bulk action"
 msgid "Refresh"
 msgstr "Neu generieren"
 
-#: class-file-list-table.php:97
+#: class-file-list-table.php:98
 msgctxt "bulk action"
 msgid "Validate"
 msgstr "Validieren"
 
-#: class-file-list-table.php:99
+#: class-file-list-table.php:100
 msgctxt "bulk action"
 msgid "Extract metadata"
 msgstr "Meta-Daten extrahieren"
 
-#: class-file-list-table.php:101
+#: class-file-list-table.php:102
 msgctxt "file status"
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: class-file-list-table.php:102
+#: class-file-list-table.php:103
 msgctxt "file status"
 msgid "Published privately"
 msgstr "Privat veröffentlicht"
 
-#: class-file-list-table.php:103
+#: class-file-list-table.php:104
 msgctxt "file status"
 msgid "Not published"
 msgstr "Nicht veröffentlicht"
 
-#: class-file-list-table.php:201
+#: class-file-list-table.php:202
 msgid "No TEI files found."
 msgstr "Keine TEI-Dateien gefunden."
 
-#: class-file-list-table.php:229
+#: class-file-list-table.php:230
 msgctxt "column heading"
 msgid "Slug"
 msgstr "Slug"
 
-#: class-file-list-table.php:230
+#: class-file-list-table.php:231
 msgctxt "column heading"
 msgid "Status"
 msgstr "Status"
 
-#: class-file-list-table.php:231
+#: class-file-list-table.php:232
 msgctxt "Manuscript title column heading"
 msgid "Title"
 msgstr "Titel"
 
-#: class-file-list-table.php:275
+#: class-file-list-table.php:276
 #, php-format
 msgctxt "Select a filename (screen reader only)"
 msgid "Select %s"
 msgstr "%s auswählen"
 
-#: class-config.php:70
+#: class-config.php:62
 msgid "List of section ids"
 msgstr "Liste der Sektion-Ids"
 
-#: class-config.php:72
+#: class-config.php:64
 #, php-format
 msgid "List of section ids (space-separated). Eg.: %s"
 msgstr "Liste der Sektion-Ids (Leerzeichen-getrennt). Z.B.: %s"
 
-#: class-config.php:79
-msgid "XML root"
-msgstr "XML Stammverzeichnis"
+#: class-config.php:71
+msgid "XML root path"
+msgstr "XML Pfad"
 
-#: class-config.php:81
+#: class-config.php:73
 #, php-format
 msgid "Root directory for XML files in the AFS, eg.: %s"
 msgstr "Stammverzeichnis der XML-Dateien im AFS, z.B.: %s"
 
-#: class-config.php:88
-msgid "XSL root"
-msgstr "XSL Stammverzeichnis"
+#: class-config.php:80
+msgid "Schema root path"
+msgstr "Schema Pfad"
 
-#: class-config.php:90
-#, php-format
-msgid "Root directory for XSL files in the AFS, eg.: %s"
-msgstr "Stammverzeichnis der XSL-Dateien im AFS, z.B.: %s"
-
-#: class-config.php:97
-msgid "Schema root"
-msgstr "Schema Stammverzeichnis"
-
-#: class-config.php:99
+#: class-config.php:82
 #, php-format
 msgid "Root directory for schema files in the AFS, eg.: %s"
 msgstr "Stammverzeichnis der Schema-Dateien im AFS, z.B.: %s"
+
+#: class-config.php:89
+msgid "xmllint path"
+msgstr "xmllint Pfad"
+
+#: class-config.php:91
+#, php-format
+msgid "The full path to the xmllint utility as seen from the server, eg.: %s"
+msgstr "Pfad- und Dateiname des xmllint-tools vom Server aus gesehen, z.B.: %s"
+
+#: class-config.php:100
+msgid "Section name"
+msgstr "Name der Sektion"
+
+#: class-config.php:101
+msgid "The name of this section"
+msgstr "Der Name dieser Sektion"
 
 #: class-config.php:106
 msgid "Shortcode"
 msgstr "Shortcode"
 
 #: class-config.php:107
-msgid "The shortcode, eg.: cap_xsl"
-msgstr "Der Shortcode, z.B.: cap_xsl"
+msgid "The code to insert in the page"
+msgstr "Der auf der neuen Seite einzufügende Code"
 
 #: class-config.php:112
-msgid "xmllint path"
-msgstr "xmllint Pfad"
-
-#: class-config.php:114
-#, php-format
-msgid "The full path to the xmllint utility as seen from the server, eg.: %s"
-msgstr "Pfad- und Dateiname des xmllint-tools vom Server aus gesehen, z.B.: %s"
-
-#: class-config.php:123
-msgid "Section name"
-msgstr "Name der Sektion"
-
-#: class-config.php:124
-msgid "Name of this section"
-msgstr "Name dieser Sektion"
-
-#: class-config.php:129
 msgid "XML files directory"
 msgstr "Verzeichnis der XML-Dateien"
 
-#: class-config.php:131
+#: class-config.php:114
 #, php-format
-msgid "Directory (relative to XML root), eg.: %s"
-msgstr "Verzeichnis (relativ zum XML-Stammverzeichnis), z.B.: %s"
+msgid "The path to the XML files (relative to the XML Root path), eg.: %s"
+msgstr "Der Pfad zur den XML-Dateien (relativ zum XML Pfad), z.B. %s"
 
-#: class-config.php:138
-msgid "XSL files list"
-msgstr "Liste der XSL-Dateien"
-
-#: class-config.php:139
-msgid ""
-"A list of xsl files to run (relative to XSL root) (space-separated list)."
-msgstr ""
-"Liste der anzuwendenden XSL-Dateien (relativ zum XSL-Stammverzeichnis) (mit "
-"Leerzeichen getrennt)."
-
-#: class-config.php:144
+#: class-config.php:121
 msgid "XSL schema"
 msgstr "XSL Schema"
 
-#: class-config.php:145
-msgid "The path to the xsl schema file (relative to schema root)."
-msgstr "Der Pfad zur XSL-Schema-Datei (relativ zum Schema-Stammverzeichnis)."
+#: class-config.php:122
+msgid "The path to the xsl schema file (relative to the Schema Root path)."
+msgstr "Der Pfad zur XSL-Schema-Datei (relativ zum Schema Pfad)."
 
-#: class-config.php:150
+#: class-config.php:127
 msgid "Slug path"
 msgstr "Slug-Pfad"
 
-#: class-config.php:152
+#: class-config.php:129
 #, php-format
 msgid "The URL path to the page, eg.: %s"
 msgstr "Der URL-Pfad zur Seite, z.B.: %s"
 
-#: class-config.php:159
+#: class-config.php:136
 msgid "Slug prefix"
 msgstr "Slug Prefix"
 
-#: class-config.php:161
+#: class-config.php:138
 #, php-format
 msgid "The slug prefix for the pages, eg.: %s"
 msgstr "Prefix für den Slug  der Seiten, z.B.: %s"
 
-#: class-config.php:168
+#: class-config.php:145
 msgid "Page statuses list"
 msgstr "Seiten-Status-Liste"
 
-#: class-config.php:170
+#: class-config.php:147
 #, php-format
 msgid "The allowed page statuses (space-separated list). Eg.: %s"
 msgstr "Welche Status sind erlaubt (mit Leerzeichen getrennt)? Z.B.: %s"
 
-#: class-config.php:177
+#: class-config.php:154
 msgid "Sidebars"
 msgstr "Sidebars"
 
-#: class-config.php:179
+#: class-config.php:156
 #, php-format
 msgid "The sidebars (space-separated list). Eg.: %s"
 msgstr ""
 "Welche Sidebars sollen angezeigt werden (mit Leerzeichen getrennt)? Z.B.: %s"
 
-#: class-page-generator.php:50
-msgid "Capitularia Page Generator"
-msgstr "Capitularia Seiten-Generator"
+#: functions.php:31
+msgctxt "Button: Save Changes in setting page"
+msgid "Save Changes"
+msgstr "Änderungen speichern"
 
-#: class-page-generator.php:73
+#: functions.php:220
 msgid "You have no permission to edit posts."
 msgstr "Sie haben keine Berechtigung Posts zu editieren."
 
-#: class-page-generator.php:214
+#: functions.php:318 functions.php:372
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: functions.php:328
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: functions.php:349
 msgid "Page Generator"
 msgstr "Seitengenerator"
 
@@ -264,45 +266,79 @@ msgstr "Fehler: die Seite %s konnte nicht gelöscht werden."
 msgid "Page %s unpublished."
 msgstr "Seite %s veröffentlicht."
 
-#: class-manuscript.php:310
+#: class-manuscript.php:311
+#, php-format
+msgid "Revisions for %s deleted."
+msgstr "Revisionen für %s gelöscht."
+
+#: class-manuscript.php:334
 msgid "No title"
 msgstr "Kein Titel"
 
-#: class-manuscript.php:358
+#: class-manuscript.php:369
 #, php-format
 msgid "Page %1$s created with status set to %2$s."
 msgstr "Die Seite %1$s wurde mit Status %2$s erstellt."
 
-#: class-manuscript.php:365
+#: class-manuscript.php:376
 #, php-format
 msgid "Error: could not create page %s."
 msgstr "Fehler: die Seite %s konnte nicht erstellt werden."
 
-#: class-manuscript.php:384
+#: class-manuscript.php:395
 #, php-format
 msgid "Error while extracting metadata: no page with slug %s."
 msgstr ""
 "Fehler beim Extrahieren der Meta-Daten: es gibt keine Seite mit Slug: %s."
 
-#: class-manuscript.php:393
+#: class-manuscript.php:404
 #, php-format
 msgid "Errors while extracting metadata from file %s."
 msgstr "Fehler beim Extrahieren der Meta-Daten aus Datei %s."
 
-#: class-manuscript.php:401
+#: class-manuscript.php:412
 #, php-format
 msgid "Metadata extracted from file %s."
 msgstr "Meta-Daten aus Datei %s extrahiert."
 
-#: class-manuscript.php:434
+#: class-manuscript.php:446
 #, php-format
 msgid "The post is already %s."
 msgstr "Der Post ist bereits %s."
 
-#: class-dashboard-page.php:110
+#: class-dashboard-page.php:112
 #, php-format
 msgid "Reading directory: %s"
 msgstr "Gelesenes Verzeichnis: %s"
+
+#: class-dashboard-page.php:113
+#, php-format
+msgid "Generating pages under: %s"
+msgstr "Generiere Seiten unter: %s"
+
+#~ msgid "%s Settings"
+#~ msgstr "%s Einstellungen"
+
+#~ msgid "Directory (relative to XML root path), eg.: %s"
+#~ msgstr "Verzeichnis (relativ zum XML Pfad), z.B.: %s"
+
+#~ msgid "XSL root"
+#~ msgstr "XSL Stammverzeichnis"
+
+#~ msgid "Root directory for XSL files in the AFS, eg.: %s"
+#~ msgstr "Stammverzeichnis der XSL-Dateien im AFS, z.B.: %s"
+
+#~ msgid "The shortcode, eg.: cap_xsl"
+#~ msgstr "Der Shortcode, z.B.: cap_xsl"
+
+#~ msgid "XSL files list"
+#~ msgstr "Liste der XSL-Dateien"
+
+#~ msgid ""
+#~ "A list of xsl files to run (relative to XSL root) (space-separated list)."
+#~ msgstr ""
+#~ "Liste der anzuwendenden XSL-Dateien (relativ zum XSL-Stammverzeichnis) "
+#~ "(mit Leerzeichen getrennt)."
 
 #~ msgid "Capitularia Meta Search"
 #~ msgstr "Capitularia Meta-Suche"
@@ -312,9 +348,6 @@ msgstr "Gelesenes Verzeichnis: %s"
 
 #~ msgid "Could not load XML file %s."
 #~ msgstr "Die XML-Datei %s konnte nicht geladen werden."
-
-#~ msgid "General Settings"
-#~ msgstr "Allgemeine Einstellungen"
 
 #~ msgctxt "Button: Admin reload the places file"
 #~ msgid "Reload Places File"
@@ -401,10 +434,6 @@ msgstr "Gelesenes Verzeichnis: %s"
 #~ msgctxt "Button: Load the collation config"
 #~ msgid "Load Config"
 #~ msgstr "Konfiguration Laden"
-
-#~ msgctxt "Button: Save the collation config"
-#~ msgid "Save Config"
-#~ msgstr "Konfiguration Speichern"
 
 #~ msgctxt "H2 caption"
 #~ msgid "Capitulary"
@@ -763,9 +792,6 @@ msgstr "Gelesenes Verzeichnis: %s"
 
 #~ msgid "Transcription Sidebar"
 #~ msgstr "Transkriptions-Sidebar"
-
-#~ msgid "The sidebar on transcription pages"
-#~ msgstr "Die Sidebar auf Transkriptionsseiten"
 
 #~ msgid "Search Page Sidebar"
 #~ msgstr "Such-Seiten-Sidebar"

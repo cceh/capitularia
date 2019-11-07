@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Capitularia 2.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2019-02-25 16:58+0100\n"
+"POT-Creation-Date: 2019-11-06 21:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: class-settings-page.php:167
+#: cap-page-generator.php:98
+msgid "Capitularia Page Generator"
+msgstr ""
+
+#: cap-page-generator.php:99
+msgid "Generate Wordpress pages for our TEI files."
+msgstr ""
+
+#: class-settings-page.php:171
 msgid "General"
 msgstr ""
 
@@ -46,93 +54,106 @@ msgstr ""
 
 #: class-file-list-table.php:95
 msgctxt "bulk action"
+msgid "Delete Revisions"
+msgstr ""
+
+#: class-file-list-table.php:96
+msgctxt "bulk action"
 msgid "Refresh"
 msgstr ""
 
-#: class-file-list-table.php:97
+#: class-file-list-table.php:98
 msgctxt "bulk action"
 msgid "Validate"
 msgstr ""
 
-#: class-file-list-table.php:99
+#: class-file-list-table.php:100
 msgctxt "bulk action"
 msgid "Extract metadata"
 msgstr ""
 
-#: class-file-list-table.php:101
+#: class-file-list-table.php:102
 msgctxt "file status"
 msgid "Published"
 msgstr ""
 
-#: class-file-list-table.php:102
+#: class-file-list-table.php:103
 msgctxt "file status"
 msgid "Published privately"
 msgstr ""
 
-#: class-file-list-table.php:103
+#: class-file-list-table.php:104
 msgctxt "file status"
 msgid "Not published"
 msgstr ""
 
-#: class-file-list-table.php:201
+#: class-file-list-table.php:202
 msgid "No TEI files found."
-msgstr ""
-
-#: class-file-list-table.php:229
-msgctxt "column heading"
-msgid "Slug"
 msgstr ""
 
 #: class-file-list-table.php:230
 msgctxt "column heading"
-msgid "Status"
+msgid "Slug"
 msgstr ""
 
 #: class-file-list-table.php:231
+msgctxt "column heading"
+msgid "Status"
+msgstr ""
+
+#: class-file-list-table.php:232
 msgctxt "Manuscript title column heading"
 msgid "Title"
 msgstr ""
 
-#: class-file-list-table.php:275
+#: class-file-list-table.php:276
 #, php-format
 msgctxt "Select a filename (screen reader only)"
 msgid "Select %s"
 msgstr ""
 
-#: class-config.php:70
+#: class-config.php:62
 msgid "List of section ids"
 msgstr ""
 
-#: class-config.php:72
+#: class-config.php:64
 #, php-format
 msgid "List of section ids (space-separated). Eg.: %s"
 msgstr ""
 
-#: class-config.php:79
-msgid "XML root"
+#: class-config.php:71
+msgid "XML root path"
 msgstr ""
 
-#: class-config.php:81
+#: class-config.php:73
 #, php-format
 msgid "Root directory for XML files in the AFS, eg.: %s"
 msgstr ""
 
-#: class-config.php:88
-msgid "XSL root"
+#: class-config.php:80
+msgid "Schema root path"
 msgstr ""
 
-#: class-config.php:90
-#, php-format
-msgid "Root directory for XSL files in the AFS, eg.: %s"
-msgstr ""
-
-#: class-config.php:97
-msgid "Schema root"
-msgstr ""
-
-#: class-config.php:99
+#: class-config.php:82
 #, php-format
 msgid "Root directory for schema files in the AFS, eg.: %s"
+msgstr ""
+
+#: class-config.php:89
+msgid "xmllint path"
+msgstr ""
+
+#: class-config.php:91
+#, php-format
+msgid "The full path to the xmllint utility as seen from the server, eg.: %s"
+msgstr ""
+
+#: class-config.php:100
+msgid "Section name"
+msgstr ""
+
+#: class-config.php:101
+msgid "The name of this section"
 msgstr ""
 
 #: class-config.php:106
@@ -140,97 +161,80 @@ msgid "Shortcode"
 msgstr ""
 
 #: class-config.php:107
-msgid "The shortcode, eg.: cap_xsl"
+msgid "The code to insert in the page"
 msgstr ""
 
 #: class-config.php:112
-msgid "xmllint path"
+msgid "XML files directory"
 msgstr ""
 
 #: class-config.php:114
 #, php-format
-msgid "The full path to the xmllint utility as seen from the server, eg.: %s"
+msgid "The path to the XML files (relative to the XML Root path), eg.: %s"
 msgstr ""
 
-#: class-config.php:123
-msgid "Section name"
-msgstr ""
-
-#: class-config.php:124
-msgid "Name of this section"
-msgstr ""
-
-#: class-config.php:129
-msgid "XML files directory"
-msgstr ""
-
-#: class-config.php:131
-#, php-format
-msgid "Directory (relative to XML root), eg.: %s"
-msgstr ""
-
-#: class-config.php:138
-msgid "XSL files list"
-msgstr ""
-
-#: class-config.php:139
-msgid ""
-"A list of xsl files to run (relative to XSL root) (space-separated list)."
-msgstr ""
-
-#: class-config.php:144
+#: class-config.php:121
 msgid "XSL schema"
 msgstr ""
 
-#: class-config.php:145
-msgid "The path to the xsl schema file (relative to schema root)."
+#: class-config.php:122
+msgid "The path to the xsl schema file (relative to the Schema Root path)."
 msgstr ""
 
-#: class-config.php:150
+#: class-config.php:127
 msgid "Slug path"
 msgstr ""
 
-#: class-config.php:152
+#: class-config.php:129
 #, php-format
 msgid "The URL path to the page, eg.: %s"
 msgstr ""
 
-#: class-config.php:159
+#: class-config.php:136
 msgid "Slug prefix"
 msgstr ""
 
-#: class-config.php:161
+#: class-config.php:138
 #, php-format
 msgid "The slug prefix for the pages, eg.: %s"
 msgstr ""
 
-#: class-config.php:168
+#: class-config.php:145
 msgid "Page statuses list"
 msgstr ""
 
-#: class-config.php:170
+#: class-config.php:147
 #, php-format
 msgid "The allowed page statuses (space-separated list). Eg.: %s"
 msgstr ""
 
-#: class-config.php:177
+#: class-config.php:154
 msgid "Sidebars"
 msgstr ""
 
-#: class-config.php:179
+#: class-config.php:156
 #, php-format
 msgid "The sidebars (space-separated list). Eg.: %s"
 msgstr ""
 
-#: class-page-generator.php:50
-msgid "Capitularia Page Generator"
+#: functions.php:31
+msgctxt "Button: Save Changes in setting page"
+msgid "Save Changes"
 msgstr ""
 
-#: class-page-generator.php:73
+#: functions.php:220
 msgid "You have no permission to edit posts."
 msgstr ""
 
-#: class-page-generator.php:214
+#: functions.php:318 functions.php:372
+msgid "Settings"
+msgstr ""
+
+#: functions.php:328
+msgid "Dashboard"
+msgstr ""
+
+#: functions.php:349
 msgid "Page Generator"
 msgstr ""
 
@@ -259,41 +263,51 @@ msgstr ""
 msgid "Page %s unpublished."
 msgstr ""
 
-#: class-manuscript.php:310
+#: class-manuscript.php:311
+#, php-format
+msgid "Revisions for %s deleted."
+msgstr ""
+
+#: class-manuscript.php:334
 msgid "No title"
 msgstr ""
 
-#: class-manuscript.php:358
+#: class-manuscript.php:369
 #, php-format
 msgid "Page %1$s created with status set to %2$s."
 msgstr ""
 
-#: class-manuscript.php:365
+#: class-manuscript.php:376
 #, php-format
 msgid "Error: could not create page %s."
 msgstr ""
 
-#: class-manuscript.php:384
+#: class-manuscript.php:395
 #, php-format
 msgid "Error while extracting metadata: no page with slug %s."
 msgstr ""
 
-#: class-manuscript.php:393
+#: class-manuscript.php:404
 #, php-format
 msgid "Errors while extracting metadata from file %s."
 msgstr ""
 
-#: class-manuscript.php:401
+#: class-manuscript.php:412
 #, php-format
 msgid "Metadata extracted from file %s."
 msgstr ""
 
-#: class-manuscript.php:434
+#: class-manuscript.php:446
 #, php-format
 msgid "The post is already %s."
 msgstr ""
 
-#: class-dashboard-page.php:110
+#: class-dashboard-page.php:112
 #, php-format
 msgid "Reading directory: %s"
+msgstr ""
+
+#: class-dashboard-page.php:113
+#, php-format
+msgid "Generating pages under: %s"
 msgstr ""

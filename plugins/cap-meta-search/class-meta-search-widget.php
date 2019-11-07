@@ -28,12 +28,12 @@ class Widget extends \WP_Widget
     {
         $widget_ops = array (
             'classname' => 'cap_meta_search_widget',
-            'description' => __ ('Search widget for Capitularia metadata.', 'cap-meta-search'),
+            'description' => __ ('Search widget for Capitularia metadata.', LANG),
         );
         $control_ops = array ('width' => 400, 'height' => 350);
         parent::__construct (
             'cap_meta_search_widget',
-            __ ('Capitularia Search Box Widget', 'cap-meta-search'),
+            __ ('Capitularia Search Box Widget', LANG),
             $widget_ops,
             $control_ops
         );
@@ -79,7 +79,7 @@ class Widget extends \WP_Widget
         global $wpdb;
         $bks = $wpdb->get_results ($sql);
 
-        $all = _x ('All', '\'All\' option in drop-down', 'cap-meta-search');
+        $all = _x ('All', '\'All\' option in drop-down', LANG);
         echo ("    <option value=''>$all</option>\n");
 
         // Add a key to all objects in the array that allows for sensible
@@ -200,37 +200,37 @@ class Widget extends \WP_Widget
         echo ("<div class='cap-meta-search-box'>\n");
         echo ("<form>\n");
 
-        $label   = __ ('Capitularies contained', 'cap-meta-search');
-        $tooltip = __ ('Only show manuscripts that contain this capitulary.', 'cap-meta-search');
+        $label   = __ ('Capitularies contained', LANG);
+        $tooltip = __ ('Only show manuscripts that contain this capitulary.', LANG);
         $this->echo_select ($label, 'capit',     'msitem-corresp', $tooltip);
 
         echo ("<div class='clearfix'>\n");
-        $label   = __ ('After', 'cap-meta-search');
-        $tooltip = __ ('Only show manuscripts created after this year.', 'cap-meta-search');
+        $label   = __ ('After', LANG);
+        $tooltip = __ ('Only show manuscripts created after this year.', LANG);
         $this->echo_input  ($label, 'notbefore', '700',  $tooltip);
 
-        $label   = __ ('Before', 'cap-meta-search');
-        $tooltip = __ ('Only show manuscripts created before this year.', 'cap-meta-search');
+        $label   = __ ('Before', LANG);
+        $tooltip = __ ('Only show manuscripts created before this year.', LANG);
         $this->echo_input  ($label, 'notafter',  '1000', $tooltip);
         echo ("</div>\n");
 
-        $label   = __ ('Origin', 'cap-meta-search');
-        $tooltip = __ ('Only show manuscripts created in this region.', 'cap-meta-search');
+        $label   = __ ('Origin', LANG);
+        $tooltip = __ ('Only show manuscripts created in this region.', LANG);
         $this->echo_places_tree ($label, 'places', $tooltip);
 
-        $label       = __ ('Free Text', 'cap-meta-search');
-        $tooltip     = __ ('Free text search', 'cap-meta-search');
-        $placeholder = __ ('Free Text', 'cap-meta-search');
+        $label       = __ ('Free Text', LANG);
+        $tooltip     = __ ('Free text search', LANG);
+        $placeholder = __ ('Free Text', LANG);
         $this->echo_input  ($label, 's', $placeholder, $tooltip);
 
         echo ("<div class='cap-meta-search-buttons clearfix'>\n");
 
-        $label   = __ ('Search', 'cap-meta-search');
-        $tooltip = __ ('Start the search', 'cap-meta-search');
+        $label   = __ ('Search', LANG);
+        $tooltip = __ ('Start the search', LANG);
         echo ("  <input class='cap-meta-search-submit' type='submit' value='$label' title='$tooltip' />\n");
 
-        $label   = __ ('Help', 'cap-meta-search');
-        $tooltip = __ ('Show some help', 'cap-meta-search');
+        $label   = __ ('Help', LANG);
+        $tooltip = __ ('Show some help', LANG);
         echo ("  <input class='cap-meta-search-help'   type='button' value='$label' title='$tooltip' />\n");
 
         echo ("</div>\n");
@@ -281,7 +281,7 @@ class Widget extends \WP_Widget
                             'compare' => '=',
                             'type' => 'CHAR'
                         );
-                        $this->your_search[] = sprintf (__ ('contains %s', 'cap-meta-search'), $val);
+                        $this->your_search[] = sprintf (__ ('contains %s', LANG), $val);
                         continue;
                     }
                     if ($key == 'notbefore') {
@@ -292,7 +292,7 @@ class Widget extends \WP_Widget
                             'compare' => '>=',
                             'type' => 'NUMERIC'
                         );
-                        $this->your_search[] = sprintf (__ ('after %d', 'cap-meta-search'), $val);
+                        $this->your_search[] = sprintf (__ ('after %d', LANG), $val);
                         continue;
                     }
                     if ($key == 'notafter') {
@@ -303,7 +303,7 @@ class Widget extends \WP_Widget
                             'compare' => '<=',
                             'type' => 'NUMERIC'
                         );
-                        $this->your_search[] = sprintf (__ ('before %d', 'cap-meta-search'), $val);
+                        $this->your_search[] = sprintf (__ ('before %d', LANG), $val);
                         continue;
                     }
                     if ($key == 'places') {
@@ -320,7 +320,7 @@ class Widget extends \WP_Widget
                                 'type' => 'CHAR'
                             );
                             $this->your_search[] = sprintf (
-                                __ ('origin in %s', 'cap-meta-search'),
+                                __ ('origin in %s', LANG),
                                 implode (', ', get_place_names ($places, $val))
                             );
                         }
@@ -427,7 +427,7 @@ class Widget extends \WP_Widget
 
     public function form ($instance)
     {
-        $this->the_option ($instance, 'title', __ ('Title', 'cap-meta-search'), __ ('New title', 'cap-meta-search'));
+        $this->the_option ($instance, 'title', __ ('Title', LANG), __ ('New title', LANG));
     }
 
     /**

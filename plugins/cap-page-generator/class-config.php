@@ -7,24 +7,6 @@
 
 namespace cceh\capitularia\page_generator;
 
-/** @var string Wordpress ID of the settings (option) page */
-const OPTIONS_PAGE_ID      = 'cap_page_gen_options';
-
-/** @var string Wordpress ID of the dashboard page */
-const DASHBOARD_PAGE_ID    = 'cap_page_gen_dashboard';
-
-/** @var string AJAX security */
-const NONCE_SPECIAL_STRING = 'cap_page_gen_nonce';
-
-/** @var string AJAX security */
-const NONCE_PARAM_NAME     = '_ajax_nonce';
-
-/** @var string Where our Wordpress is in the filesystem */
-const AFS_ROOT             = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
-
-/** @var string Parameters for the xmllint utility */
-const XMLLINT_PARAMS       = '--noout --relaxng';
-
 /**
  * Contains configuration parameters.
  */
@@ -60,126 +42,121 @@ class Config
 
     public function __construct ()
     {
-        $namespace = __NAMESPACE__;
+        $this->sections = null;
+    }
 
-        // FIXME: too early for translation
+    /**
+     * Set up the options
+     *
+     * If we setup the options in the constructor it will be too early for
+     * translation to kick in.
+     *
+     * @return
+     */
 
+    public function init ()
+    {
         $section_general = array (
             array (
                 'section_id_list',
-                __ ('List of section ids', 'cap-page-generator'),
+                __ ('List of section ids', LANG),
                 sprintf (
-                    __ ('List of section ids (space-separated). Eg.: %s', 'cap-page-generator'),
+                    __ ('List of section ids (space-separated). Eg.: %s', LANG),
                     'mss mss_internal capit_ldf capit_ldf_internal'
                 ),
-                "$namespace\cap_sanitize_key_list",
+                ns ('cap_sanitize_key_list'),
             ),
             array (
                 'xml_root',
-                __ ('XML root', 'cap-page-generator'),
+                __ ('XML root path', LANG),
                 sprintf (
-                    __ ('Root directory for XML files in the AFS, eg.: %s', 'cap-page-generator'),
+                    __ ('Root directory for XML files in the AFS, eg.: %s', LANG),
                     AFS_ROOT . 'http/docs/cap'
                 ),
-                "$namespace\cap_sanitize_path",
-            ),
-            array (
-                'xsl_root',
-                __ ('XSL root', 'cap-page-generator'),
-                sprintf (
-                    __ ('Root directory for XSL files in the AFS, eg.: %s', 'cap-page-generator'),
-                    AFS_ROOT . 'http/docs/cap'
-                ),
-                "$namespace\cap_sanitize_path",
+                ns ('cap_sanitize_path'),
             ),
             array (
                 'schema_root',
-                __ ('Schema root', 'cap-page-generator'),
+                __ ('Schema root path', LANG),
                 sprintf (
-                    __ ('Root directory for schema files in the AFS, eg.: %s', 'cap-page-generator'),
+                    __ ('Root directory for schema files in the AFS, eg.: %s', LANG),
                     AFS_ROOT . 'http/docs/cap'
                 ),
-                "$namespace\cap_sanitize_path",
-            ),
-            array (
-                'shortcode',
-                __ ('Shortcode',                   'cap-page-generator'),
-                __ ('The shortcode, eg.: cap_xsl', 'cap-page-generator'),
-                "$namespace\cap_sanitize_key",
+                ns ('cap_sanitize_path'),
             ),
             array (
                 'xmllint_path',
-                __ ('xmllint path', 'cap-page-generator'),
+                __ ('xmllint path', LANG),
                 sprintf (
-                    __ ('The full path to the xmllint utility as seen from the server, eg.: %s', 'cap-page-generator'),
+                    __ ('The full path to the xmllint utility as seen from the server, eg.: %s', LANG),
                     AFS_ROOT . 'local/bin/xmllint'
                 ),
-                "$namespace\cap_sanitize_path",
+                ns ('cap_sanitize_path'),
             ),
         );
         $section_transform = array (
             array (
                 'section_caption',
-                __ ('Section name', 'cap-page-generator'),
-                __ ('Name of this section', 'cap-page-generator'),
-                "$namespace\cap_sanitize_caption",
+                __ ('Section name', LANG),
+                __ ('The name of this section', LANG),
+                ns ('cap_sanitize_caption'),
+            ),
+            array (
+                'shortcode',
+                __ ('Shortcode',                      LANG),
+                __ ('The code to insert in the page', LANG),
+                ns ('cap_sanitize_nothing'),
             ),
             array (
                 'xml_dir',
-                __ ('XML files directory', 'cap-page-generator'),
+                __ ('XML files directory', LANG),
                 sprintf (
-                    __ ('Directory (relative to XML root), eg.: %s', 'cap-page-generator'),
+                    __ ('The path to the XML files (relative to the XML Root path), eg.: %s', LANG),
                     'publ/mss'
                 ),
-                "$namespace\cap_sanitize_path",
-            ),
-            array (
-                'xsl_path_list',
-                __ ('XSL files list', 'cap-page-generator'),
-                __ ('A list of xsl files to run (relative to XSL root) (space-separated list).', 'cap-page-generator'),
-                "$namespace\cap_sanitize_path_list",
+                ns ('cap_sanitize_path'),
             ),
             array (
                 'schema_path',
-                __ ('XSL schema', 'cap-page-generator'),
-                __ ('The path to the xsl schema file (relative to schema root).', 'cap-page-generator'),
-                "$namespace\cap_sanitize_path",
+                __ ('XSL schema', LANG),
+                __ ('The path to the xsl schema file (relative to the Schema Root path).', LANG),
+                ns ('cap_sanitize_path'),
             ),
             array (
                 'slug_path',
-                __ ('Slug path', 'cap-page-generator'),
+                __ ('Slug path', LANG),
                 sprintf (
-                    __ ('The URL path to the page, eg.: %s', 'cap-page-generator'),
+                    __ ('The URL path to the page, eg.: %s', LANG),
                     'capit/ldf'
                 ),
-                "$namespace\cap_sanitize_path",
+                ns ('cap_sanitize_path'),
             ),
             array (
                 'slug_prefix',
-                __ ('Slug prefix', 'cap-page-generator'),
+                __ ('Slug prefix', LANG),
                 sprintf (
-                    __ ('The slug prefix for the pages, eg.: %s', 'cap-page-generator'),
+                    __ ('The slug prefix for the pages, eg.: %s', LANG),
                     'capit-ldf-'
                 ),
-                "$namespace\cap_sanitize_key",
+                ns ('cap_sanitize_key'),
             ),
             array (
                 'page_status_list',
-                __ ('Page statuses list', 'cap-page-generator'),
+                __ ('Page statuses list', LANG),
                 sprintf (
-                    __ ('The allowed page statuses (space-separated list). Eg.: %s', 'cap-page-generator'),
+                    __ ('The allowed page statuses (space-separated list). Eg.: %s', LANG),
                     'publish private'
                 ),
-                "$namespace\cap_sanitize_caption",
+                ns ('cap_sanitize_caption'),
             ),
             array (
                 'sidebars',
-                __ ('Sidebars', 'cap-page-generator'),
+                __ ('Sidebars', LANG),
                 sprintf (
-                    __ ('The sidebars (space-separated list). Eg.: %s', 'cap-page-generator'),
+                    __ ('The sidebars (space-separated list). Eg.: %s', LANG),
                     'transcription'
                 ),
-                "$namespace\cap_sanitize_caption",
+                ns ('cap_sanitize_caption'),
             ),
         );
 
@@ -205,7 +182,7 @@ class Config
     public function get_opt ($section_id, $field_id, $default = '')
     {
         if ($this->options === null) {
-            $this->options = get_option (OPTIONS_PAGE_ID, array ());
+            $this->options = get_option (OPTIONS, array ());
         }
         $name = $section_id . '.' . $field_id;
         return $this->options[$name] ? $this->options[$name] : $default;

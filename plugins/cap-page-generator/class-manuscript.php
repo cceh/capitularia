@@ -95,10 +95,10 @@ class Manuscript
 
     public function get_slug_with_path ()
     {
-        global $cap_page_generator_config;
+        global $config;
 
-        $slug_path   = $cap_page_generator_config->get_opt ($this->section_id, 'slug_path');
-        $slug_prefix = $cap_page_generator_config->get_opt ($this->section_id, 'slug_prefix');
+        $slug_path   = $config->get_opt ($this->section_id, 'slug_path');
+        $slug_prefix = $config->get_opt ($this->section_id, 'slug_prefix');
         return $slug_path . '/' . $slug_prefix . $this->get_slug ();
     }
 
@@ -155,7 +155,7 @@ class Manuscript
             }
             $tmp[] = "[:{$lang}]{$title}";
         }
-        $this->title = sanitize_text_field (__ (join (' ', $tmp), 'cap-page-generator'), null, 'display');
+        $this->title = sanitize_text_field (__ (join (' ', $tmp), LANG), null, 'display');
         return $this->title;
     }
 
@@ -167,10 +167,10 @@ class Manuscript
 
     private function validate_xmllint ()
     {
-        global $cap_page_generator_config;
+        global $config;
 
-        $xmllint_path = $cap_page_generator_config->get_opt ('general', 'xmllint_path');
-        $schema_path  = $cap_page_generator_config->get_opt_path (
+        $xmllint_path = $config->get_opt ('general', 'xmllint_path');
+        $schema_path  = $config->get_opt_path (
             'schema_root',
             $this->get_section_id (),
             'schema_path'
@@ -198,12 +198,12 @@ class Manuscript
         exec (join (' ', $cmdline), $messages, $retval); // 0 = ok, 3 = error
         switch ($retval) {
             case 0:
-                return array (0, sprintf (__ ('File %s is valid TEI.', 'cap-page-generator'), $link));
+                return array (0, sprintf (__ ('File %s is valid TEI.', LANG), $link));
             case 3:
             case 4:
-                return array (2, sprintf (__ ('File %s is invalid TEI.', 'cap-page-generator'), $link), $messages);
+                return array (2, sprintf (__ ('File %s is invalid TEI.', LANG), $link), $messages);
             default:
-                return array (1, sprintf (__ ('Validity of file %s is unknown.', 'cap-page-generator'), $link), $messages);
+                return array (1, sprintf (__ ('Validity of file %s is unknown.', LANG), $link), $messages);
         }
     }
 
@@ -281,12 +281,35 @@ class Manuscript
             return array (
                 2,
                 sprintf (
-                    __ ('Error: could not unpublish page %s.', 'cap-page-generator'),
+                    __ ('Error: could not unpublish page %s.', LANG),
                     $this->get_slug_with_link ()
                 )
             );
         }
-        return array (0, sprintf (__ ('Page %s unpublished.', 'cap-page-generator'), $slug));
+        return array (0, sprintf (__ ('Page %s unpublished.', LANG), $slug));
+    }
+
+    /**
+     * Delete all revisions for this page
+     *
+     * @return array Success or error messages
+     */
+
+    private function delete_revisions ()
+    {
+        global $wpdb;
+        $sql = $wpdb->prepare (
+            "DELETE
+             FROM {$wpdb->posts}
+             WHERE post_parent = %d AND post_type = 'revision'",
+            $this->get_page_id ()
+        );
+        $wpdb->query($sql);
+
+        return array (
+            0,
+            sprintf (__ ('Revisions for %s deleted.', LANG), $this->get_slug_with_link ())
+        );
     }
 
     /**
@@ -303,39 +326,27 @@ class Manuscript
 
     private function create_page ($status)
     {
-        global $cap_page_generator_config;
+        global $config;
 
+        // Set the page title
         $title = $this->get_title ();
         if (empty ($title)) {
-            $title = __ ('No title', 'cap-page-generator');
+            $title = __ ('No title', LANG);
         }
 
-        // do not make public children of private pages
+        // Put the shortcode onto the page
+        $content = $config->get_opt ($this->section_id, 'shortcode');
+
+        // The page slug
+        $slug = $this->get_slug ();
+
+        // Add a taxonomy entry that controls which sidebar is displayed.
+        $sidebars = $config->get_opt ($this->section_id, 'sidebars');
+
+        // Do not make public a child of a private page
         if (($status == 'public') && (cap_get_section_page_status ($this->section_id) == 'private')) {
             $status = 'private';
         }
-
-        $slug     = $this->get_slug ();
-        $xsl_root = $cap_page_generator_config->get_opt ('general', 'xsl_root') . '/';
-
-        // rebase paths according to cap_xsl_processor directories
-        $cap_xsl_options = get_option ('cap_xsl_options', array ());
-
-        error_log ("xsl_root = $xsl_root");
-        error_log ("path = $this->path");
-        $path = cap_make_path_relative_to ($this->path, $cap_xsl_options['xmlroot']);
-
-        // Put a shortcode on the new page for every transformation to be run.
-
-        $content = '';
-        $shortcode = $cap_page_generator_config->get_opt ('general', 'shortcode');
-        foreach (explode (' ', $cap_page_generator_config->get_opt ($this->section_id, 'xsl_path_list')) as $xsl) {
-            $xsl = cap_make_path_relative_to ($xsl_root . $xsl, $cap_xsl_options['xsltroot']);
-            $content .= "[{$shortcode} xml=\"{$path}\" xslt=\"{$xsl}\"][/{$shortcode}]\n";
-        }
-
-        // Add a taxonomy entry that controls which sidebar is displayed.
-        $sidebars = $cap_page_generator_config->get_opt ($this->section_id, 'sidebars');
 
         // Finally call Wordpress to create the page.
         $new_post = array (
@@ -355,14 +366,14 @@ class Manuscript
                 return array (
                     0,
                     sprintf (
-                        __ ('Page %1$s created with status set to %2$s.', 'cap-page-generator'),
+                        __ ('Page %1$s created with status set to %2$s.', LANG),
                         $this->get_slug_with_link (),
                         $status
                     )
                 );
             }
         }
-        return array (2, sprintf (__ ('Error: could not create page %s.', 'cap-page-generator'), $slug));
+        return array (2, sprintf (__ ('Error: could not create page %s.', LANG), $slug));
     }
 
     /**
@@ -381,7 +392,7 @@ class Manuscript
         if ($page_id === false) {
             return array (
                 2,
-                sprintf (__ ('Error while extracting metadata: no page with slug %s.', 'cap-page-generator'), $slug)
+                sprintf (__ ('Error while extracting metadata: no page with slug %s.', LANG), $slug)
             );
         }
         // We proxy this action to the Meta Search plugin.
@@ -390,7 +401,7 @@ class Manuscript
             return array (
                 2,
                 sprintf (
-                    __ ('Errors while extracting metadata from file %s.', 'cap-page-generator'),
+                    __ ('Errors while extracting metadata from file %s.', LANG),
                     $this->get_slug_with_link ()
                 ),
                 $errors
@@ -398,7 +409,7 @@ class Manuscript
         }
         return array (
             0,
-            sprintf (__ ('Metadata extracted from file %s.', 'cap-page-generator'), $this->get_slug_with_link ())
+            sprintf (__ ('Metadata extracted from file %s.', LANG), $this->get_slug_with_link ())
         );
     }
 
@@ -410,6 +421,7 @@ class Manuscript
      *   private:  create the page with private status
      *   refresh:  re-create the page with the same status as before
      *   delete:   delete the page
+     *   delete-revisions: delete the revisions of the page
      *   metadata: extract metadata from page
      *   validate: validate the TEI file
      *
@@ -431,7 +443,7 @@ class Manuscript
 
         if ($action == $status) {
             // nothing to do
-            return array (1, sprintf (__ ('The post is already %s.', 'cap-page-generator'), $action));
+            return array (1, sprintf (__ ('The post is already %s.', LANG), $action));
         }
 
         switch ($action) {
@@ -441,6 +453,8 @@ class Manuscript
                 return $this->create_page ($action);
             case 'delete':
                 return $this->delete_pages ();
+            case 'delete-revisions':
+                return $this->delete_revisions ();
             case 'metadata':
                 return $this->extract_metadata ();
             case 'validate':

@@ -68,12 +68,12 @@ class File_List_Table extends \WP_List_Table
 
     public function __construct ($section_id, $directory, $args = array ())
     {
-        global $cap_page_generator_config;
+        global $config;
 
         parent::__construct (
             array (
-                'singular' => __ ('TEI file',  'cap-page-generator'),
-                'plural'   => __ ('TEI files', 'cap-page-generator'),
+                'singular' => __ ('TEI file',  LANG),
+                'plural'   => __ ('TEI files', LANG),
                 'ajax'     => false, // do not use the ajax built-in in table
                 'screen'   => isset ($args['screen']) ? $args['screen'] : null,
             )
@@ -82,25 +82,26 @@ class File_List_Table extends \WP_List_Table
         $this->section_id = $section_id;
         $this->directory  = $directory;
 
-        if ($cap_page_generator_config->section_can ($section_id, 'publish')
+        if ($config->section_can ($section_id, 'publish')
             // do not make public children of private pages
             && cap_get_section_page_status ($section_id) == 'publish'
         ) {
-            $this->bulk_actions['publish']  = _x ('Publish',           'bulk action', 'cap-page-generator');
+            $this->bulk_actions['publish']  = _x ('Publish',           'bulk action', LANG);
         }
-        if ($cap_page_generator_config->section_can ($section_id, 'private')) {
-            $this->bulk_actions['private']  = _x ('Publish privately', 'bulk action', 'cap-page-generator');
+        if ($config->section_can ($section_id, 'private')) {
+            $this->bulk_actions['private']  = _x ('Publish privately', 'bulk action', LANG);
         }
-        $this->bulk_actions['delete']   = _x ('Unpublish',         'bulk action', 'cap-page-generator');
-        $this->bulk_actions['refresh']  = _x ('Refresh',           'bulk action', 'cap-page-generator');
-        if ($cap_page_generator_config->get_opt ($section_id, 'schema_path')) {
-            $this->bulk_actions['validate'] = _x ('Validate',          'bulk action', 'cap-page-generator');
+        $this->bulk_actions['delete']           = _x ('Unpublish',        'bulk action', LANG);
+        $this->bulk_actions['delete-revisions'] = _x ('Delete Revisions', 'bulk action', LANG);
+        $this->bulk_actions['refresh']          = _x ('Refresh',          'bulk action', LANG);
+        if ($config->get_opt ($section_id, 'schema_path')) {
+            $this->bulk_actions['validate'] = _x ('Validate',          'bulk action', LANG);
         }
-        $this->bulk_actions['metadata'] = _x ('Extract metadata',  'bulk action', 'cap-page-generator');
+        $this->bulk_actions['metadata'] = _x ('Extract metadata',  'bulk action', LANG);
 
-        $this->statuses['publish'] = _x ('Published',           'file status', 'cap-page-generator');
-        $this->statuses['private'] = _x ('Published privately', 'file status', 'cap-page-generator');
-        $this->statuses['delete']  = _x ('Not published',       'file status', 'cap-page-generator');
+        $this->statuses['publish'] = _x ('Published',           'file status', LANG);
+        $this->statuses['private'] = _x ('Published privately', 'file status', LANG);
+        $this->statuses['delete']  = _x ('Not published',       'file status', LANG);
 
         $this->paths = array ();
     }
@@ -198,7 +199,7 @@ class File_List_Table extends \WP_List_Table
 
     public function no_items ()
     {
-        _e ('No TEI files found.', 'cap-page-generator');
+        _e ('No TEI files found.', LANG);
     }
 
     /**
@@ -226,9 +227,9 @@ class File_List_Table extends \WP_List_Table
     {
         return array (
             'cb'         => '<input type="checkbox" />',
-            'slug'       => _x ('Slug',     'column heading', 'cap-page-generator'),
-            'status'     => _x ('Status',   'column heading', 'cap-page-generator'),
-            'title'      => _x ('Title',    'Manuscript title column heading',    'cap-page-generator'),
+            'slug'       => _x ('Slug',     'column heading', LANG),
+            'status'     => _x ('Status',   'column heading', LANG),
+            'title'      => _x ('Title',    'Manuscript title column heading',    LANG),
         );
     }
 
@@ -272,7 +273,7 @@ class File_List_Table extends \WP_List_Table
         $filename = esc_attr ($manuscript->get_filename ());
         $select   = esc_html (
             sprintf (
-                _x ('Select %s', 'Select a filename (screen reader only)', 'cap-page-generator'),
+                _x ('Select %s', 'Select a filename (screen reader only)', LANG),
                 $filename
             )
         );
@@ -363,6 +364,8 @@ class File_List_Table extends \WP_List_Table
         $status = $manuscript->get_status ();
         // do not show actions that would change nothing
         unset ($actions[$status]);
+        // remove these otherwise it becomes too crowded
+        unset ($actions['delete-revisions']);
         // do not show these actions for unpublished files
         if ($status == 'delete') {
             unset ($actions['refresh']);

@@ -12,8 +12,10 @@ from werkzeug.routing import Map, Rule, Submount
 import common
 from db_tools import PostgreSQLEngine
 
-from tile_server import tile_app
-from geo_server  import geo_app
+from tile_server     import tile_app
+from geo_server      import geo_app
+from xslt_server     import app as xslt_app
+from collatex_server import app as collatex_app
 
 
 class Config (object):
@@ -163,17 +165,24 @@ def create_app (Config):
     app = Flask (__name__)
 
     app.config.from_object (Config)
-    app.config.from_pyfile (Config.CONFIG_FILE)
-
-    app.logger.setLevel (Config.LOG_LEVEL)
-
-    app.config.dba = PostgreSQLEngine (**app.config)
 
     app.register_blueprint (tile_app, url_prefix = '/tile')
     tile_app.init_app (app)
 
     app.register_blueprint (geo_app, url_prefix = '/geo')
     geo_app.init_app (app)
+
+    app.register_blueprint (xslt_app, url_prefix = '/xslt')
+    xslt_app.init_app (app)
+
+    app.register_blueprint (collatex_app, url_prefix = '/collatex')
+    collatex_app.init_app (app)
+
+    app.config.from_pyfile (Config.CONFIG_FILE)
+
+    app.logger.setLevel (Config.LOG_LEVEL)
+
+    app.config.dba = PostgreSQLEngine (**app.config)
 
     return app
 

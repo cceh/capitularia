@@ -80,9 +80,9 @@
       <!-- "Beschreibung nach ..." -->
       <h4 id="description" class="tei-titleStmt">
         <xsl:text>[:de]</xsl:text>
-        <xsl:value-of select="substring-before (normalize-space (tei:titleStmt/tei:title[@type='sub' and @xml:lang='ger']), ' und Trans')"/>
+        <xsl:value-of select="substring-before (concat (normalize-space (tei:titleStmt/tei:title[@type='sub' and @xml:lang='ger']), ' und Trans'), ' und Trans')"/>
         <xsl:text>[:en]</xsl:text>
-        <xsl:value-of select="substring-before (normalize-space (tei:titleStmt/tei:title[@type='sub' and @xml:lang='eng']), ' and trans')"/>
+        <xsl:value-of select="substring-before (concat (normalize-space (tei:titleStmt/tei:title[@type='sub' and @xml:lang='eng']), ' and trans'), ' and trans')"/>
         <xsl:text>[:]</xsl:text>
       </h4>
 

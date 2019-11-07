@@ -8,6 +8,56 @@
 namespace cceh\capitularia\dynamic_menu;
 
 /**
+ * Add dynamic items to the menu.
+ *
+ * This just outputs a placeholder that will be processed by javascript.  See:
+ * src/js/front.js for more information.
+ *
+ * @param array  $items      Old items.
+ * @param string $dummy_menu (unused) Menu.
+ * @param array  $dummy_args (unused) Menu args.
+ *
+ * @return array Updated menu.
+ */
+
+function on_wp_get_nav_menu_items ($items, $dummy_menu, $dummy_args)
+{
+    // Only do this on front pages.
+    if (is_admin ()) {
+        return $items;
+    }
+
+    foreach ($items as $key => $item) {
+        if (isset ($item->url)) {
+            if (strcmp ($item->url, '#cap_dynamic_menu#') === 0) {
+                # the menu will be post-processed by javascript
+                # put the description somewhere in the html so
+                # the javascript can find it
+                $item->target = $item->description;
+            }
+            if (strcmp ($item->url, '#cap_login_menu#') === 0) {
+                $item->url = wp_login_url (get_permalink ());
+            }
+        }
+    }
+
+    return $items;
+}
+
+/**
+ * Add current namespace
+ *
+ * @param string $function_name The class or function name without namespace
+ *
+ * @return string Name with namespace
+ */
+
+function ns ($function_name)
+{
+    return __NAMESPACE__ . '\\' . $function_name;
+}
+
+/**
  * Load the content DOM.
  *
  * Load the DOM of the current page.
@@ -43,7 +93,7 @@ function load_html ()
 
 function on_init ()
 {
-    load_plugin_textdomain ('cap-dynamic-menu', false, basename (dirname ( __FILE__ )) . '/languages/');
+    load_plugin_textdomain (LANG, false, basename (dirname ( __FILE__ )) . '/languages/');
 }
 
 /**

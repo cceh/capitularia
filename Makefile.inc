@@ -92,3 +92,7 @@ $(LANG_SRC)/capitularia.pot: $(PHP_FILES)
 	--copyright-holder="CCeH Cologne" --package-name=Capitularia --package-version=2.0 \
 	--msgid-bugs-address=marcello@perathoner.de \
 	-k'__' -k'_e' -k'_n:1,2' -k'_x:1,2c' -k'_ex:1,2c' -o $@ $^
+
+poedit: po
+	poedit src/languages/de_DE.po
+	$(MAKE) mo

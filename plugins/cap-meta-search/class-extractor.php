@@ -13,9 +13,6 @@ namespace cceh\capitularia\meta_search;
 
 class Extractor
 {
-    const GEONAMES_API_ENDPOINT = 'http://api.geonames.org/hierarchyJSON';
-    const GEONAMES_USER         = 'highlander'; // FIXME get an institutional user
-
     /**
      * Store metadata
      *
@@ -96,8 +93,8 @@ class Extractor
         foreach (explode (' ', $in) as $urn) {
             // http://www.geonames.org/2984114/reims.html
             if (preg_match  ('#//www.geonames.org/([\d]+)/#', $urn, $matches)) {
-                $url = self::GEONAMES_API_ENDPOINT . '?' . http_build_query (
-                    array ('geonameId' => $matches[1], 'username' => self::GEONAMES_USER)
+                $url = GEONAMES_API_ENDPOINT . '?' . http_build_query (
+                    array ('geonameId' => $matches[1], 'username' => GEONAMES_USER)
                 );
                 // $json = file_get_contents ($url);
                 $json = wp_remote_retrieve_body (wp_remote_get ($url));

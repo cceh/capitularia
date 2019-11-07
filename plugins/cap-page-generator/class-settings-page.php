@@ -30,10 +30,10 @@ class Settings_Page
 
     public function __construct ()
     {
-        global $cap_page_generator_config;
+        global $config;
 
         /* Register the Settings page's fields with Wordpress. */
-        foreach ($cap_page_generator_config->sections as $section) {
+        foreach ($config->sections as $section) {
             $section_id = $section[0];
 
             foreach ($section[1] as $field) {
@@ -45,8 +45,8 @@ class Settings_Page
                     $section_id . '.' . $field_id,
                     $field_caption,
                     array ($this, 'on_options_field'),
-                    OPTIONS_PAGE_ID,
-                    OPTIONS_PAGE_ID . '_' . $section_id,
+                    OPTIONS,
+                    OPTIONS . '_' . $section_id,
                     // array becomes argument of on_options_field ($args)
                     array ($section_id, $field_id, $field_description)
                 );
@@ -54,7 +54,7 @@ class Settings_Page
         }
 
         /* Register only _one_ parameter. @see on_options_field () */
-        register_setting (OPTIONS_PAGE_ID, OPTIONS_PAGE_ID, array ($this, 'on_validate'));
+        register_setting (OPTIONS, OPTIONS, array ($this, 'on_validate'));
     }
 
     /**
@@ -65,7 +65,7 @@ class Settings_Page
 
     public function display ()
     {
-        global $cap_page_generator_config;
+        global $config;
 
         $title = esc_html (get_admin_page_title ());
         echo ("<div class='wrap'>\n");
@@ -74,30 +74,30 @@ class Settings_Page
         echo ("    <div id='tabs'>\n");
 
         // Output the AJAX security fields
-        settings_fields (OPTIONS_PAGE_ID);
+        settings_fields (OPTIONS);
 
         // Output the ui-widget-header
         echo ("      <ul>\n");
-        foreach ($cap_page_generator_config->sections as $section) {
+        foreach ($config->sections as $section) {
             $section_id = $section[0];
-            $caption    = __ ($cap_page_generator_config->get_opt ($section_id, 'section_caption', $section_id));
+            $caption    = __ ($config->get_opt ($section_id, 'section_caption', $section_id));
             echo ("<li><a href='#tabs-$section_id'>$caption</a></li>\n");
         }
         echo ("      </ul>\n");
 
         // Output the ui-widget-content
-        foreach ($cap_page_generator_config->sections as $section) {
+        foreach ($config->sections as $section) {
             $section_id = $section[0];
-            $caption    = __ ($cap_page_generator_config->get_opt ($section_id, 'section_caption', $section_id));
+            $caption    = __ ($config->get_opt ($section_id, 'section_caption', $section_id));
             echo ("      <div id='tabs-$section_id'>\n");
             echo ("        <h2>$caption</h2>\n");
             echo ('        <table class="form-table">');
             // Output previously registered fields
-            do_settings_fields (OPTIONS_PAGE_ID, OPTIONS_PAGE_ID . '_' . $section_id);
+            do_settings_fields (OPTIONS, OPTIONS . '_' . $section_id);
             echo ('        </table>');
             echo ("      </div>\n");
         }
-        submit_button ();
+        save_button ();
         echo ("    </div>\n");
         echo ("  </form>\n");
         echo ("</div>\n");
@@ -122,14 +122,18 @@ class Settings_Page
 
     public function on_options_field ($args)
     {
-        global $cap_page_generator_config;
+        global $config;
 
         $section_id  = $args[0];
         $field_id    = $args[1];
         $description = $args[2];
-        $page_id     = OPTIONS_PAGE_ID;
-        $value       = $cap_page_generator_config->get_opt ($section_id, $field_id);
-        echo "<input class='file-input' type='text' name='{$page_id}[{$section_id}.{$field_id}]' value='{$value}' />";
+        $page_id     = OPTIONS;
+        $value       = $config->get_opt ($section_id, $field_id);
+        if ($field_id === 'shortcode') {
+            echo ("<textarea class='file-input' name='{$page_id}[{$section_id}.{$field_id}]'>$value</textarea>");
+        } else {
+            echo ("<input class='file-input' type='text' name='{$page_id}[{$section_id}.{$field_id}]' value='{$value}' />");
+        }
         echo ("<p>{$description}</p>\n");
     }
 
@@ -147,12 +151,12 @@ class Settings_Page
 
     public function on_validate (array $input)
     {
-        global $cap_page_generator_config;
+        global $config;
 
         $output = array ();
         foreach ($input as $input_field_id => $value) {
             // Find the field in the $sections structure.
-            foreach ($cap_page_generator_config->sections as $section) {
+            foreach ($config->sections as $section) {
                 $section_id = $section[0];
                 foreach ($section[1] as $field) {
                     $field_id = $field[0];
@@ -164,8 +168,8 @@ class Settings_Page
                 }
             }
         }
-        $output['general.section_caption'] = __ ('General', 'cap-page-generator');
+        $output['general.section_caption'] = __ ('General', LANG);
         // Merge with old options
-        return array_merge (get_option (OPTIONS_PAGE_ID, array ()), $output);
+        return array_merge (get_option (OPTIONS, array ()), $output);
     }
 }

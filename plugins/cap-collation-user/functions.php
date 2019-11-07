@@ -7,25 +7,31 @@
 
 namespace cceh\capitularia\collation_user;
 
-/** @var string Wordpress ID of the dashboard page */
-const DASHBOARD_PAGE_ID    = 'cap_collation_dashboard';
 
-/** @var string AJAX security */
-const NONCE_SPECIAL_STRING = 'cap_collation_nonce';
+/**
+ * Add current namespace
+ *
+ * @param string $function_name The class or function name without namespace
+ *
+ * @return string Name with namespace
+ */
 
-/** @var string AJAX security */
-const NONCE_PARAM_NAME     = '_ajax_nonce';
+function ns ($function_name)
+{
+    return __NAMESPACE__ . '\\' . $function_name;
+}
 
-/** @var string Where our Wordpress is in the filesystem */
-const AFS_ROOT             = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
+/**
+ * Output a localized 'save changes' button
+ *
+ * @return
+ */
 
-/** The ID of the /mss/ page in our wordpress database. */
-const MSS_PAGE_ID = 58;         //  /mss
-const BKPARENT_PAGE_ID = 4890;  //  /internal/mss
-
-const RE_PUBLISH = 'publish';
-const RE_PRIVATE = 'publish|private';
-const RE_EXCLUDE = "_inscriptio|_incipit|_explicit";
+function save_button () {
+    submit_button (
+        _x ('Save Changes', 'Button: Save Changes in setting page', LANG)
+    );
+}
 
 /**
  * Add an AJAX action on both the admin and the front side.
@@ -36,12 +42,43 @@ const RE_EXCLUDE = "_inscriptio|_incipit|_explicit";
 function add_nopriv_action ($action)
 {
     $action = 'on_cap_collation_user_' . $action;
-    add_action ('wp_ajax_'        . $action, __NAMESPACE__ . '\\' . $action);
-    add_action ('wp_ajax_nopriv_' . $action, __NAMESPACE__ . '\\' . $action);
+    add_action ('wp_ajax_'        . $action, ns ($action));
+    add_action ('wp_ajax_nopriv_' . $action, ns ($action));
 }
 
 /**
- * Enqueue the public pages scripts and styles
+ * Get an option from Wordpress.
+ *
+ * @param string $name    The name of the option.
+ * @param string $default The default value.
+ *
+ * @return string The option value
+ */
+
+function get_opt ($name, $default = '')
+{
+    static $options = null;
+
+    if ($options === null) {
+        $options = get_option (OPTIONS, array ());
+    }
+    return isset ($options[$name]) ? $options[$name] : $default;
+}
+
+/**
+ * Register the translations.
+ *
+ * @return void
+ */
+
+function on_init ()
+{
+    load_plugin_textdomain (LANG, false, basename (dirname ( __FILE__ )) . '/languages/');
+}
+
+
+/**
+ * Enqueue the front page scripts and styles
  *
  * @return void
  */
@@ -72,14 +109,47 @@ function on_enqueue_scripts ()
 }
 
 /**
- * Register the translations.
+ * Initialize the settings page.
+ *
+ * First hook called on every admin page.
  *
  * @return void
  */
 
-function on_init ()
+function on_admin_init ()
 {
-    load_plugin_textdomain ('cap-collation-user', false, basename (dirname ( __FILE__ )) . '/languages/');
+}
+
+/**
+ * Enqueue the admin page scripts and styles
+ *
+ * @return void
+ */
+
+function on_admin_enqueue_scripts ()
+{
+    wp_register_style ('cap-collation-user-admin', plugins_url ('css/admin.css', __FILE__));
+    wp_enqueue_style  ('cap-collation-user-admin');
+}
+
+/**
+ * Add menu entry to the Wordpress admin menu.
+ *
+ * Add a menu entry for the settings (options) page to the Wordpress
+ * settings menu.
+ *
+ * @return void
+ */
+
+function on_admin_menu ()
+{
+    add_options_page (
+        __ ('Capitularia Collation Tool Settings', LANG),
+        __ ('Capitularia Collation Tool', LANG),
+        'manage_options',
+        OPTIONS,
+        array (new Settings_Page (), 'display')
+    );
 }
 
 function on_shortcode ($atts, $content = '')
@@ -87,6 +157,22 @@ function on_shortcode ($atts, $content = '')
     // include vue.js, underscore.js, front.js only if needed
     wp_enqueue_script ('cap-collation-user-front');
     return dashboard_page ();
+}
+
+/**
+ * Add a link to our settings page to the plugins admin dashboard.
+ *
+ * Adds hack value.
+ *
+ * @return array
+ */
+
+function on_plugin_action_links ($links) {
+	array_push (
+		$links,
+		'<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>'
+	);
+	return $links;
 }
 
 /**
@@ -394,7 +480,7 @@ function cap_sanitize_key_list ($key_list)
 
 function on_off ($bool)
 {
-    return $bool ? __ ('on', 'cap-collation-user') : __ ('off', 'cap-collation-user');
+    return $bool ? __ ('on', LANG) : __ ('off', LANG);
 }
 
 /**

@@ -270,6 +270,54 @@
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template name="downloads">
+    <xsl:param name="url" />
+
+    <div id="downloads">
+      <h5>[:de]Download[:en]Downloads[:]</h5>
+      <ul class="downloads">
+        <li class="download-icon">
+          <a class="screen-only ssdone" href="{$url}"
+             title='[:de]Rechtsklick zum "Speichern unter"[:en]right button click to save file[:]'>
+            <xsl:text>[:de]Datei in XML[:en]File in XML[:]</xsl:text>
+          </a>
+          <div class="print-only">
+            <xsl:text>[:de]Datei in XML[:en]File in XML[:] </xsl:text>
+            <xsl:value-of select="$url"/>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </xsl:template>
+
+  <xsl:template name="cite_as">
+    <xsl:param name="author" />
+    <xsl:param name="title">
+      <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']" />
+    </xsl:param>
+
+    <div class="citation">
+      <h5>[:de]Empfohlene Zitierweise[:en]How to cite[:]</h5>
+      <div>
+        <xsl:if test="normalize-space ($author)">
+          <span class='author'><xsl:value-of select="normalize-space ($author)"/></span>,
+        </xsl:if>
+        <xsl:if test="normalize-space ($title)">
+          <span class='title'><xsl:value-of select="normalize-space ($title)"/></span>,
+        </xsl:if>
+        [:de]
+        in: Capitularia. Edition der fränkischen Herrschererlasse,
+        bearb. von Karl Ubl und Mitarb., Köln 2014 ff.
+        URL: [permalink] (abgerufen am [current_date])
+        [:en]
+        in: Capitularia. Edition of the Frankish Capitularies,
+        ed. by Karl Ubl and collaborators, Cologne 2014 ff.
+        URL: [permalink] (accessed on [current_date])
+        [:]
+      </div>
+    </div>
+  </xsl:template>
+
   <!-- Verlinkungen zu Resourcen -->
   <xsl:template name="make-link-to-resource">
     <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>

@@ -17,7 +17,6 @@
   <xsl:output method="html" encoding="UTF-8" indent="no"/>
 
   <!-- allgemeine Parameter -->
-  <xsl:variable name="vParams" select="document('biblioParams.xml')"/>
 
   <!-- use values: all/published/unpublished -->
   <xsl:param name="pShow">all</xsl:param>
@@ -31,12 +30,10 @@
   <!-- one or more of: edi lit cat: which sections to output -->
   <xsl:param name="pCategories">edi lit cat</xsl:param>
 
-  <!-- use values: [chunk number].[chunk size] default: 0.0 (=show all)
-       <xsl:param name="pSplit">0.0</xsl:param>
-  -->
-
   <!-- y/n Do not use str:encode-uri because oxygen/Saxon doesn't like it -->
   <xsl:param name="pOxygen">n</xsl:param>
+
+  <xsl:variable name="vDigitalisatePfad">https://capitularia.uni-koeln.de/cap/publ/bibl</xsl:variable>
 
   <xsl:variable name="config">
     <section rel_text="Edition">
@@ -59,10 +56,6 @@
       <id>other</id>
       <path>Sonstige</path>
     </section>
-  </xsl:variable>
-
-  <xsl:variable name="vDigitalisatePfad">
-    <xsl:value-of select="$vParams/list[@xml:id='paths']/item[title = 'Digitalisate']/path" />
   </xsl:variable>
 
   <func:function name="cap:has-text">
