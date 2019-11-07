@@ -173,11 +173,6 @@
 			<assert test="starts-with(.,'#')" role="warning">Attributwert soll mit # starten</assert>
 		</rule>
 	</pattern>
-	<pattern id="milestone_parents">
-		<rule context="tei:milestone[ancestor::tei:ab]">
-			<report test="parent::*/parent::tei:ab" role="warning">milestone innerhalb von ab darf in kein anderes Element geschachtelt sein</report>
-		</rule>
-	</pattern>
 	<!--  -->
 	<!--  -->
 	<!--  -->
