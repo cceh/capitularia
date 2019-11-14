@@ -9,7 +9,7 @@ deploy: css js_prod lint mo deploy_xslt deploy_scripts
 
 deploy_xslt:
 	$(RSYNC) xslt/*.xsl $(TRANSFORM)/
-	$(RSYNC) xslt/Makefile $(HOST_SERVER)/../xslt/
+	$(RSYNC) xslt/*.xsl xslt/Makefile $(HOST_SERVER)/../xslt/
 
 deploy_xml:
 	$(RSYNC) xml/*.xml $(PUBL)/mss/
@@ -18,14 +18,14 @@ deploy_scripts:
 	$(RSYNC) --exclude='env' scripts $(PUBL)
 
 upload_client: client
-	cd $(CLIENT); make upload; cd ..
+	cd $(CLIENT) && $(MAKE) upload
 
 upload_server:
-	cd $(SERVER); make upload; cd ..
+	cd $(SERVER) && $(MAKE) upload
 
 import_xml:
-	$(RSYNC) $(PUBL)/mss/*xml   xml/
-	$(RSYNC) $(PUBL)/capit/*    capit/
+	$(RSYNC) --del $(PUBL)/mss/*xml   xml/
+	$(RSYNC) --del $(PUBL)/capit/*    capit/
 
 import_backups:
 	$(RSYNC) $(AFS)/backups/* ../backups/
@@ -36,7 +36,7 @@ import_backup_mysql: import_backups
 .PHONY: docs mysql-remote mysql-local
 
 docs:
-	cd doc_src; make html; cd ..
+	cd doc_src && $(MAKE) html
 
 mysql-remote:
 	$(MYSQL_REMOTE)
@@ -51,22 +51,36 @@ server: geodata-server
 
 .PHONY: client
 client: geodata-client
-	cd $(CLIENT); make build; cd ..
+	cd $(CLIENT) && $(MAKE) build
 
 .PHONY: dev-server
 dev-server: geodata-client
-	cd $(CLIENT); make dev-server; cd ..
+	cd $(CLIENT) && $(MAKE) dev-server
 
 .PHONY: geodata-server geodata-client
 geodata-server:
-	cd $(GIS); make geodata-server; cd ..
+	cd $(GIS) && $(MAKE) geodata-server
 
 geodata-client:
-	cd $(GIS); make geodata-client; cd ..
+	cd $(GIS) && $(MAKE) geodata-client
 
-init_geodata_db: import_xml
-	cd $(SERVER); make init_geodata_db
-	cd $(GIS); make import-geodata-to-postgres
+corpus:
+	cd xslt; XSL_DIR=. CACHE_DIR=../cache make -e corpus
+
+collation:
+	cd xslt; XSL_DIR=. CACHE_DIR=../cache make -e -j 7 collation
+
+init_db:
+	cd $(SERVER) && $(MAKE) init_db
+
+upload_db:
+	$(PGDUMP) --clean --if-exists $(PGLOCAL) | $(PSQL) -v ON_ERROR_STOP=1 $(PGREMOTESUPER)
+
+scrape_corpus: import_xml
+	cd $(SERVER) && $(MAKE) scrape_corpus
+
+scrape_geodata: import_xml
+	cd $(SERVER) && $(MAKE) scrape_geodata
 
 # PhpMetrics http://www.phpmetrics.org/
 phpmetrics:
@@ -79,7 +93,7 @@ TARGETS = css js js_prod csslint jslint phplint mo po pot deploy clean
 define TARGETS_TEMPLATE
 
 $(1):
-	for f in $(THEMES) $(PLUGINS); do cd "$$$$f"; make $(1); cd ..; cd ..; done
+	for f in $(THEMES) $(PLUGINS); do cd "$$$$f" && $(MAKE) $(1); cd ..; cd ..; done
 
 endef
 

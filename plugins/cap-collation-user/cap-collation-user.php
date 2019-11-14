@@ -6,7 +6,7 @@
  * Plugin Name: Capitularia Collation Tool
  * Plugin URI:
  * Description: Collates TEI files.
- * Version:     0.1.0
+ * Version:     0.2.0
  * Author:      Marcello Perathoner
  * Author URI:
  * License:     GPLv2 or later
@@ -18,12 +18,13 @@
  * Provides a workspace where the user can request collations of sections of
  * manuscripts.  Most of the workspace is implemented in javascript with Vue.js.
  *
- * The plugin extracts the relevant sections from the TEI files and
- * pre-processes them for collation.  All TEI tags are removed and only the
- * normalized text is kept.
- *
  * The actual collation is done on the Capitularia VM with CollateX.  A REST
- * request will be sent to the VM.
+ * request is sent to the VM.
+ *
+ * A big Makefile, run by cron on the VM, extracts the relevant sections from
+ * the TEI files and between it and the python application server they
+ * pre-processes them for collation.  In the end all TEI tags are removed and
+ * only the normalized text is kept.  That text is sent to CollateX.
  */
 
 namespace cceh\capitularia\collation_user;
@@ -53,25 +54,11 @@ const NONCE_SPECIAL_STRING = 'cap_collation_nonce';
 /** @var string AJAX security */
 const NONCE_PARAM_NAME     = '_ajax_nonce';
 
-/** @var string Where our Wordpress is in the filesystem */
-const AFS_ROOT             = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
-
-/** The ID of the /mss/ page in our wordpress database. */
-const MSS_PAGE_ID = 58;         //  /mss
-const BKPARENT_PAGE_ID = 4890;  //  /internal/mss
-
-const RE_PUBLISH = 'publish';
-const RE_PRIVATE = 'publish|private';
-
-/** @var string Sections we do not want to collate */
-const RE_EXCLUDE = "_inscriptio|_incipit|_explicit";
-
 
 include_once 'functions.php';
 include_once 'dashboard.php';
 include_once 'dashboard-ajax.php';
 include_once 'class-witness.php';
-include_once 'class-collatex.php';
 require_once 'class-settings-page.php';
 
 add_action ('init',                  ns ('on_init'));
@@ -88,6 +75,7 @@ add_nopriv_action ('load_bks');
 add_nopriv_action ('load_corresps');
 add_nopriv_action ('load_witnesses');
 add_nopriv_action ('load_collation');
+add_nopriv_action ('get_published_ids');
 
 add_shortcode ('cap_collation_dashboard', ns ('on_shortcode'));
 

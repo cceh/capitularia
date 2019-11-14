@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2019-11-06 21:04+0100\n"
-"PO-Revision-Date: 2019-11-06 20:06+0100\n"
+"POT-Creation-Date: 2019-11-12 22:20+0100\n"
+"PO-Revision-Date: 2019-11-12 22:21+0100\n"
 "Last-Translator: Marcello Perathoner <marcello@perathoner.de>\n"
 "Language-Team: German <>\n"
 "Language: de_DE\n"
@@ -19,15 +19,24 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.4\n"
 
-#: cap-page-generator.php:98
+#: cap-page-generator.php:101
 msgid "Capitularia Page Generator"
 msgstr "Capitularia Seiten-Generator"
 
-#: cap-page-generator.php:99
+#: cap-page-generator.php:102
 msgid "Generate Wordpress pages for our TEI files."
 msgstr "Generiert Wordpress-Seiten aus unseren TEI-Dateien."
 
-#: class-settings-page.php:171
+#: class-settings-page.php:73 functions.php:328 functions.php:373
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: class-settings-page.php:142
+#, php-format
+msgid "N.B. The File Includer plugin root is set to: %s"
+msgstr "N.B. Der im Datei-Includer-Plugin eingestellte Root-Pfad ist: %s"
+
+#: class-settings-page.php:183
 msgid "General"
 msgstr "Allgemein"
 
@@ -114,111 +123,110 @@ msgctxt "Select a filename (screen reader only)"
 msgid "Select %s"
 msgstr "%s auswählen"
 
-#: class-config.php:62
+#: class-config.php:65
 msgid "List of section ids"
 msgstr "Liste der Sektion-Ids"
 
-#: class-config.php:64
+#: class-config.php:67
 #, php-format
 msgid "List of section ids (space-separated). Eg.: %s"
 msgstr "Liste der Sektion-Ids (Leerzeichen-getrennt). Z.B.: %s"
 
-#: class-config.php:71
+#: class-config.php:74
 msgid "XML root path"
 msgstr "XML Pfad"
 
-#: class-config.php:73
+#: class-config.php:76
 #, php-format
 msgid "Root directory for XML files in the AFS, eg.: %s"
 msgstr "Stammverzeichnis der XML-Dateien im AFS, z.B.: %s"
 
-#: class-config.php:80
+#: class-config.php:83
 msgid "Schema root path"
 msgstr "Schema Pfad"
 
-#: class-config.php:82
+#: class-config.php:85
 #, php-format
 msgid "Root directory for schema files in the AFS, eg.: %s"
 msgstr "Stammverzeichnis der Schema-Dateien im AFS, z.B.: %s"
 
-#: class-config.php:89
+#: class-config.php:92
 msgid "xmllint path"
 msgstr "xmllint Pfad"
 
-#: class-config.php:91
+#: class-config.php:94
 #, php-format
 msgid "The full path to the xmllint utility as seen from the server, eg.: %s"
 msgstr "Pfad- und Dateiname des xmllint-tools vom Server aus gesehen, z.B.: %s"
 
-#: class-config.php:100
+#: class-config.php:103
 msgid "Section name"
 msgstr "Name der Sektion"
 
-#: class-config.php:101
+#: class-config.php:104
 msgid "The name of this section"
 msgstr "Der Name dieser Sektion"
 
-#: class-config.php:106
+#: class-config.php:109
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: class-config.php:107
-msgid "The code to insert in the page"
-msgstr "Der auf der neuen Seite einzufügende Code"
+#: class-config.php:110
+msgid "The text to insert on all new pages. Use {slug} to insert the page slug."
+msgstr "Der auf allen neuen Seiten einzufügende Textbaustein. {slug} fügt den Slug der Seite ein."
 
-#: class-config.php:112
+#: class-config.php:115
 msgid "XML files directory"
 msgstr "Verzeichnis der XML-Dateien"
 
-#: class-config.php:114
+#: class-config.php:117
 #, php-format
 msgid "The path to the XML files (relative to the XML Root path), eg.: %s"
 msgstr "Der Pfad zur den XML-Dateien (relativ zum XML Pfad), z.B. %s"
 
-#: class-config.php:121
+#: class-config.php:124
 msgid "XSL schema"
 msgstr "XSL Schema"
 
-#: class-config.php:122
+#: class-config.php:125
 msgid "The path to the xsl schema file (relative to the Schema Root path)."
 msgstr "Der Pfad zur XSL-Schema-Datei (relativ zum Schema Pfad)."
 
-#: class-config.php:127
+#: class-config.php:130
 msgid "Slug path"
 msgstr "Slug-Pfad"
 
-#: class-config.php:129
+#: class-config.php:132
 #, php-format
 msgid "The URL path to the page, eg.: %s"
 msgstr "Der URL-Pfad zur Seite, z.B.: %s"
 
-#: class-config.php:136
+#: class-config.php:139
 msgid "Slug prefix"
 msgstr "Slug Prefix"
 
-#: class-config.php:138
+#: class-config.php:141
 #, php-format
 msgid "The slug prefix for the pages, eg.: %s"
 msgstr "Prefix für den Slug  der Seiten, z.B.: %s"
 
-#: class-config.php:145
+#: class-config.php:148
 msgid "Page statuses list"
 msgstr "Seiten-Status-Liste"
 
-#: class-config.php:147
+#: class-config.php:150
 #, php-format
 msgid "The allowed page statuses (space-separated list). Eg.: %s"
 msgstr "Welche Status sind erlaubt (mit Leerzeichen getrennt)? Z.B.: %s"
 
-#: class-config.php:154
+#: class-config.php:157
 msgid "Sidebars"
 msgstr "Sidebars"
 
-#: class-config.php:156
+#: class-config.php:159
 #, php-format
 msgid "The sidebars (space-separated list). Eg.: %s"
-msgstr ""
-"Welche Sidebars sollen angezeigt werden (mit Leerzeichen getrennt)? Z.B.: %s"
+msgstr "Welche Sidebars sollen angezeigt werden (mit Leerzeichen getrennt)? Z.B.: %s"
 
 #: functions.php:31
 msgctxt "Button: Save Changes in setting page"
@@ -229,13 +237,9 @@ msgstr "Änderungen speichern"
 msgid "You have no permission to edit posts."
 msgstr "Sie haben keine Berechtigung Posts zu editieren."
 
-#: functions.php:318 functions.php:372
+#: functions.php:318 functions.php:372 class-dashboard-page.php:53
 msgid "Settings"
 msgstr "Einstellungen"
-
-#: functions.php:328
-msgid "Dashboard"
-msgstr "Dashboard"
 
 #: functions.php:349
 msgid "Page Generator"
@@ -288,8 +292,7 @@ msgstr "Fehler: die Seite %s konnte nicht erstellt werden."
 #: class-manuscript.php:395
 #, php-format
 msgid "Error while extracting metadata: no page with slug %s."
-msgstr ""
-"Fehler beim Extrahieren der Meta-Daten: es gibt keine Seite mit Slug: %s."
+msgstr "Fehler beim Extrahieren der Meta-Daten: es gibt keine Seite mit Slug: %s."
 
 #: class-manuscript.php:404
 #, php-format
@@ -334,11 +337,8 @@ msgstr "Generiere Seiten unter: %s"
 #~ msgid "XSL files list"
 #~ msgstr "Liste der XSL-Dateien"
 
-#~ msgid ""
-#~ "A list of xsl files to run (relative to XSL root) (space-separated list)."
-#~ msgstr ""
-#~ "Liste der anzuwendenden XSL-Dateien (relativ zum XSL-Stammverzeichnis) "
-#~ "(mit Leerzeichen getrennt)."
+#~ msgid "A list of xsl files to run (relative to XSL root) (space-separated list)."
+#~ msgstr "Liste der anzuwendenden XSL-Dateien (relativ zum XSL-Stammverzeichnis) (mit Leerzeichen getrennt)."
 
 #~ msgid "Capitularia Meta Search"
 #~ msgstr "Capitularia Meta-Suche"
@@ -697,40 +697,26 @@ msgstr "Generiere Seiten unter: %s"
 #~ msgid "Frontpage Image"
 #~ msgstr "Titelseiten-Bild"
 
-#~ msgid ""
-#~ "The big splash image on the front page. Takes one Capitularia Logo Widget."
-#~ msgstr ""
-#~ "Das große Bild auf der Titelseite. Enthält ein Capitularia Logo-Widget."
+#~ msgid "The big splash image on the front page. Takes one Capitularia Logo Widget."
+#~ msgstr "Das große Bild auf der Titelseite. Enthält ein Capitularia Logo-Widget."
 
 #~ msgid "Frontpage Teaser Bar 1"
 #~ msgstr "Titelseiten-Teaser-Band 1"
 
-#~ msgid ""
-#~ "The top teaser bar on the front page. Normally takes 3 Capitularia Text "
-#~ "Widgets."
-#~ msgstr ""
-#~ "Das obere Vorschau-Band auf der Titelseite. Enthält typischerweise 3 "
-#~ "Capitularia Text-Widgets."
+#~ msgid "The top teaser bar on the front page. Normally takes 3 Capitularia Text Widgets."
+#~ msgstr "Das obere Vorschau-Band auf der Titelseite. Enthält typischerweise 3 Capitularia Text-Widgets."
 
 #~ msgid "Frontpage Teaser Bar 2"
 #~ msgstr "Titelseiten-Teaser-Band 2"
 
-#~ msgid ""
-#~ "The bottom teaser bar on the front page. Normally takes 2 Capitularia "
-#~ "Image Widgets."
-#~ msgstr ""
-#~ "Das untere Vorschau-Band auf der Titelseite. Enthält typischerweise 2 "
-#~ "Capitularia Bild-Widgets."
+#~ msgid "The bottom teaser bar on the front page. Normally takes 2 Capitularia Image Widgets."
+#~ msgstr "Das untere Vorschau-Band auf der Titelseite. Enthält typischerweise 2 Capitularia Bild-Widgets."
 
 #~ msgid "Logo Bar"
 #~ msgstr "Logo-Band"
 
-#~ msgid ""
-#~ "The logo bar in the footer of every page. Takes one or more Capitularia "
-#~ "Logo Widgets."
-#~ msgstr ""
-#~ "Das Logo-Band im Fußteil einer jeden Seite. Enthält ein oder mehrere "
-#~ "Capitularia Logo-Widgets."
+#~ msgid "The logo bar in the footer of every page. Takes one or more Capitularia Logo Widgets."
+#~ msgstr "Das Logo-Band im Fußteil einer jeden Seite. Enthält ein oder mehrere Capitularia Logo-Widgets."
 
 #~ msgid "Post Sidebar"
 #~ msgstr "Post Sidebar"
@@ -741,18 +727,14 @@ msgstr "Generiere Seiten unter: %s"
 #~ msgid "Page Sidebar"
 #~ msgstr "Page Sidebar"
 
-#~ msgid ""
-#~ "The sidebar on pages. Output below the more specialized page sidebars."
-#~ msgstr ""
-#~ "Die Sidebar auf Pages. Wird unter den spezielleren Sidebars ausgegeben."
+#~ msgid "The sidebar on pages. Output below the more specialized page sidebars."
+#~ msgstr "Die Sidebar auf Pages. Wird unter den spezielleren Sidebars ausgegeben."
 
 #~ msgid "Post and Page Sidebar"
 #~ msgstr "Sidebar auf Posts und Pages"
 
 #~ msgid "The sidebar on posts and pages. Output below the other sidebars."
-#~ msgstr ""
-#~ "Die Sidebar auf Pages und Posts. Wird unter den anderen Sidebars "
-#~ "ausgegeben."
+#~ msgstr "Die Sidebar auf Pages und Posts. Wird unter den anderen Sidebars ausgegeben."
 
 #~ msgid "Capitularies Sidebar"
 #~ msgstr "Kapitularien-Sidebar"

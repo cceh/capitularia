@@ -46,13 +46,6 @@ class Settings_Page
         );
 
         add_settings_field (
-            OPTIONS . '_executable',
-            __ ('CollateX executable', LANG),
-            array ($this, 'on_options_field_executable'),
-            OPTIONS,
-            $section
-        );
-        add_settings_field (
             OPTIONS . '_api',
             __ ('API Entrypoint', LANG),
             array ($this, 'on_options_field_api'),
@@ -72,7 +65,10 @@ class Settings_Page
     public function display ()
     {
         $title = esc_html (get_admin_page_title ());
-        echo ("<div class='wrap'>\n<h2>$title</h2>\n<form method='post' action='options.php'>");
+        echo ("<div class='wrap'>\n");
+        echo ("<h2>$title</h2>\n");
+        echo ("<p><a href='/tools/collation/'>" . __("Collation Tool", LANG) . "</a></p>\n");
+        echo ("<form method='post' action='options.php'>");
         settings_fields (OPTIONS);
         do_settings_sections (OPTIONS);
         save_button ();
@@ -87,22 +83,6 @@ class Settings_Page
 
     public function on_options_section_general ()
     {
-    }
-
-    /**
-     * Output the root option field with its description.
-     *
-     * @return void
-     */
-
-    public function on_options_field_executable ()
-    {
-        $setting = get_opt ('executable');
-        echo "<input class='file-input' type='text' name='{$this->options}[executable]' value='$setting' />";
-        echo '<p>' . sprintf (
-            __ ('The CollateX executable, eg.: %s', LANG),
-            '/usr/bin/java -jar /path/to/collatex.jar'
-        ) . '</p>';
     }
 
     /**
@@ -148,7 +128,6 @@ class Settings_Page
 
     public function on_validate_options ($options)
     {
-        $options['executable'] = sanitize_text_field ($options['executable']);
         $options['api']        = $this->sanitize_path ($options['api']);
         return $options;
     }

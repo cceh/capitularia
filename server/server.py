@@ -4,14 +4,20 @@
 """The API server for Capitularia."""
 
 import argparse
+import logging
 import time
 
+import flask
 from flask import current_app, Flask
 from werkzeug.routing import Map, Rule, Submount
 
 import common
+import config
+from config import args, init_logging
+
 from db_tools import PostgreSQLEngine
 
+from data_server     import app as data_app
 from tile_server     import tile_app
 from geo_server      import geo_app
 from xslt_server     import app as xslt_app
@@ -25,123 +31,6 @@ class Config (object):
     USE_RELOADER      = False
     USE_DEBUGGER      = False
     SERVER_START_TIME = str (int (time.time ())) # for cache busting
-
-
-DROYSEN1886  = 'Droysen, Gustav. Historischer Handatlas. Leipzig, 1886'
-VIDAL1898    = 'Vidal-Lablache, Paul. Atlas général. Paris, 1898'
-SHEPHERD1911 = 'Shepherd, William. Historical Atlas. New York, 1911'
-NATEARTH2019 = '&copy; <a href="http://www.naturalearthdata.com/">Natural Earth</a>'
-CAPITULARIA  = 'capitularia.uni-koeln.de'
-
-Config.TILE_LAYERS = [
-    {
-        'id'          : 'ne',
-        'title'       : 'Natural Earth',
-        'attribution' : NATEARTH2019,
-        'map_style'   : 'mapnik-natural-earth.xml',
-        'type'        : 'base',
-    },
-    {
-        'id'          : 'vl',
-        'title'       : 'LaBlache - Empire de Charlemagne 843',
-        'attribution' : VIDAL1898,
-        'map_style'   : 'mapnik-vidal-lablache.xml',
-        'type'        : 'overlay',
-    },
-    {
-        'id'          : 'sh',
-        'title'       : 'Shepherd - Carolingian Empire 843-888',
-        'attribution' : SHEPHERD1911,
-        'map_style'   : 'mapnik-shepherd.xml',
-        'type'        : 'overlay',
-    },
-    {
-        'id'          : 'dr',
-        'title'       : 'Droysen - Deutschland um das Jahr 1000',
-        'attribution' : DROYSEN1886,
-        'map_style'   : 'mapnik-droysen-1886.xml',
-        'type'        : 'overlay',
-    },
-]
-
-Config.GEO_LAYERS = [
-    {
-        'id'          : 'countries_843',
-        'title'       : 'Empire 843',
-        'long_title'  : 'Empire de Charlemagne au Traité de Verdun 843',
-        'classes'     : 'countries',
-        'url'         : '/client/geodata/countries_843.geojson',
-        'attribution' : VIDAL1898,
-        'type'        : 'area',
-    },
-    {
-        'id'          : 'countries_870',
-        'title'       : 'Boundaries 870',
-        'long_title'  : 'Disruption of the Carolingian Empire, 843-888 (Mersen 870)',
-        'classes'     : 'countries',
-        'url'         : '/client/geodata/countries_870.geojson',
-        'attribution' : SHEPHERD1911,
-        'type'        : 'area',
-    },
-    {
-        'id'          : 'countries_888',
-        'title'       : 'Boundaries 888',
-        'long_title'  : 'Disruption of the Carolingian Empire, 843-888 (888)',
-        'classes'     : 'countries',
-        'url'         : '/client/geodata/countries_888.geojson',
-        'attribution' : SHEPHERD1911,
-        'type'        : 'area',
-    },
-    {
-        'id'          : 'regions_843',
-        'title'       : 'Empire 843 (Pagi)',
-        'long_title'  : 'Empire de Charlemagne au Traité de Verdun 843 (Pagi)',
-        'classes'     : 'regions',
-        'url'         : '/client/geodata/regions_843.geojson',
-        'attribution' : VIDAL1898,
-        'type'        : 'area',
-    },
-    {
-        'id'          : 'regions_1000',
-        'title'       : 'Deutschland um das Jahr 1000',
-        'classes'     : 'regions',
-        'url'         : '/client/geodata/droysen_1886_22_23.geojson',
-        'attribution' : DROYSEN1886,
-        'type'        : 'area',
-    },
-    {
-        'id'          : 'countries_modern',
-        'title'       : 'Modern Countries',
-        'classes'     : 'countries',
-        'url'         : '/client/geodata/countries_modern.geojson',
-        'attribution' : NATEARTH2019,
-        'type'        : 'area',
-    },
-    {
-        'id'          : 'mss',
-        'title'       : 'Manuscripts',
-        'classes'     : 'places mss',
-        'url'         : 'geo/places/mss.json',
-        'attribution' : CAPITULARIA,
-        'type'        : 'place',
-    },
-    {
-        'id'          : 'msp',
-        'title'       : 'Manuscript Parts',
-        'classes'     : 'places msparts',
-        'url'         : 'geo/places/msparts.json',
-        'attribution' : CAPITULARIA,
-        'type'        : 'place',
-    },
-    {
-        'id'          : 'cap',
-        'title'       : 'Capitularies',
-        'classes'     : 'places capitularies',
-        'url'         : 'geo/places/capitularies.json',
-        'attribution' : CAPITULARIA,
-        'type'        : 'place',
-    },
-]
 
 
 def build_parser (default_config_file):
@@ -165,6 +54,9 @@ def create_app (Config):
     app = Flask (__name__)
 
     app.config.from_object (Config)
+
+    app.register_blueprint (data_app, url_prefix = '/data')
+    data_app.init_app (app)
 
     app.register_blueprint (tile_app, url_prefix = '/tile')
     tile_app.init_app (app)
@@ -190,8 +82,12 @@ def create_app (Config):
 if __name__ == "__main__":
     from werkzeug.serving import run_simple
 
-    args = build_parser (Config.CONFIG_FILE).parse_args ()
-    args = common.init_logging (args)
+    build_parser ('server.conf').parse_args (namespace = args)
+    init_logging (
+        args,
+        flask.logging.default_handler,
+        logging.FileHandler ('server.log')
+    )
 
     Config.LOG_LEVEL   = args.log_level
     Config.CONFIG_FILE = args.config_file

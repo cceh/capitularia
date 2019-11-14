@@ -14,11 +14,41 @@ import types
 import flask
 from flask import abort, current_app, request
 
-RE_WS    = re.compile ('(\s+)')
-RE_CAP   = re.compile ('^([bkmorde]*)[._ ]*(\d+)', re.IGNORECASE)
+RE_WS         = re.compile ('(\s+)')
+
+# See: https://capitularia.uni-koeln.de/wp-admin/admin.php?page=wp-help-documents&document=7402
+
+REGEX_BK      = r'(bk|mordek|ansegis|benedictus\.levita|dtr_66\.§)[._]0*(\d+)([a-z]?)'
+REGEX_N       = r'(?:_(\d))?'
+REGEX_CHAPTER = r'(?:_(.+))?'
+
+RE_BK         = re.compile ('^' + REGEX_BK +                 '$', re.IGNORECASE)
+RE_BK_N       = re.compile ('^' + REGEX_BK + REGEX_N +       '$', re.IGNORECASE)
+RE_CORRESP    = re.compile ('^' + REGEX_BK + REGEX_CHAPTER + '$', re.IGNORECASE)
+
+RE_LOCUS      = re.compile (r'(\d*)([rv]?[ab]?)(?:-(\d*)([rv]?))?')
+RE_LOCUS_N    = re.compile (r'(\d*[rv]?[ab]?)-(\d+)')
+
+RE_MSPART_N   = re.compile (r'foll?\.\s+(.*)$')
+RE_INTRANGE   = re.compile (r'(\d+)(?:-(\d+))')
+
+
+RE_BK_GUESS   = re.compile (r'^(b|bk|m|mordek)?[._ ]?(\d+)', re.IGNORECASE)
+""" Regex for guessing a BK while parsing the commandline.
+Allows for various shortcuts.  Should never be used on texts. """
 
 LAST_BK      = 307
+""" The highest BK number.  Used for open ranges in commandline parsing. """
+
 LAST_MORDEK  = 27
+""" The highest Mordek number. Used for open ranges in commandline parsing. """
+
+# geographic map attributions, used by geo_server *and* tile_server
+DROYSEN1886  = 'Droysen, Gustav. Historischer Handatlas. Leipzig, 1886'
+VIDAL1898    = 'Vidal-Lablache, Paul. Atlas général. Paris, 1898'
+SHEPHERD1911 = 'Shepherd, William. Historical Atlas. New York, 1911'
+NATEARTH2019 = '&copy; <a href="http://www.naturalearthdata.com/">Natural Earth</a>'
+CAPITULARIA  = 'capitularia.uni-koeln.de'
 
 
 def make_json_response (json = None, status = 200):
@@ -27,7 +57,7 @@ def make_json_response (json = None, status = 200):
     })
 
 
-def make_geojson_response (rows, fields, geometry_field_name = 'geom', id_field_name='geo_id'):
+def make_geojson_response (rows, fields, geometry_field_name = 'geom', id_field_name = 'geo_id'):
     """Make a geoJSON response.
 
     All fields except the id and geometry fields become properties.
@@ -87,17 +117,125 @@ def fix_ws (s):
 def text_content (e):
     return fix_ws (' '.join (e.xpath ('//text()')))
 
-def fix_cap (s, default_prefix = 'b'):
-    m = RE_CAP.match (s)
-    if m:
-        prefix = (m.group (1) or default_prefix).lower ()
-        if prefix in ('b', 'bk'):
-            return "BK_{0:03d}".format (int (m.group (2)))
-        if prefix in ('m', 'mordek'):
-            return "Mordek_{0:02d}".format (int (m.group (2)))
-    return s
 
-def fix_cap_range (s, default_prefix = 'bk'):
+def _parse_locus (m):
+    """ Parse a RE_LOCUS match
+
+    Normalize Nr and Nv to modern page numbering.
+    """
+
+    start, start_rv = int (m.group (1) or 0), m.group (2)
+    end,   end_rv   = int (m.group (3) or 0), m.group (4)
+    start   = start   or 1      # eg. xml:id=newhaven-bl-808-r-2
+    end     = end     or start
+    end_rv  = end_rv  or start_rv
+
+    if (start_rv):
+        start = 2 * start + (start_rv == 'v') - 1
+    if (end_rv):
+        end   = 2 * end   + (end_rv   == 'v') - 1
+
+    if start > end:
+        raise ValueError ("Bogus locus range: '%d-%d'" % (start, end))
+
+    return start, end
+
+
+def parse_locus (s):
+    """ Parse a <locus> element
+
+    Normalize Nr and Nv to modern page numbering.
+    """
+
+    m = RE_LOCUS.search (s)
+    if m is None:
+        raise ValueError ("Bogus locus: '%s'" % s)
+
+    return _parse_locus (m)
+
+
+def parse_mspart_n (s):
+    """ Parse a n="foll. 7-27, 44-51 (Teil-Hs. B)"
+
+    Normalize to modern page numbering.
+    """
+
+    m = RE_MSPART_N.search (s)
+    if m is None:
+        raise ValueError ("Bogus msPart @n: '%s'" % s)
+
+    loci = m.group (1)
+    return [_parse_locus (m) for m in RE_LOCUS.finditer (loci)]
+
+
+def parse_xml_id_locus (s, ms_id):
+    m = RE_LOCUS_N.search (s[len (ms_id) + 1:])
+    if m is None:
+        raise ValueError ("Bogus locus + n: '%s'" % s)
+
+    return m.group (1), int (m.group (2))
+
+
+BK_NORM = {
+    'bk'                : "BK",
+    'mordek'            : "Mordek",
+    'ansegis'           : "Ansegis",
+    'benedictus.levita' : "Benedictus.Levita",
+    'dtr_66.§'          : "DTR.66.§",
+}
+""" The format(s) of a normalized BK. """
+
+
+def _normalize_bk (m):
+    """ Normalize a BK number.
+
+    Return BK, 20a
+    Throw on malformed BKs.
+    """
+
+    return BK_NORM[m.group (1).lower ()], m.group (2) + m.group (3).lower ()
+
+
+def normalize_bk_n (s):
+    """ Normalize a capitulary id.  Use on milestone @n.
+
+    Throws on malformed BKs.
+    """
+
+    m = RE_BK_N.search (s)
+    if m is None:
+        raise ValueError ("Bogus BK: '%s'" % s)
+
+    return (*_normalize_bk (m), int (m.group (4) or '0'))
+
+
+def normalize_corresp (s):
+    """ Normalize a chapter id.  Use on @corresp.
+
+    Throws on malformed corresps.
+    """
+
+    m = RE_CORRESP.search (s)
+    if m is None:
+        raise ValueError ("Bogus @corresp: '%s'" % s)
+
+    return (*_normalize_bk (m), m.group (4))
+
+
+def guess_bk (s, default_prefix = 'bk'):
+    """ Guess a BK from user input. Throw if hopeless. """
+
+    m = RE_BK_GUESS.search (s)
+    if m is None:
+        raise ValueError ("Cannot guess BK from: '%s'" % s)
+
+    prefix = (m.group (1) or default_prefix).lower ()
+    if prefix[0] == 'm':
+        return "Mordek_{0:02d}".format (int (m.group (2)))
+    return "BK_{0:03d}".format (int (m.group (2)))
+
+
+def guess_bk_range (s, default_prefix = 'bk'):
     """ Convert a range from user input into list of bk or mordek nos. """
 
     if not s:
@@ -114,7 +252,7 @@ def fix_cap_range (s, default_prefix = 'bk'):
                     prefix0 = default_prefix.lower ()
                     suffix0 = 1
                 else:
-                    m = RE_CAP.match (r[0])
+                    m = RE_BK.search (r[0])
                     prefix0 = (m.group (1) or default_prefix).lower ()
                     suffix0 = int (m.group (2))
 
@@ -122,7 +260,7 @@ def fix_cap_range (s, default_prefix = 'bk'):
                     prefix1 = prefix0
                     suffix1 = LAST_MORDEK if prefix0 == 'm' else LAST_BK
                 else:
-                    m = RE_CAP.match (r[1])
+                    m = RE_BK.search (r[1])
                     prefix1 = (m.group (1) or prefix0).lower ()
                     suffix1 = int (m.group (2))
 
@@ -132,10 +270,10 @@ def fix_cap_range (s, default_prefix = 'bk'):
                     raise ValueError
 
                 for suffix in range (suffix0, suffix1 + 1):
-                    res.append (fix_cap ("%s%d" % (prefix0, suffix)))
+                    res.append (guess_bk ("%s%d" % (prefix0, suffix)))
 
             elif len (r) == 1:
-                res.append (fix_cap (value))
+                res.append (guess_bk (value))
 
             else:
                 raise ValueError

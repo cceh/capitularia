@@ -9,7 +9,7 @@ PUB_DIR   := $(ROOT_DIR)/publ
 PRIV_DIR  := $(ROOT_DIR)/intern/Transkriptionen
 CACHE_DIR := $(ROOT_DIR)/publ/cache
 
-XSL_DIR         := $(PUB_DIR)/transform
+XSL_DIR         := .
 MSS_DIR         := $(PUB_DIR)/mss
 MSS_PRIV_DIR    := $(PRIV_DIR)/Transkriptionsauftraege/FertigeTranskriptionen
 CAPIT_DIR       := $(PUB_DIR)/capit
@@ -17,13 +17,21 @@ MSS_LISTS_DIR   := $(PUB_DIR)/mss/lists
 CAPIT_LISTS_DIR := $(PUB_DIR)/capit/lists
 BIB_DIR         := $(PUB_DIR)/bibl
 
+BK_TEXT_DIR     := $(PRIV_DIR)/BK_Text_Superstruktur
+BK_TEXTZEUGE    := $(BK_TEXT_DIR)/bk-textzeuge.xml
+
 XSLTPROC  := /usr/bin/xsltproc --nonet --novalid --nomkdir
 XSLTPROC2  = $(XSLTPROC) -o $@ $(word 2,$^) $<
 SAXON     := /usr/bin/saxon
 SAXON2     = $(SAXON) -s:"$<" -xsl:"$(word 2,$^)" -o:"$@"
 
+TOUCH = mkdir -p $(dir $@) && touch "$@"
+
 all: mss mss_priv capits lists
 	touch $(CACHE_DIR)/last_make_run
+
+collation:
+	touch $(CACHE_DIR)/last_collation_run
 
 
 # do not waste time trying to make these files:
@@ -52,6 +60,7 @@ mss-footer     := mss-footer.xsl $(common)
 mss-transcript := mss-transcript.xsl mss-transcript-footnotes.xsl $(common)
 mss-transcript-cte           := mss-transcript-cte.xsl $(mss-transcript)
 mss-transcript-with-comments := mss-transcript-with-comments.xsl $(mss-transcript)
+mss-transcript-collation     := mss-transcript-collation.xsl $(mss-transcript)
 capit      := capit.xsl      $(common)
 mss-capit  := mss-capit.xsl  $(common)
 mss-idno   := mss-idno.xsl   $(common)
@@ -59,6 +68,7 @@ mss-key    := mss-key.xsl    $(common)
 mss-table  := mss-table.xsl  $(common)
 capit-list := capit-list.xsl $(common)
 
+mss-extract-chapters := mss-extract-chapters.xsl common-3.xsl
 
 ################ MSS
 
@@ -85,6 +95,19 @@ $(CACHE_DIR)/mss/%.transcript.commented.html : $(MSS_DIR)/%.xml $(mss-transcript
 	$(XSLTPROC) -o $@ $(word 2,$^) $<
 
 mss : $(patsubst %.xml,$(CACHE_DIR)/mss/%.transcript.commented.html,$(notdir $(wildcard $(MSS_DIR)/*.xml)))
+
+
+$(CACHE_DIR)/collation/%/timestamp : $(MSS_DIR)/%.xml $(mss-extract-chapters)
+	$(SAXON) -s:"$<" -xsl:mss-extract-chapters.xsl directory="$(dir $@)"
+	-$(TOUCH)
+
+$(CACHE_DIR)/collation/bk-textzeuge/timestamp : $(BK_TEXTZEUGE) $(mss-extract-chapters)
+	$(SAXON) -s:"$<" -xsl:mss-extract-chapters.xsl directory="$(dir $@)"
+	-$(TOUCH)
+
+collation : $(patsubst %.xml,$(CACHE_DIR)/collation/%/timestamp,$(notdir $(wildcard $(MSS_DIR)/*.xml)))
+
+collation : $(CACHE_DIR)/collation/bk-textzeuge/timestamp
 
 
 ################ CAPITS
@@ -165,8 +188,7 @@ $(CACHE_DIR)/lists/places.html : $(PUB_DIR)/resources/capitularia_place.xml regi
 lists : $(CACHE_DIR)/lists/places.html
 
 
-$(CACHE_DIR)/internal/mss/bk-textzeuge.html : $(PRIV_DIR)/BK_Text_Superstruktur/BK-Textzeuge.xml \
-												$(mss-transcript)
+$(CACHE_DIR)/internal/mss/bk-textzeuge.html : $(BK_TEXTZEUGE) $(mss-transcript)
 	$(XSLTPROC2)
 
 mss_priv : $(CACHE_DIR)/internal/mss/bk-textzeuge.html
@@ -184,8 +206,8 @@ $(CACHE_DIR)/mss/cte-137-de.html: $(MSS_DIR)/texts/137-de.xml $(mss-transcript-c
 mss : $(CACHE_DIR)/mss/cte-137-de.html
 
 
-$(CACHE_DIR)/lists/corpus.xml : make-corpus.xsl $(MSS_DIR)/*.xml
-	$(SAXON) -it:main -xsl:"$<" -o:"$@" dir=$(MSS_DIR)
+$(CACHE_DIR)/lists/corpus.xml : corpus.xsl $(MSS_DIR)/*.xml $(BK_TEXTZEUGE)
+	$(SAXON) -it:main -xsl:"$<" -o:"$@" dir="$(MSS_DIR)" dir2="$(BK_TEXTDIR)"
 
 $(CACHE_DIR)/lists/downloads.html : $(CACHE_DIR)/lists/corpus.xml downloads.xsl
 	$(SAXON2)
@@ -212,7 +234,8 @@ clean:
 
 dirs:
 	mkdir -p $(CACHE_DIR)
-	mkdir -p $(CACHE_DIR)/mss $(CACHE_DIR)/capits $(CACHE_DIR)/lists $(CACHE_DIR)/internal/mss
+	mkdir -p $(CACHE_DIR)/mss $(CACHE_DIR)/capits $(CACHE_DIR)/lists \
+			 $(CACHE_DIR)/internal/mss $(CACHE_DIR)/collation
 	mkdir -p $(foreach c,$(CAPITS),$(CACHE_DIR)/capits/$(c))
 
 .PHONY: all mss capits lists clean dirs

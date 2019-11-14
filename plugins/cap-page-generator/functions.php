@@ -369,7 +369,8 @@ function on_admin_bar_menu ($wp_admin_bar)
 function on_plugin_action_links ($links) {
 	array_push (
 		$links,
-		'<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>'
+		'<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>',
+		'<a href="index.php?page=' . DASHBOARD . '">' . __ ('Dashboard', LANG) . '</a>'
 	);
 	return $links;
 }

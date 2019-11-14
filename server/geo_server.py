@@ -8,10 +8,91 @@ from flask import abort, current_app, request, Blueprint
 import common
 from db_tools import execute
 
+class Config (object):
+    GEO_LAYERS = [
+        {
+            'id'          : 'countries_843',
+            'title'       : 'Empire 843',
+            'long_title'  : 'Empire de Charlemagne au Traité de Verdun 843',
+            'classes'     : 'countries',
+            'url'         : '/client/geodata/countries_843.geojson',
+            'attribution' : common.VIDAL1898,
+            'type'        : 'area',
+        },
+        {
+            'id'          : 'countries_870',
+            'title'       : 'Boundaries 870',
+            'long_title'  : 'Disruption of the Carolingian Empire, 843-888 (Mersen 870)',
+            'classes'     : 'countries',
+            'url'         : '/client/geodata/countries_870.geojson',
+            'attribution' : common.SHEPHERD1911,
+            'type'        : 'area',
+        },
+        {
+            'id'          : 'countries_888',
+            'title'       : 'Boundaries 888',
+            'long_title'  : 'Disruption of the Carolingian Empire, 843-888 (888)',
+            'classes'     : 'countries',
+            'url'         : '/client/geodata/countries_888.geojson',
+            'attribution' : common.SHEPHERD1911,
+            'type'        : 'area',
+        },
+        {
+            'id'          : 'regions_843',
+            'title'       : 'Empire 843 (Pagi)',
+            'long_title'  : 'Empire de Charlemagne au Traité de Verdun 843 (Pagi)',
+            'classes'     : 'regions',
+            'url'         : '/client/geodata/regions_843.geojson',
+            'attribution' : common.VIDAL1898,
+            'type'        : 'area',
+        },
+        {
+            'id'          : 'regions_1000',
+            'title'       : 'Deutschland um das Jahr 1000',
+            'classes'     : 'regions',
+            'url'         : '/client/geodata/droysen_1886_22_23.geojson',
+            'attribution' : common.DROYSEN1886,
+            'type'        : 'area',
+        },
+        {
+            'id'          : 'countries_modern',
+            'title'       : 'Modern Countries',
+            'classes'     : 'countries',
+            'url'         : '/client/geodata/countries_modern.geojson',
+            'attribution' : common.NATEARTH2019,
+            'type'        : 'area',
+        },
+        {
+            'id'          : 'mss',
+            'title'       : 'Manuscripts',
+            'classes'     : 'places mss',
+            'url'         : 'geo/places/mss.json',
+            'attribution' : common.CAPITULARIA,
+            'type'        : 'place',
+        },
+        {
+            'id'          : 'msp',
+            'title'       : 'Manuscript Parts',
+            'classes'     : 'places msparts',
+            'url'         : 'geo/places/msparts.json',
+            'attribution' : common.CAPITULARIA,
+            'type'        : 'place',
+        },
+        {
+            'id'          : 'cap',
+            'title'       : 'Capitularies',
+            'classes'     : 'places capitularies',
+            'url'         : 'geo/places/capitularies.json',
+            'attribution' : common.CAPITULARIA,
+            'type'        : 'place',
+        },
+    ]
+
 
 class geoBlueprint (Blueprint):
     def init_app (self, app):
-        pass
+        app.config.from_object (Config)
+
 
 geo_app  = geoBlueprint ('geo',  __name__)
 
@@ -26,7 +107,7 @@ def init_geo_query_params (conn):
 
         capitularies = request.args.get ('capitularies')
         if capitularies:
-            params['capitularies'] = tuple (common.fix_cap_range (capitularies))
+            params['capitularies'] = tuple (common.guess_bk_range (capitularies))
             params['where'] += 'AND cap_id IN :capitularies '
 
     except ValueError:

@@ -139,11 +139,216 @@ def generic (metadata, create_cmd, drop_cmd, create_when='after-create', drop_wh
 
 
 Base = declarative_base ()
+
+CreateGeneric ("""
+CREATE SCHEMA capitularia;
+ALTER DATABASE capitularia SET search_path = capitularia, public;
+"""
+).execute_at ('before-create', Base.metadata)
+
+DropGeneric ("""
+DROP SCHEMA IF EXISTS capitularia CASCADE;
+""").execute_at ('after-drop', Base.metadata)
+
 Base.metadata.schema = 'capitularia'
 
-generic (Base.metadata, '''
-ALTER DEFAULT PRIVILEGES IN SCHEMA capitularia GRANT SELECT ON TABLES TO capitularia;
-''', None);
+function ('natsort', Base.metadata, 't TEXT', 'TEXT', '''
+-- SELECT REGEXP_REPLACE ($1, '0*([0-9]+)', length (\1) || \1, 'g');
+--
+SELECT STRING_AGG (COALESCE (r[2], LENGTH (r[1])::text || r[1]), '')
+    FROM REGEXP_MATCHES ($1, '0*([0-9]+)|([^0-9]+)', 'g') r;
+''', volatility = 'IMMUTABLE')
+
+
+class Manuscripts (Base):
+    r"""Manuscripts
+
+    .. sauml::
+       :include: manuscripts
+
+    """
+
+    __tablename__ = 'manuscripts'
+
+    ms_id = Column (String, primary_key = True)
+
+    title    = Column (String)
+    filename = Column (String)
+
+    status   = Column (String)
+    """ The Wordpress status: 'publish' or 'private' """
+
+    __table_args__ = (
+    )
+
+
+class MsParts (Base):
+    r"""The parts of a manuscript
+
+    .. sauml::
+       :include: msparts
+
+    """
+
+    __tablename__ = 'msparts'
+
+    ms_id    = Column (String)
+    msp_part = Column (String)
+
+    date     = Column (INT4RANGE)
+    loci     = Column (ARRAY (INT4RANGE))
+    leaf     = Column (ARRAY (String))
+    written  = Column (ARRAY (String))
+
+    __table_args__ = (
+        PrimaryKeyConstraint (ms_id, msp_part),
+        ForeignKeyConstraint ([ms_id],  ['manuscripts.ms_id'], on_delete = 'CASCADE'),
+    )
+
+
+class Capitularies (Base):
+    r"""Capitularies
+
+    .. sauml::
+       :include: capitularies
+
+    """
+
+    __tablename__ = 'capitularies'
+
+    cap_id = Column (String, primary_key = True)
+
+    title  = Column (String)
+    date   = Column (INT4RANGE)
+
+    __table_args__ = (
+    )
+
+
+class Chapters (Base):
+    r"""Chapters
+
+    .. sauml::
+       :include: chapters
+
+    """
+
+    __tablename__ = 'chapters'
+
+    cap_id  = Column (String)
+
+    chapter = Column (String)
+
+    __table_args__ = (
+        PrimaryKeyConstraint (cap_id, chapter),
+        ForeignKeyConstraint ([cap_id], ['capitularies.cap_id'], on_delete = 'CASCADE'),
+    )
+
+
+class MnMssCapitularies (Base):
+    r"""The M:N relationship between manuscripts and capitularies
+    according to <msDesc>
+
+    This table also contains capitularies that are not yet transcribed but at a
+    lesser granularity than the mn_mss_chapters table.
+
+    .. sauml::
+       :include: mn_mss_capitularies
+
+    """
+
+    __tablename__ = 'mn_mss_capitularies'
+
+    ms_id   = Column (String)
+    cap_id  = Column (String)
+    mscap_n = Column (Integer)
+    """Used if there are more than one copy of this capitulary in the manuscript."""
+
+    __table_args__ = (
+        PrimaryKeyConstraint (ms_id, cap_id, mscap_n),
+        ForeignKeyConstraint ([ms_id],  ['manuscripts.ms_id'], on_delete = 'CASCADE'),
+        ForeignKeyConstraint ([cap_id], ['capitularies.cap_id'], on_delete = 'CASCADE'),
+    )
+
+
+class MssChapters (Base):
+    r"""The relationship between copies of capitularies in manuscripts and
+    chapters according to <body>.
+
+    This table only contains chapters that are already transcribed but at a
+    finer granularity than the mn_mss_capitularies table.
+
+    .. sauml::
+       :include: mss_chapters
+
+    """
+
+    __tablename__ = 'mss_chapters'
+
+    ms_id    = Column (String)
+    cap_id   = Column (String)
+    mscap_n  = Column (Integer)
+
+    chapter  = Column (String)
+    mschap_n = Column (Integer)
+    """ Order of chapters in the manuscript. """
+
+    locus = Column (String)
+    """ The locus of the chapter in the manuscript.
+    As recorded by the editor, eg. 42ra """
+
+    hands = Column (String)
+    """ All hands found in the chapter, eg. 'XY' """
+
+    transcribed = Column (Integer, nullable = False, server_default = '0')
+    """ Is this chapter already transcribed? 0 == no, 1 == partially, 2 == completed """
+
+    __table_args__ = (
+        PrimaryKeyConstraint (ms_id, cap_id, mscap_n, chapter, mschap_n),
+        ForeignKeyConstraint (
+            [cap_id, chapter],
+            ['chapters.cap_id', 'chapters.chapter'],
+            on_delete = 'CASCADE'
+        ),
+        ForeignKeyConstraint (
+            [ms_id, cap_id, mscap_n],
+            ['mn_mss_capitularies.ms_id', 'mn_mss_capitularies.cap_id', 'mn_mss_capitularies.mscap_n'],
+            on_delete = 'CASCADE'
+        ),
+    )
+
+
+view ('chapters_count_transcriptions', Base.metadata, '''
+SELECT cap_id, chapter, COUNT (ms_id) AS transcriptions
+FROM chapters
+ JOIN mss_chapters mn USING (cap_id, chapter)
+GROUP BY cap_id, chapter
+''')
+
+
+view ('capitularies_view', Base.metadata, '''
+    SELECT ms.ms_id, ms.title AS ms_title, cap.cap_id, cap.title AS cap_title,
+           cap.date, lower (cap.date) as cap_notbefore, upper (cap.date) as cap_notafter
+    FROM manuscripts ms
+      JOIN mn_mss_capitularies mn USING (ms_id)
+        JOIN capitularies cap USING (cap_id)
+    ''')
+
+#
+# The GIS schema
+#
+
+CreateGeneric ("""
+CREATE SCHEMA gis;
+ALTER DATABASE capitularia SET search_path = capitularia, gis, public;
+"""
+).execute_at ('before-create', Base.metadata)
+
+DropGeneric ("""
+DROP SCHEMA IF EXISTS gis CASCADE;
+""").execute_at ('after-drop', Base.metadata)
+
+Base.metadata.schema = 'gis'
 
 class Geonames (Base):
     r"""Geonames
@@ -171,65 +376,6 @@ class Geonames (Base):
     )
 
 
-class Manuscripts (Base):
-    r"""Manuscripts
-
-    .. sauml::
-       :include: manuscripts
-
-    """
-
-    __tablename__ = 'manuscripts'
-
-    ms_id    = Column (String, primary_key = True)
-    ms_title = Column (String)
-
-    __table_args__ = (
-    )
-
-
-class MsParts (Base):
-    r"""The parts of a manuscript
-
-    .. sauml::
-       :include: msparts
-
-    """
-
-    __tablename__ = 'msparts'
-
-    ms_id   = Column (String)
-    ms_part = Column (String)
-
-    msp_head    = Column (String)
-    msp_date    = Column (INT4RANGE)
-    msp_leaf    = Column (ARRAY (String))
-    msp_written = Column (ARRAY (String))
-
-    __table_args__ = (
-        PrimaryKeyConstraint (ms_id, ms_part),
-        ForeignKeyConstraint ([ms_id],  ['manuscripts.ms_id']),
-    )
-
-
-class Capitularies (Base):
-    r"""Capitularies
-
-    .. sauml::
-       :include: capitularies
-
-    """
-
-    __tablename__ = 'capitularies'
-
-    cap_id    = Column (String, primary_key = True)
-    cap_title = Column (String)
-    cap_date  = Column (INT4RANGE)
-
-    __table_args__ = (
-    )
-
-
 class MnMsPartsGeonames (Base):
     r"""The M:N relationship between msparts and geonames
 
@@ -241,59 +387,23 @@ class MnMsPartsGeonames (Base):
     __tablename__ = 'mn_msparts_geonames'
 
     ms_id      = Column (String)
-    ms_part    = Column (String)
+    msp_part   = Column (String)
     geo_id     = Column (String)
     geo_source = Column (String)
 
     __table_args__ = (
-        PrimaryKeyConstraint (ms_id, ms_part, geo_source, geo_id),
-        ForeignKeyConstraint ([ms_id, ms_part], ['msparts.ms_id', 'msparts.ms_part']),
-        ForeignKeyConstraint ([geo_source, geo_id], ['geonames.geo_source', 'geonames.geo_id']),
+        PrimaryKeyConstraint (ms_id, msp_part, geo_source, geo_id),
+        ForeignKeyConstraint (
+            [ms_id, msp_part],
+            ['capitularia.msparts.ms_id', 'capitularia.msparts.msp_part'],
+            on_delete = 'CASCADE'
+        ),
+        ForeignKeyConstraint (
+            [geo_source, geo_id],
+            ['geonames.geo_source', 'geonames.geo_id'],
+            on_delete = 'CASCADE'
+        ),
     )
-
-
-class MnMsPartsCapitularies (Base):
-    r"""The M:N relationship between msparts and capitularies
-
-    .. sauml::
-       :include: mn_msparts_capitularies
-
-    """
-
-    __tablename__ = 'mn_msparts_capitularies'
-
-    ms_id   = Column (String)
-    ms_part = Column (String)
-    cap_id  = Column (String)
-
-    __table_args__ = (
-        PrimaryKeyConstraint (ms_id, ms_part, cap_id),
-        ForeignKeyConstraint ([ms_id, ms_part], ['msparts.ms_id', 'msparts.ms_part']),
-        ForeignKeyConstraint ([cap_id],         ['capitularies.cap_id']),
-    )
-
-
-view ('msparts_view', Base.metadata, '''
-    SELECT ms.ms_id, ms.ms_title, msp.ms_part, msp.msp_head,
-           msp.msp_date, lower (msp.msp_date) as msp_notbefore, upper (msp.msp_date) as msp_notafter,
-           g.geo_id, g.geo_source, g.geo_name, g.geo_fcode, g.geom
-    FROM msparts msp
-      JOIN manuscripts ms USING (ms_id)
-      JOIN mn_msparts_geonames mn USING (ms_id, ms_part)
-            JOIN geonames g USING (geo_source, geo_id)
-    ''')
-
-
-view ('capitularies_view', Base.metadata, '''
-    SELECT ms.ms_id, ms.ms_title, msp.ms_part, msp.msp_head,
-           msp.msp_date, lower (msp.msp_date) as msp_notbefore, upper (msp.msp_date) as msp_notafter,
-           cap.cap_id, cap.cap_title,
-           cap.cap_date, lower (cap.cap_date) as cap_notbefore, upper (cap.cap_date) as cap_notafter
-    FROM msparts msp
-      JOIN manuscripts ms USING (ms_id)
-      JOIN mn_msparts_capitularies mn USING (ms_id, ms_part)
-            JOIN capitularies cap USING (cap_id)
-    ''')
 
 
 class GeoAreas (Base):
@@ -324,6 +434,17 @@ class GeoAreas (Base):
         PrimaryKeyConstraint (geo_source, geo_id),
         Index ('ix_geoareas_geom', geom, postgresql_using = 'gist'),
     )
+
+view ('msparts_view', Base.metadata, '''
+    SELECT ms.ms_id, ms.title AS ms_title, msp.msp_part, msp.loci,
+           msp.date, lower (msp.date) as msp_notbefore, upper (msp.date) as msp_notafter,
+           g.geo_id, g.geo_source, g.geo_name, g.geo_fcode, g.geom
+    FROM capitularia.msparts msp
+      JOIN capitularia.manuscripts ms USING (ms_id)
+      JOIN mn_msparts_geonames mn USING (ms_id, msp_part)
+      JOIN geonames g USING (geo_source, geo_id)
+    ''')
+
 
 # for table in 'countries_843 countries_870 countries_888 countries_modern regions_843'.split ():
 #     fulltable = 'capitularia.' + table

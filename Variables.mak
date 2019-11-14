@@ -1,5 +1,7 @@
 PRJ_DIR := prj/capitularia/capitularia
 
+
+
 ROOT      := $(UNI_DIR)/$(PRJ_DIR)
 HOST_ROOT := $(CAPITULARIA_SSHUSER)@$(CAPITULARIA_SSHHOST)
 
@@ -45,6 +47,12 @@ RSYNCPY        := $(RSYNC) --exclude "**/__pycache__"  --exclude "*.pyc"
 
 MYSQL_REMOTE   := mysql --defaults-file=~/.my.cnf.capitularia
 MYSQL_LOCAL    := mysql --defaults-file=~/.my.cnf.capitularia-local
+
+PSQL           := /usr/bin/psql
+PGDUMP         := /usr/bin/pg_dump
+PGLOCAL        := $(CAPITULARIA_PGDATABASE)
+PGREMOTE       := -h $(CAPITULARIA_PGHOST) -U $(CAPITULARIA_PGUSER) $(CAPITULARIA_PGDATABASE)
+PGREMOTESUPER  := -h $(CAPITULARIA_PGHOST) -U $(CAPITULARIA_PGSUPERUSER) $(CAPITULARIA_PGDATABASE)
 
 PHP_FILES         ?= $(wildcard $(PHP_SRC)/*.php)
 JS_SRC_FILES      ?= $(wildcard $(JS_SRC)/*.js)

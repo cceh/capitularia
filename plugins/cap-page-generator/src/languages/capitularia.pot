@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Capitularia 2.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2019-11-06 21:04+0100\n"
+"POT-Creation-Date: 2019-11-12 22:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cap-page-generator.php:98
+#: cap-page-generator.php:101
 msgid "Capitularia Page Generator"
 msgstr ""
 
-#: cap-page-generator.php:99
+#: cap-page-generator.php:102
 msgid "Generate Wordpress pages for our TEI files."
 msgstr ""
 
-#: class-settings-page.php:171
+#: class-settings-page.php:73 functions.php:328 functions.php:373
+msgid "Dashboard"
+msgstr ""
+
+#: class-settings-page.php:142
+#, php-format
+msgid "N.B. The File Includer plugin root is set to: %s"
+msgstr ""
+
+#: class-settings-page.php:183
 msgid "General"
 msgstr ""
 
@@ -112,107 +121,108 @@ msgctxt "Select a filename (screen reader only)"
 msgid "Select %s"
 msgstr ""
 
-#: class-config.php:62
+#: class-config.php:65
 msgid "List of section ids"
 msgstr ""
 
-#: class-config.php:64
+#: class-config.php:67
 #, php-format
 msgid "List of section ids (space-separated). Eg.: %s"
 msgstr ""
 
-#: class-config.php:71
+#: class-config.php:74
 msgid "XML root path"
 msgstr ""
 
-#: class-config.php:73
+#: class-config.php:76
 #, php-format
 msgid "Root directory for XML files in the AFS, eg.: %s"
 msgstr ""
 
-#: class-config.php:80
+#: class-config.php:83
 msgid "Schema root path"
 msgstr ""
 
-#: class-config.php:82
+#: class-config.php:85
 #, php-format
 msgid "Root directory for schema files in the AFS, eg.: %s"
 msgstr ""
 
-#: class-config.php:89
+#: class-config.php:92
 msgid "xmllint path"
 msgstr ""
 
-#: class-config.php:91
+#: class-config.php:94
 #, php-format
 msgid "The full path to the xmllint utility as seen from the server, eg.: %s"
 msgstr ""
 
-#: class-config.php:100
+#: class-config.php:103
 msgid "Section name"
 msgstr ""
 
-#: class-config.php:101
+#: class-config.php:104
 msgid "The name of this section"
 msgstr ""
 
-#: class-config.php:106
+#: class-config.php:109
 msgid "Shortcode"
 msgstr ""
 
-#: class-config.php:107
-msgid "The code to insert in the page"
+#: class-config.php:110
+msgid ""
+"The text to insert on all new pages. Use {slug} to insert the page slug."
 msgstr ""
 
-#: class-config.php:112
+#: class-config.php:115
 msgid "XML files directory"
 msgstr ""
 
-#: class-config.php:114
+#: class-config.php:117
 #, php-format
 msgid "The path to the XML files (relative to the XML Root path), eg.: %s"
 msgstr ""
 
-#: class-config.php:121
+#: class-config.php:124
 msgid "XSL schema"
 msgstr ""
 
-#: class-config.php:122
+#: class-config.php:125
 msgid "The path to the xsl schema file (relative to the Schema Root path)."
 msgstr ""
 
-#: class-config.php:127
+#: class-config.php:130
 msgid "Slug path"
 msgstr ""
 
-#: class-config.php:129
+#: class-config.php:132
 #, php-format
 msgid "The URL path to the page, eg.: %s"
 msgstr ""
 
-#: class-config.php:136
+#: class-config.php:139
 msgid "Slug prefix"
 msgstr ""
 
-#: class-config.php:138
+#: class-config.php:141
 #, php-format
 msgid "The slug prefix for the pages, eg.: %s"
 msgstr ""
 
-#: class-config.php:145
+#: class-config.php:148
 msgid "Page statuses list"
 msgstr ""
 
-#: class-config.php:147
+#: class-config.php:150
 #, php-format
 msgid "The allowed page statuses (space-separated list). Eg.: %s"
 msgstr ""
 
-#: class-config.php:154
+#: class-config.php:157
 msgid "Sidebars"
 msgstr ""
 
-#: class-config.php:156
+#: class-config.php:159
 #, php-format
 msgid "The sidebars (space-separated list). Eg.: %s"
 msgstr ""
@@ -226,12 +236,8 @@ msgstr ""
 msgid "You have no permission to edit posts."
 msgstr ""
 
-#: functions.php:318 functions.php:372
+#: functions.php:318 functions.php:372 class-dashboard-page.php:53
 msgid "Settings"
-msgstr ""
-
-#: functions.php:328
-msgid "Dashboard"
 msgstr ""
 
 #: functions.php:349

@@ -6,7 +6,7 @@
  * Plugin Name: Capitularia Page Generator
  * Plugin URI:
  * Description: Generate Wordpress pages for our TEI files.
- * Version:     0.1.0
+ * Version:     0.1.1
  * Author:      Marcello Perathoner
  * Author URI:
  * License:     GPLv2 or later
@@ -49,6 +49,9 @@ const LANG                 = 'cap-page-generator';
 
 /** @var string Wordpress ID of the settings (option) page */
 const OPTIONS              = 'cap_page_gen_options';
+
+/** @var string Wordpress ID of the settings (option) page of the File Includer Plugin */
+const CAP_FI_OPTIONS       = 'cap_fi_options';
 
 /** @var string Wordpress ID of the dashboard page */
 const DASHBOARD            = 'cap_page_gen_dashboard';

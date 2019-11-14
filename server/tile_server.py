@@ -24,6 +24,38 @@ import cairo
 
 import common
 
+class Config (object):
+    TILE_LAYERS = [
+        {
+            'id'          : 'ne',
+            'title'       : 'Natural Earth',
+            'attribution' : common.NATEARTH2019,
+            'map_style'   : 'mapnik-natural-earth.xml',
+            'type'        : 'base',
+        },
+        {
+            'id'          : 'vl',
+            'title'       : 'LaBlache - Empire de Charlemagne 843',
+            'attribution' : common.VIDAL1898,
+            'map_style'   : 'mapnik-vidal-lablache.xml',
+            'type'        : 'overlay',
+        },
+        {
+            'id'          : 'sh',
+            'title'       : 'Shepherd - Carolingian Empire 843-888',
+            'attribution' : common.SHEPHERD1911,
+            'map_style'   : 'mapnik-shepherd.xml',
+            'type'        : 'overlay',
+        },
+        {
+            'id'          : 'dr',
+            'title'       : 'Droysen - Deutschland um das Jahr 1000',
+            'attribution' : common.DROYSEN1886,
+            'map_style'   : 'mapnik-droysen-1886.xml',
+            'type'        : 'overlay',
+        },
+    ]
+
 MIN_ZOOM = 5
 MAX_ZOOM = 9
 
@@ -141,6 +173,8 @@ renderers = {}
 
 class tileBlueprint (Blueprint):
     def init_app (self, app):
+        app.config.from_object (Config)
+
         for layer in app.config['TILE_LAYERS']:
             renderers[layer['id']] = Render (app, layer)
 

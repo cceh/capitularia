@@ -167,7 +167,8 @@ function on_shortcode ($atts, $content = '')
  * @return array
  */
 
-function on_plugin_action_links ($links) {
+function on_plugin_action_links ($links)
+{
 	array_push (
 		$links,
 		'<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>'
@@ -176,60 +177,81 @@ function on_plugin_action_links ($links) {
 }
 
 /**
- * Sort strings with numbers
+ * Get a list of the xml:ids of all published or privately published
+ * manuscripts.
  *
- * Sort the numbers in the strings in a sensible way, eg. BK1, BK2, BK10.
+ * If $status == 'publish' return all published manuscripts, if $status ==
+ * 'private' return all privately published manuscripts.  These two sets are
+ * distinct.
  *
- * @param array $unsorted The return fron an SQL query
+ * @param string $status - Include all manuscripts with at least this
+ *                         visibility.
  *
- * @return string[] The sorted array of strings
+ * @return string[]
  */
 
-function sort_results ($unsorted)
+function get_published_ids ($status)
 {
-    // Add a key to all objects in the array that allows for sensible
-    // sorting of numeric substrings.
-    foreach ($unsorted as $res) {
-        $res->key = preg_replace_callback (
-            '|\d+|',
-            function ($match) {
-                return 'zz' . strval (strlen ($match[0])) . $match[0];
-            },
-            $res->meta_value
-        );
-    }
+    global $wpdb;
 
-    // Sort the array according to key.
-    usort (
-        $unsorted,
-        function ($res1, $res2) {
-            return strcoll ($res1->key, $res2->key);
-        }
+    $status = ($status === 'private') ? 'private' : 'publish';
+    $parent_page = get_page_by_path ('mss');
+
+    $sql = $wpdb->prepare (
+        "SELECT pm.meta_value
+         FROM {$wpdb->posts} p
+           INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+         WHERE p.post_status = %s AND p.post_parent = %d AND pm.meta_key = 'tei-xml-id'",
+        $status,
+        $parent_page->ID
     );
+    return $wpdb->get_col ($sql, 0);
+}
 
-    return array_map (
-        function ($s) {
-            return $s->meta_value;
+/**
+ * Make a key that sorts in a sensible way.
+ *
+ * Make a key that sorts the numbers in strings in a sensible way, eg. (BK1, BK2,
+ * BK10), or (paris-bn-lat-4626, paris-bn-lat-18238).
+ *
+ * @param string s Any string
+ *
+ * @return string The key to sort with
+ */
+
+function make_sort_key ($s)
+{
+    return preg_replace_callback (
+        '|\d+|',
+        function ($match) {
+            return 'zz' . strval (strlen ($match[0])) . $match[0];
         },
-        $unsorted
+        $s
     );
 }
 
-const SQL = <<<EOF
-FROM (
-SELECT meta_value, post_parent
-FROM wp_postmeta pm
-  JOIN wp_posts p ON p.id = pm.post_id
-WHERE meta_key = 'corresp'
-  AND meta_value REGEXP %s
-  AND meta_value NOT REGEXP %s
-  AND post_status REGEXP %s
-  AND post_parent IN (%d, %d)
-GROUP BY meta_value
-HAVING count(DISTINCT post_name) > 1
-) AS t1
-ORDER BY post_parent DESC, meta_value;
-EOF;
+/**
+ * Make a json request to the configured API.
+ *
+ * @param string endpoint Endpoint relative to configured root.
+ * @param array params    URL parameters to send.
+ *
+ * @return string The decoded JSON response.
+ */
+
+function api_json_request ($endpoint, $params = array ())
+{
+    $request = new \WP_Http ();
+    error_log (get_opt ('api') . $endpoint);
+    $result = $request->request (
+        add_query_arg ($params, get_opt ('api') . $endpoint)
+    );
+    $body = $result['body'];
+    if ($result['response'] !== 200) {
+        // error_log ($body);
+    }
+    return json_decode ($body, true);
+}
 
 /**
  * Get a list of all capitulars
@@ -239,21 +261,18 @@ EOF;
 
 function get_capitulars ()
 {
-    global $wpdb;
-
-    $bk = "^(BK|Mordek)\.\d+(_|$)";
-    if (get_current_user_id () != 0) {
-        $exclude = "^$";
-        $status = RE_PRIVATE;
-    } else {
-        $exclude = RE_EXCLUDE;
-        $status  = RE_PUBLISH;
+    $params = array (
+        'status' => current_user_can ('read_private_pages') ? 'private' : 'publish'
+    );
+    $res = [];
+    foreach (api_json_request ('/data/capitularies.json/', $params) as $r) {
+        $cap_id = $r['cap_id'];
+        $transcriptions = $r['transcriptions'];
+        if ($transcriptions > 1 && preg_match ('/^BK|^Mordek/', $cap_id)) {
+            $res[] = $cap_id;
+        }
     }
-
-    $sql = "SELECT DISTINCT REGEXP_REPLACE (meta_value, '_.*$', '') AS meta_value " . SQL;
-    $sql = $wpdb->prepare ($sql, $bk, $exclude, $status, MSS_PAGE_ID, BKPARENT_PAGE_ID);
-
-    return sort_results ($wpdb->get_results ($sql));
+    return $res;
 }
 
 /**
@@ -266,112 +285,56 @@ function get_capitulars ()
 
 function get_corresps ($bk)
 {
-    global $wpdb;
-
-    $bk      = "{$bk}(_|$)";
-    if (get_current_user_id () != 0) {
-        $exclude = "^$";
-        $status = RE_PRIVATE;
-    } else {
-        $exclude = RE_EXCLUDE;
-        $status  = RE_PUBLISH;
+    $params = array (
+        'status' => current_user_can ('read_private_pages') ? 'private' : 'publish'
+    );
+    $res = [];
+    foreach (api_json_request ("/data/capitulary/$bk/chapters.json/", $params) as $r) {
+        $chap = $r['chapter'];
+        $res[] = $bk . ($chap ? "_{$chap}" : '');
     }
-
-    $sql = 'SELECT DISTINCT meta_value ' . SQL;
-    $sql = $wpdb->prepare ($sql, $bk, $exclude, $status, MSS_PAGE_ID, BKPARENT_PAGE_ID);
-
-    return sort_results ($wpdb->get_results ($sql));
+    return $res;
 }
 
 /**
  * Get all witnesses for a Corresp
  *
- * Take special care that we don't get duplicate ids !!! They fuck up the
- * collation layout.  Since the same file can be "mounted" at more than one
- * page, eg. below /mss/ and below /test/, we will get one random page_id
- * and slug among the valid ones.
- *
  * @param string  $corresp     The corresp eg. 'BK123_4'
  * @param boolean $later_hands Whether to synthetize witnesses as edited by later hands
- * @param boolean $all         Include all if corresp is contained more than once,
- *                             else include first only.
  *
  * @return Witness[] The witnesses
  */
 
-function get_witnesses ($corresp, $later_hands = false, $all_copies = false)
+function get_witnesses ($corresp, $later_hands = false)
 {
-    global $wpdb;
-    $items = array ();
+    $items = [];
 
-    if (get_current_user_id () != 0) {
-        $exclude = "^$";
-        $status = RE_PRIVATE;
-    } else {
-        $exclude = RE_EXCLUDE;
-        $status  = RE_PUBLISH;
-    }
+    $params = array (
+        'status' => current_user_can ('read_private_pages') ? 'private' : 'publish'
+    );
+    $result = api_json_request ("/data/corresp/$corresp/manuscripts.json/", $params);
+    $n_copies_in_witness = [];
 
-    $sql = <<<EOF
-SELECT p.id AS post_id, p.post_name AS xml_id
-FROM wp_posts p
-WHERE p.id IN (
-    SELECT DISTINCT post_id
-    FROM wp_postmeta
-    WHERE meta_key = 'corresp'
-    AND meta_value = %s
-  )
-  AND p.post_status REGEXP %s
-  AND p.post_parent IN (%d, %d)
-ORDER BY p.post_parent DESC, post_name;
-EOF;
+    foreach ($result as $r) {
+        $xml_id = $r['ms_id'];
+        $n_copies_in_witness[$xml_id] = ($n_copies_in_witness[$xml_id] ?? 0) + 1;
 
-    $sql = $wpdb->prepare ($sql, $corresp, $status, MSS_PAGE_ID, BKPARENT_PAGE_ID);
-
-    foreach ($wpdb->get_results ($sql) as $row) {
-        $filename = $wpdb->get_var (
-            $wpdb->prepare (
-                'SELECT meta_value FROM wp_postmeta ' .
-                "WHERE meta_key = 'tei-filename' AND post_id = %d ORDER BY meta_value",
-                $row->post_id
-            )
-        );
-
-        // error_log ("Trying file: $filename");
-
-        if (!is_readable ($filename)) {
-            // orphaned page without file
-            error_log ("Error: Cannot read file: $filename");
-            continue;
-        }
-        $slug = get_page_uri ($row->post_id);
-
-        $xml_id = $row->xml_id == 'bk-textzeuge' ? '_bk-textzeuge' : $row->xml_id;
-        $items[] = $witness = new Witness ($corresp, $xml_id, $filename, $slug);
-
-        $do_hands = $later_hands && $witness->has_later_hands ();
-        if ($do_hands) {
-            $items[] = $witness->clone_witness (1, true);
-        }
-
-        $n_corresps = $witness->count_corresps ($corresp);
-        if ($all_copies && $n_corresps > 1) {
-            for ($n = 2; $n <= $n_corresps; $n++) {
-                $items[] = $witness->clone_witness ($n, false);
-                if ($do_hands) {
-                    $items[] = $witness->clone_witness ($n, true);
-                }
+        $slug = "/mss/{$r['ms_id']}";
+        if (\cceh\capitularia\theme\if_visible ($slug) || $xml_id = 'bk-textzeuge') {
+            $n_copy = $n_copies_in_witness[$xml_id];
+            $items[] = $witness = new Witness (
+                $corresp,
+                $xml_id,
+                $r['filename'],
+                $r['locus'],
+                $n_copy
+            );
+            $do_hands = $later_hands && $r['hands'] != '';
+            if ($do_hands) {
+                $items[] = $witness->clone_witness ($n_copy, true);
             }
         }
     }
-
-    // sort Witnesses according to xml_id
-    usort (
-        $items,
-        function ($item1, $item2) {
-            return strcoll ($item1->sort_key, $item2->sort_key);
-        }
-    );
 
     return $items;
 }

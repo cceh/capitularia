@@ -50,7 +50,7 @@ class Dashboard_Page
         $title = esc_html (get_admin_page_title ());
         echo ("<div class='wrap'>\n");
         echo ("  <h1>$title</h1>\n");
-
+		echo ('  <p><a href="/wp-admin/options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . "</a></p>\n");
         // If this is a bulk action request, process the bulk action and print
         // any resulting messages.
 

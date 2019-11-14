@@ -70,6 +70,7 @@ class Settings_Page
         $title = esc_html (get_admin_page_title ());
         echo ("<div class='wrap'>\n");
         echo ("  <h2>$title</h2>\n");
+        echo ('  <p><a href="/wp-admin/index.php?page=' . DASHBOARD . '">' . __ ('Dashboard', LANG) . "</a></p>\n");
         echo ("  <form method='post' action='options.php'>\n");
         echo ("    <div id='tabs'>\n");
 
@@ -81,7 +82,10 @@ class Settings_Page
         foreach ($config->sections as $section) {
             $section_id = $section[0];
             $caption    = __ ($config->get_opt ($section_id, 'section_caption', $section_id));
-            echo ("<li><a href='#tabs-$section_id'>$caption</a></li>\n");
+            $class      = 'navtab';
+            $class      .= $config->section_can ($section_id, 'private') ? ' cap_can_private' : '';
+            $class      .= $config->section_can ($section_id, 'publish') ? ' cap_can_publish' : '';
+            echo ("<li><a class='$class' href='#tabs-$section_id'>$caption</a></li>\n");
         }
         echo ("      </ul>\n");
 
@@ -131,10 +135,18 @@ class Settings_Page
         $value       = $config->get_opt ($section_id, $field_id);
         if ($field_id === 'shortcode') {
             echo ("<textarea class='file-input' name='{$page_id}[{$section_id}.{$field_id}]'>$value</textarea>");
+            $cap_fi_root = $config->get_fi_opt ('root', null);
+            echo ("<p>{$description}</p>\n");
+            if ($cap_fi_root) {
+                echo ('<p>' . sprintf (
+                        __ ('N.B. The File Includer plugin root is set to: %s', LANG),
+                        $cap_fi_root
+                    ) . "</p>\n");
+            }
         } else {
             echo ("<input class='file-input' type='text' name='{$page_id}[{$section_id}.{$field_id}]' value='{$value}' />");
+            echo ("<p>{$description}</p>\n");
         }
-        echo ("<p>{$description}</p>\n");
     }
 
     /**

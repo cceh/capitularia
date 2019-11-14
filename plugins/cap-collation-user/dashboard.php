@@ -25,13 +25,13 @@ function dashboard_page ()
 <div id="vm-cap-collation-user" class="cap-collation-user">
   <div class="collation-panel no-print">
 
-    <!--
-      <a> is a helper element we use to fake a user click on a download button.
-      This will open a file-save dialog box.  The file to save consists of a
-      JSON structure encoding all paramters relevant to a collation run,
-      eg. capitular, corresp, list of selected witnesses, etc.  See
-      on_save_config () in front.js.
-    -->
+    <?php
+    // <a> is a helper element we use to fake a user click on a download button.
+    // This will open a file-save dialog box.  The file to save consists of a
+    // JSON structure encoding all paramters relevant to a collation run,
+    // eg. capitular, corresp, list of selected witnesses, etc.  See
+    // on_save_config () in front.js.
+    ?>
 
     <a id="save-fake-download" href="" download="" style="display: none;"></a>
     <input id="load-config" type="file" @change="on_load_config" />
@@ -45,12 +45,12 @@ function dashboard_page ()
           <?php _ex ('Capitulary', 'H3', 'cap-collation-user'); ?>
         </h3>
 
-        <!--
-            Form with drop-downs for capitulary and corresp selection.  User
-            selection of a capitulary will AJAX-load the corresps drop-down.  User
-            selection of a corresp or user hitting submit will AJAX-load the list of
-            witnesses into the next form.
-          -->
+        <?php
+        // Form with drop-downs for capitulary and corresp selection.  User
+        // selection of a capitulary will AJAX-load the corresps drop-down.  User
+        // selection of a corresp or user hitting submit will AJAX-load the list of
+        // witnesses into the next form.
+        ?>
 
         <form>
           <div class="form-row">
@@ -203,12 +203,12 @@ function dashboard_page ()
       </button>
     </div>
 
-    <!--
-      In this section the user can select which witnesses to collate with
-      checkboxes and the order in which the witnesses should collate through
-      drag-and-drop of the table rows.  On user submit the next step will
-      collate the selected witnesses.
-    -->
+    <?php
+      // In this section the user can select which witnesses to collate with
+      // checkboxes and the order in which the witnesses should collate through
+      // drag-and-drop of the table rows.  On user submit the next step will
+      // collate the selected witnesses.
+    ?>
 
     <div class="col-md-6 no-print">
       <div class="witnesses-div">
@@ -278,13 +278,13 @@ function dashboard_page ()
 
   </div> <!-- class row -->
 
-  <!--
-    This finally is the stuff the user actually wants to see.  A set of
-    tables with one row per collated witness, each table representing a
-    collated segment of the witnesses.
-
-    This section is controlled by a vue.js component in front.js
-  -->
+  <?php
+        // This finally is the stuff the user actually wants to see.  A set of
+        // tables with one row per collated witness, each table representing a
+        // collated segment of the witnesses.
+        //
+        // This section is controlled by a vue.js component in front.js
+  ?>
 
   <div class="row">
     <div class="col-12">

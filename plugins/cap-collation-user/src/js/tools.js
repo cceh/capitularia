@@ -1,4 +1,4 @@
-export const bk_id = '_bk-textzeuge';
+export const bk_id = 'bk-textzeuge';
 
 /**
  * The collation algorithms we support.  The Needleman-Wunsch-Gotoh algorithm

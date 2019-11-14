@@ -1,3 +1,27 @@
+/* wp admin colors
+.notice-success {
+    border-color: #7ad03a;
+}
+.notice-warning {
+    border-color: #ffba00;
+}
+.notice-error {
+    border-color: #dd3d36;
+}
+.notice-info {
+    border-color: #00a0d2;
+}
+*/
+
+$unpublished-color:  #dd3d36;
+$private-color:      #ffba00;
+$public-color:       #7ad03a;
+$progress-bar-color: #00a0d2;
+
+$border-color:       #ccc;
+$background-color:   #f1f1f1;
+$a-inactive-bg:      #e4e4e4;
+
 .file-input {
     min-width: 50%;
 }
@@ -34,7 +58,7 @@ div.cap_page_spinner {
     margin: 2px 0 0;
 
     .ui-progressbar-indeterminate .ui-progressbar-value {
-        background: #00a0d2;
+        background: $progress-bar-color;
     }
 }
 
@@ -55,7 +79,7 @@ div.wrap {
     }
 
     ul.ui-tabs-nav {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid $border-color;
 
         li {
             margin-left: 0.5em;
@@ -64,8 +88,8 @@ div.wrap {
             top: 1px;
 
             a {
-                border: 1px solid #ccc;
-                background: #e4e4e4;
+                border: 1px solid $border-color;
+                background: $a-inactive-bg;
                 color: #555;
                 line-height: 24px;
                 outline: 0 none;
@@ -85,34 +109,22 @@ div.wrap {
                 a:focus,
                 a:hover {
                     margin-bottom: -1px;
-                    border-bottom: 1px solid #f1f1f1;
-                    background: #f1f1f1;
+                    border-bottom: 1px solid $background-color;
+                    background: $background-color;
                     color: #000;
                 }
             }
+            a {
+                border-top: 4px solid $border-color;
 
-            a.cap_can_publish {
-                border-top: 4px solid #7ad03a;
-            }
+                &.cap_can_private {
+                    border-top: 4px solid $private-color;
+                }
 
-            a.cap_can_private {
-                border-top: 4px solid #ffba00;
+                &.cap_can_publish {
+                    border-top: 4px solid $public-color;
+                }
             }
         }
     }
 }
-
-/* wp admin colors
-.notice-success {
-    border-color: #7ad03a;
-}
-.notice-warning {
-    border-color: #ffba00;
-}
-.notice-error {
-    border-color: #dd3d36;
-}
-.notice-info {
-    border-color: #00a0d2;
-}
-*/

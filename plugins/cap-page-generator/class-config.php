@@ -34,6 +34,9 @@ class Config
     /** @var string[]|null Array of options retrieved from database and cached. */
     private $options = null;
 
+    /** @var string[]|null Array of options retrieved from database and cached. */
+    private $cap_fi_options = null;
+
     /**
      * Constructor
      *
@@ -103,8 +106,8 @@ class Config
             ),
             array (
                 'shortcode',
-                __ ('Shortcode',                      LANG),
-                __ ('The code to insert in the page', LANG),
+                __ ('Shortcode', LANG),
+                __ ('The text to insert on all new pages. Use {slug} to insert the page slug.', LANG),
                 ns ('cap_sanitize_nothing'),
             ),
             array (
@@ -184,8 +187,25 @@ class Config
         if ($this->options === null) {
             $this->options = get_option (OPTIONS, array ());
         }
-        $name = $section_id . '.' . $field_id;
-        return $this->options[$name] ? $this->options[$name] : $default;
+        return $this->options[$section_id . '.' . $field_id] ?? $default;
+    }
+
+    /**
+     * Get an option of the File Include Plugin
+     *
+     * @param string $section_id The section @see $this->sections
+     * @param string $field_id   The field (or option) name
+     * @param string $default    The default value
+     *
+     * @return string The option
+     */
+
+    public function get_fi_opt ($option_id, $default = '')
+    {
+        if ($this->cap_fi_options === null) {
+            $this->cap_fi_options = get_option (CAP_FI_OPTIONS, array ());
+        }
+        return $this->cap_fi_options[$option_id] ?? $default;
     }
 
     /**
@@ -217,7 +237,7 @@ class Config
     {
         $allowed_statuses = explode (
             ' ',
-            $this->get_opt ($section_id, 'page_status_list', 'publish private')
+            $this->get_opt ($section_id, 'page_status_list')
         );
         return in_array ($status, $allowed_statuses);
     }
