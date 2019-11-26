@@ -2,64 +2,64 @@
 /**
  * Capitularia File Includer functions.
  *
+ * The main difficulty here is to get around the wpautop and wptexturizer
+ * filters that were implemented with boundless incompetence.
+ *
  * @package Capitularia
  */
 
 namespace cceh\capitularia\file_includer;
 
+use cceh\capitularia\lib;
+
 /**
- * Include the file.
+ * Clean up the <pre> tags we inserted solely to protect against the dumb
+ * wpautop and wptexturizer filters.
  *
- * @param array  $atts    The shortcode attributes.
- * @param string $content Should be empty.
+ * @param array  $dummy_atts (unused) The shortcode attributes.
+ * @param string $content    The shortcode content.
  *
- * @return The page content to insert.
+ * @return The content with <pre> tags stripped.
  */
 
-function on_shortcode ($atts, $content = '')
+function on_shortcode ($dummy_atts, $content) // phpcs:ignore
 {
-    global $post;
+    return \do_shortcode (strip_pre ($content));
+}
 
-    $atts = shortcode_atts (
-        array (
-            'path' => '',
-            'post' => false,
-        ),
-        $atts
-    );
+/**
+ * Put shortcodes and <pre> tags around the content.
+ *
+ * @param array  $atts    The shortcode attributes.
+ * @param string $content The shortcode content.
+ *
+ * @return The content surrounded by shortcodes and <pre> tags.
+ */
 
-    # replace {slug} with the page slug
-    $path = preg_replace ('/\{slug\}/', $post->post_name, $atts['path']);
+function make_shortcode_around ($atts, $content)
+{
+    $short = get_opt ('shortcode');
 
-    $root = realpath (get_opt ('root'));
-    $path = realpath ("$root/$path");
-
-    if (strncmp ($root, $path, strlen ($root)) !== 0) {
-        return sprintf (_x ('%s: Illegal path.', 'Plugin name', LANG), NAME);
+    $attributes = "path=\"{$atts['path']}\"";
+    if ($atts['post']) {
+        $attributes .= ' post="true"';
     }
+    return "[{$short} {$attributes}]<pre><pre>{$content}</pre></pre>[/{$short}]";
+}
 
-    $do_postprocessing = wp_parse_args ($atts['post']);
+/**
+ * Strip <pre> tags from around the content.
+ *
+ * @param string $content The content to strip.
+ *
+ * @return The stripped content.
+ */
 
-    if (!is_readable ($path)) {
-        return '<div class="error">' . sprintf (__ ("File not found: %s", 'cap-file-includer'), $path) . '</div>';
-    }
-
-    $doc = load_xml_or_html (file_get_contents ($path));
-
-    if ($do_postprocessing) {
-        $doc = post_process ($doc);
-    }
-
-    $output = explode ("\n", save_html ($doc));
-
-    if (strncmp ($output[0], '<?xml ', 6) == 0) {
-        array_shift ($output);
-    }
-    array_unshift ($output, '<div class="xsl-output">');
-    $output[] = '</div>';
-
-    // run shortcode parser recursively
-    return do_shortcode (join ("\n", $output));
+function strip_pre ($content)
+{
+    $content = preg_replace ('!<pre><pre>!s',   '', $content);
+    $content = preg_replace ('!</pre></pre>!s', '', $content);
+    return $content;
 }
 
 /**
@@ -73,18 +73,6 @@ function on_shortcode ($atts, $content = '')
 function ns ($function_name)
 {
     return __NAMESPACE__ . '\\' . $function_name;
-}
-
-/**
- * Output a localized 'save changes' button
- *
- * @return
- */
-
-function save_button () {
-    submit_button (
-        _x ('Save Changes', 'Button: Save Changes in setting page', LANG)
-    );
 }
 
 /**
@@ -107,17 +95,14 @@ function get_opt ($name, $default = '')
 }
 
 /**
- * Join two paths with exactly one slash.
+ * Get the configured root directory.
  *
- * @param string $url1 The first path.
- * @param string $url2 The second path.
- *
- * @return url1 and url2 joined by exactly one slash.
+ * @return string The root directory
  */
 
-function urljoin ($url1, $url2)
+function get_root ()
 {
-    return rtrim ($url1, '/') . '/' . $url2;
+    return lib\urljoin (lib\get_opt ('afs'), get_opt ('root'));
 }
 
 /**
@@ -140,7 +125,7 @@ function on_enqueue_scripts ()
 
 function on_init ()
 {
-    load_plugin_textdomain (LANG, false, basename (dirname ( __FILE__ )) . '/languages/');
+    load_plugin_textdomain (LANG, false, basename (dirname (__FILE__)) . '/languages/');
 }
 
 /**
@@ -192,15 +177,18 @@ function on_admin_menu ()
  *
  * Adds hack value.
  *
- * @return array
+ * @param array $links The old links
+ *
+ * @return array The augmented links
  */
 
-function on_plugin_action_links ($links) {
-	array_push (
-		$links,
-		'<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>'
-	);
-	return $links;
+function on_plugin_action_links ($links)
+{
+    array_push (
+        $links,
+        '<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>'
+    );
+    return $links;
 }
 
 /**

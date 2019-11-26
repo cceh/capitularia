@@ -21,18 +21,6 @@ function ns ($function_name)
 }
 
 /**
- * Output a localized 'save changes' button
- *
- * @return
- */
-
-function save_button () {
-    submit_button (
-        _x ('Save Changes', 'Button: Save Changes in setting page', LANG)
-    );
-}
-
-/**
  * Get ID of the parent page of a section
  *
  * Returns the ID of the parent page of a section.
@@ -106,7 +94,7 @@ function cap_make_path_relative_to ($path, $base)
 /**
  * Do nothing
  *
- * @param string $s
+ * @param string $s The string to do nothing with
  *
  * @return string The same string
  */
@@ -199,7 +187,7 @@ function cap_sanitize_key_list ($key_list)
 
 function on_init ()
 {
-    load_plugin_textdomain (LANG, false, basename (dirname ( __FILE__ )) . '/languages/');
+    load_plugin_textdomain (LANG, false, basename (dirname (__FILE__)) . '/languages/');
 
     global $config;
     $config = new Config ();
@@ -357,22 +345,24 @@ function on_admin_bar_menu ($wp_admin_bar)
     }
 }
 
-
 /**
  * Add a link to our settings page to the plugins admin dashboard.
  *
  * Adds hack value.
  *
- * @return array
+ * @param array $links The old links
+ *
+ * @return array The augmented links
  */
 
-function on_plugin_action_links ($links) {
-	array_push (
-		$links,
-		'<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>',
-		'<a href="index.php?page=' . DASHBOARD . '">' . __ ('Dashboard', LANG) . '</a>'
-	);
-	return $links;
+function on_plugin_action_links ($links)
+{
+    array_push (
+        $links,
+        '<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>',
+        '<a href="index.php?page=' . DASHBOARD . '">' . __ ('Dashboard', LANG) . '</a>'
+    );
+    return $links;
 }
 
 /**

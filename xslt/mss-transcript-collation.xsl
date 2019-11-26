@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet
-    version="1.0"
-    xmlns="http://www.w3.org/1999/xhtml"
+    version="3.0"
+    xmlns="http://www.tei-c.org/ns/1.0"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
-    xmlns:exsl="http://exslt.org/common"
-    xmlns:func="http://exslt.org/functions"
-    xmlns:set="http://exslt.org/sets"
-    xmlns:str="http://exslt.org/strings"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    exclude-result-prefixes="#default tei"
-    extension-element-prefixes="cap exsl func set str">
-  <!-- libexslt does not support the regexp extension ! -->
+    xpath-default-namespace="http://www.tei-c.org/ns/1.0"
+    default-mode="collation"
+    exclude-result-prefixes="cap tei xs xsl">
 
-  <!-- This transformation produces HTML better suited for collation. -->
+  <!-- This transformation produces TXT better suited for collation. -->
 
-  <xsl:import href="mss-transcript.xsl" />
+  <xsl:import href="mss-transcript-phase-1.xsl" />
+
+  <xsl:output method="text" encoding="UTF-8" />
 
   <!-- Don't output the front for collation. Go directly to the body. -->
   <xsl:template match="/">
-    <xsl:apply-templates select="/tei:TEI/tei:text/tei:body"/>
+    <xsl:apply-templates select="/TEI/text/body" />
   </xsl:template>
 
-  <!-- Normalize V to U except in <tei:seg type="num"> -->
+  <xsl:template match="/TEI/text/body">
+    <!-- apply templates in phase-1 stylesheet -->
+    <xsl:variable name="phase1">
+      <root>
+        <xsl:apply-templates mode="phase1" />
+      </root>
+    </xsl:variable>
+
+    <!-- apply templates in this stylesheet -->
+    <xsl:variable name="s">
+      <xsl:apply-templates select="$phase1/root" />
+    </xsl:variable>
+
+    <xsl:value-of select="normalize-space (translate (replace (lower-case ($s), 'ae', 'e'), 'ję.,:;!?-_*/', 'ie          '))"/>
+  </xsl:template>
+
+  <!-- Normalize V to U -->
   <xsl:template match="text ()">
     <xsl:value-of select="translate (., 'Vv', 'Uu')"/>
   </xsl:template>
 
-  <xsl:template match="tei:seg[@type='num']//text ()">
+  <!-- Don't normalize V to U inside <seg type="num"> -->
+  <xsl:template match="seg[@type='num']//text ()">
     <xsl:value-of select="."/>
   </xsl:template>
 
-  <!-- Don't output folio number etc. -->
-  <xsl:template match="tei:cb" />
+  <xsl:template match="note" />
 
-  <xsl:template match="tei:milestone[not (@unit='span')]" />
+  <xsl:template match="figure" />
 
-  <!-- Don't output footnotes -->
-  <xsl:template name="footnotes-wrapper" />
-
-  <xsl:template match="tei:note" />
-
-  <xsl:template match="tei:figure" />
+  <!-- override templates in pahes 1 -->
 
   <!-- Don't output "[!]" -->
-  <xsl:template match="tei:sic">
+  <xsl:template match="sic" mode="phase1">
     <xsl:apply-templates />
   </xsl:template>
 
-  <xsl:template match="tei:gap">
-    <xsl:value-of select="str:padding (number (@quantity), '·')" />
+  <xsl:template match="gap[@quantity]" mode="phase1">
+    <xsl:value-of select="cap:string-pad (xs:integer (@quantity), '·')" />
   </xsl:template>
 
-  <xsl:template match="tei:ref[@type='internal' and @subtype='mss']" />
-
   <xsl:template name="empty-del" />
-
-  <xsl:template name="page-break" />
-
-  <!-- don't output special markup for wordpress sidebar menu -->
-  <xsl:template name="make-chapter-mark" />
-
-  <xsl:template name="make-sidebar-bk" />
-
-  <xsl:template name="make-sidebar-bk-chapter" />
 
 </xsl:stylesheet>

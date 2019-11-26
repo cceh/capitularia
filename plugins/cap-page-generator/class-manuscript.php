@@ -25,7 +25,10 @@ class Manuscript
     /** @var string The section of the manuscript, eg. 'mss', 'capit/ldf', ... */
     private $section_id;
 
-    /** @var string|null The manuscript title. Cached. */
+    /** @var string|null The xml:id of the manuscript. Cached. */
+    private $xml_id = null;
+
+    /** @var string|null The title of the manuscript. Cached. */
     private $title = null;
 
     /**
@@ -77,14 +80,14 @@ class Manuscript
     }
 
     /**
-     * Generate a slug without path.
+     * Generate a slug (without path).
      *
      * @return string The slug
      */
 
     public function get_slug ()
     {
-        return sanitize_title (pathinfo ($this->path, PATHINFO_FILENAME));
+        return $this->get_xml_id ();
     }
 
     /**
@@ -118,13 +121,25 @@ class Manuscript
     }
 
     /**
-     * Extract the manuscript title.
+     * Get the xml:id of this manuscript.
      *
-     * Extracts the manuscript title from the TEI file.  The title gets diplayed
-     * in the file list table.  Also puts qTranslate-X tags into the title iff
-     * the title has an xml:lang attribute.
+     * @return string The xml:id.
+     */
+
+    public function get_xml_id ()
+    {
+        // return cached xml_id
+        if ($this->xml_id) {
+            return $this->xml_id;
+        }
+        $this->parse_tei ();
+        return $this->xml_id;
+    }
+
+    /**
+     * Get the title of this manuscript.
      *
-     * @return string The manuscript title with qTranslate-X tags
+     * @return string The title.
      */
 
     public function get_title ()
@@ -133,78 +148,8 @@ class Manuscript
         if ($this->title) {
             return $this->title;
         }
-
-        libxml_use_internal_errors (true);
-        $xml = simplexml_load_file ($this->path);
-        if ($xml === false) {
-            // FIXME: handle errors here
-            return null;
-        }
-
-        $xml->registerXPathNamespace ('tei', 'http://www.tei-c.org/ns/1.0');
-        // $xml->registerXPathNamespace ('xml', 'http://www.w3.org/XML/1998/namespace');
-        $titles = $xml->xpath ("//tei:titleStmt/tei:title[@type='main']");
-        $tmp = array ();
-        foreach ($titles as $title) {
-            $lang = $title->attributes ('xml', true)->lang;
-            if ($lang == 'ger') {
-                $lang = 'de';
-            }
-            if ($lang == 'eng') {
-                $lang = 'en';
-            }
-            $tmp[] = "[:{$lang}]{$title}";
-        }
-        $this->title = sanitize_text_field (__ (join (' ', $tmp), LANG), null, 'display');
+        $this->parse_tei ();
         return $this->title;
-    }
-
-    /**
-     * Validate manuscript against schema.
-     *
-     * @return array Success or error messages
-     */
-
-    private function validate_xmllint ()
-    {
-        global $config;
-
-        $xmllint_path = $config->get_opt ('general', 'xmllint_path');
-        $schema_path  = $config->get_opt_path (
-            'schema_root',
-            $this->get_section_id (),
-            'schema_path'
-        );
-        $link = $this->get_status () == 'delete' ? $this->get_slug () : $this->get_slug_with_link ();
-
-        // The user can change the default catalog behaviour by redirecting
-        // queries to its own set of catalogs, this can be done by setting the
-        // XML_CATALOG_FILES environment variable to a list of catalogs, an
-        // empty one should deactivate loading the default /etc/xml/catalog
-        // default catalog.
-        //
-        // $catalog_dir = dirname ($schema_path);
-        // putenv ("XML_CATALOG_FILES=$catalog_dir/catalog.xml");
-
-        $messages = array ();
-        $retval = 666;
-        $cmdline = array (
-            $xmllint_path,
-            XMLLINT_PARAMS,
-            escapeshellarg (rtrim ($schema_path, '/')),
-            escapeshellarg ($this->path),
-            '2>&1'
-        );
-        exec (join (' ', $cmdline), $messages, $retval); // 0 = ok, 3 = error
-        switch ($retval) {
-            case 0:
-                return array (0, sprintf (__ ('File %s is valid TEI.', LANG), $link));
-            case 3:
-            case 4:
-                return array (2, sprintf (__ ('File %s is invalid TEI.', LANG), $link), $messages);
-            default:
-                return array (1, sprintf (__ ('Validity of file %s is unknown.', LANG), $link), $messages);
-        }
     }
 
     /**
@@ -232,6 +177,51 @@ class Manuscript
             return get_post_status ($page_id);
         }
         return 'delete';
+    }
+
+    /**
+     * Extract the manuscript id and title.
+     *
+     * Extracts the manuscript id and title from the TEI file.  We need the id
+     * for the post metadata.  We need the title for the file list table.
+     *
+     * Also puts qTranslate-X tags into the title iff the title has an xml:lang
+     * attribute.
+     *
+     * @return void
+     */
+
+    public function parse_tei ()
+    {
+        libxml_use_internal_errors (true);
+        $xml = simplexml_load_file ($this->path);
+        if ($xml === false) {
+            // FIXME: handle errors here
+            return null;
+        }
+
+        $xml->registerXPathNamespace ('tei', 'http://www.tei-c.org/ns/1.0');
+        $xml->registerXPathNamespace ('xml', 'http://www.w3.org/XML/1998/namespace');
+
+        $titles = $xml->xpath ("//tei:titleStmt/tei:title[@type='main']");
+        $tmp = array ();
+        foreach ($titles as $title) {
+            $lang = $title->attributes ('xml', true)->lang;
+            if ($lang == 'ger') {
+                $lang = 'de';
+            }
+            if ($lang == 'eng') {
+                $lang = 'en';
+            }
+            $tmp[] = "[:{$lang}]{$title}";
+        }
+        // __ () calls qTranslate-xt
+        $this->title = sanitize_text_field (__ (join (' ', $tmp), LANG), null, 'display');
+
+        $teis = $xml->xpath ('/tei:TEI[@xml:id]');
+        foreach ($teis as $tei) {
+            $this->xml_id = sanitize_text_field (trim ($tei->attributes ('xml', true)->id));
+        }
     }
 
     /**
@@ -290,29 +280,6 @@ class Manuscript
     }
 
     /**
-     * Delete all revisions for this page
-     *
-     * @return array Success or error messages
-     */
-
-    private function delete_revisions ()
-    {
-        global $wpdb;
-        $sql = $wpdb->prepare (
-            "DELETE
-             FROM {$wpdb->posts}
-             WHERE post_parent = %d AND post_type = 'revision'",
-            $this->get_page_id ()
-        );
-        $wpdb->query($sql);
-
-        return array (
-            0,
-            sprintf (__ ('Revisions for %s deleted.', LANG), $this->get_slug_with_link ())
-        );
-    }
-
-    /**
      * Create a page containing one or more shortcodes.
      *
      * Build the content for the new page.  Some pages are made of more than one
@@ -326,7 +293,7 @@ class Manuscript
 
     private function create_page ($status)
     {
-        global $config;
+        global $post, $config;
 
         // Set the page title
         $title = $this->get_title ();
@@ -361,8 +328,17 @@ class Manuscript
         );
         $post_id = wp_insert_post ($new_post);
         if ($post_id) {
+            // set the global $post for the cap_file_include plugin
             $post = get_post ($post_id);
             if ($slug == $post->post_name) {
+                // add metadata to wp_postmeta
+                delete_post_meta ($post_id, 'tei-xml-id');
+                add_post_meta ($post_id, 'tei-xml-id', $this->get_xml_id ());
+                // pipe the new page through the cap_file_include plugin to
+                // generate the page content for the search engine
+                $content = get_the_content ('', false, $post_id);
+                apply_filters ('the_content', $content);
+                // return white smoke
                 return array (
                     0,
                     sprintf (
@@ -377,43 +353,6 @@ class Manuscript
     }
 
     /**
-     * Extract metadata from manuscript.
-     *
-     * Call the metadata search plugin to perfom the actual extraction.
-     *
-     * @return array Success or error message
-     */
-
-    private function extract_metadata ()
-    {
-        $slug    = $this->get_slug ();
-        $page_id = $this->get_page_id ();
-
-        if ($page_id === false) {
-            return array (
-                2,
-                sprintf (__ ('Error while extracting metadata: no page with slug %s.', LANG), $slug)
-            );
-        }
-        // We proxy this action to the Meta Search plugin.
-        $errors = apply_filters ('cap_meta_search_extract_metadata', array (), $page_id, $this->path);
-        if ($errors) {
-            return array (
-                2,
-                sprintf (
-                    __ ('Errors while extracting metadata from file %s.', LANG),
-                    $this->get_slug_with_link ()
-                ),
-                $errors
-            );
-        }
-        return array (
-            0,
-            sprintf (__ ('Metadata extracted from file %s.', LANG), $this->get_slug_with_link ())
-        );
-    }
-
-    /**
      * Perform an action on the manuscript.
      *
      * Actions:
@@ -421,9 +360,6 @@ class Manuscript
      *   private:  create the page with private status
      *   refresh:  re-create the page with the same status as before
      *   delete:   delete the page
-     *   delete-revisions: delete the revisions of the page
-     *   metadata: extract metadata from page
-     *   validate: validate the TEI file
      *
      * @param string $action The action to perform with the manuscript.
      *
@@ -436,14 +372,17 @@ class Manuscript
 
     public function do_action ($action)
     {
-        $slug       = $this->get_slug ();
-        $status     = $this->get_status ();
+        $slug   = $this->get_slug ();
+        $status = $this->get_status ();
 
         error_log ("do_action ($this->section_id $slug $status => $action $this->path)");
 
         if ($action == $status) {
             // nothing to do
             return array (1, sprintf (__ ('The post is already %s.', LANG), $action));
+        }
+        if ($action == 'refresh') {
+            $action = $status;
         }
 
         switch ($action) {
@@ -453,15 +392,6 @@ class Manuscript
                 return $this->create_page ($action);
             case 'delete':
                 return $this->delete_pages ();
-            case 'delete-revisions':
-                return $this->delete_revisions ();
-            case 'metadata':
-                return $this->extract_metadata ();
-            case 'validate':
-                return $this->validate_xmllint ();
-            case 'refresh':
-                $this->delete_pages ();
-                return $this->do_action ($status);
         }
     }
 }

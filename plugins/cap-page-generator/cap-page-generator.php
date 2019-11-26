@@ -50,9 +50,6 @@ const LANG                 = 'cap-page-generator';
 /** @var string Wordpress ID of the settings (option) page */
 const OPTIONS              = 'cap_page_gen_options';
 
-/** @var string Wordpress ID of the settings (option) page of the File Includer Plugin */
-const CAP_FI_OPTIONS       = 'cap_fi_options';
-
 /** @var string Wordpress ID of the dashboard page */
 const DASHBOARD            = 'cap_page_gen_dashboard';
 
@@ -61,12 +58,6 @@ const NONCE_SPECIAL_STRING = 'cap_page_gen_nonce';
 
 /** @var string AJAX security */
 const NONCE_PARAM_NAME     = '_ajax_nonce';
-
-/** @var string Where our Wordpress is in the filesystem */
-const AFS_ROOT             = '/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/';
-
-/** @var string Parameters for the xmllint utility */
-const XMLLINT_PARAMS       = '--noout --relaxng';
 
 if (!class_exists ('\WP_List_Table')) {
     include_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
@@ -90,8 +81,10 @@ add_action ('wp_ajax_on_cap_action_file',  ns ('on_cap_action_file'));
 add_action ('wp_ajax_on_cap_load_section', ns ('on_cap_load_section'));
 add_filter ('query_vars',                  ns ('on_query_vars'));
 
-add_filter ('plugin_action_links_cap-page-generator/cap-page-generator.php',
-            ns ('on_plugin_action_links'));
+add_filter (
+    'plugin_action_links_cap-page-generator/cap-page-generator.php',
+    ns ('on_plugin_action_links')
+);
 
 register_activation_hook   (__FILE__, ns ('on_activation'));
 register_deactivation_hook (__FILE__, ns ('on_deactivation'));

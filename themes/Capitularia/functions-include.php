@@ -255,10 +255,8 @@ function on_wp_title ($title, $sep)
 /**
  * Mark wiki post titles with "Wiki:"
  *
- * @function on_the_title
- *
- * @param string title - The post title
- * @param int post_ID  - The post ID
+ * @param string $title   The post title
+ * @param int    $post_ID The post ID
  *
  * @return The edited post title
  */
@@ -355,7 +353,7 @@ function on_init ()
  * @return array The new args.
  */
 
-function on_dropdown_pages_args ($dropdown_args, $dummy_post = null)
+function on_dropdown_pages_args ($dropdown_args, $dummy_post = null) // phpcs:ignore
 {
     $dropdown_args['post_status'] = array ('publish', 'draft', 'pending', 'future', 'private');
     return $dropdown_args;
@@ -385,7 +383,7 @@ function translate_month_year ($month_year)
  * Redirect user to current page after login
  */
 
-function on_login_redirect ($redirect_to, $requested_redirect_to, $user)
+function on_login_redirect ($redirect_to, $requested_redirect_to, $user) // phpcs:ignore
 {
     return $requested_redirect_to;
 }
@@ -439,7 +437,7 @@ function bk_to_permalink ($corresp)
  * capitular page is in.
  */
 
-function on_do_parse_request ($do_parse, $dummy_wp, $dummy_extra_query_vars)
+function on_do_parse_request ($do_parse, $dummy_wp, $dummy_extra_query_vars) // phpcs:ignore
 {
     $request = isset ($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
     // error_log ('Request was: ' . $request);
@@ -464,8 +462,6 @@ function on_do_parse_request ($do_parse, $dummy_wp, $dummy_extra_query_vars)
 /**
  * HACK! make the "WP Help" wiki plugin's post type searchable
  *
- * @function on_registered_post_type
- *
  * @param string       $post_type        - The post type
  * @param WP_Post_Type $post_type_object - The post object
  *
@@ -482,8 +478,6 @@ function on_registered_post_type ($post_type, $post_type_object)
 
 /**
  * Search only wiki pages if search string contains 'wiki:'
- *
- * @function on_pre_get_posts
  *
  * @param WP_Query $query - The query
  *
@@ -506,7 +500,9 @@ function on_pre_get_posts ($query)
 /**
  * REST endpoint to get user information from auth cookie
  *
- * @param string $cookie The auth cookie
+ * @param object $request The request
+ *
+ * @return void
  */
 
 function cap_rest_user_info (\WP_REST_Request $request)

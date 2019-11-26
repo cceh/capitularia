@@ -17,15 +17,15 @@ namespace cceh\capitularia\theme;
  *
  * [logged_in]You are logged in![/logged_in]
  *
- * @shortcode logged_in
- *
  * @param array  $dummy_atts (unused) The shortocde attributes.
  * @param string $content    The shortcode content.
  *
  * @return string The shortcode content if logged in else ''.
+ *
+ * @shortcode logged_in
  */
 
-function on_shortcode_logged_in ($dummy_atts, $content)
+function on_shortcode_logged_in ($dummy_atts, $content) // phpcs:ignore
 {
     if (is_user_logged_in ()) {
         return do_shortcode ($content);
@@ -40,15 +40,15 @@ function on_shortcode_logged_in ($dummy_atts, $content)
  *
  * [logged_out]Please log in![/logged_out]
  *
- * @shortcode logged_out
- *
  * @param array  $dummy_atts (unused) The shortocde attributes.
  * @param string $content    The shortcode content.
  *
  * @return string The shortcode content if logged out else ''.
+ *
+ * @shortcode logged_out
  */
 
-function on_shortcode_logged_out ($dummy_atts, $content)
+function on_shortcode_logged_out ($dummy_atts, $content) // phpcs:ignore
 {
     if (!is_user_logged_in ()) {
         return do_shortcode ($content);
@@ -154,12 +154,12 @@ function if_status ($atts)
  *   <p>Wien is published!</p>
  * [/if_status]
  *
- * @shortcode if_status
- *
  * @param array  $atts    The shortocde attributes.  status = status, path = path of page
  * @param string $content The shortcode content.
  *
  * @return string The shortcode content if the ms. has that status else ''.
+ *
+ * @shortcode if_status
  */
 
 function on_shortcode_if_status ($atts, $content)
@@ -179,12 +179,12 @@ function on_shortcode_if_status ($atts, $content)
  *   <p>Wien is not published!</p>
  * [/if_not_status]
  *
- * @shortcode if_not_status
- *
  * @param array  $atts    The shortocde attributes.  status = status, path = path of page
  * @param string $content The shortcode content.
  *
  * @return string The shortcode content if the ms. doesn't have that status else ''.
+ *
+ * @shortcode if_not_status
  */
 
 function on_shortcode_if_not_status ($atts, $content)
@@ -250,13 +250,13 @@ function if_visible ($path)
  *   <h2>Hic sunt leones</h2>
  * [/if_any_visible]
  *
- * @shortcode if_visible
- * @shortcode if_any_visible
- *
  * @param array  $atts    The shortocde attributes.  path = space separated paths of pages
  * @param string $content The shortcode content.
  *
  * @return string The shortcode content if the user can see the page in path.
+ *
+ * @shortcode if_visible
+ * @shortcode if_any_visible
  */
 
 function on_shortcode_if_visible ($atts, $content)
@@ -279,13 +279,13 @@ function on_shortcode_if_visible ($atts, $content)
  *   <p>Pay to see our boring premium content!</p>
  * [/if_not_visible]
  *
- * @shortcode if_not_visible
- * @shortcode if_any_not_visible
- *
  * @param array  $atts    The shortocde attributes.  path = space separated paths of pages
  * @param string $content The shortcode content.
  *
  * @return string The shortcode content if the current user cannot see the page in path.
+ *
+ * @shortcode if_not_visible
+ * @shortcode if_any_not_visible
  */
 
 function on_shortcode_if_not_visible ($atts, $content)
@@ -306,12 +306,12 @@ function on_shortcode_if_not_visible ($atts, $content)
  *
  * [if_transcribed path="/mss/barcelona" bk="BK.42"] and <a>here</a>[/if_transcribed]
  *
- * @shortcode if_transcribed
- *
  * @param array  $atts    The shortocde attributes.  path = path of page, bk = BK No.
  * @param string $content The shortcode content.
  *
  * @return string The shortcode content if the capitular is transcribed, else nothing.
+ *
+ * @shortcode if_transcribed
  */
 
 function on_shortcode_if_transcribed ($atts, $content)
@@ -347,15 +347,15 @@ function on_shortcode_if_transcribed ($atts, $content)
  *
  * <p>Accessed on: Jan 1, 1970</p>
  *
- * @shortcode current_date
- *
  * @param array  $atts          The shortocde attributes.
  * @param string $dummy_content The shortcode content. (empty)
  *
  * @return string The current date.
+ *
+ * @shortcode current_date
  */
 
-function on_shortcode_current_date ($atts, $dummy_content)
+function on_shortcode_current_date ($atts, $dummy_content) // phpcs:ignore
 {
     $atts = shortcode_atts (
         array (
@@ -379,10 +379,57 @@ function on_shortcode_current_date ($atts, $dummy_content)
  *
  * <p>URL: https://example.org/post/123</p>
  *
+ * @param array  $dummy_atts    (unused) The shortocde attributes.
+ * @param string $dummy_content (unused) The shortcode content.
+ *
+ * @return string The page permalink.
+ *
  * @shortcode permalink
  */
 
-function on_shortcode_permalink ($dummy_atts, $dummy_content)
+function on_shortcode_permalink ($dummy_atts, $dummy_content) // phpcs:ignore
 {
     return get_permalink ();
+}
+
+/**
+ * Add the cite_as shortcode.
+ *
+ * This shortcode outputs a short description of how to cite the post.
+ *
+ * @param array  $atts          The shortocde attributes.
+ * @param string $dummy_content The shortcode content. (empty)
+ *
+ * @return string A description of how to cite.
+ */
+
+function on_shortcode_cite_as ($atts, $dummy_content) // phpcs:ignore
+{
+    $atts = shortcode_atts (
+        array (
+            'author' => get_the_author (),
+            'title'  => get_the_title (),
+            'url'    => get_permalink (),
+            'date'   => strftime ('%x')
+        ),
+        $atts,
+        'cite_as'
+    );
+
+    $res = <<<EOF
+       <div class="cite_as">
+         <h5>[:de]Empfohlene Zitierweise[:en]How to cite[:]</h5>
+         <div>
+           <span class="author">{$atts['author']}</author>,
+           <span class="title">{$atts['title']}</title>,
+           [:de]in: Capitularia. Edition der fränkischen Herrschererlasse, bearb. von
+           Karl Ubl und Mitarb., Köln 2014 ff.
+           [:en]in: Capitularia. Edition of the Frankish Capitularies, ed. by
+           Karl Ubl and collaborators, Cologne 2014 ff.
+           [:]
+           URL: {$atts['url']} ([:de]abgerufen am[:en]accessed on[:] {$atts['date']})
+         </div>
+       </div>
+EOF;
+    return $res;
 }

@@ -13,6 +13,8 @@ import flask
 from flask import abort, current_app, request, Blueprint
 import werkzeug
 
+import intervals as I
+
 import common
 from db_tools import execute
 from common import make_json_response
@@ -40,12 +42,12 @@ def manuscripts ():
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
-        SELECT ms_id, title, filename, hands
+        SELECT ms_id, title, filename
         FROM manuscripts
         ORDER BY natsort (ms_id)
         """, {})
 
-        Manuscripts = collections.namedtuple ('Manuscripts', 'ms_id, title, filename, hands')
+        Manuscripts = collections.namedtuple ('Manuscripts', 'ms_id, title, filename')
         manuscripts = [ Manuscripts._make (r)._asdict () for r in res ]
 
         return cache (make_json_response (manuscripts))
@@ -113,14 +115,15 @@ def _chapter_manuscripts (cap_id, chapter):
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
-        SELECT m.ms_id, m.title, mc.mscap_n, mc.locus, m.filename, mc.hands
+        SELECT m.ms_id, m.title, mc.mscap_n, mc.locus, m.filename, mct.type
         FROM manuscripts m
           JOIN mss_chapters mc USING (ms_id)
+          JOIN mss_chapters_text mct USING (ms_id, cap_id, mscap_n, chapter)
         WHERE (mc.cap_id, mc.chapter) = (:cap_id, :chapter) %s
         ORDER BY natsort (mc.ms_id), mc.mscap_n
         """ % fstat (), { 'cap_id' : cap_id, 'chapter' : chapter })
 
-        Manuscripts = collections.namedtuple ('Manuscripts', 'ms_id, title, n, locus, filename, hands')
+        Manuscripts = collections.namedtuple ('Manuscripts', 'ms_id, title, n, locus, filename, type')
         manuscripts = [ Manuscripts._make (r)._asdict () for r in res ]
 
         return cache (make_json_response (manuscripts))
@@ -140,3 +143,169 @@ def corresp_manuscripts (corresp):
     catalog, no, chapter = common.normalize_corresp (corresp)
 
     return _chapter_manuscripts ("%s.%s" % (catalog, no), chapter or '')
+
+
+def highlight (conn, text, fulltext):
+    """Snippet and highlight
+
+    Produce snippets out of the text around any of the words in fulltext and
+    highlight those words in the snippets.
+
+    """
+
+    WORDS     = 6   # how many words to display on each side of the found word
+    SEPARATOR = '[&hellip;]'
+
+    res = execute (conn, """
+    SELECT word, word <<% :fulltext AS match
+    FROM (
+      SELECT REGEXP_SPLIT_TO_TABLE (:text, '\s+') AS word
+    ) AS q
+    """, { 'text' : text, 'fulltext' : fulltext })
+
+    words       = []
+    highlighted = set ()
+    interval    = set ()
+    for n, r in enumerate (res):
+        words.append (r[0])
+        if (r[1]):
+            highlighted.add (n)
+            interval = interval.union (range (n - WORDS, n + WORDS))
+
+    s = []
+    for n, w in enumerate (words):
+        if n in interval:
+            s.append ('<mark>' + w + '</mark>' if n in highlighted else w)
+        else:
+            if s and s[-1] != SEPARATOR:
+                s.append (SEPARATOR)
+
+    return ' '.join (s)
+
+
+@app.route ('/query_manuscripts.json/')
+def query_manuscripts ():
+    """ Return manuscripts according to query. """
+
+    status    = request.args.get ('status')
+    fulltext  = request.args.get ('fulltext')
+    capit     = request.args.get ('capit')
+    notbefore = request.args.get ('notbefore')
+    notafter  = request.args.get ('notafter')
+    places    = request.args.getlist ('places[]')
+
+    with current_app.config.dba.engine.begin () as conn:
+        where = []
+        params = { 'fulltext' : None }
+        if status == 'private':
+            where.append ("m.status IN ('private', 'publish')")
+        if status == 'publish':
+            where.append ("m.status = 'publish'")
+        if capit:
+            where.append ("cap_id = :cap_id")
+            params['cap_id'] = capit
+        if notbefore:
+            where.append (":after <= upper (msp.date)")
+            params['after'] = notbefore
+        if notafter:
+            where.append ("lower (msp.date) <= :before")
+            params['before'] = notafter
+
+        if fulltext:
+            where.append ("mct.type = 'original'")
+            for n, word in enumerate (fulltext.split ()):
+                where.append ("(:word{0})::text <<% mct.text".format (n))
+                params['word%d' % n] = word
+
+        if places:
+            # current_app.logger.warn ("user selected places = %s" % str (places))
+
+            # First get the geo_ids of all the places that fit the query.
+            # Get all children of the place(s) selected by the user.
+            res = execute (conn, """
+            WITH RECURSIVE parent_places (geo_id, parent_id, geo_name) AS (
+              SELECT geo_id, parent_id, geo_name
+              FROM geonames
+                WHERE geo_id IN :geo_ids AND geo_source = 'geonames'
+              UNION
+              SELECT p.geo_id, p.parent_id, p.geo_name
+              FROM parent_places pp, geonames p
+                WHERE p.parent_id = pp.geo_id
+            )
+            SELECT DISTINCT geo_id FROM parent_places ORDER BY geo_id
+            """, { 'geo_ids' : tuple (places) })
+
+            places = [r[0] for r in res]
+
+            # current_app.logger.warn ("resolved places = %s" % str (places))
+
+            # Now get all manuscripts that have any part originated in one of
+            # those places.  NOTE: that we use manuscripts instead of manuscript
+            # parts because at this stage of software development we don't yet
+            # know the relation between parts and capitularies.
+            res = execute (conn, """
+            SELECT ms_id
+            FROM mn_msparts_geonames
+              WHERE geo_id IN :geo_ids
+            GROUP BY ms_id
+            """, { 'geo_ids' : tuple (places) })
+
+            where.append ("m.ms_id IN :ms_ids")
+            params['ms_ids'] = tuple ([r[0] for r in res])
+
+            # current_app.logger.warn ("resolved manuscripts for places = %s" % str (params['ms_ids']))
+
+        if where:
+            where = 'WHERE ' + (' AND '.join (where))
+        else:
+            where = ''
+
+        res = execute (conn, """
+        SELECT m.ms_id, m.title, mc.cap_id, mc.mscap_n, mc.chapter, mc.locus, mct.text as snippet
+        FROM manuscripts m
+          JOIN mss_chapters mc USING (ms_id)
+          JOIN mss_chapters_text mct USING (ms_id, cap_id, mscap_n, chapter)
+          JOIN msparts msp USING (ms_id)
+        %s
+        GROUP BY m.ms_id, m.title, mc.cap_id, mc.mscap_n, mc.chapter, mc.locus, mct.text
+        ORDER BY natsort (m.ms_id), mc.cap_id, mc.mscap_n, mc.chapter
+        """ % where, params)
+
+        Manuscripts = collections.namedtuple ('Manuscripts', 'ms_id, title, cap_id, mscap_n, chapter, locus, snippet')
+        manuscripts = [ Manuscripts._make (r)._asdict () for r in res ]
+
+        if fulltext:
+            for ms in manuscripts:
+                ms['snippet'] = highlight (conn, ms['snippet'], fulltext)
+        else:
+            for ms in manuscripts:
+                ms['snippet'] = ''
+
+        # current_app.logger.warn ("RESULT = %s" % manuscripts)
+        return cache (make_json_response (manuscripts))
+
+
+@app.route ('/places.json/')
+def places_json (geo_id = None):
+    """ Return hierarchy of known places for the meta-search box. """
+
+    with current_app.config.dba.engine.begin () as conn:
+        res = []
+
+        res = execute (conn, """
+        WITH RECURSIVE parent_places (geo_id, parent_id, geo_name) AS (
+          SELECT geo_id, NULL::text, geo_name
+          FROM geonames
+            WHERE geo_fcode = 'PCLI'
+          UNION
+          SELECT p.geo_id, p.parent_id, p.geo_name
+          FROM parent_places pp, geonames p
+            WHERE p.parent_id = pp.geo_id
+        )
+        SELECT * FROM parent_places;
+        """, {})
+
+        Places = collections.namedtuple ('Places', 'geo_id, parent_id, geo_name')
+        places = [ Places._make (r)._asdict () for r in res ]
+
+        return cache (make_json_response (places))

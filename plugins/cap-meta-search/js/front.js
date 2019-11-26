@@ -29,16 +29,17 @@ var cap_meta_search_front = function ($) {
           'icons': false,
           'dots': false
         },
-        'data': {
-          'method': 'POST',
-          'url': cap_meta_search_front_ajax_object.ajaxurl,
-          // eslint-disable-line no-undef
-          'data': function data(node) {
-            return {
-              'action': 'on_cap_places',
-              'id': node.id
-            };
-          }
+        // See: https://www.jstree.com/docs/json/
+        'data': function data(node, callback) {
+          $.ajax(cap_lib.api_url + '/data/places.json/').then(function (response) {
+            callback(response.map(function (r) {
+              return {
+                'id': r.geo_id,
+                'parent': r.parent_id || '#',
+                'text': r.geo_name
+              };
+            }));
+          });
         }
       }
     });
@@ -46,13 +47,17 @@ var cap_meta_search_front = function ($) {
       var data = $(event.target).serializeArray();
       var jstree = $('#places').jstree(true);
       $.each(jstree.get_selected(true), function (i, node) {
-        if (node.data) {
-          data.push({
-            'name': 'places[]',
-            'value': node.data.id
-          });
-        }
-      });
+        data.push({
+          'name': 'places[]',
+          'value': node.id
+        }); // used by "You searched for: X"
+
+        data.push({
+          'name': 'placenames[]',
+          'value': node.text
+        });
+      }); // submit to the wordpress search page
+
       window.location.href = '/?' + $.param(data);
       event.preventDefault();
     });

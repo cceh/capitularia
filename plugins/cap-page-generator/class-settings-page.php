@@ -7,6 +7,9 @@
 
 namespace cceh\capitularia\page_generator;
 
+use cceh\capitularia\lib;
+use cceh\capitularia\file_includer;
+
 /**
  * Implements the settings (options) page.
  *
@@ -101,7 +104,7 @@ class Settings_Page
             echo ('        </table>');
             echo ("      </div>\n");
         }
-        save_button ();
+        lib\save_button ();
         echo ("    </div>\n");
         echo ("  </form>\n");
         echo ("</div>\n");
@@ -135,14 +138,12 @@ class Settings_Page
         $value       = $config->get_opt ($section_id, $field_id);
         if ($field_id === 'shortcode') {
             echo ("<textarea class='file-input' name='{$page_id}[{$section_id}.{$field_id}]'>$value</textarea>");
-            $cap_fi_root = $config->get_fi_opt ('root', null);
             echo ("<p>{$description}</p>\n");
-            if ($cap_fi_root) {
-                echo ('<p>' . sprintf (
-                        __ ('N.B. The File Includer plugin root is set to: %s', LANG),
-                        $cap_fi_root
-                    ) . "</p>\n");
-            }
+            $cap_fi_root = file_includer\get_root ();
+            echo ('<p>' . sprintf (
+                __ ('N.B. The File Includer plugin root is set to:<br>%s', LANG),
+                $cap_fi_root
+            ) . "</p>\n");
         } else {
             echo ("<input class='file-input' type='text' name='{$page_id}[{$section_id}.{$field_id}]' value='{$value}' />");
             echo ("<p>{$description}</p>\n");

@@ -29,7 +29,7 @@ from sqlalchemy.dialects.postgresql.json import JSONB
 from sqlalchemy.dialects.postgresql import ARRAY, INT4RANGE
 
 import common
-from common import text_content, fix_ws
+from common import fix_ws
 from config import args, init_logging, config_from_pyfile
 import db_tools
 from db_tools import execute, executemany, log
@@ -136,23 +136,33 @@ def lookup_geonames (conn, geo_source):
     Cached:  Lookup only entities we don't already know.
     """
 
-    res = execute (conn, """
-    SELECT geo_id
-    FROM geonames
-    WHERE geo_source = :geo_source AND blob IS NULL
-    """, { 'geo_source' : geo_source})
-
     data = GEO_APIS[geo_source]
 
-    for geo_id in [ r[0] for r in res ]:
-        print ("Looking up api: %s id: %s" % (geo_source, geo_id))
+    while True:
+
+        # get a row we didn't yet look up
+        res = execute (conn, """
+        SELECT geo_id
+        FROM geonames
+        WHERE geo_source = :geo_source AND blob IS NULL
+        LIMIT 1
+        """, { 'geo_source' : geo_source})
+
         try:
+            row = res.fetchone ()
+            if row is None:
+                break
+
+            geo_id = row[0]
+            print ("Looking up api: %s, id: %s" % (geo_source, geo_id))
+
             url = data['endpoint'].format (id = geo_id)
             r = requests.get (url, timeout = 5)
 
             row = {
                 'geo_source' : geo_source,
                 'geo_id'     : geo_id,
+                'parent_id'  : None,
                 'geo_name'   : None,
                 'geo_fcode'  : None,
                 'geom'       : None,
@@ -160,18 +170,25 @@ def lookup_geonames (conn, geo_source):
             }
 
             if geo_source == 'geonames':
-                rec = json.loads (r.text)['geonames'][-1]
+                records = json.loads (r.text)['geonames']
+                place = records[-1]
                 row.update ({
-                    'geo_name'  : rec['name'],
-                    'geo_fcode' : rec['fcode'],
-                    'geom'      : 'SRID=4326;POINT (%f %f)' % (float (rec['lng']), float (rec['lat'])),
+                    'geo_name'  : place['name'],
+                    'geo_fcode' : place['fcode'],
+                    'geom'      : 'SRID=4326;POINT (%f %f)' % (float (place['lng']), float (place['lat'])),
                 })
+                if len (records) > 1:
+                    row['parent_id'] = records[-2]['geonameId']
+
+                    execute (conn, """
+                    INSERT INTO geonames (geo_id, geo_source)
+                    VALUES (:geo_id, :geo_source)
+                    ON CONFLICT (geo_id, geo_source) DO NOTHING
+                    """, { 'geo_id' : row['parent_id'], 'geo_source' : geo_source })
 
             if geo_source == 'dnb':
                 rec = json.loads (r.text)
-                row.update ({
-                    'geo_name' : rec['preferredName'],
-                })
+                row['geo_name'] = rec['preferredName']
 
             if geo_source == 'viaf':
                 rec = json.loads (r.text)
@@ -180,14 +197,19 @@ def lookup_geonames (conn, geo_source):
 
             execute (conn, """
             UPDATE geonames
-            SET geom = :geom,
-                geo_name = :geo_name,
+            SET geom      = :geom,
+                parent_id = :parent_id,
+                geo_name  = :geo_name,
                 geo_fcode = :geo_fcode,
-                blob = :blob
-            WHERE geo_source = :geo_source AND geo_id = :geo_id
+                blob      = :blob
+            WHERE (geo_id, geo_source) = (:geo_id, :geo_source)
             """, row)
 
-            execute (conn, "COMMIT", {});
+            execute (conn, "COMMIT", {})
+
+        except IndexError:
+            break
+
         except:
             log (logging.WARNING, "Error looking up %s" % url)
             raise
@@ -310,7 +332,7 @@ def process_msdesc (conn, root, ms_id, msp_part):
         ON CONFLICT (ms_id, msp_part, geo_source, geo_id) DO NOTHING
         """, {}, rows)
 
-        execute (conn, "COMMIT", {});
+        execute (conn, "COMMIT", {})
 
     # do the capitularies, these may not yet be transcribed
 
@@ -319,18 +341,11 @@ def process_msdesc (conn, root, ms_id, msp_part):
 
     for msitem in root.xpath (".//tei:msItem", namespaces = NS):
         for title in msitem.xpath (".//tei:title[@corresp]", namespaces = NS):
-            try:
-                locus = msitem.xpath ('.//tei:locus', namespaces = NS)[0]
-                locus = '[%s, %s]' % common.parse_locus (locus.text)
-            except:
-                log (logging.WARNING, "No locus for %s ..." % title.get ('corresp'))
-                locus = '[0, 0]'
-
-            for catalog, no, dummy_n in norm (title.get ('corresp'), common.normalize_bk_n):
+            for catalog, no, mscap_n in norm (title.get ('corresp'), common.normalize_bk_n):
                 rows.append ({
-                    'ms_id'       : ms_id,
-                    'cap_id'      : "%s.%s" % (catalog, no),
-                    'locus'       : locus,
+                    'ms_id'   : ms_id,
+                    'cap_id'  : "%s.%s" % (catalog, no),
+                    'mscap_n' : mscap_n,
                 })
 
     if rows:
@@ -343,46 +358,10 @@ def process_msdesc (conn, root, ms_id, msp_part):
 
         executemany (conn, """
         INSERT INTO mn_mss_capitularies (ms_id, cap_id, mscap_n)
-        VALUES (:ms_id, :cap_id, 1)
+        VALUES (:ms_id, :cap_id, :mscap_n)
         ON CONFLICT (ms_id, cap_id, mscap_n)
         DO NOTHING
         """, {}, rows)
-
-
-def parse_corresp (el, params):
-    """ Parse a @corresp attribute. """
-
-    cap_id = params['cap_id']
-    locus = None
-    n = None
-    try:
-        locus = el.get ('locus')
-        if (locus):
-            locus, n = common.parse_xml_id_locus (locus, ms_id)
-    except ValueError as e:
-        log (logging.WARNING, str (e))
-
-    rows = []
-    for catalog, no, chapter in norm (el.get ('corresp'), common.normalize_corresp):
-        corresp = "%s.%s_%s" % (catalog, no, chapter) if chapter else "%s.%s" % (catalog, no)
-
-        if cap_id and not corresp.startswith (cap_id) and not (catalog in CORRESP_EXCEPTIONS):
-            log (logging.WARNING, '@corresp %s following milestone %s' % (corresp, cap_id))
-
-        p = params.copy ()
-        p.update ({
-            'cap_id'      : "%s.%s" % (catalog, no),
-            'chapter'     : chapter or '',
-            'mschap_n'    : 1,
-            'locus'       : locus,
-            'transcribed' : 0,
-        })
-        if cap_id != p['cap_id']:
-            p['mscap_n'] = 0
-
-        rows.append (p)
-
-    return rows
 
 
 def process_body (conn, root, ms_id):
@@ -390,51 +369,37 @@ def process_body (conn, root, ms_id):
 
     """
 
-    capits   = []
-    chapters = []
-
     # Documentation:
     # https://capitularia.uni-koeln.de/wp-admin/admin.php?page=wp-help-documents&document=7402
 
-    params = {
-        'ms_id'   : ms_id,
-        'cap_id'  : None,
-        'mscap_n' : 0,
-        'hands'   : '',
-    }
-    for e in root.xpath (".//tei:milestone[@unit]", namespaces = NS):
-        unit = e.get ('unit')
+    chapters = []
+    corresps = collections.defaultdict (int)
 
-        if unit == 'capitulatio':
-            params['cap_id']  = None
-            params['mscap_n'] = 0
-        if unit == 'capitulare':
-            try:
-                catalog, no, mscap_n = common.normalize_bk_n (e.get ('n'))
-                cap_id = "%s.%s" % (catalog, no)
-                capits.append ({ 'cap_id' : cap_id })
-                params['cap_id']  = cap_id
-                params['mscap_n'] = mscap_n
-            except ValueError as exc:
-                log (logging.WARNING, str (exc))
-        if unit == 'chapter':
-            params['hands'] = get_ns (e, "cap:hands") or '';
-            chapters += parse_corresp (e, params)
+    for el in root.xpath (".//tei:milestone[@unit='chapter']", namespaces = NS):
+        locus = None
+        n = None
+        try:
+            locus = el.get ('locus') # added by corpus.xsl from xml:id
+            if (locus):
+                locus, n = common.parse_xml_id_locus (locus, ms_id)
+        except ValueError as e:
+            log (logging.WARNING, str (e))
 
+        for catalog, no, chapter in norm (el.get ('corresp'), common.normalize_corresp):
+            corresp = "%s.%s_%s" % (catalog, no, chapter) if chapter else "%s.%s" % (catalog, no)
+            corresps[corresp] += 1
 
-    if capits:
-        # make sure the capitulary is in the database
-        executemany (conn, """
-        INSERT INTO capitularies (cap_id)
-        VALUES (:cap_id)
-        ON CONFLICT (cap_id) DO NOTHING
-        """, {}, capits)
-
-        execute (conn, "COMMIT", {});
+            chapters.append ({
+                'ms_id'       : ms_id,
+                'cap_id'      : "%s.%s" % (catalog, no),
+                'chapter'     : chapter or '',
+                'mscap_n'     : corresps[corresp],
+                'locus'       : "%s-%s" % (locus, n) if locus else None,
+                'transcribed' : 0,
+            })
 
     if chapters:
         # make sure the capitulary is in the database
-        # again because some capitularies are without milestone
         executemany (conn, """
         INSERT INTO capitularies (cap_id)
         VALUES (:cap_id)
@@ -458,19 +423,18 @@ def process_body (conn, root, ms_id):
 
         # insert relation chapter -> capitulary
         executemany (conn, """
-        INSERT INTO mss_chapters (ms_id, cap_id, mscap_n, chapter, mschap_n, locus, hands, transcribed)
-        VALUES (:ms_id, :cap_id, :mscap_n, :chapter, :mschap_n, :locus, :hands, :transcribed)
-        ON CONFLICT (ms_id, cap_id, mscap_n, chapter, mschap_n)
+        INSERT INTO mss_chapters (ms_id, cap_id, mscap_n, chapter, locus, transcribed)
+        VALUES (:ms_id, :cap_id, :mscap_n, :chapter, :locus, :transcribed)
+        ON CONFLICT (ms_id, cap_id, mscap_n, chapter)
         DO NOTHING
         """, {}, chapters)
-
 
 
 def process_cap (conn, item):
     """ Process one item from the capitularies list. """
 
     try:
-        catalog, no, dummy_n = common.normalize_bk_n (get_ns (item, 'xml:id'))
+        catalog, no, dummy_mscap_n = common.normalize_bk_n (get_ns (item, 'xml:id'))
         cap_id = "%s.%s" % (catalog, no)
     except ValueError as exc:
         log (logging.WARNING, str (exc))
@@ -504,7 +468,7 @@ def lookup_published (conn, ajax_endpoint):
 
     for status in ('publish', 'private'):
         params = {
-            'action' : 'on_cap_collation_user_get_published_ids',
+            'action' : 'on_cap_lib_get_published_ids',
             'status' : status,
         }
         r = requests.get (ajax_endpoint, params=params, timeout = 5)
@@ -518,8 +482,69 @@ def lookup_published (conn, ajax_endpoint):
     execute (conn, """
     UPDATE manuscripts
     SET status = 'publish'
-    WHERE ms_id = 'bk-textzeuge';
+    WHERE ms_id = 'bk-textzeuge'
     """, {})
+
+
+def import_fulltext (conn, filenames):
+    """ Import the xml or plain text of the chapter transcriptions """
+
+    # REGEX_BK      has 3 capturing groups
+    # REGEX_CHAPTER has 1 capturing group
+    RE_FILENAME = re.compile (
+        '([^/]+)/(' + common.REGEX_BK + common.REGEX_CHAPTER + r')_(\d)(_later_hands)?\.([a-z]+)$',
+        re.IGNORECASE
+    )
+
+    files = []
+    for filename in filenames:
+        if filename.startswith ('@'):
+            with open (filename[1:], 'r') as fp:
+                for line in fp.readlines ():
+                    files.extend (line.split ())
+        else:
+            files.append (filename)
+
+    for filename in files:
+        m = RE_FILENAME.search (filename)
+        if m:
+            log (logging.INFO, "Importing filename %s" % filename)
+            ms_id   = m.group (1)
+            catalog, no, chapter = common.normalize_corresp (m.group (2))
+            mscap_n = int (m.group (7))
+            hands   = m.group (8) or ''
+            ext     = m.group (9)
+
+            with open (filename, 'r') as fp:
+                params = {
+                    'ms_id'   : ms_id,
+                    'cap_id'  : "%s.%s" % (catalog, no),
+                    'mscap_n' : mscap_n,
+                    'chapter' : chapter or '',
+                    'type'    : 'original' if hands == '' else 'later_hands',
+                    'text'    : fp.read (),
+                }
+
+                if ext == 'xml':
+                    res = execute (conn, """
+                    UPDATE mss_chapters
+                    SET xml = :text
+                    WHERE (ms_id, cap_id, mscap_n, chapter) =
+                          (:ms_id, :cap_id, :mscap_n, :chapter)
+                    """, params)
+                    if res.rowcount != 1:
+                        log (logging.ERROR, "Did not match row {ms_id} {cap_id} {mscap_n} {chapter}".format (**params))
+
+
+                if ext == 'txt':
+                    execute (conn, """
+                    INSERT INTO mss_chapters_text (ms_id, cap_id, mscap_n, chapter, type, text)
+                    VALUES (:ms_id, :cap_id, :mscap_n, :chapter, :type, :text)
+                    ON CONFLICT (ms_id, cap_id, mscap_n, chapter, type) DO UPDATE
+                    SET text = EXCLUDED.text
+                    """, params)
+
+                execute (conn, "COMMIT", {})
 
 
 def build_parser (default_config_file):
@@ -539,7 +564,7 @@ def build_parser (default_config_file):
     )
     parser.add_argument (
         '--init', action='store_true',
-        help='initialize the Postgres database.', default=False
+        help='initialize the Postgres database', default=False
     )
     parser.add_argument (
         '--mss', nargs="+",
@@ -550,20 +575,24 @@ def build_parser (default_config_file):
         help='the capitularies lists to import'
     )
     parser.add_argument (
+        '--fulltext', nargs="+",
+        help='import chapter fulltext from files'
+    )
+    parser.add_argument (
         '--publish', action='store_true',
         help='get the publish status from Wordpress Ajax API'
     )
     parser.add_argument (
         '--geonames', action='store_true',
-        help='lookup geonames.org.', default=False
+        help='lookup geonames.org', default=False
     )
     parser.add_argument (
         '--dnb', action='store_true',
-        help='lookup dnb.de.', default=False
+        help='lookup dnb.de', default=False
     )
     parser.add_argument (
         '--viaf', action='store_true',
-        help='lookup viaf.org.', default=False
+        help='lookup viaf.org', default=False
     )
     return parser
 
@@ -572,7 +601,7 @@ if __name__ == "__main__":
     import logging
 
     build_parser ('server.conf').parse_args (namespace = args)
-    config = config_from_pyfile (args.config_file)
+    args.config = config_from_pyfile (args.config_file)
 
     init_logging (
         args,
@@ -582,7 +611,7 @@ if __name__ == "__main__":
 
     log (logging.INFO, "Connecting to Postgres database ...")
 
-    dba = db_tools.PostgreSQLEngine (**config)
+    dba = db_tools.PostgreSQLEngine (**args.config)
 
     log (logging.INFO, "using url: %s." % dba.url)
 
@@ -598,7 +627,7 @@ if __name__ == "__main__":
         log (logging.INFO, "Parsing TEI Manuscript files ...")
 
         with dba.engine.begin () as conn:
-            execute (conn, "TRUNCATE TABLE manuscripts CASCADE", {});
+            execute (conn, "TRUNCATE TABLE manuscripts CASCADE", {})
             processed_ms_ids = dict ()
             for fn in args.mss:
                 log (logging.INFO, "Parsing %s ..." % fn)
@@ -637,7 +666,7 @@ if __name__ == "__main__":
                     for body in TEI.xpath ("tei:text/tei:body", namespaces = NS):
                         process_body (conn, body, ms_id)
 
-                    execute (conn, "COMMIT", {});
+                    execute (conn, "COMMIT", {})
 
     if args.cap_list:
         log (logging.INFO, "Parsing TEI Capitulary List ...")
@@ -648,26 +677,31 @@ if __name__ == "__main__":
                 tree = etree.parse (fn, parser = parser)
                 for item in tree.xpath ("//tei:item[@xml:id]", namespaces = NS):
                     process_cap (conn, item)
-                execute (conn, "COMMIT", {});
+                execute (conn, "COMMIT", {})
 
     if args.publish:
+        log (logging.INFO, "Looking up published manuscripts ...")
         with dba.engine.begin () as conn:
-            log (logging.INFO, "Looking up published manuscripts ...")
-            lookup_published (conn, config['WP_ADMIN_AJAX'])
+            lookup_published (conn, args.config['WP_ADMIN_AJAX'])
 
     if args.geonames:
+        log (logging.INFO, "Looking up in geonames.org ...")
         with dba.engine.begin () as conn:
-            log (logging.INFO, "Looking up in geonames.org ...")
             lookup_geonames (conn, 'geonames')
 
     if args.dnb:
+        log (logging.INFO, "Looking up in DNB ...")
         with dba.engine.begin () as conn:
-            log (logging.INFO, "Looking up in DNB ...")
             lookup_geonames (conn, 'dnb')
 
     if args.viaf:
+        log (logging.INFO, "Looking up in viaf.org ...")
         with dba.engine.begin () as conn:
-            log (logging.INFO, "Looking up in viaf.org ...")
             lookup_geonames (conn, 'viaf')
+
+    if args.fulltext:
+        log (logging.INFO, "Importing fulltext ...")
+        with dba.engine.begin () as conn:
+            import_fulltext (conn, args.fulltext)
 
     log (logging.INFO, "Done")

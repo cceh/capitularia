@@ -15,17 +15,17 @@ import subprocess
 import flask
 from flask import abort, current_app, request, Blueprint
 import werkzeug
+
 import lxml.html
+from lxml import etree
 
 import common
+from db_tools import execute
 
 class Config (object):
-    COLLATEX                    = '/usr/bin/java -jar /usr/local/share/java/collatex-tools-1.8-SNAPSHOT.jar'
-    COLLATEX_STYLESHEET         = 'xslt/mss-transcript-collation.xsl'
-    COLLATEX_MAX_CONTENT_LENGTH = 1024 * 1024
-    COLLATEX_TIMEOUT            = 120
-    CACHE_DIR                   = 'cache/'
-    XSLTPROC                    = '/usr/bin/xsltproc'
+    COLLATEX         = '/usr/bin/java -jar /usr/local/share/java/collatex-tools-1.8-SNAPSHOT.jar'
+    CACHE_DIR        = 'cache/'
+    COLLATEX_TIMEOUT = 120
 
 
 class CollatexError (werkzeug.exceptions.HTTPException):
@@ -46,11 +46,6 @@ class collatexBlueprint (Blueprint):
 
 
 app  = collatexBlueprint ('collatex', __name__)
-
-
-RE_PUNCT           = re.compile (r'[-.,:;!?*/]')
-RE_BRACKETS        = re.compile (r'\[\s*|\s*\]')
-RE_NORMALIZE_SPACE = re.compile (r'\s+')
 
 
 def to_collatex (id_, text, normalizations = None):
@@ -89,27 +84,20 @@ def to_collatex (id_, text, normalizations = None):
     """
 
     text = text.strip ()
-
-    for n in 'ę=e Ę=E ae=e Ae=E AE=E'.split ():
-        s, r = n.split ('=')
-        text = text.replace (s, r)
-
-    text = RE_PUNCT.sub ('', text)
-    text = text.replace (' ', ' ')
+    text = common.RE_BRACKETS.sub ('', text)
 
     patterns = [n.split ('=') for n in normalizations if n]
-
-    # tokenize
-    tokens = []
-    for token in text.split ():
-        normalized = token
-        for p in patterns:
-            s, r = p
-            normalized = normalized.replace (s, r)
-        normalized = normalized.lower ()
-        normalized = RE_BRACKETS.sub ('', normalized)
-        if normalized:
-            tokens.append ({ 't' : token, 'n' : normalized })
+    if not patterns:
+        tokens = [{ 't' : t, 'n' : t } for t in text.split ()]
+    else:
+        tokens = []
+        for token in text.split ():
+            normalized = token
+            for p in patterns:
+                s, r = p
+                normalized = normalized.replace (s, r)
+            if normalized:
+                tokens.append ({ 't' : token, 'n' : normalized })
 
     return { 'id' : id_, 'tokens' : tokens }
 
@@ -118,55 +106,59 @@ def to_collatex (id_, text, normalizations = None):
 def collate ():
     """ Collate witnesses. """
 
-    current_app.logger.info (request.get_data (as_text = True))
-
-    # get files and pass them through xsltproc
-    # then remove html tags
-
     json_in = request.get_json ()
     json_out = []
 
+    current_app.logger.info (json.dumps (json_in, indent = 4))
+
+    # {
+    #     "corresp": "BK.139_1",
+    #     "witnesses": [
+    #         "berlin-sb-phill-1737",
+    #         "berlin-sb-phill-1737?hands=XYZ"
+    #     ],
+    #     "algorithm": "needleman-wunsch-gotoh",
+    #     "normalizations": [
+    #         ""
+    #     ],
+    #     "segmentation": false,
+    #     "joined": false,
+    #     "transpositions": false,
+    #     "tokenComparator": {
+    #         "type": "levenshtein",
+    #         "ratio": 1
+    #     }
+    # }
+
     corresp        = json_in['corresp']
     normalizations = json_in['normalizations']
-    for w in json_in['witnesses']:
-        m = re.match (r'^([^?#]+)(\?hands=XYZ)?(?:#(\d+))?$', w)
-        xml_id = m.group (1)
-        hands  = m.group (2)
-        n      = int (m.group (3) or '1')
 
-        cache_dir = current_app.config['CACHE_DIR']
-        filename = "%s/%s_%s.xml" % (xml_id, corresp, n)
-        stylesheet = current_app.config['COLLATEX_STYLESHEET']
+    with current_app.config.dba.engine.begin () as conn:
+        for w in json_in['witnesses']:
+            m     = re.match (r'^([^?#]+)(\?hands=XYZ)?(?:#(\d+))?$', w)
+            ms_id = m.group (1)
+            hands = m.group (2)
 
-        cmdline = current_app.config['XSLTPROC'].split () + [stylesheet, '-']
-        with open (os.path.join (cache_dir, 'collation/', filename), 'r') as fp:
-            proc = subprocess.Popen (
-                cmdline,
-                stdin     = fp,
-                stdout    = subprocess.PIPE,
-                stderr    = subprocess.PIPE,
-                close_fds = True,
-                encoding  = 'utf-8'
-            )
-            try:
-                stdout, stderr = proc.communicate (
-                    timeout = current_app.config['COLLATEX_TIMEOUT']
-                )
-            except subprocess.TimeoutExpired:
-                proc.kill ()
-                stdout, stderr = proc.communicate ()
-                abort (504)
+            catalog, no, chapter = common.normalize_corresp (corresp)
 
-            json_out.append (
-                to_collatex (
-                    w,
-                    RE_NORMALIZE_SPACE.sub (
-                        ' ',
-                        lxml.html.document_fromstring (stdout).text_content ()
-                    ),
-                    normalizations
-                )
-            )
+            params = {
+                'ms_id'   : ms_id,
+                'cap_id'  : "%s.%s" % (catalog, no),
+                'mscap_n' : int (m.group (3) or '1'),
+                'chapter' : chapter or '',
+                'type'    : 'later_hands' if hands else 'original',
+            }
+
+            # current_app.logger.info (params)
+
+            res = execute (conn, """
+            SELECT text
+            FROM mss_chapters_text
+            WHERE (ms_id, cap_id, mscap_n, chapter, type) = (:ms_id, :cap_id, :mscap_n, :chapter, :type)
+            """, params)
+
+            doc = res.fetchone()[0]
+            json_out.append (to_collatex (w, doc, normalizations))
 
     json_in['witnesses'] = json_out
 
@@ -205,23 +197,25 @@ def collate ():
     #   ]
     # }
 
+    stderr = stderr.splitlines ()
+
     # current_app.logger.info (stdout)
 
     try:
         stdout = json.loads (stdout)
-        return flask.make_response (flask.json.jsonify ({
-            'status' : status,
-            'stdout' : stdout,
-            'stderr' : stderr,
-        }), status, {
-            'Content-Type' : 'application/json;charset=utf-8',
-        })
     except json.decoder.JSONDecodeError as e:
-        current_app.logger.error (stdout)
-        return flask.make_response (flask.json.jsonify ({
-            'status' : 500,
-            'stdout' : '',
-            'stderr' : stderr,
-        }), status, {
-            'Content-Type' : 'application/json;charset=utf-8',
-        })
+        stderr.append ('Error: %s decoding JSON response from CollateX' % str (e))
+
+    for line in stderr:
+        if line.startswith ('Error: '):
+            current_app.logger.error (line[7:])
+            status = 500
+        elif line.startswith ('Warning: '):
+            current_app.logger.warning (line[9:])
+        else:
+            current_app.logger.info (line)
+    current_app.logger.info ("Done the CollateX")
+
+    return flask.make_response (flask.json.jsonify (stdout), status, {
+        'Content-Type' : 'application/json;charset=utf-8',
+    })

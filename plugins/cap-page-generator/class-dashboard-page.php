@@ -50,7 +50,8 @@ class Dashboard_Page
         $title = esc_html (get_admin_page_title ());
         echo ("<div class='wrap'>\n");
         echo ("  <h1>$title</h1>\n");
-		echo ('  <p><a href="/wp-admin/options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . "</a></p>\n");
+        echo ('  <p><a href="/wp-admin/options-general.php?page=' . OPTIONS . '">' .
+              __ ('Settings', LANG) . "</a></p>\n");
         // If this is a bulk action request, process the bulk action and print
         // any resulting messages.
 
@@ -104,14 +105,22 @@ class Dashboard_Page
 
         $section_id  = $section[0];
         $caption     = __ ($config->get_opt ($section_id, 'section_caption'));
-        $xml_dir     = $config->get_opt_path ('xml_root', $section_id, 'xml_dir');
+        $xml_dir     = $config->get_opt_path ($section_id, 'xml_dir');
         $parent_page = get_home_url (
-            null, $config->get_opt ($section_id, 'slug_path', ''), 'https') . '/';
+            null,
+            $config->get_opt ($section_id, 'slug_path', ''),
+            'https'
+        ) . '/';
         echo ("<div id='tabs-$section_id' class='section'>\n");
         echo ("<h2>$caption</h2>\n");
-        echo ('<p>' . sprintf (__ ('Reading directory: %s', LANG), $xml_dir) . "</p>\n");
-        echo ('<p>' . sprintf (__ ('Generating pages under: %s', LANG),
-                               "<a href='$parent_page'>$parent_page</a>") . "</p>\n");
+        echo ('<p>' . sprintf (
+            __ ('Generating pages under: %s', LANG),
+            "<a href='$parent_page'>$parent_page</a>"
+        ) . "</p>\n");
+        echo ('<p>' . sprintf (
+            __ ('Reading directory: %s', LANG),
+            $xml_dir
+        ) . "</p>\n");
 
         $page = DASHBOARD;
         $page_url = '/wp-admin/index.php';
@@ -188,7 +197,7 @@ class Dashboard_Page
         global $config;
 
         $messages = array ();
-        $path = $config->get_opt_path ('xml_root', $section_id, 'xml_dir');
+        $path = $config->get_opt_path ($section_id, 'xml_dir');
         foreach ($filenames as $filename) {
             $manuscript = new Manuscript ($section_id, $path . $filename);
             $result = $manuscript->do_action ($action);
@@ -220,7 +229,7 @@ class Dashboard_Page
         $section_id  = sanitize_key       ($_POST['section']);
         $filename    = sanitize_file_name ($_POST['filename']);
 
-        $path = $config->get_opt_path ('xml_root', $section_id, 'xml_dir');
+        $path = $config->get_opt_path ($section_id, 'xml_dir');
         $manuscript = new Manuscript ($section_id, $path . $filename);
         $result = $manuscript->do_action ($user_action);
         $this->send_json ($section_id, $result);
@@ -277,7 +286,7 @@ class Dashboard_Page
         if ($json['success']) {
             // capture HTML output in string
             ob_start ();
-            $xml_dir = $config->get_opt_path ('xml_root', $section_id, 'xml_dir');
+            $xml_dir = $config->get_opt_path ($section_id, 'xml_dir');
             $table = new File_List_Table ($section_id, $xml_dir);
             $table->set_pagination_args ($this->pagination_args);
             $table->prepare_items ();

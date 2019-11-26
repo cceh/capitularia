@@ -7,6 +7,8 @@
 
 namespace cceh\capitularia\file_includer;
 
+use cceh\capitularia\lib;
+
 /**
  * Implements the settings (options) page.
  *
@@ -75,7 +77,7 @@ class Settings_Page
         echo ("<div class='wrap'>\n<h2>$title</h2>\n<form method='post' action='options.php'>");
         settings_fields (OPTIONS);
         do_settings_sections (OPTIONS);
-        save_button ();
+        lib\save_button ();
         echo ('</form>');
     }
 
@@ -99,7 +101,14 @@ class Settings_Page
     {
         $setting = get_opt ('root');
         echo "<input class='file-input' type='text' name='{$this->options}[root]' value='$setting' />";
-        echo '<p>' . sprintf (__ ('Root directory of the files you want to include, eg.: %s/http/docs/cap/publ/cache', LANG), AFS_ROOT) . '</p>';
+        echo '<p>' . sprintf (
+            __ (
+                'Root directory of the files you want to include, relative to the AFS root.  ' .
+                'The AFS root is currently configured as<br>%s',
+                LANG
+            ),
+            lib\get_opt ('afs')
+        ) . '</p>';
     }
 
     /**

@@ -7,6 +7,8 @@
 
 namespace cceh\capitularia\page_generator;
 
+use cceh\capitularia\lib;
+
 /**
  * A list table for the page generator admin page.
  *
@@ -55,6 +57,8 @@ class File_List_Table extends \WP_List_Table
     private $directory;
     /** The scanned files */
     public $paths;
+    /** The URI path to the xml file. */
+    private $xml_path;
 
     /**
      * Constructor.
@@ -69,6 +73,10 @@ class File_List_Table extends \WP_List_Table
     public function __construct ($section_id, $directory, $args = array ())
     {
         global $config;
+
+        // Fix for: "Undefined index: hook_suffix".  See:
+        // https://core.trac.wordpress.org/ticket/29933
+        $GLOBALS['hook_suffix'] = '';
 
         parent::__construct (
             array (
@@ -92,18 +100,17 @@ class File_List_Table extends \WP_List_Table
             $this->bulk_actions['private']  = _x ('Publish privately', 'bulk action', LANG);
         }
         $this->bulk_actions['delete']           = _x ('Unpublish',        'bulk action', LANG);
-        $this->bulk_actions['delete-revisions'] = _x ('Delete Revisions', 'bulk action', LANG);
         $this->bulk_actions['refresh']          = _x ('Refresh',          'bulk action', LANG);
-        if ($config->get_opt ($section_id, 'schema_path')) {
-            $this->bulk_actions['validate'] = _x ('Validate',          'bulk action', LANG);
-        }
-        $this->bulk_actions['metadata'] = _x ('Extract metadata',  'bulk action', LANG);
-
         $this->statuses['publish'] = _x ('Published',           'file status', LANG);
         $this->statuses['private'] = _x ('Published privately', 'file status', LANG);
         $this->statuses['delete']  = _x ('Not published',       'file status', LANG);
 
         $this->paths = array ();
+
+        $this->xml_path = lib\urljoin (
+            $config->get_opt ('general', 'xml_root_uri'),
+            $config->get_opt ($section_id, 'xml_dir')
+        );
     }
 
     /**
@@ -332,7 +339,11 @@ class File_List_Table extends \WP_List_Table
 
     public function column_title ($manuscript)
     {
+        $xml_file = esc_html ($this->xml_path . '/' . $manuscript->get_filename ());
         echo esc_html ($manuscript->get_title ());
+        echo ("<div class='row-actions'>");
+        echo ("<a href='$xml_file'>$xml_file</a>\n");
+        echo ('</div>');
     }
 
     /**
@@ -364,12 +375,9 @@ class File_List_Table extends \WP_List_Table
         $status = $manuscript->get_status ();
         // do not show actions that would change nothing
         unset ($actions[$status]);
-        // remove these otherwise it becomes too crowded
-        unset ($actions['delete-revisions']);
         // do not show these actions for unpublished files
         if ($status == 'delete') {
             unset ($actions['refresh']);
-            unset ($actions['metadata']);
         }
         return $this->row_actions ($actions);
     }

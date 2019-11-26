@@ -1,16 +1,16 @@
 <?php
 /**
- * Capitularia Collation Settings Page
+ * Capitularia Library Settings Page
  *
  * @package Capitularia
  */
 
-namespace cceh\capitularia\collation_user;
+namespace cceh\capitularia\lib;
 
 /**
  * Implements the settings (options) page.
  *
- * Found in Wordpress admin under _Settings | Capitularia Collation_
+ * Found in Wordpress admin under _Settings | Capitularia Library_.
  */
 
 class Settings_Page
@@ -46,6 +46,14 @@ class Settings_Page
         );
 
         add_settings_field (
+            OPTIONS . '_afs',
+            __ ('AFS Root', LANG),
+            array ($this, 'on_options_field_afs'),
+            OPTIONS,
+            $section
+        );
+
+        add_settings_field (
             OPTIONS . '_api',
             __ ('API Entrypoint', LANG),
             array ($this, 'on_options_field_api'),
@@ -53,7 +61,7 @@ class Settings_Page
             $section
         );
 
-        register_setting (OPTIONS, OPTIONS,  array ($this, 'on_validate_options'));
+        register_setting (OPTIONS, OPTIONS, array ($this, 'on_validate_options'));
     }
 
     /**
@@ -65,10 +73,7 @@ class Settings_Page
     public function display ()
     {
         $title = esc_html (get_admin_page_title ());
-        echo ("<div class='wrap'>\n");
-        echo ("<h2>$title</h2>\n");
-        echo ("<p><a href='/tools/collation/'>" . __("Collation Tool", LANG) . "</a></p>\n");
-        echo ("<form method='post' action='options.php'>");
+        echo ("<div class='wrap'>\n<h2>$title</h2>\n<form method='post' action='options.php'>");
         settings_fields (OPTIONS);
         do_settings_sections (OPTIONS);
         save_button ();
@@ -86,7 +91,20 @@ class Settings_Page
     }
 
     /**
-     * Output the api option field with its description.
+     * Output the AFS option field with its description.
+     *
+     * @return void
+     */
+
+    public function on_options_field_afs ()
+    {
+        $setting = get_opt ('afs');
+        echo "<input class='file-input' type='text' name='{$this->options}[afs]' value='$setting' />";
+        echo '<p>' . sprintf (__ ('Root directory of Capitularia in the AFS', LANG)) . '</p>';
+    }
+
+    /**
+     * Output the API option field with its description.
      *
      * @return void
      */
@@ -95,10 +113,7 @@ class Settings_Page
     {
         $setting = get_opt ('api');
         echo "<input class='file-input' type='text' name='{$this->options}[api]' value='$setting' />";
-        echo '<p>' . sprintf (
-            __ ('The API entrypoint to use, eg.: %s', LANG),
-            'https://capitularia.uni-koeln.de/api/v1/'
-        ) . '</p>';
+        echo '<p>' . sprintf (__ ('Capitularia API Server entrypoint', LANG)) . '</p>';
     }
 
     /**
@@ -128,7 +143,8 @@ class Settings_Page
 
     public function on_validate_options ($options)
     {
-        $options['api']        = $this->sanitize_path ($options['api']);
+        $options['afs'] = $this->sanitize_path ($options['afs']);
+        $options['api'] = $this->sanitize_path ($options['api']);
         return $options;
     }
 }

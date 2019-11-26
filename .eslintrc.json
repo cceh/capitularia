@@ -12,6 +12,10 @@
         "browser" : true,
         "jquery"  : true
     },
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 8
+    },
     "globals" : {
         "ajaxurl"            : false,  // added by wordpress
         "pagenow"            : false,  // added by wordpress
@@ -23,7 +27,8 @@
         "_"                  : true,
         "server_start_time"  : true,
         "Tooltip"            : true,   // tooltip.js
-        "Vue"                : true
+        "Vue"                : true,
+        "cap_lib"            : true
     },
     "rules" : {
         // restrict airbnb

@@ -1,23 +1,21 @@
 @import "fonts";
 @import "colors";
 
-#wp-admin-bar-cap_meta_search_extract_metadata > .ab-item::before {
-    content: "\f536";
-    top: 2px;
-}
-
-div.search-results-excerpt {
-    h2 {
-        margin: 2em 0 1.5em 0;
+div.search-results {
+    h3 {
+        margin: 1.5em 0 1em 0;
         font-size: 1.3em;
     }
 
     li.snippet {
-        padding: 0;
+        list-style-type: none;
+    }
 
-        &::after {
-            display: inline;
-            content: " …";
+    div.excerpt {
+        .excerpt-corresp {
+            color: $color-link;
+
+            @include bold;
         }
     }
 }

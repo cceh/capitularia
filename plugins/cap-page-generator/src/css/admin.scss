@@ -89,6 +89,7 @@ div.wrap {
 
             a {
                 border: 1px solid $border-color;
+                border-top: 4px solid $border-color;
                 background: $a-inactive-bg;
                 color: #555;
                 line-height: 24px;
@@ -99,6 +100,14 @@ div.wrap {
                     background-color: #fff;
                     color: #464646;
                     box-shadow: none;
+                }
+
+                &.cap_can_private {
+                    border-top: 4px solid $private-color;
+                }
+
+                &.cap_can_publish {
+                    border-top: 4px solid $public-color;
                 }
             }
 
@@ -112,17 +121,6 @@ div.wrap {
                     border-bottom: 1px solid $background-color;
                     background: $background-color;
                     color: #000;
-                }
-            }
-            a {
-                border-top: 4px solid $border-color;
-
-                &.cap_can_private {
-                    border-top: 4px solid $private-color;
-                }
-
-                &.cap_can_publish {
-                    border-top: 4px solid $public-color;
                 }
             }
         }

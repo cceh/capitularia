@@ -2,8 +2,24 @@
 
 """This module contains the sqlalchemy classes that create the database structure.
 
+
+To create a new database:
+
+sudo -u postgres psql
+
+CREATE USER capitularia PASSWORD '<password>';
+CREATE DATABASE capitularia OWNER capitularia;
+
+\c capitularia
+CREATE EXTENSION pg_trgm WITH SCHEMA public;
+CREATE EXTENSION postgis WITH SCHEMA public;
+CREATE SCHEMA capitularia AUTHORIZATION capitularia;
+ALTER DATABASE capitularia SET search_path = capitularia, public;
+\q
+
 """
 
+import sqlalchemy
 from sqlalchemy import String, Integer, Float, Boolean, DateTime, Column, Index, ForeignKey
 from sqlalchemy import UniqueConstraint, CheckConstraint, ForeignKeyConstraint, PrimaryKeyConstraint
 from sqlalchemy.ext import compiler
@@ -12,7 +28,7 @@ from sqlalchemy.schema import DDLElement
 from sqlalchemy.sql import text
 from sqlalchemy_utils import IntRangeType
 from sqlalchemy.dialects.postgresql.json import JSONB
-from sqlalchemy.dialects.postgresql import ARRAY, INT4RANGE
+from sqlalchemy.dialects.postgresql import ARRAY, INT4RANGE, TEXT
 from geoalchemy2 import Geometry
 
 # let sqlalchemy manage our views
@@ -138,6 +154,32 @@ def generic (metadata, create_cmd, drop_cmd, create_when='after-create', drop_wh
         DropGeneric (drop_cmd).execute_at (drop_when, metadata)
 
 
+import lxml.etree as etree
+
+class XML (sqlalchemy.types.UserDefinedType):
+    def get_col_spec (self):
+        return 'XML'
+
+    def bind_processor (self, dialect):
+        # store
+        def process (value):
+            if value is None:
+                return None
+            if isinstance (value, str):
+                return value
+            else:
+                return etree.tostring (value, encoding = "unicode")
+        return process
+
+    def result_processor (self, dialect, coltype):
+        # retrieve
+        def process (value):
+            if value is None:
+                return None
+            return etree.fromstring (value)
+        return process
+
+
 Base = declarative_base ()
 
 CreateGeneric ("""
@@ -202,7 +244,7 @@ class MsParts (Base):
 
     __table_args__ = (
         PrimaryKeyConstraint (ms_id, msp_part),
-        ForeignKeyConstraint ([ms_id],  ['manuscripts.ms_id'], on_delete = 'CASCADE'),
+        ForeignKeyConstraint ([ms_id],  ['manuscripts.ms_id'], ondelete = 'CASCADE'),
     )
 
 
@@ -241,7 +283,7 @@ class Chapters (Base):
 
     __table_args__ = (
         PrimaryKeyConstraint (cap_id, chapter),
-        ForeignKeyConstraint ([cap_id], ['capitularies.cap_id'], on_delete = 'CASCADE'),
+        ForeignKeyConstraint ([cap_id], ['capitularies.cap_id'], ondelete = 'CASCADE'),
     )
 
 
@@ -266,8 +308,8 @@ class MnMssCapitularies (Base):
 
     __table_args__ = (
         PrimaryKeyConstraint (ms_id, cap_id, mscap_n),
-        ForeignKeyConstraint ([ms_id],  ['manuscripts.ms_id'], on_delete = 'CASCADE'),
-        ForeignKeyConstraint ([cap_id], ['capitularies.cap_id'], on_delete = 'CASCADE'),
+        ForeignKeyConstraint ([ms_id],  ['manuscripts.ms_id'], ondelete = 'CASCADE'),
+        ForeignKeyConstraint ([cap_id], ['capitularies.cap_id'], ondelete = 'CASCADE'),
     )
 
 
@@ -290,33 +332,69 @@ class MssChapters (Base):
     mscap_n  = Column (Integer)
 
     chapter  = Column (String)
-    mschap_n = Column (Integer)
-    """ Order of chapters in the manuscript. """
 
     locus = Column (String)
     """ The locus of the chapter in the manuscript.
-    As recorded by the editor, eg. 42ra """
-
-    hands = Column (String)
-    """ All hands found in the chapter, eg. 'XY' """
+    As recorded by the editor, eg. 42ra-1 """
 
     transcribed = Column (Integer, nullable = False, server_default = '0')
     """ Is this chapter already transcribed? 0 == no, 1 == partially, 2 == completed """
 
+    xml     = Column (XML)
+    """ The XML text of the chapter. """
+
     __table_args__ = (
-        PrimaryKeyConstraint (ms_id, cap_id, mscap_n, chapter, mschap_n),
+        PrimaryKeyConstraint (ms_id, cap_id, mscap_n, chapter),
         ForeignKeyConstraint (
             [cap_id, chapter],
             ['chapters.cap_id', 'chapters.chapter'],
-            on_delete = 'CASCADE'
+            ondelete = 'CASCADE'
         ),
         ForeignKeyConstraint (
             [ms_id, cap_id, mscap_n],
             ['mn_mss_capitularies.ms_id', 'mn_mss_capitularies.cap_id', 'mn_mss_capitularies.mscap_n'],
-            on_delete = 'CASCADE'
+            ondelete = 'CASCADE'
         ),
     )
 
+
+class MssChaptersText (Base):
+    r"""Various kinds of preprocessed texts extracted from the chapter.
+
+    .. sauml::
+       :include: mss_chapters_text
+
+    """
+
+    __tablename__ = 'mss_chapters_text'
+
+    ms_id    = Column (String)
+    cap_id   = Column (String)
+    mscap_n  = Column (Integer)
+    chapter  = Column (String)
+
+    type_    = Column ('type', String)
+    """ The type of preprocessing applied. """
+
+    text     = Column (TEXT)
+    """ The preprocessed plain text of the chapter. """
+
+    __table_args__ = (
+        PrimaryKeyConstraint (ms_id, cap_id, mscap_n, chapter, type_),
+        ForeignKeyConstraint (
+            [ms_id, cap_id, mscap_n, chapter],
+            ['mss_chapters.ms_id', 'mss_chapters.cap_id', 'mss_chapters.mscap_n', 'mss_chapters.chapter'],
+            ondelete = 'CASCADE'
+        ),
+    )
+
+
+generic (Base.metadata, '''
+CREATE INDEX IF NOT EXISTS ix_mss_chapters_text_trgm ON mss_chapters_text USING GIN (text gin_trgm_ops);
+''', '''
+DROP INDEX IF EXISTS ix_mss_chapters_text_trgm;
+'''
+)
 
 view ('chapters_count_transcriptions', Base.metadata, '''
 SELECT cap_id, chapter, COUNT (ms_id) AS transcriptions
@@ -362,14 +440,16 @@ class Geonames (Base):
 
     __tablename__ = 'geonames'
 
-    geo_id      = Column (String)
-    geo_source  = Column (String) # geonames, dnb, viaf, countries_843
+    geo_id        = Column (String)
+    geo_source    = Column (String) # geonames, dnb, viaf, countries_843
 
-    geo_name    = Column (String)
-    geo_fcode   = Column (String)
+    parent_id     = Column (String)
 
-    geom        = Column (Geometry ('GEOMETRY', srid=4326))
-    blob        = Column (JSONB)
+    geo_name      = Column (String)
+    geo_fcode     = Column (String)
+
+    geom          = Column (Geometry ('GEOMETRY', srid=4326))
+    blob          = Column (JSONB)
 
     __table_args__ = (
         PrimaryKeyConstraint (geo_source, geo_id),
@@ -396,12 +476,12 @@ class MnMsPartsGeonames (Base):
         ForeignKeyConstraint (
             [ms_id, msp_part],
             ['capitularia.msparts.ms_id', 'capitularia.msparts.msp_part'],
-            on_delete = 'CASCADE'
+            ondelete = 'CASCADE'
         ),
         ForeignKeyConstraint (
             [geo_source, geo_id],
             ['geonames.geo_source', 'geonames.geo_id'],
-            on_delete = 'CASCADE'
+            ondelete = 'CASCADE'
         ),
     )
 
@@ -444,6 +524,19 @@ view ('msparts_view', Base.metadata, '''
       JOIN mn_msparts_geonames mn USING (ms_id, msp_part)
       JOIN geonames g USING (geo_source, geo_id)
     ''')
+
+view ('geo_id_parents', Base.metadata, '''
+    SELECT g.geo_id, x."geonameId" as parent_id, x.fcode, x.name
+    FROM geonames g, jsonb_to_recordset(g.blob->'geonames') AS x("geonameId" text, fcode text, name text)
+    WHERE g.geo_source = 'geonames'
+    ''')
+
+view ('geo_id_children', Base.metadata, '''
+    SELECT g.geo_id, x."geonameId" AS parent_id, g.geo_fcode, g.geo_name
+    FROM geonames g,
+      LATERAL jsonb_to_recordset (g.blob -> 'geonames'::text) x ("geonameId" text, fcode text, name text)
+    WHERE g.geo_source::text = 'geonames'::text;
+''')
 
 
 # for table in 'countries_843 countries_870 countries_888 countries_modern regions_843'.split ():

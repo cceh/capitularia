@@ -34,7 +34,7 @@ class Sticky_Nav_Menu_Widget extends \WP_Nav_Menu_Widget
         parent::widget ($args, $instance);
     }
 
-    public static function on_widget_nav_menu_args ($nav_menu_args, $dummy_nav_menu, $args)
+    public static function on_widget_nav_menu_args ($nav_menu_args, $dummy_nav_menu, $args) // phpcs:ignore
     {
         if (!empty ($args['mirsn'])) {                          // pick out *our* menu
             $nav_menu_args['container_class'] = 'sidebar-toc';  // this makes the widget sticky

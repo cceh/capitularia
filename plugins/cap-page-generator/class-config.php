@@ -7,6 +7,8 @@
 
 namespace cceh\capitularia\page_generator;
 
+use cceh\capitularia\lib;
+
 /**
  * Contains configuration parameters.
  */
@@ -54,7 +56,7 @@ class Config
      * If we setup the options in the constructor it will be too early for
      * translation to kick in.
      *
-     * @return
+     * @return void
      */
 
     public function init ()
@@ -70,29 +72,11 @@ class Config
                 ns ('cap_sanitize_key_list'),
             ),
             array (
-                'xml_root',
-                __ ('XML root path', LANG),
+                'xml_root_uri',
+                __ ('XML Root URI', LANG),
                 sprintf (
-                    __ ('Root directory for XML files in the AFS, eg.: %s', LANG),
-                    AFS_ROOT . 'http/docs/cap'
-                ),
-                ns ('cap_sanitize_path'),
-            ),
-            array (
-                'schema_root',
-                __ ('Schema root path', LANG),
-                sprintf (
-                    __ ('Root directory for schema files in the AFS, eg.: %s', LANG),
-                    AFS_ROOT . 'http/docs/cap'
-                ),
-                ns ('cap_sanitize_path'),
-            ),
-            array (
-                'xmllint_path',
-                __ ('xmllint path', LANG),
-                sprintf (
-                    __ ('The full path to the xmllint utility as seen from the server, eg.: %s', LANG),
-                    AFS_ROOT . 'local/bin/xmllint'
+                    __ ('Root URI from where to download XML files, eg.: %s', LANG),
+                    'https://capitularia.uni-koeln.de/downloads'
                 ),
                 ns ('cap_sanitize_path'),
             ),
@@ -114,15 +98,14 @@ class Config
                 'xml_dir',
                 __ ('XML files directory', LANG),
                 sprintf (
-                    __ ('The path to the XML files (relative to the XML Root path), eg.: %s', LANG),
-                    'publ/mss'
+                    __ (
+                        'The path to the XML files, relative to the AFS Root. eg.: %s. ' .
+                        'The AFS root is currently configured as<br>%s',
+                        LANG
+                    ),
+                    'publ/mss',
+                    lib\get_opt ('afs')
                 ),
-                ns ('cap_sanitize_path'),
-            ),
-            array (
-                'schema_path',
-                __ ('XSL schema', LANG),
-                __ ('The path to the xsl schema file (relative to the Schema Root path).', LANG),
                 ns ('cap_sanitize_path'),
             ),
             array (
@@ -191,37 +174,20 @@ class Config
     }
 
     /**
-     * Get an option of the File Include Plugin
-     *
-     * @param string $section_id The section @see $this->sections
-     * @param string $field_id   The field (or option) name
-     * @param string $default    The default value
-     *
-     * @return string The option
-     */
-
-    public function get_fi_opt ($option_id, $default = '')
-    {
-        if ($this->cap_fi_options === null) {
-            $this->cap_fi_options = get_option (CAP_FI_OPTIONS, array ());
-        }
-        return $this->cap_fi_options[$option_id] ?? $default;
-    }
-
-    /**
      * Get a path
      *
-     * @param string $root_id    The root path option name
      * @param string $section_id The section @see $this->sections
      * @param string $path_id    The path option name
      *
      * @return string The path ending in '/'
      */
 
-    public function get_opt_path ($root_id, $section_id, $path_id)
+    public function get_opt_path ($section_id, $path_id)
     {
-        $path = $this->get_opt ('general', $root_id) . '/';
-        return $path . $this->get_opt ($section_id, $path_id) . '/';
+        $afs  = lib\get_opt ('afs');
+        $path = $this->get_opt ($section_id, $path_id);
+        $path = lib\urljoin ($afs, $path);
+        return $path . '/';
     }
 
     /**

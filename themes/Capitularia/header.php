@@ -30,7 +30,7 @@ namespace cceh\capitularia\theme;
          * as styles, scripts, and meta tags.
          */
         wp_head ();
-        ?>
+    ?>
   </head>
 
   <body <?php body_class (); ?>>

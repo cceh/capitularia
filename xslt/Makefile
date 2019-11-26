@@ -1,6 +1,11 @@
 #
-# This is the Makefile that generates all HTML files from all TEI files.
-# It is run by cron on the API server.
+# This is the Makefile that generates all the files in the cache directory.
+#
+# The cache directory contains the HTML files for display to the user and lots
+# of other files: one big corpus file with all metadata tags and one file for
+# every chapter in every manuscript, and more.
+#
+# This Makefile is run by cron on the API server.
 #
 
 ROOT_DIR  := /afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/http/docs/cap
@@ -8,6 +13,8 @@ ROOT_DIR  := /afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/http/docs/cap
 PUB_DIR   := $(ROOT_DIR)/publ
 PRIV_DIR  := $(ROOT_DIR)/intern/Transkriptionen
 CACHE_DIR := $(ROOT_DIR)/publ/cache
+
+IMPORT := cd ../server; python3 -m scripts.import_data -vvv -c ./server.conf
 
 XSL_DIR         := .
 MSS_DIR         := $(PUB_DIR)/mss
@@ -20,19 +27,19 @@ BIB_DIR         := $(PUB_DIR)/bibl
 BK_TEXT_DIR     := $(PRIV_DIR)/BK_Text_Superstruktur
 BK_TEXTZEUGE    := $(BK_TEXT_DIR)/bk-textzeuge.xml
 
+MSS := $(wildcard $(MSS_DIR)/*.xml)
+IDS := $(notdir $(basename $(MSS)))
+
 XSLTPROC  := /usr/bin/xsltproc --nonet --novalid --nomkdir
 XSLTPROC2  = $(XSLTPROC) -o $@ $(word 2,$^) $<
 SAXON     := /usr/bin/saxon
 SAXON2     = $(SAXON) -s:"$<" -xsl:"$(word 2,$^)" -o:"$@"
 
 TOUCH = mkdir -p $(dir $@) && touch "$@"
+CLEAN_TARGET_DIR = -rm -rf $(dir $@) && mkdir -p $(dir $@)
 
 all: mss mss_priv capits lists
 	touch $(CACHE_DIR)/last_make_run
-
-collation:
-	touch $(CACHE_DIR)/last_collation_run
-
 
 # do not waste time trying to make these files:
 
@@ -60,7 +67,6 @@ mss-footer     := mss-footer.xsl $(common)
 mss-transcript := mss-transcript.xsl mss-transcript-footnotes.xsl $(common)
 mss-transcript-cte           := mss-transcript-cte.xsl $(mss-transcript)
 mss-transcript-with-comments := mss-transcript-with-comments.xsl $(mss-transcript)
-mss-transcript-collation     := mss-transcript-collation.xsl $(mss-transcript)
 capit      := capit.xsl      $(common)
 mss-capit  := mss-capit.xsl  $(common)
 mss-idno   := mss-idno.xsl   $(common)
@@ -68,7 +74,8 @@ mss-key    := mss-key.xsl    $(common)
 mss-table  := mss-table.xsl  $(common)
 capit-list := capit-list.xsl $(common)
 
-mss-extract-chapters := mss-extract-chapters.xsl common-3.xsl
+mss-transcript-collation := mss-transcript-collation.xsl mss-transcript-phase-1.xsl common-3.xsl
+mss-extract-chapters     := mss-extract-chapters.xsl $(mss-transcript-collation)
 
 ################ MSS
 
@@ -79,7 +86,7 @@ define MSS_TEMPLATE =
 $(CACHE_DIR)/mss/%.$(1).html : $(MSS_DIR)/%.xml $(mss-$(1))
 	$(XSLTPROC) -o $$@ $$(word 2,$$^) $$<
 
-mss : $(patsubst %.xml,$(CACHE_DIR)/mss/%.$(1).html,$(notdir $(wildcard $(MSS_DIR)/*.xml)))
+mss : $(patsubst %,$(CACHE_DIR)/mss/%.$(1).html,$(IDS))
 
 $(CACHE_DIR)/internal/mss/%.$(1).html : $(MSS_PRIV_DIR)/%.xml $(mss-$(1))
 	$(XSLTPROC) -o $$@ $$(word 2,$$^) $$<
@@ -90,24 +97,26 @@ endef
 
 $(foreach s,$(SECTIONS),$(eval $(call MSS_TEMPLATE,$(s))))
 
+## commented transcripts for the editors
 
 $(CACHE_DIR)/mss/%.transcript.commented.html : $(MSS_DIR)/%.xml $(mss-transcript-with-comments)
 	$(XSLTPROC) -o $@ $(word 2,$^) $<
 
-mss : $(patsubst %.xml,$(CACHE_DIR)/mss/%.transcript.commented.html,$(notdir $(wildcard $(MSS_DIR)/*.xml)))
+mss : $(patsubst %,$(CACHE_DIR)/mss/%.transcript.commented.html,$(IDS))
 
+## extract each xml corresp as file
+## fulltext and collation
 
-$(CACHE_DIR)/collation/%/timestamp : $(MSS_DIR)/%.xml $(mss-extract-chapters)
+$(CACHE_DIR)/extracted/%/ : $(MSS_DIR)/%.xml $(mss-extract-chapters)
+	$(CLEAN_TARGET_DIR)
 	$(SAXON) -s:"$<" -xsl:mss-extract-chapters.xsl directory="$(dir $@)"
 	-$(TOUCH)
 
-$(CACHE_DIR)/collation/bk-textzeuge/timestamp : $(BK_TEXTZEUGE) $(mss-extract-chapters)
-	$(SAXON) -s:"$<" -xsl:mss-extract-chapters.xsl directory="$(dir $@)"
-	-$(TOUCH)
+$(CACHE_DIR)/last_extraction_run : $(patsubst %,$(CACHE_DIR)/extracted/%/,$(IDS))
 
-collation : $(patsubst %.xml,$(CACHE_DIR)/collation/%/timestamp,$(notdir $(wildcard $(MSS_DIR)/*.xml)))
+extract : $(CACHE_DIR)/last_extraction_run
 
-collation : $(CACHE_DIR)/collation/bk-textzeuge/timestamp
+fulltext: extract
 
 
 ################ CAPITS
@@ -188,12 +197,6 @@ $(CACHE_DIR)/lists/places.html : $(PUB_DIR)/resources/capitularia_place.xml regi
 lists : $(CACHE_DIR)/lists/places.html
 
 
-$(CACHE_DIR)/internal/mss/bk-textzeuge.html : $(BK_TEXTZEUGE) $(mss-transcript)
-	$(XSLTPROC2)
-
-mss_priv : $(CACHE_DIR)/internal/mss/bk-textzeuge.html
-
-
 $(CACHE_DIR)/mss/cte-137.html: $(MSS_DIR)/texts/137.xml $(mss-transcript-cte)
 	$(XSLTPROC) --stringparam title Edition -o $@ $(word 2,$^) $<
 
@@ -206,8 +209,8 @@ $(CACHE_DIR)/mss/cte-137-de.html: $(MSS_DIR)/texts/137-de.xml $(mss-transcript-c
 mss : $(CACHE_DIR)/mss/cte-137-de.html
 
 
-$(CACHE_DIR)/lists/corpus.xml : corpus.xsl $(MSS_DIR)/*.xml $(BK_TEXTZEUGE)
-	$(SAXON) -it:main -xsl:"$<" -o:"$@" dir="$(MSS_DIR)" dir2="$(BK_TEXTDIR)"
+$(CACHE_DIR)/lists/corpus.xml : corpus.xsl $(MSS_DIR)/*.xml
+	$(SAXON) -it:main -xsl:"$<" -o:"$@" dir="$(MSS_DIR)"
 
 $(CACHE_DIR)/lists/downloads.html : $(CACHE_DIR)/lists/corpus.xml downloads.xsl
 	$(SAXON2)
@@ -227,6 +230,31 @@ changes: $(CACHE_DIR)/lists/changes.html $(CACHE_DIR)/lists/changes90.html
 lists : corpus downloads changes
 
 
+## database filling targets
+
+init_db:
+	$(IMPORT) --init
+	$(RM) $(CACHE_DIR)/last_corpus_scrape
+	$(RM) $(CACHE_DIR)/last_fulltext_scrape
+
+$(CACHE_DIR)/last_corpus_scrape : $(CACHE_DIR)/lists/corpus.xml $(capit-list_XML)
+	$(IMPORT) --mss      $(CACHE_DIR)/lists/corpus.xml
+	$(IMPORT) --cap-list $(capit-list_XML)
+	touch "$@"
+
+$(CACHE_DIR)/last_fulltext_scrape : $(wildcard $(CACHE_DIR)/extracted/*/*.xml $(CACHE_DIR)/extracted/*/*.txt)
+	$(file >$@,$?)            # put the very long argument list into a file
+	$(IMPORT) --fulltext @$@  # read filenames to import from the file
+	sed -i -e 's/ /\n/g' $@   # make it human-readable for debugging
+
+scrape_corpus: $(CACHE_DIR)/last_corpus_scrape
+
+scrape_fulltext: $(CACHE_DIR)/last_fulltext_scrape
+
+scrape_status:
+	$(IMPORT) --publish
+
+
 ################
 
 clean:
@@ -235,7 +263,11 @@ clean:
 dirs:
 	mkdir -p $(CACHE_DIR)
 	mkdir -p $(CACHE_DIR)/mss $(CACHE_DIR)/capits $(CACHE_DIR)/lists \
-			 $(CACHE_DIR)/internal/mss $(CACHE_DIR)/collation
+			 $(CACHE_DIR)/internal/mss \
+			 $(CACHE_DIR)/extracted    \
+			 $(CACHE_DIR)/collation
 	mkdir -p $(foreach c,$(CAPITS),$(CACHE_DIR)/capits/$(c))
 
-.PHONY: all mss capits lists clean dirs
+.PHONY: all mss capits lists clean dirs corpus extract fulltext
+
+.PHONY: init_db scrape_corpus scrape_fulltext scrape_status

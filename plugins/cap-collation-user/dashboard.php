@@ -7,6 +7,8 @@
 
 namespace cceh\capitularia\collation_user;
 
+// phpcs:disable Generic.WhiteSpace.ScopeIndent.Incorrect
+
 /**
  * Output the dashboard page.
  *
@@ -19,8 +21,8 @@ namespace cceh\capitularia\collation_user;
 
 function dashboard_page ()
 {
-   ob_start ();
-?>
+    ob_start ();
+    ?>
 
 <div id="vm-cap-collation-user" class="cap-collation-user">
   <div class="collation-panel no-print">
@@ -102,94 +104,6 @@ function dashboard_page ()
               </label>
             </div>
           </div>
-
-          <div v-if="advanced" class="accordion advanced-options">
-            <h4>
-              <?php _ex ('Advanced Options', 'H4', 'cap-collation-user'); ?>
-            </h4>
-
-            <!-- Collation algorithm drop-down menu -->
-            <div class="form-group">
-              <label for="algorithm">
-                <?php _ex ('Select Collation Algorithm', 'Label for drop-down', 'cap-collation-user'); ?>
-              </label>
-              <div class="dropdown">
-                <button type="button" class="btn btn-secondary dropdown-toggle" id="algorithm-label"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ algorithm.name }}
-                </button>
-                <div id="algorithm" class="dropdown-menu" aria-labelledby="algorithm-label">
-                  <button v-for="(algo, index) in algorithms" class="dropdown-item" type="button"
-                          :data-index="index" @click="on_algorithm">{{ algo.name }}</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Levenshtein distance drop-down menu -->
-            <div class="form-group">
-              <label for="ld">
-                <?php _ex ('Select Levenshtein Distance', 'Label for drop-down', 'cap-collation-user'); ?>
-              </label>
-              <div class="dropdown">
-                <button type="button" class="btn btn-secondary dropdown-toggle" id="ld-label"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ levenshtein_distance }}
-                </button>
-                <div id="ld" class="dropdown-menu" aria-labelledby="ld-label">
-                  <button v-for="ld in levenshtein_distances" class="dropdown-item" type="button"
-                          :data-ld="ld" @click="on_ld">{{ ld }}</button>
-                </div>
-              </div>
-            </div>
-
-            <?php _ex ('or', 'Either this or that, not both.', 'cap-collation-user'); ?>
-
-            <!-- Levenshtein ratio drop-down menu -->
-            <div class="form-group">
-              <label for="lr">
-                <?php _ex ('Select Levenshtein Ratio', 'Label for drop-down', 'cap-collation-user'); ?>
-              </label>
-              <div class="dropdown">
-                <button type="button" class="btn btn-secondary dropdown-toggle" id="lr-label"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ levenshtein_ratio }}
-                </button>
-                <div id="lr" class="dropdown-menu" aria-labelledby="lr-label">
-                  <button v-for="lr in levenshtein_ratios" class="dropdown-item" type="button"
-                          :data-lr="lr" @click="on_lr">{{ lr }}</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <!-- Use segmentation checkbox -->
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="segmentation" v-model="segmentation" />
-                <label class="form-check-label" for="segmentation">
-                  <?php _ex ('Use Segmentation', 'Label for drop-down', 'cap-collation-user'); ?>
-                </label>
-              </div>
-
-              <!-- Transpositions checkbox -->
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="transpositions" v-model="transpositions" />
-                <label class="form-check-label" for="transpositions">
-                  <?php _ex ('Use Transpositions', 'Label for drop-down', 'cap-collation-user'); ?>
-                </label>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <!-- Normalizations textbox -->
-              <label for="normalizations">
-                <?php _ex ('Normalizations', 'Label for textarea', 'cap-collation-user'); ?>
-              </label>
-              <p>
-                <?php _ex ('One or more lines in the form: raw=normalized', 'Help text', 'cap-collation-user'); ?>
-              </p>
-              <textarea id="normalizations" name="normalizations" rows="4"></textarea>
-            </div>
-          </div> <!-- accordion -->
         </form>
 
       </div>
@@ -249,17 +163,27 @@ function dashboard_page ()
                   :key="w.siglum" :class="row_class (w, index)">
                 <th class="slim handle" scope="row">
                   <i class="fas"
-                     title="<?php _ex ('Drag row to reorder the textual witness.',
-                            'title of grip-lines icon', 'cap-collation-user'); ?>"></i>
+                     title="<?php
+                            _ex (
+                                'Drag row to reorder the textual witness.',
+                                'title of grip-lines icon',
+                                'cap-collation-user'
+                            );
+                            ?>"></i>
                 </th>
                 <th scope="row" class="slim">
                   <label class="screen-reader-text" :for="'cb-select-' + w.siglum">Select {{ w.title }}</label>
                   <input type="checkbox" class="cap-toggle" :id="'cb-select-' + w.siglum"
                          :value="w.siglum" v-model="w.checked"
-                         title="<?php _ex ('Include this textual witness in the collation.',
-                                'Checkbox', 'cap-collation-user'); ?>">
+                         title="<?php
+                                _ex (
+                                    'Include this textual witness in the collation.',
+                                    'Checkbox',
+                                    'cap-collation-user'
+                                );
+                                ?>">
                 </th>
-                <td v-if="w.siglum == bk_id">{{ w.title }}</td>
+                <td v-if="w.siglum.startsWith (bk_id)">{{ w.title }}</td>
                 <td v-else=""><a :href="'/mss/' + w.siglum">{{ w.title }}</a></td>
               </tr>
             </tbody>
@@ -284,7 +208,7 @@ function dashboard_page ()
         // collated segment of the witnesses.
         //
         // This section is controlled by a vue.js component in front.js
-  ?>
+    ?>
 
   <div class="row">
     <div class="col-12">
@@ -301,8 +225,11 @@ function dashboard_page ()
                   @mouseover="hovered = row.siglum" @mouseleave="hovered = null">
                 <th class="slim handle no-print" scope="row">
                   <i class="fas"
-                     title="<?php _ex ('Drag row to reorder the textual witness.',
-                            'title of grip-lines icon', 'cap-collation-user'); ?>"></i>
+                    title="<?php _ex (
+                        'Drag row to reorder the textual witness.',
+                        'title of grip-lines icon',
+                        'cap-collation-user'
+                    ); ?>"></i>
                 </th>
                 <th class="title">{{ row.title }}</th>
                 <td v-for="cell in row.cells" :class="cell.class">{{ cell.text }}</td>

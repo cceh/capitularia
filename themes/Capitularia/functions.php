@@ -65,15 +65,22 @@ add_action ('admin_enqueue_scripts',               ns ('on_admin_enqueue_scripts
 add_action ('registered_post_type',                ns ('on_registered_post_type'), 10, 2);
 add_action ('pre_get_posts',                       ns ('on_pre_get_posts'));
 
-add_action ('rest_api_init', function () {
-    register_rest_route ('capitularia/v1', '/user_info/', array (
-        'methods' => 'GET',
-        'callback' => ns ('cap_rest_user_info'),
-        'args' => array (
-            'auth_cookie' => array ('default' => false)
-        ),
-    ));
-});
+add_action (
+    'rest_api_init',
+    function () {
+        register_rest_route (
+            'capitularia/v1',
+            '/user_info/',
+            array (
+                'methods' => 'GET',
+                'callback' => ns ('cap_rest_user_info'),
+                'args' => array (
+                    'auth_cookie' => array ('default' => false)
+                ),
+            )
+        );
+    }
+);
 
 /*
  * Wordpress Filters
@@ -136,3 +143,6 @@ add_shortcode ('current_date',       ns ('on_shortcode_current_date'));
 
 /* output the page's permalink */
 add_shortcode ('permalink',          ns ('on_shortcode_permalink'));
+
+/* output a short description of how to cite the article */
+add_shortcode ('cite_as',            ns ('on_shortcode_cite_as'));

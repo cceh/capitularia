@@ -14,7 +14,10 @@ import types
 import flask
 from flask import abort, current_app, request
 
-RE_WS         = re.compile ('(\s+)')
+RE_WS              = re.compile ('(\s+)')
+RE_PUNCT           = re.compile (r'[-.,:;!?*/]')
+RE_BRACKETS        = re.compile (r'\[\s*|\s*\]')
+RE_NORMALIZE_SPACE = re.compile (r'\s+')
 
 # See: https://capitularia.uni-koeln.de/wp-admin/admin.php?page=wp-help-documents&document=7402
 
@@ -114,8 +117,9 @@ def to_csv (fields, rows):
 def fix_ws (s):
     return RE_WS.sub (' ', s)
 
+
 def text_content (e):
-    return fix_ws (' '.join (e.xpath ('//text()')))
+    return fix_ws (''.join (e.itertext ()))
 
 
 def _parse_locus (m):
@@ -189,7 +193,7 @@ BK_NORM = {
 def _normalize_bk (m):
     """ Normalize a BK number.
 
-    Return BK, 20a
+    Return (BK, 20a)
     Throw on malformed BKs.
     """
 
@@ -197,27 +201,37 @@ def _normalize_bk (m):
 
 
 def normalize_bk_n (s):
-    """ Normalize a capitulary id.  Use on milestone @n.
+    """Normalize a capitulary id.  Use on milestone @n.
 
-    Throws on malformed BKs.
+    N.B. There may be one or more copies of a capitulary in any manuscript.
+    The last element in the returned list is the index, starting with 1.
+
+    :return: (BK, 20a, 1)
+    :type:   list
+    :raises: ValueError if the input is malformed
+
     """
 
     m = RE_BK_N.search (s)
     if m is None:
         raise ValueError ("Bogus BK: '%s'" % s)
 
-    return (*_normalize_bk (m), int (m.group (4) or '0'))
+    return (*_normalize_bk (m), int (m.group (4) or '1'))
 
 
-def normalize_corresp (s):
-    """ Normalize a chapter id.  Use on @corresp.
+def normalize_corresp (corresp):
+    """ Normalize a corresp attribute.
 
-    Throws on malformed corresps.
+    :param str corresp: The corresp to normalize
+
+    :return: (BK, 20a, 12)
+    :rtype:  list
+    :raises: ValueError if the corresp is malformed
     """
 
-    m = RE_CORRESP.search (s)
+    m = RE_CORRESP.search (corresp)
     if m is None:
-        raise ValueError ("Bogus @corresp: '%s'" % s)
+        raise ValueError ("Bogus @corresp: '%s'" % corresp)
 
     return (*_normalize_bk (m), m.group (4))
 
@@ -359,3 +373,60 @@ def assert_map ():
     #abort (401, 'You have no "edit_pages" capability.')
 
     # FIXME: put this on the session
+
+
+ROMANS = dict (zip (
+    'M CM D CD C XC L XL X IX U V IU IV I'.split (),
+    map (int, '1000 900 500 400 100 90 50 40 10 9 5 5 4 4 1'.split ()),
+))
+
+RE_ROMANS    = re.compile ('|'.join (ROMANS.keys ()))
+RE_ROMAN     = re.compile (r'\b([MDCLXVI]+)\b')
+
+NORMALIZATION_DICTS = [
+    {
+        # string is already lowercased
+        'j'     : 'i',
+        'v'     : 'u',
+        'ę'     : 'e',
+        '_'     : ' ',
+        'ae'    : 'e',
+        'oe'    : 'e',
+    },
+    {
+        # string is already lowercased
+        'duodecim'    : '12',
+        'viginti'     : '20',
+        'triginta'    : '30',
+        'quadraginta' : '40',
+        'sexaginta'   : '60',
+        'sexcentos'   : '600',
+        'ecles'       : 'eccles',
+    },
+]
+""" The normalizations to apply. First dictionary first. """
+
+NORMALIZATIONS = list (zip (
+    [re.compile ('|'.join (d.keys ())) for d in NORMALIZATION_DICTS],
+    NORMALIZATION_DICTS
+))
+
+def convert (m):
+    return CONVERSIONS[m.group (0)]
+
+def roman_to_decimal (m):
+    return str (sum ([ROMANS[x] for x in RE_ROMANS.findall (m.group (0).upper ())]))
+
+def normalize_space (s):
+    return RE_NORMALIZE_SPACE.sub (' ', s)
+
+def normalize_latin (s):
+    s = RE_ROMAN.sub (roman_to_decimal, s)
+    s = s.lower ()
+    s = RE_PUNCT.sub ('', s)
+    s = RE_BRACKETS.sub ('', s)
+
+    for regex, d in NORMALIZATIONS:
+        s = regex.sub (lambda m: d[m.group (0)], s)
+
+    return normalize_space (s)

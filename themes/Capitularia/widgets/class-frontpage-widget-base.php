@@ -100,13 +100,13 @@ class Frontpage_Widget_Base extends \WP_Widget
         echo ($args['after_title']);
     }
 
-    protected function the_widget_body ($dummy_args, $instance)
+    protected function the_widget_body ($dummy_args, $instance) // phpcs:ignore
     {
         echo ("<div class=\"{$this->class}-body\">{$instance['content']}</div>\n");
         echo $this->make_link (__ ('read more', 'capitularia'), $instance['link'], 'mehr-lesen ssdone');
     }
 
-    protected function the_widget_image ($dummy_args, $instance)
+    protected function the_widget_image ($dummy_args, $instance) // phpcs:ignore
     {
         echo $this->make_link (
             "<img src=\"{$instance['image']}\" title=\"{$instance['image-tooltip']}\" alt =\"\">",

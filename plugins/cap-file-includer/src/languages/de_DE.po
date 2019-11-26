@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2019-11-06 20:05+0100\n"
-"PO-Revision-Date: 2019-11-06 20:05+0100\n"
+"POT-Creation-Date: 2019-11-21 18:28+0100\n"
+"PO-Revision-Date: 2019-11-26 14:38+0100\n"
 "Last-Translator: Marcello Perathoner <marcello@perathoner.de>\n"
 "Language-Team: German <>\n"
 "Language: de_DE\n"
@@ -19,58 +19,65 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.4\n"
 
-#: class-settings-page.php:43
+#: class-settings-page.php:45
 msgid "General Settings"
 msgstr "Allgemeine Einstellungen"
 
-#: class-settings-page.php:50
+#: class-settings-page.php:52
 msgid "Root directory"
 msgstr "Stammverzeichnis"
 
-#: class-settings-page.php:57
+#: class-settings-page.php:59
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: class-settings-page.php:102
+#: class-settings-page.php:106
 #, php-format
 msgid ""
-"Root directory of the files you want to include, eg.: %s/http/docs/cap/publ/"
-"cache"
+"Root directory of the files you want to include, relative to the AFS root.  "
+"The AFS root is currently configured as<br>%s"
 msgstr ""
-"Stammverzeichnis der Dateien die Sie einbinden wollen, z.B.: %s/http/docs/"
-"cap/publ/cache"
+"Wurzelverzeichnis der einzufügenden Dateien, relativ zum AFS-"
+"Wurzelverzeichnis. Das AFS-Wurzelverzeichnis ist derzeit konfiguriert als<br>"
+"%s"
 
-#: class-settings-page.php:115
+#: class-settings-page.php:124
 msgid "The shortcode to use, eg.: cap_include"
 msgstr "Der Shortcode, den Sie benützen wollen, z.B.: cap_include"
 
-#: functions.php:38
+#: functions.php:167 functions.php:189
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: cap-file-includer.php:49
+msgid "Capitularia File Includer"
+msgstr "Capitularia Datei-Includer"
+
+#: cap-file-includer.php:50
+msgid "Includes external HTML files in Wordpress pages."
+msgstr "Bindet externe HTML-Dateien in Wordpress-Seiten ein."
+
+#: class-file-includer.php:69
 #, php-format
 msgctxt "Plugin name"
-msgid "%s: Illegal path."
-msgstr "%s: Ungültiger Pfad."
+msgid "%s: Illegal path: %s"
+msgstr "%s: Ungültiger Pfad: %s"
 
-#: functions.php:44
+#: class-file-includer.php:73
 #, php-format
 msgid "File not found: %s"
 msgstr "Datei %s nicht gefunden"
 
-#: functions.php:86
-msgctxt "Button: Save Changes in setting page"
-msgid "Save Changes"
-msgstr "Änderungen speichern"
+#~ msgid ""
+#~ "Root directory of the files you want to include, eg.: %s/http/docs/cap/"
+#~ "publ/cache"
+#~ msgstr ""
+#~ "Stammverzeichnis der Dateien die Sie einbinden wollen, z.B.: %s/http/docs/"
+#~ "cap/publ/cache"
 
-#: functions.php:182 functions.php:201
-msgid "Settings"
-msgstr "Einstellungen"
-
-#: cap-file-includer.php:45
-msgid "Capitularia File Includer"
-msgstr "Capitularia Datei-Includer"
-
-#: cap-file-includer.php:46
-msgid "Includes external HTML files in Wordpress pages."
-msgstr "Bindet externe HTML-Dateien in Wordpress-Seiten ein."
+#~ msgctxt "Button: Save Changes in setting page"
+#~ msgid "Save Changes"
+#~ msgstr "Änderungen speichern"
 
 #~ msgid "Capitularia File Includer Settings"
 #~ msgstr "Capitularia Datei-Includer Einstellungen"

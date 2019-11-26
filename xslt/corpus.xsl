@@ -9,7 +9,6 @@
     version="3.0">
 
   <xsl:param name="dir" />
-  <xsl:param name="dir2" select="''" />
 
   <xsl:import href="common-3.xsl" />
 
@@ -17,31 +16,13 @@
     <teiCorpus>
       <teiHeader />
       <xsl:apply-templates select="collection (concat ('file:///', $dir, '?select=*.xml'))" />
-      <xsl:if test="$dir2 != ''">
-        <xsl:apply-templates select="collection (concat ('file:///', $dir2, '?select=*.xml'))" />
-      </xsl:if>
     </teiCorpus>
-  </xsl:template>
-
-  <xsl:template name="hands">
-    <xsl:param name="e" />
-    <xsl:if test="$e//@hand">
-      <xsl:attribute name="cap:hands">
-        <xsl:for-each-group select="$e//@hand" group-by=".">
-          <xsl:sort select="." />
-          <xsl:value-of select="current-grouping-key ()"/>
-        </xsl:for-each-group>
-      </xsl:attribute>
-    </xsl:if>
   </xsl:template>
 
   <xsl:template match="/TEI">
     <TEI>
       <xsl:apply-templates select="@*" />
-      <xsl:attribute name="cap:file"  select="document-uri (..)"/>
-      <xsl:call-template name="hands">
-        <xsl:with-param name="e" select="." />
-      </xsl:call-template>
+      <xsl:attribute name="cap:file" select="document-uri (..)"/>
 
       <xsl:apply-templates />
     </TEI>
@@ -73,40 +54,36 @@
     </msItem>
   </xsl:template>
 
-  <xsl:template match="ab[@corresp][not (@prev)]">
-    <xsl:if test="not (.//milestone[@unit='span'][@corresp][not (@prev)])">
-      <milestone unit="chapter" corresp="{@corresp}">
-      <xsl:if test="not (/TEI[@xml:id = 'bk-textzeuge'])">
-        <xsl:attribute name="locus" select="@xml:id"/>
-      </xsl:if>
-        <xsl:call-template name="hands">
-          <xsl:with-param name="e">
-            <xsl:call-template name="collect" />
-          </xsl:with-param>
-        </xsl:call-template>
-      </milestone>
-      <xsl:text> </xsl:text>
-    </xsl:if>
-    <ab>
-      <xsl:copy-of select="@*" />
-      <xsl:apply-templates select=".//milestone|.//cb|.//lb" />
-    </ab>
-  </xsl:template>
+  <xsl:template match="ab[@corresp][not (@prev)][not (.//milestone[@corresp][@unit='span'])] |
+                       milestone[@corresp][not (@prev)][@unit='span']">
+    <xsl:choose>
+      <xsl:when test="local-name (.) = 'ab'">
+        <milestone unit="chapter" corresp="{@corresp}">
+          <xsl:if test="not (/TEI[@xml:id = 'bk-textzeuge'])">
+            <xsl:attribute name="locus" select="@xml:id"/>
+          </xsl:if>
+        </milestone>
+        <xsl:text> </xsl:text>
+        <xsl:apply-templates select=".//milestone|.//cb|.//lb" />
+      </xsl:when>
 
-  <xsl:template match="milestone[@unit='span'][@corresp][not (@prev)]">
-    <milestone unit="chapter" corresp="{@corresp}">
-      <xsl:if test="not (/TEI[@xml:id = 'bk-textzeuge'])">
-        <xsl:attribute name="locus" select="@xml:id"/>
-      </xsl:if>
-      <xsl:call-template name="hands">
-        <xsl:with-param name="e">
-          <xsl:call-template name="collect" />
-        </xsl:with-param>
-      </xsl:call-template>
-    </milestone>
+      <xsl:when test="local-name (.) = 'milestone'">
+        <milestone unit="chapter" corresp="{@corresp}">
+          <xsl:if test="not (/TEI[@xml:id = 'bk-textzeuge'])">
+            <xsl:attribute name="locus" select="../@xml:id"/>
+          </xsl:if>
+        </milestone>
+        <xsl:text> </xsl:text>
+      </xsl:when>
+
+      <xsl:otherwise>
+        <!-- not interested -->
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="ab">
+    <xsl:apply-templates select=".//milestone|.//cb|.//lb" />
   </xsl:template>
 
   <xsl:template match="/TEI[@xml:id = 'bk-textzeuge']/text/body/comment()">

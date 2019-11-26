@@ -64,28 +64,44 @@ geodata-server:
 geodata-client:
 	cd $(GIS) && $(MAKE) geodata-client
 
-corpus:
-	cd xslt; XSL_DIR=. CACHE_DIR=../cache make -e corpus
-
-collation:
-	cd xslt; XSL_DIR=. CACHE_DIR=../cache make -e -j 7 collation
-
-init_db:
-	cd $(SERVER) && $(MAKE) init_db
-
 upload_db:
 	$(PGDUMP) --clean --if-exists $(PGLOCAL) | $(PSQL) -v ON_ERROR_STOP=1 $(PGREMOTESUPER)
 
-scrape_corpus: import_xml
-	cd $(SERVER) && $(MAKE) scrape_corpus
+rebuild_db: init_db scrape_corpus scrape_status scrape_fulltext
 
-scrape_geodata: import_xml
+init_db:
+	cd xslt && $(MAKE) init_db
+
+corpus:
+	cd xslt; XSL_DIR=. CACHE_DIR=../cache make -e corpus
+
+fulltext:
+	cd xslt; XSL_DIR=. CACHE_DIR=../cache make -e -j 7 fulltext
+
+scrape_corpus:
+	cd xslt && $(MAKE) scrape_corpus
+
+scrape_fulltext:
+	cd xslt && $(MAKE) scrape_fulltext
+
+scrape_status:
+	cd xslt && $(MAKE) scrape_status
+
+scrape_geodata:
 	cd $(SERVER) && $(MAKE) scrape_geodata
+
+copy-hunspell:
+	sudo cp $(SERVER)/hunspell/latin.* /usr/share/postgresql/11/tsearch_data/
+	sudo service postgresql restart
 
 # PhpMetrics http://www.phpmetrics.org/
 phpmetrics:
 	vendor/bin/phpmetrics --config="tools/phpmetrics/config.yml" .
 	$(BROWSER) tools/reports/phpmetrics/index.html
+
+# PHP_CodeSniffer https://github.com/squizlabs/PHP_CodeSniffer
+phpcs:
+	-vendor/bin/phpcs --standard=tools/phpcs --report=emacs -s --extensions=php --ignore=node_modules themes plugins
 
 
 TARGETS = css js js_prod csslint jslint phplint mo po pot deploy clean

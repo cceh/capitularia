@@ -13,13 +13,9 @@ get_header ();
 get_main_start ('search-php');
 
 /*
- * Build Messages
+ * Build the "You searched for ..." message
  */
 
-// retrieve the 'You searched for: X' message
-$your_search = apply_filters ('cap_meta_search_your_search', '');
-
-// build the 'how many results' message
 $n_results = $wp_query->found_posts;
 $your_search = sprintf (
     _n (
@@ -28,11 +24,14 @@ $your_search = sprintf (
         $n_results,
         'capitularia'
     ),
-    $your_search,
+    get_search_query (),
     $n_results
 );
 
-// initialize pagination
+/*
+ * Initialize pagination
+ */
+
 $page_msg = __ ('Page:', 'capitularia');
 $pagination = paginate_links (
     array (
@@ -73,13 +72,20 @@ if (have_posts ()) {
     while (have_posts ()) {
         the_post ();
         $id = get_the_ID ();
+        // See the cap-meta-search plugin
+        $href = apply_filters ('cap_meta_search_the_permalink', get_the_permalink ($id));
+        $title = get_the_title ();
 
         echo ("<article id='post-$id' class='search-results-excerpt'>\n");
         echo ("  <header class='article-header excerpt-header search-excerpt-header'>\n");
-        echo ('    <h2><a href="' . get_the_permalink () .'">' . get_the_title () . "</a></h2>\n");
+        echo ("    <h3><a href='$href'>$title</a></h3>\n");
         echo ("  </header>\n");
         echo ("  <div class='excerpt'>\n");
+
+        // The cap_meta_search plugin filters this and returns appropriate text
+        // snippets with highlighted search terms.
         echo (get_the_excerpt ());
+
         echo ("  </div>\n");
         echo ("</article>\n");
     }

@@ -3,8 +3,8 @@
 /**
  * Capitularia Footnotes Post-Processor Include File
  *
- * This script processes the output of xsltproc.  Here we do those things that
- * are easier in PHP than in XSLT:
+ * This script processes the output of the xslt transformation.  Here we do
+ * those things that are easier in PHP than in XSLT:
  *
  * - Merge adjacent footnotes and move footnotes to the end of the word.
  * - Drop footnotes followed by an editorial note in the same word.
@@ -23,6 +23,8 @@ namespace cceh\capitularia\file_includer;
 
 const FOOTNOTE_SPAN = '//span[@data-note-id][not (ancestor::div[@class="footnotes-wrapper"])]';
 const FOOTNOTE_REF  = 'a[contains (concat (" ", @class, " "), " annotation-ref ")]';
+
+// phpcs:disable Squiz.NamingConventions.ValidVariableName.NotSnakeCase
 
 /**
  * Is the node a note?
@@ -248,7 +250,8 @@ function insert_footnote_backref ($elem, $id)
  * @return \DOMDocument The processed document.
  */
 
-function post_process ($doc) {
+function post_process ($doc)
+{
     $xpath  = new \DOMXpath ($doc);
 
     global $xpath1;
@@ -556,12 +559,13 @@ function load_xml_or_html ($in)
  * Also we need to get rid of <DOCTYPE>, <html>, <head>, and <body>.  We do this
  * by starting output at the topmost <div>.
  *
- * @param \DOMDocument The document as DOM.
+ * @param \DOMDocument $doc The document as DOM.
  *
  * @return The document as embeddable HTML.
  */
 
-function save_html ($doc) {
+function save_html ($doc)
+{
     $xpath = new \DOMXpath ($doc);
     $divs  = $xpath->query ('/html/body/div');
 

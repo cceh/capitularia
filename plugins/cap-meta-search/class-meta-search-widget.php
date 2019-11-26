@@ -15,8 +15,6 @@ class Widget extends \WP_Widget
 {
     /** The widget title (caption) */
     private $title;
-    /** Holds the 'you searched for' strings.*/
-    private $your_search = array ();
 
     /**
      * Constructor
@@ -26,6 +24,8 @@ class Widget extends \WP_Widget
 
     public function __construct ()
     {
+        $this->query = null;
+
         $widget_ops = array (
             'classname' => 'cap_meta_search_widget',
             'description' => __ ('Search widget for Capitularia metadata.', LANG),
@@ -37,11 +37,6 @@ class Widget extends \WP_Widget
             $widget_ops,
             $control_ops
         );
-        add_action ('pre_get_posts',               array ($this, 'on_pre_get_posts'));
-
-        add_filter ('posts_search',                array ($this, 'on_posts_search'), 10, 2);
-        add_filter ('wp_search_stopwords',         array ($this, 'on_wp_search_stopwords'));
-        add_filter ('cap_meta_search_your_search', array ($this, 'on_cap_meta_search_your_search'));
     }
 
     /**
@@ -53,7 +48,7 @@ class Widget extends \WP_Widget
      * @return void
      */
 
-    protected function setup ($dummy_args, $instance)
+    protected function setup ($dummy_args, $instance) // phpcs:ignore
     {
         $this->title = apply_filters (
             'widget_title',
@@ -64,70 +59,47 @@ class Widget extends \WP_Widget
     }
 
     /**
-     * Fill a drop-down box from a SQL query.
+     * Fill a drop-down box with items
      *
      * Output the <option>s for a HTML <select> element.  Sort numeric
      * substrings in a sensible way for humans, eg. 'BK 2' before 'BK 12'
      *
-     * @param string $sql The SQL query
+     * @param string[] $items    The items to display in the drop-down
+     * @param string   $selected The item in the list to select
      *
      * @return void
      */
 
-    private function echo_options ($sql)
+    private function echo_options ($items, $selected)
     {
-        global $wpdb;
-        $bks = $wpdb->get_results ($sql);
-
         $all = _x ('All', '\'All\' option in drop-down', LANG);
         echo ("    <option value=''>$all</option>\n");
 
-        // Add a key to all objects in the array that allows for sensible
-        // sorting of numeric substrings.
-        foreach ($bks as $bk) {
-            $bk->key = preg_replace_callback (
-                '|\d+|',
-                function ($match) {
-                    return strval (strlen ($match[0])) . $match[0];
-                },
-                $bk->meta_value
-            );
-        }
-
-        // Sort the array according to key.
-        usort (
-            $bks,
-            function ($bk1, $bk2) {
-                return strcoll ($bk1->key, $bk2->key);
-            }
-        );
-
-        // Output
-        foreach ($bks as $bk) {
-            echo ("    <option value='{$bk->meta_value}'>{$bk->meta_value}</option>\n");
+        foreach ($items as $item) {
+            $sel = $item === $selected ? ' selected' : '';
+            echo ("    <option value='{$item}'{$sel}>{$item}</option>\n");
         }
     }
 
     /**
      * Echo a HTML <select> element with options.
      *
-     * @param string $caption  The caption for the <select>
-     * @param string $id       The xml id and name of the <select>
-     * @param string $meta_key The meta_key to search for
-     * @param string $tooltip  The tooltip for the <select>
+     * @param string   $caption The caption for the <select>
+     * @param string   $id      The xml id and name of the <select>
+     * @param string[] $items   The items to display in the drop-down
+     * @param string   $tooltip The tooltip for the <select>
      *
      * @return void
      */
 
-    private function echo_select ($caption, $id, $meta_key, $tooltip)
+    private function echo_select ($caption, $id, $items, $tooltip)
     {
-        $tooltip = esc_attr ($tooltip);
+        $tooltip  = esc_attr ($tooltip);
+        $selected = stripslashes (esc_attr ($_GET[$id] ?? ''));
         echo ("<div class='cap-meta-search-field cap-meta-search-field-$id'>\n");
         echo ("  <label for='$id'>$caption</label>\n");
         echo ("  <select id='$id' name='$id' title='$tooltip' >\n");
-        $this->echo_options (
-            "SELECT distinct meta_value FROM wp_postmeta WHERE meta_key = '$meta_key'"
-        );
+        $this->echo_options ($items, $selected);
         echo ("  </select>\n");
         echo ("</div>\n");
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
@@ -136,9 +108,9 @@ class Widget extends \WP_Widget
     /**
      * Echo a HTML <div> element to contain a jstree of place names.
      *
-     * @param string $caption  The caption for the <select>
-     * @param string $id       The xml id and name of the <select>
-     * @param string $tooltip  The tooltip for the <select>
+     * @param string $caption The caption for the <select>
+     * @param string $id      The xml id and name of the <select>
+     * @param string $tooltip The tooltip for the <select>
      *
      * @return void
      */
@@ -167,9 +139,10 @@ class Widget extends \WP_Widget
     {
         $tooltip     = esc_attr ($tooltip);
         $placeholder = esc_attr ($placeholder);
+        $value       = stripslashes (esc_attr ($_GET[$id] ?? ''));
         echo ("<div class='cap-meta-search-field cap-meta-search-field-$id'>\n");
         echo ("  <label for='$id'>$caption</label>\n");
-        echo ("  <input type='text' id='$id' name='$id' placeholder='$placeholder' title='$tooltip' />\n");
+        echo ("  <input type='text' id='$id' name='$id' placeholder='$placeholder' title='$tooltip' value='$value' />\n");
         echo ("</div>\n");
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
     }
@@ -200,9 +173,11 @@ class Widget extends \WP_Widget
         echo ("<div class='cap-meta-search-box'>\n");
         echo ("<form>\n");
 
+        $capitulars = get_capitulars ();
+
         $label   = __ ('Capitularies contained', LANG);
         $tooltip = __ ('Only show manuscripts that contain this capitulary.', LANG);
-        $this->echo_select ($label, 'capit',     'msitem-corresp', $tooltip);
+        $this->echo_select ($label, 'capit', $capitulars, $tooltip);
 
         echo ("<div class='clearfix'>\n");
         $label   = __ ('After', LANG);
@@ -221,7 +196,15 @@ class Widget extends \WP_Widget
         $label       = __ ('Free Text', LANG);
         $tooltip     = __ ('Free text search', LANG);
         $placeholder = __ ('Free Text', LANG);
-        $this->echo_input  ($label, 's', $placeholder, $tooltip);
+        // Use 'fulltext' as query parameter instead of 's' to switch to our own
+        // search implementation.  Because our manuscript pages contain only a
+        // shortcode Wordpress search could not find anything.
+        $this->echo_input  ($label, 'fulltext', $placeholder, $tooltip);
+
+        // ... but without an 's' parameter Wordpress will not process the query
+        // in any sensible manner.  Add a dummy 's' parameter to fix the
+        // brain-dead Wordpress query parser.
+        echo ("<input type='hidden' name='s'>");
 
         echo ("<div class='cap-meta-search-buttons clearfix'>\n");
 
@@ -242,157 +225,6 @@ class Widget extends \WP_Widget
         echo ("</div>\n");
 
         echo $args['after_widget'];
-    }
-
-    /**
-     * Convert HTTP query into SQL query.
-     *
-     * Eg. converts the HTTP query string "?notBefore=1100" into a suitable
-     * Wordpress meta_query.  Reads the Wordpress query object.
-     *
-     * @param WP_Query $query The Wordpress query object
-     *
-     * @return void
-     *
-     * @see https://codex.wordpress.org/Class_Reference/WP_Query Class Reference
-     * WP_Query
-     */
-
-    public function on_pre_get_posts ($query)
-    {
-        if (!is_admin () && $query->is_main_query ()) {
-            if ($query->is_search) {
-                $this->your_search = array ();
-                // error_log ('cceh\capitularia\meta_search\Widget::on_pre_get_posts ()');
-                // error_log (print_r ($query->query, true));
-                $meta_query_args = array ();
-                $places = null;
-
-                foreach ($query->query as $key => $val) {
-                    // error_log ("key = $key, value = $val");
-                    if (empty ($val)) {
-                        continue;
-                    }
-                    if ($key == 'capit') {
-                        $val = sanitize_text_field ($val);
-                        $meta_query_args[] = array (
-                            'key' => 'msitem-corresp',
-                            'value' => $val,
-                            'compare' => '=',
-                            'type' => 'CHAR'
-                        );
-                        $this->your_search[] = sprintf (__ ('contains %s', LANG), $val);
-                        continue;
-                    }
-                    if ($key == 'notbefore') {
-                        $val = absint ($val);
-                        $meta_query_args[] = array (
-                            'key' => 'origDate-notBefore',
-                            'value' => $val,
-                            'compare' => '>=',
-                            'type' => 'NUMERIC'
-                        );
-                        $this->your_search[] = sprintf (__ ('after %d', LANG), $val);
-                        continue;
-                    }
-                    if ($key == 'notafter') {
-                        $val = absint ($val);
-                        $meta_query_args[] = array (
-                            'key' => 'origDate-notAfter',
-                            'value' => $val,
-                            'compare' => '<=',
-                            'type' => 'NUMERIC'
-                        );
-                        $this->your_search[] = sprintf (__ ('before %d', LANG), $val);
-                        continue;
-                    }
-                    if ($key == 'places') {
-                        if (is_array ($val)) {
-                            $val = array_map ('sanitize_text_field', $val);
-                            if ($places === null) {
-                                $places = get_places ();
-                            }
-                            $authorities = get_place_authorities ($places, $val);
-                            $meta_query_args[] = array (
-                                'key' => 'origPlace-ref',
-                                'value' => $authorities,
-                                'compare' => 'IN',
-                                'type' => 'CHAR'
-                            );
-                            $this->your_search[] = sprintf (
-                                __ ('origin in %s', LANG),
-                                implode (', ', get_place_names ($places, $val))
-                            );
-                        }
-                        continue;
-                    }
-                }
-
-                $query->set ('meta_query', $meta_query_args);
-
-                /* Output titles in alphabetical order. */
-                $query->set ('orderby', 'title');
-                $query->set ('order', 'ASC');
-
-                /* If you want results paged. */
-                $paged = max (1, intval (get_query_var ('paged')));
-                $query->set ('paged', $paged);
-                $query->set ('posts_per_page', 10);
-
-                /* If you don't want results paged. */
-                // $query->set ('nopaging', true);
-            }
-        }
-    }
-
-    /**
-     * Add search terms to 'You searched for ...'
-     *
-     * @param string   $sql   The SQL query (unused)
-     * @param WP_Query $query The wordpress query object
-     *
-     * @return The SQL query (unchanged)
-     */
-
-    public function on_posts_search ($sql, $query)
-    {
-        // echo ("<pre>" . print_r ($query, true) . "</pre>");
-        if (isset ($query->query_vars['search_terms'])) {
-            foreach ($query->query_vars['search_terms'] as $term) {
-                $this->your_search[] = esc_attr ($term);
-            }
-        }
-        return $sql;
-    }
-
-    /**
-     * Adds custom stopwords
-     *
-     * @param array $stopwords The stock stopwords
-     *
-     * @return array The stock and custom stopwords
-     */
-
-    public function on_wp_search_stopwords ($stopwords)
-    {
-        $stopwords = array_merge ($stopwords, explode (' ', 'der die das'));
-        return $stopwords;
-    }
-
-    /**
-     * Generate the "You searched for ..." message
-     *
-     * Generate a message like "You searched for BK.123 not before 950 and
-     * 'Karl'".
-     *
-     * @param string $message The free text searched for.
-     *
-     * @return string "You searched for ..."
-     */
-
-    public function on_cap_meta_search_your_search ($message)
-    {
-        return htmlspecialchars (implode (' · ', $this->your_search) . $message);
     }
 
     /**

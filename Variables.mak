@@ -3,9 +3,9 @@ PRJ_DIR := prj/capitularia/capitularia
 
 
 ROOT      := $(UNI_DIR)/$(PRJ_DIR)
-HOST_ROOT := $(CAPITULARIA_SSHUSER)@$(CAPITULARIA_SSHHOST)
+HOST_ROOT := $(CAPITULARIA_SSHUSER)@$(CAPITULARIA_HOST)
 
-AFS     := $(or $(CAPITULARIA_AFS),/afs/rrz/vol/www/projekt/capitularia)
+AFS     := $(or $(CAPITULARIA_AFS),/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia)
 LOCALFS := $(or $(CAPITULARIA_LOCALFS),/var/www/capitularia)
 BROWSER := $(or $(BROWSER),firefox)
 GITUSER := $(CAPITULARIA_GITUSER)

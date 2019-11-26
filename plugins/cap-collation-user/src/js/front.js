@@ -1,5 +1,5 @@
-import * as tools from "tools";
-import "results";
+import * as tools from 'tools';
+import 'results';
 
 /*
  * We use webpack as a workaround to load javascript modules in Wordpress.
@@ -11,11 +11,7 @@ import "results";
 
 // TODO: webpack hot-reloading?
 
-/** cap_collation_user_front_ajax_object is set by wp_localize_script in function.php. */
-/* global cap_collation_user_front_ajax_object */
-
 (function ($) {
-    /** The id of the "Obertext". */
     $ (document).ready (function () {
         /* The vue.js instance for the whole page. */
         new Vue ({
@@ -24,9 +20,7 @@ import "results";
                 'bk'          : '',
                 'corresp'     : '',
                 'later_hands' : false,
-                // list of all { siglum, title, checked }
-                // always kept in the correct order
-                'witnesses'   : [],
+                'witnesses'   : [],    // list of sigla (urls in the form: skara-brae-42?hands=XYZ#2)
                 'select_all'  : false,
                 'pre_select'  : null,  // list of witnesses to select after next ajax load
                 'bks'         : [],    // the list of bks shown in the dropdown
@@ -40,6 +34,7 @@ import "results";
                 'levenshtein_distance' : 0,
                 'levenshtein_ratio'    : 1.0,
                 'segmentation'         : false,
+                'joined'               : false, // same as segmentation?
                 'transpositions'       : false,
                 'normalizations'       : '',
 
@@ -66,11 +61,11 @@ import "results";
                         this.$data,
                         'bk', 'corresp', 'later_hands',
                         'levenshtein_distance', 'levenshtein_ratio',
-                        'segmentation', 'transpositions'
+                        'joined', 'segmentation', 'transpositions'
                     );
                     data.algorithm      = this.algorithm.key;
                     data.normalizations = this.normalizations.split ('\n');
-                    data.selected       = this.selected;
+                    data.witnesses      = this.selected;
                     return data;
                 },
                 /**
@@ -79,9 +74,19 @@ import "results";
                 async ajax_load_bks () {
                     const vm = this;
 
-                    const response = await tools.ajax ('load_bks', {});
-                    vm.bks = response.bks;
-                    vm.bk  = vm.bks[0] || '';
+                    const response = await tools.api ('/data/capitularies.json/');
+                    // list of { cap_id, transcriptions }
+                    vm.bks = [];
+                    for (const r of response) {
+                        // Only include capitulars with at least 2
+                        // transcriptions so we have something to collate.  Only
+                        // include BK and Mordek.
+                        if (r.transcriptions >= 2 && r.cap_id.match (/^BK|^Mordek/)) {
+                            vm.bks.push (r.cap_id);
+                        }
+                    }
+                    vm.bk = vm.bks[0] || '';
+
                     await vm.ajax_load_corresps ();
                     await vm.load_witnesses_carry_selection ();
                 },
@@ -90,14 +95,22 @@ import "results";
                  */
                 async ajax_load_corresps () {
                     const vm = this;
-                    const corresp = vm.corresp;
-                    const data = { 'bk' : vm.bk };
 
-                    const response = await tools.ajax ('load_corresps', data);
-                    vm.corresps = response.corresps;
+                    const response = await tools.api (`/data/capitulary/${vm.bk}/chapters.json/`);
+                    // list of { chapter, transcriptions }
+
+                    vm.corresps = [];
+                    for (const r of response) {
+                        // Only include chapters with at least 2 transcriptions
+                        // so we have something to collate.
+                        if (r.transcriptions >= 2) {
+                            vm.corresps.push (r.cap_id + (r.chapter ? `_${r.chapter}` : ''));
+                        }
+                    }
+
                     // set a default corresp if corresp is not in corresps
                     // in on_load_config () corresp will be set before corresps arrive
-                    if (!vm.corresps.includes (corresp)) {
+                    if (!vm.corresps.includes (vm.corresp)) {
                         vm.corresp  = vm.corresps[0] || '';
                     }
                 },
@@ -106,14 +119,18 @@ import "results";
                  */
                 async ajax_load_witnesses () {
                     const vm = this;
-                    const data = { 'corresp' : vm.corresp, 'later_hands' : vm.later_hands };
 
                     vm.spinner = true;
-                    const response = await tools.ajax ('load_witnesses', data);
+                    const response = await tools.api (`/data/corresp/${vm.corresp}/manuscripts.json/`);
+                    // list of { ms_id, n, type }
                     vm.spinner = false;
 
-                    // must add check to all objects in list or no reactivity
-                    vm.witnesses = response.witnesses.map (w => { w.checked = false; return w; });
+                    vm.witnesses = response.map (tools.parse_witness_response);
+                    vm.witnesses.sort ((a, b) => a.sort_key.localeCompare (b.sort_key));
+
+                    if (!vm.later_hands) {
+                        vm.witnesses = vm.witnesses.filter (w => { return w.type === 'original' });
+                    }
                 },
                 /**
                  * Reload the witnesses table while keeping selected items intact (if possible).
@@ -166,11 +183,8 @@ import "results";
                 /**
                  * The class(es) to apply to the witnesses table rows.
                  */
-                row_class (w, dummy_index) {
-                    const cls = [];
-                    /* if (w.siglum !== tools.bk_id) { */
-                    cls.push ('sortable');
-                    return cls;
+                row_class (dummy_w, dummy_index) {
+                    return ['sortable'];
                 },
                 /*
                  * User Interface handlers
@@ -239,6 +253,7 @@ import "results";
                             vm.corresp        = json.corresp;
                             vm.later_hands    = json.later_hands;
                             vm.segmentation   = json.segmentation;
+                            vm.joined         = json.joined || false;
                             vm.transpositions = json.transpositions;
 
                             $ ('#algorithm').val (json.algorithm);

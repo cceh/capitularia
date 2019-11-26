@@ -1,15 +1,13 @@
-import * as tools from "tools";
+import * as tools from 'tools';
 
 /* The vue.js instance for the collation output section. */
 Vue.component ('cap-collation-user-results', {
-    'data'  : function () {
+    'data' : function () {
         return {
+            'api'       : null,  // API server
             'corresp'   : '',
             'sigla'     : [],
-            'witnesses' : {
-                'metadata' : [],
-                'table'    : [],
-            },
+            'witnesses' : [],
             'unsorted_tables' : [],
             'tables'          : [],
             'hovered'         : null,  // siglum of hovered witness
@@ -24,10 +22,15 @@ Vue.component ('cap-collation-user-results', {
             vm.corresp = data.corresp;
             vm.spinner = true;
 
-            const p = tools.ajax ('load_collation', data);
+            const p = $.ajax ({
+                'url'         : vm.api,
+                'type'        : 'POST',
+                'data'        : JSON.stringify (data),
+                'contentType' : 'application/json; charset=utf-8',
+            });
             p.done (function () {
-                vm.update_tables (p.responseJSON.witnesses);
-                vm.sort_like (data.selected);
+                vm.update_tables (p.responseJSON.witnesses, p.responseJSON.table);
+                vm.sort_like (data.witnesses);
             }).always (function () {
                 vm.spinner   = false;
             });
@@ -164,17 +167,19 @@ Vue.component ('cap-collation-user-results', {
             return out_table;
         },
 
-        update_tables (witnesses) {
-            const max_width = 120 - Math.max (... witnesses.metadata.map (ms => ms.title.length));
-            this.witnesses = witnesses;
+        update_tables (witnesses, table) {
+            this.witnesses = witnesses.map (tools.parse_siglum);
+
+            const max_width = 120 - Math.max (... this.witnesses.map (ms => ms.title.length));
+
             this.unsorted_tables = this
-                .split_table (witnesses.table, max_width)
+                .split_table (table, max_width)
                 .map (table => this.transpose (table));
         },
 
         sort_like (order) {
             this.tables = this.unsorted_tables.map (table => this.format_table (
-                this.witnesses.metadata,
+                this.witnesses,
                 table,
                 order
             ));
@@ -194,7 +199,6 @@ Vue.component ('cap-collation-user-results', {
 
         row_class (row, dummy_index) {
             const cls = [];
-            /* if (row.siglum !== tools.bk_id) { */
             cls.push ('sortable');
             if (this.hovered === row.siglum) {
                 cls.push ('highlight-witness');
@@ -203,6 +207,7 @@ Vue.component ('cap-collation-user-results', {
         },
     },
     mounted () {
+        this.api = tools.get_api_entrypoint () + '/collatex/collate';
     },
     updated () {
         const vm = this;

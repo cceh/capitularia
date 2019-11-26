@@ -2,6 +2,10 @@
 /**
  * Capitularia Meta Search Highlighter
  *
+ * This class provides a snippet view and highlighted search terms for the
+ * built-in Wordpress search.  It displays snippets of text around the found
+ * terms instead of the page excerpt.
+ *
  * @package Capitularia
  */
 
@@ -85,7 +89,7 @@ class Highlighter
             }
         }
 
-        $text = "<ul>\n";
+        $text = "<ul class='snippet-list'>\n";
 
         foreach ($snippets as $snippet) {
             $start = $snippet['begin'];
@@ -146,10 +150,10 @@ class Highlighter
     }
 
     /**
-     * Highlight search terms in full post.
+     * Highlight the search terms in the post.
      *
-     * Highlight the full post if it was accessed through the search page.  We
-     * use the query string in the HTTP referrer to highlight the content.
+     * Highlight the full post if it we came through the search page.  We use
+     * the query string in the HTTP referrer to highlight the content.
      *
      * The naive approach:
      *
@@ -167,57 +171,54 @@ class Highlighter
 
     public function on_the_content ($content)
     {
-        if (!is_admin () && isset ($_SERVER['HTTP_REFERER']) && is_singular () && in_the_loop ()) {
-            $referrer = $_SERVER['HTTP_REFERER'];
-            $args = explode ('?', $referrer);
-            if (count ($args) > 1) {
-                $args = wp_parse_args ($args[1], array ());
-                // $local_search = stripos ($referrer, $_SERVER['SERVER_NAME']) !== false;
-                if (!empty ($args['s'])) {
-                    $terms = array_map (array ($this, 'escape_search_term'), explode (' ', $args['s']));
-                    $regex = implode ('|', $terms);
-                    $regex = "#($regex)#ui";
+        if (is_singular () && in_the_loop ()) {
+            $terms = array_map (array ($this, 'escape_search_term'), explode (' ', $_GET[HIGHLIGHT]));
+            $regex = implode ('|', $terms);
+            $regex = "#($regex)#ui";
 
-                    $doc = new \DomDocument ();
+            $doc = new \DomDocument ();
 
-                    // keep server error log small (seems to be a problem at uni-koeln.de)
-                    libxml_use_internal_errors (true);
+            // keep server error log small (seems to be a problem at uni-koeln.de)
+            libxml_use_internal_errors (true);
 
-                    $doc->loadHTML (
-                        "<?xml encoding='UTF-8'>\n<div id='dropme'>\n" .
-                        $content . "</div>\n",
-                        LIBXML_NONET
-                    );
-                    foreach ($doc->childNodes as $item) {
-                        if ($item->nodeType == XML_PI_NODE) {
-                            $doc->removeChild ($item); // remove xml declaration
-                        }
-                    }
-                    $doc->encoding = 'UTF-8'; // insert proper encoding
+            $doc->loadHTML (
+                "<?xml encoding='UTF-8'>\n<div id='dropme'>\n" .
+                $content . "</div>\n",
+                LIBXML_NONET
+            );
 
-                    $xpath  = new \DOMXpath ($doc);
-                    $text_nodes = $xpath->query ('//text()');
-                    foreach ($text_nodes as $text_node) {
-                        $splits = preg_split ($regex, $text_node->textContent, -1, PREG_SPLIT_DELIM_CAPTURE);
-                        if (count ($splits) > 1) {
-                            $parent = $text_node->parentNode;
-                            $i = 0;
-                            foreach ($splits as $split) {
-                                if (($i % 2) == 0) {
-                                    $new_node = $doc->createTextNode ($split);
-                                } else {
-                                    $new_node = $doc->createElement ('mark', $split);
-                                }
-                                $parent->insertBefore ($new_node, $text_node);
-                                $i++;
-                            }
-                            $parent->removeChild  ($text_node);
-                        }
-                    }
-                    $div = $xpath->query ("//div[@id='dropme']");
-                    $content = $doc->saveHTML ($div[0]);
+            // phpcs:disable Squiz.NamingConventions.ValidVariableName.NotSnakeCase
+
+            foreach ($doc->childNodes as $item) {
+                if ($item->nodeType == XML_PI_NODE) {
+                    $doc->removeChild ($item); // remove xml declaration
                 }
             }
+            $doc->encoding = 'UTF-8'; // insert proper encoding
+
+            $xpath  = new \DOMXpath ($doc);
+            $text_nodes = $xpath->query ('//text()');
+            foreach ($text_nodes as $text_node) {
+                $splits = preg_split ($regex, $text_node->textContent, -1, PREG_SPLIT_DELIM_CAPTURE);
+                if (count ($splits) > 1) {
+                    $parent = $text_node->parentNode;
+                    $i = 0;
+                    foreach ($splits as $split) {
+                        if (($i % 2) == 0) {
+                            $new_node = $doc->createTextNode ($split);
+                        } else {
+                            $new_node = $doc->createElement ('mark', $split);
+                        }
+                        $parent->insertBefore ($new_node, $text_node);
+                        $i++;
+                    }
+                    $parent->removeChild  ($text_node);
+                }
+            }
+            $div = $xpath->query ("//div[@id='dropme']");
+            $content = $doc->saveHTML ($div[0]);
+
+            // phpcs:enable
         }
         return $content;
     }

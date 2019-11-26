@@ -174,11 +174,10 @@
       <xsl:variable name="hr" select="cap:make-human-readable-bk (cap:strip-ignored-corresp (substring-before (concat (., '_'), '_')))" />
       <a id="{cap:make-id (.)}" class="milestone"></a>
       <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
+        <!-- an anchor for the exclusive use of the dynamic menu in the sidebar -->
         <a id="x-menu-{$id}" class="milestone"
-           data-shortcuts="0" data-level="6"><!-- dyn menu looks for data-level -->
-          <span style="display: none">
-            <xsl:value-of select="$hr" />
-          </span>
+           data-shortcuts="0" data-level="6"
+           data-cap-dyn-menu-caption="{$hr}">
         </a>
       </xsl:if>
     </xsl:for-each>
@@ -196,11 +195,10 @@
       <xsl:variable name="hr" select="cap:make-human-readable-bk (cap:strip-ignored-corresp (.))" />
       <a id="{cap:make-id (.)}" class="milestone milestone-chapter"></a>
       <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
+        <!-- an anchor for the exclusive use of the dynamic menu in the sidebar -->
         <a id="x-menu-{$id}" class="milestone milestone-chapter"
-           data-shortcuts="0" data-fold-menu-entry="1" data-level="7"><!-- dyn menu looks for data-level -->
-          <span style="display: none">
-            <xsl:value-of select="$hr" />
-          </span>
+           data-shortcuts="0" data-fold-menu-entry="1" data-level="7"
+           data-cap-dyn-menu-caption="{$hr}">
         </a>
       </xsl:if>
     </xsl:for-each>

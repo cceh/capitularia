@@ -53,17 +53,6 @@
 
   <xsl:template match="/tei:TEI">
     <div class="tei-TEI mss-header-xsl transkription-header">
-      <script type="text/javascript">
-        function toggle (control) {
-          var elem = document.getElementById(control);
-          if (elem.style.display == "none") {
-            elem.style.display = "block";
-          } else {
-            elem.style.display = "none";
-          }
-        }
-      </script>
-
       <xsl:apply-templates select="tei:teiHeader/tei:fileDesc"/>
       <xsl:call-template name="page-break"/>
     </div>
