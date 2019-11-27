@@ -1,6 +1,5 @@
-=============
- Collections
-=============
+Collections
+===========
 
 We want to find *collections* of capitularies, currently very vaguely defined as
 capitularies that are often copied together.
@@ -12,7 +11,7 @@ potential collections of capitularies.
 
 
 Algorithm
-=========
+~~~~~~~~~
 
 Description of the algorithm used by the :code:`cluster.py` script.
 

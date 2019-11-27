@@ -1,52 +1,113 @@
-================
- Collation Tool
-================
+.. _collation-tool:
 
-The collation tool has a frontend and a backend component.
-The collatables are stored in TEI files.
 
+Collation Tool
+==============
+
+Description of the collation tool and the processing of the TEI files.
+
+
+Pre-Processing of the TEI files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We extract every chapter of every capitular from all manuscripts and store them
+separately in the Postgres database on the application Server.  The text stored
+in the database is already normalized.
+
+If a manuscript contains more than one copy of a chapter, all copies are
+extracted.  If a corrector hand was active in the chapter, an original and a
+corrected version are both extracted.  The collation tool knows about all these
+versions and offers them to the user.
 
 .. uml::
    :align: center
-   :caption: Collation Tool
+   :caption: Data flow during pre-processing
 
    skinparam backgroundColor transparent
    skinparam DefaultTextAlignment center
+   skinparam componentStyle uml2
 
-   component "Frontend\n\n(Javascript)" as client
+   database  "Manuscript files\n(XML+TEI)"      as tei
+   note left of tei: AFS:publ/mss/*.xml
 
-   component "Backend\n\n(Wordpress Plugin)" as api
-   component "CollateX\n\n(Java)"  as cx
-   component "Transformation\n\n(XSLT)"       as xslt
+   cloud "VM" {
+     component "Cron"                          as cron
+     component "Makefile"                      as make
+     component "mss-extract-chapters.xsl"      as saxon
+     database  "Chapter files\n(plain text)"   as chapters
+     note left of chapters: AFS:publ/cache/extracted/*/*.txt
+     component "import.py"                     as import
+     database  "Database\n(Postgres)"          as db
+   }
 
-   database "TEI Files"   as tei
+   tei      --> saxon
+   saxon    --> chapters
+   chapters --> import
+   import   --> db
 
-   client <-> api
-   api <-> cx
-   api <-- xslt
-   xslt <-- tei
+   cron .> make
+   make .> saxon
+   make .> import
 
-The frontend is written in Javascript using the VueJS library.  It communicates
-with the backend using AJAX calls.  The frontend displays the data to the user
-and lets the user manipulate it, while the backend does the actual collation.
+The Makefile is run by cron on the Capitularia VM at regular intervals.
 
-The collatables are stored in TEI files.  The backend has to be preprocessed
-them to obtain streams of words with all markup stripped.  The streams of words
-are then sent to CollateX to do the collation and finally to the frontend, who
-formats and displays them.
+The manuscript files are in the AFS.  The AFS is mounted onto the VM.
 
-The collatables are subdivided into capitularies and sections, so that only
-short texts need to be collated, saving much processing time.  The backend also
-extracts the wanted sections from the TEI files.
+The Makefile knows all the dependencies between the files and runs the
+appropriate tools to keep the database up-to-date with the manuscript files.
 
-Currently and for historical reasons the backend is implemented as Wordpress
-plugin in PHP.  We aim to rewrite it ASAP using a Python application framework
-and at the same time we'll rewrite all the functionality we need of CollateX in
-Python and drop the dependency on CollateX and Java.
+All intermediate files can be found in the cache/extracted directory.  One
+directory per manuscript, and one file per chapter, copy, and hand.  The
+intermediate files are normalized, eg. have V replaced by U.
 
+The import.py script imports the intermediate text files into the database.
+
+
+Collation
+~~~~~~~~~
+
+The collation tool is divided in two parts, one frontend written in JavaScript
+and the Vue.js library, and one backend application server written in Python.
+The backend retrieves the chapters to collate from the database and calls the
+CollateX executable to do the actual collation. The results are sent to the
+frontend that does the formatting for display.
+
+.. uml::
+   :align: center
+   :caption: Data flow during collation
+
+   skinparam backgroundColor transparent
+   skinparam DefaultTextAlignment center
+   skinparam componentStyle uml2
+
+   cloud "VM" {
+     database  "Database\n(Postgres)"   as db
+     component "API Server\n(Python)"   as api
+     component "CollateX\n(Java)"       as cx
+   }
+   component "Frontend\n(Javascript)" as client
+
+   db     --> api
+   api    --> client
+   api    <- cx
+   api    -> cx
+
+
+The collation unit is the chapter, so that only short texts need to be collated,
+saving much processing time.
+
+We aim to rewrite all the functionality we need of CollateX in Python or
+Javascript and then drop the dependency on CollateX.
+
+The Wordpress cap-collation-user plugin delivers the Javascript client to the
+user.  After that, all communication happens directly between the client and the
+application server.
+
+
+.. _custom-collatex:
 
 Custom Version of CollateX
-==========================
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Our custom version of CollateX uses a custom word comparison function.
 

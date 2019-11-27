@@ -1,9 +1,62 @@
 #!/usr/bin/python3
 # -*- encoding: utf-8 -*-
 
-"""CollateX API server for Capitularia.
+"""This module implements the CollateX API for the Capitularia Application Server.
 
-Call CollateX and return results.
+Endpoints
+---------
+
+.. http:post:: /collatex/collate
+
+   Collate versions of one chapter taken from a set of witnesses.
+
+   **Example request**:
+
+   .. sourcecode:: http
+
+      POST /collatex/collate HTTP/1.1
+      Host: api.capitularia.uni-koeln.de
+      Content-Type: application/json;charset=utf-8
+
+      {
+          "corresp": "BK.139_1",
+          "witnesses": [
+              "berlin-sb-phill-1737",
+              "berlin-sb-phill-1737?hands=XYZ"
+          ],
+          "algorithm": "needleman-wunsch-gotoh",
+          "normalizations": [
+              ""
+          ],
+          "segmentation": false,
+          "joined": false,
+          "transpositions": false,
+      }
+
+   **Example response**:
+
+   .. sourcecode:: http
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json;charset=utf-8
+
+      {
+        "witnesses":["berlin-sb-phill-1737","berlin-sb-phill-1737?hands=XYZ"],
+        "table":[
+          [ [ {"t": "A",     "n": "a" } ],     [ {"t": "A",      "n": "a" } ] ],
+          [ [ {"t": "black", "n": "black" } ], [ {"t": "white",  "n": "white" } ] ],
+          [ [ {"t": "cat",   "n": "cat" } ],   [ {"t": "kitten", "n": "kitten" } ] ]
+        ]
+      }
+
+   :resheader Content-Type: application/json;charset=utf-8
+   :statuscode 200: No errors.
+   :statuscode 500: CollateX reported errors.
+                    A report was logged in the server logfile.
+   :statuscode 504: The CollateX process took too long.
+                    Retry later or with less witnesses.
+   :resjsonobj string[] witnesses: List of manuscript ids.
+   :resjsonobj array table: The collateX response.
 
 """
 
@@ -49,38 +102,41 @@ app  = collatexBlueprint ('collatex', __name__)
 
 
 def to_collatex (id_, text, normalizations = None):
-    """
-    Build the input to Collate-X
+    """Build the input to Collate-X
 
-    Builds the JSON for one witness.  Returns an array that must be combined
-    into the witness array and then json_encode()d.
+    Builds the representation for one witness.  Returns an object that must be
+    combined into the witnesses array.
 
-    Example of Collate-X input file:
+    Example of Collate-X input:
 
-    {
-      "witnesses" : [
-        {
-          "id" : "A",
-          "tokens" : [
-              { "t" : "A ",      "n" : "a"     },
-              { "t" : "black " , "n" : "black" },
-              { "t" : "cat.",    "n" : "cat"   }
-          ]
-        },
-        {
-          "id" : "B",
-          "tokens" : [
-              { "t" : "A ",      "n" : "a"     },
-              { "t" : "white " , "n" : "white" },
-              { "t" : "kitten.", "n" : "cat"   }
-          ]
-        }
-      ]
-    }
+    .. code:: json
+
+       {
+         "witnesses" : [
+           {
+             "id" : "A",
+             "tokens" : [
+                 { "t" : "A ",      "n" : "a"     },
+                 { "t" : "black " , "n" : "black" },
+                 { "t" : "cat.",    "n" : "cat"   }
+             ]
+           },
+           {
+             "id" : "B",
+             "tokens" : [
+                 { "t" : "A ",      "n" : "a"     },
+                 { "t" : "white " , "n" : "white" },
+                 { "t" : "kitten.", "n" : "cat"   }
+             ]
+           }
+         ]
+       }
 
     :param string[] normalizations: List of string in the form: oldstring=newstring
+                                    Normalizations applied to each word.
 
-    :return Object: The json representation of one witness.
+    :return Object: The representation of one witness.
+
     """
 
     text = text.strip ()
@@ -104,31 +160,12 @@ def to_collatex (id_, text, normalizations = None):
 
 @app.route ('/collate', methods = ['POST'])
 def collate ():
-    """ Collate witnesses. """
+    """Implements the /collatex/collate endpoint."""
 
     json_in = request.get_json ()
     json_out = []
 
     current_app.logger.info (json.dumps (json_in, indent = 4))
-
-    # {
-    #     "corresp": "BK.139_1",
-    #     "witnesses": [
-    #         "berlin-sb-phill-1737",
-    #         "berlin-sb-phill-1737?hands=XYZ"
-    #     ],
-    #     "algorithm": "needleman-wunsch-gotoh",
-    #     "normalizations": [
-    #         ""
-    #     ],
-    #     "segmentation": false,
-    #     "joined": false,
-    #     "transpositions": false,
-    #     "tokenComparator": {
-    #         "type": "levenshtein",
-    #         "ratio": 1
-    #     }
-    # }
 
     corresp        = json_in['corresp']
     normalizations = json_in['normalizations']

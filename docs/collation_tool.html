@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Collections" href="collections.html" />
-    <link rel="prev" title="Capitularia Documentation" href="index.html" /> 
+    <link rel="next" title="Meta Search" href="meta_search.html" />
+    <link rel="prev" title="HTML Generation" href="vm/html_generation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,11 +81,55 @@
             
             
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#platforms">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#components">Components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webprojekt/webprojekt.html">RRZK Web Projekt Capitularia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webprojekt/plugins.html">Wordpress Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#collation-tool">Collation Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#meta-search">Meta Search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#file-includer">File Includer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#page-generator">Page Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#dynamic-menu">Dynamic Menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#library">Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#obsolete-plugins">Obsolete Plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vm/vm.html">Capitularia VM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vm/app_server.html">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#module-collatex_server">collatex_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vm/database.html">Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vm/database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="vm/database.html#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="vm/database.html#module-db">db.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vm/html_generation.html">HTML Generation</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Collation Tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#collation">Collation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#custom-version-of-collatex">Custom Version of CollateX</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#word-comparison-function">Word Comparison Function</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="meta_search.html">Meta Search</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="meta_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="meta_search.html#search">Search</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a><ul>
@@ -157,53 +201,103 @@
            <div itemprop="articleBody">
             
   <div class="section" id="collation-tool">
-<h1>Collation Tool<a class="headerlink" href="#collation-tool" title="Permalink to this headline">¶</a></h1>
-<p>The collation tool has a frontend and a backend component.
-The collatables are stored in TEI files.</p>
-<div class="figure align-center" id="id3">
+<span id="id1"></span><h1>Collation Tool<a class="headerlink" href="#collation-tool" title="Permalink to this headline">¶</a></h1>
+<p>Description of the collation tool and the processing of the TEI files.</p>
+<div class="section" id="pre-processing-of-the-tei-files">
+<h2>Pre-Processing of the TEI files<a class="headerlink" href="#pre-processing-of-the-tei-files" title="Permalink to this headline">¶</a></h2>
+<p>We extract every chapter of every capitular from all manuscripts and store them
+separately in the Postgres database on the application Server.  The text stored
+in the database is already normalized.</p>
+<p>If a manuscript contains more than one copy of a chapter, all copies are
+extracted.  If a corrector hand was active in the chapter, an original and a
+corrected version are both extracted.  The collation tool knows about all these
+versions and offers them to the user.</p>
+<div class="figure align-center" id="id4">
 <p class="plantuml">
-<img src="_images/plantuml-cca4f0b156e14931a26696e99f8e3c1db0cdd4eb.png" alt="skinparam backgroundColor transparent
+<img src="_images/plantuml-a6c774ee1bc4c5cf81c5848a6ace87462c515f50.png" alt="skinparam backgroundColor transparent
 skinparam DefaultTextAlignment center
+skinparam componentStyle uml2
 
-component &quot;Frontend\n\n(Javascript)&quot; as client
+database  &quot;Manuscript files\n(XML+TEI)&quot;      as tei
+note left of tei: AFS:publ/mss/*.xml
 
-component &quot;Backend\n\n(Wordpress Plugin)&quot; as api
-component &quot;CollateX\n\n(Java)&quot;  as cx
-component &quot;Transformation\n\n(XSLT)&quot;       as xslt
+cloud &quot;VM&quot; {
+  component &quot;Cron&quot;                          as cron
+  component &quot;Makefile&quot;                      as make
+  component &quot;mss-extract-chapters.xsl&quot;      as saxon
+  database  &quot;Chapter files\n(plain text)&quot;   as chapters
+  note left of chapters: AFS:publ/cache/extracted/*/*.txt
+  component &quot;import.py&quot;                     as import
+  database  &quot;Database\n(Postgres)&quot;          as db
+}
 
-database &quot;TEI Files&quot;   as tei
+tei      --&gt; saxon
+saxon    --&gt; chapters
+chapters --&gt; import
+import   --&gt; db
 
-client &lt;-&gt; api
-api &lt;-&gt; cx
-api &lt;-- xslt
-xslt &lt;-- tei"/>
+cron .&gt; make
+make .&gt; saxon
+make .&gt; import"/>
 </p>
-<p class="caption"><span class="caption-text">Collation Tool</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"><p>Data flow during pre-processing</p>
+</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
-<p>The frontend is written in Javascript using the VueJS library.  It communicates
-with the backend using AJAX calls.  The frontend displays the data to the user
-and lets the user manipulate it, while the backend does the actual collation.</p>
-<p>The collatables are stored in TEI files.  The backend has to be preprocessed
-them to obtain streams of words with all markup stripped.  The streams of words
-are then sent to CollateX to do the collation and finally to the frontend, who
-formats and displays them.</p>
-<p>The collatables are subdivided into capitularies and sections, so that only
-short texts need to be collated, saving much processing time.  The backend also
-extracts the wanted sections from the TEI files.</p>
-<p>Currently and for historical reasons the backend is implemented as Wordpress
-Plugin in PHP.  We plan to rewrite it ASAP using a Python application framework
-and at the same time we’ll rewrite all the functionality we need of CollateX in
-Python and drop the dependency on CollateX and Java.</p>
+<p>The Makefile is run by cron on the Capitularia VM at regular intervals.</p>
+<p>The manuscript files are in the AFS.  The AFS is mounted onto the VM.</p>
+<p>The Makefile knows all the dependencies between the files and runs the
+appropriate tools to keep the database up-to-date with the manuscript files.</p>
+<p>All intermediate files can be found in the cache/extracted directory.  One
+directory per manuscript, and one file per chapter, copy, and hand.  The
+intermediate files are normalized, eg. have V replaced by U.</p>
+<p>The import.py script imports the intermediate text files into the database.</p>
+</div>
+<div class="section" id="collation">
+<h2>Collation<a class="headerlink" href="#collation" title="Permalink to this headline">¶</a></h2>
+<p>The collation tool is divided in two parts, one frontend written in JavaScript
+and the Vue.js library, and one backend application server written in Python.
+The backend retrieves the chapters to collate from the database and calls the
+CollateX executable to do the actual collation. The results are sent to the
+frontend that does the formatting for display.</p>
+<div class="figure align-center" id="id5">
+<p class="plantuml">
+<img src="_images/plantuml-8ca356f61b8dc90db5fac15350703eb5c8f9e38c.png" alt="skinparam backgroundColor transparent
+skinparam DefaultTextAlignment center
+skinparam componentStyle uml2
+
+cloud &quot;VM&quot; {
+  database  &quot;Database\n(Postgres)&quot;   as db
+  component &quot;API Server\n(Python)&quot;   as api
+  component &quot;CollateX\n(Java)&quot;       as cx
+}
+component &quot;Frontend\n(Javascript)&quot; as client
+
+db     --&gt; api
+api    --&gt; client
+api    &lt;- cx
+api    -&gt; cx"/>
+</p>
+<p class="caption"><span class="caption-text"><p>Data flow during collation</p>
+</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<p>The collation unit is the chapter, so that only short texts need to be collated,
+saving much processing time.</p>
+<p>We aim to rewrite all the functionality we need of CollateX in Python or
+Javascript and then drop the dependency on CollateX.</p>
+<p>The Wordpress cap-collation-user plugin delivers the Javascript client to the
+user.  After that, all communication happens directly between the client and the
+application server.</p>
+</div>
 <div class="section" id="custom-version-of-collatex">
-<h2>Custom Version of CollateX<a class="headerlink" href="#custom-version-of-collatex" title="Permalink to this headline">¶</a></h2>
+<span id="custom-collatex"></span><h2>Custom Version of CollateX<a class="headerlink" href="#custom-version-of-collatex" title="Permalink to this headline">¶</a></h2>
 <p>Our custom version of CollateX uses a custom word comparison function.</p>
-<p>The stock version of CollateX <a class="reference internal" href="#collatex" id="id1">[CollateX]</a> uses word comparison functions that
+<p>The stock version of CollateX <a class="reference internal" href="#collatex" id="id2"><span>[CollateX]</span></a> uses word comparison functions that
 only return binary values, signalling either a match or a mismatch.  Our custom
 version uses a word comparison function that returns a similarity value between
 0 and 1.  This works much better when aligning variant orthographies of the same
 word.</p>
 <p>In our custom CollateX we also implemented an enhancement of the
-Needleman-Wunsch algorithm by Gotoh. <a class="reference internal" href="#gotoh1982" id="id2">[Gotoh1982]</a></p>
+Needleman-Wunsch algorithm by Gotoh. <a class="reference internal" href="#gotoh1982" id="id3"><span>[Gotoh1982]</span></a></p>
 <div class="section" id="word-comparison-function">
 <h3>Word Comparison Function<a class="headerlink" href="#word-comparison-function" title="Permalink to this headline">¶</a></h3>
 <p>The word comparison function returns a similarity value between 0 and 1.</p>
@@ -216,25 +310,26 @@ strings of length 3.  This means that trigrams may partially overlap each other.
 the trigrams common to both words.  The magnitude of this set is then compared
 against the number of trigrams in both words:</p>
 <blockquote>
-<div>similarity = 2.0 * triAB.size() / (triA.size() + triB.size());</div></blockquote>
-<p>This similarity value can be calculated much faster than eg. the Levenshtein
-distance.  The sets of trigrams for each input word are calculated only once and
-if you presort these sets, the common set can be found in O(n) time.</p>
-<table class="docutils citation" frame="void" id="gotoh1982" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[Gotoh1982]</a></td><td>Gotoh, O. 1982,  <em>An Improved Algorithm for Matching Biological
+<div><p>similarity = 2.0 * triAB.size() / (triA.size() + triB.size());</p>
+</div></blockquote>
+<p>The similarity based on trigrams was chosen because its calculation can be done
+in O(n) time whereas a similarity based on Levenshtein distance needs O(n²)
+time.  The sets of trigrams for each input word are calculated only once and if
+you presort the trigrams in these sets, the common set can be found in O(n)
+time.  To be implemented: in a first step gather all trigrams, give each one an
+integer id, and later operate on the ids only.  (Maybe hash each trigram onto a
+value 0..63 and build a bitmask for each word, later operate on the masks only.)</p>
+<dl class="citation">
+<dt class="label" id="gotoh1982"><span class="brackets"><a class="fn-backref" href="#id3">Gotoh1982</a></span></dt>
+<dd><p>Gotoh, O. 1982,  <em>An Improved Algorithm for Matching Biological
 Sequences,</em> J. Mol. Biol. 162, 705-708
-<a class="reference external" href="http://jaligner.sourceforge.net/references/gotoh1982.pdf">http://jaligner.sourceforge.net/references/gotoh1982.pdf</a></td></tr>
-</tbody>
-</table>
-<table class="docutils citation" frame="void" id="collatex" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[CollateX]</a></td><td>Dekker, R.H. et al. 2010-2019, <em>CollateX – Software for Collating
-Textual Sources,</em> <a class="reference external" href="https://collatex.net/">https://collatex.net/</a></td></tr>
-</tbody>
-</table>
+<a class="reference external" href="http://jaligner.sourceforge.net/references/gotoh1982.pdf">http://jaligner.sourceforge.net/references/gotoh1982.pdf</a></p>
+</dd>
+<dt class="label" id="collatex"><span class="brackets"><a class="fn-backref" href="#id2">CollateX</a></span></dt>
+<dd><p>Dekker, R.H. et al. 2010-2019, <em>CollateX – Software for Collating
+Textual Sources,</em> <a class="reference external" href="https://collatex.net/">https://collatex.net/</a></p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -247,10 +342,10 @@ Textual Sources,</em> <a class="reference external" href="https://collatex.net/"
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="collections.html" class="btn btn-neutral float-right" title="Collections" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="meta_search.html" class="btn btn-neutral float-right" title="Meta Search" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Capitularia Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="vm/html_generation.html" class="btn btn-neutral float-left" title="HTML Generation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -259,7 +354,7 @@ Textual Sources,</em> <a class="reference external" href="https://collatex.net/"
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018 CCeH - Licensed under the GNU GPL v3 or later
+        &copy; Copyright 2018-19 CCeH - Licensed under the GNU GPL v3 or later
 
     </p>
   </div>

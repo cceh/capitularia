@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Application Server &mdash; Capitularia 0.1.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Database Structure" href="database.html" />
+    <link rel="prev" title="Capitularia VM" href="vm.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Capitularia
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#platforms">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#components">Components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../webprojekt/webprojekt.html">RRZK Web Projekt Capitularia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../webprojekt/plugins.html">Wordpress Plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../webprojekt/plugins.html#collation-tool">Collation Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../webprojekt/plugins.html#meta-search">Meta Search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../webprojekt/plugins.html#file-includer">File Includer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../webprojekt/plugins.html#page-generator">Page Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../webprojekt/plugins.html#dynamic-menu">Dynamic Menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../webprojekt/plugins.html#library">Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../webprojekt/plugins.html#obsolete-plugins">Obsolete Plugins</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="vm.html">Capitularia VM</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-collatex_server">collatex_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#module-db">db.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="html_generation.html">HTML Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../collation_tool.html">Collation Tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collation_tool.html#collation">Collation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collation_tool.html#custom-version-of-collatex">Custom Version of CollateX</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../meta_search.html">Meta Search</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../meta_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../meta_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../collections.html">Collections</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Capitularia</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="vm.html">Capitularia VM</a> &raquo;</li>
+        
+      <li>Application Server</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/vm/app_server.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="application-server">
+<span id="app-server"></span><h1>Application Server<a class="headerlink" href="#application-server" title="Permalink to this headline">¶</a></h1>
+<p>The application server is built with Python and Flask.</p>
+<p>It is composed of these modules:</p>
+<div class="section" id="server">
+<h2>server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h2>
+<p>The main server module.</p>
+<span class="target" id="module-server"></span><p>This package implements the application server for Capitularia.</p>
+</div>
+<div class="section" id="module-data_server">
+<span id="data-server"></span><h2>data_server<a class="headerlink" href="#module-data_server" title="Permalink to this headline">¶</a></h2>
+<p>Data API server for Capitularia.</p>
+<p>REST Interface to perform various database queries</p>
+<dl class="function">
+<dt id="data_server.capitularies">
+<code class="sig-name descname">capitularies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.capitularies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all capitularies.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_server.chapter_manuscripts">
+<code class="sig-name descname">chapter_manuscripts</code><span class="sig-paren">(</span><em class="sig-param">cap_id</em>, <em class="sig-param">chapter</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.chapter_manuscripts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all manuscripts with chapter</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_server.chapters">
+<code class="sig-name descname">chapters</code><span class="sig-paren">(</span><em class="sig-param">cap_id</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.chapters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all chapters in capitulary cap_id.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_server.corresp_manuscripts">
+<code class="sig-name descname">corresp_manuscripts</code><span class="sig-paren">(</span><em class="sig-param">corresp</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.corresp_manuscripts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all manuscripts with corresp.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="data_server.dataBlueprint">
+<em class="property">class </em><code class="sig-name descname">dataBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.dataBlueprint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="data_server.fstat">
+<code class="sig-name descname">fstat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.fstat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a filter on page status.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_server.highlight">
+<code class="sig-name descname">highlight</code><span class="sig-paren">(</span><em class="sig-param">conn</em>, <em class="sig-param">text</em>, <em class="sig-param">fulltext</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.highlight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Snippet and highlight</p>
+<p>Produce snippets out of the text around any of the words in fulltext and
+highlight those words in the snippets.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_server.manuscripts">
+<code class="sig-name descname">manuscripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.manuscripts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all manuscripts</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_server.places_json">
+<code class="sig-name descname">places_json</code><span class="sig-paren">(</span><em class="sig-param">geo_id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.places_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return hierarchy of known places for the meta-search box.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="data_server.query_manuscripts">
+<code class="sig-name descname">query_manuscripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.query_manuscripts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return manuscripts according to query.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-collatex_server">
+<span id="collatex-server"></span><h2>collatex_server<a class="headerlink" href="#module-collatex_server" title="Permalink to this headline">¶</a></h2>
+<p>This module implements the CollateX API for the Capitularia Application Server.</p>
+<div class="section" id="endpoints">
+<h3>Endpoints<a class="headerlink" href="#endpoints" title="Permalink to this headline">¶</a></h3>
+<dl class="post">
+<dt id="post--collatex-collate">
+<code class="sig-name descname">POST </code><code class="sig-name descname">/collatex/collate</code><a class="headerlink" href="#post--collatex-collate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collate versions of one chapter taken from a set of witnesses.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/collatex/collate</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.capitularia.uni-koeln.de</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json;charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;corresp&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.139_1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;witnesses&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;berlin-sb-phill-1737&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;berlin-sb-phill-1737?hands=XYZ&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;algorithm&quot;</span><span class="p">:</span> <span class="s2">&quot;needleman-wunsch-gotoh&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;normalizations&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;segmentation&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;joined&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;transpositions&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json;charset=utf-8</span>
+
+<span class="p">{</span>
+  <span class="nt">&quot;witnesses&quot;</span><span class="p">:[</span><span class="s2">&quot;berlin-sb-phill-1737&quot;</span><span class="p">,</span><span class="s2">&quot;berlin-sb-phill-1737?hands=XYZ&quot;</span><span class="p">],</span>
+  <span class="nt">&quot;table&quot;</span><span class="p">:[</span>
+    <span class="p">[</span> <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>     <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span> <span class="p">}</span> <span class="p">],</span>     <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>      <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span> <span class="p">}</span> <span class="p">]</span> <span class="p">],</span>
+    <span class="p">[</span> <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span> <span class="p">}</span> <span class="p">],</span> <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span>  <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span> <span class="p">}</span> <span class="p">]</span> <span class="p">],</span>
+    <span class="p">[</span> <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span>   <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;cat&quot;</span> <span class="p">}</span> <span class="p">],</span>   <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;kitten&quot;</span><span class="p">,</span> <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;kitten&quot;</span> <span class="p">}</span> <span class="p">]</span> <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Response Headers</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json;charset=utf-8</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – No errors.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – CollateX reported errors.
+A report was logged in the server logfile.</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.5">504 Gateway Timeout</a> – The CollateX process took too long.
+Retry later or with less witnesses.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="exception">
+<dt id="collatex_server.CollatexError">
+<em class="property">exception </em><code class="sig-name descname">CollatexError</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.CollatexError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="collatex_server.collate">
+<code class="sig-name descname">collate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.collate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements the /collatex/collate endpoint.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="collatex_server.collatexBlueprint">
+<em class="property">class </em><code class="sig-name descname">collatexBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.collatexBlueprint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="collatex_server.to_collatex">
+<code class="sig-name descname">to_collatex</code><span class="sig-paren">(</span><em class="sig-param">id_</em>, <em class="sig-param">text</em>, <em class="sig-param">normalizations=None</em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.to_collatex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the input to Collate-X</p>
+<p>Builds the representation for one witness.  Returns an object that must be
+combined into the witnesses array.</p>
+<p>Example of Collate-X input:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;witnesses&quot;</span> <span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;id&quot;</span> <span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tokens&quot;</span> <span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span> <span class="nt">&quot;t&quot;</span> <span class="p">:</span> <span class="s2">&quot;A &quot;</span><span class="p">,</span>      <span class="nt">&quot;n&quot;</span> <span class="p">:</span> <span class="s2">&quot;a&quot;</span>     <span class="p">},</span>
+          <span class="p">{</span> <span class="nt">&quot;t&quot;</span> <span class="p">:</span> <span class="s2">&quot;black &quot;</span> <span class="p">,</span> <span class="nt">&quot;n&quot;</span> <span class="p">:</span> <span class="s2">&quot;black&quot;</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="nt">&quot;t&quot;</span> <span class="p">:</span> <span class="s2">&quot;cat.&quot;</span><span class="p">,</span>    <span class="nt">&quot;n&quot;</span> <span class="p">:</span> <span class="s2">&quot;cat&quot;</span>   <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;id&quot;</span> <span class="p">:</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;tokens&quot;</span> <span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span> <span class="nt">&quot;t&quot;</span> <span class="p">:</span> <span class="s2">&quot;A &quot;</span><span class="p">,</span>      <span class="nt">&quot;n&quot;</span> <span class="p">:</span> <span class="s2">&quot;a&quot;</span>     <span class="p">},</span>
+          <span class="p">{</span> <span class="nt">&quot;t&quot;</span> <span class="p">:</span> <span class="s2">&quot;white &quot;</span> <span class="p">,</span> <span class="nt">&quot;n&quot;</span> <span class="p">:</span> <span class="s2">&quot;white&quot;</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="nt">&quot;t&quot;</span> <span class="p">:</span> <span class="s2">&quot;kitten.&quot;</span><span class="p">,</span> <span class="nt">&quot;n&quot;</span> <span class="p">:</span> <span class="s2">&quot;cat&quot;</span>   <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>normalizations</strong> (<em>string</em><em>[</em><em>]</em>) – List of string in the form: oldstring=newstring
+Normalizations applied to each word.</p>
+</dd>
+<dt class="field-even">Return Object</dt>
+<dd class="field-even"><p>The representation of one witness.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-geo_server">
+<span id="geo-server"></span><h2>geo_server<a class="headerlink" href="#module-geo_server" title="Permalink to this headline">¶</a></h2>
+<p>Geo queries API server for Capitularia.</p>
+<dl class="function">
+<dt id="geo_server.capitularies_csv">
+<code class="sig-name descname">capitularies_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.capitularies_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return capitularies in geometry as CSV response.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geo_server.capitularies_json">
+<code class="sig-name descname">capitularies_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.capitularies_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return capitularies in geometry as geojson response.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geo_server.extent_json">
+<code class="sig-name descname">extent_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.extent_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the max. extent of all data points.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="geo_server.geoBlueprint">
+<em class="property">class </em><code class="sig-name descname">geoBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.geoBlueprint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="geo_server.info_json">
+<code class="sig-name descname">info_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.info_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Info endpoint: send information about server and available layers.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geo_server.msparts_csv">
+<code class="sig-name descname">msparts_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.msparts_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return location of manuscript parts as CSV response.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geo_server.msparts_json">
+<code class="sig-name descname">msparts_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.msparts_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return location of manuscript parts as geojson response.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geo_server.mss_csv">
+<code class="sig-name descname">mss_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.mss_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return location of manuscripts as CSV response.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geo_server.mss_json">
+<code class="sig-name descname">mss_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.mss_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return location of manuscripts as geojson response.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geo_server.places_capitularies_json">
+<code class="sig-name descname">places_capitularies_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.places_capitularies_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all places along with capitularies count.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geo_server.places_msparts_json">
+<code class="sig-name descname">places_msparts_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.places_msparts_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all places along with ms_part count.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="geo_server.places_mss_json">
+<code class="sig-name descname">places_mss_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.places_mss_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all places along with mss count.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tile_server">
+<span id="tile-server"></span><h2>tile_server<a class="headerlink" href="#module-tile_server" title="Permalink to this headline">¶</a></h2>
+<p>A tile server for Capitularia.</p>
+<p>This is a simple OpenStreetMap-style tile server using mapnik to render the
+tiles.</p>
+<p>The probability of the client requesting adjacent tiles is very high.  To speed
+things up, we ask mapnik to render a bigger “metatile”, which we cut into tiles
+and then cache the tiles.  We also add some padding around the metatile, which
+helps avoiding ugly label placement when a label is near a metatile border.</p>
+<dl class="function">
+<dt id="tile_server.info_json">
+<code class="sig-name descname">info_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tile_server.info_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Info endpoint: send information about server and available layers.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="tile_server.tileBlueprint">
+<em class="property">class </em><code class="sig-name descname">tileBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#tile_server.tileBlueprint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tile_server.tile_png">
+<code class="sig-name descname">tile_png</code><span class="sig-paren">(</span><em class="sig-param">mapid</em>, <em class="sig-param">zoom</em>, <em class="sig-param">xtile</em>, <em class="sig-param">ytile</em><span class="sig-paren">)</span><a class="headerlink" href="#tile_server.tile_png" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tile endpoint: serve a tile as PNG.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="database.html" class="btn btn-neutral float-right" title="Database Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="vm.html" class="btn btn-neutral float-left" title="Capitularia VM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-19 CCeH - Licensed under the GNU GPL v3 or later
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

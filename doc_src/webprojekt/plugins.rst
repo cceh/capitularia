@@ -1,0 +1,83 @@
+.. _plugins:
+
+Wordpress Plugins
+=================
+
+We wrote various Wordpress plugins to implement functionality we needed.
+
+
+Collation Tool
+~~~~~~~~~~~~~~
+
+The new :ref:`collation tool plugin <collation-tool>` lets any member of the
+general public do collations of different versions of the same chapter from
+different manuscripts.
+
+This plugin is just a front-end for the collation server on the VM.  Although
+this is a Wordpress plugin, its main functionality is implemented in the
+Javascript portion with Vue.js.
+
+
+Meta Search
+~~~~~~~~~~~
+
+The :ref:`meta search plugin<meta-search>` offers metadata and fuzzy fulltext
+search.  The actual search is done on the application server.
+
+
+.. _file-includer:
+
+File Includer
+~~~~~~~~~~~~~
+
+The file includer plugin registers a Wordpress shortcode that allows to include
+any HTML file in a Worpdress page.  We use this shortcode to put the transcribed
+manuscripts into Wordpress.  The :ref:`HTML is generated <html-generation>`
+automatically from the TEI manuscripts on the VM.
+
+This plugin also stores the included text into the Wordpress database.  This
+makes the built-in Wordpress search function work with included material.
+
+Note: currently (Nov. 2019) the plugin also does some post-processing of the
+HTML files.  This code will also be rewritten and moved to the VM.
+
+
+Page Generator
+~~~~~~~~~~~~~~
+
+Helps in managing the publication of manuscript pages.  Whenever a new
+manuscript is transcribed and its file is put into the file repository in the
+AFS, a new Wordpress page needs to be made for the manuscript to actually appear
+in Wordpress.  This plugin allows you to do that with a few clicks.
+
+Currently this plugin is configured to create pages with only shortcodes for the
+File Includer plugin on them.  The File Includer plugin actually puts the
+content onto the page.
+
+
+Dynamic Menu
+~~~~~~~~~~~~
+
+A navigation menu for the sidebar.  The menu entries are collected from elements
+and attributes on the HTML page and allow the user to navigate to portions of
+the document.  The menu entries may be nested.  Configure with xpath
+expressions.
+
+
+Library
+~~~~~~~
+
+A collection of useful functions, referenced by the other plugins and thus
+required.
+
+
+Obsolete Plugins
+~~~~~~~~~~~~~~~~
+
+- **Collation tool** The old collation tool that lived on a Wordpress admin
+  page.  Was rewritten for the front, because the admin page was not accessible
+  by the general public.
+
+- **XSL processor** This plugin was rewrittem as the File Includer plugin.  XSLT
+  is now done exclusively on the VM because we can use Saxon there while we were
+  limited to xsltproc in the RRZK Web Project environment.

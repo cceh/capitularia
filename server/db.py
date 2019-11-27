@@ -1,21 +1,29 @@
 # -*- encoding: utf-8 -*-
 
-"""This module contains the sqlalchemy classes that create the database structure.
+"""This module contains the sqlalchemy classes that initialize the database structure.
 
+To create a new database: (must be database superuser)
 
-To create a new database:
+.. code:: shell
 
-sudo -u postgres psql
+   sudo -u postgres psql
 
-CREATE USER capitularia PASSWORD '<password>';
-CREATE DATABASE capitularia OWNER capitularia;
+.. code:: psql
 
-\c capitularia
-CREATE EXTENSION pg_trgm WITH SCHEMA public;
-CREATE EXTENSION postgis WITH SCHEMA public;
-CREATE SCHEMA capitularia AUTHORIZATION capitularia;
-ALTER DATABASE capitularia SET search_path = capitularia, public;
-\q
+   CREATE USER capitularia PASSWORD '<password>';
+   CREATE DATABASE capitularia OWNER capitularia;
+
+   \c capitularia
+   CREATE EXTENSION pg_trgm WITH SCHEMA public;
+   CREATE EXTENSION postgis WITH SCHEMA public;
+   CREATE SCHEMA capitularia AUTHORIZATION capitularia;
+   CREATE SCHEMA gis AUTHORIZATION capitularia;
+   ALTER DATABASE capitularia SET search_path = capitularia, gis, public;
+   \q
+
+.. code:: shell
+
+   python3 -m scripts.import_data -c ./server.conf --init_db
 
 """
 
@@ -213,12 +221,17 @@ class Manuscripts (Base):
     __tablename__ = 'manuscripts'
 
     ms_id = Column (String, primary_key = True)
+    """ The manuscript id assigned by the Capitularia project. """
 
     title    = Column (String)
+    """ The official title of the manuscript. """
+
     filename = Column (String)
+    """The filename of the TEI file containing the transcription of the
+    manuscript."""
 
     status   = Column (String)
-    """ The Wordpress status: 'publish' or 'private' """
+    """ The Wordpress publication status: either 'publish' or 'private' """
 
     __table_args__ = (
     )
@@ -235,12 +248,21 @@ class MsParts (Base):
     __tablename__ = 'msparts'
 
     ms_id    = Column (String)
+
     msp_part = Column (String)
+    """ The official designation of the manuscript part. """
 
     date     = Column (INT4RANGE)
+    """ When did the manuscript part originate? Range of dates. """
+
     loci     = Column (ARRAY (INT4RANGE))
+    """ Ranges of loci. """
+
     leaf     = Column (ARRAY (String))
+    """ Size of the leaf. """
+
     written  = Column (ARRAY (String))
+    """ Size of the written area. """
 
     __table_args__ = (
         PrimaryKeyConstraint (ms_id, msp_part),
@@ -251,6 +273,8 @@ class MsParts (Base):
 class Capitularies (Base):
     r"""Capitularies
 
+    All capitularies catalogued according to BK or Mordek.
+
     .. sauml::
        :include: capitularies
 
@@ -259,8 +283,11 @@ class Capitularies (Base):
     __tablename__ = 'capitularies'
 
     cap_id = Column (String, primary_key = True)
+    """ The capitulary number, eg. "BK.42"  """
 
     title  = Column (String)
+    """ The capitulary title assigned by BK. """
+
     date   = Column (INT4RANGE)
 
     __table_args__ = (
@@ -269,6 +296,8 @@ class Capitularies (Base):
 
 class Chapters (Base):
     r"""Chapters
+
+    All chapters catalogued according to BK or Mordek.
 
     .. sauml::
        :include: chapters
@@ -280,6 +309,7 @@ class Chapters (Base):
     cap_id  = Column (String)
 
     chapter = Column (String)
+    """ The chapter number from 1 to N.  Also: 1_inscription, etc."""
 
     __table_args__ = (
         PrimaryKeyConstraint (cap_id, chapter),
@@ -289,10 +319,11 @@ class Chapters (Base):
 
 class MnMssCapitularies (Base):
     r"""The M:N relationship between manuscripts and capitularies
-    according to <msDesc>
+    according to the <msDesc>.
 
     This table also contains capitularies that are not yet transcribed but at a
-    lesser granularity than the mn_mss_chapters table.
+    lesser granularity (capitulary instead of chapter) than the
+    :class:`MssChapters` table.
 
     .. sauml::
        :include: mn_mss_capitularies
@@ -303,8 +334,12 @@ class MnMssCapitularies (Base):
 
     ms_id   = Column (String)
     cap_id  = Column (String)
+
     mscap_n = Column (Integer)
-    """Used if there are more than one copy of this capitulary in the manuscript."""
+    """Index used if there are more than one copy of this capitulary in the
+    manuscript.
+
+    """
 
     __table_args__ = (
         PrimaryKeyConstraint (ms_id, cap_id, mscap_n),
@@ -314,11 +349,12 @@ class MnMssCapitularies (Base):
 
 
 class MssChapters (Base):
-    r"""The relationship between copies of capitularies in manuscripts and
-    chapters according to <body>.
+    r"""The relationship manuscripts and chapters according to the <body>.
 
-    This table only contains chapters that are already transcribed but at a
-    finer granularity than the mn_mss_capitularies table.
+    This table contains only those chapters that were already transcribed.
+
+    Note: The table :class:`MnMssCapitularies` relates manuscripts to
+    capitularies yet untranscribed.
 
     .. sauml::
        :include: mss_chapters
@@ -361,6 +397,9 @@ class MssChapters (Base):
 class MssChaptersText (Base):
     r"""Various kinds of preprocessed texts extracted from the chapter.
 
+    There may be more than one text extracted from the same chapter: the original
+    hand and later corrector hands.
+
     .. sauml::
        :include: mss_chapters_text
 
@@ -374,7 +413,10 @@ class MssChaptersText (Base):
     chapter  = Column (String)
 
     type_    = Column ('type', String)
-    """ The type of preprocessing applied. """
+    """Either 'original' or 'later_hands'.  The type of preprocessing applied.
+    Whether the original hand was followed or a later corrector.
+
+    """
 
     text     = Column (TEXT)
     """ The preprocessed plain text of the chapter. """
@@ -434,7 +476,8 @@ class Geonames (Base):
     Data scraped from geonames.org et al. and cached here.
 
     .. sauml::
-       :include: geonames
+       :schema: gis
+       :include: gis.geonames
 
     """
 
@@ -460,7 +503,8 @@ class MnMsPartsGeonames (Base):
     r"""The M:N relationship between msparts and geonames
 
     .. sauml::
-       :include: mn_msparts_geonames
+       :schema: gis
+       :include: gis.mn_msparts_geonames
 
     """
 
@@ -492,7 +536,8 @@ class GeoAreas (Base):
     Custom defined geographic areas
 
     .. sauml::
-       :include: geoareas
+       :schema: gis
+       :include: gis.geoareas
 
     """
 

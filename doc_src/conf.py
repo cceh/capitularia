@@ -20,6 +20,7 @@ import os
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
+sys.path.insert (0, os.path.abspath ('../server'))
 sys.path.insert (0, os.path.abspath ('..'))
 
 # -- General configuration ------------------------------------------------
@@ -38,14 +39,15 @@ extensions = [
     'sphinx.ext.imgconverter',
     # 'sphinx_js',
     'sphinxcontrib.plantuml',
-    #'sauml.sauml',
+    'sphinxcontrib.httpdomain',
+    'sauml.sauml',
 ]
 
 #js_source_path = '../server/es6'
 #jsdoc_config_path = '../jsdoc.json'
 
-#sauml_arguments = ['mysql://capitularia@mysql2.uni-koeln.de/capitularia']
-#sauml_dot_table = 'bgcolor=#e7f2fa&color=#2980B9'
+sauml_arguments = ['postgresql+psycopg2://capitularia@localhost:5432/capitularia']
+sauml_dot_table = 'bgcolor=#e7f2fa&color=#2980B9'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -63,7 +65,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Capitularia'
-copyright = '2018 CCeH - Licensed under the GNU GPL v3 or later'
+copyright = '2018-19 CCeH - Licensed under the GNU GPL v3 or later'
 author = 'Marcello Perathoner'
 
 # The version info for the project you're documenting, acts as replacement for
