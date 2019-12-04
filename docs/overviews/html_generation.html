@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTML Generation &mdash; Capitularia 0.1.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Overview of the Collation Tool" href="collation_tool.html" />
+    <link rel="prev" title="Overviews" href="../overviews.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Capitularia
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#platforms">Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../overviews.html">Overviews</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTML Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xslt-transformations">XSLT Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-delivery">User Delivery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="collation_tool.html">Overview of the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#collation">Collation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#custom-version-of-collatex">Custom Version of CollateX</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="meta_search.html">Meta Search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="meta_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="meta_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="collections.html">Collections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../webprojekt.html">RRZK Web Projekt Capitularia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../webprojekt/wordpress.html">Wordpress</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../webprojekt/wordpress/theme.html">Wordpress Theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../webprojekt/wordpress/plugins.html">Wordpress Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../webprojekt/database.html">Database Structure (Wordpress)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../webprojekt/database.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vm.html">Capitularia VM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vm/app_server.html">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vm/app_server.html#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/app_server.html#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/app_server.html#module-collatex_server">collatex_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/app_server.html#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/app_server.html#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vm/database.html">Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vm/database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/database.html#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/database.html#module-db">db.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Capitularia</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../overviews.html">Overviews</a> &raquo;</li>
+        
+      <li>HTML Generation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/overviews/html_generation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="html-generation">
+<span id="id1"></span><h1>HTML Generation<a class="headerlink" href="#html-generation" title="Permalink to this headline">¶</a></h1>
+<p>All TEI manuscript files are converted to one (or more) HTML files.  The HTML
+files are then included into Wordpress pages with the <a class="reference internal" href="../webprojekt/wordpress/plugins/file-includer.html#file-includer"><span class="std std-ref">File Includer
+plugin</span></a>.</p>
+<div class="section" id="xslt-transformations">
+<h2>XSLT Transformations<a class="headerlink" href="#xslt-transformations" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id2">
+<p class="plantuml">
+<img src="../_images/plantuml-b8ba3c086c512ecc8134163470ca17192c0643f2.png" alt="skinparam backgroundColor transparent
+skinparam DefaultTextAlignment center
+skinparam componentStyle uml2
+
+database  &quot;Manuscript files\n(XML+TEI)&quot; as tei
+note left of tei: AFS:publ/mss
+
+cloud &quot;Capitularia VM&quot; as vm {
+  component &quot;Cron&quot;                       as cron
+  component &quot;Makefile&quot;                   as make
+  component saxon [mss-header.xsl
+  mss-transcription.xsl
+  mss-footer.xsl]
+}
+
+database  &quot;Manuscript files\n(HTML)&quot;   as html
+note left of html: AFS:publ/cache/mss
+
+tei      --&gt; saxon
+saxon    --&gt; html
+
+cron .&gt; make
+make .&gt; saxon"/>
+</p>
+<p class="caption"><span class="caption-text"><p>Data flow during HTML generation</p>
+</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The Makefile is run by cron on the Capitularia VM at regular intervals.</p>
+<p>The manuscript and HTML files reside in the AFS.  The AFS is mounted onto
+the VM.</p>
+<p>The Makefile knows all the dependencies between the files and runs the
+appropriate tools to keep the HTML files up-to-date with the manuscript files.</p>
+<p>The HTML files are stored in the cache directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The XSLT stylesheets are written in XSLT 1 for historical reasons.  That is
+why we still use xsltproc.  We plan to rewrite them in XSLT 3 and use Saxon
+as soon as possible. (Nov. 2019)</p>
+</div>
+</div>
+<div class="section" id="user-delivery">
+<h2>User Delivery<a class="headerlink" href="#user-delivery" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id3">
+<p class="plantuml">
+<img src="../_images/plantuml-99101418f7eeb7b5f4babfbad100ec775aa7d1aa.png" alt="skinparam backgroundColor transparent
+skinparam DefaultTextAlignment center
+skinparam componentStyle uml2
+
+database &quot;Manuscript files\n(HTML)&quot; as html
+note left of html: AFS:publ/cache/mss
+
+cloud &quot;RRZK WebProjekt&quot; {
+  database  &quot;Database\n(mysql)&quot; as db
+  rectangle &quot;Wordpress&quot; {
+    component &quot;Footnotes\nPost-Processor\n(PHP)&quot; as pp
+    component &quot;File Includer Plugin\n(PHP)&quot; as fi
+  }
+}
+component &quot;User-Agent&quot; as client
+
+html  --&gt; pp
+pp    --&gt; fi
+fi    --&gt; client
+
+db    -&gt; fi
+db    &lt;- fi"/>
+</p>
+<p class="caption"><span class="caption-text"><p>Data flow during user access</p>
+</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>When a user accesses a manuscript page, Wordpress finds a shortcode for the
+<a class="reference internal" href="../webprojekt/wordpress/plugins/file-includer.html#file-includer"><span class="std std-ref">File Includer plugin</span></a> in it.  Control is passed to the File
+Includer plugin which checks the date of the filum includendum.  If the file is
+newer than the data stored in the database it refreshes the database.  Then it
+inserts the file’s content into the page, which is finally sent to the user.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Footnotes Post-Processor is still written in PHP.  We plan to rewrite it
+in Python along with the XSL stylesheets and move it to the VM. (Nov. 2019)</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="collation_tool.html" class="btn btn-neutral float-right" title="Overview of the Collation Tool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../overviews.html" class="btn btn-neutral float-left" title="Overviews" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-19 CCeH - Licensed under the GNU GPL v3 or later
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

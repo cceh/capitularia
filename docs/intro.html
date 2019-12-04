@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="RRZK Web Projekt Capitularia" href="webprojekt/webprojekt.html" />
+    <link rel="next" title="Overviews" href="overviews.html" />
     <link rel="prev" title="Capitularia Documentation" href="index.html" /> 
 </head>
 
@@ -83,23 +83,45 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#platforms">Platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#components">Components</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="webprojekt/webprojekt.html">RRZK Web Projekt Capitularia</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="webprojekt/plugins.html">Wordpress Plugins</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#collation-tool">Collation Tool</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#meta-search">Meta Search</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#file-includer">File Includer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#page-generator">Page Generator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#dynamic-menu">Dynamic Menu</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#library">Library</a></li>
-<li class="toctree-l3"><a class="reference internal" href="webprojekt/plugins.html#obsolete-plugins">Obsolete Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overviews.html">Overviews</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overviews/html_generation.html">HTML Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overviews/html_generation.html#xslt-transformations">XSLT Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overviews/html_generation.html#user-delivery">User Delivery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overviews/collation_tool.html">Overview of the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overviews/collation_tool.html#collation">Collation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overviews/collation_tool.html#custom-version-of-collatex">Custom Version of CollateX</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overviews/meta_search.html">Meta Search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overviews/meta_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overviews/meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overviews/meta_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overviews/collections.html">Collections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overviews/collections.html#algorithm">Algorithm</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="vm/vm.html">Capitularia VM</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="webprojekt.html">RRZK Web Projekt Capitularia</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webprojekt/wordpress.html">Wordpress</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webprojekt/wordpress/theme.html">Wordpress Theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webprojekt/wordpress/plugins.html">Wordpress Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webprojekt/database.html">Database Structure (Wordpress)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webprojekt/database.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vm.html">Capitularia VM</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="vm/app_server.html">Application Server</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#server">server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#module-data_server">data_server</a></li>
@@ -114,26 +136,6 @@
 <li class="toctree-l3"><a class="reference internal" href="vm/database.html#module-db">db.py</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="vm/html_generation.html">HTML Generation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="collation_tool.html">Collation Tool</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collation_tool.html#collation">Collation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collation_tool.html#custom-version-of-collatex">Custom Version of CollateX</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="meta_search.html">Meta Search</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="meta_search.html#metadata-extraction">Metadata Extraction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="meta_search.html#search">Search</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="collections.html">Collections</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="collections.html#algorithm">Algorithm</a></li>
 </ul>
 </li>
 </ul>
@@ -213,62 +215,54 @@
 </ul>
 <div class="figure align-center" id="id1">
 <p class="plantuml">
-<img src="_images/plantuml-2874774a980cb860ed47c205c3b936b7b42e1cec.png" alt="skinparam backgroundColor transparent
+<img src="_images/plantuml-fb6fe2e385f76014ced39dca6b873185a7e0e296.png" alt="skinparam backgroundColor transparent
 skinparam DefaultTextAlignment center
 skinparam componentStyle uml2
 
 cloud &quot;RRZK WebProject&quot; {
+  database  &quot;Database\n(mysql)&quot;   as mysql
   rectangle &quot;Apache&quot; as apache {
     component &quot;Wordpress&quot; as wp
   }
-  database  &quot;Database\n(mysql)&quot;   as mysql
 }
 
 cloud &quot;Capitularia VM&quot; {
-  component &quot;App Server\n(Python+Flask)&quot;   as api
-  database  &quot;Database\n(Postgres)&quot;   as db
+  component &quot;App Server\n(Python+Flask)&quot; as api
+  database  &quot;Database\n(Postgres)&quot;       as db
 }
 
 cloud &quot;AFS Filesystem&quot; {
-  database &quot;Files&quot; as afs
+  database &quot;Cache&quot; as cache
+  database &quot;Files&quot; as files
 }
 
-wp    &lt;-&gt;  api
-wp    &lt;--&gt; afs
-api   &lt;--&gt; afs
-
+mysql &lt;-&gt; wp
+wp    &lt;-&gt; api
 api   &lt;-&gt; db
 
-mysql &lt;-&gt; wp"/>
+wp    &lt;-- cache
+api   &lt;-- cache
+files -&gt;  cache"/>
 </p>
-<p class="caption"><span class="caption-text"><p>Main components of the project</p>
+<p class="caption"><span class="caption-text"><p>Overview of Capitularia</p>
 </span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p>The Apache web server runs the Wordpress app and serves static files.  We wrote
-a Wordpress theme and many <a class="reference internal" href="webprojekt/plugins.html#plugins"><span class="std std-ref">Wordpress plugins</span></a> to add the
-functionality we needed for our project.  As it got harder to implement all that
-as plugins we moved part of that functionality onto an application server on
-a VM.</p>
-<p>The Capitularia VM is a root VM on which we installed recent software.  It runs
-the Postgres database and the <a class="reference internal" href="vm/app_server.html#app-server"><span class="std std-ref">Python application server</span></a>.
-Next to that it hosts a recent OpenJDK, Saxon and a
-<a class="reference internal" href="collation_tool.html#custom-collatex"><span class="std std-ref">customized version of CollateX</span></a>.</p>
-<p>The application server does <a class="reference internal" href="collation_tool.html#collation-tool"><span class="std std-ref">collations</span></a> and
-<a class="reference internal" href="meta_search.html#meta-search"><span class="std std-ref">metadata and fulltext search</span></a> in the capitulars.  The
-database holds manuscript metadata and the pre-processed text of every chapter
-in every manuscript.</p>
-<p>The AFS Filesytem holds the manuscript files (and other project files.)  It is
-accessible from the VM and the Apache web server.  Also the editors have direct
-access to it through ssh.</p>
-</div>
-<div class="section" id="components">
-<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Website</p></li>
-<li><p>Meta Search</p></li>
-<li><p>Collation Tool</p></li>
-<li><p>Page Generator</p></li>
-</ul>
+<p>The <a class="reference internal" href="webprojekt.html#webprojekt"><span class="std std-ref">RRZK Web Projekt</span></a> is a package offered by RRZK and
+consists of an Apache web server and a <a class="reference internal" href="webprojekt/database.html#mysql"><span class="std std-ref">mysql database</span></a>.  Apache
+runs a Wordpress installation.  We wrote a Wordpress <a class="reference internal" href="webprojekt/wordpress/theme.html#theme"><span class="std std-ref">theme</span></a> and
+<a class="reference internal" href="webprojekt/wordpress/plugins.html#plugins"><span class="std std-ref">plugins</span></a> to add the functionality we needed for our project.</p>
+<p>As it got too hard to implement all functionality in plugins, we moved a part of
+it onto an application server on a VM.</p>
+<p>The <a class="reference internal" href="vm.html#vm"><span class="std std-ref">Capitularia VM</span></a> is a root VM.  It runs a <span class="xref std std-ref">Postgres database</span> server and the <a class="reference internal" href="vm/app_server.html#app-server"><span class="std std-ref">Python application server</span></a>.  Next to
+that it hosts a recent OpenJDK, Saxon and a <a class="reference internal" href="overviews/collation_tool.html#custom-collatex"><span class="std std-ref">customized version of CollateX</span></a>.</p>
+<p>The application server <a class="reference internal" href="overviews/html_generation.html#html-generation"><span class="std std-ref">generates the HTML files</span></a> of the
+TEI manuscripts.  It also does <a class="reference internal" href="overviews/collation_tool.html#collation-tool-overview"><span class="std std-ref">collations</span></a> and
+offers <a class="reference internal" href="overviews/meta_search.html#meta-search-overview"><span class="std std-ref">metadata and fulltext search</span></a> in the
+Capitulars.  The Postgres database holds manuscript metadata and the
+pre-processed text of every chapter in every manuscript.</p>
+<p>The AFS Filesystem holds all the original manuscript files encoded in TEI and
+versions thereof <a class="reference internal" href="overviews/html_generation.html#html-generation"><span class="std std-ref">converted to HTML</span></a>.  It is accessible
+from the VM and the Webprojekt.  The editors also have access to it through ssh.</p>
 </div>
 </div>
 
@@ -280,7 +274,7 @@ access to it through ssh.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="webprojekt/webprojekt.html" class="btn btn-neutral float-right" title="RRZK Web Projekt Capitularia" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overviews.html" class="btn btn-neutral float-right" title="Overviews" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Capitularia Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

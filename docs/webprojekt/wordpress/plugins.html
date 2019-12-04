@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Wordpress Plugins &mdash; Capitularia 0.1.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/my_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Collation Tool" href="plugins/collation-tool.html" />
+    <link rel="prev" title="Wordpress Theme Widgets" href="theme/widgets.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Capitularia
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../intro.html#platforms">Platforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../overviews.html">Overviews</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../overviews/html_generation.html">HTML Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/html_generation.html#xslt-transformations">XSLT Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/html_generation.html#user-delivery">User Delivery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../overviews/collation_tool.html">Overview of the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/collation_tool.html#collation">Collation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/collation_tool.html#custom-version-of-collatex">Custom Version of CollateX</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../overviews/meta_search.html">Meta Search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/meta_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/meta_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../overviews/collections.html">Collections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../webprojekt.html">RRZK Web Projekt Capitularia</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../wordpress.html">Wordpress</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="theme.html">Wordpress Theme</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Wordpress Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../database.html">Database Structure (Wordpress)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../database.html#metadata">Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../vm.html">Capitularia VM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vm/app_server.html">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../vm/app_server.html#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vm/app_server.html#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vm/app_server.html#module-collatex_server">collatex_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vm/app_server.html#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vm/app_server.html#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../vm/database.html">Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../vm/database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vm/database.html#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../vm/database.html#module-db">db.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Capitularia</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../webprojekt.html">RRZK Web Projekt Capitularia</a> &raquo;</li>
+        
+          <li><a href="../wordpress.html">Wordpress</a> &raquo;</li>
+        
+      <li>Wordpress Plugins</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/webprojekt/wordpress/plugins.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="wordpress-plugins">
+<span id="plugins"></span><h1>Wordpress Plugins<a class="headerlink" href="#wordpress-plugins" title="Permalink to this headline">¶</a></h1>
+<p>We wrote various Wordpress plugins to implement functionality we needed.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="plugins/collation-tool.html">Collation Tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugins/collation-tool.html#plugins-cap-collation-user-cap-collation-user-php">plugins/cap-collation-user/cap-collation-user.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/collation-tool.html#plugins-cap-collation-user-dashboard-php">plugins/cap-collation-user/dashboard.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/collation-tool.html#plugins-cap-collation-user-functions-php">plugins/cap-collation-user/functions.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/collation-tool.html#javascript-module-plugins-collation-front">Javascript module plugins/collation/front</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/collation-tool.html#javascript-module-plugins-collation-results">Javascript module plugins/collation/results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/collation-tool.html#javascript-module-plugins-collation-tools">Javascript module plugins/collation/tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/meta-search.html">Meta Search</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugins/meta-search.html#plugins-cap-meta-search-cap-meta-search-php">plugins/cap-meta-search/cap-meta-search.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/meta-search.html#plugins-cap-meta-search-class-highlighter-php">plugins/cap-meta-search/class-highlighter.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/meta-search.html#plugins-cap-meta-search-class-meta-search-widget-php">plugins/cap-meta-search/class-meta-search-widget.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/meta-search.html#plugins-cap-meta-search-class-meta-search-php">plugins/cap-meta-search/class-meta-search.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/meta-search.html#plugins-cap-meta-search-functions-php">plugins/cap-meta-search/functions.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/meta-search.html#javascript-module-plugins-meta-search">Javascript module plugins/meta-search</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/file-includer.html">File Includer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugins/file-includer.html#plugins-cap-file-includer-cap-file-includer-php">plugins/cap-file-includer/cap-file-includer.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/file-includer.html#plugins-cap-file-includer-class-file-includer-php">plugins/cap-file-includer/class-file-includer.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/file-includer.html#plugins-cap-file-includer-class-settings-page-php">plugins/cap-file-includer/class-settings-page.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/file-includer.html#plugins-cap-file-includer-footnotes-post-processor-include-php">plugins/cap-file-includer/footnotes-post-processor-include.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/file-includer.html#plugins-cap-file-includer-functions-php">plugins/cap-file-includer/functions.php</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/page-generator.html">Page Generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugins/page-generator.html#plugins-cap-page-generator-cap-page-generator-php">plugins/cap-page-generator/cap-page-generator.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/page-generator.html#plugins-cap-page-generator-class-config-php">plugins/cap-page-generator/class-config.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/page-generator.html#plugins-cap-page-generator-class-dashboard-page-php">plugins/cap-page-generator/class-dashboard-page.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/page-generator.html#plugins-cap-page-generator-class-file-list-table-php">plugins/cap-page-generator/class-file-list-table.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/page-generator.html#plugins-cap-page-generator-class-manuscript-php">plugins/cap-page-generator/class-manuscript.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/page-generator.html#plugins-cap-page-generator-class-settings-page-php">plugins/cap-page-generator/class-settings-page.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/page-generator.html#plugins-cap-page-generator-functions-php">plugins/cap-page-generator/functions.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/page-generator.html#javascript-module-plugins-page-generator">Javascript module plugins/page-generator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/dynamic-menu.html">Dynamic Menu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugins/dynamic-menu.html#plugins-cap-dynamic-menu-cap-dynamic-menu-php">plugins/cap-dynamic-menu/cap-dynamic-menu.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/dynamic-menu.html#plugins-cap-dynamic-menu-functions-php">plugins/cap-dynamic-menu/functions.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/dynamic-menu.html#javascript-module-plugins-dynamic-menu">Javascript module plugins/dynamic-menu</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/lib.html">Library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugins/lib.html#plugins-cap-lib-cap-lib-php">plugins/cap-lib/cap-lib.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/lib.html#plugins-cap-lib-class-settings-page-php">plugins/cap-lib/class-settings-page.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/lib.html#plugins-cap-lib-functions-php">plugins/cap-lib/functions.php</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/lib.html#javascript-module-plugins-lib">Javascript module plugins/lib</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="obsolete-plugins">
+<h2>Obsolete Plugins<a class="headerlink" href="#obsolete-plugins" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Collation tool</strong> The old collation tool that lived on a Wordpress admin
+page.  Was rewritten for the front, because the admin page was not accessible
+by the general public.</p></li>
+<li><p><strong>XSL processor</strong> This plugin was rewrittem as the File Includer plugin.  XSLT
+is now done exclusively on the VM because we can use Saxon there while we were
+limited to xsltproc in the RRZK Web Project environment.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="plugins/collation-tool.html" class="btn btn-neutral float-right" title="Collation Tool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="theme/widgets.html" class="btn btn-neutral float-left" title="Wordpress Theme Widgets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018-19 CCeH - Licensed under the GNU GPL v3 or later
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
