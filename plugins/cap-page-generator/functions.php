@@ -239,10 +239,10 @@ function on_enqueue_scripts ()
 }
 
 /**
- * Register _cap\_page\_gen_ as valid HTTP GET parameter
+ * Register *cap_page_gen* as valid HTTP GET parameter
  *
- * We use the _cap\_page\_gen_ parameter to call the dashboard from the
- * _Page Generator_ button on the user's tool bar on the public pages.
+ * We use the *cap_page_gen* parameter to call the dashboard from the
+ * :guilabel:`Page Generator` button on the user's tool bar on the public pages.
  *
  * @param string[] $vars Already registered parameter names
  *
@@ -363,34 +363,4 @@ function on_plugin_action_links ($links)
         '<a href="index.php?page=' . DASHBOARD . '">' . __ ('Dashboard', LANG) . '</a>'
     );
     return $links;
-}
-
-/**
- * Things to do when an admin activates the plugin
- *
- * @return void
- */
-
-function on_activation ()
-{
-}
-
-/**
- * Things to do when an admin deactivates the plugin
- *
- * @return void
- */
-
-function on_deactivation ()
-{
-}
-
-/**
- * Things to do when an admin uninstalls the plugin
- *
- * @return void
- */
-
-function on_uninstall ()
-{
 }

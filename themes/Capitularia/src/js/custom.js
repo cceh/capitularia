@@ -1,5 +1,20 @@
+/** @module themes/capitularia */
+
+/**
+ * This file contains the Javascript for the Capitularia theme.
+ *
+ * @file
+ */
+
 (function ($) {
     'use strict';
+
+    /**
+     * Initialize the back to top link: on click do a smooth scroll to the top
+     * of the page.
+     *
+     * @alias module:themes/capitularia.initBackToTop
+     */
 
     function initBackToTop () {
         $ ('.back-to-top').click (function () {
@@ -8,15 +23,12 @@
         });
     }
 
-    function initResetForm () {
-        $ ('.reset-form').click (function () {
-            $ (this).closest ('form').find ('input[type="text"]').val ('');
-            $ (this).closest ('form').find ('select').each (function () {
-                var v = $ (this).children ().first ().val ();
-                $ (this).val (v);
-            });
-        });
-    }
+    /**
+     * Initialize all links on the page to do a smooth scroll to their
+     * respective targets.
+     *
+     * @alias module:themes/capitularia.initSmoothScrollLinks
+     */
 
     function initSmoothScrollLinks () {
         $ ('a').each (function () {
@@ -57,6 +69,30 @@
         });
     }
 
+    /**
+     * Initialize reset buttons to reset input and select controls on the parent
+     * form.
+     *
+     * @alias module:themes/capitularia.initResetForm
+     */
+
+    function initResetForm () {
+        $ ('.reset-form').click (function () {
+            $ (this).closest ('form').find ('input[type="text"]').val ('');
+            $ (this).closest ('form').find ('select').each (function () {
+                var v = $ (this).children ().first ().val ();
+                $ (this).val (v);
+            });
+        });
+    }
+
+    /**
+     * Initialize the footnote refs, ie. the '*', to open a popup on mouse
+     * hover.  The popup contains the footnote text.
+     *
+     * @alias module:themes/capitularia.initFootnoteTooltips
+     */
+
     function initFootnoteTooltips () {
         $ ('a.annotation-ref').tooltip ({
             'placement' : 'top',
@@ -84,6 +120,13 @@
             }, 300);
         });
     }
+
+    /**
+     * Initialize the legend slide-out.  Make the legend slide out (and back in)
+     * if the user clicks on the respective tab.
+     *
+     * @alias module:themes/capitularia.initLegend
+     */
 
     function initLegend () {
         // the Key (Legend) slide-out

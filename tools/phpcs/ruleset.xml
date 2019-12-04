@@ -53,7 +53,7 @@ PSR-5 Proposed PHPDoc Standard
   <rule ref="Generic.CodeAnalysis.JumbledIncrementer" />
   <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement" />
   <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier" />
-  <!-- replaced by custom <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter" /> -->
+  <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter" />
   <rule ref="Generic.CodeAnalysis.UselessOverridingMethod" />
   <rule ref="Generic.Commenting.DocComment">
     <!-- These rules are disabled because they don't allow single-line
@@ -103,6 +103,8 @@ PSR-5 Proposed PHPDoc Standard
          of camelCase. -->
     <exclude name="PEAR.NamingConventions.ValidFunctionName" />
     <exclude name="PEAR.NamingConventions.ValidVariableName" />
+    <!-- duplicate of Generic.WhiteSpace.ScopeIndent.Incorrect -->
+    <exclude name="PEAR.WhiteSpace.ScopeIndent.Incorrect" />
     <!-- broken with switch statements -->
     <exclude name="PEAR.WhiteSpace.ScopeIndent.IncorrectExact" />
   </rule>
@@ -127,14 +129,24 @@ PSR-5 Proposed PHPDoc Standard
 
   <!-- Our custom sniffs.  These are already automatically included but we list
        them explicitly lest we forget about them. -->
-  <rule ref="phpcs.CodeAnalysis.UnusedFunctionParameter" />
-  <rule ref="phpcs.Functions.FunctionDeclaration" />
-  <rule ref="phpcs.Functions.FunctionCallSignature" />
-  <rule ref="phpcs.NamingConventions.ValidFunctionName" />
+  <rule ref="phpcs.Functions.FunctionDeclaration">
+    <properties>
+      <property name="requiredSpacesBeforeOpen" value="1" />
+    </properties>
+  </rule>
+  <rule ref="phpcs.Functions.FunctionCallSignature">
+    <properties>
+      <property name="requiredSpacesBeforeOpen" value="1" />
+    </properties>
+  </rule>
+  <rule ref="phpcs.NamingConventions.ValidFunctionName">
+    <exclude name="phpcs.NamingConventions.ValidFunctionName.PrivateNoUnderscore" />
+    <exclude name="PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore" />
+  </rule>
   <rule ref="phpcs.NamingConventions.ValidVariableName">
     <exclude name="phpcs.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
-    <!-- Too many false positives from members of Wordpress- and the DOM-classes. -->
     <exclude name="phpcs.NamingConventions.ValidVariableName.MemberUseNotSnakeCase" />
+    <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
   </rule>
 
   <rule ref="Generic.Commenting.Fixme.TaskFound">

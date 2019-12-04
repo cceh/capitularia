@@ -16,62 +16,56 @@ The project uses three main platforms:
 
 .. uml::
    :align: center
-   :caption: Main components of the project
+   :caption: Overview of Capitularia
 
    skinparam backgroundColor transparent
    skinparam DefaultTextAlignment center
    skinparam componentStyle uml2
 
    cloud "RRZK WebProject" {
+     database  "Database\n(mysql)"   as mysql
      rectangle "Apache" as apache {
        component "Wordpress" as wp
      }
-     database  "Database\n(mysql)"   as mysql
    }
 
    cloud "Capitularia VM" {
-     component "App Server\n(Python+Flask)"   as api
-     database  "Database\n(Postgres)"   as db
+     component "App Server\n(Python+Flask)" as api
+     database  "Database\n(Postgres)"       as db
    }
 
    cloud "AFS Filesystem" {
-     database "Files" as afs
+     database "Cache" as cache
+     database "Files" as files
    }
 
-   wp    <->  api
-   wp    <--> afs
-   api   <--> afs
-
+   mysql <-> wp
+   wp    <-> api
    api   <-> db
 
-   mysql <-> wp
+   wp    <-- cache
+   api   <-- cache
+   files ->  cache
 
+The :ref:`RRZK Web Projekt <webprojekt>` is a package offered by RRZK and
+consists of an Apache web server and a :ref:`mysql database <mysql>`.  Apache
+runs a Wordpress installation.  We wrote a Wordpress :ref:`theme <theme>` and
+:ref:`plugins <plugins>` to add the functionality we needed for our project.
 
-The Apache web server runs the Wordpress app and serves static files.  We wrote
-a Wordpress theme and many :ref:`Wordpress plugins <plugins>` to add the
-functionality we needed for our project.  As it got harder to implement all that
-as plugins we moved part of that functionality onto an application server on
-a VM.
+As it got too hard to implement all functionality in plugins, we moved a part of
+it onto an application server on a VM.
 
-The Capitularia VM is a root VM on which we installed recent software.  It runs
-the Postgres database and the :ref:`Python application server <app-server>`.
-Next to that it hosts a recent OpenJDK, Saxon and a
-:ref:`customized version of CollateX <custom-collatex>`.
+The :ref:`Capitularia VM <vm>` is a root VM.  It runs a :ref:`Postgres database
+<db>` server and the :ref:`Python application server <app-server>`.  Next to
+that it hosts a recent OpenJDK, Saxon and a :ref:`customized version of CollateX
+<custom-collatex>`.
 
-The application server does :ref:`collations <collation-tool>` and
-:ref:`metadata and fulltext search <meta-search>` in the capitulars.  The
-database holds manuscript metadata and the pre-processed text of every chapter
-in every manuscript.
+The application server :ref:`generates the HTML files <HTML-generation>` of the
+TEI manuscripts.  It also does :ref:`collations <collation-tool-overview>` and
+offers :ref:`metadata and fulltext search <meta-search-overview>` in the
+Capitulars.  The Postgres database holds manuscript metadata and the
+pre-processed text of every chapter in every manuscript.
 
-The AFS Filesytem holds the manuscript files (and other project files.)  It is
-accessible from the VM and the Apache web server.  Also the editors have direct
-access to it through ssh.
-
-
-Components
-==========
-
-- Website
-- Meta Search
-- Collation Tool
-- Page Generator
+The AFS Filesystem holds all the original manuscript files encoded in TEI and
+versions thereof :ref:`converted to HTML <HTML-Generation>`.  It is accessible
+from the VM and the Webprojekt.  The editors also have access to it through ssh.

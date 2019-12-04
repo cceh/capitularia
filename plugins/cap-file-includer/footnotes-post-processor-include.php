@@ -108,7 +108,7 @@ function remove_node ($node)
  * @param \DOMNode $note The note to merge.
  * @param \DOMNode $next The note to merge into.
  *
- * @return nothing
+ * @return void
  */
 
 function merge_notes ($note, $next)
@@ -150,7 +150,7 @@ function merge_notes ($note, $next)
  *
  * @param array $nodes Nodes to wrap.
  *
- * @return nothing
+ * @return void
  */
 
 function wrap ($nodes)
@@ -561,7 +561,7 @@ function load_xml_or_html ($in)
  *
  * @param \DOMDocument $doc The document as DOM.
  *
- * @return The document as embeddable HTML.
+ * @return string The document as embeddable HTML.
  */
 
 function save_html ($doc)

@@ -3,7 +3,11 @@
 /**
  * Capitularia Theme functions.php file
  *
+ * Loads the text domain and adds all actions, filters and shortcodes.
+ *
  * This file executes only logic with side-effects in accordance with PSR-2.
+ * The functions are defined in
+ * :mod:`function-includes.php<themes.Capitularia.functions-include>`.
  *
  * @package Capitularia
  */
@@ -59,11 +63,11 @@ if (0 === 1) { // phpcs complains on false
  * Wordpress Actions
  */
 
-add_action ('init',                                ns ('on_init'));
-add_action ('wp_enqueue_scripts',                  ns ('on_enqueue_scripts'));
-add_action ('admin_enqueue_scripts',               ns ('on_admin_enqueue_scripts'));
-add_action ('registered_post_type',                ns ('on_registered_post_type'), 10, 2);
-add_action ('pre_get_posts',                       ns ('on_pre_get_posts'));
+add_action ('init',                  ns ('on_init'));
+add_action ('wp_enqueue_scripts',    ns ('on_enqueue_scripts'));
+add_action ('admin_enqueue_scripts', ns ('on_admin_enqueue_scripts'));
+add_action ('registered_post_type',  ns ('on_registered_post_type'), 10, 2);
+add_action ('pre_get_posts',         ns ('on_pre_get_posts'));
 
 add_action (
     'rest_api_init',

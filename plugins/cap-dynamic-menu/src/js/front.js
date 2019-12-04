@@ -1,47 +1,68 @@
-/*
- * The dynamic menu is generated from xpath expressions that query the page
- * content.  There is one xpath expression for every level of the menu.  Use the
- * standard wordpress admin interface to define the xpath expressions:
+/** @module plugins/dynamic-menu */
+
+/**
+ * The dynamic menu applet.
  *
- * To make a dynamic menu, insert a _Custom Link_ item into any Wordpress menu
- * and give it a magic url of: _#cap\_dynamic\_menu#_.  The _Custom Link_
+ * The dynamic menu is generated from xpath expressions that query the
+ * page content.  There is one xpath expression for every level of the menu.
+ * Use the standard wordpress admin interface to define the xpath expressions:
+ *
+ * To make a dynamic menu, insert a *Custom Link* item into any Wordpress menu
+ * and give it a magic url of: :code:`#cap_dynamic_menu#`.  The *Custom Link*
  * item will be replaced by the generated menu.
  *
  * Put all the xpath expressions for each level of the menu into the
- * _Description_ field.  Separate each level with a _§_ (section sign).
+ * *Description* field.  Separate each level with a :code:`§` (section sign).
  *
- * The default xpath expressions are: //h3[@id]§//h4[@id]§//h5[@id]§//h6[@id],
- * which generate a 4 level deep menu built from h3-h6 elements that have an
- * _id_ attribute.
+ * The default xpath expressions are:
+ * :code:`//h3[@id]§//h4[@id]§//h5[@id]§//h6[@id]`, which generate a 4 level
+ * deep menu built from all <h3>-<h6> elements that have an :code:`id`
+ * attribute.
  *
  * The caption of a generated menu item is taken from the
- * _data-cap-dyn-menu-caption_ attribute on the source element or
- * from the source element's _textContent_.
+ * :code:`data-cap-dyn-menu-caption` attribute on the source element or
+ * from the source element's :code:`textContent`.
  *
- * All classes in the _CSS Classes_ field in the Wordpress admin interface are
+ * All classes in the *CSS Classes* field in the Wordpress admin interface are
  * copied over to each generated menu item along with a class
- * _$class-level-$level_.  Eg. a class of _my-menu_ would become _my_menu_ and
- * _my-menu-level-1_.
+ * :code:`$class-level-$level`.  Eg. a class of :code:`my-menu` would become
+ * :code:`my_menu` and :code:`my-menu-level-1`.
  *
  * All classes on the elements matched with the xpath expressions, that start
- * with _dynamic-menu-_, are copied to each generated menu item.
+ * with :code:`dynamic-menu-`, are copied to each generated menu item.
  *
- * Additionally classes named _menu-item_,
- * _dynamic-menu-item_, and
- * _dynamic-menu-item-level-$level_ are added to each generated menu
- * item.
+ * Additionally classes named :code:`menu-item`, :code:`dynamic-menu-item`, and
+ * :code:`dynamic-menu-item-level-$level` are added to each generated menu item.
  *
+ * .. note::
  *
- * We use webpack as a workaround to load javascript modules in Wordpress.
- * Wordpress cannot load javascript modules thru enqueue_script () because it
- * lacks an option to specify type="module" on the <script> element.  Webpack
- * also packs babel-runtime for us.  babel-runtime is required for async
- * functions.
+ *    We use webpack as a workaround to load javascript modules in Wordpress.
+ *    Wordpress cannot load javascript modules thru enqueue_script () because it
+ *    lacks an option to specify type="module" on the <script> element.  Webpack
+ *    also packs babel-runtime for us.  babel-runtime is required for async
+ *    functions.
+ *
+ * @file
  */
 
-const MAGIC = '#cap_dynamic_menu#';
-
 (function ($) {
+
+    /**
+     * The magic href to make a menu dynamic
+     * @type {string}
+     */
+    const MAGIC = '#cap_dynamic_menu#';
+
+    /**
+     * Initialize all dynamic menus on the page.
+     *
+     * This routine looks for the magic placeholder menu with a href of
+     * :code:`#cap_dynamic_menu#` and transmogrifies it into the real menu by
+     * going through the DOM of the page and adding all elements that fit the
+     * description.
+     *
+     * @alias module:plugins/dynamic-menu.init_dynamic_menues
+     */
     function init_dynamic_menues () {
         let menu_id = 1;
         let last_id = 1;

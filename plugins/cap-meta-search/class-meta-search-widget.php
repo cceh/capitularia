@@ -2,7 +2,7 @@
 /**
  * Capitularia Meta Search search box widget
  *
- * @package Capitularia
+ * @package Capitularia Meta Search
  */
 
 namespace cceh\capitularia\meta_search;
@@ -59,13 +59,13 @@ class Widget extends \WP_Widget
     }
 
     /**
-     * Fill a drop-down box with items
+     * Echo the <option>s of a <select>.
      *
-     * Output the <option>s for a HTML <select> element.  Sort numeric
-     * substrings in a sensible way for humans, eg. 'BK 2' before 'BK 12'
+     * Echo the <option>s for a HTML <select> element.  Sort numeric substrings
+     * in a sensible way for humans, eg. 'BK 2' before 'BK 12'
      *
-     * @param string[] $items    The items to display in the drop-down
-     * @param string   $selected The item in the list to select
+     * @param array  $items    Array of strings: The items to display in the drop-down
+     * @param string $selected The item in the list to select
      *
      * @return void
      */
@@ -84,10 +84,10 @@ class Widget extends \WP_Widget
     /**
      * Echo a HTML <select> element with options.
      *
-     * @param string   $caption The caption for the <select>
-     * @param string   $id      The xml id and name of the <select>
-     * @param string[] $items   The items to display in the drop-down
-     * @param string   $tooltip The tooltip for the <select>
+     * @param string $caption The caption for the <select>
+     * @param string $id      The xml id and name of the <select>
+     * @param array  $items    Array of strings: The items to display in the drop-down
+     * @param string $tooltip The tooltip for the <select>
      *
      * @return void
      */
@@ -156,7 +156,7 @@ class Widget extends \WP_Widget
      *
      * @return void
      *
-     * @see WP_Widget::widget ()
+     * @see \WP_Widget::widget()
      */
 
     public function widget ($args, $instance)
@@ -236,7 +236,7 @@ class Widget extends \WP_Widget
      *
      * @return array Settings to save or bool false to cancel saving.
      *
-     * @see WP_Widget::update ()
+     * @see \WP_Widget::update()
      */
 
     public function update ($new_instance, $old_instance)
@@ -254,7 +254,7 @@ class Widget extends \WP_Widget
      *
      * @return void
      *
-     * @see WP_Widget::form ()
+     * @see \WP_Widget::form()
      */
 
     public function form ($instance)

@@ -15,12 +15,14 @@ namespace cceh\capitularia\theme;
  *
  * This shortcode outputs its content only to logged-in users.
  *
- * [logged_in]You are logged in![/logged_in]
+ * .. code::
+ *
+ *    [logged_in]You are logged in![/logged_in]
  *
  * @param array  $dummy_atts (unused) The shortocde attributes.
  * @param string $content    The shortcode content.
  *
- * @return string The shortcode content if logged in else ''.
+ * @return string The shortcode content if logged in else the empty string.
  *
  * @shortcode logged_in
  */
@@ -38,12 +40,14 @@ function on_shortcode_logged_in ($dummy_atts, $content) // phpcs:ignore
  *
  * This shortcode outputs its content only to logged-out users.
  *
- * [logged_out]Please log in![/logged_out]
+ * .. code::
+ *
+ *    [logged_out]Please log in![/logged_out]
  *
  * @param array  $dummy_atts (unused) The shortocde attributes.
  * @param string $content    The shortcode content.
  *
- * @return string The shortcode content if logged out else ''.
+ * @return string The shortcode content if logged out else the empty string.
  *
  * @shortcode logged_out
  */
@@ -150,14 +154,16 @@ function if_status ($atts)
  *
  * This shortcode outputs its content if the ms. has that status.
  *
- * [if_status path="/mss/wien" status="publish"]
- *   <p>Wien is published!</p>
- * [/if_status]
+ * .. code::
+ *
+ *    [if_status path="/mss/wien" status="publish"]
+ *      <p>Wien is published!</p>
+ *    [/if_status]
  *
  * @param array  $atts    The shortocde attributes.  status = status, path = path of page
  * @param string $content The shortcode content.
  *
- * @return string The shortcode content if the ms. has that status else ''.
+ * @return string The shortcode content if the ms. has that status else the empty string.
  *
  * @shortcode if_status
  */
@@ -175,14 +181,16 @@ function on_shortcode_if_status ($atts, $content)
  *
  * This shortcode outputs its content if the ms. doesn't have that status.
  *
- * [if_not_status path="/mss/wien" status="publish"]
- *   <p>Wien is not published!</p>
- * [/if_not_status]
+ * .. code::
+ *
+ *    [if_not_status path="/mss/wien" status="publish"]
+ *      <p>Wien is not published!</p>
+ *    [/if_not_status]
  *
  * @param array  $atts    The shortocde attributes.  status = status, path = path of page
  * @param string $content The shortcode content.
  *
- * @return string The shortcode content if the ms. doesn't have that status else ''.
+ * @return string The shortcode content if the ms. doesn't have that status else the empty string.
  *
  * @shortcode if_not_status
  */
@@ -240,20 +248,25 @@ function if_visible ($path)
  * This shortcode outputs its content if the current user can see *any* one of
  * the pages in the path attribute.
  *
- * [if_visible path="/mss/secret.html"]
- *   <div>The secret manuscript.</div>
- * [/if_visible]
+ * .. code::
+ *
+ *    [if_visible path="/mss/secret.html"]
+ *      <div>The secret manuscript.</div>
+ *    [/if_visible]
  *
  * Use this with multiple pages to find out when to print headers, etc.
  *
- * [if_any_visible path="/mss/leo1.html /mss/leo2.html"]
- *   <h2>Hic sunt leones</h2>
- * [/if_any_visible]
+ * .. code::
+ *
+ *    [if_any_visible path="/mss/leo1.html /mss/leo2.html"]
+ *      <h2>Hic sunt leones</h2>
+ *    [/if_any_visible]
  *
  * @param array  $atts    The shortocde attributes.  path = space separated paths of pages
  * @param string $content The shortcode content.
  *
- * @return string The shortcode content if the user can see the page in path.
+ * @return string The shortcode content if the user can see the page in path
+                  or else the empty string.
  *
  * @shortcode if_visible
  * @shortcode if_any_visible
@@ -275,14 +288,17 @@ function on_shortcode_if_visible ($atts, $content)
  * This shortcode outputs its content if the current user cannot see *any* one
  * of the pages in the path attribute.
  *
- * [if_not_visible path="/premium.html"]
- *   <p>Pay to see our boring premium content!</p>
- * [/if_not_visible]
+ * .. code::
+ *
+ *    [if_not_visible path="/premium.html"]
+ *      <p>Pay to see our boring premium content!</p>
+ *    [/if_not_visible]
  *
  * @param array  $atts    The shortocde attributes.  path = space separated paths of pages
  * @param string $content The shortcode content.
  *
- * @return string The shortcode content if the current user cannot see the page in path.
+ * @return string The shortcode content if the current user cannot see the page in path
+                  else the empty string.
  *
  * @shortcode if_not_visible
  * @shortcode if_any_not_visible
@@ -304,12 +320,15 @@ function on_shortcode_if_not_visible ($atts, $content)
  * This shortcode outputs its content if the capitular was already transcribed
  * on that page (in the manuscript with an xml:id equal to the slot of the page).
  *
- * [if_transcribed path="/mss/barcelona" bk="BK.42"] and <a>here</a>[/if_transcribed]
+ * .. code::
+ *
+ *    [if_transcribed path="/mss/barcelona" bk="BK.42"] and <a>here</a>[/if_transcribed]
  *
  * @param array  $atts    The shortocde attributes.  path = path of page, bk = BK No.
  * @param string $content The shortcode content.
  *
- * @return string The shortcode content if the capitular is transcribed, else nothing.
+ * @return string The shortcode content if the capitular is transcribed,
+                  else the empty string.
  *
  * @shortcode if_transcribed
  */
@@ -341,11 +360,15 @@ function on_shortcode_if_transcribed ($atts, $content)
  * This shortcode outputs the current date using the preferred date
  * representation for the current locale without the time.
  *
- * <p>Accessed on: [current_date]</p>
+ * .. code::
+ *
+ *    <p>Accessed on: [current_date]</p>
  *
  * yields:
  *
- * <p>Accessed on: Jan 1, 1970</p>
+ * .. code::
+ *
+ *    <p>Accessed on: Jan 1, 1970</p>
  *
  * @param array  $atts          The shortocde attributes.
  * @param string $dummy_content The shortcode content. (empty)
@@ -373,11 +396,15 @@ function on_shortcode_current_date ($atts, $dummy_content) // phpcs:ignore
  *
  * This shortcode outputs the permalink for the current page.
  *
- * <p>URL: [permalink]</p>
+ * .. code::
+ *
+ *    <p>URL: [permalink]</p>
  *
  * yields:
  *
- * <p>URL: https://example.org/post/123</p>
+ * .. code::
+ *
+ *    <p>URL: https://example.org/post/123</p>
  *
  * @param array  $dummy_atts    (unused) The shortocde attributes.
  * @param string $dummy_content (unused) The shortcode content.
@@ -396,6 +423,10 @@ function on_shortcode_permalink ($dummy_atts, $dummy_content) // phpcs:ignore
  * Add the cite_as shortcode.
  *
  * This shortcode outputs a short description of how to cite the post.
+ *
+ * .. code::
+ *
+ *    <p>[cite_as]</p>
  *
  * @param array  $atts          The shortocde attributes.
  * @param string $dummy_content The shortcode content. (empty)

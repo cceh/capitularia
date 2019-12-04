@@ -7,11 +7,8 @@ All TEI manuscript files are converted to one (or more) HTML files.  The HTML
 files are then included into Wordpress pages with the :ref:`File Includer
 plugin<file-includer>`.
 
-.. note::
-
-   The XSLT stylesheets are written in XSLT 1 for historical reasons.  That is
-   why we still use xsltproc.  We plan to rewrite them in XSLT 3 and use Saxon
-   as soon as possible. (Nov. 2019)
+XSLT Transformations
+--------------------
 
 .. uml::
    :align: center
@@ -52,6 +49,15 @@ appropriate tools to keep the HTML files up-to-date with the manuscript files.
 
 The HTML files are stored in the cache directory.
 
+.. note::
+
+   The XSLT stylesheets are written in XSLT 1 for historical reasons.  That is
+   why we still use xsltproc.  We plan to rewrite them in XSLT 3 and use Saxon
+   as soon as possible. (Nov. 2019)
+
+
+User Delivery
+-------------
 
 .. uml::
    :align: center

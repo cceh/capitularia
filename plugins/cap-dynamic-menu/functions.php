@@ -2,47 +2,10 @@
 /**
  * Capitularia Dynamic Menu global functions.
  *
- * @package Capitularia
+ * @package Capitularia Dynamic Menu
  */
 
 namespace cceh\capitularia\dynamic_menu;
-
-/**
- * Add dynamic items to the menu.
- *
- * This just outputs a placeholder that will be processed by javascript.  See:
- * src/js/front.js for more information.
- *
- * @param array  $items      Old items.
- * @param string $dummy_menu (unused) Menu.
- * @param array  $dummy_args (unused) Menu args.
- *
- * @return array Updated menu.
- */
-
-function on_wp_get_nav_menu_items ($items, $dummy_menu, $dummy_args) // phpcs:ignore
-{
-    // Only do this on front pages.
-    if (is_admin ()) {
-        return $items;
-    }
-
-    foreach ($items as $key => $item) {
-        if (isset ($item->url)) {
-            if (strcmp ($item->url, '#cap_dynamic_menu#') === 0) {
-                // the menu will be post-processed by javascript
-                // put the description somewhere in the html so
-                // the javascript can find it
-                $item->target = $item->description;
-            }
-            if (strcmp ($item->url, '#cap_login_menu#') === 0) {
-                $item->url = wp_login_url (get_permalink ());
-            }
-        }
-    }
-
-    return $items;
-}
 
 /**
  * Add current namespace
@@ -117,31 +80,39 @@ function on_enqueue_scripts ()
 }
 
 /**
- * Things to do when an admin activates the plugin
+ * Add dynamic items to the menu.
  *
- * @return void
+ * This just outputs a placeholder that will be processed by javascript.
+ *
+ * @see src/js/front.js for more information.
+ *
+ * @param array  $items      Old items.
+ * @param string $dummy_menu (unused) Menu.
+ * @param array  $dummy_args (unused) Menu args.
+ *
+ * @return array Updated menu.
  */
 
-function on_activation ()
+function on_wp_get_nav_menu_items ($items, $dummy_menu, $dummy_args) // phpcs:ignore
 {
-}
+    // Only do this on front pages.
+    if (is_admin ()) {
+        return $items;
+    }
 
-/**
- * Things to do when an admin deactivates the plugin
- *
- * @return void
- */
+    foreach ($items as $key => $item) {
+        if (isset ($item->url)) {
+            if (strcmp ($item->url, '#cap_dynamic_menu#') === 0) {
+                // the menu will be post-processed by javascript
+                // put the description somewhere in the html so
+                // the javascript can find it
+                $item->target = $item->description;
+            }
+            if (strcmp ($item->url, '#cap_login_menu#') === 0) {
+                $item->url = wp_login_url (get_permalink ());
+            }
+        }
+    }
 
-function on_deactivation ()
-{
-}
-
-/**
- * Things to do when an admin uninstalls the plugin
- *
- * @return void
- */
-
-function on_uninstall ()
-{
+    return $items;
 }

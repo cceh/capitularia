@@ -1,8 +1,6 @@
 <?php
 
-/**
- * Capitularia Page Generator plugin.
- *
+/*
  * Plugin Name: Capitularia Page Generator
  * Plugin URI:
  * Description: Generate Wordpress pages for our TEI files.
@@ -12,17 +10,25 @@
  * License:     GPLv2 or later
  * Text Domain: cap-page-generator
  * Domain Path: /languages
+ */
+
+/**
+ * Capitularia Page Generator plugin.
  *
- * @package Capitularia
+ * The *Page Generator* plugin helps managing the publication of manuscript
+ * pages.  Whenever a new manuscript is transcribed and its file is put into the
+ * file repository in the AFS, a new Wordpress page needs to be made for the
+ * manuscript to actually appear in Wordpress.
  *
- * The _Capitularia Page Generator_ plugin helps create the Wordpress pages that
- * display our TEI files.  It lists the TEI files in a directory and lets the
- * admin user create and manage the page for each file.  Bulk actions allow the
- * admin user to manage the pages in batches.
+ * This plugin lets you choose among a configurable set of source directories.
+ * Then it displays a list of the TEI files in that directory and lets you
+ * create and manage the page for each file.  Bulk actions allow you to manage
+ * the pages in batches.
  *
- * When a page is created, text can automatically be written to it.  Usually
- * this text consists in one or more shortcodes for the _Capitularia File
- * Includer_ plugin.
+ * The plugin can be configured to automatically put some text on newly created
+ * pages.  Usually this text consists in one or more shortcodes for the
+ * :ref:`Capitularia File Includer plugin <file-includer>`.  It is the File
+ * Includer plugin that actually puts the content onto the page.
  *
  * Note that this plugin does nothing on the public pages (except displaying a
  * button on the admin toolbar).
@@ -30,33 +36,36 @@
  * How do the TEI files get to the user?
  *
  * A cron process on the API server converts all the TEI files into HTML files
- * and stores them in the AFS filesystem.  See also: the Makefile in the xslt
- * directory on the API server.
+ * and stores them in the AFS filesystem.  See also: the :ref:`Makefile` in the
+ * xslt directory on the API server.
  *
- * The _Capitularia File Includer_ plugin then includes those files from the AFS
- * filesystem when outputting a Wordpress page to the user.
+ * The :ref:`Capitularia File Includer plugin <file-includer>` then includes
+ * those files from the AFS filesystem when outputting a Wordpress page to the
+ * user.
+ *
+ * @package Capitularia
  */
 
 namespace cceh\capitularia\page_generator;
 
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
-/** @var string The name of the plugin. */
+/** The name of the plugin. */
 const NAME                 = 'Capitularia Page Generator';
 
-/** @var string Text Domain */
+/** The Text Domain ofthe plugin. */
 const LANG                 = 'cap-page-generator';
 
-/** @var string Wordpress ID of the settings (option) page */
+/** The Wordpress ID of the settings (option) page. */
 const OPTIONS              = 'cap_page_gen_options';
 
-/** @var string Wordpress ID of the dashboard page */
+/** The Wordpress ID of the dashboard page. */
 const DASHBOARD            = 'cap_page_gen_dashboard';
 
-/** @var string AJAX security */
+/** AJAX security */
 const NONCE_SPECIAL_STRING = 'cap_page_gen_nonce';
 
-/** @var string AJAX security */
+/** AJAX security */
 const NONCE_PARAM_NAME     = '_ajax_nonce';
 
 if (!class_exists ('\WP_List_Table')) {
@@ -85,10 +94,6 @@ add_filter (
     'plugin_action_links_cap-page-generator/cap-page-generator.php',
     ns ('on_plugin_action_links')
 );
-
-register_activation_hook   (__FILE__, ns ('on_activation'));
-register_deactivation_hook (__FILE__, ns ('on_deactivation'));
-register_uninstall_hook    (__FILE__, ns ('on_uninstall'));
 
 // for side effect only: to get it in the .po file
 __ ('Capitularia Page Generator');

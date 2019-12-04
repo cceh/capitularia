@@ -20,6 +20,8 @@ class Config
      *
      * Array of arrays of arrays: sections / fields / properties
      *
+     * .. code:: php
+     *
      *     foreach ($this->sections as $section) {
      *          $section_id      = $section[0];
      *          $fields          = $section[1];
@@ -33,11 +35,12 @@ class Config
      */
     public $sections = null;
 
-    /** @var string[]|null Array of options retrieved from database and cached. */
+    /**
+     * Array of options retrieved from database and cached.
+     *
+     * @var string[]|null
+     */
     private $options = null;
-
-    /** @var string[]|null Array of options retrieved from database and cached. */
-    private $cap_fi_options = null;
 
     /**
      * Constructor

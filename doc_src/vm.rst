@@ -7,6 +7,5 @@ Capitularia VM
 .. toctree::
    :maxdepth: 2
 
-   app_server
-   database
-   html_generation
+   vm/app_server
+   vm/database

@@ -1,8 +1,8 @@
-.. _collation-tool:
+.. _collation-tool-overview:
 
 
-Collation Tool
-==============
+Overview of the Collation Tool
+==============================
 
 Description of the collation tool and the processing of the TEI files.
 

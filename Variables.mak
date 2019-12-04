@@ -43,7 +43,10 @@ JSHINTFLAGS     = --reporter=unix
 STYLELINT       = $(NODE)/stylelint $(STYLELINTFLAGS)
 STYLELINTFLAGS  = -f unix
 RSYNC          := rsync -v -rlptz --exclude='*~' --exclude='.*'
-RSYNCPY        := $(RSYNC) --exclude "**/__pycache__"  --exclude "*.pyc"
+RSYNCPY        := $(RSYNC) --exclude "**/__pycache__"  --exclude "*.pyc" --exclude "*.log"
+
+PHPDOC         := vendor/phpdocumentor/phpdocumentor/bin/phpdoc
+JSDOC          := jsdoc -c jsdoc.conf.js
 
 MYSQL_REMOTE   := mysql --defaults-file=~/.my.cnf.capitularia
 MYSQL_LOCAL    := mysql --defaults-file=~/.my.cnf.capitularia-local

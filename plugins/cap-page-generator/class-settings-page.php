@@ -13,7 +13,8 @@ use cceh\capitularia\file_includer;
 /**
  * Implements the settings (options) page.
  *
- * Found in Wordpress admin under _Settings | Capitularia Page Generator_.
+ * Found in Wordpress admin under :menuselection:`Settings | Capitularia Page
+ * Generator`.
  */
 
 class Settings_Page
@@ -56,7 +57,7 @@ class Settings_Page
             }
         }
 
-        /* Register only _one_ parameter. @see on_options_field () */
+        /* Register only _one_ parameter. @see on_options_field() */
         register_setting (OPTIONS, OPTIONS, array ($this, 'on_validate'));
     }
 
@@ -115,9 +116,9 @@ class Settings_Page
      *
      * Output (echo) an option field with its description.
      *
-     * We want all user entries to be returned into PHP as _one_ string[] called
-     * _OPTIONS\_PAGE\_ID_.  This array will be passed by Wordpress to the
-     * validation function and stored in the database all in _one_ row.
+     * We want all user entries to be returned into PHP as *one* string[] called
+     * *OPTIONS_PAGE_ID*.  This array will be passed by Wordpress to the
+     * validation function and stored in the database all in *one* row.
      *
      * @param array $args The arguments registered with add_settings_field ()
      *
@@ -154,29 +155,31 @@ class Settings_Page
      * Validate options entered by user
      *
      * We get all user entries back in one string[] so we can store them in one
-     * database row.  This makes validation somewhat more difficult.  @see
-     * on\_options\_field ()
+     * database row.  This makes validation somewhat more difficult.
      *
-     * @param string[] $input Options as entered by admin user
+     * @see on_options_field()
      *
-     * @return string[] Validated options
+     * @param array $options Array of key, value: the options as entered on
+     *                       the form.
+     *
+     * @return array Array containing the validated options
      */
 
-    public function on_validate (array $input)
+    public function on_validate (array $options)
     {
         global $config;
 
         $output = array ();
-        foreach ($input as $input_field_id => $value) {
+        foreach ($options as $options_id => $value) {
             // Find the field in the $sections structure.
             foreach ($config->sections as $section) {
                 $section_id = $section[0];
                 foreach ($section[1] as $field) {
                     $field_id = $field[0];
                     $callable = $field[3];
-                    if ($input_field_id == $section_id . '.' . $field_id) {
+                    if ($options_id == $section_id . '.' . $field_id) {
                         // Field found. Validate it and pass it on.
-                        $output[$input_field_id] = call_user_func ($callable, $value);
+                        $output[$options_id] = call_user_func ($callable, $value);
                     }
                 }
             }

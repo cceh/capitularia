@@ -2,17 +2,15 @@
 /**
  * Capitularia Meta Search Highlighter
  *
- * This class provides a snippet view and highlighted search terms for the
- * built-in Wordpress search.  It displays snippets of text around the found
- * terms instead of the page excerpt.
- *
- * @package Capitularia
+ * @package Capitularia Meta Search
  */
 
 namespace cceh\capitularia\meta_search;
 
 /**
- * TEI metadata extraction and search.
+ * This class provides a snippet view and highlighted search terms for the
+ * built-in Wordpress search.  It displays snippets of text around the found
+ * terms instead of the page excerpt.
  */
 
 class Highlighter
@@ -59,7 +57,7 @@ class Highlighter
      *
      * @param string  $content      The post content to search
      * @param string  $regex        The regex to search for
-     * @param integre $max_snippets The max. no. of snippets to return
+     * @param integer $max_snippets The max. no. of snippets to return
      *
      * @return string HTML list of snippets
      */

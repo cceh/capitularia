@@ -1,7 +1,10 @@
+/** @module client/main */
+
 /**
  * Main entry point.
  *
- * @module main
+ * @file
+ *
  * @author Marcello Perathoner
  */
 
@@ -11,11 +14,11 @@ import axios from 'axios';
 
 import app   from '../components/app.vue';
 
+/** @class Vue */
+
 /**
  * Ascend the VM tree until you find an api_url and use it as prefix to build
  * the full API url.
- *
- * @function build_full_api_url
  *
  * @param {Object} vm  - The Vue instance
  * @param {String} url - Url suffix
@@ -41,8 +44,6 @@ Vue.prototype.build_full_api_url = function (url) {
 /**
  * Make a GET request to the API server.
  *
- * @function get
- *
  * @param {String} url  - Url suffix
  * @param {Object} data - Params for axios call
  *
@@ -67,8 +68,6 @@ Vue.prototype.put = function (url, data = {}) {
  *
  * vue.js custom `events´ do not bubble, so they are useless.  Trigger a real
  * event that bubbles and can be caught by vue.js.
- *
- * @function $trigger
  *
  * @param {string} name - event name
  * @param {array}  data - data

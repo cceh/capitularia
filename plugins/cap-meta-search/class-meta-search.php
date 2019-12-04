@@ -2,7 +2,7 @@
 /**
  * Capitularia Meta Search
  *
- * @package Capitularia
+ * @package Capitularia Meta Search
  */
 
 namespace cceh\capitularia\meta_search;
@@ -29,12 +29,12 @@ class MetaSearch
      * except that we also provide the snippets to display and the chapter
      * information.
      *
-     * @param WP_Query $query The Wordpress query object
+     * @param \WP_Query $query The Wordpress query object
      *
      * @return void
      *
      * @see https://codex.wordpress.org/Class_Reference/WP_Query Class Reference
-     * WP_Query
+     *      for \WP_Query
      */
 
     public function on_pre_get_posts ($query)

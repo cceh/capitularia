@@ -1,6 +1,16 @@
+/** @module plugins/collation/results  */
+
+/**
+ * @file
+ */
+
 import * as tools from 'tools';
 
-/* The vue.js instance for the collation output section. */
+/**
+ * The vue.js instance that manages the collation output table.
+ * @class VueResults
+ */
+
 Vue.component ('cap-collation-user-results', {
     'data' : function () {
         return {
@@ -14,6 +24,7 @@ Vue.component ('cap-collation-user-results', {
             'spinner'         : false,
         };
     },
+    /** @lends VueResults.prototype */
     'methods' : {
         collate (data) {
             const vm   = this;
@@ -36,14 +47,15 @@ Vue.component ('cap-collation-user-results', {
             });
             return p;
         },
+
         /**
          * Transpose a table returned by CollateX
          *
          * Turn rows into columns and vice versa.
          *
-         * @param array matrix The CollateX table
+         * @param {array} matrix The CollateX table
          *
-         * @return array
+         * @return {array} The transposed table
          */
 
         transpose (matrix) {
@@ -53,9 +65,9 @@ Vue.component ('cap-collation-user-results', {
         /**
          * Calculate the cell width in characters
          *
-         * @param array $cell The array of tokens in the cell
+         * @param {array} cell The array of tokens in the cell
          *
-         * @return integer The width in characters
+         * @return {integer} The width in characters
          */
 
         cell_width (cell) {
@@ -66,10 +78,10 @@ Vue.component ('cap-collation-user-results', {
         /**
          * Split a table in columns every n characters
          *
-         * @param array   $in_table  The table to split
-         * @param integer $max_width Split after this many characters
+         * @param {array}   table     The table to split
+         * @param {integer} max_width Split after this many characters
          *
-         * @return array An array of tables
+         * @return {array} An array of tables
          */
 
         split_table (table, max_width) {
@@ -97,24 +109,24 @@ Vue.component ('cap-collation-user-results', {
         /**
          * Format a CollateX table into HTML
          *
-         * @param string[] sigla The witnesses' sigla in table order
-         * @param array    table The collation table in column-major orientation
-         * @param string[] order The witnesses' sigla in the order they should be displayed
-         *
-         * @return string[] The rows of the formatted table
-         *
-         * @return void
-         *
          * The Collate-X response:
          *
-         * {
-         *   "witnesses":["A","B"],
-         *   "table":[
-         *     [ [ {"t":"A","ref":123 } ],      [ {"t":"A" } ] ],
-         *     [ [ {"t":"black","adj":true } ], [ {"t":"white","adj":true } ] ],
-         *     [ [ {"t":"cat","id":"xyz" } ],   [ {"t":"kitten.","n":"cat" } ] ]
-         *   ]
-         * }
+         * .. code:: json
+         *
+         *    {
+         *      "witnesses":["A","B"],
+         *      "table":[
+         *        [ [ {"t":"A","ref":123 } ],      [ {"t":"A" } ] ],
+         *        [ [ {"t":"black","adj":true } ], [ {"t":"white","adj":true } ] ],
+         *        [ [ {"t":"cat","id":"xyz" } ],   [ {"t":"kitten.","n":"cat" } ] ]
+         *      ]
+         *    }
+         *
+         * @param {string[]} sigla The witnesses' sigla in table order
+         * @param {array}    table The collation table in column-major orientation
+         * @param {string[]} order The witnesses' sigla in the order they should be displayed
+         *
+         * @return {Object} The rows of the formatted table
          */
 
         format_table (witnesses, table, order) {

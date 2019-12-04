@@ -1,19 +1,27 @@
+/** @module plugins/collation/front */
+
 import * as tools from 'tools';
 import 'results';
 
-/*
+/**
  * We use webpack as a workaround to load javascript modules in Wordpress.
  * Wordpress cannot load javascript modules thru enqueue_script () because it
  * lacks an option to specify type="module" on the <script> element.  Webpack
  * also packs babel-runtime for us.  babel-runtime is required for async
  * functions.
+
+ * @file
  */
 
 // TODO: webpack hot-reloading?
 
+/**
+ * The vue.js instance that manages the whole page.
+ * @class VueFront
+ */
+
 (function ($) {
     $ (document).ready (function () {
-        /* The vue.js instance for the whole page. */
         new Vue ({
             'el'   : '#vm-cap-collation-user',
             'data' : {
@@ -43,18 +51,21 @@ import 'results';
                 'levenshtein_ratios'    : [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1],
             },
             'computed' : {
-                // list of shown sigla in correct order
+                /** @returns The list of shown sigla in the correct order. */
                 'sigla' : function () {
                     return this.witnesses.map (w => w.siglum);
                 },
-                // list of selected sigla in correct order
+                /** @returns The list of selected sigla in the correct order. */
                 'selected' : function () {
                     return this.witnesses.filter (w => w.checked).map (w => w.siglum);
                 },
             },
+            /** @lends VueFront.prototype */
             'methods' : {
                 /**
                  * Bundle all parameters for collate () and on_save_config ().
+                 *
+                 * @returns {Object} The parameters for the collate REST API call.
                  */
                 ajax_params () {
                     const data = _.pick (

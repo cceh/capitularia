@@ -1,8 +1,5 @@
 <?php
-
-/**
- * Capitularia Collation Tool plugin.
- *
+/*
  * Plugin Name: Capitularia Collation Tool
  * Plugin URI:
  * Description: Collates TEI files.
@@ -12,11 +9,19 @@
  * License:     GPLv2 or later
  * Text Domain: cap-collation-user
  * Domain Path: /languages
+ */
+
+/**
+ * Capitularia Collation Tool plugin.
  *
- * @package Capitularia
+ * The *Collation Tool plugin* lets any member of the general public do
+ * collations of different versions of the same chapter from different
+ * manuscripts.
  *
- * Provides a workspace where the user can request collations of sections of
- * manuscripts.  Most of the workspace is implemented in javascript with Vue.js.
+ * This plugin provides a dashboard where the user can request collations of
+ * sections of manuscripts.  The dashboard is implemented in javascript with
+ * Vue.js.  The PHP code of this plugin basically only serves the Javascript
+ * code to the user.
  *
  * The actual collation is done on the Capitularia API Server with a customized
  * version of CollateX for Java.
@@ -26,40 +31,28 @@
  * collation.  In the end all TEI tags are removed and only the normalized text
  * is stored into the Postgres database.  On an incoming collation request the
  * API server reads the pre-processed texts from the database and sends them to
- * CollateX.  See: collatex_server.py.
+ * CollateX.
+ *
+ * See: :mod:`collatex_server`, :ref:`collation overview<collation-tool-overview>`.
+ *
+ * @package Capitularia Collation Tool
  */
 
 namespace cceh\capitularia\collation_user;
 
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
-/** @var string The name of the plugin. */
-const NAME      = 'Capitularia Collation Tool';
+/** The name of the plugin. */
+const NAME = 'Capitularia Collation Tool';
 
-/** @var string Text Domain */
-const LANG      = 'cap-collation-user';
-
-/** @var string AJAX security */
-// const NONCE_SPECIAL_STRING = 'cap_collation_nonce';
-
-/** @var string AJAX security */
-// const NONCE_PARAM_NAME     = '_ajax_nonce';
-
+/** The Text Domain of the plugin. */
+const LANG = 'cap-collation-user';
 
 require_once 'functions.php';
-require_once 'dashboard.php';
 
-add_action ('init',                  ns ('on_init'));
-add_action ('wp_enqueue_scripts',    ns ('on_enqueue_scripts'));
-
-add_action ('admin_enqueue_scripts', ns ('on_admin_enqueue_scripts'));
+add_action ('wp_enqueue_scripts', ns ('on_enqueue_scripts'));
 
 add_shortcode ('cap_collation_dashboard', ns ('on_shortcode'));
-
-register_activation_hook   (__FILE__, ns ('on_activation'));
-register_deactivation_hook (__FILE__, ns ('on_deactivation'));
-register_uninstall_hook    (__FILE__, ns ('on_uninstall'));
-
 
 // for side effect only: to get it in the .po file
 __ ('Capitularia Collation Tool');

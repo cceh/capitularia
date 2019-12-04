@@ -108,15 +108,35 @@ function get_permalink_a ()
     );
 }
 
+/**
+ * Echo the tag to start the main section.
+ *
+ * @param string $class CSS classes to add to the tag.
+ *
+ * @return void
+ */
+
 function get_main_start ($class = '')
 {
     echo ("<main id='main' class='cap-row main $class'>\n");
 }
 
+/**
+ * Echo the tag to end the main section.
+ *
+ * @return void
+ */
+
 function get_main_end ()
 {
     echo ("</main>\n");
 }
+
+/**
+ * Echo the tag to start the sideabr section.
+ *
+ * @return void
+ */
 
 function get_sidebar_start ()
 {
@@ -124,16 +144,34 @@ function get_sidebar_start ()
     echo ("    <ul>\n");
 }
 
+/**
+ * Echo the tag to end the sidebar section.
+ *
+ * @return void
+ */
+
 function get_sidebar_end ()
 {
     echo ("    </ul>\n");
     echo ("  </nav>\n");
 }
 
+/**
+ * Echo the tag to start the content section.
+ *
+ * @return void
+ */
+
 function get_content_start ()
 {
     echo ("  <div class='cap-left-col-pull content-col'>\n");
 }
+
+/**
+ * Echo the tag to end the content section.
+ *
+ * @return void
+ */
 
 function get_content_end ()
 {
@@ -258,7 +296,7 @@ function on_wp_title ($title, $sep)
  * @param string $title   The post title
  * @param int    $post_ID The post ID
  *
- * @return The edited post title
+ * @return string The edited post title
  */
 
 function on_the_title ($title, $post_ID)
@@ -348,7 +386,7 @@ function on_init ()
  * other pages also.
  *
  * @param array $dropdown_args The previous args.
- * @param int   $dummy_post    (unused) The post ID .
+ * @param int   $dummy_post    (unused) The post ID.
  *
  * @return array The new args.
  */
@@ -377,15 +415,6 @@ function translate_month_year ($month_year)
         },
         $month_year
     );
-}
-
-/*
- * Redirect user to current page after login
- */
-
-function on_login_redirect ($redirect_to, $requested_redirect_to, $user) // phpcs:ignore
-{
-    return $requested_redirect_to;
 }
 
 /**
@@ -430,14 +459,24 @@ function bk_to_permalink ($corresp)
     return null;
 }
 
-/*
- * Redirect from /bk/BK.42a to /capit/<subdir>/bk-nr-042a/
+/**
+ * Redirector for Capitulary pages
+ *
+ * Eg. redirect from /bk/BK.42a to /capit/<subdir>/bk-nr-042a/
  *
  * We cannot just use mod_rewrite because we don't know which subdirectory the
- * capitular page is in.
+ * capitulary page is in.
+ *
+ * @link https://developer.wordpress.org/reference/hooks/do_parse_request/
+ *
+ * @param boolean      $do_parse         (unused) Whether or not to parse the request.
+ * @param \WP          $wp               (unused) The current WordPress environment instance.
+ * @param array|string $extra_query_vars (unused) Extra passed query variables.
+ *
+ * @return boolean The $do_parse parameter unchanged.
  */
 
-function on_do_parse_request ($do_parse, $dummy_wp, $dummy_extra_query_vars) // phpcs:ignore
+function on_do_parse_request ($do_parse, $wp, $extra_query_vars) // phpcs:ignore
 {
     $request = isset ($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
     // error_log ('Request was: ' . $request);
@@ -460,10 +499,29 @@ function on_do_parse_request ($do_parse, $dummy_wp, $dummy_extra_query_vars) // 
 }
 
 /**
+ * Redirect the user to the current page after login
+ *
+ * @link https://developer.wordpress.org/reference/hooks/login_redirect/
+ *
+ * @param string $redirect_to           The redirect destination URL.
+ * @param string $requested_redirect_to The requested redirect destination URL
+ *                                      passed as a parameter.
+ * @param \WP_User | \WP_Error $user    WP_User object if login was successful,
+ *                                      WP_Error object otherwise.
+ *
+ * @return string The target URL of the redirection.
+ */
+
+function on_login_redirect ($redirect_to, $requested_redirect_to, $user) // phpcs:ignore
+{
+    return $requested_redirect_to;
+}
+
+/**
  * HACK! make the "WP Help" wiki plugin's post type searchable
  *
- * @param string       $post_type        - The post type
- * @param WP_Post_Type $post_type_object - The post object
+ * @param string        $post_type        The post type
+ * @param \WP_Post_Type $post_type_object The post object
  *
  * @return void
  */
@@ -479,7 +537,7 @@ function on_registered_post_type ($post_type, $post_type_object)
 /**
  * Search only wiki pages if search string contains 'wiki:'
  *
- * @param WP_Query $query - The query
+ * @param \WP_Query $query The query
  *
  * @return void
  */
@@ -500,7 +558,7 @@ function on_pre_get_posts ($query)
 /**
  * REST endpoint to get user information from auth cookie
  *
- * @param object $request The request
+ * @param \WP_REST_Request $request The request
  *
  * @return void
  */

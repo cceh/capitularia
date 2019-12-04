@@ -37,9 +37,16 @@ extensions = [
     'sphinx.ext.graphviz',
     'sphinx.ext.mathjax',
     'sphinx.ext.imgconverter',
-    # 'sphinx_js',
     'sphinxcontrib.plantuml',
     'sphinxcontrib.httpdomain',
+
+    'sphinxcontrib.phpdomain',
+    'autophpdoc.autophpdoc',
+
+    'sphinx_js',
+    'autojsdoc.autojsdoc',
+
+    # 'xpath.xpath',
     'sauml.sauml',
 ]
 
@@ -48,6 +55,10 @@ extensions = [
 
 sauml_arguments = ['postgresql+psycopg2://capitularia@localhost:5432/capitularia']
 sauml_dot_table = 'bgcolor=#e7f2fa&color=#2980B9'
+
+# xpath_file    = 'phpdoc/structure.xml'
+autophpdoc_structure_xml = 'phpdoc/structure.xml'
+autojsdoc_structure_json = 'jsdoc/structure.json'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

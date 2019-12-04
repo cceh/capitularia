@@ -10,7 +10,7 @@ namespace cceh\capitularia\page_generator;
 use cceh\capitularia\lib;
 
 /**
- * A list table for the page generator admin page.
+ * The file list table on the dashboard page.
  *
  * Lists all the files in a directory plus status information.
  *
@@ -131,8 +131,8 @@ class File_List_Table extends \WP_List_Table
     /**
      * Recursively scan a directory.
      *
-     * @param string   $root  The root directory
-     * @param string[] $paths The array of paths
+     * @param string $root  The root directory
+     * @param array  $paths Array of strings: the paths still to scan
      *
      * @return void
      */

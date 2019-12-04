@@ -7,4 +7,5 @@ RRZK Web Projekt Capitularia
 .. toctree::
    :maxdepth: 2
 
-   plugins
+   webprojekt/wordpress
+   webprojekt/database

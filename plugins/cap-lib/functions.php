@@ -78,17 +78,19 @@ function on_cap_lib_get_api_endpoint ()
 /**
  * AJAX endpoint to query user capabilities
  *
- * Send JSON response.
+ * Sends a JSON response.
+ *
+ * @param string $cap The capability to query, eg. 'read_private_pages'.
  *
  * @return void
  */
 
-function on_cap_lib_current_user_can ($what)
+function on_cap_lib_current_user_can ($cap)
 {
     wp_send_json (
         array (
             'success' => true,
-            'data'    => current_user_can ($what),
+            'data'    => current_user_can ($cap),
         )
     );
 }
@@ -335,34 +337,4 @@ function on_plugin_action_links ($links)
         '<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>'
     );
     return $links;
-}
-
-/**
- * Things to do when an admin activates the plugin
- *
- * @return void
- */
-
-function on_activation ()
-{
-}
-
-/**
- * Things to do when an admin deactivates the plugin
- *
- * @return void
- */
-
-function on_deactivation ()
-{
-}
-
-/**
- * Things to do when an admin uninstalls the plugin
- *
- * @return void
- */
-
-function on_uninstall ()
-{
 }

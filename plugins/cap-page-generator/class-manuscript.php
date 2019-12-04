@@ -19,16 +19,32 @@ namespace cceh\capitularia\page_generator;
 
 class Manuscript
 {
-    /** @var string The filesystem path to the manuscript file. */
+    /**
+     * The filesystem path to the manuscript file.
+     *
+     * @var string
+     */
     private $path;
 
-    /** @var string The section of the manuscript, eg. 'mss', 'capit/ldf', ... */
+    /**
+     * The section of the manuscript, eg. 'mss', 'capit/ldf', ...
+     *
+     * @var string
+     */
     private $section_id;
 
-    /** @var string|null The xml:id of the manuscript. Cached. */
+    /**
+     * The xml:id of the manuscript. Cached.
+     *
+     * @var string|null
+     */
     private $xml_id = null;
 
-    /** @var string|null The title of the manuscript. Cached. */
+    /**
+     * The title of the manuscript. Cached.
+     *
+     * @var string|null
+     */
     private $title = null;
 
     /**
@@ -233,9 +249,9 @@ class Manuscript
      * different parent page, so we must account for that.
      *
      * We also delete all pages that have the same slug with a hyphen and number
-     * appended.  Eg. deleting the page _/mss/my-slug_ would also delete the
-     * pages _/mss/my-slug-1_ and _/mss/my-slug-42_, but not the page
-     * _/internal/mss/my-slug_.
+     * appended.  Eg. deleting the page /mss/my-slug would also delete the pages
+     * /mss/my-slug-1 and /mss/my-slug-42, but not the page
+     * /internal/mss/my-slug.
      *
      * @return array Success or error messages
      */

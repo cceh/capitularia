@@ -17,14 +17,12 @@ Developer Manual
 ================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    intro
-   webprojekt/webprojekt
-   vm/vm
-   collation_tool
-   meta_search
-   collections
+   overviews
+   webprojekt
+   vm
 
 
 

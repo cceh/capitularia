@@ -1,8 +1,5 @@
 <?php
-
-/**
- * TEI Metadata Search widget.
- *
+/*
  * Plugin Name: Capitularia Meta Search
  * Plugin URI:
  * Description: Perform metadata-aware searches for and in TEI files.
@@ -12,10 +9,14 @@
  * License:     GPLv2 or later
  * Text Domain: cap-meta-search
  * Domain Path: /languages
+ */
+
+/**
+ * TEI Metadata Search plugin.
  *
- * @package Capitularia
- *
- * Implements the metadata search box on manuscript pages.
+ * The *Meta Search plugin* offers metadata-aware and fuzzy fulltext search.  A
+ * search form widget is part of the plugin.  This search box is used on all
+ * manuscript pages.
  *
  * The meta search uses a different approach than the built-in Wordpress search.
  * This search is done on the VM server and the unit of search is the capitulary
@@ -24,26 +25,31 @@
  *
  * The plugin also provides a snippet and highlighter class for the built-in
  * Wordpress search, that displays snippets of text around the found terms
- * instead of the page excerpt.
+ * instead of the page excerpt.  The highlighter may be used on any Wordpress
+ * page.
+ *
+ * See: :mod:`data_server`, :ref:`metadata search overview<meta-search-overview>`.
+ *
+ * @package Capitularia Meta Search
  */
 
 namespace cceh\capitularia\meta_search;
 
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
-/** @var string The name of the plugin. */
-const NAME                  = 'Capitularia Meta Search';
+/** The name of the plugin. */
+const NAME                 = 'Capitularia Meta Search';
 
-/** @var string Text Domain */
+/** The text domain of the plugin. */
 const LANG                 = 'cap-meta-search';
 
-/** @var string AJAX security */
+/** AJAX security */
 const NONCE_SPECIAL_STRING = 'cap_meta_search_nonce';
 
-/** @var string AJAX security */
+/** AJAX security */
 const NONCE_PARAM_NAME     = '_ajax_nonce';
 
-/** @var string The highlight parameter */
+/** The URL query parameter to request word highlighting. */
 const HIGHLIGHT            = 'cap_highlight_words';
 
 require_once 'functions.php';
@@ -73,11 +79,6 @@ if (!is_admin ()) {
         add_filter ('the_content',      array ($cap_meta_search, 'on_the_content'));
     }
 }
-
-register_activation_hook   (__FILE__, ns ('on_activation'));
-register_deactivation_hook (__FILE__, ns ('on_deactivation'));
-register_uninstall_hook    (__FILE__, ns ('on_uninstall'));
-
 
 // for side effect only: to get it in the .po file
 __ ('Capitularia Meta Search');

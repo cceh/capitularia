@@ -1,8 +1,6 @@
 <?php
 
-/**
- * Capitularia Library plugin.
- *
+/*
  * Plugin Name: Capitularia Library
  * Plugin URI:
  * Description: Library of functions for Capitularia plugins. (REQUIRED)
@@ -12,10 +10,16 @@
  * License:     GPLv2 or later
  * Text Domain: cap-lib
  * Domain Path: /languages
+ */
+
+/**
+ * Capitularia Library plugin.
  *
- * This plugin is required by the other Capitularia plugins.  This plugin
+ * The *Library plugin* contains a collection of useful functions.  This plugin
  * bundles all functions that don't quite fit elsewhere or would be excessively
  * duplicated.
+ *
+ * This plugin is required by the other Capitularia plugins.
  *
  * @package Capitularia
  */
@@ -24,13 +28,13 @@ namespace cceh\capitularia\lib;
 
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
-/** @var string The name of the plugin. */
+/** The name of the plugin. */
 const NAME    = 'Capitularia Library';
 
-/** @var string Text Domain */
+/** The Text Domain of the plugin. */
 const LANG    = 'cap-lib';
 
-/** @var string Wordpress ID of the settings (option) page */
+/** The Wordpress ID of the settings (option) page. */
 const OPTIONS = 'cap_lib_options';
 
 require_once 'functions.php';
@@ -52,10 +56,6 @@ add_filter (
 add_nopriv_action ('get_api_endpoint');
 add_nopriv_action ('current_user_can');
 add_nopriv_action ('get_published_ids');
-
-register_activation_hook   (__FILE__, ns ('on_activation'));
-register_deactivation_hook (__FILE__, ns ('on_deactivation'));
-register_uninstall_hook    (__FILE__, ns ('on_uninstall'));
 
 
 // for side effect only: to get it in the .po file

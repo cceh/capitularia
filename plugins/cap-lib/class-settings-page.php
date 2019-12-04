@@ -21,11 +21,11 @@ class Settings_Page
      * Add option fields so we can use the Wordpress function
      * do_settings_sections() to output them.
      *
-     * Also register _one_ POST parameter to be handled and validated by
-     * Wordpress.  We want all user entries to be returned into PHP as _one_
-     * string[] called _OPTIONS\_PAGE\_ID_.  This array will be passed by
+     * Also register *one* POST parameter to be handled and validated by
+     * Wordpress.  We want all user entries to be returned into PHP as *one*
+     * string[] called *OPTIONS_PAGE_ID*.  This array will be passed by
      * Wordpress to the validation function and stored in the database all in
-     * _one_ row.
+     * *one* row.
      *
      * @return Settings_Page
      *
@@ -133,12 +133,14 @@ class Settings_Page
      * Validate options entered by user
      *
      * We get all user entries back in one string[] so we can store them in one
-     * database row.  This makes validation somewhat more difficult.  @see
-     * \_\_construct ()
+     * database row.  This makes validation somewhat more difficult.
      *
-     * @param string[] $options Options as entered by admin user
+     * @see __construct()
      *
-     * @return string[] Validated options
+     * @param array $options Array of key, value: the options as entered on
+     *                       the form.
+     *
+     * @return array Array containing the validated options
      */
 
     public function on_validate_options ($options)

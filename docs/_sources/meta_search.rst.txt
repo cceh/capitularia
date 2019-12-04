@@ -1,4 +1,4 @@
-.. _meta-search:
+.. _meta-search-overview:
 
 Meta Search
 ===========
@@ -75,7 +75,7 @@ To get good full text search results in the absence of orthography, all full
 text search is done by similarity.  The plain text of the chapters is split into
 trigrams and the trigrams are indexed.
 
-The cap-meta-search Wordpress plugin sends the search query to the application
+The :ref:`Meta Search<meta-search>` Wordpress plugin sends the search query to the application
 server, which does the actual search.  The app server finds the chapters and the
 ids of the manuscripts but it doesn't know which Wordpress pages contain the
 text of those manuscripts.  The plugin finds the pages in the Wordpress database

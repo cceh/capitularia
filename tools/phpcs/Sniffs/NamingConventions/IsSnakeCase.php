@@ -1,5 +1,7 @@
 <?php
 
+namespace phpcs\Sniffs\NamingConventions;
+
 /**
  * Returns true if the specified string is in the snake_case format.
  *
@@ -9,13 +11,10 @@
  */
 function isSnakeCase($string)
 {
-    // If there are space in the name, it can't be valid.
-    if (strpos($string, ' ') !== false) {
-        return false;
+    // allow 'ID' in variable names because of its frequent use in Wordpress
+    foreach (explode ('_', $string) as $s) {
+        if (preg_match('/^([a-z0-9]+)|(ID)$/', $s) !== 1)
+            return false;
     }
-
-    $validName = preg_match('|^[_a-z0-9]+$|', $string) === 1;
-
-    return $validName;
-
-}//end isSnakeCase()
+    return true;
+}

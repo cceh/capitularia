@@ -12,19 +12,23 @@ namespace cceh\capitularia\page_generator;
  *
  * The dashboard page controls the plugin.
  *
- * You open the dashboard page by clicking on _Dashboard | Capitularia Page
- * Generator_ in the Wordpress admin page.
+ * You open the dashboard page by clicking on :menuselection:`Dashboard |
+ * Capitularia Page Generator` in the Wordpress admin page.
  */
 
 class Dashboard_Page
 {
-    /** @var array The standard pagination args. */
+    /**
+     * The standard pagination args.
+     *
+     * @var array
+     */
     private $pagination_args;
 
     /**
      * Constructor
      *
-     * @return Dashboard_Page
+     * @return Dashboard_Page The Dashboard page
      */
 
     public function __construct ()
@@ -151,7 +155,7 @@ class Dashboard_Page
      *
      * @param array $error_struct The error struct
      *
-     * @return $string HTML-formatted message
+     * @return string The HTML-formatted message
      */
 
     private function format_error_message ($error_struct)
@@ -189,7 +193,7 @@ class Dashboard_Page
      *
      * @return string Error messages formatted as HTML
      *
-     * @see on_cap_action_file ()
+     * @see on_cap_action_file()
      */
 
     private function process_bulk_actions ($action, $section_id, $filenames)
@@ -218,7 +222,7 @@ class Dashboard_Page
      *
      * @return void
      *
-     * @see process_bulk_actions ()
+     * @see process_bulk_actions()
      */
 
     public function on_cap_action_file ()

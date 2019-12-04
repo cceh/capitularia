@@ -1,8 +1,8 @@
 <?php
 /**
- * Capitularia Meta Search.
+ * Capitularia Meta Search global functions
  *
- * @package Capitularia
+ * @package Capitularia Meta Search
  */
 
 namespace cceh\capitularia\meta_search;
@@ -178,10 +178,6 @@ function on_enqueue_scripts ()
     );
 }
 
-/*
- * Incipit administration page stuff
- */
-
 /**
  * Enqueue admin side scripts and styles
  *
@@ -206,34 +202,4 @@ function on_admin_enqueue_scripts ()
             NONCE_PARAM_NAME => wp_create_nonce (NONCE_SPECIAL_STRING),
         )
     );
-}
-
-/**
- * Things to do when an admin activates the plugin
- *
- * @return void
- */
-
-function on_activation ()
-{
-}
-
-/**
- * Things to do when an admin deactivates the plugin
- *
- * @return void
- */
-
-function on_deactivation ()
-{
-}
-
-/**
- * Things to do when an admin uninstalls the plugin
- *
- * @return void
- */
-
-function on_uninstall ()
-{
 }

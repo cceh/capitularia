@@ -13,27 +13,12 @@ namespace cceh\capitularia\file_includer;
 use cceh\capitularia\lib;
 
 /**
- * Clean up the <pre> tags we inserted solely to protect against the dumb
- * wpautop and wptexturizer filters.
- *
- * @param array  $dummy_atts (unused) The shortcode attributes.
- * @param string $content    The shortcode content.
- *
- * @return The content with <pre> tags stripped.
- */
-
-function on_shortcode ($dummy_atts, $content) // phpcs:ignore
-{
-    return \do_shortcode (strip_pre ($content));
-}
-
-/**
  * Put shortcodes and <pre> tags around the content.
  *
  * @param array  $atts    The shortcode attributes.
  * @param string $content The shortcode content.
  *
- * @return The content surrounded by shortcodes and <pre> tags.
+ * @return string The content surrounded by shortcodes and <pre> tags.
  */
 
 function make_shortcode_around ($atts, $content)
@@ -52,7 +37,7 @@ function make_shortcode_around ($atts, $content)
  *
  * @param string $content The content to strip.
  *
- * @return The stripped content.
+ * @return string The stripped content.
  */
 
 function strip_pre ($content)
@@ -129,18 +114,6 @@ function on_init ()
 }
 
 /**
- * Initialize the settings page.
- *
- * First hook called on every admin page.
- *
- * @return void
- */
-
-function on_admin_init ()
-{
-}
-
-/**
  * Enqueue the admin page scripts and styles
  *
  * @return void
@@ -189,34 +162,4 @@ function on_plugin_action_links ($links)
         '<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>'
     );
     return $links;
-}
-
-/**
- * Things to do when an admin activates the plugin
- *
- * @return void
- */
-
-function on_activation ()
-{
-}
-
-/**
- * Things to do when an admin deactivates the plugin
- *
- * @return void
- */
-
-function on_deactivation ()
-{
-}
-
-/**
- * Things to do when an admin uninstalls the plugin
- *
- * @return void
- */
-
-function on_uninstall ()
-{
 }

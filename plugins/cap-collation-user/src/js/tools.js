@@ -1,7 +1,16 @@
+/** @module plugins/collation/tools */
+
+/**
+ * @file Contains utility functions for the collation applet.
+ */
+
 /** cap_collation_user_front_ajax_object is set by wp_localize_script in function.php. */
 /* global cap_collation_user_front_ajax_object */
 
-/** The id of the "Obertext". */
+/**
+ * The id of the "Obertext".
+ * @type {string}
+ */
 export const bk_id = 'bk-textzeuge';
 
 /**
@@ -18,6 +27,10 @@ export const cap_collation_algorithms = [
 
 /**
  * This calls the API on the API server
+ *
+ * @param {string} url  The endpoint relative to the API root.
+ * @param {Object} data The data to send.
+ * @returns {Promise} Promise resolved when call completed.
  */
 export function api (url, data = {}) {
     data.status = cap_collation_user_front_ajax_object.status;
@@ -31,6 +44,8 @@ export function api (url, data = {}) {
 
 /**
  * Get the API entrypoint
+ *
+ * @returns {string} The root URL of the API server.
  */
 export function get_api_entrypoint () {
     return cap_collation_user_front_ajax_object.api_url;
@@ -38,6 +53,9 @@ export function get_api_entrypoint () {
 
 /**
  * Build a valid filename to save the config.
+ *
+ * @param {string} str The string to encode.
+ * @returns {string} The encoded string.
  */
 export function encodeRFC5987ValueChars (str) {
     return encodeURIComponent (str)
@@ -52,6 +70,9 @@ export function encodeRFC5987ValueChars (str) {
 
 /**
  * A key that sorts numbers right
+ *
+ * @param {string} s Any string.
+ * @returns {string} A key derived from the string that sorts numbers right.
  */
 export function sort_key (s) {
     function fixnum (match, offset, string) {
@@ -63,7 +84,10 @@ export function sort_key (s) {
 }
 
 /**
- * Fix witness
+ * Prepare a witness for display, add human-readable title, i18n.
+ *
+ * @param {Object} w  The witness to fix
+ * @returns {Object}  The fixed witness object
  */
 export function fix_witness (w) {
     const i18n = cap_collation_user_front_ajax_object;
@@ -79,7 +103,10 @@ export function fix_witness (w) {
 }
 
 /**
- * Parse API response into separate pieces of data
+ * Parse API server response into witness object
+ *
+ * @param {Object} r  The server response
+ * @returns {Object}  The witness struct
  */
 export function parse_witness_response (r) {
     let siglum = r.ms_id;
@@ -91,18 +118,21 @@ export function parse_witness_response (r) {
     }
 
     return fix_witness ({
-        'siglum'   : siglum,
-        'type'     : r.type,
+        'siglum' : siglum,
+        'type'   : r.type,
     });
 }
 
 
 /**
- * Parse witness siglum into separate pieces of data
+ * Parse witness siglum into witness object
+ *
+ * @param {string} siglum  The witness siglum
+ * @returns {Object}  The witness object
  */
-export function parse_siglum (wit) {
+export function parse_siglum (siglum) {
     return fix_witness ({
-        'siglum'   : wit,
-        'type'     : wit.match (/[?]hands=XYZ/) ? 'later_hands' : 'original',
+        'siglum' : siglum,
+        'type'   : siglum.match (/[?]hands=XYZ/) ? 'later_hands' : 'original',
     });
 }

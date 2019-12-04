@@ -2,7 +2,7 @@
 /**
  * Capitularia Collation Dashboard Page
  *
- * @package Capitularia
+ * @package Capitularia Collation Tool
  */
 
 namespace cceh\capitularia\collation_user;
@@ -10,13 +10,13 @@ namespace cceh\capitularia\collation_user;
 // phpcs:disable Generic.WhiteSpace.ScopeIndent.Incorrect
 
 /**
- * Output the dashboard page.
+ * Build the dashboard page.
  *
- * This page uses vue.js to manipulate its content.  Most content is retrieved
- * by AJAX, see also: dashboard-ajax.php.  We use a .php file instead of a
- * vue.js template because it makes translation easier.
+ * This page uses vue.js to manipulate its content.  Vue.js then retrieves
+ * further content by AJAX.  We use a this template instead of a vue.js template
+ * because it makes translation easier.
  *
- * @return void
+ * @return string The HTML of the dashboard page.
  */
 
 function dashboard_page ()

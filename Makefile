@@ -24,8 +24,8 @@ upload_server:
 	cd $(SERVER) && $(MAKE) upload
 
 import_xml:
-	$(RSYNC) --del $(PUBL)/mss/*xml   xml/
-	$(RSYNC) --del $(PUBL)/capit/*    capit/
+	$(RSYNC) --del $(PUBL)/mss/*xml xml/
+	$(RSYNC) --del $(PUBL)/capit/*  capit/
 
 import_backups:
 	$(RSYNC) $(AFS)/backups/* ../backups/
@@ -35,8 +35,26 @@ import_backup_mysql: import_backups
 
 .PHONY: docs mysql-remote mysql-local
 
-docs:
-	cd doc_src && $(MAKE) html
+doc_src/phpdoc/structure.xml: $(wildcard plugins/*/*.php $(THEMES)/*.php $(THEMES)/widgets/*.php)
+	mkdir -p doc_src/phpdoc
+	$(PHPDOC) -d "plugins,themes" -t ./doc_src/phpdoc --ignore="*/node_modules/*" --template="xml" --template="clean"
+
+doc_src/jsdoc/structure.json: $(shell find . -not -path "*node_modules*" -a -path "*/src/js/*.js")
+	mkdir -p doc_src/jsdoc/
+	$(JSDOC) -X $^ > $@
+
+docs: doc_src/phpdoc/structure.xml doc_src/jsdoc/structure.json
+	cd doc_src && $(MAKE) -e html
+
+doccs: doc_src/phpdoc/structure.xml doc_src/jsdoc/structure.json
+	export SPHINXOPTS=-aE; cd doc_src && $(MAKE) -e html
+
+jsdoc: doc_src/jsdoc/structure.json
+
+doxygen:
+	doxygen
+	mkdir -p doc_src/webprojekt/doxygen/
+	doxyphp2sphinx -v --xml-dir doxygen_build/xml/ --out-dir doc_src/webprojekt/doxygen/ cceh::capitularia
 
 mysql-remote:
 	$(MYSQL_REMOTE)
