@@ -18,9 +18,9 @@
       <table>
         <thead>
           <tr>
-            <th class='title'>Handschrift</th>
-            <th class='xml-download'>XML-Dateien</th>
-            <th class='pdf-download'>Beschreibung (Mordek 1995)</th>
+            <th class='title'>[:de]Handschrift[:en]Manuscript[:]</th>
+            <th class='xml-download'>[:de]XML-Dateien[:en]XML-Files[:]</th>
+            <th class='pdf-download'>[:de]Beschreibung (Mordek 1995)[:en]Description (Mordek 1995)[:]</th>
           </tr>
         </thead>
         <xsl:for-each-group
