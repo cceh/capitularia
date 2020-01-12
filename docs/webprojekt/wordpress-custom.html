@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Wordpress Database Structure &mdash; Capitularia 0.1.1 documentation</title>
+  <title>Wordpress Customizations &mdash; Capitularia 0.1.1 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Wordpress Customizations" href="wordpress-custom.html" />
-    <link rel="prev" title="Wordpress Installation" href="wordpress.html" /> 
+    <link rel="next" title="Wordpress Theme" href="wordpress/theme.html" />
+    <link rel="prev" title="Wordpress Database Structure" href="database.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -111,11 +111,11 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../webprojekt.html">RRZK Web Projekt Capitularia</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="wordpress.html">Wordpress Installation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Wordpress Database Structure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#metadata">Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">Wordpress Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="database.html#metadata">Metadata</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="wordpress-custom.html">Wordpress Customizations</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Wordpress Customizations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="wordpress/theme.html">Wordpress Theme</a></li>
 <li class="toctree-l3"><a class="reference internal" href="wordpress/plugins.html">Wordpress Plugins</a></li>
 </ul>
@@ -186,13 +186,13 @@
         
           <li><a href="../webprojekt.html">RRZK Web Projekt Capitularia</a> &raquo;</li>
         
-      <li>Wordpress Database Structure</li>
+      <li>Wordpress Customizations</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/webprojekt/database.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/webprojekt/wordpress-custom.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -205,23 +205,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="wordpress-database-structure">
-<span id="wp-db"></span><span id="mysql"></span><h1>Wordpress Database Structure<a class="headerlink" href="#wordpress-database-structure" title="Permalink to this headline">¶</a></h1>
-<p>The Wordpress Database for Capitularia.  This is a mysql database that is a part
-of the “RRZK Webprojekt” package.</p>
-<p>This is a standard Wordpress database.  See the <a class="reference external" href="https://codex.wordpress.org/Database_Description">Wordpress database description</a>.</p>
-<p>The database is part of the package “RRZK Webprojekt”.  The access parameters can
-be found in
-<code class="file docutils literal notranslate"><span class="pre">/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/http/docs/wp-config.php</span></code>.</p>
-<div class="section" id="metadata">
-<h2>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h2>
-<p>Metadata we add to the wp_postmeta table:</p>
-<dl>
-<dt>tei-xml-id</dt><dd><p>The xml:id of the TEI file transcluded into the page.</p>
-<p>The <a class="reference internal" href="wordpress/plugins/page-generator.html#page-generator"><span class="std std-ref">Page Generator plugin</span></a> adds this metadata when it
-creates a page.</p>
-</dd>
-</dl>
+  <div class="section" id="wordpress-customizations">
+<span id="wp"></span><span id="wordpress"></span><h1>Wordpress Customizations<a class="headerlink" href="#wordpress-customizations" title="Permalink to this headline">¶</a></h1>
+<p>The Wordpress customizations we did for Capitularia.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wordpress/theme.html">Wordpress Theme</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wordpress/theme/main.html">Wordpress Theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wordpress/theme/widgets.html">Wordpress Theme Widgets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wordpress/plugins.html">Wordpress Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins/collation-tool.html">Collation Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins/meta-search.html">Meta Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins/file-includer.html">File Includer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins/page-generator.html">Page Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins/dynamic-menu.html">Dynamic Menu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins/lib.html">Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins.html#obsolete-plugins">Obsolete Plugins</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 
@@ -233,10 +237,10 @@ creates a page.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="wordpress-custom.html" class="btn btn-neutral float-right" title="Wordpress Customizations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="wordpress/theme.html" class="btn btn-neutral float-right" title="Wordpress Theme" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="wordpress.html" class="btn btn-neutral float-left" title="Wordpress Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="database.html" class="btn btn-neutral float-left" title="Wordpress Database Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -110,13 +110,14 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../webprojekt.html">RRZK Web Projekt Capitularia</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../../wordpress.html">Wordpress</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../theme.html">Wordpress Theme</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../plugins.html">Wordpress Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../wordpress.html">Wordpress Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database.html">Wordpress Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../database.html#metadata">Metadata</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../database.html">Database Structure (Wordpress)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../database.html#metadata">Metadata</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../wordpress-custom.html">Wordpress Customizations</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../theme.html">Wordpress Theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plugins.html">Wordpress Plugins</a></li>
 </ul>
 </li>
 </ul>
@@ -185,7 +186,7 @@
         
           <li><a href="../../../webprojekt.html">RRZK Web Projekt Capitularia</a> &raquo;</li>
         
-          <li><a href="../../wordpress.html">Wordpress</a> &raquo;</li>
+          <li><a href="../../wordpress-custom.html">Wordpress Customizations</a> &raquo;</li>
         
           <li><a href="../theme.html">Wordpress Theme</a> &raquo;</li>
         
@@ -227,7 +228,7 @@
 <li><p><a class="reference internal" href="#themes-capitularia-search-php" id="id12">themes/Capitularia/search.php</a></p></li>
 <li><p><a class="reference internal" href="#themes-capitularia-shortcodes-php" id="id13">themes/Capitularia/shortcodes.php</a></p></li>
 <li><p><a class="reference internal" href="#themes-capitularia-sidebars-php" id="id14">themes/Capitularia/sidebars.php</a></p></li>
-<li><p><a class="reference internal" href="#javascript-module-themes-capitularia" id="id15">Javascript module themes/capitularia</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia" id="id15">themes/capitularia</a></p></li>
 </ul>
 </div>
 <span class="target" id="module-themes.Capitularia.404"></span><div class="section" id="themes-capitularia-404-php">
@@ -1094,43 +1095,38 @@ representation for the current locale without the time.</p>
 <p>Capitularia Theme sidebars.php file</p>
 <p>Register the sidebars for various page types.</p>
 </div>
-<span class="target" id="module-themes/capitularia"></span><div class="section" id="javascript-module-themes-capitularia">
-<h2><a class="toc-backref" href="#id15">Javascript module themes/capitularia</a><a class="headerlink" href="#javascript-module-themes-capitularia" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-themes/capitularia"></span><div class="section" id="themes-capitularia">
+<h2><a class="toc-backref" href="#id15">themes/capitularia</a><a class="headerlink" href="#themes-capitularia" title="Permalink to this headline">¶</a></h2>
 <p>File: themes/Capitularia/src/js/custom.js</p>
 <p>This file contains the Javascript for the Capitularia theme.</p>
 <dl class="function">
 <dt id="themes/capitularia.initBackToTop">
 <code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initBackToTop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes/capitularia.initBackToTop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize the back to top link: on click do a smooth scroll to the top
-of the page.</p>
+<dd><p>Initialize the back to top link: on click do a smooth scroll to the top of the page.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="themes/capitularia.initSmoothScrollLinks">
 <code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initSmoothScrollLinks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes/capitularia.initSmoothScrollLinks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize all links on the page to do a smooth scroll to their
-respective targets.</p>
+<dd><p>Initialize all links on the page to do a smooth scroll to their respective targets.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="themes/capitularia.initResetForm">
 <code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initResetForm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes/capitularia.initResetForm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize reset buttons to reset input and select controls on the parent
-form.</p>
+<dd><p>Initialize reset buttons to reset input and select controls on the parent form.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="themes/capitularia.initFootnoteTooltips">
 <code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initFootnoteTooltips</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes/capitularia.initFootnoteTooltips" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize the footnote refs, ie. the ‘*’, to open a popup on mouse
-hover.  The popup contains the footnote text.</p>
+<dd><p>Initialize the footnote refs, ie. the ‘*’, to open a popup on mouse hover. The popup contains the footnote text.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="themes/capitularia.initLegend">
 <code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initLegend</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes/capitularia.initLegend" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize the legend slide-out.  Make the legend slide out (and back in)
-if the user clicks on the respective tab.</p>
+<dd><p>Initialize the legend slide-out. Make the legend slide out (and back in) if the user clicks on the respective tab.</p>
 </dd></dl>
 
 </div>

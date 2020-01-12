@@ -49,7 +49,9 @@
 
     /**
      * The magic href to make a menu dynamic
+     *
      * @type {string}
+     * @memberof module:plugins/dynamic-menu
      */
     const MAGIC = '#cap_dynamic_menu#';
 
@@ -61,7 +63,7 @@
      * going through the DOM of the page and adding all elements that fit the
      * description.
      *
-     * @alias module:plugins/dynamic-menu.init_dynamic_menues
+     * @memberof module:plugins/dynamic-menu
      */
     function init_dynamic_menues () {
         let menu_id = 1;

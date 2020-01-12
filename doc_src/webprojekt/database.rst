@@ -1,8 +1,8 @@
 .. _mysql:
 .. _wp-db:
 
-Database Structure (Wordpress)
-==============================
+Wordpress Database Structure
+============================
 
 The Wordpress Database for Capitularia.  This is a mysql database that is a part
 of the "RRZK Webprojekt" package.

@@ -8,7 +8,7 @@ import * as tools from 'tools';
 
 /**
  * The vue.js instance that manages the collation output table.
- * @class VueResults
+ * @class module:plugins/collation/results.VueResults
  */
 
 Vue.component ('cap-collation-user-results', {
@@ -24,7 +24,7 @@ Vue.component ('cap-collation-user-results', {
             'spinner'         : false,
         };
     },
-    /** @lends VueResults.prototype */
+    /** @lends module:plugins/collation/results.VueResults.prototype */
     'methods' : {
         collate (data) {
             const vm   = this;

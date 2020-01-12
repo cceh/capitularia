@@ -9,9 +9,5 @@ The Widgets in the Wordpress theme for Capitularia.
    :local:
 
 .. php:automodule:: ^themes/Capitularia/widgets/
-   :members:
-   :title:
 
 .. js:automodule:: themes/capitularia/widgets
-   :members:
-   :title:

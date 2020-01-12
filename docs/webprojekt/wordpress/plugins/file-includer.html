@@ -110,13 +110,14 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../webprojekt.html">RRZK Web Projekt Capitularia</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../../wordpress.html">Wordpress</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../theme.html">Wordpress Theme</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../plugins.html">Wordpress Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../wordpress.html">Wordpress Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database.html">Wordpress Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../database.html#metadata">Metadata</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../database.html">Database Structure (Wordpress)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../database.html#metadata">Metadata</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../wordpress-custom.html">Wordpress Customizations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../theme.html">Wordpress Theme</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../plugins.html">Wordpress Plugins</a></li>
 </ul>
 </li>
 </ul>
@@ -185,7 +186,7 @@
         
           <li><a href="../../../webprojekt.html">RRZK Web Projekt Capitularia</a> &raquo;</li>
         
-          <li><a href="../../wordpress.html">Wordpress</a> &raquo;</li>
+          <li><a href="../../wordpress-custom.html">Wordpress Customizations</a> &raquo;</li>
         
           <li><a href="../plugins.html">Wordpress Plugins</a> &raquo;</li>
         
@@ -212,15 +213,15 @@
 <span id="id1"></span><h1>File Includer<a class="headerlink" href="#file-includer" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#plugins-cap-file-includer-cap-file-includer-php" id="id2">plugins/cap-file-includer/cap-file-includer.php</a></p></li>
-<li><p><a class="reference internal" href="#plugins-cap-file-includer-class-file-includer-php" id="id3">plugins/cap-file-includer/class-file-includer.php</a></p></li>
-<li><p><a class="reference internal" href="#plugins-cap-file-includer-class-settings-page-php" id="id4">plugins/cap-file-includer/class-settings-page.php</a></p></li>
-<li><p><a class="reference internal" href="#plugins-cap-file-includer-footnotes-post-processor-include-php" id="id5">plugins/cap-file-includer/footnotes-post-processor-include.php</a></p></li>
-<li><p><a class="reference internal" href="#plugins-cap-file-includer-functions-php" id="id6">plugins/cap-file-includer/functions.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-file-includer-cap-file-includer-php" id="id4">plugins/cap-file-includer/cap-file-includer.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-file-includer-class-file-includer-php" id="id5">plugins/cap-file-includer/class-file-includer.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-file-includer-class-settings-page-php" id="id6">plugins/cap-file-includer/class-settings-page.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-file-includer-footnotes-post-processor-include-php" id="id7">plugins/cap-file-includer/footnotes-post-processor-include.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-file-includer-functions-php" id="id8">plugins/cap-file-includer/functions.php</a></p></li>
 </ul>
 </div>
 <span class="target" id="module-plugins.cap-file-includer.cap-file-includer"></span><div class="section" id="plugins-cap-file-includer-cap-file-includer-php">
-<h2><a class="toc-backref" href="#id2">plugins/cap-file-includer/cap-file-includer.php</a><a class="headerlink" href="#plugins-cap-file-includer-cap-file-includer-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">plugins/cap-file-includer/cap-file-includer.php</a><a class="headerlink" href="#plugins-cap-file-includer-cap-file-includer-php" title="Permalink to this headline">¶</a></h2>
 <p>Capitularia File Includer plugin.</p>
 <p>The <em>File Includer plugin</em> registers a Wordpress shortcode that allows to
 include any external HTML file in a Worpdress page.  We use this shortcode to
@@ -276,19 +277,27 @@ contain the shortcodes for this plugin.</p>
 
 <span class="target" id="module-plugins.cap-file-includer.class-file-includer"></span></div>
 <div class="section" id="plugins-cap-file-includer-class-file-includer-php">
-<h2><a class="toc-backref" href="#id3">plugins/cap-file-includer/class-file-includer.php</a><a class="headerlink" href="#plugins-cap-file-includer-class-file-includer-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">plugins/cap-file-includer/class-file-includer.php</a><a class="headerlink" href="#plugins-cap-file-includer-class-file-includer-php" title="Permalink to this headline">¶</a></h2>
 <p>Capitularia File Includer Main Class</p>
 <dl class="class">
 <dt id="cceh\capitularia\file_includer\FileIncluderEngine">
 <em class="property">class </em><code class="sig-name descname">FileIncluderEngine</code><a class="headerlink" href="#cceh\capitularia\file_includer\FileIncluderEngine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements the inclusion engine.</p>
-<p>The main difficulty here is to get around the wpautop and wptexturizer
-filters, that were implemented with boundless incompetence.  To do that, we
-insert &lt;pre&gt; tags around our content, which is the only way to fend those
-filters off for some portion of a page, instead of disabling them wholesale.
-We double the &lt;pre&gt; tags in this way: &lt;pre&gt;&lt;pre&gt;…&lt;/pre&gt;&lt;/pre&gt; so that we
-can filter them out again later without danger of removing tags of other
-provenience.</p>
+<p>One difficulty is to get in early enough so that the qtranslate-x plugin has
+not translated away the unwanted languages.  We need all languages to be
+there when we have to save the page.  qtranslate-x hooks into ‘the_posts’ so
+we must too.</p>
+<p>The other difficulty is to protect the included content from the wpautop and
+wptexturizer filters, which were implemented with boundless incompetence and
+try to put &lt;p&gt;’s around the included content everywhere and fuck up the HTML
+attributes with curly quotes.</p>
+<p>To get around those filters we insert &lt;pre&gt; tags around the included content,
+which is the only way to fend those filters off for some portion of a page,
+instead of disabling them wholesale.  We double the &lt;pre&gt; tags in this way:
+&lt;pre&gt;&lt;pre&gt;…&lt;/pre&gt;&lt;/pre&gt; so that we can filter them out again later without
+danger of removing tags of other provenience.</p>
+<p>We have to save the included content to the database to make it searchable by
+the built-in Wordpress search engine.</p>
 <dl class="attr">
 <dt id="cceh\capitularia\file_includer\FileIncluderEngine::$$do_save">
 <em class="property">property </em><code class="sig-name descname">$do_save</code><a class="headerlink" href="#cceh\capitularia\file_includer\FileIncluderEngine::$$do_save" title="Permalink to this definition">¶</a></dt>
@@ -296,23 +305,19 @@ provenience.</p>
 Do we have to save the post?</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="cceh\capitularia\file_includer\FileIncluderEngine::__construct">
-<code class="sig-name descname">__construct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\file_includer\FileIncluderEngine::__construct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructor</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#cceh\capitularia\file_includer\FileIncluderEngine" title="cceh\capitularia\file_includer\FileIncluderEngine"><code class="xref php php-class docutils literal notranslate"><span class="pre">cceh\capitularia\file_includer\FileIncluderEngine</span></code></a></p>
-</dd>
-</dl>
+<dl class="attr">
+<dt id="cceh\capitularia\file_includer\FileIncluderEngine::$$post">
+<em class="property">property </em><code class="sig-name descname">$post</code><a class="headerlink" href="#cceh\capitularia\file_includer\FileIncluderEngine::$$post" title="Permalink to this definition">¶</a></dt>
+<dd><p>(WP_Post)
+A ref to the post being processed.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="cceh\capitularia\file_includer\FileIncluderEngine::on_shortcode_early">
 <code class="sig-name descname">on_shortcode_early</code><span class="sig-paren">(</span><em class="sig-param">$atts</em>, <em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\file_includer\FileIncluderEngine::on_shortcode_early" title="Permalink to this definition">¶</a></dt>
 <dd><p>Process our shortcodes.  Step 1: Include the file.</p>
-<p>Called at prio 9 from on_the_content_early()</p>
-<p>See: <a class="reference internal" href="#cceh\capitularia\file_includer\FileIncluderEngine::on_the_content_early" title="cceh\capitularia\file_includer\FileIncluderEngine::on_the_content_early"><code class="xref php php-meth docutils literal notranslate"><span class="pre">cceh\capitularia\file_includer\FileIncluderEngine::on_the_content_early()</span></code></a></p>
+<p>Called very early from on_the_posts ().</p>
+<p>See: cceh\capitularia\file_includer\on_the_content_early()</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -333,8 +338,8 @@ Do we have to save the post?</p>
 <dt id="cceh\capitularia\file_includer\FileIncluderEngine::on_shortcode">
 <code class="sig-name descname">on_shortcode</code><span class="sig-paren">(</span><em class="sig-param">$dummy_atts</em>, <em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\file_includer\FileIncluderEngine::on_shortcode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Process our shortcodes. Step 2.</p>
-<p>Clean up the &lt;pre&gt; tags we inserted solely to protect against the dumb
-wpautop and wptexturizer filters.</p>
+<p>Called after wpautop and wptexturizer did their nefarious work.  Clean up
+the &lt;pre&gt; tags we inserted only to protect against them.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -352,29 +357,27 @@ wpautop and wptexturizer filters.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="cceh\capitularia\file_includer\FileIncluderEngine::on_the_content_early">
-<code class="sig-name descname">on_the_content_early</code><span class="sig-paren">(</span><em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\file_includer\FileIncluderEngine::on_the_content_early" title="Permalink to this definition">¶</a></dt>
+<dt id="cceh\capitularia\file_includer\FileIncluderEngine::on_the_posts">
+<code class="sig-name descname">on_the_posts</code><span class="sig-paren">(</span><em class="sig-param">$posts</em>, <em class="sig-param">$query</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\file_includer\FileIncluderEngine::on_the_posts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Process our shortcodes. Step 1.</p>
-<p>This filter does not run at the customary shortcode filter prio
-of 11 but earlier at prio 9 so that we can do some work before
-the wpautop and wptexturizer filters have disfigured our content
-beyond recognition.</p>
-<p>Saving to the database also makes the page content searchable by
-the built-in Wordpress search engine.</p>
+<p>We are forced to hook into ‘the_posts’ because the qtranslate-x plugin
+does it this way and we must get in before qtranslate-x has <a href="#id2"><span class="problematic" id="id3">`</span></a>translated´
+away the unwanted languages.</p>
 <p>We cannot save inside the on_shortcode_early hook because there
 may be more than one shortcode on the page and besides there may
 be other content too.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$content</strong> (<em>string</em>) – The page content.</p></li>
+<li><p><strong>$posts</strong> (<em>array&lt;mixed,\WP_Post&gt;</em>) – The array of posts.</p></li>
+<li><p><strong>$query</strong> (<em>WP_Query</em>) – The query.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The page content with our shortcode processed.</p>
+<dd class="field-even"><p>The array of posts with our shortcode processed.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>string</p>
+<dd class="field-odd"><p>array&lt;mixed,\WP_Post&gt;</p>
 </dd>
 </dl>
 </dd></dl>
@@ -383,7 +386,7 @@ be other content too.</p>
 
 <span class="target" id="module-plugins.cap-file-includer.class-settings-page"></span></div>
 <div class="section" id="plugins-cap-file-includer-class-settings-page-php">
-<h2><a class="toc-backref" href="#id4">plugins/cap-file-includer/class-settings-page.php</a><a class="headerlink" href="#plugins-cap-file-includer-class-settings-page-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">plugins/cap-file-includer/class-settings-page.php</a><a class="headerlink" href="#plugins-cap-file-includer-class-settings-page-php" title="Permalink to this headline">¶</a></h2>
 <p>Capitularia File Includer Settings Page</p>
 <dl class="class">
 <dt id="cceh\capitularia\file_includer\Settings_Page">
@@ -503,7 +506,7 @@ difficult.</p>
 
 <span class="target" id="module-plugins.cap-file-includer.footnotes-post-processor-include"></span></div>
 <div class="section" id="plugins-cap-file-includer-footnotes-post-processor-include-php">
-<h2><a class="toc-backref" href="#id5">plugins/cap-file-includer/footnotes-post-processor-include.php</a><a class="headerlink" href="#plugins-cap-file-includer-footnotes-post-processor-include-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">plugins/cap-file-includer/footnotes-post-processor-include.php</a><a class="headerlink" href="#plugins-cap-file-includer-footnotes-post-processor-include-php" title="Permalink to this headline">¶</a></h2>
 <p>Capitularia Footnotes Post-Processor Include File</p>
 <p>This script processes the output of the xslt transformation.  Here we do
 those things that are easier in PHP than in XSLT:</p>
@@ -791,7 +794,7 @@ by starting output at the topmost &lt;div&gt;.</p>
 
 <span class="target" id="module-plugins.cap-file-includer.functions"></span></div>
 <div class="section" id="plugins-cap-file-includer-functions-php">
-<h2><a class="toc-backref" href="#id6">plugins/cap-file-includer/functions.php</a><a class="headerlink" href="#plugins-cap-file-includer-functions-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">plugins/cap-file-includer/functions.php</a><a class="headerlink" href="#plugins-cap-file-includer-functions-php" title="Permalink to this headline">¶</a></h2>
 <p>Capitularia File Includer functions.</p>
 <p>The main difficulty here is to get around the wpautop and wptexturizer
 filters that were implemented with boundless incompetence.</p>

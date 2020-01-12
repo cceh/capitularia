@@ -1,13 +1,16 @@
-.. _wordpress:
-.. _wp:
+Wordpress Installation
+======================
 
-Wordpress
-=========
+The Wordpress installation in the RRZK Webprojekt.
 
-The Wordpress installation for Capitularia.
+The installation resides in the directory:
+:file:`/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/http/docs/`.
 
-.. toctree::
-   :maxdepth: 2
+The web server has no write permission to the file system, so you cannot update
+Wordpress from the dashboard.  To update Wordpress, change into the installation
+directory and use the command :program:`wp` like this:
 
-   wordpress/theme
-   wordpress/plugins
+.. code:: shell
+
+   cd /afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/http/docs/
+   ./wp core update

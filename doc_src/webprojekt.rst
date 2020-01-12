@@ -9,3 +9,4 @@ RRZK Web Projekt Capitularia
 
    webprojekt/wordpress
    webprojekt/database
+   webprojekt/wordpress-custom

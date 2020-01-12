@@ -47,7 +47,8 @@ docs: doc_src/phpdoc/structure.xml doc_src/jsdoc/structure.json
 	cd doc_src && $(MAKE) -e html
 
 doccs: doc_src/phpdoc/structure.xml doc_src/jsdoc/structure.json
-	export SPHINXOPTS=-aE; cd doc_src && $(MAKE) -e html
+	$(RM) -r docs/*
+	cd doc_src && $(MAKE) -e html
 
 jsdoc: doc_src/jsdoc/structure.json
 

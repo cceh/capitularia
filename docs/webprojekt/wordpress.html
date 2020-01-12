@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Wordpress &mdash; Capitularia 0.1.1 documentation</title>
+  <title>Wordpress Installation &mdash; Capitularia 0.1.1 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Wordpress Theme" href="wordpress/theme.html" />
+    <link rel="next" title="Wordpress Database Structure" href="database.html" />
     <link rel="prev" title="RRZK Web Projekt Capitularia" href="../webprojekt.html" /> 
 </head>
 
@@ -110,13 +110,14 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../webprojekt.html">RRZK Web Projekt Capitularia</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Wordpress</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="wordpress/theme.html">Wordpress Theme</a></li>
-<li class="toctree-l3"><a class="reference internal" href="wordpress/plugins.html">Wordpress Plugins</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Wordpress Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">Wordpress Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="database.html#metadata">Metadata</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="database.html">Database Structure (Wordpress)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="database.html#metadata">Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wordpress-custom.html">Wordpress Customizations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/theme.html">Wordpress Theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/plugins.html">Wordpress Plugins</a></li>
 </ul>
 </li>
 </ul>
@@ -185,7 +186,7 @@
         
           <li><a href="../webprojekt.html">RRZK Web Projekt Capitularia</a> &raquo;</li>
         
-      <li>Wordpress</li>
+      <li>Wordpress Installation</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -204,27 +205,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="wp">
-<span id="wordpress"></span><span id="id1"></span><h1>Wordpress<a class="headerlink" href="#wp" title="Permalink to this headline">¶</a></h1>
-<p>The Wordpress installation for Capitularia.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="wordpress/theme.html">Wordpress Theme</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wordpress/theme/main.html">Wordpress Theme</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wordpress/theme/widgets.html">Wordpress Theme Widgets</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="wordpress/plugins.html">Wordpress Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins/collation-tool.html">Collation Tool</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins/meta-search.html">Meta Search</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins/file-includer.html">File Includer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins/page-generator.html">Page Generator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins/dynamic-menu.html">Dynamic Menu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins/lib.html">Library</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wordpress/plugins.html#obsolete-plugins">Obsolete Plugins</a></li>
-</ul>
-</li>
-</ul>
+  <div class="section" id="wordpress-installation">
+<h1>Wordpress Installation<a class="headerlink" href="#wordpress-installation" title="Permalink to this headline">¶</a></h1>
+<p>The Wordpress installation in the RRZK Webprojekt.</p>
+<p>The installation resides in the directory:
+<code class="file docutils literal notranslate"><span class="pre">/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/http/docs/</span></code>.</p>
+<p>The web server has no write permission to the file system, so you cannot update
+Wordpress from the dashboard.  To update Wordpress, change into the installation
+directory and use the command <strong class="program">wp</strong> like this:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/http/docs/
+./wp core update
+</pre></div>
 </div>
 </div>
 
@@ -236,7 +227,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="wordpress/theme.html" class="btn btn-neutral float-right" title="Wordpress Theme" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="database.html" class="btn btn-neutral float-right" title="Wordpress Database Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../webprojekt.html" class="btn btn-neutral float-left" title="RRZK Web Projekt Capitularia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

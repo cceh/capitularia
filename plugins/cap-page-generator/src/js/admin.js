@@ -130,6 +130,7 @@ var cap_page_generator_admin = (function ($) { // eslint-disable-line no-unused-
      *
      * @param {Event} ev (unused) The tab loaded event emited by jQuery-ui
      * @param {Element} ui The tab element
+     * @memberof module:plugins/page-generator
      */
 
     function make_cb_select_all (ev, ui) {

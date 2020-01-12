@@ -17,7 +17,7 @@ import 'results';
 
 /**
  * The vue.js instance that manages the whole page.
- * @class VueFront
+ * @class module:plugins/collation/front.VueFront
  */
 
 (function ($) {
@@ -60,7 +60,7 @@ import 'results';
                     return this.witnesses.filter (w => w.checked).map (w => w.siglum);
                 },
             },
-            /** @lends VueFront.prototype */
+            /** @lends module:plugins/collation/front.VueFront.prototype */
             'methods' : {
                 /**
                  * Bundle all parameters for collate () and on_save_config ().

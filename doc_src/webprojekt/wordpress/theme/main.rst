@@ -9,9 +9,5 @@ The Wordpress theme for Capitularia.
    :local:
 
 .. php:automodule:: ^themes/Capitularia/[^/]+$
-   :members:
-   :title:
 
 .. js:automodule:: themes/capitularia
-   :members:
-   :title:

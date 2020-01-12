@@ -43,22 +43,21 @@ extensions = [
     'sphinxcontrib.phpdomain',
     'autophpdoc.autophpdoc',
 
-    'sphinx_js',
     'autojsdoc.autojsdoc',
 
-    # 'xpath.xpath',
-    'sauml.sauml',
+    'sqlalchemy-uml.sqlalchemy-uml',
 ]
-
-#js_source_path = '../server/es6'
-#jsdoc_config_path = '../jsdoc.json'
 
 sauml_arguments = ['postgresql+psycopg2://capitularia@localhost:5432/capitularia']
 sauml_dot_table = 'bgcolor=#e7f2fa&color=#2980B9'
 
-# xpath_file    = 'phpdoc/structure.xml'
 autophpdoc_structure_xml = 'phpdoc/structure.xml'
+autophpdoc_members = True
+autophpdoc_title = True
+
 autojsdoc_structure_json = 'jsdoc/structure.json'
+autojsdoc_members = True
+autojsdoc_title = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
