@@ -13,7 +13,7 @@
      * Initialize the back to top link: on click do a smooth scroll to the top
      * of the page.
      *
-     * @alias module:themes/capitularia.initBackToTop
+     * @memberof module:themes/capitularia
      */
 
     function initBackToTop () {
@@ -27,7 +27,7 @@
      * Initialize all links on the page to do a smooth scroll to their
      * respective targets.
      *
-     * @alias module:themes/capitularia.initSmoothScrollLinks
+     * @memberof module:themes/capitularia
      */
 
     function initSmoothScrollLinks () {
@@ -37,21 +37,20 @@
             }
             $ (this).addClass ('ssdone');
 
-            var href = $ (this).attr ('href');
+            let href = $ (this).attr ('href');
             if (href === undefined) {
                 return;
             }
             href = href.replace ('.', '\\.');
-            var io = href.indexOf ('#');
+
             // only act on page-internal links
-            if (io !== 0) {
+            if (href.indexOf ('#') !== 0) {
                 return;
             }
 
             // only act on existing targets
-            var target;
             try {
-                target = $ (href);
+                const target = $ (href);
             } catch (e) {
                 return;
             }
@@ -61,7 +60,7 @@
 
             $ (this).addClass ('sscontrolled');
             $ (this).on ('click', function (event) {
-                var off = target.first ().offset ().top;
+                const off = target.first ().offset ().top;
                 $ ('body,html').animate ({ 'scroll-top' : off }, 600);
                 event.preventDefault ();
                 return true;
@@ -73,14 +72,14 @@
      * Initialize reset buttons to reset input and select controls on the parent
      * form.
      *
-     * @alias module:themes/capitularia.initResetForm
+     * @memberof module:themes/capitularia
      */
 
     function initResetForm () {
         $ ('.reset-form').click (function () {
             $ (this).closest ('form').find ('input[type="text"]').val ('');
             $ (this).closest ('form').find ('select').each (function () {
-                var v = $ (this).children ().first ().val ();
+                const v = $ (this).children ().first ().val ();
                 $ (this).val (v);
             });
         });
@@ -90,14 +89,14 @@
      * Initialize the footnote refs, ie. the '*', to open a popup on mouse
      * hover.  The popup contains the footnote text.
      *
-     * @alias module:themes/capitularia.initFootnoteTooltips
+     * @memberof module:themes/capitularia
      */
 
     function initFootnoteTooltips () {
         $ ('a.annotation-ref').tooltip ({
             'placement' : 'top',
             'title'     : function () {
-                var href = $ (this).attr ('href');
+                const href = $ (this).attr ('href');
                 return $ (href).closest ('div.annotation-content').prop ('outerHTML');
             },
             'html'    : true,
@@ -106,13 +105,13 @@
         }).on ('mouseenter', function () {
             // keeps the tooltip open as long as the user hovers over it,
             // the user may click on links
-            var that = this;
+            const that = this;
             $ (this).tooltip ('show');
             $ ('.tooltip').on ('mouseleave', function () {
                 $ (that).tooltip ('hide');
             });
         }).on ('mouseleave', function () {
-            var that = this;
+            const that = this;
             setTimeout (function () {
                 if (!$ ('.tooltip:hover').length) {
                     $ (that).tooltip ('hide');
@@ -125,17 +124,17 @@
      * Initialize the legend slide-out.  Make the legend slide out (and back in)
      * if the user clicks on the respective tab.
      *
-     * @alias module:themes/capitularia.initLegend
+     * @memberof module:themes/capitularia
      */
 
     function initLegend () {
         // the Key (Legend) slide-out
-        var legend = $ ('#legend');
+        const legend = $ ('#legend');
         if (legend.length) {
-            var wrapper = $ ('<div class="slideout screen-only"><div class="slideout-tab"></div>'
+            const wrapper = $ ('<div class="slideout screen-only"><div class="slideout-tab"></div>'
                              + '<div class="slideout-inner"></div></div>');
             $ ('body').append (wrapper);
-            var legend_copy = legend.clone ();
+            const legend_copy = legend.clone ();
             legend.addClass ('print-only');
             $ ('div.slideout-inner').append (legend_copy);
             $ ('div.slideout-tab').append ($ ('div.slideout-inner h5'));
@@ -160,7 +159,7 @@
 } (jQuery));
 
 function toggle (control) {
-    var elem = document.getElementById (control);
+    const elem = document.getElementById (control);
     if (elem.style.display === 'none') {
         elem.style.display = 'block';
     } else {
