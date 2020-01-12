@@ -2,7 +2,7 @@
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
 schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-4638">
    <teiHeader>
-      <fileDesc>
+      <fileDesc><!-- ACHTUNG: KOPIE IN BEARBEITUNG!!  -->
          <titleStmt>
             <title type="main" xml:lang="ger">Paris, Bibliothèque Nationale, Lat 4638</title>
             <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
@@ -578,7 +578,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <bibl corresp="#Boretius_1897"> Boretius 1897, S. XXIII</bibl>
                         <bibl corresp="#Albers_1907"> Albers 1907, S. 538-540</bibl>
                         <bibl corresp="#Seckel_1914"> Seckel 1914, S. 400 f.</bibl>
-                        <bibl corresp="#Fournier_1931-1932"> Fournier - Le Bras 1931-1932, S. 209
+                        <bibl corresp="#Fournier_P_1931"> Fournier P 1931, S. 209
                            Anm. 1</bibl>
                         <bibl corresp="#Christ_1937"> Christ 1937, S. 316</bibl>
                         <bibl corresp="#Stein_1941"> Stein 1941, S. 50 ff.</bibl>
@@ -1191,12 +1191,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
 
          <milestone unit="capitulare" n="BK.184"/>
          <!-- bm: Ab hier wieder am Original geprüft. -->
-         <ab type="meta-text" rend="coloured glossa" next="#paris-bn-lat-4638-72v-4_1" xml:id="paris-bn-lat-4638-72v-3" corresp="BK.184_a"><date><seg type="initial">A</seg>NNO
+         <ab type="meta-text" rend="coloured glossa" next="#paris-bn-lat-4638-72v-4_1" xml:id="paris-bn-lat-4638-72v-3" corresp="BK.184_a">
+            <date><seg type="initial">A</seg>NNO
                SEXTO DECIMO REGNANTE <lb/><rs type="person">DOMNO NOSTRO HLVDOUUICO</rs></date> .
             <lb/>
          </ab>
          <ab type="text" prev="#paris-bn-lat-4638-72v-3" xml:id="paris-bn-lat-4638-72v-4" corresp="BK.184_a BK.184_b">
-            <milestone unit="span" corresp="BK.184_a" spanTo="#paris-bn-lat-4638-72v-4_2"/>
+            <milestone unit="span" corresp="BK.184_a" xml:id="paris-bn-lat-4638-72v-4_1" spanTo="#paris-bn-lat-4638-72v-4_2" prev="#paris-bn-lat-4638-72v-3"/>
             <seg type="initial" rend="coloured">C</seg>ONVENTVS EPISCOPORVM DEBET FIERI IN
             <lb/>quattuor locis . id est <rs type="place">magontia</rs> in quo isti archiepiscopi
             <lb/>cum eorum suffraganeis conuenire debent . <rs type="person">Autcarius</rs> .

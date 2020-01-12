@@ -1105,9 +1105,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <bibl>MGH SS rer. Merov. 7 (1919-1920), S. 664</bibl>
                         <bibl> P. Fournier, L'oeuvre canonique de Réginon de Prüm, in: BECh 81
                            (1920) S. 17, wiederabgedruckt in:
-                           <bibl corresp="#Fournier_1983a"> Fournier 1983a, S. 345</bibl>,
+                           <bibl corresp="#Fournier_P_1983a"> Fournier P 1983a, S. 345</bibl>,
                            wiederaufgenommen in:
-                           <bibl corresp="#Fournier_1931-1932"> Fournier 1931-1932, Bd. 1, S. 255 f. </bibl>
+                           <bibl corresp="#Fournier_P_1931"> Fournier P 1931, S. 255 f. </bibl>
                         </bibl>
                         <bibl corresp="#de_Clercq_C_1936"> de Clercq C 1936, S. 122, S. 131 Anm. 2,
                            S. 205 ff. u. ö.</bibl>
@@ -1502,12 +1502,14 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
 
          <milestone unit="capitulare" n="BK.184"/>
 
-         <ab type="meta-text" xml:id="vatikan-bav-pal-lat-582-75r-3" rend="coloured" corresp="BK.184_a" next="#vatikan-bav-pal-lat-582-75r-4_1"><date>ANNO . XVI <lb/>
-               REGNANTE <rs type="person">DOMNO <del unit="chars" quantity="1"/> NOSTRO
+         <ab type="meta-text" xml:id="vatikan-bav-pal-lat-582-75r-3" rend="coloured" corresp="BK.184_a" 
+            next="#vatikan-bav-pal-lat-582-75r-4_1">
+            <date>ANNO . XVI <lb/> REGNANTE <rs type="person">DOMNO <del unit="chars" quantity="1"/> NOSTRO
                   HLUDOUUICO</rs></date><lb/>
          </ab>
          <ab type="text" xml:id="vatikan-bav-pal-lat-582-75r-4" corresp="BK.184_a BK.184_b BK.186_inscriptio">
-            <milestone unit="span" corresp="BK.184_a" spanTo="#vatikan-bav-pal-lat-582-75r-4_2"/>
+            <milestone unit="span" corresp="BK.184_a" xml:id="vatikan-bav-pal-lat-582-75r-4_1" 
+               spanTo="#vatikan-bav-pal-lat-582-75r-4_2" prev="#vatikan-bav-pal-lat-582-75r-3"/>
             <seg type="initial" rend="coloured">C</seg>onuentus episcoporum debet fieri in quatuor
             locis . id est <rs type="place">m<mod>o</mod>guntiaco</rs> in quo . isti
             <lb/>archiepiscopi cum eorum suffraganeis conuenire debe<add>n</add>t . <rs type="person">Autcarius</rs> . <rs type="person">hadebaldus</rs> . <rs type="person">heti</rs> . <lb/><rs type="person">bernoinus</rs> ; In <rs type="place">parisio</rs>
@@ -1532,8 +1534,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
             eligatur qui quod ipsi inuenerint subtiliter describ<subst>
                <del/>
                <add>a</add>
-            </subst>t et sub <lb/>iuramento constrictus fideliter conseruet * <anchor xml:id="vatikan-bav-pal-lat-582-75r-4_2"/>
-            <milestone unit="span" corresp="BK.184_b" spanTo="#vatikan-bav-pal-lat-582-75r-4_3"/>Uolumus etiam ipsorum conuentum fieri <lb/><date>octabas pentecosten</date> * Missi .
+            </subst>t et sub <lb/>iuramento constrictus fideliter conseruet * 
+            <anchor xml:id="vatikan-bav-pal-lat-582-75r-4_2"/>
+            <milestone unit="span" corresp="BK.184_b" spanTo="#vatikan-bav-pal-lat-582-75r-4_3"/>
+            Uolumus etiam ipsorum conuentum fieri <lb/><date>octabas pentecosten</date> * Missi .
             uero . nostri suam incipiant legationem peragere <date>oc<lb break="no"/>tabas pasch<subst>
                   <del>e</del>
                   <add>ę</add>
@@ -1946,9 +1950,14 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
             quod iniustę superposuit atque abstulit sibique retinuit his <lb/>quibus hoc tulit cum
             sua lege restituat et insuper fredum nostrum conponat et ministeri<lb break="no"/>um
             amittat </ab>
+         
          <milestone unit="capitulare" n="BK.193"/>
-         <ab type="meta-text" xml:id="vatikan-bav-pal-lat-582-77r-13" rend="coloured"> . <seg type="num" n="1">I</seg> . </ab>
-         <ab type="text" xml:id="vatikan-bav-pal-lat-582-77r-14" corresp="BK.193_1" next="#vatikan-bav-pal-lat-582-77r-16"><seg type="initial" rend="coloured">D</seg>e
+         
+         <ab type="meta-text" xml:id="vatikan-bav-pal-lat-582-77r-13" rend="coloured" corresp="BK.193_1_inscriptio">
+            . <seg type="num" n="1">I</seg> . 
+         </ab>
+         <ab type="text" xml:id="vatikan-bav-pal-lat-582-77r-14" corresp="BK.193_1" next="#vatikan-bav-pal-lat-582-77r-16">
+            <seg type="initial" rend="coloured">D</seg>e
             homicidiis in ecclęsiis uel in atriis . Item <choice>
                <abbr>cap</abbr>
                <expan>capitula</expan>
@@ -1956,14 +1965,19 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                der gesamten Liste in der Vorlage, vom Kopisten irrig mitten in den ersten Satz von
                BK 193 c. 1 gerückt</note>
          </ab>
+         
          <ab type="meta-text" xml:id="vatikan-bav-pal-lat-582-77r-15" rend="coloured">
-            <seg type="num" n="2">II</seg> . </ab>
-         <ab type="text" xml:id="vatikan-bav-pal-lat-582-77r-16" corresp="BK.193_1" prev="#vatikan-bav-pal-lat-582-77r-14"><seg type="initial" rend="coloured">E</seg>arum
+            <seg type="num" n="2">II</seg> . 
+         </ab>
+         <ab type="text" xml:id="vatikan-bav-pal-lat-582-77r-16" corresp="BK.193_1" prev="#vatikan-bav-pal-lat-582-77r-14">
+            <seg type="initial" rend="coloured">E</seg>arum
             commissis <lb/>hoc obseruetur et teneatur quod in capitulare priori constitutum . est .
             in libro . IIII . <lb/> Capitulo . XIII . Si quis ex leui causa aut sine causa hominem
             in ecclesia occiderit de uita <lb/>conponat . si . uero . foris rixati fuerint et unus
             alterum in ecclesiam fugerit <lb/>et ibi se defendendo eum interfecerit et si huius
-            facti testes non habuerit . con XII con<cb n="77v" break="no"/>iuratoribus<note type="editorial">auf dem linken Rand von Korrekturhand 1 nachgetragen, evtl. als
+            facti testes non habuerit . con XII 
+            con<cb n="77v" break="no"/>iuratoribus<note type="editorial">auf dem linken Rand von 
+               Korrekturhand 1 nachgetragen, evtl. als
                Rubrik intendiert: <mentioned>homine In ecla occider</mentioned></note> legitimis per
             sacramentum adfirmet se defendendo eum interfecisse et si ipse auc<lb break="no"/>tor
             commotę Inter eos rixę extiterit . leudem interfecti et insuper bannum nostrum soluere
@@ -1989,18 +2003,20 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
             . est . huiuscemodi <lb/>homicidium perpetratum fuerit simili modo emendetur et
             conponatur * Si uero porta eclesię <lb/>non . est . consecrata eo modo conponatur * Quod
             in atrio <expan>committitur</expan> ! sicut <expan>conponi</expan> debet <lb/>quod in
-            munitate uiolata <expan>committitur</expan> * </ab>
+            munitate uiolata <expan>committitur</expan> * 
+         </ab>
+         
          <ab type="meta-text" xml:id="vatikan-bav-pal-lat-582-77v-1" rend="coloured">
             <seg type="num" n="3">III</seg>
          </ab>
          <ab type="text" xml:id="vatikan-bav-pal-lat-582-77v-2" corresp="BK.193_2 BK.193_3">
-            <milestone unit="span" corresp="BK.193.2" spanTo="#vatikan-bav-pal-lat-582-77v-2_1"/>
+            <milestone unit="span" corresp="BK.193_2" spanTo="#vatikan-bav-pal-lat-582-77v-2_1"/>
             <expan><seg type="initial" rend="coloured">Q</seg>uicumque</expan> propter cupiditatem
             rerum patrem aut <lb/>matrem . aut fratrem aut sororem . uel nepotem . uel alium
             propinquum suum interfecerit . hęreditas <lb/>interfe<mod>ct</mod>i ad alios suos
             legitimos heredes perueniat . Interfectoris uero hereditas <lb/>in fiscum redigatur *
             Ipse uero ordinante episcopo publicę penitentię subdatur * <lb/><anchor xml:id="vatikan-bav-pal-lat-582-77v-2_1"/>
-            <milestone unit="span" corresp="BK.193.2" spanTo="#vatikan-bav-pal-lat-582-77v-2_2"/>
+            <milestone unit="span" corresp="BK.193_3" spanTo="#vatikan-bav-pal-lat-582-77v-2_2"/>
             <expan>QUicumque</expan> propria uxore derelicta . uel sine culpa Interfecta . aliam
             duxerit uxorem <lb/>armis depositis publicam agat penitentiam * et si
             con<add>tu</add>max fuerit <expan>conprehendatur</expan> a comite <lb/> et ferro

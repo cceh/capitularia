@@ -969,7 +969,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                            (die Vermutung „als Kopiervorlage nach Saint-Denis gekommen“ kann sich
                            nicht auf die Zeit Hinkmars beziehen)</bibl>
                         <bibl> MGH Conc. 4, Suppl. 1 (1992), S. 39, 49</bibl>
-                        <bibl corresp="#Sousa_Costa_1993"> Sousa Costa 1993, S. 137 u. ö.</bibl>
+                        <bibl corresp="#de_Sousa_Costa_1993">de Sousa Costa 1993, S. 137 u. ö.</bibl>
                         <bibl corresp="#Mordek_1994"> Mordek 1994, S. 49</bibl>
                      </listBibl>
 
@@ -1976,7 +1976,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
             <date><date>ANNO SEXTO DECIMO</date> REGNANTE DOMNO NOSTRO HLUDOUUICO</date><lb/>
          </ab>
          <ab corresp="BK.184_a BK.184_b" type="text" xml:id="paris-bn-lat-10758-260-2">
-            <milestone unit="span" corresp="BK.184_a" spanTo="#paris-bn-lat-10758-260-2_2"/>
+            <milestone xml:id="paris-bn-lat-10758-260-2_1" prev="#paris-bn-lat-10758-260-1" 
+               unit="span" corresp="BK.184_a" spanTo="#paris-bn-lat-10758-260-2_2"/>
             <seg type="initial">C</seg>onuentus episcoporum debet fieri In quattuor locis . id est
                <rs type="place">mogontiaco</rs> In quo is<lb break="no"/>ti archiepiscopi cum eorum
             suffraganeis conuenire debent . <rs type="person">autcarius</rs> . <rs type="person">hadebaldus</rs> . <lb/><rs type="person">heti</rs>
@@ -1996,8 +1997,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
             fuerit . tam solerti cura <lb/>custodiatur ! ut nullatenus ad aliorum notitiam peruenire
             permittant <lb/>ante tempus constitutum . et ideo unus notarius Inter omnes eligatur .
             quicquid ipsi In<lb break="no"/>uenerint subtiliter describat . et sub iuramento
-            constrictus fideliter conseruet . <anchor xml:id="paris-bn-lat-10758-260-2_2"/>
-            <milestone unit="span" corresp="BK.184_b" spanTo="#paris-bn-lat-10758-260-2_3"/>Uo<lb break="no"/>lumus etiam ipsorum conuentum fieri <date><subst>
+            constrictus fideliter conseruet . 
+            <anchor xml:id="paris-bn-lat-10758-260-2_2"/>
+            
+            <milestone unit="span" corresp="BK.184_b" spanTo="#paris-bn-lat-10758-260-2_3"/>
+            Uo<lb break="no"/>lumus etiam ipsorum conuentum fieri <date><subst>
                   <del>octabas pentecosten</del>
                   <add hand="X">octauis pentecostes</add>
                </subst></date> . missi uero nostri suam incipiant <lb/>legationem peragere <add hand="X">ad</add>

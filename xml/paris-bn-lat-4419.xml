@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- NICHT BEI MORDEK --><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-4419">
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<!-- IN BEARBEITUNG -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-4419">
    <teiHeader>
       <fileDesc>
          <titleStmt>
@@ -117,49 +120,95 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <altIdentifier type="former">
                      <settlement/>
                      <repository/>
-                     <idno/>
+                     <idno>Colbert 3606</idno>
+                     <note type="date">
+                        <date/>
+                     </note>
+                  </altIdentifier>
+                  <altIdentifier type="former">
+                     <settlement/>
+                     <repository/>
+                     <idno>Regius 5942.3.3</idno>
                      <note type="date">
                         <date/>
                      </note>
                   </altIdentifier>
                   <altIdentifier type="siglum">
-                     <idno>P 58</idno>
+                     <idno>P58</idno>
                      <note/>
                   </altIdentifier>
                </msIdentifier>
                <head>
                   <title type="main">Paris, Bibliothèque Nationale, Lat. 4419</title>
-                  <origDate notBefore="0801" notAfter="1000"> 9./10. Jh.</origDate>
-                  <origPlace ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"> Frankreich</origPlace>
+                  <origDate notBefore="0801" notAfter="1000">9./10. Jh.</origDate>
+                  <origPlace
+                     ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
+                     > Frankreich</origPlace>
                </head>
                <msContents>
                   <summary/>
                   <msItem n="1">
-                     <p><locus>1r</locus> Glossen (u.a. Isidor, Etymologiae) (ed. Hänel 1849 S. 461)
-                        und weitere Notizen, v.a. neuzeitliche Bibliotheksvermerke. </p>
+                     <p><locus>Ir</locus> bibliothekarische Notiz (<hi rend="italic">Volume de 78
+                           Feuillets. 12 Octobre 1889.</hi>)</p>
                   </msItem>
                   <msItem n="2">
-                     <p><locus>1v</locus>
-                        <title corresp="BK.139">Capitula legibus addenda (818/819)</title>, Cap. 10:
-                        KAROLI cap. decimum Legis salicae LX. DE FALSIS TESTIBUS CONVINCENDIS. Si
-                        quis cum altero de qualibet causa - testes habere (MGH Capit. 1, Nr. 139, S.
-                        282 Z. 40 - S. 283 Z. 20) </p>
+                     <p><locus>Iv</locus> bibliothekarische Notiz (<hi rend="italic">Breviarium
+                           Codicis Alarici ab incerti nominis monacho Abbatis iussu compositum vt
+                           indicat praefatio.</hi>)</p>
                   </msItem>
                   <msItem n="3">
-                     <p><locus>2r - 76v</locus> Epitome Monachi mit Prolog </p>
+                     <p><locus>1r</locus> Glossen, vor allem aus den Etymologiae Isidors von Sevilla
+                        (ed. Hänel, S. 461: <hi rend="italic">Vterini fratres dicuntur quia uno
+                           utero - quae biennio pubertate sua uiros praecedere solent</hi>); zwei
+                        Notizen zum Inhalt der Handschrift von neuzeitlichen Händen; Signaturen
+                        (s.o.) und roter Bibliotheksstempel der Königlichen Bibliothek zu Paris;
+                        weitere Notizen am unteren Blattrand. </p>
                   </msItem>
                   <msItem n="4">
-                     <p><locus>76v - 78r</locus> Interpretation einer Novelle, Appendix I zur Lex
-                        Romana Visigothorum, Verse </p>
+                     <p><locus>1v</locus>
+                        <title corresp="BK.139">Capitula legibus addenda (818/819)</title>, c. 10:
+                           <hi rend="italic">KAROLI cap. decimum Legis salicae LX. DE FALSIS
+                           TESTIBVS CONUINCENDIS. Si quis cum altero de qualibet causa - comitatus
+                           ad causam testes habere</hi> (MGH Capit. 1, Nr. 139, S. 282 Z. 40 - S.
+                        283 Z. 20); Rest der Seite leer</p>
+                  </msItem>
+                  <msItem n="5">
+                     <p><locus>2r - 76v</locus> Epitome monachi mit Prolog (ed. Hänel, S. 3-452)
+                     </p>
+                  </msItem>
+                  <msItem n="6">
+                     <p><locus>76v - 78r</locus> römischrechtlicher Text unter der Rubrik <hi
+                           rend="italic">DE MERETRICIBUS ET INFAMIS</hi>; Interpretation zu Lex
+                        Romana Visigothorum Nov. Theod. 8,1 (<hi rend="italic">DE CURIALIBUS. Nulli
+                           ex genere - se nouerit subditurum</hi>); Appendix zur Lex Romana
+                        Visigothorum (ed. Hänel 1849, S. 453); neuzeitliche Vermerke zu den
+                        einzelnen Texten am Seitenrand</p>
+                  </msItem>
+                  <msItem n="7">
+                     <p><locus>78r</locus> Gedicht (Epitaph; Nachtrag) für den burgundischen Herzog
+                        Richard († 921) im elegischen Distichon (ed. Werner, S. 75): <hi
+                           rend="italic">Ecclesię clyppeus patrię defensio nostrae - Semper
+                           propitium possit habere deum</hi>; am rechten Seitenrand Federproben</p>
+                  </msItem>
+                  <msItem n="8">
+                     <p><locus>78v</locus>
+                        <title corresp="BK.139">Capitula legibus addenda (818/819)</title>, c. 10:
+                        [Beginn unleserlich] - <hi rend="italic">ad causam testes habere</hi> (MGH
+                        Capit. 1, Nr. 139, S. 282 Z. 40 - S. 283 Z. 20), danach: <hi rend="italic"
+                           >capitulum legis salicę LX Karoli decimo</hi>; die Seite wurde mit
+                        Chemikalien behandelt, wodurch die Schrift bläulich gefärbt erscheint; auf
+                        dem Text von c. 10 ein übergeschriebener Vermerk: <hi rend="italic">PETRVS
+                           CAPETIVS possessor dono datus</hi>; Rest der Seite leer</p>
                   </msItem>
                </msContents>
                <physDesc>
                   <objectDesc form="codex">
                      <supportDesc>
-                        <extent>78 foll.</extent>
+                        <support><material>Pergament</material></support>
+                        <extent>I + 78 foll.</extent>
                      </supportDesc>
                      <layoutDesc>
-                        <layout writtenLines="0"/>
+                        <layout writtenLines="34">34</layout>
                         <layout columns="1"/>
                      </layoutDesc>
                   </objectDesc>
@@ -167,31 +216,42 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                      <handNote/>
                   </handDesc>
                   <scriptDesc>
-                     <scriptNote/>
+                     <scriptNote>karolingische Minuskel</scriptNote>
                   </scriptDesc>
                   <decoDesc>
-                     <p/>
+                     <p>rote Überschriften in Capitalis rustica, Initialen in Texttinte; rote
+                        Titelnummern und Überschriften, ab fol. 74r nur noch Verwendung von
+                        Texttinte.</p>
                   </decoDesc>
                   <bindingDesc>
                      <binding>
-                        <p/>
+                        <p>Brauner Ledereinband; 1971 restauriert.</p>
                      </binding>
                   </bindingDesc>
                </physDesc>
                <history>
                   <summary>
                      <p>Die Handschrift ist in Mordeks Bibliotheca nicht verzeichnet. Zum "Neufund"
-                        dieser Teilüberlieferung vgl. <ref type="external" target="http://www.leges.uni-koeln.de/blog/neufund-teil-ii/">Bibliotheca
+                        dieser Teilüberlieferung (fol. 1v) vgl. <ref type="external"
+                           target="http://www.leges.uni-koeln.de/blog/neufund-teil-ii/">Bibliotheca
                            legum</ref></p>
                   </summary>
                   <origin>
                      <p>
-                        <origDate notBefore="0901" notAfter="1000">10. Jh.</origDate>, <origPlace ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"> Frankreich</origPlace> (Hänel, Liebs); <origDate notBefore="0901" notAfter="1000">10. Jh.</origDate> (Mommsen, Meyer); <origDate notBefore="0801" notAfter="1000">9./10. Jh.</origDate> (Bischoff HA);
-                           <origDate notBefore="0881" notAfter="0920">Ende 9./Anfang 10.
-                           Jh.</origDate>, <origPlace ref="http://www.geonames.org/6613904/republic-of-france.html http://d-nb.info/gnd/4107621-7 http://viaf.org/viaf/150699043"> Sens</origPlace> (Ganivet).</p>
+                        <origDate notBefore="0901" notAfter="1000">10. Jh.</origDate>, <origPlace
+                           ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
+                           > Frankreich</origPlace> (Hänel, Liebs); <origDate notBefore="0901"
+                           notAfter="1000">10. Jh.</origDate> (Mommsen, Meyer); <origDate
+                           notBefore="0801" notAfter="1000">9./10. Jh.</origDate>
+                        (Bischoff/Mentzel-Reuters); <origDate notBefore="0881" notAfter="0920">Ende
+                           9./Anfang 10. Jh.</origDate>, <origPlace
+                           ref="http://www.geonames.org/6613904/republic-of-france.html http://d-nb.info/gnd/4107621-7 http://viaf.org/viaf/150699043"
+                           > Sens</origPlace> (Ganivet).</p>
                   </origin>
                   <provenance>
-                     <p/>
+                     <p>Cujas und die Gebrüder Pierre und François Pithou haben den Codex benutzt;
+                        Alte Signaturen: <hi rend="italic">Colbert 3606</hi>; <hi rend="italic"
+                           >Regius 5942.3.3</hi>.</p>
                   </provenance>
                   <acquisition/>
                </history>
@@ -200,8 +260,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <listBibl>
                      <listBibl type="cap">
                         <bibl corresp="#Hänel_1849">Hänel 1849, S. LXXXII</bibl>
-                        <bibl corresp="#Mommsen_1905">Mommsen 1905, Bd.1 S. CII; Bd. 2 S.
+                        <bibl corresp="#Mommsen_1905">Mommsen 1905, Bd. 1 S. CII; Bd. 2 S.
                            LXII</bibl>
+                        <bibl corresp="#Werner_K_1986">Werner K 1986</bibl>
                         <bibl corresp="#Mentzel-Reuters_1997">Mentzel-Reuters 1997, Fiche 31, 7.56
                            (S. 18), Fiche 34, 3.17 (S. 93)</bibl>
                         <bibl corresp="#Liebs_2002">Liebs 2002, S. 112 (Anm. 110), 115 (Anm. 126),
@@ -211,9 +272,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                            89)</bibl>
                         <bibl corresp="#Hartmann_W_2008">Hartmann 2008, S. 325</bibl>
                         <bibl corresp="#Siems_2008">Siems 2008, S. 121 (n. 69)</bibl>
+                        <bibl corresp="#ComaFort_2014">Coma Fort 2014, S. 333-335</bibl>
                         <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
-                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref type="external" subtype="Bl" target="paris-bn-lat-4419"/></bibl>
-                        <bibl resp="capit"><ref type="internal" subtype="mom" target="handschrift-des-monats-paris-bn-lat-4419"/></bibl>
+                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012ff. <ref
+                              type="external" subtype="Bl" target="paris-bn-lat-4419"/></bibl>
+                        <bibl resp="capit"><ref type="internal" subtype="mom"
+                              target="handschrift-des-monats-paris-bn-lat-4419"/></bibl>
                      </listBibl>
                   </listBibl>
                </additional>
@@ -226,9 +290,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
             unvollständig lesbar sind, da die letzten 1-3 Buchstaben/Zeichen oft in der Bindung
             verschwinden.</p>
          <projectDesc>
-            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
-            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
          </projectDesc>
          <editorialDecl>
@@ -246,7 +312,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
       </revisionDesc>
    </teiHeader>
    <facsimile>
-      <graphic url="http://gallica.bnf.fr/ark:/12148/btv1b6001331k"/>
+      <graphic url="https://gallica.bnf.fr/ark:/12148/btv1b6001331k"/>
    </facsimile>
    <text>
       <front>
@@ -301,7 +367,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                Codex beinhaltet römisches Recht.</p>
          </div>
          <div type="other">
-            <p>Wahrscheinlich eine direkte Kopie dieser Überlieferung enthält die Hs. <ref type="internal" subtype="mss" target="paris-bn-lat-18237">Paris lat.
+            <p>Wahrscheinlich eine direkte Kopie dieser Überlieferung enthält die Hs. <ref
+                  type="internal" subtype="mss" target="paris-bn-lat-18237">Paris lat.
                18237</ref>.</p>
          </div>
       </front>
@@ -321,20 +388,26 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
 
          <ab type="meta-text" xml:id="paris-bn-lat-4419-1v-2" corresp="BK.139_10_inscriptio">DE
             FALSIS TESTIBVS CONUINCENDIS <lb/></ab>
-         <ab type="text" xml:id="paris-bn-lat-4419-1v-3" corresp="BK.139_10"><seg type="initial">S</seg>i quis cum altero de qualibet causa contentionem habuerit ! et testes coram
+         <ab type="text" xml:id="paris-bn-lat-4419-1v-3" corresp="BK.139_10"><seg type="initial"
+               >S</seg>i quis cum altero de qualibet causa contentionem habuerit ! et testes coram
             eo per iudici<gap quantity="1" unit="chars"/><lb/> producti fuerint . si ille falsos eos
-            suspicatur ! liceat ei alios testes quos meliores potueri<gap quantity="1" unit="chars"/><lb/> contra eos opponere . ut uera<subst>
+            suspicatur ! liceat ei alios testes quos meliores potueri<gap quantity="1" unit="chars"
+            /><lb/> contra eos opponere . ut uera<subst>
                <del>t</del>
                <add>c</add>
             </subst>ium testimoni<subst>
                <del>um</del>
                <add>o</add>
             </subst> peruersitas superetur ;. Quod si ambae <lb/>partes testium ita inter se
-            dissenserint ut nullatenus una pars alteri cedere uelit ! e<gap quantity="2" unit="chars"/><lb break="no"/>gantur duo ex ipsis id est ex utraque parte unus qui
+            dissenserint ut nullatenus una pars alteri cedere uelit ! e<gap quantity="2"
+               unit="chars"/><lb break="no"/>gantur duo ex ipsis id est ex utraque parte unus qui
             cum scutis et fustibus in campo decerten<gap quantity="1" unit="chars"/><lb/> Utraque
-            pars falsitatem utraque ueritatem suo testimonio sequatur ;. Et campio qui uictus fu<gap quantity="1" unit="chars"/><lb break="no"/>rit propter periurium quod ante pugnam
+            pars falsitatem utraque ueritatem suo testimonio sequatur ;. Et campio qui uictus fu<gap
+               quantity="1" unit="chars"/><lb break="no"/>rit propter periurium quod ante pugnam
                <expan>commisit</expan>
-            <add> ! </add> dextram manum perdat ;. Cęteri uero testes falsi ! m<gap quantity="2" unit="chars"/><lb/><!-- DT: Vllt. hier eine note setzen? Gegenüber BK ist der Text stark verändert. 
+            <add> ! </add> dextram manum perdat ;. Cęteri uero testes falsi ! m<gap quantity="2"
+               unit="chars"
+            /><lb/><!-- DT: Vllt. hier eine note setzen? Gegenüber BK ist der Text stark verändert. 
                Hast Du manus angenommen? Also man+us-Kürze? Es geht um den Wert in quantity - bm: 
             Keine <note>, solche Textabweichungen fallen ja beim Kollationieren auf. Bzgl. des Wertes
             habe ich nicht viel nachgedacht; es ist für nicht viel mehr Platz als für zwei Buchstaben, 
@@ -365,12 +438,15 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
             ;. Si autem h<gap quantity="2" unit="chars"/><lb/> definire non <choice>
                <abbr>poss</abbr>
                <expan>possit</expan>
-            </choice> ! aduocati eorum in mallo ad presentiam comitis ueniant et ibi legiti<gap quantity="1" unit="chars"/><lb/> terminus eorum <subst>
+            </choice> ! aduocati eorum in mallo ad presentiam comitis ueniant et ibi legiti<gap
+               quantity="1" unit="chars"/><lb/> terminus eorum <subst>
                <del>t</del>
                <add>c</add>
-            </subst>ontentionibus imponatur ;. Testes uero de qualibet causa nisi de <gap quantity="2" unit="chars"/><lb break="no"/>so comitatu in quo res unde causa agitur
+            </subst>ontentionibus imponatur ;. Testes uero de qualibet causa nisi de <gap
+               quantity="2" unit="chars"/><lb break="no"/>so comitatu in quo res unde causa agitur
             positae sunt ! non querantur ! quia <lb/>non est credibile ut de statu hominis uel
-               possessione<del>m</del> cuiuslibet . per alios me<gap quantity="2" unit="chars"/><lb break="no"/>us ueritas agnosci possit quam per uicinantes ;. Si tamen contentio quę
+               possessione<del>m</del> cuiuslibet . per alios me<gap quantity="2" unit="chars"/><lb
+               break="no"/>us ueritas agnosci possit quam per uicinantes ;. Si tamen contentio quę
                in<gap quantity="2" unit="chars"/><lb/> eos exorta est . in confinio duorum fuerit
             commitatuum ! liceat eis de ui<gap quantity="2" unit="chars"/><lb break="no"/>na centena
             adiacentis comitatus ad causam suam testes habere ;. <lb/>
