@@ -12,13 +12,24 @@ use cceh\capitularia\lib;
 /**
  * Implements the inclusion engine.
  *
- * The main difficulty here is to get around the wpautop and wptexturizer
- * filters, that were implemented with boundless incompetence.  To do that, we
- * insert <pre> tags around our content, which is the only way to fend those
- * filters off for some portion of a page, instead of disabling them wholesale.
- * We double the <pre> tags in this way: <pre><pre>...</pre></pre> so that we
- * can filter them out again later without danger of removing tags of other
- * provenience.
+ * One difficulty is to get in early enough so that the qtranslate-x plugin has
+ * not translated away the unwanted languages.  We need all languages to be
+ * there when we have to save the page.  qtranslate-x hooks into 'the_posts' so
+ * we must too.
+ *
+ * The other difficulty is to protect the included content from the wpautop and
+ * wptexturizer filters, which were implemented with boundless incompetence and
+ * try to put <p>'s around the included content everywhere and fuck up the HTML
+ * attributes with curly quotes.
+ *
+ * To get around those filters we insert <pre> tags around the included content,
+ * which is the only way to fend those filters off for some portion of a page,
+ * instead of disabling them wholesale.  We double the <pre> tags in this way:
+ * <pre><pre>...</pre></pre> so that we can filter them out again later without
+ * danger of removing tags of other provenience.
+ *
+ * We have to save the included content to the database to make it searchable by
+ * the built-in Wordpress search engine.
  */
 
 class FileIncluderEngine
@@ -32,20 +43,16 @@ class FileIncluderEngine
     private $do_save;
 
     /**
-     * Constructor
+     * A ref to the post being processed.
      *
-     * @return self
+     * @var \WP_Post
      */
-
-    public function __construct ()
-    {
-        $this->do_save = false;
-    }
+    private $post;
 
     /**
      * Process our shortcodes.  Step 1: Include the file.
      *
-     * Called at prio 9 from on_the_content_early()
+     * Called very early from on_the_posts ().
      *
      * @see on_the_content_early()
      *
@@ -57,7 +64,7 @@ class FileIncluderEngine
 
     public function on_shortcode_early ($atts, $content)
     {
-        global $post, $wpdb;
+        global $wpdb;
 
         $atts = shortcode_atts (
             array (
@@ -68,7 +75,7 @@ class FileIncluderEngine
         );
 
         // replace {slug} with the page slug
-        $path = preg_replace ('/\{slug\}/', $post->post_name, $atts['path']);
+        $path = preg_replace ('/\{slug\}/', $this->post->post_name, $atts['path']);
 
         $root = realpath (get_root ());
         $path = realpath (lib\urljoin ($root, $path));
@@ -84,7 +91,7 @@ class FileIncluderEngine
 
         // check if the file is newer than the post last modified date
         $filetime = intval (filemtime ($path));
-        $posttime = intval (get_post_modified_time ('U', true, $post->ID));
+        $posttime = intval (get_post_modified_time ('U', true, $this->post->ID));
 
         error_log ("filetime = $filetime, posttime = $posttime, path = $path");
 
@@ -122,8 +129,8 @@ class FileIncluderEngine
     /**
      * Process our shortcodes. Step 2.
      *
-     * Clean up the <pre> tags we inserted solely to protect against the dumb
-     * wpautop and wptexturizer filters.
+     * Called after wpautop and wptexturizer did their nefarious work.  Clean up
+     * the <pre> tags we inserted only to protect against them.
      *
      * @param array  $dummy_atts (unused) The shortcode attributes.
      * @param string $content    The shortcode content.
@@ -139,59 +146,71 @@ class FileIncluderEngine
     /**
      * Process our shortcodes. Step 1.
      *
-     * This filter does not run at the customary shortcode filter prio
-     * of 11 but earlier at prio 9 so that we can do some work before
-     * the wpautop and wptexturizer filters have disfigured our content
-     * beyond recognition.
-     *
-     * Saving to the database also makes the page content searchable by
-     * the built-in Wordpress search engine.
+     * We are forced to hook into 'the_posts' because the qtranslate-x plugin
+     * does it this way and we must get in before qtranslate-x has `translated´
+     * away the unwanted languages.
      *
      * We cannot save inside the on_shortcode_early hook because there
      * may be more than one shortcode on the page and besides there may
      * be other content too.
      *
-     * @param string $content The page content.
+     * @param \WP_Post[] $posts The array of posts.
+     * @param \WP_Query  $query The query.
      *
-     * @return string The page content with our shortcode processed.
+     * @return \WP_Post[] The array of posts with our shortcode processed.
      */
 
-    public function on_the_content_early ($content)
+    public function on_the_posts ($posts, $query)
     {
-        global $post, $wpdb, $shortcode_tags;
-
-        // Disable all shortcodes except ours
-        $shortcode_tags_backup = $shortcode_tags;
-        $shortcode_tags = array ();
-
-        add_shortcode (
-            get_opt ('shortcode', 'cap_include'),
-            array ($this, 'on_shortcode_early')
-        );
-
-        $content = do_shortcode ($content);
-
-        $shortcode_tags = $shortcode_tags_backup;
-
-        // Maybe save the shortcodes with content to the database.
-        if ($this->do_save) {
-            error_log ("Saving post $post->ID");
-
-            // Not using wp_update_post () because its effect depends on the
-            // capabilities of the user that is viewing the page, eg.  their
-            // capability to save <script>s or not.  Also it creates revisions,
-            // which we don't want.  In the end we are better off doing it
-            // manually.
-            $sql = $wpdb->prepare (
-                "UPDATE {$wpdb->posts} SET post_content = %s WHERE ID = %d",
-                strip_pre ($content),
-                $post->ID
-            );
-            $wpdb->query ($sql);
+        if (!is_array ($posts)) {
+            return $posts;
         }
 
-        // Return with all shortcodes ready and protected against
-        // wpautop and wptexturizer.
-        return $content;
+        if ($query->query_vars['post_type'] == 'nav_menu_item') {
+			return $posts;
+        }
+
+        global $wpdb, $shortcode_tags;
+
+        foreach ($posts as $post) {
+            $this->do_save = false;
+            $this->post    = $post;
+
+            // Disable all shortcodes except ours
+            $shortcode_tags_backup = $shortcode_tags;
+            $shortcode_tags = array ();
+
+            add_shortcode (
+                get_opt ('shortcode', 'cap_include'),
+                array ($this, 'on_shortcode_early')
+            );
+
+            $post->post_content = do_shortcode ($post->post_content);
+
+            $shortcode_tags = $shortcode_tags_backup;
+
+            // Maybe save the shortcodes with content to the database.
+            if ($this->do_save) {
+                error_log ("Saving post $post->ID");
+
+                // Not using wp_update_post () because its effect depends on the
+                // capabilities of the user that is viewing the page, eg.  their
+                // capability to save <script>s or not.  Also it creates revisions,
+                // which we don't want.  In the end we are better off doing it
+                // manually.
+                $sql = $wpdb->prepare (
+                    "UPDATE {$wpdb->posts}
+                     SET post_content = %s,
+                         post_modified = NOW(),
+                         post_modified_gmt = UTC_TIMESTAMP()
+                     WHERE ID = %d",
+                    strip_pre ($post->post_content),
+                    $post->ID
+                );
+                $wpdb->query ($sql);
+            }
+        }
+
+        return $posts;
     }
 }

@@ -77,10 +77,11 @@ add_action ('wp_enqueue_scripts',      ns ('on_enqueue_scripts'));
 add_action ('admin_enqueue_scripts',   ns ('on_admin_enqueue_scripts'));
 add_action ('admin_menu',              ns ('on_admin_menu'));
 
-add_filter ('the_content',             array ($cap_file_includer, 'on_the_content_early'), 9);
+add_filter ('the_posts',               array ($cap_file_includer, 'on_the_posts'), 0, 2);
 
-// The shortcode needs to be alwqays registered or else the incredibly stupid
-// wptexturizer will texturize the quotes around our parameters !!!
+// The shortcode needs to be always registered or else the incredibly stupid
+// wptexturizer will make curly quotes out of the quotes around our shortcode
+// parameters !!!
 add_shortcode (
     get_opt ('shortcode', 'cap_include'),
     array ($cap_file_includer, 'on_shortcode')
