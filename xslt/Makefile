@@ -247,12 +247,15 @@ $(CACHE_DIR)/last_fulltext_scrape : $(wildcard $(CACHE_DIR)/extracted/*/*.xml $(
 	$(IMPORT) --fulltext @$@  # read filenames to import from the file
 	sed -i -e 's/ /\n/g' $@   # make it human-readable for debugging
 
+$(CACHE_DIR)/last_status_scrape :
+	$(IMPORT) --publish
+	touch "$@"
+
 scrape_corpus: $(CACHE_DIR)/last_corpus_scrape
 
 scrape_fulltext: $(CACHE_DIR)/last_fulltext_scrape
 
-scrape_status:
-	$(IMPORT) --publish
+scrape_status: $(CACHE_DIR)/last_status_scrape
 
 
 ################
