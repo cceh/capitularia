@@ -10,21 +10,16 @@ Output URL: /capit/ldf/bk-nr-186/
 -->
 
 <xsl:stylesheet
-    version="1.0"
-    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
-    xmlns:exsl="http://exslt.org/common"
-    xmlns:func="http://exslt.org/functions"
-    xmlns:set="http://exslt.org/sets"
-    xmlns:str="http://exslt.org/strings"
-    xmlns:tei="http://www.tei-c.org/ns/1.0"
-    xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.tei-c.org/ns/1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    extension-element-prefixes="cap exsl func set str"
-    exclude-result-prefixes="tei xhtml xs xsl">
-  <!-- libexslt does not support the regexp extension ! -->
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
+    xpath-default-namespace="http://www.tei-c.org/ns/1.0"
+    version="3.0">
 
-  <xsl:import href="common.xsl"/>
+  <xsl:include href="common-3.xsl"/>
+  <xsl:include href="config-3.xsl"/>
 
   <xsl:template match="/tei:TEI">
     <div class="capit-xsl">
@@ -101,6 +96,18 @@ Output URL: /capit/ldf/bk-nr-186/
     </td>
   </xsl:template>
 
+  <xsl:template name="bibl">
+    <xsl:if test="@corresp">
+      <a class="internal bib" href="{$biblio}{@corresp}"
+         title="[:de]Zum bibliographischen Eintrag[:en]Go to bibliography[:]">
+        <xsl:apply-templates/>
+      </a>
+    </xsl:if>
+    <xsl:if test="not (@corresp)">
+      <xsl:apply-templates/>
+    </xsl:if>
+  </xsl:template>
+
   <xsl:template match="tei:name | tei:note[@type='date']/tei:date">
     <tr>
       <xsl:call-template name="resp"/>
@@ -122,9 +129,9 @@ Output URL: /capit/ldf/bk-nr-186/
     <tr>
       <td class="value">
         <xsl:if test="@corresp">
-          <xsl:variable name="id" select="str:replace (str:replace (substring-before (../../tei:head, ':'), ' Nr. ', '_'), ' ', '_')"/>
+          <xsl:variable name="id" select="replace (replace (substring-before (../../tei:head, ':'), ' Nr. ', '_'), ' ', '_')"/>
           <xsl:variable name="path"  select="concat ('/mss/', @corresp)"/>
-          <xsl:variable name="href"  select="concat ('/mss/', @corresp, '#', str:replace ($id, 'BK_185', 'BK_185A'))"/>
+          <xsl:variable name="href"  select="concat ('/mss/', @corresp, '#', replace ($id, 'BK_185', 'BK_185A'))"/>
           <xsl:variable name="bk"    select="concat ('BK.', substring-after (/tei:TEI/@corresp, 'bk-nr-'))"/>
           <!-- Make a link to the manuscript if it is already published, else: no link, just the
                name. -->
@@ -176,20 +183,16 @@ Output URL: /capit/ldf/bk-nr-186/
     </div>
   </xsl:template>
 
-  <xsl:template match="tei:bibl">
+  <xsl:template match="tei:listBibl/tei:bibl">
     <tr>
       <td>
-        <xsl:if test="@corresp">
-          <a class="internal bib" href="{$biblio}{@corresp}"
-             title="[:de]Zum bibliographischen Eintrag[:en]Go to bibliography[:]">
-            <xsl:apply-templates/>
-          </a>
-        </xsl:if>
-        <xsl:if test="not (@corresp)">
-          <xsl:apply-templates/>
-        </xsl:if>
+        <xsl:call-template name="bibl" />
       </td>
     </tr>
+  </xsl:template>
+
+  <xsl:template match="tei:bibl">
+    <xsl:call-template name="bibl" />
   </xsl:template>
 
   <xsl:template match="tei:lb">

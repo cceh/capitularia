@@ -234,9 +234,13 @@ class Manuscript
         // __ () calls qTranslate-xt
         $this->title = sanitize_text_field (__ (join (' ', $tmp), LANG), null, 'display');
 
-        $teis = $xml->xpath ('/tei:TEI[@xml:id]');
+        $teis = $xml->xpath ('/tei:TEI');
         foreach ($teis as $tei) {
             $this->xml_id = sanitize_text_field (trim ($tei->attributes ('xml', true)->id));
+            if (empty ($this->xml_id)) {
+                // Capitular Pages have no @xml:id, but a @corresp
+                $this->xml_id = sanitize_text_field (end (explode ('/', trim ($tei->attributes ()->corresp))));
+            }
         }
     }
 
@@ -284,13 +288,12 @@ class Manuscript
             }
         }
         if ($count == 0) {
-            return array (
-                2,
-                sprintf (
-                    __ ('Error: could not unpublish page %s.', LANG),
-                    $this->get_slug_with_link ()
-                )
+            $message = sprintf (
+                __ ('Error: could not unpublish page %s.', LANG),
+                $this->get_slug_with_link ()
             );
+            error_log ($message);
+            return array (2, $message);
         }
         return array (0, sprintf (__ ('Page %s unpublished.', LANG), $slug));
     }
