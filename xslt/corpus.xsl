@@ -41,6 +41,14 @@
   </xsl:template>
 
   <xsl:template match="additional">
+    <additional>
+      <listBibl>
+        <listBibl type="cap">
+          <!-- to generate a link into the pdf on the downloads page -->
+          <xsl:apply-templates select=".//bibl[@corresp='#Mordek_1995']" />
+        </listBibl>
+      </listBibl>
+    </additional>
   </xsl:template>
 
   <xsl:template match="front">
