@@ -67,9 +67,7 @@ Old name:   tabelle_cap_mss.xsl
           <tbody>
             <xsl:for-each select="Eintrag[starts-with (Kapitular/@id, 'BK')]">
               <xsl:sort select="substring-after (Kapitular/@id, '.')" data-type="number"/>
-              <xsl:call-template name="eintrag">
-                <xsl:with-param name="prefix" select="'bk-nr-'"/>
-              </xsl:call-template>
+              <xsl:call-template name="eintrag" />
             </xsl:for-each>
           </tbody>
         </table>
@@ -88,9 +86,7 @@ Old name:   tabelle_cap_mss.xsl
           <tbody>
             <xsl:for-each select="Eintrag[starts-with (Kapitular/@id, 'Mordek')]">
               <xsl:sort select="substring-after (Kapitular/@id, '.')" data-type="number"/>
-              <xsl:call-template name="eintrag">
-                <xsl:with-param name="prefix" select="'mordek-nr-'"/>
-              </xsl:call-template>
+              <xsl:call-template name="eintrag" />
             </xsl:for-each>
           </tbody>
         </table>
@@ -109,9 +105,7 @@ Old name:   tabelle_cap_mss.xsl
           <tbody>
             <xsl:for-each select="Eintrag[not (contains (Kapitular/@id, '.'))]">
               <xsl:sort select="Kapitular" />
-              <xsl:call-template name="eintrag">
-                <xsl:with-param name="prefix" select="''"/>
-              </xsl:call-template>
+              <xsl:call-template name="eintrag" />
             </xsl:for-each>
           </tbody>
         </table>
@@ -121,48 +115,20 @@ Old name:   tabelle_cap_mss.xsl
   </xsl:template>
 
   <xsl:template name="eintrag">
-    <xsl:param name="prefix"/>
 
     <!-- simulate distinct-values () -->
     <xsl:if test="generate-id () = generate-id (key ('id', Kapitular/@id))">
 
-      <xsl:variable name="path">
-        <xsl:text>/capit</xsl:text>
-        <xsl:choose>
-          <xsl:when test="Kapitular[@list='pre814']">
-            <xsl:value-of select="'/pre814'"/>
-          </xsl:when>
-          <xsl:when test="Kapitular[@list='post840']">
-            <xsl:value-of select="'/post840'"/>
-          </xsl:when>
-          <xsl:when test="Kapitular[@list='undated']">
-            <xsl:value-of select="'/undated'"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="'/ldf'"/>
-          </xsl:otherwise>
-        </xsl:choose>
-        <xsl:value-of select="concat ('/', $prefix, substring-after (Kapitular/@id, '.'))"/>
-      </xsl:variable>
-
       <xsl:text>&#x0a;&#x0a;</xsl:text>
       <tr>
         <td class="capit"> <!-- id="Kapitular/@id" data-cap-dyn-menu-caption="{Kapitular}" -->
-          <xsl:choose>
-            <xsl:when test="$prefix">
-              <xsl:call-template name="if-visible">
-                <xsl:with-param name="path" select="$path"/>
-                <xsl:with-param name="text">
-                  <xsl:apply-templates select="Kapitular"/>
-                </xsl:with-param>
-              </xsl:call-template>
-
-              <xsl:apply-templates select="note"/>
-            </xsl:when>
-            <xsl:otherwise>
+          <xsl:call-template name="if-visible">
+            <xsl:with-param name="path" select="concat ('/cap/', Kapitular/@id)" />
+            <xsl:with-param name="text">
               <xsl:apply-templates select="Kapitular"/>
-            </xsl:otherwise>
-          </xsl:choose>
+            </xsl:with-param>
+          </xsl:call-template>
+
           <xsl:apply-templates select="Kapitular" mode="id"/>
         </td>
         <xsl:text>&#x0a;&#x0a;</xsl:text>

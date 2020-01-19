@@ -230,6 +230,12 @@ function if_visible ($path)
             $path = trim (parse_url ($url, PHP_URL_PATH), '/');
         }
     }
+    if (preg_match ('!^cap/(BK|Mordek)[._]?(\d+\w?)$!', $path, $matches)) {
+        $url = bk_to_permalink ($matches[1] . '_' . $matches[2]);
+        if ($url) {
+            $path = trim (parse_url ($url, PHP_URL_PATH), '/');
+        }
+    }
 
     $cache = get_page_status_in_cache ($path);
 

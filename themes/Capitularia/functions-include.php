@@ -495,6 +495,13 @@ function on_do_parse_request ($do_parse, $wp, $extra_query_vars) // phpcs:ignore
             exit ();
         }
     }
+    if (preg_match ('!^/cap/(BK|Mordek)[._]?(\d+\w?)$!', $request, $matches)) {
+        $url = bk_to_permalink ($matches[1] . '_' . $matches[2]);
+        if ($url) {
+            wp_redirect ($url);
+            exit ();
+        }
+    }
     return $do_parse;
 }
 
