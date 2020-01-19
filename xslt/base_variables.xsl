@@ -185,6 +185,10 @@
   </xsl:variable>
 
   <xsl:variable name="tei-graphic-targets">
+    <item key="213.21.172.25/0b02da82800bed27">
+      <title>Biblioteca Ambrosiana</title>
+      <caption>Biblioteca Ambrosiana</caption>
+    </item>
     <item key="archiviodiocesano.mo.it">
       <title>Archivio Capitolare di Modena</title>
       <caption>Archivio Capitolare di Modena</caption>
