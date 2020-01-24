@@ -277,6 +277,10 @@
       <title>Österreichische Nationalbibliothek</title>
       <caption>ÖNB</caption>
     </item>
+    <item key="orka.bibliothek.uni-kassel.de">
+      <title>Universität Kassel</title>
+      <caption>Universität Kassel</caption>
+    </item>
     <item key="pares.mcu.es">
       <title>PARES - Portal de Archivos Españoles</title>
       <caption>PARES</caption>
