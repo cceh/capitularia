@@ -62,16 +62,8 @@ Output URL: /capit/ldf/bk-nr-186/
   <xsl:template match="tei:note[@type='titles' or @type='date']">
     <div>
       <h4 id="{@type}">
-        <xsl:if test="@type='titles'">
-          [:de]Titel in älteren Editionen
-          [:en]Captions used in older editions
-          [:]
-        </xsl:if>
-        <xsl:if test="@type='date'">
-          [:de]Datierung
-          [:en]Origin
-          [:]
-        </xsl:if>
+        <xsl:if test="@type='titles'">[:de]Titel[:en]Captions[:]</xsl:if>
+        <xsl:if test="@type='date'">[:de]Datierung[:en]Origin[:]</xsl:if>
       </h4>
       <table>
         <tbody>
