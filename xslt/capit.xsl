@@ -143,9 +143,9 @@ Output URL: /capit/ldf/bk-nr-186/
                 <xsl:apply-templates/>
               </a>
               <!-- Add a deep link to the capitular if it is already transcribed in that ms. -->
-              <xsl:text>[if_transcribed path="</xsl:text>
-              <xsl:value-of select="$path"/>
-              <xsl:text>" bk="</xsl:text>
+              <xsl:text>[if_transcribed ms_id="</xsl:text>
+              <xsl:value-of select="@corresp"/>
+              <xsl:text>" cap_id="</xsl:text>
               <xsl:value-of select="$bk"/>
               <xsl:text>"]</xsl:text>
               <a class="internal transcription" href="{$href}"

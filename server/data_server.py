@@ -111,6 +111,23 @@ def chapters (cap_id):
         return cache (make_json_response (chapters))
 
 
+@app.route ('/capitulary/<string:cap_id>/manuscripts.json/')
+def capitulary_manuscripts_json (cap_id):
+    """ Return all manuscripts containing capitulary cap_id. """
+
+    with current_app.config.dba.engine.begin () as conn:
+        res = execute (conn, """
+        SELECT DISTINCT ms_id
+        FROM mss_chapters
+        WHERE cap_id = :cap_id
+        """, { 'cap_id' : cap_id })
+
+        CM = collections.namedtuple ('Capitulary_Manuscripts', 'ms_id')
+        mss = [ CM._make (r)._asdict () for r in res ]
+
+        return cache (make_json_response (mss))
+
+
 def _chapter_manuscripts (cap_id, chapter):
 
     with current_app.config.dba.engine.begin () as conn:

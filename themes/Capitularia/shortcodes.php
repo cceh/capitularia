@@ -150,6 +150,26 @@ function if_status ($atts)
 }
 
 /**
+ * Cache a list of all manuscripts with a transcription of capitular cap_id
+ */
+
+function get_transcribed_in_cache ($cap_id)
+{
+    static $transcribed_cache = array ();
+
+    if (!array_key_exists ($cap_id, $transcribed_cache)) {
+        $transcribed_cache[$cap_id] = array ();
+        $resp = \cceh\capitularia\lib\api_json_request ("/data/capitulary/$cap_id/manuscripts.json/");
+        error_log (print_r ($resp, true));
+        foreach ($resp as $e) {
+            $ms_id = $e['ms_id'];
+            $transcribed_cache[$cap_id][$ms_id] = true;
+        }
+    }
+    return $transcribed_cache[$cap_id];
+}
+
+/**
  * Add the if_status shortcode.
  *
  * This shortcode outputs its content if the ms. has that status.
@@ -324,38 +344,29 @@ function on_shortcode_if_not_visible ($atts, $content)
  * Add the if_transcribed shortcode.
  *
  * This shortcode outputs its content if the capitular was already transcribed
- * on that page (in the manuscript with an xml:id equal to the slot of the page).
+ * in the manuscript with the xml:id.
  *
  * .. code::
  *
- *    [if_transcribed path="/mss/barcelona" bk="BK.42"] and <a>here</a>[/if_transcribed]
+ *    [if_transcribed ms_id="barcelona-aca-ripoll" cap_id="BK.42"] and <a>here</a>[/if_transcribed]
  *
- * @param array  $atts    The shortocde attributes.  path = path of page, bk = BK No.
+ * @param array  $atts    The shortocde attributes.
  * @param string $content The shortcode content.
  *
- * @return string The shortcode content if the capitular is transcribed,
-                  else the empty string.
+ * @return string The shortcode content if the corresp is transcribed,
+ *                else the empty string.
  *
  * @shortcode if_transcribed
  */
 
 function on_shortcode_if_transcribed ($atts, $content)
 {
-    global $wpdb;
+    $ms_id  = trim ($atts['ms_id'],  '');
+    $cap_id = trim ($atts['cap_id'], '');
 
-    $page  = get_page_by_path (trim ($atts['path'], '/'));
-    if ($page) {
-        $re_bk = "^{$atts['bk']}(_|$)";
-        $sql = $wpdb->prepare (
-            "SELECT post_id FROM {$wpdb->postmeta} " .
-            "WHERE meta_key = 'milestone-capitulare' AND post_id = %d " .
-            'AND meta_value REGEXP %s',
-            $page->ID,
-            $re_bk
-        );
-        if ($wpdb->get_results ($sql)) {
-            return do_shortcode ($content);
-        }
+    $cache = get_transcribed_in_cache ($cap_id);
+    if (array_key_exists ($ms_id, $cache)) {
+        return do_shortcode ($content);
     }
     return '';
 }
