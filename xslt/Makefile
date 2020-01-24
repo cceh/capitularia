@@ -112,11 +112,7 @@ $(CACHE_DIR)/extracted/%/ : $(MSS_DIR)/%.xml $(mss-extract-chapters)
 	$(SAXON) -s:"$<" -xsl:mss-extract-chapters.xsl directory="$(dir $@)"
 	-$(TOUCH)
 
-$(CACHE_DIR)/last_extraction_run : $(patsubst %,$(CACHE_DIR)/extracted/%/,$(IDS))
-
-extract : $(CACHE_DIR)/last_extraction_run
-
-fulltext: extract
+fulltext : $(patsubst %,$(CACHE_DIR)/extracted/%/,$(IDS))
 
 
 ################ CAPITS
@@ -126,7 +122,7 @@ CAPITS := pre814 ldf post840 undated
 define CAPIT_TEMPLATE =
 
 $(CACHE_DIR)/capits/$(1)/%.html : $(CAPIT_DIR)/$(1)/%.xml $(capit)
-	$(XSLTPROC) -o $$@ $$(word 2,$$^) $$<
+	$(SAXON) -s:"$$<" -xsl:"$$(word 2,$$^)" -o:"$$@"
 
 capits : $(patsubst %.xml,$(CACHE_DIR)/capits/$(1)/%.html,$(notdir $(wildcard $(CAPIT_DIR)/$(1)/*.xml)))
 
@@ -137,10 +133,9 @@ $(foreach c,$(CAPITS),$(eval $(call CAPIT_TEMPLATE,$(c))))
 
 ################ MSS LISTS
 
-MSS_LISTS := mss-capit mss-idno mss-key mss-table
+MSS_LISTS := mss-capit mss-key mss-table
 
 mss-capit_XML  := $(MSS_LISTS_DIR)/mss_by_cap.xml
-mss-idno_XML   := $(MSS_LISTS_DIR)/BibCapitMordek.xml
 mss-key_XML    := $(MSS_LISTS_DIR)/sigle.xml
 mss-table_XML  := $(MSS_LISTS_DIR)/ueberblick_mordek.xml
 
@@ -155,6 +150,11 @@ endef
 
 $(foreach l,$(MSS_LISTS),$(eval $(call MSS_LISTS_TEMPLATE,$(l))))
 
+
+$(CACHE_DIR)/lists/mss-idno.html : $(MSS_LISTS_DIR)/BibCapitMordek.xml $(CACHE_DIR)/lists/corpus.xml $(mss-idno)
+	$(SAXON) -s:$< -xsl:mss-idno.xsl -o:$@ corpus="$(CACHE_DIR)/lists/corpus.xml"
+
+lists : $(CACHE_DIR)/lists/mss-idno.html
 
 ################ CAPIT LISTS
 
@@ -230,12 +230,12 @@ changes: $(CACHE_DIR)/lists/changes.html $(CACHE_DIR)/lists/changes90.html
 lists : corpus downloads changes
 
 
-## database filling targets
+## scrape targets
+# these are timestamp files
 
 init_db:
 	$(IMPORT) --init
-	$(RM) $(CACHE_DIR)/last_corpus_scrape
-	$(RM) $(CACHE_DIR)/last_fulltext_scrape
+	$(RM) $(CACHE_DIR)/last_*_scrape
 
 $(CACHE_DIR)/last_corpus_scrape : $(CACHE_DIR)/lists/corpus.xml $(capit-list_XML)
 	$(IMPORT) --mss      $(CACHE_DIR)/lists/corpus.xml
@@ -245,17 +245,20 @@ $(CACHE_DIR)/last_corpus_scrape : $(CACHE_DIR)/lists/corpus.xml $(capit-list_XML
 $(CACHE_DIR)/last_fulltext_scrape : $(wildcard $(CACHE_DIR)/extracted/*/*.xml $(CACHE_DIR)/extracted/*/*.txt)
 	$(file >$@,$?)            # put the very long argument list into a file
 	$(IMPORT) --fulltext @$@  # read filenames to import from the file
-	sed -i -e 's/ /\n/g' $@   # make it human-readable for debugging
+	sed -i -e 's/ /\n/g' "$@" # make it human-readable for debugging, also touch-es the file
 
+# copies information from the wordpress db into the postgres db
+# the timestamp file doesn't depend on anything
 $(CACHE_DIR)/last_status_scrape :
 	$(IMPORT) --publish
 	touch "$@"
 
-scrape_corpus: $(CACHE_DIR)/last_corpus_scrape
 
-scrape_fulltext: $(CACHE_DIR)/last_fulltext_scrape
+scrape_corpus :   $(CACHE_DIR)/last_corpus_scrape
 
-scrape_status: $(CACHE_DIR)/last_status_scrape
+scrape_fulltext : $(CACHE_DIR)/last_fulltext_scrape
+
+scrape_status :   $(CACHE_DIR)/last_status_scrape
 
 
 ################
@@ -271,6 +274,6 @@ dirs:
 			 $(CACHE_DIR)/collation
 	mkdir -p $(foreach c,$(CAPITS),$(CACHE_DIR)/capits/$(c))
 
-.PHONY: all mss capits lists clean dirs corpus extract fulltext
+.PHONY: all mss capits lists clean dirs corpus fulltext
 
-.PHONY: init_db scrape_corpus scrape_fulltext scrape_status
+.PHONY: init_db scrape_corpus scrape_fulltext scrape_status $(CACHE_DIR)/last_status_scrape

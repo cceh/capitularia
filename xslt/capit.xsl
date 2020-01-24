@@ -19,7 +19,6 @@ Output URL: /capit/ldf/bk-nr-186/
     version="3.0">
 
   <xsl:include href="common-3.xsl"/>
-  <xsl:include href="config-3.xsl"/>
 
   <xsl:template match="/tei:TEI">
     <div class="capit-xsl">
