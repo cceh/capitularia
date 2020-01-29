@@ -19,8 +19,7 @@ extracted.  If a corrector hand was active in the chapter, an original and a
 corrected version are both extracted.  The collation tool knows about all these
 versions and offers them to the user.
 
-.. uml::
-   :align: center
+.. pic:: uml
    :caption: Data flow during pre-processing
 
    skinparam backgroundColor transparent
@@ -72,8 +71,7 @@ The backend retrieves the chapters to collate from the database and calls the
 CollateX executable to do the actual collation. The results are sent to the
 frontend that does the formatting for display.
 
-.. uml::
-   :align: center
+.. pic:: uml
    :caption: Data flow during collation
 
    skinparam backgroundColor transparent

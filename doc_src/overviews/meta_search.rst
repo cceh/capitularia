@@ -13,8 +13,7 @@ We extract the metadata from the manuscript files and store them in the Postgres
 database on the Capitularia VM.  The process is similar to the pre-processing
 done for the Collation Tool.
 
-.. uml::
-   :align: center
+.. pic:: uml
    :caption: Data flow during metadata extraction
 
    skinparam backgroundColor transparent
@@ -81,8 +80,7 @@ ids of the manuscripts but it doesn't know which Wordpress pages contain the
 text of those manuscripts.  The plugin finds the pages in the Wordpress database
 using the manuscript ids and sends the search results page to the user.
 
-.. uml::
-   :align: center
+.. pic:: uml
    :caption: Data flow meta search
 
    skinparam backgroundColor transparent

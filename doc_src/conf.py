@@ -46,6 +46,8 @@ extensions = [
     'autojsdoc.autojsdoc',
 
     'sqlalchemy-uml.sqlalchemy-uml',
+
+    'sphinxcontrib-pic.pic',
 ]
 
 sauml_arguments = ['postgresql+psycopg2://capitularia@localhost:5432/capitularia']
@@ -58,6 +60,44 @@ autophpdoc_title = True
 autojsdoc_structure_json = 'jsdoc/structure.json'
 autojsdoc_members = True
 autojsdoc_title = True
+
+pic_options = {
+    'pic' : {
+        'program'  : ["dpic", "-v"],
+        'align'    : "center",
+        'preamble' : """
+.PS
+copy "config.pic";
+""",
+        'postamble' : """
+.PE
+""",
+    },
+    'uml' : {
+        'program'   : ["plantuml", "-tsvg", "-p"],
+        'align'     : "center",
+        'preamble'  : "@startuml\n",
+        'postamble' : "\n@enduml\n",
+    },
+    'seq' : {
+        'program'  : ["dpic", "-v"],
+        'align'    : "center",
+        'preamble' : """
+.PS
+copy "sequence.pic";
+copy "config.pic";
+""",
+        'postamble' : """
+.PE
+""",
+    },
+    'dot' : {
+        'program'   : ["dot", "-Tsvg"],
+        'align'     : "center",
+        'preamble'  : "",
+        'postamble' : "",
+    },
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

@@ -14,8 +14,7 @@ The project uses three main platforms:
 - the Capitularia VM  (https://api.capitularia.uni-koeln.de),
 - the AFS Filesystem  (/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/)
 
-.. uml::
-   :align: center
+.. pic:: uml
    :caption: Overview of Capitularia
 
    skinparam backgroundColor transparent

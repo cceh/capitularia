@@ -10,8 +10,7 @@ plugin<file-includer>`.
 XSLT Transformations
 --------------------
 
-.. uml::
-   :align: center
+.. pic:: uml
    :caption: Data flow during HTML generation
 
    skinparam backgroundColor transparent
@@ -59,7 +58,7 @@ The HTML files are stored in the cache directory.
 User Delivery
 -------------
 
-.. uml::
+.. pic:: uml
    :align: center
    :caption: Data flow during user access
 
