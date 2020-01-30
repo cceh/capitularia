@@ -2,14 +2,13 @@
 
 <xsl:stylesheet
     xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
-    xmlns:xpath-functions="http://www.w3.org/2005/xpath-functions"
     xpath-default-namespace="http://www.tei-c.org/ns/1.0"
-    exclude-result-prefixes="tei xhtml cap xsl"
+    exclude-result-prefixes="tei xhtml xs xsl cap"
     version="3.0">
 
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>

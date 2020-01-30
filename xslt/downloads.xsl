@@ -6,7 +6,6 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
-    xmlns:xpath-functions="http://www.w3.org/2005/xpath-functions"
     xpath-default-namespace="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="tei xhtml cap xsl"
     version="3.0">

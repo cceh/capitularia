@@ -9,63 +9,20 @@ Old name:   tabelle_ueberblick.xsl
 -->
 
 <xsl:stylesheet
-    version="1.0"
-    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
-    xmlns:exsl="http://exslt.org/common"
-    xmlns:func="http://exslt.org/functions"
-    xmlns:set="http://exslt.org/sets"
-    xmlns:str="http://exslt.org/strings"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    extension-element-prefixes="cap exsl func set str"
-    exclude-result-prefixes="tei xhtml xs xsl">
-  <!-- libexslt does not support the regexp extension ! -->
+    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
+    exclude-result-prefixes="tei xhtml cap xsl"
+    version="3.0">
 
-  <xsl:include href="common.xsl"/>
+  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
+
+  <xsl:include href="common-3.xsl"/>
 
   <xsl:template match="/MSS">
-
-    <!-- Abbildung der Liste als Tabelle mit einer Zeile für jedes <item> -->
     <div class="mss-table-xsl">
-      <p class="intro">
-        [:de]Die Übersicht listet alle bekannten Handschriften auf, die Kapitularien
-        enthalten. Die in Mordek 1995 vergebenen Handschriftensiglen stehen in Klammern hinter
-        der jeweiligen Signatur. Hier finden Sie eine <a
-        href="http://capitularia.uni-koeln.de/mss/key/" title="Konkordanz nach
-        Mordek-Siglen">Konkordanz der Mordek-Siglen</a>.
-
-        [:en]This table lists all known manuscripts containing capitularies. Shelfmarks are
-        usually followed by the siglum assigned by Mordek 1995 in square brackets. Here is a
-        <a href="http://capitularia.uni-koeln.de/mss/key/" title="concordance Mordek"
-           >concordance of all these sigla</a>.
-
-        [:]
-      </p>
-
-      <p class="intro">
-        [:de]Hinter den enthaltenen Kapitularien (in der 2. Spalte) steht entweder die Nummer
-        der Edition von Boretius/Krause (BK) oder die Nummer im Anhang I von Mordek
-        1995.
-
-        [:en]The second column lists all capitularies in the respective manuscript. In square
-        brackets you find either the number assigned to that capitulary in the edition by
-        Boretius/Krause (“BK”) or its number in Mordek 1995, appendix I (“Mordek”).
-
-        [:]
-      </p>
-
-      <p class="intro">
-        [:de]Hier finden Sie eine <a href="http://capitularia.uni-koeln.de/capit/list/"
-        title="Gesamtüberblick über die Kapitularien">Liste mit allen Kapitularien</a>.
-
-        [:en]Here is a <a href="http://capitularia.uni-koeln.de/capit/list/" title="table of
-        capitularies">listing of all capitularies</a>.
-
-        [:]
-      </p>
-
       <table align="center" class="handschriften break-word" rules="all">
         <thead>
           <tr>
@@ -79,7 +36,6 @@ Old name:   tabelle_ueberblick.xsl
         </tbody>
       </table>
     </div>
-
   </xsl:template>
 
   <xsl:template match="milestone">

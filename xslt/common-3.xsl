@@ -138,7 +138,7 @@
     -->
     <xsl:param name="siglum"/>
 
-    <xsl:value-of select="replace (replace (replace (replace ($siglum, '.', '_'), '_00', '&#xa0;'), '_0', '&#xa0;'), '_', '&#xa0;')"/>
+    <xsl:value-of select="replace ($siglum, '[_.]0*', '&#xa0;')" />
   </xsl:function>
 
   <xsl:function name="cap:get-rend">

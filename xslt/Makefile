@@ -62,19 +62,22 @@ lists: | dirs
 vpath %.xsl $(XSL_DIR)
 
 common         := base_variables.xsl
+common-3       := common-3.xsl config-3.xsl
+
 mss-header     := mss-header.xsl $(common)
 mss-footer     := mss-footer.xsl $(common)
 mss-transcript := mss-transcript.xsl mss-transcript-footnotes.xsl $(common)
 mss-transcript-cte           := mss-transcript-cte.xsl $(mss-transcript)
 mss-transcript-with-comments := mss-transcript-with-comments.xsl $(mss-transcript)
-capit      := capit.xsl      $(common)
-mss-capit  := mss-capit.xsl  $(common)
-mss-idno   := mss-idno.xsl   $(common)
-mss-key    := mss-key.xsl    $(common)
-mss-table  := mss-table.xsl  $(common)
-capit-list := capit-list.xsl $(common)
 
-mss-transcript-collation := mss-transcript-collation.xsl mss-transcript-phase-1.xsl common-3.xsl
+capit      := capit.xsl      $(common-3)
+mss-capit  := mss-capit.xsl  $(common-3)
+mss-idno   := mss-idno.xsl   $(common-3)
+mss-key    := mss-key.xsl    $(common-3)
+mss-table  := mss-table.xsl  $(common-3)
+capit-list := capit-list.xsl $(common-3)
+
+mss-transcript-collation := mss-transcript-collation.xsl mss-transcript-phase-1.xsl $(common-3)
 mss-extract-chapters     := mss-extract-chapters.xsl $(mss-transcript-collation)
 
 ################ MSS
@@ -133,16 +136,17 @@ $(foreach c,$(CAPITS),$(eval $(call CAPIT_TEMPLATE,$(c))))
 
 ################ MSS LISTS
 
-MSS_LISTS := mss-capit mss-key mss-table
+MSS_LISTS := mss-table mss-capit mss-idno mss-key
 
-mss-capit_XML  := $(MSS_LISTS_DIR)/mss_by_cap.xml
-mss-key_XML    := $(MSS_LISTS_DIR)/sigle.xml
 mss-table_XML  := $(MSS_LISTS_DIR)/ueberblick_mordek.xml
+mss-capit_XML  := $(MSS_LISTS_DIR)/mss_by_cap.xml     $(CACHE_DIR)/lists/corpus.xml
+mss-idno_XML   := $(MSS_LISTS_DIR)/BibCapitMordek.xml $(CACHE_DIR)/lists/corpus.xml
+mss-key_XML    := $(MSS_LISTS_DIR)/sigle.xml
 
 define MSS_LISTS_TEMPLATE =
 
 $(CACHE_DIR)/lists/$(1).html : $($(1)_XML) $($(1))
-	$(XSLTPROC) -o $$@ $$(word 2,$$^) $$<
+	$(SAXON) -s:"$$<" -xsl:"$(1).xsl" -o:"$$@" corpus="$(CACHE_DIR)/lists/corpus.xml"
 
 lists : $(CACHE_DIR)/lists/$(1).html
 
@@ -150,33 +154,22 @@ endef
 
 $(foreach l,$(MSS_LISTS),$(eval $(call MSS_LISTS_TEMPLATE,$(l))))
 
-
-$(CACHE_DIR)/lists/mss-idno.html : $(MSS_LISTS_DIR)/BibCapitMordek.xml $(CACHE_DIR)/lists/corpus.xml $(mss-idno)
-	$(SAXON) -s:$< -xsl:mss-idno.xsl -o:$@ corpus="$(CACHE_DIR)/lists/corpus.xml"
-
-lists : $(CACHE_DIR)/lists/mss-idno.html
-
 ################ CAPIT LISTS
 
-CAPIT_LISTS := capit-pre814 capit-ldf capit-post840 capit-undated
+CAPIT_LISTS := capit-all capit-pre814 capit-ldf capit-post840 capit-undated
 
 capit-list_XML := $(CAPIT_LISTS_DIR)/capit_all.xml
 
 define CAPIT_LISTS_TEMPLATE =
 
 $(CACHE_DIR)/lists/$(1).html : $(capit-list_XML) $(capit-list)
-	$(XSLTPROC) --stringparam type $(patsubst capit-%,%,$(1)) -o $$@ $$(word 2,$$^) $$<
+	$(SAXON) -s:"$$<" -xsl:"$$(word 2,$$^)" -o:"$$@" type=$(patsubst capit-%,%,$(1))
 
 lists : $(CACHE_DIR)/lists/$(1).html
 
 endef
 
 $(foreach l,$(CAPIT_LISTS),$(eval $(call CAPIT_LISTS_TEMPLATE,$(l))))
-
-$(CACHE_DIR)/lists/capit-all.html : $(capit-list_XML) $(capit-list)
-	$(XSLTPROC) -o $@ $(word 2,$^) $<
-
-lists : $(CACHE_DIR)/lists/capit-all.html
 
 
 ################ BIB

@@ -9,13 +9,16 @@ Old name:    handschriften_mordek_signatur.xsl
 -->
 
 <xsl:stylesheet
-    xmlns="http://www.tei-c.org/ns/1.0"
+    xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
     xpath-default-namespace="http://www.tei-c.org/ns/1.0"
+    exclude-result-prefixes="tei xhtml cap xsl"
     version="3.0">
+
+  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
   <xsl:include href="common-3.xsl"/>
 
@@ -25,16 +28,6 @@ Old name:    handschriften_mordek_signatur.xsl
 
   <xsl:template match="/TEI">
     <div class="mss-idno-xsl">
-      <p class="intro">
-        [:de]Die folgende, alphabetisch geordnete Liste führt alle bei Mordek 1995 genannten
-        Kapitularienhandschriften auf. Weitere, bei Mordek nicht verzeichnete Handschriften mit
-        Kapitularien wurden ergänzt.
-        [:en]This table lists - in alphabetical order - all manuscripts recorded in Mordek 1995
-        which contain capitularies. Further manuscripts containing capitularies which were not
-        recorded by Mordek have been added.
-        [:]
-      </p>
-
       <xsl:apply-templates select=".//div[@type='manuscripts']"/>
     </div>
   </xsl:template>

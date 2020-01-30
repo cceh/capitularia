@@ -2,41 +2,38 @@
 
 <!--
 
-Output URL: /capit/list/
+Output URL: /capit/list/, /capit/pre814/, /capit/ldf/, ...
 Input file: cap/publ/capit/lists/capit_all.xml
 Old name:   list_capit_all.xsl
 
 -->
 
 <xsl:stylesheet
-    version="1.0"
-    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
-    xmlns:exsl="http://exslt.org/common"
-    xmlns:func="http://exslt.org/functions"
-    xmlns:set="http://exslt.org/sets"
-    xmlns:str="http://exslt.org/strings"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    extension-element-prefixes="cap exsl func set str"
-    exclude-result-prefixes="tei xhtml xs xsl">
-  <!-- libexslt does not support the regexp extension ! -->
+    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
+    xpath-default-namespace="http://www.tei-c.org/ns/1.0"
+    exclude-result-prefixes="tei xhtml cap xsl"
+    version="3.0">
 
-  <xsl:include href="common.xsl"/>
+  <xsl:include href="common-3.xsl" />
+
+  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
   <xsl:param name="type" select="'all'"/>
 
-  <xsl:template match="/tei:TEI">
+  <xsl:template match="/TEI">
 
     <xsl:variable name="BK">
-      <xsl:apply-templates select=".//tei:item[starts-with (@xml:id, 'BK_')]"/>
+      <xsl:apply-templates select=".//item[starts-with (@xml:id, 'BK_')]"/>
     </xsl:variable>
     <xsl:variable name="Mordek">
-      <xsl:apply-templates select=".//tei:item[starts-with (@xml:id, 'Mordek_')]"/>
+      <xsl:apply-templates select=".//item[starts-with (@xml:id, 'Mordek_')]"/>
     </xsl:variable>
     <xsl:variable name="Other">
-      <xsl:apply-templates select=".//tei:item[not(@xml:id)][not(parent::tei:list[@type='transmission'])]"/>
+      <xsl:apply-templates select=".//item[not(@xml:id)][not(parent::list[@type='transmission'])]"/>
     </xsl:variable>
 
     <div class="capit-list-xsl">
@@ -85,7 +82,7 @@ Old name:   list_capit_all.xsl
     </div>
   </xsl:template>
 
-  <xsl:template match="tei:list/tei:item">
+  <xsl:template match="list/item">
     <xsl:if test="../@type=$type or $type='all'">
       <xsl:text>&#x0a;&#x0a;</xsl:text>
       <tr>
@@ -93,13 +90,13 @@ Old name:   list_capit_all.xsl
           <xsl:value-of select="cap:human-readable-siglum (@xml:id)"/>
         </td>
         <td class="title">
-          <xsl:apply-templates select="tei:name"/>
+          <xsl:apply-templates select="name"/>
         </td>
       </tr>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="tei:item/tei:name">
+  <xsl:template match="item/name">
     <xsl:call-template name="if-visible">
       <xsl:with-param name="path" select="concat ('/capit/', @ref)"/>
       <xsl:with-param  name="title">
@@ -116,8 +113,8 @@ Old name:   list_capit_all.xsl
     <thead>
       <xsl:text>&#x0a;&#x0a;</xsl:text>
       <tr>
-        <th class="siglum"  >[:de]Nummer                     [:en]No.                 [:]</th>
-        <th class="title"   >[:de]Titel                      [:en]Caption             [:]</th>
+        <th class="siglum">[:de]Nummer[:en]No.    [:]</th>
+        <th class="title" >[:de]Titel [:en]Caption[:]</th>
       </tr>
     </thead>
   </xsl:template>

@@ -3,54 +3,31 @@
 <!--
 
 Output URL: /mss/capit/
-Input file: cap/publ/mss/lists/mss_by_cap.xml
+Input file: cap/publ/mss/lists/mss_by_cap.xml cap/publ/cache/lists/corpus.xml
 Old name:   tabelle_cap_mss.xsl
 
 -->
 
 <xsl:stylesheet
-    version="1.0"
-    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
-    xmlns:exsl="http://exslt.org/common"
-    xmlns:func="http://exslt.org/functions"
-    xmlns:set="http://exslt.org/sets"
-    xmlns:str="http://exslt.org/strings"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    extension-element-prefixes="cap exsl func set str"
-    exclude-result-prefixes="tei xhtml xs xsl">
-  <!-- libexslt does not support the regexp extension ! -->
+    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
+    xpath-default-namespace="http://www.tei-c.org/ns/1.0"
+    exclude-result-prefixes="tei xhtml cap xsl"
+    version="3.0">
 
-  <xsl:include href="common.xsl"/>
+  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
-  <!-- With this key we simulate the XSL 2.0 distinct-values () function. -->
-  <xsl:key name="id" match="/Kapitularien/Eintrag" use="Kapitular/@id" />
+  <xsl:include href="common-3.xsl"/>
 
-  <xsl:template match="/Kapitularien">
+  <xsl:param name="corpus" select="corpus.xml" />
+
+  <xsl:variable name="corpus_xml" select="document ($corpus)"/>
+
+  <xsl:template match="/list">
     <div class="mss-capit-xsl">
-      <p class="intro">
-        [:de]Die folgende, nach den Nummern der Boretius/Krause-Edition (BK) geordnete Liste führt
-        alle Handschriften auf, die das jeweilige Kapitular enthalten. Grundlage hierfür ist das
-        „Verzeichnis der Kapitularien und kapitulariennahen Texte“ in Mordek 1995,
-        S. 1079-1111. Werden dort einzelne Nummern der Boretius/Krause-Edition nicht behandelt,
-        tauchen sie auch hier nicht auf. Die Kapitulariensammlung des Ansegis (ediert von Gerhard
-        Schmitz bei den <a title="MGH"
-        href="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._II" target="_blank">MGH</a>)
-        wurde dagegen in die Übersicht aufgenommen, obwohl sie nicht Teil des Editionsprojektes ist.
-
-        [:en]This table of capitularies, ordered by their number in the edition by Boretius/Krause,
-        records all manuscripts containing the respective capitulary. It is based on Mordek 1995,
-        pp. 1079-1111 (“Verzeichnis der Kapitularien und kapitulariennahen Texte”).  Capitularies
-        not listed there but edited by Boretius/Krause have been omitted here, too. However the
-        collection of capitularies by Ansegis (edited by Gerhard Schmitz for the <a title="MGH"
-        href="http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._II" target="_blank">MGH</a>)
-        has been included despite not being part of the current project.
-
-        [:]
-      </p>
-
       <div id="content">
 
         <h4 id="BK">
@@ -60,14 +37,13 @@ Old name:   tabelle_cap_mss.xsl
         </h4>
 
         <table class="handschriften">
-          <thead valign="top" id="BK">
+          <thead valign="top">
             <th class="capit"><h5>[:de]Titel        [:en]Caption    [:]</h5></th>
             <th class="mss"  ><h5>[:de]Handschriften[:en]Manuscripts[:]</h5></th>
           </thead>
           <tbody>
-            <xsl:for-each select="Eintrag[starts-with (Kapitular/@id, 'BK')]">
-              <xsl:sort select="substring-after (Kapitular/@id, '.')" data-type="number"/>
-              <xsl:call-template name="eintrag" />
+            <xsl:for-each select="item[starts-with (@n, 'BK')]">
+              <xsl:call-template name="capitular" />
             </xsl:for-each>
           </tbody>
         </table>
@@ -79,14 +55,13 @@ Old name:   tabelle_cap_mss.xsl
         </h4>
 
         <table class="handschriften">
-          <thead valign="top" id="Mordek">
+          <thead valign="top">
             <th class="capit"><h5>[:de]Titel        [:en]Caption    [:]</h5></th>
             <th class="mss"  ><h5>[:de]Handschriften[:en]Manuscripts[:]</h5></th>
           </thead>
           <tbody>
-            <xsl:for-each select="Eintrag[starts-with (Kapitular/@id, 'Mordek')]">
-              <xsl:sort select="substring-after (Kapitular/@id, '.')" data-type="number"/>
-              <xsl:call-template name="eintrag" />
+            <xsl:for-each select="item[starts-with (@n, 'Mordek')]">
+              <xsl:call-template name="capitular" />
             </xsl:for-each>
           </tbody>
         </table>
@@ -98,14 +73,13 @@ Old name:   tabelle_cap_mss.xsl
         </h4>
 
         <table class="handschriften">
-          <thead valign="top" id="Rest">
+          <thead valign="top">
             <th class="capit"><h5>[:de]Titel        [:en]Caption    [:]</h5></th>
             <th class="mss"  ><h5>[:de]Handschriften[:en]Manuscripts[:]</h5></th>
           </thead>
           <tbody>
-            <xsl:for-each select="Eintrag[not (contains (Kapitular/@id, '.'))]">
-              <xsl:sort select="Kapitular" />
-              <xsl:call-template name="eintrag" />
+            <xsl:for-each select="item[not (contains (@n, '.'))]">
+              <xsl:call-template name="capitular" />
             </xsl:for-each>
           </tbody>
         </table>
@@ -114,59 +88,48 @@ Old name:   tabelle_cap_mss.xsl
     </div>
   </xsl:template>
 
-  <xsl:template name="eintrag">
+  <xsl:template name="capitular">
+    <xsl:text>&#x0a;&#x0a;</xsl:text>
 
-    <!-- simulate distinct-values () -->
-    <xsl:if test="generate-id () = generate-id (key ('id', Kapitular/@id))">
+    <tr>
+      <td class="capit">
+        <xsl:call-template name="if-visible">
+          <!-- adds link if target is visible to the user -->
+          <xsl:with-param name="path" select="concat ('/cap/', @n)" />
+          <xsl:with-param name="text">
+            <xsl:apply-templates select="title"/>
+          </xsl:with-param>
+        </xsl:call-template>
+
+        <xsl:if test="contains (@n, '.')">
+          <xsl:text> </xsl:text>
+          <div class="mss-capit-capitular-siglum">
+            <xsl:text>[</xsl:text>
+            <xsl:value-of select="cap:human-readable-siglum (@n)"/>
+            <xsl:text>]</xsl:text>
+          </div>
+        </xsl:if>
+      </td>
 
       <xsl:text>&#x0a;&#x0a;</xsl:text>
-      <tr>
-        <td class="capit"> <!-- id="Kapitular/@id" data-cap-dyn-menu-caption="{Kapitular}" -->
-          <xsl:call-template name="if-visible">
-            <xsl:with-param name="path" select="concat ('/cap/', Kapitular/@id)" />
-            <xsl:with-param name="text">
-              <xsl:apply-templates select="Kapitular"/>
-            </xsl:with-param>
-          </xsl:call-template>
 
-          <xsl:apply-templates select="Kapitular" mode="id"/>
-        </td>
-        <xsl:text>&#x0a;&#x0a;</xsl:text>
-
-        <td class="mss">
-          <ul class="bare">
-            <xsl:for-each select="key ('id', Kapitular/@id)">
-              <xsl:sort select="hss"/>
-              <li>
-                <xsl:call-template name="if-visible">
-                  <xsl:with-param name="path" select="concat ('/mss/', hss/@url)"/>
-                  <xsl:with-param name="text">
-                    <xsl:apply-templates select="hss"/>
-                  </xsl:with-param>
-                </xsl:call-template>
-              </li>
-              <xsl:text>&#x0a;&#x0a;</xsl:text>
-            </xsl:for-each>
-          </ul>
-        </td>
-      </tr>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template match="Kapitular" mode="id">
-    <xsl:if test="contains (@id, '.')">
-      <div class="mss-capit-capitular-siglum">
-        <xsl:text> [</xsl:text>
-        <xsl:value-of select="cap:human-readable-siglum (@id)"/>
-
-        <xsl:if test="normalize-space (@id1)">
-          <xsl:text>, </xsl:text>
-          <xsl:value-of select="cap:human-readable-siglum (@id1)"/>
-        </xsl:if>
-
-        <xsl:text>]</xsl:text>
-      </div>
-    </xsl:if>
+      <td class="mss">
+        <ul class="bare">
+          <xsl:for-each select="msIdentifier">
+            <li>
+              <xsl:call-template name="if-visible">
+                <xsl:with-param name="path" select="concat ('/mss/', @xml:id)"/>
+                <xsl:with-param name="text">
+                  <!-- get the title of the ms out of file corpus.xml -->
+                  <xsl:value-of select="$corpus_xml/teiCorpus/TEI[@xml:id=current()/@xml:id]//titleStmt/title[@type='main']" />
+                </xsl:with-param>
+              </xsl:call-template>
+            </li>
+            <xsl:text>&#x0a;&#x0a;</xsl:text>
+          </xsl:for-each>
+        </ul>
+      </td>
+    </tr>
   </xsl:template>
 
   <xsl:template match="note">
