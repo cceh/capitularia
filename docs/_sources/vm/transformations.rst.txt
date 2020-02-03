@@ -5,6 +5,12 @@ XSLT Transformations
 
 The transformations used to produce HTML from TEI.
 
+The XSLT stylesheets were first written in XSLT 1 for historical reasons.  We
+are currently (Feb. 2020) rewriting them in XSLT 3.  XSLT 3 transformation is
+done with Saxon.  XSLT 1 transformation is done with xsltproc.
+
+See also the overview: :ref:`html-generation`.
+
 
 Capitulary Pages
 ----------------
@@ -12,22 +18,6 @@ Capitulary Pages
 .. pic:: xslt_dep_html
 
    capit.xsl
-
-.. pic:: xslt_dep_dot
-
-   capit.xsl
-
-
-Lists of Capitularies
----------------------
-
-.. pic:: xslt_dep_html
-
-   capit-list.xsl
-
-.. pic:: xslt_dep_dot
-
-   capit-list.xsl
 
 
 Manuscript Pages
@@ -39,11 +29,13 @@ Manuscript Pages
    mss-transcript.xsl
    mss-footer.xsl
 
-.. pic:: xslt_dep_dot
 
-   mss-header.xsl
-   mss-transcript.xsl
-   mss-footer.xsl
+Lists of Capitularies
+---------------------
+
+.. pic:: xslt_dep_html
+
+   capit-list.xsl
 
 
 Lists of Manuscripts
@@ -55,26 +47,31 @@ Lists of Manuscripts
    mss-capit.xsl
    mss-idno.xsl
    mss-key.xsl
-   changes.xsl
-
-.. pic:: xslt_dep_dot
-
-   mss-table.xsl
-   mss-capit.xsl
-   mss-idno.xsl
-   mss-key.xsl
-   changes.xsl
 
 
-Lists of Resources
-------------------
+Other Lists
+-----------
 
 .. pic:: xslt_dep_html
 
    bib-bibliography.xsl
+   changes.xsl
    downloads.xsl
+
+
+Other Transformations
+---------------------
+
+.. pic:: xslt_dep_html
+
+   corpus.xsl
+   mss-extract-chapters.xsl
+   mss-transcript-with-comments.xsl
+
+
+Stylesheet Dependencies
+-----------------------
 
 .. pic:: xslt_dep_dot
 
-   bib-bibliography.xsl
-   downloads.xsl
+   *.xsl

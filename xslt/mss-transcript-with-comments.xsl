@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+
+Outputs the transcription section of a single manuscript page with editor
+comments.  Used internally by the editors.
+
+Input files:  /mss/*.xml
+Output files: /cache/mss/*.transcript.commented.html
+Output URL:   /internal/mss-comments/*/
+
+-->
+
 <xsl:stylesheet
     version="1.0"
     xmlns="http://www.w3.org/1999/xhtml"
@@ -13,8 +24,6 @@
     exclude-result-prefixes="#default tei"
     extension-element-prefixes="cap exsl func set str">
   <!-- libexslt does not support the regexp extension ! -->
-
-  <!-- Diese Datei gibt die XML-Kommentare mit aus. -->
 
   <xsl:import href="mss-transcript.xsl" />
 

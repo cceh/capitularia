@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+
+This stylesheet builds a corpus.xml file by concatenating all TEI manuscript
+files into one huge file.  To reduce file size, only interesting sections are
+retained, eg. all <ab> text is removed.
+
+The corpus.xml file is used to speed up subsequent transformations.
+
+Input files:  /mss/<ms_id>.xml
+Output files: /cache/lists/corpus.xml
+
+-->
+
 <xsl:stylesheet
     xmlns="http://www.tei-c.org/ns/1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"

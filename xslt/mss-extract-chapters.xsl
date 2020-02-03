@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xsl:stylesheet
-    xmlns="http://www.tei-c.org/ns/1.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:tei="http://www.tei-c.org/ns/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
-    xpath-default-namespace="http://www.tei-c.org/ns/1.0"
-    default-mode="extract"
-    version="3.0">
-
 <!--
 
 This stylesheet takes one TEI manuscript file and breaks it up into sections by
@@ -26,7 +16,22 @@ Sections are gathered by following @next links through <ab>s and/or from
 <milestone>s to <anchor>s.  For the details, see:
 https://capitularia.uni-koeln.de/wp-admin/admin.php?page=wp-help-documents&document=7402
 
+Input files:  /mss/<ms_id>.xml
+Output files: /cache/extracted/<ms_id>/<corresp>_<n>.xml
+Output files: /cache/extracted/<ms_id>/<corresp>_<n>.txt
+Output files: /cache/extracted/<ms_id>/<corresp>_<n>_later_hands.txt
+
 -->
+
+<xsl:stylesheet
+    xmlns="http://www.tei-c.org/ns/1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
+    xpath-default-namespace="http://www.tei-c.org/ns/1.0"
+    default-mode="extract"
+    version="3.0">
 
   <xsl:param name="directory" />
 

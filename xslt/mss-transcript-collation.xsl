@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+This transformation produces the transcription section of a manuscript as TXT
+output suited for collation.  Some text normalizations are applied.
+-->
+
 <xsl:stylesheet
     version="3.0"
     xmlns="http://www.tei-c.org/ns/1.0"
@@ -11,8 +16,6 @@
     xpath-default-namespace="http://www.tei-c.org/ns/1.0"
     default-mode="collation"
     exclude-result-prefixes="cap tei xs xsl">
-
-  <!-- This transformation produces TXT better suited for collation. -->
 
   <xsl:import href="mss-transcript-phase-1.xsl" />
 
@@ -53,7 +56,7 @@
 
   <xsl:template match="figure" />
 
-  <!-- override templates in pahes 1 -->
+  <!-- override templates in phase 1 -->
 
   <!-- Don't output "[!]" -->
   <xsl:template match="sic" mode="phase1">

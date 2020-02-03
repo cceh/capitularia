@@ -102,8 +102,6 @@ Output files: /cache/lists/mss-capit.html
           </xsl:with-param>
         </xsl:call-template>
 
-        <xsl:apply-templates select="note"/>
-
         <xsl:if test="contains (@n, '.')">
           <xsl:text> </xsl:text>
           <div class="mss-capit-capitular-siglum">
@@ -112,6 +110,8 @@ Output files: /cache/lists/mss-capit.html
             <xsl:text>]</xsl:text>
           </div>
         </xsl:if>
+
+        <xsl:apply-templates select="note"/>
       </td>
 
       <xsl:text>&#x0a;&#x0a;</xsl:text>

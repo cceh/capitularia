@@ -1,3 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Diese Datei enthält Anweisungen für alle Sonderfälle, die bei
+     der Transformation aus dem CTE beachtet werden müssen. -->
+
 <xsl:stylesheet
     version="1.0"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
@@ -12,9 +17,6 @@
     extension-element-prefixes="cap exsl func set str"
     exclude-result-prefixes="tei xhtml xs xsl">
   <!-- libexslt does not support the regexp extension ! -->
-
-  <!-- Diese Datei enthält Anweisungen für alle Sonderfälle, die bei
-       der Transformation aus dem CTE beachtet werden müssen. -->
 
   <!-- 29.08. DS ### Kleinere Anpassungen zur Verarbeitung des
        nachbearbeiteten CTE-Outputs #### (ref @subtype=witness - muss
