@@ -241,20 +241,24 @@ div.content-col {
             .capit {
                 width: 35%;
             }
+            td div.note {
+                font-size: 85%;
+                @include regular;
+            }
             td.capit {
                 @include italic;
+                div.note {
+                    margin-top: 1em;
+                }
             }
             td.mss {
                 line-height: 120%;
+                div.note {
+                    display: inline;
+                }
             }
         }
         .mss-capit-capitular-siglum {
-            @include regular;
-        }
-        div.note {
-            margin-top: 1em;
-            text-align: justify;
-            font-size: 85%;
             @include regular;
         }
     }

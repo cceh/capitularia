@@ -2,9 +2,9 @@
 
 <!--
 
-Output URL: /mss/capit/
-Input file: cap/publ/mss/lists/mss_by_cap.xml cap/publ/cache/lists/corpus.xml
-Old name:   tabelle_cap_mss.xsl
+Output URL:   /mss/capit/
+Input files:  /mss/lists/mss_by_cap.xml /mss/lists/manuscripts.xml
+Output files: /cache/lists/mss-capit.html
 
 -->
 
@@ -22,11 +22,11 @@ Old name:   tabelle_cap_mss.xsl
 
   <xsl:include href="common-3.xsl"/>
 
-  <xsl:param name="corpus" select="corpus.xml" />
+  <xsl:param name="manuscripts" select="manuscripts.xml" />
 
-  <xsl:variable name="corpus_xml" select="document ($corpus)"/>
+  <xsl:variable name="manuscripts_xml" select="document ($manuscripts)"/>
 
-  <xsl:template match="/list">
+  <xsl:template match="/lists/list[@type='capitularies']">
     <div class="mss-capit-xsl">
       <div id="content">
 
@@ -79,6 +79,7 @@ Old name:   tabelle_cap_mss.xsl
           </thead>
           <tbody>
             <xsl:for-each select="item[not (contains (@n, '.'))]">
+              <xsl:sort select="title" />
               <xsl:call-template name="capitular" />
             </xsl:for-each>
           </tbody>
@@ -101,6 +102,8 @@ Old name:   tabelle_cap_mss.xsl
           </xsl:with-param>
         </xsl:call-template>
 
+        <xsl:apply-templates select="note"/>
+
         <xsl:if test="contains (@n, '.')">
           <xsl:text> </xsl:text>
           <div class="mss-capit-capitular-siglum">
@@ -117,13 +120,38 @@ Old name:   tabelle_cap_mss.xsl
         <ul class="bare">
           <xsl:for-each select="msIdentifier">
             <li>
-              <xsl:call-template name="if-visible">
-                <xsl:with-param name="path" select="concat ('/mss/', @xml:id)"/>
-                <xsl:with-param name="text">
-                  <!-- get the title of the ms out of file corpus.xml -->
-                  <xsl:value-of select="$corpus_xml/teiCorpus/TEI[@xml:id=current()/@xml:id]//titleStmt/title[@type='main']" />
-                </xsl:with-param>
-              </xsl:call-template>
+              <xsl:variable name="title">
+                <xsl:choose>
+                  <xsl:when test="title">
+                    <!-- an explicitly set title overrides -->
+                    <xsl:apply-templates select="title" />
+                  </xsl:when>
+                  <xsl:when test="$manuscripts_xml//item[@xml:id=current ()/@target]">
+                    <!-- look for title in manuscript list -->
+                    <xsl:apply-templates
+                        select="$manuscripts_xml//item[@xml:id=current ()/@target]/title" />
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="@target" />
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:variable>
+
+              <xsl:choose>
+                <xsl:when test="@target">
+                  <xsl:call-template name="if-visible">
+                    <xsl:with-param name="path" select="concat ('/mss/', @target)"/>
+                    <xsl:with-param name="text">
+                      <xsl:copy-of select="$title"/>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:copy-of select="$title"/>
+                </xsl:otherwise>
+              </xsl:choose>
+
+              <xsl:apply-templates select="note" />
             </li>
             <xsl:text>&#x0a;&#x0a;</xsl:text>
           </xsl:for-each>
@@ -136,18 +164,6 @@ Old name:   tabelle_cap_mss.xsl
     <div class="note">
       <xsl:apply-templates/>
     </div>
-  </xsl:template>
-
-  <xsl:template match="ref[@type='external']">
-    <a title="Externer Link" href="{@target}" target="_blank">
-      <xsl:apply-templates/>
-    </a>
-  </xsl:template>
-
-  <xsl:template match="ref[@type='internal']">
-    <a title="Interner Link" href="{@target}">
-      <xsl:apply-templates/>
-    </a>
   </xsl:template>
 
 </xsl:stylesheet>
