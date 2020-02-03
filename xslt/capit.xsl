@@ -2,10 +2,11 @@
 
 <!--
 
-Outputs a single Capitula-Page
+Outputs a single Capitulary page.
 
-Input file: cap/publ/capit/ldf/bk-nr-*.xml
-Output URL: /capit/ldf/bk-nr-186/
+Input files:  /capit/*/bk-nr-*.xml
+Output files: /cache/capits/*/bk-nr-*.html
+Output URL:   /capit/*/bk-nr-*/
 
 -->
 

@@ -48,6 +48,9 @@ appropriate tools to keep the HTML files up-to-date with the manuscript files.
 
 The HTML files are stored in the cache directory.
 
+See also: the :ref:`list of all transformations <transformations>`
+complete with input and output files and urls.
+
 .. note::
 
    The XSLT stylesheets are written in XSLT 1 for historical reasons.  That is

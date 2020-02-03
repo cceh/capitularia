@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Input files:  /bibl/Bibliographie_Capitularia.xml
+Output files: /cache/lists/bib.html
+Output URL:   /resources/biblio/
+
+-->
+
 <xsl:stylesheet
     version="1.0"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"

@@ -2,9 +2,9 @@
 
 <!--
 
-Output URL: /capit/list/, /capit/pre814/, /capit/ldf/, ...
-Input file: cap/publ/capit/lists/capit_all.xml
-Old name:   list_capit_all.xsl
+Input files:  /capit/lists/capit_all.xml
+Output Files: /cache/lists/capit-all.html /cache/lists/capit-pre814.html /cache/lists/capit-ldf.html /cache/lists/capit-post840.html /cache/lists/capit-undated.html
+Output URLs: /capit/list/ /capit/pre814/ /capit/ldf/ /capit/post840/ /capit/undated/
 
 -->
 

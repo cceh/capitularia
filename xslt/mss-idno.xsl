@@ -2,9 +2,9 @@
 
 <!--
 
+Input files: /mss/lists/BibCapitMordek.xml /cache/lists/corpus.xml
+Output file: /cache/lists/mss-idno.html
 Output URL:  /mss/idno/
-Input files: cap/publ/mss/lists/BibCapitMordek.xml cap/publ/cache/lists/corpus.xml
-Old name:    handschriften_mordek_signatur.xsl
 
 -->
 

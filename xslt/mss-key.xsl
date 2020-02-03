@@ -2,9 +2,9 @@
 
 <!--
 
-Output URL: /mss/key/
-Input file: cap/publ/mss/lists/sigle.xml
-Old name:   IdnoSynopse.xsl
+Input files: /mss/lists/sigle.xml
+Output file: /cache/lists/mss-key.html
+Output URL:  /mss/key/
 
 -->
 

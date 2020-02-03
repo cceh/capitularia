@@ -97,6 +97,22 @@ copy "config.pic";
         'preamble'  : "",
         'postamble' : "",
     },
+    'xslt_dep_dot' : {
+        'program'   : "../python/xslt_dep.py --depends @/dev/stdin | dot -Tsvg",
+        'cwd'       : "../xslt",
+        'shell'     : True,
+        'align'     : "center",
+        'preamble'  : "",
+        'postamble' : "",
+    },
+    'xslt_dep_html' : {
+        'program'   : "../python/xslt_dep.py --format=html --ios @/dev/stdin",
+        'cwd'       : "../xslt",
+        'shell'     : True,
+        'align'     : "center",
+        'preamble'  : "",
+        'postamble' : "",
+    },
 }
 
 # Add any paths that contain templates here, relative to this directory.

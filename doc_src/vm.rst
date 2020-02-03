@@ -9,3 +9,4 @@ Capitularia VM
 
    vm/app_server
    vm/database
+   vm/transformations

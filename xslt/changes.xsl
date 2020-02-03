@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+
+Input files:  /cache/lists/corpus.xml
+Output files: /cache/lists/changes.html /cache/lists/changes90.html
+Output URLs:  /mss/status/
+
+-->
+
 <xsl:stylesheet
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:tei="http://www.tei-c.org/ns/1.0"

@@ -24,7 +24,7 @@ upload_server:
 	cd $(SERVER) && $(MAKE) upload
 
 import_xml:
-	$(RSYNC) --del $(PUBL)/mss/*xml xml/
+	$(RSYNC) --del $(PUBL)/mss/*    mss/
 	$(RSYNC) --del $(PUBL)/capit/*  capit/
 
 import_backups:

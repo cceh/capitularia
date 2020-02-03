@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+
+Outputs the footer section of a single manuscript page.
+
+Input files:  /mss/*.xml
+Output files: /cache/mss/*.footer.html
+Output URL:   /mss/*/
+
+-->
+
 <xsl:stylesheet
     version="1.0"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"

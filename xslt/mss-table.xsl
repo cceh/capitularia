@@ -2,9 +2,9 @@
 
 <!--
 
-Input File: cap/publ/mss/lists/ueberblick_mordek.xml
-Output URL: /mss/table/
-Old name:   tabelle_ueberblick.xsl
+Input Files: /mss/lists/ueberblick_mordek.xml
+Output File: /cache/lists/mss-table.html
+Output URL:  /mss/table/
 
 -->
 
