@@ -139,31 +139,6 @@ Output URL:  /mss/table/
 
   <xsl:template match="term[@n]">
 
-    <xsl:variable name="path">
-      <xsl:text>/capit</xsl:text>
-      <xsl:choose>
-        <xsl:when test="@list='pre814'">
-          <xsl:value-of select="'/pre814'"/>
-        </xsl:when>
-        <xsl:when test="@list='post840'">
-          <xsl:value-of select="'/post840'"/>
-        </xsl:when>
-        <xsl:when test="@list='undated'">
-          <xsl:value-of select="'/undated'"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="'/ldf'"/>
-        </xsl:otherwise>
-      </xsl:choose>
-      <xsl:if test="contains(@n, 'BK')">
-        <xsl:text>/bk-nr-</xsl:text>
-      </xsl:if>
-      <xsl:if test="contains(@n, 'Mordek')">
-        <xsl:text>/mordek-nr-</xsl:text>
-      </xsl:if>
-      <xsl:value-of select="substring-after (@n, '.')"/>
-    </xsl:variable>
-
     <xsl:text> </xsl:text>
     <xsl:value-of select="."/>
 
@@ -171,7 +146,7 @@ Output URL:  /mss/table/
       <xsl:text> [</xsl:text>
 
       <xsl:call-template name="if-visible">
-        <xsl:with-param name="path" select="$path"/>
+        <xsl:with-param name="path" select="concat ('/cap/', @n)"/>
 
         <xsl:with-param name="title">
           <xsl:text>[:de]Informationen zum Kapitular[:en]Information on capitulary[:] </xsl:text>

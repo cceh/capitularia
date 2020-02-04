@@ -26,61 +26,69 @@ Output URL:  /mss/idno/
 
   <xsl:variable name="corpus_xml" select="document ($corpus)"/>
 
-  <xsl:template match="/TEI">
+  <xsl:template match="/lists">
     <div class="mss-idno-xsl">
-      <xsl:apply-templates select=".//div[@type='manuscripts']"/>
+      <table>
+        <tbody>
+          <xsl:for-each-group select="list/item" group-by="substring (title, 1, 1)">
+            <xsl:sort select="current-grouping-key ()" />
+
+            <tr>
+              <th id="{current-grouping-key ()}">
+                <xsl:value-of select="current-grouping-key ()"/>
+              </th>
+            </tr>
+
+            <xsl:for-each select="current-group ()">
+              <xsl:sort select="cap:natsort (title)" />
+
+              <tr>
+                <td>
+                  <xsl:call-template name="if-visible">
+                    <xsl:with-param name="path" select="concat ('/mss/', @xml:id)"/>
+                    <xsl:with-param name="text" select="string (title)"/>
+                  </xsl:call-template>
+
+                  <xsl:apply-templates select="siglum"/>
+
+                  <!-- some urls are invalid and of the form:
+                       url="urn:nbn:de:hebis:30:2-45087 http://sammlungen.ub.uni-frankfurt.de/msma/content/titleinfo/4655261"
+                  -->
+                  <xsl:variable
+                      name="urls"
+                      select="tokenize (normalize-space (string-join ($corpus_xml/teiCorpus/TEI[@xml:id=current()/@xml:id]/facsimile/graphic/@url[1], ' ')))"
+                      />
+
+                  <xsl:for-each select="$urls">
+                    <xsl:if test="starts-with (., 'http')">
+                      <a href="{.}" class="external" title="Zum Digitalisat"></a>
+                    </xsl:if>
+                  </xsl:for-each>
+                </td>
+              </tr>
+              <xsl:text>&#x0a;&#x0a;</xsl:text>
+
+            </xsl:for-each>
+          </xsl:for-each-group>
+        </tbody>
+      </table>
     </div>
   </xsl:template>
 
-  <xsl:template match="div[@type='manuscripts']">
-    <table>
-      <tbody>
-        <xsl:apply-templates select="milestone | msDesc/head[@type='shelfmark']"/>
-      </tbody>
-    </table>
-  </xsl:template>
+  <xsl:template match="siglum">
+    <span class="siglum">
+      <xsl:text> [</xsl:text>
+      <xsl:apply-templates />
+      <xsl:text>]</xsl:text>
 
-  <xsl:template match="milestone">
-    <tr>
-      <th id="{@n}">
-        <xsl:value-of select="@n"/>
-      </th>
-    </tr>
-    <xsl:text>&#x0a;&#x0a;</xsl:text>
-  </xsl:template>
+      <xsl:if test="@type = 'new'">
+        <xsl:text> [:de](NEU)[:en](NEW)[:]</xsl:text>
+      </xsl:if>
 
-  <xsl:template match="msDesc[@xml:id]/head[@type='shelfmark']">
-    <tr>
-      <td>
-        <xsl:call-template name="if-visible">
-          <xsl:with-param name="path" select="concat ('/mss/', ../@xml:id)"/>
-          <xsl:with-param name="text" select="text()"/>
-        </xsl:call-template>
-
-        <xsl:if test="note[@type='siglum' and normalize-space (.)]">
-          <xsl:text> [</xsl:text>
-          <span class="siglum">
-            <xsl:apply-templates select="note[@type='siglum']"/>
-          </span>
-          <xsl:text>]</xsl:text>
-        </xsl:if>
-
-        <!-- some urls are invalid and of the form:
-             url="urn:nbn:de:hebis:30:2-45087 http://sammlungen.ub.uni-frankfurt.de/msma/content/titleinfo/4655261"
-        -->
-        <xsl:variable
-            name="urls"
-            select="tokenize (normalize-space (string-join ($corpus_xml/teiCorpus/TEI[@xml:id=current()/../@xml:id]/facsimile/graphic/@url[1], ' ')))"
-            />
-
-        <xsl:for-each select="$urls">
-          <xsl:if test="starts-with (., 'http')">
-            <a href="{.}" class="external" title="Zum Digitalisat"></a>
-          </xsl:if>
-        </xsl:for-each>
-      </td>
-    </tr>
-    <xsl:text>&#x0a;&#x0a;</xsl:text>
+      <xsl:if test="@type = 'old'">
+        <xsl:text> (olim)</xsl:text>
+      </xsl:if>
+    </span>
   </xsl:template>
 
 </xsl:stylesheet>

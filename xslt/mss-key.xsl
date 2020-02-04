@@ -2,7 +2,7 @@
 
 <!--
 
-Input files: /mss/lists/sigle.xml
+Input files: /mss/lists/manuscripts.xml
 Output file: /cache/lists/mss-key.html
 Output URL:  /mss/key/
 
@@ -14,6 +14,7 @@ Output URL:  /mss/key/
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
+    xpath-default-namespace="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="tei xhtml cap xsl"
     version="3.0">
 
@@ -32,64 +33,38 @@ Output URL:  /mss/key/
             </tr>
           </thead>
           <tbody>
-            <xsl:apply-templates select="list[@id='sigla']/item|list[@id='newsigla']/item">
-              <xsl:sort select="cap:natsort (sigle)"/>
-              <xsl:sort select="mss"/>
+            <xsl:apply-templates select="list/item/siglum">
+              <xsl:sort select="cap:natsort (.)"/>
             </xsl:apply-templates>
           </tbody>
         </table>
       </div>
-
-      <!--
-      <div>
-        <h4 id="no_sigla">
-          [:de]Handschriften ohne Sigle
-          [:en]Manuscripts without sigla
-          [:]
-        </h4>
-        <p>
-          [:de]Bei den folgenden Codices handelt es sich entweder um Neufunde oder um
-          Handschriften, die Mordek zwar erwähnt, ihnen aber keine Sigle zuwies.
-          [:en]Listed below are manuscripts that were either newly discovered or that were
-          mentioned by Mordek, but with no sigla attributed to them.
-          [:]
-        </p>
-        <table>
-          <tbody>
-	        <xsl:apply-templates select="list[@id='nosigla']/item" />
-          </tbody>
-        </table>
-      </div>
-      -->
-
     </div>
   </xsl:template>
 
-  <xsl:template match="item">
+  <xsl:template match="siglum">
     <tr>
-      <xsl:choose>
-        <xsl:when test="parent::list[@id='sigla']">
-          <td class="siglum">
-            <xsl:apply-templates select="sigle"/>
-          </td>
-        </xsl:when>
-        <xsl:when test="parent::list[@id='newsigla']">
-          <td class="siglum">
-            <xsl:apply-templates select="sigle"/>
+      <td class="siglum">
+        <div>
+          <xsl:apply-templates />
+          <xsl:if test="@type = 'new'">
             <xsl:text> [:de](NEU)[:en](NEW)[:]</xsl:text>
-          </td>
-        </xsl:when>
-      </xsl:choose>
+          </xsl:if>
+          <xsl:if test="@type = 'old'">
+            <xsl:text> (olim)</xsl:text>
+          </xsl:if>
+        </div>
+      </td>
       <td>
-        <xsl:apply-templates select="mss"/>
+        <xsl:apply-templates select="../title"/>
       </td>
     </tr>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
   </xsl:template>
 
-  <xsl:template match="mss">
+  <xsl:template match="title">
     <xsl:call-template name="if-visible">
-      <xsl:with-param name="path" select="concat ('/mss/', ../url)"/>
+      <xsl:with-param name="path" select="concat ('/mss/', ../@xml:id)"/>
       <xsl:with-param name="text" select="text ()"/>
     </xsl:call-template>
   </xsl:template>

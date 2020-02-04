@@ -139,9 +139,9 @@ $(foreach c,$(CAPITS),$(eval $(call CAPIT_TEMPLATE,$(c))))
 MSS_LISTS := mss-table mss-capit mss-idno mss-key
 
 mss-table_XML  := $(MSS_LISTS_DIR)/ueberblick_mordek.xml
-mss-capit_XML  := $(MSS_LISTS_DIR)/mss_by_cap.xml     $(MSS_LISTS_DIR)/manuscripts.xml
-mss-idno_XML   := $(MSS_LISTS_DIR)/BibCapitMordek.xml $(CACHE_DIR)/lists/corpus.xml
-mss-key_XML    := $(MSS_LISTS_DIR)/sigle.xml
+mss-capit_XML  := $(MSS_LISTS_DIR)/mss_by_cap.xml  $(MSS_LISTS_DIR)/manuscripts.xml
+mss-idno_XML   := $(MSS_LISTS_DIR)/manuscripts.xml $(CACHE_DIR)/lists/corpus.xml
+mss-key_XML    := $(MSS_LISTS_DIR)/manuscripts.xml
 
 define MSS_LISTS_TEMPLATE =
 
