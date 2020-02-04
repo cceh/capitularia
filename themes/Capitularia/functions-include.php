@@ -462,7 +462,12 @@ function bk_to_permalink ($corresp)
 /**
  * Redirector for Capitulary pages
  *
- * Eg. redirect from /bk/BK.42a to /capit/<subdir>/bk-nr-042a/
+ * Eg. redirects from
+ *
+ *     /cap/BK.42a    => /capit/<subdir>/bk-nr-042a/
+ *     /cap/Mordek_27 => /capit/<subdir>/mordek-nr-27/
+ *     /bk/42a        => /capit/<subdir>/bk-nr-042a/
+ *     /mordek/27     => /capit/<subdir>/mordek-nr-27/
  *
  * We cannot just use mod_rewrite because we don't know which subdirectory the
  * capitulary page is in.
