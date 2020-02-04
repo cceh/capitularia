@@ -2,7 +2,7 @@
 
 <!--
 
-Input files: /mss/lists/BibCapitMordek.xml /cache/lists/corpus.xml
+Input files: /mss/lists/manuscripts.xml /cache/lists/corpus.xml
 Output file: /cache/lists/mss-idno.html
 Output URL:  /mss/idno/
 
