@@ -4,7 +4,8 @@
 
 Input files:  /bibl/Bibliographie_Capitularia.xml
 Output files: /cache/lists/bib.html
-Output URL:   /resources/biblio/
+
+URL: /cache/lists/bib.html /resources/biblio/
 
 -->
 

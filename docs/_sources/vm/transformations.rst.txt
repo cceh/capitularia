@@ -1,7 +1,10 @@
 .. _transformations:
 
 XSLT Transformations
-====================
+--------------------
+
+.. contents::
+   :local:
 
 The transformations used to produce HTML from TEI.
 
@@ -12,66 +15,19 @@ done with Saxon.  XSLT 1 transformation is done with xsltproc.
 See also the overview: :ref:`html-generation`.
 
 
-Capitulary Pages
-----------------
-
-.. pic:: xslt_dep_html
-
-   capit.xsl
-
-
-Manuscript Pages
-----------------
-
-.. pic:: xslt_dep_html
-
-   mss-header.xsl
-   mss-transcript.xsl
-   mss-footer.xsl
-
-
-Lists of Capitularies
----------------------
-
-.. pic:: xslt_dep_html
-
-   capit-list.xsl
-
-
-Lists of Manuscripts
---------------------
-
-.. pic:: xslt_dep_html
-
-   mss-table.xsl
-   mss-capit.xsl
-   mss-idno.xsl
-   mss-key.xsl
-
-
-Other Lists
------------
-
-.. pic:: xslt_dep_html
-
-   bib-bibliography.xsl
-   changes.xsl
-   downloads.xsl
-
-
-Other Transformations
----------------------
-
-.. pic:: xslt_dep_html
-
-   corpus.xsl
-   mss-extract-chapters.xsl
-   mss-transcript-with-comments.xsl
-
-
-Stylesheet Dependencies
------------------------
+Graph of All Transformations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. pic:: xslt_dep_dot
 
-   *.xsl
+   io
+   dot
+
+
+Graph of Stylesheet Dependencies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. pic:: xslt_dep_dot
+
+   dep
+   dot

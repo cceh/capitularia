@@ -6,7 +6,8 @@ Outputs the transcription section of a single manuscript page.
 
 Input files:  /mss/*.xml
 Output files: /cache/mss/*.transcript.html
-Output URL:   /mss/*/
+
+URL: /cache/mss/*.transcript.html /mss/*/
 
 -->
 

@@ -4,7 +4,8 @@
 
 Input files: /mss/lists/manuscripts.xml /cache/lists/corpus.xml
 Output file: /cache/lists/mss-idno.html
-Output URL:  /mss/idno/
+
+URL: /cache/lists/mss-idno.html /mss/idno/
 
 -->
 

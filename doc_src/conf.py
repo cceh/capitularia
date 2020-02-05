@@ -97,20 +97,20 @@ copy "config.pic";
         'preamble'  : "",
         'postamble' : "",
     },
-    'xslt_dep_dot' : {
-        'program'   : "../python/xslt_dep.py --depends @/dev/stdin | dot -Tsvg",
+    'xslt_dep' : {
+        'program'   : ["../python/xslt_dep.py"],
         'cwd'       : "../xslt",
-        'shell'     : True,
+        'shell'     : False,
         'align'     : "center",
-        'preamble'  : "",
+        'preamble'  : "load ../doc_src/xslt_dep/structure.ttl\n",
         'postamble' : "",
     },
-    'xslt_dep_html' : {
-        'program'   : "../python/xslt_dep.py --format=html --ios @/dev/stdin",
+    'xslt_dep_dot' : {
+        'program'   : "../python/xslt_dep.py | dot -Tsvg",
         'cwd'       : "../xslt",
         'shell'     : True,
         'align'     : "center",
-        'preamble'  : "",
+        'preamble'  : "load ../doc_src/xslt_dep/structure.ttl\n",
         'postamble' : "",
     },
 }
@@ -131,7 +131,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Capitularia'
-copyright = '2018-19 CCeH - Licensed under the GNU GPL v3 or later'
+copyright = '2018-20 CCeH - Licensed under the GNU GPL v3 or later'
 author = 'Marcello Perathoner'
 
 # The version info for the project you're documenting, acts as replacement for

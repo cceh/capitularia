@@ -16,10 +16,15 @@ Sections are gathered by following @next links through <ab>s and/or from
 <milestone>s to <anchor>s.  For the details, see:
 https://capitularia.uni-koeln.de/wp-admin/admin.php?page=wp-help-documents&document=7402
 
-Input files:  /mss/<ms_id>.xml
-Output files: /cache/extracted/<ms_id>/<corresp>_<n>.xml
-Output files: /cache/extracted/<ms_id>/<corresp>_<n>.txt
-Output files: /cache/extracted/<ms_id>/<corresp>_<n>_later_hands.txt
+Input files:  /mss/*.xml
+
+Output files: /cache/extracted/@ms_id/@corresp_@n.xml
+Output files: /cache/extracted/@ms_id/@corresp_@n.txt
+Output files: /cache/extracted/@ms_id/@corresp_@n_later_hands.txt
+
+Scrape: fulltext /cache/extracted/@ms_id/@corresp_@n.xml
+Scrape: fulltext /cache/extracted/@ms_id/@corresp_@n.txt
+Scrape: fulltext /cache/extracted/@ms_id/@corresp_@n_later_hands.txt
 
 -->
 

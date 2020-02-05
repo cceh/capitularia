@@ -2,9 +2,10 @@
 
 <!--
 
-Output URL:   /mss/capit/
 Input files:  /mss/lists/mss_by_cap.xml /mss/lists/manuscripts.xml
 Output files: /cache/lists/mss-capit.html
+
+URL: /cache/lists/mss-capit.html /mss/capit/
 
 -->
 

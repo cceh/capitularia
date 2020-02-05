@@ -4,7 +4,9 @@
 
 Input files:  /cache/lists/corpus.xml
 Output files: /cache/lists/changes.html /cache/lists/changes90.html
-Output URLs:  /mss/status/
+
+URL: /cache/lists/changes.html   /mss/status/
+URL: /cache/lists/changes90.html /mss/status/
 
 -->
 

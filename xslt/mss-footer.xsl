@@ -6,7 +6,8 @@ Outputs the footer section of a single manuscript page.
 
 Input files:  /mss/*.xml
 Output files: /cache/mss/*.footer.html
-Output URL:   /mss/*/
+
+URL: /cache/mss/*.footer.html /mss/*/
 
 -->
 

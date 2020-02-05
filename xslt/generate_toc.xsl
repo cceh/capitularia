@@ -4,7 +4,8 @@
 
 Outputs a content div for insertion in a manuscript file.
 
-Input file: cap/mss/*
+Input files: /mss/*.xml
+
 Output: divContent
 
 Needs SAXON !!! (Saxon does not grok str:concat (), but our editors use Saxon,

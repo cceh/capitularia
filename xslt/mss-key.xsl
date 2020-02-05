@@ -4,7 +4,8 @@
 
 Input files: /mss/lists/manuscripts.xml
 Output file: /cache/lists/mss-key.html
-Output URL:  /mss/key/
+
+URL: /cache/lists/mss-key.html /mss/key/
 
 -->
 

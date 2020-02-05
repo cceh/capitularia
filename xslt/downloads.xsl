@@ -4,7 +4,8 @@
 
 Input files:  /cache/lists/corpus.xml
 Output files: /cache/lists/downloads.html
-Output URLs:  /resources/downloads/
+
+URL: /cache/lists/downloads.html /resources/downloads/
 
 -->
 

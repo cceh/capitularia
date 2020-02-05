@@ -7,7 +7,8 @@ comments.  Used internally by the editors.
 
 Input files:  /mss/*.xml
 Output files: /cache/mss/*.transcript.commented.html
-Output URL:   /internal/mss-comments/*/
+
+URL: /cache/mss/*.transcript.commented.html /internal/mss-comments/*/
 
 -->
 

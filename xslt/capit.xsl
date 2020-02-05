@@ -6,7 +6,8 @@ Outputs a single Capitulary page.
 
 Input files:  /capit/*/bk-nr-*.xml
 Output files: /cache/capits/*/bk-nr-*.html
-Output URL:   /capit/*/bk-nr-*/
+
+URL: /cache/capits/*/bk-nr-*.html /capit/*/bk-nr-*/
 
 -->
 

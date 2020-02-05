@@ -535,7 +535,6 @@ def import_fulltext (conn, filenames):
                     if res.rowcount != 1:
                         log (logging.ERROR, "Did not match row {ms_id} {cap_id} {mscap_n} {chapter}".format (**params))
 
-
                 if ext == 'txt':
                     execute (conn, """
                     INSERT INTO mss_chapters_text (ms_id, cap_id, mscap_n, chapter, type, text)

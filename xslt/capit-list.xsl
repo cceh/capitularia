@@ -3,8 +3,20 @@
 <!--
 
 Input files:  /capit/lists/capit_all.xml
-Output Files: /cache/lists/capit-all.html /cache/lists/capit-pre814.html /cache/lists/capit-ldf.html /cache/lists/capit-post840.html /cache/lists/capit-undated.html
-Output URLs: /capit/list/ /capit/pre814/ /capit/ldf/ /capit/post840/ /capit/undated/
+
+Output Files: /cache/lists/capit-all.html
+Output Files: /cache/lists/capit-pre814.html
+Output Files: /cache/lists/capit-ldf.html
+Output Files: /cache/lists/capit-post840.html
+Output Files: /cache/lists/capit-undated.html
+
+URL: /cache/lists/capit-all.html     /capit/list/
+URL: /cache/lists/capit-pre814.html  /capit/pre814/
+URL: /cache/lists/capit-ldf.html     /capit/ldf/
+URL: /cache/lists/capit-post840.html /capit/post840/
+URL: /cache/lists/capit-undated.html /capit/undated/
+
+Scrape: cap-list /capit/lists/capit_all.xml
 
 -->
 
