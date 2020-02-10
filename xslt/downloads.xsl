@@ -2,10 +2,11 @@
 
 <!--
 
-Input files:  /cache/lists/corpus.xml
-Output files: /cache/lists/downloads.html
+Transforms: $(CACHE_DIR)/lists/corpus.xml -> $(CACHE_DIR)/lists/downloads.html
 
-URL: /cache/lists/downloads.html /resources/downloads/
+URL: $(CACHE_DIR)/lists/downloads.html /resources/downloads/
+
+Target: lists $(CACHE_DIR)/lists/downloads.html
 
 -->
 

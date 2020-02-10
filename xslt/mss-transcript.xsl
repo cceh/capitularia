@@ -4,10 +4,14 @@
 
 Outputs the transcription section of a single manuscript page.
 
-Input files:  /mss/*.xml
-Output files: /cache/mss/*.transcript.html
+Transforms: $(MSS_DIR)/%.xml      -> $(CACHE_DIR)/mss/%.transcript.html
+Transforms: $(MSS_PRIV_DIR)/%.xml -> $(CACHE_DIR)/internal/mss/%.transcript.html
 
-URL: /cache/mss/*.transcript.html /mss/*/
+URL: $(CACHE_DIR)/mss/%.transcript.html          /mss/%/
+URL: $(CACHE_DIR)/internal/mss/%.transcript.html /internal/mss/%/
+
+Target: mss      $(CACHE_DIR)/mss/%.transcript.html
+Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
 
 -->
 

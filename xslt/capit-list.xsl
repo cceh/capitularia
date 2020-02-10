@@ -2,21 +2,25 @@
 
 <!--
 
-Input files:  /capit/lists/capit_all.xml
+Transforms: $(CAPIT_DIR)/lists/capit_all.xml -> $(CACHE_DIR)/lists/capit-all.html     : type=all
+Transforms: $(CAPIT_DIR)/lists/capit_all.xml -> $(CACHE_DIR)/lists/capit-pre814.html  : type=pre814
+Transforms: $(CAPIT_DIR)/lists/capit_all.xml -> $(CACHE_DIR)/lists/capit-ldf.html     : type=ldf
+Transforms: $(CAPIT_DIR)/lists/capit_all.xml -> $(CACHE_DIR)/lists/capit-post840.html : type=post840
+Transforms: $(CAPIT_DIR)/lists/capit_all.xml -> $(CACHE_DIR)/lists/capit-undated.html : type=undated
 
-Output Files: /cache/lists/capit-all.html
-Output Files: /cache/lists/capit-pre814.html
-Output Files: /cache/lists/capit-ldf.html
-Output Files: /cache/lists/capit-post840.html
-Output Files: /cache/lists/capit-undated.html
+URL: $(CACHE_DIR)/lists/capit-all.html     /capit/list/
+URL: $(CACHE_DIR)/lists/capit-pre814.html  /capit/pre814/
+URL: $(CACHE_DIR)/lists/capit-ldf.html     /capit/ldf/
+URL: $(CACHE_DIR)/lists/capit-post840.html /capit/post840/
+URL: $(CACHE_DIR)/lists/capit-undated.html /capit/undated/
 
-URL: /cache/lists/capit-all.html     /capit/list/
-URL: /cache/lists/capit-pre814.html  /capit/pre814/
-URL: /cache/lists/capit-ldf.html     /capit/ldf/
-URL: /cache/lists/capit-post840.html /capit/post840/
-URL: /cache/lists/capit-undated.html /capit/undated/
+Target: lists $(CACHE_DIR)/lists/capit-all.html
+Target: lists $(CACHE_DIR)/lists/capit-pre814.html
+Target: lists $(CACHE_DIR)/lists/capit-ldf.html
+Target: lists $(CACHE_DIR)/lists/capit-post840.html
+Target: lists $(CACHE_DIR)/lists/capit-undated.html
 
-Scrape: cap-list /capit/lists/capit_all.xml
+Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
 
 -->
 

@@ -4,9 +4,7 @@
 
 Outputs a content div for insertion in a manuscript file.
 
-Input files: /mss/*.xml
-
-Output: divContent
+Transforms: $(MSS_PRIV_DIR)/%.xml -> $(MSS_PRIV_DIR)/%-toc.xml : make=false
 
 Needs SAXON !!! (Saxon does not grok str:concat (), but our editors use Saxon,
 so we have to use string-join () instead, which is XPath 2.0).

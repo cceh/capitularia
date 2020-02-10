@@ -2,10 +2,11 @@
 
 <!--
 
-Input files:  /bibl/Bibliographie_Capitularia.xml
-Output files: /cache/lists/bib.html
+Transforms:  $(BIB_DIR)/Bibliographie_Capitularia.xml -> $(CACHE_DIR)/lists/bib.html
 
-URL: /cache/lists/bib.html /resources/biblio/
+URL: $(CACHE_DIR)/lists/bib.html /resources/biblio/
+
+Target: lists $(CACHE_DIR)/lists/bib.html
 
 -->
 

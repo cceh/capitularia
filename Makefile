@@ -46,6 +46,9 @@ doc_src/jsdoc/structure.json: $(shell find . -not -path "*node_modules*" -a -pat
 doc_src/xslt_dep/structure.ttl: xslt/*.xsl python/xslt_dep.py
 	cd xslt && ../python/xslt_dep.py -e "r *.xsl; save ../$@"
 
+make_dependencies: doc_src/xslt_dep/structure.ttl
+	python/xslt_dep.py -e "l $<; make" > xslt/dependencies.inc
+
 docs: doc_src/phpdoc/structure.xml doc_src/jsdoc/structure.json doc_src/xslt_dep/structure.ttl
 	cd doc_src && $(MAKE) -e html
 

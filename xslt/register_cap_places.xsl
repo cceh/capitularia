@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:html="http://www.w3.org/1999/xhtml"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<!--
+
+Transforms: $(RES_DIR)/capitularia_place.xml -> $(CACHE_DIR)/lists/places.html
+
+-->
+
+<xsl:stylesheet
+    version="1.0"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    >
+
     <xsl:import href="base_variables.xsl"/>
-    
+
     <xsl:include href="xsl-output.xsl"/>
-    
+
     <xsl:include href="allgFunktionen.xsl"/>
+
     <xsl:template match="/">
-                <div class="xsl-output"><xsl:apply-templates select="//tei:body"/></div>
+      <div class="xsl-output"><xsl:apply-templates select="//tei:body"/></div>
     </xsl:template>
 
-    <xsl:template match="tei:body">        
-         <xsl:apply-templates select="tei:listPlace[@type='historical']"/>
-        <xsl:apply-templates select="tei:listPlace[@type='country']"/>
-        <xsl:apply-templates select="tei:listPlace[@type='region_c']"/>
-        <xsl:apply-templates select="tei:listPlace[@type='region_a']"/>
-        <xsl:apply-templates select="tei:listPlace[@type='settlement']"/>        
-       
-        
+    <xsl:template match="tei:body">
+      <xsl:apply-templates select="tei:listPlace[@type='historical']"/>
+      <xsl:apply-templates select="tei:listPlace[@type='country']"/>
+      <xsl:apply-templates select="tei:listPlace[@type='region_c']"/>
+      <xsl:apply-templates select="tei:listPlace[@type='region_a']"/>
+      <xsl:apply-templates select="tei:listPlace[@type='settlement']"/>
     </xsl:template>
 
     <xsl:template match="tei:listPlace[@type='historical']">
@@ -28,19 +39,19 @@
     </xsl:template><xsl:template match="tei:listPlace[@type='country']">
         <h4 id="countries">[:de]Länder[:en]Countries[:]</h4>
         <xsl:apply-templates select="tei:place">
-            
+
         </xsl:apply-templates>
         <hr/>
     </xsl:template>
     <xsl:template match="tei:listPlace[@type='region_c']">
         <h4 id="region_c">[:de]Gebiete (Grundrichtungen)[:en]Cardinal regions[:]</h4>
-        <xsl:apply-templates select="tei:place">           
+        <xsl:apply-templates select="tei:place">
         </xsl:apply-templates>
         <hr/>
     </xsl:template>
     <xsl:template match="tei:listPlace[@type='region_a']">
         <h4 id="region_a">[:de]Regionen[:en]Regions[:]</h4>
-        <xsl:apply-templates select="tei:place">           
+        <xsl:apply-templates select="tei:place">
         </xsl:apply-templates>
         <hr/>
     </xsl:template>
@@ -50,29 +61,29 @@
             </xsl:apply-templates>
         <hr/>
     </xsl:template>
-    
-   
+
+
 
     <xsl:template match="tei:place[parent::tei:listPlace[@type='country']]">
         <xsl:if test="child::tei:linkGrp[@type='mss']"><div>
             <xsl:attribute name="id">
                 <xsl:value-of select="@xml:id"/>
             </xsl:attribute>
-            <span style="font-size:small;">                
+            <span style="font-size:small;">
                 <h5>
                     <xsl:attribute name="id">
                         <xsl:value-of select="@xml:id"/>
-                    </xsl:attribute>[:de]<xsl:apply-templates select="tei:country[@xml:lang='DE']"/>[:en]<xsl:apply-templates select="tei:country[@xml:lang='EN']"/>[:]</h5>                
+                    </xsl:attribute>[:de]<xsl:apply-templates select="tei:country[@xml:lang='DE']"/>[:en]<xsl:apply-templates select="tei:country[@xml:lang='EN']"/>[:]</h5>
             </span>
-            
+
             <xsl:if test="tei:note"><xsl:apply-templates select="tei:note"></xsl:apply-templates></xsl:if>
-            
-            <span style="font-size:x-small;">                
+
+            <span style="font-size:x-small;">
                 <xsl:apply-templates select="tei:linkGrp[@type='geo']"/>
-                <xsl:apply-templates select="tei:location"/> 
+                <xsl:apply-templates select="tei:location"/>
                 <br/>
-                <xsl:apply-templates select="tei:linkGrp[@type='mss']"/> 
-            </span>            
+                <xsl:apply-templates select="tei:linkGrp[@type='mss']"/>
+            </span>
             <hr/>
         </div></xsl:if>
     </xsl:template>
@@ -81,97 +92,97 @@
             <xsl:attribute name="id">
                 <xsl:value-of select="@xml:id"/>
             </xsl:attribute>
-            <span style="font-size:small;">                
+            <span style="font-size:small;">
                 <h5><xsl:attribute name="id">
                     <xsl:value-of select="@xml:id"/>
-                </xsl:attribute>[:de]<xsl:apply-templates select="tei:region[@xml:lang='DE'][@type='cardinal']"/>[:en]<xsl:apply-templates select="tei:region[@xml:lang='EN'][@type='cardinal']"/>[:]</h5>                
+                </xsl:attribute>[:de]<xsl:apply-templates select="tei:region[@xml:lang='DE'][@type='cardinal']"/>[:en]<xsl:apply-templates select="tei:region[@xml:lang='EN'][@type='cardinal']"/>[:]</h5>
             </span>
-           
+
             <xsl:if test="tei:note"><xsl:apply-templates select="tei:note"></xsl:apply-templates></xsl:if>
-           
+
             <span style="font-size:x-small;">
-                
+
                 <xsl:apply-templates select="tei:linkGrp[@type='geo']"/>
-                <xsl:apply-templates select="tei:location"/> 
+                <xsl:apply-templates select="tei:location"/>
                 <br/>
-                <xsl:apply-templates select="tei:linkGrp[@type='mss']"/> 
-            </span>            
+                <xsl:apply-templates select="tei:linkGrp[@type='mss']"/>
+            </span>
             <hr/>
         </div></xsl:if>
-    </xsl:template> 
+    </xsl:template>
     <xsl:template match="tei:place[parent::tei:listPlace[@type='region_a']]">
         <xsl:if test="child::tei:linkGrp[@type='mss']"><div>
             <xsl:attribute name="id">
                 <xsl:value-of select="@xml:id"/>
             </xsl:attribute>
-            <span style="font-size:small;">                
+            <span style="font-size:small;">
                 <h5><xsl:attribute name="id">
                     <xsl:value-of select="@xml:id"/>
-                </xsl:attribute>[:de]<xsl:apply-templates select="tei:region[@xml:lang='DE'][@type='area']"/>[:en]<xsl:apply-templates select="tei:region[@xml:lang='EN'][@type='area']"/>[:]</h5>                
+                </xsl:attribute>[:de]<xsl:apply-templates select="tei:region[@xml:lang='DE'][@type='area']"/>[:en]<xsl:apply-templates select="tei:region[@xml:lang='EN'][@type='area']"/>[:]</h5>
             </span>
-           
+
             <xsl:if test="tei:note"><xsl:apply-templates select="tei:note"></xsl:apply-templates></xsl:if>
-          
+
             <span style="font-size:x-small;">
-                
+
                 <xsl:apply-templates select="tei:linkGrp[@type='geo']"/>
-                <xsl:apply-templates select="tei:location"/> 
+                <xsl:apply-templates select="tei:location"/>
                 <br/>
-                <xsl:apply-templates select="tei:linkGrp[@type='mss']"/> 
-            </span>            
+                <xsl:apply-templates select="tei:linkGrp[@type='mss']"/>
+            </span>
             <hr/>
         </div></xsl:if>
-    </xsl:template>   
+    </xsl:template>
     <xsl:template match="tei:place[parent::tei:listPlace[@type='settlement']]">
         <xsl:if test="child::tei:linkGrp[@type='mss']"><div>
             <xsl:attribute name="id">
                 <xsl:value-of select="@xml:id"/>
             </xsl:attribute>
-            <span style="font-size:small;">                
+            <span style="font-size:small;">
                 <h5><xsl:attribute name="id">
                     <xsl:value-of select="@xml:id"/>
-                </xsl:attribute>[:de]<xsl:apply-templates select="tei:settlement[@xml:lang='DE']"/>[:en]<xsl:apply-templates select="tei:settlement[@xml:lang='EN']"/>[:]</h5>                
+                </xsl:attribute>[:de]<xsl:apply-templates select="tei:settlement[@xml:lang='DE']"/>[:en]<xsl:apply-templates select="tei:settlement[@xml:lang='EN']"/>[:]</h5>
             </span>
-           
+
             <xsl:if test="tei:note"><xsl:apply-templates select="tei:note"></xsl:apply-templates></xsl:if>
-           
+
             <span style="font-size:x-small;">
-                
+
                 <xsl:apply-templates select="tei:linkGrp[@type='geo']"/>
                 <!--<xsl:apply-templates select="tei:location"/> -->
                 <br/>
-                <xsl:apply-templates select="tei:linkGrp[@type='mss']"/> 
-            </span>            
+                <xsl:apply-templates select="tei:linkGrp[@type='mss']"/>
+            </span>
             <hr/>
         </div></xsl:if>
-    </xsl:template>   
+    </xsl:template>
     <xsl:template match="tei:place[parent::tei:listPlace[@type='historical']]">
         <xsl:if test="child::tei:linkGrp[@type='mss']"><div>
             <xsl:attribute name="id">
                 <xsl:value-of select="@xml:id"/>
             </xsl:attribute>
-            <span style="font-size:small;">                
+            <span style="font-size:small;">
                 <h5><xsl:attribute name="id">
                     <xsl:value-of select="@xml:id"/>
-                </xsl:attribute>[:de]<xsl:apply-templates select="tei:region[@xml:lang='DE'][@type='historical']"/>[:en]<xsl:apply-templates select="tei:region[@xml:lang='EN'][@type='historical']"/>[:]</h5>                
+                </xsl:attribute>[:de]<xsl:apply-templates select="tei:region[@xml:lang='DE'][@type='historical']"/>[:en]<xsl:apply-templates select="tei:region[@xml:lang='EN'][@type='historical']"/>[:]</h5>
             </span>
-            
+
             <xsl:if test="tei:note"><xsl:apply-templates select="tei:note"></xsl:apply-templates></xsl:if>
-           
-            <span style="font-size:x-small;">                
+
+            <span style="font-size:x-small;">
                 <xsl:apply-templates select="tei:linkGrp[@type='geo']"/>
-                <xsl:apply-templates select="tei:location"/> 
+                <xsl:apply-templates select="tei:location"/>
                 <br/>
-                <xsl:apply-templates select="tei:linkGrp[@type='mss']"/> 
-            </span>            
+                <xsl:apply-templates select="tei:linkGrp[@type='mss']"/>
+            </span>
             <hr/>
         </div></xsl:if>
-    </xsl:template>   
-    
+    </xsl:template>
+
     <xsl:template match="tei:note">
         <br/><i><xsl:apply-templates></xsl:apply-templates></i><br/>
     </xsl:template>
-    
+
     <xsl:template match="tei:linkGrp[@type='geo']">
         <br/>
         <span style="font-size:x-small;">
@@ -184,7 +195,7 @@
             <u><xsl:text>[:de]Als Herkunft genannt für: [:en]Estimated origin of:[:]</xsl:text></u><br/>
         <xsl:apply-templates/></span>
     </xsl:template>
-    
+
     <xsl:template match="tei:link[parent::tei:linkGrp[@type='geo']]">
         <br/>
         <xsl:if test="@type='geonames'">
@@ -238,7 +249,7 @@
         </xsl:if>
     </xsl:template>
     <xsl:template match="tei:link[parent::tei:linkGrp[@type='mss']]">
-        
+
        <!-- <a>
             <xsl:attribute name="href">
                 <xsl:value-of select="@target"/>
@@ -248,7 +259,7 @@
             <li><xsl:value-of select="@corresp"/></li>
         <!--</a>-->
     </xsl:template>
-    
+
     <xsl:template match="tei:geo"/>
    <!--<xsl:template match="tei:location">
        <br/>
@@ -256,6 +267,6 @@
        <xsl:attribute name="target">_blank</xsl:attribute><xsl:apply-templates/>
        </a>
    </xsl:template>-->
-    
-    
+
+
 </xsl:stylesheet>

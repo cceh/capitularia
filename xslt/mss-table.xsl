@@ -2,10 +2,11 @@
 
 <!--
 
-Input Files: /mss/lists/ueberblick_mordek.xml
-Output File: /cache/lists/mss-table.html
+Transforms: $(MSS_DIR)/lists/ueberblick_mordek.xml -> $(CACHE_DIR)/lists/mss-table.html
 
-URL: /cache/lists/mss-table.html /mss/table/
+URL: $(CACHE_DIR)/lists/mss-table.html /mss/table/
+
+Target: lists $(CACHE_DIR)/lists/mss-table.html
 
 -->
 

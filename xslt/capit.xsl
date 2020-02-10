@@ -4,10 +4,20 @@
 
 Outputs a single Capitulary page.
 
-Input files:  /capit/*/bk-nr-*.xml
-Output files: /cache/capits/*/bk-nr-*.html
+Transforms: $(CAPIT_DIR)/pre814/bk-nr-%.xml  -> $(CACHE_DIR)/capits/pre814/bk-nr-%.html
+Transforms: $(CAPIT_DIR)/ldf/bk-nr-%.xml     -> $(CACHE_DIR)/capits/ldf/bk-nr-%.html
+Transforms: $(CAPIT_DIR)/post840/bk-nr-%.xml -> $(CACHE_DIR)/capits/post840/bk-nr-%.html
+Transforms: $(CAPIT_DIR)/undated/bk-nr-%.xml -> $(CACHE_DIR)/capits/undated/bk-nr-%.html
 
-URL: /cache/capits/*/bk-nr-*.html /capit/*/bk-nr-*/
+URL: $(CACHE_DIR)/capits/pre814/bk-nr-%.html  /capit/pre814/bk-nr-%/
+URL: $(CACHE_DIR)/capits/ldf/bk-nr-%.html     /capit/ldf/bk-nr-%/
+URL: $(CACHE_DIR)/capits/post840/bk-nr-%.html /capit/post840/bk-nr-%/
+URL: $(CACHE_DIR)/capits/undated/bk-nr-%.html /capit/undated/bk-nr-%/
+
+Target: capits $(CACHE_DIR)/capits/pre814/bk-nr-%.html
+Target: capits $(CACHE_DIR)/capits/ldf/bk-nr-%.html
+Target: capits $(CACHE_DIR)/capits/post840/bk-nr-%.html
+Target: capits $(CACHE_DIR)/capits/undated/bk-nr-%.html
 
 -->
 

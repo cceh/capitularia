@@ -5,10 +5,11 @@
 Outputs the transcription section of a single manuscript page with editor
 comments.  Used internally by the editors.
 
-Input files:  /mss/*.xml
-Output files: /cache/mss/*.transcript.commented.html
+Transforms:  $(MSS_DIR)/%.xml -> $(CACHE_DIR)/mss/%.transcript.commented.html
 
-URL: /cache/mss/*.transcript.commented.html /internal/mss-comments/*/
+URL: $(CACHE_DIR)/mss/%.transcript.commented.html /internal/mss-comments/%/
+
+Target: mss $(CACHE_DIR)/mss/%.transcript.commented.html
 
 -->
 

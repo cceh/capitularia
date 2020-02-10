@@ -2,11 +2,14 @@
 
 <!--
 
-Input files:  /cache/lists/corpus.xml
-Output files: /cache/lists/changes.html /cache/lists/changes90.html
+Transforms:  $(CACHE_DIR)/lists/corpus.xml -> $(CACHE_DIR)/lists/changes.html   : prefix=A
+Transforms:  $(CACHE_DIR)/lists/corpus.xml -> $(CACHE_DIR)/lists/changes90.html : prefix=B scope=P90D
 
-URL: /cache/lists/changes.html   /mss/status/
-URL: /cache/lists/changes90.html /mss/status/
+URL: $(CACHE_DIR)/lists/changes.html   /mss/status/
+URL: $(CACHE_DIR)/lists/changes90.html /mss/status/
+
+Target: lists $(CACHE_DIR)/lists/changes.html
+Target: lists $(CACHE_DIR)/lists/changes90.html
 
 -->
 
@@ -24,7 +27,7 @@ URL: /cache/lists/changes90.html /mss/status/
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
   <!-- Prefix all ids with this string.
-       So you can add multiple tables to one page. -->
+       So you can add multiple tables to one HTML page. -->
   <xsl:param name="prefix" select="'A'" />
 
   <!-- Only go back this long, eg. "P90D" -->

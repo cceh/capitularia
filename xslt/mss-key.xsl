@@ -2,10 +2,11 @@
 
 <!--
 
-Input files: /mss/lists/manuscripts.xml
-Output file: /cache/lists/mss-key.html
+Transforms: $(MSS_DIR)/lists/manuscripts.xml -> $(CACHE_DIR)/lists/mss-key.html
 
-URL: /cache/lists/mss-key.html /mss/key/
+URL: $(CACHE_DIR)/lists/mss-key.html /mss/key/
+
+Target: lists $(CACHE_DIR)/lists/mss-key.html
 
 -->
 

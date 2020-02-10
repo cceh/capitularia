@@ -4,10 +4,14 @@
 
 Outputs the header section of a single manuscript page.
 
-Input files:  /mss/*.xml
-Output files: /cache/mss/*.header.html
+Transforms: $(MSS_DIR)/%.xml      -> $(CACHE_DIR)/mss/%.header.html
+Transforms: $(MSS_PRIV_DIR)/%.xml -> $(CACHE_DIR)/internal/mss/%.header.html
 
-URL: /cache/mss/*.header.html /mss/*/
+URL: $(CACHE_DIR)/mss/%.header.html          /mss/%/
+URL: $(CACHE_DIR)/internal/mss/%.header.html /internal/mss/%/
+
+Target: mss      $(CACHE_DIR)/mss/%.header.html
+Target: mss_priv $(CACHE_DIR)/internal/mss/%.header.html
 
 -->
 

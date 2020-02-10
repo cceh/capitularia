@@ -2,10 +2,11 @@
 
 <!--
 
-Input files:  /mss/lists/mss_by_cap.xml /mss/lists/manuscripts.xml
-Output files: /cache/lists/mss-capit.html
+Transforms: $(MSS_DIR)/lists/mss_by_cap.xml $(MSS_DIR)/lists/manuscripts.xml -> $(CACHE_DIR)/lists/mss-capit.html : manuscripts=$(MSS_DIR)/lists/manuscripts.xml make=false
 
-URL: /cache/lists/mss-capit.html /mss/capit/
+URL: $(CACHE_DIR)/lists/mss-capit.html /mss/capit/
+
+Target: lists $(CACHE_DIR)/lists/mss-capit.html
 
 -->
 

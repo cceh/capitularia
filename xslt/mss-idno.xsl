@@ -2,10 +2,11 @@
 
 <!--
 
-Input files: /mss/lists/manuscripts.xml /cache/lists/corpus.xml
-Output file: /cache/lists/mss-idno.html
+Transforms: $(MSS_DIR)/lists/manuscripts.xml $(CACHE_DIR)/lists/corpus.xml -> $(CACHE_DIR)/lists/mss-idno.html : corpus=$(CACHE_DIR)/lists/corpus.xml make=false
 
-URL: /cache/lists/mss-idno.html /mss/idno/
+URL: $(CACHE_DIR)/lists/mss-idno.html /mss/idno/
+
+Target: lists $(CACHE_DIR)/lists/mss-idno.html
 
 -->
 

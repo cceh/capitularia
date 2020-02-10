@@ -8,10 +8,9 @@ retained, eg. all <ab> text is removed.
 
 The corpus.xml file is used to speed up subsequent transformations.
 
-Input files:  /mss/*.xml
-Output files: /cache/lists/corpus.xml
+Transforms: $(MSS_DIR)/%.xml -> $(CACHE_DIR)/lists/corpus.xml : make=false
 
-Scrape: mss /cache/lists/corpus.xml
+Scrape: mss $(CACHE_DIR)/lists/corpus.xml
 
 -->
 
