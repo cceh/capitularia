@@ -142,9 +142,9 @@ init_db:
 	$(IMPORT) --init
 	$(RM) $(CACHE_DIR)/last_*_scrape
 
-$(CACHE_DIR)/last_corpus_scrape : $(CACHE_DIR)/lists/corpus.xml $(CAPIT_LIST_XML)
+$(CACHE_DIR)/last_corpus_scrape : $(CACHE_DIR)/lists/corpus.xml $(CAPIT_DIR)/lists/capit_all.xml
 	$(IMPORT) --mss      $(CACHE_DIR)/lists/corpus.xml
-	$(IMPORT) --cap-list $(CAPIT_LIST_XML)
+	$(IMPORT) --cap-list $(CAPIT_DIR)/lists/capit_all.xml
 	touch "$@"
 
 $(CACHE_DIR)/last_fulltext_scrape : $(wildcard $(CACHE_DIR)/extracted/*/*.xml $(CACHE_DIR)/extracted/*/*.txt)
