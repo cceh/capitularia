@@ -426,8 +426,8 @@ def render_makefile (filename):
 
         # output depends on stylesheets
         for row in q:
-            qq = g.query (
-                """SELECT ?xsl WHERE {
+            qq = g.query ("""
+                SELECT ?xsl WHERE {
                    ?root cap:depends* ?xsl .
                 }
                 """, initBindings = { 'root': row.s })
@@ -437,8 +437,9 @@ def render_makefile (filename):
         fp.write ('\n#\n# file dependencies\n#\n\n')
 
         # output depends on inputs
-        for row in g.query (
-            """SELECT DISTINCT ?xsl ?inp ?out ?version WHERE {
+        for row in g.query ("""
+            SELECT DISTINCT ?xsl ?inp ?out ?version
+            WHERE {
                ?out cap:depends ?inp .
                ?xsl cap:outputs ?out .
                ?xsl cap:inputs  ?inp .
@@ -449,9 +450,9 @@ def render_makefile (filename):
             """):
 
             data = {
-                'in'     : deuri (row.inp),
-                'xsl'    : deuri (row.xsl),
-                'out'    : deuri (row.out),
+                'in'  : deuri (row.inp),
+                'xsl' : deuri (row.xsl),
+                'out' : deuri (row.out),
             }
 
             if str (row.version) == '1.0':
@@ -459,15 +460,17 @@ def render_makefile (filename):
                                             for o in g.objects (row.out, CAP.params) ])
                 fp.write ('{out} : {in}\n\t$(XSLTPROC){params} -o $@ {xsl} $<\n\n'.format (**data))
             else:
-                data['params'] = ' ' + ' '.join (g.objects (row.out, CAP.params))
+                data['params'] = ''.join ([ ' {}'.format (o)
+                                            for o in g.objects (row.out, CAP.params) ])
                 fp.write ('{out} : {in}\n\t$(SAXON) -s:$< -xsl:{xsl} -o:$@{params}\n\n'.format (**data))
 
         # user requested to handle these manually (param: make=false)
 
         fp.write ('\n#\n# unhandled file dependencies\n#\n\n')
 
-        for row in g.query (
-            """SELECT DISTINCT ?inp ?out WHERE {
+        for row in g.query ("""
+            SELECT DISTINCT ?inp ?out
+            WHERE {
                ?out cap:depends ?inp  .
                ?xsl cap:outputs ?out .
                ?xsl cap:inputs  ?inp .
@@ -485,8 +488,9 @@ def render_makefile (filename):
 
         fp.write ('\n#\n# targets\n#\n\n')
 
-        for row in g.query (
-            """SELECT DISTINCT ?t ?out WHERE {
+        for row in g.query ("""
+            SELECT DISTINCT ?t ?out
+            WHERE {
                ?t cap:target ?out  .
             }
             ORDER BY ?t ?out

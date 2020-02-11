@@ -63,55 +63,57 @@ autojsdoc_title = True
 
 pic_options = {
     'pic' : {
-        'program'  : ["dpic", "-v"],
-        'align'    : "center",
-        'preamble' : """
+        'program' : ["dpic", "-v"],
+        'align'   : "center",
+        'prolog'  : """
 .PS
 copy "config.pic";
 """,
-        'postamble' : """
+        'epilog' : """
 .PE
 """,
     },
     'uml' : {
-        'program'   : ["plantuml", "-tsvg", "-p"],
-        'align'     : "center",
-        'preamble'  : "@startuml\n",
-        'postamble' : "\n@enduml\n",
+        'program' : ["plantuml", "-tsvg", "-p"],
+        'align'   : "center",
+        'prolog'  : "@startuml\n",
+        'epilog'  : "\n@enduml\n",
     },
     'seq' : {
-        'program'  : ["dpic", "-v"],
-        'align'    : "center",
-        'preamble' : """
+        'program' : ["dpic", "-v"],
+        'align'   : "center",
+        'prolog'  : """
 .PS
 copy "sequence.pic";
 copy "config.pic";
 """,
-        'postamble' : """
+        'epilog' : """
 .PE
 """,
     },
     'dot' : {
-        'program'   : ["dot", "-Tsvg"],
-        'align'     : "center",
-        'preamble'  : "",
-        'postamble' : "",
+        'program' : ["dot", "-Tsvg"],
+        'align'   : "center",
+        'prolog'  : "",
+        'epilog'  : "",
     },
     'xslt_dep' : {
-        'program'   : ["../python/xslt_dep.py"],
-        'cwd'       : "../xslt",
-        'shell'     : False,
-        'align'     : "center",
-        'preamble'  : "load ../doc_src/xslt_dep/structure.ttl\n",
-        'postamble' : "",
+        'program' : ["../python/xslt_dep.py"],
+        'cwd'     : "../xslt",
+        'shell'   : False,
+        'align'   : "center",
+        'prolog'  : "load ../doc_src/xslt_dep/structure.ttl\n",
+        'epilog'  : "",
+        'depends' : "../doc_src/xslt_dep/structure.ttl",
     },
     'xslt_dep_dot' : {
-        'program'   : "../python/xslt_dep.py | dot -Tsvg",
-        'cwd'       : "../xslt",
-        'shell'     : True,
-        'align'     : "center",
-        'preamble'  : "load ../doc_src/xslt_dep/structure.ttl\n",
-        'postamble' : "",
+        'program' : "../python/xslt_dep.py | dot -Tsvg",
+        'cwd'     : "../xslt",
+        'shell'   : True,
+        'align'   : "center",
+        'prolog'  : "load ../doc_src/xslt_dep/structure.ttl\n",
+        'epilog'  : "",
+        'depends' : "../doc_src/xslt_dep/structure.ttl",
     },
 }
 
