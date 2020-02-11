@@ -4,26 +4,21 @@
 
 Outputs a content div for insertion in a manuscript file.
 
-Transforms: $(MSS_PRIV_DIR)/%.xml -> $(MSS_PRIV_DIR)/%-toc.xml : make=false
-
-Needs SAXON !!! (Saxon does not grok str:concat (), but our editors use Saxon,
-so we have to use string-join () instead, which is XPath 2.0).
-
-  $ saxon xml-file xsl-file
-
 Einige Anpassungswünsche (06.10.16):
 
 Interpunktionszeichen sollen herausgefiltert werden;
 abbr innerhalb von choice sowie numDenom sollen ebenfalls nicht angezeigt werden;
 Reihenfolge: num soll immer am Anfang eines items stehen;
 schon in divContent vorhandene items (Identifizierung über ptr target) bei einem wiederholten Generieren weglassen;
-meta-text-Elemente nach einem milestone unit=”capitulatio” bis zum anchor xml:id=”capitulatio-finis_[XYZ]”
+meta-text-Elemente nach einem milestone unit="capitulatio" bis zum anchor xml:id="capitulatio-finis_[XYZ]"
 nicht herausfiltern, bis auf das erste meta-text-Element (Beginn der Capitulatio).
+
+Transforms: $(MSS_PRIV_DIR)/%.xml -> $(MSS_PRIV_DIR)/%-toc.xml : make=false
 
 -->
 
 <xsl:stylesheet
-    version="2.0"
+    version="3.0"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
     xmlns:exsl="http://exslt.org/common"
     xmlns:func="http://exslt.org/functions"
@@ -66,10 +61,6 @@ nicht herausfiltern, bis auf das erste meta-text-Element (Beginn der Capitulatio
           <xsl:text> </xsl:text>
           <xsl:apply-templates/>
         </xsl:variable>
-        <!-- libxsl version: <xsl:value-of select="normalize-space (translate (str:concat
-             (exsl:node-set ($text)), '.,:;!?*', ''))"/>
-        -->
-        <!-- Saxon version: -->
         <xsl:value-of select="normalize-space (translate (string-join ($text, ''), '.,:;!?*', ''))"/>
       </item>
     </xsl:if>
@@ -98,7 +89,6 @@ nicht herausfiltern, bis auf das erste meta-text-Element (Beginn der Capitulatio
     <xsl:choose>
       <xsl:when test="number (@quantity) &lt; 3">
         <xsl:text>[</xsl:text>
-        <!-- xsl:value-of select="str:padding (number (@quantity), '.')"/ -->
         <xsl:value-of select="string-join ((for $i in 1 to @quantity return '.'), '')"/>
         <xsl:text>]</xsl:text>
       </xsl:when>
