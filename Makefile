@@ -9,7 +9,7 @@ deploy: css js_prod lint mo deploy_xslt deploy_scripts
 
 deploy_xslt:
 	$(RSYNC) xslt/*.xsl $(TRANSFORM)/
-	$(RSYNC) xslt/*.xsl xslt/Makefile $(HOST_SERVER)/../xslt/
+	$(RSYNC) xslt/*.xsl xslt/*.inc xslt/Makefile $(HOST_SERVER)/../xslt/
 
 deploy_xml:
 	$(RSYNC) xml/*.xml $(PUBL)/mss/
