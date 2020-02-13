@@ -4,20 +4,20 @@
 
 Outputs a single Capitulary page.
 
-Transforms: $(CAPIT_DIR)/pre814/bk-nr-%.xml  -> $(CACHE_DIR)/capits/pre814/bk-nr-%.html
-Transforms: $(CAPIT_DIR)/ldf/bk-nr-%.xml     -> $(CACHE_DIR)/capits/ldf/bk-nr-%.html
-Transforms: $(CAPIT_DIR)/post840/bk-nr-%.xml -> $(CACHE_DIR)/capits/post840/bk-nr-%.html
-Transforms: $(CAPIT_DIR)/undated/bk-nr-%.xml -> $(CACHE_DIR)/capits/undated/bk-nr-%.html
+Transforms: $(CAPIT_DIR)/pre814/%.xml  -> $(CACHE_DIR)/capits/pre814/%.html
+Transforms: $(CAPIT_DIR)/ldf/%.xml     -> $(CACHE_DIR)/capits/ldf/%.html
+Transforms: $(CAPIT_DIR)/post840/%.xml -> $(CACHE_DIR)/capits/post840/%.html
+Transforms: $(CAPIT_DIR)/undated/%.xml -> $(CACHE_DIR)/capits/undated/%.html
 
-URL: $(CACHE_DIR)/capits/pre814/bk-nr-%.html  /capit/pre814/bk-nr-%/
-URL: $(CACHE_DIR)/capits/ldf/bk-nr-%.html     /capit/ldf/bk-nr-%/
-URL: $(CACHE_DIR)/capits/post840/bk-nr-%.html /capit/post840/bk-nr-%/
-URL: $(CACHE_DIR)/capits/undated/bk-nr-%.html /capit/undated/bk-nr-%/
+URL: $(CACHE_DIR)/capits/pre814/%.html  /capit/pre814/%/
+URL: $(CACHE_DIR)/capits/ldf/%.html     /capit/ldf/%/
+URL: $(CACHE_DIR)/capits/post840/%.html /capit/post840/%/
+URL: $(CACHE_DIR)/capits/undated/%.html /capit/undated/%/
 
-Target: capits $(CACHE_DIR)/capits/pre814/bk-nr-%.html
-Target: capits $(CACHE_DIR)/capits/ldf/bk-nr-%.html
-Target: capits $(CACHE_DIR)/capits/post840/bk-nr-%.html
-Target: capits $(CACHE_DIR)/capits/undated/bk-nr-%.html
+Target: capits $(CACHE_DIR)/capits/pre814/%.html
+Target: capits $(CACHE_DIR)/capits/ldf/%.html
+Target: capits $(CACHE_DIR)/capits/post840/%.html
+Target: capits $(CACHE_DIR)/capits/undated/%.html
 
 -->
 
@@ -135,7 +135,6 @@ Target: capits $(CACHE_DIR)/capits/undated/bk-nr-%.html
           <xsl:variable name="id" select="replace (replace (substring-before (../../tei:head, ':'), ' Nr. ', '_'), ' ', '_')"/>
           <xsl:variable name="path"  select="concat ('/mss/', @corresp)"/>
           <xsl:variable name="href"  select="concat ('/mss/', @corresp, '#', replace ($id, 'BK_185', 'BK_185A'))"/>
-          <xsl:variable name="bk"    select="concat ('BK.', substring-after (/tei:TEI/@corresp, 'bk-nr-'))"/>
           <!-- Make a link to the manuscript if it is already published, else: no link, just the
                name. -->
           <xsl:call-template name="if-visible-then-else">
@@ -149,7 +148,7 @@ Target: capits $(CACHE_DIR)/capits/undated/bk-nr-%.html
               <xsl:text>[if_transcribed ms_id="</xsl:text>
               <xsl:value-of select="@corresp"/>
               <xsl:text>" cap_id="</xsl:text>
-              <xsl:value-of select="$bk"/>
+              <xsl:value-of select="/tei:TEI/@corresp"/>
               <xsl:text>"]</xsl:text>
               <a class="internal transcription" href="{$href}"
                  title="[:de]Zur Transkription[:en]Go to the transcription[:]">

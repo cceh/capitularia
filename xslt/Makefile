@@ -83,7 +83,6 @@ capits : $(patsubst %.xml,$(CACHE_DIR)/capits/ldf/%.html,$(notdir $(wildcard $(C
 capits : $(patsubst %.xml,$(CACHE_DIR)/capits/post840/%.html,$(notdir $(wildcard $(CAPIT_DIR)/post840/*.xml)))
 capits : $(patsubst %.xml,$(CACHE_DIR)/capits/undated/%.html,$(notdir $(wildcard $(CAPIT_DIR)/undated/*.xml)))
 
-
 ################ Manuscript Lists
 
 lists : $(CACHE_DIR)/lists/mss-table.html
@@ -91,10 +90,12 @@ lists : $(CACHE_DIR)/lists/mss-capit.html
 lists : $(CACHE_DIR)/lists/mss-idno.html
 lists : $(CACHE_DIR)/lists/mss-key.html
 
-$(CACHE_DIR)/lists/mss-capit.html : $(MSS_DIR)/lists/mss_by_cap.xml $(MSS_DIR)/lists/manuscripts.xml
+$(CACHE_DIR)/lists/mss-capit.html : $(MSS_DIR)/lists/mss_by_cap.xml $(MSS_DIR)/lists/manuscripts.xml \
+									mss-capit.xsl common-3.xsl config-3.xsl
 	$(SAXON) -s:"$<" -xsl:"mss-capit.xsl" -o:"$@" manuscripts="$(MSS_DIR)/lists/manuscripts.xml"
 
-$(CACHE_DIR)/lists/mss-idno.html : $(MSS_DIR)/lists/manuscripts.xml $(CACHE_DIR)/lists/corpus.xml
+$(CACHE_DIR)/lists/mss-idno.html : 	$(MSS_DIR)/lists/manuscripts.xml $(CACHE_DIR)/lists/corpus.xml \
+									mss-idno.xsl common-3.xsl config-3.xsl
 	$(SAXON) -s:"$<" -xsl:"mss-idno.xsl" -o:"$@" corpus="$(CACHE_DIR)/lists/corpus.xml"
 
 
@@ -115,7 +116,7 @@ lists : $(CACHE_DIR)/lists/changes90.html
 lists : $(CACHE_DIR)/lists/bib.html
 lists : $(CACHE_DIR)/lists/places.html
 
-$(CACHE_DIR)/lists/corpus.xml : $(MSS_DIR)/*.xml
+$(CACHE_DIR)/lists/corpus.xml : $(MSS_DIR)/*.xml mss-idno.xsl common-3.xsl config-3.xsl
 	$(SAXON) -it:main -xsl:"corpus.xsl" -o:"$@" dir="$(MSS_DIR)"
 
 corpus : $(CACHE_DIR)/lists/corpus.xml
@@ -127,7 +128,8 @@ lists : corpus
 
 fulltext : $(patsubst %,$(CACHE_DIR)/extracted/%/,$(IDS))
 
-$(CACHE_DIR)/extracted/%/ : $(MSS_DIR)/%.xml
+$(CACHE_DIR)/extracted/%/ : $(MSS_DIR)/%.xml mss-extract-chapters.xsl mss-transcript-collation.xsl \
+							mss-transcript-phase-1.xsl common-3.xsl config-3.xsl
 	$(CLEAN_TARGET_DIR)
 	$(SAXON) -s:"$<" -xsl:"mss-extract-chapters.xsl" directory="$(dir $@)"
 	-$(TOUCH)
@@ -148,9 +150,9 @@ $(CACHE_DIR)/last_corpus_scrape : $(CACHE_DIR)/lists/corpus.xml $(CAPIT_DIR)/lis
 	touch "$@"
 
 $(CACHE_DIR)/last_fulltext_scrape : $(wildcard $(CACHE_DIR)/extracted/*/*.xml $(CACHE_DIR)/extracted/*/*.txt)
-	$(file >$@,$?)            # put the very long argument list into a file
-	$(IMPORT) --fulltext @$@  # read filenames to import from the file
-	sed -i -e 's/ /\n/g' "$@" # make it human-readable for debugging, also touch-es the file
+	$(file >$@)	$(foreach fn,$?,$(file >>$@,$(fn))) # put the very long argument list into a file with newlines
+	$(IMPORT) --fulltext @$@                        # read filenames to import from the file
+	touch "$@"
 
 # copies information from the wordpress db into the postgres db
 # the timestamp file doesn't depend on anything
@@ -172,6 +174,7 @@ scrape_status :   $(CACHE_DIR)/last_status_scrape
 
 %.xml: ;
 Makefile: ;
+dependencies.inc: ;
 %.xsl: ;
 
 clean:
