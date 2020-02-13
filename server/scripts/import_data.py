@@ -486,6 +486,51 @@ def lookup_published (conn, ajax_endpoint):
     """, {})
 
 
+def import_corpus (conn, fn_corpus):
+    """ Import a corpus file (or lots of manuscript files). """
+
+    # execute (conn, "TRUNCATE TABLE manuscripts CASCADE", {})
+    processed_ms_ids = dict ()
+    for fn in fn_corpus:
+        log (logging.INFO, "Parsing %s ..." % fn)
+        tree = etree.parse (fn, parser = parser)
+        for TEI in tree.xpath ("//tei:TEI", namespaces = NS):
+            ms_id    = get_ns (TEI, "xml:id")
+            filename = get_ns (TEI, "cap:file")
+            if ms_id in processed_ms_ids:
+                log (logging.ERROR, "xml:id %s (in %s) already seen in %s" %
+                     (ms_id, filename or fn, processed_ms_ids[ms_id]))
+                continue
+            processed_ms_ids[ms_id] = filename or fn
+            log (logging.INFO, "Parsing Manuscript %s" % ms_id)
+            row = {
+                'ms_id' : ms_id,
+                'title' : fix_ws (
+                    TEI.xpath ("tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']/text()",
+                               namespaces = NS)[0]
+                ),
+                'filename' : filename,
+            }
+            execute (conn, """
+            INSERT INTO manuscripts (ms_id, title, filename)
+              VALUES (:ms_id, :title, :filename)
+            ON CONFLICT (ms_id)
+            DO UPDATE SET title = EXCLUDED.title,
+                          filename = EXCLUDED.filename
+            """, row)
+
+            for msdesc in TEI.xpath ("tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc", namespaces = NS):
+                process_msdesc (conn, msdesc, ms_id, '')
+
+            for mspart in TEI.xpath ("tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msPart", namespaces = NS):
+                process_msdesc (conn, mspart, ms_id, mspart.get ('n'))
+
+            for body in TEI.xpath ("tei:text/tei:body", namespaces = NS):
+                process_body (conn, body, ms_id)
+
+            execute (conn, "COMMIT", {})
+
+
 def import_fulltext (conn, filenames):
     """ Import the xml or plain text of the chapter transcriptions """
 
@@ -496,16 +541,7 @@ def import_fulltext (conn, filenames):
         re.IGNORECASE
     )
 
-    files = []
     for filename in filenames:
-        if filename.startswith ('@'):
-            with open (filename[1:], 'r') as fp:
-                for line in fp.readlines ():
-                    files.extend (line.split ())
-        else:
-            files.append (filename)
-
-    for filename in files:
         m = RE_FILENAME.search (filename)
         if m:
             log (logging.INFO, "Importing filename %s" % filename)
@@ -526,6 +562,7 @@ def import_fulltext (conn, filenames):
                 }
 
                 if ext == 'xml':
+                    # we assume the chapters are already there from a corpus scrap
                     res = execute (conn, """
                     UPDATE mss_chapters
                     SET xml = :text
@@ -549,7 +586,10 @@ def import_fulltext (conn, filenames):
 def build_parser (default_config_file):
     """ Build the commandline parser. """
 
-    parser = argparse.ArgumentParser (description = __doc__)
+    parser = argparse.ArgumentParser (
+        description = __doc__,
+        fromfile_prefix_chars = '@'
+    )
     config_path = os.path.abspath (os.path.dirname (__file__) + '/server.conf')
 
     parser.add_argument (
@@ -624,48 +664,8 @@ if __name__ == "__main__":
 
     if args.mss:
         log (logging.INFO, "Parsing TEI Manuscript files ...")
-
         with dba.engine.begin () as conn:
-            execute (conn, "TRUNCATE TABLE manuscripts CASCADE", {})
-            processed_ms_ids = dict ()
-            for fn in args.mss:
-                log (logging.INFO, "Parsing %s ..." % fn)
-                tree = etree.parse (fn, parser = parser)
-                for TEI in tree.xpath ("//tei:TEI", namespaces = NS):
-                    ms_id    = get_ns (TEI, "xml:id")
-                    filename = get_ns (TEI, "cap:file")
-                    if ms_id in processed_ms_ids:
-                        log (logging.ERROR, "xml:id %s (in %s) already seen in %s" %
-                             (ms_id, filename or fn, processed_ms_ids[ms_id]))
-                        continue
-                    processed_ms_ids[ms_id] = filename or fn
-                    log (logging.INFO, "Parsing Manuscript %s" % ms_id)
-                    row = {
-                        'ms_id' : ms_id,
-                        'title' : fix_ws (
-                            TEI.xpath ("tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']/text()",
-                                       namespaces = NS)[0]
-                        ),
-                        'filename' : filename,
-                    }
-                    execute (conn, """
-                    INSERT INTO manuscripts (ms_id, title, filename)
-                      VALUES (:ms_id, :title, :filename)
-                    ON CONFLICT (ms_id)
-                    DO UPDATE SET title = EXCLUDED.title,
-                                  filename = EXCLUDED.filename
-                    """, row)
-
-                    for msdesc in TEI.xpath ("tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc", namespaces = NS):
-                        process_msdesc (conn, msdesc, ms_id, '')
-
-                    for mspart in TEI.xpath ("tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msPart", namespaces = NS):
-                        process_msdesc (conn, mspart, ms_id, mspart.get ('n'))
-
-                    for body in TEI.xpath ("tei:text/tei:body", namespaces = NS):
-                        process_body (conn, body, ms_id)
-
-                    execute (conn, "COMMIT", {})
+            import_corpus (conn, args.mss)
 
     if args.cap_list:
         log (logging.INFO, "Parsing TEI Capitulary List ...")
