@@ -98,7 +98,7 @@ Target: lists $(CACHE_DIR)/lists/mss-capit.html
       <td class="capit">
         <xsl:call-template name="if-visible">
           <!-- adds link if target is visible to the user -->
-          <xsl:with-param name="path" select="concat ('/cap/', @n)" />
+          <xsl:with-param name="path" select="concat ('/capit/', @n)" />
           <xsl:with-param name="text">
             <xsl:apply-templates select="title"/>
           </xsl:with-param>

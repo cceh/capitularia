@@ -21,7 +21,7 @@ RE_NORMALIZE_SPACE = re.compile (r'\s+')
 
 # See: https://capitularia.uni-koeln.de/wp-admin/admin.php?page=wp-help-documents&document=7402
 
-REGEX_BK      = r'(bk|mordek|ansegis|benedictus\.levita|dtr_66\.§)[._]0*(\d+)([a-z]?)'
+REGEX_BK      = r'(bk|mordek|ansegis|benedictus\.levita|dtr_66\.§)[-nr._]+0*(\d+)([a-z]?)'
 REGEX_N       = r'(?:_(\d))?'
 REGEX_CHAPTER = r'(?:_(.+))?'
 
@@ -198,6 +198,22 @@ def _normalize_bk (m):
     """
 
     return BK_NORM[m.group (1).lower ()], m.group (2) + m.group (3).lower ()
+
+
+def normalize_bk (s):
+    """Normalize a capitulary id.
+
+    :return: (BK, 20a)
+    :type:   list
+    :raises: ValueError if the input is malformed
+
+    """
+
+    m = RE_BK.search (s)
+    if m is None:
+        raise ValueError ("Bogus BK: '%s'" % s)
+
+    return (*_normalize_bk (m), )
 
 
 def normalize_bk_n (s):

@@ -1,7 +1,17 @@
+/** @module plugins/meta-search */
+
+/**
+ * The meta search applet.
+ * @file
+ */
 'use strict';
 
-var cap_meta_search_front = function ($) {
-  // eslint-disable-line no-unused-vars
+(function ($) {
+  /**
+   * Initialize the help button in the widget.
+   *
+   * @alias module:plugins/meta-search.help_init
+   */
   function help_init() {
     $('.cap-meta-search-help').on('click', function (dummy_event) {
       $('div.cap-meta-search-help-text').toggle();
@@ -10,8 +20,15 @@ var cap_meta_search_front = function ($) {
       'placement': 'bottom'
     });
   }
+  /** @ignore */
+
 
   var collator = new Intl.Collator('de');
+  /**
+   * Initialize the places tree view in the widget.
+   *
+   * @alias module:plugins/meta-search.places_tree_init
+   */
 
   function places_tree_init() {
     var container = $('#places');
@@ -67,7 +84,6 @@ var cap_meta_search_front = function ($) {
     places_tree_init();
     help_init();
   });
-  return {};
-}(jQuery);
+})(jQuery);
 
 //# sourceMappingURL=front.js.map

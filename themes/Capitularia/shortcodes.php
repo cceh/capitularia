@@ -250,8 +250,8 @@ function if_visible ($path)
             $path = trim (parse_url ($url, PHP_URL_PATH), '/');
         }
     }
-    if (preg_match ('!^cap/(BK|Mordek)[._]?(\d+\w?)$!', $path, $matches)) {
-        $url = bk_to_permalink ($matches[1] . '_' . $matches[2]);
+    if (preg_match ('!^capit/(BK|Mordek)(.*)$!', $path, $matches)) {
+        $url = bk_to_permalink ($matches[1] . $matches[2]);
         if ($url) {
             $path = trim (parse_url ($url, PHP_URL_PATH), '/');
         }
@@ -362,7 +362,7 @@ function on_shortcode_if_not_visible ($atts, $content)
 function on_shortcode_if_transcribed ($atts, $content)
 {
     $ms_id  = trim ($atts['ms_id'],  '');
-    $cap_id = trim ($atts['cap_id'], '');
+    $cap_id = fix_bk_nr (trim ($atts['cap_id'], ''));
 
     $cache = get_transcribed_in_cache ($cap_id);
     if (array_key_exists ($ms_id, $cache)) {

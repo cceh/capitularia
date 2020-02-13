@@ -576,6 +576,39 @@ other pages also.</p>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<dt id="cceh\capitularia\theme\fix_bk_nr">
+<code class="sig-name descname">fix_bk_nr</code><span class="sig-paren">(</span><em class="sig-param">$corresp</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\fix_bk_nr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Canonicalize the innumerable different ways the editors write a BK or Mordek no.</p>
+<p>Accepts (not exhaustive list of examples found in the wild):</p>
+<p>BK.42
+BK.042
+BK_42
+BK_042
+bk-nr-42
+bk-nr-042
+Mordek.27
+Mordek_27
+mordek-nr-27
+ldf/all-of-the-above</p>
+<p>Returns:</p>
+<p>bk-nr-042
+mordek-nr-27</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$corresp</strong> (<em>string</em>) – eg. “BK.42a” or “Mordek_15”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The canonical BK no.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
 <dt id="cceh\capitularia\theme\bk_to_permalink">
 <code class="sig-name descname">bk_to_permalink</code><span class="sig-paren">(</span><em class="sig-param">$corresp</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\bk_to_permalink" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the Capitular page url corresponding to a BK or Mordek No.</p>
@@ -602,10 +635,10 @@ eg. pre814/ or ldf/ or post840/ …</p>
 <dd><p>Redirector for Capitulary pages</p>
 <p>Eg. redirects from</p>
 <blockquote>
-<div><p>/cap/BK.42a    =&gt; /capit/&lt;subdir&gt;/bk-nr-042a/
-/cap/Mordek_27 =&gt; /capit/&lt;subdir&gt;/mordek-nr-27/
-/bk/42a        =&gt; /capit/&lt;subdir&gt;/bk-nr-042a/
-/mordek/27     =&gt; /capit/&lt;subdir&gt;/mordek-nr-27/</p>
+<div><p>/capit/BK.42a    =&gt; /capit/&lt;subdir&gt;/bk-nr-042a/
+/capit/Mordek_27 =&gt; /capit/&lt;subdir&gt;/mordek-nr-27/
+/bk/42a          =&gt; /capit/&lt;subdir&gt;/bk-nr-042a/
+/mordek/27       =&gt; /capit/&lt;subdir&gt;/mordek-nr-27/</p>
 </div></blockquote>
 <p>We cannot just use mod_rewrite because we don’t know which subdirectory the
 capitulary page is in.</p>

@@ -1,5 +1,18 @@
+/** @module themes/capitularia */
+
+/**
+ * This file contains the Javascript for the Capitularia theme.
+ *
+ * @file
+ */
 (function ($) {
   'use strict';
+  /**
+   * Initialize the back to top link: on click do a smooth scroll to the top
+   * of the page.
+   *
+   * @memberof module:themes/capitularia
+   */
 
   function initBackToTop() {
     $('.back-to-top').click(function () {
@@ -9,16 +22,13 @@
       return false;
     });
   }
+  /**
+   * Initialize all links on the page to do a smooth scroll to their
+   * respective targets.
+   *
+   * @memberof module:themes/capitularia
+   */
 
-  function initResetForm() {
-    $('.reset-form').click(function () {
-      $(this).closest('form').find('input[type="text"]').val('');
-      $(this).closest('form').find('select').each(function () {
-        var v = $(this).children().first().val();
-        $(this).val(v);
-      });
-    });
-  }
 
   function initSmoothScrollLinks() {
     $('a').each(function () {
@@ -27,24 +37,21 @@
       }
 
       $(this).addClass('ssdone');
-      var href = $(this).attr('href');
+      let href = $(this).attr('href');
 
       if (href === undefined) {
         return;
       }
 
-      href = href.replace('.', '\\.');
-      var io = href.indexOf('#'); // only act on page-internal links
+      href = href.replace('.', '\\.'); // only act on page-internal links
 
-      if (io !== 0) {
+      if (href.indexOf('#') !== 0) {
         return;
       } // only act on existing targets
 
 
-      var target;
-
       try {
-        target = $(href);
+        const target = $(href);
       } catch (e) {
         return;
       }
@@ -55,7 +62,7 @@
 
       $(this).addClass('sscontrolled');
       $(this).on('click', function (event) {
-        var off = target.first().offset().top;
+        const off = target.first().offset().top;
         $('body,html').animate({
           'scroll-top': off
         }, 600);
@@ -64,12 +71,36 @@
       });
     });
   }
+  /**
+   * Initialize reset buttons to reset input and select controls on the parent
+   * form.
+   *
+   * @memberof module:themes/capitularia
+   */
+
+
+  function initResetForm() {
+    $('.reset-form').click(function () {
+      $(this).closest('form').find('input[type="text"]').val('');
+      $(this).closest('form').find('select').each(function () {
+        const v = $(this).children().first().val();
+        $(this).val(v);
+      });
+    });
+  }
+  /**
+   * Initialize the footnote refs, ie. the '*', to open a popup on mouse
+   * hover.  The popup contains the footnote text.
+   *
+   * @memberof module:themes/capitularia
+   */
+
 
   function initFootnoteTooltips() {
     $('a.annotation-ref').tooltip({
       'placement': 'top',
       'title': function () {
-        var href = $(this).attr('href');
+        const href = $(this).attr('href');
         return $(href).closest('div.annotation-content').prop('outerHTML');
       },
       'html': true,
@@ -78,13 +109,13 @@
     }).on('mouseenter', function () {
       // keeps the tooltip open as long as the user hovers over it,
       // the user may click on links
-      var that = this;
+      const that = this;
       $(this).tooltip('show');
       $('.tooltip').on('mouseleave', function () {
         $(that).tooltip('hide');
       });
     }).on('mouseleave', function () {
-      var that = this;
+      const that = this;
       setTimeout(function () {
         if (!$('.tooltip:hover').length) {
           $(that).tooltip('hide');
@@ -92,15 +123,22 @@
       }, 300);
     });
   }
+  /**
+   * Initialize the legend slide-out.  Make the legend slide out (and back in)
+   * if the user clicks on the respective tab.
+   *
+   * @memberof module:themes/capitularia
+   */
+
 
   function initLegend() {
     // the Key (Legend) slide-out
-    var legend = $('#legend');
+    const legend = $('#legend');
 
     if (legend.length) {
-      var wrapper = $('<div class="slideout screen-only"><div class="slideout-tab"></div>' + '<div class="slideout-inner"></div></div>');
+      const wrapper = $('<div class="slideout screen-only"><div class="slideout-tab"></div>' + '<div class="slideout-inner"></div></div>');
       $('body').append(wrapper);
-      var legend_copy = legend.clone();
+      const legend_copy = legend.clone();
       legend.addClass('print-only');
       $('div.slideout-inner').append(legend_copy);
       $('div.slideout-tab').append($('div.slideout-inner h5'));
@@ -124,7 +162,7 @@
 })(jQuery);
 
 function toggle(control) {
-  var elem = document.getElementById(control);
+  const elem = document.getElementById(control);
 
   if (elem.style.display === 'none') {
     elem.style.display = 'block';

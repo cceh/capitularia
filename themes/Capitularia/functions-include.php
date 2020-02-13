@@ -418,6 +418,45 @@ function translate_month_year ($month_year)
 }
 
 /**
+ * Canonicalize the innumerable different ways the editors write a BK or Mordek no.
+ *
+ * Accepts (not exhaustive list of examples found in the wild):
+ *
+ * BK.42
+ * BK.042
+ * BK_42
+ * BK_042
+ * bk-nr-42
+ * bk-nr-042
+ * Mordek.27
+ * Mordek_27
+ * mordek-nr-27
+ * ldf/all-of-the-above
+ *
+ * Returns:
+ *
+ * bk-nr-042
+ * mordek-nr-27
+ *
+ * @param string $corresp eg. "BK.42a" or "Mordek_15"
+ *
+ * @return string The canonical BK no.
+ */
+
+function fix_bk_nr ($corresp)
+{
+    $corresp = basename ($corresp);
+    if (preg_match ('/^bk[-._nr]+(\d+)(\w?)$/i', $corresp, $matches)) {
+        $corresp = 'bk-nr-' . str_pad ($matches[1], 3, '0', STR_PAD_LEFT) . $matches[2];
+    }
+    if (preg_match ('/^mordek[-nr._]+(\d+)(\w?)$/i', $corresp, $matches)) {
+        $corresp = 'mordek-nr-' . str_pad ($matches[1], 2, '0', STR_PAD_LEFT) . $matches[2];
+    }
+    return $corresp;
+}
+
+
+/**
  * Get the Capitular page url corresponding to a BK or Mordek No.
  *
  * This function figures out which subdirectory the Capitular page is in,
@@ -434,27 +473,20 @@ function bk_to_permalink ($corresp)
 
     global $wpdb;
 
+    $corresp = fix_bk_nr ($corresp);
+
     if (array_key_exists ($corresp, $cache)) {
         return $cache[$corresp];
     }
 
-    $post_name = null;
-    if (preg_match ('/^BK[._](\d+)(\w?)$/', $corresp, $matches)) {
-        $post_name = 'bk-nr-' . str_pad ($matches[1], 3, '0', STR_PAD_LEFT) . $matches[2];
-    }
-    if (preg_match ('/^Mordek[._](\d+)(\w?)$/', $corresp, $matches)) {
-        $post_name = 'mordek-nr-' . str_pad ($matches[1], 2, '0', STR_PAD_LEFT) . $matches[2];
-    }
-    if ($post_name) {
-        $sql = $wpdb->prepare (
-            "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s",
-            $post_name
-        );
-        foreach ($wpdb->get_results ($sql) as $row) {
-            $url = get_permalink ($row->ID);
-            $cache[$corresp] = $url;
-            return $url;
-        }
+    $sql = $wpdb->prepare (
+        "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s",
+        $corresp
+    );
+    foreach ($wpdb->get_results ($sql) as $row) {
+        $url = get_permalink ($row->ID);
+        $cache[$corresp] = $url;
+        return $url;
     }
     return null;
 }
@@ -464,10 +496,10 @@ function bk_to_permalink ($corresp)
  *
  * Eg. redirects from
  *
- *     /cap/BK.42a    => /capit/<subdir>/bk-nr-042a/
- *     /cap/Mordek_27 => /capit/<subdir>/mordek-nr-27/
- *     /bk/42a        => /capit/<subdir>/bk-nr-042a/
- *     /mordek/27     => /capit/<subdir>/mordek-nr-27/
+ *     /capit/BK.42a    => /capit/<subdir>/bk-nr-042a/
+ *     /capit/Mordek_27 => /capit/<subdir>/mordek-nr-27/
+ *     /bk/42a          => /capit/<subdir>/bk-nr-042a/
+ *     /mordek/27       => /capit/<subdir>/mordek-nr-27/
  *
  * We cannot just use mod_rewrite because we don't know which subdirectory the
  * capitulary page is in.
@@ -486,22 +518,22 @@ function on_do_parse_request ($do_parse, $wp, $extra_query_vars) // phpcs:ignore
     $request = isset ($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
     // error_log ('Request was: ' . $request);
 
-    if (preg_match ('!^/bk/(BK[._])?(\d+\w?)$!', $request, $matches)) {
+    if (preg_match ('!^/bk/(BK[._])?(\d+\w?)$!i', $request, $matches)) {
         $url = bk_to_permalink ('BK.' . $matches[2]);
         if ($url) {
             wp_redirect ($url);
             exit ();
         }
     }
-    if (preg_match ('!^/mordek/(Mordek[._])?(\d+\w?)$!', $request, $matches)) {
+    if (preg_match ('!^/mordek/(Mordek[._])?(\d+\w?)$!i', $request, $matches)) {
         $url = bk_to_permalink ('Mordek.' . $matches[2]);
         if ($url) {
             wp_redirect ($url);
             exit ();
         }
     }
-    if (preg_match ('!^/cap/(BK|Mordek)[._]?(\d+\w?)$!', $request, $matches)) {
-        $url = bk_to_permalink ($matches[1] . '_' . $matches[2]);
+    if (preg_match ('!^/capit/(BK|Mordek)(.*)$!i', $request, $matches)) {
+        $url = bk_to_permalink ($matches[1] . $matches[2]);
         if ($url) {
             wp_redirect ($url);
             exit ();

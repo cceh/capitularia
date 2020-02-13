@@ -148,7 +148,7 @@ Target: lists $(CACHE_DIR)/lists/mss-table.html
       <xsl:text> [</xsl:text>
 
       <xsl:call-template name="if-visible">
-        <xsl:with-param name="path" select="concat ('/cap/', @n)"/>
+        <xsl:with-param name="path" select="concat ('/capit/', @n)"/>
 
         <xsl:with-param name="title">
           <xsl:text>[:de]Informationen zum Kapitular[:en]Information on capitulary[:] </xsl:text>

@@ -1,3 +1,11 @@
+/**
+ * @module plugins/page-generator
+ */
+
+/**
+ * Some utility function for the Page Generator admin interface.
+ * @file
+ */
 'use strict';
 
 var cap_page_generator_admin = function ($) {
@@ -6,11 +14,9 @@ var cap_page_generator_admin = function ($) {
   /**
    * The inverse of the jQuery.param () function.
    *
-   * @function deparam
-   *
    * @param s {string} A string in the form "p=1&q=2"
-   *
    * @return {Object} { p : 1, q : 2 }
+   * @memberof module:plugins/page-generator
    */
   function deparam(s) {
     return s.split('&').reduce(function (params, param) {
@@ -21,6 +27,14 @@ var cap_page_generator_admin = function ($) {
       return params;
     }, {});
   }
+  /**
+   * Add action parameters to AJAX request data.
+   *
+   * @param {Object} data The AJAX request data.
+   * @return {Object} The AJAX request data augmented.
+   * @memberof module:plugins/page-generator
+   */
+
 
   function add_ajax_action(data, action) {
     data.action = action;
@@ -28,6 +42,16 @@ var cap_page_generator_admin = function ($) {
 
     return data;
   }
+  /**
+   * Perform an action on a TEI file.
+   *
+   * The user clicked somewhere inside the table row listing that file.
+   *
+   * @param {Element} e The element clicked
+   * @param {string} action The AJAX action to perform
+   * @memberof module:plugins/page-generator
+   */
+
 
   function on_cap_action_file(e, action) {
     var $e = $(e);
@@ -61,6 +85,15 @@ var cap_page_generator_admin = function ($) {
       $(document).trigger('wp-plugin-update-error');
     });
   }
+  /**
+   * Perform an action on a tab.
+   *
+   * The user clicked on a tab. The tab contents must now be loaded.
+   *
+   * @param {Event} event The click event
+   * @memberof module:plugins/page-generator
+   */
+
 
   function on_cap_load_section(event) {
     event.preventDefault();
@@ -84,9 +117,15 @@ var cap_page_generator_admin = function ($) {
       spinner.fadeOut().remove();
     });
   }
-  /*
+  /**
    * Activate the 'select all' checkboxes on the tables.
-   * Stolen from wp-admin/js/common.js
+   *
+   * Check or uncheck all checkboxes when the user clicks on the "select all"
+   * checkbox.  Stolen from wp-admin/js/common.js
+   *
+   * @param {Event} ev (unused) The tab loaded event emited by jQuery-ui
+   * @param {Element} ui The tab element
+   * @memberof module:plugins/page-generator
    */
 
 
@@ -124,6 +163,14 @@ var cap_page_generator_admin = function ($) {
       });
     });
   }
+  /**
+   * Get a parameter from the URL in the browser location bar.
+   *
+   * @param {string} name The name of the parameter
+   * @return {?string} The value of the parameter or null
+   * @memberof module:plugins/page-generator
+   */
+
 
   function get_url_parameter(name) {
     var search = window.location.search.substring(1);
@@ -139,6 +186,12 @@ var cap_page_generator_admin = function ($) {
 
     return null;
   }
+  /**
+   * Initialize the jQuery tab interface.
+   *
+   * @memberof module:plugins/page-generator
+   */
+
 
   function init_tabs() {
     var tabs = $('#tabs');
@@ -160,7 +213,7 @@ var cap_page_generator_admin = function ($) {
      * to undo in css because they clash with Wordpress style.
      */
 
-    tabs.parent().find('*').removeClass('ui-widget-content ui-widget-header ui-tabs-panel' + ' ui-corner-all ui-corner-top ui-corner-bottom');
+    tabs.parent().find('*').removeClass('ui-widget-content ui-widget-header ui-tabs-panel ui-corner-all ui-corner-top ui-corner-bottom');
     /* open the right tab */
 
     var section = get_url_parameter('section');

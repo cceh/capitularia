@@ -115,6 +115,8 @@ def chapters (cap_id):
 def capitulary_manuscripts_json (cap_id):
     """ Return all manuscripts containing capitulary cap_id. """
 
+    cap_id = "%s.%s" % common.normalize_bk (cap_id)
+
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
         SELECT DISTINCT ms_id
