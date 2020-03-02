@@ -493,6 +493,9 @@ footnotes will be joined to the preceding word.
     <span class="tei-gap" data-shortcuts="0">
       <xsl:text>[</xsl:text>
       <xsl:choose>
+        <xsl:when test="not (@quantity)">
+          <xsl:value-of select="$char"/>
+        </xsl:when>
         <xsl:when test="number (@quantity) &lt; 6">
           <xsl:value-of select="str:padding (number (@quantity), $char)"/>
         </xsl:when>
