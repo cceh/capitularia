@@ -60,7 +60,7 @@ output suited for collation.  Some text normalizations are applied.
 
   <!-- Don't output "[!]" -->
   <xsl:template match="sic" mode="phase1">
-    <xsl:apply-templates />
+    <xsl:apply-templates mode="phase1" />
   </xsl:template>
 
   <xsl:template match="gap[@quantity]" mode="phase1">
