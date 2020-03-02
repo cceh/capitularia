@@ -173,6 +173,12 @@
 			<assert test="starts-with(.,'#')" role="warning">Attributwert soll mit # starten</assert>
 		</rule>
 	</pattern>
+	<pattern id="milestone_spanTo_anchor">
+		<rule context="tei:milestone[@spanTo]">
+		  <assert test="following::tei:anchor[@xml:id = substring-after (current ()/@spanTo, '#')]"
+                  role="warning">Anchor mit entsprechender xml:id fehlt.</assert>
+		</rule>
+	</pattern>
 	<!--  -->
 	<!--  -->
 	<!--  -->
