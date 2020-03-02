@@ -28,8 +28,8 @@ RES_DIR      := $(PUB_DIR)/resources
 BK_TEXT_DIR  := $(PRIV_DIR)/BK_Text_Superstruktur
 BK_TEXTZEUGE := $(BK_TEXT_DIR)/bk-textzeuge.xml
 
-MSS := $(wildcard $(MSS_DIR)/*.xml)
-IDS := $(notdir $(basename $(MSS)))
+IDS       := $(notdir $(basename $(wildcard $(MSS_DIR)/*.xml)))
+IDS_PRIV  := $(notdir $(basename $(wildcard $(MSS_PRIV_DIR)/*.xml)))
 
 XSLTPROC  := /usr/bin/xsltproc --nonet --novalid --nomkdir
 SAXON     := /usr/bin/saxon
@@ -71,9 +71,9 @@ mss : $(patsubst %,$(CACHE_DIR)/mss/%.transcript.commented.html,$(IDS))
 mss : $(CACHE_DIR)/mss/cte-137.html
 mss : $(CACHE_DIR)/mss/cte-137-de.html
 
-mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.header.html,$(IDS))
-mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.transcript.html,$(IDS))
-mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.footer.html,$(IDS))
+mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.header.html,$(IDS_PRIV))
+mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.transcript.html,$(IDS_PRIV))
+mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.footer.html,$(IDS_PRIV))
 
 
 ################ Capitularies
