@@ -48,8 +48,8 @@ Target: fulltext $(CACHE_DIR)/extracted/%/
       <xsl:variable name="corresp" select="current-grouping-key ()"/>
 
       <xsl:iterate
-          select="$body//tei:ab[@corresp = $corresp][not (@prev)][not (.//tei:milestone[@corresp][@unit='span'])] |
-                  $body//tei:milestone[@corresp = $corresp][not (@prev)][@unit='span']">
+          select="$body//tei:ab[contains-token (@corresp, $corresp)][not (@prev)][not (.//tei:milestone[@corresp][@unit='span'])] |
+                  $body//tei:milestone[contains-token (@corresp, $corresp)][not (@prev)][@unit='span']">
         <xsl:param name="n" select="1" as="xs:integer" />
 
         <!-- <xsl:message
