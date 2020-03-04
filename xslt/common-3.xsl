@@ -154,7 +154,7 @@
         <xsl:when test="$e/@rend">
           <xsl:value-of select="$e/@rend"/>
         </xsl:when>
-        <xsl:when test="$e/self::tei:body">
+        <xsl:when test="$e/self::tei:body or not ($e/parent::*)">
           <!-- don't look higher than the <body> -->
           <xsl:value-of select="''" />
         </xsl:when>
