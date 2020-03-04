@@ -12,13 +12,19 @@ $(CACHE_DIR)/capits/pre814/%.html : $(CAPIT_DIR)/pre814/%.xml capit.xsl common-3
 $(CACHE_DIR)/capits/undated/%.html : $(CAPIT_DIR)/undated/%.xml capit.xsl common-3.xsl config-3.xsl
 	$(SAXON) -s:$< -xsl:capit.xsl -o:$@
 
-$(CACHE_DIR)/internal/mss/%.footer.html : $(MSS_PRIV_DIR)/%.xml mss-footer.xsl common.xsl base_variables.xsl
+$(CACHE_DIR)/collation/%.xml : $(CACHE_DIR)/extracted/%.xml common-3.xsl config-3.xsl mss-extract-chapters-txt.xsl mss-transcript-phase-1.xsl
+	$(SAXON) -s:$< -xsl:mss-extract-chapters-txt.xsl -o:$@
+
+$(CACHE_DIR)/extracted/%.xml : $(MSS_DIR)/%.xml common-3.xsl config-3.xsl mss-extract-chapters.xsl
+	$(SAXON) -s:$< -xsl:mss-extract-chapters.xsl -o:$@
+
+$(CACHE_DIR)/internal/mss/%.footer.html : $(MSS_PRIV_DIR)/%.xml base_variables.xsl common.xsl mss-footer.xsl
 	$(XSLTPROC) -o $@ mss-footer.xsl $<
 
-$(CACHE_DIR)/internal/mss/%.header.html : $(MSS_PRIV_DIR)/%.xml mss-header.xsl common.xsl base_variables.xsl
+$(CACHE_DIR)/internal/mss/%.header.html : $(MSS_PRIV_DIR)/%.xml base_variables.xsl common.xsl mss-header.xsl
 	$(XSLTPROC) -o $@ mss-header.xsl $<
 
-$(CACHE_DIR)/internal/mss/%.transcript.html : $(MSS_PRIV_DIR)/%.xml mss-transcript.xsl mss-transcript-footnotes.xsl common.xsl base_variables.xsl
+$(CACHE_DIR)/internal/mss/%.transcript.html : $(MSS_PRIV_DIR)/%.xml base_variables.xsl common.xsl mss-transcript-footnotes.xsl mss-transcript.xsl
 	$(XSLTPROC) -o $@ mss-transcript.xsl $<
 
 $(CACHE_DIR)/lists/bib.html : $(BIB_DIR)/Bibliographie_Capitularia.xml bib-bibliography.xsl
@@ -43,36 +49,36 @@ $(CACHE_DIR)/lists/changes.html : $(CACHE_DIR)/lists/corpus.xml changes.xsl
 	$(SAXON) -s:$< -xsl:changes.xsl -o:$@ prefix=A
 
 $(CACHE_DIR)/lists/changes90.html : $(CACHE_DIR)/lists/corpus.xml changes.xsl
-	$(SAXON) -s:$< -xsl:changes.xsl -o:$@ prefix=B scope=P90D
+	$(SAXON) -s:$< -xsl:changes.xsl -o:$@ scope=P90D prefix=B
 
 $(CACHE_DIR)/lists/downloads.html : $(CACHE_DIR)/lists/corpus.xml downloads.xsl
 	$(SAXON) -s:$< -xsl:downloads.xsl -o:$@
 
-$(CACHE_DIR)/lists/mss-key.html : $(MSS_DIR)/lists/manuscripts.xml mss-key.xsl common-3.xsl config-3.xsl
+$(CACHE_DIR)/lists/mss-key.html : $(MSS_DIR)/lists/manuscripts.xml common-3.xsl config-3.xsl mss-key.xsl
 	$(SAXON) -s:$< -xsl:mss-key.xsl -o:$@
 
-$(CACHE_DIR)/lists/mss-table.html : $(MSS_DIR)/lists/ueberblick_mordek.xml mss-table.xsl common-3.xsl config-3.xsl
+$(CACHE_DIR)/lists/mss-table.html : $(MSS_DIR)/lists/ueberblick_mordek.xml common-3.xsl config-3.xsl mss-table.xsl
 	$(SAXON) -s:$< -xsl:mss-table.xsl -o:$@
 
-$(CACHE_DIR)/lists/places.html : $(RES_DIR)/capitularia_place.xml register_cap_places.xsl allgFunktionen.xsl xsl-output.xsl base_variables.xsl
+$(CACHE_DIR)/lists/places.html : $(RES_DIR)/capitularia_place.xml allgFunktionen.xsl base_variables.xsl register_cap_places.xsl xsl-output.xsl
 	$(XSLTPROC) -o $@ register_cap_places.xsl $<
 
-$(CACHE_DIR)/mss/%.footer.html : $(MSS_DIR)/%.xml mss-footer.xsl common.xsl base_variables.xsl
+$(CACHE_DIR)/mss/%.footer.html : $(MSS_DIR)/%.xml base_variables.xsl common.xsl mss-footer.xsl
 	$(XSLTPROC) -o $@ mss-footer.xsl $<
 
-$(CACHE_DIR)/mss/%.header.html : $(MSS_DIR)/%.xml mss-header.xsl common.xsl base_variables.xsl
+$(CACHE_DIR)/mss/%.header.html : $(MSS_DIR)/%.xml base_variables.xsl common.xsl mss-header.xsl
 	$(XSLTPROC) -o $@ mss-header.xsl $<
 
-$(CACHE_DIR)/mss/%.transcript.commented.html : $(MSS_DIR)/%.xml mss-transcript-with-comments.xsl mss-transcript.xsl mss-transcript-footnotes.xsl common.xsl base_variables.xsl
+$(CACHE_DIR)/mss/%.transcript.commented.html : $(MSS_DIR)/%.xml base_variables.xsl common.xsl mss-transcript-footnotes.xsl mss-transcript-with-comments.xsl mss-transcript.xsl
 	$(XSLTPROC) -o $@ mss-transcript-with-comments.xsl $<
 
-$(CACHE_DIR)/mss/%.transcript.html : $(MSS_DIR)/%.xml mss-transcript.xsl mss-transcript-footnotes.xsl common.xsl base_variables.xsl
+$(CACHE_DIR)/mss/%.transcript.html : $(MSS_DIR)/%.xml base_variables.xsl common.xsl mss-transcript-footnotes.xsl mss-transcript.xsl
 	$(XSLTPROC) -o $@ mss-transcript.xsl $<
 
-$(CACHE_DIR)/mss/cte-137-de.html : $(MSS_DIR)/texts/137.xml mss-transcript-cte.xsl mss-transcript.xsl mss-transcript-footnotes.xsl common.xsl base_variables.xsl
+$(CACHE_DIR)/mss/cte-137-de.html : $(MSS_DIR)/texts/137.xml base_variables.xsl common.xsl mss-transcript-cte.xsl mss-transcript-footnotes.xsl mss-transcript.xsl
 	$(XSLTPROC) --stringparam title Übersetzung -o $@ mss-transcript-cte.xsl $<
 
-$(CACHE_DIR)/mss/cte-137.html : $(MSS_DIR)/texts/137.xml mss-transcript-cte.xsl mss-transcript.xsl mss-transcript-footnotes.xsl common.xsl base_variables.xsl
+$(CACHE_DIR)/mss/cte-137.html : $(MSS_DIR)/texts/137.xml base_variables.xsl common.xsl mss-transcript-cte.xsl mss-transcript-footnotes.xsl mss-transcript.xsl
 	$(XSLTPROC) --stringparam title Edition -o $@ mss-transcript-cte.xsl $<
 
 
@@ -80,7 +86,6 @@ $(CACHE_DIR)/mss/cte-137.html : $(MSS_DIR)/texts/137.xml mss-transcript-cte.xsl 
 # unhandled file dependencies
 #
 
-# $(CACHE_DIR)/extracted/%/ : $(MSS_DIR)/%.xml mss-extract-chapters.xsl mss-transcript-collation.xsl mss-transcript-phase-1.xsl common-3.xsl config-3.xsl
 # $(CACHE_DIR)/lists/corpus.xml : $(MSS_DIR)/%.xml corpus.xsl common-3.xsl config-3.xsl
 # $(CACHE_DIR)/lists/mss-capit.html : $(MSS_DIR)/lists/mss_by_cap.xml mss-capit.xsl common-3.xsl config-3.xsl
 # $(CACHE_DIR)/lists/mss-capit.html : $(MSS_DIR)/lists/manuscripts.xml mss-capit.xsl common-3.xsl config-3.xsl
@@ -96,7 +101,8 @@ $(CACHE_DIR)/mss/cte-137.html : $(MSS_DIR)/texts/137.xml mss-transcript-cte.xsl 
 # capits : $(CACHE_DIR)/capits/post840/%.html
 # capits : $(CACHE_DIR)/capits/pre814/%.html
 # capits : $(CACHE_DIR)/capits/undated/%.html
-# fulltext : $(CACHE_DIR)/extracted/%/
+# collation : $(CACHE_DIR)/collation/%.xml
+# extraction : $(CACHE_DIR)/extracted/%.xml
 lists : $(CACHE_DIR)/lists/bib.html
 lists : $(CACHE_DIR)/lists/capit-all.html
 lists : $(CACHE_DIR)/lists/capit-ldf.html

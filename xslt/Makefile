@@ -68,9 +68,6 @@ mss : $(patsubst %,$(CACHE_DIR)/mss/%.footer.html,$(IDS))
 
 mss : $(patsubst %,$(CACHE_DIR)/mss/%.transcript.commented.html,$(IDS))
 
-mss : $(CACHE_DIR)/mss/cte-137.html
-mss : $(CACHE_DIR)/mss/cte-137-de.html
-
 mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.header.html,$(IDS_PRIV))
 mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.transcript.html,$(IDS_PRIV))
 mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.footer.html,$(IDS_PRIV))
@@ -83,12 +80,8 @@ capits : $(patsubst %.xml,$(CACHE_DIR)/capits/ldf/%.html,$(notdir $(wildcard $(C
 capits : $(patsubst %.xml,$(CACHE_DIR)/capits/post840/%.html,$(notdir $(wildcard $(CAPIT_DIR)/post840/*.xml)))
 capits : $(patsubst %.xml,$(CACHE_DIR)/capits/undated/%.html,$(notdir $(wildcard $(CAPIT_DIR)/undated/*.xml)))
 
-################ Manuscript Lists
 
-lists : $(CACHE_DIR)/lists/mss-table.html
-lists : $(CACHE_DIR)/lists/mss-capit.html
-lists : $(CACHE_DIR)/lists/mss-idno.html
-lists : $(CACHE_DIR)/lists/mss-key.html
+################ Manuscript Lists
 
 $(CACHE_DIR)/lists/mss-capit.html : $(MSS_DIR)/lists/mss_by_cap.xml $(MSS_DIR)/lists/manuscripts.xml \
 									mss-capit.xsl common-3.xsl config-3.xsl
@@ -99,21 +92,8 @@ $(CACHE_DIR)/lists/mss-idno.html : 	$(MSS_DIR)/lists/manuscripts.xml $(CACHE_DIR
 	$(SAXON) -s:"$<" -xsl:"mss-idno.xsl" -o:"$@" corpus="$(CACHE_DIR)/lists/corpus.xml"
 
 
-################ Capitulary Lists
-
-lists: $(CACHE_DIR)/lists/capit-all.html
-lists: $(CACHE_DIR)/lists/capit-pre814.html
-lists: $(CACHE_DIR)/lists/capit-ldf.html
-lists: $(CACHE_DIR)/lists/capit-post840.html
-lists: $(CACHE_DIR)/lists/capit-undated.html
-
-
 ################ Bits and Pieces
 
-lists : $(CACHE_DIR)/lists/downloads.html
-lists : $(CACHE_DIR)/lists/changes.html
-lists : $(CACHE_DIR)/lists/changes90.html
-lists : $(CACHE_DIR)/lists/bib.html
 lists : $(CACHE_DIR)/lists/places.html
 
 $(CACHE_DIR)/lists/corpus.xml : $(MSS_DIR)/*.xml mss-idno.xsl common-3.xsl config-3.xsl
@@ -123,39 +103,41 @@ corpus : $(CACHE_DIR)/lists/corpus.xml
 
 lists : corpus
 
-## extract each xml corresp as its own file (lots of files!)
-## fulltext and collation
 
-fulltext : $(patsubst %,$(CACHE_DIR)/extracted/%/,$(IDS))
+################ Fulltext and Collation
 
-$(CACHE_DIR)/extracted/%/ : $(MSS_DIR)/%.xml mss-extract-chapters.xsl mss-transcript-collation.xsl \
-							mss-transcript-phase-1.xsl common-3.xsl config-3.xsl
-	$(CLEAN_TARGET_DIR)
-	$(SAXON) -s:"$<" -xsl:"mss-extract-chapters.xsl" directory="$(dir $@)"
-	-$(TOUCH)
+extraction : $(patsubst %,$(CACHE_DIR)/extracted/%.xml,$(IDS))
+
+collation  : $(patsubst %,$(CACHE_DIR)/collation/%.xml,$(IDS))
+
+fulltext   : extraction collation
 
 
 ################ Scrape Targets
 
-# these are timestamp files to record when the data was last imported into the
-# database
-
 init_db:
 	$(IMPORT) --init
 	$(RM) $(CACHE_DIR)/last_*_scrape
+
+# the following targets are timestamp files to record when the data was last
+# imported into the database
 
 $(CACHE_DIR)/last_corpus_scrape : $(CACHE_DIR)/lists/corpus.xml $(CAPIT_DIR)/lists/capit_all.xml
 	$(IMPORT) --mss      $(CACHE_DIR)/lists/corpus.xml
 	$(IMPORT) --cap-list $(CAPIT_DIR)/lists/capit_all.xml
 	touch "$@"
 
-$(CACHE_DIR)/last_fulltext_scrape : $(wildcard $(CACHE_DIR)/extracted/*/*.xml $(CACHE_DIR)/extracted/*/*.txt)
-	$(file >$@)	$(foreach fn,$?,$(file >>$@,$(fn))) # put the very long argument list into a file with newlines
-	$(IMPORT) --fulltext @$@                        # read filenames to import from the file
+$(CACHE_DIR)/last_extracted_scrape : $(wildcard $(CACHE_DIR)/extracted/*.xml)
+	$(IMPORT) --extracted $?
 	touch "$@"
 
-# copies information from the wordpress db into the postgres db
-# the timestamp file doesn't depend on anything
+$(CACHE_DIR)/last_fulltext_scrape : $(wildcard $(CACHE_DIR)/collation/*.xml)
+	$(IMPORT) --fulltext $?
+	touch "$@"
+
+# this target copies information from the wordpress db into the postgres db.
+# the timestamp file doesn't depend on anything (it should depend on the
+# wordpress database file, but we have no access to it)
 $(CACHE_DIR)/last_status_scrape :
 	$(IMPORT) --publish
 	touch "$@"
@@ -163,7 +145,7 @@ $(CACHE_DIR)/last_status_scrape :
 
 scrape_corpus :   $(CACHE_DIR)/last_corpus_scrape
 
-scrape_fulltext : $(CACHE_DIR)/last_fulltext_scrape
+scrape_fulltext : $(CACHE_DIR)/last_extracted_scrape $(CACHE_DIR)/last_fulltext_scrape
 
 scrape_status :   $(CACHE_DIR)/last_status_scrape
 
@@ -171,11 +153,10 @@ scrape_status :   $(CACHE_DIR)/last_status_scrape
 ################ Other Stuff
 
 # do not waste time trying to make these files:
-
 %.xml: ;
+%.xsl: ;
 Makefile: ;
 dependencies.inc: ;
-%.xsl: ;
 
 clean:
 	rm -rf $(CACHE_DIR)
@@ -190,8 +171,9 @@ dirs:
 			 $(CACHE_DIR)/capits/undated \
 			 $(CACHE_DIR)/lists \
 			 $(CACHE_DIR)/internal/mss \
-			 $(CACHE_DIR)/extracted
+			 $(CACHE_DIR)/extracted \
+			 $(CACHE_DIR)/collation
 
-.PHONY: all mss capits lists clean dirs corpus fulltext
+.PHONY: all mss capits lists clean dirs corpus fulltext extraction collation
 
 .PHONY: init_db scrape_corpus scrape_fulltext scrape_status $(CACHE_DIR)/last_status_scrape

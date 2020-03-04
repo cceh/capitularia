@@ -260,7 +260,7 @@ def process_msdesc (conn, root, ms_id, msp_part):
     :param instance conn:  database connection
     :param element root:   <msDesc> or <msPart>
     :param str ms_id:      the manuscript id
-    :param str msp_part:    part id if it is a <msPart>
+    :param str msp_part:   part id if it is a <msPart>
 
     """
 
@@ -531,56 +531,59 @@ def import_corpus (conn, fn_corpus):
             execute (conn, "COMMIT", {})
 
 
-def import_fulltext (conn, filenames):
+def import_fulltext (conn, filenames, mode):
     """ Import the xml or plain text of the chapter transcriptions """
 
-    # REGEX_BK      has 3 capturing groups
-    # REGEX_CHAPTER has 1 capturing group
-    RE_FILENAME = re.compile (
-        '([^/]+)/(' + common.REGEX_BK + common.REGEX_CHAPTER + r')_(\d)(_later_hands)?\.([a-z]+)$',
-        re.IGNORECASE
-    )
+    for fn in filenames:
+        log (logging.INFO, "Parsing %s ..." % fn)
+        tree = etree.parse (fn, parser = parser)
+        for TEI in tree.xpath ("/tei:TEI", namespaces = NS):
+            ms_id = get_ns (TEI, "xml:id")
 
-    for filename in filenames:
-        m = RE_FILENAME.search (filename)
-        if m:
-            log (logging.INFO, "Importing filename %s" % filename)
-            ms_id   = m.group (1)
-            catalog, no, chapter = common.normalize_corresp (m.group (2))
-            mscap_n = int (m.group (7))
-            hands   = m.group (8) or ''
-            ext     = m.group (9)
+            for item in TEI.xpath (".//tei:item[@corresp]", namespaces = NS):
 
-            with open (filename, 'r') as fp:
-                params = {
-                    'ms_id'   : ms_id,
-                    'cap_id'  : "%s.%s" % (catalog, no),
-                    'mscap_n' : mscap_n,
-                    'chapter' : chapter or '',
-                    'type'    : 'original' if hands == '' else 'later_hands',
-                    'text'    : fp.read (),
-                }
+                # REGEX_BK      has 3 capturing groups
+                # REGEX_CHAPTER has 1 capturing group
+                RE_CORRESP_HANDS = re.compile (
+                    r'^(' + common.REGEX_BK + common.REGEX_CHAPTER + r')_(\d)(_later_hands)?$',
+                    re.IGNORECASE
+                )
 
-                if ext == 'xml':
-                    # we assume the chapters are already there from a corpus scrap
-                    res = execute (conn, """
-                    UPDATE mss_chapters
-                    SET xml = :text
-                    WHERE (ms_id, cap_id, mscap_n, chapter) =
-                          (:ms_id, :cap_id, :mscap_n, :chapter)
-                    """, params)
-                    if res.rowcount != 1:
-                        log (logging.ERROR, "Did not match row {ms_id} {cap_id} {mscap_n} {chapter}".format (**params))
+                m = RE_CORRESP_HANDS.match (item.get ("corresp"))
+                if m:
+                    corresp = m.group (1)
+                    mscap_n = int (m.group (6))
+                    hands   = m.group (7) or ''
+                    catalog, no, chapter = common.normalize_corresp (corresp)
 
-                if ext == 'txt':
-                    execute (conn, """
-                    INSERT INTO mss_chapters_text (ms_id, cap_id, mscap_n, chapter, type, text)
-                    VALUES (:ms_id, :cap_id, :mscap_n, :chapter, :type, :text)
-                    ON CONFLICT (ms_id, cap_id, mscap_n, chapter, type) DO UPDATE
-                    SET text = EXCLUDED.text
-                    """, params)
+                    params = {
+                        'ms_id'   : ms_id,
+                        'cap_id'  : "%s.%s" % (catalog, no),
+                        'mscap_n' : mscap_n,
+                        'chapter' : chapter or '',
+                        'type'    : 'original' if hands == '' else 'later_hands',
+                    }
 
-                execute (conn, "COMMIT", {})
+                    if mode == 'xml':
+                        # we assume the chapters are already there from a corpus scrap
+                        res = execute (conn, """
+                        UPDATE mss_chapters
+                        SET xml = :text
+                        WHERE (ms_id, cap_id, mscap_n, chapter) =
+                              (:ms_id, :cap_id, :mscap_n, :chapter)
+                        """, dict (params, text = etree.tostring (item, encoding='unicode')))
+                        if res.rowcount != 1:
+                            log (logging.ERROR, "Did not match row {ms_id} {cap_id} {mscap_n} {chapter}".format (**params))
+
+                    if mode == 'txt':
+                        execute (conn, """
+                        INSERT INTO mss_chapters_text (ms_id, cap_id, mscap_n, chapter, type, text)
+                        VALUES (:ms_id, :cap_id, :mscap_n, :chapter, :type, :text)
+                        ON CONFLICT (ms_id, cap_id, mscap_n, chapter, type) DO UPDATE
+                        SET text = EXCLUDED.text
+                        """, dict (params, text = item.text))
+
+                    execute (conn, "COMMIT", {})
 
 
 def build_parser (default_config_file):
@@ -614,8 +617,12 @@ def build_parser (default_config_file):
         help='the capitularies lists to import'
     )
     parser.add_argument (
-        '--fulltext', nargs="+",
-        help='import chapter fulltext from files'
+        '--extracted', nargs="*",
+        help='import per-chapter extracted XML from files'
+    )
+    parser.add_argument (
+        '--fulltext', nargs="*",
+        help='import per-chapter extracted fulltext from files'
     )
     parser.add_argument (
         '--publish', action='store_true',
@@ -698,9 +705,14 @@ if __name__ == "__main__":
         with dba.engine.begin () as conn:
             lookup_geonames (conn, 'viaf')
 
-    if args.fulltext:
-        log (logging.INFO, "Importing fulltext ...")
+    if args.extracted:
+        log (logging.INFO, "Importing extracted @corresp XML ...")
         with dba.engine.begin () as conn:
-            import_fulltext (conn, args.fulltext)
+            import_fulltext (conn, args.extracted, 'xml')
+
+    if args.fulltext:
+        log (logging.INFO, "Importing extracted @corresp fulltext ...")
+        with dba.engine.begin () as conn:
+            import_fulltext (conn, args.fulltext, 'txt')
 
     log (logging.INFO, "Done")
