@@ -12,7 +12,7 @@ deploy_xslt: make_dependencies
 	$(RSYNC) xslt/*.xsl xslt/*.inc xslt/Makefile $(HOST_SERVER)/../xslt/
 
 deploy_xml:
-	$(RSYNC) xml/*.xml $(PUBL)/mss/
+	$(RSYNC) mss/*.xml $(PUBL)/mss/
 
 deploy_scripts:
 	$(RSYNC) --exclude='env' scripts $(PUBL)
