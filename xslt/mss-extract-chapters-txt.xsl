@@ -52,7 +52,7 @@ Target: collation $(CACHE_DIR)/collation/%.xml
     <xsl:text>&#x0a;</xsl:text>
     <xsl:text>&#x0a;</xsl:text>
     <item corresp="{@corresp}" cap:hands="{@cap:hands}">
-      <xsl:value-of select="normalize-space (translate (replace (lower-case ($extracted3), 'ae', 'e'), 'ję.,:;!?-_*/', 'ie          '))"/>
+        <xsl:value-of select="normalize-space ($extracted3)"/>
     </item>
 
     <!-- maybe add a "later_hands" section -->
@@ -73,20 +73,16 @@ Target: collation $(CACHE_DIR)/collation/%.xml
       <xsl:text>&#x0a;</xsl:text>
       <xsl:text>&#x0a;</xsl:text>
       <item corresp="{@corresp}_later_hands" cap:hands="{@cap:hands}">
-        <xsl:value-of select="normalize-space (translate (replace (lower-case ($extracted5), 'ae', 'e'), 'ję.,:;!?-_*/', 'ie          '))"/>
+        <xsl:value-of select="normalize-space ($extracted5)"/>
       </item>
     </xsl:if>
 
   </xsl:template>
 
-  <!-- Normalize V to U -->
-  <xsl:template match="text ()">
-    <xsl:value-of select="translate (., 'Vv', 'Uu')"/>
-  </xsl:template>
-
-  <!-- Don't normalize V to U inside <seg type="num"> -->
+  <!-- We don't want to normalize V to U inside <seg type="num">
+       Replace these characters with true unicode roman numerals. -->
   <xsl:template match="seg[@type='num']//text ()">
-    <xsl:value-of select="."/>
+    <xsl:value-of select="translate (., 'IVXLCDMivxlcdm', '&#x2160;&#x2164;&#x2169;&#x216c;&#x216d;&#x216e;&#x216f;&#x2170;&#x2174;&#x2179;&#x217c;&#x217d;&#x217e;&#x217f;')"/>
   </xsl:template>
 
   <xsl:template match="note" />

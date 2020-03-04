@@ -163,9 +163,11 @@ Vue.component ('cap-collation-user-results', {
 
                 for (const [ms_set, master_set] of _.zip (ms_text, master_text)) {
                     let class_ = 'tokens';
-                    const master = master_set.map (token => token.t).join (' ').trim ();
-                    const text   = ms_set.map     (token => token.t).join (' ').trim ();
-                    if (!is_master && (master.toLowerCase () === text.toLowerCase ())) {
+                    const master      = master_set.map (token => token.t).join (' ').trim ();
+                    const text        = ms_set.map     (token => token.t).join (' ').trim ();
+                    const norm_master = master_set.map (token => token.n).join (' ').trim ();
+                    const norm_text   = ms_set.map     (token => token.n).join (' ').trim ();
+                    if (!is_master && (norm_master.toLowerCase () === norm_text.toLowerCase ())) {
                         class_ += ' equal';
                     }
                     if (text === '') {

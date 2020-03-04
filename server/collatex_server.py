@@ -100,6 +100,28 @@ class collatexBlueprint (Blueprint):
 
 app  = collatexBlueprint ('collatex', __name__)
 
+WHOLE_TEXT_PATTERNS = [n.split ('=') for n in """
+ae=e
+ę=e
+j=i
+v=u
+""".split () if n]
+
+RE_WHITESPACE_EQUIV_CHARS = re.compile ("[.,:;!?-_*/]")
+
+def normalize_with_patterns (patterns, text, whole_words = False):
+    """Normalize text using a list of patterns"""
+
+    normalized = text
+    if whole_words:
+        for p in patterns:
+            search, replace = p
+            normalized = re.sub (r'\bsearch\b', replace, normalized)
+    else:
+        for p in patterns:
+            search, replace = p
+            normalized = normalized.replace (search, replace)
+    return normalized
 
 def to_collatex (id_, text, normalizations = None):
     """Build the input to Collate-X
@@ -139,21 +161,21 @@ def to_collatex (id_, text, normalizations = None):
 
     """
 
-    text = text.strip ()
+    text = text.strip ().lower ()
     text = common.RE_BRACKETS.sub ('', text)
+    text = RE_WHITESPACE_EQUIV_CHARS.sub ('', text)
+
+    norm = normalize_with_patterns (WHOLE_TEXT_PATTERNS, text)
 
     patterns = [n.split ('=') for n in normalizations if n]
-    if not patterns:
-        tokens = [{ 't' : t, 'n' : t } for t in text.split ()]
-    else:
-        tokens = []
-        for token in text.split ():
-            normalized = token
-            for p in patterns:
-                s, r = p
-                normalized = normalized.replace (s, r)
-            if normalized:
-                tokens.append ({ 't' : token, 'n' : normalized })
+    if patterns:
+        norm = normalize_with_patterns (patterns, norm, True)
+
+    tsplit = text.split ()
+    nsplit = norm.split ()
+    assert (len (tsplit) == len (nsplit))
+
+    tokens = [{ 't' : s[0], 'n' : s[1] } for s in zip (tsplit, nsplit)]
 
     return { 'id' : id_, 'tokens' : tokens }
 
