@@ -82,6 +82,7 @@ CAP = Namespace ('http://capitularia.uni-koeln.de/rdf/')
 # CAP.params   a parameter to add to the transform to yields the file
 # CAP.urls     a file has this url
 # CAP.scrapes  a command scrapes this file into the postgres database
+# CAP.target   the makefile target that builds this file
 # CAP.nomake   don't output this dependency in Makefile mode
 # CAP.constraint in dot layout produces constraint=object
 # CAP.xsl      the file is a stylesheet
@@ -438,6 +439,7 @@ def render_makefile (filename):
                 SELECT ?xsl WHERE {
                    ?root cap:depends* ?xsl .
                 }
+                ORDER BY ?xsl
                 """, initBindings = { 'root': row.xsl })
 
             data = {
