@@ -57,7 +57,7 @@ Target: collation $(CACHE_DIR)/collation/%.xml
 
     <!-- maybe add a "later_hands" section -->
 
-    <xsl:if test="contains (@cap:hands, 'X')">
+    <xsl:if test="translate (@cap:hands, 'XYZ', '') ne @cap:hands">
       <xsl:variable name="extracted4">
         <!-- apply the templates in mss-transcript-phase-1.xsl -->
         <xsl:apply-templates mode="phase1">
