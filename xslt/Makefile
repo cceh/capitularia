@@ -145,7 +145,7 @@ $(CACHE_DIR)/last_status_scrape :
 
 scrape_corpus :   $(CACHE_DIR)/last_corpus_scrape
 
-scrape_fulltext : $(CACHE_DIR)/last_extracted_scrape $(CACHE_DIR)/last_fulltext_scrape
+scrape_fulltext : $(CACHE_DIR)/last_corpus_scrape $(CACHE_DIR)/last_extracted_scrape $(CACHE_DIR)/last_fulltext_scrape
 
 scrape_status :   $(CACHE_DIR)/last_status_scrape
 
