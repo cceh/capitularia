@@ -28,8 +28,14 @@ RES_DIR      := $(PUB_DIR)/resources
 BK_TEXT_DIR  := $(PRIV_DIR)/BK_Text_Superstruktur
 BK_TEXTZEUGE := $(BK_TEXT_DIR)/bk-textzeuge.xml
 
-IDS       := $(notdir $(basename $(wildcard $(MSS_DIR)/*.xml)))
-IDS_PRIV  := $(notdir $(basename $(wildcard $(MSS_PRIV_DIR)/*.xml)))
+IDS       := $(sort $(notdir $(basename $(wildcard $(MSS_DIR)/*.xml))))
+IDS_PRIV  := $(sort $(notdir $(basename $(wildcard $(MSS_PRIV_DIR)/*.xml))))
+
+CAPITS    := $(patsubst $(CAPIT_DIR)/%.xml,%,\
+	$(sort $(wildcard $(CAPIT_DIR)/pre814/*.xml)) \
+	$(sort $(wildcard $(CAPIT_DIR)/ldf/*.xml)) \
+	$(sort $(wildcard $(CAPIT_DIR)/post840/*.xml)) \
+	$(sort $(wildcard $(CAPIT_DIR)/undated/*.xml)) )
 
 XSLTPROC  := /usr/bin/xsltproc --nonet --novalid --nomkdir
 SAXON     := /usr/bin/saxon
@@ -75,10 +81,7 @@ mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.footer.html,$(IDS_PRIV))
 
 ################ Capitularies
 
-capits : $(patsubst %.xml,$(CACHE_DIR)/capits/pre814/%.html,$(notdir $(wildcard $(CAPIT_DIR)/pre814/*.xml)))
-capits : $(patsubst %.xml,$(CACHE_DIR)/capits/ldf/%.html,$(notdir $(wildcard $(CAPIT_DIR)/ldf/*.xml)))
-capits : $(patsubst %.xml,$(CACHE_DIR)/capits/post840/%.html,$(notdir $(wildcard $(CAPIT_DIR)/post840/*.xml)))
-capits : $(patsubst %.xml,$(CACHE_DIR)/capits/undated/%.html,$(notdir $(wildcard $(CAPIT_DIR)/undated/*.xml)))
+capits : $(patsubst %,$(CACHE_DIR)/capits/%.html,$(CAPITS))
 
 
 ################ Manuscript Lists

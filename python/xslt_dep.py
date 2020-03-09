@@ -487,6 +487,7 @@ def render_makefile (filename):
             }
             fp.write ('# {out} : {in}{dep}\n'.format (**data))
 
+        # targets and unhandled targets
 
         fp.write ('\n#\n# targets\n#\n\n')
 

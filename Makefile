@@ -52,7 +52,7 @@ make_dependencies: doc_src/xslt_dep/structure.ttl
 docs: doc_src/phpdoc/structure.xml doc_src/jsdoc/structure.json doc_src/xslt_dep/structure.ttl
 	cd doc_src && $(MAKE) -e html
 
-doccs: doc_src/phpdoc/structure.xml doc_src/jsdoc/structure.json
+doccs: doc_src/phpdoc/structure.xml doc_src/jsdoc/structure.json doc_src/xslt_dep/structure.ttl
 	$(RM) -r docs/*
 	cd doc_src && $(MAKE) -e html
 
