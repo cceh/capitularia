@@ -96,7 +96,7 @@ $(CACHE_DIR)/lists/mss-idno.html : 	$(MSS_DIR)/lists/manuscripts.xml $(CACHE_DIR
 
 lists : $(CACHE_DIR)/lists/places.html
 
-$(CACHE_DIR)/lists/corpus.xml : $(MSS_DIR)/*.xml mss-idno.xsl common-3.xsl config-3.xsl
+$(CACHE_DIR)/lists/corpus.xml : $(MSS_DIR)/*.xml corpus.xsl
 	$(SAXON) -it:main -xsl:"corpus.xsl" -o:"$@" dir="$(MSS_DIR)"
 
 corpus : $(CACHE_DIR)/lists/corpus.xml
