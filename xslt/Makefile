@@ -84,11 +84,11 @@ capits : $(patsubst %.xml,$(CACHE_DIR)/capits/undated/%.html,$(notdir $(wildcard
 ################ Manuscript Lists
 
 $(CACHE_DIR)/lists/mss-capit.html : $(MSS_DIR)/lists/mss_by_cap.xml $(MSS_DIR)/lists/manuscripts.xml \
-									mss-capit.xsl common-3.xsl config-3.xsl
+									mss-capit.xsl common-html.xsl common-3.xsl config-3.xsl
 	$(SAXON) -s:"$<" -xsl:"mss-capit.xsl" -o:"$@" manuscripts="$(MSS_DIR)/lists/manuscripts.xml"
 
 $(CACHE_DIR)/lists/mss-idno.html : 	$(MSS_DIR)/lists/manuscripts.xml $(CACHE_DIR)/lists/corpus.xml \
-									mss-idno.xsl common-3.xsl config-3.xsl
+									mss-idno.xsl common-html.xsl common-3.xsl config-3.xsl
 	$(SAXON) -s:"$<" -xsl:"mss-idno.xsl" -o:"$@" corpus="$(CACHE_DIR)/lists/corpus.xml"
 
 

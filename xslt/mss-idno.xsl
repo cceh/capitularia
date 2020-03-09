@@ -11,18 +11,20 @@ Target: lists $(CACHE_DIR)/lists/mss-idno.html
 -->
 
 <xsl:stylesheet
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    version="3.0"
+    xmlns=""
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xpath-default-namespace="http://www.tei-c.org/ns/1.0"
-    exclude-result-prefixes="tei xhtml cap xsl"
-    version="3.0">
-
-  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
+    exclude-result-prefixes="cap tei xhtml xs xsl">
 
   <xsl:include href="common-3.xsl"/>
+  <xsl:include href="common-html.xsl"/>
+
+  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
   <xsl:param name="corpus" select="corpus.xml" />
 

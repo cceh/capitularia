@@ -24,8 +24,6 @@ Scrape: mss $(CACHE_DIR)/lists/corpus.xml
 
   <xsl:param name="dir" />
 
-  <xsl:import href="common-3.xsl" />
-
   <xsl:template name="main">
     <teiCorpus>
       <teiHeader />

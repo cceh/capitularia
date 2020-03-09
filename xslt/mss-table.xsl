@@ -11,17 +11,21 @@ Target: lists $(CACHE_DIR)/lists/mss-table.html
 -->
 
 <xsl:stylesheet
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    version="3.0"
+    xmlns=""
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
-    exclude-result-prefixes="tei xhtml cap xsl"
-    version="3.0">
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    exclude-result-prefixes="cap tei xhtml xs xsl">
 
-  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
+<!-- NOTE: ueberblick_mordek.xml is NOT in the TEI namespace !!! -->
 
   <xsl:include href="common-3.xsl"/>
+  <xsl:include href="common-html.xsl"/>
+
+  <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
   <xsl:template match="/MSS">
     <div class="mss-table-xsl">
@@ -189,19 +193,6 @@ Target: lists $(CACHE_DIR)/lists/mss-table.html
     <strong>
       <xsl:apply-templates/>
     </strong>
-  </xsl:template>
-
-  <xsl:template match="ref[@type='external']">
-    <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
-    <a class="external" href="{string ($target/prefix)}{@target}" target="_blank" title="{string ($target/caption)}">
-      <xsl:apply-templates/>
-    </a>
-  </xsl:template>
-
-  <xsl:template match="ref[@type = 'internal' and @subtype = 'mss']">
-    <a href="{$mss}{@target}" title="Zur Handschriftenbeschreibung">
-      <xsl:apply-templates/>
-    </a>
   </xsl:template>
 
   <xsl:template match="ref" />

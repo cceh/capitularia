@@ -14,7 +14,7 @@ Target: lists $(CACHE_DIR)/lists/changes90.html
 -->
 
 <xsl:stylesheet
-    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns=""
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"

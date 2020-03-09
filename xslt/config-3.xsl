@@ -11,7 +11,7 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    exclude-result-prefixes="xs"
+    exclude-result-prefixes="#all"
     version="3.0">
 
   <!-- #### grundlegende interne Verlinkungen #### -->
@@ -66,271 +66,275 @@
   <xsl:variable name="trl"/>
 
   <xsl:variable name="tei-ref-external-targets">
-    <item key="Baluze">
-      <prefix></prefix>
-      <caption>[:de]Zur Edition von Baluze[:en]To Baluze's edition[:]</caption>
-      <alt>Zu Baluze</alt>
-    </item>
-    <item key="Baluze1">
-      <prefix>http://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10489967_</prefix>
-      <postfix>.html</postfix>
-      <caption>[:de]Zur Edition von Baluze[:en]To Baluze's edition[:]</caption>
-      <alt>Zu Baluze</alt>
-    </item>
-    <item key="Baluze2">
-      <prefix>http://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10489967_</prefix>
-      <postfix>.html</postfix>
-      <caption>[:de]Zur Edition von Baluze[:en]To Baluze's edition[:]</caption>
-      <alt>Zu Baluze</alt>
-    </item>
-    <item key="BK1">
-      <!-- Boretius-Krause, 1. Teil;
-           hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
-      <prefix>http://www.mgh.de/dmgh/resolving/MGH_Capit._1_S._</prefix>
-      <caption>[:de]Zur Edition von Boretius/Krause I (dMGH)[:en]To the edition by Boretius/Krause I (dMGH)[:]</caption>
-      <alt>dMGH</alt>
-    </item>
-    <item key="BK2">
-      <!-- Boretius-Krause, 2. Teil;
-           hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
-      <prefix>http://www.mgh.de/dmgh/resolving/MGH_Capit._2_S._</prefix>
-      <caption>[:de]Zur Edition von Boretius/Krause II (dMGH)[:en]To the edition by Boretius/Krause II (dMGH)[:]</caption>
-      <alt>dMGH</alt>
-    </item>
-    <item key="dmgh">
-      <prefix>http://www.mgh.de/dmgh/resolving/</prefix>
-      <caption>[:de]Zu den dMGH[:en]To dMGH website[:]</caption>
-      <alt>dMGH</alt>
-    </item>
-    <item key="Pertz1">
-      <!-- Alte Capitularien-Edition von Pertz, 1. Teil -->
-      <prefix>http://www.mgh.de/dmgh/resolving/MGH_LL_1_S._</prefix>
-      <caption>[:de]Zur Edition von Pertz (dMGH)[:en]To the edition by Pertz (dMGH)[:]</caption>
-      <alt>dMGH</alt>
-    </item>
-    <item key="Pertz2">
-      <!-- Alte Capitularien-Edition von Pertz, 2. Teil -->
-      <prefix>http://www.mgh.de/dmgh/resolving/MGH_LL_2_S._2_</prefix>
-      <caption>[:de]Zur Edition von Pertz (dMGH)[:en]To the edition by Pertz (dMGH)[:]</caption>
-      <alt>dMGH</alt>
-    </item>
-    <item key="Pertz3">
-      <!-- Alte Capitularien-Edition von Pertz, 3. Teil -->
-      <prefix>http://www.mgh.de/dmgh/resolving/MGH_LL_2_S._</prefix>
-      <caption>[:de]Zur Edition von Pertz (dMGH)[:en]To the edition by Pertz (dMGH)[:]</caption>
-      <alt>dMGH</alt>
-    </item>
-    <item key="Ansegis">
-      <!-- hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
-      <prefix>http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._</prefix>
-      <caption>[:de]Zur Ansegis-Edition (dMGH)[:en]To the edition of Ansegis (dMGH)[:]</caption>
-      <alt>dMGH</alt>
-    </item>
-    <item key="Werminghoff1">
-      <!-- FIXME hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
-      <prefix>http://www.mgh.de/dmgh/resolving/MGH_Conc._2,1_S._</prefix>
-      <caption>[:de]Zur Edition von Werminghoff (dMGH)[:en]To the edition of Werminghoff (dMGH)[:]</caption>
-      <alt>dMGH</alt>
-    </item>
-    <item key="Werminghoff2">
-      <!-- FIXME hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
-      <prefix>http://www.mgh.de/dmgh/resolving/MGH_Conc._2,2_S._</prefix>
-      <caption>[:de]Zur Edition von Werminghoff (dMGH)[:en]To the edition of Werminghoff (dMGH)[:]</caption>
-      <alt>dMGH</alt>
-    </item>
-    <item key="Benedictus">
-      <!-- nur Home hinterlegt; hier sind mehrere Informationen nötig; Handschriften vs. Studien vs. Edition -->
-      <prefix>http://www.benedictus.mgh.de/</prefix>
-      <caption>[:de]Zur Edition der falschen Kapitularien des Benedictus Levita[:en]To the edition of Benedictus Levita[:]</caption>
-      <alt>Benedictus Levita</alt>
-    </item>
-    <item key="BSB">
-      <prefix></prefix>
-      <caption>[:de]Zu den Digitalen Sammlungen[:en]To the Digitale Sammlungen[:] - BSB</caption>
-      <alt>BSB</alt>
-    </item>
-    <item key="Bl">
-      <prefix>http://www.leges.uni-koeln.de/mss/handschrift/</prefix>
-      <caption>[:de]Zur Beschreibung auf der Bibliotheca legum-Webseite[:en]To the manuscript description on the Bibliotheca legum website[:]</caption>
-      <alt>Zur Bibliotheca legum</alt>
-    </item>
-    <item key="MM">
-      <prefix></prefix>
-      <caption>[:de]Zu Manuscripta Mediaevalia[:en]To Manuscripta Mediaevalia[:]</caption>
-      <alt>Zu MM</alt>
-    </item>
-    <item key="IA">
-      <prefix></prefix>
-      <caption>[:de]Zum Internet Archive[:en]To Internet Archive[:]</caption>
-      <alt>Zum Internet Archive</alt>
-    </item>
-    <item key="DZ">
-      <prefix></prefix>
-      <caption>[:de]Zur Digizeitschriften-Webseite[:en]To the Digizeitschriften website[:]</caption>
-      <alt>Zu DZ</alt>
-    </item>
-    <item key="KatBNF">
-      <prefix></prefix>
-      <caption>[:de]Zum Katalog der BN[:en]To the BN catalogue[:]</caption>
-      <alt>Zu KatBNF</alt>
-    </item>
-    <item key="Gallica">
-      <prefix></prefix>
-      <caption>[:de]Gallica[:en]Gallica[:]</caption>
-      <alt>Zu Gallica</alt>
-    </item>
-    <item key="">
-      <prefix></prefix>
-      <caption>[:de]Zur externen Ressource[:en]To the external resource[:]</caption>
-      <alt>Zur externen Ressource</alt>
-    </item>
+    <root>
+      <item key="Baluze">
+        <prefix></prefix>
+        <caption>[:de]Zur Edition von Baluze[:en]To Baluze's edition[:]</caption>
+        <alt>Zu Baluze</alt>
+      </item>
+      <item key="Baluze1">
+        <prefix>http://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10489967_</prefix>
+        <postfix>.html</postfix>
+        <caption>[:de]Zur Edition von Baluze[:en]To Baluze's edition[:]</caption>
+        <alt>Zu Baluze</alt>
+      </item>
+      <item key="Baluze2">
+        <prefix>http://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10489967_</prefix>
+        <postfix>.html</postfix>
+        <caption>[:de]Zur Edition von Baluze[:en]To Baluze's edition[:]</caption>
+        <alt>Zu Baluze</alt>
+      </item>
+      <item key="BK1">
+        <!-- Boretius-Krause, 1. Teil;
+             hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
+        <prefix>http://www.mgh.de/dmgh/resolving/MGH_Capit._1_S._</prefix>
+        <caption>[:de]Zur Edition von Boretius/Krause I (dMGH)[:en]To the edition by Boretius/Krause I (dMGH)[:]</caption>
+        <alt>dMGH</alt>
+      </item>
+      <item key="BK2">
+        <!-- Boretius-Krause, 2. Teil;
+             hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
+        <prefix>http://www.mgh.de/dmgh/resolving/MGH_Capit._2_S._</prefix>
+        <caption>[:de]Zur Edition von Boretius/Krause II (dMGH)[:en]To the edition by Boretius/Krause II (dMGH)[:]</caption>
+        <alt>dMGH</alt>
+      </item>
+      <item key="dmgh">
+        <prefix>http://www.mgh.de/dmgh/resolving/</prefix>
+        <caption>[:de]Zu den dMGH[:en]To dMGH website[:]</caption>
+        <alt>dMGH</alt>
+      </item>
+      <item key="Pertz1">
+        <!-- Alte Capitularien-Edition von Pertz, 1. Teil -->
+        <prefix>http://www.mgh.de/dmgh/resolving/MGH_LL_1_S._</prefix>
+        <caption>[:de]Zur Edition von Pertz (dMGH)[:en]To the edition by Pertz (dMGH)[:]</caption>
+        <alt>dMGH</alt>
+      </item>
+      <item key="Pertz2">
+        <!-- Alte Capitularien-Edition von Pertz, 2. Teil -->
+        <prefix>http://www.mgh.de/dmgh/resolving/MGH_LL_2_S._2_</prefix>
+        <caption>[:de]Zur Edition von Pertz (dMGH)[:en]To the edition by Pertz (dMGH)[:]</caption>
+        <alt>dMGH</alt>
+      </item>
+      <item key="Pertz3">
+        <!-- Alte Capitularien-Edition von Pertz, 3. Teil -->
+        <prefix>http://www.mgh.de/dmgh/resolving/MGH_LL_2_S._</prefix>
+        <caption>[:de]Zur Edition von Pertz (dMGH)[:en]To the edition by Pertz (dMGH)[:]</caption>
+        <alt>dMGH</alt>
+      </item>
+      <item key="Ansegis">
+        <!-- hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
+        <prefix>http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._1_S._</prefix>
+        <caption>[:de]Zur Ansegis-Edition (dMGH)[:en]To the edition of Ansegis (dMGH)[:]</caption>
+        <alt>dMGH</alt>
+      </item>
+      <item key="Werminghoff1">
+        <!-- FIXME hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
+        <prefix>http://www.mgh.de/dmgh/resolving/MGH_Conc._2,1_S._</prefix>
+        <caption>[:de]Zur Edition von Werminghoff (dMGH)[:en]To the edition of Werminghoff (dMGH)[:]</caption>
+        <alt>dMGH</alt>
+      </item>
+      <item key="Werminghoff2">
+        <!-- FIXME hier muss in der XML nur noch die entsprechende Seitenzahl als Ziel angegeben werden -->
+        <prefix>http://www.mgh.de/dmgh/resolving/MGH_Conc._2,2_S._</prefix>
+        <caption>[:de]Zur Edition von Werminghoff (dMGH)[:en]To the edition of Werminghoff (dMGH)[:]</caption>
+        <alt>dMGH</alt>
+      </item>
+      <item key="Benedictus">
+        <!-- nur Home hinterlegt; hier sind mehrere Informationen nötig; Handschriften vs. Studien vs. Edition -->
+        <prefix>http://www.benedictus.mgh.de/</prefix>
+        <caption>[:de]Zur Edition der falschen Kapitularien des Benedictus Levita[:en]To the edition of Benedictus Levita[:]</caption>
+        <alt>Benedictus Levita</alt>
+      </item>
+      <item key="BSB">
+        <prefix></prefix>
+        <caption>[:de]Zu den Digitalen Sammlungen[:en]To the Digitale Sammlungen[:] - BSB</caption>
+        <alt>BSB</alt>
+      </item>
+      <item key="Bl">
+        <prefix>http://www.leges.uni-koeln.de/mss/handschrift/</prefix>
+        <caption>[:de]Zur Beschreibung auf der Bibliotheca legum-Webseite[:en]To the manuscript description on the Bibliotheca legum website[:]</caption>
+        <alt>Zur Bibliotheca legum</alt>
+      </item>
+      <item key="MM">
+        <prefix></prefix>
+        <caption>[:de]Zu Manuscripta Mediaevalia[:en]To Manuscripta Mediaevalia[:]</caption>
+        <alt>Zu MM</alt>
+      </item>
+      <item key="IA">
+        <prefix></prefix>
+        <caption>[:de]Zum Internet Archive[:en]To Internet Archive[:]</caption>
+        <alt>Zum Internet Archive</alt>
+      </item>
+      <item key="DZ">
+        <prefix></prefix>
+        <caption>[:de]Zur Digizeitschriften-Webseite[:en]To the Digizeitschriften website[:]</caption>
+        <alt>Zu DZ</alt>
+      </item>
+      <item key="KatBNF">
+        <prefix></prefix>
+        <caption>[:de]Zum Katalog der BN[:en]To the BN catalogue[:]</caption>
+        <alt>Zu KatBNF</alt>
+      </item>
+      <item key="Gallica">
+        <prefix></prefix>
+        <caption>[:de]Gallica[:en]Gallica[:]</caption>
+        <alt>Zu Gallica</alt>
+      </item>
+      <item key="">
+        <prefix></prefix>
+        <caption>[:de]Zur externen Ressource[:en]To the external resource[:]</caption>
+        <alt>Zur externen Ressource</alt>
+      </item>
+    </root>
   </xsl:variable>
 
   <xsl:variable name="tei-graphic-targets">
-    <item key="213.21.172.25/0b02da82800bed27">
-      <title>Biblioteca Ambrosiana</title>
-      <caption>Biblioteca Ambrosiana</caption>
-    </item>
-    <item key="archiviodiocesano.mo.it">
-      <title>Archivio Capitolare di Modena</title>
-      <caption>Archivio Capitolare di Modena</caption>
-    </item>
-    <item key=".beic.it">
-      <title>Biblioteca Europea di Informazione e Cultura</title>
-      <caption>BEIC</caption>
-    </item>
-    <item key="bhnumerique.ville-selestat.fr">
-      <title>Bibliothèque Humaniste numérique</title>
-      <caption>Bibliothèque Humaniste numérique</caption>
-    </item>
-    <item key="bibliotecadigital.rah.es">
-      <title>Biblioteca Real Academia de la Historia Madrid</title>
-      <caption>Biblioteca RAH Madrid</caption>
-    </item>
-    <item key="blb-karlsruhe.de">
-      <title>Badische Landesbibliothek</title>
-      <caption>Badische Landesbibliothek</caption>
-    </item>
-    <item key="brbl-dl.library.yale.edu">
-      <title>Beinecke Digital Collections</title>
-      <caption>Beinecke Digital Collections</caption>
-    </item>
-    <item key=".bnf.fr">
-      <title>Gallica</title>
-      <caption>Gallica</caption>
-    </item>
-    <item key="www.bl.uk">
-      <title>British Library</title>
-      <caption>British Library</caption>
-    </item>
-    <item key="bodley.ox.ac.uk">
-      <title>Bodleian Library Oxford</title>
-      <caption>Bodleian</caption>
-    </item>
-    <item key="daten.digitale-sammlungen.de">
-      <title>Bayerische Staatsbibliothek München</title>
-      <caption>BSB München</caption>
-    </item>
-    <item key="bsb.lrz.de">
-      <title>Staatsbibliothek Bamberg</title>
-      <caption>Staatsbibliothek Bamberg</caption>
-    </item>
-    <item key="bvmm.irht.cnrs.fr">
-      <title>Bibliothèque virtuelle</title>
-      <caption>Bibliothèque virtuelle</caption>
-    </item>
-    <item key="e-codices.unifr.ch">
-      <title>e-codices</title>
-      <caption>e-codices</caption>
-    </item>
-    <item key="europeanaregia.eu">
-      <title>Europeana Regia</title>
-      <caption>Europeana Regia</caption>
-    </item>
-    <item key="freelibrary.org">
-      <title>Free Library Philadelphia</title>
-      <caption>Free Library Philadelphia</caption>
-    </item>
-    <item key=".hab.de">
-      <title>Herzog August Bibliothek</title>
-      <caption>HAB</caption>
-    </item>
-    <item key="internetculturale.it">
-      <title>Internet Culturale</title>
-      <caption>Internet Culturale</caption>
-    </item>
-    <item key="landesarchiv-nrw.de">
-      <title>Landesarchiv NRW</title>
-      <caption>Landesarchiv NRW</caption>
-    </item>
-    <item key="manus.iccu.sbn.it">
-      <title>Manus online</title>
-      <caption>Manus</caption>
-    </item>
-    <item key="manuscripta-mediaevalia.de">
-      <title>Manuscripta Mediaevalia</title>
-      <caption>MM</caption>
-    </item>
-    <item key=".mgh.de">
-      <title>Monumenta Germaniae Historica</title>
-      <caption>MGH</caption>
-    </item>
-    <item key="onb.ac.at">
-      <title>Österreichische Nationalbibliothek</title>
-      <caption>ÖNB</caption>
-    </item>
-    <item key="orka.bibliothek.uni-kassel.de">
-      <title>Universität Kassel</title>
-      <caption>Universität Kassel</caption>
-    </item>
-    <item key="pares.mcu.es">
-      <title>PARES - Portal de Archivos Españoles</title>
-      <caption>PARES</caption>
-    </item>
-    <item key="parker.stanford.edu">
-      <title>Parker Library</title>
-      <caption>Parker Library</caption>
-    </item>
-    <item key="socrates.leidenuniv.nl">
-      <title>Digital Sources - Universität Leiden</title>
-      <caption>Digital Sources Leiden</caption>
-    </item>
-    <item key="staatsbibliothek-berlin.de">
-      <title>Staatsbibliothek Berlin</title>
-      <caption>Staatsbibliothek Berlin</caption>
-    </item>
-    <item key="stgallplan.org">
-      <title>Carolingian Culture at Reichenau &amp; St. Gall</title>
-      <caption>Reichenau &amp; St. Gall</caption>
-    </item>
-    <item key="sub.uni-hamburg.de">
-      <title>Staats- und Universitätsbibliothek Hamburg</title>
-      <caption>SUB Hamburg</caption>
-    </item>
-    <item key="trierer-handschriften.de">
-      <title>Die ältesten deutschsprachigen Texte der Trierer Stadtbibliothek</title>
-      <caption>Die ältesten deutschsprachigen Texte der Trierer Stadtbibliothek</caption>
-    </item>
-    <item key="ulb.tu-darmstadt.de">
-      <title>Universitäts- und Landesbibliothek Darmstadt</title>
-      <caption>ULB Darmstadt</caption>
-    </item>
-    <item key="ub.uni-heidelberg.de">
-      <title>UB Heidelberg</title>
-      <caption>UB Heidelberg</caption>
-    </item>
-    <item key="digi.vatlib.it">
-      <title>DigiVatLib</title>
-      <caption>BAV</caption>
-    </item>
-    <item key="wlb-stuttgart.de">
-      <title>WLB Stuttgart</title>
-      <caption>WLB Stuttgart</caption>
-    </item>
-    <item key="www.kb.dk">
-      <title>Det Kongelige Bibliotek, København</title>
-      <caption>Det Kongelige Bibliotek, København</caption>
-    </item>
+    <root>
+      <item key="213.21.172.25/0b02da82800bed27">
+        <title>Biblioteca Ambrosiana</title>
+        <caption>Biblioteca Ambrosiana</caption>
+      </item>
+      <item key="archiviodiocesano.mo.it">
+        <title>Archivio Capitolare di Modena</title>
+        <caption>Archivio Capitolare di Modena</caption>
+      </item>
+      <item key=".beic.it">
+        <title>Biblioteca Europea di Informazione e Cultura</title>
+        <caption>BEIC</caption>
+      </item>
+      <item key="bhnumerique.ville-selestat.fr">
+        <title>Bibliothèque Humaniste numérique</title>
+        <caption>Bibliothèque Humaniste numérique</caption>
+      </item>
+      <item key="bibliotecadigital.rah.es">
+        <title>Biblioteca Real Academia de la Historia Madrid</title>
+        <caption>Biblioteca RAH Madrid</caption>
+      </item>
+      <item key="blb-karlsruhe.de">
+        <title>Badische Landesbibliothek</title>
+        <caption>Badische Landesbibliothek</caption>
+      </item>
+      <item key="brbl-dl.library.yale.edu">
+        <title>Beinecke Digital Collections</title>
+        <caption>Beinecke Digital Collections</caption>
+      </item>
+      <item key=".bnf.fr">
+        <title>Gallica</title>
+        <caption>Gallica</caption>
+      </item>
+      <item key="www.bl.uk">
+        <title>British Library</title>
+        <caption>British Library</caption>
+      </item>
+      <item key="bodley.ox.ac.uk">
+        <title>Bodleian Library Oxford</title>
+        <caption>Bodleian</caption>
+      </item>
+      <item key="daten.digitale-sammlungen.de">
+        <title>Bayerische Staatsbibliothek München</title>
+        <caption>BSB München</caption>
+      </item>
+      <item key="bsb.lrz.de">
+        <title>Staatsbibliothek Bamberg</title>
+        <caption>Staatsbibliothek Bamberg</caption>
+      </item>
+      <item key="bvmm.irht.cnrs.fr">
+        <title>Bibliothèque virtuelle</title>
+        <caption>Bibliothèque virtuelle</caption>
+      </item>
+      <item key="e-codices.unifr.ch">
+        <title>e-codices</title>
+        <caption>e-codices</caption>
+      </item>
+      <item key="europeanaregia.eu">
+        <title>Europeana Regia</title>
+        <caption>Europeana Regia</caption>
+      </item>
+      <item key="freelibrary.org">
+        <title>Free Library Philadelphia</title>
+        <caption>Free Library Philadelphia</caption>
+      </item>
+      <item key=".hab.de">
+        <title>Herzog August Bibliothek</title>
+        <caption>HAB</caption>
+      </item>
+      <item key="internetculturale.it">
+        <title>Internet Culturale</title>
+        <caption>Internet Culturale</caption>
+      </item>
+      <item key="landesarchiv-nrw.de">
+        <title>Landesarchiv NRW</title>
+        <caption>Landesarchiv NRW</caption>
+      </item>
+      <item key="manus.iccu.sbn.it">
+        <title>Manus online</title>
+        <caption>Manus</caption>
+      </item>
+      <item key="manuscripta-mediaevalia.de">
+        <title>Manuscripta Mediaevalia</title>
+        <caption>MM</caption>
+      </item>
+      <item key=".mgh.de">
+        <title>Monumenta Germaniae Historica</title>
+        <caption>MGH</caption>
+      </item>
+      <item key="onb.ac.at">
+        <title>Österreichische Nationalbibliothek</title>
+        <caption>ÖNB</caption>
+      </item>
+      <item key="orka.bibliothek.uni-kassel.de">
+        <title>Universität Kassel</title>
+        <caption>Universität Kassel</caption>
+      </item>
+      <item key="pares.mcu.es">
+        <title>PARES - Portal de Archivos Españoles</title>
+        <caption>PARES</caption>
+      </item>
+      <item key="parker.stanford.edu">
+        <title>Parker Library</title>
+        <caption>Parker Library</caption>
+      </item>
+      <item key="socrates.leidenuniv.nl">
+        <title>Digital Sources - Universität Leiden</title>
+        <caption>Digital Sources Leiden</caption>
+      </item>
+      <item key="staatsbibliothek-berlin.de">
+        <title>Staatsbibliothek Berlin</title>
+        <caption>Staatsbibliothek Berlin</caption>
+      </item>
+      <item key="stgallplan.org">
+        <title>Carolingian Culture at Reichenau &amp; St. Gall</title>
+        <caption>Reichenau &amp; St. Gall</caption>
+      </item>
+      <item key="sub.uni-hamburg.de">
+        <title>Staats- und Universitätsbibliothek Hamburg</title>
+        <caption>SUB Hamburg</caption>
+      </item>
+      <item key="trierer-handschriften.de">
+        <title>Die ältesten deutschsprachigen Texte der Trierer Stadtbibliothek</title>
+        <caption>Die ältesten deutschsprachigen Texte der Trierer Stadtbibliothek</caption>
+      </item>
+      <item key="ulb.tu-darmstadt.de">
+        <title>Universitäts- und Landesbibliothek Darmstadt</title>
+        <caption>ULB Darmstadt</caption>
+      </item>
+      <item key="ub.uni-heidelberg.de">
+        <title>UB Heidelberg</title>
+        <caption>UB Heidelberg</caption>
+      </item>
+      <item key="digi.vatlib.it">
+        <title>DigiVatLib</title>
+        <caption>BAV</caption>
+      </item>
+      <item key="wlb-stuttgart.de">
+        <title>WLB Stuttgart</title>
+        <caption>WLB Stuttgart</caption>
+      </item>
+      <item key="www.kb.dk">
+        <title>Det Kongelige Bibliotek, København</title>
+        <caption>Det Kongelige Bibliotek, København</caption>
+      </item>
+    </root>
   </xsl:variable>
 
 </xsl:stylesheet>

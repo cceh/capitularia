@@ -87,6 +87,20 @@ footnotes will be joined to the preceding word.
 
   <xsl:include href="common-3.xsl" />
 
+  <xsl:variable name="hand-names">
+    <root xmlns="http://www.tei-c.org/ns/1.0">
+      <item key="X">
+        <name>Korrekturhand 1</name>
+      </item>
+      <item key="Y">
+        <name>Korrekturhand 2</name>
+      </item>
+      <item key="Z">
+        <name>Korrekturhand 3</name>
+      </item>
+    </root>
+  </xsl:variable>
+
   <xsl:template match="/TEI/text/body">
     <xsl:copy>
       <xsl:apply-templates select="@*" />
@@ -303,7 +317,7 @@ footnotes will be joined to the preceding word.
         <xsl:choose>
           <!-- if there are other hands beside hand X -->
           <xsl:when test="$all_hands">
-            <xsl:variable name="name" select="$hand-names/item[$hand = @key]"/>
+            <xsl:variable name="name" select="$hand-names/root/item[$hand = @key]"/>
             <xsl:sequence select="string ($name/name)"/>
           </xsl:when>
           <!-- if there is only hand X -->

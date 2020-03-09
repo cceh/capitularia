@@ -23,8 +23,8 @@ Target: extraction $(CACHE_DIR)/extracted/%.xml
 
 -->
 
-<xsl:stylesheet
-    xmlns="http://www.tei-c.org/ns/1.0"
+<stylesheet
+    xmlns="http://www.w3.org/1999/XSL/Transform"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -32,51 +32,81 @@ Target: extraction $(CACHE_DIR)/extracted/%.xml
     xpath-default-namespace="http://www.tei-c.org/ns/1.0"
     version="3.0">
 
-  <xsl:import href="common-3.xsl" />
+  <xsl:include href="common-3.xsl"/>
 
-  <xsl:template match="/TEI">
-    <TEI>
-      <xsl:copy-of select="@*"/>
-      <list>
-        <xsl:variable name="body" select="text/body" />
-        <xsl:variable name="all_corresps" select="string-join ($body//@corresp, ' ')" />
+  <template name="collect">
+    <!-- Collect the whole text of a chapter that may be spread over multiple
+         <ab next="">s and/or <milestone spanTo="">s. -->
+    <choose>
+      <when test="local-name (.) = 'ab'">
+        <tei:ab>
+          <copy-of select="node()|@*" />
+          <for-each select="key ('id', substring-after (@next, '#'))">
+            <!-- recurse -->
+            <call-template name="collect" />
+          </for-each>
+        </tei:ab>
+      </when>
+      <when test="local-name (.) = 'milestone'">
+        <tei:milestone>
+          <copy-of select="@*" />
+        </tei:milestone>
+        <variable name="to"  select="substring-after (concat (@spanTo, @next), '#')" />
+        <copy-of select="following-sibling::node ()[(following-sibling::*|self::*)[@xml:id = $to]]" />
+        <for-each select="key ('id', $to)">
+          <!-- recurse -->
+          <call-template name="collect" />
+        </for-each>
+      </when>
+      <otherwise>
+        <!-- not interested -->
+      </otherwise>
+    </choose>
+  </template>
 
-        <xsl:for-each-group select="tokenize (normalize-space ($all_corresps), ' ')" group-by="." >
-          <xsl:sort select="cap:natsort (.)"/>
+  <template match="/TEI">
+    <tei:TEI>
+      <copy-of select="@*"/>
+      <tei:list>
+        <variable name="body" select="text/body" />
+        <variable name="all_corresps" select="string-join ($body//@corresp, ' ')" />
 
-          <xsl:variable name="corresp" select="current-grouping-key ()"/>
+        <for-each-group select="tokenize (normalize-space ($all_corresps), ' ')" group-by="." >
+          <sort select="cap:natsort (.)"/>
+
+          <variable name="corresp" select="current-grouping-key ()"/>
 
           <!-- iterate over multiple copies of the same @corresp -->
-          <xsl:iterate
+          <iterate
               select="$body//tei:ab[contains-token (@corresp, $corresp)][not (@prev)][not (.//tei:milestone[@corresp][@unit='span'])] |
                       $body//tei:milestone[contains-token (@corresp, $corresp)][not (@prev)][@unit='span']">
-            <xsl:param name="n" select="1" as="xs:integer" />
+            <param name="n" select="1" as="xs:integer" />
 
-            <xsl:variable name="extracted">
-              <xsl:call-template name="collect" />
-            </xsl:variable>
+            <variable name="extracted">
+              <call-template name="collect" />
+            </variable>
 
-            <xsl:text>&#x0a;</xsl:text>
-            <xsl:text>&#x0a;</xsl:text>
-            <item corresp="{$corresp}_{$n}" cap:hands="{cap:hands ($extracted)}">
-              <xsl:copy-of select="$extracted"/>
-            </item>
+            <text>&#x0a;</text>
+            <text>&#x0a;</text>
+            <tei:item corresp="{$corresp}_{$n}" cap:hands="{cap:hands ($extracted)}">
+              <copy-of select="$extracted"/>
+            </tei:item>
 
             <!-- go to the next corresp -->
 
-            <xsl:next-iteration>
-              <xsl:with-param name="n" select="$n + 1"/>
-            </xsl:next-iteration>
-          </xsl:iterate>
-        </xsl:for-each-group>
-      </list>
-    </TEI>
-  </xsl:template>
+            <next-iteration>
+              <with-param name="n" select="$n + 1"/>
+            </next-iteration>
+          </iterate>
+        </for-each-group>
+      </tei:list>
+    </tei:TEI>
+  </template>
 
-  <xsl:template match="@*|node ()">
-    <xsl:copy>
-      <xsl:apply-templates select="@*|node()" />
-    </xsl:copy>
-  </xsl:template>
+  <template match="@*|node ()">
+    <copy>
+      <apply-templates select="@*|node()" />
+    </copy>
+  </template>
 
-</xsl:stylesheet>
+</stylesheet>
