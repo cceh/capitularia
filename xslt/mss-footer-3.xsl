@@ -16,25 +16,22 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.footer.html
 -->
 
 <xsl:stylesheet
-    version="1.0"
-    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
-    xmlns:exsl="http://exslt.org/common"
-    xmlns:func="http://exslt.org/functions"
-    xmlns:set="http://exslt.org/sets"
-    xmlns:str="http://exslt.org/strings"
-    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    version="3.0"
+    xmlns=""
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:cap="http://cceh.uni-koeln.de/capitularia"
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    extension-element-prefixes="cap exsl func set str"
-    exclude-result-prefixes="tei xhtml xs xsl">
-  <!-- libexslt does not support the regexp extension ! -->
+    xpath-default-namespace="http://www.tei-c.org/ns/1.0"
+    exclude-result-prefixes="cap tei xhtml xs xsl">
 
-  <xsl:include href="common.xsl"/>
+  <xsl:include href="common-3.xsl"/>
+  <xsl:include href="common-html.xsl"/>
 
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
-  <xsl:template match="/tei:TEI">
+  <xsl:template match="/TEI">
 
     <div class="tei-TEI mss-footer-xsl transkription-footer">
       <h4 id="info">[:de]Hinweise[:en]Notes[:]</h4>
@@ -51,18 +48,17 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.footer.html
         <xsl:with-param name="url" select="concat ($mss_downloads, @xml:id, '.xml')"/>
       </xsl:call-template>
 
-      <xsl:apply-templates select="tei:teiHeader/tei:revisionDesc" />
-
+      <xsl:apply-templates select="teiHeader/revisionDesc" />
     </div>
   </xsl:template>
 
   <!-- Put only the main manuscript title in "How to cite" -->
-  <xsl:template match="tei:note[@type = 'filiation']"/>
+  <xsl:template match="note[@type = 'filiation']"/>
 
-  <xsl:template match="tei:revisionDesc">
+  <xsl:template match="revisionDesc">
     <!-- "Generiert aus Mordek" soll nicht angezeigt werden, deswegen nur change ab position 1.  DS
          - 9.11. -->
-    <xsl:if test="normalize-space (tei:change[position () > 1])">
+    <xsl:if test="normalize-space (string-join (change[position () > 1]))">
       <xsl:call-template name="hr"/>
 
       <div class="tei-revisionDesc">
@@ -75,14 +71,14 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.footer.html
             </tr>
           </thead>
           <tbody>
-            <xsl:apply-templates select="tei:change[position () > 1]" />
+            <xsl:apply-templates select="change[position () > 1]" />
           </tbody>
         </table>
       </div>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="tei:revisionDesc/tei:change">
+  <xsl:template match="revisionDesc/change">
     <tr>
       <td class="col1">
         <xsl:value-of select="@when"/>
