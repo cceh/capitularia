@@ -22,8 +22,8 @@ Graph of All Transformations
 
 .. pic:: xslt_dep_dot
 
-   update INSERT DATA { <http://capitularia.uni-koeln.de/$(CACHE_DIR)/extracted/%/>     a cap:txt . }
    update INSERT DATA { <http://capitularia.uni-koeln.de/$(CACHE_DIR)/lists/corpus.xml> cap:constraint "false" }
+   update INSERT DATA { <http://capitularia.uni-koeln.de/$(CACHE_DIR)/extracted/%.xml> cap:constraint "false" }
    io
    dot
 
