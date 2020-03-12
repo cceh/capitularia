@@ -78,6 +78,10 @@ mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.header.html,$(IDS_PRIV))
 mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.transcript.html,$(IDS_PRIV))
 mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.footer.html,$(IDS_PRIV))
 
+.PRECIOUS: $(CACHE_DIR)/mss/%.transcript.phase-1.xml
+
+.PRECIOUS: $(CACHE_DIR)/internal/mss/%.transcript.phase-1.xml
+
 
 ################ Capitularies
 

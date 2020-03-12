@@ -3,32 +3,29 @@
 <!--
 
 Outputs the transcription section of a single manuscript page.
+TEI -> HTML processing.
 
-#Transforms: $(MSS_DIR)/%.xml      -> $(CACHE_DIR)/mss/%.transcript.html
-#Transforms: $(MSS_PRIV_DIR)/%.xml -> $(CACHE_DIR)/internal/mss/%.transcript.html
+Transforms: $(CACHE_DIR)/mss/%.transcript.phase-1.xml          -> $(CACHE_DIR)/mss/%.transcript.html
+Transforms: $(CACHE_DIR)/internal/mss/%.transcript.phase-1.xml -> $(CACHE_DIR)/internal/mss/%.transcript.html
 
-#URL: $(CACHE_DIR)/mss/%.transcript.html          /mss/%/
-#URL: $(CACHE_DIR)/internal/mss/%.transcript.html /internal/mss/%/
+URL: $(CACHE_DIR)/mss/%.transcript.html          /mss/%/
+URL: $(CACHE_DIR)/internal/mss/%.transcript.html /internal/mss/%/
 
-#Target: mss      $(CACHE_DIR)/mss/%.transcript.html
-#Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
+Target: mss      $(CACHE_DIR)/mss/%.transcript.html
+Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
 
 -->
 
 <xsl:stylesheet
-    version="1.0"
+    version="3.0"
+    xmlns=""
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
-    xmlns:exsl="http://exslt.org/common"
-    xmlns:func="http://exslt.org/functions"
-    xmlns:set="http://exslt.org/sets"
-    xmlns:str="http://exslt.org/strings"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    extension-element-prefixes="cap exsl func set str"
-    exclude-result-prefixes="tei xhtml xs xsl">
-  <!-- libexslt does not support the regexp extension ! -->
+    xpath-default-namespace="http://www.tei-c.org/ns/1.0"
+    exclude-result-prefixes="cap tei xhtml xs xsl">
 
   <!--
       This is the new series of stylesheets that generate the transcription
@@ -39,8 +36,8 @@ Outputs the transcription section of a single manuscript page.
   -->
   <xsl:param name="title" select="'[:de]Transkription[:en]Transcription[:]'"/>
 
-  <xsl:include href="common.xsl"/>                    <!-- common templates and functions -->
-  <xsl:include href="mss-transcript-footnotes.xsl"/>  <!-- generates footnotes / tooltips -->
+  <xsl:include href="common-3.xsl"/>      <!-- common templates and functions -->
+  <xsl:include href="common-html.xsl"/>   <!-- common templates and functions -->
 
   <!-- Needed for the correct determination of the word around an editorial
        intervention. -->
@@ -48,19 +45,19 @@ Outputs the transcription section of a single manuscript page.
 
   <xsl:output method="html" encoding="UTF-8" indent="no"/>
 
-  <xsl:template match="/tei:TEI">
+  <xsl:template match="/TEI">
     <!-- transkription-body is a flag for the post-processor -->
     <div class="tei-TEI mss-transcript-xsl transkription-body">
-      <xsl:apply-templates select="tei:text"/>
+      <xsl:apply-templates select="text"/>
     </div>
   </xsl:template>
 
-  <xsl:template match="tei:text">
+  <xsl:template match="text">
     <div class="tei-text">
       <h4 id="transcription"><xsl:value-of select="$title"/></h4>
 
-      <xsl:apply-templates select="tei:front"/>
-      <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:sourceDesc"/>
+      <xsl:apply-templates select="front"/>
+      <xsl:apply-templates select="/TEI/teiHeader/fileDesc/sourceDesc"/>
 
       <!-- This is for automatically generating the sidebar menu,
            not for users' eyes. -->
@@ -70,47 +67,47 @@ Outputs the transcription section of a single manuscript page.
         <a data-level="5" href="#start-of-text">
           [:de]Inhalt (Rubriken)[:en]Contents (Rubrics)[:]
         </a>
-        <xsl:apply-templates select="tei:front/tei:div[@type='content']" mode="toc"/>
+        <xsl:apply-templates select="front/div[@type='content']" mode="toc"/>
         <a data-level="5" href="#start-of-text">
           [:de]Inhalt (BK-Nummern)[:en]Contents (BK-Nos.)[:]
         </a>
       </div>
 
       <xsl:call-template name="page-break" />
-      <xsl:apply-templates select="tei:body"/>
+      <xsl:apply-templates select="body"/>
     </div>
   </xsl:template>
 
-  <xsl:template match="tei:encodingDesc">
+  <xsl:template match="encodingDesc">
     <div class="italic tei-encodingDesc">
       <xsl:apply-templates />
     </div>
   </xsl:template>
 
-  <xsl:template match="tei:front">
+  <xsl:template match="front">
     <div class="tei-front">
       <h5 id="editorial-preface"
           data-cap-dyn-menu-caption="[:de]Editorische Vorbemerkung[:en]Editorial Preface[:]">
         [:de]Editorische Vorbemerkung zur Transkription[:en]Editorial Preface to the Transcription[:]
       </h5>
-      <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:encodingDesc"/>
-      <xsl:apply-templates select="tei:div[normalize-space (.) and not (@type='content')]" />
+      <xsl:apply-templates select="/TEI/teiHeader/encodingDesc"/>
+      <xsl:apply-templates select="./div[normalize-space (.) and not (@type='content')]" />
     </div>
   </xsl:template>
 
-  <xsl:template match="tei:body">
+  <xsl:template match="body">
     <!-- This is the target for the "Contents *" links in the sidebar. -->
     <div class="tei-body" id="start-of-text">
       <xsl:apply-templates/>
     </div>
   </xsl:template>
 
-  <xsl:template match="tei:sourceDesc" /><!-- overridden in transkription_CTE.xsl -->
-  <xsl:template match="tei:projectDesc"/>
-  <xsl:template match="tei:editorialDecl"/>
-  <xsl:template match="tei:revisionDesc"/>
+  <xsl:template match="sourceDesc" /><!-- overridden in transkription_CTE.xsl -->
+  <xsl:template match="projectDesc"/>
+  <xsl:template match="editorialDecl"/>
+  <xsl:template match="revisionDesc"/>
 
-  <xsl:template match="tei:front/tei:div">
+  <xsl:template match="front/div">
     <div class="tei-front-div">
       <h6>
         <xsl:choose>
@@ -125,7 +122,7 @@ Outputs the transcription section of a single manuscript page.
         </xsl:choose>
       </h6>
 
-      <xsl:apply-templates select="tei:p"/>
+      <xsl:apply-templates select="p"/>
     </div>
   </xsl:template>
 
@@ -134,18 +131,18 @@ Outputs the transcription section of a single manuscript page.
        erzeugt.  TODO: Struktur irgendwie aus dem Haupttext
        ableiten. -->
 
-  <xsl:template match="tei:list" mode="toc">
+  <xsl:template match="list" mode="toc">
     <ul>
-      <xsl:apply-templates select="tei:item" mode="toc"/>
+      <xsl:apply-templates select="item" mode="toc"/>
     </ul>
   </xsl:template>
 
-  <xsl:template match="tei:item" mode="toc">
+  <xsl:template match="item" mode="toc">
     <li class="toc">
-      <a href="{tei:ptr/@target}" data-level="{count (ancestor::tei:item) + 6}">
+      <a href="{ptr/@target}" data-level="{count (ancestor::item) + 6}">
         <xsl:apply-templates select="text ()"/>
       </a>
-      <xsl:apply-templates select="tei:list" mode="toc"/>
+      <xsl:apply-templates select="list" mode="toc"/>
     </li>
   </xsl:template>
 
@@ -153,13 +150,13 @@ Outputs the transcription section of a single manuscript page.
       #############################################################################################
   -->
 
-  <xsl:template match="tei:p">
+  <xsl:template match="p">
     <p class="tei-p">
       <xsl:apply-templates/>
     </p>
   </xsl:template>
 
-  <xsl:template match="tei:mentioned">
+  <xsl:template match="mentioned">
     <span class="tei-mentioned"><xsl:apply-templates /></span>
   </xsl:template>
 
@@ -187,7 +184,7 @@ Outputs the transcription section of a single manuscript page.
 
     <xsl:variable name="id" select="generate-id ()" />
 
-    <xsl:for-each select="str:split ($corresp)">
+    <xsl:for-each select="tokenize ($corresp, '\s+')">
       <xsl:variable name="hr" select="cap:make-human-readable-bk (cap:strip-ignored-corresp (substring-before (concat (., '_'), '_')))" />
       <a id="{cap:make-id (.)}" class="milestone"></a>
       <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
@@ -208,7 +205,7 @@ Outputs the transcription section of a single manuscript page.
 
     <xsl:variable name="id" select="generate-id ()" />
 
-    <xsl:for-each select="str:split ($corresp)">
+    <xsl:for-each select="tokenize ($corresp, '\s+')">
       <xsl:variable name="hr" select="cap:make-human-readable-bk (cap:strip-ignored-corresp (.))" />
       <a id="{cap:make-id (.)}" class="milestone milestone-chapter"></a>
       <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
@@ -221,15 +218,42 @@ Outputs the transcription section of a single manuscript page.
     </xsl:for-each>
   </xsl:template>
 
+  <xsl:function name="cap:trailing">
+    <!-- The cap:trailing function returns the nodes in the node set passed as
+         the first argument that follow, in document order, the first node in
+         the node set passed as the second argument. If the first node in the
+         second node set is not contained in the first node set, then an empty
+         node set is returned. If the second node set is empty, then the first
+         node set is returned. -->
+    <xsl:param name="nodes" />
+    <xsl:param name="node"  />
+
+    <xsl:variable name="end-node" select="$node[1]"/>
+    <xsl:choose>
+      <xsl:when test="not ($end-node) or not ($nodes)">
+        <xsl:sequence select="$nodes"/>
+      </xsl:when>
+      <xsl:when test="count ($nodes | $end-node) != count ($nodes)">
+        <xsl:sequence select="()"/>
+      </xsl:when>
+      <xsl:when test="count ($nodes[1] | $end-node) = 1">
+        <xsl:sequence select="$nodes[position() > 1]"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="cap:trailing ($nodes[position() > 1], $end-node)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+
   <xsl:template name="footnotes-wrapper">
     <div class="footnotes-wrapper">
       <xsl:choose>
-        <xsl:when test="self::tei:anchor">
+        <xsl:when test="self::anchor">
           <!-- end of capitulatio -->
           <xsl:apply-templates
-              mode="auto-note-wrapper"
-              select="set:trailing (
-                      preceding-sibling::tei:ab|../tei:milestone,
+              mode="move-notes"
+              select="cap:trailing (
+                      preceding-sibling::ab|../milestone,
                       ../tei:milestone[@unit = 'capitulatio' and @spanTo = concat ('#', current()/@xml:id)]
                       )" />
         </xsl:when>
@@ -239,24 +263,44 @@ Outputs the transcription section of a single manuscript page.
           <!-- Go back and get all ab's but stop on the first ab-text or anchor -->
 
           <xsl:apply-templates
-              mode="auto-note-wrapper"
-              select="set:trailing (
-                      preceding-sibling::*[self::tei:ab or self::tei:anchor],
+              mode="move-notes"
+              select="cap:trailing (
                       preceding-sibling::*[
-                        self::tei:ab[@type='text' and not (@next)] or
-                        self::tei:anchor[starts-with (@xml:id, 'capitulatio-finis')]
+                        self::ab or
+                        self::anchor
+                      ],
+                      preceding-sibling::*[
+                        self::ab[@type='text' and not (@next)] or
+                        self::anchor[starts-with (@xml:id, 'capitulatio-finis')]
                       ][1])" />
         </xsl:otherwise>
       </xsl:choose>
 
       <!-- generate footnote bodies for this ab -->
-      <xsl:apply-templates mode="auto-note-wrapper" />
+      <xsl:apply-templates mode="move-notes" />
     </div>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
   </xsl:template>
 
-  <xsl:template match="tei:body/tei:ab[@type='meta-text']">
-    <xsl:if test="not (.//tei:milestone[@unit='span' and @corresp and @spanTo])">
+  <xsl:template match="body//note">
+  </xsl:template>
+
+  <xsl:template match="note" mode="move-notes">
+    <!-- Generate the footnote decorations, then call auto-note mode to generate
+         the footnote body. -->
+    <xsl:text>&#x0a;</xsl:text>
+    <div id="{generate-id ()}-content" class="annotation-content">
+      <div class="annotation-text">
+        <xsl:apply-templates />
+      </div>
+    </div>
+  </xsl:template>
+
+  <xsl:template match="text ()" mode="move-notes">
+  </xsl:template>
+
+  <xsl:template match="body/ab[@type='meta-text']" priority="2">
+    <xsl:if test="not (.//milestone[@unit='span' and @corresp and @spanTo])">
       <xsl:call-template name="make-sidebar-bk-chapter" />
     </xsl:if>
     <xsl:call-template name="make-chapter-mark" />
@@ -266,7 +310,7 @@ Outputs the transcription section of a single manuscript page.
         <xsl:with-param name="extra-class" select="'ab ab-meta-text'"/>
       </xsl:call-template>
       <xsl:if test="@xml:id">
-        <xsl:attribute name="id"><xsl:value-of select="@xml:id"/></xsl:attribute>
+        <xsl:attribute name="id" select="@xml:id"/>
       </xsl:if>
       <xsl:apply-templates/>
       <span> &#xa0;</span> <!-- Do not let footnotes escape the ab. -->
@@ -276,22 +320,25 @@ Outputs the transcription section of a single manuscript page.
     <!-- If the manuscript ends here,
          or is followed by a capitulatio,
          or is an epilog or explicit. -->
-    <xsl:if test="not (following-sibling::tei:ab) or following-sibling::*[1][self::tei:milestone[@unit='capitulatio']] or contains (@corresp, '_epilog') or contains (@corresp, 'explicit')">
+    <xsl:if test="not (following-sibling::ab) or following-sibling::*[1][self::milestone[@unit='capitulatio']] or contains (@corresp, '_epilog') or contains (@corresp, 'explicit')">
       <xsl:call-template name="footnotes-wrapper"/>
       <xsl:call-template name="page-break" />
     </xsl:if>
 
   </xsl:template>
 
-  <xsl:template match="tei:body/tei:ab[@type='text']">
-    <xsl:if test="not (.//tei:milestone[@unit='span' and @corresp and @spanTo])">
+  <xsl:template match="body/ab[@type='text']" priority="2">
+    <xsl:if test="not (.//milestone[@unit='span' and @corresp and @spanTo])">
       <xsl:call-template name="make-sidebar-bk-chapter" />
     </xsl:if>
     <xsl:call-template name="make-chapter-mark" />
 
-    <div class="ab ab-text" lang="la" data-shortcuts="1">
+    <div lang="la" data-shortcuts="1">
+      <xsl:call-template name="handle-rend">
+        <xsl:with-param name="extra-class" select="'ab ab-text'"/>
+      </xsl:call-template>
       <xsl:if test="@xml:id">
-        <xsl:attribute name="id"><xsl:value-of select="@xml:id"/></xsl:attribute>
+        <xsl:attribute name="id" select="@xml:id"/>
       </xsl:if>
       <xsl:apply-templates/>
       <span> &#xa0;</span> <!-- Do not let footnotes escape the ab. -->
@@ -309,13 +356,20 @@ Outputs the transcription section of a single manuscript page.
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="tei:lb">
+  <xsl:template match="body/ab">
+    <div>
+      <xsl:copy-of select="@data-shortcuts|@data-note-id|@class"/>
+      <xsl:apply-templates />
+    </div>
+  </xsl:template>
+
+  <xsl:template match="lb">
     <xsl:if test="not (@break = 'no')">
       <xsl:text> </xsl:text>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="tei:cb">
+  <xsl:template match="cb">
     <xsl:if test="not (@break = 'no')">
       <xsl:text> </xsl:text>
     </xsl:if>
@@ -339,7 +393,7 @@ Outputs the transcription section of a single manuscript page.
 
     <span class="folio" data-shortcuts="0">
       <xsl:text>[cap_image_server id="</xsl:text>
-      <xsl:value-of select="/tei:TEI/@xml:id" />
+      <xsl:value-of select="/TEI/@xml:id" />
       <xsl:text>" n="</xsl:text>
       <xsl:value-of select="@n" />
       <xsl:text>"]</xsl:text>
@@ -352,24 +406,28 @@ Outputs the transcription section of a single manuscript page.
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="tei:milestone[not (@unit='span')]">
+  <xsl:template match="milestone[not (@unit='span')]">
     <xsl:call-template name="make-sidebar-bk">
       <xsl:with-param name="corresp" select="@n" />
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="tei:milestone[@unit='span' and @corresp and @spanTo]">
+  <xsl:template match="milestone[@unit='span' and @corresp and @spanTo]">
     <xsl:if test="@xml:id">
       <a id="{@xml:id}" class="milestone milestone-span milestone-span-start"/>
     </xsl:if>
     <xsl:call-template name="make-sidebar-bk-chapter" />
   </xsl:template>
 
-  <xsl:template match="tei:anchor[starts-with (@xml:id, 'capitulatio-finis')]">
+  <xsl:template match="anchor[starts-with (@xml:id, 'capitulatio-finis')]">
     <!-- this anchor marks the end of a capitulatio -->
     <span class="milestone milestone-capitulatio-end" />
     <xsl:call-template name="footnotes-wrapper" />
     <xsl:call-template name="page-break" />
+  </xsl:template>
+
+  <xsl:template match="anchor">
+    <!-- <span class="tei-anchor" data-note-id="{@xml:id}" /> -->
   </xsl:template>
 
   <!--
@@ -379,11 +437,10 @@ Outputs the transcription section of a single manuscript page.
       verwenden muß.  Alle größer und fett; zusätzlich zur Unterscheidung
       verschiedene Größen/Schrifttypen?
   -->
-  <xsl:template match="tei:seg[@type='initial']">
+
+  <xsl:template match="seg[@type='initial']">
     <span>
-      <xsl:call-template name="handle-rend">
-        <xsl:with-param name="extra-class" select="'initial'" />
-      </xsl:call-template>
+      <xsl:copy-of select="@data-shortcuts|@data-note-id|@class"/>
       <xsl:attribute name="title">
         <xsl:text>Initiale</xsl:text>
         <xsl:if test="contains(@type,'-')">
@@ -395,49 +452,30 @@ Outputs the transcription section of a single manuscript page.
     </span>
   </xsl:template>
 
-  <xsl:template match="tei:seg[@type='versalie']">
-    <span class="versalie">
+  <xsl:template match="seg">
+    <xsl:element name="{if (@htmltag) then @htmltag else 'span'}">
+      <xsl:copy-of select="@data-shortcuts|@data-note-id|@class"/>
       <xsl:apply-templates />
-    </span>
+    </xsl:element>
   </xsl:template>
 
-  <xsl:template match="tei:seg[@type='numDenom']">
-    <span>
-      <xsl:call-template name="handle-rend">
-        <xsl:with-param name="extra-class" select="'tei-seg tei-seg-numDenom'"/>
-      </xsl:call-template>
+  <xsl:template match="hi">
+    <xsl:element name="{if (@htmltag) then @htmltag else 'span'}">
+      <xsl:copy-of select="@data-shortcuts|@data-note-id|@class"/>
       <xsl:apply-templates />
-    </span>
+    </xsl:element>
   </xsl:template>
 
-  <xsl:template match="tei:seg[@type='num']">
-    <span>
-      <xsl:call-template name="handle-rend">
-        <xsl:with-param name="extra-class" select="'tei-seg tei-seg-num'"/>
-      </xsl:call-template>
-      <xsl:apply-templates />
-    </span>
+  <xsl:template match="cit">
+    <xsl:apply-templates select="quote"/>
   </xsl:template>
 
-  <xsl:template match="tei:cit">
-    <xsl:apply-templates select="tei:quote"/>
-  </xsl:template>
-
-  <xsl:template match="tei:metamark">
+  <xsl:template match="metamark">
     <!-- metamark vorerst ignorieren -->
     <span class="tei-metamark" />
   </xsl:template>
 
-  <xsl:template match="tei:hi">
-    <span>
-      <xsl:call-template name="handle-rend">
-        <xsl:with-param name="extra-class" select="'tei-hi'"/>
-      </xsl:call-template>
-      <xsl:apply-templates />
-    </span>
-  </xsl:template>
-
-  <xsl:template match="tei:span[@xml:id]">
+  <xsl:template match="span[@xml:id]">
     <span class="tei-span">
       <!-- "Erstreckungsfußnoten" -->
 
@@ -449,14 +487,14 @@ Outputs the transcription section of a single manuscript page.
       </xsl:variable>
 
       <xsl:value-of select="node()[1]"/>
-      <xsl:apply-templates select="tei:add"/>
+      <xsl:apply-templates select="add"/>
       <xsl:value-of select="$before"/>
       <xsl:apply-templates select="following-sibling::node()[1][name()='note']"/>
       <xsl:value-of select="$after"/>
     </span>
   </xsl:template>
 
-  <xsl:template match="tei:figure">
+  <xsl:template match="figure">
     <!--
         Neues Element: figure; wie verarbeiten? (bm 21.01.16) –
 
@@ -470,8 +508,8 @@ Outputs the transcription section of a single manuscript page.
 
     <xsl:variable name="title">
       <xsl:choose>
-        <xsl:when test="tei:figDesc">
-          <xsl:apply-templates select="tei:figDesc"/>
+        <xsl:when test="figDesc">
+          <xsl:apply-templates select="figDesc"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:text>[:de]Platzhalter für Bild[:en]Picture[:]</xsl:text>
@@ -480,8 +518,8 @@ Outputs the transcription section of a single manuscript page.
     </xsl:variable>
 
     <xsl:choose>
-      <xsl:when test="tei:graphic/@url">
-        <a target="_blank" title="{$title}" href="tei:graphic/@url">
+      <xsl:when test="graphic/@url">
+        <a target="_blank" title="{$title}" href="graphic/@url">
           <!-- WordPress-Icon -->
           <span class="dashicons dashicons-format-image" />
         </a>

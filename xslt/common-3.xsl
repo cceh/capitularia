@@ -163,15 +163,32 @@
   <function name="cap:get-rend-class">
     <param name="e" />
 
+    <!-- returns a leading space! -->
     <variable name="classes">
       <for-each select="tokenize (cap:get-rend ($e), '\s+')">
-        <value-of select="concat ('rend-', .)"/>
+        <value-of select="concat (' rend-', .)"/>
       </for-each>
     </variable>
 
-    <sequence select="string-join ($classes, ' ')" />
+    <sequence select="string-join ($classes)" />
   </function>
 
+  <function name="cap:replace-multi" as="xs:string?">
+    <param name="arg"        as="xs:string?"/>
+    <param name="changeFrom" as="xs:string*"/>
+    <param name="changeTo"   as="xs:string*"/>
+
+    <sequence select="
+       if (count ($changeFrom) > 0) then
+            cap:replace-multi (
+               replace ($arg, $changeFrom[1], $changeTo[1]),
+               $changeFrom[position() > 1],
+               $changeTo[position() > 1]
+            )
+            else $arg
+     "/>
+
+  </function>
 
   <function name="cap:make-human-readable-bk">
     <!-- Make a human readable BK string.
@@ -179,95 +196,100 @@
          Transform the @corresp 'BK.123_4' to 'BK 123 c. 4'.
     -->
 
-    <param name="corresp" /> <!-- ex default: @corresp -->
-
-    <!-- FIXME: after we switch to saxon use regexps -->
-
-    <variable name="search">
-      <root xmlns="http://www.tei-c.org/ns/1.0">
-        <item>_prolog</item>
-        <item>_praefatio</item>
-        <item>_epilog</item>
-        <item>_explicit</item>
-        <item>_a_</item>
-        <item>_b_</item>
-        <item>_c_</item>
-        <item>_d_</item>
-        <item>_e_</item>
-        <item>_f_</item>
-        <item>_g_</item>
-        <item>_h_</item>
-        <item>.</item>
-        <item>_</item>
-      </root>
-    </variable>
-
-    <variable name="replace">
-      <root xmlns="http://www.tei-c.org/ns/1.0">
-        <item> Prolog</item>
-        <item> Praefatio</item>
-        <item> Epilog</item>
-        <item> Explicit</item>
-        <item> Abschnitt A c. </item>
-        <item> Abschnitt B c. </item>
-        <item> Abschnitt C c. </item>
-        <item> Abschnitt D c. </item>
-        <item> Abschnitt E c. </item>
-        <item> Abschnitt F c. </item>
-        <item> Abschnitt G c. </item>
-        <item> Abschnitt H c. </item>
-        <item> </item>
-        <item> c. </item>
-      </root>
-    </variable>
+    <param name="corresp" as="xs:string?" />
 
     <variable name="hr">
       <for-each select="tokenize ($corresp, '\s+')">
-        <value-of select="normalize-space (replace (., $search/root/item, $replace/root/item))"/>
-          <text> </text>
+        <sequence select="cap:replace-multi (.,
+                          (
+                          '_prolog',
+                          '_praefatio',
+                          '_epilog',
+                          '_explicit',
+                          '_a_',
+                          '_b_',
+                          '_c_',
+                          '_d_',
+                          '_e_',
+                          '_f_',
+                          '_g_',
+                          '_h_',
+                          '[.]',
+                          '_'
+                          ),
+                          (
+                          ' Prolog',
+                          ' Praefatio',
+                          ' Epilog',
+                          ' Explicit',
+                          ' Abschnitt A c. ',
+                          ' Abschnitt B c. ',
+                          ' Abschnitt C c. ',
+                          ' Abschnitt D c. ',
+                          ' Abschnitt E c. ',
+                          ' Abschnitt F c. ',
+                          ' Abschnitt G c. ',
+                          ' Abschnitt H c. ',
+                          ' ',
+                          ' c. '
+                          )
+                          )"/>
       </for-each>
     </variable>
 
-    <value-of select="normalize-space ($hr)"/>
+    <sequence select="string-join ($hr, ' ')"/>
   </function>
 
   <function name="cap:strip-ignored-corresp">
     <!-- Remove @corresp tokens containing '_inscriptio' '_incipit', and 'explicit'.
     -->
 
-    <param name="corresp" /> <!-- ex default: @corresp -->
+    <param name="corresp" as="xs:string?" />
 
     <variable name="result">
       <for-each select="tokenize ($corresp, '\s+')">
         <if test="not (contains (., '_inscriptio') or contains (., '_incipit') or contains (., 'explicit'))">
-          <value-of select="."/>
-          <text> </text>
+          <sequence select="."/>
         </if>
       </for-each>
     </variable>
 
-    <value-of select="normalize-space ($result)"/>
+    <sequence select="string-join ($result, ' ')"/>
   </function>
 
-  <function name="cap:string-pad" as="xs:string">
-    <param name="padCount" as="xs:integer"/>
-    <param name="padString" as="xs:string?"/>
-    <sequence select="string-join (for $i in 1 to $padCount return $padString)"/>
+  <function name="cap:string-pad" as="xs:string?">
+    <!-- Credit: http://exslt.org/str/functions/padding/str.padding.function.xsl -->
+    <param name="length" as="xs:integer" />
+    <param name="chars"  as="xs:string?" />
+    <choose>
+      <when test="not ($length) or not ($chars)">
+        <sequence select="''"/>
+      </when>
+      <otherwise>
+        <variable name="string" select="concat ($chars, $chars, $chars, $chars)"/>
+        <choose>
+          <when test="string-length ($string) >= $length">
+            <sequence select="substring ($string, 1, $length)"/>
+          </when>
+          <otherwise>
+            <sequence select="cap:string-pad ($length, $string)"/>
+          </otherwise>
+        </choose>
+      </otherwise>
+    </choose>
   </function>
 
   <!-- xsl templates -->
 
   <template name="handle-rend">
-    <param name="extra-class" select="''" />
+    <param name="extra-class" />
 
     <variable name="class">
-      <value-of select="normalize-space (concat ($extra-class, ' ', cap:get-rend-class (.)))"/>
+      <value-of select="normalize-space (string-join ((@class, $extra-class, cap:get-rend-class (.)), ' '))" />
     </variable>
 
-    <if test="$class != ''">
-      <attribute name="class">
-        <value-of select="$class" />
-      </attribute>
+    <if test="$class">
+      <attribute name="class" select="$class" />
     </if>
   </template>
 
