@@ -7,11 +7,17 @@
 #   meld-driver-transcript.sh
 #
 
-#ID="barcelona-aca-ripoll-40"
+
+ID="paris-bn-lat-9654"
 #ID="wolfenbuettel-hab-blankenb-130"
-#ID="paris-bn-lat-4628a"
 #ID="gotha-flb-memb-i-84"
-ID="berlin-sb-phill-1737"
+#ID="paris-bn-lat-4628a"
+#ID="newhaven-bl-413"
+#ID="berlin-sb-phill-1737"
+#ID="muenchen-bsb-lat-3853"
+#ID="vatikan-bav-chigi-f-iv-75"
+#ID="paris-bn-lat-4631"
+#ID="ivrea-bc-xxxiv"
 
 HTML1="/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/http/docs/cap/publ/cache/mss/$ID.transcript.html"
 HTML2="cache/mss/$ID.transcript.html"

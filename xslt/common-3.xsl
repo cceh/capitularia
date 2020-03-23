@@ -190,57 +190,47 @@
 
   </function>
 
-  <function name="cap:make-human-readable-bk">
+  <function name="cap:make-human-readable-bk" as="xs:string">
     <!-- Make a human readable BK string.
 
-         Transform the @corresp 'BK.123_4' to 'BK 123 c. 4'.
+         Transform the @corresp:
+
+           BK.123          => BK 123
+           BK.123_a        => BK 123 Abschnitt A
+           BK.123_4        => BK 123 c. 4
+           BK.123_a_4      => BK 123 Abschnitt A c. 4
+           BK_266_prolog   => BK 266 Prolog
+           BK_273_b_prolog => BK 273 Abschnitt B Prolog
     -->
 
     <param name="corresp" as="xs:string?" />
 
-    <variable name="hr">
+    <variable name="hr" expand-text="yes">
       <for-each select="tokenize ($corresp, '\s+')">
-        <sequence select="cap:replace-multi (.,
-                          (
-                          '_prolog',
-                          '_praefatio',
-                          '_epilog',
-                          '_explicit',
-                          '_a_',
-                          '_b_',
-                          '_c_',
-                          '_d_',
-                          '_e_',
-                          '_f_',
-                          '_g_',
-                          '_h_',
-                          '[.]',
-                          '_'
-                          ),
-                          (
-                          ' Prolog',
-                          ' Praefatio',
-                          ' Epilog',
-                          ' Explicit',
-                          ' Abschnitt A c. ',
-                          ' Abschnitt B c. ',
-                          ' Abschnitt C c. ',
-                          ' Abschnitt D c. ',
-                          ' Abschnitt E c. ',
-                          ' Abschnitt F c. ',
-                          ' Abschnitt G c. ',
-                          ' Abschnitt H c. ',
-                          ' ',
-                          ' c. '
-                          )
-                          )"/>
+        <for-each select="analyze-string (.,
+                          '^([\w.]+?)[._]([\dAB]+)(?:_([a-z]))?(?:_(\d+))?(?:_(\w)(\w+))?$')/fn:match">
+          <value-of select="fn:group[@nr=1]" />
+          <text> </text>
+          <value-of select="fn:group[@nr=2]" />
+
+          <if test="normalize-space (fn:group[@nr=3])">
+            <text> Abschnitt {upper-case (fn:group[@nr=3])}</text>
+          </if>
+          <if test="normalize-space (fn:group[@nr=4])">
+            <text> c. {fn:group[@nr=4]}</text>
+          </if>
+          <if test="normalize-space (fn:group[@nr=5])">
+            <text> {upper-case (fn:group[@nr=5])}{fn:group[@nr=6]}</text>
+          </if>
+          <text> </text>
+        </for-each>
       </for-each>
     </variable>
 
-    <sequence select="string-join ($hr, ' ')"/>
+    <sequence select="normalize-space ($hr)"/>
   </function>
 
-  <function name="cap:strip-ignored-corresp">
+  <function name="cap:strip-ignored-corresp" as="xs:string">
     <!-- Remove @corresp tokens containing '_inscriptio' '_incipit', and 'explicit'.
     -->
 
@@ -249,12 +239,13 @@
     <variable name="result">
       <for-each select="tokenize ($corresp, '\s+')">
         <if test="not (contains (., '_inscriptio') or contains (., '_incipit') or contains (., 'explicit'))">
-          <sequence select="."/>
+          <value-of select="."/>
+          <text> </text>
         </if>
       </for-each>
     </variable>
 
-    <sequence select="string-join ($result, ' ')"/>
+    <sequence select="normalize-space ($result)"/>
   </function>
 
   <function name="cap:string-pad" as="xs:string?">

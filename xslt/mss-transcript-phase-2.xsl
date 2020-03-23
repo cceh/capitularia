@@ -305,10 +305,8 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
     </xsl:if>
     <xsl:call-template name="make-chapter-mark" />
 
-    <div lang="la" data-shortcuts="1">
-      <xsl:call-template name="handle-rend">
-        <xsl:with-param name="extra-class" select="'ab ab-meta-text'"/>
-      </xsl:call-template>
+    <div lang="la">
+      <xsl:copy-of select="@data-shortcuts|@data-note-id|@class"/>
       <xsl:if test="@xml:id">
         <xsl:attribute name="id" select="@xml:id"/>
       </xsl:if>
@@ -333,10 +331,8 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
     </xsl:if>
     <xsl:call-template name="make-chapter-mark" />
 
-    <div lang="la" data-shortcuts="1">
-      <xsl:call-template name="handle-rend">
-        <xsl:with-param name="extra-class" select="'ab ab-text'"/>
-      </xsl:call-template>
+    <div lang="la">
+      <xsl:copy-of select="@data-shortcuts|@data-note-id|@class"/>
       <xsl:if test="@xml:id">
         <xsl:attribute name="id" select="@xml:id"/>
       </xsl:if>

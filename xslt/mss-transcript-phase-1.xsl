@@ -479,6 +479,17 @@ footnotes will be joined to the preceding word.
       verschiedene Größen/Schrifttypen?
   -->
 
+  <xsl:template match="body/ab">
+    <ab data-shortcuts="1">
+      <xsl:copy-of select="@*"/>
+      <xsl:call-template name="handle-rend">
+        <xsl:with-param name="extra-class" select="concat ('ab ab-', @type)" />
+      </xsl:call-template>
+
+      <xsl:apply-templates />
+    </ab>
+  </xsl:template>
+
   <xsl:template match="seg[@type]">
     <seg type="{@type}">
       <xsl:call-template name="handle-rend">
@@ -499,7 +510,7 @@ footnotes will be joined to the preceding word.
   </xsl:template>
 
   <xsl:template match="hi">
-    <hi>
+    <hi type="{@type}">
       <xsl:call-template name="handle-rend">
         <xsl:with-param name="extra-class" select="'tei-hi'"/>
       </xsl:call-template>
