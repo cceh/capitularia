@@ -263,7 +263,7 @@ footnotes will be joined to the preceding word.
     <xsl:param name="s"/>
     <xsl:param name="c"/>
 
-    <xsl:sequence select="number (string-length ($s) - string-length (translate ($s, $c, '')))"/>
+    <xsl:sequence select="number (string-length (string-join ($s)) - string-length (translate (string-join ($s), $c, '')))"/>
   </xsl:function>
 
   <xsl:function name="cap:is-whole-word">
@@ -499,7 +499,7 @@ footnotes will be joined to the preceding word.
     </seg>
   </xsl:template>
 
-  <xsl:template match="seg[@type='initial']">
+  <xsl:template match="seg[@type='initial']" priority="2">
     <!-- for bug compatibility only, makes a leaner diff -->
     <seg type="{@type}">
       <xsl:call-template name="handle-rend">
