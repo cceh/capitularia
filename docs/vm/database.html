@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -128,13 +128,13 @@
 <li class="toctree-l3"><a class="reference internal" href="app_server.html#module-data_server">data_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="app_server.html#module-collatex_server">collatex_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="app_server.html#module-geo_server">geo_server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-tile_server">tile_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#tile-server">tile_server</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Database Structure</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#schema-capitularia">Schema <em>capitularia:</em></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#schema-gis">Schema <em>gis:</em></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-db">db.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#db-py">db.py</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="transformations.html">XSLT Transformations</a><ul>
@@ -226,296 +226,8 @@
 <p class="caption"><span class="caption-text">Schema <em>gis</em></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<div class="section" id="module-db">
-<span id="db-py"></span><h2>db.py<a class="headerlink" href="#module-db" title="Permalink to this headline">¶</a></h2>
-<p>This module contains the sqlalchemy classes that initialize the database structure.</p>
-<p>To create a new database: (must be database superuser)</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo -u postgres psql
-</pre></div>
-</div>
-<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">USER</span> <span class="n">capitularia</span> <span class="k">PASSWORD</span> <span class="s1">&#39;&lt;password&gt;&#39;</span><span class="p">;</span>
-<span class="go">CREATE DATABASE capitularia OWNER capitularia;</span>
-
-<span class="go">\c capitularia</span>
-<span class="go">CREATE EXTENSION pg_trgm WITH SCHEMA public;</span>
-<span class="go">CREATE EXTENSION postgis WITH SCHEMA public;</span>
-<span class="go">CREATE SCHEMA capitularia AUTHORIZATION capitularia;</span>
-<span class="go">CREATE SCHEMA gis AUTHORIZATION capitularia;</span>
-<span class="go">ALTER DATABASE capitularia SET search_path = capitularia, gis, public;</span>
-<span class="go">\q</span>
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 -m scripts.import_data -c ./server.conf --init_db
-</pre></div>
-</div>
-<dl class="class">
-<dt id="db.Capitularies">
-<em class="property">class </em><code class="sig-name descname">Capitularies</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#db.Capitularies" title="Permalink to this definition">¶</a></dt>
-<dd><p>All capitularies catalogued according to BK or Mordek.</p>
-<div class="graphviz"><img src="../_images/graphviz-6b840973bb3977c1611ffdedbe827fca84454da0.png" alt="UML Database Graph" class="sauml graphviz" /></div>
-<dl class="attribute">
-<dt id="db.Capitularies.cap_id">
-<code class="sig-name descname">cap_id</code><a class="headerlink" href="#db.Capitularies.cap_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The capitulary number, eg. “BK.42”</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="db.Capitularies.title">
-<code class="sig-name descname">title</code><a class="headerlink" href="#db.Capitularies.title" title="Permalink to this definition">¶</a></dt>
-<dd><p>The capitulary title assigned by BK.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="db.Chapters">
-<em class="property">class </em><code class="sig-name descname">Chapters</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#db.Chapters" title="Permalink to this definition">¶</a></dt>
-<dd><p>All chapters catalogued according to BK or Mordek.</p>
-<div class="graphviz"><img src="../_images/graphviz-d29e2e3ac8b717fc0b4631f89663470c7bffc128.png" alt="UML Database Graph" class="sauml graphviz" /></div>
-<dl class="attribute">
-<dt id="db.Chapters.chapter">
-<code class="sig-name descname">chapter</code><a class="headerlink" href="#db.Chapters.chapter" title="Permalink to this definition">¶</a></dt>
-<dd><p>The chapter number from 1 to N.  Also: 1_inscription, etc.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="db.CreateFDW">
-<em class="property">class </em><code class="sig-name descname">CreateFDW</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">pg_db</em>, <em class="sig-param">mysql_db</em><span class="sig-paren">)</span><a class="headerlink" href="#db.CreateFDW" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="db.CreateFunction">
-<em class="property">class </em><code class="sig-name descname">CreateFunction</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">params</em>, <em class="sig-param">returns</em>, <em class="sig-param">sql</em>, <em class="sig-param">**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#db.CreateFunction" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="db.CreateGeneric">
-<em class="property">class </em><code class="sig-name descname">CreateGeneric</code><span class="sig-paren">(</span><em class="sig-param">create_cmd</em><span class="sig-paren">)</span><a class="headerlink" href="#db.CreateGeneric" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="db.CreateView">
-<em class="property">class </em><code class="sig-name descname">CreateView</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">sql</em><span class="sig-paren">)</span><a class="headerlink" href="#db.CreateView" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="db.DropFDW">
-<em class="property">class </em><code class="sig-name descname">DropFDW</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">pg_db</em>, <em class="sig-param">mysql_db</em><span class="sig-paren">)</span><a class="headerlink" href="#db.DropFDW" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="db.DropFunction">
-<em class="property">class </em><code class="sig-name descname">DropFunction</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">params</em><span class="sig-paren">)</span><a class="headerlink" href="#db.DropFunction" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="db.DropGeneric">
-<em class="property">class </em><code class="sig-name descname">DropGeneric</code><span class="sig-paren">(</span><em class="sig-param">drop_cmd</em><span class="sig-paren">)</span><a class="headerlink" href="#db.DropGeneric" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="db.DropView">
-<em class="property">class </em><code class="sig-name descname">DropView</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#db.DropView" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="class">
-<dt id="db.GeoAreas">
-<em class="property">class </em><code class="sig-name descname">GeoAreas</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#db.GeoAreas" title="Permalink to this definition">¶</a></dt>
-<dd><p>Custom defined geographic areas</p>
-<div class="graphviz"><img src="../_images/graphviz-b5a723a4a05cdfae9cd33443a11813b458697e1c.png" alt="UML Database Graph" class="sauml graphviz" /></div>
-</dd></dl>
-
-<dl class="class">
-<dt id="db.Geonames">
-<em class="property">class </em><code class="sig-name descname">Geonames</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#db.Geonames" title="Permalink to this definition">¶</a></dt>
-<dd><p>Data scraped from geonames.org et al. and cached here.</p>
-<div class="graphviz"><img src="../_images/graphviz-3af90928146ca412e2a45868a06877218b0f292e.png" alt="UML Database Graph" class="sauml graphviz" /></div>
-</dd></dl>
-
-<dl class="class">
-<dt id="db.Manuscripts">
-<em class="property">class </em><code class="sig-name descname">Manuscripts</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#db.Manuscripts" title="Permalink to this definition">¶</a></dt>
-<dd><div class="graphviz"><img src="../_images/graphviz-aaaf908bffba78cfccc0620283b67de16d89ce4e.png" alt="UML Database Graph" class="sauml graphviz" /></div>
-<dl class="attribute">
-<dt id="db.Manuscripts.filename">
-<code class="sig-name descname">filename</code><a class="headerlink" href="#db.Manuscripts.filename" title="Permalink to this definition">¶</a></dt>
-<dd><p>The filename of the TEI file containing the transcription of the
-manuscript.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="db.Manuscripts.ms_id">
-<code class="sig-name descname">ms_id</code><a class="headerlink" href="#db.Manuscripts.ms_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The manuscript id assigned by the Capitularia project.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="db.Manuscripts.status">
-<code class="sig-name descname">status</code><a class="headerlink" href="#db.Manuscripts.status" title="Permalink to this definition">¶</a></dt>
-<dd><p>The Wordpress publication status: either ‘publish’ or ‘private’</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="db.Manuscripts.title">
-<code class="sig-name descname">title</code><a class="headerlink" href="#db.Manuscripts.title" title="Permalink to this definition">¶</a></dt>
-<dd><p>The official title of the manuscript.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="db.MnMsPartsGeonames">
-<em class="property">class </em><code class="sig-name descname">MnMsPartsGeonames</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#db.MnMsPartsGeonames" title="Permalink to this definition">¶</a></dt>
-<dd><p>The M:N relationship between msparts and geonames</p>
-<div class="graphviz"><img src="../_images/graphviz-d861ab83de5208b811d5dfea20e51bb562243789.png" alt="UML Database Graph" class="sauml graphviz" /></div>
-</dd></dl>
-
-<dl class="class">
-<dt id="db.MnMssCapitularies">
-<em class="property">class </em><code class="sig-name descname">MnMssCapitularies</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#db.MnMssCapitularies" title="Permalink to this definition">¶</a></dt>
-<dd><p>The M:N relationship between manuscripts and capitularies
-according to the &lt;msDesc&gt;.</p>
-<p>This table also contains capitularies that are not yet transcribed but at a
-lesser granularity (capitulary instead of chapter) than the
-<a class="reference internal" href="#db.MssChapters" title="db.MssChapters"><code class="xref py py-class docutils literal notranslate"><span class="pre">MssChapters</span></code></a> table.</p>
-<div class="graphviz"><img src="../_images/graphviz-7ad7f8c88d05015f40039d4ae0678e8e396c043e.png" alt="UML Database Graph" class="sauml graphviz" /></div>
-<dl class="attribute">
-<dt id="db.MnMssCapitularies.mscap_n">
-<code class="sig-name descname">mscap_n</code><a class="headerlink" href="#db.MnMssCapitularies.mscap_n" title="Permalink to this definition">¶</a></dt>
-<dd><p>Index used if there are more than one copy of this capitulary in the
-manuscript.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="db.MsParts">
-<em class="property">class </em><code class="sig-name descname">MsParts</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#db.MsParts" title="Permalink to this definition">¶</a></dt>
-<dd><p>The parts of a manuscript</p>
-<div class="graphviz"><img src="../_images/graphviz-b0805cabc9da15cb036edb53e89bd5e2ae3867b8.png" alt="UML Database Graph" class="sauml graphviz" /></div>
-<dl class="attribute">
-<dt id="db.MsParts.date">
-<code class="sig-name descname">date</code><a class="headerlink" href="#db.MsParts.date" title="Permalink to this definition">¶</a></dt>
-<dd><p>When did the manuscript part originate? Range of dates.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="db.MsParts.leaf">
-<code class="sig-name descname">leaf</code><a class="headerlink" href="#db.MsParts.leaf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Size of the leaf.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="db.MsParts.loci">
-<code class="sig-name descname">loci</code><a class="headerlink" href="#db.MsParts.loci" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ranges of loci.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="db.MsParts.msp_part">
-<code class="sig-name descname">msp_part</code><a class="headerlink" href="#db.MsParts.msp_part" title="Permalink to this definition">¶</a></dt>
-<dd><p>The official designation of the manuscript part.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="db.MsParts.written">
-<code class="sig-name descname">written</code><a class="headerlink" href="#db.MsParts.written" title="Permalink to this definition">¶</a></dt>
-<dd><p>Size of the written area.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="db.MssChapters">
-<em class="property">class </em><code class="sig-name descname">MssChapters</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#db.MssChapters" title="Permalink to this definition">¶</a></dt>
-<dd><p>The relationship manuscripts and chapters according to the &lt;body&gt;.</p>
-<p>This table contains only those chapters that were already transcribed.</p>
-<p>Note: The table <a class="reference internal" href="#db.MnMssCapitularies" title="db.MnMssCapitularies"><code class="xref py py-class docutils literal notranslate"><span class="pre">MnMssCapitularies</span></code></a> relates manuscripts to
-capitularies yet untranscribed.</p>
-<div class="graphviz"><img src="../_images/graphviz-cab436ba52b8b01cb556beaf16987f493808979f.png" alt="UML Database Graph" class="sauml graphviz" /></div>
-<dl class="attribute">
-<dt id="db.MssChapters.locus">
-<code class="sig-name descname">locus</code><a class="headerlink" href="#db.MssChapters.locus" title="Permalink to this definition">¶</a></dt>
-<dd><p>The locus of the chapter in the manuscript.
-As recorded by the editor, eg. 42ra-1</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="db.MssChapters.transcribed">
-<code class="sig-name descname">transcribed</code><a class="headerlink" href="#db.MssChapters.transcribed" title="Permalink to this definition">¶</a></dt>
-<dd><p>Is this chapter already transcribed? 0 == no, 1 == partially, 2 == completed</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="db.MssChapters.xml">
-<code class="sig-name descname">xml</code><a class="headerlink" href="#db.MssChapters.xml" title="Permalink to this definition">¶</a></dt>
-<dd><p>The XML text of the chapter.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="db.MssChaptersText">
-<em class="property">class </em><code class="sig-name descname">MssChaptersText</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#db.MssChaptersText" title="Permalink to this definition">¶</a></dt>
-<dd><p>Various kinds of preprocessed texts extracted from the chapter.</p>
-<p>There may be more than one text extracted from the same chapter: the original
-hand and later corrector hands.</p>
-<div class="graphviz"><img src="../_images/graphviz-681953900eaebce7da6b185decb1668dac7d009f.png" alt="UML Database Graph" class="sauml graphviz" /></div>
-<dl class="attribute">
-<dt id="db.MssChaptersText.text">
-<code class="sig-name descname">text</code><a class="headerlink" href="#db.MssChaptersText.text" title="Permalink to this definition">¶</a></dt>
-<dd><p>The preprocessed plain text of the chapter.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="db.MssChaptersText.type_">
-<code class="sig-name descname">type_</code><a class="headerlink" href="#db.MssChaptersText.type_" title="Permalink to this definition">¶</a></dt>
-<dd><p>Either ‘original’ or ‘later_hands’.  The type of preprocessing applied.
-Whether the original hand was followed or a later corrector.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="db.XML">
-<em class="property">class </em><code class="sig-name descname">XML</code><a class="headerlink" href="#db.XML" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="db.XML.bind_processor">
-<code class="sig-name descname">bind_processor</code><span class="sig-paren">(</span><em class="sig-param">dialect</em><span class="sig-paren">)</span><a class="headerlink" href="#db.XML.bind_processor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a conversion function for processing bind values.</p>
-<p>Returns a callable which will receive a bind parameter value
-as the sole positional argument and will return a value to
-send to the DB-API.</p>
-<p>If processing is not necessary, the method should return <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dialect</strong> – Dialect instance in use.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="db.XML.result_processor">
-<code class="sig-name descname">result_processor</code><span class="sig-paren">(</span><em class="sig-param">dialect</em>, <em class="sig-param">coltype</em><span class="sig-paren">)</span><a class="headerlink" href="#db.XML.result_processor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a conversion function for processing result row values.</p>
-<p>Returns a callable which will receive a result row column
-value as the sole positional argument and will return a value
-to return to the user.</p>
-<p>If processing is not necessary, the method should return <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dialect</strong> – Dialect instance in use.</p></li>
-<li><p><strong>coltype</strong> – DBAPI coltype argument received in cursor.description.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="db-py">
+<h2>db.py<a class="headerlink" href="#db-py" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

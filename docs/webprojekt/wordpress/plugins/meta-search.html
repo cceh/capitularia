@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -128,13 +128,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../vm/app_server.html#module-data_server">data_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../vm/app_server.html#module-collatex_server">collatex_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../vm/app_server.html#module-geo_server">geo_server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../vm/app_server.html#module-tile_server">tile_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../vm/app_server.html#tile-server">tile_server</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../vm/database.html">Database Structure</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../vm/database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../vm/database.html#schema-gis">Schema <em>gis:</em></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../vm/database.html#module-db">db.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../vm/database.html#db-py">db.py</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../vm/transformations.html">XSLT Transformations</a><ul>
@@ -241,35 +241,35 @@ Wordpress search, that displays snippets of text around the found terms
 instead of the page excerpt.  The highlighter may be used on any Wordpress
 page.</p>
 <p>See: <a class="reference internal" href="../../../vm/app_server.html#module-data_server" title="data_server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_server</span></code></a>, <a class="reference internal" href="../../../overviews/meta_search.html#meta-search-overview"><span class="std std-ref">metadata search overview</span></a>.</p>
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="const">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php const">
 <dt id="cceh\capitularia\meta_search\NAME">
 <em class="property">constant </em><code class="sig-name descname">NAME</code><a class="headerlink" href="#cceh\capitularia\meta_search\NAME" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘Capitularia Meta Search’</p>
 <p>The name of the plugin.</p>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="const">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php const">
 <dt id="cceh\capitularia\meta_search\LANG">
 <em class="property">constant </em><code class="sig-name descname">LANG</code><a class="headerlink" href="#cceh\capitularia\meta_search\LANG" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘cap-meta-search’</p>
 <p>The text domain of the plugin.</p>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="const">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php const">
 <dt id="cceh\capitularia\meta_search\NONCE_SPECIAL_STRING">
 <em class="property">constant </em><code class="sig-name descname">NONCE_SPECIAL_STRING</code><a class="headerlink" href="#cceh\capitularia\meta_search\NONCE_SPECIAL_STRING" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘cap_meta_search_nonce’</p>
 <p>AJAX security</p>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="const">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php const">
 <dt id="cceh\capitularia\meta_search\NONCE_PARAM_NAME">
 <em class="property">constant </em><code class="sig-name descname">NONCE_PARAM_NAME</code><a class="headerlink" href="#cceh\capitularia\meta_search\NONCE_PARAM_NAME" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘_ajax_nonce’</p>
 <p>AJAX security</p>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="const">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php const">
 <dt id="cceh\capitularia\meta_search\HIGHLIGHT">
 <em class="property">constant </em><code class="sig-name descname">HIGHLIGHT</code><a class="headerlink" href="#cceh\capitularia\meta_search\HIGHLIGHT" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘cap_highlight_words’</p>
@@ -280,13 +280,13 @@ page.</p>
 <div class="section" id="plugins-cap-meta-search-class-highlighter-php">
 <h2><a class="toc-backref" href="#id3">plugins/cap-meta-search/class-highlighter.php</a><a class="headerlink" href="#plugins-cap-meta-search-class-highlighter-php" title="Permalink to this headline">¶</a></h2>
 <p>Capitularia Meta Search Highlighter</p>
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="class">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php class">
 <dt id="cceh\capitularia\meta_search\Highlighter">
 <em class="property">class </em><code class="sig-name descname">Highlighter</code><a class="headerlink" href="#cceh\capitularia\meta_search\Highlighter" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class provides a snippet view and highlighted search terms for the
 built-in Wordpress search.  It displays snippets of text around the found
 terms instead of the page excerpt.</p>
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Highlighter::get_bounds">
 <code class="sig-name descname">get_bounds</code><span class="sig-paren">(</span><em class="sig-param">$content</em>, <em class="sig-param">$content_len</em>, <em class="sig-param">$match</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Highlighter::get_bounds" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get start and end of snippet</p>
@@ -309,7 +309,7 @@ snippet in the post content.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Highlighter::get_snippets">
 <code class="sig-name descname">get_snippets</code><span class="sig-paren">(</span><em class="sig-param">$content</em>, <em class="sig-param">$regex</em>, <em class="sig-param">$max_snippets</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Highlighter::get_snippets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract snippets from page content.</p>
@@ -334,7 +334,7 @@ HTML unordered list.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Highlighter::escape_search_term">
 <code class="sig-name descname">escape_search_term</code><span class="sig-paren">(</span><em class="sig-param">$term</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Highlighter::escape_search_term" title="Permalink to this definition">¶</a></dt>
 <dd><p>Escape search term for regexp.</p>
@@ -355,7 +355,7 @@ the preg separator, eg. #term#u .</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Highlighter::on_get_the_excerpt">
 <code class="sig-name descname">on_get_the_excerpt</code><span class="sig-paren">(</span><em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Highlighter::on_get_the_excerpt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return search results snippets.</p>
@@ -375,7 +375,7 @@ the preg separator, eg. #term#u .</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Highlighter::on_the_content">
 <code class="sig-name descname">on_the_content</code><span class="sig-paren">(</span><em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Highlighter::on_the_content" title="Permalink to this definition">¶</a></dt>
 <dd><p>Highlight the search terms in the post.</p>
@@ -410,17 +410,17 @@ nodes only.</p>
 <div class="section" id="plugins-cap-meta-search-class-meta-search-widget-php">
 <h2><a class="toc-backref" href="#id4">plugins/cap-meta-search/class-meta-search-widget.php</a><a class="headerlink" href="#plugins-cap-meta-search-class-meta-search-widget-php" title="Permalink to this headline">¶</a></h2>
 <p>Capitularia Meta Search search box widget</p>
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="class">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php class">
 <dt id="cceh\capitularia\meta_search\Widget">
 <em class="property">class </em><code class="sig-name descname">Widget</code><a class="headerlink" href="#cceh\capitularia\meta_search\Widget" title="Permalink to this definition">¶</a></dt>
 <dd><p>A metadata search box widget.</p>
-<dl class="attr">
+<dl class="php attr">
 <dt id="cceh\capitularia\meta_search\Widget::$$title">
 <em class="property">property </em><code class="sig-name descname">$title</code><a class="headerlink" href="#cceh\capitularia\meta_search\Widget::$$title" title="Permalink to this definition">¶</a></dt>
 <dd><p>The widget title (caption)</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Widget::__construct">
 <code class="sig-name descname">__construct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Widget::__construct" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constructor</p>
@@ -431,7 +431,7 @@ nodes only.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Widget::setup">
 <code class="sig-name descname">setup</code><span class="sig-paren">(</span><em class="sig-param">$dummy_args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Widget::setup" title="Permalink to this definition">¶</a></dt>
 <dd><p>Setup the widget</p>
@@ -448,7 +448,7 @@ nodes only.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Widget::echo_options">
 <code class="sig-name descname">echo_options</code><span class="sig-paren">(</span><em class="sig-param">$items</em>, <em class="sig-param">$selected</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Widget::echo_options" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the &lt;option&gt;s of a &lt;select&gt;.</p>
@@ -467,7 +467,7 @@ in a sensible way for humans, eg. ‘BK 2’ before ‘BK 12’</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Widget::echo_select">
 <code class="sig-name descname">echo_select</code><span class="sig-paren">(</span><em class="sig-param">$caption</em>, <em class="sig-param">$id</em>, <em class="sig-param">$items</em>, <em class="sig-param">$tooltip</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Widget::echo_select" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo a HTML &lt;select&gt; element with options.</p>
@@ -486,7 +486,7 @@ in a sensible way for humans, eg. ‘BK 2’ before ‘BK 12’</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Widget::echo_places_tree">
 <code class="sig-name descname">echo_places_tree</code><span class="sig-paren">(</span><em class="sig-param">$caption</em>, <em class="sig-param">$id</em>, <em class="sig-param">$tooltip</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Widget::echo_places_tree" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo a HTML &lt;div&gt; element to contain a jstree of place names.</p>
@@ -504,7 +504,7 @@ in a sensible way for humans, eg. ‘BK 2’ before ‘BK 12’</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Widget::echo_input">
 <code class="sig-name descname">echo_input</code><span class="sig-paren">(</span><em class="sig-param">$caption</em>, <em class="sig-param">$id</em>, <em class="sig-param">$placeholder</em>, <em class="sig-param">$tooltip</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Widget::echo_input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo a text &lt;input&gt; field</p>
@@ -523,7 +523,7 @@ in a sensible way for humans, eg. ‘BK 2’ before ‘BK 12’</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Widget::widget">
 <code class="sig-name descname">widget</code><span class="sig-paren">(</span><em class="sig-param">$args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Widget::widget" title="Permalink to this definition">¶</a></dt>
 <dd><p>Output the widget.  Overrides the base class method.</p>
@@ -541,7 +541,7 @@ in a sensible way for humans, eg. ‘BK 2’ before ‘BK 12’</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Widget::update">
 <code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">$new_instance</em>, <em class="sig-param">$old_instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Widget::update" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update widget settings on save.  Overrides the base class method.</p>
@@ -562,7 +562,7 @@ in a sensible way for humans, eg. ‘BK 2’ before ‘BK 12’</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Widget::form">
 <code class="sig-name descname">form</code><span class="sig-paren">(</span><em class="sig-param">$instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Widget::form" title="Permalink to this definition">¶</a></dt>
 <dd><p>Outputs the widget options form on the admin page. Overrides the base
@@ -580,7 +580,7 @@ class method.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\Widget::the_option">
 <code class="sig-name descname">the_option</code><span class="sig-paren">(</span><em class="sig-param">$instance</em>, <em class="sig-param">$name</em>, <em class="sig-param">$caption</em>, <em class="sig-param">$placeholder</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\Widget::the_option" title="Permalink to this definition">¶</a></dt>
 <dd><p>Output one option field</p>
@@ -605,17 +605,17 @@ class method.</p>
 <div class="section" id="plugins-cap-meta-search-class-meta-search-php">
 <h2><a class="toc-backref" href="#id5">plugins/cap-meta-search/class-meta-search.php</a><a class="headerlink" href="#plugins-cap-meta-search-class-meta-search-php" title="Permalink to this headline">¶</a></h2>
 <p>Capitularia Meta Search</p>
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="class">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php class">
 <dt id="cceh\capitularia\meta_search\MetaSearch">
 <em class="property">class </em><code class="sig-name descname">MetaSearch</code><a class="headerlink" href="#cceh\capitularia\meta_search\MetaSearch" title="Permalink to this definition">¶</a></dt>
 <dd><p>A query manipulation class.</p>
-<dl class="attr">
+<dl class="php attr">
 <dt id="cceh\capitularia\meta_search\MetaSearch::$$json">
 <em class="property">property </em><code class="sig-name descname">$json</code><a class="headerlink" href="#cceh\capitularia\meta_search\MetaSearch::$$json" title="Permalink to this definition">¶</a></dt>
 <dd><p>The result returned by the App server</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\MetaSearch::on_pre_get_posts">
 <code class="sig-name descname">on_pre_get_posts</code><span class="sig-paren">(</span><em class="sig-param">$query</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\MetaSearch::on_pre_get_posts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs the meta query on the Capitularia VM server.</p>
@@ -638,7 +638,7 @@ information.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\MetaSearch::on_get_the_excerpt">
 <code class="sig-name descname">on_get_the_excerpt</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\MetaSearch::on_get_the_excerpt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the excerpt for the search result</p>
@@ -653,7 +653,7 @@ information.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="php method">
 <dt id="cceh\capitularia\meta_search\MetaSearch::on_get_search_query">
 <code class="sig-name descname">on_get_search_query</code><span class="sig-paren">(</span><em class="sig-param">$dummy_message</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\MetaSearch::on_get_search_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Format the contents of the search query variables.</p>
@@ -681,7 +681,7 @@ our widget.</p>
 <div class="section" id="plugins-cap-meta-search-functions-php">
 <h2><a class="toc-backref" href="#id6">plugins/cap-meta-search/functions.php</a><a class="headerlink" href="#plugins-cap-meta-search-functions-php" title="Permalink to this headline">¶</a></h2>
 <p>Capitularia Meta Search global functions</p>
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php function">
 <dt id="cceh\capitularia\meta_search\is_meta_search">
 <code class="sig-name descname">is_meta_search</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\is_meta_search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Should we perform a meta search?</p>
@@ -695,7 +695,7 @@ our widget.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php function">
 <dt id="cceh\capitularia\meta_search\is_highlight">
 <code class="sig-name descname">is_highlight</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\is_highlight" title="Permalink to this definition">¶</a></dt>
 <dd><p>Should we highlight search results?</p>
@@ -706,7 +706,7 @@ our widget.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php function">
 <dt id="cceh\capitularia\meta_search\ns">
 <code class="sig-name descname">ns</code><span class="sig-paren">(</span><em class="sig-param">$function_name</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\ns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add current namespace</p>
@@ -725,7 +725,7 @@ our widget.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php function">
 <dt id="cceh\capitularia\meta_search\sanitize">
 <code class="sig-name descname">sanitize</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\sanitize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sanitize a text filed.</p>
@@ -744,7 +744,7 @@ our widget.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php function">
 <dt id="cceh\capitularia\meta_search\get_capitulars">
 <code class="sig-name descname">get_capitulars</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\get_capitulars" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a list of all capitulars</p>
@@ -758,7 +758,7 @@ our widget.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php function">
 <dt id="cceh\capitularia\meta_search\on_init">
 <code class="sig-name descname">on_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\on_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Register the translations.</p>
@@ -769,7 +769,7 @@ our widget.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php function">
 <dt id="cceh\capitularia\meta_search\on_widgets_init">
 <code class="sig-name descname">on_widgets_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\on_widgets_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Register the widget with Wordpress.</p>
@@ -780,7 +780,7 @@ our widget.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php function">
 <dt id="cceh\capitularia\meta_search\on_query_vars">
 <code class="sig-name descname">on_query_vars</code><span class="sig-paren">(</span><em class="sig-param">$vars</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\on_query_vars" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add our custom HTTP query vars</p>
@@ -799,7 +799,7 @@ our widget.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php function">
 <dt id="cceh\capitularia\meta_search\on_cap_meta_search_the_permalink">
 <code class="sig-name descname">on_cap_meta_search_the_permalink</code><span class="sig-paren">(</span><em class="sig-param">$permalink</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\on_cap_meta_search_the_permalink" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the permalink for the search result</p>
@@ -820,7 +820,7 @@ if followed.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php function">
 <dt id="cceh\capitularia\meta_search\on_enqueue_scripts">
 <code class="sig-name descname">on_enqueue_scripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\on_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enqueue front side scripts and styles</p>
@@ -831,7 +831,7 @@ if followed.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\meta_search"></span><dl class="php function">
 <dt id="cceh\capitularia\meta_search\on_admin_enqueue_scripts">
 <code class="sig-name descname">on_admin_enqueue_scripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\meta_search\on_admin_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enqueue admin side scripts and styles</p>
@@ -843,19 +843,19 @@ if followed.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-plugins/meta-search"></span><div class="section" id="plugins-meta-search">
+<span class="target" id="module-plugins-meta-search"><span id="module-plugins/meta-search"></span></span><div class="section" id="plugins-meta-search">
 <h2><a class="toc-backref" href="#id7">plugins/meta-search</a><a class="headerlink" href="#plugins-meta-search" title="Permalink to this headline">¶</a></h2>
 <p>File: plugins/cap-meta-search/src/js/front.js</p>
 <p>The meta search applet.</p>
-<dl class="function">
-<dt id="plugins/meta-search.help_init">
-<code class="sig-prename descclassname">plugins/meta-search.</code><code class="sig-name descname">help_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plugins/meta-search.help_init" title="Permalink to this definition">¶</a></dt>
+<dl class="js function">
+<dt id="plugins-meta-search.help_init">
+<span id="plugins/meta-search.help_init"></span><code class="sig-prename descclassname">plugins/meta-search.</code><code class="sig-name descname">help_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plugins-meta-search.help_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the help button in the widget.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="plugins/meta-search.places_tree_init">
-<code class="sig-prename descclassname">plugins/meta-search.</code><code class="sig-name descname">places_tree_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plugins/meta-search.places_tree_init" title="Permalink to this definition">¶</a></dt>
+<dl class="js function">
+<dt id="plugins-meta-search.places_tree_init">
+<span id="plugins/meta-search.places_tree_init"></span><code class="sig-prename descclassname">plugins/meta-search.</code><code class="sig-name descname">places_tree_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plugins-meta-search.places_tree_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the places tree view in the widget.</p>
 </dd></dl>
 

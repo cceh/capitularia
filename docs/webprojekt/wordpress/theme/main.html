@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -128,13 +128,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../vm/app_server.html#module-data_server">data_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../vm/app_server.html#module-collatex_server">collatex_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../vm/app_server.html#module-geo_server">geo_server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../vm/app_server.html#module-tile_server">tile_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../vm/app_server.html#tile-server">tile_server</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../vm/database.html">Database Structure</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../vm/database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../vm/database.html#schema-gis">Schema <em>gis:</em></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../vm/database.html#module-db">db.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../vm/database.html#db-py">db.py</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../vm/transformations.html">XSLT Transformations</a><ul>
@@ -253,7 +253,7 @@
 <p>Capitularia Theme functions-include.php file</p>
 <p>This file only declares symbols (classes, functions, constants) in accordance
 with PSR-2.</p>
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\ns">
 <code class="sig-name descname">ns</code><span class="sig-paren">(</span><em class="sig-param">$function_name</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\ns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add current namespace</p>
@@ -272,7 +272,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\get_slug_root">
 <code class="sig-name descname">get_slug_root</code><span class="sig-paren">(</span><em class="sig-param">$page_id</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_slug_root" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the first path component of the slug.</p>
@@ -292,7 +292,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\get_parent_path">
 <code class="sig-name descname">get_parent_path</code><span class="sig-paren">(</span><em class="sig-param">$path</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_parent_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the path of the parent page.</p>
@@ -311,7 +311,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\echo_attribute">
 <code class="sig-name descname">echo_attribute</code><span class="sig-paren">(</span><em class="sig-param">$name</em>, <em class="sig-param">$value</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\echo_attribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo a name=”value” pair.</p>
@@ -328,7 +328,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\echo_theme_image">
 <code class="sig-name descname">echo_theme_image</code><span class="sig-paren">(</span><em class="sig-param">$img</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\echo_theme_image" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo a src=”img” pair.</p>
@@ -345,7 +345,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\get_permalink_a">
 <code class="sig-name descname">get_permalink_a</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_permalink_a" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an opening &lt;a&gt; containing a permalink to the current page.</p>
@@ -360,7 +360,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\get_main_start">
 <code class="sig-name descname">get_main_start</code><span class="sig-paren">(</span><em class="sig-param">$class</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_main_start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the tag to start the main section.</p>
@@ -376,7 +376,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\get_main_end">
 <code class="sig-name descname">get_main_end</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_main_end" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the tag to end the main section.</p>
@@ -387,7 +387,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\get_sidebar_start">
 <code class="sig-name descname">get_sidebar_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_sidebar_start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the tag to start the sideabr section.</p>
@@ -398,7 +398,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\get_sidebar_end">
 <code class="sig-name descname">get_sidebar_end</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_sidebar_end" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the tag to end the sidebar section.</p>
@@ -409,7 +409,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\get_content_start">
 <code class="sig-name descname">get_content_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_content_start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the tag to start the content section.</p>
@@ -420,7 +420,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\get_content_end">
 <code class="sig-name descname">get_content_end</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_content_end" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the tag to end the content section.</p>
@@ -431,7 +431,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_enqueue_scripts">
 <code class="sig-name descname">on_enqueue_scripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enqueue scripts and CSS</p>
@@ -444,7 +444,7 @@ with PSR-2.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_admin_enqueue_scripts">
 <code class="sig-name descname">on_admin_enqueue_scripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_admin_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enqueue admin scripts and CSS</p>
@@ -458,7 +458,7 @@ no bootstrap because it breaks too many things.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_wp_title">
 <code class="sig-name descname">on_wp_title</code><span class="sig-paren">(</span><em class="sig-param">$title</em>, <em class="sig-param">$sep</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_wp_title" title="Permalink to this definition">¶</a></dt>
 <dd><p>Customize &lt;head&gt; &lt;title&gt;</p>
@@ -482,7 +482,7 @@ else:    “[Name of page] | Capitularia”</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_the_title">
 <code class="sig-name descname">on_the_title</code><span class="sig-paren">(</span><em class="sig-param">$title</em>, <em class="sig-param">$post_ID</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_the_title" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mark wiki post titles with “Wiki:”</p>
@@ -502,7 +502,7 @@ else:    “[Name of page] | Capitularia”</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_body_class">
 <code class="sig-name descname">on_body_class</code><span class="sig-paren">(</span><em class="sig-param">$classes</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_body_class" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a &lt;body&gt; class.</p>
@@ -523,7 +523,7 @@ we are in.  Eg.: adds class=”cap-slug-mss” in the /mss/ section of the site.
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_init">
 <code class="sig-name descname">on_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the theme.</p>
@@ -534,7 +534,7 @@ we are in.  Eg.: adds class=”cap-slug-mss” in the /mss/ section of the site.
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_dropdown_pages_args">
 <code class="sig-name descname">on_dropdown_pages_args</code><span class="sig-paren">(</span><em class="sig-param">$dropdown_args</em>, <em class="sig-param">$dummy_post</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_dropdown_pages_args" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add private/draft/future/pending pages to page parent dropdown.</p>
@@ -556,7 +556,7 @@ other pages also.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\translate_month_year">
 <code class="sig-name descname">translate_month_year</code><span class="sig-paren">(</span><em class="sig-param">$month_year</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\translate_month_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>Translate the archive widget month names</p>
@@ -575,7 +575,7 @@ other pages also.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\fix_bk_nr">
 <code class="sig-name descname">fix_bk_nr</code><span class="sig-paren">(</span><em class="sig-param">$corresp</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\fix_bk_nr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Canonicalize the innumerable different ways the editors write a BK or Mordek no.</p>
@@ -608,7 +608,7 @@ mordek-nr-27</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\bk_to_permalink">
 <code class="sig-name descname">bk_to_permalink</code><span class="sig-paren">(</span><em class="sig-param">$corresp</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\bk_to_permalink" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the Capitular page url corresponding to a BK or Mordek No.</p>
@@ -629,7 +629,7 @@ eg. pre814/ or ldf/ or post840/ …</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_do_parse_request">
 <code class="sig-name descname">on_do_parse_request</code><span class="sig-paren">(</span><em class="sig-param">$do_parse</em>, <em class="sig-param">$wp</em>, <em class="sig-param">$extra_query_vars</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_do_parse_request" title="Permalink to this definition">¶</a></dt>
 <dd><p>Redirector for Capitulary pages</p>
@@ -659,7 +659,7 @@ capitulary page is in.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_login_redirect">
 <code class="sig-name descname">on_login_redirect</code><span class="sig-paren">(</span><em class="sig-param">$redirect_to</em>, <em class="sig-param">$requested_redirect_to</em>, <em class="sig-param">$user</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_login_redirect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Redirect the user to the current page after login</p>
@@ -683,7 +683,7 @@ capitulary page is in.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_registered_post_type">
 <code class="sig-name descname">on_registered_post_type</code><span class="sig-paren">(</span><em class="sig-param">$post_type</em>, <em class="sig-param">$post_type_object</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_registered_post_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>HACK! make the “WP Help” wiki plugin’s post type searchable</p>
@@ -700,7 +700,7 @@ capitulary page is in.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_pre_get_posts">
 <code class="sig-name descname">on_pre_get_posts</code><span class="sig-paren">(</span><em class="sig-param">$query</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_pre_get_posts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search only wiki pages if search string contains ‘wiki:’</p>
@@ -716,7 +716,7 @@ capitulary page is in.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\cap_rest_user_info">
 <code class="sig-name descname">cap_rest_user_info</code><span class="sig-paren">(</span><em class="sig-param">$request</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\cap_rest_user_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>REST endpoint to get user information from auth cookie</p>
@@ -740,7 +740,7 @@ capitulary page is in.</p>
 <p>This file executes only logic with side-effects in accordance with PSR-2.
 The functions are defined in
 <a class="reference internal" href="#module-themes.Capitularia.functions-include" title="themes.Capitularia.functions-include"><code class="xref py py-mod docutils literal notranslate"><span class="pre">function-includes.php</span></code></a>.</p>
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="const">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php const">
 <dt id="cceh\capitularia\theme\IMAGE_SERVER_URL">
 <em class="property">constant </em><code class="sig-name descname">IMAGE_SERVER_URL</code><a class="headerlink" href="#cceh\capitularia\theme\IMAGE_SERVER_URL" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘<a class="reference external" href="http://images.cceh.uni-koeln.de/capitularia/">http://images.cceh.uni-koeln.de/capitularia/</a>’</p>
@@ -783,7 +783,7 @@ The functions are defined in
 <h2><a class="toc-backref" href="#id13">themes/Capitularia/shortcodes.php</a><a class="headerlink" href="#themes-capitularia-shortcodes-php" title="Permalink to this headline">¶</a></h2>
 <p>Capitularia Theme shortcodes.php file</p>
 <p>Define actions for various shortcodes.</p>
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_shortcode_logged_in">
 <code class="sig-name descname">on_shortcode_logged_in</code><span class="sig-paren">(</span><em class="sig-param">$dummy_atts</em>, <em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_shortcode_logged_in" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the logged_in shortcode.</p>
@@ -807,7 +807,7 @@ The functions are defined in
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_shortcode_logged_out">
 <code class="sig-name descname">on_shortcode_logged_out</code><span class="sig-paren">(</span><em class="sig-param">$dummy_atts</em>, <em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_shortcode_logged_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the logged_out shortcode.</p>
@@ -831,7 +831,7 @@ The functions are defined in
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_shortcode_cap_image_server">
 <code class="sig-name descname">on_shortcode_cap_image_server</code><span class="sig-paren">(</span><em class="sig-param">$atts</em>, <em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_shortcode_cap_image_server" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the cap_image_server shortcode.</p>
@@ -853,7 +853,7 @@ logged in.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\get_page_status_in_cache">
 <code class="sig-name descname">get_page_status_in_cache</code><span class="sig-paren">(</span><em class="sig-param">$path</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_page_status_in_cache" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make sure the status of a page is in the cache.</p>
@@ -876,7 +876,7 @@ saving hundreds of queries.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\if_status">
 <code class="sig-name descname">if_status</code><span class="sig-paren">(</span><em class="sig-param">$atts</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\if_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find out the status of a page.</p>
@@ -895,13 +895,13 @@ saving hundreds of queries.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\get_transcribed_in_cache">
 <code class="sig-name descname">get_transcribed_in_cache</code><span class="sig-paren">(</span><em class="sig-param">$cap_id</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_transcribed_in_cache" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cache a list of all manuscripts with a transcription of capitular cap_id</p>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_shortcode_if_status">
 <code class="sig-name descname">on_shortcode_if_status</code><span class="sig-paren">(</span><em class="sig-param">$atts</em>, <em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_shortcode_if_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the if_status shortcode.</p>
@@ -927,7 +927,7 @@ saving hundreds of queries.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_shortcode_if_not_status">
 <code class="sig-name descname">on_shortcode_if_not_status</code><span class="sig-paren">(</span><em class="sig-param">$atts</em>, <em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_shortcode_if_not_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the if_not_status shortcode.</p>
@@ -953,7 +953,7 @@ saving hundreds of queries.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\if_visible">
 <code class="sig-name descname">if_visible</code><span class="sig-paren">(</span><em class="sig-param">$path</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\if_visible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the current user can see a page.</p>
@@ -973,7 +973,7 @@ saving hundreds of queries.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_shortcode_if_visible">
 <code class="sig-name descname">on_shortcode_if_visible</code><span class="sig-paren">(</span><em class="sig-param">$atts</em>, <em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_shortcode_if_visible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the if_visible shortcode.</p>
@@ -1006,7 +1006,7 @@ the pages in the path attribute.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_shortcode_if_not_visible">
 <code class="sig-name descname">on_shortcode_if_not_visible</code><span class="sig-paren">(</span><em class="sig-param">$atts</em>, <em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_shortcode_if_not_visible" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the if_not_visible shortcode.</p>
@@ -1033,7 +1033,7 @@ of the pages in the path attribute.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_shortcode_if_transcribed">
 <code class="sig-name descname">on_shortcode_if_transcribed</code><span class="sig-paren">(</span><em class="sig-param">$atts</em>, <em class="sig-param">$content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_shortcode_if_transcribed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the if_transcribed shortcode.</p>
@@ -1058,7 +1058,7 @@ in the manuscript with the xml:id.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_shortcode_current_date">
 <code class="sig-name descname">on_shortcode_current_date</code><span class="sig-paren">(</span><em class="sig-param">$atts</em>, <em class="sig-param">$dummy_content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_shortcode_current_date" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the current_date shortcode.</p>
@@ -1087,7 +1087,7 @@ representation for the current locale without the time.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_shortcode_permalink">
 <code class="sig-name descname">on_shortcode_permalink</code><span class="sig-paren">(</span><em class="sig-param">$dummy_atts</em>, <em class="sig-param">$dummy_content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_shortcode_permalink" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the permalink shortcode.</p>
@@ -1115,7 +1115,7 @@ representation for the current locale without the time.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="function">
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_shortcode_cite_as">
 <code class="sig-name descname">on_shortcode_cite_as</code><span class="sig-paren">(</span><em class="sig-param">$atts</em>, <em class="sig-param">$dummy_content</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_shortcode_cite_as" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add the cite_as shortcode.</p>
@@ -1145,37 +1145,37 @@ representation for the current locale without the time.</p>
 <p>Capitularia Theme sidebars.php file</p>
 <p>Register the sidebars for various page types.</p>
 </div>
-<span class="target" id="module-themes/capitularia"></span><div class="section" id="themes-capitularia">
+<span class="target" id="module-themes-capitularia"><span id="module-themes/capitularia"></span></span><div class="section" id="themes-capitularia">
 <h2><a class="toc-backref" href="#id15">themes/capitularia</a><a class="headerlink" href="#themes-capitularia" title="Permalink to this headline">¶</a></h2>
 <p>File: themes/Capitularia/src/js/custom.js</p>
 <p>This file contains the Javascript for the Capitularia theme.</p>
-<dl class="function">
-<dt id="themes/capitularia.initBackToTop">
-<code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initBackToTop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes/capitularia.initBackToTop" title="Permalink to this definition">¶</a></dt>
+<dl class="js function">
+<dt id="themes-capitularia.initBackToTop">
+<span id="themes/capitularia.initBackToTop"></span><code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initBackToTop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initBackToTop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the back to top link: on click do a smooth scroll to the top of the page.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="themes/capitularia.initSmoothScrollLinks">
-<code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initSmoothScrollLinks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes/capitularia.initSmoothScrollLinks" title="Permalink to this definition">¶</a></dt>
+<dl class="js function">
+<dt id="themes-capitularia.initSmoothScrollLinks">
+<span id="themes/capitularia.initSmoothScrollLinks"></span><code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initSmoothScrollLinks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initSmoothScrollLinks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize all links on the page to do a smooth scroll to their respective targets.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="themes/capitularia.initResetForm">
-<code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initResetForm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes/capitularia.initResetForm" title="Permalink to this definition">¶</a></dt>
+<dl class="js function">
+<dt id="themes-capitularia.initResetForm">
+<span id="themes/capitularia.initResetForm"></span><code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initResetForm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initResetForm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize reset buttons to reset input and select controls on the parent form.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="themes/capitularia.initFootnoteTooltips">
-<code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initFootnoteTooltips</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes/capitularia.initFootnoteTooltips" title="Permalink to this definition">¶</a></dt>
+<dl class="js function">
+<dt id="themes-capitularia.initFootnoteTooltips">
+<span id="themes/capitularia.initFootnoteTooltips"></span><code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initFootnoteTooltips</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initFootnoteTooltips" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the footnote refs, ie. the ‘*’, to open a popup on mouse hover. The popup contains the footnote text.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="themes/capitularia.initLegend">
-<code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initLegend</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes/capitularia.initLegend" title="Permalink to this definition">¶</a></dt>
+<dl class="js function">
+<dt id="themes-capitularia.initLegend">
+<span id="themes/capitularia.initLegend"></span><code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initLegend</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initLegend" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the legend slide-out. Make the legend slide out (and back in) if the user clicks on the respective tab.</p>
 </dd></dl>
 

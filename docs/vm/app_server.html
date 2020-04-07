@@ -21,11 +21,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -128,13 +128,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-data_server">data_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-collatex_server">collatex_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-geo_server">geo_server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-tile_server">tile_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tile-server">tile_server</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="database.html">Database Structure</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
 <li class="toctree-l3"><a class="reference internal" href="database.html#schema-gis">Schema <em>gis:</em></a></li>
-<li class="toctree-l3"><a class="reference internal" href="database.html#module-db">db.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#db-py">db.py</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="transformations.html">XSLT Transformations</a><ul>
@@ -223,68 +223,68 @@
 <span id="data-server"></span><h2>data_server<a class="headerlink" href="#module-data_server" title="Permalink to this headline">¶</a></h2>
 <p>Data API server for Capitularia.</p>
 <p>REST Interface to perform various database queries</p>
-<dl class="function">
+<dl class="py function">
 <dt id="data_server.capitularies">
 <code class="sig-name descname">capitularies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.capitularies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all capitularies.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_server.capitulary_manuscripts_json">
-<code class="sig-name descname">capitulary_manuscripts_json</code><span class="sig-paren">(</span><em class="sig-param">cap_id</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.capitulary_manuscripts_json" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">capitulary_manuscripts_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cap_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.capitulary_manuscripts_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all manuscripts containing capitulary cap_id.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_server.chapter_manuscripts">
-<code class="sig-name descname">chapter_manuscripts</code><span class="sig-paren">(</span><em class="sig-param">cap_id</em>, <em class="sig-param">chapter</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.chapter_manuscripts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">chapter_manuscripts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cap_id</span></em>, <em class="sig-param"><span class="n">chapter</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.chapter_manuscripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all manuscripts with chapter</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_server.chapters">
-<code class="sig-name descname">chapters</code><span class="sig-paren">(</span><em class="sig-param">cap_id</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.chapters" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">chapters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cap_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.chapters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all chapters in capitulary cap_id.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_server.corresp_manuscripts">
-<code class="sig-name descname">corresp_manuscripts</code><span class="sig-paren">(</span><em class="sig-param">corresp</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.corresp_manuscripts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">corresp_manuscripts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">corresp</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.corresp_manuscripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all manuscripts with corresp.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="data_server.dataBlueprint">
 <em class="property">class </em><code class="sig-name descname">dataBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.dataBlueprint" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_server.fstat">
 <code class="sig-name descname">fstat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.fstat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a filter on page status.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_server.highlight">
-<code class="sig-name descname">highlight</code><span class="sig-paren">(</span><em class="sig-param">conn</em>, <em class="sig-param">text</em>, <em class="sig-param">fulltext</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.highlight" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">highlight</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conn</span></em>, <em class="sig-param"><span class="n">text</span></em>, <em class="sig-param"><span class="n">fulltext</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.highlight" title="Permalink to this definition">¶</a></dt>
 <dd><p>Snippet and highlight</p>
 <p>Produce snippets out of the text around any of the words in fulltext and
 highlight those words in the snippets.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_server.manuscripts">
 <code class="sig-name descname">manuscripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.manuscripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all manuscripts</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_server.places_json">
-<code class="sig-name descname">places_json</code><span class="sig-paren">(</span><em class="sig-param">geo_id=None</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.places_json" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">places_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">geo_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.places_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return hierarchy of known places for the meta-search box.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="data_server.query_manuscripts">
 <code class="sig-name descname">query_manuscripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.query_manuscripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return manuscripts according to query.</p>
@@ -296,7 +296,7 @@ highlight those words in the snippets.</p>
 <p>This module implements the CollateX API for the Capitularia Application Server.</p>
 <div class="section" id="endpoints">
 <h3>Endpoints<a class="headerlink" href="#endpoints" title="Permalink to this headline">¶</a></h3>
-<dl class="post">
+<dl class="http post">
 <dt id="post--collatex-collate">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/collatex/collate</code><a class="headerlink" href="#post--collatex-collate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collate versions of one chapter taken from a set of witnesses.</p>
@@ -353,31 +353,31 @@ Retry later or with less witnesses.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="collatex_server.CollatexError">
-<em class="property">exception </em><code class="sig-name descname">CollatexError</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.CollatexError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-name descname">CollatexError</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.CollatexError" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="collatex_server.collate">
 <code class="sig-name descname">collate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.collate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements the /collatex/collate endpoint.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="collatex_server.collatexBlueprint">
 <em class="property">class </em><code class="sig-name descname">collatexBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.collatexBlueprint" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="collatex_server.normalize_with_patterns">
-<code class="sig-name descname">normalize_with_patterns</code><span class="sig-paren">(</span><em class="sig-param">patterns</em>, <em class="sig-param">text</em>, <em class="sig-param">whole_words=False</em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.normalize_with_patterns" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">normalize_with_patterns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">patterns</span></em>, <em class="sig-param"><span class="n">text</span></em>, <em class="sig-param"><span class="n">whole_words</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.normalize_with_patterns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Normalize text using a list of patterns</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="collatex_server.to_collatex">
-<code class="sig-name descname">to_collatex</code><span class="sig-paren">(</span><em class="sig-param">id_</em>, <em class="sig-param">text</em>, <em class="sig-param">normalizations=None</em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.to_collatex" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">to_collatex</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_</span></em>, <em class="sig-param"><span class="n">text</span></em>, <em class="sig-param"><span class="n">normalizations</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.to_collatex" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the input to Collate-X</p>
 <p>Builds the representation for one witness.  Returns an object that must be
 combined into the witnesses array.</p>
@@ -420,104 +420,80 @@ Normalizations applied to each word.</p>
 <div class="section" id="module-geo_server">
 <span id="geo-server"></span><h2>geo_server<a class="headerlink" href="#module-geo_server" title="Permalink to this headline">¶</a></h2>
 <p>Geo queries API server for Capitularia.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="geo_server.capitularies_csv">
 <code class="sig-name descname">capitularies_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.capitularies_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return capitularies in geometry as CSV response.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="geo_server.capitularies_json">
 <code class="sig-name descname">capitularies_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.capitularies_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return capitularies in geometry as geojson response.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="geo_server.extent_json">
 <code class="sig-name descname">extent_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.extent_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the max. extent of all data points.</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="geo_server.geoBlueprint">
 <em class="property">class </em><code class="sig-name descname">geoBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.geoBlueprint" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="geo_server.info_json">
 <code class="sig-name descname">info_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.info_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Info endpoint: send information about server and available layers.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="geo_server.msparts_csv">
 <code class="sig-name descname">msparts_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.msparts_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return location of manuscript parts as CSV response.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="geo_server.msparts_json">
 <code class="sig-name descname">msparts_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.msparts_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return location of manuscript parts as geojson response.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="geo_server.mss_csv">
 <code class="sig-name descname">mss_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.mss_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return location of manuscripts as CSV response.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="geo_server.mss_json">
 <code class="sig-name descname">mss_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.mss_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return location of manuscripts as geojson response.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="geo_server.places_capitularies_json">
 <code class="sig-name descname">places_capitularies_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.places_capitularies_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all places along with capitularies count.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="geo_server.places_msparts_json">
 <code class="sig-name descname">places_msparts_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.places_msparts_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all places along with ms_part count.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="geo_server.places_mss_json">
 <code class="sig-name descname">places_mss_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.places_mss_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all places along with mss count.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-tile_server">
-<span id="tile-server"></span><h2>tile_server<a class="headerlink" href="#module-tile_server" title="Permalink to this headline">¶</a></h2>
-<p>A tile server for Capitularia.</p>
-<p>This is a simple OpenStreetMap-style tile server using mapnik to render the
-tiles.</p>
-<p>The probability of the client requesting adjacent tiles is very high.  To speed
-things up, we ask mapnik to render a bigger “metatile”, which we cut into tiles
-and then cache the tiles.  We also add some padding around the metatile, which
-helps avoiding ugly label placement when a label is near a metatile border.</p>
-<dl class="function">
-<dt id="tile_server.info_json">
-<code class="sig-name descname">info_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tile_server.info_json" title="Permalink to this definition">¶</a></dt>
-<dd><p>Info endpoint: send information about server and available layers.</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="tile_server.tileBlueprint">
-<em class="property">class </em><code class="sig-name descname">tileBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#tile_server.tileBlueprint" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="tile_server.tile_png">
-<code class="sig-name descname">tile_png</code><span class="sig-paren">(</span><em class="sig-param">mapid</em>, <em class="sig-param">zoom</em>, <em class="sig-param">xtile</em>, <em class="sig-param">ytile</em><span class="sig-paren">)</span><a class="headerlink" href="#tile_server.tile_png" title="Permalink to this definition">¶</a></dt>
-<dd><p>Tile endpoint: serve a tile as PNG.</p>
-</dd></dl>
-
+<div class="section" id="tile-server">
+<h2>tile_server<a class="headerlink" href="#tile-server" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
