@@ -289,7 +289,7 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
     <!-- Generate the footnote decorations, then call auto-note mode to generate
          the footnote body. -->
     <xsl:text>&#x0a;</xsl:text>
-    <div id="{generate-id ()}-content" class="annotation-content">
+    <div id="{@xml:id}-content" class="annotation-content">
       <div class="annotation-text">
         <xsl:apply-templates />
       </div>

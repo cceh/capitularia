@@ -52,7 +52,7 @@ $(CACHE_DIR)/lists/changes.html : $(CACHE_DIR)/lists/corpus.xml changes.xsl
 	$(SAXON) -s:$< -xsl:changes.xsl -o:$@ prefix=A
 
 $(CACHE_DIR)/lists/changes90.html : $(CACHE_DIR)/lists/corpus.xml changes.xsl
-	$(SAXON) -s:$< -xsl:changes.xsl -o:$@ scope=P90D prefix=B
+	$(SAXON) -s:$< -xsl:changes.xsl -o:$@ prefix=B scope=P90D
 
 $(CACHE_DIR)/lists/downloads.html : $(CACHE_DIR)/lists/corpus.xml downloads.xsl
 	$(SAXON) -s:$< -xsl:downloads.xsl -o:$@
@@ -93,10 +93,10 @@ $(CACHE_DIR)/mss/cte-137.html : $(MSS_DIR)/texts/137.xml base_variables.xsl comm
 #
 
 # $(CACHE_DIR)/lists/corpus.xml : $(MSS_DIR)/%.xml corpus.xsl
-# $(CACHE_DIR)/lists/mss-capit.html : $(MSS_DIR)/lists/mss_by_cap.xml mss-capit.xsl common-3.xsl common-html.xsl config-3.xsl
 # $(CACHE_DIR)/lists/mss-capit.html : $(MSS_DIR)/lists/manuscripts.xml mss-capit.xsl common-3.xsl common-html.xsl config-3.xsl
-# $(CACHE_DIR)/lists/mss-idno.html : $(CACHE_DIR)/lists/corpus.xml mss-idno.xsl common-3.xsl common-html.xsl config-3.xsl
-# $(CACHE_DIR)/lists/mss-idno.html : $(MSS_DIR)/lists/manuscripts.xml mss-idno.xsl common-3.xsl common-html.xsl config-3.xsl
+# $(CACHE_DIR)/lists/mss-capit.html : $(MSS_DIR)/lists/mss_by_cap.xml mss-capit.xsl common-3.xsl common-html.xsl config-3.xsl
+# $(CACHE_DIR)/lists/mss-idno.html : $(MSS_DIR)/lists/manuscripts.xml mss-idno.xsl common-html.xsl config-3.xsl common-3.xsl
+# $(CACHE_DIR)/lists/mss-idno.html : $(CACHE_DIR)/lists/corpus.xml mss-idno.xsl common-html.xsl config-3.xsl common-3.xsl
 # $(MSS_PRIV_DIR)/%-toc.xml : $(MSS_PRIV_DIR)/%.xml generate_toc.xsl
 
 #

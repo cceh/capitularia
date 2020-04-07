@@ -446,13 +446,13 @@ footnotes will be joined to the preceding word.
       <xsl:apply-templates />
     </note>
     <seg class="tei-note annotation annotation-{@type}" data-shortcuts="0"
-         data-note-id="{generate-id ()}-ref" />
+         data-note-id="{generate-id ()}" />
   </xsl:template>
 
   <xsl:template match="subst">
     <anchor xml:id="{generate-id ()}-ref" />
     <xsl:call-template name="generate-note"/>
-    <seg class="tei-subst" data-note-id="{generate-id ()}-ref">
+    <seg class="tei-subst" data-note-id="{generate-id ()}">
       <xsl:apply-templates select="del" />
       <xsl:apply-templates select="add" />
     </seg>
@@ -461,11 +461,11 @@ footnotes will be joined to the preceding word.
   <xsl:template match="choice">
     <anchor xml:id="{generate-id ()}-ref" />
     <xsl:call-template name="generate-note" />
-    <seg class="tei-choice"> <!-- data-note-id="{generate-id ()}-ref"> -->
+    <seg class="tei-choice"> <!-- data-note-id="{generate-id ()}"> -->
       <xsl:apply-templates select="expan" />
     </seg>
     <!-- FIXME: data-node-id moved here for bug compatibility (makes a leaner diff) -->
-    <seg class="tei-choice" data-note-id="{generate-id ()}-ref" />
+    <seg class="tei-choice" data-note-id="{generate-id ()}" />
 
     <xsl:apply-templates select="abbrev" mode="notes-only" />
     <xsl:apply-templates mode="auto-note" />
@@ -525,7 +525,7 @@ footnotes will be joined to the preceding word.
     </xsl:if>
     <seg class="tei-add">
       <xsl:if test="not (parent::subst)">
-        <xsl:attribute name="data-note-id" select="concat (generate-id (), '-ref')"/>
+        <xsl:attribute name="data-note-id" select="generate-id ()"/>
       </xsl:if>
       <xsl:choose>
         <xsl:when test="cap:is-later-hand (.)">
@@ -572,7 +572,7 @@ footnotes will be joined to the preceding word.
     </xsl:if>
     <seg class="tei-del">
       <xsl:if test="not (parent::subst)">
-        <xsl:attribute name="data-note-id" select="concat (generate-id (), '-ref')"/>
+        <xsl:attribute name="data-note-id" select="generate-id ()"/>
       </xsl:if>
       <xsl:choose>
         <xsl:when test="cap:is-later-hand (.)">
@@ -605,7 +605,7 @@ footnotes will be joined to the preceding word.
   <xsl:template match="mod">
     <anchor xml:id="{generate-id ()}-ref" />
     <xsl:call-template name="generate-note"/>
-    <seg class="tei-mod" data-note-id="{generate-id ()}-ref">
+    <seg class="tei-mod" data-note-id="{generate-id ()}">
       <xsl:call-template name="handle-rend">
         <xsl:with-param name="extra-class" select="'tei-mod'"/>
       </xsl:call-template>
@@ -616,7 +616,7 @@ footnotes will be joined to the preceding word.
   <xsl:template match="space">
     <anchor xml:id="{generate-id ()}-ref" />
     <xsl:call-template name="generate-note"/>
-    <seg class="tei-space" data-note-id="{generate-id ()}-ref">
+    <seg class="tei-space" data-note-id="{generate-id ()}">
       <xsl:text> - - - </xsl:text>
     </seg>
   </xsl:template>
@@ -624,7 +624,7 @@ footnotes will be joined to the preceding word.
   <xsl:template match="handShift">
     <anchor xml:id="{generate-id ()}-ref" />
     <xsl:call-template name="generate-note"/>
-    <seg class="tei-handShift" data-note-id="{generate-id ()}-ref" />
+    <seg class="tei-handShift" data-note-id="{generate-id ()}" />
   </xsl:template>
 
   <xsl:template match="unclear">
@@ -708,7 +708,7 @@ footnotes will be joined to the preceding word.
       <xsl:apply-templates />
     </note>
     <seg class="tei-note annotation annotation-{@type}" data-shortcuts="0"
-         data-note-id="{generate-id ()}-ref" />
+         data-note-id="{generate-id ()}" />
   </xsl:template>
 
   <xsl:template match="text ()" mode="notes-only">
