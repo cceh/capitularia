@@ -49,8 +49,9 @@
             }
 
             // only act on existing targets
+            let target = null;
             try {
-                const target = $ (href);
+                target = $ (href);
             } catch (e) {
                 return;
             }
