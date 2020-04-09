@@ -84,11 +84,18 @@ Target: lists $(CACHE_DIR)/lists/changes90.html
               </tr>
 
               <!-- loop on changes -->
-              <xsl:for-each select=".//revisionDesc/change[not (starts-with (., 'Datei erstellt'))]">
-                <tr>
-                  <td class='date'><xsl:value-of select="@when" /></td>
-                  <td class='what'><xsl:value-of select="." /></td>
-                </tr>
+              <xsl:for-each select=".//revisionDesc/change">
+                <xsl:choose>
+                  <xsl:when test="@when &lt;= $cutoff" />
+                  <xsl:when test="normalize-space (.) = ''" />
+                  <xsl:when test="starts-with (., 'Datei erstellt')" />
+                  <xsl:otherwise>
+                    <tr>
+                      <td class='date'><xsl:value-of select="@when" /></td>
+                      <td class='what'><xsl:value-of select="." /></td>
+                    </tr>
+                  </xsl:otherwise>
+                </xsl:choose>
               </xsl:for-each>
 
               <xsl:text>&#x0a;[/if_visible]&#x0a;</xsl:text>
