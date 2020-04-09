@@ -214,9 +214,17 @@
         <title>Badische Landesbibliothek</title>
         <caption>Badische Landesbibliothek</caption>
       </item>
+      <item key=".bmlonline.it">
+        <title>Biblioteca Medicea Laurenziana</title>
+        <caption>Biblioteca Medicea Laurenziana</caption>
+      </item>
       <item key="brbl-dl.library.yale.edu">
         <title>Beinecke Digital Collections</title>
         <caption>Beinecke Digital Collections</caption>
+      </item>
+      <item key=".bm-poitiers.fr">
+        <title>Médiathèque François Mitterrand</title>
+        <caption>Médiathèque François Mitterrand</caption>
       </item>
       <item key=".bnf.fr">
         <title>Gallica</title>
