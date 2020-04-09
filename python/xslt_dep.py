@@ -207,10 +207,12 @@ def recurse ():
     """ Pull in dependencies. """
 
     for row in g.query ("""
-            SELECT ?xsl ?dep WHERE {
+            SELECT ?xsl ?dep
+            WHERE {
                ?xsl a cap:xsl .
                ?xsl cap:depends ?dep .
             }
+            ORDER BY ?xsl ?dep
             """):
 
         read (deuri (row.dep), deps = True)
@@ -436,7 +438,7 @@ def render_makefile (filename):
             """):
 
             qq = g.query ("""
-                SELECT ?xsl WHERE {
+                SELECT DISTINCT ?xsl WHERE {
                    ?root cap:depends* ?xsl .
                 }
                 ORDER BY ?xsl
@@ -449,13 +451,12 @@ def render_makefile (filename):
                 'dep' : ''.join ([' ' + deuri (rrow.xsl) for rrow in qq]),
             }
 
+            params = sorted (g.objects (row.out, CAP.params))
             if str (row.version) == '1.0':
-                data['params'] = ''.join ([ ' --stringparam {} {}'.format (*(o.split ('=')))
-                                            for o in g.objects (row.out, CAP.params) ])
+                data['params'] = ''.join ([ ' --stringparam {} {}'.format (*(o.split ('='))) for o in params ])
                 fp.write ('{out} : {in}{dep}\n\t$(XSLTPROC){params} -o $@ {xsl} $<\n\n'.format (**data))
             else:
-                data['params'] = ''.join ([ ' {}'.format (o)
-                                            for o in g.objects (row.out, CAP.params) ])
+                data['params'] = ''.join ([ ' {}'.format (o) for o in params ])
                 fp.write ('{out} : {in}{dep}\n\t$(SAXON) -s:$< -xsl:{xsl} -o:$@{params}\n\n'.format (**data))
 
         # user requested to handle these manually (param: make=false)
@@ -470,13 +471,15 @@ def render_makefile (filename):
                ?xsl cap:inputs  ?inp .
                ?out cap:nomake  "true" .
             }
-            ORDER BY ?out
+            ORDER BY ?out ?inp
             """):
 
             qq = g.query ("""
-                SELECT ?xsl WHERE {
+                SELECT DISTINCT ?xsl
+                WHERE {
                    ?root cap:depends* ?xsl .
                 }
+                ORDER BY ?xsl
                 """, initBindings = { 'root': row.xsl })
 
             data = {
