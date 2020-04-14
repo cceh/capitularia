@@ -545,8 +545,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
 
          <milestone unit="capitulare" n="BK.156"/>
 
-         <ab type="meta-text" xml:id="vatikan-bav-reg-lat-417-51r-9" corresp="BK.156_2_inscriptio_c Ansegis.4_26bis_inscriptio_c"><add hand="X"><seg type="numDenom">Capitulum</seg> . <seg type="num" n="26">XXVI</seg> . <seg type="initial">Q</seg><unclear>ualit</unclear>er de statu suo pulsatus euindicet
-               libertatem suam</add></ab>
+         <ab type="meta-text" xml:id="vatikan-bav-reg-lat-417-51r-9" corresp="BK.156_2_inscriptio_c Ansegis.4_26bis_inscriptio_c">
+            <add hand="X"><seg type="numDenom">Capitulum</seg> . <seg type="num" n="26">XXVI</seg> . 
+               <seg type="initial">Q</seg><unclear>ualit</unclear>er de statu suo pulsatus euindicet
+               libertatem suam</add>
+         </ab>
 
          <anchor xml:id="capitulatio-finis"/>
 
@@ -555,9 +558,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
 
          <milestone unit="capitulare" n="BK.184"/>
 
-         <ab type="meta-text" xml:id="vatikan-bav-reg-lat-417-67v-3" corresp="BK.184_a" next="#vatikan-bav-reg-lat-417-67v-4_1"><date>ANNO SEXTO DECIMO REGNANTE DOM<lb break="no"/>NO NOSTRO HLUDUUUICO</date> * <lb/></ab>
+         <ab type="meta-text" xml:id="vatikan-bav-reg-lat-417-67v-3" corresp="BK.184_a" next="#vatikan-bav-reg-lat-417-67v-4_1">
+            <date>ANNO SEXTO DECIMO REGNANTE DOM<lb break="no"/>NO NOSTRO HLUDUUUICO</date> * <lb/></ab>
          <ab type="text" xml:id="vatikan-bav-reg-lat-417-67v-4" corresp="BK.184_a BK.184_b BK.186_inscriptio">
-            <milestone unit="span" corresp="BK.184_a" xml:id="vatikan-bav-reg-lat-417-67v-4_1" spanTo="#vatikan-bav-reg-lat-417-67v-4_2"/><seg type="initial">C</seg>onuentus
+            <milestone unit="span" corresp="BK.184_a" xml:id="vatikan-bav-reg-lat-417-67v-4_1" 
+               spanTo="#vatikan-bav-reg-lat-417-67v-4_2" prev="#vatikan-bav-reg-lat-417-67v-3"/>
+            <seg type="initial">C</seg>onuentus
             episcoporum debet fieri in quattuor locis . <choice>
                <abbr>ide</abbr>
                <expan>id est</expan>
@@ -583,10 +589,16 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
             . ut non teneatur * Deinde quid in ipsorum qui pastores <lb/>populi constituti sunt
             moribus conuersatione et actibus inue<lb break="no"/>nire possit . quod diuine regulę .
             atque auctoritati non con<lb break="no"/>cordet . simulque inuenire quae occasiones in
-            utroque ordine <lb/>id efficerint . ut a recto tramite deuiassent . ut quicquid <cb n="68r"/>ab eis de his causis inuentum fuerit . tam sollerti cura custodi<lb break="no"/>atur . ut nullatenus ad aliorum notitiam peruenire per<lb break="no"/>mittant . Ante tempus constitutum . et ideo unus notarius in<lb break="no"/>ter omnes
+            utroque ordine <lb/>id efficerint . ut a recto tramite deuiassent . ut quicquid <cb n="68r"/>
+            ab eis de his causis inuentum fuerit . tam sollerti cura custodi<lb break="no"/>atur . ut
+            nullatenus ad aliorum notitiam peruenire per<lb break="no"/>mittant . Ante tempus 
+            constitutum . et ideo unus notarius in<lb break="no"/>ter omnes
             eligatur . quicquid ipsi inuenerint . subtiliter <lb/>describat . et sub iuramento
-            constrictus fideliter conseruet * <lb/><anchor xml:id="vatikan-bav-reg-lat-417-67v-4_2"/>
-            <milestone unit="span" corresp="BK.184_b" spanTo="#vatikan-bav-reg-lat-417-67v-4_3"/>Volumus etiam ipsorum conuentum fieri . <date>octauas pentecosten</date> . <lb/>Missi
+            constrictus fideliter conseruet * <lb/>
+            <anchor xml:id="vatikan-bav-reg-lat-417-67v-4_2"/>
+            
+            <milestone unit="span" corresp="BK.184_b" spanTo="#vatikan-bav-reg-lat-417-67v-4_3"/>
+            Volumus etiam ipsorum conuentum fieri . <date>octauas pentecosten</date> . <lb/>Missi
             uero nostri suam incipiant legationem peragere <date>octauas <lb/>paschę</date> .
                <anchor xml:id="vatikan-bav-reg-lat-417-67v-4_3"/>
             <milestone unit="capitulare" n="BK.186"/>

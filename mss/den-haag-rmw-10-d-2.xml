@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Datei ist gerade in Bearbeitung! --><TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="den-haag-rmw-10-d-2">
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="den-haag-rmw-10-d-2">
    <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main" xml:lang="ger">Den Haag, Rijksmuseum Meermanno-Westreenianum, 10 D 2
-                  <note type="filiation"><ref target="berlin-sb-phill-1762" type="internal" subtype="mss">Berlin, Staatsbibliothek - Preußischer Kulturbesitz, Phill.
+                  <note type="filiation"><ref target="berlin-sb-phill-1762" type="internal"
+                     subtype="mss">Berlin, Staatsbibliothek - Preußischer Kulturbesitz, Phill.
                      1762</ref></note></title>
 
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek</title>
-            <title type="sub" xml:lang="eng">Manuscript description according to Mordek</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+               Transkription der foll. 1r-3v, 13v-17r, 22r-31v
+            <!--   , 34v-40v, 43r-v, 41r-42v-->
+            </title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+               transcription of fols 1r-3v, 13v-17r, 22r-31v
+               <!--, 34v-40v, 43r-v, 41r-42v-->
+            </title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -19,27 +27,29 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                <resp xml:lang="eng">Project lead</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
                </persName>
                <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
-                  Standard</resp>
+                  Standard (foll. 1r-3v = BK 254; 13v-17r = BK 255, 257; 22r-31v = BK 204, 205, 258,
+                  259; 34v-40v, 43r-v, 41r-42v = BK 206, 260, 261, 207, 295, 262)</resp>
                <resp xml:lang="eng">Transcription, description and text encoding according to the
-                  TEI P5 standard</resp>
+                  TEI P5 standard (fols 1r-3v = BK 254; 13v-17r = BK 255, 257; 22r-31v = BK 204,
+                  205, 258, 259; 34v-40v, 43r-v, 41r-42v = BK 206, 260, 261, 207, 295, 262)</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="DT">
+                  <forename>Dominik</forename>
+                  <surname>Trump</surname>
                </persName>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">First revision of transcription and additions</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
@@ -132,25 +142,30 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                   <title type="main">Den Haag, Rijksmuseum Meermanno-Westreenianum, 10 D 2 + Berlin,
                      Staatsbibliothek - Preußischer Kulturbesitz, Phill. 1762 </title>
                   <origDate notAfter="0875" notBefore="0851">9. Jh., 3. Viertel</origDate>
-                  <origPlace ref="http://www.geonames.org/2984114/reims.html http://d-nb.info/gnd/4103640-2 http://viaf.org/viaf/235513543">Reims</origPlace>
+                  <origPlace
+                     ref="http://www.geonames.org/2984114/reims.html http://d-nb.info/gnd/4103640-2 http://viaf.org/viaf/235513543"
+                     >Reims</origPlace>
                </head>
                <msContents>
                   <summary><p>Paläographische und codicologische Übereinstimmungen weisen darauf
-                        hin, daß die Codd. <ref type="internal" subtype="mss" target="berlin-sb-phill-1762">Berlin Phill. 1762</ref> und Den Haag 10 D
+                        hin, daß die Codd. <ref type="internal" subtype="mss"
+                           target="berlin-sb-phill-1762">Berlin Phill. 1762</ref> und Den Haag 10 D
                         2 als Teile einer einst zusammengehörenden Hs. zu gelten haben. Über ihre
-                        ursprüngliche Komposition gibt uns Cod. <ref type="internal" subtype="mss" target="paris-bn-lat-4638">Paris Lat. 4638</ref> Auskunft, in dem eine
+                        ursprüngliche Komposition gibt uns Cod. <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-4638">Paris Lat. 4638</ref> Auskunft, in dem eine
                         direkte oder mittelbare Kopie des Werkes erhalten sein dürfte (siehe dort
-                        auch Weiteres zur Abschrift des 16. Jh. <ref type="internal" subtype="mss" target="rom-bv-n-21">Rom Vallicell. N. 21</ref> und zur Verwandtschaft
+                        auch Weiteres zur Abschrift des 16. Jh. <ref type="internal" subtype="mss"
+                           target="rom-bv-n-21">Rom Vallicell. N. 21</ref> und zur Verwandtschaft
                         mit der Kapitulariensammlung von Beauvais).</p>
                      <p>Für die Sammlung des Haagensis, die man bislang immer separat betrachtete,
-                        erwog <hi rend="smallcaps">Classen,</hi> S. 28 ff. bzw. 271 ff., Entstehung
-                        am Hofe Karls des Kahlen. Dagegen meinte <hi rend="smallcaps">Hartmann,</hi>
-                        MGH Conc. 3, S. 12, die singuläre Rezeption der nicht eben
+                        erwog Classen, S. 28 ff. bzw. 271 ff., Entstehung am Hofe Karls des Kahlen. 
+                        Dagegen meinte Hartmann, MGH Conc. 3, S. 12, die singuläre Rezeption der nicht eben
                         königsfreundlichen Synode von Ver (a. 844) spreche eher gegen eine Abfassung
                         der Sammlung in der königlichen Kanzlei. Nach der Wiederentdeckung des
                         Gesamtkorpus werden unsere Überlegungen in folgende Richtung gelenkt.</p>
                      <p>Der Phillippicus 1762 ist offenbar der älteste Vertreter des
-                        Ansegis-Worms-Korpus der „Reimser Gruppe“ (siehe bei Cod. <ref type="internal" subtype="mss" target="paris-bn-lat-10758">Paris Lat.
+                        Ansegis-Worms-Korpus der „Reimser Gruppe“ (siehe bei Cod. <ref
+                           type="internal" subtype="mss" target="paris-bn-lat-10758">Paris Lat.
                            10758</ref>). Das hohe, dicht an die Entstehung der Texte heranreichende
                         Alter und die großzügige Form, in der die chronologisch angeordneten
                         Kapitularien Karls des Kahlen der Jahre 843 bis 856 im Haagensis auf viel
@@ -174,7 +189,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                   <msItem n="1">
                      <p><locus>1r-3v</locus>
                         <hi rend="italic">CAP. I-VI</hi> - <title corresp="BK.254">Conventus in
-                           villa Colonia</title> (Konzil von Coulaines) (a. 843): <hi rend="italic">INCIPIUNT CAPITULA QUAE ACTA SUNT ANNO IIII REGNI DOMNI KAROLI REGIS
+                           villa Colonia</title> (Konzil von Coulaines) (a. 843): <hi rend="italic"
+                           >INCIPIUNT CAPITULA QUAE ACTA SUNT ANNO IIII REGNI DOMNI KAROLI REGIS
                            DOMNI HLUDOUUICI IMPERATORIS FILII IN CONUENTU HABITO IN UILLA QUAE
                            DICITUR COLONIA QUAE ETIAM SUBSCRIPTIONE EIUSDEM PRINCIPIS ET EPISCOPORUM
                            AC CETERORUM FIDELIUM DEI CONFIRMATA FUERE CONSENSU UUARINI ET ALIORUM
@@ -188,7 +204,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                      <p>
                         <locus>3v-8r</locus>
                         <hi rend="italic">I-VI</hi> - <title corresp="BK.227">Synodus ad Theodonis
-                           villam habita</title> (Konzil von Yütz bei Diedenhofen) (a. 844): <hi rend="italic">SECUNTUR CAPITULA QUAE ACTA SUNT IN SINODO SECUS TEUDONIS
+                           villam habita</title> (Konzil von Yütz bei Diedenhofen) (a. 844): <hi
+                           rend="italic">SECUNTUR CAPITULA QUAE ACTA SUNT IN SINODO SECUS TEUDONIS
                            UILLAM HABITAE IN LOCO QUI DICITUR IUDICIUM - MENS. OCTBR. INDICT. VII.
                            Nauis sanctae ecclesiae ab exordio suo - qui loquitur in uobis</hi> (MGH
                         Capit. 2, Nr. 227, S. 113-116; MGH Conc. 3, S. 29-35); die Kanones der
@@ -211,8 +228,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                      <p>
                         <locus>13v-15v</locus>
                         <hi rend="italic">I-VIIII</hi> - <title corresp="BK.255">Capitulare
-                           Septimanicum apud Tolosam datum</title> (a. 844): <hi rend="italic">SEQUENTIA CAPITULA ACTA SUNT APUD TOLOSAM CIUITATEM - et absoluant</hi>
-                        (MGH Capit. 2, Nr. 255, S. 256 Z. 5-9, S. 256 Z. 15 - S. 258 Z. 8; R. <hi rend="smallcaps">D'Abadal i de Vinyals, </hi>Catalunya carolíngia 2: Els
+                           Septimanicum apud Tolosam datum</title> (a. 844): <hi rend="italic"
+                           >SEQUENTIA CAPITULA ACTA SUNT APUD TOLOSAM CIUITATEM - et absoluant</hi>
+                        (MGH Capit. 2, Nr. 255, S. 256 Z. 5-9, S. 256 Z. 15 - S. 258 Z. 8; 
+                        R. D'Abadal i de Vinyals, Catalunya carolíngia 2: Els
                         diplomes carolingis a Catalunya 2 [Institut d'estudis catalans. Memòries de
                         la Secció històrico-arquelògica 2,2, Barcelona 1952] S. 426-429; MGH Conc.
                         3, S. 19-23). </p>
@@ -241,7 +260,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                            villa Sparnaco a Karolo rege confirmata</title> (a. 846), ausgewählt nach
                         der foll. 16r-v kopierten Notitia de conciliorum canonibus in villa Sparnaco
                         a Karolo rege confirmatis (16 Kanones des Konzils von Meaux-Paris [a.
-                        845-846] : cc. 20-22, 24, 28, 37, 40, 43, 47, 53, 56, 57, 62, 67, 68 und 72;
+                        845-846]: cc. 20-22, 24, 28, 37, 40, 43, 47, 53, 56, 57, 62, 67, 68 und 72;
                         MGH Capit. 2, Nr. 293, S. 403 Z. 17 - S. 404 Z. 18, S. 404 Z. 23-26, S. 405
                         Z. 27 - S. 406 Z. 9, S. 407 Z. 13-17, S. 408 Z. 4-20, S. 408 Z. 34 - S. 409
                         Z. 12, S. 409 Z. 33 - S. 410 Z. 12, S. 411 Z. 3-16, S. 411 Z. 23 - S. 412 Z.
@@ -249,24 +268,31 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                         S. 94-96, 97, 99, 102, 103 f., 105, 107 f., 109 f., 110 f., 113 f., 116 f.,
                         118 f.). Ob sich die Vollform dieser Kanones schon auf Epernay zurückführt,
                         was ich für naheliegend halte, oder ob es sich um die ,Auffüllarbeit‘ eines
-                        späteren Redaktors zur oben zitierten Notitia handelt, wie <hi rend="smallcaps">Lot - </hi>
-                        <hi rend="smallcaps">Halphen,</hi> Le règne de Charles le Chauve, S. 162 ff.
+                        späteren Redaktors zur oben zitierten Notitia handelt, wie Lot - Halphen, 
+                        Le règne de Charles le Chauve, S. 162 ff.
                         vermuten, läßt sich schwer entscheiden. Abgesehen von den verwandten
-                        jüngeren Codd. <ref type="internal" subtype="mss" target="paris-bn-lat-4638">Paris Lat. 4638</ref>, Vatikan Vat. Lat. 4982 und <ref type="internal" subtype="mss" target="paris-bn-lat-1567">Paris Lat. 1567</ref>, die das
+                        jüngeren Codd. <ref type="internal" subtype="mss" target="paris-bn-lat-4638"
+                           >Paris Lat. 4638</ref>, Vatikan Vat. Lat. 4982 und <ref type="internal"
+                           subtype="mss" target="paris-bn-lat-1567">Paris Lat. 1567</ref>, die das
                         gleiche Exzerpt bieten (siehe jeweils am Ort), wird gern c. 22 über die
                         Leihe von Kirchengut übernommen; zu den MGH Conc. 3, S. 68 f. genannten
                         Codd. Paris Lat. 1568 (9. Jh., 2. Hälfte; zweimal), Vatikan Reg. Lat. 848
                         (9. Jh., 2. Hälfte) und Paris Lat. 2449 (9. Jh., Ende) kommen etwa die mit
                         dem Parisinus Lat. 2449 verwandten Codd. Leiden Voss. Lat. oct. 29 (9. Jh.,
                         3. Drittel), foll. 55r-56r, Vatikan Reg. Lat. 994 (9. Jh., 4. Viertel), fol.
-                        52r-v und <ref type="internal" subtype="mss" target="paris-bn-lat-3877">Paris Lat. 3877</ref> (9. Jh., 4. Viertel oder 9./10. Jh.), foll.
-                        70v-71r (siehe Anhang I, Nr. 21). </p>
+                        52r-v und <ref type="internal" subtype="mss" target="paris-bn-lat-3877"
+                           >Paris Lat. 3877</ref> (9. Jh., 4. Viertel oder 9./10. Jh.), foll.
+                        70v-71r (siehe Anhang I, Nr. 21).<!-- sk: hier leicht umformulieren und 
+                        einen Link auf Mordek 21 einfügen (https://capitularia.uni-koeln.de/capit/ldf/mordek-nr-21/), 
+                        also z.B. "siehe Mordek Nr. 21" oder "siehe Capitulum de nonis et decimi"?  -->                     
+                     </p>
                   </msItem>
                   <msItem n="9">
                      <p>
                         <locus>22r-24r</locus>
                         <hi rend="italic">I-XI, I-III</hi> - <title corresp="BK.204">Hlotharii,
-                           Hludowici et Karoli conventus apud Marsnam primus</title> (a. 847): <hi rend="italic">HAEC QUAE</hi> (<hi rend="italic">QUAE</hi> über der Zeile
+                           Hludowici et Karoli conventus apud Marsnam primus</title> (a. 847): <hi
+                           rend="italic">HAEC QUAE</hi> (<hi rend="italic">QUAE</hi> über der Zeile
                         nachgetragen) <hi rend="italic">SECUNTUR CAPITULA ACTA SUNT</hi> (die beiden
                         letzten Worte über radiertem <hi rend="italic">CAPITULA</hi>; auch der Rest
                         der Zeile radiert) - <hi rend="italic">communiter pergat</hi> (MGH Capit. 2,
@@ -276,7 +302,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                      <p>
                         <locus>24r-27r</locus>
                         <hi rend="italic">I-VIII</hi> - <title corresp="BK.205">Hlotharii, Hludowici
-                           et Karoli conventus apud Marsnam secundus</title> (a. 851): <hi rend="italic">HAEC QUAE SECUNTUR CAPITULA ACTA SUNT - suprascripta
+                           et Karoli conventus apud Marsnam secundus</title> (a. 851): <hi
+                           rend="italic">HAEC QUAE SECUNTUR CAPITULA ACTA SUNT - suprascripta
                            capitula</hi> (MGH Capit. 2, Nr. 205, S. 72 Z. 9-14, S. 72 Z. 27 - S. 74
                         Z. 42). </p>
                   </msItem>
@@ -289,19 +316,21 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                         S. 279 Z. 11-13 gedruckte Inskription (<hi rend="italic">Ista capitula
                            constituta sunt a domno Karolo in synodo apud Suessionis civitatem in
                            monasterio sancti Medardi anno incarnationis domini DCCCLIII in mense
-                           Aprili</hi>), nur bei <hi rend="smallcaps">Sirmond, </hi>Karoli Calvi
-                        capitula, S. 78 mit Notae S. 14 und durch einen neuzeitlichen Nachtrag in
-                        Cod. Paris Lat. 4638, fol. 168v (siehe auch dort), belegt, einst wirklich an
-                        dieser Stelle gestanden hat, scheint mir bei dem bekannt souveränen Umgang
-                        Sirmonds mit der Tradition unsicher. Sie könnte sich vor dem anschließenden
-                        Kapitular von Soissons befunden haben, wo Sirmond im Obertext keine
-                        Inskription druckt, wo sie aber vom Inhalt her besser passen würde und wo
-                        sie, abgesehen von ähnlichen Überschriften in anderen Codices, auch in
-                        Kopien der verlorenen, Sirmond indes noch bekannten Hs. von Beauvais bezeugt
-                        ist (Codd. Vatikan Lat. 4982, fol. 99r und <ref subtype="mss" type="internal" target="rom-bv-c-16">Rom Vallicell. C. 16</ref>, fol.
-                        9r), während man sie bei den Kanones des Konzils von Soissons in Cod. <ref type="internal" subtype="mss" target="vatikan-bav-reg-lat-980">Vatikan
-                           Reg. Lat. 980</ref>, wohl einem mittelalterlichen Rest des Bellovacensis,
-                        vergeblich sucht. </p>
+                           Aprili</hi>), nur bei Sirmond, Karoli Calvi capitula, S. 78 mit Notae S.
+                        14 und durch einen neuzeitlichen Nachtrag in Cod. 
+                        <ref type="internal" subtype="mss" target="paris-bn-lat-4638">Paris Lat. 4638</ref>, 
+                        fol. 168v (siehe auch dort), belegt, einst wirklich an dieser Stelle gestanden 
+                        hat, scheint mir bei dem bekannt souveränen Umgang Sirmonds mit der Tradition
+                        unsicher. Sie könnte sich vor dem anschließenden Kapitular von Soissons
+                        befunden haben, wo Sirmond im Obertext keine Inskription druckt, wo sie aber
+                        vom Inhalt her besser passen würde und wo sie, abgesehen von ähnlichen
+                        Überschriften in anderen Codices, auch in Kopien der verlorenen, Sirmond
+                        indes noch bekannten Hs. von Beauvais bezeugt ist (Codd. Vatikan Lat. 4982,
+                        fol. 99r und <ref subtype="mss" type="internal" target="rom-bv-c-16">Rom
+                           Vallicell. C. 16</ref>, fol. 9r), während man sie bei den Kanones des
+                        Konzils von Soissons in Cod. <ref type="internal" subtype="mss"
+                           target="vatikan-bav-reg-lat-980">Vatikan Reg. Lat. 980</ref>, wohl einem
+                        mittelalterlichen Rest des Bellovacensis, vergeblich sucht. </p>
                   </msItem>
                   <msItem n="12">
                      <p>
@@ -314,10 +343,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                   </msItem>
 
                   <msItem>
-                     <p><locus>-- 29v</locus> Am Rand vier Zeilen in Tironischen Noten (außer <hi rend="italic">Suessionis</hi>): <hi rend="italic">Ista capitula facta
+                     <p><locus>-- 29v</locus> Am Rand vier Zeilen in Tironischen Noten (außer <hi
+                           rend="italic">Suessionis</hi>): <hi rend="italic">Ista capitula facta
                            fuerunt in synodo apud Suessionis ciuitatem &lt;in&gt; monasterio sancti
-                           Medardi uolente rege Karolo</hi> (ed. <hi rend="smallcaps">Levison,
-                        </hi>Handschriften, S. 512 [nach der Lesung M. Tangls]).</p>
+                           Medardi uolente rege Karolo</hi> (ed. Levison, Handschriften, S. 512
+                        [nach der Lesung M. Tangls]).</p>
                   </msItem>
 
                   <msItem n="13">
@@ -331,37 +361,37 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                         <locus>34v-35v</locus>
                         <hi rend="italic">I-V, I-X</hi> - <title corresp="BK.206">Hlotharii et
                            Karoli conventus apud Valentianas</title> (a. 853): <hi rend="italic">De
-                           his capitulis quae subsecuntur adnuntiauerunt populo</hi> - <hi rend="italic">de conlocutione nostra fraterna</hi> (MGH Capit. 2, Nr.
-                        206, S. 75 Z. 7-10, S. 75 Z. 16 - S. 76 Z. 16). </p>
+                           his capitulis quae subsecuntur adnuntiauerunt populo - de conlocutione
+                           nostra fraterna</hi> (MGH Capit. 2, Nr. 206, S. 75 Z. 7-10, S. 75 Z. 16 -
+                        S. 76 Z. 16). </p>
                   </msItem>
                   <msItem n="15">
                      <p>
                         <locus>35v-39v</locus>
                         <hi rend="italic">I-XIII</hi> - <title corresp="BK.260">Capitulare missorum
-                           Silvacense</title> (a. 853):<hi rend="italic"> SECUNTUR CAPITULA QUAE IN
-                           IPSO ANNO</hi> - <hi rend="italic">alciodriso, aualiso</hi> (MGH Capit.
-                        2, Nr. 260, S. 270 Z. 32 - S. 271 Z. 3, S. 271 Z. 13 - S. 276 Z. 13). </p>
+                           Silvacense</title> (a. 853): <hi rend="italic"> SECUNTUR CAPITULA QUAE IN
+                           IPSO ANNO - alciodriso, aualiso</hi> (MGH Capit. 2, Nr. 260, S. 270 Z. 32
+                        - S. 271 Z. 3, S. 271 Z. 13 - S. 276 Z. 13). </p>
                   </msItem>
                   <msItem n="16">
                      <p>
                         <locus>39v-40v</locus>
                         <hi rend="italic">I-XIII</hi> - <title corresp="BK.261">Capitulare missorum
-                           Attiniacense</title> (a. 854):<hi rend="italic"> HAEC MEMORIALIA CAPITULA
-                           QUAE SECUNTUR</hi>- <hi rend="italic">habuissent fidelitatem</hi> (MGH
-                        Capit. 2, Nr. 261, S. 277 Z. 20 - S. 278 Z. 23; danach Blattverlust; den
-                        vollen Text nach dem Haagensis edierte noch <hi rend="smallcaps">Sirmond,
-                        </hi>Karoli Calvi et successorum capitula, S. 114 ff.). </p>
+                           Attiniacense</title> (a. 854): <hi rend="italic"> HAEC MEMORIALIA
+                           CAPITULA QUAE SECUNTUR - habuissent fidelitatem</hi> (MGH Capit. 2, Nr.
+                        261, S. 277 Z. 20 - S. 278 Z. 23; danach Blattverlust; den vollen Text nach
+                        dem Haagensis edierte noch Sirmond, Karoli Calvi et successorum capitula, S.
+                        114 ff.). </p>
                   </msItem>
                   <msItem n="17">
                      <p>
                         <locus>43r</locus>
                         <title corresp="BK.207">Hlotharii et Karoli conventus Leodii habitus</title>
                         (a. 854), nur die Eidesformel (davor Blattverlust; der volle Text, wohl
-                        gleichfalls nach dem Haagensis, noch bei <hi rend="smallcaps">Sirmond</hi>,
-                        Karoli Calvi et successorum capitula, S. 118 ff.): <hi rend="italic">HOC EST
-                           SACRAMENTUM QUOD SIBI MUTUO IURAUERUNT. Ab hodierna die et deinceps</hi>
-                        - <hi rend="italic">non dissociaueritis</hi> (MGH Capit. 2, Nr. 207, S. 78
-                        Z. 1-12).</p>
+                        gleichfalls nach dem Haagensis, noch bei Sirmond, Karoli Calvi et
+                        successorum capitula, S. 118 ff.): <hi rend="italic">HOC EST SACRAMENTUM
+                           QUOD SIBI MUTUO IURAUERUNT. Ab hodierna die et deinceps - non
+                           dissociaueritis</hi> (MGH Capit. 2, Nr. 207, S. 78 Z. 1-12).</p>
                   </msItem>
                   <msItem>
                      <p><locus>43r-v, 41r</locus>
@@ -373,9 +403,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                         <locus>41r-42v</locus>
                         <hi rend="italic">I-VIIII</hi> - <title corresp="BK.262">Capitula ad Francos
                            et Aquitanos missa de Carisiaco</title> (a. 856), Inskription, cc. 1-9:
-                           <hi rend="italic">HAEC QUAE SECUNTUR CAPITULA MISIT DOMNUS REX
-                           KAROLUS</hi> - <hi rend="italic">non conueniunt caueamus</hi> (danach
-                        Blattverlust) (MGH Capit. 2, Nr. 262, S. 279 Z. 16 - S. 281 Z. 2). </p>
+                           <hi rend="italic">HAEC QUAE SECUNTUR CAPITULA MISIT DOMNUS REX KAROLUS -
+                           non conueniunt caueamus</hi> (danach Blattverlust) (MGH Capit. 2, Nr.
+                        262, S. 279 Z. 16 - S. 281 Z. 2). </p>
                   </msItem>
                </msContents>
                <physDesc>
@@ -411,19 +441,18 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                      <handNote>zwei Teile (1-40 von einer Hand; 41-43 von zwei Händen)</handNote>
                   </handDesc>
                   <scriptDesc>
-                     <scriptNote>karolingische Minuskel; Foll. 8-16 und ab 22 am Rande Tironische
-                        Noten, vgl. <hi rend="smallcaps">Levison, </hi>Handschriften, S.
-                        512.</scriptNote>
+                     <scriptNote>karolingische Minuskel; foll. 8-16 und ab 22 am Rande Tironische
+                        Noten, vgl. Levison, Handschriften, S. 512</scriptNote>
                   </scriptDesc>
                   <decoDesc>
                      <p>Rubriken (Capitalis rustica) dunkelrot, ab fol. 22r auch in dunkelbrauner
                         Texttinte mit roten Ausmalungen; einfache Initialen und Zahlen rot oder in
-                        Texttinte; Teil II alles in Texttinte.</p>
+                        Texttinte; Teil II alles in Texttinte</p>
                   </decoDesc>
                   <bindingDesc>
                      <binding>
-                        <p>Weiß-gelblicher Pergamenteinband des 18. Jh. mit dem handschriftlichen
-                           Rückentitel: „CAPITULARIA Regum FRANCORUM Manuscript.“</p>
+                        <p>weiß-gelblicher Pergamenteinband des 18. Jh. mit dem handschriftlichen
+                           Rückentitel: "CAPITULARIA Regum FRANCORUM Manuscript"</p>
                         <p/>
                      </binding>
                   </bindingDesc>
@@ -433,12 +462,20 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                   <origin>
                      <p>
                         <origDate notAfter="0875" notBefore="0851">9. Jh., 3. Viertel</origDate> (a.
-                        854 bzw. 856 oder bald danach); <origPlace ref="http://www.geonames.org/2984114/reims.html http://d-nb.info/gnd/4103640-2 http://viaf.org/viaf/235513543">Reims</origPlace>.</p>
+                        854 bzw. 856 oder bald danach); <origPlace
+                           ref="http://www.geonames.org/2984114/reims.html http://d-nb.info/gnd/4103640-2 
+                           http://viaf.org/viaf/235513543"
+                           >Reims</origPlace></p>
+<!--    sk: einmal von Marcello über alle Dateien prüfen lassen: mal steht hier zwischen origDate und origPlace
+                     außerhalb der tags noch ein Semikolon, mal nicht (besonders bei neueren Dateien?). 
+                     Wahrscheinlich sollte es stets vorhanden sein, gelegentlich ist es aber nicht einmal
+                     einheitlich innerhalb einer Datei behandelt, also z.B. unter "origin" mit, oben 
+                     unter "head" ohne semikolon oder sonstiges Trennzeichen.  -->
                   </origin>
                   <provenance>
                      <p>J. Du Tillet († 1570), dann Pariser Collegium Claromontanum (Katalog Nr.
                         625), ab 1763 Gerard Meerman (Nr. 606); 1824 von Baron van Westreenen
-                        erworben.</p>
+                        erworben</p>
                   </provenance>
                   <acquisition/>
                </history>
@@ -476,7 +513,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
                      <listBibl type="cap">
                         <bibl corresp="#Mordek_1995">Mordek 1995, S. 58-69</bibl>
                         <bibl resp="capit">
-                           <ref type="internal" subtype="mom" target="handschrift-des-monats-februar-2019"/>
+                           <ref type="internal" subtype="mom"
+                              target="handschrift-des-monats-februar-2019"/>
                         </bibl>
                      </listBibl>
                   </listBibl>
@@ -484,24 +522,27 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
             </msDesc>
          </sourceDesc>
       </fileDesc>
-      <!--<encodingDesc><p>Transkriptionsvorlage:</p>
+      <encodingDesc>
+         <p>Transkriptionsvorlage:</p>
+<!--    sk: hier fehlt ein Satz zum benutzten Digitalisat     -->
+         
          <projectDesc>
-            <p xml:lang="ger">Capitularia. Edition der fränkischen
-                                        Herrschererlasse: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
-            <p xml:lang="eng">Capitularia. Edition of the Frankish
-                                        capitularies: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
          </projectDesc>
          <editorialDecl>
-            <p xml:lang="ger">Die Transkription folgt den Richtlinien des
-                                        Capitularia-Projektes: <ptr target="http://capitularia.uni-koeln.de/project/workflow/"/>
+            <p xml:lang="ger">Die Transkription folgt den Richtlinien des Capitularia-Projektes:
+                  <ptr target="http://capitularia.uni-koeln.de/project/workflow/"/>
             </p>
-            <p xml:lang="eng">The transcription adheres to the guidelines of
-                                        the Capitularia project: <ptr target="http://capitularia.uni-koeln.de/project/workflow/"/>
+            <p xml:lang="eng">The transcription adheres to the guidelines of the Capitularia
+               project: <ptr target="http://capitularia.uni-koeln.de/project/workflow/"/>
             </p>
          </editorialDecl>
-      </encodingDesc>-->
+      </encodingDesc>
       <revisionDesc>
          <change who="DS" when="2015-08-25">Datei erstellt aus Mordek-XML</change>
          <change who="DT" when="2016-02-02">Datei veröffentlicht</change>
@@ -510,17 +551,1951 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><!-- ACHTUNG! Kopie der Dat
    <facsimile>
       <graphic url=""/>
    </facsimile>
-   <!--<text>
+   <text>
       <front>
-         <div type="mshist" xml:id="divMsHist"/><div type="scribe" xml:id="divScribe"/>
-         <div type="letters" xml:id="divLett"/>
-         <div type="abbreviations" xml:id="divAbbr"/>
-         <div type="punctuation" xml:id="divPunct"/>
-         <div type="structure" xml:id="divStruct"/>
-         <div type="annotations" xml:id="divAnnot"/><div type="other" xml:id="divOther"/>
+         <div type="content">
+            <list>
+               <item n="10">
+                  <ptr type="internal" target="#den-haag-rmw-10-d-2-1r-1"/>INCIPIVNT CAPITULA QUAE
+                  ACTA SUNT ANNO IIII REGNI DOMNI KAROLI REGIS DOMNI HLUDOUUICI IMPERATORIS FILII IN
+                  CONUENTU HABITO IN UILLA QUAE DICITUR COLONIA ...<list>
+                     <item n="10.1">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-2v-1"/>I capitulum</item>
+                     <item n="10.2">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-2v-3"/>II</item>
+                     <item n="10.3">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-2v-5"/>III</item>
+                     <item n="10.4">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-3r-1"/>IIII</item>
+                     <item n="10.5">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-3r-3"/>V</item>
+                     <item n="10.6">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-3r-5"/>VI</item>
+                  </list></item>
+               <item n="20">
+                  <ptr type="internal" target="#den-haag-rmw-10-d-2-13v-3"/>SEQUENTIA CAPITULA ACTA
+                  SUNT APUD TOLOSAM CIUITATEM ANNO IIII DOMNI REGNI KAROLI ...<list>
+                     <item n="20.1">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-13v-5"/>I</item>
+                     <item n="20.2">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-14r-1"/>II</item>
+                     <item n="20.3">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-14r-3"/>III</item>
+                     <item n="20.4">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-14v-1"/>IIII</item>
+                     <item n="20.5">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-14v-3"/>V</item>
+                     <item n="20.6">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-15r-1"/>VI</item>
+                     <item n="20.7">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-15r-3"/>VII</item>
+                     <item n="20.8">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-15v-1"/>VIII</item>
+                     <item n="20.9">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-15v-3"/>VIIII</item>
+                  </list></item>
+               <item n="30">
+                  <ptr type="internal" target="#den-haag-rmw-10-d-2-16r-1"/>HAEC QUAE SECUNTUR
+                  CAPITULA EXCERPTA SUNT ...<list>
+                     <item n="30.1">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16r-2"/>I</item>
+                     <item n="30.2">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16r-4"/>II</item>
+                     <item n="30.3">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16r-6"/>III</item>
+                     <item n="30.4">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16r-8"/>IIII</item>
+                     <item n="30.5">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16r-10"/>V</item>
+                     <item n="30.6">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16r-12"/>VI</item>
+                     <item n="30.7">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-1"/>VII</item>
+                     <item n="30.8">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-3"/>VIII</item>
+                     <item n="30.9">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-5"/>VIIII</item>
+                     <item n="30.10">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-7"/>X</item>
+                     <item n="30.11">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-9"/>XI</item>
+                     <item n="30.12">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-11"/>XII</item>
+                     <item n="30.13">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-13"/>XIII</item>
+                     <item n="30.14">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-15"/>XIIII</item>
+                     <item n="30.15">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-17"/>XV</item>
+                     <item n="30.16">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-19"/>XVI</item>
+                     <item n="30.17">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-21"/>XVII</item>
+                     <item n="30.18">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-23"/>XVIII</item>
+                     <item n="30.19">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-25"/>XVIIII</item>
+                     <item n="30.20">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-27"/>(PLENITUDO AUTEM
+                        CAPITULORUM ...) </item>
+                     <item n="30.21">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-16v-28"/>Commemoratio
+                        prima</item>
+                     <item n="30.22">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-17r-1"/>Commemoratione
+                        secunda</item>
+                     <item n="30.23">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-17r-2"/>Commemoratione
+                        III</item>
+                     <item n="30.24">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-17r-3"/>Commemoratione
+                        V</item>
+                     <item n="30.25">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-17r-4"/>Commemoratione
+                        VI</item>
+                  </list></item>
+               <item n="40">
+                  <ptr type="internal" target="#den-haag-rmw-10-d-2-22r-1"/>HAEC QUAE SECUNTUR
+                  CAPITULA ACTA SUNT ...<list>
+                     <item n="40.1">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-22r-2"/>I</item>
+                     <item n="40.2">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-22r-4"/>II</item>
+                     <item n="40.3">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-22r-6"/>III</item>
+                     <item n="40.4">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-22v-1"/>IIII</item>
+                     <item n="40.5">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-22v-3"/>V</item>
+                     <item n="40.6">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-22v-5"/>VI</item>
+                     <item n="40.7">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-22v-7"/>VII</item>
+                     <item n="40.8">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-22v-9"/>VIII</item>
+                     <item n="40.9">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-22v-11"/>VIIII</item>
+                     <item n="40.10">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-22v-13"/>X</item>
+                     <item n="40.11">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-22v-15"/>XI</item>
+                  </list></item>
+               <item n="50">
+                  <ptr type="internal" target="#den-haag-rmw-10-d-2-23r-1"/>I ADNUNTIATIO DOMNI
+                  HLOTHARII</item>
+               <item n="60">
+                  <ptr type="internal" target="#den-haag-rmw-10-d-2-23r-3"/>II ADNUNTIATIO DOMNI HLUDOUUICI<list>
+                     <item n="60.1">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-23r-4"/>(Sciatis quia
+                        fratres nostri ...)</item>
+                     <item n="60.2">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-23v-1"/> (Sciatis etiam
+                        quia similiter ...) </item>
+                     <item n="60.3">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-23v-2"/> (Sciatis quia
+                        communiter ...) </item>
+                     <item n="60.4">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-23v-3"/> (Et sciatis quia
+                        uolumus ...) </item>
+                  </list></item>
+               <item n="70">
+                  <ptr type="internal" target="#den-haag-rmw-10-d-2-23v-4"/>III ADNUNTIATIO KAROLI<list>
+                     <item n="70.1">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-23v-5"/>(Sciatis quia
+                        dilecti fratres nostri ...)</item>
+                     <item n="70.2">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-24r-1"/> (Uolumus etiam ut
+                        unusquisque liber homo ...) </item>
+                     <item n="70.3">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-24r-2"/> (Mandamus etiam
+                        ut nullus homo ...) </item>
+                     <item n="70.4">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-24r-3"/> (Et uolumus ut
+                        cuiuscumque nostrum homo ...) </item>
+                  </list></item>
+               <item n="80">
+                  <ptr type="internal" target="#den-haag-rmw-10-d-2-24r-4"/>HAEC QUAE SECUNTUR
+                  CAPITULA ACTA SUNT ...<list>
+                     <item n="80.1">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-24v-1"/>I</item>
+                     <item n="80.2">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-24v-3"/>II</item>
+                     <item n="80.3">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-24v-5"/>III</item>
+                     <item n="80.4">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-25r-1"/>IIII</item>
+                     <item n="80.5">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-25r-3"/>V</item>
+                     <item n="80.6">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-25v-1"/>VI</item>
+                     <item n="80.7">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-25v-3"/>VII</item>
+                     <item n="80.8">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-26r-1"/>VIII</item>
+                     <item n="80.9">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-26r-3"/> (Uolumus ut uos
+                        sapiatis ...) </item>
+                     <item n="80.10">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-26v-1"/> (Sicut meus
+                        frater ...) </item>
+                     <item n="80.11">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-26v-2"/> (Sciatis quia et
+                        nos ...) </item>
+                  </list></item>
+               <item n="90">
+                  <ptr type="internal" target="#den-haag-rmw-10-d-2-27r-1"/> (Regnante in
+                  sempiternum domino deo ...) <list>
+                     <item n="90.1">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-27r-2"/>I</item>
+                     <item n="90.2">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-27v-1"/>II</item>
+                     <item n="90.3">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-28r-1"/>III</item>
+                     <item n="90.4">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-28v-1"/>IIII</item>
+                     <item n="90.5">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-28v-3"/>V</item>
+                     <item n="90.6">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-29r-1"/>VI</item>
+                     <item n="90.7">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-29v-1"/>VII</item>
+                  </list></item>
+               <item n="100">
+                  <ptr type="internal" target="#den-haag-rmw-10-d-2-29v-3"/>[Liste ohne Rubrik]<list>
+                     <item n="100.1">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-29v-3"/>I</item>
+                     <item n="100.2">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-30r-1"/>II</item>
+                     <item n="100.3">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-30r-3"/>III</item>
+                     <item n="100.4">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-30r-5"/>IIII</item>
+                     <item n="100.5">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-30v-1"/>V</item>
+                     <item n="100.6">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-30v-3"/>VI</item>
+                     <item n="100.7">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-31r-1"/>VII</item>
+                     <item n="100.8">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-31r-3"/>VIII</item>
+                     <item n="100.9">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-31r-5"/>VIIII</item>
+                     <item n="100.10">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-31v-1"/>X</item>
+                     <item n="100.11">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-31v-3"/>XI</item>
+                     <item n="100.12">
+                        <ptr type="internal" target="#den-haag-rmw-10-d-2-31v-5"/>XII</item>
+                  </list></item>
+            </list>
+         </div>
+         <!-- Stellen, die ggf. am Original überprüft werden könnten (hauptsächlich einzelne Buchstaben, 
+            die in Pergamentfalten verschwinden), sind mit Kommentaren versehen. -->
+         <div type="mshist"/>
+         <div type="scribe">
+            <p>Der hier transkribierte Teil der Handschrift wurde von einem Schreiber geschrieben,
+               der eine saubere und gleichmäßige karolingische Minuskel mit wenigen Ligaturen
+               verwendet. Er benutzt gu für w/uu; Beispiel: <mentioned>guenilo</mentioned>
+                  (<locus>fol. 27r, zweitletzte Zeile</locus> = Wenilo von Sens),
+                  <mentioned>hludoguicus</mentioned> (<locus>fol. 28v, Z. 11</locus>). Eine
+               Korrekturhand nahm kleine Verbesserungen vor, z.B. auf <locus>fol. 22r-v</locus>,
+                  <locus>29r</locus> und <locus>31v</locus>.</p>
+            <!-- Wenn die Transkription ergänzt wird, umformulieren: Es waren insgesamt drei Schreiber
+               beteiligt (laut Mordek 1995, S. 59); Hand A auf fol. 1-40, zwei weitere Hände fol. 41-43. -->
+         </div>
+         <div type="letters"/>
+         <div type="abbreviations"/>
+         <div type="punctuation"/>
+         <div type="structure">
+            <p>Die optische Textstrukturierung erfolgt durch Rubriken in roter Tinte in Capitalis
+               rustica bzw. (ab <locus>fol. 22r</locus>) auch in Texttinte mit roter Füllung und
+               eine in den Rand ausgerückte Kapitelzählung in rot bzw. (ab <locus>fol. 15v</locus>)
+               in Texttinte. Der Beginn der einzelnen Kapitel wird mit in die Versalienspalte
+               ausgerückten vergrößerten Majuskeln in Texttinte zusätzlich hervorgehoben. Im
+               Folgenden werden nur Abweichungen von diesem allgemeinen Gliederungsprinzip
+               angegeben.</p>
+            <p><locus>Fol. 1r-3v</locus> (BK 254): Der Abschnitt mit den Kapitularien Karls des
+               Kahlen, der in dieser Teil-Handschrift auf <locus>fol. 1r</locus> beginnt, ist mit
+               <mentioned>INCIPIVNT CAPIT(V)L(A)</mentioned> in roter Capitalis quadrata
+               überschrieben, danach folgt der Rest der Rubrik zu BK 254 in roter Capitalis rustica.
+               Da der freigelassene Platz (<locus>Z. 1-7</locus>) für die umfangreiche Rubrik nicht
+               ausreichte, wurde der Schluss (<mentioned>aliorum</mentioned> -
+               <mentioned>VI</mentioned>) im rechten Winkel zum Schriftspiegel am äußeren Rand
+               des Blattes eingetragen. Nach der Rubrik folgt zunächst ein sich über drei Seiten
+               erstreckender Prolog ohne Kapitelzählung, der mit einer vergrößerten Initiale in rot
+               eingeleitet wird, bevor auf <locus>fol. 2v</locus> die Kapitelliste beginnt.</p>
+            <p><locus>Fol. 13v-15v</locus> (BK 255): Nach der Rubrik folgt ein kurzer Prolog ohne
+               Kapitelzählung, beginnend mit ausgerückter, vergrößerter Initiale in Texttinte. Ab
+               <locus>fol. 15v</locus> (c. <mentioned>VIII</mentioned>) wechselt die
+               Kapitelzählung zu Texttinte, was auch bei den folgenden Stücken beibehalten wird.</p>
+            <p><locus>Fol. 16r-v</locus> (BK 257): Die erste Zeile des Prologs wurde in roter Tinte
+               in Capitalis rustica ausgeführt. Anschließend folgen auf <locus>fol. 16v</locus> nach
+               einer Zwischenüberschrift in roter Capitalis rustica Exzerpte der Commemorationes zum
+               Konzil von Coulaines (BK 257b)<!-- sk: unklar, was hier gemeint ist; es gibt kein "BK 257b"
+               und BK 254 hat den Titel "Notitia de conciliorum canonibus in villa Sparnaco a Karolo rege confirmatis";
+               müsste es nicht heißen "Exzerpte der Synode von Meaux-Paris" (BK 293)? Die Begrifflichkeit
+               "Commemoratio" kommt zumindest in der Edition (BK 257) nicht direkt als Gliederungselement
+               vor, auch nicht in der Hs. selbst (laut Transkription), woher stammt also die folgende, 
+               als wörtl. Zitat behandelte "Commemoratio VI"-Terminologie?
+               -->
+               wobei diese Liste augenscheinlich unvollständig ist:
+               Zum einen fehlt eine Commemoratio IV, zum anderen bricht die Aufzählung mit
+               <mentioned>Commemoratio VI</mentioned> ab, die nur angekündigt, deren Inhalt aber
+               nicht benannt wird. Danach wird die zuvor bei <mentioned>XVIIII</mentioned>
+               unterbrochene Kapitelzählung wieder aufgenommen mit <mentioned>XX</mentioned> = BK
+               293 c. 20; es folgen weitere Exzerpte aus den Kanones der Synode von Meaux-Paris
+               845/846 (vgl. die Neuedition in MGH Conc. 3, S. 61-132, Übersicht über die hier
+               enthaltenen Kanones auf S. 70 f.).</p>
+            <p><locus>Fol. 22r-24r</locus> (BK 204): Beginn der Rubrik in Capitalis rustica in
+               Texttinte mit roter Füllung, die Rubriken zu den Adnuntiationes der drei Herrscher in
+               Capitalis rustica und roter Tinte. Unter den Rubriken sind Reste von radiertem Text
+               erkennbar, wobei es sich aber wahrscheinlich nur um vorgeschriebenen Text für den
+               Rubrikator handelte. Die erkennbaren Textreste stimmen jedenfalls mit dem Wortlaut
+               des darübergeschriebenen Textes überein. <!-- sk: hier noch Passage einfügen, wie
+               sich die 11 Kapitel präsentieren (mit/ohne Zählung, vollständig etc). Dann ist auch die
+               folgende Aussage, dass die Zählung bei Lothar "neu" einsetzt besser einzuordnen; nicht jeder
+               Nutzer wird im Kopf haben, dass BK 204 mit gemeinsamen Kapiteln beginnt.  -->
+               Die drei Adnuntiationes werden jeweils als
+               ein Kapitel gezählt. Die Zählung setzt bei der ersten Adnuntiatio (Lothar) neu mit
+                  <mentioned>I</mentioned> ein, die beiden folgenden (Ludwig und Karl) werden als
+                  <mentioned>II</mentioned> und <mentioned>III</mentioned> gezählt. Innerhalb der
+               Adnuntiationes wird der Text durch Absätze und in die Versalienspalte ausgerückte
+               Initialen in weitere Unterabschnitte gegliedert. </p>
+            <p><locus>Fol. 24r-27r</locus> (BK 205): Die erste Zeile des Prologs in roter Tinte in
+               Capitalis rustica. <!-- sk. noch etwas zur Struktuierung / Zählung der Kapitelliste und der
+               folgenden Adnuntiationes ergänzen?  --> </p>
+            <p>Fol. 27r-29v (BK 258): Der Text von BK 258 beginnt mit einer stark vergrößerten
+               Initiale, aber ohne Rubrik oder Kapitelzählung. Die Kapitelzahl
+                  <mentioned>I</mentioned> folgt erst nach etwa der Hälfte des Textes von BK 258 c.
+               1, am Rand neben der letzten Zeile der Seite (<locus>fol. 27r</locus>), wobei hier
+               kein inhaltlicher Einschnitt auszumachen ist. Die übrigen Kapitelanfänge sind klar
+               erkennbar. <!-- sk: bedeutet, die übrigen Kapitel sind gleichmäßig und wie in der 
+               Edition durchgezählt? --></p>
+            <p>Fol. 29v-31v (BK 259): Die direkt und ebenfalls ohne eigene Rubrik an BK 258
+               anschließende Kopie von BK 259 ist nach demselben Gliederungsprinzip gestaltet, wobei
+               die Zählung hier mit <mentioned>I</mentioned> neu einsetzt.</p>
+            
+            <!-- Das Folgende ergänzen, wenn die Transkription fortgeführt wird! 
+            <p>BK 206 (fol. 34v-35v): Die beiden Adnuntiationes Lothars und Karls sind mit Rubriken
+               in Capitalis rustica (Texttinte mit roter Füllung) überschrieben.</p>
+            <p>BK 260 (fol. 35v-39v): Die erste Zeile der Einleitung hervorgehoben in Capitalis
+               rustica in Texttinte mit roter Füllung. In einem neuen Absatz beginnt der Prolog
+               (ohne Invocatio und Intitulatio). Die eigentliche Kapitelliste wird durch eine
+               Zwischenüberschrift eingeleitet (ebenfalls Capitalis rustica in Texttinte mit roter
+               Füllung).</p>
+            <p>BK 261 (fol. 39v-40v): Erste Zeile des Prologs in Capitalis rustica (Texttinte mit
+               roter Füllung).</p>
+            <p>BK 207 (fol. 43r):</p>
+            <p>BK 295 (fol. 43r-v, 41r):</p>
+            <p>BK 262 (fol. 41r-42v):</p> -->
+         </div>
+         <div type="annotations">
+
+            <p>Auf <locus>fol. 1r</locus> findet sich am inneren Seitenrand ein neuzeitlicher
+               Vermerk mit dem Datum 5. Juli 1763 in Tinte (anlässlich des Erwerbs der Handschrift
+               durch Meerman?).</p>
+            <p>Am Rand finden sich öfters Nota-Zeichen in hellbrauner Tinte, mit denen einzelne
+               Textabschnitte markiert wurden. Regelmäßig wurden dafür Minuskelbuchstaben verwendet;
+               so z.B. für die Inscriptio zu BK 204 ein Minuskel-d und für den Beginn des 1.
+               Kapitels ein Minuskel-f (<locus>fol. 13v, am Rand vor Z. 8/9 und Z. 19</locus>) oder
+               für die Inscriptio zu BK 204 ein Minuskel-f (<locus>fol. 22r, am Rand nach Z.
+               12</locus>) sowie für einzelne Kapitel und die Adnuntiationes der Herrscher ein
+               Minuskel-d (<locus>fol. 22v, am Rand vor Z. 20 und 22</locus> und <locus>fol. 23r, am
+               Rand nach Z. 4 und Z. 13/14</locus>). Am Ende von zusammengehörigen
+               Textabschnitten bzw. vor den auf oben beschriebene Weise mit Abschnittsmarkierungen
+               versehenen Textteilen findet sich öfters die Tironische Note für
+               <mentioned>usque</mentioned>, z.B. auf <locus>fol. 13v vor Z. 5</locus> (Ende des
+               Konzils von Beauvais = BK 292, vor dem Beginn von BK 255) oder auf <locus>fol. 22r
+               nach Z. 9</locus> (Ende von BK 293 [nicht transkribiert], vor dem Beginn von BK
+               204). Zu Beginn des Capitulare missorum Suessionense (BK 259), das direkt im Anschluss
+               an den Conventus Suessionensis (BK 258) ohne eigene Überschrift folgt, steht eine
+               größtenteils in Tironischen Noten verfasste Randnotiz: <mentioned>Ista capitula facta
+               fuerunt in synodo apud Suessionis ciuitatem</mentioned>
+               [<mentioned>in</mentioned>] <mentioned>monasterio sancti Medardi uolente rege
+               Karolo</mentioned> (Lesung M. Tangls, s. Mordek 1995, S. 67)<!-- sk: ergänzen "bzw. oben,
+               Inhaltsbeschreibung zu fol. 29v"? (das müsste S. 67 sein) -->. Vgl. zu den
+               Tironischen Noten in dieser Handschrift auch den Beitrag von Dominik Trump,
+               Handschrift des Monats Februar 2019.<!-- sk: hier auch direkt verlinken? -->
+            </p>
+         </div>
+         <div type="other">
+            <p>Einzelne Textstellen sind anhand des Digitalisates nicht sicher zu lesen, da
+               Buchstaben z.T. von Pergamentfalten verdeckt werden (z.B. <locus>fol 2r, Z.
+               14</locus>, <mentioned>omnium</mentioned> [<mentioned>nostrum
+               uti</mentioned>]<mentioned>litatem</mentioned>). Auf <locus>fol. 28 in Z. 3 und
+               4</locus> sind aufgrund einer Pergamentfalte bzw. der eingerissenen Blindlinierung
+               zwei kleinere Stellen unbeschrieben geblieben; der Text weist hier keine Lücken auf.
+               <locus>Fol. 24</locus> und <locus>25</locus> sind am unteren Rand stark
+               beschnitten worden, was aber keinen Textverlust verursacht hat.</p>
+         </div>
       </front>
       <body>
-         <ab type="text"/>
+
+         <cb n="1r"/>
+         <lb n="1"/>
+
+         <milestone unit="capitulare" n="BK.254"/>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-1r-1"
+            corresp="BK.254_inscriptio">INCIPIVNT <choice>
+               <abbr>CAPITL</abbr>
+               <expan>CAPITULA</expan>
+            </choice>
+            <lb/> QUAE ACTA SUNT <date>ANNO . IIII REGNI <rs type="person"><subst>
+                     <del/>
+                     <add>DOMNI</add>
+                  </subst> KAROLI <lb/> REGIS</rs></date> . <rs type="person">DOMNI HLUDOUUICI
+               IMPERATORIS</rs> FILII IN CONUENTU <lb/> HABITO IN <rs type="place">UILLA QUAE
+               DICITUR COLONIA</rs> QUAE ETIAM SUB<lb break="no"/>SCRIPTIONE <rs type="person"
+               >EIUSDEM PRINCIPIS</rs> ET EPISCOPORUM AC CETERORUM <lb/> FIDELIUM DEI CONFIRMATA
+            FUERE CONSENSU <rs type="person">UUARINI</rs> ET ALIORUM OPTIMATUM <date><choice>
+                  <abbr>INDICTO</abbr>
+                  <expan>INDICTIONE</expan>
+               </choice> VI</date>
+            <lb/>
+         </ab>
+
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-1r-2" corresp="BK.254_prolog">
+            <seg type="initial" rend="coloured">S</seg><hi rend="coloured">ANCTA ECCLESIA NAUIS MORE
+               UT DE PRIORIBUS SAECULIS . </hi>
+            <lb/> taceamus . ab initio suae institutionis pelagus saeculi huius diuersa quali<lb
+               break="no"/>tate actenus domino moderante transegit . et modo tranquillitate <lb/>
+            grauis amodo autem procellę alicuius tempestate concussa . sed non usque<lb break="no"
+            />quaque dimersa . quin potius excitato fidelium <expan>precibus</expan> christo suo
+               guberna<lb break="no"/>tore . salubri libertatis securitate atque optata donata
+            serenitate <lb/> Unde etiam in par<unclear>tibus</unclear> nostri orbis quae <choice>
+               <abbr>tepre</abbr>
+               <expan>tempore</expan>
+            </choice> diuae recordationis <rs type="person">aui nostri</rs>
+            <lb/> et sanctae memorię <rs type="person">domni ac genitoris nostri</rs> aliquandiu
+            fuerat pacis suaui<lb break="no"/>tate laetata . Inimico homine iuxta sanctum euangelium
+            in agro dominico <lb/> superseminante discordiae zizania in medio tritici deo amatę
+            caritatis <lb/> a deo est diuersis atque aduersis uexata molestiis . ut non sine maxima
+            <lb/> difficultate respectu diuino et fidelium dei ac nostrorum s<subst>
+               <del/>
+               <add>o</add>
+            </subst>lacio inter nos <lb/> fratresque nostros pacificatio et paterni regni ex
+            consensu diuisio seu <lb/> eiusdem sanctae ecclesiae ac fidelis populi tantorum laborum
+               <expan>quantulacumque</expan>
+            <cb n="1v"/> fieret respiratio . processu uero temporis . ut solet post condensos aeris
+            <lb/> turbines nubium in pertranseundo remanere uestigia ! restiterunt <lb/> fatemur in
+            nobis et in uiris ecclesiasticis necnon et in rei publicę nostrae <lb/> solaciatoribus
+            huiusmodi materiae et fomites dissensionum ut manifeste <lb/> pate<subst>
+               <del/>
+               <add>sc</add>
+            </subst>eret nos diuina gratia indigere ut omnes a contagio morbi pristini <lb/> penitus
+            exueremur qua <expan>praeuenti</expan> eramus ut infirmitatem communem uidere <lb/>
+            possemus . Quapropter uenientes in unum fideles nostri tam in uenerabili ordine <lb/>
+            clericali quam et inlustres uiri in nobili laicali habitu constituti et <lb/> zelo dei
+            accensi . memores etiam fidei quam ipsi et antecessores eorum <lb/> nostris <choice>
+               <abbr>detulert</abbr>
+               <expan>detulerunt</expan>
+            </choice>
+            <expan> praedecessoribus</expan> ponentesque ante oculos dilectionem et fidelita<lb
+               break="no"/>tem . quam nobis post defunctionem <rs type="person">patris</rs>
+            laudabiliter et continentissime <lb/>
+            <choice>
+               <abbr>seruauer</abbr>
+               <expan>seruauerunt</expan>
+            </choice> . secundum quod legitur in litteris diuinitus inspiratis . hortatus est alter
+            <lb/> alterum . Immo omnes se inuicem <choice>
+               <abbr>monuert</abbr>
+               <expan>monuerunt</expan>
+            </choice> ut cuncti uniuersum animi ranco<lb break="no"/>rem . pro quocumque conceptum nego<subst>
+               <del>c</del>
+               <add>t</add>
+            </subst>io a corde propellerent . et in dei <lb/> uoluntate ac sanctae ecclesiae
+            competenti ueneratione seu nostra fidelitate <lb/> seruanda . atque debito honore et
+            regia potestate stabilienda et con<lb break="no"/>seruanda . quin etiam sese in pacis
+            concordia et uera amicitia copu<lb break="no"/>larent . quatenus diuinae clementiae
+            placerent obnixius . et de regis <lb/> ac regni stabilitate et utilitate possent
+            tractare sublimius et suum <lb/> atque totius populi communem profectum et
+            tranquillitatem optinerent <lb/> propensius . Sicque deo amabili atque laudabili
+            conuentu <subst>
+               <del><gap/>na<gap/></del>
+               <add>unani</add>
+            </subst>miter <cb n="2r"/> ac rationabiliter perpetrato ! nostrae mansuetudini suam
+            deuotionem et <lb/> actionem fidelissime <choice>
+               <abbr>suggessert</abbr>
+               <expan>suggesserunt</expan>
+            </choice> . Nos autem tanta fidelium erga dominati<lb break="no"/>onem nostram
+            subtiliter perspecta benignitate ut causa pro sui merito exige<lb break="no"/>bat . eis
+            condignas gratiarum actiones <add hand="X">re</add><metamark function="insertion"
+            />tulimus . et nos nostramque potestatem <lb/> eorum bonae conuenientię per
+            beniuolentiam in hoc facto quod sine <lb/> dubio ad praesentem et aeternam tendit
+            salutem sociam et comitem <lb/> fore tota deuotione spo<mod>p</mod>ondimus addicatis
+            omnibus quantum patitur <lb/> humana fragilitas quae persona nostri regiminis ignorantia
+            seu iuuen<lb break="no"/>tute aut necessitate contra conuenientem sibi salubritatem et
+               hones<lb break="no"/>tatem usquemodo egerat aut alterius astu contraxerat . Qua de re
+            <lb/> communiter inito consilio hoc scriptum fieri proposuimus . quod etiam <lb/> manuum
+            omnium nostrorum subscr<subst>
+               <del/>
+               <add>i</add>
+            </subst>ptione roborandum decreuimus . In quo <lb/> quae nobis nunc
+               <expan>praecipuae</expan> ad communem salutem . et regni soliditatem <lb/> atque
+            omnium <unclear>nostrum uti</unclear>litatem immo plenissimam honestatem uisa sunt
+            pertinere <lb/> conscripsimus non loquentes diuersarum inmutatione personarum ut modo
+            <lb/> regalis sublimitas . modo episcopalis auctoritas . modo autem fidelium <lb/>
+            loquatur commoditas sed secundum <rs type="person">apostolum</rs> sub uno capite christo
+            ut reuera unus homo <lb/> in unius ecclesię corpore . singuli autem alter alterius
+            membra quod prosit <lb/> omnibus omnes unanimiter una uoce loquamur per eum et in eo qui <choice>
+               <abbr>dix</abbr>
+               <expan>dixit</expan>
+            </choice> . <lb/> et de quo dictum est . Non uos estis qui loquimini sed spiritus patris
+            uestri <lb/> qui loquitur in uobis . <cb n="2v"/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-2v-1"
+            corresp="BK.254_1_inscriptio">
+            <seg type="numDenom">Capitulum</seg> . <seg type="num" n="1">I</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-2v-2" corresp="BK.254_1"> De honore uidelicet
+            et cult<subst>
+               <del>i</del>
+               <add hand="X">u</add>
+            </subst> dei atque sanctarum ecclesiarum quae auctore deo <lb/> sub dicione et tuitione
+            regiminis nostri consistunt communiter domino mediante <lb/> decernimus ut sicut tempore
+            beatae recordationis <rs type="person">domni ac genitoris nostri</rs>
+            <lb/> excultę et honoratę atque rebus ampliatae <choice>
+               <abbr>fuert</abbr>
+               <expan>fuerunt</expan>
+            </choice> * salua aequitatis ratione <lb/> ita permaneant et quę a nostra liberalitate
+            honorantur atque ditantur . de cetero <lb/> sub integritate sui seruentur et sacerdotes
+            ac serui dei uigorem ecclesiasticum <lb/> et debita priuilegia iuxta reuerendam
+            auctoritatem optineant . Eisdem uero <lb/> regalis potestas et inlustrium uirorum
+            strenuitas seu re<add>i</add>publicę administra<lb break="no"/>tores ut suum mynisterium
+            competenter exequi ualeant in omnibus rationabi<lb break="no"/>liter et iuste concurrant
+            . <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-2v-3"
+            corresp="BK.254_2_inscriptio">
+            <seg type="num" n="2">II</seg>
+         </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-2v-4" corresp="BK.254_2"> Honor etiam regius et
+            potestas regali dignitati <expan>competens</expan> atque sinceritas <lb/> et
+            optemperantia seniori debita remota omni socordia et calliditate <lb/> seu qualibet
+            indebita quorumcumque coniunctione contra honorem et <lb/> potestatem atque salutem
+            nostram siue regni nostri solidita<gap unit="chars" quantity="3"/>
+               nob<unclear>is</unclear><!-- Ggf. Original prüfen! --> in omnibus <lb/> et ab
+            omnibus sicut <choice>
+               <abbr>tepr</abbr>
+               <expan>tempore</expan>
+            </choice> antecessorum nostrorum consueuerat exhibeatur . et si quis <lb/> qu<subst>
+               <del>a</del>
+               <add>emcumque</add>
+            </subst> contra nos et contra hanc pactam sinceritatem aliquid moliri <lb/> manifeste
+            cognouerit si eum conuerti nequiuerit aperte prodat atque <lb/> denotet . et sic
+            consilio atque auxi<mod>li</mod>o episcopalis auctoritas et fidelium <lb/> unanimitas ut
+            noster honor et potestas regia inconuulsa permaneat <lb/> totis nisibus decertare et
+            adiuuare procuret . <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-2v-5"
+            corresp="BK.254_3_inscriptio">
+            <seg type="num" n="3">III</seg>
+         </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-2v-6" corresp="BK.254_3"> Quia uero debitum
+            esse cognoscimus ut a quibus honorem suscipimus <mod>e</mod>os iuxta <cb n="3r"/> dictum
+            dominicum honoremus uolumus ut omnes fideles nostri certissimum teneant <lb/> neminem
+            cuiuslibet ordinis aut dignitatis deinceps nostro inconuenienti <lb/> libitu aut
+            alterius calliditate uel iniusta cupiditate promerito honore <lb/> debere priuare nisi
+            iustitiae iudicio et ratione atque aequitate dictante . <lb/> legem uero unicuique
+               <expan>competentem</expan> sicut antecessores sui tempore meorum <lb/> predecessorum <choice>
+               <abbr>habuert</abbr>
+               <expan>habuerunt</expan>
+            </choice> in omni <mod>d</mod>ignitate et ordine fauente deo me ob<lb break="no"
+            />seruaturum perdono . <lb/></ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-3r-1"
+            corresp="BK.254_4_inscriptio">
+            <seg type="num" n="4">IIII</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-3r-2" corresp="BK.254_4"> Quod ut facilius
+            atque obnixius nostra auctoritas ualeat obseruare omnes <lb/> sicut in uestra bene
+            memorabili conuenientia pepigistis conseruare <lb/> studebitis . Immo etiam cuncti in
+            postmodum sollicite <choice>
+               <abbr>pcauebt</abbr>
+               <expan>praecauebunt</expan>
+            </choice> ne aliquis <lb/> pro <expan>quacumque</expan> priuata commoditate . aut
+            reicienda cupiditate siue <lb/> alicuius consanguinitatis uel familiaritatis seu
+            amicitiae coniunctione <lb/> nobis inmoderatius suggerat uel postulationibus aut
+            quolibet modo in<lb break="no"/>liciat . ut contra iust<gap unit="chars" quantity="3"
+               /><unclear>ae</unclear>
+            <!-- Ggf. Original prüfen  --> rationem et nostri nominis dignitatem ac regi<lb
+               break="no"/>minis aequitatem agamus <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-3r-3"
+            corresp="BK.254_5_inscriptio">
+            <seg type="num" n="5">V</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-3r-4" corresp="BK.254_5">Et si forte subreptum
+            nobis quippiam ut homini fuerit competenter et <lb/> fideliter prout sublimitati regiae
+            conuenit et necessitatibus subiectorum <lb/> expedit ut hoc rationabiliter corrigatur
+            uestra fidelis deuotio <lb/> admonere curabit * <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-3r-5"
+            corresp="BK.254_6_inscriptio">
+            <seg type="num" n="6">VI</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-3r-6" corresp="BK.254_6">
+            <seg type="initial">T</seg>andem autem uisum est nobis adnectere ut si quis hoc foedus
+            concordiae <lb/> salubris quod propter pacis caritatisque custodiam iniuimus et
+            cirografi <cb n="3v"/> uirtute subscripsimus rebelli atque animo pertinaci inruperit
+            christiana dilec<lb break="no"/>tione admoneatur . et ad inconuulsum caritatis uinculum
+            conseruandum . quod <lb/> qui temptauerit corrumpere . facilius poterit se ipsum
+            disrumpere quam <lb/> illud possit inrumpere iuxta monita diuina ut resipiscat hortetur
+            et si <lb/> audierit fiat de societate fideli omnibus gaudium . si uero obaudire <lb/>
+            rennuerit ! tunc pontificalis auctoritas et regalis sublimitas atque <lb/> in caritatis
+            conexione persistentium magnanimitas secundum quod res et <lb/> necessitas postulauerit
+            ac ratio expetierit seu qualitati personę <lb/> conuenerit . zelum suae deuotionis
+            feruentissime exerat et quod <lb/> inspirante deo agendum in omnem salutis et utilitatis
+            atque honestatis <lb/> parte iudicauerit inrefragabiliter peragat . <lb/>
+         </ab>
+
+         <gap reason="editorial"/>
+         <cb n="13v"/>
+         <lb n="5"/>
+
+         <milestone unit="capitulare" n="BK.255"/>
+
+         <ab type="meta-text" rend="coloured nota" xml:id="den-haag-rmw-10-d-2-13v-3"
+            corresp="BK.255_inscriptio"> SEQUENTIA <choice>
+               <abbr>CAPITLA</abbr>
+               <expan>CAPITULA</expan>
+            </choice> ACTA SUNT APUD <rs type="place">TOLOSAM <lb/> CIUITATEM</rs>
+            <date>ANNO . IIII . <rs type="person">DOMNI REGNI KAROLI</rs>
+               <lb/> INDICTIONE VI . MENSE IUNIO</date>
+            <lb/> ANTEQUAM ILLA QUAE PRAECEDUNT FACTA <lb/> FUERINT . SECUS <rs type="place"
+               >TEUDONIS</rs> UILLAM ET IN <lb/>
+            <rs type="place">UERNO</rs> PALATIO ET IN <rs type="place">BELUACO</rs> CIUITATE <lb/>
+            SED IDEO ANTE ILLA POSITA SUNT QUIA ET DIGNI<lb break="no"/>TATE GENERALITATIS ET
+               SYNO<unclear>D</unclear>ALI <sic>PREMINENT</sic>
+            <lb/> AUCTORITATE <lb/>
+         </ab>
+
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-13v-4" corresp="BK.255_prolog">
+            <seg type="initial">H</seg>aec quae secuntur capitula consulentes necessitati
+            episcoporum <rs type="place">septimaniae</rs>
+            <lb/> et subiectorum eis pres<subst>
+               <del>p</del>
+               <add>b</add>
+            </subst>iterorum prouidentes possibilitati . tractantes <lb/> etiam sacri et iuste
+               inr<mod>e</mod>prehensibilis mynisterii honestatem <expan>presbiterorum</expan>
+            <lb/> reclamatione commoniti moderamine mansuetudinis nostrae usque ad di<lb break="no"
+            />ligentiorem tractum synodi generalis decernimus . <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-13v-5"
+            corresp="BK.255_1_inscriptio">
+            <seg type="num" n="1">I</seg></ab>
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-13v-6" corresp="BK.255_1">
+            <seg type="initial">U</seg>t episcopi nullam inquietudinem siue exprobrationem
+               <expan>presbiteris</expan> aut aperte <lb/> ingerendo aut alia qualibet occasione
+            machinando pro eo quod se ad <lb/> nos hac uice reclamare <choice>
+               <abbr>uenert</abbr>
+               <expan>uenerunt</expan>
+            </choice> inferant quia longa oppressio <cb n="14r"/> huiusmodi itineris eos fecit
+            subire laborem . <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-14r-1"
+            corresp="BK.255_2_inscriptio">
+            <seg type="num" n="2">II</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-14r-2" corresp="BK.255_2">
+            <seg type="initial">U</seg>t unum modium frumenti et unum modium hordei atque unum
+            modium <lb/> uini . cum mensura quae publica et probata ac generalis seu legitima <lb/>
+            per ciuitatem et pagum atque uicinitatem habetur episcopi a <expan>presbiteris</expan>
+            accipiant . <lb/> et frischingam sex ualentem denarios aut sex pro ea denarios et <lb/>
+            non amplius exigant . et si haec non accipiunt accipiant si uolunt <lb/> pro his omnibus
+            duos solidos in denariis sicut in <rs type="place">toletano</rs> et <rs type="place"
+               >bracharense</rs>
+            <lb/> consensu episcopi considerasse dicuntur . <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-14r-3"
+            corresp="BK.255_3_inscriptio">
+            <seg type="num" n="3">III</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-14r-4" corresp="BK.255_3">
+            <seg type="initial">U</seg>t <expan>presbiteri</expan> qui prope ciuitatem quinque
+            miliaria commanent per famulos <lb/> suos <expan>praedictam</expan> dispensam reddi in
+            ciuitate cui iusserit ciuitatis episcopus <lb/> faciant * Qui autem longius ab urbe
+            commanent statuant episcopi loca <lb/> conuenientia per decanias sicut constituti sunt
+               <expan>archipresbiteri</expan> quo similiter <lb/> et eadem propinquitate caeteri
+               <expan>presbiteri</expan> per famulos suos debitam <lb/> dispensam
+               <expan>archipresbiteris</expan> aut episcoporum ministris conuehant * et procurent
+            <lb/> episcopi ne ministri illorum <subst>
+               <del>pro</del>
+               <add><expan>presbiteros</expan></add>
+            </subst> dehonorent . aut pignora inhoneste <lb/> tollendo uel locationem pro receptione
+            dispensae exigendo sed cum <lb/> gratiarum actione recipiant * <mod>q</mod>uae
+               <expan>presbiteri</expan> cum hilaritatis humani<lb break="no"/>tate iuxta <rs
+               type="person">apostolum</rs> conferre <choice>
+               <abbr>debebt</abbr>
+               <expan>debebunt</expan>
+            </choice> . quodsi ministri episcoporum <expan>presbiteros</expan>
+            <lb/> dehonorauerint dignam illis exinde episcopi castigationem exhibeant . <lb/>
+            <choice>
+               <abbr>qm</abbr>
+               <expan>quoniam</expan>
+            </choice> nisi fecerint et ad nos iterum pro hoc se <expan>presbiteri</expan>
+            reclamauerint <lb/> motus nostros qui culpabilis repertus fuerit sentiet . <cb n="14v"/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-14v-1"
+            corresp="BK.255_4_inscriptio">
+            <seg type="num" n="4">IIII</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-14v-2" corresp="BK.255_4">
+            <seg type="initial">U</seg>t in circumitione parrochiae episcopi de cetero singulos
+               <expan>presbiteros</expan> per singulas <lb/>
+            <unclear>i</unclear>acendo euntes ecclesiolas sicut actenus non
+               <expan>praedentur</expan> cum scriptum sit <lb/> eosdem euangelizare debere non
+            turpis lucri <subst>
+               <del/>
+               <add>g</add>
+            </subst>ratia ne uituperetur <lb/> ministerium sanctum . Sed considerent et denuntient
+            loca sibi et populo <lb/> conuenientia et illuc <expan>presbiteri</expan> quotquot
+            possibilitas et moderatio <lb/> prouiderit plebes suas adducant et ibidem episcopi
+               <expan>praedicent</expan> * <lb/> confirment et populi errata inquirent ac corrigant
+            iterum <lb/> autem quia dominica uoce datur licentia . qui euangelium adnuntiant <lb/>
+            ut de euangelio uiuant . licet <rs type="person">paulus apostolus</rs> nihil horum
+            fuerit usus <lb/> presbiteri tale coniectum faciant ut et episcopi solacium habeant
+            <lb/> et ipsi non grauentur . quod ita nobis fieri posse uidetur uidelicet ut quat<lb
+               break="no"/>tuor <expan>presbiteri</expan> ad locum ubi quintus deget et episcopus
+            residet plebes suas de <lb/> quattuor partibus adducere studeant et unusquisque eorum
+            decem panes . <lb/> et dimidium modium uini et freschingam de quattuor denariis <lb/> et
+            pullos . duos . et oua decem et modium unum de annona ad cabal<lb break="no"/>los in
+            subsidium benedictionis gratia praesentet episcopo . et similiter . <lb/> quintus in
+            cuius domo episcopus residet faciat nec amplius ab eo exigatur <lb/> nisi forte ligna et
+            utensilia in opus ministerii commodet . qua<lb break="no"/>propter episcopus prouidebit
+            ne domus aut sepes illius a ministris uaste<mod>nt</mod>ur . <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-14v-3"
+            corresp="BK.255_5_inscriptio">
+            <seg type="num" n="5">V</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-14v-4" corresp="BK.255_5">
+            <seg type="initial">U</seg>t semel in anno episcopi hanc circumitionem tempore congruo
+            faciant . <lb/> et si amplius ministerium suum per diocesim agere uoluerint hanc <cb
+               n="15r"/> tamen dispensam non amplius quam semel a <expan>presbiteris</expan> per
+            annum <lb/> accipiant . <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-15r-1"
+            corresp="BK.255_6_inscriptio">
+            <seg type="num" n="6">VI</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-15r-2" corresp="BK.255_6">
+            <seg type="initial">Q</seg>uod et si circumitionem in salutem et necessitatem populi
+            quacumque <lb/> de causa dimiserint a <expan>presbiteris</expan> nec hanc dispensam
+            neque pretium illius exigant . <lb/> neque aliis aut suis domesticis aut amicis
+            exigendam concedant . et quan<lb break="no"/>do circumierint et in domo
+               <expan>presbiteri</expan> resederint non sub occasione adfli<lb break="no"/>gendi
+               <expan>presbiteros</expan> inmoderate et non necessarie numerum famulorum addu<lb
+               break="no"/>cant neque uicinos ad pastum incongrue conuocent . Quod et si cum <lb/>
+            caritate uocare uoluerint faciant . sed non amplius a presbiteris uel <lb/> sub
+            occasione uendendi uel alio quolibet modo quam statutum est <lb/> exigant . neque
+            paraueredos aut alias exactiones tollant . <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-15r-3"
+            corresp="BK.255_7_inscriptio">
+            <seg type="num" n="7">VII</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-15r-4" corresp="BK.255_7">
+            <seg type="initial">U</seg>t episcopi parrochias <expan>presbiterorum</expan> propter
+            inhonestum et periculosum lucrum <lb/> non
+            d<unclear>iui</unclear>dant<!-- Ggf. am Original prüfen. --> . sed si necessitas populi
+            exegerit ut plures fiant <lb/> ecclesiae aut statuantur altaria ! cum ratione et
+            auctoritate hoc <lb/> faciant . Scilicet ut si longitudo aut periculum aquae uel siluę
+            <lb/> aut alicuius certę rationis uel necessitatis causa poposcerit ut popu<lb
+               break="no"/>lus . et sexus infirmior mulierum u<subst>
+               <del/>
+               <add>idelicet</add>
+            </subst> uel infantum . <lb/> aut etiam debilium inbecillitas ad ecclesiam principalem
+            non possit <lb/> occurrere et non est sic longe uilla ut <expan>presbiter</expan> illic
+            sine periculo ad tem<subst>
+               <del/>
+               <add>pus</add>
+            </subst>
+            <lb/> et congrue non possit uenire statuatur altare . Et si ita populo
+               <expan>complacet</expan>
+            <lb/> et commodum fuerit ne sine ratione scandalizetur p<mod>a</mod>rrochia maneat <cb
+               n="15v"/> indiuisa . Sin autem praefatę causae postulauerint . et populus non <lb/>
+            conductus neque cupiditate uel inuidia excitatus sed rationabiliter <lb/> adclamauerit
+            ut ecclesia illis fieri et <expan>presbiter</expan> debeat ordinari . hoc episcopi <lb/>
+            episcopaliter teste deo in conscientiae puritate cum ratione et aucto<lb break="no"
+            />ritate <mod>s</mod>ine intentione turpis lucri mature consilio canonico tractent .
+            <lb/> et utilitati ac saluti subiectae plebis quaeque agenda sunt peragant . <lb/> et
+            secundum quod subtraxerint cuilibet <expan>presbitero</expan> de parrochia de dispensa
+            <lb/> quoque debita ab illo minus accipiant et alteri qui quod diuiditur <lb/> a
+            parrochia suscipit . sub hac eadem mensura inponant <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-15v-1" corresp="BK.255_8_inscriptio">
+            <seg type="num" n="8">VIII</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-15v-2" corresp="BK.255_8">
+            <seg type="initial">U</seg>t episcopi sub occasione qu<subst>
+               <del>i</del>
+               <add>asi</add>
+            </subst> auctoritatem habeant canonum his constitu<lb break="no"/>tis excellentiae
+            nostrae nequaquam resultent * aut neglegant sed <lb/> potius canones ut intellegendi
+            sunt intellegere et in cunctis obseruare <lb/> procurent . quia si aliter fecerint
+            omnimodis et qualiter canones fidelium <lb/> decimis agendum statuant . et qualiter
+            intellegi ac obseruari <lb/> cum mansuetudinis nostrae decreto debeant . synodali
+            diiudicatione <lb/> et nostra auctoritate regia docebuntur * <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-15v-3" corresp="BK.255_9_inscriptio">
+            <seg type="num" n="9">VIIII</seg> . </ab>
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-15v-4" corresp="BK.255_9">
+            <seg type="initial">U</seg>t episcopi synodos a <expan>presbiteris</expan> nisi sicut
+            docet auctoritas canonum duos scilicet <lb/> et per tempora constituta non exigant * Sed
+            et in eisdem synodis <lb/> non per occasionem sed per ueritatem ministerii sui teste deo
+            ad quod consti<lb break="no"/>tuti sunt <expan>presbiteros</expan> et tractent et
+            teneant et absoluant * <cb n="16r"/></ab>
+
+         <milestone unit="capitulare" n="BK.257"/>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-16r-1"
+            corresp="BK.257_a_prolog"><!-- sk: wenn möglich corresp hier und in analogen
+            Fällen auf "a.Prolog" umstellen, damit vor dem "Prolog" kein sinnloses "c." 
+            in der Sidebar ausgegeben wird? -->
+            <hi rend="coloured">HAEC QUAE SECUNTUR CAPITULA EXCERPTA SUNT</hi>
+            <lb/> a domno rege <rs type="person">karolo</rs> et principibus eius ex his capitulis
+            quae . <date>anno <lb/> DCCCXLVI</date> . <choice>
+               <abbr>edidert</abbr>
+               <expan>ediderunt</expan>
+            </choice> episcopi in synodis . <rs type="person">Uuenilo</rs> scilicet cum suffraga<lb
+               break="no"/>neis suis . <rs type="person">guntboldus</rs> cum suffraganeis suis . <rs
+               type="person">Ursmarus</rs> cum <lb/> suffraganeis suis . <rs type="person"
+               >Hincmarus</rs> cum suffraganeis suis . <rs type="person">Amalo</rs> cum <lb/>
+            suffraganeis suis . et oblata sunt eodem principi sicut ipse iusserat collec<lb
+               break="no"/>ta . ad relegendum . in <rs type="place">sparnaco uilla</rs>
+            <choice>
+               <abbr>remens</abbr>
+               <expan><rs type="place">remensis</rs></expan>
+            </choice> ecclesię . et quia factione <lb/> quorundam motus est animus <rs type="person"
+               >ipsius regis</rs> contra episcopos dissidentibus <lb/> primoribus regni sui ab
+            eorundem episcoporum ammonitione et remo<lb break="no"/>tis<note type="editorial">Über
+            <mentioned>s</mentioned> ein Fleck oder ein radiertes Zeichen bzw. Kürzungsstrich; evtl.
+            korrigiert aus <mentioned>remoti sunt</mentioned>?</note><!-- Ggf. am Original prüfen. --> 
+            ab eodem concilio episcopis ex
+            omnibus illis capitulis . haec tantum <lb/> obseruanda et conplacenda sibi <choice>
+               <abbr>collegert</abbr>
+               <expan>collegerunt</expan>
+            </choice> et episcopis scripto <choice>
+               <abbr>tradider</abbr>
+               <expan>tradiderunt</expan>
+            </choice>
+            <lb/> dicentes non amplius de eorum capitulis acceptasse quam ista et <lb/> ista
+               s<unclear>e</unclear><!-- Ggf. am Original prüfen. --> uelle cum principe obseruare
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16r-2" corresp="BK.257_a_1_inscriptio">
+            <seg type="num" n="1">I</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16r-3" corresp="BK.257_a_1"> De honore et cultu
+            ecclesiarum . <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16r-4" corresp="BK.257_a_2_inscriptio">
+            <seg type="num" n="2">II</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16r-5" corresp="BK.257_a_2"> De honore
+            episcoporum et ueneratione seruorum dei . <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16r-6" corresp="BK.257_a_3_inscriptio">
+            <seg type="num" n="3">III</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16r-7" corresp="BK.257_a_3"> De iustitiis .
+            <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16r-8" corresp="BK.257_a_4_inscriptio">
+            <seg type="num" n="4">IIII</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16r-9" corresp="BK.257_a_4"> Ut cautela fiat
+            erga eos qui causa iuuentutis aut insipientiae in <lb/> aliquo fallunt . siue
+            contempnunt admonitionem episcoporum ne <lb/> subito aut incaute damnentur anathemate *
+            <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16r-10" corresp="BK.257_a_5_inscriptio">
+            <seg type="num" n="5">V</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16r-11" corresp="BK.257_a_5"> De his qui contra
+            regiam potestatem contumaces esse moliuntur . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16r-12" corresp="BK.257_a_6_inscriptio">
+            <seg type="num" n="6">VI</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16r-13" corresp="BK.257_a_6"> De precariis .
+               <cb n="16v"/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-1" corresp="BK.257_a_7_inscriptio">
+            <seg type="num" n="7">VII</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-2" corresp="BK.257_a_7"> De hospitalibus
+            <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-3" corresp="BK.257_a_8_inscriptio">
+            <seg type="num" n="8">VIII</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-4" corresp="BK.257_a_8"> De rapacibus .
+            <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-5" corresp="BK.257_a_9_inscriptio">
+            <seg type="num" n="9">VIIII</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-6" corresp="BK.257_a_9"> Ut episcopis
+            tempus congruum obseruetur ad ministerium suum peragendum . <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-7" corresp="BK.257_a_10_inscriptio">
+            <seg type="num" n="10">X</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-8" corresp="BK.257_a_10"> Ut clerici arma
+            militaria non contingant * <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-9" corresp="BK.257_a_11_inscriptio">
+            <seg type="num" n="11">XI</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-10" corresp="BK.257_a_11"> Ut missi
+            dirigantur qui inquirant si praecepta a nobis de rebus <lb/> ecclesiarum ad proprium
+            sint facta * <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-11" corresp="BK.257_a_12_inscriptio">
+            <seg type="num" n="12">XII</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-12" corresp="BK.257_a_12"> De heresi
+            simoniaca * <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-13" corresp="BK.257_a_13_inscriptio">
+            <seg type="num" n="13">XIII</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-14" corresp="BK.257_a_13"> Ut a nullo sedes
+            episcopalis proprio infirmante episcopo usurpetur <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-15" corresp="BK.257_a_14_inscriptio">
+            <seg type="num" n="14">XIIII</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-16" corresp="BK.257_a_14"> Ut canonici
+            infra dormitorium dormiant * <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-17" corresp="BK.257_a_15_inscriptio">
+            <seg type="num" n="15">XV</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-18" corresp="BK.257_a_15"> Ut monachi ad
+            palatium non ueniant nisi causa oboedientiae <lb/> exceptis abbatibus <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-19" corresp="BK.257_a_16_inscriptio">
+            <seg type="num" n="16">XVI</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-20" corresp="BK.257_a_16">
+            <seg type="initial">U</seg>t laici decimas de ecclesiis non contingant <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-21" corresp="BK.257_a_17_inscriptio">
+            <seg type="num" n="17">XVII</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-22" corresp="BK.257_a_17"> De
+            sanctimonialibus contra auctoritatem nuptis . <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-23" corresp="BK.257_a_18_inscriptio"
+               ><seg type="num" n="18">XVIII</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-24" corresp="BK.257_a_18"> De sponsis
+            aliorum <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-16v-25" corresp="BK.257_a_19_inscriptio">
+            <seg type="num" n="19">XVIIII</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-26" corresp="BK.257_a_19"> De sepulturis
+            infra ecclesiam <lb/></ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-16v-27"
+            corresp="BK.257_b_prolog"><hi rend="coloured">PLENITUDO AUTEM CAPITULORUM QUAE IN
+               PLENITUDINE</hi>
+            <lb/> synodalium actionum habentur unde hae commemorationes ex<lb break="no"/>cerptae
+            sunt ita per loca continentur . <lb/></ab>
+
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-16v-28"
+            corresp="BK.257_b_1_inscriptio BK.257_b_1">
+            <milestone unit="span" corresp="BK.257_b_1_inscriptio"
+               spanTo="#den-haag-rmw-10-d-2-16v-28_1"/><seg type="numDenom">Commemoratio</seg> .
+               <seg type="num" n="1">prima</seg><anchor xml:id="den-haag-rmw-10-d-2-16v-28_1"/>
+            <milestone unit="span" corresp="BK.257_b_1" spanTo="#den-haag-rmw-10-d-2-16v-28_2"/>de
+            honore uidelicet et cultu ecclesiarum sicut <lb/> supra scriptum habetur in uilla <rs
+               type="place">colonia</rs> subscriptione regis et principum <lb/> roboratum<anchor
+               xml:id="den-haag-rmw-10-d-2-16v-28_2"/>
+            <cb n="17r"/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-17r-1"
+            corresp="BK.257_b_2_inscriptio BK.257_b_2">
+            <milestone unit="span" corresp="BK.257_b_2_inscriptio"
+               spanTo="#den-haag-rmw-10-d-2-17r-1_1"/><seg type="numDenom">Commemoratione</seg>
+            <seg type="num" n="2">secunda</seg><anchor xml:id="den-haag-rmw-10-d-2-17r-1_1"/>
+            <milestone unit="span" corresp="BK.257_b_2" spanTo="#den-haag-rmw-10-d-2-17r-1_2"/> de
+            honore episcoporum et ueneratione <lb/> seruorum dei . similiter . <anchor
+               xml:id="den-haag-rmw-10-d-2-17r-1_2"/><lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-17r-2"
+            corresp="BK.257_b_3_inscriptio BK.257_b_3">
+            <milestone unit="span" corresp="BK.257_b_3_inscriptio"
+               spanTo="#den-haag-rmw-10-d-2-17r-2_1"/><seg type="numDenom">Commemoratione</seg> .
+               <seg type="num" n="3">III</seg> . <anchor xml:id="den-haag-rmw-10-d-2-17r-2_1"/>
+            <milestone unit="span" corresp="BK.257_b_3" spanTo="#den-haag-rmw-10-d-2-17r-2_2"/>De
+            iustitiis . <choice>
+               <abbr>simil</abbr>
+               <expan>similiter</expan>
+            </choice> . <anchor xml:id="den-haag-rmw-10-d-2-17r-2_2"/><lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-17r-3"
+            corresp="BK.257_b_5_inscriptio BK.257_b_5">
+            <milestone unit="span" corresp="BK.257_b_5_inscriptio"
+               spanTo="#den-haag-rmw-10-d-2-17r-3_1"/><seg type="numDenom">Commemoratione</seg> .
+               <seg type="num" n="5">V</seg> . <anchor xml:id="den-haag-rmw-10-d-2-17r-3_1"/>
+            <milestone unit="span" corresp="BK.257_b_5" spanTo="#den-haag-rmw-10-d-2-17r-3_2"/>De
+            his qui contra regiam potestatem contumaces <lb/> esse moliuntur . <choice>
+               <abbr>simil</abbr>
+               <expan>similiter</expan>
+            </choice> . <anchor xml:id="den-haag-rmw-10-d-2-17r-3_2"/>
+            <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-17r-4" corresp="BK.257_b_6_inscriptio">
+            <seg type="numDenom">Commemoratione</seg> . <seg type="num" n="6">VI</seg> . </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-17r-5" corresp="BK.257_b_epilog">Caeterae
+            autem commemorationes <lb/> secuntur ita in praefata plenitudine cum suis capitulis
+            continentur . <lb/>
+         </ab>
+
+         <gap reason="editorial"/>
+         <cb n="22r"/>
+         <lb n="11"/>
+
+         <milestone unit="capitulare" n="BK.204"/>
+
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-22r-1" corresp="BK.204_inscriptio" rend="nota">
+            <hi rend="coloured">HAEC <add>QUAE</add><metamark function="insertion"/> SECUNTUR
+               CAPITULA ACTA SUNT</hi><note type="editorial">Unter der Rubrik und im freigelassenen
+               Raum bis zum Zeilenende sind getilgte Buchstabenreste erkennbar ([...]
+                  <mentioned>CAPITULA HACTA SUNT</mentioned>?). Wahrscheinlich handelte es sich um
+               vorgeschriebenen Text, den der Rubrikator farbig ausführen sollte; vgl. die
+               Vorbemerkung. <!-- Ggf. am Original prüfen! --></note>
+            <lb/> quando tres reges fratres . <rs type="person">hlotharius</rs> scilicet <rs
+               type="person">hludouuicus</rs> et <rs type="person">karolus</rs>
+            <lb/> simul <choice>
+               <abbr>conuenert</abbr>
+               <expan>conuenerunt</expan>
+            </choice> secus municipium <rs type="place">treiectum</rs> in loco qui dicitur <lb/>
+            <rs type="place">marsna</rs>
+            <date><choice>
+                  <abbr>ann</abbr>
+                  <expan>anno</expan>
+               </choice> incarnationis dominicae . DCCCXLVII . <add hand="X">per mensem <choice>
+                     <abbr>febr</abbr>
+                     <expan>febroarium</expan>
+                  </choice></add></date> quae <subst>
+               <del/>
+               <add>etiam capitula</add>
+            </subst>
+            <lb/> singulorum adnuntiationes secuntur . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-22r-2" corresp="BK.204_a_1_inscriptio">
+            <seg type="num" n="1">I</seg>
+         </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-22r-3" corresp="BK.204_a_1">
+            <seg type="initial">D</seg>e pace et concordia atque unanimitate trium fratrum et regnum
+            <lb/> inter se et quod uerissimo et non ficto caritatis uinculo sint un<mod>i</mod>ti
+            <lb/> et ut nullus deinceps scandalorum inter eos occasiones serere possit * <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-22r-4" corresp="BK.204_a_2_inscriptio">
+            <seg type="num" n="2">II</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-22r-5" corresp="BK.204_a_2">
+            <seg type="initial">U</seg>t ipsi mutuo sibi auxilientur et contra dei sanctaeque
+            ecclesiae ac suos inimicos <lb/> secundum oportunitatem temporis inuicem adiuuent .
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-22r-6" corresp="BK.204_a_3_inscriptio">
+            <seg type="num" n="3">III</seg>
+         </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-22r-7" corresp="BK.204_a_3">
+            <seg type="initial">U</seg>t nemo per quamlibet cupiditatem <mod>l</mod>eges pacis in
+            cuiuslibet eorum regno conuellere <lb/>
+            <expan>praesumat</expan> quodsi facere <expan>praesumpserit</expan> communem ab eis
+            ultionem incurrat * <cb n="22v"/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-22v-1" corresp="BK.204_a_4_inscriptio">
+            <seg type="num" n="4">IIII</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-22v-2" corresp="BK.204_a_4">
+            <seg type="initial">V</seg>t ecclesiae christi per omne eorum regnum pristinam
+            dignitatem honoremque <lb/> retineant . et quicquid superstite domno <rs type="person"
+               >hludouuico</rs> imperatore iure <lb/> legitimo <choice>
+               <abbr>posseder</abbr>
+               <expan>possederunt</expan>
+            </choice> . absque ulla deminutione recipiant * <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-22v-3" corresp="BK.204_a_5_inscriptio">
+            <seg type="num" n="5">V</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-22v-4" corresp="BK.204_a_5">
+            <seg type="initial">U</seg>t singulis eorum fidelibus talis lex conseruetur qualem
+            temporibus <lb/> priorum regum et <expan>praecipue</expan>
+            <rs type="person">aui</rs>
+            <rs type="person">patrisque</rs> eorum . habuisse noscuntur si tamen <lb/> et ipsi
+            pristinam fidem erga ipsos conseruent <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-22v-5" corresp="BK.204_a_6_inscriptio">
+            <seg type="num" n="6">VI</seg>
+         </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-22v-6" corresp="BK.204_a_6">
+            <seg type="initial">U</seg>t rapinae et <expan>depraedationes</expan> quae quasi iure
+            legitimo hactenus factę sunt <lb/> penitus interdic<subst>
+               <del>u</del>
+               <add hand="X">a</add>
+            </subst>ntur et nemo se impune post haec eas <expan>praesumere</expan> posse <lb/>
+            confidat * <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-22v-7" corresp="BK.204_a_7_inscriptio">
+            <seg type="num" n="7">VII</seg>
+         </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-22v-8" corresp="BK.204_a_7">
+            <seg type="initial">U</seg>t in singulis partibus regni missi idonei constituantur . qui querel<subst>
+               <del>e</del>
+               <add>a</add>
+            </subst>s pau<lb break="no"/>perum et oppressiones siue quorumcumque causas examinare et
+            secundum <lb/> legis aequitatem ualeant definire et si ab uno in aliud regnum <lb/>
+            huiusmodi praesumptores confugerint ibi similiter opprimantur <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-22v-9" corresp="BK.204_a_8_inscriptio">
+            <seg type="num" n="8">VIII</seg>
+         </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-22v-10" corresp="BK.204_a_8">
+            <seg type="initial">U</seg>t nullus in omni eorum regno deinceps raptum facere praesumat
+            <lb/> aut si fecerit legaliter puniatur <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-22v-11" corresp="BK.204_a_9_inscriptio">
+            <seg type="num" n="9">VIIII</seg>
+         </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-22v-12" corresp="BK.204_a_9">
+            <seg type="initial">U</seg>t regum filii legitimam hereditatem regni secundum definitas
+               <expan>praesenti</expan>
+            <lb/>
+            <choice>
+               <abbr>tepre</abbr>
+               <expan>tempore</expan>
+            </choice> portiones post eos retineant et hoc quicumque ex his fratribus <lb/> superstes
+            fratribus fuerit consentiat si tamen ipsi nepotes patr<subst>
+               <del>iu</del>
+               <add>ui</add>
+            </subst>s <lb/> oboedientes esse consenserint . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-22v-13" corresp="BK.204_a_10_inscriptio">
+            <seg type="num" n="10">X</seg> . </ab>
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-22v-14" corresp="BK.204_a_10">
+            <seg type="initial">U</seg>t legati ad <rs type="person">ducem brittonum</rs> mittantur
+            qui de communi erga eos <lb/> obseruatione pacis eum commoneant . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-22v-15" corresp="BK.204_a_11_inscriptio">
+            <seg type="num" n="11">XI</seg>
+         </ab>
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-22v-16" corresp="BK.204_a_10">
+            <seg type="initial">U</seg>t similiter ad <rs type="person">regem nordmannorum</rs>
+            legati mittantur qui eum <cb n="23r"/> contestentur quod aut pacem seruare studebit aut
+            communiter eos <lb/> infensos habebit * <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-23r-1"
+            corresp="BK.204_b_inscriptio"> ADNUNTIATIO DOMNI <rs type="person">HLOTHARII</rs>
+            <lb/>
+            <seg type="num" n="1">I</seg>
+         </ab>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-23r-2" corresp="BK.204_b_1">
+            <seg type="initial">N</seg>obis et fratribus nostris uisum fuit ut ad dei
+               uoluntate<mod>m</mod> quęrendam <lb/> qualiter sancta ecclesia recuperata esse possit
+            et pacem et nos <subst>
+               <del/>
+               <add>a</add>
+            </subst>c uos et iste <lb/> populus christianus habere possimus . Nos simul
+            coniungeremus sicut <lb/> nunc fecimus et sic simus inter nos sicut fratres per rectum
+            esse debent . <lb/> et pro certo illud sciatis quia gratias deo sic sumus et sic
+            permanere adiuuante <lb/> deo inante uolumus . et in consilio et in auxilio unusquisque
+            erga alterum parati <lb/> sumus adiutorium ferre sicut fratres in dei uoluntate et
+            communi profectu facere <lb/> debent in <expan>quibuscumque</expan> potuerimus . <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-23r-3"
+            corresp="BK.204_c_inscriptio"> ADNUNTIATIO DOMNI <rs type="person">HLUDOUUICI</rs>
+            <lb/>
+            <seg type="num" n="2">II</seg>
+         </ab>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-23r-4" corresp="BK.204_c_1">
+            <seg type="initial"
+            >S</seg>cia<unclear>ti</unclear>s<!-- Ggf. Original prüfen (Falte). --> quia fratres
+            nostri et nos nostros missos ad communem <rs type="person">nepotem nostrum</rs> in <rs
+               type="place">aqui<lb break="no"/>taniam</rs> mittimus et ei tales comitatus
+            designatos mandamus in quibus ipse cum <lb/> suis interim sufficienter esse possit . et
+            fideles dilecti fratris nostri <rs type="person">karoli</rs> de illo <lb/> regno pacem
+            habere possint . usque dum <choice>
+               <abbr>ide</abbr>
+               <expan>idem</expan>
+            </choice>
+            <rs type="person">nepos noster</rs> ad communem <lb/> placitum nostrum ueniat . ad quod
+            cum tali securitate a nobis accepta eum uenire <lb/> mandamus ut sanus uenire et sanus
+            stare et sanus reuerti quantum illum deus saluare <lb/> uoluerit possit * et si tunc
+            nostrum consilium audire uoluerit uolumus cum dei adiu<lb break="no"/>torio et uestro
+            consilio considerare quomodo melius secundum communem profectum et <lb/> utilitatem
+            inante esse possit . et si nostrum consilium audire non uoluerit tunc sicut <cb n="23v"
+            /> melius cum dei adiutorio et uestro consilio inuenire potuerimus exinde agere <lb/>
+            uolumus * <lb/>
+         </ab>
+
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-23v-1" corresp="BK.204_c_2">
+            <seg type="initial">S</seg>ciatis etiam quia <choice>
+               <abbr>simlt</abbr>
+               <expan>similiter</expan>
+            </choice> missos nostros ad <rs>brittones</rs> mittimus et illos ad communem <lb/>
+            profectum et pacem hortamur qu<subst>
+               <del>a</del>
+               <add>i</add>
+            </subst> si audierint . et non <mod>au</mod>dierint cum dei adiutorio <lb/> et uestro
+            consilio ex<subst>
+               <del/>
+               <add>in</add>
+            </subst>de etiam facere uolumus <lb/>
+         </ab>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-23v-2"
+            corresp="BK.204_c_3 BK.204_c_4">
+            <milestone unit="span" corresp="BK.204_c_3" spanTo="#den-haag-rmw-10-d-2-23v-2_1"/>
+            <seg type="initial">S</seg>ciatis quia communiter missos nostros ad <rs>nortmannos</rs>
+            pro pace accipienda mittimus <lb/>
+            <anchor xml:id="den-haag-rmw-10-d-2-23v-2_1"/>
+            <milestone unit="span" corresp="BK.204_c_4" spanTo="#den-haag-rmw-10-d-2-23v-2_2"/>
+            sciatis etiam quia dilectus frater noster <rs type="person">hlotharius</rs> missos suos
+            ad uos homines trans<lb break="no"/>mittit qui usque modo in contrarietatem dilecti
+            fratris nostri <rs type="person">karoli</rs>
+            <choice>
+               <abbr>fuert</abbr>
+               <expan>fuerunt</expan>
+            </choice>
+            <lb/> et illis mandat ut per nullum ingenium inante sicut de dei et sua gratia <lb/>
+            gaudere uolunt in illius et fidelium eius contrarietatem a<mod>l</mod>iquid faciant <lb/>
+            <anchor xml:id="den-haag-rmw-10-d-2-23v-2_2"/>
+         </ab>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-23v-3"
+            corresp="BK.204_c_5 BK.204_c_6">
+            <milestone unit="span" corresp="BK.204_c_5" spanTo="#den-haag-rmw-10-d-2-23v-3_1"/>
+            <seg type="initial">E</seg>t sciatis quia uolumus ut res ecclesiarum in
+               <expan>cuiuscumque</expan> regno caput fuerit tam de epis<lb break="no"/>copatibus
+            quam de abbatiis sine ulla contradictione rectores ipsarum ecclesiarum <lb/> sicut <choice>
+               <abbr>tepr</abbr>
+               <expan>tempore</expan>
+            </choice>
+            <rs type="person">domni ac genitoris nostri</rs>
+            <choice>
+               <abbr>fecer</abbr>
+               <expan>fecerunt</expan>
+            </choice> illas possideant . <anchor xml:id="den-haag-rmw-10-d-2-23v-3_1"/>
+            <milestone unit="span" corresp="BK.204_c_6" spanTo="#den-haag-rmw-10-d-2-23v-3_2"/>
+            <choice>
+               <abbr>siml</abbr>
+               <expan>similiter</expan>
+            </choice> . et de episcopatibus <lb/> et monasteriis ubicumque in nostro
+               com<unclear>m</unclear>uni<note type="editorial">Der den Schreibergewohnheiten
+               entsprechende und daher auch hier zu erwartende Nasalstrich über
+                  <mentioned>o</mentioned> ist auf dem Digitalisat nicht zu sehen, da er vermutlich
+               in einer Pergamentfalte verschwunden ist.<!-- Ggf. am Original prüfen! --></note>
+            regno aliter est modo quam debeat <lb/> Uolumus una cum dei adiutorio illu<subst>
+               <del>c</del>
+               <add>d</add>
+            </subst> emendare ut ecclesia dei suum honorem debitum <lb/> habere possit et populus
+            suam legem et iustitiam habeat . <anchor xml:id="den-haag-rmw-10-d-2-23v-3_2"
+            /><lb/></ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="den-haag-rmw-10-d-2-23v-4"
+            corresp="BK.204_d_inscriptio"><seg type="num" n="3" rend="default">III</seg> ADNUNTIATIO
+               <rs type="person">KAROLI</rs>
+            <lb/>
+         </ab>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-23v-5" corresp="BK.204_d_1">
+            <seg type="initial">S</seg>ciatis quia dilecti fratres nostri et nos communiter nostrum
+            placitum ad missam <rs type="person">sancti iohannis</rs>
+            <lb/> apud <rs type="place">parisium</rs> condictum habemus . ubi de istis
+               <expan>quae</expan> illi modo <choice>
+               <abbr>dixer</abbr>
+               <expan>dixerunt</expan>
+            </choice> et ceteris <expan>quae</expan>
+            <lb/> ad dei uoluntatem et nostrum ac uestrum communem profectum inuenire potuerimus
+            <lb/> consideremus et una cum dei adiutorio ad effectum perducamus et uolumus <cb
+               n="24r"/> ut abhinc inante <expan>ubicumque</expan> unusquisque fuerit cum pace
+            consistat . et ad <lb/> illud placitum cum pace unusquisque ueniat quia in istis
+            miseriis et rapinis <lb/> usque modo multum deum offendimus unde nobis dei misericordiam <lb/>
+            <expan>depraecari</expan> satis necessarium esse cognoscimus . <lb/>
+         </ab>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-24r-1" corresp="BK.204_d_2">
+            <seg type="initial">U</seg>olumus etiam ut unusquisque liber homo in nostro regno
+            seniorem qualem <lb/> uoluerit in nobis et in nostris fidelibus accipiat . <lb/>
+         </ab>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-24r-2"
+            corresp="BK.204_d_3 BK.204_d_4">
+            <milestone unit="span" corresp="BK.204_d_3" spanTo="#den-haag-rmw-10-d-2-24r-2_1"/>
+            Mandamus etiam ut nullus homo seniorem suum sine iusta ratione <lb/> dimittat . nec
+            aliquis eum recipiat nisi sicut <choice>
+               <abbr>tepr</abbr>
+               <expan>tempore</expan>
+            </choice> antecessorum nostrorum <lb/> consuetudo fuit . <anchor
+               xml:id="den-haag-rmw-10-d-2-24r-2_1"/>
+            <milestone unit="span" corresp="BK.204_d_4" spanTo="#den-haag-rmw-10-d-2-24r-2_2"/> Et
+            uolumus ut sciatis quia nos fidelibus nostris rectum <lb/> consentire uolumus et contra
+            rationem eis facere non uolumus . et <choice>
+               <abbr>simlt</abbr>
+               <expan>similiter</expan>
+            </choice>
+            <lb/> uo<mod>s</mod> ac ceteros fideles nostros admonemus ut uos uestris hominibus
+            rectum <lb/> consentiatis et contra rationem illis non faciatis . <lb/>
+            <anchor xml:id="den-haag-rmw-10-d-2-24r-2_2"/>
+         </ab>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-24r-3" corresp="BK.204_d_5"> Et
+            uolumus ut cuiuscumque nostrum homo in cuiuscumque regno sit <lb/> cum seniore suo in
+            hostem uel aliis suis utilitatibus pergat . nisi talis <lb/> regni inuasio quam
+            lantuueri dicunt quod absit acciderit Ut omnis <lb/> populus illius regni ad eam
+            repellendam communiter pergat * <lb/>
+         </ab>
+
+         <milestone unit="capitulare" n="BK.205"/>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-24r-4" corresp="BK.205_inscriptio">
+            <hi rend="coloured">HAEC QUAE SECUNTUR CAPITULA ACTA SUNT</hi>
+            <lb/>
+            <date>anno DCCCLI . incarnationis dominicę</date> quando tres fratres reges <rs
+               type="person">hlotha<lb break="no"/>rius</rs> . scilicet . <rs type="person"
+               >hludouuicus</rs> et <rs type="person">karolus</rs> secus municipium <rs type="place"
+               >treiectum</rs>
+            <lb/> penes locum qui dicitur <rs type="place">marsna</rs> iterum <choice>
+               <abbr>conuener</abbr>
+               <expan>conuenerunt</expan>
+            </choice> et consultu episcoporum et cetero<lb break="no"/>rum fidelium eadem capitula <choice>
+               <abbr>subscripser</abbr>
+               <expan>subscripserunt</expan>
+            </choice> manibus propriis et inter se <cb n="24v"/> ac inter fideles suos perpetuo se
+            conseruaturos <choice>
+               <abbr>promisert</abbr>
+               <expan>promiserunt</expan>
+            </choice> quae capi<lb break="no"/>tula singulorum in populo adnuntiationes secuntur
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-24v-1" corresp="BK.205_a_1_inscriptio">
+            <seg type="num" n="1">I</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-24v-2" corresp="BK.205_a_1">
+            <seg type="initial">U</seg>t omnium preteritorum malorum et contrarietatum et
+               supplanta<lb break="no"/>tionum ac malarum machinationum atque molitionum seu
+            nocimentorum <lb/> in inuicem actorum abolitio ita inter nos et apud nos fiat . et a
+            nostris cor<lb break="no"/>dibus penitus auellatur cum omni malitia et rancore ut nec in
+            memoriam <lb/> ad retributionem dumtaxat mali uel contrarietatis atque expro<lb
+               break="no"/>brationis seu improperii . de cetero exinde quiddam ueniat . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-24v-3" corresp="BK.205_a_2_inscriptio">
+            <seg type="num" n="2">II</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-24v-4" corresp="BK.205_a_2"> Ut tanta domino
+            cooperante inter nos uerę caritatis benignita<subst>
+               <del>t<gap unit="chars" quantity="3"/></del>
+               <add>s ab</add>
+            </subst>hinc <lb/> inante maneant . de corde puro et conscientia bona et fide non ficta
+            <lb/> sine dolo et simulatione ut nemo suo pari suum regnum aut suos fideles <lb/> uel
+            quod ad salutem siue prosperitatem ac honorem regium pertinet <lb/> discupiat aut
+            forsconsiliet aut per occultos susurrones libenter
+               <expan>co<unclear>m</unclear>posita</expan><note type="editorial">Der hier zu
+               erwartende Nasalstrich über <mentioned>o</mentioned> ist auf dem Digitalisat nicht zu
+               sehen, da er vermutlich in einer Pergamentfalte verschwunden
+               ist.<!-- Ggf. am Original prüfen! --></note>
+            <lb/> mendacia seu detractiones acceptet * <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-24v-5" corresp="BK.205_a_3_inscriptio">
+            <seg type="num" n="3">III</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-24v-6" corresp="BK.205_a_3">
+            <seg type="initial">U</seg>t unusquisque fideliter suum parem ubicumque necessitas illi
+            fuerit <lb/> et ipse potuerit aut per se aut per filium aut per fideles suos et consilio
+            <lb/> et auxilio adiuuet ut regnum fideles prosperitatem atque honorem <lb/> regium
+            debite ualeat obtinere . et ueraciter unusquisque erga alterum <lb/> certatim demonstret
+            quia in fratris sui aduersitate si euenerit fraterno <lb/> modo contristatur et in
+            prosperitate illius laetatur et talem fidem sicut inter <lb/> nos modo abhinc in ante
+            conseruaturos confirmatum habemus . <cb n="25r"/> sic unusquisque infantibus fratri<subst>
+               <del/>
+               <add>s</add>
+            </subst> sui si obierit qui superfuerit conseruabit <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-25r-1" corresp="BK.205_a_4_inscriptio">
+            <seg type="num" n="4">IIII</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-25r-2" corresp="BK.205_a_4">
+            <seg type="initial">E</seg>t quia per uagos et tyrannica consuetudine inreuerentes
+            homines <lb/> pax et quies regni perturbari solet . uolumus ut ad
+               <expan>quemcumque</expan> nostrum talis <lb/> uenerit ut de his <expan>quae</expan>
+            egit rationem et iustitiam subterfugere possit nemo <lb/> ex nobis illum ad aliud
+            recipiat uel retineat nisi ut ad rectam rationem <lb/> et debitam emendationem
+            perducatur et si rationem rectam subter<lb break="no"/>fugerit omnes in commune in cuius
+            regnum uenerit illum persequamur <lb/> donec aut ad rationem perducatur aut de regno
+            deleatur . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-25r-3" corresp="BK.205_a_5_inscriptio">
+            <seg type="num" n="5">V</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-25r-4" corresp="BK.205_a_5">
+            <seg type="initial">S</seg>imiliter et de eo agendum est qui pro aliquo capitali et
+            publico crimine <lb/> a quolibet episcopo corripitur uel excommunicatur aut ante
+               excommunicati<lb break="no"/>onem crimen faciens regnum et regis regimen mutat ne
+            debitam poeniten<lb break="no"/>tiam <mod>s</mod>uscipiat aut susceptam legitime peragat
+            interdum etiam <lb/>
+            <mod>i</mod>ncestam propinquam suam aut sanctimonialem uel raptam siue adulteram <lb/>
+            quam illic ei non licebat habere fugiens secum ducit . hic talis <lb/> cum episcopus ad
+            cuius curam pertinebit nobis notum fecerit diligenter <lb/> perquiratur ne morandi uel
+            latendi locum in regno alicuius nostrum in<lb break="no"/>ueniat et dei ac nostros
+            fideles suo morbo inficiat sed a nobis uel per <lb/> ministros rei publicę constringatur
+            et ut simul cum diabolica preda <lb/> quam secum <choice>
+               <abbr>dux</abbr>
+               <expan>duxit</expan>
+            </choice> ad <subst>
+               <del>episcopos suos</del>
+               <add>episcopvm suvm</add>
+            </subst><note type="editorial"><mentioned>episcopvm suvm</mentioned> korr. aus
+               <mentioned>episcopos</mentioned> (gek. <mentioned>epos</mentioned>) <mentioned>suos</mentioned>. 
+               Zwischen dem gekürzten <mentioned>epv suv</mentioned>
+               ist noch ein redundantes <mentioned>m</mentioned> stehengeblieben, das offenbar
+               während des Korrekturvorganges zunächst aus dem <mentioned>s</mentioned> von
+               <mentioned>epos</mentioned> gebildet, aber dann nicht mehr benötigt
+               wurde.</note> redeat et de quocumque crimine <lb/> publico debitam poenitentiam
+            suscipiat aut susceptam legitime <lb/> peragat <expan>compellatur</expan> . <cb n="25v"
+            />
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-25v-1" corresp="BK.205_a_6_inscriptio">
+            <seg type="num" n="6">VI</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-25v-2" corresp="BK.205_a_6">
+            <seg type="initial">U</seg>t nostri fideles unusquisque in suo ordine et statu ueraciter
+            sint de nobis securi <lb/> quia nullum abhinc inante contra legem et iustitiam uel
+            auctoritatem <lb/> ac iustam rationem . aut damnabimus aut dehonorabimus aut opprimemus
+            <lb/> uel indebitis machinationibus affligemus . et illorum scilicet ueraciter <lb/>
+            nobis fidelium communi consilio secundum dei uoluntatem et <expan>commune</expan>
+            <lb/> saluamentum ad restitutionem sanctae dei ecclesiae et statum regni et ad <lb/>
+            honorem regium atque pacem populi commissi nobis pertinenti ad<lb break="no"/>sensum
+            praebebimus in hoc ut illi non solum non sint nobis contradicentes <lb/> et resistentes
+            ad ista exsequenda . uerum etiam sic sint nobis fideles et <lb/> oboedientes ac ueri
+            adiutores atque cooperatores uero <subst>
+               <del/>
+               <add>consilio</add>
+            </subst> et sin<lb break="no"/>cero auxilio ad ista peragenda quae praemisimus sicut per
+            rectum <lb/> unusquisque in suo ordine et statu suo principi et suo seniori esse debet
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-25v-3" corresp="BK.205_a_7_inscriptio">
+            <seg type="num" n="7">VII</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-25v-4" corresp="BK.205_a_7">
+            <seg type="initial">U</seg>t sic simul coniuncti et nos fratres ad inuicem et nos cum
+            fidelibus nostris et <lb/> fideles nostri nobiscum et omnes simul cum deo nos
+            reconiungamus et ut <lb/> nobis sit propitius illi pro deuoto munere offeramus ut
+            unusquisque omnium <lb/> nostrum absque sua propria excusatione uel iustificatione
+            recognoscamus <lb/> in quibus aut singillatim aut communiter contra illius mandata et
+            <lb/> decreta suorum sanctorum fecimus aut consensimus in ordine ecclesiastico <lb/> et
+            statu regni et per singula in medium illa producamus . et nemo nostrum <lb/> suo aut
+            amico aut propinquo uel confoederato immo nec sibi ipsi <lb/> saeculariter parcat ut
+            spiritaliter et salubriter parcere possit * <cb n="26r"/> Quin sicut pręmisimus in
+               <mod>p</mod>raecedenti capitulo uero consilio et sincero <lb/> auxilio i<subst>
+               <del>n</del>
+               <add>lla</add>
+            </subst> in commune certatim emendare totis uiribus procuremus <lb/> quam citius
+            rationabiliter poterimus . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-26r-1" corresp="BK.205_a_8_inscriptio">
+            <seg type="num" n="8">VIII</seg> . </ab>
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-26r-2"
+            corresp="BK.205_a_8 BK.205_a_epilog">
+            <milestone unit="span" corresp="BK.205_a_8" spanTo="#den-haag-rmw-10-d-2-26r-2_1"/> Et
+            si aliquis de subditis in quocumque ordine et statu de hac conuenientia <lb/> exierit
+            aut se retraxerit uel huic communi decreto contradixerit <lb/> seniores cum ueraciter
+            fidelibus suis haec secundum dei uoluntatem et legem . <lb/> ac iustam rationem uelit
+            aut nolit ille qui diuino consilio et decreto <lb/> et huic conuenientiae resistens et
+            contradicens fuerit exsequantur . <lb/> Et si aliquis de senioribus de hac conuenientia
+            exierit aut se retraxerit <lb/> uel huic communi decreto quod absit contradixerit cum
+            plures <lb/> seniorum nostrorum fideles et regnorum primores in unum conuenerint <lb/>
+            eorum qui haec obseruauerint seniorum consilio et episcoporum iudicio * <lb/> ac communi
+            consensu qualiter de eo qui debite admonitus incorrigi<lb break="no"/>bilis
+            perseuerauerit agendum sit fauente domino decernetur . <anchor
+               xml:id="den-haag-rmw-10-d-2-26r-2_1"/>
+            <milestone unit="span" corresp="BK.205_a_epilog" spanTo="#den-haag-rmw-10-d-2-26r-2_2"/>
+            et ut o<mod>b</mod><lb break="no"/>nixius suprascripta capitula a nobis auxiliante
+            domino inuiolabiliter <lb/> obseruentur et nos illa obseruaturos certius credatur .
+            manibus propriis <lb/> eadem subter firmauimus . <lb/>
+            <anchor xml:id="den-haag-rmw-10-d-2-26r-2_2"/>
+         </ab>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-26r-3" corresp="BK.205_b">
+            <seg type="initial">U</seg>olumus ut uos sapiatis quid noster aduentus hic fuerit .
+            Uenimus hic ut simul <lb/> adiuuante deo cum fidelibus nostris de dei uoluntate et statu
+            sanctae ecclesię<note type="editorial">gek. <mentioned>ecclę</mentioned> ohne
+               Kürzungszeichen</note>
+            <lb/> ac regni et communi nostro ac uestro profectu consideraremus sicut et <lb/>
+            fecimus . et gratias deo <mod>s</mod>umus inde sic adunati et nos ad inuicem et cum <cb
+               n="26v"/> fidelibus nostris sicut nos recognoscimus quia et infra regnum et extra
+            regnum <lb/> per marcas nostras nobis est necessarium <lb/><lb/>
+         </ab>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-26v-1" corresp="BK.205_c">
+            <seg type="initial">S</seg>icut meus frater uobis dicit magna necessitas est nobis et
+            isti populo <lb/> christiano qui nobis est a deo commissus ut nos ad inuicem sic
+            concordes <lb/> et uniti simus quomodo dei uoluntas est et uerae fraternitati conuenit
+            <lb/> quo<subst>
+               <del>st</del>
+               <add>d</add>
+            </subst> usque modo postquam deus istud regnum in manus nostras post patrem <lb/>
+            nostrum misit per omnia sicut necessitas fuerat non fuimus . et ideo tanta <lb/> deo
+            contraria et nobis ac uobis impedimentosa <choice>
+               <abbr>accidert</abbr>
+               <expan>acciderunt</expan>
+            </choice> . et quia <lb/> modo domino adiuuante sic sumus una<subst>
+               <del>m</del>
+               <add>n</add>
+            </subst>imes sicut per rectum esse debemus <lb/> sciatis quia unusquisque nostrum
+            paratus est ut suum fratrem ubicumque <lb/> necessitas fuerit et infra patriam et foris
+            patriam aut per se ipsum <lb/> aut per infantem uel fideles suos et consilio et auxilio
+            sic adiuuet <lb/> sicut frater fratri . per rectum facere debet * <lb/><lb/>
+         </ab>
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-26v-2"
+            corresp="BK.205_d BK.205_epilog">
+            <milestone unit="span" corresp="BK.205_d" spanTo="#den-haag-rmw-10-d-2-26v-2_1"/>
+            <seg type="initial">S</seg>ciatis quia et nos <add hand="X">et</add><metamark
+               function="insertion"/> fideles nostri ueraciter recognoscimus quia partim necessi<lb
+               break="no"/>tate . partim indebita uoluntate sicut meus frater <rs type="person"
+               >hludouuicus</rs> uobis <lb/>
+            <choice>
+               <abbr>dix</abbr>
+               <expan>dixit</expan>
+            </choice> . multa <choice>
+               <abbr>accidert</abbr>
+               <expan>acciderunt</expan>
+            </choice> in isto regno quae nobis necesse non fuerat * <lb/> Et sciatis quia nunc
+            gratias deo adunati sumus et nos ad inuicem <lb/> et cum fidelibus nostris ut una cum
+            dei adiutorio quanto melius et citius <lb/> rationabiliter possumus procuremus qualiter
+            quae neglecta sunt emendata <cb n="27r"/> fiant . ut et deus sit nobis propitius et
+            ecclesiasticus ordo debitum <lb/> honorem habeat et regni nobis commissi prosperitas
+            proueniat <lb/> et iste populus christianus pacem habeat et uobis lex et iustitia
+               conser<lb break="no"/>uetur et uos nobis sicut antecessores uestri nostris
+            antecessoribus fecerunt * <lb/> debitum honorem et auxilium exhibeatis et qualiter hoc
+               consi<lb break="no"/>deratum et ueraciter confirmatum manibus propriis habeamus <lb/>
+            hic uobis relegetur . <anchor xml:id="den-haag-rmw-10-d-2-26v-2_1"/>
+            <milestone unit="span" corresp="BK.205_epilog" spanTo="#den-haag-rmw-10-d-2-26v-2_2"/>
+            et relecta sunt in conspectu totius populi suprascripta <choice>
+               <abbr>capla</abbr>
+               <expan>capitula</expan>
+            </choice> . <anchor xml:id="den-haag-rmw-10-d-2-26v-2_2"/>. <lb/><lb/>
+         </ab>
+
+         <milestone unit="capitulare" n="BK.258"/><!-- sk: oder müsste das besser "BK.258A" lauten? 
+         Wie BK 185 gibt es 2 Versionen, die z.T. identisch sind, wobei BK erst ab den Abweichungen 
+         den Text in 2 Spalten (A und B) edieren     -->
+
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-27r-1" corresp="BK.258A_1"
+            next="#den-haag-rmw-10-d-2-27r-3">
+            <!--    sk: einstweilen müssen wir ja BK folgen, die das alles als "c. 1" behandeln. Aber zumindest 
+            nach dieser Hs. dürfte es angemessener sein, den Anfang als "Prolog" zu behandeln und die erste Bestimmung, 
+            also c. 1, erst mit "Idem Remorum..." einsetzen zu lassen, d.h. mit den Anordnungen bzgl. Ebos v. Reims. -->
+            <seg type="initial">R</seg>egnante in sempiternum domino deo uniuersorum <date>anno
+               incarnationis <lb/> eiusdem domini dei nostri iesu christi . DCCCLIII . Anno uero
+               regni gloriosi <rs type="person">karoli</rs>
+               <lb/> filii <rs type="person">hludouuici</rs> religiosissimi augusti tertio decimo .
+               indictione prima</date>
+            <lb/> episcopis iuxta instituta canonum synodum celebrare uolentibus annuit <lb/> idem
+            rex <rs type="person">karolus</rs> eosque apud urbem <rs type="place">suessionum</rs> in
+               <rs>monasterio sancti me<lb break="no"/>dardi et sebastiani</rs>
+            <date> . X . <choice>
+                  <abbr>kl</abbr>
+                  <expan>kalendas</expan>
+               </choice> maias</date> . Conuenire <expan>praecepit</expan> . Ubi posthabi<lb
+               break="no"/>tis . saecularibus curis . ipse quoque rex adesse dignatus est . ut non
+            solum <lb/> deuotione ecclesiae . se filium esse ostenderet . Uerum etiam sicubi opus
+            esset <lb/> protectorem regia potestate monstraret . Cum itaque praesules diuer<lb
+               break="no"/>sarum ecclesiarum pio rege multa humiliter et prudenter proponente <lb/>
+            tractassent potius quaedam quam definissent . <date>VI <choice>
+                  <abbr>kl</abbr>
+                  <expan>kalendas</expan>
+               </choice>
+               <choice>
+                  <abbr>mai</abbr>
+                  <expan>maias</expan>
+               </choice></date> . synodo <lb/> praesidentibus <rs type="person">hincmaro
+                  <rs>remorum</rs></rs> . <rs type="person">guenilone <rs>senonum</rs></rs> . <rs
+               type="person">Amal<lb break="no"/>rico <rs>turonum</rs></rs> metropolitanis episcopis
+            . </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-27r-2" corresp="BK.258A_1_inscriptio">
+            <seg type="num" n="1">I</seg>
+         </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-27r-3" corresp="BK.258A_1"
+            prev="#den-haag-rmw-10-d-2-27r-1"> Idem <rs>remorum</rs> metropolitanus episcopus <cb
+               n="27v"/> uenerabilis <rs type="person">hincmarus</rs> ostendit non paucos a
+            decessore suo <rs type="person">ebone</rs>
+            <lb/> postquam canonice depositus fuisset nec uero canonice restitutus in<lb break="no"
+            />rationabiliter ordinatos . Iam rex absque ulla ambitione synodum <lb/> solus ingressus
+            simpliciter cum episcopis residebat . Serie igitur <lb/> depositionis memorati <rs
+               type="person">ebonis</rs> plenissime prolata multis metropoli<lb break="no"/>tanis
+            pluribusque aliis episcopis qui auctores <choice>
+               <abbr>fuer</abbr>
+               <expan>fuerunt</expan>
+            </choice> recitatis . restitutionis autem <lb/> illius non canonice immo nec ueręsimilis
+            paucis admodum et aliarum <lb/> regionum praesulibus nominatim expressis . claruit
+               praefat<mod>um</mod>
+            <rs type="person">ebonem</rs>
+            <lb/> episcopale officium illicite repetisse . quosque gradibus ecclesiasticis <lb/>
+            aestimatus fuerit promouisse * damnationi potius obnoxios effecisse <lb/>
+            <rs type="person">hincmarum</rs> autem successorem eius canonicis sanctionibus caute ac
+            <lb/> subtiliter obseruatis ad sedem accessisse et pręter decreta maiorum in <lb/> hac
+            parte nihil omnino moliri . sicut in gestis synodalibus exinde ab episcopis <lb/>
+            eiusdem concilii more canonico confirmatis plenius edocetur <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-27v-1" corresp="BK.258A_2_inscriptio">
+            <seg type="num" n="2">II</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-27v-2" corresp="BK.258A_2">
+            <seg type="initial">P</seg>ostmodum uenerabilis <rs type="person">guenilonis <rs
+                  type="place">senonicae</rs> urbis metropolitani episcopi</rs>
+            <lb/> suffraganeus <rs type="person"><rs type="place">neuernensis</rs> ecclesiae nomine
+               herimannus</rs> pro suis excessibus <lb/> quos corporali molestia sępe dicebatur
+            admittere a sanctis praesulibus mo<lb break="no"/>deste et acriter increpitus est . quod
+            prius frequenter correptus ordini <lb/> sacratissimo perseuerantia leuitatum adhuc
+            iniuriam faceret <lb/> et in praesentia <rs type="person">principis</rs> infirmitatem
+            pastoris nequaquam fastidientis <lb/> iniunctum est metropolitano eius ut adiunctis
+            secum aliquot episcopis ad <cb n="28r"/> oppidum <rs type="place">neuernense</rs>
+            accederet et omnia ibi negotia ecclesiastica sapienter <lb/> componeret . Ipsum uero coepiscop<subst>
+               <del>i</del>
+               <add>um</add>
+            </subst> suum <rs type="person">herimannum</rs> apud urbem <rs type="place">senonum</rs>
+            <lb/> secum haberet donec aestiuum tempus quod ualde contrarium infirmi<lb break="no"
+            />tati illius ferebatur pertransiret et sic domino annuente abstinentia
+               <expan>competenti</expan>
+            <lb/> assuetum episcopali grauitate instructum apostolicis moribus informatum <lb/>
+            clerus et populus eum ad sedem propriam utiliter fauente dei gratia reuocaret .
+            <lb/></ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-28r-1" corresp="BK.258A_3_inscriptio">
+            <seg type="num" n="3">III</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-28r-2" corresp="BK.258A_3">
+            <seg type="initial">D</seg>e <rs type="person">burghardo</rs> etiam qui <rs>carnutum
+               ecclesiam</rs> tenebat statutum est ut aut se <lb/> idoneum ad sumendum episcopalem
+            gradum admonitu <rs type="person">guenilonis</rs>
+            <lb/> metropolitani episcopi ostenderet . aut certe pronam in se clementiam <rs
+               type="person">principis</rs>
+            <lb/> cognoscens cederet in utroque dei iudicium experturus . Igitur sequenti <lb/> die
+            causa illius ad medium deducta uenerabiles episcopi <rs>remorum</rs> metropo<lb
+               break="no"/>litanus <rs type="person">hincmarus</rs> . <rs>lugdunensium</rs>
+            <rs type="person">pardulus</rs> . <rs>aurelianorum</rs>
+            <rs type="person">agius</rs> . <lb/> seorsum eum admonere <expan>praecepti</expan> sunt
+            . ut si absque discrimine ualeret officium se <lb/> posse aggredi fateretur . aut si non
+            posset propter dei timorem impossibili<lb break="no"/>tatem ingenue confiteretur . Parte
+            cleri quae praesens erat ac laicorum <lb/> bonum ei testimonium perhibente memoratis
+            praesulibus suadentibus <lb/> ad concilium intromissus . Tanto quidem gradu se dignum
+            esse profiteri <lb/> arrogantiae asseruit esse non ueritatis . si quis uero crimen
+            aliquod sibi <lb/> uellet obicere . ad id purgandum se paratum esse firmauit . Nullo qui<subst>
+               <del>d</del>
+               <add> id</add>
+            </subst>
+            <lb/> conaretur existente decreuit sancta synodus ne diu <rs>carnutum sedes</rs> uacaret
+            <lb/> sed directis illuc secundum uoluntatem metropolitani episcopi uenerabilis <rs
+               type="person">guenilonis</rs>
+            <cb n="28v"/> qui electionem praefati <rs type="person">burghardi</rs> recognoscerent et
+            ipsi referrent optan<lb break="no"/>tibus canonice ordinaretur episcopus <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-28v-1" corresp="BK.258A_4_inscriptio">
+            <seg type="num" n="4">IIII</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-28v-2" corresp="BK.258A_4">
+            <seg type="initial">P</seg>reterea <rs type="place">cenomannicę</rs> urbis <rs
+               type="person">aldricus</rs> episcopus paralisi dissolutus <expan>epistolam</expan>
+            <lb/>
+            <choice>
+               <abbr>direx</abbr>
+               <expan>direxit</expan>
+            </choice> causam suae absentiae insinuans petensque ut maxime sibi <lb/> adhuc uiuenti
+            et quandocumque defuncto sacris <expan>precibus</expan> opitularentur <lb/> quod
+            exuberantes caritate se facturos <choice>
+               <abbr>pmisert</abbr>
+               <expan>promiserunt</expan>
+            </choice> . et metropolitano <lb/> illius <rs type="place">turonicae</rs> urbis
+            uenerabili episcopo <rs type="person">Amalrico</rs> ut ad eandem urbem <lb/> accederet <choice>
+               <abbr>iniunxer</abbr>
+               <expan>iniunxerunt</expan>
+            </choice> . et quaecumque essent eidem ecclesiae proficua ut <lb/> strenue exequeretur
+            unanimiter <choice>
+               <abbr>praecepert</abbr>
+               <expan>praeceperunt</expan>
+            </choice> . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-28v-3" corresp="BK.258A_5_inscriptio">
+            <seg type="num" n="5">V</seg>
+         </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-28v-4" corresp="BK.258A_5">
+            <seg type="initial">A</seg>nte hoc tempus uenerandi concilii optinente <rs type="person"
+               >pippino</rs>
+            <rs type="person">pippini</rs> regis <lb/> filii <rs type="person">hludoguici</rs>
+            piissimi augusti filio <rs type="place">aquitaniam</rs> etiam consentiente <lb/>
+            auunculo eius glorioso rege <rs type="person">karolo</rs> cui eadem prouintia in partem
+            <lb/> optigerat ecclesiastica disciplina et militari soluta eadem regio a suis <lb/>
+            indigenis ualde uastata est et multi illic impune illicita <choice>
+               <abbr>perpetrart</abbr>
+               <expan>perpetrarunt</expan>
+            </choice> . <lb/> Tandem aliquando respiciente deo populum suum idem <rs type="person"
+               >pippinus</rs> a suis <lb/> contemptus et desertus atque in potestatem auunculi sui
+               <rs type="person">karoli</rs> redactus <lb/> consilio reuerentissimorum pontificum et
+            procerum attonsus et in habitu <lb/> monachico ad <rs>monasterium sancti medardi</rs>
+            custodiendus et docendus <lb/> deductus est . Ibi duo quidam monachi habitu sui
+            propositi uix credi<lb break="no"/>biliter transgressores . ardentes inmodica cupiditate
+            eundem <rs type="person">pippinum</rs>
+            <lb/> abducere conati sunt et pacem christiani populi dissipare . quos praesentibus <cb
+               n="29r"/> diuersorum coenobiorum religiosis abbatibus et causam suptiliter iuxta
+            <lb/> regulam beati <rs type="person">benedicti</rs> examinantibus concors
+               <rs>congregatio sancti medardi</rs>
+            <lb/> a sua unanimitate praecidit attestata se ab horum crimine longe <lb/> absistere
+            quod usitatas culpas iam inde ab initio huius religionis <lb/> monachorum omnium praeter
+            dumtaxat <rs type="person">eutychis</rs> et aliorum hereticorum <lb/> facile superaret .
+            Eiectos iussu uenerabilis <rs type="person">rothadi <rs>suessionum</rs> episcopi</rs>
+            <lb/> ad synodi audientiam archidiaconus <choice>
+               <abbr>dedux</abbr>
+               <expan>deduxit</expan>
+            </choice> . et partim confessi partim <lb/> conuicti conspirationis malum perpetrasse .
+            canonum seueritate <lb/> depositi sunt . presbiteri quippe erant et separatim in
+            monasteria sui ordinis <lb/> longe distantia relegati Ut deinceps nemo tale quid
+            committere <lb/>nauderet . nisi qui similia perpeti non timeret . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-29r-1" corresp="BK.258A_6_inscriptio">
+            <seg type="num" n="6">VI</seg>
+         </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-29r-2" corresp="BK.258A_6">
+            <seg type="initial">P</seg>ost haec gloriosissimus domnus rex <rs type="person"
+               >karolus</rs> coram sacra synodo quendam <lb/> diaconum <rs>remensis ecclesiae</rs>
+            nomine <rs type="person">ragamfridum</rs> impetiit quod pręcepta <lb/> falsa regio <choice>
+               <abbr>nome</abbr>
+               <expan>nomine</expan>
+            </choice> conpilasset . sicut ad eum quorundam suggestionibus <lb/> et uerisimilibus
+            indiciis esset perlatum . Unde quia putatum est quibusdam <lb/> significationibus ut
+            purgationem sui isdem <choice>
+               <abbr>diac</abbr>
+               <expan>diaconus</expan>
+            </choice> subterfugere uoluisset <lb/> aliis aliter dicentibus uisum est omnibus in
+            eodem sacro conuentu degentibus <lb/> ut ab omni concilio illi interdiceretur ne a
+            parrochia <rs type="place">remensi</rs> quoquo <lb/> modo praesumpsisset a<subst>
+               <del>c</del>
+               <add hand="X">bs</add>
+            </subst>cedere . donec se ab illis quae ei inpingebantur <lb/> idoneum redderet uel
+            competenter satisfacere procuraret . quod et omnibus <lb/> singillatim episcopis illi
+            auctoritate episcopali <expan>praecipientibus</expan> ex diuino mandato est interdictum
+               <cb n="29v"/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-29v-1" corresp="BK.258A_7_inscriptio">
+            <seg type="num" n="7">VII</seg>
+         </ab>
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-29v-2" corresp="BK.258A_7">
+            <seg type="initial">S</seg>eptima actione eidem sacrae synodo idem christianissimus
+            domnus rex <lb/>
+            <rs type="person">karolus</rs> haec quae secuntur capitula proposuit et consultu
+            eorundem episcoporum <lb/> ea per regnum suum innotescenda exercenda et conseruanda
+                  <expan>commo<lb break="no"/>nuit</expan> praecepit et confirmauit . <lb/>
+         </ab>
+
+         <milestone unit="capitulare" n="BK.259"/>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-29v-3" corresp="BK.259_1_inscriptio">
+            <seg type="num" n="1">I</seg> . </ab>
+         <ab type="text" rend="glossa" xml:id="den-haag-rmw-10-d-2-29v-4" corresp="BK.259_1">
+            <seg type="initial">U</seg>t<note type="editorial">Am Rand auf Höhe des Kapitelanfangs
+               die größtenteils in Tironischen Noten verfasste Notiz: <mentioned>Ista capitula facta
+                  fuerunt in synodo</mentioned> | <mentioned>apud Suessionis
+                  ci</mentioned>(<mentioned>vitatem</mentioned>) | [<mentioned>in</mentioned>]
+                  <mentioned>monasterio sancti Medardi | uolente rege
+                  K</mentioned>(<mentioned>arolo</mentioned>) (Lesung M. Tangls, s. Levison 1913, S.
+               512 mit Anm. 2-5 und Mordek 1995, S. 67).</note> missi nostri per ciuitates et singula
+            monasteria tam canonicorum quam <lb/> monachorum siue <sic>sanctimonalium</sic> una cum
+            episcopo parrochiae uniuscuiusque in <lb/> qua consistunt cum consilio etiam et consensu
+            ipsius qui monasterium <lb/> retinet . uitam ibi degentium et conuersationem inquirant
+            et ubi <lb/> necesse est corrigant . et ubi desunt congruas officinas construere iubeant
+            <lb/> et ubi sunt factae et per neglegentiam sunt destructae instaurari
+               <expan>praecipiant</expan>
+            <lb/> et uictum ac potum et uestitum atque cetera necessaria pro qualitate <lb/> et
+            possibilitate loci et inhabitantium necessitate ordinent et hospitali<lb break="no"
+            />tatem superuenientium hospitum et receptionem pauperum ibidem <lb/> disponant et
+            ordinent . ecclesiae quoque luminaria et orn<mod>a</mod>tum debitum <lb/> ordinent . et
+            thesaurum ac uestimenta seu libros diligenter inbreuient . <lb/> et breues nobis
+            reportent . Inbreuient quid unusquisque ecclesiarum praelatus <lb/> quando praelationem
+            ecclesiae suscepit ibi inuenerit . et quid modo exinde <lb/> ibi minus sit . uel quid et
+            quantum sit superadditum . Numerum etiam <lb/> canonicorum et monachorum siue
+            sanctimonialium uniuscuiusque loci de<lb break="no"/>scribant . et nobis referant ut
+            secundum qualitatem et quantitatem loci cum <lb/> consilio episcoporum et fidelium
+            nostrorum ubi minor numerus fuerit nostra <cb n="30r"/> auctoritate addamus . Ubi uero
+            indiscretione praelatorum superfuerit ad <lb/> mensuram redigamus . et qualiter
+            abbatiarum praelati et in locis sacris <lb/> inhabitantes de his quae missi nostri
+            preceperint oboedierint nobis dili<lb break="no"/>gentissime et capitulatim referre
+            procurent <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-30r-1" corresp="BK.259_2_inscriptio">
+            <seg type="num" n="2">II</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-30r-2" corresp="BK.259_2">
+            <seg type="initial">U</seg>t missi nostri diligenter inuestigent per singulas parrochias
+            simul cum episcopo <lb/> de monasteriis quae deum timentes in suis proprietatibus <choice>
+               <abbr>aedificauert</abbr>
+               <expan>aedificauerunt</expan>
+            </choice>
+            <lb/> et ne ab heredibus eorum diuiderentur . parentibus et praedecessoribus nostris
+            <lb/> sub inmu<add>ni</add>tatis defensione <choice>
+               <abbr>tradidert</abbr>
+               <expan>tradiderunt</expan>
+            </choice> et postea in alodem sunt data ut <lb/> describant quae sint et a quo ue<mod>l</mod>
+            <mod>q</mod>uibus in proprietatem data sunt . et nobis <lb/> renuntiare procurent ut cum
+            episcopis et ceteris fidelibus nostris consideremus <lb/> quid et qualiter inde secundum
+            dei uoluntatem et nostram salutem agere debe<lb break="no"/>amus . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-30r-3" corresp="BK.259_3_inscriptio">
+            <seg type="num" n="3">III</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-30r-4" corresp="BK.259_3">
+            <seg type="initial">U</seg>t missi nostri per singulas parrochias una cum episcopo
+            parrochię ipsius <lb/> requirant de cappellis et abbatiolis ex casis dei in beneficium
+            datis <lb/> qualis census inde exeat ut ecclesia de qua sunt exinde uestituram habere
+            <lb/> possit . et nobis renuntient ut hoc nostra auctoritate <expan>commendetur</expan>
+            atque firmetur <lb/> et secundum qualitatem et quantitatem loci clericos et luminaria
+            ibi <lb/> ordinent et loca restaurari faciant . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-30r-5" corresp="BK.259_4_inscriptio">
+            <seg type="num" n="4">IIII</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-30r-6" corresp="BK.259_4">
+            <seg type="initial">D</seg>enuntiandum est omnibus et a missis nostris ordinandum ut
+            omnes ecclesiae et <expan>presbiteri</expan>
+            <lb/> sub inmunitate ac priuilegio et ordinatione atque dispo<subst>
+               <del>c</del>
+               <add>s</add>
+            </subst>itione episcoporum <lb/> singularum parrochiarum in quibus consistunt . secundum
+            auctoritatem <cb n="30v"/> canonicam et capitularia domni <rs type="person">karoli</rs>
+            imperatoris aui nostri et pii <lb/> augusti <rs type="person">hludouuici</rs> domni et
+            genitoris nostri permaneant <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-30v-1" corresp="BK.259_5_inscriptio">
+            <seg type="num" n="5">V</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-30v-2" corresp="BK.259_5">
+            <seg type="initial">U</seg>t missi nostri diligenter inuestigent cum episcopo et
+            praelatis monasteriorum <lb/> et per fideles et strenuos uiros in unaquaque parrochia de
+            rebus ecclesiasticis <lb/> in alodem datis et sicut euidentibus et ueris indiciis ac
+            auctoritatibus <lb/> compererint diligenter a quo et quibus date sint uel quantum exinde
+            sit <lb/> describant et nobis renuntient . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-30v-3" corresp="BK.259_6_inscriptio">
+            <seg type="num" n="6">VI</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-30v-4" corresp="BK.259_6">
+            <seg type="initial">U</seg>t missi nostri expresse et cum omni diligentia cum episcopo
+            et praelatis <lb/> monasteriorum per singulas parrochias requirant de rebus
+            ecclesiasticis <lb/> unde nonae et decimae solui debent et non s<subst>
+               <del>a</del>
+               <add>o</add>
+            </subst>luuntur . ut persolui ab <lb/> easdem res retinentibus faciant et si aliqua
+            contradictio quae rationabilis <lb/> uideatur oborta fuerit describatur . et praelatus
+            ipsius casae dei unde res <lb/> esse noscuntur et ille qui eas detinet et nonam ac
+            decimam soluere detractat <lb/> simul cum missis nostris ad nostram iubeatur uenire
+            praesentiam . ut tunc ueri<lb break="no"/>tate <expan>comperta</expan> et diffinitione
+            decreta quod rationabiliter inuenerimus <lb/> inde <expan>praecipiamus</expan> . Uolumus
+            etiam ut inuestigent missi nostri qualiter <lb/> illi qui easdem res ecclesiasticas Unde
+            decimae dantur siue <lb/> non dantur illas saluas habeant et in casdiciis et in siluis
+            <lb/> custoditis uel si terrae aut mancipia inde perdita sint uel <lb/> aliquid
+            huiusmodi aut si familia oppressa sit contra legem et omnia <lb/> per breues nobis
+            renuntient missi nostri . <cb n="31r"/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-31r-1" corresp="BK.259_7_inscriptio">
+            <seg type="num" n="7">VII</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-31r-2" corresp="BK.259_7">
+            <seg type="initial">U</seg>t missi nostri per singulas parrochias comitibus et rei
+            publice ministris <lb/> ex banno nostro precipiant ne malla uel placita in exitibus et
+            atriis ecclesiarum <lb/> et <expan>presbiterorum</expan> mansionibus neque in dominicis
+            uel festiuis diebus tenere <lb/> praesumant . sed comis conuenientem locum consideret et
+            inueniat ubi <lb/> stationem ad mallum tenendum constituat . quia nefas est ibi reos
+            puniri . <lb/> ubi respectu diuinae reuerentiae misericordiam consensu fidelium <lb/> et
+            decreto predecessorum nostrorum consecuntur . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-31r-3" corresp="BK.259_8_inscriptio">
+            <seg type="num" n="8">VIII</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-31r-4" corresp="BK.259_8">
+            <seg type="initial">U</seg>t missi nostri comitibus et omnibus rei publice ministris
+            firmiter ex uerbo <lb/> nostro denuntient atque <expan>praecipiant</expan> ut a
+               <date>quarta feria ante initium quadra<lb break="no"/>gesimę</date> nec in ipsa
+            quarta feria usque post <date><choice>
+                  <abbr>octab</abbr>
+                  <expan>octabas</expan>
+               </choice> paschę</date> mallum uel placitum <lb/> publicum nisi de concordia et
+            pacificatione discordantium tenere <lb/> praesumant . similiter etiam a <date>quarta
+               feria ante natiuitatem domini</date> usque <lb/> post consecratos dies obseruent
+            necnon et in ieiuniis quattuor et in <lb/> rogationibus temporum simili obseruatione
+            eosdem feriatos dies uenerari <lb/> omnimodis studeant . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-31r-5" corresp="BK.259_9_inscriptio">
+            <seg type="num" n="9">VIIII</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-31r-6" corresp="BK.259_9">
+            <seg type="initial">U</seg>t missi nostri omnibus per singulas parrochias denuntient
+            quia si episcopus aut ministri <lb/> episcoporum pro criminibus colonos flagellauerint
+            cum uirgis propter metum <lb/> aliorum . et ut ipsi criminosi corrigantur . cum tali
+            discretione sine ulla occasione <lb/> indebita sicut in synodo conlocutum est et uel
+            inuiti poenitentiam tempora<lb break="no"/>liter et corporaliter agant ne aeternaliter
+            pereant . si seniores ipsorum <lb/> colonum indigne tulerint . et aliquam uindictam inde
+            exercere uoluerint <cb n="31v"/> aut eosdem colonos ne distringantur contendere
+            praesumpserint sciant <lb/> quia et bannum nostrum conponent et simul cum
+            excommunicatione <lb/> ecclesiastica nostram harmscaram durissimam <choice>
+               <abbr>sustinebt</abbr>
+               <expan>sustinebunt</expan>
+            </choice> . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-31v-1" corresp="BK.259_10_inscriptio">
+            <seg type="num" n="10">X</seg> . </ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-31v-2" corresp="BK.259_10">
+            <seg type="initial">U</seg>t missi nostri omnibus rei publice ministris denuntient ut
+            comis uel rei <lb/> publicę ministri . simul cum episcopo uniuscuiusque parrochię sint
+            in minis<lb break="no"/>teriis illorum quando idem episcopus suam parrochiam circumierit
+            cum episcopus eis <lb/> notum fecerit et quos per excommunicationem episcopus adducere
+            non po<lb break="no"/>tuerit . ipsi regia auctoritate et potestate ad poenitentiam uel
+               rati<lb break="no"/>onem atque satisfactionem adducant . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-31v-3" corresp="BK.259_11_inscriptio">
+            <seg type="num" n="11">XI</seg></ab>
+         <ab type="text" xml:id="den-haag-rmw-10-d-2-31v-4" corresp="BK.259_11">
+            <seg type="initial">S</seg>ciant etiam fideles nostri quia concessi<subst>
+               <del/>
+               <add hand="X">mus</add>
+            </subst> in synodo uenerabilibus episcop<subst>
+               <del>u</del>
+               <add>i</add>
+            </subst>s ne super <lb/> beneficia ecclesiastica uel prestarias etiamsi episcopus aut
+            quilibet monas<lb break="no"/>teriorum praelatus inrationabiliter petierit praecepta
+               confirmati<lb break="no"/>onis nostrae ullo modo faciamus . et ideo ab inrationabili
+            petitione se <lb/> unusquisque <expan>compescat</expan> . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="den-haag-rmw-10-d-2-31v-5" corresp="BK.259_12_inscriptio">
+            <seg type="num" n="12">XII</seg> . </ab>
+         <ab type="text" rend="nota" xml:id="den-haag-rmw-10-d-2-31v-6" corresp="BK.259_12">
+            <seg type="initial">U</seg>t missi nostri omnibus per illorum missaticum denuntient ne
+                  <expan>commutati<lb break="no"/>ones</expan> rerum uel mancipiarum quilibet
+            praelatus earundem rerum <lb/> ecclesiasticarum sine licentia uel consensu nostro facere
+               <expan>praesumat</expan>
+            <lb/> neque mancipia ecclesiastica quisquam nisi ad libertatem <lb/> commutet .
+            Uidelicet ut mancipia quae pro ecclesiastico dabuntur . <lb/> in ecclesiae seruitute
+            permaneant et ecclesiasticus homo qui commu<lb break="no"/>tatus fuerit perpetua
+            libertate fruatur . <cb n="32r"/>
+         </ab>
+
       </body>
-   </text>-->
+   </text>
 </TEI>
