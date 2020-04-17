@@ -18,16 +18,15 @@ Target: lists $(CACHE_DIR)/lists/mss-table.html
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xpath-default-namespace="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="cap tei xhtml xs xsl">
-
-<!-- NOTE: ueberblick_mordek.xml is NOT in the TEI namespace !!! -->
 
   <xsl:include href="common-3.xsl"/>
   <xsl:include href="common-html.xsl"/>
 
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
-  <xsl:template match="/MSS">
+  <xsl:template match="/lists">
     <div class="mss-table-xsl">
       <table align="center" class="handschriften break-word" rules="all">
         <thead>
@@ -38,7 +37,7 @@ Target: lists $(CACHE_DIR)/lists/mss-table.html
           </tr>
         </thead>
         <tbody>
-          <xsl:apply-templates select="text/list/*"/>
+          <xsl:apply-templates select="list/*"/>
         </tbody>
       </table>
     </div>
