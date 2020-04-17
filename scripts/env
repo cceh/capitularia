@@ -5,6 +5,9 @@ PUBL="$CAP/publ/mss/*.xml"
 IA="$CAP/intern/InArbeit"
 INARBEIT="$IA/Alina/*.xml $IA/Britta/*.xml  $IA/Dominik*/*.xml $IA/Lea/*.xml $IA/Soeren/*.xml"
 
+CAPS="$CAP/publ/capit"
+CAPITS="$CAPS/pre814/*.xml $CAPS/ldf/*.xml $CAPS/post840/*.xml $CAPS/undated/*.xml"
+
 sel() {
     xmlstarlet sel -N tei='http://www.tei-c.org/ns/1.0' "$@"
 }
