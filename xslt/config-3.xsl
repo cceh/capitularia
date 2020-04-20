@@ -270,6 +270,10 @@
         <title>Internet Culturale</title>
         <caption>Internet Culturale</caption>
       </item>
+      <item key="ceec.uni-koeln.de">
+        <title>Erzbischöfliche Diözesan- und Dombibliothek Köln</title>
+        <caption>Erzbischöfliche Diözesan- und Dombibliothek Köln</caption>
+      </item>
       <item key="landesarchiv-nrw.de">
         <title>Landesarchiv NRW</title>
         <caption>Landesarchiv NRW</caption>
