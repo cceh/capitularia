@@ -11,8 +11,13 @@ deploy_xslt: make_dependencies
 	$(RSYNC) xslt/*.xsl $(TRANSFORM)/
 	$(RSYNC) xslt/*.xsl xslt/*.inc xslt/Makefile $(HOST_SERVER)/../xslt/
 
-deploy_xml:
+deploy_xml: deploy_mss deploy_capits
+
+deploy_mss:
 	$(RSYNC) mss/*.xml $(PUBL)/mss/
+
+deploy_capits:
+	$(RSYNC) capit/ $(PUBL)/capit/
 
 deploy_scripts:
 	$(RSYNC) --exclude='env' scripts $(PUBL)
@@ -23,8 +28,12 @@ upload_client: client
 upload_server:
 	cd $(SERVER) && $(MAKE) upload
 
-import_xml:
+import_xml: import_mss import_capits
+
+import_mss:
 	$(RSYNC) --del $(PUBL)/mss/*    mss/
+
+import_capits:
 	$(RSYNC) --del $(PUBL)/capit/*  capit/
 
 import_backups:
