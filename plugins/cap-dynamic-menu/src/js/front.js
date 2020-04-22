@@ -146,7 +146,11 @@
                 }
 
                 a.push (`<li id="${id}" class="${classes.join (' ')}">`);
-                a.push (`<a href="${href}" title="${title}">${caption}</a>`);
+                if (href) {
+                    a.push (`<a href="${href}" title="${title}">${caption}</a>`);
+                } else {
+                    a.push (`<a title="${title}">${caption}</a>`);
+                }
 
                 last_node_on_level[level] = n;
                 last_level = level;
