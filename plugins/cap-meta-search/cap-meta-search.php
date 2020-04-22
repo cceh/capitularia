@@ -76,7 +76,7 @@ if (!is_admin ()) {
     } elseif (is_highlight ()) {
         $cap_meta_search = new Highlighter ();
         add_filter ('get_the_excerpt',  array ($cap_meta_search, 'on_get_the_excerpt'));
-        add_filter ('the_content',      array ($cap_meta_search, 'on_the_content'));
+        add_filter ('the_content',      array ($cap_meta_search, 'on_the_content'), 99);
     }
 }
 
