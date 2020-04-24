@@ -166,6 +166,16 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
       <xsl:value-of select="cap:make-human-readable-bk (cap:strip-ignored-corresp (@corresp))" />
     </xsl:variable>
 
+    <xsl:if test="contains (@rend, 'glossa')">
+      <div class="glossa" title="Glossa">
+      </div>
+    </xsl:if>
+
+    <xsl:if test="contains (@rend, 'nota')">
+      <div class="nota" title="Nota">
+      </div>
+    </xsl:if>
+
     <xsl:if test="normalize-space ($corresp)"> <!-- is filtered by inscriptio incipit explicit etc. -->
       <div class="corresp">
         <xsl:text>[</xsl:text>

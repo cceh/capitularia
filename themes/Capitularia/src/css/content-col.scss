@@ -476,6 +476,27 @@ div.content-col, div.annotation-content {
             div.ab-meta-text, div.abMETA {
                 @include semibold;
             }
+
+            div.nota {
+                font-size: 70%;
+                @include semibold;
+                color: $color-gray;
+                float: left;
+                margin-right: 0.5em;
+                &::before {
+                    content: '[N]';
+                }
+            }
+            div.glossa {
+                font-size: 70%;
+                @include semibold;
+                color: $color-gray;
+                float: left;
+                margin-right: 0.5em;
+                &::before {
+                    content: '[G]';
+                }
+            }
             div.corresp {
                 font-size: 70%;
                 @include semibold;
