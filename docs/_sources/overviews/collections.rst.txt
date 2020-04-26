@@ -86,7 +86,7 @@ The cosine similarities of all pairs of documents are entered into a similarity
 
 .. raw:: html
 
-   <object data="_images/ms-graph.svg" type="image/svg+xml" align="center" style="width: 100%"></object>
+   <object data="../_images/ms-graph.svg" type="image/svg+xml" align="center" style="width: 100%"></object>
 
    <p align="center">The document affinity graph (Gephi Force Atlas).</p>
 
@@ -95,6 +95,6 @@ of documents, by switching capitularies with documents.
 
 .. raw:: html
 
-   <object data="_images/bk-graph.svg" type="image/svg+xml" align="center" style="width: 100%"></object>
+   <object data="../_images/bk-graph.svg" type="image/svg+xml" align="center" style="width: 100%"></object>
 
    <p align="center">The capitulary affinity graph (Gephi Force Atlas).</p>
