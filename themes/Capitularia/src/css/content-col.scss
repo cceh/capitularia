@@ -119,10 +119,6 @@ div.content-col {
                     padding-bottom: 12px;
                 }
             }
-/* border: 1px solid $color-lightrule;
-        &:first-child {
-        border-top: 0 solid $color-lightrule;
-        } */
         }
         tbody {
             border-top:    1px solid $color-rule;
@@ -477,27 +473,25 @@ div.content-col, div.annotation-content {
                 @include semibold;
             }
 
-            div.nota {
-                font-size: 70%;
-                @include semibold;
-                color: $color-gray;
-                float: left;
-                margin-right: 0.5em;
-                &::before {
-                    content: '[N]';
-                }
-            }
+            div.nota,
             div.glossa {
-                font-size: 70%;
                 @include semibold;
-                color: $color-gray;
+                color: $color-red;
+                background-color: $color-beige;
+                padding: 0 0.6em;
+                border-radius: 50%;
                 float: left;
-                margin-right: 0.5em;
-                &::before {
-                    content: '[G]';
-                }
+                margin-left: -0.6em;
+                margin-right: 1.1em;
+            }
+            div.nota::before {
+                content: 'N';
+            }
+            div.glossa::before {
+                content: 'G';
             }
             div.corresp {
+                clear: both;
                 font-size: 70%;
                 @include semibold;
                 color: $color-gray;
