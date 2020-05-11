@@ -166,24 +166,30 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
       <xsl:value-of select="cap:make-human-readable-bk (cap:strip-ignored-corresp (@corresp))" />
     </xsl:variable>
 
-    <xsl:if test="contains (@rend, 'glossa')">
-      <div class="glossa" title="Glossa">
-      </div>
-    </xsl:if>
+    <div class="glossa-nota-wrapper">
+      <xsl:if test="contains (@rend, 'glossa')">
+        <div class="glossa" title="[:de]Der Textabschnitt ist glossiert.[:en]The section is glossed.[:]">
+        </div>
+      </xsl:if>
 
-    <xsl:if test="contains (@rend, 'nota')">
-      <div class="nota" title="Nota">
-      </div>
-    </xsl:if>
+      <xsl:if test="contains (@rend, 'nota')">
+        <div class="nota" title="[:de]Der Textabschnitt ist annotiert.[:en]The section is annotated.[:]">
+        </div>
+      </xsl:if>
+    </div>
+    <xsl:text>&#x0a;&#x0a;</xsl:text>
 
-    <xsl:if test="normalize-space ($corresp)"> <!-- is filtered by inscriptio incipit explicit etc. -->
-      <div class="corresp">
-        <xsl:text>[</xsl:text>
-        <xsl:value-of select="$corresp"/>
-        <xsl:text>]</xsl:text>
-      </div>
-      <xsl:text>&#x0a;&#x0a;</xsl:text>
-    </xsl:if>
+    <div class="corresp-wrapper">
+      <xsl:if test="normalize-space ($corresp)"> <!-- is filtered by inscriptio incipit explicit etc. -->
+        <div class="corresp">
+          <xsl:text>[</xsl:text>
+          <xsl:value-of select="$corresp"/>
+          <xsl:text>]</xsl:text>
+        </div>
+      </xsl:if>
+    </div>
+    <xsl:text>&#x0a;&#x0a;</xsl:text>
+
   </xsl:template>
 
   <xsl:template name="make-sidebar-bk">

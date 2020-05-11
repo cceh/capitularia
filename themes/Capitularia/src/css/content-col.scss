@@ -473,25 +473,7 @@ div.content-col, div.annotation-content {
                 @include semibold;
             }
 
-            div.nota,
-            div.glossa {
-                @include semibold;
-                color: $color-red;
-                background-color: $color-beige;
-                padding: 0 0.6em;
-                border-radius: 50%;
-                float: left;
-                margin-left: -0.6em;
-                margin-right: 1.1em;
-            }
-            div.nota::before {
-                content: 'N';
-            }
-            div.glossa::before {
-                content: 'G';
-            }
             div.corresp {
-                clear: both;
                 font-size: 70%;
                 @include semibold;
                 color: $color-gray;
@@ -546,6 +528,31 @@ div.content-col, div.annotation-content {
             }
         }
     }
+}
+
+/* also used in legend */
+
+div.nota,
+div.glossa {
+    display: inline-block;
+    @include semibold;
+    color: $color-red;
+    background-color: $color-beige;
+    border: 1px solid darken($color-beige, 20%);
+    border-radius: 50%;
+    margin-left: -0.7em;
+    margin-right: 1.3em;
+    line-height: 2em;
+    width: 2em;
+    text-align: center;
+}
+div.nota::before {
+    content: 'N';
+}
+div.glossa::before {
+    content: 'G';
+}
+div.glossa-nota-wrapper {
 }
 
 /***********************/

@@ -172,6 +172,14 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.footer.html
           <td>[:de]Blatt- oder Seitenwechsel bzw. Spaltenwechsel in der Hs.[:en]Page break
           (fol. or p.) or column break in the ms.[:]</td>
         </tr>
+        <tr>
+          <td><div class="glossa-nota-wrapper"><div class="glossa" /></div></td>
+          <td>[:de]Glossierung[:en]Glossa[:]</td>
+        </tr>
+        <tr>
+          <td><div class="glossa-nota-wrapper"><div class="nota" /></div></td>
+          <td>[:de]Annotation[:en]Annotation[:]</td>
+        </tr>
       </table>
       <!-- Must be here because the legend is moved into the sidebar. -->
       <xsl:call-template name="hr"/>
