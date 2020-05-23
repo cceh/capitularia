@@ -486,11 +486,14 @@ def lookup_published (conn, ajax_endpoint):
     """, {})
 
 
-def import_corpus (conn, fn_corpus):
+def import_corpus (conn, args):
     """ Import a corpus file (or lots of manuscript files). """
 
-    # execute (conn, "TRUNCATE TABLE manuscripts CASCADE", {})
+    if args.truncate:
+        execute (conn, "TRUNCATE TABLE manuscripts CASCADE", {})
+
     processed_ms_ids = dict ()
+    fn_corpus = args.mss
     for fn in fn_corpus:
         log (logging.INFO, "Parsing %s ..." % fn)
         tree = etree.parse (fn, parser = parser)
@@ -640,6 +643,10 @@ def build_parser (default_config_file):
         '--viaf', action='store_true',
         help='lookup viaf.org', default=False
     )
+    parser.add_argument (
+        '--truncate', action='store_true',
+        help='truncate the relative Postgres table before importing into it', default=False
+    )
     return parser
 
 
@@ -672,7 +679,7 @@ if __name__ == "__main__":
     if args.mss:
         log (logging.INFO, "Parsing TEI Manuscript files ...")
         with dba.engine.begin () as conn:
-            import_corpus (conn, args.mss)
+            import_corpus (conn, args)
 
     if args.cap_list:
         log (logging.INFO, "Parsing TEI Capitulary List ...")
