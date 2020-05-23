@@ -174,11 +174,11 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.footer.html
         </tr>
         <tr>
           <td><div class="glossa-nota-wrapper"><div class="glossa" /></div></td>
-          <td>[:de]Glossierung[:en]Glossa[:]</td>
+          <td>[:de]Textglossierung[:en]Glossation[:]</td>
         </tr>
         <tr>
           <td><div class="glossa-nota-wrapper"><div class="nota" /></div></td>
-          <td>[:de]Annotation[:en]Annotation[:]</td>
+          <td>[:de]Annotationszeichen (z.B. Nota-Zeichen)[:en]Annotation signs (e.g. nota signs)[:]</td>
         </tr>
       </table>
       <!-- Must be here because the legend is moved into the sidebar. -->
