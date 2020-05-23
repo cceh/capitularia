@@ -41,22 +41,28 @@ Target: extraction $(CACHE_DIR)/extracted/%.xml
       <when test="local-name (.) = 'ab'">
         <tei:ab>
           <copy-of select="node()|@*" />
-          <for-each select="key ('id', substring-after (@next, '#'))">
+
+          <variable name="next" select="substring-after (@next,  '#')" />
+          <for-each select="key ('id', $next)">
             <!-- recurse -->
             <call-template name="collect" />
           </for-each>
+
         </tei:ab>
       </when>
       <when test="local-name (.) = 'milestone'">
         <tei:milestone>
           <copy-of select="@*" />
         </tei:milestone>
-        <variable name="to"  select="substring-after (concat (@spanTo, @next), '#')" />
+        <variable name="to" select="substring-after (@spanTo, '#')" />
         <copy-of select="following-sibling::node ()[(following-sibling::*|self::*)[@xml:id = $to]]" />
-        <for-each select="key ('id', $to)">
+
+        <variable name="next" select="substring-after (@next, '#')" />
+        <for-each select="key ('id', $next)">
           <!-- recurse -->
           <call-template name="collect" />
         </for-each>
+
       </when>
       <otherwise>
         <!-- not interested -->
@@ -69,14 +75,18 @@ Target: extraction $(CACHE_DIR)/extracted/%.xml
       <copy-of select="@*"/>
       <tei:list>
         <variable name="body" select="text/body" />
-        <variable name="all_corresps" select="string-join ($body//@corresp, ' ')" />
 
+        <!-- loop over all distinct @corresp values. one corresp may contain multiple tokens. -->
+
+        <variable name="all_corresps" select="string-join ($body//@corresp, ' ')" />
         <for-each-group select="tokenize (normalize-space ($all_corresps), ' ')" group-by="." >
           <sort select="cap:natsort (.)"/>
 
           <variable name="corresp" select="current-grouping-key ()"/>
 
-          <!-- iterate over multiple copies of the same @corresp -->
+          <!-- iterate over multiple copies of the same @corresp
+               only elements that do not have @prev are real copies!
+          -->
           <iterate
               select="$body//tei:ab[contains-token (@corresp, $corresp)][not (@prev)][not (.//tei:milestone[@corresp][@unit='span'])] |
                       $body//tei:milestone[contains-token (@corresp, $corresp)][not (@prev)][@unit='span']">
