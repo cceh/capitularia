@@ -1,12 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="vatikan-bav-vat-lat-3827" xml:lang="de">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="vatikan-bav-vat-lat-3827" xml:lang="de">
    <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main" xml:lang="ger">Vatikan, Biblioteca Apostolica Vaticana, Vat. Lat.
                3827</title>
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek</title>
-            <title type="sub" xml:lang="eng">Manuscript description according to Mordek</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+               Transkription der foll. 74v-75r</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+               transcription of fols 74v-75r</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -16,9 +20,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                <resp xml:lang="eng">Project lead</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="DT">
+                  <forename>Dominik</forename>
+                  <surname>Trump</surname>
                </persName>
                <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
                   Standard</resp>
@@ -26,17 +30,17 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   TEI P5 standard</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
                </persName>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">First revision of transcription and additions</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
@@ -134,128 +138,137 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <head>
                      <title type="main">Vatikan, Biblioteca Apostolica Vaticana, Vat. Lat.
                         3827</title>
-                     <origDate notAfter="0900" notBefore="0867"> 9. Jh., 3. Drittel (etwa
-                        ausgehendes 9. Jh. [B. Bischoff])</origDate>
-                     <origPlace ref="http://d-nb.info/gnd/4110086-4"> Nordfrankreich</origPlace>
+                     <origDate notAfter="0900" notBefore="0867">9. Jh., 3. Drittel (etwa ausgehendes
+                        9. Jh. [B. Bischoff])</origDate>; <origPlace
+                        ref="http://d-nb.info/gnd/4110086-4"> Nordfrankreich</origPlace>
                   </head>
                   <msContents>
-                     <summary><p>Die Hs. besteht aus zwei großen Teilen: Foll. 1r-125r bietet sie als Unikat die von <hi rend="smallcaps">Maassen, </hi>Geschichte der Quellen, S. 778-780
+                     <summary><p>Die Hs. besteht aus zwei großen Teilen: Foll. 1r-125r bietet sie
+                           als Unikat die von Maassen, Geschichte der Quellen, S. 778-780
                            beschriebene, mit der Collectio Sancti Amandi (Cod. Berlin Hamilton 132
                            u. a.) verwandte Sammlung der Hs. von Beauvais und in diese integriert
                            unsere merowingischen und frühen karolingischen Kapitularien (diejenigen
                            Pippins ähnlich in der Sammlung der Hss. Vatikan Pal. Lat. 582 und Paris
-                           Lat. 9654), foll. 126r-208v
-                           Briefe Papst Nikolaus' I.</p></summary>
+                           Lat. 9654), foll. 126r-208v Briefe Papst Nikolaus' I.</p></summary>
                      <msItem n="1">
                         <p>
-                           <locus>1r-5v</locus> Konzilien von Carpentras (a. 527) (MGH Conc. 1,S.
-                           41-43, zur Hs. S. XV; CCL 148 A, S. 48-51, zur Hs. S. IX), Orange (a.529)
-                           (MGH Conc. 1, S. 46-54; CCL 148 A, S. 55 - 65) und Riez (a. 439) (CCL
+                           <locus>1r-5v</locus> Konzilien von Carpentras (a. 527) (MGH Conc. 1, S.
+                           41-43, zur Hs. S. XV; CCL 148 A, S. 48-51, zur Hs. S. IX), Orange (a.
+                           529) (MGH Conc. 1, S. 46-54; CCL 148 A, S. 55-65) und Riez (a. 439) (CCL
                            148, S. 63-72, zur Hs. S. X). </p>
                      </msItem>
                      <msItem n="2">
                         <p>
                            <locus>5v</locus>
-                           <title corresp="BK.1">Chlodowici regis ad episcopos praeceptio</title> in Briefform(a.
-                           507/511): <hi rend="italic">INCPI. CANONIS AURILIANONSIS TEMPORE CLODOUII
-                              REGIS I. Dominis sanctis et apostolica sede dignissimis episcopis
-                              chlodoueus rex. Enuntiante fama - dignissimi papae</hi> (MGH Capit. 1,
-                           Nr. 1, S. 1 Z. 8 [kürzere Inskription], S. 1 Z. 18 - S. 2 Z. 9); daran
-                           anschließend als Antwort der Bischöfe (gezählt <hi rend="italic">II</hi>
-                           ff.): </p>
+                           <title corresp="BK.1">Chlodowici regis ad episcopos praeceptio</title> in
+                           Briefform (a. 507/511): <hi rend="italic">INCPI. CANONIS AURILIANONSIS
+                              TEMPORE CLODOUII REGIS I. Dominis sanctis et apostolica sede
+                              dignissimis episcopis chlodoueus rex. Enuntiante fama - dignissimi
+                              papae</hi> (MGH Capit. 1, Nr. 1, S. 1 Z. 8 [kürzere Inskription], S. 1
+                           Z. 18 - S. 2 Z. 9); daran anschließend als Antwort der Bischöfe (gezählt
+                              <hi rend="italic">II</hi> ff.): </p>
                      </msItem>
                      <msItem n="3">
                         <p>
-                           <locus>5v-7v</locus> Konzil von Orléans (a. 511) (MGH Conc. 1, S. 2-9
-                           und13 f.; CCL 148 A, S. 4-12 und 18 f.). </p>
+                           <locus>5v-7v</locus> Konzil von Orléans (a. 511) (MGH Conc. 1, S. 2-9 und
+                           13 f.; CCL 148 A, S. 4-12 und 18 f.). </p>
                      </msItem>
                      <msItem n="4">
                         <p>
-                           <locus>8r-31r</locus> Weitere Konzilien von Orléans (a. 538, 541, 549
-                           und533) (MGH Conc. 1, S. 73 - 83 und 85, S. 87-96 und 98 f., S. 100-111,
-                           S. 62-65; CCL 148 A, S. 114-129, S. 132-142 und 145 f., S. 148-160, S.
+                           <locus>8r-31r</locus> Weitere Konzilien von Orléans (a. 538, 541, 549 und
+                           533) (MGH Conc. 1, S. 73-83 und 85, S. 87-96 und 98 f., S. 100-111, S.
+                           62-65; CCL 148 A, S. 114-129, S. 132-142 und 145 f., S. 148-160, S.
                            99-103), von Vannes (a. 461/491) (CCL 148, S. 150-156), Vaison (a. 529)
                            und Epao (a. 517) (MGH Conc. 1, S. 55-58, S. 16 und 19-30; CCL 148 A, S.
                            78-81, S. 24-37), von Tours (a. 461) (CCL 148, S. 143-148) und Tours (a.
-                           567) (MGH Conc. 1, S. 121 -136; CCL 148 A, S. 176-194), von Mâcon (a.
-                           581/583) (in c. 14 Zitat aus <title corresp="Mordek.1">Childeberti I regis edictum</title>
-                           [a. 538?], siehe unten Anhang I, Nr. 1) und Mâcon (a. 585) (MGH Conc.
-                           1,S. 155-161, S. 164-173; CCL 148 A, S. 223 - 230, S. 238 - 250), dann
-                           mit Bezug auf das Matisconense von 585: </p>
+                           567) (MGH Conc. 1, S. 121-136; CCL 148 A, S. 176-194), von Mâcon (a.
+                           581/583) (in c. 14 Zitat aus <title corresp="Mordek.1">Childeberti I
+                              regis edictum</title> [a. 538?], siehe unten Anhang I, Nr. 1) und
+                           Mâcon (a. 585) (MGH Conc. 1, S. 155-161, S. 164-173; CCL 148 A, S.
+                           223-230, S. 238-250), dann mit Bezug auf das Matisconense von 585: </p>
                      </msItem>
                      <msItem n="5">
                         <p>
                            <locus>31r-32r</locus>
-                           <title corresp="BK.5">Guntchramni regis edictum</title> (a. 585): <hi rend="italic">PRAECEPTIOGLORIOSISSIMI REGIS GUNTHRAMNI AD EPISCOPOS DATA QUI IN
-                              SYNODO SUPRASCRIPTA FUERUNT DE OBSERUANDO DIE DOMINICO. Gunthramnus
-                              rex francorum omnibus pontificibus - praesente auctoritate uulgamus.
-                              SUBSCRIPTIO DOMNI GUNTHRAMNI REGIS PERRUNAS DAT. SUB DIE QUARTO ID.
-                              NOUEMBR ANNO XXIIII REGNI SUPRASCRIPTI REGIS</hi> (MGH Capit. 1, Nr.
-                           5, S. 10 Z. 35 f., S. 11 Z. 7 - S. 12 Z. 24); sonst nur noch von der
-                           Collectio Sancti Amandi überliefert. </p>
+                           <title corresp="BK.5">Guntchramni regis edictum</title> (a. 585): <hi
+                              rend="italic">PRAECEPTIO GLORIOSISSIMI REGIS GUNTHRAMNI AD EPISCOPOS
+                              DATA QUI IN SYNODO SUPRASCRIPTA FUERUNT DE OBSERUANDO DIE DOMINICO.
+                              Gunthramnus rex francorum omnibus pontificibus - praesente auctoritate
+                              uulgamus. SUBSCRIPTIO DOMNI GUNTHRAMNI REGIS PERRUNAS DAT. SUB DIE
+                              QUARTO ID. NOUEMBR ANNO XXIIII REGNI SUPRASCRIPTI REGIS</hi> (MGH
+                           Capit. 1, Nr. 5, S. 10 Z. 35 f., S. 11 Z. 7 - S. 12 Z. 24); sonst nur
+                           noch von der Collectio Sancti Amandi überliefert. </p>
                      </msItem>
                      <msItem n="6">
                         <p>
                            <locus>32r-36v</locus> Konzilien von Thelepte (a. 418) (CCL 149, S.
-                           58-63),Paris (a. 573) und (a. 552) (MGH Conc. 1, S. 142-146, S. 116 f.;
+                           58-63), Paris (a. 573) und (a. 552) (MGH Conc. 1, S. 142-146, S. 116 f.;
                            CCL 148 A, S. 205-210, S. 167-169), Auxerre (wohl nach 585) (MGH Conc. 1,
-                           S. 179-184; CCL 148 A, S. 265 - 272) und Chalon-sur-Saône (a. 647/653)
-                           (MGH Conc. 1, S. 208-214; CCL 148 A, S. 303-310); danach <hi rend="italic">EXPLICIT,</hi> Rest der Seite leer. </p>
+                           S. 179-184; CCL 148 A, S. 265-272) und Chalon-sur-Saône (a. 647/653) (MGH
+                           Conc. 1, S. 208-214; CCL 148 A, S. 303-310); danach <hi rend="italic"
+                              >EXPLICIT</hi>, Rest der Seite leer. </p>
                      </msItem>
                      <msItem n="7">
                         <p>Mit neuer Lage beginnt:<lb/>
                            <locus>37r-38v</locus>
-                           <hi rend="italic">CAPITULO I-XXV</hi> - <title corresp="BK.14">Capitulare seu canones
-                              concilii Vernensis</title> (a. 755): <hi rend="italic">INCIPIT SYNODUS
-                              VERNO PALATIO FACTA. Suffecerant</hi> (das erste <hi rend="italic">e</hi> korr. zu <hi rend="italic">i) quidam</hi> (korr. zu <hi rend="italic">quedam) priscorum patrum regulae - glorios, pippino
-                              rege. Ut episcopi debeant per singulas duitates - iustitia
-                              euacuatur</hi> (MGH Capit. 1, Nr. 14, S. 33 Z. 19 - S. 37 Z. 12).</p>
+                           <hi rend="italic">CAPITULO I-XXV</hi> - <title corresp="BK.14">Capitulare
+                              seu canones concilii Vernensis</title> (a. 755): <hi rend="italic"
+                              >INCIPIT SYNODUS VERNO PALATIO FACTA. Suffecerant</hi> (das erste <hi
+                              rend="italic">e</hi> korr. zu <hi rend="italic">i</hi>) <hi
+                              rend="italic">quidam</hi> (korr. zu <hi rend="italic">quedam</hi>) <hi
+                              rend="italic">priscorum patrum regulae - glorios. pippino rege. Ut
+                              episcopi debeant per singulas duitates - iustitia euacuatur</hi> (MGH
+                           Capit. 1, Nr. 14, S. 33 Z. 19 - S. 37 Z. 12).</p>
                      </msItem>
                      <msItem n="9">
                         <p>
                            <locus>38v-39r</locus>
-                           <title corresp="BK.12">Pippini principis capitulare Suessionense</title> (a. 744):<hi rend="italic">IN DEI NOMINE TRINITATIS ANNO SEPTINGENTESIMO
-                              QUADRAGESIMO QUARTO ab incarnatione christi</hi> - <hi rend="italic">signum Helmigaudo</hi> (MGH Capit. 1, Nr. 12, S. 29 Z. 1 - S. 30 Z.
+                           <title corresp="BK.12">Pippini principis capitulare Suessionense</title>
+                           (a. 744):<hi rend="italic">IN DEI NOMINE TRINITATIS ANNO SEPTINGENTESIMO
+                              QUADRAGESIMO QUARTO ab incarnatione christi</hi> - <hi rend="italic"
+                              >signum Helmigaudo</hi> (MGH Capit. 1, Nr. 12, S. 29 Z. 1 - S. 30 Z.
                            21; MGH Conc. 2, 1, S. 33-36). </p>
                      </msItem>
                      <msItem n="10">
                         <p>
                            <locus>39r-v</locus>
-                           <hi rend="italic">I-VII -</hi>
-                           <title corresp="BK.13">Pippini regis capitulare</title> (a. 751/755): <hi rend="italic">INCIPIUNT CAPITULA DE ALIO SINODO SUB IPSO DOMNO REGE PIPPINO FACTO
-                              CAPITULO PRIMO</hi>
+                           <hi rend="italic">I-VII</hi> - <title corresp="BK.13">Pippini regis
+                              capitulare</title> (a. 751/755): <hi rend="italic">INCIPIUNT CAPITULA
+                              DE ALIO SINODO SUB IPSO DOMNO REGE PIPPINO FACTO CAPITULO PRIMO</hi>
                            <hi rend="italic">DE INCESTIS. SI HOMO INCESTUM COMMISERIT DE ISTIS
-                              CAUSIS DE DEO SACRATA AUT CUM MATRE SUA aut cum matrina sua</hi> - <hi rend="italic">causa transmiserit; </hi>c. 6 zu <hi rend="italic">V</hi> gezählt, c. 7 zweigeteilt (MGH Capit. 1, Nr. 13, S. 31 Z. 14,
+                              CAUSIS DE DEO SACRATA AUT CUM MATRE SUA aut cum matrina sua</hi> - <hi
+                              rend="italic">causa transmiserit</hi>; c. 6 zu <hi rend="italic"
+                              >V</hi> gezählt, c. 7 zweigeteilt (MGH Capit. 1, Nr. 13, S. 31 Z. 14,
                            S. 31 Z. 18 - S. 32 Z. 27). </p>
                      </msItem>
                      <msItem n="11">
                         <p>
-                           <locus>39v-41v</locus> Brief Paulinus’ von Aquileia an Karl den Großen(a.
-                           791) (MGH Epp. 4, S. 517-520). </p>
+                           <locus>39v-41v</locus> Brief Paulinus’ von Aquileia an Karl den Großen
+                           (a. 791) (MGH Epp. 4, S. 517-520). </p>
                      </msItem>
                      <msItem n="12">
                         <p>
-                           <locus>41v-49r</locus> Konzil von Friaul (a. 796/797) (MGH Conc. 2, 1,S.
+                           <locus>41v-49r</locus> Konzil von Friaul (a. 796/797) (MGH Conc. 2, 1, S.
                            179-195). </p>
                      </msItem>
                      <msItem n="13">
                         <p>
-                           <locus>49r-70v</locus> . Brief Hadrians I. an Karl den Großen, JE 2483
-                           (MGH Epp. 5, S. 6-57).<lb/>Aus dieser einzigen vollständigen
-                           Überlieferung des päpstlichen Antwortschreibens läßt sich das von Hadrian
-                           sogenannte <hi rend="italic">capitulare adversus synodum</hi> in 85 (60 +
-                           25) Kapiteln herauslesen, das Karl dem Papst 791/792 als Stellungnahme im
-                           Bilderstreit übersandt hatte. Die gegen die Beschlüsse des Nicaenum II
-                           gerichteten Kapitel, offenbar nur für Rom gedacht, handeln von einem
-                           einzigen dogmatischen Thema, können also nicht als Kapitular in unserem
-                           Sinne gelten. Sie dienten, wie K. Hampe, Hadrians I. Vertheidigung der
-                           zweiten nicaenischen Synode gegen die Angriffe Karls des Grossen, in: NA
-                           21 (1896) S. 85 ff., besonders S. 95 ff., nachgewiesen hat, als Vorlage
-                           für die Libri Carolini, das von Theodulf von Orléans verfaßte „Opus
-                           Caroli regis contra synodum“; vgl. auch W. <hi rend="smallcaps">von
-                           </hi>den Steinen, Entstehungsgeschichte der Libri Carolini, in: QFIAB 21
-                           (1929 - 30) S. 1 ff. und die neue MGH-Edition der Libri Carolini von A.
-                           Freeman. </p>
+                           <locus>49r-70v</locus> Brief Hadrians I. an Karl den Großen, JE 2483 (MGH
+                           Epp. 5, S. 6-57).</p>
+                        <p>Aus dieser einzigen vollständigen Überlieferung des päpstlichen
+                           Antwortschreibens läßt sich das von Hadrian sogenannte <hi rend="italic"
+                              >capitulare adversus synodum</hi> in 85 (60 + 25) Kapiteln
+                           herauslesen, das Karl dem Papst 791/792 als Stellungnahme im Bilderstreit
+                           übersandt hatte. Die gegen die Beschlüsse des Nicaenum II gerichteten
+                           Kapitel, offenbar nur für Rom gedacht, handeln von einem einzigen
+                           dogmatischen Thema, können also nicht als Kapitular in unserem Sinne
+                           gelten. Sie dienten, wie K. Hampe, Hadrians I. Vertheidigung der zweiten
+                           nicaenischen Synode gegen die Angriffe Karls des Grossen, in: NA 21
+                           (1896) S. 85 ff., besonders S. 95 ff., nachgewiesen hat, als Vorlage für
+                           die Libri Carolini, das von Theodulf von Orléans verfaßte "Opus Caroli
+                           regis contra synodum"; vgl. auch W. von den Steinen,
+                           Entstehungsgeschichte der Libri Carolini, in: QFIAB 21 (1929-30) S. 1 ff.
+                           und die neue MGH-Edition der Libri Carolini von A. Freeman. </p>
                      </msItem>
                      <msItem n="15">
                         <p>
@@ -265,58 +278,59 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                      <msItem n="16">
                         <p>
                            <locus>74v-75r</locus>
-                           <title corresp="BK.185">Hludowici et Hlotharii epistola generalis</title> (a. 828),
-                           interpolierte Langversion (B), mit Inskription: <hi rend="italic">INCIPIT
-                              EPISTOLA CESAREA. IN nomine domini dei et saluatoris nostri iesu
-                              christi hludouuicus et hlotarius — diligenter fideliterque
-                              conseruet</hi> (MGH Capit. 2, Nr. 185, S. 4 Z. 5 - S. 6 Z. 16, zur
-                           Inskription vgl. S. 3 Z. 41 f.; MGH Conc. 2, 2, S. 599-601). </p>
+                           <title corresp="BK.185B">Hludowici et Hlotharii epistola
+                              generalis</title> (a. 828), interpolierte Langversion (B), mit
+                           Inskription: <hi rend="italic">INCIPIT EPISTOLA CESAREA. IN nomine domini
+                              dei et saluatoris nostri iesu christi hludouuicus et hlotarius —
+                              diligenter fideliterque conseruet</hi> (MGH Capit. 2, Nr. 185, S. 4 Z.
+                           5 - S. 6 Z. 16, zur Inskription vgl. S. 3 Z. 41 f.; MGH Conc. 2, 2, S.
+                           599-601). </p>
                      </msItem>
                      <msItem n="17">
                         <p>
                            <locus>75v-111r</locus> Konzil von Paris (a. 829), mit einer die
                            Einberufungdurch Ludwig und Lothar festhaltenden Inskription (MGH Conc.
-                           2, 2, S. 606 - 680). </p>
+                           2, 2, S. 606-680). </p>
                      </msItem>
                      <msItem n="18">
                         <p>
                            <locus>111r-v</locus> Briefe Leos IV. an Bischof Prudentius von Troyes
-                           (JE2657) und an die Bischöfe Britanniens (JE 2599) bis einschließlich c.
-                           (8) (in der Hs.: <hi rend="italic">k. V)</hi> (beide ohne Kenntnis des
-                           Vaticanus ediert von Adolf <hi rend="smallcaps">von Hirsch-Gereuth, MGH
-                           </hi>Epp. 5, S. 611 und S. 593 -595); danach Blattverlust. </p>
+                           (JE 2657) und an die Bischöfe Britanniens (JE 2599) bis einschließlich c.
+                           (8) (in der Hs.: <hi rend="italic">k. V</hi>) (beide ohne Kenntnis des
+                           Vaticanus ediert von Adolf von Hirsch-Gereuth, MGH Epp. 5, S. 611 und S.
+                           593 -595); danach Blattverlust. </p>
                      </msItem>
                      <msItem n="19">
                         <p>
                            <locus>112r-116v</locus> Konzil von Valence (a. 855) (MGH Conc. 3, S.
-                           351- 365; zur Hs. S. 349). </p>
+                           351-365; zur Hs. S. 349). </p>
                      </msItem>
                      <msItem n="20">
                         <p>
                            <locus>116v-117v</locus>
-                           <title corresp="BK.299">Konzil von Savonnières</title> (a. 859), Kanones, ohne
-                           Unterschriftenliste (MGH Capit. 2, Nr. 299, S. 447 - 449; MGH Conc. 3, S.
-                           458 - 462). </p>
+                           <title corresp="BK.299">Konzil von Savonnières</title> (a. 859), Kanones,
+                           ohne Unterschriftenliste (MGH Capit. 2, Nr. 299, S. 447-449; MGH Conc. 3,
+                           S. 458-462). </p>
                      </msItem>
                      <msItem n="21">
                         <p>
                            <locus>117v-118v</locus>
-                           <hi rend="italic">CAP. I-XIIII</hi> - Karls des Kahlen <title corresp="BK.300">Libellus
-                              proclamationis adversus Wenilonem</title>, vorgelegt in Savonnières
-                           (a. 859): <hi rend="italic">LIBELLUS PROCLAMATIONIS KAROLI REGIS ADUERSUS
-                              UUENILONEM ARCHIEPISCOPUM senonum electis iudicibus - manu porrectus.
-                              Quia sicut dicit sanctus gregorius - adiutorium aliquod praestitit
-                           </hi>(MGH Capit. 2, Nr. 300, S. 450 Z. 33 - S. 453 Z. 9; MGH Conc. 3, S.
-                           464 - 467). </p>
+                           <hi rend="italic">CAP. I-XIIII</hi> - Karls des Kahlen <title
+                              corresp="BK.300">Libellus proclamationis adversus Wenilonem</title>,
+                           vorgelegt in Savonnières (a. 859): <hi rend="italic">LIBELLUS
+                              PROCLAMATIONIS KAROLI REGIS ADUERSUS UUENILONEM ARCHIEPISCOPUM senonum
+                              electis iudicibus - manu porrectus. Quia sicut dicit sanctus gregorius
+                              - adiutorium aliquod praestitit </hi>(MGH Capit. 2, Nr. 300, S. 450 Z.
+                           33 - S. 453 Z. 9; MGH Conc. 3, S. 464-467). </p>
                      </msItem>
                      <msItem n="22">
                         <p>
                            <locus>118v-125r</locus> Konzil von Savonnières (a. 859),
                            Synodalschreiben an Erzbischof Wenilo von Sens, an die bretonischen
                            Bischöfe und an westfränkische Große, dazu die in Savonnières
-                           überreichten Kanones von Langres (MGH Conc. 3, S. 468 - 472, 480-485, 473
-                           - 479); untere Hälfte der Seite abgeschnitten und durch neueres Pergament
-                           ersetzt. </p>
+                           überreichten Kanones von Langres (MGH Conc. 3, S. 468-472, 480-485,
+                           473-479); untere Hälfte der Seite abgeschnitten und durch neueres
+                           Pergament ersetzt. </p>
                      </msItem>
 
                   </msContents>
@@ -327,26 +341,36 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                               <material>Pergament</material>
                            </support>
                            <extent>insg. 208 foll. (Angaben im folgenden nach der neuen
-                              Stempelzählung unten rechts), hier: foll. 1-25<dimensions precision="medium" type="leaf" unit="mm">
+                              Stempelzählung unten rechts), hier: foll. 1-125v <dimensions
+                                 precision="medium" type="leaf" unit="mm">
                                  <height>328</height>
                                  <width>270</width>
                               </dimensions>
                               <dimensions type="written" unit="mm">
-                                 <height>235 -248</height>
-                                 <width>190 - 210</width>
+                                 <height>235-248</height>
+                                 <width>190-210</width>
                               </dimensions>
                            </extent>
-                           <collation><formula>in der heute wieder sichtbaren richtigen Reihenfolge;
-                                 einige Blätter fehlen 2 IV<hi rend="super">16</hi> + II<hi rend="super">20</hi> + 4 IV<hi rend="super">52</hi> + (III+1)<hi rend="super">59</hi> + 2 IV<hi rend="super">75</hi> + (IV+1)<hi rend="super">84</hi> + 3 IV<hi rend="super">108</hi> + 3<hi rend="super">111</hi> + IV<hi rend="super">119</hi> + III<hi rend="super">125</hi> + IV<hi rend="super">133</hi> + (III+l)<hi rend="super">140</hi> + IV<hi rend="super">148</hi> + V<hi rend="super">158</hi> + IV<hi rend="super">166</hi> + (IV+2)<hi rend="super">176</hi> + V<hi rend="super">186</hi> + 2 IV<hi rend="super">202</hi> + III<hi rend="super">208</hi>.</formula>
-                              <catchwords>Die Kustoden <hi rend="italic">(I-XXVII </hi>an den
-                                 Lagenenden, z. T. mit vorangestelltem <hi rend="italic">Q;</hi>
+                           <collation>in der heute wieder sichtbaren richtigen Reihenfolge; einige
+                              Blätter fehlen: <formula>2 IV<hi rend="super">16</hi> + II<hi
+                                    rend="super">20</hi> + 4 IV<hi rend="super">52</hi> + (III+1)<hi
+                                    rend="super">59</hi> + 2 IV<hi rend="super">75</hi> + (IV+1)<hi
+                                    rend="super">84</hi> + 3 IV<hi rend="super">108</hi> + 3<hi
+                                    rend="super">111</hi> + IV<hi rend="super">119</hi> + III<hi
+                                    rend="super">125</hi> + IV<hi rend="super">133</hi> + (III+l)<hi
+                                    rend="super">140</hi> + IV<hi rend="super">148</hi> + V<hi
+                                    rend="super">158</hi> + IV<hi rend="super">166</hi> + (IV+2)<hi
+                                    rend="super">176</hi> + V<hi rend="super">186</hi> + 2 IV<hi
+                                    rend="super">202</hi> + III<hi rend="super">208</hi></formula>
+                              <catchwords>Die Kustoden (<hi rend="italic">I-XXVII </hi>an den
+                                 Lagenenden, z. T. mit vorangestelltem <hi rend="italic">Q</hi>;
                                  nicht immer erhalten) gehen nach der schon mittelalterlich falschen
                                  Blattfolge (neue foll. 37-125, 1-36, 126-208 = in der älteren
                                  Foliierung oben rechts 1-90 [38 übersprungen], 91-126,
-                                 127-209)</catchwords>.</collation>
+                                 127-209).</catchwords></collation>
                         </supportDesc>
                         <layoutDesc>
-                           <layout writtenLines="29 31">29-31 Zeilen</layout>
+                           <layout writtenLines="29 31">29-31</layout>
                            <layout columns="1"/>
                         </layoutDesc>
                      </objectDesc>
@@ -372,18 +396,18 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                      <origin>
                         <p>
                            <origDate notAfter="0900" notBefore="0867"> 9. Jh., 3. Drittel (etwa
-                              ausgehendes 9. Jh. [B. Bischoff])</origDate>; <origPlace ref="http://d-nb.info/gnd/4110086-4"> Nordfrankreich</origPlace>.</p>
+                              ausgehendes 9. Jh. [B. Bischoff])</origDate>; <origPlace
+                              ref="http://d-nb.info/gnd/4110086-4"> Nordfrankreich</origPlace></p>
                      </origin>
                      <provenance>
-                        <p>Kapitelsbibliothek Beauvais (mehrere Besitzvermerke 12./13. Jh. foll.
-                              2r, 37r und 152r: <hi rend="italic">Sancti petri beluacensis [est
-                              liber iste]);</hi> 1558 von Jean Du Tillet aus der Kathedralbibliothek
-                           entliehen, vgl. <hi rend="smallcaps">Omont,</hi> Recherches sur la
-                           Bibliothèque de l'Église cathédrale de Beauvais, S. 7; Antonio Agustín
-                           (Nr. 253; er dürfte die korrekte Neubindung der Hs. veranlaßt haben);
-                           d’Este, Ferrara (Besitzvermerk fol. 37r: <hi rend="italic">Illustrissimi et Reverendissimi Domini Cardinalis
-                              Ferra</hi>- <hi rend="italic">riensis).</hi>
-                        </p>
+                        <p>Kapitelsbibliothek Beauvais (mehrere Besitzvermerke 12./13. Jh. foll. 2r,
+                           37r und 152r: <hi rend="italic">Sancti petri beluacensis</hi> [<hi
+                              rend="italic">est liber iste</hi>]); 1558 von Jean Du Tillet aus der
+                           Kathedralbibliothek entliehen, vgl. Omont, Recherches sur la Bibliothèque
+                           de l'Église cathédrale de Beauvais, S. 7; Antonio Agustín (Nr. 253; er
+                           dürfte die korrekte Neubindung der Hs. veranlaßt haben); d'Este, Ferrara
+                           (Besitzvermerk fol. 37r: <hi rend="italic">Illustrissimi et
+                              Reverendissimi Domini Cardinalis Ferrariensis</hi>). </p>
                      </provenance>
                      <acquisition/>
                   </history>
@@ -391,55 +415,38 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                      <surrogates/>
                      <listBibl>
                         <listBibl type="lit">
-                           <bibl>H. <hi rend="smallcaps">Omont, </hi>Recherches sur la Bibliothèque
-                              de l’Église cathédrale de Beauvais, in: Mémoires de l’Institut
-                              National de France. Académie des Inscriptions et Belles-Lettres 40
-                              (Paris 1916) S. 7, 83.</bibl>
+                           <bibl>H. Omont, Recherches sur la Bibliothèque de l'Église cathédrale de
+                              Beauvais, in: Mémoires de l'Institut National de France. Académie des
+                              Inscriptions et Belles-Lettres 40 (Paris 1916) S. 7, 83.</bibl>
                            <bibl corresp="#Pertz_1835">Pertz 1835, S. XIX</bibl>
-                           <bibl corresp="#Boretius_1897">Boretius 1897, S. XXVIII.</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Ballerini,</hi> De antiquis collectionibus II,
-                              10, 4, <hi rend="smallcaps">Migne, PL </hi>56, Sp. 157 f.</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Pertz,</hi> in: Archiv 5, S. 463 f.</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Maassen,</hi> Bibliotheca I, 1, S. 397</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">ders.,</hi> Geschichte, S. 778- 780</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">L. Bethmann,</hi> in: Archiv 12 (1858-1874) S.
-                              237</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Nürnberger,</hi> Zur handschriftlichen
-                              Ueberlieferung, S. 312 f.</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">de Clercq,</hi> La législation religieuse franque
-                              1, S. 7 Anm. 1, S. 123 Anm. 1 u. ö.</bibl>
-                           <bibl> Bd. 2, S. 60, S. 218 Anm. 16, S. 231 Anm. 47</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">D. Lohrmann,</hi> Das Register Papst Johannes'
-                              VIII. (872-882) (Bibliothek des Deutschen Historischen Instituts in
-                              Rom 30, Tübingen 1968) S. 207 f.</bibl>
-                           <bibl> L. <hi rend="smallcaps">Gasparri,</hi> Osservazioni sul codice
-                              Vallicelliano C. 24, in: Studi Gregoriani 9 (1972) S. 505 f.</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Mordek,</hi> Kirchenrecht und Reform, S. 72 Anm.
-                              38 u. ö.</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Buonocore,</hi> Bibliografia 2, S. 1127</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Pontal,</hi> Synoden im Merowingerreich, S.
-                              282</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Hartmann,</hi> Synoden der Karolingerzeit, S. 15,
-                              18 u. ö.</bibl>
+                           <bibl corresp="#Boretius_1897">Boretius 1897, S. XXVIII</bibl>
+                           <bibl>Ballerini, De antiquis collectionibus II, 10, 4, Migne, PL 56, Sp.
+                              157 f.</bibl>
+                           <bibl>Pertz, in: Archiv 5, S. 463 f.</bibl>
+                           <bibl>Maassen, Bibliotheca I, 1, S. 397</bibl>
+                           <bibl>ders., Geschichte, S. 778-780</bibl>
+                           <bibl>L. Bethmann, in: Archiv 12 (1858-1874) S. 237</bibl>
+                           <bibl>Nürnberger, Zur handschriftlichen Ueberlieferung, S. 312 f.</bibl>
+                           <bibl>de Clercq, La législation religieuse franque 1, S. 7 Anm. 1, S. 123
+                              Anm. 1 u. ö.</bibl>
+                           <bibl>Bd. 2, S. 60, S. 218 Anm. 16, S. 231 Anm. 47</bibl>
+                           <bibl>D. Lohrmann, Das Register Papst Johannes' VIII. (872-882)
+                              (Bibliothek des Deutschen Historischen Instituts in Rom 30, Tübingen
+                              1968) S. 207 f.</bibl>
+                           <bibl>L. Gasparri, Osservazioni sul codice Vallicelliano C. 24, in: Studi
+                              Gregoriani 9 (1972) S. 505 f.</bibl>
+                           <bibl>Mordek, Kirchenrecht und Reform, S. 72 Anm. 38 u. ö.</bibl>
+                           <bibl>Buonocore, Bibliografia 2, S. 1127</bibl>
+                           <bibl>Pontal, Synoden im Merowingerreich, S. 282</bibl>
+                           <bibl>Hartmann, Synoden der Karolingerzeit, S. 15, 18 u. ö.</bibl>
                         </listBibl>
                         <listBibl type="cat">
                            <bibl>Inventarium librorum latinorum Mss. Bib. Vat. 4 (handschriftlich in
-                              der Biblioteca Apostolica Vaticana).</bibl>
+                              der Biblioteca Apostolica Vaticana)</bibl>
                         </listBibl>
                         <listBibl type="cap">
-                           <bibl>Mordek 1995 S. 858-863</bibl>
+                           <bibl corresp="#Mordek_1995">Mordek 1995, S. 858-863</bibl>
+                           <bibl corresp="#Bischoff_2014">Bischoff 2014, S. 450, Nr. 6882</bibl>
                         </listBibl>
                      </listBibl>
                   </additional>
@@ -454,26 +461,26 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                      <title type="main">Vatikan, Biblioteca Apostolica Vaticana, Vat. Lat.
                         3827</title>
                      <origDate notAfter="0900" notBefore="0867"> 9. Jh., 3. Drittel (etwa
-                        ausgehendes 9. Jh. [B. Bischoff])</origDate>
-                     <origPlace ref="http://d-nb.info/gnd/4110086-4"> Nordfrankreich</origPlace>
+                        ausgehendes 9. Jh. [B. Bischoff])</origDate>; <origPlace
+                        ref="http://d-nb.info/gnd/4110086-4">Nordfrankreich</origPlace>
                   </head>
                   <msContents>
                      <summary/>
 
                      <msItem n="24">
                         <p>
-                           <locus>126r-208v</locus> Briefkorpus Papst Nikolaus’ I. (vgl. <hi rend="smallcaps">Perels, </hi>Die Briefe Papst Nikolaus’ I., in: NA
-                           37, S. 541 f. und <hi rend="smallcaps">dens., </hi>MGH Epp. 6, S. 263).
-                        </p>
+                           <locus>126r-208v</locus> Briefkorpus Papst Nikolaus' I. (vgl. Perels, Die
+                           Briefe Papst Nikolaus' I., in: NA 37, S. 541 f. und dens., MGH Epp. 6, S.
+                           263). </p>
                      </msItem>
                      <msItem n="25">
                         <p>
                            <locus>208v</locus> (Nachtrag, etwa 11. Jh., 2. Hälfte) Klagegedicht auf
                            den Tod eines Kaisers (MGH Poetae 4, S. 1074 f.), wahrscheinlich
-                           Heinrichs III. nach <hi rend="smallcaps">B. Bischoff, </hi>Caesar, tantus
-                           eras, in: <hi rend="smallcaps">ders., </hi>Mittelalterliche Studien 2,S.
-                           169-174 (zur Hs. S. 169 f. mit Anm. 7; weitere Literatur bei <hi rend="smallcaps">Schaller - Könsgen, </hi>Initia carminum Latinorum,
-                           Nr. 1822). </p>
+                           Heinrichs III. nach B. Bischoff, Caesar, tantus eras, in: ders.,
+                           Mittelalterliche Studien 2, S. 169-174 (zur Hs. S. 169 f. mit Anm. 7;
+                           weitere Literatur bei Schaller - Könsgen, Initia carminum Latinorum, Nr.
+                           1822). </p>
                      </msItem>
                   </msContents>
                   <physDesc>
@@ -483,26 +490,36 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                               <material>Pergament</material>
                            </support>
                            <extent>insg. 208 foll. (Angaben im folgenden nach der neuen
-                              Stempelzählung unten rechts), hier: 126r-208v<dimensions precision="medium" type="leaf" unit="mm">
+                              Stempelzählung unten rechts), hier: 126r-208v<dimensions
+                                 precision="medium" type="leaf" unit="mm">
                                  <height>328</height>
                                  <width>270</width>
                               </dimensions>
                               <dimensions type="written" unit="mm">
-                                 <height>235 -248</height>
-                                 <width>190 - 210</width>
+                                 <height>235-248</height>
+                                 <width>190-210</width>
                               </dimensions>
                            </extent>
-                           <collation><formula>in der heute wieder sichtbaren richtigen Reihenfolge;
-                                 einige Blätter fehlen 2 IV<hi rend="super">16</hi> + II<hi rend="super">20</hi> + 4 IV<hi rend="super">52</hi> + (III+1)<hi rend="super">59</hi> + 2 IV<hi rend="super">75</hi> + (IV+1)<hi rend="super">84</hi> + 3 IV<hi rend="super">108</hi> + 3<hi rend="super">111</hi> + IV<hi rend="super">119</hi> + III<hi rend="super">125</hi> + IV<hi rend="super">133</hi> + (III+l)<hi rend="super">140</hi> + IV<hi rend="super">148</hi> + V<hi rend="super">158</hi> + IV<hi rend="super">166</hi> + (IV+2)<hi rend="super">176</hi> + V<hi rend="super">186</hi> + 2 IV<hi rend="super">202</hi> + III<hi rend="super">208</hi>.</formula>
-                              <catchwords>Die Kustoden <hi rend="italic">(I-XXVII </hi>an den
-                                 Lagenenden, z. T. mit vorangestelltem <hi rend="italic">Q;</hi>
+                           <collation>in der heute wieder sichtbaren richtigen Reihenfolge; einige
+                              Blätter fehlen: <formula>2 IV<hi rend="super">16</hi> + II<hi
+                                    rend="super">20</hi> + 4 IV<hi rend="super">52</hi> + (III+1)<hi
+                                    rend="super">59</hi> + 2 IV<hi rend="super">75</hi> + (IV+1)<hi
+                                    rend="super">84</hi> + 3 IV<hi rend="super">108</hi> + 3<hi
+                                    rend="super">111</hi> + IV<hi rend="super">119</hi> + III<hi
+                                    rend="super">125</hi> + IV<hi rend="super">133</hi> + (III+l)<hi
+                                    rend="super">140</hi> + IV<hi rend="super">148</hi> + V<hi
+                                    rend="super">158</hi> + IV<hi rend="super">166</hi> + (IV+2)<hi
+                                    rend="super">176</hi> + V<hi rend="super">186</hi> + 2 IV<hi
+                                    rend="super">202</hi> + III<hi rend="super">208</hi>.</formula>
+                              <catchwords>Die Kustoden (<hi rend="italic">I-XXVII</hi> an den
+                                 Lagenenden, z. T. mit vorangestelltem <hi rend="italic">Q</hi>;
                                  nicht immer erhalten) gehen nach der schon mittelalterlich falschen
                                  Blattfolge (neue foll. 37-125, 1-36, 126-208 = in der älteren
                                  Foliierung oben rechts 1-90 [38 übersprungen], 91-126,
-                                 127-209)</catchwords>.</collation>
+                                 127-209).</catchwords></collation>
                         </supportDesc>
                         <layoutDesc>
-                           <layout writtenLines="29 31">29-31 Zeilen</layout>
+                           <layout writtenLines="29 31">29-31</layout>
                            <layout columns="1"/>
                         </layoutDesc>
                      </objectDesc>
@@ -527,19 +544,19 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                      <summary> </summary>
                      <origin>
                         <p>
-                           <origDate notAfter="0900" notBefore="0867"> 9. Jh., 3. Drittel (etwa
-                              ausgehendes 9. Jh. [B. Bischoff])</origDate>;<origPlace ref="http://d-nb.info/gnd/4110086-4"> Nordfrankreich</origPlace>.</p>
+                           <origDate notAfter="0900" notBefore="0867">9. Jh., 3. Drittel (etwa
+                              ausgehendes 9. Jh. [B. Bischoff])</origDate>; <origPlace
+                              ref="http://d-nb.info/gnd/4110086-4"> Nordfrankreich</origPlace></p>
                      </origin>
                      <provenance>
-                        <p>Kapitelsbibliothek Beauvais (mehrere Besitzvermerke 12./13. Jh. foll.
-                              2r, 37r und 152r: <hi rend="italic">Sancti petri beluacensis [est
-                              liber iste]);</hi> 1558 von Jean Du Tillet aus der Kathedralbibliothek
-                           entliehen, vgl. <hi rend="smallcaps">Omont,</hi> Recherches sur la
-                           Bibliothèque de l'Église cathédrale de Beauvais, S. 7; Antonio Agustín
-                           (Nr. 253; er dürfte die korrekte Neubindung der Hs. veranlaßt haben);
-                           d’Este, Ferrara (Besitzvermerk fol. 37r: <hi rend="italic">Illustrissimi et Reverendissimi Domini Cardinalis
-                              Ferra</hi>- <hi rend="italic">riensis).</hi>
-                        </p>
+                        <p>Kapitelsbibliothek Beauvais (mehrere Besitzvermerke 12./13. Jh. foll. 2r,
+                           37r und 152r: <hi rend="italic">Sancti petri beluacensis</hi> [<hi
+                              rend="italic">est liber iste</hi>]); 1558 von Jean Du Tillet aus der
+                           Kathedralbibliothek entliehen, vgl. Omont, Recherches sur la Bibliothèque
+                           de l'Église cathédrale de Beauvais, S. 7; Antonio Agustín (Nr. 253; er
+                           dürfte die korrekte Neubindung der Hs. veranlaßt haben); d'Este, Ferrara
+                           (Besitzvermerk fol. 37r: <hi rend="italic">Illustrissimi et
+                              Reverendissimi Domini Cardinalis Ferrariensis</hi>). </p>
                      </provenance>
                      <acquisition/>
                   </history>
@@ -547,55 +564,38 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                      <surrogates/>
                      <listBibl>
                         <listBibl type="lit">
-                           <bibl>H. <hi rend="smallcaps">Omont, </hi>Recherches sur la Bibliothèque
-                              de l’Église cathédrale de Beauvais, in: Mémoires de l’Institut
-                              National de France. Académie des Inscriptions et Belles-Lettres 40
-                              (Paris 1916) S. 7, 83.</bibl>
+                           <bibl>H. Omont, Recherches sur la Bibliothèque de l'Église cathédrale de
+                              Beauvais, in: Mémoires de l'Institut National de France. Académie des
+                              Inscriptions et Belles-Lettres 40 (Paris 1916) S. 7, 83.</bibl>
                            <bibl corresp="#Pertz_1835">Pertz 1835, S. XIX</bibl>
-                           <bibl corresp="#Boretius_1897">Boretius 1897, S. XXVIII.</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Ballerini,</hi> De antiquis collectionibus II,
-                              10, 4, <hi rend="smallcaps">Migne, PL </hi>56, Sp. 157 f.</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Pertz,</hi> in: Archiv 5, S. 463 f.</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Maassen,</hi> Bibliotheca I, 1, S. 397</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">ders.,</hi> Geschichte, S. 778- 780</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">L. Bethmann,</hi> in: Archiv 12 (1858-1874) S.
-                              237</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Nürnberger,</hi> Zur handschriftlichen
-                              Ueberlieferung, S. 312 f.</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">de Clercq,</hi> La législation religieuse franque
-                              1, S. 7 Anm. 1, S. 123 Anm. 1 u. ö.</bibl>
-                           <bibl> Bd. 2, S. 60, S. 218 Anm. 16, S. 231 Anm. 47</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">D. Lohrmann,</hi> Das Register Papst Johannes'
-                              VIII. (872-882) (Bibliothek des Deutschen Historischen Instituts in
-                              Rom 30, Tübingen 1968) S. 207 f.</bibl>
-                           <bibl> L. <hi rend="smallcaps">Gasparri,</hi> Osservazioni sul codice
-                              Vallicelliano C. 24, in: Studi Gregoriani 9 (1972) S. 505 f.</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Mordek,</hi> Kirchenrecht und Reform, S. 72 Anm.
-                              38 u. ö.</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Buonocore,</hi> Bibliografia 2, S. 1127</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Pontal,</hi> Synoden im Merowingerreich, S.
-                              282</bibl>
-                           <bibl>
-                              <hi rend="smallcaps">Hartmann,</hi> Synoden der Karolingerzeit, S. 15,
-                              18 u. ö.</bibl>
+                           <bibl corresp="#Boretius_1897">Boretius 1897, S. XXVIII</bibl>
+                           <bibl> Ballerini, De antiquis collectionibus II, 10, 4, Migne, PL 56, Sp.
+                              157 f.</bibl>
+                           <bibl>Pertz, in: Archiv 5, S. 463 f.</bibl>
+                           <bibl>Maassen, Bibliotheca I, 1, S. 397</bibl>
+                           <bibl>ders., Geschichte, S. 778-780</bibl>
+                           <bibl>L. Bethmann, in: Archiv 12 (1858-1874) S. 237</bibl>
+                           <bibl>Nürnberger, Zur handschriftlichen Ueberlieferung, S. 312 f.</bibl>
+                           <bibl>de Clercq, La législation religieuse franque 1, S. 7 Anm. 1, S. 123
+                              Anm. 1 u. ö.</bibl>
+                           <bibl>Bd. 2, S. 60, S. 218 Anm. 16, S. 231 Anm. 47</bibl>
+                           <bibl>D. Lohrmann, Das Register Papst Johannes' VIII. (872-882)
+                              (Bibliothek des Deutschen Historischen Instituts in Rom 30, Tübingen
+                              1968) S. 207 f.</bibl>
+                           <bibl> L. Gasparri, Osservazioni sul codice Vallicelliano C. 24, in:
+                              Studi Gregoriani 9 (1972) S. 505 f.</bibl>
+                           <bibl>Mordek, Kirchenrecht und Reform, S. 72 Anm. 38 u. ö.</bibl>
+                           <bibl>Buonocore, Bibliografia 2, S. 1127</bibl>
+                           <bibl>Pontal, Synoden im Merowingerreich, S. 282</bibl>
+                           <bibl>Hartmann, Synoden der Karolingerzeit, S. 15, 18 u. ö.</bibl>
                         </listBibl>
                         <listBibl type="cat">
                            <bibl>Inventarium librorum latinorum Mss. Bib. Vat. 4 (handschriftlich in
-                              der Biblioteca Apostolica Vaticana).</bibl>
+                              der Biblioteca Apostolica Vaticana)</bibl>
                         </listBibl>
                         <listBibl type="cap">
-                           <bibl>Mordek 1995 S. 858-863</bibl>
+                           <bibl corresp="#Mordek_1995">Mordek 1995, S. 858-863</bibl>
+                           <bibl corresp="#Bischoff_2014">Bischoff 2014, S. 450, Nr. 6882</bibl>
                         </listBibl>
                      </listBibl>
                   </additional>
@@ -605,11 +605,14 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage:</p>
+         <p>Transkriptionsvorlage: Sehr gutes Farbdigitalisat der Biblioteca Apostolica
+            Vaticana.</p>
          <projectDesc>
-            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
-            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
          </projectDesc>
          <editorialDecl>
@@ -623,7 +626,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
       </encodingDesc>
       <revisionDesc>
          <change when="2016-03-01" who="DS">Datei erstellt aus Mordek-XML</change>
-         <change when="2016-04-25" who="DS">Link zum Digitalisat hinzugefügt</change>
+         <change when="2020" who="DT">Datei veröffentlicht (BK 185B)</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -631,17 +634,158 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
    </facsimile>
    <text>
       <front>
+         <div type="content">
+            <list>
+               <item n="10">
+                  <ptr type="internal" target="#vatikan-bav-vat-lat-3827-74v-5"/>INCIPIT EPISTOLA
+                  CESAREA</item>
+               <item n="20">
+                  <ptr type="internal" target="#vatikan-bav-vat-lat-3827-75r-1"/>(Primo scilicet im
+                  mogonciacensi urbe ubi conueniant...)</item>
+            </list>
+         </div>
+
          <div type="mshist"/>
-         <div type="scribe"/>
+         <div type="scribe">
+            <p>Der Schreiber verwendet eine gut lesbare karolingische Minuskel.</p>
+         </div>
          <div type="letters"/>
          <div type="abbreviations"/>
          <div type="punctuation"/>
-         <div type="structure"/>
-         <div type="annotations"/>
+         <div type="structure">
+            <p>Nach den Capitula Theodulfs von Orléans und vor den Texten des Pariser Konzils von
+               829 befindet sich auf <locus>foll. 74v-75r</locus> die Epistola generalis Ludwigs und
+               Lothars (BK 185) in der Langversion. Der Brief hat ein Incipit in roter Tinte und
+               Capitalis rustica und wird mit einer zwei Zeilen hohen, roten I-Initiale eingeleitet.
+               Der Teil des Textes, der fast wörtlich BK 184 aufgreift (ab <mentioned>Primo
+                  scilicet</mentioned>...) ist durch eine deutlich erkennbare intralineare Lücke vom
+               Rest des Textes abgetrennt.</p>
+         </div>
+         <div type="annotations">
+            <p>Neben den Beginn des Stücks hat eine neuzeitliche Hand einen Verweis auf das Konzil
+               von Paris 829 auf den linken Seitenrand geschrieben.</p>
+         </div>
          <div type="other"/>
       </front>
       <body>
-         <ab type="text"/>
+
+         <gap reason="editorial"/>
+         <cb n="74v"/>
+         <lb n="14"/>
+
+         <milestone unit="capitulare" n="BK.185B"/>
+
+         <ab type="meta-text" xml:id="vatikan-bav-vat-lat-3827-74v-5" corresp="BK.185B_inscriptio"
+            rend="coloured"><seg type="initial">I</seg>NCIPIT EPISTOLA CESAREA ;. ;. <lb/>
+         </ab>
+
+         <ab type="text" xml:id="vatikan-bav-vat-lat-3827-74v-6"
+            next="#vatikan-bav-vat-lat-3827-75r-1" corresp="BK.185B">
+            <seg type="initial" rend="coloured">I</seg>N<note type="editorial">Am linken Seitenrand
+               eine Notiz von neuzeitlicher Hand: <mentioned>Concilium Parisiense VI. an.
+                  829.</mentioned></note> nomine domini dei et saluatoris nostri iesu christi . <rs
+               type="person">hludouuicus</rs> et <rs type="person">hlotarius</rs> . Diuina ordinante
+            prouidentia imperatores augusti * <lb/> Omnibus fidelibus sanctę dei ecclesiae et
+            nostris . Recordari uos credimus qualiter hoc anno . consilio sacerdotum * Et aliorum
+            fidelium <lb/> nostrorum generale ieiunium per totum regnum nostrum celebrare iussimus .
+            deum que tota deuotione deposcere . ut nobis propitiari . et in quibus <lb/> illum
+            maxime offenderimus . Nobis manifestare et ad correctionem nostram necessariam
+            tranquillum tempus nobis tribuere dignaretur * <lb/> Uolueramus siquidem tempore congruo
+            placitum nostrum generale habere et in eodem <expan>communi</expan> correctione agere *
+            Et ita deo mi<lb break="no"/>serante fieret . nisi <expan>commotio</expan> inimicorum
+            sicut nostis <expan>praependisset</expan> . Sed quia tunc fieri non potuit iuxta
+            uoluntatem nostram uisum <lb/> nobis fuit praesens placitum cum aliquibus ex fidelibus
+            nostris habere . et in eo de his quae propter praedictum inpedimentum <choice>
+               <abbr>remanser</abbr>
+               <expan>remanserunt</expan>
+            </choice> . <lb/> qualiter ad effectum peruenirent . domino adiuuante considerare *
+            Quapropter nosse uolumus sollertiam uestram . quod in isto <expan>praesenti</expan>
+               pla<lb break="no"/>cito cum fidelibus nostris considerauimus * Ut primo omnium
+            archiepiscopi . cum suis suffraganeis in locis congruis . tempore oportu<lb break="no"
+            />no conuenirent . et ibi tam de sua quam de omnium nostrum correctione et emendatione
+            secundum diuinam auctoritatem querendo <lb/> inuenirent . et nobis atque fidelibus
+            nostris secundum ministerium sibi <expan>commissum</expan> adnuntiarent * Quis enim non
+            sentiat deum nostris par<lb break="no"/>uissimis actibus esse . offensum et ad
+            iracundiam prouocatum cum uideat tot annis multifariis flagellis iram illius in regno
+            nobis <lb/> ab eo <expan>commisso</expan> deseuire uidelicet . In fame continua in
+            mortalitate animalium . in pestilentia hominum . in sterelitate pene <lb/> omnium frugum
+            . et ut ita dixerim diuersissimis morborum cladibus atque ingentibus penuriis populum
+            istius regni miserabiliter <lb/> uexatum et adflictum atque omni abundantia rerum quodam
+            modo exinanitum . Nec illud etiam dubitamus . ex iusta uindictam <lb/> illius euenire .
+            quod sepe scandala per tyrannos in hoc regno exsurgunt * Qui pacem populi christiani et
+            unitatem imperii . sua praui<lb break="no"/>tate nutuntur scindere . Nam et illud
+            nihilominus peccatis nostris deputandum est . quod inimici christi nominis
+               <expan>praeterito</expan> anno in hoc <cb n="75r"/> regnum ingressi . depraedationes
+            incendia ecclesiarum et captiuationes christianorum . et interfectionis seruorum dei .
+            audientes et in <lb/> pane immo crudeliter fecerunt . Agitur siquidem iusto iudicio dei
+            ut qui in cunctis delinquimus . interius simul et exterius fla<lb break="no"/>gellemur *
+            Beneficiis quippe dei euidenter existimus ingrati quoniam his non ad uoluntatem dei .
+            sed ad libitum nostrum carnalem uti inuenimur * <lb/> Et idcirco merito creaturę dei
+            nobis diuinitus concesse . pro deo contra nos ingratos pugnant iuxta illud . Pugnabit
+            pro eo orbis terra<lb break="no"/>rum contra insensatos * Uerum quia tot modis uexamur
+            atque percutimur . ad eum a quo percutimur toto corde dignum necessarium<lb break="no"
+            />que est . ut reuertamur * Quatenus illud propheticum in nobis impleatur quo dicitur *
+            Sola uexatio . intellectum dabit auditui * <lb/> Sed quia pius et clemens dominus sic
+            ipsum flagellum moderatur . ut non ad interitum sed potius ad correctionem nostram
+            inferre uideatur * <lb/> Debemus in conspectu eius ueraciter humiliari . et faciem
+            illius in confessione <expan>praeuenire</expan> eiusque pietatem pronis mentibus
+               exora<lb break="no"/>re . ut qui fecit nos iustissima dispensatione flagella sentire
+            . faciat nobis peccata nostra pro quibus iuste ab eo flagella<subst>
+               <del>rum</del>
+               <add>mur</add>
+            </subst> cog<lb break="no"/>noscere * Et in quibus maxime illum offendimus et iram
+            illius prouocauimus . manifestius intellegere . Ut post eo miserante <lb/> praua
+            deferendo et corrigendo . bona etiam sectando et tota cum deuotione exsequendo *
+            Ualeamus per spiritum humilitatis <lb/> et animam contritam sacrificium deo libitum
+            offerre . iramque illius indignationis euadere et per dignam congruamque correctionem
+            <lb/> et bonorum operum exhibitionem . gratiam eius propiciationis licet indigni
+            promereri * At quia nos magis <subst>
+               <del/>
+               <add>in</add>
+            </subst> hoc peccasse <lb/> cognoscimus qui forma salutis omnibus esse debuimus et
+            omnium curam gerere et per auctoritatem imperialem prauorum <lb/> acta ne tantum
+            adcrescerent corrigere cupimus domino nobis propitio in conspectu pietatis illius per
+            dignam satisfactionem <lb/> ueniam adipisci * Et per saluberrimam correctionem uel per
+            bonum studium quod nostra desidia et ignorantia hactenus neglectum est * <lb/> Consultu
+            fidelium tempore oportuno . quantum in nobis est studiosissime emendare . et nostram in
+            hoc uoluntatem omnibus <lb/> manifestam facere * Quapropter statuimus atque decreuimus
+            cum consultu sacerdotum ceterorumque fidelium nostrorum huius <lb/> rei gratia ob
+            placandum scilicet contra nos nobisque subiectos domini furorem conuentus eorundem
+            episcoporum in quattuor <lb/> imperii nostri locis . congruentissime fieri * </ab>
+
+         <ab type="text" xml:id="vatikan-bav-vat-lat-3827-75r-1"
+            prev="#vatikan-bav-vat-lat-3827-74v-6" corresp="BK.185B"> Primo scilicet . <sic>im</sic>
+            <rs type="place">mogonciacensi urbe</rs> . ubi conueniant <lb/> metropolitani . <rs
+               type="person">autgarius</rs> . <rs type="person">adubaldus</rs> . <rs type="person"
+               >ethi</rs> . <rs type="person">bernuinus</rs> cum suffraganeis suis * Secundo quoque
+            in <rs type="place">parisiorum urbe</rs> . ubi <lb/> futurus antistes <rs>senonicus</rs>
+            et <rs type="person">ebbo</rs> . <rs type="person"><subst>
+                  <del>ramm</del>
+                  <add>rang</add>
+               </subst>noardus</rs> et <rs type="person">landramnus</rs> metropolitani cum
+            suffraganeis suis conueniant * Tertio <lb/> uero apud <rs type="person">lugdunum</rs>
+            ubi <rs type="person">agobardus</rs> . <rs type="person">bernardus</rs> . <rs
+               type="person">andreas</rs> . <rs type="person">benedictus</rs> . <rs type="person"
+               >agericus</rs> . cum suffraganeis suis similiter conueniant * <lb/> Quarto etiam apud
+               <rs type="place">tolosanam</rs> urbem . qu<subst>
+               <del>i</del>
+               <add>o</add>
+            </subst> simul conueniant . <rs type="person">notho</rs> . <rs type="person"
+               >bartholomeus</rs> . <rs type="person">adalelmus</rs> . <rs type="person"
+               >agiulfus</rs> cum suffraganeis suis * <lb/> In quibus conuentibus tractare querere
+            et cum dei adiutorio inuenire debent de causis ad regionem christianam et eorum
+               <sic>coram</sic> pertinenti<lb break="no"/>bus quid a principibus et reliquo populo
+            uel ita ut diuina aucto<mod>r</mod>itas docet <sic>auc</sic> aliter teneatur . Uel quid
+            inde ex parte . uel ex <lb/> tota dimissum sit . ut non teneatur . Deinde quid in
+            ipsorum qui pastores populi constituti sunt . moribus conuersatione et actibus inue<lb
+               break="no"/>niri possit . quod diuinę regulae atque auctoritati non concordet .
+            simulque inueniant ! quae occasiones in utroque ordine id effece<lb break="no"/>rint .
+               <del>a</del> ut a recto tramite deuiatum sit * Et quicquid de his causis inuentum
+            fuerit tam sollerti cura custodiatur ! ut nullate<mod>n</mod>us <lb/> ad aliorum
+            notitiam . peruenire permittant * ante tempus constitutum * Et ideo unus notarius inter
+            omnes eligatur . qui quod ipsi inuenerint <lb/> describat . et ipse sub iuramento
+            constrictus . ea quae inuenta et digesta fuerint . diligenter fideliterque conseruet ; </ab>
+
       </body>
    </text>
 </TEI>
