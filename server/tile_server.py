@@ -18,7 +18,7 @@ import os.path
 
 from flask import abort, current_app, make_response, Blueprint
 from werkzeug.routing import Map, Rule, Submount
-from werkzeug.contrib.cache import SimpleCache, FileSystemCache
+from cachelib import SimpleCache, FileSystemCache
 import mapnik
 import cairo
 
