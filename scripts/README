@@ -1,0 +1,12 @@
+Updating Manuscript Files
+
+1. make a backup on the server: run backups/backup-mss.sh
+2. make import_mss
+3. run scripts/edit-mss-dummy.sh to get a quieter diff later
+4. commit and push to git
+
+5. run the script to update the mss files
+6. check the git diff
+   if not satisfied revert with: git checkout .
+7. make deploy_mss
+8. commit and push to git
