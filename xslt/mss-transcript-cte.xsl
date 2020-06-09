@@ -5,8 +5,8 @@
 Diese Datei enthält Anweisungen für alle Sonderfälle, die bei
 der Transformation aus dem CTE beachtet werden müssen.
 
-Transforms: $(MSS_DIR)/texts/137.xml -> $(CACHE_DIR)/mss/cte-137.html    : title=Edition
-Transforms: $(MSS_DIR)/texts/137.xml -> $(CACHE_DIR)/mss/cte-137-de.html : title=Übersetzung
+Transforms: $(MSS_DIR)/texts/137.xml    -> $(CACHE_DIR)/mss/cte-137.html    : title=Edition
+Transforms: $(MSS_DIR)/texts/137-de.xml -> $(CACHE_DIR)/mss/cte-137-de.html : title=Übersetzung
 
 URL: $(CACHE_DIR)/mss/cte-137.html    /resources/texts/ldf-bk137/
 URL: $(CACHE_DIR)/mss/cte-137-de.html /resources/texts/ldf-bk137/

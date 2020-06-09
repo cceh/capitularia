@@ -162,7 +162,8 @@
 
 <http://capitularia.uni-koeln.de/mss-transcript-cte.xsl> a cap:xsl ;
     cap:depends <http://capitularia.uni-koeln.de/mss-transcript.xsl> ;
-    cap:inputs <http://capitularia.uni-koeln.de/$(MSS_DIR)/texts/137.xml> ;
+    cap:inputs <http://capitularia.uni-koeln.de/$(MSS_DIR)/texts/137-de.xml>,
+        <http://capitularia.uni-koeln.de/$(MSS_DIR)/texts/137.xml> ;
     cap:outputs <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/cte-137-de.html>,
         <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/cte-137.html> ;
     cap:version "1.0" .
@@ -371,7 +372,7 @@
     cap:urls <http://capitularia.uni-koeln.de/mss/%/> .
 
 <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/cte-137-de.html> a cap:html ;
-    cap:depends <http://capitularia.uni-koeln.de/$(MSS_DIR)/texts/137.xml> ;
+    cap:depends <http://capitularia.uni-koeln.de/$(MSS_DIR)/texts/137-de.xml> ;
     cap:params "title=Übersetzung" ;
     cap:urls <http://capitularia.uni-koeln.de/resources/texts/ldf-bk137/> .
 
@@ -391,6 +392,10 @@
 <http://capitularia.uni-koeln.de/$(MSS_DIR)/lists/mss_by_cap.xml> a cap:xml .
 
 <http://capitularia.uni-koeln.de/$(MSS_DIR)/lists/ueberblick_mordek.xml> a cap:xml .
+
+<http://capitularia.uni-koeln.de/$(MSS_DIR)/texts/137-de.xml> a cap:xml .
+
+<http://capitularia.uni-koeln.de/$(MSS_DIR)/texts/137.xml> a cap:xml .
 
 <http://capitularia.uni-koeln.de/$(RES_DIR)/capitularia_place.xml> a cap:xml .
 
@@ -414,8 +419,6 @@
 
 <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/%.transcript.phase-1.xml> a cap:xml ;
     cap:depends <http://capitularia.uni-koeln.de/$(MSS_DIR)/%.xml> .
-
-<http://capitularia.uni-koeln.de/$(MSS_DIR)/texts/137.xml> a cap:xml .
 
 <http://capitularia.uni-koeln.de/internal/mss/%/> a cap:urls .
 
