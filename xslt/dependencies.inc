@@ -81,11 +81,17 @@ $(CACHE_DIR)/mss/%.transcript.html : $(CACHE_DIR)/mss/%.transcript.phase-1.xml c
 $(CACHE_DIR)/mss/%.transcript.phase-1.xml : $(MSS_DIR)/%.xml common-3.xsl mss-transcript-phase-1.xsl
 	$(SAXON) -s:$< -xsl:mss-transcript-phase-1.xsl -o:$@
 
-$(CACHE_DIR)/mss/cte-137-de.html : $(MSS_DIR)/texts/137-de.xml base_variables.xsl common.xsl mss-transcript-cte.xsl mss-transcript-footnotes.xsl mss-transcript.xsl
-	$(XSLTPROC) --stringparam title Übersetzung -o $@ mss-transcript-cte.xsl $<
+$(CACHE_DIR)/mss/cte-137-de.html : $(CACHE_DIR)/mss/cte-137-de.transcript.phase-1.xml common-3.xsl common-html.xsl config-3.xsl mss-transcript-cte.xsl mss-transcript-phase-2.xsl
+	$(SAXON) -s:$< -xsl:mss-transcript-cte.xsl -o:$@ title=Übersetzung
 
-$(CACHE_DIR)/mss/cte-137.html : $(MSS_DIR)/texts/137.xml base_variables.xsl common.xsl mss-transcript-cte.xsl mss-transcript-footnotes.xsl mss-transcript.xsl
-	$(XSLTPROC) --stringparam title Edition -o $@ mss-transcript-cte.xsl $<
+$(CACHE_DIR)/mss/cte-137-de.transcript.phase-1.xml : $(MSS_DIR)/texts/137-de.xml common-3.xsl mss-transcript-phase-1.xsl
+	$(SAXON) -s:$< -xsl:mss-transcript-phase-1.xsl -o:$@
+
+$(CACHE_DIR)/mss/cte-137.html : $(CACHE_DIR)/mss/cte-137.transcript.phase-1.xml common-3.xsl common-html.xsl config-3.xsl mss-transcript-cte.xsl mss-transcript-phase-2.xsl
+	$(SAXON) -s:$< -xsl:mss-transcript-cte.xsl -o:$@ title=Edition
+
+$(CACHE_DIR)/mss/cte-137.transcript.phase-1.xml : $(MSS_DIR)/texts/137.xml common-3.xsl mss-transcript-phase-1.xsl
+	$(SAXON) -s:$< -xsl:mss-transcript-phase-1.xsl -o:$@
 
 
 #

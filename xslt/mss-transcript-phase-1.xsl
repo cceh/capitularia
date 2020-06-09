@@ -8,6 +8,9 @@ TEI -> TEI preprocessing.
 Transforms: $(MSS_DIR)/%.xml      -> $(CACHE_DIR)/mss/%.transcript.phase-1.xml
 Transforms: $(MSS_PRIV_DIR)/%.xml -> $(CACHE_DIR)/internal/mss/%.transcript.phase-1.xml
 
+Transforms: $(MSS_DIR)/texts/137.xml    -> $(CACHE_DIR)/mss/cte-137.transcript.phase-1.xml
+Transforms: $(MSS_DIR)/texts/137-de.xml -> $(CACHE_DIR)/mss/cte-137-de.transcript.phase-1.xml
+
 
 Phase 1 is a TEI to TEI conversion that:
 
