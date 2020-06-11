@@ -8,9 +8,11 @@ XSLT Transformations
 
 The transformations used to produce HTML from TEI.
 
-The XSLT stylesheets were first written in XSLT 1 for historical reasons.  We
-are currently (Feb. 2020) rewriting them in XSLT 3.  XSLT 3 transformation is
-done with Saxon.  XSLT 1 transformation is done with xsltproc.
+The XSLT stylesheets were first written in XSLT 1 because the WebProjekt setup
+by the RRZK offered only an XSLT 1 processor (xsltproc through PHP).
+
+After adding a VM to the Capitularia project and installing Saxon-HE on it we
+rewrote all the stylesheets in XSLT 3.  (Rewrite completed in June 2020.)
 
 See also the overview: :ref:`html-generation`.
 

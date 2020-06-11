@@ -169,33 +169,19 @@
     cap:version "3.0" .
 
 <http://capitularia.uni-koeln.de/mss-transcript-with-comments.xsl> a cap:xsl ;
-    cap:depends <http://capitularia.uni-koeln.de/mss-transcript.xsl> ;
-    cap:inputs <http://capitularia.uni-koeln.de/$(MSS_DIR)/%.xml> ;
+    cap:depends <http://capitularia.uni-koeln.de/mss-transcript-phase-2.xsl> ;
+    cap:inputs <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/%.transcript.phase-1.xml> ;
     cap:outputs <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/%.transcript.commented.html> ;
-    cap:version "1.0" .
+    cap:version "3.0" .
 
 <http://capitularia.uni-koeln.de/mss_priv> a cap:target ;
     cap:target <http://capitularia.uni-koeln.de/$(CACHE_DIR)/internal/mss/%.footer.html>,
         <http://capitularia.uni-koeln.de/$(CACHE_DIR)/internal/mss/%.header.html>,
         <http://capitularia.uni-koeln.de/$(CACHE_DIR)/internal/mss/%.transcript.html> .
 
-<http://capitularia.uni-koeln.de/register_cap_places.xsl> a cap:xsl ;
-    cap:depends <http://capitularia.uni-koeln.de/allgFunktionen.xsl>,
-        <http://capitularia.uni-koeln.de/base_variables.xsl>,
-        <http://capitularia.uni-koeln.de/xsl-output.xsl> ;
-    cap:inputs <http://capitularia.uni-koeln.de/$(RES_DIR)/capitularia_place.xml> ;
-    cap:outputs <http://capitularia.uni-koeln.de/$(CACHE_DIR)/lists/places.html> ;
-    cap:version "1.0" .
-
-<http://capitularia.uni-koeln.de/$(CACHE_DIR)/lists/places.html> a cap:html ;
-    cap:depends <http://capitularia.uni-koeln.de/$(RES_DIR)/capitularia_place.xml> .
-
 <http://capitularia.uni-koeln.de/$(MSS_PRIV_DIR)/%-toc.xml> a cap:xml ;
     cap:depends <http://capitularia.uni-koeln.de/$(MSS_PRIV_DIR)/%.xml> ;
     cap:nomake "true" .
-
-<http://capitularia.uni-koeln.de/allgFunktionen.xsl> a cap:xsl ;
-    cap:version "1.0" .
 
 <http://capitularia.uni-koeln.de/capit/ldf/> a cap:urls .
 
@@ -215,17 +201,10 @@
 
 <http://capitularia.uni-koeln.de/capit/undated/%/> a cap:urls .
 
-<http://capitularia.uni-koeln.de/common.xsl> a cap:xsl ;
-    cap:depends <http://capitularia.uni-koeln.de/base_variables.xsl> ;
-    cap:version "1.0" .
-
 <http://capitularia.uni-koeln.de/config-3.xsl> a cap:xsl ;
     cap:version "3.0" .
 
 <http://capitularia.uni-koeln.de/internal/mss-comments/%/> a cap:urls .
-
-<http://capitularia.uni-koeln.de/mss-transcript-footnotes.xsl> a cap:xsl ;
-    cap:version "1.0" .
 
 <http://capitularia.uni-koeln.de/mss-transcript-phase-1.xsl> a cap:xsl ;
     cap:depends <http://capitularia.uni-koeln.de/common-3.xsl> ;
@@ -239,20 +218,6 @@
         <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/cte-137.transcript.phase-1.xml> ;
     cap:version "3.0" .
 
-<http://capitularia.uni-koeln.de/mss-transcript-phase-2.xsl> a cap:xsl ;
-    cap:depends <http://capitularia.uni-koeln.de/common-3.xsl>,
-        <http://capitularia.uni-koeln.de/common-html.xsl> ;
-    cap:inputs <http://capitularia.uni-koeln.de/$(CACHE_DIR)/internal/mss/%.transcript.phase-1.xml>,
-        <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/%.transcript.phase-1.xml> ;
-    cap:outputs <http://capitularia.uni-koeln.de/$(CACHE_DIR)/internal/mss/%.transcript.html>,
-        <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/%.transcript.html> ;
-    cap:version "3.0" .
-
-<http://capitularia.uni-koeln.de/mss-transcript.xsl> a cap:xsl ;
-    cap:depends <http://capitularia.uni-koeln.de/common.xsl>,
-        <http://capitularia.uni-koeln.de/mss-transcript-footnotes.xsl> ;
-    cap:version "1.0" .
-
 <http://capitularia.uni-koeln.de/mss/capit/> a cap:urls .
 
 <http://capitularia.uni-koeln.de/mss/idno/> a cap:urls .
@@ -264,9 +229,6 @@
 <http://capitularia.uni-koeln.de/resources/biblio/> a cap:urls .
 
 <http://capitularia.uni-koeln.de/resources/downloads/> a cap:urls .
-
-<http://capitularia.uni-koeln.de/xsl-output.xsl> a cap:xsl ;
-    cap:version "1.0" .
 
 <http://capitularia.uni-koeln.de/$(BIB_DIR)/Bibliographie_Capitularia.xml> a cap:xml .
 
@@ -373,7 +335,7 @@
     cap:urls <http://capitularia.uni-koeln.de/mss/%/> .
 
 <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/%.transcript.commented.html> a cap:html ;
-    cap:depends <http://capitularia.uni-koeln.de/$(MSS_DIR)/%.xml> ;
+    cap:depends <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/%.transcript.phase-1.xml> ;
     cap:urls <http://capitularia.uni-koeln.de/internal/mss-comments/%/> .
 
 <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/%.transcript.html> a cap:html ;
@@ -406,10 +368,14 @@
 
 <http://capitularia.uni-koeln.de/$(MSS_DIR)/texts/137.xml> a cap:xml .
 
-<http://capitularia.uni-koeln.de/$(RES_DIR)/capitularia_place.xml> a cap:xml .
-
-<http://capitularia.uni-koeln.de/base_variables.xsl> a cap:xsl ;
-    cap:version "1.0" .
+<http://capitularia.uni-koeln.de/mss-transcript-phase-2.xsl> a cap:xsl ;
+    cap:depends <http://capitularia.uni-koeln.de/common-3.xsl>,
+        <http://capitularia.uni-koeln.de/common-html.xsl> ;
+    cap:inputs <http://capitularia.uni-koeln.de/$(CACHE_DIR)/internal/mss/%.transcript.phase-1.xml>,
+        <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/%.transcript.phase-1.xml> ;
+    cap:outputs <http://capitularia.uni-koeln.de/$(CACHE_DIR)/internal/mss/%.transcript.html>,
+        <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/%.transcript.html> ;
+    cap:version "3.0" .
 
 <http://capitularia.uni-koeln.de/mss/status/> a cap:urls .
 
@@ -420,9 +386,6 @@
 
 <http://capitularia.uni-koeln.de/$(CACHE_DIR)/internal/mss/%.transcript.phase-1.xml> a cap:xml ;
     cap:depends <http://capitularia.uni-koeln.de/$(MSS_PRIV_DIR)/%.xml> .
-
-<http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/%.transcript.phase-1.xml> a cap:xml ;
-    cap:depends <http://capitularia.uni-koeln.de/$(MSS_DIR)/%.xml> .
 
 <http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/cte-137-de.transcript.phase-1.xml> a cap:xml ;
     cap:depends <http://capitularia.uni-koeln.de/$(MSS_DIR)/texts/137-de.xml> .
@@ -435,6 +398,9 @@
 <http://capitularia.uni-koeln.de/mss/%/> a cap:urls .
 
 <http://capitularia.uni-koeln.de/$(CACHE_DIR)/extracted/%.xml> a cap:xml ;
+    cap:depends <http://capitularia.uni-koeln.de/$(MSS_DIR)/%.xml> .
+
+<http://capitularia.uni-koeln.de/$(CACHE_DIR)/mss/%.transcript.phase-1.xml> a cap:xml ;
     cap:depends <http://capitularia.uni-koeln.de/$(MSS_DIR)/%.xml> .
 
 <http://capitularia.uni-koeln.de/$(MSS_DIR)/lists/manuscripts.xml> a cap:xml .
@@ -451,8 +417,8 @@
     cap:depends <http://capitularia.uni-koeln.de/config-3.xsl> ;
     cap:version "3.0" .
 
+<http://capitularia.uni-koeln.de/$(MSS_DIR)/%.xml> a cap:xml .
+
 <http://capitularia.uni-koeln.de/common-3.xsl> a cap:xsl ;
     cap:version "3.0" .
-
-<http://capitularia.uni-koeln.de/$(MSS_DIR)/%.xml> a cap:xml .
 

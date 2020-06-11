@@ -63,17 +63,14 @@ $(CACHE_DIR)/lists/mss-key.html : $(MSS_DIR)/lists/manuscripts.xml common-3.xsl 
 $(CACHE_DIR)/lists/mss-table.html : $(MSS_DIR)/lists/ueberblick_mordek.xml common-3.xsl common-html.xsl config-3.xsl mss-table.xsl
 	$(SAXON) -s:$< -xsl:mss-table.xsl -o:$@
 
-$(CACHE_DIR)/lists/places.html : $(RES_DIR)/capitularia_place.xml allgFunktionen.xsl base_variables.xsl register_cap_places.xsl xsl-output.xsl
-	$(XSLTPROC) -o $@ register_cap_places.xsl $<
-
 $(CACHE_DIR)/mss/%.footer.html : $(MSS_DIR)/%.xml common-3.xsl common-html.xsl config-3.xsl mss-footer-3.xsl
 	$(SAXON) -s:$< -xsl:mss-footer-3.xsl -o:$@
 
 $(CACHE_DIR)/mss/%.header.html : $(MSS_DIR)/%.xml common-3.xsl common-html.xsl config-3.xsl mss-header-3.xsl
 	$(SAXON) -s:$< -xsl:mss-header-3.xsl -o:$@
 
-$(CACHE_DIR)/mss/%.transcript.commented.html : $(MSS_DIR)/%.xml base_variables.xsl common.xsl mss-transcript-footnotes.xsl mss-transcript-with-comments.xsl mss-transcript.xsl
-	$(XSLTPROC) -o $@ mss-transcript-with-comments.xsl $<
+$(CACHE_DIR)/mss/%.transcript.commented.html : $(CACHE_DIR)/mss/%.transcript.phase-1.xml common-3.xsl common-html.xsl config-3.xsl mss-transcript-phase-2.xsl mss-transcript-with-comments.xsl
+	$(SAXON) -s:$< -xsl:mss-transcript-with-comments.xsl -o:$@
 
 $(CACHE_DIR)/mss/%.transcript.html : $(CACHE_DIR)/mss/%.transcript.phase-1.xml common-3.xsl common-html.xsl config-3.xsl mss-transcript-phase-2.xsl
 	$(SAXON) -s:$< -xsl:mss-transcript-phase-2.xsl -o:$@

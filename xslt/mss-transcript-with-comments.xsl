@@ -5,7 +5,7 @@
 Outputs the transcription section of a single manuscript page with editor
 comments.  Used internally by the editors.
 
-Transforms:  $(MSS_DIR)/%.xml -> $(CACHE_DIR)/mss/%.transcript.commented.html
+Transforms: $(CACHE_DIR)/mss/%.transcript.phase-1.xml -> $(CACHE_DIR)/mss/%.transcript.commented.html
 
 URL: $(CACHE_DIR)/mss/%.transcript.commented.html /internal/mss-comments/%/
 
@@ -14,20 +14,17 @@ Target: mss $(CACHE_DIR)/mss/%.transcript.commented.html
 -->
 
 <xsl:stylesheet
-    version="1.0"
-    xmlns="http://www.w3.org/1999/xhtml"
+    version="3.0"
+    xmlns=""
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
-    xmlns:exsl="http://exslt.org/common"
-    xmlns:func="http://exslt.org/functions"
-    xmlns:set="http://exslt.org/sets"
-    xmlns:str="http://exslt.org/strings"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    exclude-result-prefixes="#default tei"
-    extension-element-prefixes="cap exsl func set str">
-  <!-- libexslt does not support the regexp extension ! -->
+    xpath-default-namespace="http://www.tei-c.org/ns/1.0"
+    exclude-result-prefixes="cap tei xhtml xs xsl">
 
-  <xsl:import href="mss-transcript.xsl" />
+  <xsl:import href="mss-transcript-phase-2.xsl" />
 
   <xsl:template match="comment ()">
     <xsl:text> </xsl:text>
