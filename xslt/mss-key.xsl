@@ -38,7 +38,8 @@ Target: lists $(CACHE_DIR)/lists/mss-key.html
           </thead>
           <tbody>
             <xsl:apply-templates select="list/item/siglum">
-              <xsl:sort select="cap:natsort (.)"/>
+              <xsl:sort select="cap:natsort (.)"
+                        collation="http://www.w3.org/2013/collation/UCA?lang=de;fallback=yes" />
             </xsl:apply-templates>
           </tbody>
         </table>

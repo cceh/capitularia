@@ -83,7 +83,8 @@ Target: lists $(CACHE_DIR)/lists/mss-capit.html
           </thead>
           <tbody>
             <xsl:for-each select="item[not (contains (@n, '.'))]">
-              <xsl:sort select="title" />
+              <xsl:sort select="title"
+                        collation="http://www.w3.org/2013/collation/UCA?lang=de;fallback=yes" />
               <xsl:call-template name="capitular" />
             </xsl:for-each>
           </tbody>

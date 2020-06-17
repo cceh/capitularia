@@ -54,7 +54,8 @@ Target: lists $(CACHE_DIR)/lists/changes90.html
         <xsl:for-each-group
             select="TEI[.//revisionDesc/change/@when &gt; $cutoff]"
             group-by="substring (normalize-space (teiHeader/fileDesc/titleStmt/title[@type='main']), 1, 1)">
-          <xsl:sort select="normalize-space (teiHeader/fileDesc/titleStmt/title[@type='main'])" />
+          <xsl:sort select="normalize-space (teiHeader/fileDesc/titleStmt/title[@type='main'])"
+                    collation="http://www.w3.org/2013/collation/UCA?lang=de;fallback=yes" />
 
           <xsl:text>&#x0a;[if_any_visible path="</xsl:text>
             <xsl:value-of select="string-join (current-group ()/concat ('/mss/', @xml:id), ' ')" />
@@ -69,7 +70,8 @@ Target: lists $(CACHE_DIR)/lists/changes90.html
 
             <!-- loop on title -->
             <xsl:for-each select="current-group ()">
-              <xsl:sort select="normalize-space (teiHeader/fileDesc/titleStmt/title[@type='main'])" />
+              <xsl:sort select="normalize-space (teiHeader/fileDesc/titleStmt/title[@type='main'])"
+                        collation="http://www.w3.org/2013/collation/UCA?lang=de;fallback=yes" />
 
               <xsl:text>&#x0a;[if_visible path="</xsl:text>
                 <xsl:value-of select="concat ('/mss/', @xml:id)" />

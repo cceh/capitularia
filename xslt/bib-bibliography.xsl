@@ -191,7 +191,8 @@ Target: lists $(CACHE_DIR)/lists/bib.html
 
         <xsl:variable name="bibls_in_section">
           <xsl:for-each select="$n/biblStruct[note[@type = 'rel_text'][string() = $rel_text]]">
-            <xsl:sort select="*/idno[@short_title]"/>
+            <xsl:sort select="*/idno[@short_title]"
+                      collation="http://www.w3.org/2013/collation/UCA?lang=de;fallback=yes" />
 
             <xsl:choose>
               <xsl:when test="$pShow = 'published' and @status = 'published'">

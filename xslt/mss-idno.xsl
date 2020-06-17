@@ -35,7 +35,8 @@ Target: lists $(CACHE_DIR)/lists/mss-idno.html
       <table>
         <tbody>
           <xsl:for-each-group select="list/item" group-by="substring (title, 1, 1)">
-            <xsl:sort select="current-grouping-key ()" />
+            <xsl:sort select="current-grouping-key ()"
+                      collation="http://www.w3.org/2013/collation/UCA?lang=de;fallback=yes" />
 
             <tr>
               <th id="{current-grouping-key ()}">
@@ -44,8 +45,8 @@ Target: lists $(CACHE_DIR)/lists/mss-idno.html
             </tr>
 
             <xsl:for-each select="current-group ()">
-              <xsl:sort select="cap:natsort (title)" />
-
+              <xsl:sort select="cap:natsort (title)"
+                        collation="http://www.w3.org/2013/collation/UCA?lang=de;fallback=yes" />
               <tr>
                 <td>
                   <xsl:call-template name="if-visible">
