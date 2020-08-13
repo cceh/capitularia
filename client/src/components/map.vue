@@ -29,7 +29,7 @@ import _        from 'lodash';
 
 import options  from 'toolbar_options.js';
 
-import '../../node_modules/leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css';
 
 const RE_CAP = new RegExp ('^(\w+)[._](\d+)');
 
@@ -510,11 +510,11 @@ export default {
 }
 
 .leaflet-control-layers-toggle {
-	background-image: url(/client/images/layers.png);
+	background-image: url(leaflet/dist/images/layers.png);
 }
 
 .leaflet-retina .leaflet-control-layers-toggle {
-	background-image: url(/client/images/layers-2x.png);
+	background-image: url(leaflet/dist/images/layers-2x.png);
 }
 
 svg {

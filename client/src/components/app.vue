@@ -107,11 +107,11 @@ export default {
 @import "bootstrap-custom";
 
 /* bootstrap */
-@import "../../node_modules/bootstrap/scss/bootstrap";
-@import "../../node_modules/bootstrap-vue/dist/bootstrap-vue.css";
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-vue/dist/bootstrap-vue.css";
 
 /* List of icons at: http://astronautweb.co/snippet/font-awesome/ */
-@import "../../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+@import "@fortawesome/fontawesome-free/css/fontawesome.css";
+@import "@fortawesome/fontawesome-free/scss/solid.scss";
 
 </style>

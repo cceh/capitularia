@@ -43,7 +43,7 @@ export default {
 /* c3_charts.vue */
 @import "bootstrap-custom";
 
-@import "../../../node_modules/c3/c3.css";
+@import "c3/c3.css";
 
 div.vm-c3-charts {
     margin-bottom: ($spacer * 0.5);

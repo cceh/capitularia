@@ -35,5 +35,5 @@ export default {
 
 @import "bootstrap-custom";
 
-@import "../../../node_modules/frappe-charts/dist/frappe-charts.min.css";
+@import "frappe-charts/dist/frappe-charts.min.css";
 </style>
