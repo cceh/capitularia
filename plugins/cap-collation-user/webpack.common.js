@@ -1,7 +1,4 @@
-const path            = require ('path');
-// const VueLoaderPlugin = require ('vue-loader/lib/plugin');
-// const precss          = require ('precss');
-const autoprefixer    = require ('autoprefixer');
+const path = require ('path');
 
 module.exports = {
     entry : {
@@ -32,6 +29,7 @@ module.exports = {
                 use: [
                     'vue-style-loader',
                     'css-loader',
+                    'postcss-loader',
                 ],
             },
             {
@@ -39,17 +37,7 @@ module.exports = {
                 use: [
                     'vue-style-loader',
                     'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: function () { // post css plugins, can be exported to postcss.config.js
-                                return [
-                                    precss,
-                                    autoprefixer,
-                                ];
-                            },
-                        },
-                    },
+                    'postcss-loader',
                     'sass-loader',
                 ],
             },
@@ -77,9 +65,6 @@ module.exports = {
             },
         ],
     },
-    /* plugins: [
-        new VueLoaderPlugin (),
-    ],*/
     devServer: {
         host: '127.0.6.1',
         port: 8080,
