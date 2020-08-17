@@ -471,7 +471,6 @@ footnotes will be joined to the preceding word.
     <seg class="tei-choice" data-note-id="{generate-id ()}" />
 
     <xsl:apply-templates select="abbrev" mode="notes-only" />
-    <xsl:apply-templates mode="auto-note" />
   </xsl:template>
 
   <!--
