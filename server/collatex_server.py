@@ -23,14 +23,7 @@ Endpoints
           "witnesses": [
               "berlin-sb-phill-1737",
               "berlin-sb-phill-1737?hands=XYZ"
-          ],
-          "algorithm": "needleman-wunsch-gotoh",
-          "normalizations": [
-              ""
-          ],
-          "segmentation": false,
-          "joined": false,
-          "transpositions": false,
+          ]
       }
 
    **Example response**:
@@ -167,6 +160,7 @@ def to_collatex (id_, text, normalizations = None):
 
     norm = normalize_with_patterns (WHOLE_TEXT_PATTERNS, text)
 
+    normalizations = normalizations or []
     patterns = [n.split ('=') for n in normalizations if n]
     if patterns:
         norm = normalize_with_patterns (patterns, norm, True)
@@ -184,26 +178,36 @@ def to_collatex (id_, text, normalizations = None):
 def collate ():
     """Implements the /collatex/collate endpoint."""
 
-    json_in = request.get_json ()
+    json_in = {
+        "levenshtein_distance" : 0,
+        "levenshtein_ratio"    : 1,
+        "joined"               : False,
+        "segmentation"         : False,
+        "transpositions"       : False,
+        "algorithm"            : "needleman-wunsch-gotoh",
+        "normalizations"       : [],
+        "collate"              : [],
+    }
+    json_in.update (request.get_json ())
     json_out = []
 
     current_app.logger.info (json.dumps (json_in, indent = 4))
 
-    corresp        = json_in['corresp']
     normalizations = json_in['normalizations']
 
     with current_app.config.dba.engine.begin () as conn:
-        for w in json_in['witnesses']:
-            m     = re.match (r'^([^?#]+)(\?hands=XYZ)?(?:#(\d+))?$', w)
-            ms_id = m.group (1)
-            hands = m.group (2)
+        for w in json_in['collate']:
+            m       = re.match (r'^([^/]+)/([^?#]+)(\?hands=XYZ)?(?:#(\d+))?$', w)
+            corresp = m.group (1)
+            ms_id   = m.group (2)
+            hands   = m.group (3)
 
             catalog, no, chapter = common.normalize_corresp (corresp)
 
             params = {
                 'ms_id'   : ms_id,
                 'cap_id'  : "%s.%s" % (catalog, no),
-                'mscap_n' : int (m.group (3) or '1'),
+                'mscap_n' : int (m.group (4) or '1'),
                 'chapter' : chapter or '',
                 'type'    : 'later_hands' if hands else 'original',
             }
@@ -233,7 +237,7 @@ def collate ():
         encoding  = 'utf-8'
     )
 
-    # current_app.logger.info (json_in)
+    # current_app.logger.info (json.dumps (json_in, indent = 4))
 
     try:
         stdout, stderr = proc.communicate (

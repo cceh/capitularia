@@ -12,52 +12,12 @@ div.cap-collation-user {
         margin-bottom: 1em;
     }
 
-    button.dropdown-toggle {
-        text-align: left;
-        width: 100%;
-    }
-
-    .dropdown-menu {
-        width: 100%;
-        max-height: 500px;
-        overflow-y: scroll;
-    }
-
-    p.status,
-    div.debug-options {
-        display: none;
-    }
-
-    .screen-reader-input,
-    .screen-reader-text {
-        border: 0;
-        clip: rect(1px, 1px, 1px, 1px);
-        -webkit-clip-path: inset(50%);
-        clip-path: inset(50%);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-        word-wrap: normal !important;
-    }
-
-    div.collation-panel {
-        margin: 1em 0;
-        position: relative;
-    }
-
     /* hide the 'Choose File' button */
-    #load-config {
+    #load-config, #save-config {
         position: absolute;
         top: 0;
         visibility: hidden;
         z-index: -1;
-    }
-
-    #normalizations {
-        width: 100%;
     }
 
     @media print {
@@ -77,35 +37,26 @@ div.cap-collation-user {
         }
     }
 
-    div.options {
-        margin-top: 1em;
+    button.dropdown-toggle {
+        text-align: left;
+        width: 100%;
     }
 
-    div.ui-accordion {
-        .ui-state-default,
-        .ui-widget-content .ui-state-default,
-        .ui-widget-header .ui-state-default {
-            background: transparent;
-            color: black;
-            border: none;
-            border-radius: 0;
-            outline: none;
-        }
-
-        .ui-accordion-icons .ui-accordion-icons {
-            padding: 0 0 0 2.2em;
-        }
-
-        .ui-accordion-content {
-            border: 1px solid grey;
-            border-radius: 0;
-            background: transparent;
-        }
+    .dropdown-menu {
+        width: 100%;
+        max-height: 500px;
+        overflow-y: scroll;
     }
 
     .spinner {
         &::before {
             content: '\f013'; /* fa-cog */
+        }
+    }
+
+    .plus {
+        &::before {
+            content: '\f055'; /* fa-plus-circle */
         }
     }
 
@@ -117,6 +68,9 @@ div.cap-collation-user {
             &.slim {
                 width: 32px;
                 text-align: center;
+            }
+            &.checkbox {
+                padding-left: 0.5rem;
             }
         }
 

@@ -43,6 +43,7 @@ function on_enqueue_scripts ()
             'cap-lib-front',
             'cap-underscore',
             'cap-vue',
+            'cap-bootstrap-vue',
             'cap-jquery',
             'jquery-ui-sortable',
             'cap-bs-dropdown-js'

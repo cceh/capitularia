@@ -1,12 +1,8 @@
 /* See: https://getbootstrap.com/docs/4.3/getting-started/theming/ */
 
 @import "_functions.scss";
-@import "_variables.scss";
-@import "_mixins.scss";
 
 @import "colors";
-
-$font-size-base: 1rem;
 
 $theme-colors: (
     "primary":     $color-red,
@@ -14,6 +10,11 @@ $theme-colors: (
     "brand-color": $color-red,
     "brand-beige": $color-beige
 );
+
+@import "_variables.scss";
+@import "_mixins.scss";
+
+$font-size-base: 1rem;
 
 $table-accent-bg: $color-row-odd;
 
@@ -47,3 +48,4 @@ $container-max-widths: (
 );
 
 @import "bootstrap";
+@import "bootstrap-vue/src/index.scss";

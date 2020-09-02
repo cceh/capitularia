@@ -8,6 +8,15 @@ module.exports = {
         filename : 'front.js',
         path : path.resolve (__dirname, 'js'),
     },
+    externals: {
+        // these are loaded in <script>s by the Wordpress theme
+        // in themes/Capitularia/functions-include.php
+        'vue'           : 'Vue',
+        'bootstrap-vue' : 'BootstrapVue',
+        'bootstrap-vue-icons' : 'BootstrapVueIcons',
+        'lodash'        : '_',
+        'jquery'        : 'jQuery',
+    },
     module : {
         rules : [
             {
@@ -27,7 +36,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    'vue-style-loader',
+                    'style-loader',
                     'css-loader',
                     'postcss-loader',
                 ],
@@ -35,7 +44,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    'vue-style-loader',
+                    'style-loader',
                     'css-loader',
                     'postcss-loader',
                     'sass-loader',
@@ -66,10 +75,10 @@ module.exports = {
         ],
     },
     devServer: {
-        host: '127.0.6.1',
+        host: '127.0.5.1',
         port: 8080,
         contentBase: './build',
-        public: 'ntg.fritz.box:8080',
+        public: 'capitularia.fritz.box:8080',
     },
     resolve: {
         modules: [
@@ -77,6 +86,7 @@ module.exports = {
             path.resolve (__dirname, 'src/components'),
             path.resolve (__dirname, 'src/css'),
             path.resolve (__dirname, 'src/js'),
+            path.resolve (__dirname, '../../themes/Capitularia/node_modules'),
             'node_modules',
         ],
     },

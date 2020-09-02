@@ -27,7 +27,9 @@ fonts: $(CSS_DEST)/opensans.css $(CSS_DEST)/fontawesome.css
 	cp $(OPENSANS)/*             $(FONTS_DEST)/
 	cp $(FONTAWESOME)/webfonts/* $(FONTS_DEST)/
 
-SASSFLAGS += -I node_modules/bootstrap/scss -I node_modules/jquery-ui/themes/base
+SASSFLAGS += -I node_modules \
+			 -I node_modules/bootstrap/scss \
+			 -I node_modules/jquery-ui/themes/base
 
 $(CSS_DEST)/jquery-ui.css: $(CSSIMG_DEST_FILES)
 

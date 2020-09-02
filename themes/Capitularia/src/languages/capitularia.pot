@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Capitularia 2.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2020-02-12 14:54+0100\n"
+"POT-Creation-Date: 2020-09-02 13:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: header.php:62
-msgid "Search"
+#: functions-include.php:106
+#, php-format
+msgid "Permalink to %s"
 msgstr ""
 
-#: index.php:24 search.php:35
-msgid "Page:"
+#: functions-include.php:289
+#, php-format
+msgid "Page %s"
 msgstr ""
 
-#: index.php:31 search.php:41
-msgid "« Previous"
+#: functions-include.php:308
+msgid "Wiki: "
 msgstr ""
 
-#: index.php:32 search.php:42
-msgid "Next »"
+#: functions-include.php:358
+msgid "Top horizontal navigation bar"
+msgstr ""
+
+#: functions-include.php:359
+msgid "Bottom horizontal navigation bar"
+msgstr ""
+
+#: functions-include.php:373
+msgid "Capitularia Sidebar"
 msgstr ""
 
 #: functions.php:48
@@ -82,6 +92,22 @@ msgstr ""
 msgid "December"
 msgstr ""
 
+#: header.php:62
+msgid "Search"
+msgstr ""
+
+#: index.php:24 search.php:35
+msgid "Page:"
+msgstr ""
+
+#: index.php:31 search.php:41
+msgid "« Previous"
+msgstr ""
+
+#: index.php:32 search.php:42
+msgid "Next »"
+msgstr ""
+
 #: search.php:22
 #, php-format
 msgid "Your search for: %1$s gave %2$d result."
@@ -91,32 +117,6 @@ msgstr[1] ""
 
 #: search.php:62
 msgid "Search Results"
-msgstr ""
-
-#: functions-include.php:106
-#, php-format
-msgid "Permalink to %s"
-msgstr ""
-
-#: functions-include.php:287
-#, php-format
-msgid "Page %s"
-msgstr ""
-
-#: functions-include.php:306
-msgid "Wiki: "
-msgstr ""
-
-#: functions-include.php:356
-msgid "Top horizontal navigation bar"
-msgstr ""
-
-#: functions-include.php:357
-msgid "Bottom horizontal navigation bar"
-msgstr ""
-
-#: functions-include.php:371
-msgid "Capitularia Sidebar"
 msgstr ""
 
 #: sidebars.php:22
@@ -254,6 +254,18 @@ msgstr ""
 msgid "The sidebar on the search page"
 msgstr ""
 
+#: widgets/class-archive-nav-menu-widget.php:26
+msgid "A custom archives navigation menu."
+msgstr ""
+
+#: widgets/class-archive-nav-menu-widget.php:30
+msgid "Capitularia Archive Navigation Menu"
+msgstr ""
+
+#: widgets/class-archive-nav-menu-widget.php:40
+msgid "Archive"
+msgstr ""
+
 #: widgets/class-categories-nav-menu-widget.php:26
 msgid "A custom categories navigation menu."
 msgstr ""
@@ -264,14 +276,6 @@ msgstr ""
 
 #: widgets/class-categories-nav-menu-widget.php:40
 msgid "Categories"
-msgstr ""
-
-#: widgets/class-frontpage-text-widget.php:21
-msgid "Arbitrary text."
-msgstr ""
-
-#: widgets/class-frontpage-text-widget.php:25
-msgid "Capitularia Text Widget"
 msgstr ""
 
 #: widgets/class-frontpage-image-widget.php:21
@@ -290,24 +294,12 @@ msgstr ""
 msgid "Capitularia Logo Widget"
 msgstr ""
 
-#: widgets/class-archive-nav-menu-widget.php:26
-msgid "A custom archives navigation menu."
+#: widgets/class-frontpage-text-widget.php:21
+msgid "Arbitrary text."
 msgstr ""
 
-#: widgets/class-archive-nav-menu-widget.php:30
-msgid "Capitularia Archive Navigation Menu"
-msgstr ""
-
-#: widgets/class-archive-nav-menu-widget.php:40
-msgid "Archive"
-msgstr ""
-
-#: widgets/class-sticky-nav-menu-widget.php:19
-msgid "A sticky navigation menu."
-msgstr ""
-
-#: widgets/class-sticky-nav-menu-widget.php:23
-msgid "Capitularia Sticky Navigation Menu"
+#: widgets/class-frontpage-text-widget.php:25
+msgid "Capitularia Text Widget"
 msgstr ""
 
 #: widgets/class-frontpage-widget-base.php:47
@@ -352,4 +344,12 @@ msgstr ""
 
 #: widgets/class-frontpage-widget-base.php:106
 msgid "read more"
+msgstr ""
+
+#: widgets/class-sticky-nav-menu-widget.php:19
+msgid "A sticky navigation menu."
+msgstr ""
+
+#: widgets/class-sticky-nav-menu-widget.php:23
+msgid "Capitularia Sticky Navigation Menu"
 msgstr ""

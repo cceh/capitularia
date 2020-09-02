@@ -20,7 +20,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
  * The vue.js instance that manages the collation output table.
  * @class module:plugins/collation/results.VueResults
  */
-Vue.component('cap-collation-user-results', {
+Vue.component('cap-collation-results', {
   'data': function data() {
     return {
       'api': null,
@@ -43,6 +43,7 @@ Vue.component('cap-collation-user-results', {
       vm.tables = [];
       vm.corresp = data.corresp;
       vm.spinner = true;
+      data.collate = tools.unroll_witnesses(data.collate);
       var p = $.ajax({
         'url': vm.api,
         'type': 'POST',
@@ -51,7 +52,7 @@ Vue.component('cap-collation-user-results', {
       });
       p.done(function () {
         vm.update_tables(p.responseJSON.witnesses, p.responseJSON.table);
-        vm.sort_like(data.witnesses);
+        vm.sort_like(data.collate);
       }).always(function () {
         vm.spinner = false;
       });
@@ -210,10 +211,8 @@ Vue.component('cap-collation-user-results', {
                   ms_set = _step3$value[0],
                   master_set = _step3$value[1];
 
-              var class_ = 'tokens';
-              var master = master_set.map(function (token) {
-                return token.t;
-              }).join(' ').trim();
+              var class_ = 'tokens'; // const master      = master_set.map (token => token.t).join (' ').trim ();
+
               var text = ms_set.map(function (token) {
                 return token.t;
               }).join(' ').trim();
@@ -261,8 +260,8 @@ Vue.component('cap-collation-user-results', {
       var max_width = 120 - Math.max.apply(Math, (0, _toConsumableArray2.default)(this.witnesses.map(function (ms) {
         return ms.title.length;
       })));
-      this.unsorted_tables = this.split_table(table, max_width).map(function (table) {
-        return _this2.transpose(table);
+      this.unsorted_tables = this.split_table(table, max_width).map(function (t) {
+        return _this2.transpose(t);
       });
     },
     sort_like: function sort_like(order) {
@@ -276,12 +275,6 @@ Vue.component('cap-collation-user-results', {
         this.tables[0].class = 'first';
         this.tables[this.tables.length - 1].class = 'last';
       }
-    },
-    get_sigla: function get_sigla(item) {
-      // Get the sigla of all witnesses to collate in user-specified order
-      return $(item).closest('table').find('tr[data-siglum]').map(function () {
-        return this.getAttribute('data-siglum');
-      }).get();
     },
     row_class: function row_class(row, dummy_index) {
       var cls = [];
@@ -307,7 +300,9 @@ Vue.component('cap-collation-user-results', {
       'cursor': 'move',
       'containment': 'parent',
       'update': function update(event, ui) {
-        vm.$emit('reordered', vm.get_sigla(ui.item));
+        var new_order = tools.get_sigla(ui.item);
+        vm.sort_like(new_order);
+        vm.$emit('reordered', new_order);
       }
     });
   }

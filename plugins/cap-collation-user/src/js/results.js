@@ -11,13 +11,13 @@ import * as tools from 'tools';
  * @class module:plugins/collation/results.VueResults
  */
 
-Vue.component ('cap-collation-user-results', {
+Vue.component ('cap-collation-results', {
     'data' : function () {
         return {
-            'api'       : null,  // API server
-            'corresp'   : '',
-            'sigla'     : [],
-            'witnesses' : [],
+            'api'             : null,  // API server
+            'corresp'         : '',
+            'sigla'           : [],
+            'witnesses'       : [],
             'unsorted_tables' : [],
             'tables'          : [],
             'hovered'         : null,  // siglum of hovered witness
@@ -33,6 +33,8 @@ Vue.component ('cap-collation-user-results', {
             vm.corresp = data.corresp;
             vm.spinner = true;
 
+            data.collate = tools.unroll_witnesses (data.collate);
+
             const p = $.ajax ({
                 'url'         : vm.api,
                 'type'        : 'POST',
@@ -41,7 +43,7 @@ Vue.component ('cap-collation-user-results', {
             });
             p.done (function () {
                 vm.update_tables (p.responseJSON.witnesses, p.responseJSON.table);
-                vm.sort_like (data.witnesses);
+                vm.sort_like (data.collate);
             }).always (function () {
                 vm.spinner   = false;
             });
@@ -163,7 +165,7 @@ Vue.component ('cap-collation-user-results', {
 
                 for (const [ms_set, master_set] of _.zip (ms_text, master_text)) {
                     let class_ = 'tokens';
-                    const master      = master_set.map (token => token.t).join (' ').trim ();
+                    // const master      = master_set.map (token => token.t).join (' ').trim ();
                     const text        = ms_set.map     (token => token.t).join (' ').trim ();
                     const norm_master = master_set.map (token => token.n).join (' ').trim ();
                     const norm_text   = ms_set.map     (token => token.n).join (' ').trim ();
@@ -188,27 +190,19 @@ Vue.component ('cap-collation-user-results', {
 
             this.unsorted_tables = this
                 .split_table (table, max_width)
-                .map (table => this.transpose (table));
+                .map (t => this.transpose (t));
         },
 
         sort_like (order) {
             this.tables = this.unsorted_tables.map (table => this.format_table (
                 this.witnesses,
                 table,
-                order
+                order,
             ));
             if (this.tables.length > 0) {
                 this.tables[0].class = 'first';
                 this.tables[this.tables.length - 1].class = 'last';
             }
-        },
-
-        get_sigla (item) {
-            // Get the sigla of all witnesses to collate in user-specified order
-            return $ (item).closest ('table').find ('tr[data-siglum]').map (function () {
-                return this.getAttribute ('data-siglum');
-            })
-                .get ();
         },
 
         row_class (row, dummy_index) {
@@ -233,7 +227,9 @@ Vue.component ('cap-collation-user-results', {
             'cursor'      : 'move',
             'containment' : 'parent',
             'update'      : function (event, ui) {
-                vm.$emit ('reordered', vm.get_sigla (ui.item));
+                const new_order = tools.get_sigla (ui.item);
+                vm.sort_like (new_order);
+                vm.$emit ('reordered', new_order);
             },
         });
     },

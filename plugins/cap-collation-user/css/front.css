@@ -12,45 +12,11 @@ div.cap-collation-user h3 {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-div.cap-collation-user button.dropdown-toggle {
-  text-align: left;
-  width: 100%;
-}
-div.cap-collation-user .dropdown-menu {
-  width: 100%;
-  max-height: 500px;
-  overflow-y: scroll;
-}
-div.cap-collation-user p.status,
-div.cap-collation-user div.debug-options {
-  display: none;
-}
-div.cap-collation-user .screen-reader-input,
-div.cap-collation-user .screen-reader-text {
-  border: 0;
-  clip: rect(1px, 1px, 1px, 1px);
-  -webkit-clip-path: inset(50%);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  word-wrap: normal !important;
-}
-div.cap-collation-user div.collation-panel {
-  margin: 1em 0;
-  position: relative;
-}
-div.cap-collation-user #load-config {
+div.cap-collation-user #load-config, div.cap-collation-user #save-config {
   position: absolute;
   top: 0;
   visibility: hidden;
   z-index: -1;
-}
-div.cap-collation-user #normalizations {
-  width: 100%;
 }
 @media print {
   div.cap-collation-user .no-print {
@@ -66,29 +32,22 @@ div.cap-collation-user body {
     font-size: 10pt;
   }
 }
-div.cap-collation-user div.options {
-  margin-top: 1em;
+div.cap-collation-user button.dropdown-toggle {
+  text-align: left;
+  width: 100%;
 }
-div.cap-collation-user div.ui-accordion .ui-state-default,
-div.cap-collation-user div.ui-accordion .ui-widget-content .ui-state-default,
-div.cap-collation-user div.ui-accordion .ui-widget-header .ui-state-default {
-  background: transparent;
-  color: black;
-  border: none;
-  border-radius: 0;
-  outline: none;
-}
-div.cap-collation-user div.ui-accordion .ui-accordion-icons .ui-accordion-icons {
-  padding: 0 0 0 2.2em;
-}
-div.cap-collation-user div.ui-accordion .ui-accordion-content {
-  border: 1px solid grey;
-  border-radius: 0;
-  background: transparent;
+div.cap-collation-user .dropdown-menu {
+  width: 100%;
+  max-height: 500px;
+  overflow-y: scroll;
 }
 div.cap-collation-user .spinner::before {
   content: "";
   /* fa-cog */
+}
+div.cap-collation-user .plus::before {
+  content: "";
+  /* fa-plus-circle */
 }
 div.cap-collation-user table {
   margin: 1em 0;
@@ -97,6 +56,10 @@ div.cap-collation-user table th.slim,
 div.cap-collation-user table td.slim {
   width: 32px;
   text-align: center;
+}
+div.cap-collation-user table th.checkbox,
+div.cap-collation-user table td.checkbox {
+  padding-left: 0.5rem;
 }
 div.cap-collation-user table tr.sortable th.handle {
   cursor: move;
@@ -143,4 +106,4 @@ div.cap-collation-user table.collation td.missing::before {
   content: "—";
 }
 
-/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZyb250LmNzcy50bXAuY3NzIiwiLi4vc3JjL2Nzcy9mcm9udC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFnQjtBQ0FoQjtFQUNJLFdBQUE7RUFpREEsa0NBQUE7QUQ5Q0o7QUNBUTtFQURKO0lBRVEsd0JBQUE7RURHVjtBQUNGO0FDQUk7RUFDSSxlQUFBO0VBQ0Esa0JBQUE7QURFUjtBQ0NJO0VBQ0ksZ0JBQUE7RUFDQSxXQUFBO0FEQ1I7QUNFSTtFQUNJLFdBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0FEQVI7QUNHSTs7RUFFSSxhQUFBO0FERFI7QUNJSTs7RUFFSSxTQUFBO0VBQ0EsOEJBQUE7RUFDQSw2QkFBQTtFQUNBLHFCQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtFQUNBLFVBQUE7RUFDQSxrQkFBQTtFQUNBLFVBQUE7RUFDQSw0QkFBQTtBREZSO0FDS0k7RUFDSSxhQUFBO0VBQ0Esa0JBQUE7QURIUjtBQ09JO0VBQ0ksa0JBQUE7RUFDQSxNQUFBO0VBQ0Esa0JBQUE7RUFDQSxXQUFBO0FETFI7QUNRSTtFQUNJLFdBQUE7QUROUjtBQ1NJO0VBQ0k7SUFDSSx3QkFBQTtFRFBWO0VDVU07O0lBRUksY0FBQTtFRFJWO0VDV007O0lBRUksdUJBQUE7SUFDQSxlQUFBO0VEVFY7QUFDRjtBQ1lJO0VBQ0ksZUFBQTtBRFZSO0FDY1E7OztFQUdJLHVCQUFBO0VBQ0EsWUFBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtFQUNBLGFBQUE7QURaWjtBQ2VRO0VBQ0ksb0JBQUE7QURiWjtBQ2dCUTtFQUNJLHNCQUFBO0VBQ0EsZ0JBQUE7RUFDQSx1QkFBQTtBRGRaO0FDbUJRO0VBQ0ksWUFBQTtFQUFrQixXQUFBO0FEaEI5QjtBQ29CSTtFQUNJLGFBQUE7QURsQlI7QUNzQlk7O0VBQ0ksV0FBQTtFQUNBLGtCQUFBO0FEbkJoQjtBQ3dCWTtFQUNJLFlBQUE7RUFDQSxvQkFBQTtFQUFBLFlBQUE7QUR0QmhCO0FDd0JnQjtFQUNJLFlBQUE7RUFBa0IsWUFBQTtBRHJCdEM7QUMyQkk7RUFDSSxhQUFBO0FEekJSO0FDNEJJO0VBQ0ksd0JBQUE7RUFDQSxXQUFBO0FEMUJSO0FDNEJRO0VBQ0ksU0FBQTtFQUNBLDBCQUFBO0VBQUEsdUJBQUE7RUFBQSxrQkFBQTtBRDFCWjtBQzhCWTtFQUNJLG9DQUFBO0FENUJoQjtBQytCWTtFQUNJLHNCQUFBO0FEN0JoQjtBQ2lDUTs7RUFFSSxtQkFBQTtBRC9CWjtBQ21DWTtFQUNJLFNBQUE7QURqQ2hCO0FDcUNRO0VBQ0ksa0JBQUE7QURuQ1o7QUNxQ1k7RUFDSSxjQUFBO0FEbkNoQjtBQ3NDWTtFQUNJLFlBQUE7QURwQ2hCIiwiZmlsZSI6ImZyb250LmNzcyJ9 */
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZyb250LmNzcy50bXAuY3NzIiwiLi4vc3JjL2Nzcy9mcm9udC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFnQjtBQ0FoQjtFQUNJLFdBQUE7RUFhQSxrQ0FBQTtBRFZKO0FDQVE7RUFESjtJQUVRLHdCQUFBO0VER1Y7QUFDRjtBQ0FJO0VBQ0ksZUFBQTtFQUNBLGtCQUFBO0FERVI7QUNFSTtFQUNJLGtCQUFBO0VBQ0EsTUFBQTtFQUNBLGtCQUFBO0VBQ0EsV0FBQTtBREFSO0FDR0k7RUFDSTtJQUNJLHdCQUFBO0VERFY7RUNJTTs7SUFFSSxjQUFBO0VERlY7RUNLTTs7SUFFSSx1QkFBQTtJQUNBLGVBQUE7RURIVjtBQUNGO0FDTUk7RUFDSSxnQkFBQTtFQUNBLFdBQUE7QURKUjtBQ09JO0VBQ0ksV0FBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7QURMUjtBQ1NRO0VBQ0ksWUFBQTtFQUFrQixXQUFBO0FETjlCO0FDV1E7RUFDSSxZQUFBO0VBQWtCLG1CQUFBO0FEUjlCO0FDWUk7RUFDSSxhQUFBO0FEVlI7QUNjWTs7RUFDSSxXQUFBO0VBQ0Esa0JBQUE7QURYaEI7QUNhWTs7RUFDSSxvQkFBQTtBRFZoQjtBQ2VZO0VBQ0ksWUFBQTtFQUNBLG9CQUFBO0VBQUEsWUFBQTtBRGJoQjtBQ2VnQjtFQUNJLFlBQUE7RUFBa0IsWUFBQTtBRFp0QztBQ2tCSTtFQUNJLGFBQUE7QURoQlI7QUNtQkk7RUFDSSx3QkFBQTtFQUNBLFdBQUE7QURqQlI7QUNtQlE7RUFDSSxTQUFBO0VBQ0EsMEJBQUE7RUFBQSx1QkFBQTtFQUFBLGtCQUFBO0FEakJaO0FDcUJZO0VBQ0ksb0NBQUE7QURuQmhCO0FDc0JZO0VBQ0ksc0JBQUE7QURwQmhCO0FDd0JROztFQUVJLG1CQUFBO0FEdEJaO0FDMEJZO0VBQ0ksU0FBQTtBRHhCaEI7QUM0QlE7RUFDSSxrQkFBQTtBRDFCWjtBQzRCWTtFQUNJLGNBQUE7QUQxQmhCO0FDNkJZO0VBQ0ksWUFBQTtBRDNCaEIiLCJmaWxlIjoiZnJvbnQuY3NzIn0= */
