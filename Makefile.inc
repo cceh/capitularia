@@ -87,11 +87,17 @@ $(foreach lang,$(TRANSLATIONS),$(eval $(call LOCALE_TEMPLATE,$(lang))))
 
 pot: $(LANG_SRC)/capitularia.pot
 
-$(LANG_SRC)/capitularia.pot: $(PHP_FILES)
-	xgettext --default-domain=capitularia --from-code=utf-8 \
-	--copyright-holder="CCeH Cologne" --package-name=Capitularia --package-version=2.0 \
-	--msgid-bugs-address=marcello@perathoner.de \
-	-k'__' -k'_e' -k'_n:1,2' -k'_x:1,2c' -k'_ex:1,2c' -o $@ $^
+$(LANG_SRC)/capitularia.pot: $(LANG_SRC)/php.pot $(LANG_SRC)/js.pot $(LANG_SRC)/vue.pot
+	msgcat -o $@ $^
+
+$(LANG_SRC)/php.pot: $(PHP_FILES)
+	$(XGETTEXT) -o $@ $^
+
+$(LANG_SRC)/js.pot: $(wildcard $(JS_SRC)/*.js)
+	$(XGETTEXT) -o $@ $^
+
+$(LANG_SRC)/vue.pot: $(wildcard $(JS_SRC)/*.vue)
+	$(EASYGETTEXT) --output $@ $^
 
 poedit: po
 	poedit src/languages/de_DE.po

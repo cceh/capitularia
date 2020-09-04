@@ -3,11 +3,11 @@
  * Plugin Name: Capitularia Collation Tool
  * Plugin URI:
  * Description: Collates TEI files.
- * Version:     0.2.1
+ * Version:     0.2.2
  * Author:      Marcello Perathoner
  * Author URI:
  * License:     GPLv2 or later
- * Text Domain: cap-collation-user
+ * Text Domain: cap-collation
  * Domain Path: /languages
  */
 
@@ -15,13 +15,13 @@
  * Capitularia Collation Tool plugin.
  *
  * The *Collation Tool plugin* lets any member of the general public do
- * collations of different versions of the same chapter from different
- * manuscripts.
+ * collations of arbitrary sections from different manuscripts.
  *
- * This plugin provides a dashboard where the user can request collations of
- * sections of manuscripts.  The dashboard is implemented in javascript with
- * Vue.js.  The PHP code of this plugin basically only serves the Javascript
- * code to the user.
+ * This plugin provides a shortcode that inserts a dashboard on the page.
+ * Within the dashboard the user can request collations of sections of
+ * manuscripts.  The dashboard is implemented in javascript with Vue.js.  The
+ * PHP code of this plugin basically only serves the Javascript code to the
+ * user.
  *
  * The actual collation is done on the Capitularia API Server with a customized
  * version of CollateX for Java.
@@ -46,7 +46,7 @@ defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.
 const NAME = 'Capitularia Collation Tool';
 
 /** The Text Domain of the plugin. */
-const LANG = 'cap-collation-user';
+const LANG = 'cap-collation';
 
 require_once 'functions.php';
 

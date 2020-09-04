@@ -28,8 +28,9 @@ NODE         := $(NODE_MODULES)/.bin
 
 NAT_EARTH    := http://naciscdn.org/naturalearth
 
-WEBPACK         = $(NODE)/webpack --no-color
-WEBPACK_CONFIG  = webpack.dev.js
+WEBPACK            = $(NODE)/webpack --no-color
+WEBPACK_DEV_SERVER = $(NODE)/webpack-dev-server --no-color
+WEBPACK_CONFIG     = webpack.dev.js
 BABEL           = $(NODE)/babel
 BABELFLAGS      = --source-maps true
 SASS            = $(NODE)/sass
@@ -44,6 +45,13 @@ STYLELINT       = $(NODE)/stylelint $(STYLELINTFLAGS)
 STYLELINTFLAGS  = -f unix
 RSYNC          := rsync -v -rlptz --exclude='*~' --exclude='.*'
 RSYNCPY        := $(RSYNC) --exclude "**/__pycache__"  --exclude "*.pyc" --exclude "*.log"
+WP_CLI         := $(LOCALFS)/wp
+PO2JSON        := $(NODE)/po2json
+EASYGETTEXT    := $(NODE)/gettext-extract --attribute v-translate
+XGETTEXT       := xgettext --default-domain=capitularia --from-code=utf-8 \
+	--copyright-holder="CCeH Cologne" --package-name=Capitularia --package-version=2.0 \
+	--msgid-bugs-address=marcello@perathoner.de \
+	-k'__' -k'_e' -k'_n:1,2' -k'_x:1,2c' -k'_ex:1,2c'
 
 PHPDOC         := vendor/phpdocumentor/phpdocumentor/bin/phpdoc
 JSDOC          := jsdoc -c jsdoc.conf.js
@@ -62,8 +70,8 @@ JS_SRC_FILES      ?= $(wildcard $(JS_SRC)/*.js)
 CSS_SRC_FILES     ?= $(CSS_SRC)/front.scss $(CSS_SRC)/admin.scss
 CSSIMG_SRC_FILES  ?= $(CSSIMG_SRC)/*.png
 
-JS_DEST_FILES     := $(patsubst $(JS_SRC)/%,$(JS_DEST)/%,$(JS_SRC_FILES))
-CSS_DEST_FILES    := $(patsubst $(CSS_SRC)/%.scss,$(CSS_DEST)/%.css,$(CSS_SRC_FILES))
-CSSIMG_DEST_FILES := $(patsubst $(CSSIMG_SRC)/%,$(CSSIMG_DEST)/%,$(CSSIMG_SRC_FILES))
+JS_DEST_FILES     ?= $(patsubst $(JS_SRC)/%,$(JS_DEST)/%,$(JS_SRC_FILES))
+CSS_DEST_FILES    ?= $(patsubst $(CSS_SRC)/%.scss,$(CSS_DEST)/%.css,$(CSS_SRC_FILES))
+CSSIMG_DEST_FILES ?= $(patsubst $(CSSIMG_SRC)/%,$(CSSIMG_DEST)/%,$(CSSIMG_SRC_FILES))
 
 JSON_FILES     = $(wildcard *.json)

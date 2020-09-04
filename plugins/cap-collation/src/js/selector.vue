@@ -1,3 +1,98 @@
+<template>
+  <div class="row cap-selector">
+    <div class="col-md-6 no-print">
+
+      <div class="collation-bk">
+        <h3 v-translate>Capitulary</h3>
+
+        <!--
+        // Form with drop-downs for capitulary and corresp selection.  User
+        // selection of a capitulary will AJAX-load the corresps drop-down.  User
+        // selection of a corresp or user hitting submit will AJAX-load the list of
+        // witnesses into the next form.
+        -->
+
+        <form>
+          <div class="form-row">
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label v-translate>Select Capitulary</label>
+                <b-dropdown block :text="bk">
+                  <b-dd-item-btn v-for="bk in bks" :key="bk" :data-bk="bk"
+                                 @click="on_select_bk">{{ bk }}</b-dd-item-btn>
+                </b-dropdown>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label v-translate>Select Section</label>
+                <b-dropdown block :text="corresp">
+                  <b-dd-item-btn v-for="s in corresps" :key="s" :data-corresp="s"
+                                 @click="on_select_corresp">{{ s }}</b-dd-item-btn>
+                </b-dropdown>
+              </div>
+            </div>
+          </div>
+
+          <!-- Later Hands checkbox -->
+          <b-form-checkbox v-model="later_hands" @change="on_later_hands">
+            {{ 'Include corrections by different hands' | translate }}
+          </b-form-checkbox>
+        </form>
+
+      </div>
+    </div>
+
+    <!--
+      // In this section the user can select which witnesses to collate with
+      // checkboxes and the order in which the witnesses should collate through
+      // drag-and-drop of the table rows.  On user submit the next step will
+      // collate the selected witnesses.
+    -->
+
+    <div class="col-md-6 no-print">
+      <div class="witnesses-div">
+        <h3 v-translate>Textual Witnesses</h3>
+
+        <form>
+          <label v-translate>Select Textual Witnesses</label>
+          <table class="table table-sm table-bordered witnesses">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" class="checkbox">
+                  <b-form-checkbox v-model="select_all" v-b-tooltip.hover.left
+                         :title="$t ('Select all textual witnesses')">
+                    {{ 'Textual Witness' | translate }}
+                    <i v-if="spinner" class="spinner fas fa-spin"></i>
+                  </b-form-checkbox>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-if="witnesses.length == 0">
+                <td v-translate>No textual witnesses found.</td>
+              </tr>
+              <tr v-for="(w, index) of witnesses" :data-siglum="`${corresp}/${w.siglum}`"
+                  :key="w.siglum" :class="row_class (w, index)">
+                <td class="checkbox">
+                  <b-form-checkbox v-model="w.checked" v-b-tooltip.hover.left
+                         :title="$t ('Include this textual witness in the collation.')">
+                    {{ w.title }}
+                  </b-form-checkbox>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div> <!-- class row -->
+</template>
+
+<script>
+
 /** @module plugins/collation/selector  */
 
 /**
@@ -11,7 +106,7 @@ import * as tools from 'tools';
  * @class module:plugins/collation/selector.VueSelector
  */
 
-Vue.component ('cap-collation-selector', {
+export default {
     data () {
         return {
             'bk'          : '',
@@ -161,4 +256,29 @@ Vue.component ('cap-collation-selector', {
             'containment' : 'parent',
         });
     },
-});
+};
+</script>
+
+<style lang="scss">
+/* selector.vue */
+
+button.dropdown-toggle {
+    text-align: left;
+    width: 100%;
+}
+
+.dropdown-menu {
+    width: 100%;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+table.witnesses {
+    th,
+    td {
+        &.checkbox {
+            padding-left: 0.5rem;
+        }
+    }
+}
+</style>

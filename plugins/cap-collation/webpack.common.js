@@ -1,21 +1,23 @@
 const path = require ('path');
+const VueLoaderPlugin = require ('vue-loader/lib/plugin'); // loads vue single-file components
 
 module.exports = {
     entry : {
-        app : './src/js/front.js', // in app.bundle.js
+        app : './src/js/main.js', // in app.bundle.js
     },
     output : {
         filename : 'front.js',
         path : path.resolve (__dirname, 'js'),
     },
     externals: {
-        // these are loaded in <script>s by the Wordpress theme
+        // Avoid duplicates
+        // These libs are loaded in <script>s by the Wordpress theme
         // in themes/Capitularia/functions-include.php
-        'vue'           : 'Vue',
-        'bootstrap-vue' : 'BootstrapVue',
+        'vue'                 : 'Vue',
+        'bootstrap-vue'       : 'BootstrapVue',
         'bootstrap-vue-icons' : 'BootstrapVueIcons',
-        'lodash'        : '_',
-        'jquery'        : 'jQuery',
+        'lodash'              : '_',
+        'jquery'              : 'jQuery',
     },
     module : {
         rules : [
@@ -34,20 +36,20 @@ module.exports = {
                 ],
             },
             {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'postcss-loader',
-                ],
-            },
-            {
                 test: /\.scss$/,
                 use: [
                     'style-loader',
                     'css-loader',
                     'postcss-loader',
                     'sass-loader',
+                ],
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'postcss-loader',
                 ],
             },
             {
@@ -74,12 +76,9 @@ module.exports = {
             },
         ],
     },
-    devServer: {
-        host: '127.0.5.1',
-        port: 8080,
-        contentBase: './build',
-        public: 'capitularia.fritz.box:8080',
-    },
+    plugins: [
+        new VueLoaderPlugin (),
+    ],
     resolve: {
         modules: [
             path.resolve (__dirname, 'src'),

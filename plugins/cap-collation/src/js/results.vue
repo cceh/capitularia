@@ -1,3 +1,24 @@
+<template>
+  <div class="collation-tables">
+    <h3 v-translate>Collation Results</h3>
+    <table v-for="table of tables"
+           class="table table-sm table-bordered table-striped collation" :class="table.class">
+      <tbody>
+        <tr v-for="(row, index) of table.rows" class="witness" :class="row_class (row, index)"
+            :data-siglum="row.siglum" :key="row.siglum"
+            @mouseover="hovered = row.siglum" @mouseleave="hovered = null">
+          <th class="slim handle no-print" scope="row">
+            <i class="fas" :title="$t ('Drag row to reorder the textual witness.')"></i>
+          </th>
+          <th class="title">{{ row.title }}</th>
+          <td v-for="cell in row.cells" :class="cell.class">{{ cell.text }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
 /** @module plugins/collation/results  */
 
 /**
@@ -11,8 +32,8 @@ import * as tools from 'tools';
  * @class module:plugins/collation/results.VueResults
  */
 
-Vue.component ('cap-collation-results', {
-    'data' : function () {
+export default {
+    data () {
         return {
             'api'             : null,  // API server
             'corresp'         : '',
@@ -233,4 +254,68 @@ Vue.component ('cap-collation-results', {
             },
         });
     },
-});
+};
+</script>
+
+<style lang="scss">
+/* results.vue */
+
+table.collation {
+    page-break-inside: avoid;
+    width: 100%;
+
+    &.last {
+        width: 1%;
+        width: max-content;
+    }
+
+    tbody tr {
+        &.sortable {
+            th.handle {
+                cursor: move;
+                cursor: grab;
+
+                i.fas::before {
+                    content: '\f0dc'; /* fa-sort */
+                }
+            }
+        }
+
+        &:first-child {
+            background-color: var(--brand-beige);
+        }
+
+        &.highlight-witness.highlight-witness {
+            background-color: #eea;
+        }
+    }
+
+    td,
+    th {
+        white-space: nowrap;
+        &.slim {
+            width: 32px;
+            text-align: center;
+        }
+    }
+
+    th {
+        &.title {
+            width: 1%;
+        }
+    }
+
+    td {
+        text-align: center;
+
+        &.equal {
+            color: lighten(#444, 33%);
+        }
+
+        &.missing::before {
+            content: '\2014';
+        }
+    }
+
+}
+</style>

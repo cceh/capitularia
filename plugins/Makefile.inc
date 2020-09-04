@@ -23,11 +23,14 @@ deploy:
 
 define LOCALE_TEMPLATE
 
-mo: $(LANG_DEST)/$(TEXT_DOMAIN)-$(1).mo
+mo: $(LANG_DEST)/$(TEXT_DOMAIN)-$(1).mo $(LANG_DEST)/$(TEXT_DOMAIN)-$(1)-$(TEXT_DOMAIN).json
 
 $(LANG_DEST)/$(TEXT_DOMAIN)-$(1).mo: $(LANG_SRC)/$(1).po
 	-mkdir -p $$(dir $$@)
 	msgfmt -o $$@ $$?
+
+$(LANG_DEST)/$(TEXT_DOMAIN)-$(1)-$(TEXT_DOMAIN).json: $(LANG_SRC)/$(1).po
+	$(PO2JSON) $$? $$@ -f jed1.x --pretty
 
 endef
 

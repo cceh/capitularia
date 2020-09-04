@@ -7,6 +7,9 @@
 /** cap_collation_user_front_ajax_object is set by wp_localize_script in function.php. */
 /* global cap_collation_user_front_ajax_object */
 
+// See: https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
+const { __, _x, _n, _nx } = wp.i18n;
+
 /**
  * The id of the "Obertext".
  * @type {string}
@@ -24,6 +27,29 @@ export const cap_collation_algorithms = [
     { 'key' : 'needleman-wunsch',       'name' : 'Needleman-Wunsch' },
     { 'key' : 'needleman-wunsch-gotoh', 'name' : 'Needleman-Wunsch-Gotoh' },
 ];
+
+/**
+ * A color palette.
+ */
+export const Palette = '8888881f77b42ca02cd62728e7ba52ff7f0e9467bd8c564be377c217becf'
+                     + 'aec7e8ffbb7898df8aff9896c5b0d5c49c94f7b6d2dbdb8d9edae57f7f7f';
+
+/**
+ * Insert a CSS color palette into the DOM making it active.
+ *
+ * @function insert_css_palette
+ *
+ * @param {String} css - The color palette as string.
+ */
+export function insert_css_palette (palette) {
+    const css = palette.match (/.{6}/g)
+          .map ((color, index) => `[data-index="${index}"] .background-from-index { background-color: #${color}22 }`)
+          .join ('\n');
+    const style = document.createElement ('style');
+    style.setAttribute ('type', 'text/css');
+    style.appendChild (document.createTextNode (css));
+    document.querySelector ('head').appendChild (style);
+}
 
 /**
  * Get the API entrypoint
@@ -82,6 +108,9 @@ export function sort_key (s) {
     return s;
 }
 
+/** The Wordpress Text Domain of the plugin. */
+const LANG = 'cap-collation';
+
 /**
  * Prepare a witness for display, add human-readable title, i18n.
  *
@@ -89,15 +118,14 @@ export function sort_key (s) {
  * @returns {Object}  The fixed witness object
  */
 export function fix_witness (w) {
-    const i18n = cap_collation_user_front_ajax_object;
-
     // add check for reactivity
     w.checked  = false;
     w.title    = w.siglum;
-    w.title    = w.title.replace (/#(\d+)/,       i18n.copy_msg);
-    w.title    = w.title.replace (/[?]hands=XYZ/, i18n.corr_msg);
+    w.title    = w.title.replace (/#(\d+)/,       _x (' ($1. copy)',  '2., 3., etc. copy of capitularies', LANG));
+    w.title    = w.title.replace (/[?]hands=XYZ/, _x (' (corrected)', 'corrected version of capitularies', LANG));
     w.sort_key = w.title;
-    w.title    = w.title.replace (/bk-textzeuge/, i18n.bktz_msg);
+    w.title    = w.title.replace (/\//, ' : ');
+    w.title    = w.title.replace (/bk-textzeuge/, _x ('Edition by Boretius/Krause', 'title of the edition', LANG));
     w.sort_key = w.sort_key.replace (/bk-textzeuge/, '_bk-textzeuge'); // always sort this first
     w.sort_key = sort_key (w.sort_key);
     return w;
