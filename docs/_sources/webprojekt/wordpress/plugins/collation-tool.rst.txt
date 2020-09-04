@@ -6,6 +6,6 @@ Collation Tool
 .. contents::
    :local:
 
-.. php:automodule:: cap-collation-user/cap-collation-user.php cap-collation-user/
+.. php:automodule:: cap-collation/cap-collation.php cap-collation/
 
 .. js:automodule:: module:plugins/collation

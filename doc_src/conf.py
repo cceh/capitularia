@@ -20,8 +20,18 @@ import os
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
-sys.path.insert (0, os.path.abspath ('../server'))
-sys.path.insert (0, os.path.abspath ('..'))
+root = os.path.abspath ('..')
+sys.path.insert (0, root)
+sys.path.insert (0, os.path.join (root, 'server'))
+sys.path.insert (0, os.path.join (root, 'client'))
+
+sys.path.insert (0, os.path.join (root, 'sphinxcontrib/sphinxcontrib-autojsdoc/sphinxcontrib'))
+sys.path.insert (0, os.path.join (root, 'sphinxcontrib/sphinxcontrib-autophpdoc/sphinxcontrib'))
+sys.path.insert (0, os.path.join (root, 'sphinxcontrib/sphinxcontrib-pic/sphinxcontrib'))
+
+sys.path.insert (0, os.path.join (root, '../../sphinxcontrib/sphinxcontrib-autojsdoc/sphinxcontrib'))
+sys.path.insert (0, os.path.join (root, '../../sphinxcontrib/sphinxcontrib-autophpdoc/sphinxcontrib'))
+sys.path.insert (0, os.path.join (root, '../../sphinxcontrib/sphinxcontrib-pic/sphinxcontrib'))
 
 # -- General configuration ------------------------------------------------
 
@@ -34,32 +44,24 @@ sys.path.insert (0, os.path.abspath ('..'))
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
-    'sphinx.ext.graphviz',
     'sphinx.ext.mathjax',
     'sphinx.ext.imgconverter',
-    'sphinxcontrib.plantuml',
+
     'sphinxcontrib.httpdomain',
-
     'sphinxcontrib.phpdomain',
-    'autophpdoc.autophpdoc',
+    'autophpdoc',
 
-    'autojsdoc.autojsdoc',
-
-    'sqlalchemy-uml.sqlalchemy-uml',
-
-    'sphinxcontrib-pic.pic',
+    'autojsdoc',
+    'pic',
 ]
-
-sauml_arguments = ['postgresql+psycopg2://capitularia@localhost:5432/capitularia']
-sauml_dot_table = 'bgcolor=#e7f2fa&color=#2980B9'
-
-autophpdoc_structure_xml = 'phpdoc/structure.xml'
-autophpdoc_members = True
-autophpdoc_title = True
 
 autojsdoc_structure_json = 'jsdoc/structure.json'
 autojsdoc_members = True
 autojsdoc_title = True
+
+autophpdoc_structure_xml = 'phpdoc/structure.xml'
+autophpdoc_members = True
+autophpdoc_title = True
 
 pic_options = {
     'pic' : {
@@ -91,11 +93,15 @@ copy "config.pic";
 .PE
 """,
     },
-    'dot' : {
-        'program' : ["dot", "-Tsvg"],
-        'align'   : "center",
-        'prolog'  : "",
-        'epilog'  : "",
+    'tree' : {
+        'program'     : ['tree', '-l', '--noreport', '-I', '*~', '-I', '__pycache__', '{arguments}'],
+        'format'      : 'text/plain',
+        'html-prolog' : '<div class="highlight"><div class="highlight"><pre>',
+        'html-epilog' : '</pre></div></div>',
+    },
+    'sauml' : {
+        'program'   : 'sagraph.py {arguments} @sagraph.conf | dot -Tsvg',
+        'shell'     : True,
     },
     'xslt_dep' : {
         'program' : ["../python/xslt_dep.py"],

@@ -213,8 +213,7 @@ SELECT STRING_AGG (COALESCE (r[2], LENGTH (r[1])::text || r[1]), '')
 class Manuscripts (Base):
     r"""Manuscripts
 
-    .. sauml::
-       :include: manuscripts
+    .. pic:: sauml -i manuscripts
 
     """
 
@@ -240,8 +239,7 @@ class Manuscripts (Base):
 class MsParts (Base):
     r"""The parts of a manuscript
 
-    .. sauml::
-       :include: msparts
+    .. pic:: sauml -i msparts
 
     """
 
@@ -275,8 +273,7 @@ class Capitularies (Base):
 
     All capitularies catalogued according to BK or Mordek.
 
-    .. sauml::
-       :include: capitularies
+    .. pic:: sauml -i capitularies
 
     """
 
@@ -299,8 +296,7 @@ class Chapters (Base):
 
     All chapters catalogued according to BK or Mordek.
 
-    .. sauml::
-       :include: chapters
+    .. pic:: sauml -i chapters
 
     """
 
@@ -325,8 +321,7 @@ class MnMssCapitularies (Base):
     lesser granularity (capitulary instead of chapter) than the
     :class:`MssChapters` table.
 
-    .. sauml::
-       :include: mn_mss_capitularies
+    .. pic:: sauml -i mn_mss_capitularies
 
     """
 
@@ -356,8 +351,7 @@ class MssChapters (Base):
     Note: The table :class:`MnMssCapitularies` relates manuscripts to
     capitularies yet untranscribed.
 
-    .. sauml::
-       :include: mss_chapters
+    .. pic:: sauml -i mss_chapters
 
     """
 
@@ -400,8 +394,7 @@ class MssChaptersText (Base):
     There may be more than one text extracted from the same chapter: the original
     hand and later corrector hands.
 
-    .. sauml::
-       :include: mss_chapters_text
+    .. pic:: sauml -i mss_chapters_text
 
     """
 
@@ -475,9 +468,7 @@ class Geonames (Base):
 
     Data scraped from geonames.org et al. and cached here.
 
-    .. sauml::
-       :schema: gis
-       :include: gis.geonames
+    .. pic:: sauml -s gis -i gis.geonames
 
     """
 
@@ -502,9 +493,7 @@ class Geonames (Base):
 class MnMsPartsGeonames (Base):
     r"""The M:N relationship between msparts and geonames
 
-    .. sauml::
-       :schema: gis
-       :include: gis.mn_msparts_geonames
+    .. pic:: sauml -s gis -i gis.mn_msparts_geonames
 
     """
 
@@ -535,9 +524,7 @@ class GeoAreas (Base):
 
     Custom defined geographic areas
 
-    .. sauml::
-       :schema: gis
-       :include: gis.geoareas
+    .. pic:: sauml -s gis -i gis.geoareas
 
     """
 

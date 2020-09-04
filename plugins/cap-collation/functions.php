@@ -59,8 +59,11 @@ function on_enqueue_scripts ()
     );
 
     // See: https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
-    wp_set_script_translations ('cap-collation', LANG,
-                                plugin_dir_path (__FILE__) . 'languages');
+    wp_set_script_translations (
+        'cap-collation',
+        LANG,
+        plugin_dir_path (__FILE__) . 'languages'
+    );
 }
 
 /**

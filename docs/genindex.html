@@ -35,7 +35,6 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -133,7 +132,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vm/database.html">Database Structure</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="vm/database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
 <li class="toctree-l3"><a class="reference internal" href="vm/database.html#schema-gis">Schema <em>gis:</em></a></li>
-<li class="toctree-l3"><a class="reference internal" href="vm/database.html#db-py">db.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vm/database.html#module-db">db.py</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="vm/transformations.html">XSLT Transformations</a><ul>
@@ -230,7 +229,6 @@
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
- | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  | <a href="#X"><strong>X</strong></a>
  
@@ -292,11 +290,15 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="vm/database.html#db.XML.bind_processor">bind_processor() (XML method)</a>
+</li>
       <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-tools.bk_id">bk_id (global variable or constant)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webprojekt/wordpress/theme/main.html#cceh\capitularia\theme\bk_to_permalink"><strong>bk_to_permalink() (function in cceh\capitularia\theme)</strong></a>
+</li>
+      <li><a href="vm/app_server.html#server.build_parser">build_parser() (in module server)</a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\File_List_Table::$$bulk_actions"><strong>bulk_actions (File_List_Table property)</strong></a>
 </li>
@@ -314,6 +316,8 @@
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\cap_get_status"><strong>cap_get_status() (function in cceh\capitularia\page_generator)</strong></a>
 </li>
+      <li><a href="vm/database.html#db.Capitularies.cap_id">cap_id (Capitularies attribute)</a>
+</li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\cap_make_path_relative_to"><strong>cap_make_path_relative_to() (function in cceh\capitularia\page_generator)</strong></a>
 </li>
       <li><a href="webprojekt/wordpress/theme/main.html#cceh\capitularia\theme\cap_rest_user_info"><strong>cap_rest_user_info() (function in cceh\capitularia\theme)</strong></a>
@@ -329,6 +333,8 @@
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\cap_sanitize_path"><strong>cap_sanitize_path() (function in cceh\capitularia\page_generator)</strong></a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\cap_sanitize_path_list"><strong>cap_sanitize_path_list() (function in cceh\capitularia\page_generator)</strong></a>
+</li>
+      <li><a href="vm/database.html#db.Capitularies">Capitularies (class in db)</a>
 </li>
       <li><a href="vm/app_server.html#data_server.capitularies">capitularies() (in module data_server)</a>
 </li>
@@ -348,15 +354,19 @@
 </li>
       <li><a href="webprojekt/wordpress/plugins/lib.html#namespace-cceh\capitularia\lib"><strong>cceh\capitularia\lib (namespace)</strong></a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webprojekt/wordpress/plugins/meta-search.html#namespace-cceh\capitularia\meta_search"><strong>cceh\capitularia\meta_search (namespace)</strong></a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#namespace-cceh\capitularia\page_generator"><strong>cceh\capitularia\page_generator (namespace)</strong></a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webprojekt/wordpress/theme/main.html#namespace-cceh\capitularia\theme"><strong>cceh\capitularia\theme (namespace)</strong></a>
 </li>
+      <li><a href="vm/database.html#db.Chapters.chapter">chapter (Chapters attribute)</a>
+</li>
       <li><a href="vm/app_server.html#data_server.chapter_manuscripts">chapter_manuscripts() (in module data_server)</a>
+</li>
+      <li><a href="vm/database.html#db.Chapters">Chapters (class in db)</a>
 </li>
       <li><a href="vm/app_server.html#data_server.chapters">chapters() (in module data_server)</a>
 </li>
@@ -397,6 +407,14 @@
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Manuscript::create_page"><strong>create_page() (Manuscript method)</strong></a>
 </li>
+      <li><a href="vm/database.html#db.CreateFDW">CreateFDW (class in db)</a>
+</li>
+      <li><a href="vm/database.html#db.CreateFunction">CreateFunction (class in db)</a>
+</li>
+      <li><a href="vm/database.html#db.CreateGeneric">CreateGeneric (class in db)</a>
+</li>
+      <li><a href="vm/database.html#db.CreateView">CreateView (class in db)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -407,8 +425,6 @@
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Dashboard_Page"><strong>Dashboard_Page (class in cceh\capitularia\page_generator)</strong></a>
 </li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#cceh\capitularia\collation_user\dashboard_page"><strong>dashboard_page() (function in cceh\capitularia\collation_user)</strong></a>
-</li>
       <li>
     data_server
 
@@ -418,12 +434,21 @@
       </ul></li>
       <li><a href="vm/app_server.html#data_server.dataBlueprint">dataBlueprint (class in data_server)</a>
 </li>
+      <li><a href="vm/database.html#db.MsParts.date">date (MsParts attribute)</a>
+</li>
+      <li>
+    db
+
+      <ul>
+        <li><a href="vm/database.html#module-db">module</a>
+</li>
+      </ul></li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Manuscript::delete_pages"><strong>delete_pages() (Manuscript method)</strong></a>
+</li>
+      <li><a href="webprojekt/wordpress/plugins/page-generator.html#plugins-page-generator.deparam">deparam() (built-in function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="webprojekt/wordpress/plugins/page-generator.html#plugins-page-generator.deparam">deparam() (built-in function)</a>
-</li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\File_List_Table::$$directory"><strong>directory (File_List_Table property)</strong></a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Dashboard_Page::display"><strong>display() (Dashboard_Page method)</strong></a>
@@ -437,6 +462,14 @@
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Manuscript::do_action"><strong>do_action() (Manuscript method)</strong></a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/file-includer.html#cceh\capitularia\file_includer\FileIncluderEngine::$$do_save"><strong>do_save (FileIncluderEngine property)</strong></a>
+</li>
+      <li><a href="vm/database.html#db.DropFDW">DropFDW (class in db)</a>
+</li>
+      <li><a href="vm/database.html#db.DropFunction">DropFunction (class in db)</a>
+</li>
+      <li><a href="vm/database.html#db.DropGeneric">DropGeneric (class in db)</a>
+</li>
+      <li><a href="vm/database.html#db.DropView">DropView (class in db)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -473,6 +506,8 @@
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\File_List_Table"><strong>File_List_Table (class in cceh\capitularia\page_generator)</strong></a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/file-includer.html#cceh\capitularia\file_includer\FileIncluderEngine"><strong>FileIncluderEngine (class in cceh\capitularia\file_includer)</strong></a>
+</li>
+      <li><a href="vm/database.html#db.Manuscripts.filename">filename (Manuscripts attribute)</a>
 </li>
       <li><a href="webprojekt/wordpress/theme/main.html#cceh\capitularia\theme\fix_bk_nr"><strong>fix_bk_nr() (function in cceh\capitularia\theme)</strong></a>
 </li>
@@ -521,7 +556,11 @@
         <li><a href="vm/app_server.html#module-geo_server">module</a>
 </li>
       </ul></li>
+      <li><a href="vm/database.html#db.GeoAreas">GeoAreas (class in db)</a>
+</li>
       <li><a href="vm/app_server.html#geo_server.geoBlueprint">geoBlueprint (class in geo_server)</a>
+</li>
+      <li><a href="vm/database.html#db.Geonames">Geonames (class in db)</a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-tools.get_api_entrypoint">get_api_entrypoint() (built-in function)</a>
 </li>
@@ -555,10 +594,10 @@
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Manuscript::get_page_id"><strong>get_page_id() (Manuscript method)</strong></a>
 </li>
-      <li><a href="webprojekt/wordpress/theme/main.html#cceh\capitularia\theme\get_page_status_in_cache"><strong>get_page_status_in_cache() (function in cceh\capitularia\theme)</strong></a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="webprojekt/wordpress/theme/main.html#cceh\capitularia\theme\get_page_status_in_cache"><strong>get_page_status_in_cache() (function in cceh\capitularia\theme)</strong></a>
+</li>
       <li><a href="webprojekt/wordpress/theme/main.html#cceh\capitularia\theme\get_parent_path"><strong>get_parent_path() (function in cceh\capitularia\theme)</strong></a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Manuscript::get_path"><strong>get_path() (Manuscript method)</strong></a>
@@ -643,15 +682,17 @@
 </li>
       <li><a href="webprojekt/wordpress/theme/main.html#themes-capitularia.initBackToTop">initBackToTop() (built-in function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webprojekt/wordpress/theme/main.html#themes-capitularia.initFootnoteTooltips">initFootnoteTooltips() (built-in function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webprojekt/wordpress/theme/main.html#themes-capitularia.initLegend">initLegend() (built-in function)</a>
 </li>
       <li><a href="webprojekt/wordpress/theme/main.html#themes-capitularia.initResetForm">initResetForm() (built-in function)</a>
 </li>
       <li><a href="webprojekt/wordpress/theme/main.html#themes-capitularia.initSmoothScrollLinks">initSmoothScrollLinks() (built-in function)</a>
+</li>
+      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-tools.insert_css_palette">insert_css_palette() (built-in function)</a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/file-includer.html#cceh\capitularia\file_includer\insert_footnote_backref"><strong>insert_footnote_backref() (function in cceh\capitularia\file_includer)</strong></a>
 </li>
@@ -692,12 +733,20 @@
 </li>
         <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\LANG"><strong>(constant in cceh\capitularia\page_generator)</strong></a>
 </li>
+        <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-tools.LANG">(global variable or constant)</a>
+</li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="vm/database.html#db.MsParts.leaf">leaf (MsParts attribute)</a>
+</li>
       <li><a href="webprojekt/wordpress/plugins/dynamic-menu.html#cceh\capitularia\dynamic_menu\load_html"><strong>load_html() (function in cceh\capitularia\dynamic_menu)</strong></a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/file-includer.html#cceh\capitularia\file_includer\load_xml_or_html"><strong>load_xml_or_html() (function in cceh\capitularia\file_includer)</strong></a>
+</li>
+      <li><a href="vm/database.html#db.MsParts.loci">loci (MsParts attribute)</a>
+</li>
+      <li><a href="vm/database.html#db.MssChapters.locus">locus (MssChapters attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -725,6 +774,8 @@
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Manuscript"><strong>Manuscript (class in cceh\capitularia\page_generator)</strong></a>
 </li>
+      <li><a href="vm/database.html#db.Manuscripts">Manuscripts (class in db)</a>
+</li>
       <li><a href="vm/app_server.html#data_server.manuscripts">manuscripts() (in module data_server)</a>
 </li>
       <li><a href="webprojekt/wordpress/theme/widgets.html#cceh\capitularia\theme\Archive_Nav_Menu_Widget::$$menu_id"><strong>menu_id (Archive_Nav_Menu_Widget property)</strong></a>
@@ -737,6 +788,10 @@
 </li>
       <li><a href="webprojekt/wordpress/plugins/meta-search.html#cceh\capitularia\meta_search\MetaSearch"><strong>MetaSearch (class in cceh\capitularia\meta_search)</strong></a>
 </li>
+      <li><a href="vm/database.html#db.MnMsPartsGeonames">MnMsPartsGeonames (class in db)</a>
+</li>
+      <li><a href="vm/database.html#db.MnMssCapitularies">MnMssCapitularies (class in db)</a>
+</li>
       <li>
     module
 
@@ -745,13 +800,13 @@
 </li>
         <li><a href="vm/app_server.html#module-data_server">data_server</a>
 </li>
+        <li><a href="vm/database.html#module-db">db</a>
+</li>
         <li><a href="vm/app_server.html#module-geo_server">geo_server</a>
 </li>
-        <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins.cap-collation-user.cap-collation-user">plugins.cap-collation-user.cap-collation-user</a>
+        <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins.cap-collation.cap-collation">plugins.cap-collation.cap-collation</a>
 </li>
-        <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins.cap-collation-user.dashboard">plugins.cap-collation-user.dashboard</a>
-</li>
-        <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins.cap-collation-user.functions">plugins.cap-collation-user.functions</a>
+        <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins.cap-collation.functions">plugins.cap-collation.functions</a>
 </li>
         <li><a href="webprojekt/wordpress/plugins/dynamic-menu.html#module-plugins.cap-dynamic-menu.cap-dynamic-menu">plugins.cap-dynamic-menu.cap-dynamic-menu</a>
 </li>
@@ -848,6 +903,14 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="vm/database.html#db.Manuscripts.ms_id">ms_id (Manuscripts attribute)</a>
+</li>
+      <li><a href="vm/database.html#db.MnMssCapitularies.mscap_n">mscap_n (MnMssCapitularies attribute)</a>
+</li>
+      <li><a href="vm/database.html#db.MsParts.msp_part">msp_part (MsParts attribute)</a>
+</li>
+      <li><a href="vm/database.html#db.MsParts">MsParts (class in db)</a>
+</li>
       <li><a href="vm/app_server.html#geo_server.msparts_csv">msparts_csv() (in module geo_server)</a>
 </li>
       <li><a href="vm/app_server.html#geo_server.msparts_json">msparts_json() (in module geo_server)</a>
@@ -855,6 +918,10 @@
       <li><a href="vm/app_server.html#geo_server.mss_csv">mss_csv() (in module geo_server)</a>
 </li>
       <li><a href="vm/app_server.html#geo_server.mss_json">mss_json() (in module geo_server)</a>
+</li>
+      <li><a href="vm/database.html#db.MssChapters">MssChapters (class in db)</a>
+</li>
+      <li><a href="vm/database.html#db.MssChaptersText">MssChaptersText (class in db)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1132,6 +1199,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Dashboard_Page::$$pagination_args"><strong>pagination_args (Dashboard_Page property)</strong></a>
 </li>
+      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-tools.Palette">Palette (global variable or constant)</a>
+</li>
       <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-tools.parse_siglum">parse_siglum() (built-in function)</a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Manuscript::parse_tei"><strong>parse_tei() (Manuscript method)</strong></a>
@@ -1153,24 +1222,17 @@
       <li><a href="webprojekt/wordpress/plugins/meta-search.html#plugins-meta-search.places_tree_init">places_tree_init() (built-in function)</a>
 </li>
       <li>
-    plugins.cap-collation-user.cap-collation-user
+    plugins.cap-collation.cap-collation
 
       <ul>
-        <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins.cap-collation-user.cap-collation-user">module</a>
+        <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins.cap-collation.cap-collation">module</a>
 </li>
       </ul></li>
       <li>
-    plugins.cap-collation-user.dashboard
+    plugins.cap-collation.functions
 
       <ul>
-        <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins.cap-collation-user.dashboard">module</a>
-</li>
-      </ul></li>
-      <li>
-    plugins.cap-collation-user.functions
-
-      <ul>
-        <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins.cap-collation-user.functions">module</a>
+        <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins.cap-collation.functions">module</a>
 </li>
       </ul></li>
       <li>
@@ -1236,6 +1298,8 @@
         <li><a href="webprojekt/wordpress/plugins/lib.html#module-plugins.cap-lib.class-settings-page">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     plugins.cap-lib.functions
 
@@ -1243,8 +1307,6 @@
         <li><a href="webprojekt/wordpress/plugins/lib.html#module-plugins.cap-lib.functions">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     plugins.cap-meta-search.cap-meta-search
 
@@ -1329,10 +1391,6 @@
         <li><a href="webprojekt/wordpress/plugins/page-generator.html#module-plugins.cap-page-generator.functions">module</a>
 </li>
       </ul></li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins-collation-front">plugins/collation/front (module)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins-collation-results">plugins/collation/results (module)</a>
-</li>
       <li><a href="webprojekt/wordpress/plugins/collation-tool.html#module-plugins-collation-tools">plugins/collation/tools (module)</a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/dynamic-menu.html#module-plugins-dynamic-menu">plugins/dynamic-menu (module)</a>
@@ -1370,6 +1428,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webprojekt/wordpress/plugins/file-includer.html#cceh\capitularia\file_includer\remove_node"><strong>remove_node() (function in cceh\capitularia\file_includer)</strong></a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="vm/database.html#db.XML.result_processor">result_processor() (XML method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1432,6 +1494,8 @@
 </li>
       <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-tools.sort_key">sort_key() (built-in function)</a>
 </li>
+      <li><a href="vm/database.html#db.Manuscripts.status">status (Manuscripts attribute)</a>
+</li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\File_List_Table::$$status_to_notice_class"><strong>status_to_notice_class (File_List_Table property)</strong></a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\File_List_Table::$$statuses"><strong>statuses (File_List_Table property)</strong></a>
@@ -1456,6 +1520,8 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="vm/database.html#db.MssChaptersText.text">text (MssChaptersText attribute)</a>
+</li>
       <li><a href="webprojekt/wordpress/theme/widgets.html#cceh\capitularia\theme\Frontpage_Image_Widget::the_option"><strong>the_option() (Frontpage_Image_Widget method)</strong></a>
 
       <ul>
@@ -1561,8 +1627,6 @@
         <li><a href="webprojekt/wordpress/theme/main.html#module-themes.Capitularia.page_blank">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     themes.Capitularia.page_no-sidebar
 
@@ -1570,6 +1634,8 @@
         <li><a href="webprojekt/wordpress/theme/main.html#module-themes.Capitularia.page_no-sidebar">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     themes.Capitularia.phpinfo
 
@@ -1667,15 +1733,23 @@
       </ul></li>
       <li><a href="vm/app_server.html#tile_server.tileBlueprint">tileBlueprint (class in tile_server)</a>
 </li>
-      <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Manuscript::$$title"><strong>title (Manuscript property)</strong></a>
+      <li><a href="vm/database.html#db.Capitularies.title">title (Capitularies attribute)</a>
 
       <ul>
+        <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Manuscript::$$title"><strong>(Manuscript property)</strong></a>
+</li>
+        <li><a href="vm/database.html#db.Manuscripts.title">(Manuscripts attribute)</a>
+</li>
         <li><a href="webprojekt/wordpress/plugins/meta-search.html#cceh\capitularia\meta_search\Widget::$$title"><strong>(Widget property)</strong></a>
 </li>
       </ul></li>
       <li><a href="vm/app_server.html#collatex_server.to_collatex">to_collatex() (in module collatex_server)</a>
 </li>
+      <li><a href="vm/database.html#db.MssChapters.transcribed">transcribed (MssChapters attribute)</a>
+</li>
       <li><a href="webprojekt/wordpress/theme/main.html#cceh\capitularia\theme\translate_month_year"><strong>translate_month_year() (function in cceh\capitularia\theme)</strong></a>
+</li>
+      <li><a href="vm/database.html#db.MssChaptersText.type_">type_ (MssChaptersText attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1683,6 +1757,8 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-tools.unroll_witnesses">unroll_witnesses() (built-in function)</a>
+</li>
       <li><a href="webprojekt/wordpress/theme/widgets.html#cceh\capitularia\theme\Frontpage_Image_Widget::update"><strong>update() (Frontpage_Image_Widget method)</strong></a>
 
       <ul>
@@ -1698,50 +1774,6 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="webprojekt/wordpress/plugins/lib.html#cceh\capitularia\lib\urljoin"><strong>urljoin() (function in cceh\capitularia\lib)</strong></a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="V">V</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront">VueFront() (class)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront.ajax_load_bks">VueFront.ajax_load_bks() (VueFront method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront.ajax_load_corresps">VueFront.ajax_load_corresps() (VueFront method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront.ajax_load_witnesses">VueFront.ajax_load_witnesses() (VueFront method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront.ajax_params">VueFront.ajax_params() (VueFront method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront.check_all">VueFront.check_all() (VueFront method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront.check_these">VueFront.check_these() (VueFront method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront.load_witnesses_carry_selection">VueFront.load_witnesses_carry_selection() (VueFront method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront.on_load_config">VueFront.on_load_config() (VueFront method)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront.on_load_config_redirect">VueFront.on_load_config_redirect() (VueFront method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront.on_save_config">VueFront.on_save_config() (VueFront method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront.row_class">VueFront.row_class() (VueFront method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-front.VueFront.sort_like">VueFront.sort_like() (VueFront method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-results.VueResults">VueResults() (class)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-results.VueResults.cell_width">VueResults.cell_width() (VueResults method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-results.VueResults.format_table">VueResults.format_table() (VueResults method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-results.VueResults.split_table">VueResults.split_table() (VueResults method)</a>
-</li>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-results.VueResults.transpose">VueResults.transpose() (VueResults method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1775,16 +1807,22 @@
 </li>
       <li><a href="webprojekt/wordpress/plugins/file-includer.html#cceh\capitularia\file_includer\wrap"><strong>wrap() (function in cceh\capitularia\file_includer)</strong></a>
 </li>
+      <li><a href="vm/database.html#db.MsParts.written">written (MsParts attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="X">X</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Manuscript::$$xml_id"><strong>xml_id (Manuscript property)</strong></a>
+      <li><a href="vm/database.html#db.XML">XML (class in db)</a>
+</li>
+      <li><a href="vm/database.html#db.MssChapters.xml">xml (MssChapters attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Manuscript::$$xml_id"><strong>xml_id (Manuscript property)</strong></a>
+</li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\File_List_Table::$$xml_path"><strong>xml_path (File_List_Table property)</strong></a>
 </li>
   </ul></td>

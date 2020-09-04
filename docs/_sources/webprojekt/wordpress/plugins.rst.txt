@@ -3,6 +3,18 @@
 Wordpress Plugins
 =================
 
+Plugin Development
+------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   plugin-dev
+
+
+Active Plugins
+--------------
+
 We wrote various Wordpress plugins to implement functionality we needed.
 
 .. toctree::

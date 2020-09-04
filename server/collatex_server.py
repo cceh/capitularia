@@ -8,7 +8,7 @@ Endpoints
 
 .. http:post:: /collatex/collate
 
-   Collate versions of one chapter taken from a set of witnesses.
+   Collate sections of witnesses.
 
    **Example request**:
 
@@ -19,10 +19,10 @@ Endpoints
       Content-Type: application/json;charset=utf-8
 
       {
-          "corresp": "BK.139_1",
-          "witnesses": [
-              "berlin-sb-phill-1737",
-              "berlin-sb-phill-1737?hands=XYZ"
+          "collate": [
+              "BK.20a_3/bk-textzeuge",
+              "BK.20b_3/bk-textzeuge",
+              "BK.20b_3/vatikan-bav-reg-lat-263"
           ]
       }
 
@@ -34,7 +34,11 @@ Endpoints
       Content-Type: application/json;charset=utf-8
 
       {
-        "witnesses":["berlin-sb-phill-1737","berlin-sb-phill-1737?hands=XYZ"],
+        "witnesses": [
+          "BK.20a_3/bk-textzeuge",
+          "BK.20b_3/bk-textzeuge",
+          "BK.20b_3/vatikan-bav-reg-lat-263"
+        ],
         "table":[
           [ [ {"t": "A",     "n": "a" } ],     [ {"t": "A",      "n": "a" } ] ],
           [ [ {"t": "black", "n": "black" } ], [ {"t": "white",  "n": "white" } ] ],

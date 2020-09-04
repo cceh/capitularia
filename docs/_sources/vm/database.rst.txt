@@ -9,8 +9,8 @@ Schema *capitularia:*
 
 .. Palette https://github.com/d3/d3-scale-chromatic/blob/master/src/categorical/Paired.js
 
-.. sauml::
-   :include: manuscripts msparts capitularies chapters mn_mss_capitularies mss_chapters mss_chapters_text
+.. pic:: sauml -i manuscripts -i msparts -i capitularies -i chapters -i mn_mss_capitularies
+               -i mss_chapters -i mss_chapters_text
    :caption: Schema *capitularia*
    :align: center
 
@@ -20,8 +20,7 @@ Schema *capitularia:*
 Schema *gis:*
 -------------
 
-.. sauml::
-   :schema: gis
+.. pic:: sauml -s gis
    :caption: Schema *gis*
    :align: center
 

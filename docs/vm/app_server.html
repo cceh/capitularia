@@ -34,7 +34,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -217,7 +216,13 @@
 <div class="section" id="server">
 <h2>server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h2>
 <p>The main server module.</p>
-<span class="target" id="module-server"></span><p>This package implements the application server for Capitularia.</p>
+<span class="target" id="module-server"></span><p>The API server for Capitularia.</p>
+<dl class="py function">
+<dt id="server.build_parser">
+<code class="sig-name descname">build_parser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">default_config_file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#server.build_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the commandline parser.</p>
+</dd></dl>
+
 </div>
 <div class="section" id="module-data_server">
 <span id="data-server"></span><h2>data_server<a class="headerlink" href="#module-data_server" title="Permalink to this headline">¶</a></h2>
@@ -299,25 +304,18 @@ highlight those words in the snippets.</p>
 <dl class="http post">
 <dt id="post--collatex-collate">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/collatex/collate</code><a class="headerlink" href="#post--collatex-collate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Collate versions of one chapter taken from a set of witnesses.</p>
+<dd><p>Collate sections of witnesses.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/collatex/collate</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">api.capitularia.uni-koeln.de</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json;charset=utf-8</span>
 
 <span class="p">{</span>
-    <span class="nt">&quot;corresp&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.139_1&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;witnesses&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&quot;berlin-sb-phill-1737&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;berlin-sb-phill-1737?hands=XYZ&quot;</span>
-    <span class="p">],</span>
-    <span class="nt">&quot;algorithm&quot;</span><span class="p">:</span> <span class="s2">&quot;needleman-wunsch-gotoh&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;normalizations&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&quot;&quot;</span>
-    <span class="p">],</span>
-    <span class="nt">&quot;segmentation&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="nt">&quot;joined&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="nt">&quot;transpositions&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;collate&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;BK.20a_3/bk-textzeuge&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;BK.20b_3/bk-textzeuge&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;BK.20b_3/vatikan-bav-reg-lat-263&quot;</span>
+    <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -326,7 +324,11 @@ highlight those words in the snippets.</p>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json;charset=utf-8</span>
 
 <span class="p">{</span>
-  <span class="nt">&quot;witnesses&quot;</span><span class="p">:[</span><span class="s2">&quot;berlin-sb-phill-1737&quot;</span><span class="p">,</span><span class="s2">&quot;berlin-sb-phill-1737?hands=XYZ&quot;</span><span class="p">],</span>
+  <span class="nt">&quot;witnesses&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;BK.20a_3/bk-textzeuge&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BK.20b_3/bk-textzeuge&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BK.20b_3/vatikan-bav-reg-lat-263&quot;</span>
+  <span class="p">],</span>
   <span class="nt">&quot;table&quot;</span><span class="p">:[</span>
     <span class="p">[</span> <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>     <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span> <span class="p">}</span> <span class="p">],</span>     <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>      <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span> <span class="p">}</span> <span class="p">]</span> <span class="p">],</span>
     <span class="p">[</span> <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span> <span class="p">}</span> <span class="p">],</span> <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span>  <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span> <span class="p">}</span> <span class="p">]</span> <span class="p">],</span>
