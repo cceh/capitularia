@@ -146,26 +146,10 @@ function on_cap_meta_search_the_permalink ($permalink)
 
 function on_enqueue_scripts ()
 {
-    wp_register_style  ('cap-meta-search-front', plugins_url ('css/front.css', __FILE__));
-    wp_enqueue_style   ('cap-meta-search-front');
-
-    wp_register_style  (
-        'jstree-style-default',
-        get_template_directory_uri () . '/node_modules/jstree/dist/themes/default/style.css'
-    );
-    wp_enqueue_style   ('jstree-style-default');
-
-    wp_register_script (
-        'jstree',
-        get_template_directory_uri () . '/node_modules/jstree/dist/jstree.js',
-        array ('cap-jquery')
-    );
-    wp_enqueue_script  ('jstree');
-
     wp_register_script (
         'cap-meta-search-front',
         plugins_url ('js/front.js', __FILE__),
-        array ('cap-lib-front', 'cap-jquery', 'jquery-ui-tooltip')
+        array ('cap-lib-front')
     );
     wp_enqueue_script  ('cap-meta-search-front');
 
@@ -174,32 +158,6 @@ function on_enqueue_scripts ()
         'cap_meta_search_front_ajax_object',
         array (
             'ajaxurl' => admin_url ('admin-ajax.php')
-        )
-    );
-}
-
-/**
- * Enqueue admin side scripts and styles
- *
- * @return void
- */
-
-function on_admin_enqueue_scripts ()
-{
-    wp_register_style ('cap-meta-search-admin', plugins_url ('css/admin.css', __FILE__));
-    wp_enqueue_style  ('cap-meta-search-admin');
-
-    wp_register_script (
-        'cap-meta-search-admin',
-        plugins_url ('js/admin.js', __FILE__),
-        array ('jquery')
-    );
-    wp_enqueue_script  ('cap-meta-search-admin');
-    wp_localize_script (
-        'cap-meta-search-admin',
-        'cap_meta_search_admin_ajax_object',
-        array (
-            NONCE_PARAM_NAME => wp_create_nonce (NONCE_SPECIAL_STRING),
         )
     );
 }

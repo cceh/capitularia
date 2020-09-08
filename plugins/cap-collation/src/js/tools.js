@@ -4,6 +4,8 @@
  * @file Contains utility functions for the collation applet.
  */
 
+import $ from 'jquery';
+
 /** cap_collation_user_front_ajax_object is set by wp_localize_script in function.php. */
 /* global cap_collation_user_front_ajax_object */
 

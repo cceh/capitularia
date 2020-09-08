@@ -99,7 +99,7 @@
  * @file
  */
 
-import * as tools from 'tools';
+import * as tools from './tools.js';
 
 /**
  * The vue.js instance that manages the section selector(s).
@@ -216,7 +216,7 @@ export default {
          * The class(es) to apply to the witnesses table rows.
          */
         row_class (dummy_w, dummy_index) {
-            return ['sortable'];
+            return [];
         },
         /*
          * User Interface handlers
@@ -244,17 +244,6 @@ export default {
     async mounted () {
         const vm = this;
         await vm.ajax_load_bks ();
-    },
-    updated () {
-        const vm = this;
-        const $tbody = $ (vm.$el).find ('table.witnesses tbody');
-        $tbody.disableSelection ().sortable ({
-            'items'       : 'tr.sortable',
-            'handle'      : 'th.handle',
-            'axis'        : 'y',
-            'cursor'      : 'move',
-            'containment' : 'parent',
-        });
     },
 };
 </script>

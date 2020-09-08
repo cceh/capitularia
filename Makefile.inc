@@ -2,30 +2,34 @@
 
 clean:
 	find . -name '*~' -delete
-	-rm src/css/*.css
-	-rm src/css/*.map
-	-rm languages/*.mo
+	-rm css/*
+	-rm js/*
+	-rm languages/*
+	-rm images/*
+	-rm webfonts/*
 
 doc: phpdoc phpmd phpmetrics sami
 
 # sass --embed-source-map crashes with NullError: method not found: 'length' on null
 # so we cannot pipe things
-$(CSS_DEST)/%.css : $(CSS_SRC)/%.scss
-	$(SASS) $(SASSFLAGS) $< $@.tmp.css
-	$(POSTCSS) $(POSTCSSFLAGS) -u autoprefixer -o $@ $@.tmp.css
-	-rm $@.tmp.css
+#$(CSS_DEST)/%.css : $(CSS_SRC)/%.scss
+#	$(SASS) $(SASSFLAGS) $< $@.tmp.css
+#	$(POSTCSS) $(POSTCSSFLAGS) -u autoprefixer -o $@ $@.tmp.css
+#	-rm $@.tmp.css
 
 # node-sass does not work !!!! it royally botches @include media-breakpoint-up(md) {...}
 #$(CSS_DEST)/%.css : $(CSS_SRC)/%.scss
 #	$(POSTCSS) $(POSTCSSFLAGS) -o $@ $<
 
-$(CSSIMG_DEST)/%.png : $(CSSIMG_SRC)/%.png
-	cp $< $@
+#$(CSSIMG_DEST)/%.png : $(CSSIMG_SRC)/%.png
+#	cp $< $@
 
-$(JS_DEST)/%.js : $(JS_SRC)/%.js
-	$(BABEL) $(BABELFLAGS) --out-file $@ $<
+#$(JS_DEST)/%.js : $(JS_SRC)/%.js
+#	$(BABEL) $(BABELFLAGS) --out-file $@ $<
 
 css: $(CSS_DEST_FILES)
+
+js: WEBPACK_CONFIG=webpack.dev.js
 
 js: $(JS_DEST_FILES)
 

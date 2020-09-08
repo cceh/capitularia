@@ -40,9 +40,11 @@ const LANG = 'cap-dynamic-menu';
 
 require_once 'functions.php';
 
-add_action ('init',                   ns ('on_init'));
-add_action ('wp_enqueue_scripts',     ns ('on_enqueue_scripts'));
-add_filter ('wp_get_nav_menu_items',  ns ('on_wp_get_nav_menu_items'), 20, 3);
+add_action ('wp_enqueue_scripts', ns ('on_enqueue_scripts'));
+
+if (!is_admin ()) {
+    add_filter ('nav_menu_link_attributes', ns ('on_nav_menu_link_attributes'), 20, 4);
+}
 
 // for side effect only: to get it in the .po file
 __ ('Capitularia Dynamic Menu');

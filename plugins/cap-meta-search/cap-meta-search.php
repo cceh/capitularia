@@ -59,7 +59,6 @@ require_once 'class-meta-search-widget.php';
 
 add_action ('init',                  ns ('on_init'));
 add_action ('wp_enqueue_scripts',    ns ('on_enqueue_scripts'));
-add_action ('admin_enqueue_scripts', ns ('on_admin_enqueue_scripts'));
 add_action ('widgets_init',          ns ('on_widgets_init'));
 
 if (!is_admin ()) {

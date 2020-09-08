@@ -45,7 +45,7 @@ class Categories_Nav_Menu_Widget extends \WP_Nav_Menu_Widget
         $a[] = '    </li>';
         $a[] = '  </ul>';
         $a[] = '</nav>';
-        echo (join ($a, "\n"));
+        echo (join ("\n", $a));
 
         parent::widget ($args, $instance);
     }

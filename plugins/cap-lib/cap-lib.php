@@ -45,7 +45,6 @@ add_action ('init',                  ns ('on_init'));
 add_action ('wp_enqueue_scripts',    ns ('on_enqueue_scripts'));
 
 add_action ('admin_init',            ns ('on_admin_init'));
-add_action ('admin_enqueue_scripts', ns ('on_admin_enqueue_scripts'));
 add_action ('admin_menu',            ns ('on_admin_menu'));
 
 add_filter (

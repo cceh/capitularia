@@ -51,8 +51,17 @@
 
 /** @module plugins/collation/front */
 
-import Selector from 'selector.vue'
-import Results from  'results.vue';
+import Vue from 'vue';
+import { ButtonPlugin, DropdownPlugin, FormCheckboxPlugin, TooltipPlugin } from 'bootstrap-vue';
+
+Vue.use (DropdownPlugin);
+Vue.use (FormCheckboxPlugin);
+Vue.use (TooltipPlugin);
+Vue.use (ButtonPlugin);
+
+import Selector from './selector.vue'
+import Results  from './results.vue';
+
 
 /**
  * The vue.js instance that manages the whole page.

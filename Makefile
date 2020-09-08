@@ -14,7 +14,7 @@ deploy_xslt: make_dependencies
 deploy_xml: deploy_mss deploy_capits
 
 deploy_mss:
-	$(RSYNC) mss/*.xml $(PUBL)/mss/
+	$(RSYNC) --exclude='bk-textzeuge.xml' mss/*.xml $(PUBL)/mss/
 
 deploy_capits:
 	$(RSYNC) capit/ $(PUBL)/capit/
@@ -87,9 +87,14 @@ server: geodata-server
 client: geodata-client
 	cd $(CLIENT) && $(MAKE) build
 
+# https://stackoverflow.com/questions/41680793
+# https://stackoverflow.com/questions/2973445
+$(JS_DEST)/front%js $(JS_DEST)/admin%js : $(JS_SRC)/*.js $(CSS_SRC)/*.scss
+	$(WEBPACK) --config $(WEBPACK_CONFIG)
+
 .PHONY: dev-server
-dev-server: geodata-client
-	cd $(CLIENT) && $(MAKE) dev-server
+dev-server:
+	$(WEBPACK_DEV_SERVER) --config $(WEBPACK_CONFIG)
 
 .PHONY: geodata-server geodata-client
 geodata-server:
@@ -138,7 +143,7 @@ phpcs:
 	-vendor/bin/phpcs --standard=tools/phpcs --report=emacs -s --extensions=php --ignore=node_modules themes plugins
 
 
-TARGETS = css js js_prod csslint jslint phplint mo po pot deploy clean
+TARGETS = csslint jslint phplint mo po pot deploy clean
 
 define TARGETS_TEMPLATE
 

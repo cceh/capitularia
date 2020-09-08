@@ -86,7 +86,7 @@ function echo_attribute ($name, $value)
 
 function echo_theme_image ($img)
 {
-    echo ('src="' . get_bloginfo ('template_directory') . "/img/$img\"");
+    echo ('src="' . get_bloginfo ('template_directory') . "/images/$img\"");
 }
 
 /**
@@ -201,22 +201,28 @@ function on_enqueue_scripts ()
      * Wordpress.  But if we provide the whole jquery-ui of our own we may get out
      * of sync with Wordpress' assumptions of the actual jquery-ui version.
      *
-     * Currently we provide our own jquery-ui CSS file.
+     * NOTE: Currently we don't use jquery-ui on the front anymore.
+     *
+     * NOTE: many CSS files are webpacked into front.js.
      */
 
-    wp_register_style ('cap-jquery-ui-css', "$template_dir/css/jquery-ui.css");
+    $ext = defined ('WP_DEBUG') ? '.js' : '.min.js';
 
-    $dep = array ('cap-jquery-ui-css');
-    // note: bootstrap css is @imported in front.scss
+    // wp_register_style ('cap-jquery-ui-css', "$template_dir/css/jquery-ui.css");
 
-    wp_enqueue_style ('cap-front',       "$template_dir/css/front.css", $dep);
+    // $dep = array ('cap-jquery-ui-css');
+    // note: bootstrap css is @imported in front.js
+
+    // wp_enqueue_style ('cap-jquery-ui-css',  "$template_dir/css/front.css");
+    // wp_enqueue_style ('cap-front',       "$template_dir/css/front.css", $dep);
     wp_enqueue_style ('dashicons');
 
     // make our modern jquery overrride wp's ancient jquery
-    wp_enqueue_script ('cap-jquery',    "$template_dir/node_modules/jquery/dist/jquery.js", array ('jquery'));
-    wp_enqueue_script ('cap-custom-js', "$template_dir/js/custom.js", array ('cap-jquery'));
-    wp_enqueue_script ('cap-piwik',     "$template_dir/js/piwik-wrapper.js");
+    // wp_enqueue_script ('cap-jquery',    "$template_dir/node_modules/jquery/dist/jquery$ext", array ('jquery'));
+    wp_enqueue_script ('cap-vendor-js', "$template_dir/js/vendor.js");
+    wp_enqueue_script ('cap-front-js',  "$template_dir/js/front.js", array ('cap-vendor-js'));
 
+    /*
     $bs_dep = array ('cap-jquery', 'cap-popper-js', 'cap-bs-util-js');
 
     wp_enqueue_script ('cap-popper-js',      "$template_dir/node_modules/popper.js/dist/umd/popper.js");
@@ -225,10 +231,11 @@ function on_enqueue_scripts ()
     wp_enqueue_script ('cap-bs-collapse-js', "$template_dir/node_modules/bootstrap/js/dist/collapse.js", $bs_dep);
     wp_enqueue_script ('cap-bs-dropdown-js', "$template_dir/node_modules/bootstrap/js/dist/dropdown.js", $bs_dep);
 
-    wp_register_script ('cap-underscore',    "$template_dir/node_modules/underscore/underscore.js");
-    wp_register_script ('cap-vue',           "$template_dir/node_modules/vue/dist/vue.js");
-    wp_register_script ('cap-bootstrap-vue', "$template_dir/node_modules/bootstrap-vue/dist/bootstrap-vue.js", array ('cap-vue'));
-    wp_register_script ('cap-bootstrap-vue-icons', "$template_dir/node_modules/bootstrap-vue/dist/bootstrap-vue-icons.js", array ('cap-bootstrap-vue'));
+    wp_register_script ('cap-lodash',        "$template_dir/node_modules/lodash/lodash$ext");
+    wp_register_script ('cap-vue',           "$template_dir/node_modules/vue/dist/vue$ext");
+    wp_register_script ('cap-bootstrap-vue', "$template_dir/node_modules/bootstrap-vue/dist/bootstrap-vue$ext", array ('cap-vue'));
+    wp_register_script ('cap-bootstrap-vue-icons', "$template_dir/node_modules/bootstrap-vue/dist/bootstrap-vue-icons$ext", array ('cap-bootstrap-vue'));
+    */
 }
 
 
@@ -247,9 +254,9 @@ function on_admin_enqueue_scripts ()
 {
     $template_dir = get_template_directory_uri ();
 
-    wp_enqueue_style ('cap-admin',   "$template_dir/css/admin.css");
+    wp_enqueue_script ('cap-admin', "$template_dir/js/admin.js");
 
-    wp_register_style ('cap-jquery-ui-css', "$template_dir/css/jquery-ui.css");
+    // wp_register_style ('cap-jquery-ui-css', "$template_dir/css/jquery-ui.css");
 }
 
 /**

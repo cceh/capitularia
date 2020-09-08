@@ -246,9 +246,6 @@ function urljoin ($url1, $url2)
 
 function on_enqueue_scripts ()
 {
-    // wp_register_style ('cap-lib-front', plugins_url ('css/front.css', __FILE__));
-    // wp_enqueue_style  ('cap-lib-front');
-
     wp_register_script (
         'cap-lib-front',
         plugins_url ('js/front.js', __FILE__),
@@ -286,18 +283,6 @@ function on_init ()
 
 function on_admin_init ()
 {
-}
-
-/**
- * Enqueue the admin page scripts and styles
- *
- * @return void
- */
-
-function on_admin_enqueue_scripts ()
-{
-    wp_register_style ('cap-lib-admin', plugins_url ('css/admin.css', __FILE__));
-    wp_enqueue_style  ('cap-lib-admin');
 }
 
 /**

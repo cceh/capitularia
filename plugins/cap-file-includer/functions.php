@@ -91,18 +91,6 @@ function get_root ()
 }
 
 /**
- * Enqueue the frontpage scripts and styles
- *
- * @return void
- */
-
-function on_enqueue_scripts ()
-{
-    wp_register_style ('cap-fi-front', plugins_url ('css/front.css', __FILE__));
-    wp_enqueue_style  ('cap-fi-front');
-}
-
-/**
  * Initialize the plugin.
  *
  * @return void
@@ -111,18 +99,6 @@ function on_enqueue_scripts ()
 function on_init ()
 {
     load_plugin_textdomain (LANG, false, basename (dirname (__FILE__)) . '/languages/');
-}
-
-/**
- * Enqueue the admin page scripts and styles
- *
- * @return void
- */
-
-function on_admin_enqueue_scripts ()
-{
-    wp_register_style ('cap-fi-admin', plugins_url ('css/admin.css', __FILE__));
-    wp_enqueue_style  ('cap-fi-admin');
 }
 
 /**

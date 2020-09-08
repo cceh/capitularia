@@ -25,7 +25,6 @@ class Sticky_Nav_Menu_Widget extends \WP_Nav_Menu_Widget
         );
 
         add_filter ('widget_nav_menu_args', array ($this, 'on_widget_nav_menu_args'), 10, 3);
-        add_action ('wp_enqueue_scripts',   array ($this, 'on_enqueue_scripts'));
     }
 
     public function widget ($args, $instance)
@@ -41,14 +40,5 @@ class Sticky_Nav_Menu_Widget extends \WP_Nav_Menu_Widget
             $nav_menu_args['menu_class']      = 'menu clearfix';
         }
         return $nav_menu_args;
-    }
-
-    public static function on_enqueue_scripts ()
-    {
-        wp_enqueue_script (
-            'class-sticky-nav-menu-widget-js',
-            get_template_directory_uri () . '/widgets/class-sticky-nav-menu-widget.js',
-            array ('cap-jquery')
-        );
     }
 }

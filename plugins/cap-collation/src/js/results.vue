@@ -25,7 +25,9 @@
  * @file
  */
 
-import * as tools from 'tools';
+import $ from 'jquery';
+
+import * as tools from './tools.js';
 
 /**
  * The vue.js instance that manages the collation output table.
@@ -260,6 +262,8 @@ export default {
 <style lang="scss">
 /* results.vue */
 
+@import '~/themes/Capitularia/src/css/fonts.scss';
+
 table.collation {
     page-break-inside: avoid;
     width: 100%;
@@ -270,17 +274,6 @@ table.collation {
     }
 
     tbody tr {
-        &.sortable {
-            th.handle {
-                cursor: move;
-                cursor: grab;
-
-                i.fas::before {
-                    content: '\f0dc'; /* fa-sort */
-                }
-            }
-        }
-
         &:first-child {
             background-color: var(--brand-beige);
         }
@@ -300,6 +293,16 @@ table.collation {
     }
 
     th {
+        @include semibold;
+        &.handle {
+            cursor: move;
+            cursor: grab;
+
+            i.fas::before {
+                content: '\f0dc'; /* fa-sort */
+            }
+        }
+
         &.title {
             width: 1%;
         }

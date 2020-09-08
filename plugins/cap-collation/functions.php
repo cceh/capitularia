@@ -37,12 +37,7 @@ function on_enqueue_scripts ()
         plugins_url ('js/front.js', __FILE__),
         array (
             'wp-i18n',
-            'cap-lib-front',
-            'cap-underscore',
-            'cap-vue',
-            'cap-bootstrap-vue',
-            'cap-jquery',
-            'jquery-ui-sortable'
+            'cap-lib-front'
         )
     );
 

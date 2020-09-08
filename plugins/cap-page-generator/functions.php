@@ -234,8 +234,11 @@ function on_cap_load_section ()
 
 function on_enqueue_scripts ()
 {
-    wp_register_style ('cap-page-gen-front', plugins_url ('css/front.css', __FILE__));
-    wp_enqueue_style  ('cap-page-gen-front');
+    wp_register_script (
+        'cap-page-gen-front',
+        plugins_url ('js/front.js', __FILE__)
+    );
+    wp_enqueue_script  ('cap-page-gen-front');
 }
 
 /**
@@ -267,12 +270,7 @@ function on_query_vars ($vars)
 
 function on_admin_enqueue_scripts ()
 {
-    wp_register_style (
-        'cap-page-gen-admin',
-        plugins_url ('css/admin.css', __FILE__),
-        array ('cap-jquery-ui-css')
-    );
-    wp_enqueue_style  ('cap-page-gen-admin');
+    wp_enqueue_style ('cap-jquery-ui-css');
 
     wp_register_script (
         'cap-page-gen-admin',

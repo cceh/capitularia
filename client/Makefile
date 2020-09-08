@@ -1,10 +1,5 @@
 include ../Variables.mak
 
-WEBPACK := node_modules/.bin/webpack --no-color
-WEBPACK_DEV_SERVER := node_modules/.bin/webpack-dev-server --no-color
-ESLINT := node_modules/.bin/eslint -f unix
-STYLELINT := node_modules/.bin/stylelint --custom-formatter ./stylelint-unix-formatter.js
-
 .PHONY: build build-production
 
 AUX := build/index.html build/api.conf.js
