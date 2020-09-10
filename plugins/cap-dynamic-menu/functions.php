@@ -7,6 +7,8 @@
 
 namespace cceh\capitularia\dynamic_menu;
 
+use cceh\capitularia\lib;
+
 const MAGIC_MENU  = '#cap_dynamic_menu#';
 const MAGIC_LOGIN = '#cap_login_menu#';
 
@@ -31,13 +33,6 @@ function ns ($function_name)
 
 function on_enqueue_scripts ()
 {
-    wp_register_style  ('cap-dynamic-menu-front', plugins_url ('css/front.css', __FILE__));
-    wp_register_script (
-        'cap-dynamic-menu-front',
-        plugins_url ('js/front.js', __FILE__),
-        array ('cap-front-js')
-    );
-
     load_plugin_textdomain (LANG, false, basename (dirname (__FILE__)) . '/languages/');
 }
 
@@ -63,7 +58,9 @@ function on_nav_menu_link_attributes ($atts, $item, $args, $depth) // phpcs:igno
         if (strcmp ($item->url, MAGIC_MENU) === 0) {
             $atts['data-cap-dynamic-menu'] = $item->description;
             // enqueue only if a dynamic menu is on the page
-            wp_enqueue_script  ('cap-dynamic-menu-front');
+            // script must be enqueued in the footer!
+            lib\enqueue_from_manifest ('cap-dynamic-menu-front.js', ['cap-theme-front.js']);
+            $item->title = '<i class="fas fa-spinner fa-spin"></i>';
         }
         if (strcmp ($item->url, MAGIC_LOGIN) === 0) {
             $atts['href'] = wp_login_url (get_permalink ());

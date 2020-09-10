@@ -368,9 +368,13 @@ class File_List_Table extends \WP_List_Table
 
         $actions = array ();
         foreach ($this->bulk_actions as $action => $caption) {
-            // if 'delete' make it red
-            $class = ($action == 'delete') ? ' class="submitdelete"' : '';
-            $actions[$action] = "<a{$class} onclick=\"cap_page_generator_admin.on_cap_action_file (this, '{$action}')\">{$caption}</a>";
+            $classes = ["cap-page-generator-action"];
+            if ($action == 'delete') {
+                // if 'delete' make it red
+                $classes[] = submitdelete;
+            }
+            $class = join (' ', $classes);
+            $actions[$action] = "<a class=\"{$class}\" data-action=\"{$action}\">{$caption}</a>";
         }
         $status = $manuscript->get_status ();
         // do not show actions that would change nothing

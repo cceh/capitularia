@@ -62,12 +62,6 @@ const OPTIONS              = 'cap_page_gen_options';
 /** The Wordpress ID of the dashboard page. */
 const DASHBOARD            = 'cap_page_gen_dashboard';
 
-/** AJAX security */
-const NONCE_SPECIAL_STRING = 'cap_page_gen_nonce';
-
-/** AJAX security */
-const NONCE_PARAM_NAME     = '_ajax_nonce';
-
 if (!class_exists ('\WP_List_Table')) {
     include_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 }

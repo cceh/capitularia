@@ -7,6 +7,8 @@
 
 namespace cceh\capitularia\page_generator;
 
+use cceh\capitularia\lib;
+
 /**
  * Add current namespace
  *
@@ -202,7 +204,7 @@ function on_init ()
 
 function on_cap_action_file ()
 {
-    check_ajax_referer (NONCE_SPECIAL_STRING, NONCE_PARAM_NAME);
+    lib\check_ajax_referrer ();
     if (!current_user_can ('edit_posts')) {
         wp_send_json_error (
             array ('message' => __ ('You have no permission to edit posts.', LANG))
@@ -234,11 +236,7 @@ function on_cap_load_section ()
 
 function on_enqueue_scripts ()
 {
-    wp_register_script (
-        'cap-page-gen-front',
-        plugins_url ('js/front.js', __FILE__)
-    );
-    wp_enqueue_script  ('cap-page-gen-front');
+    lib\enqueue_from_manifest ('cap-page-generator-front.js', ['cap-theme-front.js']);
 }
 
 /**
@@ -270,21 +268,9 @@ function on_query_vars ($vars)
 
 function on_admin_enqueue_scripts ()
 {
-    wp_enqueue_style ('cap-jquery-ui-css');
-
-    wp_register_script (
-        'cap-page-gen-admin',
-        plugins_url ('js/admin.js', __FILE__),
-        array ('jquery-ui-tabs', 'jquery-ui-progressbar')
-    );
-    wp_enqueue_script ('cap-page-gen-admin');
-
-    wp_localize_script (
-        'cap-page-gen-admin',
-        'cap_page_gen_admin_ajax_object',
-        array (
-            NONCE_PARAM_NAME => wp_create_nonce (NONCE_SPECIAL_STRING),
-        )
+    lib\enqueue_from_manifest (
+        'cap-page-generator-admin.js',
+        ['cap-theme-admin.js', 'jquery-ui-tabs', 'jquery-ui-progressbar']
     );
 }
 

@@ -7,6 +7,12 @@
 
 namespace cceh\capitularia\lib;
 
+/** AJAX security */
+const NONCE_SPECIAL_STRING = 'cap_lib_nonce';
+
+/** AJAX security */
+const NONCE_PARAM_NAME     = '_ajax_nonce';
+
 /**
  * Add current namespace
  *
@@ -239,27 +245,67 @@ function urljoin ($url1, $url2)
 }
 
 /**
- * Enqueue the frontpage scripts and styles
+ * Enqueue scripts from the webpack manifest.
+ *
+ * @param string        $key           The manifest key, eg. 'cap-collation-front.js'.
+ * @param array<string> $dependencies  The dependencies, eg. ['vendor.js'].
+ *
+ * @return void
+ */
+
+function enqueue_from_manifest ($key, $dependencies = array ()) {
+    \cceh\capitularia\theme\enqueue_from_manifest ($key, $dependencies);
+}
+
+/**
+ * Enqueue the frontpage script.
  *
  * @return void
  */
 
 function on_enqueue_scripts ()
 {
-    wp_register_script (
-        'cap-lib-front',
-        plugins_url ('js/front.js', __FILE__),
-        array ()
+    $handle = 'cap-lib-front.js';
+
+    enqueue_from_manifest ($handle);
+
+    $data = array (
+        'api_url'            => get_opt ('api'),
+        'ajaxurl'            => admin_url ('admin-ajax.php'),
+        'read_private_pages' => current_user_can ('read_private_pages'),
     );
 
+    if (is_admin ()) {
+        $data[NONCE_PARAM_NAME] = wp_create_nonce (NONCE_SPECIAL_STRING);
+    }
+
     wp_localize_script (
-        'cap-lib-front',
+        $handle,
         'cap_lib',
-        array (
-            'api_url' => get_opt ('api'),
-            'ajaxurl' => admin_url ('admin-ajax.php')
-        )
+        $data
     );
+}
+
+/**
+ * Enqueue the admin page script.
+ *
+ * @return void
+ */
+
+function on_admin_enqueue_scripts ()
+{
+    on_enqueue_scripts ();
+}
+
+/**
+ * Check the AJAX nonce.  Die if invalid.
+ *
+ * @return void
+ */
+
+function check_ajax_referrer ()
+{
+    \check_ajax_referer (NONCE_SPECIAL_STRING, NONCE_PARAM_NAME);
 }
 
 /**

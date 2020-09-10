@@ -50,8 +50,6 @@ const LANG = 'cap-collation';
 
 require_once 'functions.php';
 
-add_action ('wp_enqueue_scripts', ns ('on_enqueue_scripts'));
-
 add_shortcode ('cap_collation_dashboard', ns ('on_shortcode'));
 
 // for side effect only: to get it in the .po file

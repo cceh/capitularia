@@ -4,10 +4,9 @@
  * @file Contains utility functions for the collation applet.
  */
 
-import $ from 'jquery';
+/* global cap_lib */
 
-/** cap_collation_user_front_ajax_object is set by wp_localize_script in function.php. */
-/* global cap_collation_user_front_ajax_object */
+import $ from 'jquery';
 
 // See: https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
 const { __, _x, _n, _nx } = wp.i18n;
@@ -59,7 +58,7 @@ export function insert_css_palette (palette) {
  * @returns {string} The root URL of the API server.
  */
 export function get_api_entrypoint () {
-    return cap_collation_user_front_ajax_object.api_url;
+    return cap_lib.api_url;
 }
 
 /**
@@ -70,7 +69,7 @@ export function get_api_entrypoint () {
  * @returns {Promise} Promise resolved when call completed.
  */
 export function api (url, data = {}) {
-    data.status = cap_collation_user_front_ajax_object.status;
+    data.status = cap_lib.read_private_pages ? 'private' : 'public';
 
     const p = $.ajax ({
         'url'  : get_api_entrypoint () + url,

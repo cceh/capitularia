@@ -7,11 +7,11 @@ const devPort = 8081;
 module.exports = merge (common, {
     mode    : 'development',
     devtool : 'eval-source-map',
-    output  : {
+    /* output  : {
         // This is where the HMR module looks for the hot-update files.
         // We actually serve nothing but the hot-update files from here.
         publicPath : `http://capitularia.fritz.box:${devPort}/`,
-    },
+    },*/
     devServer : {
         host        : 'capitularia.fritz.box',
         port        : devPort,
@@ -34,7 +34,7 @@ module.exports = merge (common, {
         // See: https://mikeselander.com/hot-reloading-using-webpack-with-php-file-changes/
         before (app, server) {
             chokidar
-                .watch (['themes/**/*.php', 'plugins/**/*.php', 'webpack.*.js'], {
+                .watch (['themes/**/*.php', 'plugins/**/*.php'], {
                     alwaysStat     : true,
                     atomic         : false,
                     followSymlinks : false,

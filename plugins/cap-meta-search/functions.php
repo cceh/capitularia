@@ -146,18 +146,5 @@ function on_cap_meta_search_the_permalink ($permalink)
 
 function on_enqueue_scripts ()
 {
-    wp_register_script (
-        'cap-meta-search-front',
-        plugins_url ('js/front.js', __FILE__),
-        array ('cap-lib-front')
-    );
-    wp_enqueue_script  ('cap-meta-search-front');
-
-    wp_localize_script (
-        'cap-meta-search-front',
-        'cap_meta_search_front_ajax_object',
-        array (
-            'ajaxurl' => admin_url ('admin-ajax.php')
-        )
-    );
+    lib\enqueue_from_manifest ('cap-meta-search-front.js', ['cap-theme-front.js']);
 }

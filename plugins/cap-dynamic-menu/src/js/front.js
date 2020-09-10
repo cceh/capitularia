@@ -45,6 +45,8 @@
  * @file
  */
 
+import $ from 'jquery';
+
 /**
  * Initialize all dynamic menus on the page.
  *

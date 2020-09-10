@@ -179,6 +179,26 @@ function get_content_end ()
 }
 
 /**
+ * Enqueue scripts from the webpack manifest.
+ *
+ * @param string        $key           The manifest key, eg. 'cap-collation-front.js'.
+ * @param array<string> $dependencies  The dependencies, eg. ['vendor.js'].
+ *
+ * @return void
+ */
+
+function enqueue_from_manifest ($key, $dependencies = array ()) {
+    static $manifest = null;
+
+    if ($manifest === null) {
+        $manifest = get_stylesheet_directory () . '/manifest.json';
+        $manifest = json_decode (file_get_contents ($manifest));
+    }
+
+    wp_enqueue_script ($key, $manifest->{$key}, $dependencies, $ver = null);
+}
+
+/**
  * Enqueue scripts and CSS
  *
  * Add JS and CSS the wordpress way.
@@ -190,7 +210,9 @@ function get_content_end ()
 
 function on_enqueue_scripts ()
 {
-    $template_dir = get_template_directory_uri ();
+    enqueue_from_manifest ('cap-runtime.js');
+    enqueue_from_manifest ('cap-vendor.js', ['cap-runtime.js']);
+    enqueue_from_manifest ('cap-theme-front.js', ['cap-vendor.js']);
 
     /*
      * Register jquery-ui CSS for the use of plugins
@@ -205,6 +227,9 @@ function on_enqueue_scripts ()
      *
      * NOTE: many CSS files are webpacked into front.js.
      */
+
+    /*
+    $template_dir = get_template_directory_uri ();
 
     $ext = defined ('WP_DEBUG') ? '.js' : '.min.js';
 
@@ -222,7 +247,6 @@ function on_enqueue_scripts ()
     wp_enqueue_script ('cap-vendor-js', "$template_dir/js/vendor.js");
     wp_enqueue_script ('cap-front-js',  "$template_dir/js/front.js", array ('cap-vendor-js'));
 
-    /*
     $bs_dep = array ('cap-jquery', 'cap-popper-js', 'cap-bs-util-js');
 
     wp_enqueue_script ('cap-popper-js',      "$template_dir/node_modules/popper.js/dist/umd/popper.js");
@@ -252,11 +276,16 @@ function on_enqueue_scripts ()
 
 function on_admin_enqueue_scripts ()
 {
+    enqueue_from_manifest ('cap-runtime.js');
+    enqueue_from_manifest ('cap-theme-admin.js', ['cap-runtime.js', 'cap-lib-front.js', 'jquery']);
+
+    /*
     $template_dir = get_template_directory_uri ();
 
     wp_enqueue_script ('cap-admin', "$template_dir/js/admin.js");
 
     // wp_register_style ('cap-jquery-ui-css', "$template_dir/css/jquery-ui.css");
+    */
 }
 
 /**

@@ -1,34 +1,46 @@
 const path = require ('path');
 const glob = require ('glob');
-const VueLoaderPlugin = require ('vue-loader/lib/plugin'); // loads vue single-file components
+
+const VueLoaderPlugin   = require ('vue-loader/lib/plugin'); // loads vue single-file components
+const ManifestPlugin    = require ('webpack-manifest-plugin');
 
 module.exports = {
     context: path.resolve (__dirname),
     entry : {
-        vendor : {
+        'cap-vendor' : {
             import : ['jquery', 'lodash', 'popper.js', 'bootstrap', 'vue', 'bootstrap-vue'],
         },
-        front : {
-            import   : ['./themes/Capitularia/src/js/front.js', './themes/Capitularia/src/css/front.scss'],
-            dependOn : 'vendor',
+        'cap-theme-front' : {
+            import   : [
+                './themes/Capitularia/src/js/front.js',
+                './themes/Capitularia/src/css/front.scss'
+            ],
+            dependOn : 'cap-vendor',
         },
-        admin : {
-            import : ['./themes/Capitularia/src/js/admin.js', './themes/Capitularia/src/css/admin.scss'],
+        'cap-theme-admin' : {
+            import : [
+                './themes/Capitularia/src/js/admin.js',
+                './themes/Capitularia/src/css/admin.scss'
+            ],
         },
-        images : {
+        'cap-theme-images' : {
+            // a dummy module to pull in all the images
             import : glob.sync ('./themes/Capitularia/src/images/*.png'),
         },
 
         'cap-collation-front' : {
             import   : './plugins/cap-collation/src/js/front.js',
-            filename : './plugins/cap-collation/js/front.js',
-            dependOn : 'vendor',
+            dependOn : 'cap-vendor',
         },
 
         'cap-dynamic-menu-front' : {
             import   : './plugins/cap-dynamic-menu/src/js/front.js',
-            filename : './plugins/cap-dynamic-menu/js/front.js',
-            dependOn : 'vendor',
+            dependOn : 'cap-vendor',
+        },
+
+        'cap-lib-front' : {
+            import   : './plugins/cap-lib/src/js/front.js',
+            dependOn : 'cap-vendor',
         },
 
         'cap-meta-search-front' : {
@@ -36,15 +48,14 @@ module.exports = {
                 './plugins/cap-meta-search/src/js/front.js',
                 './plugins/cap-meta-search/src/css/front.scss',
             ],
-            filename : './plugins/cap-meta-search/js/front.js',
-            dependOn : 'vendor',
+            dependOn : 'cap-vendor',
         },
 
         'cap-page-generator-front' : {
             import   : [
                 './plugins/cap-page-generator/src/css/front.scss',
             ],
-            filename : './plugins/cap-page-generator/js/front.js'
+            dependOn : 'cap-vendor',
         },
 
         'cap-page-generator-admin' : {
@@ -52,13 +63,23 @@ module.exports = {
                 './plugins/cap-page-generator/src/js/admin.js',
                 './plugins/cap-page-generator/src/css/admin.scss',
             ],
-            filename : './plugins/cap-page-generator/js/admin.js'
         },
     },
     output : {
-        filename   : 'themes/Capitularia/js/[name].js', // default filename
+        filename   : (pathData, assetInfo) => {
+            const name = pathData.chunk.name;
+            if (name === 'cap-runtime' ||
+                name === 'cap-vendor' ||
+                name.match (/^cap-theme-/)) {
+                // default filename for theme
+                return 'themes/Capitularia/dist/js/[name].[contenthash].js';
+            }
+            const plugin = name.replace (/(-front)|(-admin)$/, '');
+            // default filename for plugins
+            return `plugins/${plugin}/dist/js/[name].[contenthash].js`;
+        },
         path       : __dirname,
-        publicPath : '/wp-content',
+        publicPath : '/wp-content/',
     },
     module : {
         rules : [
@@ -86,15 +107,6 @@ module.exports = {
                 ],
             },
             {
-                test : /\.less$/,
-                use  : [
-                    'style-loader',
-                    'css-loader',
-                    'postcss-loader',
-                    'less-loader',
-                ],
-            },
-            {
                 test : /\.css$/,
                 use  : [
                     'style-loader',
@@ -115,7 +127,7 @@ module.exports = {
                 ],
             },
             {
-                test : /\.(eot|svg|ttf|woff|woff2)$/,
+                test : /\.(ttf|woff|woff2)$/,
                 use  : [
                     {
                         loader  : 'file-loader',
@@ -128,7 +140,12 @@ module.exports = {
             },
         ],
     },
-    /*optimization: {
+    optimization: {
+        runtimeChunk: {
+            name: 'cap-runtime',
+        },
+        moduleIds    : 'deterministic',
+        /*
         splitChunks: {
             cacheGroups: {
                 common: {
@@ -138,17 +155,20 @@ module.exports = {
                     enforce: true,
                 },
                 vendor: {
-                    name: 'vendor',
+                    name: 'cap-vendor',
                     test: /node_modules/,
                     chunks: 'all',
                     reuseExistingChunk: true,
                 },
             },
-        },
-        runtimeChunk: 'single',
-    },*/
+        },*/
+    },
     plugins : [
         new VueLoaderPlugin (),
+        new ManifestPlugin ({
+            fileName : path.resolve (__dirname, 'themes/Capitularia/manifest.json'),
+            writeToFileEmit : true,
+        }),
     ],
     resolve : {
         modules : [
@@ -157,7 +177,7 @@ module.exports = {
             'node_modules',
         ],
         alias : {
-            'vue$' : 'vue/dist/vue.esm.js', // includes template compiler
+            'vue$' : 'vue/dist/vue.esm.js', // includes the template compiler
         },
     },
 };

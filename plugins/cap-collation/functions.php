@@ -30,32 +30,18 @@ function ns ($function_name)
  * @return void
  */
 
-function on_enqueue_scripts ()
+function enqueue_scripts ()
 {
-    wp_register_script (
-        'cap-collation',
-        plugins_url ('js/front.js', __FILE__),
-        array (
-            'wp-i18n',
-            'cap-lib-front'
-        )
-    );
+    $handle = 'cap-collation-front.js';
 
-    load_plugin_textdomain (LANG, false, basename (dirname (__FILE__)) . '/languages/');
+    lib\enqueue_from_manifest ($handle, ['cap-theme-front.js', 'wp-i18n']);
 
-    // Actually we use this to pass some status information to JS
-    wp_localize_script (
-        'cap-collation',
-        'cap_collation_user_front_ajax_object',
-        array (
-            'api_url'  => lib\get_opt ('api'),
-            'status'   => current_user_can ('read_private_pages') ? 'private' : 'publish',
-        )
-    );
+    // no i18n in php files
+    // load_plugin_textdomain (LANG, false, basename (dirname (__FILE__)) . '/languages/');
 
     // See: https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
     wp_set_script_translations (
-        'cap-collation',
+        $handle,
         LANG,
         plugin_dir_path (__FILE__) . 'languages'
     );
@@ -77,7 +63,7 @@ function on_shortcode ($dummy_atts, $dummy_content) // phpcs:ignore
 {
     // Include the <script> only if the shortcode is actually on the page.
     // Makes the script show up in the footer.
-    wp_enqueue_script ('cap-collation');
+    enqueue_scripts ();
 
     return '<cap-collation-app id="cap-collation-app"></cap-collation-app>';
 }

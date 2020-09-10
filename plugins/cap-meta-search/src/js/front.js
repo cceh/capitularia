@@ -5,6 +5,8 @@
  * @file
  */
 
+/* global cap_lib */
+
 import $ from 'jquery';
 window.$ = $; // stupid jstree needs this
 
