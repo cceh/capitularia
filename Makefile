@@ -87,14 +87,15 @@ server: geodata-server
 client: geodata-client
 	cd $(CLIENT) && $(MAKE) build
 
-# https://stackoverflow.com/questions/41680793
-# https://stackoverflow.com/questions/2973445
-$(JS_DEST)/front%js $(JS_DEST)/admin%js : $(JS_SRC)/*.js $(CSS_SRC)/*.scss
-	$(WEBPACK) --config $(WEBPACK_CONFIG)
+.PHONY: js js-prod dev-server
+js:
+	$(WEBPACK) --config $(WEBPACK_DEV_CONFIG)
 
-.PHONY: dev-server
+js-prod:
+	$(WEBPACK) --config $(WEBPACK_PROD_CONFIG)
+
 dev-server:
-	$(WEBPACK_DEV_SERVER) --config $(WEBPACK_CONFIG)
+	$(WEBPACK_DEV_SERVER) --config $(WEBPACK_DEV_CONFIG)
 
 .PHONY: geodata-server geodata-client
 geodata-server:

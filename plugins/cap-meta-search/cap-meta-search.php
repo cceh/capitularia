@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Plugin Name: Capitularia Meta Search
  * Plugin URI:
  * Description: Perform metadata-aware searches for and in TEI files.
@@ -9,9 +9,7 @@
  * License:     GPLv2 or later
  * Text Domain: cap-meta-search
  * Domain Path: /languages
- */
-
-/**
+ *
  * TEI Metadata Search plugin.
  *
  * The *Meta Search plugin* offers metadata-aware and fuzzy fulltext search.  A
@@ -30,7 +28,7 @@
  *
  * See: :mod:`data_server`, :ref:`metadata search overview<meta-search-overview>`.
  *
- * @package Capitularia Meta Search
+ * @package Capitularia_Meta_Search
  */
 
 namespace cceh\capitularia\meta_search;

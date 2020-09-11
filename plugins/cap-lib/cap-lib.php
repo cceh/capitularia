@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Plugin Name: Capitularia Library
  * Plugin URI:
  * Description: Library of functions for Capitularia plugins. (REQUIRED)
@@ -10,9 +10,7 @@
  * License:     GPLv2 or later
  * Text Domain: cap-lib
  * Domain Path: /languages
- */
-
-/**
+ *
  * Capitularia Library plugin.
  *
  * The *Library plugin* contains a collection of useful functions.  This plugin
@@ -21,7 +19,7 @@
  *
  * This plugin is required by the other Capitularia plugins.
  *
- * @package Capitularia
+ * @package Capitularia_Lib
  */
 
 namespace cceh\capitularia\lib;

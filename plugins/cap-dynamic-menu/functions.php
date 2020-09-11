@@ -2,7 +2,7 @@
 /**
  * Capitularia Dynamic Menu global functions.
  *
- * @package Capitularia Dynamic Menu
+ * @package Capitularia_Dynamic_Menu
  */
 
 namespace cceh\capitularia\dynamic_menu;
@@ -42,14 +42,14 @@ function on_enqueue_scripts ()
  * Puts the item description into the HTML attribute
  * data-cap-dynamic-menu.  Otherwise it would get lost.
  *
- * @see src/js/front.js for more information.
- *
- * @param array    $atts   The old HTML attributes.
- * @param WP_Post  $item   The current menu item.
- * @param stdClass $args   An object of wp_nav_menu() arguments.
- * @param int      $depth  Depth of menu item. Used for padding.
+ * @param array    $atts  The old HTML attributes.
+ * @param WP_Post  $item  The current menu item.
+ * @param stdClass $args  An object of wp_nav_menu() arguments.
+ * @param int      $depth Depth of menu item. Used for padding.
  *
  * @return array  The updated HTML attributes.
+ *
+ * @see src/js/front.js for more information.
  */
 
 function on_nav_menu_link_attributes ($atts, $item, $args, $depth) // phpcs:ignore

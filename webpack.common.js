@@ -66,17 +66,20 @@ module.exports = {
         },
     },
     output : {
-        filename   : (pathData, assetInfo) => {
+        filename : (pathData, assetInfo) => {
             const name = pathData.chunk.name;
             if (name === 'cap-runtime' ||
                 name === 'cap-vendor' ||
                 name.match (/^cap-theme-/)) {
                 // default filename for theme
-                return 'themes/Capitularia/dist/js/[name].[contenthash].js';
+                return 'themes/Capitularia/dist/[name].[contenthash].js';
             }
-            const plugin = name.replace (/(-front)|(-admin)$/, '');
-            // default filename for plugins
-            return `plugins/${plugin}/dist/js/[name].[contenthash].js`;
+            if (name.match (/^cap-/)) {
+                const plugin = name.replace (/(-front)|(-admin)$/, '');
+                // default filename for plugins
+                return `plugins/${plugin}/dist/[name].[contenthash].js`;
+            }
+            return '[name].[contenthash].js';
         },
         path       : __dirname,
         publicPath : '/wp-content/',
@@ -101,7 +104,12 @@ module.exports = {
                 test : /\.scss$/,
                 use  : [
                     'style-loader',
-                    'css-loader',
+                    {
+                        loader  : 'css-loader',
+                        options : {
+                            importLoaders : 2,
+                        }
+                    },
                     'postcss-loader',
                     'sass-loader',
                 ],
@@ -110,7 +118,12 @@ module.exports = {
                 test : /\.css$/,
                 use  : [
                     'style-loader',
-                    'css-loader',
+                    {
+                        loader  : 'css-loader',
+                        options : {
+                            importLoaders : 1,
+                        }
+                    },
                     'postcss-loader',
                 ],
             },
@@ -121,7 +134,7 @@ module.exports = {
                         loader  : 'file-loader',
                         options : {
                             name       : '[name].[ext]',
-                            outputPath : 'themes/Capitularia/images',
+                            outputPath : 'themes/Capitularia/dist/images',
                         },
                     },
                 ],
@@ -133,7 +146,7 @@ module.exports = {
                         loader  : 'file-loader',
                         options : {
                             name       : '[name].[ext]',
-                            outputPath : 'themes/Capitularia/webfonts',
+                            outputPath : 'themes/Capitularia/dist/webfonts',
                         },
                     },
                 ],
@@ -172,7 +185,6 @@ module.exports = {
     ],
     resolve : {
         modules : [
-            path.resolve (__dirname, 'themes/Capitularia/node_modules'),
             path.resolve (__dirname, 'client/node_modules'),
             'node_modules',
         ],

@@ -5,6 +5,7 @@
 .bottom-nav {
     margin-top:    0.3em;
     margin-bottom: 0.3em;
+
     ul {
         margin-right: -14px;
     }
@@ -75,9 +76,7 @@ nav.horiz-nav ul ul li {
 .bottom-nav a:focus,
 .bottom-nav a:hover,
 .bottom-nav li.current-menu-item > a,
-.bottom-nav li.current_page_item > a,
-.bottom-nav li.current-page-ancestor > a,
-.bottom-nav li.current_page_ancestor > a {
+.bottom-nav li.current-page-ancestor > a {
     color: $color-menubar-bottom-hover;
     background: $background-menubar-bottom-hover;
 }
@@ -108,9 +107,9 @@ nav.horiz-nav ul ul li {
 
 /* the login menu entry */
 
-.login a:before {
-    font-family: "dashicons";
-    content: "\f110";
+.login a::before {
+    @include dashicons;
+    content: '\f110';
     padding-right: 0.5em;
     vertical-align: top;
 }
@@ -122,13 +121,17 @@ nav.horiz-nav ul ul li {
 form.searchform {
     @include regular;
     background: linear-gradient(to bottom, #f8f8f8, #ccc);
+
     table {
         width: 100%;
     }
+
     td.submit-cell {
         width: 2.5em;
     }
-    input, button {
+
+    input,
+    button {
         font-size: 1.1em;
         width: 100%;
         height: 2.5em;
@@ -142,6 +145,7 @@ form.searchform {
 
 #searchinput {
     padding: 0 1em;
+
     &:hover {
         background: rgba(0, 0, 0, 0.05);
     }
@@ -150,13 +154,15 @@ form.searchform {
 #searchsubmit {
     margin-left: 1px;
     background: rgba(0, 0, 0, 0.1);
+
     &::after {
-        font-family: "dashicons";
-        content: "\f179";
+        @include dashicons;
+        content: '\f179';
         color: white;
         font-size: 1.5em;
         display: block;
     }
+
     &:hover {
         background: $color-highlight;
     }

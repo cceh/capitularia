@@ -87,8 +87,8 @@ class Settings_Page
             $section_id = $section[0];
             $caption    = __ ($config->get_opt ($section_id, 'section_caption', $section_id));
             $class      = 'navtab';
-            $class      .= $config->section_can ($section_id, 'private') ? ' cap_can_private' : '';
-            $class      .= $config->section_can ($section_id, 'publish') ? ' cap_can_publish' : '';
+            $class      .= $config->section_can ($section_id, 'private') ? ' cap-can-private' : '';
+            $class      .= $config->section_can ($section_id, 'publish') ? ' cap-can-publish' : '';
             echo ("<li><a class='$class' href='#tabs-$section_id'>$caption</a></li>\n");
         }
         echo ("      </ul>\n");
@@ -157,12 +157,12 @@ class Settings_Page
      * We get all user entries back in one string[] so we can store them in one
      * database row.  This makes validation somewhat more difficult.
      *
-     * @see on_options_field()
-     *
      * @param array $options Array of key, value: the options as entered on
      *                       the form.
      *
      * @return array Array containing the validated options
+     *
+     * @see on_options_field()
      */
 
     public function on_validate (array $options)

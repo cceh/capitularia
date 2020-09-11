@@ -1,48 +1,24 @@
-.PHONY: lint phplint jslint csslint docs
+.PHONY: lint phplint jslint eslint jsonlint csslint docs
 
 clean:
 	find . -name '*~' -delete
-	-rm css/*
-	-rm js/*
-	-rm languages/*
-	-rm images/*
-	-rm webfonts/*
+	rm -rf dist
+	rm -rf languages
+	rm -rf images
+	rm -rf webfonts
 
 doc: phpdoc phpmd phpmetrics sami
 
-# sass --embed-source-map crashes with NullError: method not found: 'length' on null
-# so we cannot pipe things
-#$(CSS_DEST)/%.css : $(CSS_SRC)/%.scss
-#	$(SASS) $(SASSFLAGS) $< $@.tmp.css
-#	$(POSTCSS) $(POSTCSSFLAGS) -u autoprefixer -o $@ $@.tmp.css
-#	-rm $@.tmp.css
-
-# node-sass does not work !!!! it royally botches @include media-breakpoint-up(md) {...}
-#$(CSS_DEST)/%.css : $(CSS_SRC)/%.scss
-#	$(POSTCSS) $(POSTCSSFLAGS) -o $@ $<
-
-#$(CSSIMG_DEST)/%.png : $(CSSIMG_SRC)/%.png
-#	cp $< $@
-
-#$(JS_DEST)/%.js : $(JS_SRC)/%.js
-#	$(BABEL) $(BABELFLAGS) --out-file $@ $<
-
-css: $(CSS_DEST_FILES)
-
-js: WEBPACK_CONFIG=webpack.dev.js
-
-js: $(JS_DEST_FILES)
-
-js_prod: WEBPACK_CONFIG=webpack.prod.js
-
-js_prod: $(JS_DEST_FILES)
-
 csslint:
-	$(STYLELINT) $(CSS_SRC_FILES)
+	$(STYLELINT) --allow-empty-input $(CSS_SRC)/*.scss
 
-jslint:
-	$(ESLINT) $(ESLINTFLAGS) $(JS_SRC_FILES)
-	$(JSHINT) $(JSHINTFLAGS) $(JSON_FILES)
+jslint: eslint jsonlint
+
+eslint: $(wildcard $(JS_SRC)/*.js $(JS_SRC)/*.vue *.js .*.js)
+	$(ESLINT) $(ESLINTFLAGS) --no-ignore $?
+
+jsonlint: $(wildcard .*.json)
+	$(JSHINT) $(JSHINTFLAGS) $?
 
 phplint:
 	for f in $(PHP_FILES); do php -l $$f || exit; done
@@ -71,7 +47,7 @@ sami:
 TRANSLATIONS := de_DE  # space-separated list of translations we have eg. de_ED fr_FR
 
 LANG_SRC  := src/languages
-LANG_DEST := languages
+LANG_DEST := dist/languages
 
 define LOCALE_TEMPLATE
 
@@ -85,9 +61,21 @@ $(LANG_SRC)/$(1).po: $(LANG_SRC)/capitularia.pot
 	else msginit --locale=$(1) -i $$? -o $$@; \
 	fi
 
+$(eval HANDLE := $(TEXT_DOMAIN)-front.js)
+
+mo: $(LANG_DEST)/$(TEXT_DOMAIN)-$(1).mo $(LANG_DEST)/$(TEXT_DOMAIN)-$(1)-$(HANDLE).json
+
+$(LANG_DEST)/$(TEXT_DOMAIN)-$(1).mo: $(LANG_SRC)/$(1).po
+	mkdir -p $$(dir $$@)
+	msgfmt -o $$@ $$?
+
+$(LANG_DEST)/$(TEXT_DOMAIN)-$(1)-$(HANDLE).json: $(LANG_SRC)/$(1).po
+	$(PO2JSON) $$? $$@ -f jed1.x --pretty
+
 endef
 
 $(foreach lang,$(TRANSLATIONS),$(eval $(call LOCALE_TEMPLATE,$(lang))))
+
 
 pot: $(LANG_SRC)/capitularia.pot
 
@@ -95,14 +83,17 @@ $(LANG_SRC)/capitularia.pot: $(LANG_SRC)/php.pot $(LANG_SRC)/js.pot $(LANG_SRC)/
 	msgcat -o $@ $^
 
 $(LANG_SRC)/php.pot: $(PHP_FILES)
+	touch $@
 	$(XGETTEXT) -o $@ $^
 
 $(LANG_SRC)/js.pot: $(wildcard $(JS_SRC)/*.js)
+	touch $@
 	$(XGETTEXT) -o $@ $^
 
 $(LANG_SRC)/vue.pot: $(wildcard $(JS_SRC)/*.vue)
-	$(EASYGETTEXT) --output $@ $^
+	touch $@
+	-$(EASYGETTEXT) --output $@ $^
 
 poedit: po
-	poedit src/languages/de_DE.po
+	poedit $(LANG_SRC)/de_DE.po
 	$(MAKE) mo

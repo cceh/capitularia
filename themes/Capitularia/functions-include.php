@@ -11,6 +11,8 @@
 
 namespace cceh\capitularia\theme;
 
+use cceh\capitularia\lib;
+
 /**
  * Add current namespace
  *
@@ -75,18 +77,17 @@ function echo_attribute ($name, $value)
 }
 
 /**
- * Echo a src="img" pair.
+ * Get the url of an image in the theme images directory.
  *
- * The src will be pointing to the theme images directory.
+ * @param string $img The image basename.
  *
- * @param string $img The image filename.
- *
- * @return void
+ * @return string The public url of the image.
  */
 
-function echo_theme_image ($img)
+function get_theme_image ($img)
 {
-    echo ('src="' . get_bloginfo ('template_directory') . "/images/$img\"");
+    $uri = get_stylesheet_directory_uri ();
+    return "$uri/dist/images/$img";
 }
 
 /**
@@ -179,26 +180,6 @@ function get_content_end ()
 }
 
 /**
- * Enqueue scripts from the webpack manifest.
- *
- * @param string        $key           The manifest key, eg. 'cap-collation-front.js'.
- * @param array<string> $dependencies  The dependencies, eg. ['vendor.js'].
- *
- * @return void
- */
-
-function enqueue_from_manifest ($key, $dependencies = array ()) {
-    static $manifest = null;
-
-    if ($manifest === null) {
-        $manifest = get_stylesheet_directory () . '/manifest.json';
-        $manifest = json_decode (file_get_contents ($manifest));
-    }
-
-    wp_enqueue_script ($key, $manifest->{$key}, $dependencies, $ver = null);
-}
-
-/**
  * Enqueue scripts and CSS
  *
  * Add JS and CSS the wordpress way.
@@ -210,58 +191,11 @@ function enqueue_from_manifest ($key, $dependencies = array ()) {
 
 function on_enqueue_scripts ()
 {
-    enqueue_from_manifest ('cap-runtime.js');
-    enqueue_from_manifest ('cap-vendor.js', ['cap-runtime.js']);
-    enqueue_from_manifest ('cap-theme-front.js', ['cap-vendor.js']);
-
-    /*
-     * Register jquery-ui CSS for the use of plugins
-     *
-     * Quandary: Wordpress (as of 4.3) comes with a version of jquery and jquery-ui
-     * but lacks the jquery-ui css styles.  If we provide just our own jquery-ui css
-     * styles, we may get out of sync with the jquery-ui javascript provided by
-     * Wordpress.  But if we provide the whole jquery-ui of our own we may get out
-     * of sync with Wordpress' assumptions of the actual jquery-ui version.
-     *
-     * NOTE: Currently we don't use jquery-ui on the front anymore.
-     *
-     * NOTE: many CSS files are webpacked into front.js.
-     */
-
-    /*
-    $template_dir = get_template_directory_uri ();
-
-    $ext = defined ('WP_DEBUG') ? '.js' : '.min.js';
-
-    // wp_register_style ('cap-jquery-ui-css', "$template_dir/css/jquery-ui.css");
-
-    // $dep = array ('cap-jquery-ui-css');
-    // note: bootstrap css is @imported in front.js
-
-    // wp_enqueue_style ('cap-jquery-ui-css',  "$template_dir/css/front.css");
-    // wp_enqueue_style ('cap-front',       "$template_dir/css/front.css", $dep);
+    lib\enqueue_from_manifest ('cap-runtime.js');
+    lib\enqueue_from_manifest ('cap-vendor.js', ['cap-runtime.js']);
+    lib\enqueue_from_manifest ('cap-theme-front.js', ['cap-vendor.js']);
     wp_enqueue_style ('dashicons');
-
-    // make our modern jquery overrride wp's ancient jquery
-    // wp_enqueue_script ('cap-jquery',    "$template_dir/node_modules/jquery/dist/jquery$ext", array ('jquery'));
-    wp_enqueue_script ('cap-vendor-js', "$template_dir/js/vendor.js");
-    wp_enqueue_script ('cap-front-js',  "$template_dir/js/front.js", array ('cap-vendor-js'));
-
-    $bs_dep = array ('cap-jquery', 'cap-popper-js', 'cap-bs-util-js');
-
-    wp_enqueue_script ('cap-popper-js',      "$template_dir/node_modules/popper.js/dist/umd/popper.js");
-    wp_enqueue_script ('cap-bs-util-js',     "$template_dir/node_modules/bootstrap/js/dist/util.js");
-    wp_enqueue_script ('cap-bs-tooltip-js',  "$template_dir/node_modules/bootstrap/js/dist/tooltip.js",  $bs_dep);
-    wp_enqueue_script ('cap-bs-collapse-js', "$template_dir/node_modules/bootstrap/js/dist/collapse.js", $bs_dep);
-    wp_enqueue_script ('cap-bs-dropdown-js', "$template_dir/node_modules/bootstrap/js/dist/dropdown.js", $bs_dep);
-
-    wp_register_script ('cap-lodash',        "$template_dir/node_modules/lodash/lodash$ext");
-    wp_register_script ('cap-vue',           "$template_dir/node_modules/vue/dist/vue$ext");
-    wp_register_script ('cap-bootstrap-vue', "$template_dir/node_modules/bootstrap-vue/dist/bootstrap-vue$ext", array ('cap-vue'));
-    wp_register_script ('cap-bootstrap-vue-icons', "$template_dir/node_modules/bootstrap-vue/dist/bootstrap-vue-icons$ext", array ('cap-bootstrap-vue'));
-    */
 }
-
 
 /**
  * Enqueue admin scripts and CSS
@@ -276,16 +210,8 @@ function on_enqueue_scripts ()
 
 function on_admin_enqueue_scripts ()
 {
-    enqueue_from_manifest ('cap-runtime.js');
-    enqueue_from_manifest ('cap-theme-admin.js', ['cap-runtime.js', 'cap-lib-front.js', 'jquery']);
-
-    /*
-    $template_dir = get_template_directory_uri ();
-
-    wp_enqueue_script ('cap-admin', "$template_dir/js/admin.js");
-
-    // wp_register_style ('cap-jquery-ui-css', "$template_dir/css/jquery-ui.css");
-    */
+    lib\enqueue_from_manifest ('cap-runtime.js');
+    lib\enqueue_from_manifest ('cap-theme-admin.js', ['cap-runtime.js', 'cap-lib-front.js', 'jquery']);
 }
 
 /**
@@ -542,11 +468,11 @@ function bk_to_permalink ($corresp)
  * We cannot just use mod_rewrite because we don't know which subdirectory the
  * capitulary page is in.
  *
- * @link https://developer.wordpress.org/reference/hooks/do_parse_request/
- *
  * @param boolean      $do_parse         (unused) Whether or not to parse the request.
  * @param \WP          $wp               (unused) The current WordPress environment instance.
  * @param array|string $extra_query_vars (unused) Extra passed query variables.
+ *
+ * @link https://developer.wordpress.org/reference/hooks/do_parse_request/
  *
  * @return boolean The $do_parse parameter unchanged.
  */
@@ -583,15 +509,15 @@ function on_do_parse_request ($do_parse, $wp, $extra_query_vars) // phpcs:ignore
 /**
  * Redirect the user to the current page after login
  *
- * @link https://developer.wordpress.org/reference/hooks/login_redirect/
- *
- * @param string $redirect_to           The redirect destination URL.
- * @param string $requested_redirect_to The requested redirect destination URL
- *                                      passed as a parameter.
- * @param \WP_User | \WP_Error $user    WP_User object if login was successful,
- *                                      WP_Error object otherwise.
+ * @param string               $redirect_to           The redirect destination URL.
+ * @param string               $requested_redirect_to The requested redirect destination URL
+ *                                                    passed as a parameter.
+ * @param \WP_User | \WP_Error $user                  WP_User object if login was successful,
+ *                                                    WP_Error object otherwise.
  *
  * @return string The target URL of the redirection.
+ *
+ * @link https://developer.wordpress.org/reference/hooks/login_redirect/
  */
 
 function on_login_redirect ($redirect_to, $requested_redirect_to, $user) // phpcs:ignore

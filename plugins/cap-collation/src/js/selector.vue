@@ -1,9 +1,10 @@
 <template>
   <div class="row cap-selector">
     <div class="col-md-6 no-print">
-
       <div class="collation-bk">
-        <h3 v-translate>Capitulary</h3>
+        <h3 v-translate>
+          Capitulary
+        </h3>
 
         <!--
         // Form with drop-downs for capitulary and corresp selection.  User
@@ -14,13 +15,14 @@
 
         <form>
           <div class="form-row">
-
             <div class="col-sm-6">
               <div class="form-group">
                 <label v-translate>Select Capitulary</label>
                 <b-dropdown block :text="bk">
-                  <b-dd-item-btn v-for="bk in bks" :key="bk" :data-bk="bk"
-                                 @click="on_select_bk">{{ bk }}</b-dd-item-btn>
+                  <b-dd-item-btn v-for="bki in bks" :key="bki" :data-bk="bki"
+                                 @click="on_select_bk">
+                    {{ bki }}
+                  </b-dd-item-btn>
                 </b-dropdown>
               </div>
             </div>
@@ -30,7 +32,9 @@
                 <label v-translate>Select Section</label>
                 <b-dropdown block :text="corresp">
                   <b-dd-item-btn v-for="s in corresps" :key="s" :data-corresp="s"
-                                 @click="on_select_corresp">{{ s }}</b-dd-item-btn>
+                                 @click="on_select_corresp">
+                    {{ s }}
+                  </b-dd-item-btn>
                 </b-dropdown>
               </div>
             </div>
@@ -41,7 +45,6 @@
             {{ 'Include corrections by different hands' | translate }}
           </b-form-checkbox>
         </form>
-
       </div>
     </div>
 
@@ -54,7 +57,9 @@
 
     <div class="col-md-6 no-print">
       <div class="witnesses-div">
-        <h3 v-translate>Textual Witnesses</h3>
+        <h3 v-translate>
+          Textual Witnesses
+        </h3>
 
         <form>
           <label v-translate>Select Textual Witnesses</label>
@@ -63,22 +68,24 @@
               <tr>
                 <th scope="col" class="checkbox">
                   <b-form-checkbox v-model="select_all" v-b-tooltip.hover.left
-                         :title="$t ('Select all textual witnesses')">
+                                   :title="$t ('Select all textual witnesses')">
                     {{ 'Textual Witness' | translate }}
-                    <i v-if="spinner" class="spinner fas fa-spin"></i>
+                    <i v-if="spinner" class="spinner fas fa-spin" />
                   </b-form-checkbox>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr v-if="witnesses.length == 0">
-                <td v-translate>No textual witnesses found.</td>
+                <td v-translate>
+                  No textual witnesses found.
+                </td>
               </tr>
-              <tr v-for="(w, index) of witnesses" :data-siglum="`${corresp}/${w.siglum}`"
-                  :key="w.siglum" :class="row_class (w, index)">
+              <tr v-for="(w, index) of witnesses" :key="w.siglum"
+                  :data-siglum="`${corresp}/${w.siglum}`" :class="row_class (w, index)">
                 <td class="checkbox">
                   <b-form-checkbox v-model="w.checked" v-b-tooltip.hover.left
-                         :title="$t ('Include this textual witness in the collation.')">
+                                   :title="$t ('Include this textual witness in the collation.')">
                     {{ w.title }}
                   </b-form-checkbox>
                 </td>
@@ -233,7 +240,7 @@ export default {
             this.corresp = event.target.getAttribute ('data-corresp');
             this.load_witnesses_carry_selection ();
         },
-        on_later_hands (event) {
+        on_later_hands () {
             // click on later hands checkbox
             // it is much easier to implement this by hand than to figure out
             // how to unwatch a variable while programmatically changing it

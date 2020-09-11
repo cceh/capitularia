@@ -1,11 +1,13 @@
+/* eslint-disable no-console */
+
 const pup = require ('puppeteer-core');
 const fs = require ('fs').promises;
 
 const options = {
-    executablePath  : '/usr/bin/chromium',
-    headless        : false,
-    // slowMo          : 1000,
-    defaultViewport : { width: 1200, height : 1200 },
+    'executablePath'  : '/usr/bin/chromium',
+    'headless'        : false,
+    // 'slowMo'          : 1000,
+    'defaultViewport' : { 'width' : 1200, 'height' : 1200 },
 };
 
 async function dropdown_select (page, selector) {
@@ -17,7 +19,7 @@ async function dropdown_select (page, selector) {
 
 pup.launch (options).then (async browser => {
     const page = await browser.newPage ();
-    await page.goto ('http://capitularia.fritz.box/tools/collation/', { waitUntil : 'load' });
+    await page.goto ('http://capitularia.fritz.box/tools/collation/', { 'waitUntil' : 'load' });
 
     await dropdown_select (page, '#bk button[data-bk="BK.143"]');
     console.log ('first select');

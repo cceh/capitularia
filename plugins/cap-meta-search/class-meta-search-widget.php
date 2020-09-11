@@ -2,7 +2,7 @@
 /**
  * Capitularia Meta Search search box widget
  *
- * @package Capitularia Meta Search
+ * @package Capitularia_Meta_Search
  */
 
 namespace cceh\capitularia\meta_search;
@@ -86,7 +86,7 @@ class Widget extends \WP_Widget
      *
      * @param string $caption The caption for the <select>
      * @param string $id      The xml id and name of the <select>
-     * @param array  $items    Array of strings: The items to display in the drop-down
+     * @param array  $items   Array of strings: The items to display in the drop-down
      * @param string $tooltip The tooltip for the <select>
      *
      * @return void

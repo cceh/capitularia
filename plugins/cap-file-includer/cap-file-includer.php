@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Plugin Name: Capitularia File Includer
  * Plugin URI:
  * Description: Includes external HTML files in Wordpress pages.
@@ -9,9 +9,7 @@
  * License:     GPLv2 or later
  * Text Domain: cap-file-includer
  * Domain Path: /languages
- */
-
-/**
+ *
  * Capitularia File Includer plugin.
  *
  * The *File Includer plugin* registers a Wordpress shortcode that allows to
@@ -44,7 +42,7 @@
  * batches of page stubs from directories of TEI files.  Those stubs usually
  * contain the shortcodes for this plugin.
  *
- * @package Capitularia
+ * @package Capitularia_File_Includer
  */
 
 namespace cceh\capitularia\file_includer;

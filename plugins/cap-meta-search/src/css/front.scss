@@ -1,17 +1,17 @@
 @import 'jstree/src/themes/default/style.css';
-
-@import '~/themes/Capitularia/src/css/fonts.scss';
-@import '~/themes/Capitularia/src/css/colors.scss';
+@import '~/themes/Capitularia/src/css/fonts';
+@import '~/themes/Capitularia/src/css/colors';
 
 div.content-col {
-    mark, .mark {
+    mark,
+    .mark {
         padding: 0;
     }
 }
 
 div.search-results {
     h3 {
-        margin: 1.5em 0 1em 0;
+        margin: 1.5em 0 1em;
         font-size: 1.3em;
     }
 
@@ -21,9 +21,8 @@ div.search-results {
 
     div.excerpt {
         .excerpt-corresp {
-            color: $color-link;
-
             @include bold;
+            color: $color-link;
         }
     }
 }
@@ -47,7 +46,7 @@ div.cap-meta-search-box {
             padding: 4px 12px;
             cursor: pointer;
             display: inline-block;
-            border: none;
+            border: 0;
             border-radius: 0;
             font-size: 1.1em;
             text-align: center;
@@ -75,7 +74,7 @@ div.cap-meta-search-box {
         padding: 4px 8px;
     }
 
-    input[type="text"] {
+    input[type='text'] {
         width: 100%;
         margin: 8px 0 16px;
         padding: 4px 8px;

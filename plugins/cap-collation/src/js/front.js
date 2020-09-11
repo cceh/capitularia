@@ -18,7 +18,7 @@ Vue.prototype.$t = function (text) {
 
 // the v-translate directive
 Vue.directive ('translate', function (el) {
-    el.innerText = $t (el.innerText);
+    el.innerText = $t (el.innerText.trim ());
 });
 
 // the {{ 'text' | translate }} filter
@@ -26,9 +26,9 @@ Vue.filter ('translate', function (text) {
     return $t (text);
 });
 
-const app = new Vue ({
-    el: '#cap-collation-app',
-    components: {
+new Vue ({ // eslint-disable-line no-new
+    'el'         : '#cap-collation-app',
+    'components' : {
         'cap-collation-app' : Main,
     },
 });

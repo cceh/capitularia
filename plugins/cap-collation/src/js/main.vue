@@ -1,30 +1,29 @@
 <template>
   <div class="cap-collation">
-
-    <cap-collation-selector ref="selector" v-for="(section, index) in sections"
-      :key="index" v-bind:config="section"></cap-collation-selector>
+    <cap-collation-selector
+      v-for="(section, index) in sections"
+      ref="selector" :key="index" :config="section" />
 
     <div class="row mt-4 no-print">
       <div class="col-md-6">
-        <b-button @click="on_add_section" v-b-tooltip.hover.bottom
-                  :title="$t ('Add Section')">
-          <i class="plus fas"></i>
+        <b-button v-b-tooltip.hover.bottom :title="$t ('Add Section')" @click="on_add_section">
+          <i class="plus fas" />
         </b-button>
 
         <label class="btn btn-secondary ml-2 mb-0">
           {{ 'Load Configuration' | translate }}
-          <input id="load-config" type="file" @change="on_load_config" />
+          <input id="load-config" type="file" @change="on_load_config">
         </label>
 
         <b-button class="ml-2" @click="on_save_config">
           {{ 'Save Configuration' | translate }}
-          <a id="save-config-a" href="" download="saved-config.txt"></a>
+          <a id="save-config-a" href="" download="saved-config.txt" />
         </b-button>
       </div>
 
       <div class="col-md-6">
         <b-button variant="primary" :disabled="collating" @click="on_collate">
-          <i class="spinner fas" :class="{ 'fa-spin' : collating }"></i>&nbsp;
+          <i class="spinner fas" :class="{ 'fa-spin' : collating }" />&nbsp;
           {{ 'Collate' | translate }}
         </b-button>
       </div>
@@ -40,10 +39,9 @@
 
     <div class="row">
       <div class="col-12">
-        <cap-collation-results ref="results"></cap-collation-results>
+        <cap-collation-results ref="results" />
       </div>
     </div>
-
   </div>
 </template>
 
@@ -51,6 +49,7 @@
 
 /** @module plugins/collation/front */
 
+import { pick } from 'lodash-es';
 import Vue from 'vue';
 import { ButtonPlugin, DropdownPlugin, FormCheckboxPlugin, TooltipPlugin } from 'bootstrap-vue';
 
@@ -59,24 +58,23 @@ Vue.use (FormCheckboxPlugin);
 Vue.use (TooltipPlugin);
 Vue.use (ButtonPlugin);
 
-import Selector from './selector.vue'
+import Selector from './selector.vue';
 import Results  from './results.vue';
-
 
 /**
  * The vue.js instance that manages the whole page.
  * @class module:plugins/collation/front.VueFront
  */
 export default {
+    'components' : {
+        'cap-collation-selector' : Selector,
+        'cap-collation-results'  : Results,
+    },
     data () {
         return {
             'sections'  : [{}],
             'collating' : false,
         };
-    },
-    components: {
-        'cap-collation-selector' : Selector,
-        'cap-collation-results'  : Results,
     },
     /** @lends module:plugins/collation/front.VueFront.prototype */
     'methods' : {
@@ -88,9 +86,9 @@ export default {
         ajax_params () {
             return {
                 'collate' : this.$refs.selector.map (sel => {
-                    const data = _.pick (
+                    const data = pick (
                         sel.$data,
-                        'bk', 'corresp', 'later_hands',
+                        'bk', 'corresp', 'later_hands'
                     );
                     data.witnesses = sel.selected;
                     return data;
@@ -147,7 +145,6 @@ export default {
 /* front.vue */
 
 div.cap-collation {
-
     h2 {
         @media print {
             display: none !important;

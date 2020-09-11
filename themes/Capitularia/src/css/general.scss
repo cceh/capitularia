@@ -13,14 +13,21 @@ p {
     margin: 1em 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 3em 0 2em 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 3em 0 2em;
     line-height: 1.5em;
     text-align: left;
 }
 
-h4, h5, h6 {
-    margin: 2em 0 1em 0;
+h4,
+h5,
+h6 {
+    margin: 2em 0 1em;
 }
 
 h1 {
@@ -63,10 +70,11 @@ h6 {
     text-decoration: underline;
 }
 
-ol, ul {
+ol,
+ul {
     margin: 0;
     padding: 0;
-	list-style: none;
+    list-style: none;
 }
 
 img {
@@ -89,8 +97,11 @@ a[href]:hover {
     @include regular;
 }
 
-i, em, .italic {
+i,
+em,
+.italic {
     @include italic;
+
     a[href],
     a[href]:active,
     a[href]:focus,
@@ -99,7 +110,9 @@ i, em, .italic {
     }
 }
 
-b, strong, .bold {
+b,
+strong,
+.bold {
     @include bold;
 }
 
@@ -161,7 +174,7 @@ b, strong, .bold {
 
 @media print {
     /* undo bootstrap madness */
-    a[href]:after {
+    a[href]::after {
         content: none !important;
     }
 }
@@ -171,16 +184,17 @@ b, strong, .bold {
 /***********/
 
 @media not print {
-
     div.container {
         > header {
             @include make-row(); /* see: https://getbootstrap.com/css/ */
             @include clearfix();
         }
+
         > main {
             @include make-row();
             @include clearfix();
         }
+
         > footer {
             @include make-row();
             @include clearfix();
@@ -242,7 +256,7 @@ b, strong, .bold {
 
 nav {
     @media print {
-        display: none
+        display: none;
     }
 }
 
@@ -280,10 +294,12 @@ nav {
     li.widget {
         @include make-col-ready();
         @include make-col(3);
+
         a {
             display: block;
             width: 33%;
             margin: 20px auto;
+
             img {
                 width: 100%;
             }
@@ -300,6 +316,7 @@ div.hr {
     /* a horizontal rule always */
     margin: 3em 0;
     border-top: 1px solid $color-black;
+
     .compact {
         margin: 1em 0;
     }
@@ -310,6 +327,7 @@ div.page-break {
     @media screen {
         margin: 3em 0;
         border-top: 1px solid $color-black;
+
         .compact {
             margin: 1em 0;
         }
@@ -326,23 +344,23 @@ div.back-to-top {
     margin: 3em 0;
     text-align: right;
     line-height: 1.75em;
+
     a::after {
-        font-family: "dashicons";
+        @include dashicons;
         font-size: 12px;
-        content: " \f343";
+        content: ' \f343';
     }
+
     &.back-to-top-with-rule {
         border-top: 1px solid $color-black;
     }
+
     &.back-to-top-compact {
         margin: 0;
     }
     @media print {
         display: none;
     }
-}
-
-div.search-your-search {
 }
 
 div.pagination-nav {
@@ -352,7 +370,7 @@ div.pagination-nav {
     font-size: smaller;
 
     .screen-reader-text {
-        display: none
+        display: none;
     }
 }
 
@@ -361,29 +379,34 @@ div.pagination-nav-top {
 }
 
 div.pagination-nav-bottom {
-    border-width: 1px 0 0 0;
+    border-width: 1px 0 0;
 }
 
-div.search-results, div.index-results {
+div.search-results,
+div.index-results {
     margin: 2em 0;
+
     li {
-        padding:10px 0;
+        padding: 10px 0;
     }
+
     p {
-        padding-top:6px;
+        padding-top: 6px;
     }
+
     b {
         @include bold;
     }
+
     h2 {
-        margin: 2em 0 1.5em 0;
+        margin: 2em 0 1.5em;
         font-size: 1.3em;
     }
 }
 
 .downloads li a {
-    text-decoration:none;
-    transition:color 300ms;
+    text-decoration: none;
+    transition: color 300ms;
 }
 
 .downloads li a:hover,
@@ -402,71 +425,89 @@ div.search-results, div.index-results {
     @media print {
         display: none;
     }
+
     div.sidebar-toc {
+
         position: sticky;
         top: 24px;
         overflow-y: auto;
     }
+
     h2 {
+
         font-size: 1.3em;
         margin: 1.5em 0 1em;
     }
+
     ul.sub-menu {
-        padding-left: 16px;
+
         @include clearfix;
+        padding-left: 16px;
     }
+
     ul.menu {
+
         background: $color-beige;
+
         li {
+
             background: $color-beige; // keep floats beige
             position: relative;
+
             a {
                 display: block;
                 border-bottom: 1px solid $color-white;
-                color:  $color-link;
+                color: $color-link;
                 line-height: 1.3;
+
                 &.opener {
                     position: absolute;
                     left: 0;
                     top: -0.125em;
                     padding-bottom: 0;
                     border-bottom: 0;
-	                &::before {
+
+                    &::before {
                         @extend %fa-icon;
-                        @extend .far;
+                        @extend %far;
                         content: fa-content($fa-var-minus-square);
-	                }
+                    }
+
                     &.collapsed::before {
                         content: fa-content($fa-var-plus-square);
                     }
                 }
+
                 &.has-opener {
                     padding-left: 32px;
                 }
-	        }
+            }
             /* HACK for Alphabet Menus */
             &.dynamic-menu-item-level-2.dynamic-menu-item-inline {
                 float: left;
                 width: 2em;
                 text-align: center;
-                border-bottom: none;
+                border-bottom: 0;
             }
             /* HACK for Alphabet Menus */
             &.dynamic-menu-item-float {
                 float: left;
                 width: 2em;
                 text-align: center;
-                border-bottom: none;
+                border-bottom: 0;
             }
         }
+
         li a {
-	        padding: 16px 8px;
+            padding: 16px 8px;
         }
+
         li li a {
-	        padding: 4px 8px;
+            padding: 4px 8px;
         }
+
         li li li li a {
-	        font-size: 85%;
+            font-size: 85%;
         }
     }
 }

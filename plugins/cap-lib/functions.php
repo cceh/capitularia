@@ -244,17 +244,35 @@ function urljoin ($url1, $url2)
     return rtrim ($url1, '/') . '/' . $url2;
 }
 
+function images_dir_path ($file)
+{
+    return plugin_dir_path ($file) . 'dist/images';
+}
+
+function language_dir_path ($file)
+{
+    return plugin_dir_path ($file) . 'dist/languages';
+}
+
 /**
  * Enqueue scripts from the webpack manifest.
  *
- * @param string        $key           The manifest key, eg. 'cap-collation-front.js'.
- * @param array<string> $dependencies  The dependencies, eg. ['vendor.js'].
+ * @param string        $key          The manifest key, eg. 'cap-collation-front.js'.
+ * @param array<string> $dependencies The dependencies, eg. ['vendor.js'].
  *
  * @return void
  */
 
-function enqueue_from_manifest ($key, $dependencies = array ()) {
-    \cceh\capitularia\theme\enqueue_from_manifest ($key, $dependencies);
+function enqueue_from_manifest ($key, $dependencies = array ())
+{
+    static $manifest = null;
+
+    if ($manifest === null) {
+        $manifest = get_stylesheet_directory () . '/manifest.json';
+        $manifest = json_decode (file_get_contents ($manifest));
+    }
+
+    wp_enqueue_script ($key, $manifest->{$key}, $dependencies, $ver = null);
 }
 
 /**

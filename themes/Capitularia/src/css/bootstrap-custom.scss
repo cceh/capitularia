@@ -1,18 +1,15 @@
 /* See: https://getbootstrap.com/docs/4.3/getting-started/theming/ */
 
-@import "bootstrap/scss/_functions.scss";
-
-@import "colors";
-
 $theme-colors: (
-    "primary":     $color-red,
-    "secondary":   $color-beige,
-    "brand-color": $color-red,
-    "brand-beige": $color-beige
+    'primary'     : $color-red,
+    'secondary'   : $color-beige,
+    'brand-color' : $color-red,
+    'brand-beige' : $color-beige
 );
 
-@import "bootstrap/scss/_variables.scss";
-@import "bootstrap/scss/_mixins.scss";
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
 
 $font-size-base: 1rem;
 
@@ -47,5 +44,5 @@ $container-max-widths: (
     x4l: 2440px
 );
 
-@import "bootstrap";
-@import "bootstrap-vue/src/index.scss";
+@import '~bootstrap';
+@import '~bootstrap-vue/src/index';

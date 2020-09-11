@@ -7,8 +7,6 @@
  * @file
  */
 
-/* global cap_lib */
-
 // do not import $ from 'jquery';
 // use the WP-provided jquery in the backend
 const $ = window.jQuery;
@@ -57,7 +55,7 @@ function add_ajax_action (data, action) {
 function on_cap_action_file (event) {
     event.preventDefault ();
 
-    var $e     = $ (ev.target);
+    var $e     = $ (event.target);
     var $tr    = $e.closest ('tr');
     var $table = $e.closest ('table');
     var $form  = $e.closest ('form');

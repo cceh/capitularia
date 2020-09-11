@@ -7,11 +7,13 @@ const devPort = 8081;
 module.exports = merge (common, {
     mode    : 'development',
     devtool : 'eval-source-map',
-    /* output  : {
+    output  : {
         // This is where the HMR module looks for the hot-update files.
         // We actually serve nothing but the hot-update files from here.
-        publicPath : `http://capitularia.fritz.box:${devPort}/`,
-    },*/
+        // publicPath : `http://capitularia.fritz.box:${devPort}/`,
+        hotUpdateChunkFilename : `http://capitularia.fritz.box:${devPort}/[id].[hash].hot-update.js`,
+        hotUpdateMainFilename  : `http://capitularia.fritz.box:${devPort}/[hash].hot-update.json`,
+    },
     devServer : {
         host        : 'capitularia.fritz.box',
         port        : devPort,

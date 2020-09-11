@@ -54,12 +54,12 @@ class FileIncluderEngine
      *
      * Called very early from on_the_posts ().
      *
-     * @see on_the_content_early()
-     *
      * @param array  $atts    The shortcode attributes.
      * @param string $content The shortcode content.
      *
      * @return string The content to insert into the shortcode.
+     *
+     * @see on_the_content_early()
      */
 
     public function on_shortcode_early ($atts, $content)
@@ -167,7 +167,7 @@ class FileIncluderEngine
         }
 
         if ($query->query_vars['post_type'] == 'nav_menu_item') {
-			return $posts;
+            return $posts;
         }
 
         global $wpdb, $shortcode_tags;

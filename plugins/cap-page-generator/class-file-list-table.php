@@ -124,7 +124,7 @@ class File_List_Table extends \WP_List_Table
     protected function get_table_classes ()
     {
         $classes = parent::get_table_classes ();
-        $classes[] = 'cap_page_gen_table_files';
+        $classes[] = 'cap-page-gen-table-files';
         return $classes;
     }
 
@@ -368,7 +368,7 @@ class File_List_Table extends \WP_List_Table
 
         $actions = array ();
         foreach ($this->bulk_actions as $action => $caption) {
-            $classes = ["cap-page-generator-action"];
+            $classes = ['cap-page-generator-action'];
             if ($action == 'delete') {
                 // if 'delete' make it red
                 $classes[] = submitdelete;

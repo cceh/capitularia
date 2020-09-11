@@ -2,7 +2,7 @@
 /**
  * Capitularia Meta Search
  *
- * @package Capitularia Meta Search
+ * @package Capitularia_Meta_Search
  */
 
 namespace cceh\capitularia\meta_search;

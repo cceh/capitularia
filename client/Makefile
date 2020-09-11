@@ -35,9 +35,9 @@ clean:
 	find . -name "*~" -delete
 
 build/index.html: src/index.html
-	-mkdir -p build
+	mkdir -p build
 	cp $< $@
 
 build/api.conf.js: src/api.conf.js
-	-mkdir -p build
+	mkdir -p build
 	cp $< $@

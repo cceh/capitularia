@@ -59,7 +59,7 @@ class Dashboard_Page
         // If this is a bulk action request, process the bulk action and print
         // any resulting messages.
 
-        echo ("  <div class='cap_page_dash_message'>\n");
+        echo ("  <div class='cap-page-dash-message'>\n");
         if (isset ($_REQUEST['action']) && isset ($_REQUEST['section']) && isset ($_REQUEST['filenames'])) {
             $section_id = $_REQUEST['section'];
             $action     = $_REQUEST['action'];
@@ -82,7 +82,7 @@ class Dashboard_Page
             $caption    = __ ($config->get_opt ($section_id, 'section_caption'));
             $ajax_url   = admin_url ('admin-ajax.php');
             $class = $config->section_can ($section_id, 'publish')
-                   ? ' cap_can_publish' : ' cap_can_private';
+                   ? ' cap-can-publish' : ' cap-can-private';
             echo ("  <li>\n");
             echo ("    <a class='navtab $class' data-section='$section_id' ");
             echo ("href='$ajax_url?action=on_cap_load_section&section=$section_id&paged=$paged'>$caption</a>\n");

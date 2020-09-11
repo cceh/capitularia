@@ -148,12 +148,12 @@ class Settings_Page
      * store them in one database row.  This makes validation somewhat more
      * difficult.
      *
-     * @see __construct()
-     *
      * @param array $options Array of key, value: the options as entered on
      *                       the form.
      *
      * @return array Array containing the validated options
+     *
+     * @see __construct()
      */
 
     public function on_validate_options ($options)

@@ -50,7 +50,7 @@ geodata-client: $(GEODATA_CLIENT_FILES)
 geodata-server: $(GEODATA_SERVER_FILES)
 
 directories:
-	-mkdir -p $(GEODATA_SERVER_DIR)/10m_physical $(GEODATA_SERVER_DIR)/NE2_HR_LC_SR $(GEODATA_CLIENT_DIR)/10m_cultural
+	mkdir -p $(GEODATA_SERVER_DIR)/10m_physical $(GEODATA_SERVER_DIR)/NE2_HR_LC_SR $(GEODATA_CLIENT_DIR)/10m_cultural
 
 clean:
 	rm -rf $(GEODATA_SERVER_DIR)/* $(GEODATA_CLIENT_DIR)/*

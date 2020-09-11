@@ -9,18 +9,21 @@
 
     margin-top:    40px;
     margin-bottom: 40px;
-    background: $color-startpage-box;
-    color: $color-white;
+    background:    $color-startpage-box;
+    color:         $color-white;
 
     div.front-splash-caption {
         @include make-col-ready();
         @include make-col(12);
-        @include media-breakpoint-up(md) {
-            @include make-col(8);
-        }
+
         /* undo the bootstrap default of position: relative because we need to position
            at the bottom of div.front-splash */
         position: static;
+
+        @include media-breakpoint-up(md) {
+            @include make-col(8);
+        }
+
         h1 {
             line-height: 1;
             @include media-breakpoint-up(md) {
@@ -28,6 +31,7 @@
                 bottom: 15px;
                 width: 60%;
             }
+
             span {
                 font-size: 75%;
                 @include media-breakpoint-up(xl) {
@@ -36,12 +40,14 @@
             }
         }
     }
+
     ul.front-splash-image {
         @include make-col-ready();
         @include make-col(12);
         @include media-breakpoint-up(md) {
             @include make-col(4);
         }
+
         img {
             margin-bottom: -12%;
             margin-top: 2%;
@@ -58,38 +64,45 @@ ul.teaser-bar {
     margin: 0 auto;
     margin: 2em 0;
     line-height: 1.5em;
+
     li.widget {
         margin-bottom: 1em;
     }
+
     h2 {
-        color: $color-gray;
         @include semibold;
+        color: $color-gray;
         margin-top: 0;
-        margin-bottom: .7ex;
+        margin-bottom: 0.7ex;
     }
+
     p {
         margin-bottom: 0.35em;
     }
+
     a {
         color: $color-link;
         transition: color 300ms;
+
         &:focus,
         &:active,
         &:hover {
             color: $color-black;
             text-decoration: none;
         }
+
         &.mehr-lesen {
             @include bold;
             text-transform: uppercase;
             font-size: 0.7em;
             letter-spacing: 2px;
 
-            transition:color 300ms;
+            transition: color 300ms;
             display: block;
             margin-top: 1ex;
         }
     }
+
     img {
         float: left;
         max-width: 33%;
@@ -99,6 +112,9 @@ ul.teaser-bar {
 }
 
 ul.teaser-bar-1 {
+    padding-top: 1em;
+    text-align: center;
+
     li.widget {
         @include make-col-ready();
         @include make-col(12);
@@ -106,8 +122,7 @@ ul.teaser-bar-1 {
             @include make-col(4);
         }
     }
-    padding-top: 1em;
-    text-align: center;
+
     h2 {
         font-size: 2em;
         text-align: center;
@@ -115,16 +130,20 @@ ul.teaser-bar-1 {
 }
 
 ul.teaser-bar-2 {
+    border-top: solid 1px $color-rule;
+    padding-top: 2em;
+
     li.widget {
         @include make-col-ready();
         @include make-col(12);
+
+        text-align: left;
+
         @include media-breakpoint-up(md) {
             @include make-col(6);
         }
-        text-align: left;
     }
-    border-top: solid 1px $color-rule;
-    padding-top: 2em;
+
     h2 {
         font-size: 1.3em;
     }

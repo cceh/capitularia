@@ -8,13 +8,17 @@ $slideout-tab-width: 100px;
 #legend {
     table {
         font-size: 80%;
+
         .legend-col-1 {
             width: 33%;
         }
-        th, td {
+
+        th,
+        td {
             text-align: left;
             padding: 4px;
         }
+
         th {
             @include semibold;
             border-bottom: 1px solid white;
@@ -29,9 +33,11 @@ div.slideout {
     right: $slideout-tab-width - $slideout-width;
     z-index: 20;
     transition-duration: 0.5s;
+
     &.slideout-active {
         right: 0;
     }
+
     .slideout-inner {
         background: $background-box;
         margin-left: $slideout-tab-width;
@@ -41,15 +47,18 @@ div.slideout {
         box-shadow: $shadow-box;
         position: relative;
         z-index: 21;
+
         div.hr {
             display: none;
         }
     }
+
     .slideout-tab {
         float: left;
         width: $slideout-tab-width;
         transform-origin: 100% 100%;
         transform: rotate(270deg);
+
         h5 {
             margin: 0;
             text-align: center;

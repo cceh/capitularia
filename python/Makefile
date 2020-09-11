@@ -6,13 +6,13 @@ BRITTA=$(OUT)/britta
 COLLECTIONS=$(OUT)/collections
 
 britta: pyc
-	-rm -rf $(BRITTA)
-	-mkdir -p $(BRITTA)
+	rm -rf $(BRITTA)
+	mkdir -p $(BRITTA)
 	./britta.sh $(XML) $(BRITTA)
 
 collections: pyc
-	-rm -rf $(COLLECTIONS)
-	-mkdir -p $(COLLECTIONS)
+	rm -rf $(COLLECTIONS)
+	mkdir -p $(COLLECTIONS)
 	./collections.sh $(XML) $(COLLECTIONS)
 
 sync-britta:

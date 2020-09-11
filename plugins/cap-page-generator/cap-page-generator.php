@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Plugin Name: Capitularia Page Generator
  * Plugin URI:
  * Description: Generate Wordpress pages for our TEI files.
@@ -10,9 +10,7 @@
  * License:     GPLv2 or later
  * Text Domain: cap-page-generator
  * Domain Path: /languages
- */
-
-/**
+ *
  * Capitularia Page Generator plugin.
  *
  * The *Page Generator* plugin helps managing the publication of manuscript
@@ -43,7 +41,7 @@
  * those files from the AFS filesystem when outputting a Wordpress page to the
  * user.
  *
- * @package Capitularia
+ * @package Capitularia_Page_Generator
  */
 
 namespace cceh\capitularia\page_generator;

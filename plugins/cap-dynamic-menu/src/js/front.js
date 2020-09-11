@@ -59,7 +59,7 @@ import $ from 'jquery';
 function init_dynamic_menues () {
     let menu_id = 1;
     let last_id = 1;
-    for (const menu of document.querySelectorAll (`a[data-cap-dynamic-menu]`)) {
+    for (const menu of document.querySelectorAll ('a[data-cap-dynamic-menu]')) {
         const xpathes = (menu.getAttribute ('data-cap-dynamic-menu')
                          // default xpath expressions (a §-separated list)
                          || '//h3[@id]§//h4[@id]§//h5[@id]§//h6[@id]')

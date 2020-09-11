@@ -28,9 +28,10 @@ NODE         := $(NODE_MODULES)/.bin
 
 NAT_EARTH    := http://naciscdn.org/naturalearth
 
-WEBPACK            = $(NODE)/webpack --no-color
-WEBPACK_DEV_SERVER = $(NODE)/webpack-dev-server --no-color
-WEBPACK_CONFIG     = webpack.dev.js
+WEBPACK             = $(NODE)/webpack --no-color
+WEBPACK_DEV_SERVER  = $(NODE)/webpack-dev-server --no-color
+WEBPACK_DEV_CONFIG  = webpack.dev.js
+WEBPACK_PROD_CONFIG = webpack.prod.js
 
 BABEL           = $(NODE)/babel
 BABELFLAGS      = --source-maps true

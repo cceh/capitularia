@@ -4,12 +4,10 @@
  * @file Contains utility functions for the collation applet.
  */
 
-/* global cap_lib */
-
 import $ from 'jquery';
 
 // See: https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
-const { __, _x, _n, _nx } = wp.i18n;
+const _x = wp.i18n._x;
 
 /**
  * The id of the "Obertext".
@@ -44,8 +42,8 @@ export const Palette = '8888881f77b42ca02cd62728e7ba52ff7f0e9467bd8c564be377c217
  */
 export function insert_css_palette (palette) {
     const css = palette.match (/.{6}/g)
-          .map ((color, index) => `[data-index="${index}"] .background-from-index { background-color: #${color}22 }`)
-          .join ('\n');
+        .map ((color, index) => `[data-index="${index}"] .background-from-index { background-color: #${color}22 }`)
+        .join ('\n');
     const style = document.createElement ('style');
     style.setAttribute ('type', 'text/css');
     style.appendChild (document.createTextNode (css));

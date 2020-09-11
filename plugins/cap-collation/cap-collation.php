@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Plugin Name: Capitularia Collation Tool
  * Plugin URI:
  * Description: Collates TEI files.
@@ -9,9 +9,7 @@
  * License:     GPLv2 or later
  * Text Domain: cap-collation
  * Domain Path: /languages
- */
-
-/**
+ *
  * Capitularia Collation Tool plugin.
  *
  * The *Collation Tool plugin* lets any member of the general public do
@@ -35,7 +33,7 @@
  *
  * See: :mod:`collatex_server`, :ref:`collation overview<collation-tool-overview>`.
  *
- * @package Capitularia Collation Tool
+ * @package Capitularia_Collation_Tool
  */
 
 namespace cceh\capitularia\collation_user;

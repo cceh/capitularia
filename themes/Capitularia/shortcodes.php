@@ -10,6 +10,8 @@
 
 namespace cceh\capitularia\theme;
 
+use cceh\capitularia\lib;
+
 /**
  * Add the logged_in shortcode.
  *
@@ -151,6 +153,10 @@ function if_status ($atts)
 
 /**
  * Cache a list of all manuscripts with a transcription of capitular cap_id
+ *
+ * @param array $cap_id The BK-no of the capitular.
+ *
+ * @return array List of manuscripts.
  */
 
 function get_transcribed_in_cache ($cap_id)
@@ -159,7 +165,7 @@ function get_transcribed_in_cache ($cap_id)
 
     if (!array_key_exists ($cap_id, $transcribed_cache)) {
         $transcribed_cache[$cap_id] = array ();
-        $resp = \cceh\capitularia\lib\api_json_request ("/data/capitulary/$cap_id/manuscripts.json/");
+        $resp = lib\api_json_request ("/data/capitulary/$cap_id/manuscripts.json/");
         error_log (print_r ($resp, true));
         foreach ($resp as $e) {
             $ms_id = $e['ms_id'];

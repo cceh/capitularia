@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Plugin Name: Capitularia Dynamic Menu
  * Plugin URI:
  * Description: Build navigation menus from user-specified HTML-tags.
@@ -9,9 +9,7 @@
  * License:     GPLv2 or later
  * Text Domain: cap-dynamic-menu
  * Domain Path: /languages
- */
-
-/**
+ *
  * Capitularia Dynamic Menu plugin.
  *
  * The *Dynamic Menu plugin* provides a navigation menu for the sidebar.  The
@@ -26,9 +24,9 @@
  * The PHP code only outputs a placeholder tag.  The Javascript code will build
  * the actual menu using the DOM of the page.
  *
- * @see src/js/front.js
+ * @package Capitularia_Dynamic_Menu
  *
- * @package Capitularia Dynamic Menu
+ * @see src/js/front.js
  */
 
 namespace cceh\capitularia\dynamic_menu;

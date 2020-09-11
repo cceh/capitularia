@@ -2,7 +2,7 @@
 /**
  * Capitularia Collation Tool global functions.
  *
- * @package Capitularia Collation Tool
+ * @package Capitularia_Collation_Tool
  */
 
 namespace cceh\capitularia\collation_user;
@@ -43,7 +43,7 @@ function enqueue_scripts ()
     wp_set_script_translations (
         $handle,
         LANG,
-        plugin_dir_path (__FILE__) . 'languages'
+        lib\language_dir_path (__FILE__)
     );
 }
 

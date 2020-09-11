@@ -106,10 +106,33 @@ class Frontpage_Widget_Base extends \WP_Widget
         echo $this->make_link (__ ('read more', 'capitularia'), $instance['link'], 'mehr-lesen ssdone');
     }
 
+    /**
+     * Output the widget image.
+     *
+     * Replaces a leading ~ with the theme image directory url,
+     * eg. ~/logo.png => https://server/path/to/images/logo.png
+     *
+     * @param array $dummy_args (unused) Display arguments including
+     *                          'before_title', 'after_title', 'before_widget',
+     *                          and 'after_widget'.
+     * @param array $instance   Settings for the current widget instance.
+     *
+     * @return void
+     */
+
     protected function the_widget_image ($dummy_args, $instance) // phpcs:ignore
     {
+        $image = $instance['image'];
+        $image = preg_replace_callback (
+            '|^~/(.*)$|',
+            function ($matches) {
+                return get_theme_image ($matches[1]);
+            },
+            $image
+        );
+
         echo $this->make_link (
-            "<img src=\"{$instance['image']}\" title=\"{$instance['image-tooltip']}\" alt =\"\">",
+            "<img src=\"{$image}\" title=\"{$instance['image-tooltip']}\" alt =\"\">",
             $instance['link']
         );
     }

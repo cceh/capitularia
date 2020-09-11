@@ -1,4 +1,16 @@
-/* Font mixins */
+/*
+ * Configure the OpenSans, Fontawesome and Dashicon fonts.
+ *
+ * This module overrides Fontawesome not to webpack the eot and svg versions.
+ * Copied from these files:
+ *
+ * @import '@fortawesome/fontawesome-free/scss/solid';
+ * @import '@fortawesome/fontawesome-free/scss/regular';
+ */
+
+/* OpenSans Font */
+
+@import '~typeface-open-sans/index.css';
 
 @mixin light {
     font-family: 'Open Sans','Helvetica','Arial','sans-serif','sans';
@@ -60,7 +72,65 @@
     font-style: italic;
 }
 
-/* More styles */
+/* Fontawesome Font */
+
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+$fa-font-display: 'block';
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+/*!
+ * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+
+@font-face {
+    font-family: 'Font Awesome 5 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-display: $fa-font-display;
+    src: url('#{$fa-font-path}/fa-solid-900.woff2') format('woff2'),
+        url('#{$fa-font-path}/fa-solid-900.woff') format('woff'),
+        url('#{$fa-font-path}/fa-solid-900.ttf') format('truetype');
+}
+
+.fa,
+%fa,
+.fas,
+%fas {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+/*!
+ * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+
+@font-face {
+    font-family: 'Font Awesome 5 Free';
+    font-style: normal;
+    font-weight: 400;
+    font-display: $fa-font-display;
+    src: url('#{$fa-font-path}/fa-regular-400.woff2') format('woff2'),
+        url('#{$fa-font-path}/fa-regular-400.woff') format('woff'),
+        url('#{$fa-font-path}/fa-regular-400.ttf') format('truetype');
+}
+
+.far,
+%far {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 400;
+}
+
+/* Wordpress Dashicons Font */
+
+@mixin dashicons {
+    font-family: 'dashicons';
+    line-height: 1;
+}
+
+/* Other Fonts */
 
 @mixin font-menubar-top {
     @include semibold;
@@ -69,9 +139,4 @@
 @mixin font-menubar-bottom {
     @include semibold;
     text-transform: uppercase;
-}
-
-@mixin dashicons {
-    font-family: "dashicons";
-    line-height: 1;
 }

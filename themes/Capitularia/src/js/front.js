@@ -145,21 +145,12 @@ function initLegend () {
 }
 
 function initSidebarToc () {
-    var sidebar = $("div.sidebar-toc");
-    var top = parseInt (sidebar.css ('top'));
-    var height = $(window).height () - 2 * top + "px";
-    sidebar.css ("max-height", height);
-    sidebar.closest ('li').css ("height", "100%");
-    sidebar.closest ('ul').css ("height", "100%");
-}
-
-function toggle (control) {
-    const elem = document.getElementById (control);
-    if (elem.style.display === 'none') {
-        elem.style.display = 'block';
-    } else {
-        elem.style.display = 'none';
-    }
+    var sidebar = $ ('div.sidebar-toc');
+    var top = parseInt (sidebar.css ('top'), 10);
+    var height = $ (window).height () - (2 * top) + 'px';
+    sidebar.css ('max-height', height);
+    sidebar.closest ('li').css ('height', '100%');
+    sidebar.closest ('ul').css ('height', '100%');
 }
 
 $ (document).ready (function () {

@@ -1,17 +1,24 @@
 <template>
   <div class="collation-tables">
-    <h3 v-translate>Collation Results</h3>
-    <table v-for="table of tables"
+    <h3 v-translate>
+      Collation Results
+    </h3>
+
+    <table v-for="(table, tindex) of tables" :key="tindex"
            class="table table-sm table-bordered table-striped collation" :class="table.class">
       <tbody>
-        <tr v-for="(row, index) of table.rows" class="witness" :class="row_class (row, index)"
-            :data-siglum="row.siglum" :key="row.siglum"
+        <tr v-for="(row, rindex) of table.rows" :key="row.siglum"
+            class="witness" :class="row_class (row, rindex)" :data-siglum="row.siglum"
             @mouseover="hovered = row.siglum" @mouseleave="hovered = null">
           <th class="slim handle no-print" scope="row">
-            <i class="fas" :title="$t ('Drag row to reorder the textual witness.')"></i>
+            <i class="fas" :title="$t ('Drag row to reorder the textual witness.')" />
           </th>
-          <th class="title">{{ row.title }}</th>
-          <td v-for="cell in row.cells" :class="cell.class">{{ cell.text }}</td>
+          <th class="title">
+            {{ row.title }}
+          </th>
+          <td v-for="(cell, cindex) in row.cells" :key="cindex" :class="cell.class">
+            {{ cell.text }}
+          </td>
         </tr>
       </tbody>
     </table>
@@ -26,6 +33,7 @@
  */
 
 import $ from 'jquery';
+import { zip } from 'lodash-es';
 
 import * as tools from './tools.js';
 
@@ -84,7 +92,7 @@ export default {
          */
 
         transpose (matrix) {
-            return _.zip (...matrix);
+            return zip (...matrix);
         },
 
         /**
@@ -186,7 +194,7 @@ export default {
                 }
                 const ms_text = table[index];
 
-                for (const [ms_set, master_set] of _.zip (ms_text, master_text)) {
+                for (const [ms_set, master_set] of zip (ms_text, master_text)) {
                     let class_ = 'tokens';
                     // const master      = master_set.map (token => token.t).join (' ').trim ();
                     const text        = ms_set.map     (token => token.t).join (' ').trim ();
@@ -220,7 +228,7 @@ export default {
             this.tables = this.unsorted_tables.map (table => this.format_table (
                 this.witnesses,
                 table,
-                order,
+                order
             ));
             if (this.tables.length > 0) {
                 this.tables[0].class = 'first';

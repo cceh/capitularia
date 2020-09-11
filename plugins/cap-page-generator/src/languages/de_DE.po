@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2020-02-12 14:54+0100\n"
+"POT-Creation-Date: 2020-09-10 16:24+0200\n"
 "PO-Revision-Date: 2019-11-26 14:42+0100\n"
 "Last-Translator: Marcello Perathoner <marcello@perathoner.de>\n"
 "Language-Team: German <>\n"
@@ -19,94 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.4\n"
 
-#: cap-page-generator.php:99
+#: cap-page-generator.php:93
 msgid "Capitularia Page Generator"
 msgstr "Capitularia Seiten-Generator"
 
-#: cap-page-generator.php:100
+#: cap-page-generator.php:94
 msgid "Generate Wordpress pages for our TEI files."
 msgstr "Generiert Wordpress-Seiten aus unseren TEI-Dateien."
-
-#: class-settings-page.php:77 functions.php:316 functions.php:363
-msgid "Dashboard"
-msgstr "Dashboard"
-
-#: class-settings-page.php:145
-#, php-format
-msgid "N.B. The File Includer plugin root is set to:<br>%s"
-msgstr "N.B. Der im Datei-Includer-Plugin eingestellte Root-Pfad ist:<br>%s"
-
-#: class-settings-page.php:187
-msgid "General"
-msgstr "Allgemein"
-
-#: class-file-list-table.php:83
-msgid "TEI file"
-msgstr "TEI-Datei"
-
-#: class-file-list-table.php:84
-msgid "TEI files"
-msgstr "TEI-Dateien"
-
-#: class-file-list-table.php:97
-msgctxt "bulk action"
-msgid "Publish"
-msgstr "Veröffentlichen"
-
-#: class-file-list-table.php:100
-msgctxt "bulk action"
-msgid "Publish privately"
-msgstr "Privat veröffentlichen"
-
-#: class-file-list-table.php:102
-msgctxt "bulk action"
-msgid "Unpublish"
-msgstr "Un-veröffentlichen"
-
-#: class-file-list-table.php:103
-msgctxt "bulk action"
-msgid "Refresh"
-msgstr "Neu generieren"
-
-#: class-file-list-table.php:104
-msgctxt "file status"
-msgid "Published"
-msgstr "Veröffentlicht"
-
-#: class-file-list-table.php:105
-msgctxt "file status"
-msgid "Published privately"
-msgstr "Privat veröffentlicht"
-
-#: class-file-list-table.php:106
-msgctxt "file status"
-msgid "Not published"
-msgstr "Nicht veröffentlicht"
-
-#: class-file-list-table.php:209
-msgid "No TEI files found."
-msgstr "Keine TEI-Dateien gefunden."
-
-#: class-file-list-table.php:237
-msgctxt "column heading"
-msgid "Slug"
-msgstr "Slug"
-
-#: class-file-list-table.php:238
-msgctxt "column heading"
-msgid "Status"
-msgstr "Status"
-
-#: class-file-list-table.php:239
-msgctxt "Manuscript title column heading"
-msgid "Title"
-msgstr "Titel"
-
-#: class-file-list-table.php:283
-#, php-format
-msgctxt "Select a filename (screen reader only)"
-msgid "Select %s"
-msgstr "%s auswählen"
 
 #: class-config.php:70
 msgid "List of section ids"
@@ -195,17 +114,87 @@ msgid "The sidebars (space-separated list). Eg.: %s"
 msgstr ""
 "Welche Sidebars sollen angezeigt werden (mit Leerzeichen getrennt)? Z.B.: %s"
 
-#: functions.php:208
-msgid "You have no permission to edit posts."
-msgstr "Sie haben keine Berechtigung Posts zu editieren."
-
-#: functions.php:306 functions.php:362 class-dashboard-page.php:58
+#: class-dashboard-page.php:58 functions.php:290 functions.php:346
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: functions.php:337
-msgid "Page Generator"
-msgstr "Seitengenerator"
+#: class-dashboard-page.php:121
+#, php-format
+msgid "Generating pages under: %s"
+msgstr "Generiere Seiten unter: %s"
+
+#: class-dashboard-page.php:125
+#, php-format
+msgid "Reading directory: %s"
+msgstr "Gelesenes Verzeichnis: %s"
+
+#: class-file-list-table.php:83
+msgid "TEI file"
+msgstr "TEI-Datei"
+
+#: class-file-list-table.php:84
+msgid "TEI files"
+msgstr "TEI-Dateien"
+
+#: class-file-list-table.php:97
+msgctxt "bulk action"
+msgid "Publish"
+msgstr "Veröffentlichen"
+
+#: class-file-list-table.php:100
+msgctxt "bulk action"
+msgid "Publish privately"
+msgstr "Privat veröffentlichen"
+
+#: class-file-list-table.php:102
+msgctxt "bulk action"
+msgid "Unpublish"
+msgstr "Un-veröffentlichen"
+
+#: class-file-list-table.php:103
+msgctxt "bulk action"
+msgid "Refresh"
+msgstr "Neu generieren"
+
+#: class-file-list-table.php:104
+msgctxt "file status"
+msgid "Published"
+msgstr "Veröffentlicht"
+
+#: class-file-list-table.php:105
+msgctxt "file status"
+msgid "Published privately"
+msgstr "Privat veröffentlicht"
+
+#: class-file-list-table.php:106
+msgctxt "file status"
+msgid "Not published"
+msgstr "Nicht veröffentlicht"
+
+#: class-file-list-table.php:209
+msgid "No TEI files found."
+msgstr "Keine TEI-Dateien gefunden."
+
+#: class-file-list-table.php:237
+msgctxt "column heading"
+msgid "Slug"
+msgstr "Slug"
+
+#: class-file-list-table.php:238
+msgctxt "column heading"
+msgid "Status"
+msgstr "Status"
+
+#: class-file-list-table.php:239
+msgctxt "Manuscript title column heading"
+msgid "Title"
+msgstr "Titel"
+
+#: class-file-list-table.php:283
+#, php-format
+msgctxt "Select a filename (screen reader only)"
+msgid "Select %s"
+msgstr "%s auswählen"
 
 #: class-manuscript.php:292
 #, php-format
@@ -236,15 +225,26 @@ msgstr "Fehler: die Seite %s konnte nicht erstellt werden."
 msgid "The post is already %s."
 msgstr "Der Post ist bereits %s."
 
-#: class-dashboard-page.php:121
-#, php-format
-msgid "Generating pages under: %s"
-msgstr "Generiere Seiten unter: %s"
+#: class-settings-page.php:77 functions.php:300 functions.php:347
+msgid "Dashboard"
+msgstr "Dashboard"
 
-#: class-dashboard-page.php:125
+#: class-settings-page.php:145
 #, php-format
-msgid "Reading directory: %s"
-msgstr "Gelesenes Verzeichnis: %s"
+msgid "N.B. The File Includer plugin root is set to:<br>%s"
+msgstr "N.B. Der im Datei-Includer-Plugin eingestellte Root-Pfad ist:<br>%s"
+
+#: class-settings-page.php:187
+msgid "General"
+msgstr "Allgemein"
+
+#: functions.php:210
+msgid "You have no permission to edit posts."
+msgstr "Sie haben keine Berechtigung Posts zu editieren."
+
+#: functions.php:321
+msgid "Page Generator"
+msgstr "Seitengenerator"
 
 #~ msgid "XML Root Filesystem"
 #~ msgstr "XML Root Dateisystem"

@@ -6,7 +6,7 @@ BIBER=biber --output-directory=build/
 all: build/$(FN).pdf
 
 clean:
-	-rm *~ build/*
+	rm *~ build/*
 
 build/capitularia.bib: Bibliographie_Capitularia.xml convertbib.xsl
 	saxon -s:$< convertbib.xsl style=biblatex > $@
