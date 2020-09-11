@@ -275,9 +275,8 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
         </xsl:when>
         <xsl:otherwise>
           <!-- default: generate footnote bodies for immediately preceding ab-meta's
-               and ab's linked to this one by @next -->
+               and for ab's linked to this one by @next -->
           <!-- Go back and get all ab's but stop on the first ab-text or anchor -->
-
           <xsl:apply-templates
               mode="move-notes"
               select="cap:trailing (
@@ -288,7 +287,7 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
                       preceding-sibling::*[
                         self::ab[@type='text' and not (@next)] or
                         self::anchor[starts-with (@xml:id, 'capitulatio-finis')]
-                      ][1])" />
+                      ])" />
         </xsl:otherwise>
       </xsl:choose>
 
@@ -376,15 +375,25 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
   </xsl:template>
 
   <xsl:template match="lb">
-    <xsl:if test="not (@break = 'no')">
-      <xsl:text> </xsl:text>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="@break = 'no'">
+        <span class="tei-lb"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <span class="tei-lb"> </span>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="cb">
-    <xsl:if test="not (@break = 'no')">
-      <xsl:text> </xsl:text>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="@break = 'no'">
+        <span class="tei-cb"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <span class="tei-cb"> </span>
+      </xsl:otherwise>
+    </xsl:choose>
 
     <xsl:variable name="cb_prefix">
       <xsl:choose>

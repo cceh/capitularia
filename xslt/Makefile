@@ -42,7 +42,7 @@ SAXON     := /usr/bin/saxon
 IMPORT    := cd ../server; python3 -m scripts.import_data -vvv -c ./server.conf
 
 TOUCH = mkdir -p $(dir $@) && touch "$@"
-CLEAN_TARGET_DIR = -rm -rf $(dir $@) && mkdir -p $(dir $@)
+CLEAN_TARGET_DIR = rm -rf $(dir $@) && mkdir -p $(dir $@)
 
 vpath %.xsl $(XSL_DIR)
 

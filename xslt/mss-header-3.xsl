@@ -343,6 +343,11 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.header.html
       <ul class="bare">
         <xsl:apply-templates select="msItem"/>
       </ul>
+
+      <div class="footnotes-wrapper">
+        <xsl:apply-templates select="summary[normalize-space (.)]" mode="move-notes" />
+        <xsl:apply-templates select="msItem" mode="move-notes" />
+      </div>
     </div>
   </xsl:template>
 
@@ -564,12 +569,19 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.header.html
   </xsl:template>
 
   <xsl:template match="note[@type='corr']">
-    <img onclick="javascript:toggle('{generate-id()}')"
-         src="/cap/publ/material/attention.png"
-         title="Bitte klicken Sie hier, um die Anmerkung bzw. Korrektur anzuzeigen."/>
-    <span id="{generate-id()}" class="tei-note-corr" style="display: none">
-      <xsl:apply-templates/>
-    </span>
+    <span class="tei-note annotation annotation-editorial annotation-corr" data-shortcuts="0"
+          data-note-id="{generate-id()}" />
+  </xsl:template>
+
+  <xsl:template match="note[@type='corr']" mode="move-notes">
+    <div id="{generate-id()}-content" class="annotation-content">
+      <div class="annotation-text">
+        <xsl:apply-templates/>
+      </div>
+    </div>
+  </xsl:template>
+
+  <xsl:template match="text ()" mode="move-notes">
   </xsl:template>
 
   <xsl:template match="p">
