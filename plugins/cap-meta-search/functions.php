@@ -137,14 +137,3 @@ function on_cap_meta_search_the_permalink ($permalink)
 {
     return esc_attr (add_query_arg (HIGHLIGHT, $_GET['fulltext'] ?? $_GET['s'], $permalink));
 }
-
-/**
- * Enqueue front side scripts and styles
- *
- * @return void
- */
-
-function on_enqueue_scripts ()
-{
-    lib\enqueue_from_manifest ('cap-meta-search-front.js', ['cap-theme-front.js']);
-}

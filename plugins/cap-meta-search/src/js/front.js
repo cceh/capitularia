@@ -75,7 +75,5 @@ function places_tree_init () {
     });
 }
 
-$ (document).ready (function () {
-    places_tree_init ();
-    help_init ();
-});
+help_init ();
+places_tree_init ();

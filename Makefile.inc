@@ -3,9 +3,6 @@
 clean:
 	find . -name '*~' -delete
 	rm -rf dist
-	rm -rf languages
-	rm -rf images
-	rm -rf webfonts
 
 doc: phpdoc phpmd phpmetrics sami
 

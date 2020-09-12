@@ -7,6 +7,8 @@
 
 namespace cceh\capitularia\meta_search;
 
+use \cceh\capitularia\lib;
+
 /**
  * A metadata search box widget.
  */
@@ -122,6 +124,8 @@ class Widget extends \WP_Widget
         echo ("<div id='$id' class='cap-meta-search-places' title='$tooltip'>\n");
         echo ("</div>\n");
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
+
+        lib\enqueue_from_manifest ('cap-meta-search-front.js', ['cap-theme-front.js']);
     }
 
     /**
