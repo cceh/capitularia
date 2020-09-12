@@ -232,7 +232,7 @@ class Manuscript
             $tmp[] = "[:{$lang}]{$title}";
         }
         // __ () calls qTranslate-xt
-        $this->title = sanitize_text_field (__ (join (' ', $tmp), LANG), null, 'display');
+        $this->title = sanitize_text_field (__ (join (' ', $tmp), DOMAIN), null, 'display');
 
         $teis = $xml->xpath ('/tei:TEI');
         foreach ($teis as $tei) {
@@ -289,13 +289,13 @@ class Manuscript
         }
         if ($count == 0) {
             $message = sprintf (
-                __ ('Error: could not unpublish page %s.', LANG),
+                __ ('Error: could not unpublish page %s.', DOMAIN),
                 $this->get_slug_with_link ()
             );
             error_log ($message);
             return array (2, $message);
         }
-        return array (0, sprintf (__ ('Page %s unpublished.', LANG), $slug));
+        return array (0, sprintf (__ ('Page %s unpublished.', DOMAIN), $slug));
     }
 
     /**
@@ -317,7 +317,7 @@ class Manuscript
         // Set the page title
         $title = $this->get_title ();
         if (empty ($title)) {
-            $title = __ ('No title', LANG);
+            $title = __ ('No title', DOMAIN);
         }
 
         // Put the shortcode onto the page
@@ -361,14 +361,14 @@ class Manuscript
                 return array (
                     0,
                     sprintf (
-                        __ ('Page %1$s created with status set to %2$s.', LANG),
+                        __ ('Page %1$s created with status set to %2$s.', DOMAIN),
                         $this->get_slug_with_link (),
                         $status
                     )
                 );
             }
         }
-        return array (2, sprintf (__ ('Error: could not create page %s.', LANG), $slug));
+        return array (2, sprintf (__ ('Error: could not create page %s.', DOMAIN), $slug));
     }
 
     /**
@@ -398,7 +398,7 @@ class Manuscript
 
         if ($action == $status) {
             // nothing to do
-            return array (1, sprintf (__ ('The post is already %s.', LANG), $action));
+            return array (1, sprintf (__ ('The post is already %s.', DOMAIN), $action));
         }
         if ($action == 'refresh') {
             $action = $status;

@@ -55,7 +55,7 @@ class Dashboard_Page
         echo ("<div class='wrap'>\n");
         echo ("  <h1>$title</h1>\n");
         echo ('  <p><a href="/wp-admin/options-general.php?page=' . OPTIONS . '">' .
-              __ ('Settings', LANG) . "</a></p>\n");
+              __ ('Settings', DOMAIN) . "</a></p>\n");
         // If this is a bulk action request, process the bulk action and print
         // any resulting messages.
 
@@ -118,11 +118,11 @@ class Dashboard_Page
         echo ("<div id='tabs-$section_id' class='section'>\n");
         echo ("<h2>$caption</h2>\n");
         echo ('<p>' . sprintf (
-            __ ('Generating pages under: %s', LANG),
+            __ ('Generating pages under: %s', DOMAIN),
             "<a href='$parent_page'>$parent_page</a>"
         ) . "</p>\n");
         echo ('<p>' . sprintf (
-            __ ('Reading directory: %s', LANG),
+            __ ('Reading directory: %s', DOMAIN),
             $xml_dir
         ) . "</p>\n");
 

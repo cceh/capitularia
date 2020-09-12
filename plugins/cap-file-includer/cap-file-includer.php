@@ -57,7 +57,7 @@ __ ('Includes external HTML files in Wordpress pages.');
 const NAME    = 'Capitularia File Includer';
 
 /** The Text Domain of the plugin. */
-const LANG    = 'cap-file-includer';
+const DOMAIN    = 'cap-file-includer';
 
 /** The Wordpress ID of the settings (option) page. */
 const OPTIONS = 'cap_fi_options';

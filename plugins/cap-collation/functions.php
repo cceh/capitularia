@@ -36,15 +36,8 @@ function enqueue_scripts ()
 
     lib\enqueue_from_manifest ($handle, ['cap-theme-front.js', 'wp-i18n']);
 
-    // no i18n in php files
-    // load_plugin_textdomain (LANG, false, basename (dirname (__FILE__)) . '/languages/');
-
     // See: https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
-    wp_set_script_translations (
-        $handle,
-        LANG,
-        lib\language_dir_path (__FILE__)
-    );
+    lib\wp_set_script_translations ($handle, DOMAIN, __FILE__);
 }
 
 /**
@@ -65,5 +58,5 @@ function on_shortcode ($dummy_atts, $dummy_content) // phpcs:ignore
     // Makes the script show up in the footer.
     enqueue_scripts ();
 
-    return '<cap-collation-app id="cap-collation-app"></cap-collation-app>';
+    return '<div id="cap-collation-app"></div>';
 }

@@ -27,7 +27,7 @@ const IMAGE_SERVER_URL = 'http://images.cceh.uni-koeln.de/capitularia/';
  *
  * Translation files are needed to show the site in different languages.  They
  * contain translations for all strings in the PHP sources.  Translation files
- * have the extension .mo and are found the themes/Capitularia/languages/
+ * have the extension .mo and are found the themes/Capitularia/dist/languages/
  * directory, one file per supported language.
  *
  * N.B. Translation of content (user generated and XSL-transformed) that is
@@ -35,7 +35,7 @@ const IMAGE_SERVER_URL = 'http://images.cceh.uni-koeln.de/capitularia/';
  * plugin.
  */
 
-load_theme_textdomain ('capitularia', get_template_directory () . '/languages/');
+load_theme_textdomain ('capitularia', get_stylesheet_directory () . '/dist/languages/');
 
 /*
  * These strings are defined somewhere inside Wordpress.  Because we want to

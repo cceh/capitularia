@@ -189,7 +189,7 @@ function cap_sanitize_key_list ($key_list)
 
 function on_init ()
 {
-    load_plugin_textdomain (LANG, false, basename (dirname (__FILE__)) . '/languages/');
+    lib\load_plugin_textdomain (DOMAIN, __FILE__);
 
     global $config;
     $config = new Config ();
@@ -207,7 +207,7 @@ function on_cap_action_file ()
     lib\check_ajax_referrer ();
     if (!current_user_can ('edit_posts')) {
         wp_send_json_error (
-            array ('message' => __ ('You have no permission to edit posts.', LANG))
+            array ('message' => __ ('You have no permission to edit posts.', DOMAIN))
         );
         exit ();
     }
@@ -287,8 +287,8 @@ function on_admin_menu ()
 {
     // adds a menu entry to the settings menu
     add_options_page (
-        __ (NAME, LANG) . ' ' . __ ('Settings', LANG),
-        __ (NAME, LANG),
+        __ (NAME, DOMAIN) . ' ' . __ ('Settings', DOMAIN),
+        __ (NAME, DOMAIN),
         'manage_options',
         OPTIONS,
         array (new Settings_Page (), 'display')
@@ -297,8 +297,8 @@ function on_admin_menu ()
     // adds a menu entry to the dashboard menu
     add_submenu_page (
         'index.php',
-        __ (NAME, LANG) . ' ' . __ ('Dashboard', LANG),
-        __ (NAME, LANG),
+        __ (NAME, DOMAIN) . ' ' . __ ('Dashboard', DOMAIN),
+        __ (NAME, DOMAIN),
         'edit_pages',
         DASHBOARD,
         array (new Dashboard_Page (), 'display')
@@ -318,11 +318,11 @@ function on_admin_bar_menu ($wp_admin_bar)
     if (!is_admin () && current_user_can ('edit_pages')) {
         $args = array (
             'id'    => 'cap_page_gen_open',
-            'title' => __ ('Page Generator', LANG),
+            'title' => __ ('Page Generator', DOMAIN),
             'href'  => '/wp-admin/index.php?page=' . DASHBOARD,
             'meta'  => array (
                 'class' => 'cap-page-gen',
-                'title' => __ (NAME, LANG)
+                'title' => __ (NAME, DOMAIN)
             )
         );
         $wp_admin_bar->add_node ($args);
@@ -343,8 +343,8 @@ function on_plugin_action_links ($links)
 {
     array_push (
         $links,
-        '<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>',
-        '<a href="index.php?page=' . DASHBOARD . '">' . __ ('Dashboard', LANG) . '</a>'
+        '<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', DOMAIN) . '</a>',
+        '<a href="index.php?page=' . DASHBOARD . '">' . __ ('Dashboard', DOMAIN) . '</a>'
     );
     return $links;
 }

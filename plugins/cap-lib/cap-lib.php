@@ -30,7 +30,7 @@ defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.
 const NAME    = 'Capitularia Library';
 
 /** The Text Domain of the plugin. */
-const LANG    = 'cap-lib';
+const DOMAIN    = 'cap-lib';
 
 /** The Wordpress ID of the settings (option) page. */
 const OPTIONS = 'cap_lib_options';

@@ -74,7 +74,7 @@ class Settings_Page
         $title = esc_html (get_admin_page_title ());
         echo ("<div class='wrap'>\n");
         echo ("  <h2>$title</h2>\n");
-        echo ('  <p><a href="/wp-admin/index.php?page=' . DASHBOARD . '">' . __ ('Dashboard', LANG) . "</a></p>\n");
+        echo ('  <p><a href="/wp-admin/index.php?page=' . DASHBOARD . '">' . __ ('Dashboard', DOMAIN) . "</a></p>\n");
         echo ("  <form method='post' action='options.php'>\n");
         echo ("    <div id='tabs'>\n");
 
@@ -142,7 +142,7 @@ class Settings_Page
             echo ("<p>{$description}</p>\n");
             $cap_fi_root = file_includer\get_root ();
             echo ('<p>' . sprintf (
-                __ ('N.B. The File Includer plugin root is set to:<br>%s', LANG),
+                __ ('N.B. The File Includer plugin root is set to:<br>%s', DOMAIN),
                 $cap_fi_root
             ) . "</p>\n");
         } else {
@@ -184,7 +184,7 @@ class Settings_Page
                 }
             }
         }
-        $output['general.section_caption'] = __ ('General', LANG);
+        $output['general.section_caption'] = __ ('General', DOMAIN);
         // Merge with old options
         return array_merge (get_option (OPTIONS, array ()), $output);
     }

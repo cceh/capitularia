@@ -3,89 +3,56 @@
 Plugin Development
 ==================
 
+The Arcana of Wordpress Plugin Development
+
 .. contents::
    :local:
-
-The Arcana of Wordpress Plugin Development
 
 
 webpack
 ~~~~~~~
 
-Use webpack to compile all your Javascript modules and css into one file.
+We use webpack to compile all our JS and CSS modules.
 
-Compile your JS with webpack-dev-server to enable hot module reloading.
+Webpack generates a manifest file in :file:`themes/Capitularia/manifest.json`
+that contains the path to all compiled modules.
+
+The theme and plugins load all JS code through the function:
+
+.. code-block:: php
+
+   \cceh\capitularia\lib\enqueue_from_manifest ($key, $dependencies = array ())
+
+where :code:`$key` ist the key in the manifest file.
+
+To build production files compile with:
+
+.. code-block:: bash
+
+   webpack --config webpack.prod.js
+
+To build development files and enable hot module reloading (HMR) compile with:
+
+.. code-block:: bash
+
+   webpack-dev-server --config webpack.dev.js
 
 webpack-dev-server adds some code to your JS to enable HMR.  Once loaded into
 Wordpress this code opens a socket to the webpack-dev-server and awaits
 commands.  When webpack-dev-server detects a source code change it compiles the
-changes modules into a hot-update.js file sends a reload command down the
+changed modules into hot-update.js files and sends a reload command down the
 socket.  The HMR code in your app then tries to reload the changed modules
-preserving application state.  If it fails it will fallback on reloading the
-whole page (and losing application state).
+preserving application state.  If it fails to do so it will fallback on
+reloading the whole page (and losing application state).
 
 Example webpack config:
 
-.. code-block:: js
-
-   const webpack   = require ('webpack');
-   const { merge } = require ('webpack-merge');
-   const common    = require ('./webpack.common.js');
-   const chokidar  = require ('chokidar');
-
-   const devPort = 8081;
-
-   module.exports = merge (common, {
-       mode: 'development',
-       devtool: 'eval-source-map',
-       output: {
-           // This is where the HMR module looks for the hot-update files.
-           // We actually serve nothing but the hot-update files from here.
-           publicPath: `http://capitularia.fritz.box:${devPort}/`,
-
-           // These files don't get removed, so at least give them stable names.
-           hotUpdateChunkFilename: 'hot-update.js',
-           hotUpdateMainFilename:  'hot-update.json',
-       },
-       devServer: {
-           host: 'capitularia.fritz.box',
-           port: devPort,
-           contentBase: './build',  // not used
-
-           // Enable hot module reloading (HMR).
-           hot: true,
-           liveReload: false,
-
-           // Always write the files to disk because Wordpress needs to serve them
-           // in case of page reload.
-           writeToDisk: true,
-
-           // Needed because we access port devPort from port 80.
-           headers: { 'Access-Control-Allow-Origin': '*' },
-
-           // Watch for changes to PHP files and reload the page when one changes.
-           // See: https://mikeselander.com/hot-reloading-using-webpack-with-php-file-changes/
-           before (app, server) {
-               chokidar
-                   .watch ('*.php', {
-                       alwaysStat: true,
-                       atomic: false,
-                       followSymlinks: false,
-                       ignoreInitial: true,
-                       ignorePermissionErrors: true,
-                       persistent: true,
-                       usePolling: true
-                   })
-                   .on ('all', () => {
-                       server.sockWrite (server.sockets, 'content-changed');
-                   });
-           },
-       },
-   });
+.. literalinclude:: /../webpack.dev.js
+   :language: js
 
 
-i18n
-~~~~
+i18n of Javascript
+~~~~~~~~~~~~~~~~~~
 
 Internationalization consists of these steps:
 
@@ -95,22 +62,39 @@ Internationalization consists of these steps:
 
 3. Make the .json file available to your JS module.
 
-4. Use Wordpress i18n functions to translate the strings at runtime.
+4. Use the Wordpress :file:`wp-i18n.js` library to translate the strings at
+   runtime.
+
+Extract
+-------
 
 There are 3 kinds of source files: PHP files, JS files and Vue single component
-files. PHP and JS files can be extracted using the GNU xgettext utility.
+files.  PHP and JS files can be extracted using the GNU xgettext utility.
+
+In JS files, use the :func:`__ ()` function:
+
+.. code-block:: js
+
+   const message = __ ('Message to translate', DOMAIN);
+
+
+Vue Files
++++++++++
 
 Vue single component files contain 3 sections: HTML, JS, and CSS.  The CSS
 section does not need to be translated.
 
-The JS section uses the :func:`$t` function to tag and translate strings.
+In the JS section of Vue files, use the :func:`$t ()` function:
 
 .. code-block:: js
 
    const message = $t ('Message to translate');
 
-The HTML template section uses different methods to tag
-translatable strings:
+This function tags the message for the string extractor and also translates
+the string at runtime.
+
+In The HTML template section of Vue files, you may use 3 different methods to
+tag translatable strings:
 
 .. code-block:: html
 
@@ -121,47 +105,71 @@ translatable strings:
 To extract the strings from the Vue files we use
 `easygettext <https://github.com/Polyconseil/easygettext>`_.
 
+
+Translate
+---------
+
+Use poedit to translate the extracted strings.
+
 To compile .po files into .json files in jed-format we use
 `po2json <https://github.com/mikeedwards/po2json>`_.
 
-Wordpress boilerplate to make translations available:
-See also: https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
+
+Enqueue Translations
+--------------------
+
+Wordpress boilerplate to make translations available in PHP and JS files:
 
 .. code-block:: php
+   :caption: Wordpress boilerplate
 
-   function on_enqueue_scripts ()
+   use cceh\capitularia\lib;
+
+   function enqueue_scripts ()
    {
-       wp_register_script (
-           'my-plugin-name',
-           plugins_url ('js/plugin.js', __FILE__),
-           array (
-               'wp-i18n',
-               'cap-vue',
-           )
-       );
+       $key = 'key-from-manifest.json';
 
-       load_plugin_textdomain (
-           'my-text-domain',
-           false,
-           basename (dirname (__FILE__)) . '/languages/'
-       );
+       lib\enqueue_from_manifest ($key, [
+           'another-key-from-manifest.json',
+           'wp-i18n'  // <= !important
+       ]);
 
-       wp_set_script_translations (
-           'my-plugin-name',
-           'my-text-domain',
-           plugin_dir_path (__FILE__) . 'languages'
-       );
+       // translations in PHP files
+       lib\load_plugin_textdomain (DOMAIN, __FILE__);
+
+       // translations in JS files
+       lib\wp_set_script_translations ($key, DOMAIN, __FILE__);
    }
 
+See also:
+https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
+
+
+Use translated strings
+----------------------
+
+In JS simply use the functions made available by the :file:`wp-i18n.js` library.
+
+.. code-block:: js
+   :caption: Javascript boilerplate
+
+   const { __, _x, _n, _nx } = wp.i18n;
+   const DOMAIN = 'my-text-domain';
+
+   const message = __ ('Message to translate', DOMAIN);
 
 Vue boilerplate to enable translations in HTML templates:
 Put this in main.js before initializing your Vue app.
 
+
 .. code-block:: js
+   :caption: Vue.js boilerplate
+
+   const DOMAIN = 'my-text-domain';
 
    // wrapper to call the Wordpress translate function
    function $t (text) {
-       return wp.i18n.__ (text, 'my-text-domain');
+       return wp.i18n.__ (text, DOMAIN);
    }
 
    // the vm.$t function
@@ -169,12 +177,14 @@ Put this in main.js before initializing your Vue app.
        return $t (text);
    };
 
-   // the v-translate directive
-   Vue.directive ('translate', function (el) {
-       el.innerText = $t (el.innerText);
-   });
-
    // the {{ 'text' | translate }} filter
    Vue.filter ('translate', function (text) {
        return $t (text);
    });
+
+   // the v-translate directive
+   Vue.directive ('translate', function (el) {
+       el.innerText = $t (el.innerText.trim ()));
+   });
+
+   new Vue (...);

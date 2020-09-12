@@ -16,18 +16,21 @@ Vue.prototype.$t = function (text) {
     return $t (text);
 };
 
-// the v-translate directive
-Vue.directive ('translate', function (el) {
-    el.innerText = $t (el.innerText.trim ());
-});
-
 // the {{ 'text' | translate }} filter
 Vue.filter ('translate', function (text) {
     return $t (text);
 });
 
+// the v-translate directive
+Vue.directive ('translate', function (el) {
+    el.innerText = $t (el.innerText.trim ());
+});
+
 new Vue ({ // eslint-disable-line no-new
     'el'         : '#cap-collation-app',
+    render (createElement) {
+        return createElement ('cap-collation-app');
+    },
     'components' : {
         'cap-collation-app' : Main,
     },

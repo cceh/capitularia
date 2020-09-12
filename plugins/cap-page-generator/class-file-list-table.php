@@ -80,8 +80,8 @@ class File_List_Table extends \WP_List_Table
 
         parent::__construct (
             array (
-                'singular' => __ ('TEI file',  LANG),
-                'plural'   => __ ('TEI files', LANG),
+                'singular' => __ ('TEI file',  DOMAIN),
+                'plural'   => __ ('TEI files', DOMAIN),
                 'ajax'     => false, // do not use the ajax built-in in table
                 'screen'   => isset ($args['screen']) ? $args['screen'] : null,
             )
@@ -94,16 +94,16 @@ class File_List_Table extends \WP_List_Table
             // do not make public children of private pages
             && cap_get_section_page_status ($section_id) == 'publish'
         ) {
-            $this->bulk_actions['publish']  = _x ('Publish',           'bulk action', LANG);
+            $this->bulk_actions['publish']  = _x ('Publish',           'bulk action', DOMAIN);
         }
         if ($config->section_can ($section_id, 'private')) {
-            $this->bulk_actions['private']  = _x ('Publish privately', 'bulk action', LANG);
+            $this->bulk_actions['private']  = _x ('Publish privately', 'bulk action', DOMAIN);
         }
-        $this->bulk_actions['delete']           = _x ('Unpublish',        'bulk action', LANG);
-        $this->bulk_actions['refresh']          = _x ('Refresh',          'bulk action', LANG);
-        $this->statuses['publish'] = _x ('Published',           'file status', LANG);
-        $this->statuses['private'] = _x ('Published privately', 'file status', LANG);
-        $this->statuses['delete']  = _x ('Not published',       'file status', LANG);
+        $this->bulk_actions['delete']           = _x ('Unpublish',        'bulk action', DOMAIN);
+        $this->bulk_actions['refresh']          = _x ('Refresh',          'bulk action', DOMAIN);
+        $this->statuses['publish'] = _x ('Published',           'file status', DOMAIN);
+        $this->statuses['private'] = _x ('Published privately', 'file status', DOMAIN);
+        $this->statuses['delete']  = _x ('Not published',       'file status', DOMAIN);
 
         $this->paths = array ();
 
@@ -206,7 +206,7 @@ class File_List_Table extends \WP_List_Table
 
     public function no_items ()
     {
-        _e ('No TEI files found.', LANG);
+        _e ('No TEI files found.', DOMAIN);
     }
 
     /**
@@ -234,9 +234,9 @@ class File_List_Table extends \WP_List_Table
     {
         return array (
             'cb'         => '<input type="checkbox" />',
-            'slug'       => _x ('Slug',     'column heading', LANG),
-            'status'     => _x ('Status',   'column heading', LANG),
-            'title'      => _x ('Title',    'Manuscript title column heading',    LANG),
+            'slug'       => _x ('Slug',     'column heading', DOMAIN),
+            'status'     => _x ('Status',   'column heading', DOMAIN),
+            'title'      => _x ('Title',    'Manuscript title column heading',    DOMAIN),
         );
     }
 
@@ -280,7 +280,7 @@ class File_List_Table extends \WP_List_Table
         $filename = esc_attr ($manuscript->get_filename ());
         $select   = esc_html (
             sprintf (
-                _x ('Select %s', 'Select a filename (screen reader only)', LANG),
+                _x ('Select %s', 'Select a filename (screen reader only)', DOMAIN),
                 $filename
             )
         );

@@ -30,12 +30,12 @@ class Widget extends \WP_Widget
 
         $widget_ops = array (
             'classname' => 'cap_meta_search_widget',
-            'description' => __ ('Search widget for Capitularia metadata.', LANG),
+            'description' => __ ('Search widget for Capitularia metadata.', DOMAIN),
         );
         $control_ops = array ('width' => 400, 'height' => 350);
         parent::__construct (
             'cap_meta_search_widget',
-            __ ('Capitularia Search Box Widget', LANG),
+            __ ('Capitularia Search Box Widget', DOMAIN),
             $widget_ops,
             $control_ops
         );
@@ -74,7 +74,7 @@ class Widget extends \WP_Widget
 
     private function echo_options ($items, $selected)
     {
-        $all = _x ('All', '\'All\' option in drop-down', LANG);
+        $all = _x ('All', '\'All\' option in drop-down', DOMAIN);
         echo ("    <option value=''>$all</option>\n");
 
         foreach ($items as $item) {
@@ -179,27 +179,27 @@ class Widget extends \WP_Widget
 
         $capitulars = get_capitulars ();
 
-        $label   = __ ('Capitularies contained', LANG);
-        $tooltip = __ ('Only show manuscripts that contain this capitulary.', LANG);
+        $label   = __ ('Capitularies contained', DOMAIN);
+        $tooltip = __ ('Only show manuscripts that contain this capitulary.', DOMAIN);
         $this->echo_select ($label, 'capit', $capitulars, $tooltip);
 
         echo ("<div class='clearfix'>\n");
-        $label   = __ ('After', LANG);
-        $tooltip = __ ('Only show manuscripts created after this year.', LANG);
+        $label   = __ ('After', DOMAIN);
+        $tooltip = __ ('Only show manuscripts created after this year.', DOMAIN);
         $this->echo_input  ($label, 'notbefore', '700',  $tooltip);
 
-        $label   = __ ('Before', LANG);
-        $tooltip = __ ('Only show manuscripts created before this year.', LANG);
+        $label   = __ ('Before', DOMAIN);
+        $tooltip = __ ('Only show manuscripts created before this year.', DOMAIN);
         $this->echo_input  ($label, 'notafter',  '1000', $tooltip);
         echo ("</div>\n");
 
-        $label   = __ ('Origin', LANG);
-        $tooltip = __ ('Only show manuscripts created in this region.', LANG);
+        $label   = __ ('Origin', DOMAIN);
+        $tooltip = __ ('Only show manuscripts created in this region.', DOMAIN);
         $this->echo_places_tree ($label, 'places', $tooltip);
 
-        $label       = __ ('Free Text', LANG);
-        $tooltip     = __ ('Free text search', LANG);
-        $placeholder = __ ('Free Text', LANG);
+        $label       = __ ('Free Text', DOMAIN);
+        $tooltip     = __ ('Free text search', DOMAIN);
+        $placeholder = __ ('Free Text', DOMAIN);
         // Use 'fulltext' as query parameter instead of 's' to switch to our own
         // search implementation.  Because our manuscript pages contain only a
         // shortcode Wordpress search could not find anything.
@@ -212,12 +212,12 @@ class Widget extends \WP_Widget
 
         echo ("<div class='cap-meta-search-buttons clearfix'>\n");
 
-        $label   = __ ('Search', LANG);
-        $tooltip = __ ('Start the search', LANG);
+        $label   = __ ('Search', DOMAIN);
+        $tooltip = __ ('Start the search', DOMAIN);
         echo ("  <input class='cap-meta-search-submit' type='submit' value='$label' title='$tooltip' />\n");
 
-        $label   = __ ('Help', LANG);
-        $tooltip = __ ('Show some help', LANG);
+        $label   = __ ('Help', DOMAIN);
+        $tooltip = __ ('Show some help', DOMAIN);
         echo ("  <input class='cap-meta-search-help'   type='button' value='$label' title='$tooltip' />\n");
 
         echo ("</div>\n");
@@ -263,7 +263,7 @@ class Widget extends \WP_Widget
 
     public function form ($instance)
     {
-        $this->the_option ($instance, 'title', __ ('Title', LANG), __ ('New title', LANG));
+        $this->the_option ($instance, 'title', __ ('Title', DOMAIN), __ ('New title', DOMAIN));
     }
 
     /**

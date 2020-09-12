@@ -201,7 +201,7 @@ function api_json_request ($endpoint, $params = array ())
 function save_button ()
 {
     submit_button (
-        _x ('Save Changes', 'Button: Save Changes in setting page', LANG)
+        _x ('Save Changes', 'Button: Save Changes in setting page', DOMAIN)
     );
 }
 
@@ -249,9 +249,24 @@ function images_dir_path ($file)
     return plugin_dir_path ($file) . 'dist/images';
 }
 
-function language_dir_path ($file)
+function languages_dir_path ($file)
 {
     return plugin_dir_path ($file) . 'dist/languages';
+}
+
+function load_plugin_textdomain ($domain, $file)
+{
+    $plugin_rel_path = dirname (plugin_basename ($file)) . '/dist/languages';
+    return \load_plugin_textdomain ($domain, false, $plugin_rel_path);
+}
+
+function wp_set_script_translations ($handle, $domain, $file)
+{
+    \wp_set_script_translations (
+        $handle,
+        DOMAIN,
+        languages_dir_path (__FILE__)
+    );
 }
 
 /**
@@ -334,7 +349,7 @@ function check_ajax_referrer ()
 
 function on_init ()
 {
-    load_plugin_textdomain (LANG, false, basename (dirname (__FILE__)) . '/languages/');
+    load_plugin_textdomain (DOMAIN, __FILE__);
 }
 
 /**
@@ -361,8 +376,8 @@ function on_admin_init ()
 function on_admin_menu ()
 {
     add_options_page (
-        __ (NAME, LANG) . ' ' . __ ('Settings', LANG),
-        __ (NAME, LANG),
+        __ (NAME, DOMAIN) . ' ' . __ ('Settings', DOMAIN),
+        __ (NAME, DOMAIN),
         'manage_options',
         OPTIONS,
         array (new Settings_Page (), 'display')
@@ -383,7 +398,7 @@ function on_plugin_action_links ($links)
 {
     array_push (
         $links,
-        '<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>'
+        '<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', DOMAIN) . '</a>'
     );
     return $links;
 }

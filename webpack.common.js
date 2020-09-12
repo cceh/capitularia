@@ -1,12 +1,12 @@
-const path = require ('path');
 const glob = require ('glob');
+const path = require ('path');
 
-const VueLoaderPlugin   = require ('vue-loader/lib/plugin'); // loads vue single-file components
-const ManifestPlugin    = require ('webpack-manifest-plugin');
+const ManifestPlugin  = require ('webpack-manifest-plugin');
+const VueLoaderPlugin = require ('vue-loader/lib/plugin'); // loads vue single-file components
 
 module.exports = {
-    context: path.resolve (__dirname),
-    entry : {
+    context : path.resolve (__dirname),
+    entry   : {
         'cap-vendor' : {
             import : ['jquery', 'lodash', 'popper.js', 'bootstrap', 'vue', 'bootstrap-vue'],
         },
@@ -101,33 +101,6 @@ module.exports = {
                 ],
             },
             {
-                test : /\.scss$/,
-                use  : [
-                    'style-loader',
-                    {
-                        loader  : 'css-loader',
-                        options : {
-                            importLoaders : 2,
-                        }
-                    },
-                    'postcss-loader',
-                    'sass-loader',
-                ],
-            },
-            {
-                test : /\.css$/,
-                use  : [
-                    'style-loader',
-                    {
-                        loader  : 'css-loader',
-                        options : {
-                            importLoaders : 1,
-                        }
-                    },
-                    'postcss-loader',
-                ],
-            },
-            {
                 test : /\.(png|jpg|jpeg|gif)$/,
                 use  : [
                     {
@@ -159,37 +132,34 @@ module.exports = {
         },
         moduleIds    : 'deterministic',
         /*
-        splitChunks: {
-            cacheGroups: {
-                common: {
-                    name: 'common',
-                    chunks: 'all',
-                    minChunks: 2,
-                    enforce: true,
-                },
-                vendor: {
-                    name: 'cap-vendor',
-                    test: /node_modules/,
-                    chunks: 'all',
-                    reuseExistingChunk: true,
-                },
-            },
-        },*/
+          splitChunks: {
+          cacheGroups: {
+          common: {
+          name: 'common',
+          chunks: 'all',
+          minChunks: 2,
+          enforce: true,
+          },
+          vendor: {
+          name: 'cap-vendor',
+          test: /node_modules/,
+          chunks: 'all',
+          reuseExistingChunk: true,
+          },
+          },
+          },*/
     },
     plugins : [
-        new VueLoaderPlugin (),
         new ManifestPlugin ({
             fileName : path.resolve (__dirname, 'themes/Capitularia/manifest.json'),
             writeToFileEmit : true,
         }),
+        new VueLoaderPlugin (),
     ],
     resolve : {
         modules : [
             path.resolve (__dirname, 'client/node_modules'),
             'node_modules',
         ],
-        alias : {
-            'vue$' : 'vue/dist/vue.esm.js', // includes the template compiler
-        },
     },
 };

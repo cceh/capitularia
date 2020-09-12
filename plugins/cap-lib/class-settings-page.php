@@ -40,14 +40,14 @@ class Settings_Page
 
         add_settings_section (
             $section,
-            __ ('General Settings', LANG),
+            __ ('General Settings', DOMAIN),
             array ($this, 'on_options_section_general'),
             OPTIONS
         );
 
         add_settings_field (
             OPTIONS . '_afs',
-            __ ('AFS Root', LANG),
+            __ ('AFS Root', DOMAIN),
             array ($this, 'on_options_field_afs'),
             OPTIONS,
             $section
@@ -55,7 +55,7 @@ class Settings_Page
 
         add_settings_field (
             OPTIONS . '_api',
-            __ ('API Entrypoint', LANG),
+            __ ('API Entrypoint', DOMAIN),
             array ($this, 'on_options_field_api'),
             OPTIONS,
             $section
@@ -100,7 +100,7 @@ class Settings_Page
     {
         $setting = get_opt ('afs');
         echo "<input class='file-input' type='text' name='{$this->options}[afs]' value='$setting' />";
-        echo '<p>' . sprintf (__ ('Root directory of Capitularia in the AFS', LANG)) . '</p>';
+        echo '<p>' . sprintf (__ ('Root directory of Capitularia in the AFS', DOMAIN)) . '</p>';
     }
 
     /**
@@ -113,7 +113,7 @@ class Settings_Page
     {
         $setting = get_opt ('api');
         echo "<input class='file-input' type='text' name='{$this->options}[api]' value='$setting' />";
-        echo '<p>' . sprintf (__ ('Capitularia API Server entrypoint', LANG)) . '</p>';
+        echo '<p>' . sprintf (__ ('Capitularia API Server entrypoint', DOMAIN)) . '</p>';
     }
 
     /**

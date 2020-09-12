@@ -52,7 +52,7 @@ defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.
 const NAME                 = 'Capitularia Page Generator';
 
 /** The Text Domain ofthe plugin. */
-const LANG                 = 'cap-page-generator';
+const DOMAIN                 = 'cap-page-generator';
 
 /** The Wordpress ID of the settings (option) page. */
 const OPTIONS              = 'cap_page_gen_options';

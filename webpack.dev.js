@@ -8,26 +8,47 @@ module.exports = merge (common, {
     mode    : 'development',
     devtool : 'eval-source-map',
     output  : {
-        // This is where the HMR module looks for the hot-update files.
-        // We actually serve nothing but the hot-update files from here.
-        // publicPath : `http://capitularia.fritz.box:${devPort}/`,
-        hotUpdateChunkFilename : `http://capitularia.fritz.box:${devPort}/[id].[hash].hot-update.js`,
-        hotUpdateMainFilename  : `http://capitularia.fritz.box:${devPort}/[hash].hot-update.json`,
+        publicPath : `http://capitularia.fritz.box:${devPort}/`,
+    },
+    module : {
+        rules : [
+            {
+                test : /\.scss$/,
+                use  : [
+                    'style-loader',
+                    {
+                        loader  : 'css-loader',
+                        options : {
+                            importLoaders : 2,
+                        }
+                    },
+                    'postcss-loader',
+                    'sass-loader',
+                ],
+            },
+            {
+                test : /\.css$/,
+                use  : [
+                    'style-loader',
+                    {
+                        loader  : 'css-loader',
+                        options : {
+                            importLoaders : 1,
+                        }
+                    },
+                    'postcss-loader',
+                ],
+            },
+        ],
     },
     devServer : {
         host        : 'capitularia.fritz.box',
         port        : devPort,
-        contentBase : './build',  // not used
+        contentBase : './dist',  // not used
 
         // Enable hot module reloading (HMR).
         hot        : true,
         liveReload : false,
-
-        // Always write the files to disk because Wordpress needs to serve them
-        // in case of page reload.
-        writeToDisk : (filePath) => {
-            return ! /hot-update.js/.test (filePath);
-        },
 
         // Needed because we access port devPort from port 80.
         headers : { 'Access-Control-Allow-Origin' : '*' },
@@ -36,7 +57,7 @@ module.exports = merge (common, {
         // See: https://mikeselander.com/hot-reloading-using-webpack-with-php-file-changes/
         before (app, server) {
             chokidar
-                .watch (['themes/**/*.php', 'plugins/**/*.php'], {
+                .watch (['themes/**/*.php', 'plugins/*/*.php'], {
                     alwaysStat     : true,
                     atomic         : false,
                     followSymlinks : false,

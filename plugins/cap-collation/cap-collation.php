@@ -44,7 +44,7 @@ defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.
 const NAME = 'Capitularia Collation Tool';
 
 /** The Text Domain of the plugin. */
-const LANG = 'cap-collation';
+const DOMAIN = 'cap-collation';
 
 require_once 'functions.php';
 

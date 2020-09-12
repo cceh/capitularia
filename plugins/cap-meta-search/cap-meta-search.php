@@ -36,19 +36,13 @@ namespace cceh\capitularia\meta_search;
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
 /** The name of the plugin. */
-const NAME                 = 'Capitularia Meta Search';
+const NAME = 'Capitularia Meta Search';
 
 /** The text domain of the plugin. */
-const LANG                 = 'cap-meta-search';
-
-/** AJAX security */
-const NONCE_SPECIAL_STRING = 'cap_meta_search_nonce';
-
-/** AJAX security */
-const NONCE_PARAM_NAME     = '_ajax_nonce';
+const DOMAIN = 'cap-meta-search';
 
 /** The URL query parameter to request word highlighting. */
-const HIGHLIGHT            = 'cap_highlight_words';
+const HIGHLIGHT = 'cap_highlight_words';
 
 require_once 'functions.php';
 require_once 'class-highlighter.php';

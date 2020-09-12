@@ -87,7 +87,7 @@ function get_capitulars ()
 
 function on_init ()
 {
-    load_plugin_textdomain (LANG, false, basename (dirname (__FILE__)) . '/languages/');
+    lib\load_plugin_textdomain (DOMAIN, __FILE__);
 }
 
 /**

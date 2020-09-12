@@ -6,9 +6,7 @@
  */
 
 import $ from 'jquery';
-window.$ = $; // stupid jstree needs this
-
-import 'jstree';
+import jstree from 'imports-loader?imports=default|jquery|jQuery!jstree';
 
 /**
  * Initialize the help button in the widget.

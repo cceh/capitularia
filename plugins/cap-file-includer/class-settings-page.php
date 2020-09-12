@@ -43,21 +43,21 @@ class Settings_Page
 
         add_settings_section (
             $section,
-            __ ('General Settings', LANG),
+            __ ('General Settings', DOMAIN),
             array ($this, 'on_options_section_general'),
             OPTIONS
         );
 
         add_settings_field (
             OPTIONS . '_options_root',
-            __ ('Root directory', LANG),
+            __ ('Root directory', DOMAIN),
             array ($this, 'on_options_field_root'),
             OPTIONS,
             $section
         );
         add_settings_field (
             OPTIONS . '_options_shortcode',
-            __ ('Shortcode', LANG),
+            __ ('Shortcode', DOMAIN),
             array ($this, 'on_options_field_shortcode'),
             OPTIONS,
             $section
@@ -109,7 +109,7 @@ class Settings_Page
             __ (
                 'Root directory of the files you want to include, relative to the AFS root.  ' .
                 'The AFS root is currently configured as<br>%s',
-                LANG
+                DOMAIN
             ),
             lib\get_opt ('afs')
         ) . '</p>';
@@ -125,7 +125,7 @@ class Settings_Page
     {
         $setting = get_opt ('shortcode');
         echo "<input class='file-input' type='text' name='{$this->options}[shortcode]' value='$setting' />";
-        echo '<p>' . __ ('The shortcode to use, eg.: cap_include', LANG) . '</p>';
+        echo '<p>' . __ ('The shortcode to use, eg.: cap_include', DOMAIN) . '</p>';
     }
 
     /**

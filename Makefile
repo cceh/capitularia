@@ -3,9 +3,9 @@ include Variables.mak
 THEMES  = themes/Capitularia
 PLUGINS = $(wildcard plugins/cap-*)
 
-lint: phplint csslint jslint
+lint: phpcs jslint csslint
 
-deploy: css js_prod lint mo deploy_xslt deploy_scripts
+deploy: clean lint js mo deploy_xslt deploy_scripts
 
 deploy_xslt: make_dependencies
 	$(RSYNC) xslt/*.xsl $(TRANSFORM)/
@@ -87,11 +87,8 @@ server: geodata-server
 client: geodata-client
 	cd $(CLIENT) && $(MAKE) build
 
-.PHONY: js js-prod dev-server
+.PHONY: js dev-server
 js:
-	$(WEBPACK) --config $(WEBPACK_DEV_CONFIG)
-
-js-prod:
 	$(WEBPACK) --config $(WEBPACK_PROD_CONFIG)
 
 dev-server:

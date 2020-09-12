@@ -67,18 +67,18 @@ class Config
         $section_general = array (
             array (
                 'section_id_list',
-                __ ('List of section ids', LANG),
+                __ ('List of section ids', DOMAIN),
                 sprintf (
-                    __ ('List of section ids (space-separated). Eg.: %s', LANG),
+                    __ ('List of section ids (space-separated). Eg.: %s', DOMAIN),
                     'mss mss_internal capit_ldf capit_ldf_internal'
                 ),
                 ns ('cap_sanitize_key_list'),
             ),
             array (
                 'xml_root_uri',
-                __ ('XML Root URI', LANG),
+                __ ('XML Root URI', DOMAIN),
                 sprintf (
-                    __ ('Root URI from where to download XML files, eg.: %s', LANG),
+                    __ ('Root URI from where to download XML files, eg.: %s', DOMAIN),
                     'https://capitularia.uni-koeln.de/downloads'
                 ),
                 ns ('cap_sanitize_path'),
@@ -87,24 +87,24 @@ class Config
         $section_transform = array (
             array (
                 'section_caption',
-                __ ('Section name', LANG),
-                __ ('The name of this section', LANG),
+                __ ('Section name', DOMAIN),
+                __ ('The name of this section', DOMAIN),
                 ns ('cap_sanitize_caption'),
             ),
             array (
                 'shortcode',
-                __ ('Shortcode', LANG),
-                __ ('The text to insert on all new pages. Use {slug} to insert the page slug.', LANG),
+                __ ('Shortcode', DOMAIN),
+                __ ('The text to insert on all new pages. Use {slug} to insert the page slug.', DOMAIN),
                 ns ('cap_sanitize_nothing'),
             ),
             array (
                 'xml_dir',
-                __ ('XML files directory', LANG),
+                __ ('XML files directory', DOMAIN),
                 sprintf (
                     __ (
                         'The path to the XML files, relative to the AFS Root. eg.: %s. ' .
                         'The AFS root is currently configured as<br>%s',
-                        LANG
+                        DOMAIN
                     ),
                     'publ/mss',
                     lib\get_opt ('afs')
@@ -113,36 +113,36 @@ class Config
             ),
             array (
                 'slug_path',
-                __ ('Slug path', LANG),
+                __ ('Slug path', DOMAIN),
                 sprintf (
-                    __ ('The URL path to the page, eg.: %s', LANG),
+                    __ ('The URL path to the page, eg.: %s', DOMAIN),
                     'capit/ldf'
                 ),
                 ns ('cap_sanitize_path'),
             ),
             array (
                 'slug_prefix',
-                __ ('Slug prefix', LANG),
+                __ ('Slug prefix', DOMAIN),
                 sprintf (
-                    __ ('The slug prefix for the pages, eg.: %s', LANG),
+                    __ ('The slug prefix for the pages, eg.: %s', DOMAIN),
                     'capit-ldf-'
                 ),
                 ns ('cap_sanitize_key'),
             ),
             array (
                 'page_status_list',
-                __ ('Page statuses list', LANG),
+                __ ('Page statuses list', DOMAIN),
                 sprintf (
-                    __ ('The allowed page statuses (space-separated list). Eg.: %s', LANG),
+                    __ ('The allowed page statuses (space-separated list). Eg.: %s', DOMAIN),
                     'publish private'
                 ),
                 ns ('cap_sanitize_caption'),
             ),
             array (
                 'sidebars',
-                __ ('Sidebars', LANG),
+                __ ('Sidebars', DOMAIN),
                 sprintf (
-                    __ ('The sidebars (space-separated list). Eg.: %s', LANG),
+                    __ ('The sidebars (space-separated list). Eg.: %s', DOMAIN),
                     'transcription'
                 ),
                 ns ('cap_sanitize_caption'),

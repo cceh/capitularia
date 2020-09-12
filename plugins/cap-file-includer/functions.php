@@ -98,7 +98,7 @@ function get_root ()
 
 function on_init ()
 {
-    load_plugin_textdomain (LANG, false, basename (dirname (__FILE__)) . '/languages/');
+    lib\load_plugin_textdomain (DOMAIN, __FILE__);
 }
 
 /**
@@ -113,8 +113,8 @@ function on_init ()
 function on_admin_menu ()
 {
     add_options_page (
-        __ (NAME, LANG) . ' ' . __ ('Settings', LANG),
-        __ (NAME, LANG),
+        __ (NAME, DOMAIN) . ' ' . __ ('Settings', DOMAIN),
+        __ (NAME, DOMAIN),
         'manage_options',
         OPTIONS,
         array (new Settings_Page (), 'display')
@@ -135,7 +135,7 @@ function on_plugin_action_links ($links)
 {
     array_push (
         $links,
-        '<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', LANG) . '</a>'
+        '<a href="options-general.php?page=' . OPTIONS . '">' . __ ('Settings', DOMAIN) . '</a>'
     );
     return $links;
 }

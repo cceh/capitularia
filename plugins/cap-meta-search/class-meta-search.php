@@ -139,18 +139,18 @@ class MetaSearch
                 continue;
             }
             if ($key == 'capit') {
-                $your_search[] = sprintf (__ ('contains %s', LANG), $val);
+                $your_search[] = sprintf (__ ('contains %s', DOMAIN), $val);
             }
             if ($key == 'notbefore') {
-                $your_search[] = sprintf (__ ('after %d', LANG), absint ($val));
+                $your_search[] = sprintf (__ ('after %d', DOMAIN), absint ($val));
             }
             if ($key == 'notafter') {
-                $your_search[] = sprintf (__ ('before %d', LANG), absint ($val));
+                $your_search[] = sprintf (__ ('before %d', DOMAIN), absint ($val));
             }
             if ($key == 'placenames') {
                 if (is_array ($val)) {
                     $your_search[] = sprintf (
-                        __ ('origin in %s', LANG),
+                        __ ('origin in %s', DOMAIN),
                         implode (', ', $val)
                     );
                 }

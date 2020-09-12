@@ -33,7 +33,7 @@ function ns ($function_name)
 
 function on_enqueue_scripts ()
 {
-    load_plugin_textdomain (LANG, false, basename (dirname (__FILE__)) . '/languages/');
+    lib\load_plugin_textdomain (DOMAIN, __FILE__);
 }
 
 /**

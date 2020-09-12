@@ -82,11 +82,11 @@ class FileIncluderEngine
 
         // check if somebody is trying to read outside the root path
         if (strncmp ($root, $path, strlen ($root)) !== 0) {
-            return sprintf (_x ('%s: Illegal path: %s', 'Plugin name', LANG), NAME, $path);
+            return sprintf (_x ('%s: Illegal path: %s', 'Plugin name', DOMAIN), NAME, $path);
         }
 
         if (!is_readable ($path)) {
-            return '<div class="error">' . sprintf (__ ('File not found: %s', LANG), $path) . '</div>';
+            return '<div class="error">' . sprintf (__ ('File not found: %s', DOMAIN), $path) . '</div>';
         }
 
         // check if the file is newer than the post last modified date

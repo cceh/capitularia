@@ -34,7 +34,7 @@ namespace cceh\capitularia\dynamic_menu;
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
 /** The Text Domain */
-const LANG = 'cap-dynamic-menu';
+const DOMAIN = 'cap-dynamic-menu';
 
 require_once 'functions.php';
 
