@@ -215,72 +215,103 @@
             
   <div class="section" id="plugin-development">
 <span id="plugin-dev"></span><h1>Plugin Development<a class="headerlink" href="#plugin-development" title="Permalink to this headline">¶</a></h1>
+<p>The Arcana of Wordpress Plugin Development</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#webpack" id="id1">webpack</a></p></li>
-<li><p><a class="reference internal" href="#i18n" id="id2">i18n</a></p></li>
+<li><p><a class="reference internal" href="#webpack" id="id4">webpack</a></p></li>
+<li><p><a class="reference internal" href="#i18n-of-javascript" id="id5">i18n of Javascript</a></p>
+<ul>
+<li><p><a class="reference internal" href="#extract" id="id6">Extract</a></p>
+<ul>
+<li><p><a class="reference internal" href="#vue-files" id="id7">Vue Files</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#translate" id="id8">Translate</a></p></li>
+<li><p><a class="reference internal" href="#enqueue-translations" id="id9">Enqueue Translations</a></p></li>
+<li><p><a class="reference internal" href="#use-translated-strings" id="id10">Use translated strings</a></p></li>
+</ul>
+</li>
 </ul>
 </div>
-<p>The Arcana of Wordpress Plugin Development</p>
 <div class="section" id="webpack">
-<h2><a class="toc-backref" href="#id1">webpack</a><a class="headerlink" href="#webpack" title="Permalink to this headline">¶</a></h2>
-<p>Use webpack to compile all your Javascript modules and css into one file.</p>
-<p>Compile your JS with webpack-dev-server to enable hot module reloading.</p>
+<h2><a class="toc-backref" href="#id4">webpack</a><a class="headerlink" href="#webpack" title="Permalink to this headline">¶</a></h2>
+<p>We use webpack to compile all our JS and CSS modules.</p>
+<p>Webpack generates a manifest file in <code class="file docutils literal notranslate"><span class="pre">dist/manifest.json</span></code>
+that contains the public path to all compiled modules.</p>
+<p>The theme and plugins load all JS code through the function:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">\cceh\capitularia\lib\enqueue_from_manifest ($key, $dependencies = array ())</span>
+</pre></div>
+</div>
+<p>where <code class="code docutils literal notranslate"><span class="pre">$key</span></code> ist the key in the manifest file.</p>
+<p>To build production files compile with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>webpack --config webpack.prod.js
+</pre></div>
+</div>
+<p>To build development files and enable hot module reloading (HMR) compile with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>webpack-dev-server --config webpack.dev.js
+</pre></div>
+</div>
 <p>webpack-dev-server adds some code to your JS to enable HMR.  Once loaded into
 Wordpress this code opens a socket to the webpack-dev-server and awaits
 commands.  When webpack-dev-server detects a source code change it compiles the
-changes modules into a hot-update.js file sends a reload command down the
+changed modules into hot-update.js files and sends a reload command down the
 socket.  The HMR code in your app then tries to reload the changed modules
-preserving application state.  If it fails it will fallback on reloading the
-whole page (and losing application state).</p>
+preserving application state.  If it fails to do so it will fallback on
+reloading the whole page (and losing application state).</p>
 <p>Example webpack config:</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">webpack</span>   <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span><span class="s1">&#39;webpack&#39;</span><span class="p">);</span>
-<span class="kr">const</span> <span class="p">{</span> <span class="nx">merge</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span><span class="s1">&#39;webpack-merge&#39;</span><span class="p">);</span>
-<span class="kr">const</span> <span class="nx">common</span>    <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span><span class="s1">&#39;./webpack.common.js&#39;</span><span class="p">);</span>
-<span class="kr">const</span> <span class="nx">chokidar</span>  <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span><span class="s1">&#39;chokidar&#39;</span><span class="p">);</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">merge</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span><span class="s1">&#39;webpack-merge&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">chokidar</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span><span class="s1">&#39;chokidar&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">common</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span><span class="s1">&#39;./webpack.common.js&#39;</span><span class="p">);</span>
 
 <span class="kr">const</span> <span class="nx">devPort</span> <span class="o">=</span> <span class="mi">8081</span><span class="p">;</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">merge</span> <span class="p">(</span><span class="nx">common</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span>
-    <span class="nx">devtool</span><span class="o">:</span> <span class="s1">&#39;eval-source-map&#39;</span><span class="p">,</span>
-    <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
-        <span class="c1">// This is where the HMR module looks for the hot-update files.</span>
-        <span class="c1">// We actually serve nothing but the hot-update files from here.</span>
-        <span class="nx">publicPath</span><span class="o">:</span> <span class="sb">`http://capitularia.fritz.box:</span><span class="si">${</span><span class="nx">devPort</span><span class="si">}</span><span class="sb">/`</span><span class="p">,</span>
-
-        <span class="c1">// These files don&#39;t get removed, so at least give them stable names.</span>
-        <span class="nx">hotUpdateChunkFilename</span><span class="o">:</span> <span class="s1">&#39;hot-update.js&#39;</span><span class="p">,</span>
-        <span class="nx">hotUpdateMainFilename</span><span class="o">:</span>  <span class="s1">&#39;hot-update.json&#39;</span><span class="p">,</span>
+    <span class="nx">mode</span>    <span class="o">:</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span>
+    <span class="nx">devtool</span> <span class="o">:</span> <span class="s1">&#39;eval-source-map&#39;</span><span class="p">,</span>
+    <span class="nx">output</span>  <span class="o">:</span> <span class="p">{</span>
+        <span class="nx">publicPath</span> <span class="o">:</span> <span class="sb">`http://capitularia.fritz.box:</span><span class="si">${</span><span class="nx">devPort</span><span class="si">}</span><span class="sb">/`</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;capitularia.fritz.box&#39;</span><span class="p">,</span>
-        <span class="nx">port</span><span class="o">:</span> <span class="nx">devPort</span><span class="p">,</span>
-        <span class="nx">contentBase</span><span class="o">:</span> <span class="s1">&#39;./build&#39;</span><span class="p">,</span>  <span class="c1">// not used</span>
+    <span class="nx">module</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="nx">rules</span> <span class="o">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nx">test</span> <span class="o">:</span> <span class="sr">/\.s?css$/</span><span class="p">,</span>
+                <span class="nx">use</span>  <span class="o">:</span> <span class="p">[</span>
+                    <span class="s1">&#39;style-loader&#39;</span><span class="p">,</span>
+                    <span class="p">{</span>
+                        <span class="nx">loader</span>  <span class="o">:</span> <span class="s1">&#39;css-loader&#39;</span><span class="p">,</span>
+                        <span class="nx">options</span> <span class="o">:</span> <span class="p">{</span>
+                            <span class="nx">importLoaders</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span>
+                    <span class="s1">&#39;postcss-loader&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;sass-loader&#39;</span><span class="p">,</span>
+                <span class="p">],</span>
+            <span class="p">},</span>
+        <span class="p">],</span>
+    <span class="p">},</span>
+    <span class="nx">devServer</span> <span class="o">:</span> <span class="p">{</span>
+        <span class="nx">host</span>        <span class="o">:</span> <span class="s1">&#39;capitularia.fritz.box&#39;</span><span class="p">,</span>
+        <span class="nx">port</span>        <span class="o">:</span> <span class="nx">devPort</span><span class="p">,</span>
+        <span class="nx">contentBase</span> <span class="o">:</span> <span class="s1">&#39;./dist&#39;</span><span class="p">,</span>  <span class="c1">// not used</span>
 
         <span class="c1">// Enable hot module reloading (HMR).</span>
-        <span class="nx">hot</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="nx">liveReload</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-
-        <span class="c1">// Always write the files to disk because Wordpress needs to serve them</span>
-        <span class="c1">// in case of page reload.</span>
-        <span class="nx">writeToDisk</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">hot</span>        <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">liveReload</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
 
         <span class="c1">// Needed because we access port devPort from port 80.</span>
-        <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span> <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="o">:</span> <span class="s1">&#39;*&#39;</span> <span class="p">},</span>
+        <span class="nx">headers</span> <span class="o">:</span> <span class="p">{</span> <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span> <span class="o">:</span> <span class="s1">&#39;*&#39;</span> <span class="p">},</span>
 
         <span class="c1">// Watch for changes to PHP files and reload the page when one changes.</span>
         <span class="c1">// See: https://mikeselander.com/hot-reloading-using-webpack-with-php-file-changes/</span>
         <span class="nx">before</span> <span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">server</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">chokidar</span>
-                <span class="p">.</span><span class="nx">watch</span> <span class="p">(</span><span class="s1">&#39;*.php&#39;</span><span class="p">,</span> <span class="p">{</span>
-                    <span class="nx">alwaysStat</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                    <span class="nx">atomic</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-                    <span class="nx">followSymlinks</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-                    <span class="nx">ignoreInitial</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                    <span class="nx">ignorePermissionErrors</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                    <span class="nx">persistent</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                    <span class="nx">usePolling</span><span class="o">:</span> <span class="kc">true</span>
+                <span class="p">.</span><span class="nx">watch</span> <span class="p">([</span><span class="s1">&#39;themes/**/*.php&#39;</span><span class="p">,</span> <span class="s1">&#39;plugins/*/*.php&#39;</span><span class="p">],</span> <span class="p">{</span>
+                    <span class="nx">alwaysStat</span>     <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                    <span class="nx">atomic</span>         <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+                    <span class="nx">followSymlinks</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+                    <span class="nx">ignoreInitial</span>  <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                    <span class="nx">persistent</span>     <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                    <span class="nx">usePolling</span>     <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
                 <span class="p">})</span>
                 <span class="p">.</span><span class="nx">on</span> <span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
                     <span class="nx">server</span><span class="p">.</span><span class="nx">sockWrite</span> <span class="p">(</span><span class="nx">server</span><span class="p">.</span><span class="nx">sockets</span><span class="p">,</span> <span class="s1">&#39;content-changed&#39;</span><span class="p">);</span>
@@ -291,25 +322,36 @@ whole page (and losing application state).</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="i18n">
-<h2><a class="toc-backref" href="#id2">i18n</a><a class="headerlink" href="#i18n" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="i18n-of-javascript">
+<h2><a class="toc-backref" href="#id5">i18n of Javascript</a><a class="headerlink" href="#i18n-of-javascript" title="Permalink to this headline">¶</a></h2>
 <p>Internationalization consists of these steps:</p>
 <ol class="arabic simple">
 <li><p>Extract the strings to translate from the source files.</p></li>
 <li><p>Translate the strings and compile them into a .json file (in jed format).</p></li>
 <li><p>Make the .json file available to your JS module.</p></li>
-<li><p>Use Wordpress i18n functions to translate the strings at runtime.</p></li>
+<li><p>Use the Wordpress <code class="file docutils literal notranslate"><span class="pre">wp-i18n.js</span></code> library to translate the strings at
+runtime.</p></li>
 </ol>
+<div class="section" id="extract">
+<h3><a class="toc-backref" href="#id6">Extract</a><a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h3>
 <p>There are 3 kinds of source files: PHP files, JS files and Vue single component
-files. PHP and JS files can be extracted using the GNU xgettext utility.</p>
+files.  PHP and JS files can be extracted using the GNU xgettext utility.</p>
+<p>In JS files, use the <code class="xref py py-func docutils literal notranslate"><span class="pre">__</span> <span class="pre">()</span></code> function:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">__</span> <span class="p">(</span><span class="s1">&#39;Message to translate&#39;</span><span class="p">,</span> <span class="nx">DOMAIN</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="vue-files">
+<h4><a class="toc-backref" href="#id7">Vue Files</a><a class="headerlink" href="#vue-files" title="Permalink to this headline">¶</a></h4>
 <p>Vue single component files contain 3 sections: HTML, JS, and CSS.  The CSS
 section does not need to be translated.</p>
-<p>The JS section uses the <code class="xref py py-func docutils literal notranslate"><span class="pre">$t()</span></code> function to tag and translate strings.</p>
+<p>In the JS section of Vue files, use the <code class="xref py py-func docutils literal notranslate"><span class="pre">$t</span> <span class="pre">()</span></code> function:</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">$t</span> <span class="p">(</span><span class="s1">&#39;Message to translate&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The HTML template section uses different methods to tag
-translatable strings:</p>
+<p>This function tags the message for the string extractor and also translates
+the string at runtime.</p>
+<p>In The HTML template section of Vue files, you may use 3 different methods to
+tag translatable strings:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h2</span> <span class="na">v-translate</span><span class="p">&gt;</span>Header to translate<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ &#39;Text to translate&#39; | translate }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">span</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;$t (&#39;Tooltip to translate&#39;)&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
@@ -317,40 +359,69 @@ translatable strings:</p>
 </div>
 <p>To extract the strings from the Vue files we use
 <a class="reference external" href="https://github.com/Polyconseil/easygettext">easygettext</a>.</p>
+</div>
+</div>
+<div class="section" id="translate">
+<h3><a class="toc-backref" href="#id8">Translate</a><a class="headerlink" href="#translate" title="Permalink to this headline">¶</a></h3>
+<p>Use poedit to translate the extracted strings.</p>
 <p>To compile .po files into .json files in jed-format we use
 <a class="reference external" href="https://github.com/mikeedwards/po2json">po2json</a>.</p>
-<p>Wordpress boilerplate to make translations available:
-See also: <a class="reference external" href="https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/">https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/</a></p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">function on_enqueue_scripts ()</span>
+</div>
+<div class="section" id="enqueue-translations">
+<h3><a class="toc-backref" href="#id9">Enqueue Translations</a><a class="headerlink" href="#enqueue-translations" title="Permalink to this headline">¶</a></h3>
+<p>Wordpress boilerplate to make translations available in PHP and JS files:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Wordpress boilerplate</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">use cceh\capitularia\lib;</span>
+
+<span class="x">function enqueue_scripts ()</span>
 <span class="x">{</span>
-<span class="x">    wp_register_script (</span>
-<span class="x">        &#39;my-plugin-name&#39;,</span>
-<span class="x">        plugins_url (&#39;js/plugin.js&#39;, __FILE__),</span>
-<span class="x">        array (</span>
-<span class="x">            &#39;wp-i18n&#39;,</span>
-<span class="x">            &#39;cap-vue&#39;,</span>
-<span class="x">        )</span>
-<span class="x">    );</span>
+<span class="x">    $key = &#39;my-module&#39;;</span>
 
-<span class="x">    load_plugin_textdomain (</span>
-<span class="x">        &#39;my-text-domain&#39;,</span>
-<span class="x">        false,</span>
-<span class="x">        basename (dirname (__FILE__)) . &#39;/languages/&#39;</span>
-<span class="x">    );</span>
+<span class="x">    // enqueue webpacked JS module</span>
+<span class="x">    lib\enqueue_from_manifest (&quot;$key.js&quot;, [</span>
+<span class="x">        &#39;another-module.js&#39;,</span>
+<span class="x">        &#39;wp-i18n&#39;  // &lt;= !important</span>
+<span class="x">    ]);</span>
 
-<span class="x">    wp_set_script_translations (</span>
-<span class="x">        &#39;my-plugin-name&#39;,</span>
-<span class="x">        &#39;my-text-domain&#39;,</span>
-<span class="x">        plugin_dir_path (__FILE__) . &#39;languages&#39;</span>
-<span class="x">    );</span>
+<span class="x">    // enqueue extracted (minified) CSS</span>
+<span class="x">    lib\enqueue_from_manifest (&quot;$key.css&quot;, [</span>
+<span class="x">        &#39;another-module.css&#39;</span>
+<span class="x">    ]);</span>
+
+<span class="x">    // translations in PHP files</span>
+<span class="x">    lib\load_plugin_textdomain (DOMAIN, __FILE__);</span>
+
+<span class="x">    // translations in JS files</span>
+<span class="x">    lib\wp_set_script_translations (&quot;$key.js&quot;, DOMAIN, __FILE__);</span>
 <span class="x">}</span>
 </pre></div>
 </div>
+</div>
+<p>See also:
+<a class="reference external" href="https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/">https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/</a></p>
+</div>
+<div class="section" id="use-translated-strings">
+<h3><a class="toc-backref" href="#id10">Use translated strings</a><a class="headerlink" href="#use-translated-strings" title="Permalink to this headline">¶</a></h3>
+<p>In JS simply use the functions made available by the <code class="file docutils literal notranslate"><span class="pre">wp-i18n.js</span></code> library.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Javascript boilerplate</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">__</span><span class="p">,</span> <span class="nx">_x</span><span class="p">,</span> <span class="nx">_n</span><span class="p">,</span> <span class="nx">_nx</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;my-text-domain&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">__</span> <span class="p">(</span><span class="s1">&#39;Message to translate&#39;</span><span class="p">,</span> <span class="nx">DOMAIN</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
 <p>Vue boilerplate to enable translations in HTML templates:
 Put this in main.js before initializing your Vue app.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// wrapper to call the Wordpress translate function</span>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Vue.js boilerplate</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;my-text-domain&#39;</span><span class="p">;</span>
+
+<span class="c1">// wrapper to call the Wordpress translate function</span>
 <span class="kd">function</span> <span class="nx">$t</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">__</span> <span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="s1">&#39;my-text-domain&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">__</span> <span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">DOMAIN</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="c1">// the vm.$t function</span>
@@ -358,16 +429,20 @@ Put this in main.js before initializing your Vue app.</p>
     <span class="k">return</span> <span class="nx">$t</span> <span class="p">(</span><span class="nx">text</span><span class="p">);</span>
 <span class="p">};</span>
 
-<span class="c1">// the v-translate directive</span>
-<span class="nx">Vue</span><span class="p">.</span><span class="nx">directive</span> <span class="p">(</span><span class="s1">&#39;translate&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">el</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="nx">$t</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">innerText</span><span class="p">);</span>
-<span class="p">});</span>
-
 <span class="c1">// the {{ &#39;text&#39; | translate }} filter</span>
 <span class="nx">Vue</span><span class="p">.</span><span class="nx">filter</span> <span class="p">(</span><span class="s1">&#39;translate&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">$t</span> <span class="p">(</span><span class="nx">text</span><span class="p">);</span>
 <span class="p">});</span>
+
+<span class="c1">// the v-translate directive</span>
+<span class="nx">Vue</span><span class="p">.</span><span class="nx">directive</span> <span class="p">(</span><span class="s1">&#39;translate&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">el</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="nx">$t</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">innerText</span><span class="p">.</span><span class="nx">trim</span> <span class="p">()));</span>
+<span class="p">});</span>
+
+<span class="k">new</span> <span class="nx">Vue</span> <span class="p">(...);</span>
 </pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>

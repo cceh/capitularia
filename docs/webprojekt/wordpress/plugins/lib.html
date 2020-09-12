@@ -225,6 +225,15 @@
 </div>
 <span class="target" id="module-plugins.cap-lib.cap-lib"></span><div class="section" id="plugins-cap-lib-cap-lib-php">
 <h2><a class="toc-backref" href="#id2">plugins/cap-lib/cap-lib.php</a><a class="headerlink" href="#plugins-cap-lib-cap-lib-php" title="Permalink to this headline">¶</a></h2>
+<p>Plugin Name: Capitularia Library
+Plugin URI:
+Description: Library of functions for Capitularia plugins. (REQUIRED)
+Version:     0.1.0
+Author:      Marcello Perathoner
+Author URI:
+License:     GPLv2 or later
+Text Domain: cap-lib
+Domain Path: /languages</p>
 <p>Capitularia Library plugin.</p>
 <p>The <em>Library plugin</em> contains a collection of useful functions.  This plugin
 bundles all functions that don’t quite fit elsewhere or would be excessively
@@ -238,8 +247,8 @@ duplicated.</p>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php const">
-<dt id="cceh\capitularia\lib\LANG">
-<em class="property">constant </em><code class="sig-name descname">LANG</code><a class="headerlink" href="#cceh\capitularia\lib\LANG" title="Permalink to this definition">¶</a></dt>
+<dt id="cceh\capitularia\lib\DOMAIN">
+<em class="property">constant </em><code class="sig-name descname">DOMAIN</code><a class="headerlink" href="#cceh\capitularia\lib\DOMAIN" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘cap-lib’</p>
 <p>The Text Domain of the plugin.</p>
 </dd></dl>
@@ -370,6 +379,20 @@ database row.  This makes validation somewhat more difficult.</p>
 <div class="section" id="plugins-cap-lib-functions-php">
 <h2><a class="toc-backref" href="#id4">plugins/cap-lib/functions.php</a><a class="headerlink" href="#plugins-cap-lib-functions-php" title="Permalink to this headline">¶</a></h2>
 <p>Capitularia Library functions.</p>
+<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php const">
+<dt id="cceh\capitularia\lib\NONCE_SPECIAL_STRING">
+<em class="property">constant </em><code class="sig-name descname">NONCE_SPECIAL_STRING</code><a class="headerlink" href="#cceh\capitularia\lib\NONCE_SPECIAL_STRING" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘cap_lib_nonce’</p>
+<p>AJAX security</p>
+</dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php const">
+<dt id="cceh\capitularia\lib\NONCE_PARAM_NAME">
+<em class="property">constant </em><code class="sig-name descname">NONCE_PARAM_NAME</code><a class="headerlink" href="#cceh\capitularia\lib\NONCE_PARAM_NAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘_ajax_nonce’</p>
+<p>AJAX security</p>
+</dd></dl>
+
 <span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
 <dt id="cceh\capitularia\lib\ns">
 <code class="sig-name descname">ns</code><span class="sig-paren">(</span><em class="sig-param">$function_name</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\ns" title="Permalink to this definition">¶</a></dt>
@@ -561,9 +584,68 @@ distinct.</p>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
+<dt id="cceh\capitularia\lib\images_dir_path">
+<code class="sig-name descname">images_dir_path</code><span class="sig-paren">(</span><em class="sig-param">$file</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\images_dir_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
+<dt id="cceh\capitularia\lib\languages_dir_path">
+<code class="sig-name descname">languages_dir_path</code><span class="sig-paren">(</span><em class="sig-param">$file</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\languages_dir_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
+<dt id="cceh\capitularia\lib\load_plugin_textdomain">
+<code class="sig-name descname">load_plugin_textdomain</code><span class="sig-paren">(</span><em class="sig-param">$domain</em>, <em class="sig-param">$file</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\load_plugin_textdomain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
+<dt id="cceh\capitularia\lib\wp_set_script_translations">
+<code class="sig-name descname">wp_set_script_translations</code><span class="sig-paren">(</span><em class="sig-param">$handle</em>, <em class="sig-param">$domain</em>, <em class="sig-param">$file</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\wp_set_script_translations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
+<dt id="cceh\capitularia\lib\enqueue_from_manifest">
+<code class="sig-name descname">enqueue_from_manifest</code><span class="sig-paren">(</span><em class="sig-param">$key</em>, <em class="sig-param">$dependencies</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\enqueue_from_manifest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enqueue scripts or stylesheets from the webpack manifest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$key</strong> (<em>string</em>) – The manifest key, eg. ‘cap-collation-front.js’.</p></li>
+<li><p><strong>$dependencies</strong> (<em>cceh\capitularia\lib\array&lt;string&gt;</em>) – The dependencies, eg. [‘vendor.js’].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
 <dt id="cceh\capitularia\lib\on_enqueue_scripts">
 <code class="sig-name descname">on_enqueue_scripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\on_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Enqueue the frontpage scripts and styles</p>
+<dd><p>Enqueue the frontpage script.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
+<dt id="cceh\capitularia\lib\on_admin_enqueue_scripts">
+<code class="sig-name descname">on_admin_enqueue_scripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\on_admin_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enqueue the admin page script.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
+<dt id="cceh\capitularia\lib\check_ajax_referrer">
+<code class="sig-name descname">check_ajax_referrer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\check_ajax_referrer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the AJAX nonce.  Die if invalid.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>void</p>
@@ -587,17 +669,6 @@ distinct.</p>
 <code class="sig-name descname">on_admin_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\on_admin_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the settings page.</p>
 <p>First hook called on every admin page.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>void</p>
-</dd>
-</dl>
-</dd></dl>
-
-<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
-<dt id="cceh\capitularia\lib\on_admin_enqueue_scripts">
-<code class="sig-name descname">on_admin_enqueue_scripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\on_admin_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Enqueue the admin page scripts and styles</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>void</p>

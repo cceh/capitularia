@@ -328,18 +328,20 @@ with PSR-2.</p>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
-<dt id="cceh\capitularia\theme\echo_theme_image">
-<code class="sig-name descname">echo_theme_image</code><span class="sig-paren">(</span><em class="sig-param">$img</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\echo_theme_image" title="Permalink to this definition">¶</a></dt>
-<dd><p>Echo a src=”img” pair.</p>
-<p>The src will be pointing to the theme images directory.</p>
+<dt id="cceh\capitularia\theme\get_theme_image">
+<code class="sig-name descname">get_theme_image</code><span class="sig-paren">(</span><em class="sig-param">$img</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_theme_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the url of an image in the theme images directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$img</strong> (<em>string</em>) – The image filename.</p></li>
+<li><p><strong>$img</strong> (<em>string</em>) – The image basename.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>void</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The public url of the image.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
 </dd>
 </dl>
 </dd></dl>
@@ -898,6 +900,19 @@ saving hundreds of queries.</p>
 <dt id="cceh\capitularia\theme\get_transcribed_in_cache">
 <code class="sig-name descname">get_transcribed_in_cache</code><span class="sig-paren">(</span><em class="sig-param">$cap_id</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\get_transcribed_in_cache" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cache a list of all manuscripts with a transcription of capitular cap_id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$cap_id</strong> (<em>array</em>) – The BK-no of the capitular.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of manuscripts.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
@@ -1146,7 +1161,9 @@ representation for the current locale without the time.</p>
 </div>
 <span class="target" id="module-themes-capitularia"><span id="module-themes/capitularia"></span></span><div class="section" id="themes-capitularia">
 <h2><a class="toc-backref" href="#id15">themes/capitularia</a><a class="headerlink" href="#themes-capitularia" title="Permalink to this headline">¶</a></h2>
-<p>File: themes/Capitularia/src/js/custom.js</p>
+<p>File: themes/Capitularia/src/js/admin.js</p>
+<p>This file contains the Javascript for the Capitularia theme Admin side. Dummy file to make webpack happy.</p>
+<p>File: themes/Capitularia/src/js/front.js</p>
 <p>This file contains the Javascript for the Capitularia theme.</p>
 <dl class="js function">
 <dt id="themes-capitularia.initBackToTop">

@@ -27,10 +27,10 @@ namespace cceh\capitularia\lib;
 defined ('ABSPATH') or die ('General Protection Fault: Windows will now restart.');
 
 /** The name of the plugin. */
-const NAME    = 'Capitularia Library';
+const NAME = 'Capitularia Library';
 
 /** The Text Domain of the plugin. */
-const DOMAIN    = 'cap-lib';
+const DOMAIN = 'cap-lib';
 
 /** The Wordpress ID of the settings (option) page. */
 const OPTIONS = 'cap_lib_options';

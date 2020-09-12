@@ -237,6 +237,7 @@ function on_cap_load_section ()
 function on_enqueue_scripts ()
 {
     lib\enqueue_from_manifest ('cap-page-generator-front.js', ['cap-theme-front.js']);
+    lib\enqueue_from_manifest ('cap-page-generator-front.css');
 }
 
 /**
@@ -272,6 +273,7 @@ function on_admin_enqueue_scripts ()
         'cap-page-generator-admin.js',
         ['cap-theme-admin.js', 'jquery-ui-tabs', 'jquery-ui-progressbar']
     );
+    lib\enqueue_from_manifest ('cap-page-generator-admin.css');
 }
 
 /**

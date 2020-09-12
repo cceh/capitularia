@@ -224,6 +224,15 @@
 </div>
 <span class="target" id="module-plugins.cap-dynamic-menu.cap-dynamic-menu"></span><div class="section" id="plugins-cap-dynamic-menu-cap-dynamic-menu-php">
 <h2><a class="toc-backref" href="#id2">plugins/cap-dynamic-menu/cap-dynamic-menu.php</a><a class="headerlink" href="#plugins-cap-dynamic-menu-cap-dynamic-menu-php" title="Permalink to this headline">¶</a></h2>
+<p>Plugin Name: Capitularia Dynamic Menu
+Plugin URI:
+Description: Build navigation menus from user-specified HTML-tags.</p>
+<p>Version:     0.1.0
+Author:      Marcello Perathoner
+Author URI:
+License:     GPLv2 or later
+Text Domain: cap-dynamic-menu
+Domain Path: /languages</p>
 <p>Capitularia Dynamic Menu plugin.</p>
 <p>The <em>Dynamic Menu plugin</em> provides a navigation menu for the sidebar.  The
 menu entries are collected from DOM elements and attributes of the HTML page
@@ -234,10 +243,9 @@ all &lt;h3&gt;, &lt;h4&gt;, and &lt;h5&gt; tags on the page.  The menu entries w
 nested.</p>
 <p>The PHP code only outputs a placeholder tag.  The Javascript code will build
 the actual menu using the DOM of the page.</p>
-<p>See: src/js/front.js</p>
 <span class="target" id="namespace-cceh\capitularia\dynamic_menu"></span><dl class="php const">
-<dt id="cceh\capitularia\dynamic_menu\LANG">
-<em class="property">constant </em><code class="sig-name descname">LANG</code><a class="headerlink" href="#cceh\capitularia\dynamic_menu\LANG" title="Permalink to this definition">¶</a></dt>
+<dt id="cceh\capitularia\dynamic_menu\DOMAIN">
+<em class="property">constant </em><code class="sig-name descname">DOMAIN</code><a class="headerlink" href="#cceh\capitularia\dynamic_menu\DOMAIN" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘cap-dynamic-menu’</p>
 <p>The Text Domain</p>
 </dd></dl>
@@ -246,6 +254,18 @@ the actual menu using the DOM of the page.</p>
 <div class="section" id="plugins-cap-dynamic-menu-functions-php">
 <h2><a class="toc-backref" href="#id3">plugins/cap-dynamic-menu/functions.php</a><a class="headerlink" href="#plugins-cap-dynamic-menu-functions-php" title="Permalink to this headline">¶</a></h2>
 <p>Capitularia Dynamic Menu global functions.</p>
+<span class="target" id="namespace-cceh\capitularia\dynamic_menu"></span><dl class="php const">
+<dt id="cceh\capitularia\dynamic_menu\MAGIC_MENU">
+<em class="property">constant </em><code class="sig-name descname">MAGIC_MENU</code><a class="headerlink" href="#cceh\capitularia\dynamic_menu\MAGIC_MENU" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘#cap_dynamic_menu#’</p>
+</dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\dynamic_menu"></span><dl class="php const">
+<dt id="cceh\capitularia\dynamic_menu\MAGIC_LOGIN">
+<em class="property">constant </em><code class="sig-name descname">MAGIC_LOGIN</code><a class="headerlink" href="#cceh\capitularia\dynamic_menu\MAGIC_LOGIN" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘#cap_login_menu#’</p>
+</dd></dl>
+
 <span class="target" id="namespace-cceh\capitularia\dynamic_menu"></span><dl class="php function">
 <dt id="cceh\capitularia\dynamic_menu\ns">
 <code class="sig-name descname">ns</code><span class="sig-paren">(</span><em class="sig-param">$function_name</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\dynamic_menu\ns" title="Permalink to this definition">¶</a></dt>
@@ -266,32 +286,6 @@ the actual menu using the DOM of the page.</p>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\dynamic_menu"></span><dl class="php function">
-<dt id="cceh\capitularia\dynamic_menu\load_html">
-<code class="sig-name descname">load_html</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\dynamic_menu\load_html" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load the content DOM.</p>
-<p>Load the DOM of the current page.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The DOM of the current page</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>DomDocument</p>
-</dd>
-</dl>
-</dd></dl>
-
-<span class="target" id="namespace-cceh\capitularia\dynamic_menu"></span><dl class="php function">
-<dt id="cceh\capitularia\dynamic_menu\on_init">
-<code class="sig-name descname">on_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\dynamic_menu\on_init" title="Permalink to this definition">¶</a></dt>
-<dd><p>Register the translations.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>void</p>
-</dd>
-</dl>
-</dd></dl>
-
-<span class="target" id="namespace-cceh\capitularia\dynamic_menu"></span><dl class="php function">
 <dt id="cceh\capitularia\dynamic_menu\on_enqueue_scripts">
 <code class="sig-name descname">on_enqueue_scripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\dynamic_menu\on_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enqueue Javascript and CSS for the front page.</p>
@@ -303,21 +297,23 @@ the actual menu using the DOM of the page.</p>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\dynamic_menu"></span><dl class="php function">
-<dt id="cceh\capitularia\dynamic_menu\on_wp_get_nav_menu_items">
-<code class="sig-name descname">on_wp_get_nav_menu_items</code><span class="sig-paren">(</span><em class="sig-param">$items</em>, <em class="sig-param">$dummy_menu</em>, <em class="sig-param">$dummy_args</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\dynamic_menu\on_wp_get_nav_menu_items" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add dynamic items to the menu.</p>
-<p>This just outputs a placeholder that will be processed by javascript.</p>
+<dt id="cceh\capitularia\dynamic_menu\on_nav_menu_link_attributes">
+<code class="sig-name descname">on_nav_menu_link_attributes</code><span class="sig-paren">(</span><em class="sig-param">$atts</em>, <em class="sig-param">$item</em>, <em class="sig-param">$args</em>, <em class="sig-param">$depth</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\dynamic_menu\on_nav_menu_link_attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add attribute data-cap-dynamic-menu and dynamic url to login menu.</p>
+<p>Puts the item description into the HTML attribute
+data-cap-dynamic-menu.  Otherwise it would get lost.</p>
 <p>See: src/js/front.js for more information.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>$items</strong> (<em>array</em>) – Old items.</p></li>
-<li><p><strong>$dummy_menu</strong> (<em>string</em>) – (unused) Menu.</p></li>
-<li><p><strong>$dummy_args</strong> (<em>array</em>) – (unused) Menu args.</p></li>
+<li><p><strong>$atts</strong> (<em>array</em>) – The old HTML attributes.</p></li>
+<li><p><strong>$item</strong> (<em>cceh\capitularia\dynamic_menu\WP_Post</em>) – The current menu item.</p></li>
+<li><p><strong>$args</strong> (<em>cceh\capitularia\dynamic_menu\stdClass</em>) – An object of wp_nav_menu() arguments.</p></li>
+<li><p><strong>$depth</strong> (<em>integer</em>) – Depth of menu item. Used for padding.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Updated menu.</p>
+<dd class="field-even"><p>The updated HTML attributes.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>array</p>
@@ -330,20 +326,10 @@ the actual menu using the DOM of the page.</p>
 <h2><a class="toc-backref" href="#id4">plugins/dynamic-menu</a><a class="headerlink" href="#plugins-dynamic-menu" title="Permalink to this headline">¶</a></h2>
 <p>File: plugins/cap-dynamic-menu/src/js/front.js</p>
 <p>The dynamic menu applet. The dynamic menu is generated from xpath expressions that query the page content. There is one xpath expression for every level of the menu. Use the standard wordpress admin interface to define the xpath expressions: To make a dynamic menu, insert a <em>Custom Link</em> item into any Wordpress menu and give it a magic url of: <code class="code docutils literal notranslate"><span class="pre">#cap_dynamic_menu#</span></code>. The <em>Custom Link</em> item will be replaced by the generated menu. Put all the xpath expressions for each level of the menu into the <em>Description</em> field. Separate each level with a <code class="code docutils literal notranslate"><span class="pre">§</span></code> (section sign). The default xpath expressions are: <code class="code docutils literal notranslate"><span class="pre">//h3[&#64;id]§//h4[&#64;id]§//h5[&#64;id]§//h6[&#64;id]</span></code>, which generate a 4 level deep menu built from all &lt;h3&gt;-&lt;h6&gt; elements that have an <code class="code docutils literal notranslate"><span class="pre">id</span></code> attribute. The caption of a generated menu item is taken from the <code class="code docutils literal notranslate"><span class="pre">data-cap-dyn-menu-caption</span></code> attribute on the source element or from the source element’s <code class="code docutils literal notranslate"><span class="pre">textContent</span></code>. All classes in the <em>CSS Classes</em> field in the Wordpress admin interface are copied over to each generated menu item along with a class <code class="code docutils literal notranslate"><span class="pre">$class-level-$level</span></code>. Eg. a class of <code class="code docutils literal notranslate"><span class="pre">my-menu</span></code> would become <code class="code docutils literal notranslate"><span class="pre">my_menu</span></code> and <code class="code docutils literal notranslate"><span class="pre">my-menu-level-1</span></code>. All classes on the elements matched with the xpath expressions, that start with <code class="code docutils literal notranslate"><span class="pre">dynamic-menu-</span></code>, are copied to each generated menu item. Additionally classes named <code class="code docutils literal notranslate"><span class="pre">menu-item</span></code>, <code class="code docutils literal notranslate"><span class="pre">dynamic-menu-item</span></code>, and <code class="code docutils literal notranslate"><span class="pre">dynamic-menu-item-level-$level</span></code> are added to each generated menu item. .. note:: We use webpack as a workaround to load javascript modules in Wordpress. Wordpress cannot load javascript modules thru enqueue_script () because it lacks an option to specify type=”module” on the &lt;script&gt; element. Webpack also packs babel-runtime for us. babel-runtime is required for async functions.</p>
-<dl class="js data">
-<dt id="plugins-dynamic-menu.MAGIC">
-<span id="plugins/dynamic-menu.MAGIC"></span><code class="sig-prename descclassname">plugins/dynamic-menu.</code><code class="sig-name descname">MAGIC</code><a class="headerlink" href="#plugins-dynamic-menu.MAGIC" title="Permalink to this definition">¶</a></dt>
-<dd><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>#cap_dynamic_menu#
-</pre></div>
-</div>
-<p>(string)
-The magic href to make a menu dynamic</p>
-</dd></dl>
-
 <dl class="js function">
 <dt id="plugins-dynamic-menu.init_dynamic_menues">
 <span id="plugins/dynamic-menu.init_dynamic_menues"></span><code class="sig-prename descclassname">plugins/dynamic-menu.</code><code class="sig-name descname">init_dynamic_menues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plugins-dynamic-menu.init_dynamic_menues" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize all dynamic menus on the page. This routine looks for the magic placeholder menu with a href of <code class="code docutils literal notranslate"><span class="pre">#cap_dynamic_menu#</span></code> and transmogrifies it into the real menu by going through the DOM of the page and adding all elements that fit the description.</p>
+<dd><p>Initialize all dynamic menus on the page. This routine looks for an &lt;a&gt; with the <code class="code docutils literal notranslate"><span class="pre">data-cap-dynamic-menu</span></code> attribute and transmogrifies it into the real menu by going through the DOM of the page and adding all elements that fit the xpath’es in the attribute.</p>
 </dd></dl>
 
 </div>

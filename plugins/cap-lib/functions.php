@@ -246,7 +246,7 @@ function urljoin ($url1, $url2)
 
 function images_dir_path ($file)
 {
-    return plugin_dir_path ($file) . 'dist/images';
+    return WP_CONTENT_DIR . '/dist/images';
 }
 
 function languages_dir_path ($file)
@@ -264,13 +264,13 @@ function wp_set_script_translations ($handle, $domain, $file)
 {
     \wp_set_script_translations (
         $handle,
-        DOMAIN,
-        languages_dir_path (__FILE__)
+        $domain,
+        languages_dir_path ($file)
     );
 }
 
 /**
- * Enqueue scripts from the webpack manifest.
+ * Enqueue scripts or stylesheets from the webpack manifest.
  *
  * @param string        $key          The manifest key, eg. 'cap-collation-front.js'.
  * @param array<string> $dependencies The dependencies, eg. ['vendor.js'].
@@ -283,11 +283,18 @@ function enqueue_from_manifest ($key, $dependencies = array ())
     static $manifest = null;
 
     if ($manifest === null) {
-        $manifest = get_stylesheet_directory () . '/manifest.json';
+        $manifest = WP_CONTENT_DIR . '/dist/manifest.json';
         $manifest = json_decode (file_get_contents ($manifest));
     }
 
-    wp_enqueue_script ($key, $manifest->{$key}, $dependencies, $ver = null);
+    if (preg_match ('/\.css$/', $key)) {
+        // the css may not have been extracted during development
+        if (isset ($manifest->{$key})) {
+            wp_enqueue_style ($key, $manifest->{$key}, $dependencies, $ver = null);
+        }
+    } else {
+        wp_enqueue_script ($key, $manifest->{$key}, $dependencies, $ver = null);
+    }
 }
 
 /**

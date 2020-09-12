@@ -226,6 +226,15 @@
 </div>
 <span class="target" id="module-plugins.cap-file-includer.cap-file-includer"></span><div class="section" id="plugins-cap-file-includer-cap-file-includer-php">
 <h2><a class="toc-backref" href="#id4">plugins/cap-file-includer/cap-file-includer.php</a><a class="headerlink" href="#plugins-cap-file-includer-cap-file-includer-php" title="Permalink to this headline">¶</a></h2>
+<p>Plugin Name: Capitularia File Includer
+Plugin URI:
+Description: Includes external HTML files in Wordpress pages.</p>
+<p>Version:     0.1.0
+Author:      Marcello Perathoner
+Author URI:
+License:     GPLv2 or later
+Text Domain: cap-file-includer
+Domain Path: /languages</p>
 <p>Capitularia File Includer plugin.</p>
 <p>The <em>File Includer plugin</em> registers a Wordpress shortcode that allows to
 include any external HTML file in a Worpdress page.  We use this shortcode to
@@ -266,8 +275,8 @@ contain the shortcodes for this plugin.</p>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\file_includer"></span><dl class="php const">
-<dt id="cceh\capitularia\file_includer\LANG">
-<em class="property">constant </em><code class="sig-name descname">LANG</code><a class="headerlink" href="#cceh\capitularia\file_includer\LANG" title="Permalink to this definition">¶</a></dt>
+<dt id="cceh\capitularia\file_includer\DOMAIN">
+<em class="property">constant </em><code class="sig-name descname">DOMAIN</code><a class="headerlink" href="#cceh\capitularia\file_includer\DOMAIN" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘cap-file-includer’</p>
 <p>The Text Domain of the plugin.</p>
 </dd></dl>
@@ -895,31 +904,9 @@ filters that were implemented with boundless incompetence.</p>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\file_includer"></span><dl class="php function">
-<dt id="cceh\capitularia\file_includer\on_enqueue_scripts">
-<code class="sig-name descname">on_enqueue_scripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\file_includer\on_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Enqueue the frontpage scripts and styles</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>void</p>
-</dd>
-</dl>
-</dd></dl>
-
-<span class="target" id="namespace-cceh\capitularia\file_includer"></span><dl class="php function">
 <dt id="cceh\capitularia\file_includer\on_init">
 <code class="sig-name descname">on_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\file_includer\on_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the plugin.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>void</p>
-</dd>
-</dl>
-</dd></dl>
-
-<span class="target" id="namespace-cceh\capitularia\file_includer"></span><dl class="php function">
-<dt id="cceh\capitularia\file_includer\on_admin_enqueue_scripts">
-<code class="sig-name descname">on_admin_enqueue_scripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\file_includer\on_admin_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Enqueue the admin page scripts and styles</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>void</p>

@@ -54,10 +54,10 @@ __ ('Capitularia File Includer');
 __ ('Includes external HTML files in Wordpress pages.');
 
 /** The name of the plugin. */
-const NAME    = 'Capitularia File Includer';
+const NAME = 'Capitularia File Includer';
 
 /** The Text Domain of the plugin. */
-const DOMAIN    = 'cap-file-includer';
+const DOMAIN = 'cap-file-includer';
 
 /** The Wordpress ID of the settings (option) page. */
 const OPTIONS = 'cap_fi_options';
@@ -69,10 +69,10 @@ require_once 'class-settings-page.php';
 
 $cap_file_includer = new FileIncluderEngine ();
 
-add_action ('init',                    ns ('on_init'));
-add_action ('admin_menu',              ns ('on_admin_menu'));
+add_action ('init',       ns ('on_init'));
+add_action ('admin_menu', ns ('on_admin_menu'));
 
-add_filter ('the_posts',               array ($cap_file_includer, 'on_the_posts'), 0, 2);
+add_filter ('the_posts',  array ($cap_file_includer, 'on_the_posts'), 0, 2);
 
 // The shortcode needs to be always registered or else the incredibly stupid
 // wptexturizer will make curly quotes out of the quotes around our shortcode

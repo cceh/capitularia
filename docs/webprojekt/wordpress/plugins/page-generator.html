@@ -229,6 +229,15 @@
 </div>
 <span class="target" id="module-plugins.cap-page-generator.cap-page-generator"></span><div class="section" id="plugins-cap-page-generator-cap-page-generator-php">
 <h2><a class="toc-backref" href="#id2">plugins/cap-page-generator/cap-page-generator.php</a><a class="headerlink" href="#plugins-cap-page-generator-cap-page-generator-php" title="Permalink to this headline">¶</a></h2>
+<p>Plugin Name: Capitularia Page Generator
+Plugin URI:
+Description: Generate Wordpress pages for our TEI files.</p>
+<p>Version:     0.1.1
+Author:      Marcello Perathoner
+Author URI:
+License:     GPLv2 or later
+Text Domain: cap-page-generator
+Domain Path: /languages</p>
 <p>Capitularia Page Generator plugin.</p>
 <p>The <em>Page Generator</em> plugin helps managing the publication of manuscript
 pages.  Whenever a new manuscript is transcribed and its file is put into the
@@ -259,8 +268,8 @@ user.</p>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\page_generator"></span><dl class="php const">
-<dt id="cceh\capitularia\page_generator\LANG">
-<em class="property">constant </em><code class="sig-name descname">LANG</code><a class="headerlink" href="#cceh\capitularia\page_generator\LANG" title="Permalink to this definition">¶</a></dt>
+<dt id="cceh\capitularia\page_generator\DOMAIN">
+<em class="property">constant </em><code class="sig-name descname">DOMAIN</code><a class="headerlink" href="#cceh\capitularia\page_generator\DOMAIN" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘cap-page-generator’</p>
 <p>The Text Domain ofthe plugin.</p>
 </dd></dl>
@@ -277,20 +286,6 @@ user.</p>
 <em class="property">constant </em><code class="sig-name descname">DASHBOARD</code><a class="headerlink" href="#cceh\capitularia\page_generator\DASHBOARD" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘cap_page_gen_dashboard’</p>
 <p>The Wordpress ID of the dashboard page.</p>
-</dd></dl>
-
-<span class="target" id="namespace-cceh\capitularia\page_generator"></span><dl class="php const">
-<dt id="cceh\capitularia\page_generator\NONCE_SPECIAL_STRING">
-<em class="property">constant </em><code class="sig-name descname">NONCE_SPECIAL_STRING</code><a class="headerlink" href="#cceh\capitularia\page_generator\NONCE_SPECIAL_STRING" title="Permalink to this definition">¶</a></dt>
-<dd><p>‘cap_page_gen_nonce’</p>
-<p>AJAX security</p>
-</dd></dl>
-
-<span class="target" id="namespace-cceh\capitularia\page_generator"></span><dl class="php const">
-<dt id="cceh\capitularia\page_generator\NONCE_PARAM_NAME">
-<em class="property">constant </em><code class="sig-name descname">NONCE_PARAM_NAME</code><a class="headerlink" href="#cceh\capitularia\page_generator\NONCE_PARAM_NAME" title="Permalink to this definition">¶</a></dt>
-<dd><p>‘_ajax_nonce’</p>
-<p>AJAX security</p>
 </dd></dl>
 
 <span class="target" id="module-plugins.cap-page-generator.class-config"></span></div>
@@ -1598,13 +1593,12 @@ the Wordpress settings and dashboard admin page menus respectively.</p>
 
 <dl class="js function">
 <dt id="plugins-page-generator.on_cap_action_file">
-<span id="plugins/page-generator.on_cap_action_file"></span><code class="sig-prename descclassname">plugins/page-generator.</code><code class="sig-name descname">on_cap_action_file</code><span class="sig-paren">(</span><em class="sig-param">e</em>, <em class="sig-param">action</em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-page-generator.on_cap_action_file" title="Permalink to this definition">¶</a></dt>
+<span id="plugins/page-generator.on_cap_action_file"></span><code class="sig-prename descclassname">plugins/page-generator.</code><code class="sig-name descname">on_cap_action_file</code><span class="sig-paren">(</span><em class="sig-param">event</em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-page-generator.on_cap_action_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform an action on a TEI file. The user clicked somewhere inside the table row listing that file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Arguments</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>e</strong> (<em>Element</em>) – The element clicked</p></li>
-<li><p><strong>action</strong> (<em>string</em>) – The AJAX action to perform</p></li>
+<li><p><strong>event</strong> (<em>Event</em>) – The click event</p></li>
 </ul>
 </dd>
 </dl>

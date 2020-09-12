@@ -224,6 +224,15 @@
 </div>
 <span class="target" id="module-plugins.cap-collation.cap-collation"></span><div class="section" id="plugins-cap-collation-cap-collation-php">
 <h2><a class="toc-backref" href="#id2">plugins/cap-collation/cap-collation.php</a><a class="headerlink" href="#plugins-cap-collation-cap-collation-php" title="Permalink to this headline">¶</a></h2>
+<p>Plugin Name: Capitularia Collation Tool
+Plugin URI:
+Description: Collates TEI files.</p>
+<p>Version:     0.2.2
+Author:      Marcello Perathoner
+Author URI:
+License:     GPLv2 or later
+Text Domain: cap-collation
+Domain Path: /languages</p>
 <p>Capitularia Collation Tool plugin.</p>
 <p>The <em>Collation Tool plugin</em> lets any member of the general public do
 collations of arbitrary sections from different manuscripts.</p>
@@ -249,8 +258,8 @@ CollateX.</p>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\collation_user"></span><dl class="php const">
-<dt id="cceh\capitularia\collation_user\LANG">
-<em class="property">constant </em><code class="sig-name descname">LANG</code><a class="headerlink" href="#cceh\capitularia\collation_user\LANG" title="Permalink to this definition">¶</a></dt>
+<dt id="cceh\capitularia\collation_user\DOMAIN">
+<em class="property">constant </em><code class="sig-name descname">DOMAIN</code><a class="headerlink" href="#cceh\capitularia\collation_user\DOMAIN" title="Permalink to this definition">¶</a></dt>
 <dd><p>‘cap-collation’</p>
 <p>The Text Domain of the plugin.</p>
 </dd></dl>
@@ -279,8 +288,8 @@ CollateX.</p>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\collation_user"></span><dl class="php function">
-<dt id="cceh\capitularia\collation_user\on_enqueue_scripts">
-<code class="sig-name descname">on_enqueue_scripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\collation_user\on_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
+<dt id="cceh\capitularia\collation_user\enqueue_scripts">
+<code class="sig-name descname">enqueue_scripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\collation_user\enqueue_scripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enqueue the front page script and localize it.</p>
 <p>The script is a webpacked Vue.js application containing its own css.</p>
 <dl class="field-list simple">

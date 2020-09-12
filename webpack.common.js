@@ -66,21 +66,7 @@ module.exports = {
         },
     },
     output : {
-        filename : (pathData, assetInfo) => {
-            const name = pathData.chunk.name;
-            if (name === 'cap-runtime' ||
-                name === 'cap-vendor' ||
-                name.match (/^cap-theme-/)) {
-                // default filename for theme
-                return 'themes/Capitularia/dist/[name].[contenthash].js';
-            }
-            if (name.match (/^cap-/)) {
-                const plugin = name.replace (/(-front)|(-admin)$/, '');
-                // default filename for plugins
-                return `plugins/${plugin}/dist/[name].[contenthash].js`;
-            }
-            return '[name].[contenthash].js';
-        },
+        filename   : 'dist/[name].[contenthash].js',
         path       : __dirname,
         publicPath : '/wp-content/',
     },
@@ -107,7 +93,7 @@ module.exports = {
                         loader  : 'file-loader',
                         options : {
                             name       : '[name].[ext]',
-                            outputPath : 'themes/Capitularia/dist/images',
+                            outputPath : 'dist/images',
                         },
                     },
                 ],
@@ -119,7 +105,7 @@ module.exports = {
                         loader  : 'file-loader',
                         options : {
                             name       : '[name].[ext]',
-                            outputPath : 'themes/Capitularia/dist/webfonts',
+                            outputPath : 'dist/webfonts',
                         },
                     },
                 ],
@@ -151,14 +137,13 @@ module.exports = {
     },
     plugins : [
         new ManifestPlugin ({
-            fileName : path.resolve (__dirname, 'themes/Capitularia/manifest.json'),
+            fileName : path.resolve (__dirname, 'dist/manifest.json'),
             writeToFileEmit : true,
         }),
         new VueLoaderPlugin (),
     ],
     resolve : {
         modules : [
-            path.resolve (__dirname, 'client/node_modules'),
             'node_modules',
         ],
     },

@@ -25,8 +25,6 @@
  * the actual menu using the DOM of the page.
  *
  * @package Capitularia_Dynamic_Menu
- *
- * @see src/js/front.js
  */
 
 namespace cceh\capitularia\dynamic_menu;

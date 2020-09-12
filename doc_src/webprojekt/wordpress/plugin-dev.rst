@@ -14,8 +14,8 @@ webpack
 
 We use webpack to compile all our JS and CSS modules.
 
-Webpack generates a manifest file in :file:`themes/Capitularia/manifest.json`
-that contains the path to all compiled modules.
+Webpack generates a manifest file in :file:`dist/manifest.json`
+that contains the public path to all compiled modules.
 
 The theme and plugins load all JS code through the function:
 
@@ -127,18 +127,24 @@ Wordpress boilerplate to make translations available in PHP and JS files:
 
    function enqueue_scripts ()
    {
-       $key = 'key-from-manifest.json';
+       $key = 'my-module';
 
-       lib\enqueue_from_manifest ($key, [
-           'another-key-from-manifest.json',
+       // enqueue webpacked JS module
+       lib\enqueue_from_manifest ("$key.js", [
+           'another-module.js',
            'wp-i18n'  // <= !important
+       ]);
+
+       // enqueue extracted (minified) CSS
+       lib\enqueue_from_manifest ("$key.css", [
+           'another-module.css'
        ]);
 
        // translations in PHP files
        lib\load_plugin_textdomain (DOMAIN, __FILE__);
 
        // translations in JS files
-       lib\wp_set_script_translations ($key, DOMAIN, __FILE__);
+       lib\wp_set_script_translations ("$key.js", DOMAIN, __FILE__);
    }
 
 See also:

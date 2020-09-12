@@ -194,6 +194,9 @@ function on_enqueue_scripts ()
     lib\enqueue_from_manifest ('cap-runtime.js');
     lib\enqueue_from_manifest ('cap-vendor.js', ['cap-runtime.js']);
     lib\enqueue_from_manifest ('cap-theme-front.js', ['cap-vendor.js']);
+
+    lib\enqueue_from_manifest ('cap-theme-front.css');
+
     wp_enqueue_style ('dashicons');
 }
 
@@ -212,6 +215,8 @@ function on_admin_enqueue_scripts ()
 {
     lib\enqueue_from_manifest ('cap-runtime.js');
     lib\enqueue_from_manifest ('cap-theme-admin.js', ['cap-runtime.js', 'cap-lib-front.js', 'jquery']);
+
+    lib\enqueue_from_manifest ('cap-theme-admin.css');
 }
 
 /**

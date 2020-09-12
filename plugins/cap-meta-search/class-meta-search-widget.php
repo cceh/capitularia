@@ -126,6 +126,8 @@ class Widget extends \WP_Widget
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
 
         lib\enqueue_from_manifest ('cap-meta-search-front.js', ['cap-theme-front.js']);
+
+        lib\enqueue_from_manifest ('cap-meta-search-front.css');
     }
 
     /**
