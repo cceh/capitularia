@@ -244,20 +244,23 @@ function urljoin ($url1, $url2)
     return rtrim ($url1, '/') . '/' . $url2;
 }
 
-function images_dir_path ($file)
+function images_dir_path ($file = null)
 {
     return WP_CONTENT_DIR . '/dist/images';
 }
 
-function languages_dir_path ($file)
+function languages_dir_path ($file = null)
 {
-    return plugin_dir_path ($file) . 'dist/languages';
+    return WP_CONTENT_DIR . '/dist/languages';
 }
 
 function load_plugin_textdomain ($domain, $file)
 {
-    $plugin_rel_path = dirname (plugin_basename ($file)) . '/dist/languages';
-    return \load_plugin_textdomain ($domain, false, $plugin_rel_path);
+    $locale = apply_filters ('plugin_locale', determine_locale(), $domain);
+    $mofile = "/${domain}-${locale}.mo";
+    $path   = languages_dir_path () . $mofile;
+    // echo ("<pre>$path</pre>\n");
+    return \load_textdomain ($domain, $path);
 }
 
 function wp_set_script_translations ($handle, $domain, $file)

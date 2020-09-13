@@ -1,9 +1,5 @@
 .PHONY: lint phplint jslint eslint jsonlint csslint docs
 
-clean:
-	find . -name '*~' -delete
-	rm -rf dist
-
 doc: phpdoc phpmd phpmetrics sami
 
 csslint:
@@ -44,7 +40,7 @@ sami:
 TRANSLATIONS := de_DE  # space-separated list of translations we have eg. de_ED fr_FR
 
 LANG_SRC  := src/languages
-LANG_DEST := dist/languages
+LANG_DEST := $(ROOT)/dist/languages
 
 define LOCALE_TEMPLATE
 

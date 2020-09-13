@@ -126,7 +126,7 @@ class Frontpage_Widget_Base extends \WP_Widget
         $image = preg_replace_callback (
             '|^~/(.*)$|',
             function ($matches) {
-                return get_theme_image ($matches[1]);
+                return get_theme_image_uri ($matches[1]);
             },
             $image
         );

@@ -5,6 +5,10 @@ PLUGINS = $(wildcard plugins/cap-*)
 
 lint: phpcs jslint csslint
 
+clean:
+	find . -name '*~' -delete
+	rm -rf dist/*
+
 deploy: clean lint js mo deploy_xslt deploy_scripts
 
 deploy_xslt: make_dependencies
@@ -141,7 +145,7 @@ phpcs:
 	-vendor/bin/phpcs --standard=tools/phpcs --report=emacs -s --extensions=php --ignore=node_modules themes plugins
 
 
-TARGETS = csslint jslint phplint mo po pot deploy clean
+TARGETS = csslint jslint phplint mo po pot deploy
 
 define TARGETS_TEMPLATE
 

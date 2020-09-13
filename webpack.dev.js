@@ -34,8 +34,11 @@ module.exports = merge (common, {
         contentBase : './dist',  // not used
 
         // Enable hot module reloading (HMR).
-        hot        : true,
-        liveReload : false,
+        hot         : true,
+        liveReload  : false,
+
+        // write images because we still load them the traditional way
+        writeToDisk : true,
 
         // Needed because we access port devPort from port 80.
         headers : { 'Access-Control-Allow-Origin' : '*' },

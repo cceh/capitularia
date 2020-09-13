@@ -46,7 +46,7 @@ namespace cceh\capitularia\theme;
         <div class="cap-left-col">
           <h1>
             <a href="/" class="homelink"><img
-                <?php echo_attribute ('src', get_theme_image ('logo-capitularia.png'));
+                <?php echo_attribute ('src', get_theme_image_uri ('logo-capitularia.png'));
                       echo_attribute ('alt', get_bloginfo ('name') . ' - ' . get_bloginfo ('description')); ?>
             /></a>
           </h1>

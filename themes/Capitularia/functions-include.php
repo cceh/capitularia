@@ -84,9 +84,9 @@ function echo_attribute ($name, $value)
  * @return string The public url of the image.
  */
 
-function get_theme_image ($img)
+function get_theme_image_uri ($img)
 {
-    $uri = get_stylesheet_directory_uri ();
+    $uri = content_url ();
     return "$uri/dist/images/$img";
 }
 
