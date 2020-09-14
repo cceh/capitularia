@@ -7,7 +7,10 @@ module.exports = merge (common, {
     mode    : 'production',
     devtool : 'source-map',
     entry   : {
-        'cap-theme-front' : { import: ['./themes/Capitularia/src/js/piwik-wrapper.js'] },
+        'cap-theme-front' : { import : ['./themes/Capitularia/src/js/piwik-wrapper.js'] },
+    },
+    output : {
+        publicPath : '/wp-content/',
     },
     module : {
         rules : [
@@ -19,7 +22,7 @@ module.exports = merge (common, {
                         loader  : 'css-loader',
                         options : {
                             importLoaders : 2,
-                        }
+                        },
                     },
                     'postcss-loader',
                     'sass-loader',
@@ -29,8 +32,8 @@ module.exports = merge (common, {
     },
     plugins : [
         new MiniCssExtractPlugin ({
-            filename      : 'dist/[name].[contenthash].css',
-            chunkFilename : 'dist/[id].[contenthash].css',
+            filename      : '[name].[contenthash].css',
+            chunkFilename : '[id].[contenthash].css',
         }),
     ],
 });

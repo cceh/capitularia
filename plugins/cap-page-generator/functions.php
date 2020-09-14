@@ -189,7 +189,7 @@ function cap_sanitize_key_list ($key_list)
 
 function on_init ()
 {
-    lib\load_plugin_textdomain (DOMAIN, __FILE__);
+    lib\load_textdomain (DOMAIN);
 
     global $config;
     $config = new Config ();

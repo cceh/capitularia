@@ -244,31 +244,121 @@ function urljoin ($url1, $url2)
     return rtrim ($url1, '/') . '/' . $url2;
 }
 
-function images_dir_path ($file = null)
+/**
+ * Return the public uri of a manifest item.
+ *
+ * Return the public uri where manifest items distributed by the Capitularia
+ * theme an plugins are found.
+ *
+ * @param string $key The manifest key.
+ *
+ * @return string The uri
+ */
+
+function get_manifest_uri ($key)
+{
+    static $manifest = null;
+
+    if ($manifest === null) {
+        $manifest = WP_CONTENT_DIR . '/dist/manifest.json';
+        $manifest = json_decode (file_get_contents ($manifest));
+    }
+    return isset ($manifest->{$key}) ? $manifest->{$key} : null;
+}
+
+
+/**
+ * Return the public uri of the images directory.
+ *
+ * Return the public uri where the stock images distributed by the Capitularia
+ * theme an plugins are found.
+ *
+ * @return string The uri
+ */
+
+function images_dir_uri ()
+{
+    $uri = content_url ();
+    return "$uri/dist/images";
+}
+
+/**
+ * Return the local path to the images directory.
+ *
+ * Return the local path where the stock images distributed by the Capitularia
+ * theme an plugins are found.
+ *
+ * @return string The path
+ */
+
+function images_dir_path ()
 {
     return WP_CONTENT_DIR . '/dist/images';
 }
 
-function languages_dir_path ($file = null)
+/**
+ * Get the url of an image from a manifest key.
+ *
+ * @param string $key The image key in manifest.
+ *
+ * @return string The public url of the image.
+ */
+
+function get_image_uri ($key)
+{
+    return get_manifest_uri ("images/$key");
+}
+
+/**
+ * Return the local path the languages directory.
+ *
+ * Return the local path where the language files distributed by the Capitularia
+ * theme an plugins are found.
+ *
+ * @return string The path
+ */
+
+function languages_dir_path ()
 {
     return WP_CONTENT_DIR . '/dist/languages';
 }
 
-function load_plugin_textdomain ($domain, $file)
+/**
+ * Load the PHP translations for a text domain.
+ *
+ * Load a .mo file into the text domain $domain.
+ *
+ * @param string $domain The text domain.
+ *
+ * @return bool True on success, false on failure.
+ */
+
+function load_textdomain ($domain)
 {
-    $locale = apply_filters ('plugin_locale', determine_locale(), $domain);
-    $mofile = "/${domain}-${locale}.mo";
-    $path   = languages_dir_path () . $mofile;
-    // echo ("<pre>$path</pre>\n");
-    return \load_textdomain ($domain, $path);
+    $locale = apply_filters ('plugin_locale', determine_locale (), $domain);
+    $mo_file = "/${domain}-${locale}.mo";
+    $mo_path = languages_dir_path () . $mo_file;
+    // echo ("<pre>$mo_path</pre>\n");
+    return \load_textdomain ($domain, $mo_path);
 }
 
-function wp_set_script_translations ($handle, $domain, $file)
+/**
+ * Load the Javascript translations for a text domain.
+ *
+ * Load a .json file into the Javascript text domain $domain.
+ *
+ * @param string $key    The manifest key used to register the script.
+ * @param string $domain The text domain.
+ *
+ * @return bool True on success, false on failure.
+ */
+
+function wp_set_script_translations ($handle, $domain)
 {
     \wp_set_script_translations (
         $handle,
         $domain,
-        languages_dir_path ($file)
+        languages_dir_path ()
     );
 }
 
@@ -278,26 +368,24 @@ function wp_set_script_translations ($handle, $domain, $file)
  * @param string        $key          The manifest key, eg. 'cap-collation-front.js'.
  * @param array<string> $dependencies The dependencies, eg. ['vendor.js'].
  *
- * @return void
+ * @return bool True on success.
  */
 
 function enqueue_from_manifest ($key, $dependencies = array ())
 {
-    static $manifest = null;
-
-    if ($manifest === null) {
-        $manifest = WP_CONTENT_DIR . '/dist/manifest.json';
-        $manifest = json_decode (file_get_contents ($manifest));
+    $uri = get_manifest_uri ($key);
+    if ($uri === null) {
+        return false;
     }
 
     if (preg_match ('/\.css$/', $key)) {
-        // the css may not have been extracted during development
-        if (isset ($manifest->{$key})) {
-            wp_enqueue_style ($key, $manifest->{$key}, $dependencies, $ver = null);
-        }
+        // note: the css may not exist (eg. not have been extracted during
+        // development)
+        wp_enqueue_style ($key, $uri, $dependencies, $ver = null);
     } else {
-        wp_enqueue_script ($key, $manifest->{$key}, $dependencies, $ver = null);
+        wp_enqueue_script ($key, $uri, $dependencies, $ver = null);
     }
+    return true;
 }
 
 /**
@@ -359,7 +447,7 @@ function check_ajax_referrer ()
 
 function on_init ()
 {
-    load_plugin_textdomain (DOMAIN, __FILE__);
+    load_textdomain (DOMAIN);
 }
 
 /**

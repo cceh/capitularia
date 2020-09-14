@@ -87,7 +87,7 @@ function get_capitulars ()
 
 function on_init ()
 {
-    lib\load_plugin_textdomain (DOMAIN, __FILE__);
+    lib\load_textdomain (DOMAIN);
 }
 
 /**

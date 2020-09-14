@@ -32,14 +32,13 @@ function ns ($function_name)
 
 function enqueue_scripts ()
 {
-    $handle = 'cap-collation-front.js';
+    $handle = 'cap-collation-front';
 
-    lib\enqueue_from_manifest ($handle, ['cap-theme-front.js', 'wp-i18n']);
+    lib\enqueue_from_manifest ("$handle.js", ['cap-theme-front.js']);
 
-    lib\enqueue_from_manifest ('cap-collation-front.css');
+    lib\enqueue_from_manifest ("$handle.css");
 
-    // See: https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
-    lib\wp_set_script_translations ($handle, DOMAIN, __FILE__);
+    lib\wp_set_script_translations ("$handle.js", DOMAIN);
 }
 
 /**

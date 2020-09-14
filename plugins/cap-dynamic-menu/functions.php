@@ -32,11 +32,11 @@ function ns ($function_name)
 
 function on_enqueue_scripts ()
 {
-    lib\load_plugin_textdomain (DOMAIN, __FILE__);
+    lib\load_textdomain (DOMAIN);
 }
 
 /**
- * Add attribute data-cap-dynamic-menu and dynamic url to login menu.
+ * Add attribute data-cap-dynamic-menu.
  *
  * Puts the item description into the HTML attribute
  * data-cap-dynamic-menu.  Otherwise it would get lost.

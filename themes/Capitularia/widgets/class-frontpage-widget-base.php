@@ -8,6 +8,8 @@
 
 namespace cceh\capitularia\theme;
 
+use cceh\capitularia\lib;
+
 /**
  * Base class for the front page widgets.
  */
@@ -126,7 +128,7 @@ class Frontpage_Widget_Base extends \WP_Widget
         $image = preg_replace_callback (
             '|^~/(.*)$|',
             function ($matches) {
-                return get_theme_image_uri ($matches[1]);
+                return lib\get_image_uri ($matches[1]);
             },
             $image
         );

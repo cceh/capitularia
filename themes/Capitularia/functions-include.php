@@ -80,20 +80,6 @@ function echo_attribute ($name, $value)
 }
 
 /**
- * Get the url of an image in the theme images directory.
- *
- * @param string $img The image basename.
- *
- * @return string The public url of the image.
- */
-
-function get_theme_image_uri ($img)
-{
-    $uri = content_url ();
-    return "$uri/dist/images/$img";
-}
-
-/**
  * Returns an opening <a> containing a permalink to the current page.
  *
  * It is the responsibilty of the caller to close the <a> tag.

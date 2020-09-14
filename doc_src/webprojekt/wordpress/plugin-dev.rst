@@ -125,14 +125,15 @@ Wordpress boilerplate to make translations available in PHP and JS files:
 
    use cceh\capitularia\lib;
 
+   const DOMAIN = 'my-text-domain';
+
    function enqueue_scripts ()
    {
-       $key = 'my-module';
+       $key = 'my-module'; // key from manifest.json
 
        // enqueue webpacked JS module
        lib\enqueue_from_manifest ("$key.js", [
            'another-module.js',
-           'wp-i18n'  // <= !important
        ]);
 
        // enqueue extracted (minified) CSS
@@ -141,10 +142,10 @@ Wordpress boilerplate to make translations available in PHP and JS files:
        ]);
 
        // translations in PHP files
-       lib\load_plugin_textdomain (DOMAIN, __FILE__);
+       lib\load_textdomain (DOMAIN);
 
        // translations in JS files
-       lib\wp_set_script_translations ("$key.js", DOMAIN, __FILE__);
+       lib\wp_set_script_translations ("$key.js", DOMAIN);
    }
 
 See also:

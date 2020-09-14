@@ -98,7 +98,7 @@ function get_root ()
 
 function on_init ()
 {
-    lib\load_plugin_textdomain (DOMAIN, __FILE__);
+    lib\load_textdomain (DOMAIN);
 }
 
 /**

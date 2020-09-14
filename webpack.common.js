@@ -11,25 +11,21 @@ module.exports = {
             import : ['jquery', 'lodash', 'popper.js', 'bootstrap', 'vue', 'bootstrap-vue'],
         },
         'cap-theme-front' : {
-            import   : [
+            import : [
                 './themes/Capitularia/src/js/front.js',
-                './themes/Capitularia/src/css/front.scss'
-            ],
+                './themes/Capitularia/src/css/front.scss',
+            ].concat (glob.sync ('./themes/Capitularia/src/images/*.png')),
             dependOn : 'cap-vendor',
         },
         'cap-theme-admin' : {
             import : [
                 './themes/Capitularia/src/js/admin.js',
-                './themes/Capitularia/src/css/admin.scss'
+                './themes/Capitularia/src/css/admin.scss',
             ],
-        },
-        'cap-theme-images' : {
-            // a dummy module to pull in all the images
-            import : glob.sync ('./themes/Capitularia/src/images/*.png'),
         },
 
         'cap-collation-front' : {
-            import   : './plugins/cap-collation/src/js/front.js',
+            import : './plugins/cap-collation/src/js/front.js',
             dependOn : 'cap-vendor',
         },
 
@@ -44,7 +40,7 @@ module.exports = {
         },
 
         'cap-meta-search-front' : {
-            import   : [
+            import : [
                 './plugins/cap-meta-search/src/js/front.js',
                 './plugins/cap-meta-search/src/css/front.scss',
             ],
@@ -52,23 +48,22 @@ module.exports = {
         },
 
         'cap-page-generator-front' : {
-            import   : [
+            import : [
                 './plugins/cap-page-generator/src/css/front.scss',
             ],
             dependOn : 'cap-vendor',
         },
 
         'cap-page-generator-admin' : {
-            import   : [
+            import : [
                 './plugins/cap-page-generator/src/js/admin.js',
                 './plugins/cap-page-generator/src/css/admin.scss',
             ],
         },
     },
     output : {
-        filename   : 'dist/[name].[contenthash].js',
-        path       : __dirname,
-        publicPath : '/wp-content/',
+        filename : '[name].[contenthash].js',
+        path     : path.resolve (__dirname, 'dist'),
     },
     module : {
         rules : [
@@ -92,8 +87,8 @@ module.exports = {
                     {
                         loader  : 'file-loader',
                         options : {
-                            name       : '[name].[ext]',
-                            outputPath : 'dist/images',
+                            name       : '[name].[contenthash].[ext]',
+                            outputPath : 'images',
                         },
                     },
                 ],
@@ -104,40 +99,23 @@ module.exports = {
                     {
                         loader  : 'file-loader',
                         options : {
-                            name       : '[name].[ext]',
-                            outputPath : 'dist/webfonts',
+                            name       : '[name].[contenthash].[ext]',
+                            outputPath : 'webfonts',
                         },
                     },
                 ],
             },
         ],
     },
-    optimization: {
-        runtimeChunk: {
-            name: 'cap-runtime',
+    optimization : {
+        runtimeChunk : {
+            name : 'cap-runtime',
         },
-        moduleIds    : 'deterministic',
-        /*
-          splitChunks: {
-          cacheGroups: {
-          common: {
-          name: 'common',
-          chunks: 'all',
-          minChunks: 2,
-          enforce: true,
-          },
-          vendor: {
-          name: 'cap-vendor',
-          test: /node_modules/,
-          chunks: 'all',
-          reuseExistingChunk: true,
-          },
-          },
-          },*/
+        moduleIds : 'deterministic',
     },
     plugins : [
         new ManifestPlugin ({
-            fileName : path.resolve (__dirname, 'dist/manifest.json'),
+            fileName        : 'manifest.json',
             writeToFileEmit : true,
         }),
         new VueLoaderPlugin (),
