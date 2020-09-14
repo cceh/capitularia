@@ -13,6 +13,9 @@ namespace cceh\capitularia\theme;
 
 use cceh\capitularia\lib;
 
+const MAGIC_LOGIN            = '#cap_login_menu#';
+const MAGIC_LINEBREAK_BUTTON = '#cap_linebreak_button#';
+
 /**
  * Add current namespace
  *
@@ -511,6 +514,36 @@ function on_do_parse_request ($do_parse, $wp, $extra_query_vars) // phpcs:ignore
     return $do_parse;
 }
 
+/**
+ * Add dynamic url to login menu.
+ *
+ * @param array    $atts  The old HTML attributes.
+ * @param WP_Post  $item  The current menu item.
+ * @param stdClass $args  An object of wp_nav_menu() arguments.
+ * @param int      $depth Depth of menu item. Used for padding.
+ *
+ * @return array  The updated HTML attributes.
+ */
+
+function on_nav_menu_link_attributes ($atts, $item, $args, $depth) // phpcs:ignore
+{
+    if (isset ($item->url)) {
+        if (strcmp ($item->url, MAGIC_LOGIN) === 0) {
+            $atts['href'] = wp_login_url (get_permalink ());
+        }
+        if (strcmp ($item->url, MAGIC_LINEBREAK_BUTTON) === 0) {
+            $atts['data-linebreak-button'] = 'true'; // $item->description;
+            $item->title = <<<EOD
+<div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input custom-checkbox-linebreak" id="checkbox-{$item->ID}">
+  <label class="custom-control-label" for="checkbox-{$item->ID}">$item->title</label>
+</div>
+EOD;
+        }
+
+    }
+    return $atts;
+}
 /**
  * Redirect the user to the current page after login
  *

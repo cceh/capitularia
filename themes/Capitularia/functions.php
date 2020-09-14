@@ -112,6 +112,11 @@ add_filter ('get_archives_link',                   ns ('translate_month_year'));
 /* add an url redirector for urls like /bk/42 */
 add_filter ('do_parse_request',                    ns ('on_do_parse_request'), 10, 3);
 
+/* add login url to menu */
+if (!is_admin ()) {
+    add_filter ('nav_menu_link_attributes',        ns ('on_nav_menu_link_attributes'), 20, 4);
+}
+
 /*
  * The shortcodes provided by our theme.  For the implementation see:
  * shortcodes.php.
