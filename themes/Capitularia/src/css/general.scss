@@ -120,22 +120,6 @@ strong,
     font-size: small;
 }
 
-@mixin black {
-    color: $color-text;
-}
-
-@mixin red {
-    color: $color-red;
-}
-
-@mixin sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-    top: -0.5em;
-}
-
 .black {
     @include black;
 }
@@ -182,6 +166,12 @@ strong,
 /***********/
 /* Headers */
 /***********/
+
+@media print {
+    div.container {
+        margin: 2em 5%;
+    }
+}
 
 @media not print {
     div.container {

@@ -14,6 +14,7 @@ module.exports = {
             import : [
                 './themes/Capitularia/src/js/front.js',
                 './themes/Capitularia/src/css/front.scss',
+                './themes/Capitularia/src/css/content-col.scss',
             ].concat (glob.sync ('./themes/Capitularia/src/images/*.png')),
             dependOn : 'cap-vendor',
         },

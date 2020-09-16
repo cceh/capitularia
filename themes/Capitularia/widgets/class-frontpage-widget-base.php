@@ -39,6 +39,15 @@ class Frontpage_Widget_Base extends \WP_Widget
 
     protected $options = array ();
 
+    /**
+     * Constructor
+     *
+     * @param string $id         The widget's id.
+     * @param string $name       Name for the widget displayed on the configuration page.
+     * @param array  $widget_ops Widget options. See wp_register_sidebar_widget () for
+     *                           information on accepted arguments.
+     */
+
     public function __construct ($id, $name, $widget_ops)
     {
         $this->class = $widget_ops['classname'];
@@ -65,15 +74,39 @@ class Frontpage_Widget_Base extends \WP_Widget
         );
     }
 
+    /**
+     * Ensure text is a string.
+     *
+     * @param string|null $text The input.
+     *
+     * @return string The text or ''
+     */
+
     protected function normalize ($text)
     {
         return empty ($text) ? '' : $text;
     }
 
+    /**
+     * Strip HTML tags from text.
+     *
+     * @param string|null $text The input.
+     *
+     * @return string The stripped input.
+     */
+
     protected function strip_tags ($text)
     {
         return strip_tags ($this->normalize ($text));
     }
+
+    /**
+     * Sanitize HTML text.
+     *
+     * @param string|null $text The input.
+     *
+     * @return string The sanitized input.
+     */
 
     protected function sanitize ($text)
     {
@@ -90,10 +123,29 @@ class Frontpage_Widget_Base extends \WP_Widget
         return empty ($text) ? '' : wp_kses ($text, $allowed_html);
     }
 
-    protected function make_link ($text, $link, $classes = 'ssdone')
+    /**
+     * Make an HTML <a>
+     *
+     * @param string $text    The link text.
+     * @param string $href    The link href.
+     * @param string $classes The link classes.
+     *
+     * @return string The HTML link.
+     */
+
+    protected function make_link ($text, $href, $classes = 'ssdone')
     {
-        return empty ($link) ? $text : "<a href=\"$link\" class=\"$classes\">$text</a>";
+        return empty ($href) ? $text : "<a href=\"$href\" class=\"$classes\">$text</a>";
     }
+
+    /**
+     * Echo the widget title.
+     *
+     * @param array $args     Array of arguments to configure the display of the widget.
+     * @param array $instance The widget's instance settings.
+     *
+     * @return void
+     */
 
     protected function the_widget_title ($args, $instance)
     {
@@ -102,7 +154,16 @@ class Frontpage_Widget_Base extends \WP_Widget
         echo ($args['after_title']);
     }
 
-    protected function the_widget_body ($dummy_args, $instance) // phpcs:ignore
+    /**
+     * Echo the widget body.
+     *
+     * @param array $args     Array of arguments to configure the display of the widget.
+     * @param array $instance The widget's instance settings.
+     *
+     * @return void
+     */
+
+    protected function the_widget_body ($args, $instance) // phpcs:ignore
     {
         echo ("<div class=\"{$this->class}-body\">{$instance['content']}</div>\n");
         echo $this->make_link (__ ('read more', 'capitularia'), $instance['link'], 'mehr-lesen ssdone');

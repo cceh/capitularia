@@ -30,6 +30,9 @@ module.exports = merge (common, {
             },
         ],
     },
+    watchOptions : {
+        ignored : 'node_modules/**',
+    },
     devServer : {
         host        : devHost,
         port        : devPort,

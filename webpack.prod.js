@@ -10,7 +10,7 @@ module.exports = merge (common, {
         'cap-theme-front' : { import : ['./themes/Capitularia/src/js/piwik-wrapper.js'] },
     },
     output : {
-        publicPath : '/wp-content/',
+        publicPath : '/wp-content/dist/',
     },
     module : {
         rules : [

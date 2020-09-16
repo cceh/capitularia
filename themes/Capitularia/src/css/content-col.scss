@@ -2,16 +2,12 @@
  * Content Column and Annotation Tooltips *
  ******************************************/
 
-div.content-col {
-    margin-bottom: 40px;
+@import 'colors';
+@import 'fonts';
 
-    @media print {
-        /* otherwise we get no page-breaks because this is floated by bootstrap */
-        float: none;
-        width: 100%;
-        left: 0 !important;
-        right: 0 !important;
-    }
+div.content-col {
+    position: relative;
+    margin-bottom: 40px;
 
     a {
         &.milestone {
@@ -149,6 +145,7 @@ div.content-col {
     }
 
     div.footnotes-wrapper {
+        font-size: 80%;
         @media screen {
             display: none;
         }
@@ -542,12 +539,6 @@ div.annotation-content {
                 color: $color-gray;
             }
 
-            span.folio {
-                @include regular;
-                @include semibold;
-                color: $color-gray;
-            }
-
             /* CTE */
             span.tei-witness {
                 @include italic;
@@ -566,8 +557,30 @@ div.annotation-content {
                 }
             }
 
+            span.folio {
+                @include semibold;
+                color: $color-gray;
+            }
+
+            span.line-number {
+                @include regular;
+                color: $color-gray;
+                display: none;
+            }
+
             &.show-linebreaks {
-                span.tei-lb {
+                span.tei-lb,
+                span.tei-cb {
+                    display: block;
+                }
+
+                span.line-number {
+                    display: block;
+                    position: absolute;
+                    right: 101%;
+                }
+
+                span.folio {
                     display: block;
                 }
             }

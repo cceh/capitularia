@@ -353,10 +353,10 @@ function load_textdomain ($domain)
  * @return bool True on success, false on failure.
  */
 
-function wp_set_script_translations ($handle, $domain)
+function wp_set_script_translations ($key, $domain)
 {
     \wp_set_script_translations (
-        $handle,
+        $key,
         $domain,
         languages_dir_path ()
     );

@@ -9,7 +9,10 @@ clean:
 	find . -name '*~' -delete
 	rm -rf dist/*
 
-deploy: clean lint js mo deploy_xslt deploy_scripts
+deploy: clean lint mo js
+	$(RSYNC) themes  $(WPCONTENT)
+	$(RSYNC) plugins $(WPCONTENT)
+	$(RSYNC) dist    $(WPCONTENT)
 
 deploy_xslt: make_dependencies
 	$(RSYNC) xslt/*.xsl $(TRANSFORM)/
@@ -145,7 +148,7 @@ phpcs:
 	-vendor/bin/phpcs --standard=tools/phpcs --report=emacs -s --extensions=php --ignore=node_modules themes plugins
 
 
-TARGETS = csslint jslint phplint mo po pot deploy
+TARGETS = csslint jslint phplint mo po pot
 
 define TARGETS_TEMPLATE
 

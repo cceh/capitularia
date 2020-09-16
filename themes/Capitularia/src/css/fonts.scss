@@ -4,8 +4,8 @@
  * This module overrides Fontawesome not to webpack the eot and svg versions.
  * Copied from these files:
  *
- * @import '@fortawesome/fontawesome-free/scss/solid';
- * @import '@fortawesome/fontawesome-free/scss/regular';
+ *   @import '~@fortawesome/fontawesome-free/scss/solid';
+ *   @import '~@fortawesome/fontawesome-free/scss/regular';
  */
 
 /* OpenSans Font */
@@ -72,7 +72,7 @@
 
 /* Fontawesome Font */
 
-$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+$fa-font-path:    '~@fortawesome/fontawesome-free/webfonts';
 $fa-font-display: 'block';
 
 /*!
@@ -135,4 +135,12 @@ $fa-font-display: 'block';
 @mixin font-menubar-bottom {
     @include semibold;
     text-transform: uppercase;
+}
+
+@mixin sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+    top: -0.5em;
 }
