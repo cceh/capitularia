@@ -584,24 +584,133 @@ distinct.</p>
 </dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
+<dt id="cceh\capitularia\lib\get_manifest_uri">
+<code class="sig-name descname">get_manifest_uri</code><span class="sig-paren">(</span><em class="sig-param">$key</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\get_manifest_uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the public uri of a manifest item.</p>
+<p>Return the public uri where manifest items distributed by the Capitularia
+theme an plugins are found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$key</strong> (<em>string</em>) – The manifest key.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The uri</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
+<dt id="cceh\capitularia\lib\images_dir_uri">
+<code class="sig-name descname">images_dir_uri</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\images_dir_uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the public uri of the images directory.</p>
+<p>Return the public uri where the stock images distributed by the Capitularia
+theme an plugins are found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The uri</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
 <dt id="cceh\capitularia\lib\images_dir_path">
-<code class="sig-name descname">images_dir_path</code><span class="sig-paren">(</span><em class="sig-param">$file</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\images_dir_path" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">images_dir_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\images_dir_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the local path to the images directory.</p>
+<p>Return the local path where the stock images distributed by the Capitularia
+theme an plugins are found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The path</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
+<dt id="cceh\capitularia\lib\get_image_uri">
+<code class="sig-name descname">get_image_uri</code><span class="sig-paren">(</span><em class="sig-param">$key</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\get_image_uri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the url of an image from a manifest key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$key</strong> (<em>string</em>) – The image key in manifest.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The public url of the image.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
 <dt id="cceh\capitularia\lib\languages_dir_path">
-<code class="sig-name descname">languages_dir_path</code><span class="sig-paren">(</span><em class="sig-param">$file</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\languages_dir_path" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">languages_dir_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\languages_dir_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the local path the languages directory.</p>
+<p>Return the local path where the language files distributed by the Capitularia
+theme an plugins are found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The path</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
-<dt id="cceh\capitularia\lib\load_plugin_textdomain">
-<code class="sig-name descname">load_plugin_textdomain</code><span class="sig-paren">(</span><em class="sig-param">$domain</em>, <em class="sig-param">$file</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\load_plugin_textdomain" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="cceh\capitularia\lib\load_textdomain">
+<code class="sig-name descname">load_textdomain</code><span class="sig-paren">(</span><em class="sig-param">$domain</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\load_textdomain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the PHP translations for a text domain.</p>
+<p>Load a .mo file into the text domain $domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$domain</strong> (<em>string</em>) – The text domain.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True on success, false on failure.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
 <dt id="cceh\capitularia\lib\wp_set_script_translations">
-<code class="sig-name descname">wp_set_script_translations</code><span class="sig-paren">(</span><em class="sig-param">$handle</em>, <em class="sig-param">$domain</em>, <em class="sig-param">$file</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\wp_set_script_translations" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">wp_set_script_translations</code><span class="sig-paren">(</span><em class="sig-param">$key</em>, <em class="sig-param">$domain</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\lib\wp_set_script_translations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the Javascript translations for a text domain.</p>
+<p>Load a .json file into the Javascript text domain $domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$key</strong> (<em>string</em>) – The manifest key used to register the script.</p></li>
+<li><p><strong>$domain</strong> (<em>string</em>) – The text domain.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True on success, false on failure.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
 
 <span class="target" id="namespace-cceh\capitularia\lib"></span><dl class="php function">
 <dt id="cceh\capitularia\lib\enqueue_from_manifest">
@@ -614,8 +723,11 @@ distinct.</p>
 <li><p><strong>$dependencies</strong> (<em>cceh\capitularia\lib\array&lt;string&gt;</em>) – The dependencies, eg. [‘vendor.js’].</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>void</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True on success.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>boolean</p>
 </dd>
 </dl>
 </dd></dl>

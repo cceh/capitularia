@@ -11,3 +11,4 @@ The Wordpress customizations we did for Capitularia.
 
    wordpress/theme
    wordpress/plugins
+   wordpress/developer

@@ -3,15 +3,6 @@
 Wordpress Plugins
 =================
 
-Plugin Development
-------------------
-
-.. toctree::
-   :maxdepth: 2
-
-   plugin-dev
-
-
 Active Plugins
 --------------
 

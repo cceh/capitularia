@@ -315,42 +315,135 @@ Contains data to build the fields in the ‘settings’ form.</p>
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Image_Widget::__construct">
 <code class="sig-name descname">__construct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Image_Widget::__construct" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Constructor</p>
+</dd></dl>
 
 <dl class="php method">
 <dt>
 <code class="sig-name descname">__construct</code><span class="sig-paren">(</span><em class="sig-param">$id</em>, <em class="sig-param">$name</em>, <em class="sig-param">$widget_ops</em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$id</strong> (<em>string</em>) – The widget’s id.</p></li>
+<li><p><strong>$name</strong> (<em>string</em>) – Name for the widget displayed on the configuration page.</p></li>
+<li><p><strong>$widget_ops</strong> (<em>array</em>) – Widget options. See wp_register_sidebar_widget () for information on accepted arguments.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Image_Widget::normalize">
 <code class="sig-name descname">normalize</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Image_Widget::normalize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Ensure text is a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string|null</em>) – The input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The text or ‘’</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Image_Widget::strip_tags">
 <code class="sig-name descname">strip_tags</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Image_Widget::strip_tags" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Strip HTML tags from text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string|null</em>) – The input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The stripped input.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Image_Widget::sanitize">
 <code class="sig-name descname">sanitize</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Image_Widget::sanitize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Sanitize HTML text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string|null</em>) – The input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The sanitized input.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Image_Widget::make_link">
-<code class="sig-name descname">make_link</code><span class="sig-paren">(</span><em class="sig-param">$text</em>, <em class="sig-param">$link</em>, <em class="sig-param">$classes</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Image_Widget::make_link" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">make_link</code><span class="sig-paren">(</span><em class="sig-param">$text</em>, <em class="sig-param">$href</em>, <em class="sig-param">$classes</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Image_Widget::make_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an HTML &lt;a&gt;</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string</em>) – The link text.</p></li>
+<li><p><strong>$href</strong> (<em>string</em>) – The link href.</p></li>
+<li><p><strong>$classes</strong> (<em>string</em>) – The link classes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The HTML link.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Image_Widget::the_widget_title">
 <code class="sig-name descname">the_widget_title</code><span class="sig-paren">(</span><em class="sig-param">$args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Image_Widget::the_widget_title" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Echo the widget title.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$args</strong> (<em>array</em>) – Array of arguments to configure the display of the widget.</p></li>
+<li><p><strong>$instance</strong> (<em>array</em>) – The widget’s instance settings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Image_Widget::the_widget_body">
-<code class="sig-name descname">the_widget_body</code><span class="sig-paren">(</span><em class="sig-param">$dummy_args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Image_Widget::the_widget_body" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">the_widget_body</code><span class="sig-paren">(</span><em class="sig-param">$args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Image_Widget::the_widget_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Echo the widget body.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$args</strong> (<em>array</em>) – Array of arguments to configure the display of the widget.</p></li>
+<li><p><strong>$instance</strong> (<em>array</em>) – The widget’s instance settings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Image_Widget::the_widget_image">
@@ -471,57 +564,153 @@ Contains data to build the fields in the ‘settings’ form.</p>
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Logo_Widget::__construct">
 <code class="sig-name descname">__construct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Logo_Widget::__construct" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Constructor</p>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Logo_Widget::make_link">
 <code class="sig-name descname">make_link</code><span class="sig-paren">(</span><em class="sig-param">$text</em>, <em class="sig-param">$link</em>, <em class="sig-param">$classes</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Logo_Widget::make_link" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Make an HTML &lt;a&gt;</p>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Logo_Widget::the_widget_title">
 <code class="sig-name descname">the_widget_title</code><span class="sig-paren">(</span><em class="sig-param">$dummy_args</em>, <em class="sig-param">$dummy_instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Logo_Widget::the_widget_title" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Echo the widget title.</p>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Logo_Widget::the_widget_body">
 <code class="sig-name descname">the_widget_body</code><span class="sig-paren">(</span><em class="sig-param">$dummy_args</em>, <em class="sig-param">$dummy_instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Logo_Widget::the_widget_body" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Echo the widget body.</p>
+</dd></dl>
 
 <dl class="php method">
 <dt>
 <code class="sig-name descname">__construct</code><span class="sig-paren">(</span><em class="sig-param">$id</em>, <em class="sig-param">$name</em>, <em class="sig-param">$widget_ops</em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$id</strong> (<em>string</em>) – The widget’s id.</p></li>
+<li><p><strong>$name</strong> (<em>string</em>) – Name for the widget displayed on the configuration page.</p></li>
+<li><p><strong>$widget_ops</strong> (<em>array</em>) – Widget options. See wp_register_sidebar_widget () for information on accepted arguments.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Logo_Widget::normalize">
 <code class="sig-name descname">normalize</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Logo_Widget::normalize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Ensure text is a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string|null</em>) – The input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The text or ‘’</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Logo_Widget::strip_tags">
 <code class="sig-name descname">strip_tags</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Logo_Widget::strip_tags" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Strip HTML tags from text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string|null</em>) – The input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The stripped input.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Logo_Widget::sanitize">
 <code class="sig-name descname">sanitize</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Logo_Widget::sanitize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Sanitize HTML text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string|null</em>) – The input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The sanitized input.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt>
-<code class="sig-name descname">make_link</code><span class="sig-paren">(</span><em class="sig-param">$text</em>, <em class="sig-param">$link</em>, <em class="sig-param">$classes</em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<code class="sig-name descname">make_link</code><span class="sig-paren">(</span><em class="sig-param">$text</em>, <em class="sig-param">$href</em>, <em class="sig-param">$classes</em><span class="sig-paren">)</span></dt>
+<dd><p>Make an HTML &lt;a&gt;</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string</em>) – The link text.</p></li>
+<li><p><strong>$href</strong> (<em>string</em>) – The link href.</p></li>
+<li><p><strong>$classes</strong> (<em>string</em>) – The link classes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The HTML link.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt>
 <code class="sig-name descname">the_widget_title</code><span class="sig-paren">(</span><em class="sig-param">$args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Echo the widget title.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$args</strong> (<em>array</em>) – Array of arguments to configure the display of the widget.</p></li>
+<li><p><strong>$instance</strong> (<em>array</em>) – The widget’s instance settings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt>
-<code class="sig-name descname">the_widget_body</code><span class="sig-paren">(</span><em class="sig-param">$dummy_args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<code class="sig-name descname">the_widget_body</code><span class="sig-paren">(</span><em class="sig-param">$args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span></dt>
+<dd><p>Echo the widget body.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$args</strong> (<em>array</em>) – Array of arguments to configure the display of the widget.</p></li>
+<li><p><strong>$instance</strong> (<em>array</em>) – The widget’s instance settings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Logo_Widget::the_widget_image">
@@ -642,7 +831,8 @@ Contains data to build the fields in the ‘settings’ form.</p>
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Text_Widget::__construct">
 <code class="sig-name descname">__construct</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Text_Widget::__construct" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Constructor</p>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Text_Widget::the_widget_image">
@@ -655,37 +845,129 @@ eg. ~/logo.png =&gt; <a class="reference external" href="https://server/path/to/
 <dl class="php method">
 <dt>
 <code class="sig-name descname">__construct</code><span class="sig-paren">(</span><em class="sig-param">$id</em>, <em class="sig-param">$name</em>, <em class="sig-param">$widget_ops</em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$id</strong> (<em>string</em>) – The widget’s id.</p></li>
+<li><p><strong>$name</strong> (<em>string</em>) – Name for the widget displayed on the configuration page.</p></li>
+<li><p><strong>$widget_ops</strong> (<em>array</em>) – Widget options. See wp_register_sidebar_widget () for information on accepted arguments.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Text_Widget::normalize">
 <code class="sig-name descname">normalize</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Text_Widget::normalize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Ensure text is a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string|null</em>) – The input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The text or ‘’</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Text_Widget::strip_tags">
 <code class="sig-name descname">strip_tags</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Text_Widget::strip_tags" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Strip HTML tags from text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string|null</em>) – The input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The stripped input.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Text_Widget::sanitize">
 <code class="sig-name descname">sanitize</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Text_Widget::sanitize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Sanitize HTML text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string|null</em>) – The input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The sanitized input.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Text_Widget::make_link">
-<code class="sig-name descname">make_link</code><span class="sig-paren">(</span><em class="sig-param">$text</em>, <em class="sig-param">$link</em>, <em class="sig-param">$classes</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Text_Widget::make_link" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">make_link</code><span class="sig-paren">(</span><em class="sig-param">$text</em>, <em class="sig-param">$href</em>, <em class="sig-param">$classes</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Text_Widget::make_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an HTML &lt;a&gt;</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string</em>) – The link text.</p></li>
+<li><p><strong>$href</strong> (<em>string</em>) – The link href.</p></li>
+<li><p><strong>$classes</strong> (<em>string</em>) – The link classes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The HTML link.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Text_Widget::the_widget_title">
 <code class="sig-name descname">the_widget_title</code><span class="sig-paren">(</span><em class="sig-param">$args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Text_Widget::the_widget_title" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Echo the widget title.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$args</strong> (<em>array</em>) – Array of arguments to configure the display of the widget.</p></li>
+<li><p><strong>$instance</strong> (<em>array</em>) – The widget’s instance settings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Text_Widget::the_widget_body">
-<code class="sig-name descname">the_widget_body</code><span class="sig-paren">(</span><em class="sig-param">$dummy_args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Text_Widget::the_widget_body" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">the_widget_body</code><span class="sig-paren">(</span><em class="sig-param">$args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Text_Widget::the_widget_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Echo the widget body.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$args</strong> (<em>array</em>) – Array of arguments to configure the display of the widget.</p></li>
+<li><p><strong>$instance</strong> (<em>array</em>) – The widget’s instance settings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt>
@@ -806,37 +1088,129 @@ Contains data to build the fields in the ‘settings’ form.</p>
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Widget_Base::__construct">
 <code class="sig-name descname">__construct</code><span class="sig-paren">(</span><em class="sig-param">$id</em>, <em class="sig-param">$name</em>, <em class="sig-param">$widget_ops</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Widget_Base::__construct" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$id</strong> (<em>string</em>) – The widget’s id.</p></li>
+<li><p><strong>$name</strong> (<em>string</em>) – Name for the widget displayed on the configuration page.</p></li>
+<li><p><strong>$widget_ops</strong> (<em>array</em>) – Widget options. See wp_register_sidebar_widget () for information on accepted arguments.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Widget_Base::normalize">
 <code class="sig-name descname">normalize</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Widget_Base::normalize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Ensure text is a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string|null</em>) – The input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The text or ‘’</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Widget_Base::strip_tags">
 <code class="sig-name descname">strip_tags</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Widget_Base::strip_tags" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Strip HTML tags from text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string|null</em>) – The input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The stripped input.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Widget_Base::sanitize">
 <code class="sig-name descname">sanitize</code><span class="sig-paren">(</span><em class="sig-param">$text</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Widget_Base::sanitize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Sanitize HTML text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string|null</em>) – The input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The sanitized input.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Widget_Base::make_link">
-<code class="sig-name descname">make_link</code><span class="sig-paren">(</span><em class="sig-param">$text</em>, <em class="sig-param">$link</em>, <em class="sig-param">$classes</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Widget_Base::make_link" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">make_link</code><span class="sig-paren">(</span><em class="sig-param">$text</em>, <em class="sig-param">$href</em>, <em class="sig-param">$classes</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Widget_Base::make_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an HTML &lt;a&gt;</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$text</strong> (<em>string</em>) – The link text.</p></li>
+<li><p><strong>$href</strong> (<em>string</em>) – The link href.</p></li>
+<li><p><strong>$classes</strong> (<em>string</em>) – The link classes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The HTML link.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Widget_Base::the_widget_title">
 <code class="sig-name descname">the_widget_title</code><span class="sig-paren">(</span><em class="sig-param">$args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Widget_Base::the_widget_title" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Echo the widget title.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$args</strong> (<em>array</em>) – Array of arguments to configure the display of the widget.</p></li>
+<li><p><strong>$instance</strong> (<em>array</em>) – The widget’s instance settings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Widget_Base::the_widget_body">
-<code class="sig-name descname">the_widget_body</code><span class="sig-paren">(</span><em class="sig-param">$dummy_args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Widget_Base::the_widget_body" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">the_widget_body</code><span class="sig-paren">(</span><em class="sig-param">$args</em>, <em class="sig-param">$instance</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\Frontpage_Widget_Base::the_widget_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Echo the widget body.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$args</strong> (<em>array</em>) – Array of arguments to configure the display of the widget.</p></li>
+<li><p><strong>$instance</strong> (<em>array</em>) – The widget’s instance settings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>void</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="php method">
 <dt id="cceh\capitularia\theme\Frontpage_Widget_Base::the_widget_image">

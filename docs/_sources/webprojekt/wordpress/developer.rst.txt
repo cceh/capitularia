@@ -1,9 +1,12 @@
-.. _plugin-dev:
+.. _wp-dev:
 
-Plugin Development
-==================
+Developer Notes
+===============
 
-The Arcana of Wordpress Plugin Development
+Description of our development environment for Wordpress customizations.
+
+Skills needed: Wordpress, PHP, JS, SCSS, Vue.js, jQuery, Bootstrap, Webpack,
+Makefile.
 
 .. contents::
    :local:
@@ -64,6 +67,7 @@ Internationalization consists of these steps:
 
 4. Use the Wordpress :file:`wp-i18n.js` library to translate the strings at
    runtime.
+
 
 Extract
 -------
