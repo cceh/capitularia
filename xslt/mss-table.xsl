@@ -82,7 +82,7 @@ Target: lists $(CACHE_DIR)/lists/mss-table.html
 
   <xsl:template match="idno[@type = 'main']">
     <xsl:call-template name="if-visible">
-      <xsl:with-param name="path" select="concat ('/mss/', ../@xml:id)"/>
+      <xsl:with-param name="path" select="concat ('/mss/', ../@xml:id, '/')"/>
       <xsl:with-param name="title">[:de]Zur Handschrift[:en]Go to the manuscript[:]</xsl:with-param>
       <xsl:with-param name="text">
         <xsl:apply-templates />

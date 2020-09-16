@@ -69,7 +69,7 @@ Target: lists $(CACHE_DIR)/lists/mss-key.html
 
   <xsl:template match="title">
     <xsl:call-template name="if-visible">
-      <xsl:with-param name="path" select="concat ('/mss/', ../@xml:id)"/>
+      <xsl:with-param name="path" select="concat ('/mss/', ../@xml:id, '/')"/>
       <xsl:with-param name="text" select="text ()"/>
     </xsl:call-template>
   </xsl:template>

@@ -116,7 +116,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
 
   <xsl:template match="item/name">
     <xsl:call-template name="if-visible">
-      <xsl:with-param name="path" select="concat ('/capit/', @ref)"/>
+      <xsl:with-param name="path" select="concat ('/capit/', @ref, '/')"/>
       <xsl:with-param  name="title">
         <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
         <xsl:value-of select="cap:human-readable-siglum (../@xml:id)"/>

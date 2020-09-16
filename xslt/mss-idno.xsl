@@ -50,7 +50,7 @@ Target: lists $(CACHE_DIR)/lists/mss-idno.html
               <tr>
                 <td>
                   <xsl:call-template name="if-visible">
-                    <xsl:with-param name="path" select="concat ('/mss/', @xml:id)"/>
+                    <xsl:with-param name="path" select="concat ('/mss/', @xml:id, '/')"/>
                     <xsl:with-param name="text" select="string (title)"/>
                   </xsl:call-template>
 

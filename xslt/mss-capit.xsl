@@ -145,7 +145,7 @@ Target: lists $(CACHE_DIR)/lists/mss-capit.html
               <xsl:choose>
                 <xsl:when test="@target">
                   <xsl:call-template name="if-visible">
-                    <xsl:with-param name="path" select="concat ('/mss/', @target)"/>
+                    <xsl:with-param name="path" select="concat ('/mss/', @target, '/')"/>
                     <xsl:with-param name="text">
                       <xsl:copy-of select="$title"/>
                     </xsl:with-param>
