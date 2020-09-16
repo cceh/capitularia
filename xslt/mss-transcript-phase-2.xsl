@@ -14,6 +14,21 @@ URL: $(CACHE_DIR)/internal/mss/%.transcript.html /internal/mss/%/
 Target: mss      $(CACHE_DIR)/mss/%.transcript.html
 Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
 
+Phase 2 is a TEI to HTML conversion that:
+
+ - converts all TEI elements into suitable HTML constructs,
+
+ - puts all notes, generated and user-provided, out the main text and leaves
+   anchors at their place
+
+Post processing:
+
+The output of phase 2 will be processed by footnotes-post-processor.php.  That
+script will move generated footnotes to the end of the word eventually merging
+multiple generated footnotes into one.  Generated footnotes will be suppressed
+if there is a editorial note at the end of the word.  Isolated footnotes will be
+joined to the preceding word.
+
 -->
 
 <xsl:stylesheet
@@ -234,67 +249,19 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:function name="cap:trailing">
-    <!-- The cap:trailing function returns the nodes in the node set passed as
-         the first argument that follow, in document order, the first node in
-         the node set passed as the second argument. If the first node in the
-         second node set is not contained in the first node set, then an empty
-         node set is returned. If the second node set is empty, then the first
-         node set is returned. -->
-    <xsl:param name="nodes" />
-    <xsl:param name="node"  />
-
-    <xsl:variable name="end-node" select="$node[1]"/>
-    <xsl:choose>
-      <xsl:when test="not ($end-node) or not ($nodes)">
-        <xsl:sequence select="$nodes"/>
-      </xsl:when>
-      <xsl:when test="count ($nodes | $end-node) != count ($nodes)">
-        <xsl:sequence select="()"/>
-      </xsl:when>
-      <xsl:when test="count ($nodes[1] | $end-node) = 1">
-        <xsl:sequence select="$nodes[position() > 1]"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:sequence select="cap:trailing ($nodes[position() > 1], $end-node)"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:function>
-
   <xsl:template name="footnotes-wrapper">
-    <div class="footnotes-wrapper">
-      <xsl:choose>
-        <xsl:when test="self::anchor">
-          <!-- end of capitulatio -->
-          <xsl:apply-templates
-              mode="move-notes"
-              select="cap:trailing (
-                      preceding-sibling::ab|../milestone,
-                      ../tei:milestone[@unit = 'capitulatio' and @spanTo = concat ('#', current()/@xml:id)]
-                      )" />
-        </xsl:when>
-        <xsl:otherwise>
-          <!-- default: generate footnote bodies for immediately preceding ab-meta's
-               and for ab's linked to this one by @next -->
-          <!-- Go back and get all ab's but stop on the first ab-text or anchor -->
-          <xsl:apply-templates
-              mode="move-notes"
-              select="cap:trailing (
-                      preceding-sibling::*[
-                        self::ab or
-                        self::anchor
-                      ],
-                      preceding-sibling::*[
-                        self::ab[@type='text' and not (@next)] or
-                        self::anchor[starts-with (@xml:id, 'capitulatio-finis')]
-                      ])" />
-        </xsl:otherwise>
-      </xsl:choose>
+    <!-- Collect the footnotes that go into this footnote section.  The scope
+         is all <ab>s between the previous <milestone type="footnotes-wrapper">
+         and this node. -->
 
-      <!-- generate footnote bodies for this ab -->
-      <xsl:apply-templates mode="move-notes" />
-    </div>
-    <xsl:text>&#x0a;&#x0a;</xsl:text>
+    <xsl:variable name="scope"
+         select="preceding-sibling::milestone[@type='footnotes-wrapper' or @type='tei-body-start'][1]/following-sibling::ab intersect (self::ab | preceding-sibling::ab)" />
+
+    <xsl:if test="count ($scope) > 0">
+      <div class="footnotes-wrapper">
+        <xsl:apply-templates mode="move-notes" select="$scope" />
+      </div>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="body//note">
@@ -329,15 +296,6 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
       <span> &#xa0;</span> <!-- Do not let footnotes escape the ab. -->
     </div>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
-
-    <!-- If the manuscript ends here,
-         or is followed by a capitulatio,
-         or is an epilog or explicit. -->
-    <xsl:if test="not (following-sibling::ab) or following-sibling::*[1][self::milestone[@unit='capitulatio']] or contains (@corresp, '_epilog') or contains (@corresp, 'explicit')">
-      <xsl:call-template name="footnotes-wrapper"/>
-      <xsl:call-template name="page-break" />
-    </xsl:if>
-
   </xsl:template>
 
   <xsl:template match="body/ab[@type='text']" priority="2">
@@ -356,15 +314,9 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
     </div>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
 
-    <xsl:choose>
-      <xsl:when test="@next">
-        <xsl:call-template name="hr" />
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="footnotes-wrapper"/>
-        <xsl:call-template name="page-break" />
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:if test="@next">
+      <xsl:call-template name="hr" />
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="body/ab">
@@ -383,6 +335,10 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
         <span class="tei-lb"> </span>
       </xsl:otherwise>
     </xsl:choose>
+
+    <xsl:if test="@n">
+      <span class="line-number" data-shortcuts="0">[<xsl:value-of select="@n" />]</span>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="cb">
@@ -427,24 +383,36 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.transcript.html
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="milestone[not (@unit='span')]">
-    <xsl:call-template name="make-sidebar-bk">
-      <xsl:with-param name="corresp" select="@n" />
-    </xsl:call-template>
-  </xsl:template>
-
-  <xsl:template match="milestone[@unit='span' and @corresp and @spanTo]">
-    <xsl:if test="@xml:id">
-      <a id="{@xml:id}" class="milestone milestone-span milestone-span-start"/>
-    </xsl:if>
-    <xsl:call-template name="make-sidebar-bk-chapter" />
+  <xsl:template match="milestone">
+    <xsl:choose>
+      <xsl:when test="@type='page-break'">
+        <xsl:call-template name="page-break" />
+      </xsl:when>
+      <xsl:when test="@type='footnotes-wrapper'">
+        <xsl:call-template name="footnotes-wrapper" />
+      </xsl:when>
+      <xsl:when test="@type='tei-body-end'">
+        <!-- just make sure we don't lose any footnotes -->
+        <xsl:call-template name="footnotes-wrapper" />
+        <xsl:call-template name="page-break" />
+      </xsl:when>
+      <xsl:when test="not (@unit='span')">
+        <xsl:call-template name="make-sidebar-bk">
+          <xsl:with-param name="corresp" select="@n" />
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="@unit='span' and @corresp and @spanTo">
+        <xsl:if test="@xml:id">
+          <a id="{@xml:id}" class="milestone milestone-span milestone-span-start"/>
+        </xsl:if>
+        <xsl:call-template name="make-sidebar-bk-chapter" />
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="anchor[starts-with (@xml:id, 'capitulatio-finis')]">
     <!-- this anchor marks the end of a capitulatio -->
     <span class="milestone milestone-capitulatio-end" />
-    <xsl:call-template name="footnotes-wrapper" />
-    <xsl:call-template name="page-break" />
   </xsl:template>
 
   <xsl:template match="anchor">

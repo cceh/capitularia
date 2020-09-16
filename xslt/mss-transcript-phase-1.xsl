@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <!--
 
@@ -17,9 +17,6 @@ Phase 1 is a TEI to TEI conversion that:
  - Resolves add, del, subst, choose, and expan into one text flow
 
  - generates notes that explain how those constructs were resolved
-
- - puts all notes, generated and user-provided, out the main text and leaves
-   anchors at their place
 
 Footnote generation examples:
 
@@ -45,9 +42,8 @@ Complications:
 
 There are 2 classes of hands:
 
-  - The hands A - W are considered original scribes.
-
-  - The hands X - Z are considered later hands.
+- The hands A - W are considered original scribes.
+- The hands X - Z are considered later hands.
 
 The "include-later-hand" parameter controls which text is selected for the
 reader.
@@ -55,21 +51,11 @@ reader.
 There are 3 classes of corrections:
 
 - corrections of phrases,
-
 - corrections of a whole word, and
-
 - corrections that change a part of a word.
 
 The generated text of the footnote varies according to these cases.
 
-
-Post processing:
-
-The output of this stylesheet will be processed by footnotes-post-processor.php.
-That script will move generated footnotes to the end of the word eventually
-merging multiple generated footnotes into one.  Generated footnotes will be
-suppressed if there is a editorial note at the end of the word.  Isolated
-footnotes will be joined to the preceding word.
 
 @author: MP
 
@@ -122,7 +108,9 @@ footnotes will be joined to the preceding word.
   <xsl:template match="/TEI/text/body">
     <xsl:copy>
       <xsl:apply-templates select="@*" />
+      <milestone type="tei-body-start" />
       <xsl:apply-templates />
+      <milestone type="tei-body-end" />
     </xsl:copy>
   </xsl:template>
 
@@ -434,7 +422,7 @@ footnotes will be joined to the preceding word.
   </xsl:template>
 
   <!--
-      default mode
+      default mode for <note>s
 
       This mode generates the text section.  It only ever generates <anchor>s,
       never <note>s.
@@ -490,6 +478,30 @@ footnotes will be joined to the preceding word.
 
       <xsl:apply-templates />
     </ab>
+
+    <!-- insert hints to help pagination in later phases -->
+
+    <xsl:choose>
+      <xsl:when test="@type='text' and not (@next)">
+        <milestone type="footnotes-wrapper" />
+        <milestone type="page-break" />
+      </xsl:when>
+      <!-- If this <ab type="meta-text"> is an epilog or explicit or
+           is immediately followed by a capitulatio -->
+      <xsl:when test="@type='meta-text' and (following-sibling::*[1][self::milestone[@unit='capitulatio']] or contains (@corresp, '_epilog') or contains (@corresp, 'explicit'))">
+        <milestone type="footnotes-wrapper" />
+        <milestone type="page-break" />
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="anchor[starts-with (@xml:id, 'capitulatio-finis')]">
+    <!-- this anchor marks the end of a capitulatio -->
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()" />
+    </xsl:copy>
+    <milestone type="footnotes-wrapper" />
+    <milestone type="page-break" />
   </xsl:template>
 
   <xsl:template match="seg[@type]">
