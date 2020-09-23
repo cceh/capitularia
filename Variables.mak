@@ -1,7 +1,5 @@
 PRJ_DIR := prj/capitularia/capitularia
 
-
-
 ROOT      := $(UNI_DIR)/$(PRJ_DIR)
 HOST_ROOT := $(CAPITULARIA_SSHUSER)@$(CAPITULARIA_HOST)
 
@@ -18,6 +16,7 @@ WPCONTENTLOCAL := $(LOCALFS)/wp-content
 
 CLIENT       := $(ROOT)/client
 SERVER       := $(ROOT)/server
+XSLT         := $(ROOT)/xslt
 GIS          := $(ROOT)/gis
 
 HOST_CLIENT  := $(AFS)/http/docs/client
@@ -26,7 +25,7 @@ HOST_SERVER  := $(HOST_ROOT):~/$(PRJ_DIR)/server
 NODE_MODULES := $(ROOT)/node_modules
 NODE         := $(NODE_MODULES)/.bin
 
-NAT_EARTH    := http://naciscdn.org/naturalearth
+NAT_EARTH    := https://naciscdn.org/naturalearth
 
 WEBPACK             = $(NODE)/webpack --no-color
 WEBPACK_DEV_SERVER  = $(NODE)/webpack-dev-server --no-color
@@ -58,8 +57,9 @@ XGETTEXT       := xgettext --default-domain=capitularia --from-code=utf-8 \
 PHPDOC         := php ../bin/phpDocumentor.phar
 JSDOC          := jsdoc -c jsdoc.conf.js
 
-MYSQL_REMOTE   := mysql --defaults-file=~/.my.cnf.capitularia
-MYSQL_LOCAL    := mysql --defaults-file=~/.my.cnf.capitularia-local
+MYSQL_REMOTE     := mysql --defaults-file=~/.my.cnf.capitularia
+MYSQL_LOCAL      := mysql --defaults-file=~/.my.cnf.capitularia-local
+MYSQLDUMP_REMOTE := mysqldump --defaults-file=~/.my.cnf.capitularia
 
 PSQL           := /usr/bin/psql
 PGDUMP         := /usr/bin/pg_dump

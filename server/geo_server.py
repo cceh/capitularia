@@ -15,7 +15,7 @@ class Config (object):
             'title'       : 'Empire 843',
             'long_title'  : 'Empire de Charlemagne au Traité de Verdun 843',
             'classes'     : 'countries',
-            'url'         : '/client/geodata/countries_843.geojson',
+            'url'         : 'geodata/countries_843.geojson',
             'attribution' : common.VIDAL1898,
             'type'        : 'area',
         },
@@ -24,7 +24,7 @@ class Config (object):
             'title'       : 'Boundaries 870',
             'long_title'  : 'Disruption of the Carolingian Empire, 843-888 (Mersen 870)',
             'classes'     : 'countries',
-            'url'         : '/client/geodata/countries_870.geojson',
+            'url'         : 'geodata/countries_870.geojson',
             'attribution' : common.SHEPHERD1911,
             'type'        : 'area',
         },
@@ -33,7 +33,7 @@ class Config (object):
             'title'       : 'Boundaries 888',
             'long_title'  : 'Disruption of the Carolingian Empire, 843-888 (888)',
             'classes'     : 'countries',
-            'url'         : '/client/geodata/countries_888.geojson',
+            'url'         : 'geodata/countries_888.geojson',
             'attribution' : common.SHEPHERD1911,
             'type'        : 'area',
         },
@@ -42,7 +42,7 @@ class Config (object):
             'title'       : 'Empire 843 (Pagi)',
             'long_title'  : 'Empire de Charlemagne au Traité de Verdun 843 (Pagi)',
             'classes'     : 'regions',
-            'url'         : '/client/geodata/regions_843.geojson',
+            'url'         : 'geodata/regions_843.geojson',
             'attribution' : common.VIDAL1898,
             'type'        : 'area',
         },
@@ -50,7 +50,7 @@ class Config (object):
             'id'          : 'regions_1000',
             'title'       : 'Deutschland um das Jahr 1000',
             'classes'     : 'regions',
-            'url'         : '/client/geodata/droysen_1886_22_23.geojson',
+            'url'         : 'geodata/droysen_1886_22_23.geojson',
             'attribution' : common.DROYSEN1886,
             'type'        : 'area',
         },
@@ -58,7 +58,7 @@ class Config (object):
             'id'          : 'countries_modern',
             'title'       : 'Modern Countries',
             'classes'     : 'countries',
-            'url'         : '/client/geodata/countries_modern.geojson',
+            'url'         : 'geodata/countries_modern.geojson',
             'attribution' : common.NATEARTH2019,
             'type'        : 'area',
         },
@@ -102,7 +102,7 @@ def init_geo_query_params (conn):
         params = {
             'notbefore' : request.args.get ('notbefore') or 0,
             'notafter'  : request.args.get ('notafter')  or 3000,
-            'where'     : " AND msp_date && int4range (:notbefore, :notafter, '[]') ",
+            'where'     : " AND date && int4range (:notbefore, :notafter, '[]') ",
         }
 
         capitularies = request.args.get ('capitularies')
@@ -133,9 +133,10 @@ def places_mss_json ():
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
-        SELECT ST_AsGeoJSON (geom)::json AS geom, geo_id, geo_source, geo_name, geo_fcode, count (distinct ms_id) as count
+        SELECT ST_AsGeoJSON (geom)::json AS geom, geo_id, geo_source, geo_name, geo_fcode,
+               count (distinct ms_id) as count
         FROM msparts_view
-          JOIN mn_msparts_capitularies USING (ms_id, ms_part)
+          JOIN mss_capitularies USING (ms_id, msp_part)
         WHERE geo_source = 'geonames'
               {where}
         GROUP BY geom, geo_id, geo_source, geo_name, geo_fcode
@@ -147,13 +148,13 @@ def places_mss_json ():
 
 @geo_app.route ('/places/msparts.json')
 def places_msparts_json ():
-    """ Return all places along with ms_part count. """
+    """ Return all places along with msp_part count. """
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
-        SELECT ST_AsGeoJSON (geom)::json AS geom, geo_id, geo_source, geo_name, geo_fcode, count (distinct ms_id || ms_part) as count
+        SELECT ST_AsGeoJSON (geom)::json AS geom, geo_id, geo_source, geo_name, geo_fcode, count (distinct ms_id || msp_part) as count
         FROM msparts_view
-          JOIN mn_msparts_capitularies USING (ms_id, ms_part)
+          JOIN mss_capitularies USING (ms_id, msp_part)
         WHERE geo_source = 'geonames'
               {where}
         GROUP BY geom, geo_id, geo_source, geo_name, geo_fcode
@@ -171,7 +172,7 @@ def places_capitularies_json ():
         res = execute (conn, """
         SELECT ST_AsGeoJSON (geom)::json AS geom, geo_id, geo_source, geo_name, geo_fcode, count (distinct cap_id) as count
         FROM msparts_view msp
-          JOIN mn_msparts_capitularies USING (ms_id, ms_part)
+          JOIN mss_capitularies USING (ms_id, msp_part)
         WHERE geo_source = 'geonames'
               {where}
         GROUP BY geom, geo_id, geo_source, geo_name, geo_fcode
@@ -193,7 +194,7 @@ def _mss ():
             res = execute (conn, """
             SELECT ms_id, ms_title, min (msp_notbefore) as ms_notbefore, max (msp_notafter) - 1 as ms_notafter
             FROM msparts_view msp
-              JOIN mn_msparts_capitularies mn USING (ms_id, ms_part)
+              JOIN mss_capitularies mn USING (ms_id, msp_part)
             WHERE geo_source = 'geonames'
               {where}
             GROUP BY ms_id, ms_title
@@ -206,7 +207,7 @@ def _mss ():
         res = execute (conn, """
         SELECT ms_id, ms_title, min (msp_notbefore) as ms_notbefore, max (msp_notafter) - 1 as ms_notafter
         FROM msparts_view msp
-          JOIN mn_msparts_capitularies mn USING (ms_id, ms_part)
+          JOIN mss_capitularies mn USING (ms_id, msp_part)
           JOIN {table} ly ON (ST_contains (ly.geom, msp.geom))
         WHERE ly.geo_id = :geo_id AND ly.geo_source = :geo_source AND msp.geo_source = 'geonames'
           {where}
@@ -245,28 +246,28 @@ def _msparts ():
         # if no layer is specified get all msparts
         if params['geo_source'] is None or params['geo_id'] is None:
             res = execute (conn, """
-            SELECT ms_id, ms_part, ms_title, msp_head,
+            SELECT ms_id, msp_part, ms_title,
                    min (msp_notbefore) as ms_notbefore, max (msp_notafter) - 1 as ms_notafter
             FROM msparts_view msp
-              JOIN mn_msparts_capitularies mn USING (ms_id, ms_part)
+              JOIN mss_capitularies mn USING (ms_id, msp_part)
             WHERE geo_source = 'geonames'
               {where}
-            ORDER BY ms_id, ms_part, ms_title, msp_head
+            ORDER BY ms_id, msp_part, ms_title
             """, params)
 
             return res
 
         # get all msparts contained in the geometry of layer:geo_id
         res = execute (conn, """
-        SELECT ms_id, ms_part, ms_title, msp_head,
+        SELECT ms_id, msp_part, ms_title,
                min (msp_notbefore) as ms_notbefore, max (msp_notafter) - 1 as ms_notafter
         FROM msparts_view msp
-          JOIN mn_msparts_capitularies mn USING (ms_id, ms_part)
+          JOIN mss_capitularies mn USING (ms_id, msp_part)
           JOIN {table} ly ON (ST_contains (ly.geom, msp.geom))
         WHERE ly.geo_id = :geo_id AND ly.geo_source = :geo_source AND msp.geo_source = 'geonames'
           {where}
-        GROUP BY ms_id, ms_part, ms_title, msp_head
-        ORDER BY ms_id, ms_part
+        GROUP BY ms_id, msp_part, ms_title
+        ORDER BY ms_id, msp_part
         """, params)
 
         return res
@@ -276,7 +277,7 @@ def _msparts ():
 def msparts_json ():
     """ Return location of manuscript parts as geojson response. """
 
-    FIELDS = 'ms_id, ms_part, ms_title, msp_head, notbefore, notafter'
+    FIELDS = 'ms_id, msp_part, ms_title, notbefore, notafter'
 
     return common.make_geojson_response (_msparts (), FIELDS)
 
@@ -285,7 +286,7 @@ def msparts_json ():
 def msparts_csv ():
     """ Return location of manuscript parts as CSV response. """
 
-    FIELDS = 'ms_id, ms_part, ms_title, msp_head, notbefore, notafter'
+    FIELDS = 'ms_id, msp_part, ms_title, notbefore, notafter'
 
     return common.make_csv_response (_msparts (), FIELDS)
 
@@ -300,12 +301,12 @@ def _capitularies ():
         # if no layer is specified get all capitularies
         if params['geo_source'] is None or params['geo_id'] is None:
             res = execute (conn, """
-            SELECT cap.cap_id, cap_title, lower (cap_date) as cap_notbefore, upper (cap_date) - 1as cap_notafter, count
+            SELECT cap.cap_id, title, lower (date) as cap_notbefore, upper (date) - 1as cap_notafter, count
             FROM capitularies cap
             JOIN (
               SELECT cap_id, count (*) as count
               FROM msparts_view msp
-                JOIN mn_msparts_capitularies mn USING (ms_id, ms_part)
+                JOIN mss_capitularies mn USING (ms_id, msp_part)
               WHERE geo_source = 'geonames'
                 {where}
               GROUP BY cap_id
@@ -316,12 +317,12 @@ def _capitularies ():
 
         # get all capitularies contained in any mss. originated in the geometry of layer:geo_id
         res = execute (conn, """
-        SELECT cap.cap_id, cap_title, lower (cap_date) as cap_notbefore, upper (cap_date) - 1 as cap_notafter, count
+        SELECT cap.cap_id, title, lower (date) as cap_notbefore, upper (date) - 1 as cap_notafter, count
         FROM capitularies cap
         JOIN (
           SELECT cap_id, count (*) as count
           FROM msparts_view msp
-            JOIN mn_msparts_capitularies mn USING (ms_id, ms_part)
+            JOIN mss_capitularies mn USING (ms_id, msp_part)
             JOIN {table} ly ON (ST_contains (ly.geom, msp.geom))
           WHERE ly.geo_id = :geo_id AND ly.geo_source = :geo_source AND msp.geo_source = 'geonames'
             {where}

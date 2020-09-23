@@ -56,6 +56,7 @@ MYSQL_DEFAULT_GROUPS = ( 'mysql', 'client', 'client-server', 'client-mariadb' )
 
 def execute (conn, sql, parameters, debug_level = logging.DEBUG):
     sql = sql.strip ().format (**parameters)
+    log (debug_level, '%s %s' % (sql, str (parameters)))
     start_time = datetime.datetime.now ()
     result = conn.execute (text (sql), parameters)
     log (debug_level, '%d rows in %.3fs', result.rowcount, (datetime.datetime.now () - start_time).total_seconds ())

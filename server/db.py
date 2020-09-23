@@ -23,7 +23,7 @@ To create a new database: (must be database superuser)
 
 .. code:: shell
 
-   python3 -m scripts.import_data -c ./server.conf --init_db
+   make rebuild_db
 
 """
 
@@ -250,11 +250,11 @@ class MsParts (Base):
     msp_part = Column (String)
     """ The official designation of the manuscript part. """
 
-    date     = Column (INT4RANGE)
-    """ When did the manuscript part originate? Range of dates. """
+    locus_cooked = Column (ARRAY (INT4RANGE))
+    """ Ranges of cooked loci. """
 
-    loci     = Column (ARRAY (INT4RANGE))
-    """ Ranges of loci. """
+    date     = Column (INT4RANGE)
+    """ When did the manuscript part originate? Range of years. """
 
     leaf     = Column (ARRAY (String))
     """ Size of the leaf. """
@@ -313,42 +313,51 @@ class Chapters (Base):
     )
 
 
-class MnMssCapitularies (Base):
-    r"""The M:N relationship between manuscripts and capitularies
-    according to the <msDesc>.
+class MssCapitularies (Base):
+    r"""A capitulary in a manuscript according to <msDesc>.
 
-    This table also contains capitularies that are not yet transcribed but at a
-    lesser granularity (capitulary instead of chapter) than the
-    :class:`MssChapters` table.
+    This table also contains capitularies that are not yet transcribed.
 
-    .. pic:: sauml -i mn_mss_capitularies
+    A finer granularity (chapters instead of capitularies) can be found in the
+    :class:`MssChapters` table, albeit only already transcribed ones.
+
+    .. pic:: sauml -i mss_capitularies
 
     """
 
-    __tablename__ = 'mn_mss_capitularies'
+    __tablename__ = 'mss_capitularies'
 
     ms_id   = Column (String)
     cap_id  = Column (String)
 
     mscap_n = Column (Integer)
     """Index used if there are more than one copy of this capitulary in the
-    manuscript.
+    manuscript. """
 
-    """
+    msp_part = Column (String)
+    """ The official designation of the manuscript part. """
+
+    locus    = Column (String)
+    """ The locus of this capitulary instance in the ms as recorded
+    by the editor, eg. 42ra-45vb. """
+
+    locus_cooked = Column (ARRAY (INT4RANGE))
+    """ Ranges of cooked loci. """
 
     __table_args__ = (
         PrimaryKeyConstraint (ms_id, cap_id, mscap_n),
-        ForeignKeyConstraint ([ms_id],  ['manuscripts.ms_id'], ondelete = 'CASCADE'),
+        ForeignKeyConstraint ([ms_id, msp_part],  ['msparts.ms_id', 'msparts.msp_part'], ondelete = 'CASCADE'),
         ForeignKeyConstraint ([cap_id], ['capitularies.cap_id'], ondelete = 'CASCADE'),
+        { 'comment' : 'according to <msDesc>' },
     )
 
 
 class MssChapters (Base):
-    r"""The relationship manuscripts and chapters according to the <body>.
+    r"""A chapter in a manuscript according to <body>.
 
-    This table contains only those chapters that were already transcribed.
+    This table contains only chapters that were already transcribed.
 
-    Note: The table :class:`MnMssCapitularies` relates manuscripts to
+    Note: The table :class:`MssCapitularies` relates manuscripts to
     capitularies yet untranscribed.
 
     .. pic:: sauml -i mss_chapters
@@ -363,9 +372,18 @@ class MssChapters (Base):
 
     chapter  = Column (String)
 
+    msp_part = Column (String)
+    """ The official designation of the manuscript part. """
+
     locus = Column (String)
     """ The locus of the chapter in the manuscript.
-    As recorded by the editor, eg. 42ra-1 """
+    As recorded by the editor, eg. 42ra """
+
+    locus_index = Column (Integer)
+    """ The index at the locus, eg. the '1' in 42ra-1 """
+
+    locus_cooked = Column (Integer)
+    """ The cooked locus. Locus transformed to a sortable integer. """
 
     transcribed = Column (Integer, nullable = False, server_default = '0')
     """ Is this chapter already transcribed? 0 == no, 1 == partially, 2 == completed """
@@ -381,10 +399,11 @@ class MssChapters (Base):
             ondelete = 'CASCADE'
         ),
         ForeignKeyConstraint (
-            [ms_id, cap_id, mscap_n],
-            ['mn_mss_capitularies.ms_id', 'mn_mss_capitularies.cap_id', 'mn_mss_capitularies.mscap_n'],
+            [ms_id, msp_part],
+            ['msparts.ms_id', 'msparts.msp_part'],
             ondelete = 'CASCADE'
         ),
+        { 'comment' : 'according to <body>' },
     )
 
 
@@ -440,11 +459,11 @@ GROUP BY cap_id, chapter
 
 
 view ('capitularies_view', Base.metadata, '''
-    SELECT ms.ms_id, ms.title AS ms_title, cap.cap_id, cap.title AS cap_title,
+    SELECT ms.ms_id, ms.title AS ms_title, msp_part, cap.cap_id, cap.title AS cap_title,
            cap.date, lower (cap.date) as cap_notbefore, upper (cap.date) as cap_notafter
-    FROM manuscripts ms
-      JOIN mn_mss_capitularies mn USING (ms_id)
-        JOIN capitularies cap USING (cap_id)
+    FROM mss_capitularies mn
+      JOIN manuscripts ms USING (ms_id)
+      JOIN capitularies cap USING (cap_id)
     ''')
 
 #
@@ -548,7 +567,7 @@ class GeoAreas (Base):
     )
 
 view ('msparts_view', Base.metadata, '''
-    SELECT ms.ms_id, ms.title AS ms_title, msp.msp_part, msp.loci,
+    SELECT ms.ms_id, ms.title AS ms_title, msp.msp_part, msp.locus_cooked,
            msp.date, lower (msp.date) as msp_notbefore, upper (msp.date) as msp_notafter,
            g.geo_id, g.geo_source, g.geo_name, g.geo_fcode, g.geom
     FROM capitularia.msparts msp

@@ -47,6 +47,10 @@ NS = {
     'cap'  : NS_CAP,
 }
 
+QNAME_DIV       = etree.QName (NS['tei'], 'div')
+QNAME_LOCUS     = etree.QName (NS['tei'], 'locus')
+QNAME_MILESTONE = etree.QName (NS['tei'], 'milestone')
+
 GEO_APIS = {
     'geonames' : {
         're'       : re.compile ('//www.geonames.org/(\d+)/'),
@@ -81,10 +85,27 @@ KMexpeditioneRomana
 KonzilNeuching
 KonzilDingolfing
 StatutaCapitularia
+_explicit
+explicit
 """.split ())
 
 for i in range (1, 21):
     CORRESP_EXCEPTIONS.add ("CUE_%d" % i)
+
+MSPART_N_EXCEPTIONS = {
+    'Lat. 4761/1'          : 'foll. 1r-102v',
+    'Lat. 4761/2'          : 'foll. 103r-128v',
+    'foll. 3ra-105ra-rb'   : 'foll. 3ra-105rb',
+    'I'                    : 'fol. I',
+    'IIra-vb'              : 'fol. II',
+    '1r-73'                : 'foll. 1r-73v',
+}
+
+MSS_WITHOUT_MSDESC = {
+    common.BK_ZEUGE  : '[1883,1897]',
+    'nauclerus-1514' : '[1514,1514]',
+    'pithou-1588'    : '[1588,1588]',
+}
 
 def ns (ns_name):
     ns, name = ns_name.split (':')
@@ -94,8 +115,13 @@ def get_ns (e, ns_name):
     return e.get (ns (ns_name))
 
 
-def get_date (row, origdate):
-    """ Read a date range from a TEI element. """
+def get_date (dates):
+    """Read a date range from a sequence of tei:date elements.
+
+    The dates are estimates.  If there is more than one estimate, take the most
+    generous span.
+
+    """
 
     def fix_date (s):
         try:
@@ -106,28 +132,27 @@ def get_date (row, origdate):
             except ValueError:
                 return datetime.datetime.strptime (s, '%Y-%m-%d').year
 
-    # if we find more than one estimate, take the most generous span
-    row['notbefore'] = min (
-        row['notbefore'],
-        fix_date (origdate.get ('notBefore', HIDATE)),
-        fix_date (origdate.get ('from',      HIDATE)),
-        fix_date (origdate.get ('when',      HIDATE))
-    )
-    row['notafter']  = max (
-        row['notafter'],
-        fix_date (origdate.get ('notAfter',  LODATE)),
-        fix_date (origdate.get ('to',        LODATE)),
-        fix_date (origdate.get ('when',      LODATE))
-    )
+    notbefore = HIDATE
+    notafter  = LODATE
 
-def fix_date (row):
-    if row['notbefore'] == HIDATE:
-        row['notbefore'] = None
-    if row['notafter'] == LODATE:
-        row['notafter'] = None
-    if row['notbefore'] and row['notafter'] and row['notbefore'] > row['notafter']:
-        row['notbefore'] = None
-        row['notafter'] = None
+    for date in dates:
+        notbefore = min (
+            notbefore,
+            fix_date (date.get ('notBefore', HIDATE)),
+            fix_date (date.get ('from',      HIDATE)),
+            fix_date (date.get ('when',      HIDATE))
+        )
+        notafter = max (
+            notafter,
+            fix_date (date.get ('notAfter',  LODATE)),
+            fix_date (date.get ('to',        LODATE)),
+            fix_date (date.get ('when',      LODATE))
+        )
+
+    if notbefore > notafter:
+        return None
+
+    return "[%d,%d]" % (notbefore, notafter)
 
 
 def lookup_geonames (conn, geo_source):
@@ -219,34 +244,13 @@ def get_width_height (elem):
     w = ''
     h = ''
     for width in elem.xpath ('tei:width', namespaces = NS):
-        w = width.text
+        w = width.text or ''
     for height in elem.xpath ('tei:height', namespaces = NS):
-        h = height.text
-    return [ w, h ]
+        h = height.text or ''
+    return [ w.strip (), h.strip () ]
 
 
-def norm (corresp, f):
-    """ Normalize a @corresp
-
-    :param str corresp: space-separated list of bks
-    :param function f: the normalization function to apply
-
-    :returns list: a list of normalized bks
-
-    :raises ValueError: if the corresp cannot be parsed
-    """
-
-    res = []
-    for cap_id in corresp.split ():
-        try:
-            res.append (f (cap_id))
-        except ValueError as e:
-            if not cap_id in CORRESP_EXCEPTIONS:
-                log (logging.WARNING, str (e))
-    return res
-
-
-def process_msdesc (conn, root, ms_id, msp_part):
+def process_msdesc (conn, root, ms_id, msp_part = ''):
     """Process an <msDesc> or an <msPart>.
 
     Note: <msPart>s of a document may have originated in different times and
@@ -265,13 +269,12 @@ def process_msdesc (conn, root, ms_id, msp_part):
     """
 
     row = {
-        'ms_id'       : ms_id,
-        'msp_part'    : msp_part,
-        'notbefore'   : HIDATE,
-        'notafter'    : LODATE,
-        'loci'    : None,
-        'leaf'    : None,
-        'written' : None,
+        'ms_id'        : ms_id,
+        'msp_part'     : msp_part,
+        'date'         : None,
+        'locus_cooked' : None,
+        'leaf'         : None,
+        'written'      : None,
     }
 
     for api, data in GEO_APIS.items ():
@@ -283,9 +286,8 @@ def process_msdesc (conn, root, ms_id, msp_part):
             if m:
                 data['geo_ids'].add (m.group (1))
 
-    for origdate in root.xpath ("tei:head/tei:origDate", namespaces = NS):
-        # if we find more than one estimate, take the most generous span
-        get_date (row, origdate)
+    # if we find more than one estimate, take the most generous span
+    row['date'] = get_date (root.xpath ("tei:head/tei:origDate", namespaces = NS))
 
     for leaf in root.xpath (".//tei:dimensions[@type='leaf']", namespaces = NS):
         row['leaf'] = get_width_height (leaf)
@@ -295,17 +297,17 @@ def process_msdesc (conn, root, ms_id, msp_part):
 
     if msp_part:
         try:
-            loci = common.parse_mspart_n (root.get ('n'))
-            row['loci'] = ["[%d, %d]" % l for l in loci]
+            mspart_n = root.get ('n')
+            mspart_n = MSPART_N_EXCEPTIONS.get (mspart_n, mspart_n)
+            locus_cooked = common.parse_mspart_n (mspart_n)
+            row['locus_cooked'] = ["[%d, %d]" % l for l in locus_cooked]
         except ValueError:
             pass
 
-    fix_date (row)
-
     execute (conn, """
-    INSERT INTO msparts (ms_id, msp_part, date, loci, leaf, written)
-      VALUES (:ms_id, :msp_part, int4range (:notbefore, :notafter, '[]'),
-              CAST (:loci AS INT4RANGE[]), :leaf, :written)
+    INSERT INTO msparts (ms_id, msp_part, date, locus_cooked, leaf, written)
+      VALUES (:ms_id, :msp_part, :date,
+              CAST (:locus_cooked AS INT4RANGE[]), :leaf, :written)
     ON CONFLICT (ms_id, msp_part) DO NOTHING
     """, row)
 
@@ -334,19 +336,43 @@ def process_msdesc (conn, root, ms_id, msp_part):
 
         execute (conn, "COMMIT", {})
 
-    # do the capitularies, these may not yet be transcribed
+    # do the capitularies mentioned in the msItems, these may not yet be
+    # transcribed
 
-    cap_ids = set ()
     rows = []
 
+    # count the loci at which the capitular was found
+    cap_loci = collections.defaultdict (set)
+
+    locus        = None
+    locus_cooked = None
     for msitem in root.xpath (".//tei:msItem", namespaces = NS):
-        for title in msitem.xpath (".//tei:title[@corresp]", namespaces = NS):
-            for catalog, no, mscap_n in norm (title.get ('corresp'), common.normalize_bk_n):
-                rows.append ({
-                    'ms_id'   : ms_id,
-                    'cap_id'  : "%s.%s" % (catalog, no),
-                    'mscap_n' : mscap_n,
-                })
+        msitem_n = msitem.get ('n')
+        for tl in msitem.xpath (".//tei:title[@corresp]|.//tei:locus", namespaces = NS):
+            if tl.tag == QNAME_LOCUS:
+                try:
+                    locus        = tl.text.lstrip ('-').strip ()
+                    locus_cooked = ["[%d, %d]" % l for l in common.parse_msitem_locus (locus)]
+                except ValueError as e:
+                    log (logging.WARNING, "%s: %s in msItem %s" % (ms_id, str (e), msitem_n))
+            else:
+                for corresp in tl.get ('corresp').split ():
+                    try:
+                        catalog, no = common.normalize_bk (corresp)
+                        cap_id = "%s.%s" % (catalog, no)
+                        cap_loci[cap_id].add (locus)
+                        # there is no mscap_n in the msItem, must infer from locus
+                        rows.append ({
+                            'ms_id'        : ms_id,
+                            'cap_id'       : cap_id,
+                            'mscap_n'      : len (cap_loci[cap_id]),
+                            'msp_part'     : msp_part,
+                            'locus'        : locus,
+                            'locus_cooked' : locus_cooked,
+                        })
+                    except ValueError as e:
+                        if corresp not in CORRESP_EXCEPTIONS:
+                            log (logging.WARNING, "%s: %s in msItem %s" % (ms_id, str (e), msitem_n))
 
     if rows:
         # first make sure the capitulary is in the database
@@ -357,111 +383,44 @@ def process_msdesc (conn, root, ms_id, msp_part):
         """, {}, rows)
 
         executemany (conn, """
-        INSERT INTO mn_mss_capitularies (ms_id, cap_id, mscap_n)
-        VALUES (:ms_id, :cap_id, :mscap_n)
+        INSERT INTO mss_capitularies (ms_id, cap_id, mscap_n, msp_part, locus, locus_cooked)
+        VALUES (:ms_id, :cap_id, :mscap_n, :msp_part, :locus, CAST (:locus_cooked AS INT4RANGE[]))
         ON CONFLICT (ms_id, cap_id, mscap_n)
         DO NOTHING
         """, {}, rows)
 
 
-def process_body (conn, root, ms_id):
-    """Process a manuscript <body>.
-
-    """
-
-    # Documentation:
-    # https://capitularia.uni-koeln.de/wp-admin/admin.php?page=wp-help-documents&document=7402
-
-    chapters = []
-    corresps = collections.defaultdict (int)
-
-    for el in root.xpath (".//tei:milestone[@unit='chapter']", namespaces = NS):
-        locus = None
-        n = None
-        try:
-            locus = el.get ('locus') # added by corpus.xsl from xml:id
-            if (locus):
-                locus, n = common.parse_xml_id_locus (locus, ms_id)
-        except ValueError as e:
-            log (logging.WARNING, str (e))
-
-        for catalog, no, chapter in norm (el.get ('corresp'), common.normalize_corresp):
-            corresp = "%s.%s_%s" % (catalog, no, chapter) if chapter else "%s.%s" % (catalog, no)
-            corresps[corresp] += 1
-
-            chapters.append ({
-                'ms_id'       : ms_id,
-                'cap_id'      : "%s.%s" % (catalog, no),
-                'chapter'     : chapter or '',
-                'mscap_n'     : corresps[corresp],
-                'locus'       : "%s-%s" % (locus, n) if locus else None,
-                'transcribed' : 0,
-            })
-
-    if chapters:
-        # make sure the capitulary is in the database
-        executemany (conn, """
-        INSERT INTO capitularies (cap_id)
-        VALUES (:cap_id)
-        ON CONFLICT (cap_id) DO NOTHING
-        """, {}, chapters)
-
-        # make sure the chapter is in the database
-        executemany (conn, """
-        INSERT INTO chapters (cap_id, chapter)
-        VALUES (:cap_id, :chapter)
-        ON CONFLICT (cap_id, chapter) DO NOTHING
-        """, {}, chapters)
-
-        # insert relation capitulary -> ms
-        executemany (conn, """
-        INSERT INTO mn_mss_capitularies (ms_id, cap_id, mscap_n)
-        VALUES (:ms_id, :cap_id, :mscap_n)
-        ON CONFLICT (ms_id, cap_id, mscap_n)
-        DO NOTHING
-        """, {}, chapters)
-
-        # insert relation chapter -> capitulary
-        executemany (conn, """
-        INSERT INTO mss_chapters (ms_id, cap_id, mscap_n, chapter, locus, transcribed)
-        VALUES (:ms_id, :cap_id, :mscap_n, :chapter, :locus, :transcribed)
-        ON CONFLICT (ms_id, cap_id, mscap_n, chapter)
-        DO NOTHING
-        """, {}, chapters)
-
-
-def process_cap (conn, item):
+def process_cap (conn, filename):
     """ Process one item from the capitularies list. """
 
-    try:
-        catalog, no, dummy_mscap_n = common.normalize_bk_n (get_ns (item, 'xml:id'))
-        cap_id = "%s.%s" % (catalog, no)
-    except ValueError as exc:
-        log (logging.WARNING, str (exc))
-        return
+    tree = etree.parse (filename, parser = parser)
 
-    log (logging.INFO, "Parsing %s ..." %  cap_id)
+    for tei in tree.xpath ("/tei:TEI[@corresp]", namespaces = NS):
+        try:
+            # corresp="ldf/bk-nr-139"
+            catalog, no = common.normalize_bk (tei.get ('corresp').split ('/')[1])
+            cap_id = "%s.%s" % (catalog, no)
+        except ValueError as e:
+            log (logging.WARNING, "%s: %s" % (filename, str (e)))
+            return
 
-    row = {
-        'cap_id'    : cap_id,
-        'title'     : fix_ws (item.xpath ("tei:name", namespaces = NS)[0].text),
-        'notbefore' : HIDATE,
-        'notafter'  : LODATE,
-    }
+        log (logging.INFO, "Parsing %s ..." %  cap_id)
 
-    for date in item.xpath ("tei:note[@type='date']/tei:date", namespaces = NS):
-        get_date (row, date)
+        for body in tei.xpath (".//tei:body", namespaces = NS):
+            row = {
+                'cap_id' : cap_id,
+                'title'  : fix_ws (body.xpath (".//tei:head", namespaces = NS)[0].text.split (':')[1].strip ()),
+                'date'   : get_date (body.xpath (".//tei:note[@type='date']/tei:date", namespaces = NS)),
+            }
 
-    fix_date (row)
-
-    execute (conn, """
-    INSERT INTO capitularies (cap_id, title, date)
-    VALUES (:cap_id, :title, int4range (:notbefore, :notafter, '[]'))
-    ON CONFLICT (cap_id) DO
-    UPDATE
-    SET title = EXCLUDED.title,
-        date  = EXCLUDED.date
-    """, row)
+            execute (conn, """
+            INSERT INTO capitularies (cap_id, title, date)
+            VALUES (:cap_id, :title, :date)
+            ON CONFLICT (cap_id) DO
+            UPDATE
+            SET title = EXCLUDED.title,
+                date  = EXCLUDED.date
+            """, row)
 
 
 def lookup_published (conn, ajax_endpoint):
@@ -482,8 +441,8 @@ def lookup_published (conn, ajax_endpoint):
     execute (conn, """
     UPDATE manuscripts
     SET status = 'publish'
-    WHERE ms_id = 'bk-textzeuge'
-    """, {})
+    WHERE ms_id = :bkzeuge
+    """, { 'bkzeuge' : common.BK_ZEUGE })
 
 
 def import_corpus (conn, args):
@@ -523,15 +482,112 @@ def import_corpus (conn, args):
             """, row)
 
             for msdesc in TEI.xpath ("tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc", namespaces = NS):
-                process_msdesc (conn, msdesc, ms_id, '')
+                msparts = msdesc.xpath ("tei:msPart", namespaces = NS)
+                if msparts:
+                    for mspart in msparts:
+                        process_msdesc (conn, mspart, ms_id, mspart.get ('n'))
+                else:
+                    process_msdesc (conn, msdesc, ms_id)
 
-            for mspart in TEI.xpath ("tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msPart", namespaces = NS):
-                process_msdesc (conn, mspart, ms_id, mspart.get ('n'))
+            if ms_id in MSS_WITHOUT_MSDESC:
+                log (logging.INFO, "Patching %s" % ms_id)
+                execute (conn, """
+                INSERT INTO msparts (ms_id, msp_part, date)
+                VALUES (:ms_id, :msp_part, :date)
+                ON CONFLICT (ms_id, msp_part) DO NOTHING
+                """, { 'ms_id' : ms_id, 'msp_part' : '', 'date' : MSS_WITHOUT_MSDESC[ms_id] })
 
             for body in TEI.xpath ("tei:text/tei:body", namespaces = NS):
                 process_body (conn, body, ms_id)
 
             execute (conn, "COMMIT", {})
+
+
+def process_body (conn, root, ms_id):
+    """Process a manuscript <body>.
+
+    """
+
+    # Documentation:
+    # https://capitularia.uni-koeln.de/wp-admin/admin.php?page=wp-help-documents&document=7402
+
+    chapters = []
+    mscap_n  = 1
+
+    # in corpus.xml we have <milestone unit="chapter" corresp="..." locus="..." /> !!!
+    for milestone in root.xpath (".//tei:milestone", namespaces = NS):
+        unit = milestone.get ('unit')
+        if unit == 'capitulare':
+            try:
+                n = milestone.get ('n')
+                catalog, no, mscap_n = common.normalize_bk_capitulare (n)
+            except ValueError as e:
+                log (logging.WARNING, "%s: %s" % (ms_id, str (e)))
+            continue
+
+        if unit == 'chapter':
+            locus        = None
+            locus_index  = None
+            locus_cooked = None
+            if ms_id != common.BK_ZEUGE: # there are no loci in bk-textzeuge
+                try:
+                    locus = milestone.get ('locus') # added by corpus.xsl from xml:id
+                    if not locus:
+                        raise ValueError ()
+                    if not locus.startswith (ms_id):
+                        raise ValueError ()
+
+                    loc = locus[len (ms_id) + 1:]
+                    loc = loc.replace ('pertz_', '')
+                    locus_cooked, locus_index = common.parse_xml_id_locus (loc)
+
+                except ValueError as e:
+                    log (logging.WARNING, "%s: Invalid xml:id: %s" % (ms_id, locus))
+
+            for corresp in milestone.get ('corresp').split ():
+                try:
+                    catalog, no, chapter = common.normalize_corresp (corresp)
+                    chapters.append ({
+                        'ms_id'        : ms_id,
+                        'cap_id'       : "%s.%s" % (catalog, no),
+                        'chapter'      : chapter,
+                        'mscap_n'      : mscap_n,
+                        'locus'        : locus,
+                        'locus_index'  : locus_index,
+                        'locus_cooked' : locus_cooked,
+                        'transcribed'  : 0,
+                    })
+                except ValueError as e:
+                    if corresp not in CORRESP_EXCEPTIONS:
+                        log (logging.WARNING, "%s: %s" % (ms_id, str (e)))
+
+    if chapters:
+        # make sure the capitulary is in the database
+        executemany (conn, """
+        INSERT INTO capitularies (cap_id)
+        VALUES (:cap_id)
+        ON CONFLICT (cap_id) DO NOTHING
+        """, {}, chapters)
+
+        # make sure the chapter is in the database
+        executemany (conn, """
+        INSERT INTO chapters (cap_id, chapter)
+        VALUES (:cap_id, :chapter)
+        ON CONFLICT (cap_id, chapter) DO NOTHING
+        """, {}, chapters)
+
+        # insert relation chapter -> capitulary, mspart
+        executemany (conn, """
+        INSERT INTO mss_chapters (ms_id, cap_id, mscap_n, chapter,
+                                  locus, locus_index, locus_cooked, transcribed, msp_part)
+        SELECT :ms_id, :cap_id, :mscap_n, :chapter,
+               :locus, :locus_index, :locus_cooked, :transcribed, msp_part
+          FROM msparts
+          WHERE ms_id = :ms_id
+            AND (:locus_cooked <@ ANY (msparts.locus_cooked) OR msparts.locus_cooked IS NULL)
+        ON CONFLICT (ms_id, cap_id, mscap_n, chapter)
+        DO NOTHING
+        """, {}, chapters)
 
 
 def import_fulltext (conn, filenames, mode):
@@ -542,29 +598,39 @@ def import_fulltext (conn, filenames, mode):
         tree = etree.parse (fn, parser = parser)
         for TEI in tree.xpath ("/tei:TEI", namespaces = NS):
             ms_id = get_ns (TEI, "xml:id")
+            mscap_catalog = ''
+            mscap_no = ''
+            mscap_n = 1
 
-            for item in TEI.xpath (".//tei:item[@corresp]", namespaces = NS):
+            for item in TEI.xpath (".//tei:div[@corresp]|.//tei:milestone[@unit]", namespaces = NS):
+                if item.tag == QNAME_MILESTONE:
+                    unit = item.get ('unit')
+                    if unit == 'capitulare':
+                        try:
+                            n = item.get ('n')
+                            mscap_catalog, mscap_no, mscap_n = common.normalize_bk_capitulare (n)
+                        except ValueError as e:
+                            log (logging.WARNING, "%s: %s" % (ms_id, str (e)))
+                    continue
 
-                # REGEX_BK      has 3 capturing groups
-                # REGEX_CHAPTER has 1 capturing group
-                RE_CORRESP_HANDS = re.compile (
-                    r'^(' + common.REGEX_BK + common.REGEX_CHAPTER + r')_(\d)(_later_hands)?$',
-                    re.IGNORECASE
-                )
+                corresp = item.get ("corresp")
+                hand = 'original'
+                if '?later_hands' in corresp:
+                    hand = 'later_hands'
+                    corresp = corresp.replace ('?later_hands', '')
 
-                m = RE_CORRESP_HANDS.match (item.get ("corresp"))
-                if m:
-                    corresp = m.group (1)
-                    mscap_n = int (m.group (6))
-                    hands   = m.group (7) or ''
+                try:
                     catalog, no, chapter = common.normalize_corresp (corresp)
+
+                    if (catalog, no) != (mscap_catalog, mscap_no):
+                        log (logging.DEBUG, "%s: Missing milestone capitulare for: %s" % (ms_id, corresp))
 
                     params = {
                         'ms_id'   : ms_id,
                         'cap_id'  : "%s.%s" % (catalog, no),
                         'mscap_n' : mscap_n,
-                        'chapter' : chapter or '',
-                        'type'    : 'original' if hands == '' else 'later_hands',
+                        'chapter' : chapter,
+                        'type'    : hand,
                     }
 
                     if mode == 'xml':
@@ -576,7 +642,8 @@ def import_fulltext (conn, filenames, mode):
                               (:ms_id, :cap_id, :mscap_n, :chapter)
                         """, dict (params, text = etree.tostring (item, encoding='unicode')))
                         if res.rowcount != 1:
-                            log (logging.ERROR, "Did not match row {ms_id} {cap_id} {mscap_n} {chapter}".format (**params))
+                            log (logging.ERROR,
+                                 "Import fulltext did not match row {ms_id} {cap_id} {mscap_n} {chapter}".format (**params))
 
                     if mode == 'txt':
                         execute (conn, """
@@ -586,7 +653,11 @@ def import_fulltext (conn, filenames, mode):
                         SET text = EXCLUDED.text
                         """, dict (params, text = item.text))
 
-                    execute (conn, "COMMIT", {})
+                except ValueError as e:
+                    if corresp not in CORRESP_EXCEPTIONS:
+                        log (logging.WARNING, "%s: %s" % (ms_id, str (e)))
+
+            execute (conn, "COMMIT", {})
 
 
 def build_parser (default_config_file):
@@ -687,9 +758,7 @@ if __name__ == "__main__":
         with dba.engine.begin () as conn:
             for fn in args.cap_list:
                 log (logging.INFO, "Parsing %s ..." % fn)
-                tree = etree.parse (fn, parser = parser)
-                for item in tree.xpath ("//tei:item[@xml:id]", namespaces = NS):
-                    process_cap (conn, item)
+                process_cap (conn, fn)
                 execute (conn, "COMMIT", {})
 
     if args.publish:

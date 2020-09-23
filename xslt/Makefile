@@ -12,11 +12,10 @@
 # for every chapter in every manuscript, and more.
 #
 
-ROOT_DIR  := /afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/http/docs/cap
+include xslt.config.mak
 
 PUB_DIR   := $(ROOT_DIR)/publ
 PRIV_DIR  := $(ROOT_DIR)/intern/Transkriptionen
-CACHE_DIR := $(ROOT_DIR)/publ/cache
 
 XSL_DIR      := .
 MSS_DIR      := $(PUB_DIR)/mss
@@ -31,15 +30,16 @@ BK_TEXTZEUGE := $(BK_TEXT_DIR)/bk-textzeuge.xml
 IDS       := $(sort $(notdir $(basename $(wildcard $(MSS_DIR)/*.xml))))
 IDS_PRIV  := $(sort $(notdir $(basename $(wildcard $(MSS_PRIV_DIR)/*.xml))))
 
-CAPITS    := $(patsubst $(CAPIT_DIR)/%.xml,%,\
-	$(sort $(wildcard $(CAPIT_DIR)/pre814/*.xml)) \
-	$(sort $(wildcard $(CAPIT_DIR)/ldf/*.xml)) \
-	$(sort $(wildcard $(CAPIT_DIR)/post840/*.xml)) \
-	$(sort $(wildcard $(CAPIT_DIR)/undated/*.xml)) )
+CAPIT_FILES := $(sort $(wildcard $(CAPIT_DIR)/pre814/*.xml))  \
+			   $(sort $(wildcard $(CAPIT_DIR)/ldf/*.xml))     \
+			   $(sort $(wildcard $(CAPIT_DIR)/post840/*.xml)) \
+			   $(sort $(wildcard $(CAPIT_DIR)/undated/*.xml))
+
+CAPITS    := $(patsubst $(CAPIT_DIR)/%.xml,%,$(CAPIT_FILES))
 
 XSLTPROC  := /usr/bin/xsltproc --nonet --novalid --nomkdir
 SAXON     := /usr/bin/saxon
-IMPORT    := cd ../server; python3 -m scripts.import_data -vvv -c ./server.conf
+IMPORT    := cd ../server; python3 -m scripts.import_data -vv -c ./server.conf
 
 TOUCH = mkdir -p $(dir $@) && touch "$@"
 CLEAN_TARGET_DIR = rm -rf $(dir $@) && mkdir -p $(dir $@)
@@ -129,9 +129,12 @@ init_db:
 # the following targets are timestamp files to record when the data was last
 # imported into the database
 
-$(CACHE_DIR)/last_corpus_scrape : $(CACHE_DIR)/lists/corpus.xml $(CAPIT_DIR)/lists/capit_all.xml
+$(CACHE_DIR)/last_corpus_scrape : $(CACHE_DIR)/lists/corpus.xml
 	$(IMPORT) --mss      $(CACHE_DIR)/lists/corpus.xml
-	$(IMPORT) --cap-list $(CAPIT_DIR)/lists/capit_all.xml
+	touch "$@"
+
+$(CACHE_DIR)/last_capit_scrape : $(CAPIT_FILES)
+	$(IMPORT) --cap-list $(CAPIT_FILES)
 	touch "$@"
 
 $(CACHE_DIR)/last_extracted_scrape : $(wildcard $(CACHE_DIR)/extracted/*.xml)
@@ -152,7 +155,9 @@ $(CACHE_DIR)/last_status_scrape :
 
 scrape_corpus :   $(CACHE_DIR)/last_corpus_scrape
 
-scrape_fulltext : $(CACHE_DIR)/last_corpus_scrape $(CACHE_DIR)/last_extracted_scrape $(CACHE_DIR)/last_fulltext_scrape
+scrape_capits :   $(CACHE_DIR)/last_capit_scrape
+
+scrape_fulltext : scrape_corpus scrape_capits $(CACHE_DIR)/last_extracted_scrape $(CACHE_DIR)/last_fulltext_scrape
 
 scrape_status :   $(CACHE_DIR)/last_status_scrape
 
@@ -183,4 +188,4 @@ dirs:
 
 .PHONY: all mss capits lists clean dirs corpus fulltext extraction collation
 
-.PHONY: init_db scrape_corpus scrape_fulltext scrape_status $(CACHE_DIR)/last_status_scrape
+.PHONY: init_db scrape_corpus scrape_capits scrape_fulltext scrape_status $(CACHE_DIR)/last_status_scrape

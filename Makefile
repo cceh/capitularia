@@ -12,7 +12,7 @@ clean:
 deploy: clean lint mo js
 	$(RSYNC) themes  $(WPCONTENT)
 	$(RSYNC) plugins $(WPCONTENT)
-	$(RSYNC) dist    $(WPCONTENT)
+	$(RSYNC) --delete --exclude "api.conf.js" dist    $(WPCONTENT)
 
 deploy_xslt: make_dependencies
 	$(RSYNC) xslt/*.xsl $(TRANSFORM)/
@@ -29,11 +29,9 @@ deploy_capits:
 deploy_scripts:
 	$(RSYNC) --exclude='env' scripts $(PUBL)
 
-upload_client: client
-	cd $(CLIENT) && $(MAKE) upload
-
 upload_server:
 	cd $(SERVER) && $(MAKE) upload
+	$(RSYNC) Makefile* Variables.mak $(HOST_SERVER)/../
 
 import_xml: import_mss import_capits
 
@@ -46,7 +44,7 @@ import_capits:
 import_backups:
 	$(RSYNC) $(AFS)/backups/* ../backups/
 
-import_backup_mysql: import_backups
+import_backup_mysql:
 	bzcat $(AFS)/backups/mysql/capitularia-mysql-$(shell date +%F).sql.bz2 | $(MYSQL_LOCAL)
 
 .PHONY: docs mysql-remote mysql-local
@@ -60,7 +58,7 @@ doc_src/jsdoc/structure.json: $(shell find . -not -path "*node_modules*" -a -pat
 	$(JSDOC) -X $^ > $@
 
 doc_src/xslt_dep/structure.ttl: xslt/*.xsl python/xslt_dep.py
-	cd xslt && ../python/xslt_dep.py -e "r *.xsl; save ../$@"
+	cd $(XSLT) && ../python/xslt_dep.py -e "r *.xsl; save ../$@"
 
 make_dependencies: doc_src/xslt_dep/structure.ttl
 	python/xslt_dep.py -e "l $<; make" > xslt/dependencies.inc
@@ -79,6 +77,7 @@ doxygen:
 	mkdir -p doc_src/webprojekt/doxygen/
 	doxyphp2sphinx -v --xml-dir doxygen_build/xml/ --out-dir doc_src/webprojekt/doxygen/ cceh::capitularia
 
+# needs VPN
 mysql-remote:
 	$(MYSQL_REMOTE)
 
@@ -90,15 +89,15 @@ server: geodata-server
 	export PYTHONPATH=$(ROOT)/server; \
 	python3 -m server.server -vvv
 
-.PHONY: client
-client: geodata-client
-	cd $(CLIENT) && $(MAKE) build
+dist/api.conf.js: client/src/api.conf.js
+	mkdir -p dist
+	cp $< $@
 
 .PHONY: js dev-server
-js:
+js: dist/api.conf.js geodata-client
 	$(WEBPACK) --config $(WEBPACK_PROD_CONFIG)
 
-dev-server:
+dev-server: dist/api.conf.js
 	$(WEBPACK_DEV_SERVER) --config $(WEBPACK_DEV_CONFIG)
 
 .PHONY: geodata-server geodata-client
@@ -111,32 +110,31 @@ geodata-client:
 upload_db:
 	$(PGDUMP) --clean --if-exists $(PGLOCAL) | $(PSQL) -v ON_ERROR_STOP=1 $(PGREMOTESUPER)
 
-rebuild_db: init_db scrape_corpus scrape_status scrape_fulltext
+rebuild_db: init_db scrape_corpus scrape_capits scrape_status scrape_fulltext scrape_geodata
 
 init_db:
-	cd xslt && $(MAKE) init_db
+	cd $(XSLT) && $(MAKE) init_db
 
 corpus:
-	cd xslt; XSL_DIR=. CACHE_DIR=../cache make -e corpus
+	cd $(XSLT) && $(MAKE) corpus
 
 fulltext:
-	cd xslt; XSL_DIR=. CACHE_DIR=../cache make -e -j 7 fulltext
+	cd $(XSLT) && $(MAKE) -j 7 fulltext
 
-scrape_corpus:
-	cd xslt && $(MAKE) scrape_corpus
+scrape_corpus: corpus
+	cd $(XSLT) && $(MAKE) scrape_corpus
 
-scrape_fulltext:
-	cd xslt && $(MAKE) scrape_fulltext
+scrape_capits:
+	cd $(XSLT) && $(MAKE) scrape_capits
+
+scrape_fulltext: fulltext
+	cd $(XSLT) && $(MAKE) scrape_fulltext
 
 scrape_status:
-	cd xslt && $(MAKE) scrape_status
+	cd $(XSLT) && $(MAKE) scrape_status
 
 scrape_geodata:
 	cd $(SERVER) && $(MAKE) scrape_geodata
-
-copy-hunspell:
-	sudo cp $(SERVER)/hunspell/latin.* /usr/share/postgresql/11/tsearch_data/
-	sudo service postgresql restart
 
 # PhpMetrics http://www.phpmetrics.org/
 phpmetrics:

@@ -95,7 +95,7 @@ $(CACHE_DIR)/mss/cte-137.transcript.phase-1.xml : $(MSS_DIR)/texts/137.xml commo
 # unhandled file dependencies
 #
 
-# $(CACHE_DIR)/lists/corpus.xml : $(MSS_DIR)/%.xml corpus.xsl
+# $(CACHE_DIR)/lists/corpus.xml : $(MSS_DIR)/%.xml common-3.xsl corpus.xsl
 # $(CACHE_DIR)/lists/mss-capit.html : $(MSS_DIR)/lists/manuscripts.xml common-3.xsl common-html.xsl config-3.xsl mss-capit.xsl
 # $(CACHE_DIR)/lists/mss-capit.html : $(MSS_DIR)/lists/mss_by_cap.xml common-3.xsl common-html.xsl config-3.xsl mss-capit.xsl
 # $(CACHE_DIR)/lists/mss-idno.html : $(CACHE_DIR)/lists/corpus.xml common-3.xsl common-html.xsl config-3.xsl mss-idno.xsl

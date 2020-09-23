@@ -20,14 +20,22 @@ Scrape: mss $(CACHE_DIR)/lists/corpus.xml
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:cap="http://cceh.uni-koeln.de/capitularia"
     xpath-default-namespace="http://www.tei-c.org/ns/1.0"
+    exclude-result-prefixes="xsl tei cap"
     version="3.0">
+
+  <xsl:import href="common-3.xsl" />
 
   <xsl:param name="dir" />
 
   <xsl:template name="main">
     <teiCorpus>
       <teiHeader />
-      <xsl:apply-templates select="collection (concat ('file:///', $dir, '?select=*.xml'))" />
+
+      <xsl:for-each select="collection (concat ('file:///', $dir, '?select=*.xml'))">
+        <xsl:sort select="cap:natsort (document-uri (.))" />
+        <xsl:apply-templates select="." />
+      </xsl:for-each>
+
     </teiCorpus>
   </xsl:template>
 
@@ -90,7 +98,7 @@ Scrape: mss $(CACHE_DIR)/lists/corpus.xml
       <xsl:when test="local-name (.) = 'milestone'">
         <milestone unit="chapter" corresp="{@corresp}">
           <xsl:if test="not (/TEI[@xml:id = 'bk-textzeuge'])">
-            <xsl:attribute name="locus" select="../@xml:id"/>
+            <xsl:attribute name="locus" select="ancestor::*[@xml:id][1]/@xml:id" />
           </xsl:if>
         </milestone>
         <xsl:text> </xsl:text>
