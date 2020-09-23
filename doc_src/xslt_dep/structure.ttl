@@ -52,6 +52,7 @@
     cap:target <http://capitularia.uni-koeln.de/$(CACHE_DIR)/collation/%.xml> .
 
 <http://capitularia.uni-koeln.de/corpus.xsl> a cap:xsl ;
+    cap:depends <http://capitularia.uni-koeln.de/common-3.xsl> ;
     cap:inputs <http://capitularia.uni-koeln.de/$(MSS_DIR)/%.xml> ;
     cap:outputs <http://capitularia.uni-koeln.de/$(CACHE_DIR)/lists/corpus.xml> ;
     cap:version "3.0" .
