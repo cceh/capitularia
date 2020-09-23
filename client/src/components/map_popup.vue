@@ -51,9 +51,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="row in rows" :title="row.msp_head">
+              <tr v-for="row in rows" :title="row.ms_title">
                 <td><a :href="'/mss/' + row.ms_id">{{ row.ms_id }}</a></td>
-                <td>{{ row.ms_part }}</td>
+                <td>{{ row.msp_part }}</td>
                 <td>{{ row.notbefore }}-{{ row.notafter }}</td>
               </tr>
             </tbody>
@@ -102,17 +102,17 @@ import { mapGetters } from 'vuex'
 import $         from 'jquery';
 import _         from 'lodash';
 import * as d3   from 'd3';
-import csv_parse from 'csv-parse/lib/sync';
+import * as papa from 'papaparse';
 
-import card           from 'widgets/card.vue';
-import card_caption   from 'widgets/card_caption.vue';
-import toolbar        from 'widgets/toolbar.vue';
-import button_group   from 'widgets/button_group.vue';
-import layer_selector from 'widgets/layer_selector.vue';
-import frappe_charts  from 'widgets/frappe_charts.vue';
-import c3_charts      from 'widgets/c3_charts.vue';
+import card           from './widgets/card.vue';
+import card_caption   from './widgets/card_caption.vue';
+import toolbar        from './widgets/toolbar.vue';
+import button_group   from './widgets/button_group.vue';
+import layer_selector from './widgets/layer_selector.vue';
+import frappe_charts  from './widgets/frappe_charts.vue';
+import c3_charts      from './widgets/c3_charts.vue';
 
-import options        from 'toolbar_options.js';
+import options        from '../js/toolbar_options.js';
 
 /**
  * Transform a string so that numbers in the string sort naturally.
@@ -137,7 +137,7 @@ export function natural_sort (s) {
 
 const SORTFUNCS = {
     'mss' : (d) => natural_sort (d.ms_id),
-    'msp' : (d) => natural_sort (d.ms_id + d.ms_part),
+    'msp' : (d) => natural_sort (d.ms_id + d.msp_part),
     'cap' : (d) => natural_sort (d.cap_id),
 }
 
@@ -240,7 +240,9 @@ export default {
 
             // get manuscripts inside area described by layer and geo_id
             vm.get (vm.build_url (vm.d)).then ((response) => {
-                vm.rows = _.sortBy (csv_parse (response.data, { 'columns' : true }), [SORTFUNCS[place_layer_shown]]);
+                const parsed = papa.parse (response.data, { 'header' : true, 'skipEmptyLines' : true });
+                // console.log (parsed);
+                vm.rows = _.sortBy (parsed.data, [SORTFUNCS[place_layer_shown]]);
 
                 const bins = vm.hist[place_layer_shown] (vm.rows);
                 const data = [place_layer_shown].concat (bins.map ((bin) => bin.length));
@@ -304,7 +306,7 @@ export default {
 
 <style lang="scss">
 /* map_popup.vue */
-@import "bootstrap-custom";
+@import "../css/bootstrap-custom";
 
 div.map-popup-vm {
     position: absolute;

@@ -1,8 +1,9 @@
 const glob = require ('glob');
 const path = require ('path');
 
-const ManifestPlugin  = require ('webpack-manifest-plugin');
-const VueLoaderPlugin = require ('vue-loader/lib/plugin'); // loads vue single-file components
+const HtmlWebpackPlugin = require ('html-webpack-plugin');
+const ManifestPlugin    = require ('webpack-manifest-plugin');
+const VueLoaderPlugin   = require ('vue-loader/lib/plugin'); // loads vue single-file components
 
 module.exports = {
     context : path.resolve (__dirname),
@@ -61,6 +62,13 @@ module.exports = {
                 './plugins/cap-page-generator/src/css/admin.scss',
             ],
         },
+
+        'cap-client' : {
+            import : [
+                './client/src/js/main.js',
+            ],
+            dependOn : 'cap-vendor',
+        },
     },
     output : {
         filename : '[name].[contenthash].js',
@@ -115,6 +123,11 @@ module.exports = {
         moduleIds : 'deterministic',
     },
     plugins : [
+        new HtmlWebpackPlugin ({
+            template : './client/src/index.html',
+            inject   : false,
+            chunks   : [ 'cap-client', 'cap-vendor', 'cap-runtime' ],
+        }),
         new ManifestPlugin ({
             fileName        : 'manifest.json',
             writeToFileEmit : true,
@@ -125,5 +138,8 @@ module.exports = {
         modules : [
             'node_modules',
         ],
+        alias: {
+            'frappe-charts$' : 'frappe-charts/dist/frappe-charts.esm.js',
+        },
     },
 };

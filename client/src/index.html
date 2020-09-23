@@ -5,14 +5,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="/client/api.conf.js"></script>
+    <script src="<%= webpackConfig.output.publicPath %>api.conf.js"></script>
+    <%= htmlWebpackPlugin.tags.headTags %>
   </head>
 
   <body>
     <div id="app"></div>
 
-    <script src="/client/js/runtime.bundle.js"></script>
-    <script src="/client/js/vendor.bundle.js"></script>
-    <script src="/client/js/app.bundle.js"></script>
+    <%= htmlWebpackPlugin.tags.bodyTags %>
   </body>
 </html>

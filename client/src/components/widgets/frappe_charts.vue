@@ -33,7 +33,7 @@ export default {
 <style lang="scss">
 /* frappe_charts.vue */
 
-@import "bootstrap-custom";
+@import "../../css/bootstrap-custom";
 
 @import "frappe-charts/dist/frappe-charts.min.css";
 </style>

@@ -19,7 +19,7 @@ import _            from 'lodash';
 import * as d3      from 'd3';
 import url          from 'url';
 
-import maps         from 'maps.vue';
+import maps         from './maps.vue';
 
 Vue.use (VueRouter);
 Vue.use (Vuex);
@@ -104,14 +104,15 @@ export default {
 </script>
 
 <style lang="scss">
-@import "bootstrap-custom";
+@import "../css/bootstrap-custom";
 
 /* bootstrap */
-@import "bootstrap/scss/bootstrap";
-@import "bootstrap-vue/dist/bootstrap-vue.css";
+@import '~bootstrap';
+@import '~bootstrap-vue/src/index';
 
 /* List of icons at: http://astronautweb.co/snippet/font-awesome/ */
-@import "@fortawesome/fontawesome-free/css/fontawesome.css";
-@import "@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~/themes/Capitularia/src/css/fonts";
+// @import "~@fortawesome/fontawesome-free/scss/fontawesome";
+// @import "~@fortawesome/fontawesome-free/scss/solid";
 
 </style>

@@ -96,7 +96,7 @@ export default {
 
 <style lang="scss">
 /* button-group.vue */
-@import "bootstrap-custom";
+@import "../../css/bootstrap-custom";
 
 .button-group-vm {
     @media print {

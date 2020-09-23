@@ -1,1 +1,1 @@
-var api_base_url = 'http://localhost:5002/';
+var api_base_url = 'http://api.capitularia.fritz.box:5002/';

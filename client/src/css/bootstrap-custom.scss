@@ -1,15 +1,15 @@
-/* See: https://getbootstrap.com/docs/4.1/getting-started/theming/ */
-
-@import "bootstrap/scss/_functions.scss";
-@import "bootstrap/scss/_variables.scss";
-@import "bootstrap/scss/_mixins.scss";
-
-$font-size-base: 0.875rem;
+/* See: https://getbootstrap.com/docs/4.5/getting-started/theming/ */
 
 $theme-colors: (
     "primary":     #337ab7,
     "brand-color": #6f5499
 );
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+$font-size-base: 0.875rem;
 
 $grid-breakpoints: (
     // Extra small screen / phone
@@ -38,8 +38,8 @@ $container-max-widths: (
     x4l: 2440px
 );
 
-/* FIXME: $fa-font-path: "@fortawesome/fontawesome-free/webfonts" !default; */
-$fa-font-path: "../../node_modules/@fortawesome/fontawesome-free/webfonts" !default;
+$fa-font-path:    '~@fortawesome/fontawesome-free/webfonts';
+$fa-font-display: 'block';
 
 $country-color: $red;
 $region-color:  $yellow;

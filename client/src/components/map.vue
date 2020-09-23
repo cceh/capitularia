@@ -27,7 +27,7 @@ import * as d3  from 'd3';
 import L        from 'leaflet';
 import _        from 'lodash';
 
-import options  from 'toolbar_options.js';
+import options  from '../js/toolbar_options.js';
 
 import 'leaflet/dist/leaflet.css';
 
@@ -383,8 +383,8 @@ export default {
             for (const layer_info of this.place_layer_infos) {
                 if (layer_info.id == new_id) {
                     this.place_layer.options.layer = layer_info.id;
-                    this.place_layer.options.url   = layer_info.url;
                     this.place_layer.setAttribution (layer_info.attribution);
+                    this.place_layer.options.url   = layer_info.url;
                     break;
                 }
             }
@@ -396,7 +396,10 @@ export default {
                 if (layer_info.id == new_id) {
                     this.area_layer.options.layer = layer_info.id;
                     this.area_layer.setAttribution (layer_info.attribution);
-                    this.area_layer.setDatasource  (layer_info.url);
+                    this.area_layer.setDatasource  (
+                        // these are static geojson files
+                        layer_info.url ? __webpack_public_path__ + layer_info.url : null
+                    );
                     this.update_attribution ();
                     break;
                 }
@@ -499,7 +502,7 @@ export default {
 
 <style lang="scss">
 /* map.vue */
-@import "bootstrap-custom";
+@import "../css/bootstrap-custom";
 
 #map {
     position: absolute;

@@ -45,7 +45,7 @@ export default {
 
 <style lang="scss">
 /* widgets/toolbar.vue */
-@import "bootstrap-custom";
+@import "../../css/bootstrap-custom";
 
 div.btn-toolbar {
     margin-bottom: $spacer * -0.5;

@@ -77,12 +77,12 @@ import $        from 'jquery';
 import * as d3  from 'd3';
 import _        from 'lodash';
 
-import map      from 'map.vue';
+import map            from './map.vue';
 
-import toolbar        from 'widgets/toolbar.vue';
-import button_group   from 'widgets/button_group.vue';
-import layer_selector from 'widgets/layer_selector.vue';
-import map_popup      from 'map_popup.vue';
+import toolbar        from './widgets/toolbar.vue';
+import button_group   from './widgets/button_group.vue';
+import layer_selector from './widgets/layer_selector.vue';
+import map_popup      from './map_popup.vue';
 
 export default {
     'components' : {
@@ -152,14 +152,17 @@ export default {
     mounted () {
         const vm = this;
         window.addEventListener ('resize', vm.on_resize);
-        vm.on_resize ();
+    },
+    updated () {
+        const vm = this;
+        vm.$nextTick (vm.on_resize);
     },
 };
 </script>
 
 <style lang="scss">
 /* maps.vue */
-@import "bootstrap-custom";
+@import "../css/bootstrap-custom";
 
 div.maps-vm {
 

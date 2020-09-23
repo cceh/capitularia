@@ -41,7 +41,7 @@ export default {
 
 <style lang="scss">
 /* c3_charts.vue */
-@import "bootstrap-custom";
+@import "../../css/bootstrap-custom";
 
 @import "c3/c3.css";
 

@@ -71,7 +71,7 @@ export default {
         filter_layers (layers, type, addnone) {
             const res = [];
             if (addnone) {
-                res.push ({ 'id': 'none', 'title' : 'None' });
+                res.push ({ 'id': 'none', 'title' : 'None', 'url' : null });
             }
             if (layers) {
                 res.push (... layers.filter (d => d.type === type));
@@ -86,7 +86,7 @@ export default {
 
 <style lang="scss">
 /* date_range.vue */
-@import "bootstrap-custom";
+@import "../../css/bootstrap-custom";
 
 .layer-selector-vm {
     @media print {

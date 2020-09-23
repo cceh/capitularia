@@ -14,12 +14,12 @@
  */
 
 import $ from 'jquery';
-import 'jquery-ui/draggable.js';
-import 'jquery-ui/resizable.js';
+import 'jquery-ui/ui/widgets/draggable';
+import 'jquery-ui/ui/widgets/resizable';
 
-import 'jquery-ui-css/core.css';
-import 'jquery-ui-css/draggable.css';
-import 'jquery-ui-css/resizable.css';
+import 'jquery-ui/themes/base/core.css';
+import 'jquery-ui/themes/base/draggable.css';
+import 'jquery-ui/themes/base/resizable.css';
 
 export default {
     'props' : ['default_closed', 'card_id', 'position_target'],
@@ -80,7 +80,7 @@ export default {
 
 <style lang="scss">
 /* card.vue */
-@import "bootstrap-custom";
+@import "../../css/bootstrap-custom";
 
 div.card {
     min-width: 100%;

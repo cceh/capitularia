@@ -76,7 +76,7 @@ export default {
 
 <style lang="scss">
 /* date_range.vue */
-@import "bootstrap-custom";
+@import "../../css/bootstrap-custom";
 
 .date-range-vm {
     @media print {

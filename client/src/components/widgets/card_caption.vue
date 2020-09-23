@@ -80,7 +80,7 @@ export default {
 
 <style lang="scss">
 /* card_caption.vue */
-@import "bootstrap-custom";
+@import "../../css/bootstrap-custom";
 
 div.vm-card-caption {
     cursor: grab;
@@ -97,6 +97,22 @@ div.vm-card-caption {
         @media print {
             display: none;
         }
+    }
+
+    .fa-window-close:before {
+        content: "\f410";
+    }
+
+    .fa-window-maximize:before {
+        content: "\f2d0";
+    }
+
+    .fa-window-minimize:before {
+        content: "\f2d1";
+    }
+
+    .fa-window-restore:before {
+        content: "\f2d2";
     }
 }
 </style>
