@@ -526,7 +526,6 @@ function on_nav_menu_link_attributes ($atts, $item, $args, $depth) // phpcs:igno
 </div>
 EOD;
         }
-
     }
     return $atts;
 }

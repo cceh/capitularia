@@ -27,7 +27,7 @@ Vue.directive ('translate', function (el) {
 });
 
 new Vue ({ // eslint-disable-line no-new
-    'el'         : '#cap-collation-app',
+    'el' : '#cap-collation-app',
     render (createElement) {
         return createElement ('cap-collation-app');
     },
