@@ -31,7 +31,7 @@ Scrape: mss $(CACHE_DIR)/lists/corpus.xml
     <teiCorpus>
       <teiHeader />
 
-      <xsl:for-each select="collection (concat ('file:///', $dir, '?select=*.xml'))">
+      <xsl:for-each select="collection (concat ('file:///', $dir, '?select=*.xml;on-error=warning'))">
         <xsl:sort select="cap:natsort (document-uri (.))" />
         <xsl:apply-templates select="." />
       </xsl:for-each>
