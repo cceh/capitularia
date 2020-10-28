@@ -193,7 +193,47 @@ function init_dynamic_menues () {
         }
     });
 
+
     toc.css ('display', '');
 }
 
+function get_offset (elem) {
+    // returns the offset of the element
+
+	const scrollTop = window.scrollY;
+
+    const bb  = elem.getBoundingClientRect ();
+    const win = elem.ownerDocument.defaultView;
+    return bb.top + win.pageYOffset;
+}
+
+function get_topmost () {
+    // returns the topmost visible div.ab
+
+	const scrollTop = window.scrollY;
+
+    for (const div of document.querySelectorAll ("div.ab")) {
+        const top = get_offset (div);
+		if (top >= scrollTop) {
+            return [div, top];
+        }
+	}
+    return null;
+}
+
+function initLinebreakCheckbox () {
+    $ ('body').change ('.custom-checkbox-linebreak', function (event) {
+        const checked = $ (event.target).is (':checked');
+        const [topmost, offset] = get_topmost ();
+        $ ('div.mss-transcript-xsl').toggleClass ('show-linebreaks', checked);
+        setTimeout (function () {
+            const new_offset = get_offset (topmost);
+            // topmost.scrollIntoView (true);
+            window.scrollBy (0, new_offset - offset);
+        });
+    });
+}
+
+
 init_dynamic_menues ();
+initLinebreakCheckbox ();
