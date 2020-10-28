@@ -571,7 +571,13 @@ div.annotation-content {
             &.show-linebreaks {
                 span.tei-lb,
                 span.tei-cb {
-                    display: block;
+                    &::before {
+                        content: ' |';
+                    }
+                    &::after {
+                        content: '';
+                        display: block;
+                    }
                 }
 
                 span.line-number {
