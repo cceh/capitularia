@@ -23,52 +23,6 @@ function initBackToTop () {
 }
 
 /**
- * Initialize all links on the page to do a smooth scroll to their
- * respective targets.
- *
- * @memberof module:themes/capitularia
- */
-
-function initSmoothScrollLinks () {
-    $ ('a').each (function () {
-        if ($ (this).hasClass ('ssdone')) {
-            return;
-        }
-        $ (this).addClass ('ssdone');
-
-        let href = $ (this).attr ('href');
-        if (href === undefined) {
-            return;
-        }
-        href = href.replace ('.', '\\.');
-
-        // only act on page-internal links
-        if (href.indexOf ('#') !== 0) {
-            return;
-        }
-
-        // only act on existing targets
-        let target = null;
-        try {
-            target = $ (href);
-        } catch (e) {
-            return;
-        }
-        if (target.length === 0) {
-            return;
-        }
-
-        $ (this).addClass ('sscontrolled');
-        $ (this).on ('click', function (event) {
-            const off = target.first ().offset ().top;
-            $ ('body,html').animate ({ 'scroll-top' : off }, 600);
-            event.preventDefault ();
-            return true;
-        });
-    });
-}
-
-/**
  * Initialize reset buttons to reset input and select controls on the parent
  * form.
  *
@@ -156,7 +110,6 @@ function initSidebarToc () {
 $ (document).ready (function () {
     initFootnoteTooltips ();
     setTimeout (initBackToTop, 0);
-    setTimeout (initSmoothScrollLinks, 0);
     setTimeout (initResetForm, 0);
 
     // FIXME: somehow extract this value from bootstrap files
