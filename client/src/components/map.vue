@@ -92,10 +92,10 @@ L.D3_geoJSON = L.GeoJSON.extend ({
 
         this.g = this.svg.append ('g')
             .classed ('leaflet-zoom-hide', true)
-            .on ('mousedown', function (d) {
-                that.last_pos = { 'x' : d3.event.x, 'y' : d3.event.y };
+            .on ('mousedown', function (event, d) {
+                that.last_pos = { 'x' : event.x, 'y' : event.y };
             })
-            .on ('mouseup', function (d) {
+            .on ('mouseup', function (event, d) {
                 that.last_pos = { 'x' : 0, 'y' : 0 };
             });
 
@@ -167,10 +167,10 @@ L.D3_geoJSON = L.GeoJSON.extend ({
             this.svg.attr ('data-zoom', 'Z'.repeat (event.target._zoom));
         }
     },
-    is_dragging () {
+    is_dragging (event) {
         if (this.last_pos) {
-            const dx = d3.event.x - this.last_pos.x;
-            const dy = d3.event.y - this.last_pos.y;
+            const dx = event.x - this.last_pos.x;
+            const dy = event.y - this.last_pos.y;
             return Math.sqrt (dx * dx + dy * dy) > 5;
         } else {
             return true;
@@ -209,8 +209,8 @@ L.Layer_Areas = L.D3_geoJSON.extend ({
 
         let entered = g.enter ()
             .append ('path')
-            .on ('mouseup', function (d) {
-                if (that.is_dragging ()) {
+            .on ('mouseup', function (event, d) {
+                if (that.is_dragging (event)) {
                     return;
                 }
                 vm.$trigger ('mss-tooltip-open', d);
@@ -293,8 +293,8 @@ L.Layer_Places = L.D3_geoJSON.extend ({
                 return d.properties.geo_name;
             });
 
-        entered.on ('mouseup', function (d) {
-            if (that.is_dragging ()) {
+        entered.on ('mouseup', function (event, d) {
+            if (that.is_dragging (event)) {
                 return;
             }
             vm.$trigger ('mss-tooltip-open', d);

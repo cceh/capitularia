@@ -18,7 +18,9 @@
       </div>
 
       <template v-if="toolbar.place_layer_shown == 'mss'">
-        <c3-chart :options="chart_options.mss" />
+        <div class="m-2">
+          <chart :data="chart_data" />
+        </div>
 
         <div class="scroller mb-0">
           <table class="table table-sm table-mss">
@@ -39,7 +41,9 @@
       </template>
 
       <template v-if="toolbar.place_layer_shown == 'msp'">
-        <c3-chart :options="chart_options.msp" />
+        <div class="m-2">
+          <chart :data="chart_data" />
+        </div>
 
         <div class="scroller mb-0">
           <table class="table table-sm table-mss">
@@ -62,7 +66,9 @@
       </template>
 
       <template v-if="toolbar.place_layer_shown == 'cap'">
-        <c3-chart :options="chart_options.cap" />
+        <div class="m-2">
+          <chart :data="chart_data" />
+        </div>
 
         <div class="scroller mb-0">
           <table class="table table-sm table-cap">
@@ -109,8 +115,7 @@ import card_caption   from './widgets/card_caption.vue';
 import toolbar        from './widgets/toolbar.vue';
 import button_group   from './widgets/button_group.vue';
 import layer_selector from './widgets/layer_selector.vue';
-import frappe_charts  from './widgets/frappe_charts.vue';
-import c3_charts      from './widgets/c3_charts.vue';
+import chart          from './widgets/chart.vue';
 
 import options        from '../js/toolbar_options.js';
 
@@ -154,8 +159,7 @@ export default {
         'toolbar'        : toolbar,
         'button-group'   : button_group,
         'layer-selector' : layer_selector,
-        'c3-chart'       : c3_charts,
-        'frappe-chart'   : frappe_charts,
+        'chart'          : chart,
     },
     'props' : ['d'],
     data () {
@@ -167,11 +171,7 @@ export default {
             'toolbar'   : {
                 'place_layer_shown' : this.$store.state.place_layer_shown,
             },
-            'chart_options' : {
-                'mss' : this.default_c3_chart_options (),
-                'msp' : this.default_c3_chart_options (),
-                'cap' : this.default_c3_chart_options (),
-            },
+            'chart_data' : null,
         };
     },
     'computed' : {
@@ -191,31 +191,6 @@ export default {
         },
     },
     'methods' : {
-        default_c3_chart_options () {
-            return {
-                data: {
-                    columns: [],
-                    type: 'bar',
-                    labels: true,
-                },
-                axis: {
-                    rotated: true,
-                    x: {
-                        type: 'category',
-                        categories: [],
-                    },
-                    y: {
-                        show: false
-                    },
-                },
-                legend: {
-                    show: false
-                },
-                size: {
-                    height: 10,
-                },
-            };
-        },
         calc_date (d) {
             if (d.notbefore && d.notafter) {
                 return Math.floor ((+d.notbefore + +d.notafter) / 2.0)
@@ -244,22 +219,7 @@ export default {
                 // console.log (parsed);
                 vm.rows = _.sortBy (parsed.data, [SORTFUNCS[place_layer_shown]]);
 
-                const bins = vm.hist[place_layer_shown] (vm.rows);
-                const data = [place_layer_shown].concat (bins.map ((bin) => bin.length));
-
-                _.merge (vm.chart_options[place_layer_shown], this.default_c3_chart_options (), {
-                    'data' : {
-                        'columns' : [data],
-                    },
-                    'axis' : {
-                        'x' : {
-                            'categories' : bins.map (vm.category_name),
-                        },
-                    },
-                    'size' : {
-                        'height' : 24 * bins.length,
-                    },
-                });
+                vm.chart_data = vm.hist[place_layer_shown] (vm.rows);
             });
         },
         build_url () {
@@ -277,17 +237,17 @@ export default {
     },
     created () {
         this.hist = {
-            'mss' : d3.histogram ()
+            'mss' : d3.bin ()
                 .domain ([0, 2000])
-                .thresholds ([1, 800, 900, 1000, 1100, 1200])
+                .thresholds ([800, 900, 1000, 1100, 1200])
                 .value (this.calc_date),
-            'msp' : d3.histogram ()
+            'msp' : d3.bin ()
                 .domain ([0, 2000])
-                .thresholds ([1, 800, 900, 1000, 1100, 1200])
+                .thresholds ([800, 900, 1000, 1100, 1200])
                 .value (this.calc_date),
-            'cap' : d3.histogram ()
+            'cap' : d3.bin ()
                 .domain ([0, 2000])
-                .thresholds ([1, 768, 814, 840])
+                .thresholds ([768, 814, 840])
                 .value (this.calc_date),
         };
     },

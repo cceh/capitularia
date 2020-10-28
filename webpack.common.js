@@ -138,8 +138,5 @@ module.exports = {
         modules : [
             'node_modules',
         ],
-        alias: {
-            'frappe-charts$' : 'frappe-charts/dist/frappe-charts.esm.js',
-        },
     },
 };
