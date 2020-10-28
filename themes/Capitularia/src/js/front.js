@@ -153,19 +153,11 @@ function initSidebarToc () {
     sidebar.closest ('ul').css ('height', '100%');
 }
 
-function initLinebreakCheckbox () {
-    $ ('body').change ('.custom-checkbox-linebreak', function (event) {
-        const checked = $ (event.target).is (':checked');
-        $ ('div.mss-transcript-xsl').toggleClass ('show-linebreaks', checked);
-    });
-}
-
 $ (document).ready (function () {
+    initFootnoteTooltips ();
     setTimeout (initBackToTop, 0);
     setTimeout (initSmoothScrollLinks, 0);
     setTimeout (initResetForm, 0);
-    initFootnoteTooltips ();
-    initLinebreakCheckbox ();
 
     // FIXME: somehow extract this value from bootstrap files
     // if ($('body').css ('content') == 'sm')

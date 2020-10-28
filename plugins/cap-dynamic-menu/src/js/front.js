@@ -139,6 +139,16 @@ function init_dynamic_menues () {
             a.push (`<li id="${id}" class="${classes.join (' ')}">`);
             if (href) {
                 a.push (`<a href="${href}" title="${title}">${caption}</a>`);
+
+                // horrible hack for linebreak checkbox, close your eyes
+                if (href === '#editorial-preface') {
+                    a.push (`<a class="ssdone">
+<div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input custom-checkbox-linebreak" id="checkbox-linebreak">
+  <label class="custom-control-label" for="checkbox-linebreak">Zeilenumbrüche darstellen</label>
+</div></a>`);
+                // you may open your eyes again
+                }
             } else {
                 a.push (`<a title="${title}">${caption}</a>`);
             }

@@ -14,7 +14,6 @@ namespace cceh\capitularia\theme;
 use cceh\capitularia\lib;
 
 const MAGIC_LOGIN            = '#cap_login_menu#';
-const MAGIC_LINEBREAK_BUTTON = '#cap_linebreak_button#';
 
 /**
  * Add current namespace
@@ -516,15 +515,6 @@ function on_nav_menu_link_attributes ($atts, $item, $args, $depth) // phpcs:igno
     if (isset ($item->url)) {
         if (strcmp ($item->url, MAGIC_LOGIN) === 0) {
             $atts['href'] = wp_login_url (get_permalink ());
-        }
-        if (strcmp ($item->url, MAGIC_LINEBREAK_BUTTON) === 0) {
-            $atts['data-linebreak-button'] = 'true'; // $item->description;
-            $item->title = <<<EOD
-<div class="custom-control custom-checkbox">
-  <input type="checkbox" class="custom-control-input custom-checkbox-linebreak" id="checkbox-{$item->ID}">
-  <label class="custom-control-label" for="checkbox-{$item->ID}">$item->title</label>
-</div>
-EOD;
         }
     }
     return $atts;
