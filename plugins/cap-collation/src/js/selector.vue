@@ -114,6 +114,9 @@ import * as tools from './tools.js';
  */
 
 export default {
+    'props' : {
+        'config' : Object, // a config file section if loaded from config
+    },
     data () {
         return {
             'bk'          : '',
@@ -127,9 +130,6 @@ export default {
             'spinner'     : false, // if set true shows a spinner
         };
     },
-    'props' : {
-        'config' : Object, // a config file section if loaded from config
-    },
     'computed' : {
         /** @returns The list of selected sigla in the correct order. */
         'selected' : function () {
@@ -139,6 +139,10 @@ export default {
     'watch' : {
         config () { this.ajax_load_bks (); },
         select_all (new_value) { this.check_all (new_value); },
+    },
+    async mounted () {
+        const vm = this;
+        await vm.ajax_load_bks ();
     },
     /** @lends module:plugins/collation/front.VueFront.prototype */
     'methods' : {
@@ -247,10 +251,6 @@ export default {
             // this.later_hands = event.target.checked;
             this.load_witnesses_carry_selection ();
         },
-    },
-    async mounted () {
-        const vm = this;
-        await vm.ajax_load_bks ();
     },
 };
 </script>

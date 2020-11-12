@@ -55,6 +55,25 @@ export default {
             'spinner'         : false,
         };
     },
+    mounted () {
+        this.api = tools.get_api_entrypoint () + '/collatex/collate';
+    },
+    updated () {
+        const vm = this;
+        const $tbodies = $ (this.$el).find ('table.collation tbody');
+        $tbodies.disableSelection ().sortable ({
+            'items'       : 'tr.sortable',
+            'handle'      : 'th.handle',
+            'axis'        : 'y',
+            'cursor'      : 'move',
+            'containment' : 'parent',
+            'update'      : function (event, ui) {
+                const new_order = tools.get_sigla (ui.item);
+                vm.sort_like (new_order);
+                vm.$emit ('reordered', new_order);
+            },
+        });
+    },
     /** @lends module:plugins/collation/results.VueResults.prototype */
     'methods' : {
         collate (data) {
@@ -244,25 +263,6 @@ export default {
             }
             return cls;
         },
-    },
-    mounted () {
-        this.api = tools.get_api_entrypoint () + '/collatex/collate';
-    },
-    updated () {
-        const vm = this;
-        const $tbodies = $ (this.$el).find ('table.collation tbody');
-        $tbodies.disableSelection ().sortable ({
-            'items'       : 'tr.sortable',
-            'handle'      : 'th.handle',
-            'axis'        : 'y',
-            'cursor'      : 'move',
-            'containment' : 'parent',
-            'update'      : function (event, ui) {
-                const new_order = tools.get_sigla (ui.item);
-                vm.sort_like (new_order);
-                vm.$emit ('reordered', new_order);
-            },
-        });
     },
 };
 </script>
