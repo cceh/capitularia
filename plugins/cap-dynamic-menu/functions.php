@@ -56,10 +56,13 @@ function on_nav_menu_link_attributes ($atts, $item, $args, $depth) // phpcs:igno
     if (isset ($item->url)) {
         if (strcmp ($item->url, MAGIC_MENU) === 0) {
             $atts['data-cap-dynamic-menu'] = $item->description;
+            $item->title = '<i class="fas fa-spinner fa-spin"></i>';
+
             // enqueue only if a dynamic menu is on the page
             // script must be enqueued in the footer!
-            lib\enqueue_from_manifest ('cap-dynamic-menu-front.js', ['cap-theme-front.js']);
-            $item->title = '<i class="fas fa-spinner fa-spin"></i>';
+            $key = 'cap-dynamic-menu-front'; // key from webpack.common.js
+            lib\enqueue_from_manifest ("$key.js", ['cap-theme-front.js']);
+            lib\wp_set_script_translations ("$key.js", DOMAIN);
         }
     }
     return $atts;

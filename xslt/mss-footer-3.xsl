@@ -163,6 +163,10 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.footer.html
           <td>sic</td>
         </tr>
         <tr>
+          <td>|</td>
+          <td>[:de]Zeilenwechsel[:en]New line[:]</td>
+        </tr>
+        <tr>
           <td>[BK 139 c. 1]</td>
           <td>[:de]Referenz zur Edition von Boretius/Krause[:en]Reference to the
           Boretius/Krause edition[:]</td>

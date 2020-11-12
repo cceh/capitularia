@@ -81,7 +81,7 @@ $(LANG_SRC)/php.pot: $(PHP_FILES)
 
 $(LANG_SRC)/js.pot: $(wildcard $(JS_SRC)/*.js)
 	touch $@
-	$(XGETTEXT) -o $@ $^
+	-$(EASYGETTEXT) --output $@ $^
 
 $(LANG_SRC)/vue.pot: $(wildcard $(JS_SRC)/*.vue)
 	touch $@

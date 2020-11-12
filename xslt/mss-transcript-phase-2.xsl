@@ -327,12 +327,20 @@ joined to the preceding word.
   </xsl:template>
 
   <xsl:template match="lb">
+    <xsl:variable name="class">
+      <xsl:if test="ancestor::ab
+                    and normalize-space (string-join (following-sibling::node (), ''))
+                    and normalize-space (string-join (preceding-sibling::node (), ''))">
+        <xsl:text> tei-lb-show</xsl:text>
+      </xsl:if>
+    </xsl:variable>
+
     <xsl:choose>
       <xsl:when test="@break = 'no'">
-        <span class="tei-lb"/>
+        <span class="tei-lb{$class}" />
       </xsl:when>
       <xsl:otherwise>
-        <span class="tei-lb"> </span>
+        <span class="tei-lb{$class}"> </span>
       </xsl:otherwise>
     </xsl:choose>
 
@@ -377,10 +385,6 @@ joined to the preceding word.
       <xsl:value-of select="concat ('[', $cb_prefix, '&#xa0;', @n, ']')"/>
       <xsl:text>[/cap_image_server]</xsl:text>
     </span>
-
-    <xsl:if test="not (@break = 'no')">
-      <xsl:text> </xsl:text>
-    </xsl:if>
   </xsl:template>
 
   <xsl:template match="milestone">

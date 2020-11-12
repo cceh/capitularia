@@ -47,6 +47,13 @@
 
 import $ from 'jquery';
 
+/** The Wordpress Text Domain of the plugin. */
+const LANG = 'cap-dynamic-menu';
+
+function $pgettext (context, msg) {
+    return wp.i18n._x (msg, context, LANG);
+}
+
 /**
  * Initialize all dynamic menus on the page.
  *
@@ -142,10 +149,12 @@ function init_dynamic_menues () {
 
                 // horrible hack for linebreak checkbox, close your eyes
                 if (href === '#editorial-preface') {
+                    const message = $pgettext ('Checkbox label', 'Show newlines');
+
                     a.push (`<a class="ssdone">
 <div class="custom-control custom-checkbox">
   <input type="checkbox" class="custom-control-input custom-checkbox-linebreak" id="checkbox-linebreak">
-  <label class="custom-control-label" for="checkbox-linebreak">Zeilenumbrüche darstellen</label>
+  <label class="custom-control-label" for="checkbox-linebreak">${message}</label>
 </div></a>`);
                 // you may open your eyes again
                 }
@@ -193,14 +202,11 @@ function init_dynamic_menues () {
         }
     });
 
-
     toc.css ('display', '');
 }
 
 function get_offset (elem) {
     // returns the offset of the element
-
-	const scrollTop = window.scrollY;
 
     const bb  = elem.getBoundingClientRect ();
     const win = elem.ownerDocument.defaultView;
@@ -210,14 +216,14 @@ function get_offset (elem) {
 function get_topmost () {
     // returns the topmost visible div.ab
 
-	const scrollTop = window.scrollY;
+    const scrollTop = window.scrollY;
 
-    for (const div of document.querySelectorAll ("div.ab")) {
+    for (const div of document.querySelectorAll ('div.ab')) {
         const top = get_offset (div);
-		if (top >= scrollTop) {
+        if (top >= scrollTop) {
             return [div, top];
         }
-	}
+    }
     return null;
 }
 
@@ -233,7 +239,6 @@ function initLinebreakCheckbox () {
         });
     });
 }
-
 
 init_dynamic_menues ();
 initLinebreakCheckbox ();

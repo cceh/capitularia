@@ -6,8 +6,13 @@
 
 import $ from 'jquery';
 
+/** The Wordpress Text Domain of the plugin. */
+const LANG = 'cap-collation';
+
 // See: https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
-const _x = wp.i18n._x;
+function $pgettext (context, msg) {
+    return wp.i18n._x (msg, context, LANG);
+}
 
 /**
  * The id of the "Obertext".
@@ -107,9 +112,6 @@ export function sort_key (s) {
     return s;
 }
 
-/** The Wordpress Text Domain of the plugin. */
-const LANG = 'cap-collation';
-
 /**
  * Prepare a witness for display, add human-readable title, i18n.
  *
@@ -120,11 +122,11 @@ export function fix_witness (w) {
     // add check for reactivity
     w.checked  = false;
     w.title    = w.siglum;
-    w.title    = w.title.replace (/#(\d+)/,       _x (' ($1. copy)',  '2., 3., etc. copy of capitularies', LANG));
-    w.title    = w.title.replace (/[?]hands=XYZ/, _x (' (corrected)', 'corrected version of capitularies', LANG));
+    w.title    = w.title.replace (/#(\d+)/,       $pgettext ('2., 3., etc. copy of capitularies', ' ($1. copy)'));
+    w.title    = w.title.replace (/[?]hands=XYZ/, $pgettext ('corrected version of capitularies', ' (corrected)'));
     w.sort_key = w.title;
     w.title    = w.title.replace (/\//, ' : ');
-    w.title    = w.title.replace (/bk-textzeuge/, _x ('Edition by Boretius/Krause', 'title of the edition', LANG));
+    w.title    = w.title.replace (/bk-textzeuge/, $pgettext ('title of the edition', 'Edition by Boretius/Krause'));
     w.sort_key = w.sort_key.replace (/bk-textzeuge/, '_bk-textzeuge'); // always sort this first
     w.sort_key = sort_key (w.sort_key);
     return w;
