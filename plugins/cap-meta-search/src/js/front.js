@@ -47,14 +47,12 @@ function places_tree_init () {
             },
             // See: https://www.jstree.com/docs/json/
             'data' : function (node, callback) {
-                $.ajax (cap_lib.api_url + '/data/places.json/')
-                    .then ((response) => {
-                        callback (response.map (
+                $.ajax (cap_lib.api_url + '/data/places.json/?lang=' + document.documentElement.lang.substring (0, 2))
+                    .then ((response) => callback (response.map (
                             function (r) {
                                 return { 'id' : r.geo_id, 'parent' : r.parent_id || '#', 'text' : r.geo_name };
                             }
-                        ));
-                    });
+                    )));
             },
         },
     });

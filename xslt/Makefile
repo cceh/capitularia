@@ -23,9 +23,11 @@ MSS_PRIV_DIR := $(PRIV_DIR)/Transkriptionsauftraege/FertigeTranskriptionen
 CAPIT_DIR    := $(PUB_DIR)/capit
 BIB_DIR      := $(PUB_DIR)/bibl
 RES_DIR      := $(PUB_DIR)/resources
+LISTS_DIR    := $(PUB_DIR)/mss/lists
 
 BK_TEXT_DIR  := $(PRIV_DIR)/BK_Text_Superstruktur
 BK_TEXTZEUGE := $(BK_TEXT_DIR)/bk-textzeuge.xml
+GEOPLACES    := $(LISTS_DIR)/capitularia_geo.xml
 
 IDS       := $(sort $(notdir $(basename $(wildcard $(MSS_DIR)/*.xml))))
 IDS_PRIV  := $(sort $(notdir $(basename $(wildcard $(MSS_PRIV_DIR)/*.xml))))
@@ -145,6 +147,10 @@ $(CACHE_DIR)/last_fulltext_scrape : $(wildcard $(CACHE_DIR)/collation/*.xml)
 	$(IMPORT) --fulltext $?
 	touch "$@"
 
+$(CACHE_DIR)/last_geoplaces_scrape : $(GEOPLACES)
+	$(IMPORT) --geoplaces $?
+	touch "$@"
+
 # this target copies information from the wordpress db into the postgres db.
 # the timestamp file doesn't depend on anything (it should depend on the
 # wordpress database file, but we have no access to it)
@@ -159,8 +165,11 @@ scrape_capits :   $(CACHE_DIR)/last_capit_scrape
 
 scrape_fulltext : scrape_corpus scrape_capits $(CACHE_DIR)/last_extracted_scrape $(CACHE_DIR)/last_fulltext_scrape
 
+scrape_geoplaces :   $(CACHE_DIR)/last_geoplaces_scrape
+
 scrape_status :   $(CACHE_DIR)/last_status_scrape
 
+scrape_all : scrape_corpus scrape_capits scrape_fulltext scrape_geoplaces scrape_status
 
 ################ Other Stuff
 

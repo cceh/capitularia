@@ -482,6 +482,84 @@ DROP SCHEMA IF EXISTS gis CASCADE;
 
 Base.metadata.schema = 'gis'
 
+class GeoPlaces (Base):
+    r"""GeoPlaces
+
+    Data extracted from capitularia_geo.xml
+
+    .. pic:: sauml -s gis -i gis.geoplaces
+
+    """
+
+    __tablename__ = 'geoplaces'
+
+    geo_id        = Column (String)
+
+    parent_id     = Column (String)
+
+    __table_args__ = (
+        PrimaryKeyConstraint (geo_id),
+        ForeignKeyConstraint (
+            [parent_id],
+            ['geoplaces.geo_id'],
+            ondelete = 'CASCADE'
+        ),
+    )
+
+
+class GeoPlacesNames (Base):
+    r"""GeoPlacesNames
+
+    Data extracted from capitularia_geo.xml
+
+    .. pic:: sauml -s gis -i gis.geoplaces_names
+
+    """
+
+    __tablename__ = 'geoplaces_names'
+
+    geo_id        = Column (String)
+    geo_lang      = Column (String)
+
+    geo_name      = Column (String)
+
+    __table_args__ = (
+        PrimaryKeyConstraint (geo_id, geo_lang),
+        ForeignKeyConstraint (
+            [geo_id],
+            ['geoplaces.geo_id'],
+            ondelete = 'CASCADE'
+        ),
+    )
+
+
+class MnManuscriptsGeoPlaces (Base):
+    r"""The M:N relationship between manuscripts and geoplaces
+
+    .. pic:: sauml -s gis -i gis.mn_mss_geoplaces
+
+    """
+
+    __tablename__ = 'mn_mss_geoplaces'
+
+    ms_id  = Column (String)
+    geo_id = Column (String)
+
+    __table_args__ = (
+        PrimaryKeyConstraint (ms_id, geo_id),
+        ForeignKeyConstraint (
+            [ms_id],
+            ['capitularia.manuscripts.ms_id'],
+            ondelete = 'CASCADE'
+        ),
+        ForeignKeyConstraint (
+            [geo_id],
+            ['geoplaces.geo_id'],
+            ondelete = 'CASCADE'
+        ),
+    )
+
+
 class Geonames (Base):
     r"""Geonames
 
@@ -506,6 +584,11 @@ class Geonames (Base):
 
     __table_args__ = (
         PrimaryKeyConstraint (geo_source, geo_id),
+        ForeignKeyConstraint (
+            [parent_id],
+            ['geoplaces.geo_id'],
+            ondelete = 'CASCADE'
+        ),
     )
 
 

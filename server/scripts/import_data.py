@@ -27,6 +27,7 @@ from lxml import etree
 from sqlalchemy_utils import IntRangeType
 from sqlalchemy.dialects.postgresql.json import JSONB
 from sqlalchemy.dialects.postgresql import ARRAY, INT4RANGE
+import sqlalchemy
 
 import common
 from common import fix_ws
@@ -445,6 +446,67 @@ def lookup_published (conn, ajax_endpoint):
     """, { 'bkzeuge' : common.BK_ZEUGE })
 
 
+def import_geoplaces (conn, args):
+    """ Import a geoplaces.xml file. """
+
+    if args.truncate:
+        execute (conn, "TRUNCATE TABLE gis.geoplaces CASCADE", {})
+
+    fn = args.geoplaces
+    log (logging.INFO, "Parsing %s ..." % fn)
+    tree = etree.parse (fn, parser = parser)
+
+    for place in tree.xpath ("/tei:TEI/tei:text/tei:body/tei:listPlace/tei:place[@xml:id]", namespaces = NS):
+        params = {
+            'geo_id'    : get_ns (place, "xml:id"),
+            'parent_id' : None,
+        }
+        for parent in place.xpath ("tei:*[@corresp]", namespaces = NS):
+            params['parent_id'] = parent.get ('corresp')[1:]
+
+        execute (conn, """
+        INSERT INTO gis.geoplaces (geo_id, parent_id)
+        VALUES (:geo_id, :parent_id)
+        ON CONFLICT (geo_id)
+        DO UPDATE SET parent_id = EXCLUDED.parent_id
+        """, params)
+
+        for lang in place.xpath ("tei:*[@xml:lang]", namespaces = NS):
+            params['geo_lang'] = get_ns (lang, "xml:lang").lower ()
+            params['geo_name'] = lang.text,
+
+            execute (conn, """
+            INSERT INTO gis.geoplaces_names (geo_id, geo_lang, geo_name)
+              VALUES (:geo_id, :geo_lang, :geo_name)
+            ON CONFLICT (geo_id, geo_lang)
+            DO UPDATE SET geo_name  = EXCLUDED.geo_name
+            """, params)
+
+        execute (conn, "COMMIT", {})
+
+        for link in place.xpath ("tei:linkGrp[@type='mss']/tei:link", namespaces = NS):
+            params['ms_id'] = link.get ("target")
+
+            try:
+                execute (conn, "BEGIN", {})
+
+                execute (conn, """
+                INSERT INTO gis.mn_mss_geoplaces (ms_id, geo_id)
+                  VALUES (:ms_id, :geo_id)
+                ON CONFLICT
+                DO NOTHING
+                """, params)
+
+                execute (conn, "COMMIT", {})
+
+            except sqlalchemy.exc.IntegrityError as e:
+                log (logging.ERROR, e)
+                execute (conn, "ROLLBACK", {})
+
+
+    execute (conn, "COMMIT", {})
+
+
 def import_corpus (conn, args):
     """ Import a corpus file (or lots of manuscript files). """
 
@@ -703,6 +765,10 @@ def build_parser (default_config_file):
         help='get the publish status from Wordpress Ajax API'
     )
     parser.add_argument (
+        '--geoplaces', action='store',
+        help='import geoplaces XML', default=False
+    )
+    parser.add_argument (
         '--geonames', action='store_true',
         help='lookup geonames.org', default=False
     )
@@ -760,6 +826,11 @@ if __name__ == "__main__":
                 log (logging.INFO, "Parsing %s ..." % fn)
                 process_cap (conn, fn)
                 execute (conn, "COMMIT", {})
+
+    if args.geoplaces:
+        log (logging.INFO, "Importing geoplaces XML ...")
+        with dba.engine.begin () as conn:
+            import_geoplaces (conn, args)
 
     if args.publish:
         log (logging.INFO, "Looking up published manuscripts ...")

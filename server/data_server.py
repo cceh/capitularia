@@ -242,13 +242,13 @@ def query_manuscripts ():
             # First get the geo_ids of all the places that fit the query.
             # Get all children of the place(s) selected by the user.
             res = execute (conn, """
-            WITH RECURSIVE parent_places (geo_id, parent_id, geo_name) AS (
-              SELECT geo_id, parent_id, geo_name
-              FROM geonames
-                WHERE geo_id IN :geo_ids AND geo_source = 'geonames'
+            WITH RECURSIVE parent_places (geo_id, parent_id) AS (
+              SELECT geo_id, parent_id
+              FROM geoplaces
+                WHERE geo_id IN :geo_ids
               UNION
-              SELECT p.geo_id, p.parent_id, p.geo_name
-              FROM parent_places pp, geonames p
+              SELECT p.geo_id, p.parent_id
+              FROM parent_places pp, geoplaces p
                 WHERE p.parent_id = pp.geo_id
             )
             SELECT DISTINCT geo_id FROM parent_places ORDER BY geo_id
@@ -264,7 +264,7 @@ def query_manuscripts ():
             # know the relation between parts and capitularies.
             res = execute (conn, """
             SELECT ms_id
-            FROM mn_msparts_geonames
+            FROM mn_mss_geoplaces
               WHERE geo_id IN :geo_ids
             GROUP BY ms_id
             """, { 'geo_ids' : tuple (places) })
@@ -305,24 +305,29 @@ def query_manuscripts ():
 
 
 @app.route ('/places.json/')
-def places_json (geo_id = None):
+def places_json ():
     """ Return hierarchy of known places for the meta-search box. """
 
-    with current_app.config.dba.engine.begin () as conn:
-        res = []
+    lang = request.args.get ('lang') or 'de'
 
+    with current_app.config.dba.engine.begin () as conn:
+
+        # this mess is needed to sort the parent nodes first
         res = execute (conn, """
-        WITH RECURSIVE parent_places (geo_id, parent_id, geo_name) AS (
-          SELECT geo_id, NULL::text, geo_name
-          FROM geonames
-            WHERE geo_fcode = 'PCLI'
+        WITH RECURSIVE parent_places (geo_id, parent_id) AS (
+          SELECT geo_id, parent_id
+          FROM geoplaces
+            WHERE parent_id IS NULL
           UNION
-          SELECT p.geo_id, p.parent_id, p.geo_name
-          FROM parent_places pp, geonames p
+          SELECT p.geo_id, p.parent_id
+          FROM parent_places pp, geoplaces p
             WHERE p.parent_id = pp.geo_id
         )
-        SELECT * FROM parent_places;
-        """, {})
+        SELECT geo_id, parent_id, geo_name
+        FROM parent_places
+            JOIN geoplaces_names USING (geo_id)
+            WHERE geo_lang = :geo_lang
+        """, {'geo_lang' : lang})
 
         Places = collections.namedtuple ('Places', 'geo_id, parent_id, geo_name')
         places = [ Places._make (r)._asdict () for r in res ]
