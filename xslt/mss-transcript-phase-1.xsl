@@ -649,26 +649,52 @@ The generated text of the footnote varies according to these cases.
     </seg>
   </xsl:template>
 
-  <xsl:template match="gap">
-    <xsl:variable name="char" select="if (ancestor::del) then '†' else '.'" />
+  <xsl:template name="gap-chars">
+    <xsl:param name="char" />
+    <xsl:param name="quantity" />
 
+    <xsl:choose>
+      <xsl:when test="not ($quantity)">
+        <xsl:value-of select="$char"/>
+      </xsl:when>
+      <xsl:when test="xs:integer ($quantity) &lt; 6">
+        <xsl:value-of select="cap:string-pad (xs:integer ($quantity), $char)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- 6 chars or more, insert breaking joiners -->
+        <xsl:value-of select="cap:string-pad (3, $char)"/>
+        <xsl:value-of select="cap:string-pad ((xs:integer ($quantity) - 6) * 2 + 1, concat ('&#x200b;', $char))"/>
+        <xsl:value-of select="cap:string-pad (3, $char)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="gap">
     <seg class="tei-gap" data-shortcuts="0">
-      <xsl:text>[</xsl:text>
       <xsl:choose>
-        <xsl:when test="not (@quantity)">
-          <xsl:value-of select="cap:string-pad (1, $char)"/>
+        <xsl:when test="ancestor::del"> <!-- crosses -->
+          <xsl:choose>
+            <xsl:when test="@quantity">
+              <xsl:call-template name="gap-chars">
+                <xsl:with-param name="char"     select="'†'" />
+                <xsl:with-param name="quantity" select="@quantity" />
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>[†]</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
-        <xsl:when test="xs:integer (@quantity) &lt; 6">
-          <xsl:value-of select="cap:string-pad (xs:integer (@quantity), $char)"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <!-- 6 chars or more, insert breaking joiners -->
-          <xsl:value-of select="cap:string-pad (3, $char)"/>
-          <xsl:value-of select="cap:string-pad ((xs:integer (@quantity) - 6) * 2 + 1, concat ('&#x200b;', $char))"/>
-          <xsl:value-of select="cap:string-pad (3, $char)"/>
+
+        <xsl:otherwise> <!-- dots -->
+          <xsl:text>[</xsl:text>
+          <xsl:call-template name="gap-chars">
+            <xsl:with-param name="char"     select="'.'" />
+            <xsl:with-param name="quantity" select="@quantity" />
+          </xsl:call-template>
+          <xsl:text>]</xsl:text>
         </xsl:otherwise>
       </xsl:choose>
-      <xsl:text>]</xsl:text>
     </seg>
   </xsl:template>
 

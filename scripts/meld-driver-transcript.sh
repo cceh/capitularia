@@ -7,8 +7,9 @@
 #   meld-driver-transcript.sh
 #
 
+ID=$1
 
-ID="paris-bn-lat-9654"
+#ID="paris-bn-lat-9654"
 #ID="wolfenbuettel-hab-blankenb-130"
 #ID="gotha-flb-memb-i-84"
 #ID="paris-bn-lat-4628a"
