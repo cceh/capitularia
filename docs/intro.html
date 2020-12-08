@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -25,16 +31,11 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Overviews" href="overviews.html" />
@@ -52,7 +53,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Capitularia
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Capitularia
           
 
           
@@ -72,6 +73,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -99,6 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="overviews/meta_search.html">Meta Search</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overviews/meta_search.html#metadata-extraction">Metadata Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="overviews/meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overviews/meta_search.html#geodata-extraction">Geodata Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="overviews/meta_search.html#search">Search</a></li>
 </ul>
 </li>
@@ -117,6 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="webprojekt/wordpress-custom.html">Wordpress Customizations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="webprojekt/wordpress/theme.html">Wordpress Theme</a></li>
 <li class="toctree-l3"><a class="reference internal" href="webprojekt/wordpress/plugins.html">Wordpress Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webprojekt/wordpress/developer.html">Developer Notes</a></li>
 </ul>
 </li>
 </ul>
@@ -148,6 +152,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -186,7 +191,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Introduction</li>
     
@@ -236,7 +241,7 @@ link wp to api--><path d="M279.73,125 C303.23,125 326.73,125 350.23,125 " fill="
 link api to db--><path d="M505.97,125 C514.17,125 522.37,125 530.58,125 " fill="none" id="api-db" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="535.68,125,526.68,121,530.68,125,526.68,129,535.68,125" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="500.79,125,509.79,129,505.79,125,509.79,121,500.79,125" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[0ef7ed0170767d45c45501e6b4ae9cea]
 reverse link wp to cache--><path d="M236.53,152.5 C256.58,179.72 287.42,221.57 306.05,246.86 " fill="none" id="wp&lt;-cache" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="233.41,148.27,235.5332,157.8873,236.3779,152.2938,241.9714,153.1386,233.41,148.27" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[c00b34aff96363323f9d1ba93ea8bc50]
 reverse link api to cache--><path d="M402.12,160.79 C382.15,187.64 355.14,223.95 338.15,246.79 " fill="none" id="api&lt;-cache" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="405.26,156.57,396.6793,161.4043,402.276,160.582,403.0984,166.1787,405.26,156.57" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[c98e683f3f48978148f0df210ca908e1]
-link files to cache--><path d="M254.79,269.5 C264.78,269.5 274.76,269.5 284.75,269.5 " fill="none" id="files-&gt;cache" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="289.97,269.5,280.97,265.5,284.97,269.5,280.97,273.5,289.97,269.5" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[d645004ea59d31379cf940b9974da532]
+link files to cache--><path d="M254.79,269.5 C264.78,269.5 274.76,269.5 284.75,269.5 " fill="none" id="files-&gt;cache" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="289.97,269.5,280.97,265.5,284.97,269.5,280.97,273.5,289.97,269.5" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8dab7455246a70ad6d25b0072900dc55]
 @startuml
 skinparam backgroundColor transparent
 skinparam DefaultTextAlignment center
@@ -272,7 +277,7 @@ PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.8+10-post-Debian-1
+Java Version: 11.0.9.1+1-post-Debian-1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en
@@ -319,11 +324,19 @@ from the VM and the Webprojekt.  The editors also have access to it through ssh.
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2018-20 CCeH - Licensed under the GNU GPL v3 or later
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -334,7 +347,6 @@ from the VM and the Webprojekt.  The editors also have access to it through ssh.
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

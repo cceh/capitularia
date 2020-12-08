@@ -1,9 +1,7 @@
 
 
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -13,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -26,16 +31,11 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Capitularia
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Capitularia
           
 
           
@@ -71,6 +71,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -98,6 +99,7 @@
 <li class="toctree-l2"><a class="reference internal" href="overviews/meta_search.html">Meta Search</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overviews/meta_search.html#metadata-extraction">Metadata Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="overviews/meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overviews/meta_search.html#geodata-extraction">Geodata Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="overviews/meta_search.html#search">Search</a></li>
 </ul>
 </li>
@@ -148,6 +150,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -186,7 +189,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Index</li>
     
@@ -583,6 +586,10 @@
 </li>
       <li><a href="vm/database.html#db.Geonames">Geonames (class in db)</a>
 </li>
+      <li><a href="vm/database.html#db.GeoPlaces">GeoPlaces (class in db)</a>
+</li>
+      <li><a href="vm/database.html#db.GeoPlacesNames">GeoPlacesNames (class in db)</a>
+</li>
       <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-tools.get_api_entrypoint">get_api_entrypoint() (built-in function)</a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/meta-search.html#cceh\capitularia\meta_search\Highlighter::get_bounds"><strong>get_bounds() (Highlighter method)</strong></a>
@@ -615,10 +622,10 @@
         <li><a href="webprojekt/wordpress/plugins/lib.html#cceh\capitularia\lib\get_opt"><strong>(function in cceh\capitularia\lib)</strong></a>
 </li>
       </ul></li>
-      <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Config::get_opt_path"><strong>get_opt_path() (Config method)</strong></a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Config::get_opt_path"><strong>get_opt_path() (Config method)</strong></a>
+</li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#cceh\capitularia\page_generator\Manuscript::get_page_id"><strong>get_page_id() (Manuscript method)</strong></a>
 </li>
       <li><a href="webprojekt/wordpress/theme/main.html#cceh\capitularia\theme\get_page_status_in_cache"><strong>get_page_status_in_cache() (function in cceh\capitularia\theme)</strong></a>
@@ -709,17 +716,15 @@
 </li>
       <li><a href="webprojekt/wordpress/plugins/page-generator.html#plugins-page-generator.init_tabs">init_tabs() (built-in function)</a>
 </li>
-      <li><a href="webprojekt/wordpress/theme/main.html#themes-capitularia.initBackToTop">initBackToTop() (built-in function)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="webprojekt/wordpress/theme/main.html#themes-capitularia.initBackToTop">initBackToTop() (built-in function)</a>
+</li>
       <li><a href="webprojekt/wordpress/theme/main.html#themes-capitularia.initFootnoteTooltips">initFootnoteTooltips() (built-in function)</a>
 </li>
       <li><a href="webprojekt/wordpress/theme/main.html#themes-capitularia.initLegend">initLegend() (built-in function)</a>
 </li>
       <li><a href="webprojekt/wordpress/theme/main.html#themes-capitularia.initResetForm">initResetForm() (built-in function)</a>
-</li>
-      <li><a href="webprojekt/wordpress/theme/main.html#themes-capitularia.initSmoothScrollLinks">initSmoothScrollLinks() (built-in function)</a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-tools.insert_css_palette">insert_css_palette() (built-in function)</a>
 </li>
@@ -749,7 +754,7 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-tools.LANG">LANG (global variable or constant)</a>
+      <li><a href="webprojekt/wordpress/plugins/collation-tool.html#plugins-collation-tools.LANG">LANG (global variable or constant)</a>, <a href="webprojekt/wordpress/plugins/dynamic-menu.html#plugins-dynamic-menu.LANG">[1]</a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/lib.html#cceh\capitularia\lib\languages_dir_path"><strong>languages_dir_path() (function in cceh\capitularia\lib)</strong></a>
 </li>
@@ -783,8 +788,6 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="webprojekt/wordpress/theme/main.html#cceh\capitularia\theme\MAGIC_LINEBREAK_BUTTON"><strong>MAGIC_LINEBREAK_BUTTON (constant in cceh\capitularia\theme)</strong></a>
-</li>
       <li><a href="webprojekt/wordpress/theme/main.html#cceh\capitularia\theme\MAGIC_LOGIN"><strong>MAGIC_LOGIN (constant in cceh\capitularia\theme)</strong></a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/dynamic-menu.html#cceh\capitularia\dynamic_menu\MAGIC_MENU"><strong>MAGIC_MENU (constant in cceh\capitularia\dynamic_menu)</strong></a>
@@ -820,6 +823,8 @@
       <li><a href="webprojekt/wordpress/plugins/file-includer.html#cceh\capitularia\file_includer\merge_notes"><strong>merge_notes() (function in cceh\capitularia\file_includer)</strong></a>
 </li>
       <li><a href="webprojekt/wordpress/plugins/meta-search.html#cceh\capitularia\meta_search\MetaSearch"><strong>MetaSearch (class in cceh\capitularia\meta_search)</strong></a>
+</li>
+      <li><a href="vm/database.html#db.MnManuscriptsGeoPlaces">MnManuscriptsGeoPlaces (class in db)</a>
 </li>
       <li><a href="vm/database.html#db.MnMsPartsGeonames">MnMsPartsGeonames (class in db)</a>
 </li>
@@ -1863,11 +1868,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2018-20 CCeH - Licensed under the GNU GPL v3 or later
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1878,7 +1891,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

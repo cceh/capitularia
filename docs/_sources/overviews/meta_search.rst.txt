@@ -66,6 +66,14 @@ The TEI files are already pre-processed as described under Collation Tool and
 the plain text of every chapter is stored in the database.
 
 
+Geodata Extraction
+~~~~~~~~~~~~~~~~~~
+
+Geodata is stored in the file :file:`AFS:publ/mss/lists/capitularia_geo.xml`.
+This file is periodically processed with :program:`import --geoplaces` and its
+content is stored into the database.  Also the "places" tree in the meta search
+dialog is built using this data.
+
 
 Search
 ~~~~~~

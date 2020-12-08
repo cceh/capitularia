@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/my_theme.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -25,16 +31,11 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/my_theme.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Capitularia VM" href="../../vm.html" />
@@ -52,7 +53,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> Capitularia
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Capitularia
           
 
           
@@ -72,6 +73,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -99,6 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overviews/meta_search.html">Meta Search</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../overviews/meta_search.html#metadata-extraction">Metadata Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../overviews/meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/meta_search.html#geodata-extraction">Geodata Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../overviews/meta_search.html#search">Search</a></li>
 </ul>
 </li>
@@ -149,6 +152,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -187,7 +191,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../webprojekt.html">RRZK Web Projekt Capitularia</a> &raquo;</li>
         
@@ -219,23 +223,24 @@
 Makefile.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#webpack" id="id4">webpack</a></p></li>
-<li><p><a class="reference internal" href="#i18n-of-javascript" id="id5">i18n of Javascript</a></p>
+<li><p><a class="reference internal" href="#webpack" id="id3">webpack</a></p></li>
+<li><p><a class="reference internal" href="#i18n-of-javascript" id="id4">i18n of Javascript</a></p>
 <ul>
-<li><p><a class="reference internal" href="#extract" id="id6">Extract</a></p>
+<li><p><a class="reference internal" href="#extract" id="id5">Extract</a></p>
 <ul>
-<li><p><a class="reference internal" href="#vue-files" id="id7">Vue Files</a></p></li>
+<li><p><a class="reference internal" href="#php-files" id="id6">PHP Files</a></p></li>
+<li><p><a class="reference internal" href="#js-files" id="id7">JS Files</a></p></li>
+<li><p><a class="reference internal" href="#vue-files" id="id8">Vue Files</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#translate" id="id8">Translate</a></p></li>
-<li><p><a class="reference internal" href="#enqueue-translations" id="id9">Enqueue Translations</a></p></li>
-<li><p><a class="reference internal" href="#use-translated-strings" id="id10">Use translated strings</a></p></li>
+<li><p><a class="reference internal" href="#translate" id="id9">Translate</a></p></li>
+<li><p><a class="reference internal" href="#enqueue-translations" id="id10">Enqueue Translations</a></p></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="webpack">
-<h2><a class="toc-backref" href="#id4">webpack</a><a class="headerlink" href="#webpack" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">webpack</a><a class="headerlink" href="#webpack" title="Permalink to this headline">¶</a></h2>
 <p>We use webpack to compile all our JS and CSS modules.</p>
 <p>Webpack generates a manifest file in <code class="file docutils literal notranslate"><span class="pre">dist/manifest.json</span></code>
 that contains the public path to all compiled modules.</p>
@@ -266,7 +271,7 @@ reloading the whole page (and losing application state).</p>
 
 <span class="kr">const</span> <span class="nx">host</span>    <span class="o">=</span> <span class="s1">&#39;capitularia.fritz.box&#39;</span><span class="p">;</span>
 <span class="kr">const</span> <span class="nx">devHost</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
-<span class="kr">const</span> <span class="nx">devPort</span> <span class="o">=</span> <span class="mi">8081</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">devPort</span> <span class="o">=</span> <span class="mf">8081</span><span class="p">;</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">merge</span> <span class="p">(</span><span class="nx">common</span><span class="p">,</span> <span class="p">{</span>
     <span class="nx">mode</span>    <span class="o">:</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span>
@@ -283,7 +288,7 @@ reloading the whole page (and losing application state).</p>
                     <span class="p">{</span>
                         <span class="nx">loader</span>  <span class="o">:</span> <span class="s1">&#39;css-loader&#39;</span><span class="p">,</span>
                         <span class="nx">options</span> <span class="o">:</span> <span class="p">{</span>
-                            <span class="nx">importLoaders</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+                            <span class="nx">importLoaders</span> <span class="o">:</span> <span class="mf">2</span><span class="p">,</span>
                         <span class="p">},</span>
                     <span class="p">},</span>
                     <span class="s1">&#39;postcss-loader&#39;</span><span class="p">,</span>
@@ -333,7 +338,7 @@ reloading the whole page (and losing application state).</p>
 </div>
 </div>
 <div class="section" id="i18n-of-javascript">
-<h2><a class="toc-backref" href="#id5">i18n of Javascript</a><a class="headerlink" href="#i18n-of-javascript" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">i18n of Javascript</a><a class="headerlink" href="#i18n-of-javascript" title="Permalink to this headline">¶</a></h2>
 <p>Internationalization consists of these steps:</p>
 <ol class="arabic simple">
 <li><p>Extract the strings to translate from the source files.</p></li>
@@ -343,15 +348,44 @@ reloading the whole page (and losing application state).</p>
 runtime.</p></li>
 </ol>
 <div class="section" id="extract">
-<h3><a class="toc-backref" href="#id6">Extract</a><a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Extract</a><a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h3>
 <p>There are 3 kinds of source files: PHP files, JS files and Vue single component
-files.  PHP and JS files can be extracted using the GNU xgettext utility.</p>
-<p>In JS files, use the <code class="xref py py-func docutils literal notranslate"><span class="pre">__</span> <span class="pre">()</span></code> function:</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">__</span> <span class="p">(</span><span class="s1">&#39;Message to translate&#39;</span><span class="p">,</span> <span class="nx">DOMAIN</span><span class="p">);</span>
+files.  PHP files can be extracted using the GNU xgettext utility.  JS and Vue
+files can be extracted using the <a class="reference external" href="https://github.com/Polyconseil/easygettext">easygettext</a> utility.</p>
+<div class="section" id="php-files">
+<h4><a class="toc-backref" href="#id6">PHP Files</a><a class="headerlink" href="#php-files" title="Permalink to this headline">¶</a></h4>
+<p>In PHP files use the __ (), _x (), and _n () functions.</p>
+</div>
+<div class="section" id="js-files">
+<h4><a class="toc-backref" href="#id7">JS Files</a><a class="headerlink" href="#js-files" title="Permalink to this headline">¶</a></h4>
+<p>In JS files, add this boilerplate to the file:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/** The Wordpress Text Domain of the plugin. */</span>
+<span class="kr">const</span> <span class="nx">LANG</span> <span class="o">=</span> <span class="s1">&#39;cap-dynamic-menu&#39;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">$gettext</span> <span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">__</span> <span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">LANG</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">$pgettext</span> <span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_x</span> <span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">LANG</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">$ngettext</span> <span class="p">(</span><span class="nx">singular</span><span class="p">,</span> <span class="nx">plural</span><span class="p">,</span> <span class="nx">number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_n</span> <span class="p">(</span><span class="nx">singular</span><span class="p">,</span> <span class="nx">plural</span><span class="p">,</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">LANG</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
+<p>Then use like this:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">message</span>  <span class="o">=</span> <span class="nx">$gettext</span>  <span class="p">(</span><span class="s1">&#39;Message to translate&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">pmessage</span> <span class="o">=</span> <span class="nx">$pgettext</span> <span class="p">(</span><span class="s1">&#39;Hint to translators&#39;</span><span class="p">,</span> <span class="s1">&#39;Message to translate&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">nmessage</span> <span class="o">=</span> <span class="nx">$ngettext</span> <span class="p">(</span><span class="s1">&#39;Singular&#39;</span><span class="p">,</span> <span class="s1">&#39;Plural&#39;</span><span class="p">,</span> <span class="nx">number</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>We must use the <code class="xref py py-func docutils literal notranslate"><span class="pre">$gettext()</span></code> names for our functions, or the stupid
+easygettext tool will not recognize the function.  The functions used like this
+tag the message for the string extractor and also translate the string at
+runtime.</p>
+</div>
 <div class="section" id="vue-files">
-<h4><a class="toc-backref" href="#id7">Vue Files</a><a class="headerlink" href="#vue-files" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id8">Vue Files</a><a class="headerlink" href="#vue-files" title="Permalink to this headline">¶</a></h4>
 <p>Vue single component files contain 3 sections: HTML, JS, and CSS.  The CSS
 section does not need to be translated.</p>
 <p>In the JS section of Vue files, use the <code class="xref py py-func docutils literal notranslate"><span class="pre">$t</span> <span class="pre">()</span></code> function:</p>
@@ -360,74 +394,17 @@ section does not need to be translated.</p>
 </div>
 <p>This function tags the message for the string extractor and also translates
 the string at runtime.</p>
-<p>In The HTML template section of Vue files, you may use 3 different methods to
+<p>In the HTML template section of Vue files, you may use 3 different methods to
 tag translatable strings:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h2</span> <span class="na">v-translate</span><span class="p">&gt;</span>Header to translate<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ &#39;Text to translate&#39; | translate }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">span</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;$t (&#39;Tooltip to translate&#39;)&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>To extract the strings from the Vue files we use
-<a class="reference external" href="https://github.com/Polyconseil/easygettext">easygettext</a>.</p>
-</div>
-</div>
-<div class="section" id="translate">
-<h3><a class="toc-backref" href="#id8">Translate</a><a class="headerlink" href="#translate" title="Permalink to this headline">¶</a></h3>
-<p>Use poedit to translate the extracted strings.</p>
-<p>To compile .po files into .json files in jed-format we use
-<a class="reference external" href="https://github.com/mikeedwards/po2json">po2json</a>.</p>
-</div>
-<div class="section" id="enqueue-translations">
-<h3><a class="toc-backref" href="#id9">Enqueue Translations</a><a class="headerlink" href="#enqueue-translations" title="Permalink to this headline">¶</a></h3>
-<p>Wordpress boilerplate to make translations available in PHP and JS files:</p>
+<p>This is the Vue 2 boilerplate that enables translations in Vue files: Put this
+in main.js before initializing your Vue app.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">Wordpress boilerplate</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">use cceh\capitularia\lib;</span>
-
-<span class="x">const DOMAIN = &#39;my-text-domain&#39;;</span>
-
-<span class="x">function enqueue_scripts ()</span>
-<span class="x">{</span>
-<span class="x">    $key = &#39;my-module&#39;; // key from manifest.json</span>
-
-<span class="x">    // enqueue webpacked JS module</span>
-<span class="x">    lib\enqueue_from_manifest (&quot;$key.js&quot;, [</span>
-<span class="x">        &#39;another-module.js&#39;,</span>
-<span class="x">    ]);</span>
-
-<span class="x">    // enqueue extracted (minified) CSS</span>
-<span class="x">    lib\enqueue_from_manifest (&quot;$key.css&quot;, [</span>
-<span class="x">        &#39;another-module.css&#39;</span>
-<span class="x">    ]);</span>
-
-<span class="x">    // translations in PHP files</span>
-<span class="x">    lib\load_textdomain (DOMAIN);</span>
-
-<span class="x">    // translations in JS files</span>
-<span class="x">    lib\wp_set_script_translations (&quot;$key.js&quot;, DOMAIN);</span>
-<span class="x">}</span>
-</pre></div>
-</div>
-</div>
-<p>See also:
-<a class="reference external" href="https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/">https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/</a></p>
-</div>
-<div class="section" id="use-translated-strings">
-<h3><a class="toc-backref" href="#id10">Use translated strings</a><a class="headerlink" href="#use-translated-strings" title="Permalink to this headline">¶</a></h3>
-<p>In JS simply use the functions made available by the <code class="file docutils literal notranslate"><span class="pre">wp-i18n.js</span></code> library.</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">Javascript boilerplate</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">__</span><span class="p">,</span> <span class="nx">_x</span><span class="p">,</span> <span class="nx">_n</span><span class="p">,</span> <span class="nx">_nx</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">;</span>
-<span class="kr">const</span> <span class="nx">DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;my-text-domain&#39;</span><span class="p">;</span>
-
-<span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">__</span> <span class="p">(</span><span class="s1">&#39;Message to translate&#39;</span><span class="p">,</span> <span class="nx">DOMAIN</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<p>Vue boilerplate to enable translations in HTML templates:
-Put this in main.js before initializing your Vue app.</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">Vue.js boilerplate</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text">Vue.js boilerplate</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;my-text-domain&#39;</span><span class="p">;</span>
 
 <span class="c1">// wrapper to call the Wordpress translate function</span>
@@ -456,6 +433,48 @@ Put this in main.js before initializing your Vue app.</p>
 </div>
 </div>
 </div>
+<div class="section" id="translate">
+<h3><a class="toc-backref" href="#id9">Translate</a><a class="headerlink" href="#translate" title="Permalink to this headline">¶</a></h3>
+<p>Use poedit to translate the extracted strings.</p>
+<p>To compile .po files into .json files in jed-format we use
+<a class="reference external" href="https://github.com/mikeedwards/po2json">po2json</a>.</p>
+</div>
+<div class="section" id="enqueue-translations">
+<h3><a class="toc-backref" href="#id10">Enqueue Translations</a><a class="headerlink" href="#enqueue-translations" title="Permalink to this headline">¶</a></h3>
+<p>Wordpress boilerplate to make translations available in PHP and JS files:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Wordpress boilerplate</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">use cceh\capitularia\lib;</span>
+
+<span class="x">const DOMAIN = &#39;my-text-domain&#39;;</span>
+
+<span class="x">function enqueue_scripts ()</span>
+<span class="x">{</span>
+<span class="x">    $key = &#39;my-module&#39;; // key from webpack.common.js</span>
+
+<span class="x">    // enqueue webpacked JS module</span>
+<span class="x">    lib\enqueue_from_manifest (&quot;$key.js&quot;, [</span>
+<span class="x">        &#39;another-module.js&#39;,</span>
+<span class="x">    ]);</span>
+
+<span class="x">    // enqueue extracted (minified) CSS</span>
+<span class="x">    lib\enqueue_from_manifest (&quot;$key.css&quot;, [</span>
+<span class="x">        &#39;another-module.css&#39;</span>
+<span class="x">    ]);</span>
+
+<span class="x">    // translations in PHP files</span>
+<span class="x">    lib\load_textdomain (DOMAIN);</span>
+
+<span class="x">    // translations in JS files</span>
+<span class="x">    lib\wp_set_script_translations (&quot;$key.js&quot;, DOMAIN);</span>
+<span class="x">}</span>
+</pre></div>
+</div>
+</div>
+<p>See also:
+<a class="reference external" href="https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/">https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/</a></p>
+</div>
+</div>
 </div>
 
 
@@ -478,11 +497,19 @@ Put this in main.js before initializing your Vue app.</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2018-20 CCeH - Licensed under the GNU GPL v3 or later
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -493,7 +520,6 @@ Put this in main.js before initializing your Vue app.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

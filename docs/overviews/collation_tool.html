@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -25,16 +31,11 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Meta Search" href="meta_search.html" />
@@ -52,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> Capitularia
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Capitularia
           
 
           
@@ -72,6 +73,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -99,6 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="meta_search.html">Meta Search</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="meta_search.html#metadata-extraction">Metadata Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="meta_search.html#geodata-extraction">Geodata Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="meta_search.html#search">Search</a></li>
 </ul>
 </li>
@@ -117,6 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../webprojekt/wordpress-custom.html">Wordpress Customizations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../webprojekt/wordpress/theme.html">Wordpress Theme</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../webprojekt/wordpress/plugins.html">Wordpress Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../webprojekt/wordpress/developer.html">Developer Notes</a></li>
 </ul>
 </li>
 </ul>
@@ -148,6 +152,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -186,7 +191,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../overviews.html">Overviews</a> &raquo;</li>
         
@@ -238,7 +243,7 @@ link chapters to import--><path d="M369.59,298.01 C343.8,315.84 311.5,338.18 287
 link import to db--><path d="M251,404.13 C251,419.61 251,440.63 251,458.44 " fill="none" id="import-&gt;db" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="251,463.86,255,454.86,251,458.86,247,454.86,251,463.86" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[16b2f23e595c1c5de587a32b661386ae]
 link cron to make--><path d="M111.56,153 C121.55,153 131.55,153 141.54,153 " fill="none" id="cron-&gt;make" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="146.76,153,137.76,149,141.76,153,137.76,157,146.76,153" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[42211ccb8b439fe830e993a3999a0d06]
 link make to saxon--><path d="M243.1,153 C253.11,153 263.11,153 273.12,153 " fill="none" id="make-&gt;saxon" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="278.35,153,269.35,149,273.35,153,269.35,157,278.35,153" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[e731f16ea0a8d8bacc8eebde1022f2e9]
-link make to import--><path d="M146.8,174.87 C122.01,188.4 94.09,208.64 80,236 C67.38,260.5 65.32,274.68 80,298 C104.76,337.33 154.21,358.22 193.59,369.05 " fill="none" id="make-&gt;import" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="198.83,370.44,191.1577,364.2645,193.9974,369.157,189.1049,371.9967,198.83,370.44" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[9fc54c065b80ad456ed02345df0d4553]
+link make to import--><path d="M146.8,174.87 C122.01,188.4 94.09,208.64 80,236 C67.38,260.5 65.32,274.68 80,298 C104.76,337.33 154.21,358.22 193.59,369.05 " fill="none" id="make-&gt;import" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="198.83,370.44,191.1577,364.2645,193.9974,369.157,189.1049,371.9967,198.83,370.44" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[7f540938f9d7f1f9666c240a07c52906]
 @startuml
 skinparam backgroundColor transparent
 skinparam DefaultTextAlignment center
@@ -271,7 +276,7 @@ PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.8+10-post-Debian-1
+Java Version: 11.0.9.1+1-post-Debian-1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en
@@ -306,7 +311,7 @@ entity client--><rect fill="#FEFECE" filter="url(#fatoh9c7dr305)" height="62.593
 link db to api--><path d="M93,121.1 C93,137.65 93,158.29 93,175.67 " fill="none" id="db-&gt;api" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="93,180.95,97,171.95,93,175.95,89,171.95,93,180.95" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8bbc512d03c057d4411096abd71c9ff2]
 link api to client--><path d="M93,244.03 C93,260.66 93,281.32 93,298.7 " fill="none" id="api-&gt;client" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="93,303.98,97,294.98,93,298.98,89,294.98,93,303.98" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[5044fd0ed8a343a6b052e3d200e8e14b]
 reverse link api to cx--><path d="M152.81,235.67 C162.82,236.62 172.84,236.09 182.86,234.1 " fill="none" id="api&lt;-cx" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="147.57,235.03,156.0241,240.0825,152.5338,235.6308,156.9854,232.1404,147.57,235.03" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[3fea2d4c4febec761046b87d6bc08f42]
-link api to cx--><path d="M147.57,189.97 C157.68,188.49 167.79,188.51 177.9,190.03 " fill="none" id="api-&gt;cx" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="182.86,190.9,174.6812,185.4131,177.9344,190.0409,173.3066,193.2941,182.86,190.9" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[ff6a0fc8686b7521ace2da6c74525bc1]
+link api to cx--><path d="M147.57,189.97 C157.68,188.49 167.79,188.51 177.9,190.03 " fill="none" id="api-&gt;cx" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="182.86,190.9,174.6812,185.4131,177.9344,190.0409,173.3066,193.2941,182.86,190.9" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[6c08e3355dc5ef5b8dae8c8613731603]
 @startuml
 skinparam backgroundColor transparent
 skinparam DefaultTextAlignment center
@@ -329,7 +334,7 @@ PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.8+10-post-Debian-1
+Java Version: 11.0.9.1+1-post-Debian-1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en
@@ -411,11 +416,19 @@ Textual Sources,</em> <a class="reference external" href="https://collatex.net/"
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2018-20 CCeH - Licensed under the GNU GPL v3 or later
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -426,7 +439,6 @@ Textual Sources,</em> <a class="reference external" href="https://collatex.net/"
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

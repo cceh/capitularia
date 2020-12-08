@@ -218,7 +218,7 @@ html_theme_options = {
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 def setup (app):
-    app.add_stylesheet ('my_theme.css')
+    app.add_css_file ('my_theme.css')
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.

@@ -1,8 +1,4 @@
 @prefix cap: <http://capitularia.uni-koeln.de/rdf/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://capitularia.uni-koeln.de/bib-bibliography.xsl> a cap:xsl ;
     cap:inputs <http://capitularia.uni-koeln.de/$(BIB_DIR)/Bibliographie_Capitularia.xml> ;
@@ -74,6 +70,9 @@
 <http://capitularia.uni-koeln.de/generate_toc.xsl> a cap:xsl ;
     cap:inputs <http://capitularia.uni-koeln.de/$(MSS_PRIV_DIR)/%.xml> ;
     cap:outputs <http://capitularia.uni-koeln.de/$(MSS_PRIV_DIR)/%-toc.xml> ;
+    cap:version "3.0" .
+
+<http://capitularia.uni-koeln.de/geo-places-to-jstree.xsl> a cap:xsl ;
     cap:version "3.0" .
 
 <http://capitularia.uni-koeln.de/lists> a cap:target ;
