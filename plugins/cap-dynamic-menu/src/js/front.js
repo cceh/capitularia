@@ -149,7 +149,7 @@ function init_dynamic_menues () {
 
                 // horrible hack for linebreak checkbox, close your eyes
                 if (href === '#editorial-preface') {
-                    const message = $pgettext ('Checkbox label', 'Show newlines');
+                    const message = $pgettext ('Checkbox label', 'Show line breaks');
 
                     a.push (`<a class="ssdone">
 <div class="custom-control custom-checkbox">

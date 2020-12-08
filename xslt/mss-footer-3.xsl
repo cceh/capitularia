@@ -164,7 +164,7 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.footer.html
         </tr>
         <tr>
           <td>|</td>
-          <td>[:de]Zeilenwechsel[:en]New line[:]</td>
+          <td>[:de]Zeilenwechsel[:en]Line break[:]</td>
         </tr>
         <tr>
           <td>[BK 139 c. 1]</td>
