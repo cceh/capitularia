@@ -1,9 +1,9 @@
 const glob = require ('glob');
 const path = require ('path');
 
-const HtmlWebpackPlugin = require ('html-webpack-plugin');
-const ManifestPlugin    = require ('webpack-manifest-plugin');
-const VueLoaderPlugin   = require ('vue-loader/lib/plugin'); // loads vue single-file components
+const HtmlWebpackPlugin         = require ('html-webpack-plugin');
+const { WebpackManifestPlugin } = require ('webpack-manifest-plugin');
+const VueLoaderPlugin           = require ('vue-loader/lib/plugin'); // loads vue single-file components
 
 module.exports = {
     context : path.resolve (__dirname),
@@ -128,7 +128,7 @@ module.exports = {
             inject   : false,
             chunks   : [ 'cap-client', 'cap-vendor', 'cap-runtime' ],
         }),
-        new ManifestPlugin ({
+        new WebpackManifestPlugin ({
             fileName        : 'manifest.json',
             writeToFileEmit : true,
         }),
