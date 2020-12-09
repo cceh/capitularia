@@ -56,7 +56,11 @@ $(LANG_SRC)/$(1).po: $(LANG_SRC)/capitularia.pot
 
 $(eval HANDLE := $(TEXT_DOMAIN)-front.js)
 
-mo: $(LANG_DEST)/$(TEXT_DOMAIN)-$(1).mo $(LANG_DEST)/$(TEXT_DOMAIN)-$(1)-$(HANDLE).json
+mo: $(LANG_DEST)/$(1).mo $(LANG_DEST)/$(TEXT_DOMAIN)-$(1).mo $(LANG_DEST)/$(TEXT_DOMAIN)-$(1)-$(HANDLE).json
+
+$(LANG_DEST)/$(1).mo: $(LANG_SRC)/$(1).po
+	mkdir -p $$(dir $$@)
+	msgfmt -o $$@ $$?
 
 $(LANG_DEST)/$(TEXT_DOMAIN)-$(1).mo: $(LANG_SRC)/$(1).po
 	mkdir -p $$(dir $$@)
