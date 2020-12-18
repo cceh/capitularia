@@ -290,6 +290,10 @@
         <title>Monumenta Germaniae Historica</title>
         <caption>MGH</caption>
       </item>
+      <item key=".themorgan.org">
+        <title>The Morgan Library &amp; Museum</title>
+        <caption>The Morgan Library &amp; Museum</caption>
+      </item>
       <item key="onb.ac.at">
         <title>Österreichische Nationalbibliothek</title>
         <caption>ÖNB</caption>
