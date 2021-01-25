@@ -94,6 +94,11 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.header.html
     </div>
   </xsl:template>
 
+  <xsl:template match="sourceDesc">
+    <xsl:apply-templates select="msDesc"/>
+    <xsl:apply-templates select="msDesc" mode="move-notes" />
+  </xsl:template>
+
   <xsl:template match="msDesc">
     <div class="tei-msDesc">
 
@@ -104,19 +109,12 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.header.html
         <xsl:apply-templates select="/TEI/facsimile"/>
       </div>
 
-      <div>
-        <xsl:apply-templates select=".//filiation"/>
-        <xsl:apply-templates select=".//adminInfo/note[@resp='KU']"/>
-        <xsl:apply-templates select=".//msItem/note[@type='annotation']"/>
-        <!-- Handschrift des Monats -->
-        <xsl:apply-templates select=".//ref[@subtype='mom']"/>
-        <!-- Kapitular des Monats -->
-        <xsl:apply-templates select=".//ref[@subtype='com']"/>
-      </div>
-
+      <xsl:call-template name="ms-desc"/>
       <xsl:call-template name="page-break"/>
       <xsl:call-template name="ms-part"/>
-      <xsl:apply-templates select="msPart"/>
+
+      <xsl:apply-templates select="msPart" />
+      <xsl:apply-templates select="msPart" mode="move-notes" />
 
     </div>
   </xsl:template>
@@ -128,19 +126,43 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.header.html
       <h4 id="{cap:part-id (.)}">
         <xsl:value-of select="@n"/>
       </h4>
+
       <xsl:call-template name="ms-part"/>
     </div>
   </xsl:template>
 
+  <xsl:template match="msDesc" mode="move-notes">
+    <div class="footnotes-wrapper">
+      <xsl:call-template name="ms-desc" />
+      <xsl:call-template name="ms-part"/>
+    </div>
+  </xsl:template>
+
+  <xsl:template match="msPart" mode="move-notes">
+    <div class="footnotes-wrapper">
+      <xsl:call-template name="ms-part" />
+    </div>
+  </xsl:template>
+
+  <xsl:template name="ms-desc">
+    <xsl:apply-templates select=".//filiation"                       mode="#current" />
+    <xsl:apply-templates select=".//adminInfo/note[@resp='KU']"      mode="#current" />
+    <xsl:apply-templates select=".//msItem/note[@type='annotation']" mode="#current" />
+    <!-- Handschrift des Monats -->
+    <xsl:apply-templates select=".//ref[@subtype='mom']" mode="#current" />
+    <!-- Kapitular des Monats -->
+    <xsl:apply-templates select=".//ref[@subtype='com']" mode="#current" />
+  </xsl:template>
+
   <xsl:template name="ms-part">
     <!-- Entstehung und Überlieferung -->
-    <xsl:apply-templates select="history[cap:non-empty (.)]"/>
+    <xsl:apply-templates select="history[cap:non-empty (.)]" mode="#current" />
     <!-- Äußere Beschreibung -->
-    <xsl:apply-templates select="physDesc[cap:non-empty (.)]"/>
+    <xsl:apply-templates select="physDesc[cap:non-empty (.)]" mode="#current" />
     <!-- Inhalte -->
-    <xsl:apply-templates select="msContents[cap:non-empty (.)]"/>
+    <xsl:apply-templates select="msContents[cap:non-empty (.)]" mode="#current" />
     <!-- Bibliographie -->
-    <xsl:apply-templates select="additional/listBibl"/>
+    <xsl:apply-templates select="additional/listBibl" mode="#current" />
   </xsl:template>
 
   <!-- Aufbewahrungsort -->
@@ -343,11 +365,6 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.header.html
       <ul class="bare">
         <xsl:apply-templates select="msItem"/>
       </ul>
-
-      <div class="footnotes-wrapper">
-        <xsl:apply-templates select="summary[normalize-space (.)]" mode="move-notes" />
-        <xsl:apply-templates select="msItem" mode="move-notes" />
-      </div>
     </div>
   </xsl:template>
 
