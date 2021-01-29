@@ -6,9 +6,6 @@ const common = require ('./webpack.common.js');
 module.exports = merge (common, {
     mode    : 'production',
     devtool : 'source-map', // but see: https://github.com/webpack/webpack-sources/issues/55
-    entry   : {
-        'cap-theme-front' : { import : ['./themes/Capitularia/src/js/piwik-wrapper.js'] },
-    },
     output : {
         publicPath : '/wp-content/dist/',
     },
