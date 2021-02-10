@@ -117,6 +117,9 @@ if (!is_admin ()) {
     add_filter ('nav_menu_link_attributes',        ns ('on_nav_menu_link_attributes'), 20, 4);
 }
 
+/* allow SVG uploads */
+add_filter ('upload_mimes',                        ns ('on_upload_mimes'));
+
 /*
  * The shortcodes provided by our theme.  For the implementation see:
  * shortcodes.php.

@@ -519,6 +519,21 @@ function on_nav_menu_link_attributes ($atts, $item, $args, $depth) // phpcs:igno
     }
     return $atts;
 }
+
+/**
+ * Allow upload of SVG files.
+ *
+ * @param array $mimes The old list of allowed mime types.
+ *
+ * @return array The updated list of allowed mime types.
+ */
+
+function on_upload_mimes ($mimes)
+{
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+
 /**
  * Redirect the user to the current page after login
  *

@@ -7,6 +7,7 @@
  */
 
 import $ from 'jquery';
+import svgPanZoom from 'svg-pan-zoom';
 
 /**
  * Initialize the back to top link: on click do a smooth scroll to the top
@@ -107,6 +108,45 @@ function initSidebarToc () {
     sidebar.closest ('ul').css ('height', '100%');
 }
 
+function initSVGPanZoom () {
+    // first replace the <img> with the inline SVG
+
+    for (const img of document.querySelectorAll ('img.svg-pan-zoom[src]')) {
+
+        // retrieve the SVG
+        $.get (img.getAttribute ('src'), function (data) {
+
+            // only the SVG tag
+            const $svg = $ (data).find ('svg');
+            const svg  = $svg[0];
+            for (const name of ['width', 'height', 'content']) {
+                svg.removeAttribute (name); // clean up
+            }
+
+            // copy all attributes from <img> to <svg>
+            for (const attr of img.attributes) {
+                svg.setAttribute (attr.name, attr.value);
+            };
+
+            // switch tags
+            $ (img).replaceWith ($svg);
+
+            // enable pan & zoom
+            const p = svgPanZoom (svg, {
+                fit : false,
+                controlIconsEnabled : true,
+                zoomScaleSensitivity: 0.5,
+            });
+
+            const sizes = p.getSizes ();
+            p.resize (); // update SVG cached size and controls positions
+            p.fit ();
+            p.center ();
+
+        }, 'xml');
+    };
+}
+
 $ (document).ready (function () {
     initFootnoteTooltips ();
     setTimeout (initBackToTop, 0);
@@ -117,5 +157,6 @@ $ (document).ready (function () {
     if (window.matchMedia ('(min-width: 768px)').matches) {
         initLegend ();
         initSidebarToc ();
+        initSVGPanZoom ();
     }
 });
