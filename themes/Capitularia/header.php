@@ -30,7 +30,7 @@ use cceh\capitularia\lib;
         _paq.push (['enableLinkTracking']);
 
         (function () {
-            var u = '//projects.cceh.uni-koeln.de/piwik/';
+            var u = '//webstats.cceh.uni-koeln.de/';
             _paq.push (['setTrackerUrl', u + 'matomo.php']);
             _paq.push (['setSiteId', 14]);
 
