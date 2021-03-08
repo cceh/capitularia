@@ -9,7 +9,7 @@ clean:
 	find . -name '*~' -delete
 	rm -rf dist/*
 
-deploy: clean lint mo js
+deploy: clean lint mo js geodata-client
 	$(RSYNC) themes  $(WPCONTENT)
 	$(RSYNC) plugins $(WPCONTENT)
 	$(RSYNC) --delete --exclude "api.conf.js" dist    $(WPCONTENT)
@@ -94,7 +94,7 @@ dist/api.conf.js: client/src/api.conf.js
 	cp $< $@
 
 .PHONY: js dev-server
-js: dist/api.conf.js geodata-client
+js: dist/api.conf.js
 	$(WEBPACK) --config $(WEBPACK_PROD_CONFIG)
 
 dev-server: dist/api.conf.js
