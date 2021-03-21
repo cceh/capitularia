@@ -222,6 +222,10 @@
         <title>Beinecke Digital Collections</title>
         <caption>Beinecke Digital Collections</caption>
       </item>
+      <item key=".biu-montpellier.fr">
+        <title>Bibliothèque Interuniversitaire</title>
+        <caption>Bibliothèque Interuniversitaire</caption>
+      </item>
       <item key=".bm-poitiers.fr">
         <title>Médiathèque François Mitterrand</title>
         <caption>Médiathèque François Mitterrand</caption>
