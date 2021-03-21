@@ -10,20 +10,6 @@ import $ from 'jquery';
 import svgPanZoom from 'svg-pan-zoom';
 
 /**
- * Initialize the back to top link: on click do a smooth scroll to the top
- * of the page.
- *
- * @memberof module:themes/capitularia
- */
-
-function initBackToTop () {
-    $ ('.back-to-top').click (function () {
-        $ ('body,html').animate ({ 'scroll-top' : 0 }, 600);
-        return false;
-    });
-}
-
-/**
  * Initialize reset buttons to reset input and select controls on the parent
  * form.
  *
@@ -149,7 +135,6 @@ function initSVGPanZoom () {
 
 $ (document).ready (function () {
     initFootnoteTooltips ();
-    setTimeout (initBackToTop, 0);
     setTimeout (initResetForm, 0);
 
     // FIXME: somehow extract this value from bootstrap files

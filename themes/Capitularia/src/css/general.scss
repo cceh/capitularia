@@ -334,29 +334,6 @@ div.page-break + div.page-break {
     display: none;
 }
 
-div.back-to-top {
-    margin: 3em 0;
-    text-align: right;
-    line-height: 1.75em;
-
-    a::after {
-        @include dashicons;
-        font-size: 12px;
-        content: ' \f343';
-    }
-
-    &.back-to-top-with-rule {
-        border-top: 1px solid $color-black;
-    }
-
-    &.back-to-top-compact {
-        margin: 0;
-    }
-    @media print {
-        display: none;
-    }
-}
-
 div.pagination-nav {
     margin:  14px 0;
     padding: 14px 0;

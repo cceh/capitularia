@@ -26,30 +26,6 @@
 
   <xsl:include href="config-3.xsl"/> <!-- $tei-ref-external-targets -->
 
-  <xsl:template name="back-to-top">
-    <xsl:text>&#x0a;&#x0a;</xsl:text>
-    <div class="back-to-top">
-	  <a class="ssdone" title="Zum Seitenanfang" href="#top"></a>
-    </div>
-    <xsl:text>&#x0a;&#x0a;</xsl:text>
-  </xsl:template>
-
-  <xsl:template name="back-to-top-hr">
-    <xsl:text>&#x0a;&#x0a;</xsl:text>
-    <div class="back-to-top back-to-top-with-rule">
-	  <a class="ssdone" title="Zum Seitenanfang" href="#top"></a>
-    </div>
-    <xsl:text>&#x0a;&#x0a;</xsl:text>
-  </xsl:template>
-
-  <xsl:template name="back-to-top-compact">
-    <xsl:text>&#x0a;&#x0a;</xsl:text>
-    <div class="back-to-top back-to-top-compact">
-	  <a class="ssdone" title="Zum Seitenanfang" href="#top"></a>
-    </div>
-    <xsl:text>&#x0a;&#x0a;</xsl:text>
-  </xsl:template>
-
   <xsl:template name="hr">
     <xsl:text>&#x0a;&#x0a;</xsl:text>
     <div class="hr" />
