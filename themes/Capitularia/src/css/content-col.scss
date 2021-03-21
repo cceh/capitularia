@@ -18,7 +18,7 @@ div.content-col {
 
         &.internal {
             &::after {
-                @include dashicons;
+                @include fas;
                 color: $color-link;
             }
 
@@ -27,7 +27,7 @@ div.content-col {
                 color: inherit;
 
                 &::after {
-                    content: '\00a0\f330';
+                    content: '\00a0\f02d';
                 }
             }
 
@@ -41,28 +41,29 @@ div.content-col {
 
             &.transcription {
                 &::after {
-                    content: '\00a0\f464';
+                    content: '\00a0\f304';
                 }
             }
 
             &.prev-transcription {
                 &::after {
-                    content: '\f141\00a0';
+                    content: '\f0d91\00a0';
                 }
             }
 
             &.next-transcription {
                 &::after {
-                    content: '\00a0\f139';
+                    content: '\00a0\f0da';
                 }
             }
         }
 
         &.external {
             &::after {
-                @include dashicons;
+                @include fas;
+                line-height: 1;
                 color: $color-link;
-                content: '\00a0\f504';
+                content: ' \f35d';
             }
         }
     }
@@ -609,9 +610,9 @@ div.annotation-content {
                 border-bottom: solid 1px $color-white;
 
                 &.download-icon::before {
-                    @include dashicons;
-                    font-size: 24px;
-                    content: '\f316';
+                    @include fas;
+                    font-size: 1.25em;
+                    content: '\f019';
                     float: left;
                     padding-right: 1em;
                 }

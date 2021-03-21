@@ -60,6 +60,23 @@ nav.horiz-nav ul ul li {
     background: $background-menubar-top-hover;
 }
 
+.top-nav {
+    a.logo-social {
+        @include fab;
+    }
+    a.logo-twitter::before {
+        content: '\f099';
+    }
+    a.logo-facebook::before {
+        content: '\f39e';
+    }
+    a.logo-login::before {
+        @include fas;
+        content: '\f007';
+        padding-right: 0.5em;
+    }
+}
+
 /* bottom navbar colors */
 
 .bottom-nav {
@@ -105,15 +122,6 @@ nav.horiz-nav ul ul li {
     padding-right: 0.5em;
 }
 
-/* the login menu entry */
-
-.login a::before {
-    @include dashicons;
-    content: '\f110';
-    padding-right: 0.5em;
-    vertical-align: top;
-}
-
 /************************/
 /* the search form      */
 /************************/
@@ -156,10 +164,10 @@ form.searchform {
     background: rgba(0, 0, 0, 0.1);
 
     &::after {
-        @include dashicons;
-        content: '\f179';
+        @include fas;
+        content: '\f002';
         color: white;
-        font-size: 1.5em;
+        font-size: 1.2em;
         display: block;
     }
 

@@ -500,7 +500,7 @@ function on_do_parse_request ($do_parse, $wp, $extra_query_vars) // phpcs:ignore
 }
 
 /**
- * Add dynamic url to login menu.
+ * Add dynamic url to login menu.  Remove text from twitter and fb logos.
  *
  * @param array    $atts  The old HTML attributes.
  * @param WP_Post  $item  The current menu item.
@@ -514,7 +514,16 @@ function on_nav_menu_link_attributes ($atts, $item, $args, $depth) // phpcs:igno
 {
     if (isset ($item->url)) {
         if (strcmp ($item->url, MAGIC_LOGIN) === 0) {
-            $atts['href'] = wp_login_url (get_permalink ());
+            $atts['href']  = wp_login_url (get_permalink ());
+            $atts['class'] = 'logo-login';
+        }
+        if (strpos ($item->url, 'twitter.com') !== false) {
+            $atts['class'] = 'logo-social logo-twitter';
+            $item->title   = '';
+        }
+        if (strpos ($item->url, 'facebook.com') !== false) {
+            $atts['class'] = 'logo-social logo-facebook';
+            $item->title   = '';
         }
     }
     return $atts;
