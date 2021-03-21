@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-2400">
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-2400">
    <teiHeader>
       <fileDesc>
          <titleStmt>
-            <title type="main" xml:lang="ger">Paris, Bibliothèque Nationale, Lat. 2400</title>
+            <title type="main" xml:lang="ger">Paris, Bibliothèque nationale de France, Lat.
+               2400</title>
             <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
                Transkription von fol. 183r</title>
             <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
@@ -110,7 +112,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
             <msDesc>
                <msIdentifier>
                   <settlement>Paris</settlement>
-                  <repository>Bibliothèque Nationale</repository>
+                  <repository>Bibliothèque nationale de France</repository>
                   <idno>Lat. 2400</idno>
                   <msName/>
                   <altIdentifier type="former">
@@ -126,7 +128,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   </altIdentifier>
                </msIdentifier>
                <head>
-                  <title type="main">Paris, Bibliothèque Nationale, Lat. 2400</title>
+                  <title type="main">Paris, Bibliothèque nationale de France, Lat. 2400</title>
+                  <origDate notAfter="1033" notBefore="1000">11. Jh., 1. Drittel</origDate>
+                  <origPlace>Saint-Cybard, Angoulême</origPlace>
                </head>
                <msContents>
                   <summary/>
@@ -155,7 +159,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   </bindingDesc>
                </physDesc>
                <history>
-                  <origin/>
+                  <origin>
+                     <origDate notAfter="1033" notBefore="1000">11. Jh., 1. Drittel</origDate>
+                     <origPlace>Saint-Cybard, Angoulême</origPlace>
+                  </origin>
                   <provenance/>
                   <acquisition/>
                </history>
@@ -164,7 +171,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <listBibl>
                      <listBibl type="cap">
                         <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
-                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref type="external" subtype="Bl" target="paris-bn-lat-2400"/>
+                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
+                              type="external" subtype="Bl" target="paris-bn-lat-2400"/>
                         </bibl>
                      </listBibl>
                   </listBibl>
@@ -176,9 +184,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
          <p>Transkriptionsvorlage: Die Transkription wurde auf Grundlage eines hochauflösenden
             Farbdigitalisates erstellt. </p>
          <projectDesc>
-            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
-            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
          </projectDesc>
          <editorialDecl>
@@ -193,6 +203,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
       <revisionDesc>
          <change who="DS" when="2016-03-01">Datei erstellt aus Mordek-XML</change>
          <change who="BM" when="2016-10-06">Datei private veröffentlicht (BK 138)</change>
+         <change who="AO" when="2020-12-29">origDate und origPlace gemäß Überblicksliste (Gesamtliste Handschriften) ergänzt.</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -233,16 +244,18 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                <expan>Canones</expan>
             </choice>
             <rs type="place">caenomannenses</rs>
-            <lb/> tempore <rs type="person">ludouici imperatoris</rs> . <seg type="numDenom">capitulum</seg>
-            <seg type="num" n="16">XVI</seg> . De uno manso ad ecclesiae famulatum
-            pertinente et obsequio eius . </ab>
+            <lb/> tempore <rs type="person">ludouici imperatoris</rs> . <seg type="numDenom"
+               >capitulum</seg>
+            <seg type="num" n="16">XVI</seg> . De uno manso ad ecclesiae famulatum pertinente et
+            obsequio eius . </ab>
 
-         <ab type="text" xml:id="paris-bn-lat-2400-183r-3" corresp="BK.138_10">Sancitum est ut u<lb break="no"/>nicuique ecclesiae unus mansus integer absque aliquo seruitio
-            adtribuatur et conseruetur . Et <expan>presbiteri</expan> in eis constituti non <lb/>de
-            decimis . neque de oblationibus fidelium . nec de domibus neque de atriis uel hortis
-            iuxta ecclesiam positis <lb/>neque de <expan>praescripto</expan> manso . aliquod
-            seruitium praeter ecclesiasticum faciant . Et si aliquid amplius habuerint . inde
-            <lb/>senioribus suis debitum seruitium impendant * </ab>
+         <ab type="text" xml:id="paris-bn-lat-2400-183r-3" corresp="BK.138_10">Sancitum est ut u<lb
+               break="no"/>nicuique ecclesiae unus mansus integer absque aliquo seruitio adtribuatur
+            et conseruetur . Et <expan>presbiteri</expan> in eis constituti non <lb/>de decimis .
+            neque de oblationibus fidelium . nec de domibus neque de atriis uel hortis iuxta
+            ecclesiam positis <lb/>neque de <expan>praescripto</expan> manso . aliquod seruitium
+            praeter ecclesiasticum faciant . Et si aliquid amplius habuerint . inde <lb/>senioribus
+            suis debitum seruitium impendant * </ab>
 
       </body>
    </text>

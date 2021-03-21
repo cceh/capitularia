@@ -127,8 +127,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                </msIdentifier>
                <head>
                   <title type="main">Vatikan, Biblioteca Apostolica Vaticana, Pal. Lat. 583</title>
-                  <origDate notAfter="0960" notBefore="0941"> 10. Jh., etwa Mitte</origDate>
-                  <origPlace ref="http://www.geonames.org/2874225/mainz.html http://d-nb.info/gnd/4037124-4 http://viaf.org/viaf/155482669"> Mainz, z. T. mit Fuldaer Händen</origPlace>
+                  <origDate notAfter="0960" notBefore="0941"> 10. Jh., etwa Mitte</origDate> (Mordek),
+                  <origDate notAfter="0800" notBefore="1000"> 9./10. Jh. oder später (?)</origDate> (Bischoff);
+                  <origPlace ref="http://www.geonames.org/2874225/mainz.html http://d-nb.info/gnd/4037124-4 http://viaf.org/viaf/155482669"> Mainz, z. T. mit Fuldaer Händen</origPlace> (Mordek),
+                  <origPlace ref="http://d-nb.info/gnd/4018859-0">(wohl) Fulda</origPlace> (Bischoff)
                </head>
                <msContents>
                   <summary>
@@ -248,8 +250,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                <history>
                   <origin>
                      <p>
-                        <origDate notAfter="0960" notBefore="0941"> 10. Jh., etwa
-                           Mitte</origDate>;<origPlace ref="http://www.geonames.org/2874225/mainz.html http://d-nb.info/gnd/4037124-4 http://viaf.org/viaf/155482669"> Mainz, z. T. mit Fuldaer Händen</origPlace>.</p>
+                        <origDate notAfter="0960" notBefore="0941"> 10. Jh., etwa Mitte</origDate> (Mordek),
+                        <origDate notAfter="0800" notBefore="1000"> 9./10. Jh. oder später (?)</origDate> (Bischoff);
+                        <origPlace ref="http://www.geonames.org/2874225/mainz.html http://d-nb.info/gnd/4037124-4 http://viaf.org/viaf/155482669"> Mainz, z. T. mit Fuldaer Händen</origPlace> (Mordek),
+                        <origPlace ref="http://d-nb.info/gnd/4018859-0">(wohl) Fulda</origPlace> (Bischoff).
+                     </p>
                   </origin>
                   <provenance>
                      <p>Dombibliothek Mainz (1r unten: Besitzvermerk a. 1479
@@ -322,9 +327,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                            Abb. 48 (fol. 53r), Abb. 110 (fol. Av) und Abb. 111 (fol. 64v).</bibl>
                      </listBibl>
                      <listBibl type="cap">
-                        <bibl>Mordek 1995 S. 797-799</bibl>
+                        <bibl corresp="#Mordek_1995">Mordek 1995 S. 797-799</bibl>
+                        <bibl corresp="#Mordek_2005a">Mordek 2005a, S. 32-33 Anm. 145, S. 46 Anm. 199</bibl>
+                        <bibl corresp="#Bischoff_2014">Bischoff 2014, S. 416, Nr. 6550</bibl>
                         <!-- Montuschi, Claudia Le biblioteche di Heidelberg in Vaticana: i fondi palatini, In La Vaticana nel Seicento (1590-1700): una biblioteca di biblioteche, a cura di Claudia Montuschi (Storia della Biblioteca Apostolica Vaticana, 3), 2014  -->
-                        <bibl corresp="#Mordek_2005a">Mordek 2005a, S. 32-33 Anm. 145, S. 46 Anm. 199</bibl><!-- Mordek 2005a -->
                      </listBibl>
                   </listBibl>
                </additional>
@@ -350,6 +356,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
       </encodingDesc>
       <revisionDesc>
          <change who="DS" when="2016-03-01">Datei erstellt aus Mordek-XML</change>
+         <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift
+            nach Bischoff 1998/2004/2014 ergänzt</change>
          <change who="XXX" when="2016"/>
       </revisionDesc>
    </teiHeader>

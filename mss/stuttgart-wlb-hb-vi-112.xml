@@ -129,8 +129,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                </msIdentifier>
                <head>
                   <title type="main">Stuttgart, Württembergische Landesbibliothek, HB VI 112</title>
-                  <origDate notAfter="1000" notBefore="0901"> 10. Jh.</origDate>
-                  <origDate notAfter="1000" notBefore="0951"> 10. Jh., 2. Hälfte</origDate><note type="corr">nach Schmitz G 1996, S. 152</note>; <origPlace ref="http://d-nb.info/gnd/4007405-5 http://viaf.org/viaf/238971208">
+                  <origDate notAfter="1000" notBefore="0901"> 10. Jh.</origDate> (Mordek), 
+                  <origDate notAfter="0950" notBefore="0901"> 10. Jh., 1. Hälfte</origDate> (Burkhart),
+                  <origDate notAfter="1000" notBefore="0951"> 10. Jh., 2. Hälfte</origDate> (G. Schmitz); 
+                  <origPlace ref="http://d-nb.info/gnd/4007405-5 http://viaf.org/viaf/238971208">
                      Bodenseegegend (wohl <placeName ref="http://www.geonames.org/6559164/konstanz-universitaetsstadt.html http://d-nb.info/gnd/4032215-4 http://viaf.org/viaf/236686730">Konstanz</placeName>)</origPlace>
                </head>
                <msContents>
@@ -264,6 +266,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                            <dimensions type="written" unit="mm">
                               <height>170-190</height>
                               <width>120-140</width>
+                              <!--       sk: pauschalere Angaben bei Burkhart 2016, S. 51: "Schriftraum 18-19x13"                 -->                              
                            </dimensions>
                         </extent>
                         <collation>
@@ -273,10 +276,15 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                                  IV<hi rend="super">124</hi> + (III+l)<hi rend="super">131</hi> +
                                  III<hi rend="super">137</hi> + II<hi rend="super">141</hi>
                               (unvollständige Lage) </formula>
+                           <!--       sk: leicht abweichende Lagenformel bei Burkhart 2016, S. 51:
+                           1 [1] + (IV-1) [8] + 9 IV [80] + III [86] + 2 IV [102] + III [108] + 2 IV [124]
+                           + (III+1) [131] + III [137] + II [141]
+                           -->                           
                         </collation>
                      </supportDesc>
                      <layoutDesc>
                         <layout writtenLines="25 33">25-33</layout>
+<!--       sk: laut Burkhart 2016, S. 51: 29-33 Zeilen                 -->
                         <layout columns="1"/>
                      </layoutDesc>
                   </objectDesc>
@@ -304,10 +312,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                <history>
                   <origin>
                      <p>
-                        <origDate notAfter="1000" notBefore="0901"> 10. Jh.</origDate>;<origPlace ref="http://d-nb.info/gnd/4007405-5 http://viaf.org/viaf/238971208">
-                           <origDate notAfter="1000" notBefore="0951"> 10. Jh., 2.
-                              Hälfte</origDate><note type="corr">nach Schmitz G 1996, S. 152</note>;
-                           Bodenseegegend (wohl <placeName ref="http://www.geonames.org/6559164/konstanz-universitaetsstadt.html http://d-nb.info/gnd/4032215-4 http://viaf.org/viaf/236686730">Konstanz</placeName>)</origPlace></p>
+                        <origDate notAfter="1000" notBefore="0901"> 10. Jh.</origDate> (Mordek),
+                        <origDate notAfter="0950" notBefore="0901"> 10. Jh., 1. Hälfte</origDate> (Burkhart),
+                        <origDate notAfter="1000" notBefore="0951"> 10. Jh., 2. Hälfte</origDate> (G. Schmitz);
+                        <origPlace ref="http://d-nb.info/gnd/4007405-5 http://viaf.org/viaf/238971208">
+                           Bodenseegegend (wohl <placeName ref="http://www.geonames.org/6559164/konstanz-universitaetsstadt.html http://d-nb.info/gnd/4032215-4 http://viaf.org/viaf/236686730">Konstanz</placeName>)</origPlace>                    
+                     </p>
                   </origin>
                   <provenance>
                      <p>Im 14. Jh. im Besitz des Klosters Weingarten (vgl. den Eintrag fol. lr: <hi rend="italic">Liber sanctorum martini et oswaldi in wingarten);</hi>
@@ -340,8 +350,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <bibl corresp="#Hartmann_W_1977"> Hartmann W 1977, S. 120</bibl>
                         <bibl corresp="#Kottje_1980"> Kottje 1980, S. 139 Anm. 202, S. 183 Anm.
                            35</bibl>
-                        <bibl corresp="#Krämer_1989a"> Krämer 1989a, S. 466, 813 und 3, S.
-                           500</bibl>
+                        <bibl corresp="#Krämer_1989a"> Krämer 1989a, S. 466, 813</bibl>
+                        <bibl corresp="#Bernhard_1990"> Bernhard 1990, S. 500</bibl>
                         <bibl corresp="#Haggenmüller_1991"> Haggenmüller 1991, S. 231 f. u.
                            ö.</bibl>
                         <bibl corresp="#Körntgen_1993"> Körntgen 1993, S. 114 ff.</bibl>
@@ -360,8 +370,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <bibl corresp="#Bergmann_1973"> Bergmann 1973</bibl>
                         <bibl corresp="#Mordek_1995"> Mordek 1995, S. 720-723</bibl>
                         <bibl corresp="#Schmitz_G_1996"> Schmitz G 1996, S. 152-153</bibl>
+                        <bibl corresp="#Kéry_1999"> Kéry 1999, S. 52, 97</bibl>
+                        <!--     sk: Verweis auf Kéry nach Burkhart ergänzt, noch prüfen und ggf. scannen         -->
+
                         <bibl corresp="#Körntgen_2004"> Körntgen 2004</bibl>
                         <bibl corresp="#Bergmann_2005c">Bergmann 2005c, S. 1676-1677 Nr. 875c</bibl>
+                        <bibl corresp="#Burkhart_2016"> Burkhart 2016, Nr. 34, S. 51-52</bibl>
                         <bibl> Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
                            der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref type="external" subtype="Bl" target="stuttgart-wlb-hb-vi-112"/></bibl>
                      </listBibl>
