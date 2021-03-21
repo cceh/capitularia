@@ -119,8 +119,9 @@ export function sort_key (s) {
  * @returns {Object}  The fixed witness object
  */
 export function fix_witness (w) {
-    // add check for reactivity
+    // add checked for vue reactivity
     w.checked  = false;
+
     w.title    = w.siglum;
     w.title    = w.title.replace (/#(\d+)/,       $pgettext ('2., 3., etc. copy of capitularies', ' ($1. copy)'));
     w.title    = w.title.replace (/[?]hands=XYZ/, $pgettext ('corrected version of capitularies', ' (corrected)'));
@@ -148,6 +149,8 @@ export function parse_witness_response (r) {
     }
 
     return fix_witness ({
+        'ms_id'  : r.ms_id,
+        'locus'  : r.locus,
         'siglum' : siglum,
         'type'   : r.type,
     });
@@ -155,6 +158,8 @@ export function parse_witness_response (r) {
 
 /**
  * Parse witness siglum into witness object
+ *
+ * Currently used only to calculate the title length in the results table.
  *
  * @param {string} siglum  The witness siglum
  * @returns {Object}  The witness object

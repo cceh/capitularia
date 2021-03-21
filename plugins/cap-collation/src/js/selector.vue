@@ -86,7 +86,7 @@
                 <td class="checkbox">
                   <b-form-checkbox v-model="w.checked" v-b-tooltip.hover.left
                                    :title="$t ('Include this textual witness in the collation.')">
-                    {{ w.title }}
+                    <a :href="w.href">{{ w.title }}</a>
                   </b-form-checkbox>
                 </td>
               </tr>
@@ -191,6 +191,13 @@ export default {
             if (!vm.later_hands) {
                 vm.witnesses = vm.witnesses.filter (w => { return w.type === 'original'; });
             }
+
+            for (const w of vm.witnesses) {
+                if (w.ms_id) {
+                    w.href = `/mss/${w.ms_id}/#${w.locus}`;
+                }
+            }
+
         },
         /**
          * Reload the witnesses table while keeping selected items intact (if possible).
