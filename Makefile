@@ -6,7 +6,7 @@ PLUGINS = $(wildcard plugins/cap-*)
 lint: phpcs jslint csslint
 
 clean:
-	find . -name '*~' -delete
+	find . -name '*~' -type f -delete
 	rm -rf dist/*
 
 deploy: clean lint mo js geodata-client
