@@ -7,7 +7,7 @@
  */
 
 import $ from 'jquery';
-import svgPanZoom from 'svg-pan-zoom';
+import panZoom from 'panzoom';
 
 /**
  * Initialize reset buttons to reset input and select controls on the parent
@@ -94,7 +94,7 @@ function initSidebarToc () {
     sidebar.closest ('ul').css ('height', '100%');
 }
 
-function initSVGPanZoom () {
+function initPanZoom () {
     // first replace the <img> with the inline SVG
 
     for (const img of document.querySelectorAll ('img.svg-pan-zoom[src]')) {
@@ -117,17 +117,44 @@ function initSVGPanZoom () {
             // switch tags
             $ (img).replaceWith ($svg);
 
-            // enable pan & zoom
-            const p = svgPanZoom (svg, {
-                fit : false,
-                controlIconsEnabled : true,
-                zoomScaleSensitivity: 0.5,
-            });
+            // get original scene dimensions, reflows layout
+            const sceneRect = svg.getBoundingClientRect ();
 
-            const sizes = p.getSizes ();
-            p.resize (); // update SVG cached size and controls positions
-            p.fit ();
-            p.center ();
+            const $container = $svg.closest ('div');
+            function calcScale () {
+                return $container[0].getBoundingClientRect ();
+            }
+            let containerRect = calcScale ();
+            window.addEventListener ('resize', (ev) => { containerRect = calcScale (); });
+
+            // enable pan & zoom
+            const p = panZoom (svg, {
+                onTouch: function (ev) {
+                    // enable click on links
+                    return !(ev.type == 'touchstart' || ev.type == 'touchend');
+                },
+            });
+            // do not scroll the whole screen, only the svg
+            $container.on ('touchmove', (e) => { e.preventDefault (); });
+
+            function zoom (scale) {
+                p.smoothZoom (containerRect.width  / 2, containerRect.height / 2, scale);
+            }
+
+            function fit () {
+                const sx = containerRect.width  / sceneRect.width;
+                const sy = containerRect.height / sceneRect.height;
+                const scale = Math.min (sx, sy);
+                p.moveTo (0, 0);
+                p.zoomAbs (0, 0, scale);
+            }
+
+            const $controls = $ ('<div class="pan-zoom-controls"></div>');
+            $controls.appendTo ($container);
+
+            $ ('<button>+</button>').appendTo ($controls).on ('click', () => { zoom (2); } );
+            $ ('<button>0</button>').appendTo ($controls).on ('click', () => { fit (); } );
+            $ ('<button>-</button>').appendTo ($controls).on ('click', () => { zoom (0.5); } );
 
         }, 'xml');
     };
@@ -137,11 +164,12 @@ $ (document).ready (function () {
     initFootnoteTooltips ();
     setTimeout (initResetForm, 0);
 
+    initPanZoom ();
+
     // FIXME: somehow extract this value from bootstrap files
     // if ($('body').css ('content') == 'sm')
     if (window.matchMedia ('(min-width: 768px)').matches) {
         initLegend ();
         initSidebarToc ();
-        initSVGPanZoom ();
     }
 });
