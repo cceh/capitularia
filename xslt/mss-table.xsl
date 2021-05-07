@@ -103,39 +103,6 @@ Target: lists $(CACHE_DIR)/lists/mss-table.html
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="origDate">
-    <xsl:if test="preceding-sibling::locus">
-      <xsl:apply-templates select="locus"/>
-      <xsl:text>: </xsl:text>
-    </xsl:if>
-    <xsl:apply-templates/>
-    <xsl:if test="following-sibling::origPlace">
-      <xsl:if test="not(following-sibling::origDate)">
-        <xsl:text>, </xsl:text>
-      </xsl:if>
-    </xsl:if>
-    <xsl:if test="following-sibling::origDate">
-      <xsl:text>, </xsl:text>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template match="origPlace">
-    <xsl:apply-templates/>
-  </xsl:template>
-
-  <xsl:template match="locus">
-    <xsl:choose>
-      <xsl:when test="parent::origDate">
-        <xsl:text>(</xsl:text>
-        <xsl:apply-templates/>
-        <xsl:text>)</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
   <xsl:template match="content/capit">
     <li>
       <xsl:apply-templates/>
