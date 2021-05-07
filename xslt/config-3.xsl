@@ -266,6 +266,10 @@
         <title>Free Library Philadelphia</title>
         <caption>Free Library Philadelphia</caption>
       </item>
+      <item key="nbn-resolving.org/urn:nbn:de:">
+        <title>Digitale Historische Bibliothek Erfurt/Gotha</title>
+        <caption>Digitale Historische Bibliothek Erfurt/Gotha</caption>
+      </item>
       <item key=".hab.de">
         <title>Herzog August Bibliothek</title>
         <caption>HAB</caption>
@@ -313,6 +317,10 @@
       <item key="parker.stanford.edu">
         <title>Parker Library</title>
         <caption>Parker Library</caption>
+      </item>
+      <item key="hdl.handle.net/1887.1">
+        <title>Universiteit Leiden</title>
+        <caption>Universiteit Leiden</caption>
       </item>
       <item key="socrates.leidenuniv.nl">
         <title>Digital Sources - Universität Leiden</title>
