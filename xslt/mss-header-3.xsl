@@ -133,6 +133,8 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.header.html
 
   <xsl:template match="msDesc" mode="move-notes">
     <div class="footnotes-wrapper">
+      <xsl:apply-templates select="msIdentifier"   mode="move-notes" />
+      <xsl:apply-templates select="/TEI/facsimile" mode="move-notes" />
       <xsl:call-template name="ms-desc" />
       <xsl:call-template name="ms-part"/>
     </div>
