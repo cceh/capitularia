@@ -51,12 +51,6 @@ The HTML files are stored in the cache directory.
 See also: the :ref:`list of all transformations <transformations>`
 complete with input and output files and urls.
 
-.. note::
-
-   The XSLT stylesheets are written in XSLT 1 for historical reasons.  That is
-   why we still use xsltproc.  We plan to rewrite them in XSLT 3 and use Saxon
-   as soon as possible. (Nov. 2019)
-
 
 User Delivery
 -------------
@@ -98,4 +92,4 @@ inserts the file's content into the page, which is finally sent to the user.
 .. note::
 
    The Footnotes Post-Processor is still written in PHP.  We plan to rewrite it
-   in Python along with the XSL stylesheets and move it to the VM. (Nov. 2019)
+   in Python and move it to the VM. (Nov. 2019)

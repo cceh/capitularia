@@ -655,7 +655,7 @@ capitulary page is in.</p>
 <span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
 <dt id="cceh\capitularia\theme\on_nav_menu_link_attributes">
 <code class="sig-name descname">on_nav_menu_link_attributes</code><span class="sig-paren">(</span><em class="sig-param">$atts</em>, <em class="sig-param">$item</em>, <em class="sig-param">$args</em>, <em class="sig-param">$depth</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_nav_menu_link_attributes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add dynamic url to login menu.</p>
+<dd><p>Add dynamic url to login menu.  Remove text from twitter and fb logos.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -667,6 +667,25 @@ capitulary page is in.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The updated HTML attributes.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-cceh\capitularia\theme"></span><dl class="php function">
+<dt id="cceh\capitularia\theme\on_upload_mimes">
+<code class="sig-name descname">on_upload_mimes</code><span class="sig-paren">(</span><em class="sig-param">$mimes</em><span class="sig-paren">)</span><a class="headerlink" href="#cceh\capitularia\theme\on_upload_mimes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow upload of SVG files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$mimes</strong> (<em>array</em>) – The old list of allowed mime types.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The updated list of allowed mime types.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>array</p>
@@ -1180,12 +1199,6 @@ representation for the current locale without the time.</p>
 <p>File: themes/Capitularia/src/js/front.js</p>
 <p>This file contains the Javascript for the Capitularia theme.</p>
 <dl class="js function">
-<dt id="themes-capitularia.initBackToTop">
-<span id="themes/capitularia.initBackToTop"></span><code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initBackToTop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initBackToTop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize the back to top link: on click do a smooth scroll to the top of the page.</p>
-</dd></dl>
-
-<dl class="js function">
 <dt id="themes-capitularia.initResetForm">
 <span id="themes/capitularia.initResetForm"></span><code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initResetForm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initResetForm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize reset buttons to reset input and select controls on the parent form.</p>
@@ -1194,7 +1207,7 @@ representation for the current locale without the time.</p>
 <dl class="js function">
 <dt id="themes-capitularia.initFootnoteTooltips">
 <span id="themes/capitularia.initFootnoteTooltips"></span><code class="sig-prename descclassname">themes/capitularia.</code><code class="sig-name descname">initFootnoteTooltips</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initFootnoteTooltips" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize the footnote refs, ie. the ‘*’, to open a popup on mouse hover. The popup contains the footnote text.</p>
+<dd><p>Initialize the footnote refs, ie. the ‘*’, to open a popup on mouse hover. The popup contains the footnote text. The popup shall also stay open while the user hovers over the content, so that the user may click on links in the content. Footnotes are done with bootstrap 5.</p>
 </dd></dl>
 
 <dl class="js function">

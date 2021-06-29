@@ -4,20 +4,21 @@
 Overview of the Collation Tool
 ==============================
 
-Description of the collation tool and the processing of the TEI files.
+Description of the collation tool and the pre-processing of the TEI files.
 
 
 Pre-Processing of the TEI files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We extract every chapter of every capitular from all manuscripts and store them
-separately in the Postgres database on the application Server.  The text stored
-in the database is already normalized.
+in separate records in the Postgres database on the application Server.  The
+text stored in the database is normalized.
 
 If a manuscript contains more than one copy of a chapter, all copies are
-extracted.  If a corrector hand was active in the chapter, an original and a
-corrected version are both extracted.  The collation tool knows about all these
-versions and offers them to the user.
+extracted.  If a corrector hand was active in the chapter, both an original and
+a corrected version are extracted.
+
+The online collation tool knows about all versions and offers them to the user.
 
 .. pic:: uml
    :caption: Data flow during pre-processing
@@ -97,8 +98,8 @@ saving much processing time.
 We aim to rewrite all the functionality we need of CollateX in Python or
 Javascript and then drop the dependency on CollateX.
 
-The Wordpress cap-collation-user plugin delivers the Javascript client to the
-user.  After that, all communication happens directly between the client and the
+The Wordpress collation plugin delivers the Javascript client to the user.
+After that, all communication happens directly between the client and the
 application server.
 
 
@@ -107,13 +108,12 @@ application server.
 Custom Version of CollateX
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Our custom version of CollateX uses a custom word comparison function.
-
 The stock version of CollateX [CollateX]_ uses word comparison functions that
-only return binary values, signalling either a match or a mismatch.  Our custom
-version uses a word comparison function that returns a similarity value between
-0 and 1.  This works much better when aligning variant orthographies of the same
-word.
+return a *boolean*, signalling either a match or a mismatch.  Our customized
+version of Collate-X uses a word comparison function that returns a *float*
+value between 0 and 1, signalling a greater or lesser similarity between to
+words.  This approach works better when aligning variant orthographies of the
+same word.
 
 In our custom CollateX we also implemented an enhancement of the
 Needleman-Wunsch algorithm by Gotoh. [Gotoh1982]_
@@ -122,28 +122,39 @@ Needleman-Wunsch algorithm by Gotoh. [Gotoh1982]_
 Word Comparison Function
 ------------------------
 
-The word comparison function returns a similarity value between 0 and 1.
+The word comparison function returns a similarity value between 0 and 1.  The
+similarity is calculated as follows:
 
-All words in the input texts are split into sets of trigrams.  This is done only
-once.  The trigrams are obtained by first prefixing and suffixing the word with
-two spaces respectively, then cutting the resulting string it into all possible
-strings of length 3.  This means that trigrams may partially overlap each other.
+All words in the input texts are split into sets of trigrams.  The trigrams are
+obtained by first prefixing and suffixing the word with two spaces respectively,
+then cutting the resulting string into all possible strings of length 3.  This
+means that all trigrams partially overlap each other.
 
-The resulting sets of trigrams are then used in the similarity calculation.
+To calculate the similarity between two words three sets are built: the set of
+trigrams in word a, the set of trigrams in word b, and the set of trigrams
+common to both words.  The similarity is then given by the formula:
 
-To calculate the similarity between two words, a set is built containing only
-the trigrams common to both words.  The magnitude of this set is then compared
-against the number of trigrams in both words:
+.. math::
 
-  similarity = 2.0 * triAB.size() / (triA.size() + triB.size());
+   \mbox{similarity}(a,b)= \frac{2\times |set_{ab}|}{|set_a| + |set_b|}
+
+The factor 2 was added to bring the similarity of identical words to 1.
+
+An example calculation follows:
+
+.. pic:: trigram hlodouuico ludouico
+   :caption: Calculating similarity using trigrams
 
 The similarity based on trigrams was chosen because its calculation can be done
 in O(n) time whereas a similarity based on Levenshtein distance needs O(n²)
 time.  The sets of trigrams for each input word are calculated only once and if
 you presort the trigrams in these sets, the common set can be found in O(n)
-time.  To be implemented: in a first step gather all trigrams, give each one an
-integer id, and later operate on the ids only.  (Maybe hash each trigram onto a
-value 0..63 and build a bitmask for each word, later operate on the masks only.)
+time.
+
+Optimizations yet to be implemented: in a first step gather all trigrams in all
+input texts, give each one an integer id, and later operate on the ids only.
+Maybe hash each trigram onto a value 0..63 and build a bitmask for each word,
+later operate on the masks only.
 
 
 .. [Gotoh1982] Gotoh, O. 1982,  *An Improved Algorithm for Matching Biological

@@ -78,7 +78,14 @@ copy "config.pic";
     'uml' : {
         'program' : ["plantuml", "-tsvg", "-p"],
         'align'   : "center",
-        'prolog'  : "@startuml\n",
+        'prolog'  : """@startuml
+
+   skinparam backgroundColor transparent
+   skinparam DefaultTextAlignment center
+   skinparam componentStyle uml2
+   skinparam actorStyle awesome
+
+""",
         'epilog'  : "\n@enduml\n",
     },
     'seq' : {
@@ -101,6 +108,10 @@ copy "config.pic";
     },
     'sauml' : {
         'program'   : 'sagraph.py {arguments} @sagraph.conf | dot -Tsvg',
+        'shell'     : True,
+    },
+    'trigram' : {
+        'program'   : 'python3 ../python/trigraph.py {arguments} | dpic -v',
         'shell'     : True,
     },
     'xslt_dep' : {

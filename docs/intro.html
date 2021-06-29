@@ -83,7 +83,9 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#platforms">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rrzk-web-projekt">RRZK Web Projekt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#capitularia-vm">Capitularia VM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#afs">AFS</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="overviews.html">Overviews</a><ul>
@@ -214,90 +216,251 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>Introduction to the Capitularia Website  Project.</p>
-<div class="section" id="platforms">
-<h2>Platforms<a class="headerlink" href="#platforms" title="Permalink to this headline">¶</a></h2>
-<p>The project uses three main platforms:</p>
-<ul class="simple">
-<li><p>the RRZK WebProject (<a class="reference external" href="https://capitularia.uni-koeln.de">https://capitularia.uni-koeln.de</a>),</p></li>
-<li><p>the Capitularia VM  (<a class="reference external" href="https://api.capitularia.uni-koeln.de">https://api.capitularia.uni-koeln.de</a>),</p></li>
-<li><p>the AFS Filesystem  (/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/)</p></li>
-</ul>
-<div class="figure align-center" id="id1">
-<div  class="pic pic-format-text-xml pic-language-uml">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="320px" preserveAspectRatio="none"  version="1.1" viewBox="0 0 663 320" width="663px" zoomAndPan="magnify"><defs><filter height="300%" id="f1jqaq09l40mp4" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[c3798f5e588efe64782b0a56bcb1a83b]
-cluster RRZK WebProject--><path d="M37.3312,34.9124 C42.1224,24.3373 51.0172,23.8459 58.5251,31.806 C64.1995,23.6568 72.8894,23.2409 77.9469,32.4945 C82.5429,23.9857 89.4485,25.3657 93.9545,32.5861 C99.3047,23.2822 108.8487,22.1293 114.0295,32.7567 C118.7913,24.1939 127.1648,24.5605 131.7403,32.9513 C135.4889,22.892 145.1752,22.9607 151.2111,30.4071 C154.9768,22.3216 163.5503,20.9871 168.6717,28.9303 C176.4217,19.6195 184.918,22.1002 189.8409,32.0393 C195.5171,24.3899 203.2093,24.0078 207.8608,33.1397 C213.0615,24.0866 219.5755,24.3617 226.1223,31.6339 C232.1543,20.5513 239.2224,20.6562 246.2542,30.6802 C252.0848,23.2773 259.6659,25.6523 262.8559,33.5461 C268.9016,23.6713 278.4466,24.4992 284.2858,33.7771 C292.7584,23.2832 303.3358,28.5823 307,39 C307.6363,39.155 307.8526,39.7158 307.4221,40.2353 C320.5762,44.6966 320.2334,56.2531 310.3849,63.6279 C321.4744,71.0464 322.1376,78.4767 311.3754,86.8281 C322.999,91.2036 324.3313,100.4235 314.3096,107.824 C324.267,114.0953 325.4759,122.3165 314.1391,128.4114 C326.7437,136.3384 325.8427,148.2594 312.1169,154.1149 C319.4423,166.0843 315.1743,178.5628 300,180 C301.7072,180.4554 302.6761,181.6417 301.248,183.2874 C296.2732,191.9775 289.8505,191.9706 283.5279,184.7924 C278.2202,194.7082 270.092,194.6546 263.8219,185.8029 C258.5846,195.1387 252.3982,196.7099 245.252,187.7393 C240.4527,196.3786 233.6534,197.6956 226.5481,190.4554 C219.9778,200.0298 213.4457,198.3207 207.1511,190.1539 C203.7142,199.7983 198.4324,200.3276 190.9336,194.3784 C186.3251,202.8459 176.7876,203.6998 171.5531,195.0887 C163.5989,203.3566 157.0254,201.3253 152.4812,191.4951 C147.3145,202.4482 137.705,202.6493 132.3568,191.6616 C125.3542,198.895 117.8099,198.1518 114.7832,187.7089 C107.8195,196.8968 101.2558,195.763 95.249,186.6856 C89.237,194.2206 79.3332,194.712 75.7929,184.0439 C69.2814,192.0716 61.2161,190.3221 56.6359,181.8073 C45.7778,192.0917 32.1441,189.0693 30,173 C31.6133,172.9014 31.9718,174.0277 31.4343,175.2814 C19.1887,168.1789 21.7204,158.3526 32.0137,151.8064 C21.91,143.829 19.9968,137.0511 32.2185,129.2766 C21.9103,123.8928 18.4699,115.3359 28.8175,106.8233 C17.5633,99.7143 20.7764,88.599 31.5064,84.0903 C21.9567,77.8341 23.2756,68.2923 32.8263,63.2455 C19.8435,52.5927 21.2608,38.8162 37,32 C38.5184,32.6407 38.4879,33.9674 37.3312,34.9124 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="138" x="99.5" y="49.9951">RRZK WebProject</text><!--MD5=[8f463db2213924b28ab9fa8a8a25c26a]
-cluster apache--><rect fill="#FFFFFF" filter="url(#f1jqaq09l40mp4)" height="97" style="stroke: #000000; stroke-width: 1.5;" width="148" x="143" y="67"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="59" x="187.5" y="81.9951">Apache</text><!--MD5=[abe315a458fdc564e20b189de12181d3]
-cluster Capitularia VM--><path d="M354.119,67.1 C359.3656,58.4303 367.2755,55.5437 373.661,65.9323 C379.9374,57.3902 389.7734,55.8491 395.2395,66.8281 C400.0407,55.765 408.9771,55.7482 415.2451,65.4123 C419.858,55.9084 425.6367,53.6198 433.8785,61.5291 C440.7903,53.085 449.5957,52.4983 453.9917,64.0586 C460.0239,55.2785 466.0365,52.2334 473.8828,62.1261 C479.297,49.718 486.5819,49.4363 495.1015,59.147 C502.185,53.2586 508.1187,53.8804 512.2222,62.6321 C519.5229,53.8092 528.1107,51.4031 534.2383,63.8465 C538.9145,54.6726 547.5875,55.1362 552.6811,63.4052 C558.9583,55.2475 567.8876,53.2721 572.9369,64.6766 C578.2166,54.8286 587.6771,54.1795 593.5157,64.0946 C599.4927,56.1224 606.0288,58.3538 610.0656,66.1331 C620.5093,56.2885 632.4725,58.9965 636,73.5 C637.8334,73.6595 638.5239,74.499 637.5257,76.237 C645.7604,82.7238 646.5692,88.3937 637.5256,94.8805 C649.9716,98.5764 648.6851,109.7516 640.7076,116.4592 C650.8262,123.2845 651.7266,130.7356 640.2468,137.0783 C649.757,150.639 643.7684,160.897 629,164.5 C629.6509,164.8135 629.733,165.2497 629.2126,165.7607 C623.922,174.1306 617.4655,174.7391 611.4572,166.5292 C606.1313,178.3534 598.1358,177.5759 589.8777,169.7492 C583.3588,177.6684 575.6195,176.0169 570.9693,167.5878 C567.5832,177.8232 559.6572,179.2172 552.5528,171.3759 C546.8082,179.7537 538.0404,178.8548 533.332,170.2062 C528.5354,180.6303 519.3556,179.9934 514.2294,170.5226 C508.7778,182.2259 499.4075,180.6768 492.43,172.1685 C487.0996,179.6569 480.5462,181.3312 474.4754,173.0094 C468.6329,181.9404 457.8087,183.2768 452.3967,172.5264 C445.64,178.8082 440.0954,178.6046 436.0385,169.6314 C429.9653,178.4882 422.8709,180.0709 415.7219,170.8398 C406.5811,180.4664 399.8019,177.131 394.8776,166.501 C387.5839,174.1927 381.5305,175.2654 375.2282,165.3919 C362.6192,177.5265 351.9488,172.7647 347,157.5 C348.4659,158.1117 348.8768,159.1512 347.5689,160.322 C336.7911,156.5708 335.5675,146.1049 344.4558,139.424 C332.272,134.2082 332.1238,126.158 341.6131,118.0585 C333.3021,110.4149 334.7034,98.768 346.2065,95.0864 C336.1221,82.1215 336.5007,71.9447 354,66.5 C354.2928,66.6 354.359,66.8943 354.119,67.1 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="112" x="435.5" y="84.4951">Capitularia VM</text><!--MD5=[ab75931765dc6e1ac3c533cddd87991f]
-cluster AFS Filesystem--><path d="M197.1773,220.8521 C199.5781,214.838 204.8053,213.6822 209.0351,218.9257 C211.9717,213.6389 217.4734,212.457 220.9312,218.3722 C223.4928,212.711 227.308,211.4726 231.7822,216.4149 C234.8559,209.8451 238.7343,210.1134 243.1654,215.075 C246.438,208.7214 251.0626,208.3607 255.7141,213.5799 C259.1781,206.9464 264.6294,207.5564 268.634,213.0017 C272.0002,208.4977 275.1337,208.1572 278.8772,212.5682 C282.4369,206.4772 288.2031,207.5422 290.6677,213.6284 C293.9802,208.4406 299.921,207.2634 303.1086,213.7614 C307.5723,208.3357 312.8103,208.9244 315.1909,215.8064 C319.4101,209.6221 324.918,211.181 327.7393,217.2393 C331.8929,212.0724 336.809,213.245 339.3074,218.9935 C342.4525,214.0015 347.1522,214.1304 350.3354,218.9506 C355.3398,212.8945 360.3111,213.9472 363.1125,221.0842 C370.5909,224.7549 369.6759,231.6256 363.2439,235.4238 C368.6489,238.1751 370.7597,243.1933 364.7125,247.3542 C371.0943,251.6563 371.3744,257.2552 363.8696,260.6788 C370.2697,263.8674 369.7707,270.6634 364.301,274.2298 C369.9457,277.7969 370.1703,283.9541 364.7064,287.8518 C370.3815,293.5113 369.5964,297.673 362.4502,301.1587 C358.6046,307.547 353.3324,306.8452 350.1864,300.4856 C347.6774,306.4575 343.0661,307.6549 338.5996,302.5294 C335.3567,307.7225 330.4853,306.3707 328.008,301.7066 C324.5608,308.5063 319.783,308.4272 315.7714,302.2384 C312.4409,307.3555 306.9655,307.9586 303.4524,302.4501 C298.5857,307.8355 294.4667,307.9426 290.4463,301.5181 C287.5107,306.8452 283.493,306.0744 280.6466,301.4304 C277.6823,307.5319 271.26,308.9822 266.897,303.0252 C262.7223,308.5165 257.6426,307.6841 255.3923,301.1796 C252.3289,306.1132 248.2241,307.3666 244.0916,302.4 C240.5989,308.8908 234.0925,308.7078 230.8992,302.0985 C227.5185,306.6643 222.5899,306.801 219.488,301.767 C215.7914,306.3295 210.9796,306.2079 208.7142,300.2951 C205.7875,307.652 199.3169,307.2891 195.3618,301.326 C188.7913,297.7227 188.9627,291.8455 195.6594,288.5512 C187.4625,285.6615 187.2374,279.3375 193.7,274.4157 C187.3648,271.3975 185.157,266.6734 191.1525,261.2662 C185.0826,256.3425 186.4017,251.8521 192.2708,247.9296 C186.5474,243.3018 187.1794,237.3472 194.678,235.2245 C188.9073,229.2295 189.918,224.5812 197.1773,220.8521 " fill="#FFFFFF" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="119" x="219" y="237.9951">AFS Filesystem</text><!--MD5=[95056b5cbad1279cc73d9cc5c17a1af7]
-entity mysql--><path d="M38,104 C38,94 81,94 81,94 C81,94 124,94 124,104 L124,145.5938 C124,155.5938 81,155.5938 81,155.5938 C81,155.5938 38,155.5938 38,145.5938 L38,104 " fill="#FEFECE" filter="url(#f1jqaq09l40mp4)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M38,104 C38,114 81,114 81,114 C81,114 124,114 124,104 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="48" y="130.9951">Database</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="50" x="56" y="147.292">(mysql)</text><!--MD5=[4660e0abdb7fa9e4244c49bb3714a7b9]
-entity wp--><rect fill="#FEFECE" filter="url(#f1jqaq09l40mp4)" height="46.2969" style="stroke: #A80036; stroke-width: 1.5;" width="115" x="159.5" y="102"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="254.5" y="107"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="252.5" y="109"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="252.5" y="113"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="75" x="174.5" y="134.9951">Wordpress</text><!--MD5=[e2307af040e3f87d22824e7603ca28ec]
-entity api--><rect fill="#FEFECE" filter="url(#f1jqaq09l40mp4)" height="62.5938" style="stroke: #A80036; stroke-width: 1.5;" width="145" x="355.5" y="93.5"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="480.5" y="98.5"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="478.5" y="100.5"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="478.5" y="104.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="75" x="385.5" y="126.4951">App Server</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="105" x="370.5" y="142.792">(Python+Flask)</text><!--MD5=[7468467f3b6b392f1d176d828c753b77]
-entity db--><path d="M536,104 C536,94 582,94 582,94 C582,94 628,94 628,104 L628,145.5938 C628,155.5938 582,155.5938 582,155.5938 C582,155.5938 536,155.5938 536,145.5938 L536,104 " fill="#FEFECE" filter="url(#f1jqaq09l40mp4)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M536,104 C536,114 582,114 582,114 C582,114 628,114 628,104 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="549" y="130.9951">Database</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="72" x="546" y="147.292">(Postgres)</text><!--MD5=[23ec4f1fff159d71b633b9f85a9aab58]
-entity cache--><path d="M290,257 C290,247 322,247 322,247 C322,247 354,247 354,257 L354,282.2969 C354,292.2969 322,292.2969 322,292.2969 C322,292.2969 290,292.2969 290,282.2969 L290,257 " fill="#FEFECE" filter="url(#f1jqaq09l40mp4)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M290,257 C290,267 322,267 322,267 C322,267 354,267 354,257 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="44" x="300" y="283.9951">Cache</text><!--MD5=[82f23cda116f7491e2ad662b9686858a]
-entity files--><path d="M203.5,257 C203.5,247 229,247 229,247 C229,247 254.5,247 254.5,257 L254.5,282.2969 C254.5,292.2969 229,292.2969 229,292.2969 C229,292.2969 203.5,292.2969 203.5,282.2969 L203.5,257 " fill="#FEFECE" filter="url(#f1jqaq09l40mp4)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M203.5,257 C203.5,267 229,267 229,267 C229,267 254.5,267 254.5,257 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="31" x="213.5" y="283.9951">Files</text><!--MD5=[f17c2ef5b5d5d415f569eb1dcf9b8fe7]
-link mysql to wp--><path d="M129.26,125 C137.54,125 145.82,125 154.1,125 " fill="none" id="mysql-wp" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="159.26,125,150.26,121,154.26,125,150.26,129,159.26,125" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="124.03,125,133.03,129,129.03,125,133.03,121,124.03,125" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[3a67eb66359f02c9cbd3b7cf1ca8d3b2]
-link wp to api--><path d="M279.73,125 C303.23,125 326.73,125 350.23,125 " fill="none" id="wp-api" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="355.24,125,346.24,121,350.24,125,346.24,129,355.24,125" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="274.7,125,283.7,129,279.7,125,283.7,121,274.7,125" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[1b9dbcfdb69d97b7ce5f2d963fc4ed75]
-link api to db--><path d="M505.97,125 C514.17,125 522.37,125 530.58,125 " fill="none" id="api-db" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="535.68,125,526.68,121,530.68,125,526.68,129,535.68,125" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="500.79,125,509.79,129,505.79,125,509.79,121,500.79,125" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[0ef7ed0170767d45c45501e6b4ae9cea]
-reverse link wp to cache--><path d="M236.53,152.5 C256.58,179.72 287.42,221.57 306.05,246.86 " fill="none" id="wp&lt;-cache" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="233.41,148.27,235.5332,157.8873,236.3779,152.2938,241.9714,153.1386,233.41,148.27" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[c00b34aff96363323f9d1ba93ea8bc50]
-reverse link api to cache--><path d="M402.12,160.79 C382.15,187.64 355.14,223.95 338.15,246.79 " fill="none" id="api&lt;-cache" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="405.26,156.57,396.6793,161.4043,402.276,160.582,403.0984,166.1787,405.26,156.57" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[c98e683f3f48978148f0df210ca908e1]
-link files to cache--><path d="M254.79,269.5 C264.78,269.5 274.76,269.5 284.75,269.5 " fill="none" id="files-&gt;cache" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="289.97,269.5,280.97,265.5,284.97,269.5,280.97,273.5,289.97,269.5" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8dab7455246a70ad6d25b0072900dc55]
-@startuml
-skinparam backgroundColor transparent
-skinparam DefaultTextAlignment center
-skinparam componentStyle uml2
-
-cloud "RRZK WebProject" {
-  database  "Database\n(mysql)"   as mysql
-  rectangle "Apache" as apache {
-    component "Wordpress" as wp
-  }
-}
-
-cloud "Capitularia VM" {
-  component "App Server\n(Python+Flask)" as api
-  database  "Database\n(Postgres)"       as db
-}
-
-cloud "AFS Filesystem" {
-  database "Cache" as cache
-  database "Files" as files
-}
-
-mysql <-> wp
-wp    <-> api
-api   <-> db
-
-wp    <- - cache
-api   <- - cache
-files ->  cache
-@enduml
-
-PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
-(GPL source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.9.1+1-post-Debian-1
-Operating System: Linux
-Default Encoding: UTF-8
-Language: en
-Country: US
---></g></svg></div>
-<p class="caption"><span class="caption-text">Overview of Capitularia</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
+<p>Introduction to the Capitularia Digital Edition.</p>
+<p>The project runs on three hardware platforms:</p>
+<div class="section" id="rrzk-web-projekt">
+<h2>RRZK Web Projekt<a class="headerlink" href="#rrzk-web-projekt" title="Permalink to this headline">¶</a></h2>
+<p>An <a class="reference internal" href="webprojekt.html#webprojekt"><span class="std std-ref">RRZK Web Projekt</span></a> (<a class="reference external" href="https://capitularia.uni-koeln.de">https://capitularia.uni-koeln.de</a>) is a
+standard web hosting package offered by RRZK.</p>
 <p>The <a class="reference internal" href="webprojekt.html#webprojekt"><span class="std std-ref">RRZK Web Projekt</span></a> is a package offered by RRZK and
 consists of an Apache web server and a <a class="reference internal" href="webprojekt/database.html#mysql"><span class="std std-ref">mysql database</span></a>.  Apache
 runs a Wordpress installation.  We wrote a Wordpress <a class="reference internal" href="webprojekt/wordpress/theme.html#theme"><span class="std std-ref">theme</span></a> and
 <a class="reference internal" href="webprojekt/wordpress/plugins.html#plugins"><span class="std std-ref">plugins</span></a> to add the functionality we needed for our project.</p>
-<p>As it got too hard to implement all functionality in plugins, we moved a part of
-it onto an application server on a VM.</p>
-<p>The <a class="reference internal" href="vm.html#vm"><span class="std std-ref">Capitularia VM</span></a> is a root VM.  It runs a <span class="xref std std-ref">Postgres database</span> server and the <a class="reference internal" href="vm/app_server.html#app-server"><span class="std std-ref">Python application server</span></a>.  Next to
-that it hosts a recent OpenJDK, Saxon and a <a class="reference internal" href="overviews/collation_tool.html#custom-collatex"><span class="std std-ref">customized version of CollateX</span></a>.</p>
-<p>The application server <a class="reference internal" href="overviews/html_generation.html#html-generation"><span class="std std-ref">generates the HTML files</span></a> of the
-TEI manuscripts.  It also does <a class="reference internal" href="overviews/collation_tool.html#collation-tool-overview"><span class="std std-ref">collations</span></a> and
-offers <a class="reference internal" href="overviews/meta_search.html#meta-search-overview"><span class="std std-ref">metadata and fulltext search</span></a> in the
-Capitulars.  The Postgres database holds manuscript metadata and the
-pre-processed text of every chapter in every manuscript.</p>
+<div class="figure align-center" id="id1">
+<div  class="pic pic-format-text-xml pic-language-pic">
+
+
+
+<!-- Creator: dpic version 2021.01.01 option -v for SVG 1.1 -->
+<!-- width="228" height="391" -->
+<svg
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+ xml:space="preserve"
+ style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision;
+ image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+ width="226.8px" height="390.16px"
+ viewBox="0 0 226.8 390.16"
+ font-size="11pt" text-anchor="middle"
+ stroke="black" stroke-miterlimit="10" stroke-width="1.066667" fill="none">
+<g>
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="112.4" y="29.88">RRZK Webprojekt</text>
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="112.4" y="68.36">Wordpress</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="30.8" y="77.96" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="112.4" y="97.2">Capitularia Theme</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="30.8" y="116.36" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="112.4" y="135.6">File Include Plugin</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="30.8" y="145.16" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="112.4" y="164.4">Collation Plugin</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="30.8" y="173.96" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="112.4" y="193.2">Meta Search Plugin</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="30.8" y="202.76" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="112.4" y="222">Page Generator Plugin</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="30.8" y="231.56" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="112.4" y="250.8">Dynamic Menu Plugin</text>
+<rect stroke-width="2"
+ x="21.2" y="49.08" width="182.4" height="220.88" />
+<path stroke-width="0" stroke="#a80136"
+ fill="#fefece"
+ d="M 64.4,308.36
+ C 64.4,313.64 64.4,328.76 64.4,341.96 64.4,355.16 86,365.96 112.4,365.96 138.8,365.96 160.4,355.16 160.4,341.96 160.4,328.76 160.4,313.64 160.4,308.36" />
+<path stroke-width="2"
+ stroke="#a80136"
+ d="M 64.4,308.36
+ C 64.4,313.64 64.4,328.76 64.4,341.96 64.4,355.16 86,365.96 112.4,365.96 138.8,365.96 160.4,355.16 160.4,341.96 160.4,328.76 160.4,313.64 160.4,308.36" />
+<ellipse fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ cx="112.4" cy="308.36" rx="48" ry="19.2" />
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="112.4" y="344.266667">mysql</text>
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="112.4" y="358.933333">Database</text>
+<rect stroke-width="2"
+ stroke-dasharray="5.6,4"
+ x="2" y="1" width="220.8" height="384.16" />
+</g></svg>
+</div>
+<p class="caption"><span class="caption-text">RRZK Webprojekt Components</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="capitularia-vm">
+<h2>Capitularia VM<a class="headerlink" href="#capitularia-vm" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="vm.html#vm"><span class="std std-ref">Capitularia VM</span></a> (<a class="reference external" href="https://api.capitularia.uni-koeln.de">https://api.capitularia.uni-koeln.de</a>) is a root
+VM also offered by the RRZK.  We use the VM for all functionality that is too
+inconvienent to implement in Wordpress plugins and for all software lacking in
+the Webprojekt package.</p>
+<p>The VM runs a <span class="xref std std-ref">Postgres database</span> server and the <a class="reference internal" href="vm/app_server.html#app-server"><span class="std std-ref">Python
+application server</span></a>.  Next to that it hosts a recent OpenJDK, Saxon
+and a <a class="reference internal" href="overviews/collation_tool.html#custom-collatex"><span class="std std-ref">customized version of CollateX</span></a>.</p>
+<div class="figure align-center" id="id2">
+<div  class="pic pic-format-text-xml pic-language-pic">
+
+
+
+<!-- Creator: dpic version 2021.01.01 option -v for SVG 1.1 -->
+<!-- width="372" height="382" -->
+<svg
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+ xml:space="preserve"
+ style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision;
+ image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+ width="370.8px" height="380.56px"
+ viewBox="0 0 370.8 380.56"
+ font-size="11pt" text-anchor="middle"
+ stroke="black" stroke-miterlimit="10" stroke-width="1.066667" fill="none">
+<g>
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="78.8" y="29.88">Capitularia VM</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="30.8" y="58.68" width="96" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="78.8" y="77.92">Makefile</text>
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="78.8" y="145.16">Saxon</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="30.8" y="154.76" width="96" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="78.8" y="174">XSLT</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="30.8" y="188.36" width="96" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="78.8" y="207.6">XSLT</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="30.8" y="221.96" width="96" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="78.8" y="241.2">...</text>
+<rect stroke-width="2"
+ x="21.2" y="125.88" width="115.2" height="134.48" />
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="174.8" y="58.68" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="256.4" y="77.92">Custom CollateX</text>
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="256.4" y="145.16">Python App Server</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="174.8" y="154.76" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="256.4" y="174">Collation Server</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="174.8" y="188.36" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="256.4" y="207.6">Data Server</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="174.8" y="221.96" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="256.4" y="241.2">...</text>
+<rect stroke-width="2"
+ x="165.2" y="125.88" width="182.4" height="134.48" />
+<path stroke-width="0" stroke="#a80136"
+ fill="#fefece"
+ d="M 102.8,298.76
+ C 102.8,304.04 102.8,319.16 102.8,332.36 102.8,345.56 124.4,356.36 150.8,356.36 177.2,356.36 198.8,345.56 198.8,332.36 198.8,319.16 198.8,304.04 198.8,298.76" />
+<path stroke-width="2"
+ stroke="#a80136"
+ d="M 102.8,298.76
+ C 102.8,304.04 102.8,319.16 102.8,332.36 102.8,345.56 124.4,356.36 150.8,356.36 177.2,356.36 198.8,345.56 198.8,332.36 198.8,319.16 198.8,304.04 198.8,298.76" />
+<ellipse fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ cx="150.8" cy="298.76" rx="48" ry="19.2" />
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="150.8" y="334.666667">Postgres</text>
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="150.8" y="349.333333">Database</text>
+<rect stroke-width="2"
+ stroke-dasharray="5.6,4"
+ x="2" y="1" width="364.8" height="374.56" />
+</g></svg>
+</div>
+<p class="caption"><span class="caption-text">Capitularia VM Components</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The XSLT transformations <a class="reference internal" href="overviews/html_generation.html#html-generation"><span class="std std-ref">generate the HTML files</span></a> of the
+TEI manuscripts.</p>
+<p>The Postgres database holds manuscript metadata and the pre-processed text of
+every chapter in every manuscript.</p>
+<p>The app server does <a class="reference internal" href="overviews/collation_tool.html#collation-tool-overview"><span class="std std-ref">collations</span></a> and offers
+<a class="reference internal" href="overviews/meta_search.html#meta-search-overview"><span class="std std-ref">metadata and fulltext search</span></a> in the Capitulars.</p>
+</div>
+<div class="section" id="afs">
+<h2>AFS<a class="headerlink" href="#afs" title="Permalink to this headline">¶</a></h2>
+<p>The AFS Filesystem (/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/) is a
+network filesystem.</p>
+<div class="figure align-center" id="id3">
+<div  class="pic pic-format-text-xml pic-language-pic">
+
+
+
+<!-- Creator: dpic version 2021.01.01 option -v for SVG 1.1 -->
+<!-- width="285" height="161" -->
+<svg
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+ xml:space="preserve"
+ style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision;
+ image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+ width="284.4px" height="159.68px"
+ viewBox="0 0 284.4 159.68"
+ font-size="11pt" text-anchor="middle"
+ stroke="black" stroke-miterlimit="10" stroke-width="1.066667" fill="none">
+<g>
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="69.2" y="29.88">AFS</text>
+<path stroke-width="0" stroke="#a80136"
+ fill="#fefece"
+ d="M 21.2,77.88
+ C 21.2,83.16 21.2,98.28 21.2,111.48 21.2,124.68 42.8,135.48 69.2,135.48 95.6,135.48 117.2,124.68 117.2,111.48 117.2,98.28 117.2,83.16 117.2,77.88" />
+<path stroke-width="2"
+ stroke="#a80136"
+ d="M 21.2,77.88
+ C 21.2,83.16 21.2,98.28 21.2,111.48 21.2,124.68 42.8,135.48 69.2,135.48 95.6,135.48 117.2,124.68 117.2,111.48 117.2,98.28 117.2,83.16 117.2,77.88" />
+<ellipse fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ cx="69.2" cy="77.88" rx="48" ry="19.2" />
+<path stroke-width="0" stroke="#a80136"
+ fill="#fefece"
+ d="M 165.2,77.88
+ C 165.2,83.16 165.2,98.28 165.2,111.48 165.2,124.68 186.8,135.48 213.2,135.48 239.6,135.48 261.2,124.68 261.2,111.48 261.2,98.28 261.2,83.16 261.2,77.88" />
+<path stroke-width="2"
+ stroke="#a80136"
+ d="M 165.2,77.88
+ C 165.2,83.16 165.2,98.28 165.2,111.48 165.2,124.68 186.8,135.48 213.2,135.48 239.6,135.48 261.2,124.68 261.2,111.48 261.2,98.28 261.2,83.16 261.2,77.88" />
+<ellipse fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ cx="213.2" cy="77.88" rx="48" ry="19.2" />
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="69.2" y="121.12">TEI Files</text>
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="213.2" y="121.12">HTML Files</text>
+<rect stroke-width="2"
+ stroke-dasharray="5.6,4"
+ x="2" y="1" width="278.4" height="153.68" />
+</g></svg>
+</div>
+<p class="caption"><span class="caption-text">AFS Components</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
 <p>The AFS Filesystem holds all the original manuscript files encoded in TEI and
 versions thereof <a class="reference internal" href="overviews/html_generation.html#html-generation"><span class="std std-ref">converted to HTML</span></a>.  It is accessible
 from the VM and the Webprojekt.  The editors also have access to it through ssh.</p>
