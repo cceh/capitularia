@@ -20,14 +20,14 @@ The project runs on three hardware platforms:
 RRZK Web Projekt
 ================
 
-An :ref:`RRZK Web Projekt <webprojekt>` (https://capitularia.uni-koeln.de) is a
-standard web hosting package offered by RRZK (Regionales Rechenzentrum der
-Universität zu Köln).
+An :ref:`RRZK Web Projekt <webprojekt>` is a standard web hosting package
+offered by RRZK (Regionales Rechenzentrum der Universität zu Köln).  It consists
+of an Apache web server with PHP and a :ref:`mysql database <mysql>`.
 
-The :ref:`RRZK Web Projekt <webprojekt>` is a package offered by RRZK and
-consists of an Apache web server and a :ref:`mysql database <mysql>`.  Apache
-runs a Wordpress installation.  We wrote a Wordpress :ref:`theme <theme>` and
-:ref:`plugins <plugins>` to add the functionality we needed for our project.
+In the Capitularia Webprojekt (https://capitularia.uni-koeln.de) the Apache web
+server runs a Wordpress installation.  We wrote a Wordpress :ref:`theme <theme>`
+and many :ref:`plugins <plugins>` to add the functionality we needed for our
+project.
 
 .. pic:: pic
    :caption: RRZK Webprojekt Components
@@ -65,8 +65,8 @@ Capitularia VM
 
 The :ref:`Capitularia VM <vm>` (https://api.capitularia.uni-koeln.de) is a root
 VM also offered by the RRZK.  We use the VM for all functionality that is too
-inconvienent to implement in Wordpress plugins and for all software lacking in
-the Webprojekt package.
+inconvienent to implement in Wordpress plugins and to install and use software
+packages lacking in the Webprojekt package.
 
 The VM runs a :ref:`Postgres database <db>` server and the :ref:`Python
 application server <app-server>`.  Next to that it hosts a recent OpenJDK, Saxon
