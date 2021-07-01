@@ -6,12 +6,23 @@ Introduction to the Capitularia Digital Edition.
 
 The project runs on three hardware platforms:
 
+.. pic:: pic
+   :caption: Capitularia platforms
+
+   RRZ: circle component wid 1 "RRZK" "Webprojekt" at (0, 0)
+   VM:  circle component same  "Capitularia" "VM"  at (2, 0)
+   AFS: circle component same  "AFS"               at (1, -1.4142)
+   line <-> from RRZ to VM chop 0.5
+   line <-> from RRZ to AFS chop 0.5
+   line <-> from VM to AFS chop 0.5
+
 
 RRZK Web Projekt
 ================
 
 An :ref:`RRZK Web Projekt <webprojekt>` (https://capitularia.uni-koeln.de) is a
-standard web hosting package offered by RRZK.
+standard web hosting package offered by RRZK (Regionales Rechenzentrum der
+Universität zu Köln).
 
 The :ref:`RRZK Web Projekt <webprojekt>` is a package offered by RRZK and
 consists of an Apache web server and a :ref:`mysql database <mysql>`.  Apache
@@ -25,19 +36,24 @@ runs a Wordpress installation.  We wrote a Wordpress :ref:`theme <theme>` and
    RRZK: [
       "RRZK Webprojekt"
       move 0.3
-      WP: [
-         "Wordpress"
-         move 0.1
-         PF: box component wid 1.7 "Capitularia Theme"
-         move 0.1
-         PF: box component wid 1.7 "File Include Plugin"
-         PC: box component same "Collation Plugin"
-         PS: box component same "Meta Search Plugin"
-         PG: box component same "Page Generator Plugin"
-         PD: box component same "Dynamic Menu Plugin"
+      Apache: [
+         "Apache / PHP"
+         move 0.3
+         WP: [
+            "Wordpress"
+            move 0.1
+            PF: box component wid 1.7 "Capitularia Theme"
+            move 0.1
+            PF: box component wid 1.7 "File Include Plugin"
+            PC: box component same "Collation Plugin"
+            PS: box component same "Meta Search Plugin"
+            PG: box component same "Page Generator Plugin"
+            PD: box component same "Dynamic Menu Plugin"
+         ]
+         WPe: box wid WP.wid + 0.2 ht WP.ht + 0.2 with .c at WP.c
       ]
-      WPe: box wid WP.wid + 0.2 ht WP.ht + 0.2 with .c at WP.c
-      Mysql: db() with .n at WP.s - (0, 0.3)
+      Apachee: box wid Apache.wid + 0.2 ht Apache.ht + 0.2 with .c at Apache.c
+      Mysql: db() with .n at Apache.WP.s - (0, 0.3)
       "mysql" "Database" at Mysql.Caption
    ]
    box dashed wid RRZK.wid + 0.4 ht RRZK.ht + 0.4 with .c at RRZK.c
@@ -98,8 +114,9 @@ and a :ref:`customized version of CollateX <custom-collatex>`.
    box dashed wid VM.wid + 0.4 ht VM.ht + 0.4 with .c at VM.c
 
 
-The XSLT transformations :ref:`generate the HTML files <HTML-generation>` of the
-TEI manuscripts.
+Many different :ref:`XSLT transformations <transformations>` are used to
+:ref:`generate the HTML files <HTML-generation>` of the TEI manuscripts and also
+many auxiliary files like lists of capitularies ans manuscripts.
 
 The Postgres database holds manuscript metadata and the pre-processed text of
 every chapter in every manuscript.
