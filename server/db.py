@@ -331,8 +331,14 @@ class MssCapitularies (Base):
     cap_id  = Column (String)
 
     mscap_n = Column (Integer)
-    """Index used if there are more than one copy of this capitulary in the
-    manuscript. """
+    """The n_th occurence of the capitulary in the manuscript.  Default is 1.
+
+    Since msItem does not contain milestones, this value is inferred by counting
+    the number of preceding loci that contain this capitulary.
+
+    N.B.: The value in the mss_chapters table is found in a different way.
+
+    """
 
     msp_part = Column (String)
     """ The official designation of the manuscript part. """
@@ -369,6 +375,19 @@ class MssChapters (Base):
     ms_id    = Column (String)
     cap_id   = Column (String)
     mscap_n  = Column (Integer)
+    """This chapter was found in the n_th occurence of the capitulary in the
+    manuscript.  Default is 1.
+
+    The value is read from the milestone, eg.:
+
+       <milestone unit='capitulare' n='BK.139_2' />
+
+    marks the second occurence of capitulary 139 in this manuscript.  All
+    chapters of BK.139 following this milestone get a value of 2 in this field.
+
+    N.B.: The value in the mss_capitularies table is found in a different way.
+
+    """
 
     chapter  = Column (String)
 
