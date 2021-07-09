@@ -205,14 +205,16 @@ def lookup_geonames (conn, geo_source):
                     'geo_fcode' : place['fcode'],
                     'geom'      : 'SRID=4326;POINT (%f %f)' % (float (place['lng']), float (place['lat'])),
                 })
-                if len (records) > 1:
-                    row['parent_id'] = records[-2]['geonameId']
+                # The hierarchy is now given in geoplaces.xml
+                #
+                # if len (records) > 1:
+                #     row['parent_id'] = records[-2]['geonameId']
 
-                    execute (conn, """
-                    INSERT INTO geonames (geo_id, geo_source)
-                    VALUES (:geo_id, :geo_source)
-                    ON CONFLICT (geo_id, geo_source) DO NOTHING
-                    """, { 'geo_id' : row['parent_id'], 'geo_source' : geo_source })
+                #     execute (conn, """
+                #     INSERT INTO geonames (geo_id, geo_source)
+                #     VALUES (:geo_id, :geo_source)
+                #     ON CONFLICT (geo_id, geo_source) DO NOTHING
+                #     """, { 'geo_id' : row['parent_id'], 'geo_source' : geo_source })
 
             if geo_source == 'dnb':
                 rec = json.loads (r.text)
