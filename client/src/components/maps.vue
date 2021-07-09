@@ -4,52 +4,56 @@
        @destroy-card="on_destroy_map_popup">
 
     <toolbar :toolbar="toolbar" class="maps-vm-toolbar px-2 py-2" ref="tb">
-      <form class="form-inline">
-        <layer-selector v-model="toolbar.place_layer_shown"
-                        class="mr-2"
-                        size="sm"
-                        layer_type="place"
-                        :addnone="true"
-                        :layers="geo_layers.layers">Show count of</layer-selector>
-
-        <div class="form-group">
+      <form class="row">
+        <div class="col-auto">
+          <label class="mr-2" for="place_layers">Show count of</label>
+          <layer-selector id="place_layers"
+                          v-model="toolbar.place_layer_shown"
+                          layer_type="place"
+                          :addnone="true"
+                          :layers="geo_layers.layers"></layer-selector>
+        </div>
+        <div class="col-auto">
           <label class="mr-2" for="notbefore">considering mss. created between</label>
-          <b-form-input id="notbefore"
-                        v-model="toolbar.dates.notbefore"
-                        size="sm"
-                        type="number"
-                        v-b-tooltip.hover
-                        title="Enter a year."
-                        ></b-form-input>
+          <input id="notbefore"
+                 class="form-control form-control-sm"
+                 v-model="toolbar.dates.notbefore"
+                 type="number"
+                 data-bs-toggle="tooltip"
+                 data-bs-placement="bottom"
+                 title="Enter a year."
+                 >
         </div>
-        <div class="form-group">
+        <div class="col-auto">
           <label class="mr-2" for="notafter">and</label>
-          <b-form-input id="notafter"
-                        v-model="toolbar.dates.notafter"
-                        size="sm"
-                        type="number"
-                        v-b-tooltip.hover
-                        title="Enter a year."
-                        ></b-form-input>
+          <input id="notafter"
+                 class="form-control form-control-sm"
+                 v-model="toolbar.dates.notafter"
+                 type="number"
+                 data-bs-toggle="tooltip"
+                 data-bs-placement="bottom"
+                 title="Enter a year."
+                 >
         </div>
-        <div class="form-group">
+        <div class="col-auto">
           <label class="mr-2" for="capitularies">and containing any of these Capitularies:</label>
-          <b-form-input id="capitularies"
-                        v-model="toolbar.capitularies"
-                        size="sm"
-                        type="text"
-                        v-b-tooltip.hover
-                        title="Enter a space-separated list of BK nos (eg. 39 40 BK139-141 M1 M10-25)."
-                        ></b-form-input>
+          <input id="capitularies"
+                 class="form-control form-control-sm"
+                 v-model="toolbar.capitularies"
+                 type="text"
+                 data-bs-toggle="tooltip"
+                 data-bs-placement="bottom"
+                 title="Enter a space-separated list of BK nos (eg. 39 40 BK139-141 M1 M10-25)."
+                 >
         </div>
-      </form>
-
-      <form class="form-inline">
-        <layer-selector v-model="toolbar.area_layer_shown"
-                        size="sm"
-                        layer_type="area"
-                        :addnone="true"
-                        :layers="geo_layers.layers">Map overlay:</layer-selector>
+        <div class="col-auto">
+          <label class="mr-2" for="area_layers">Map overlay:</label>
+          <layer-selector id="area_layers"
+                          v-model="toolbar.area_layer_shown"
+                          layer_type="area"
+                          :addnone="true"
+                          :layers="geo_layers.layers"></layer-selector>
+        </div>
       </form>
 
     </toolbar>

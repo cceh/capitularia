@@ -13,7 +13,6 @@
 import Vue          from 'vue';
 import VueRouter    from 'vue-router';
 import Vuex         from 'vuex';
-import BootstrapVue from 'bootstrap-vue';
 
 import _            from 'lodash';
 import * as d3      from 'd3';
@@ -23,7 +22,6 @@ import maps         from './maps.vue';
 
 Vue.use (VueRouter);
 Vue.use (Vuex);
-Vue.use (BootstrapVue);
 
 const routes = [
     { 'path' : '/client/maps', 'component' : maps, },
@@ -108,7 +106,6 @@ export default {
 
 /* bootstrap */
 @import '~bootstrap';
-@import '~bootstrap-vue/src/index';
 
 /* List of icons at: http://astronautweb.co/snippet/font-awesome/ */
 @import "~/themes/Capitularia/src/css/fonts";

@@ -297,6 +297,7 @@ L.Layer_Places = L.D3_geoJSON.extend ({
             if (that.is_dragging (event)) {
                 return;
             }
+            d.position_target = event.target;
             vm.$trigger ('mss-tooltip-open', d);
         });
 

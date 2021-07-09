@@ -152,9 +152,9 @@ function init_dynamic_menues () {
                     const message = $pgettext ('Checkbox label', 'Show line breaks');
 
                     a.push (`<a class="ssdone">
-<div class="custom-control custom-checkbox">
-  <input type="checkbox" class="custom-control-input custom-checkbox-linebreak" id="checkbox-linebreak">
-  <label class="custom-control-label" for="checkbox-linebreak">${message}</label>
+<div class="form-check">
+  <input class="form-check-input custom-checkbox-linebreak" type="checkbox" id="checkbox-linebreak">
+  <label class="form-check-label" for="checkbox-linebreak">${message}</label>
 </div></a>`);
                 // you may open your eyes again
                 }
@@ -182,8 +182,8 @@ function init_dynamic_menues () {
         if ($this.children ('ul').length > 0) {
             $this.children ('a').addClass ('has-opener');
             $ ('<a class="opener"/>').prependTo ($this)
-                .attr ('data-toggle', 'collapse')
-                .attr ('data-target', '#' + id)
+                .attr ('data-bs-toggle', 'collapse')
+                .attr ('data-bs-target', '#' + id)
                 .addClass ('collapsed');
             $this.children ('ul').attr ('id', id).addClass ('collapse sub-menu');
         }

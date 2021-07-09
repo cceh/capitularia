@@ -1,14 +1,16 @@
 <template>
-  <form class="layer-selector-vm form-inline">
-    <div class="form-group">
-      <label class="mr-2"><slot /></label>
-      <select class="form-control form-control-sm" :value="value" @change="on_change ($event)">
-        <option v-for="d in filtered_layers" :value="d.id" :title="d.long_title"
-                :selected="d.id == value"
-                >{{ d.title }}</option>
-      </select>
-    </div>
-  </form>
+<div class="layer-selector-vm">
+  <select class="form-select form-select-sm"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          :title="title"
+          :value="value"
+          @change="on_change ($event)">
+    <option v-for="d in filtered_layers" :value="d.id" :title="d.long_title"
+            :selected="d.id == value"
+            >{{ d.title }}</option>
+  </select>
+</div>
 </template>
 
 <script>
@@ -21,9 +23,6 @@
  * @component layer_selector
  * @author Marcello Perathoner
  */
-
-import $ from 'jquery';
-import 'bootstrap';
 
 export default {
     'props' : {

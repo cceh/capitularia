@@ -1,13 +1,14 @@
 <template>
   <card :card_id="d.card_id"
-        :position_target="d.position_target" :data-fcode="geo_fcode"
-        class="map-popup-vm card-closable card-draggable card-floating">
+        :position_target="d.position_target"
+        :data-fcode="geo_fcode"
+        class="map-popup-vm card-floating">
 
-    <card-caption class="bg-fcode" slot="caption">
+    <card-caption class="bg-fcode" draggable="true" :slidable="true" :closable="true">
       <h5 class="card-title">{{ geo_name }} ({{ geo_fcode }})</h5>
     </card-caption>
 
-    <div class="card-slidable">
+    <div class="card-slide">
 
       <div class="card-header">
         <toolbar :toolbar="toolbar">

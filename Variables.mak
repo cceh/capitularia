@@ -28,7 +28,7 @@ NODE         := $(NODE_MODULES)/.bin
 NAT_EARTH    := https://naciscdn.org/naturalearth
 
 WEBPACK             = $(NODE)/webpack --no-color
-WEBPACK_DEV_SERVER  = $(NODE)/webpack-dev-server --no-color
+WEBPACK_DEV_SERVER  = $(NODE)/webpack serve --no-color
 WEBPACK_DEV_CONFIG  = webpack.dev.js
 WEBPACK_PROD_CONFIG = webpack.prod.js
 

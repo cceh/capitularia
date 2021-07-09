@@ -6,26 +6,31 @@
 
     <div class="row mt-4 no-print">
       <div class="col-md-6">
-        <b-button v-b-tooltip.hover.bottom :title="$t ('Add Section')" @click="on_add_section">
+        <button type="button" class="btn btn-secondary"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" :title="$t ('Add Section')"
+                @click="on_add_section">
           <i class="plus fas" />
-        </b-button>
+        </button>
 
         <label class="btn btn-secondary ml-2 mb-0">
           {{ 'Load Configuration' | translate }}
           <input id="load-config" type="file" @change="on_load_config">
         </label>
 
-        <b-button class="ml-2" @click="on_save_config">
+        <button type="button" class="btn btn-secondary ml-2"
+                @click="on_save_config">
           {{ 'Save Configuration' | translate }}
           <a id="save-config-a" href="" download="saved-config.txt" />
-        </b-button>
+        </button>
       </div>
 
       <div class="col-md-6">
-        <b-button variant="primary" :disabled="collating" @click="on_collate">
+        <button type="button" class="btn btn-primary"
+                :disabled="collating"
+                @click="on_collate">
           <i class="spinner fas" :class="{ 'fa-spin' : collating }" />&nbsp;
           {{ 'Collate' | translate }}
-        </b-button>
+        </button>
       </div>
     </div> <!-- class row -->
 
@@ -51,15 +56,11 @@
 
 import { pick } from 'lodash-es';
 import Vue from 'vue';
-import { ButtonPlugin, DropdownPlugin, FormCheckboxPlugin, TooltipPlugin } from 'bootstrap-vue';
-
-Vue.use (DropdownPlugin);
-Vue.use (FormCheckboxPlugin);
-Vue.use (TooltipPlugin);
-Vue.use (ButtonPlugin);
 
 import Selector from './selector.vue';
 import Results  from './results.vue';
+
+import * as tools from './tools.js';
 
 /**
  * The vue.js instance that manages the whole page.
@@ -75,6 +76,9 @@ export default {
             'sections'  : [{}],
             'collating' : false,
         };
+    },
+    mounted () {
+        tools.update_bs_tooltips ();
     },
     /** @lends module:plugins/collation/front.VueFront.prototype */
     'methods' : {
@@ -142,7 +146,7 @@ export default {
 </script>
 
 <style lang="scss">
-/* front.vue */
+/* main.vue */
 
 div.cap-collation {
     h2 {

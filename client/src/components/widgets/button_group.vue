@@ -1,17 +1,19 @@
 <template>
-  <b-button-group size="sm" class="button-group-vm btn-group-toggle btn-group btn-group-sm"
-                  :options="options">
-    <template v-for="button in buttons">
-      <label v-if="type !== 'button'" :key="button.value"
-             :class="'btn btn-primary btn-sm' + (is_active (button.value) ? ' active' : '')" :title="button.title">
-        <span>{{ button.text }}</span>
-        <input :type="type" :checked="is_active (button.value)"
-               @change="on_change (button, $event)" />
-      </label>
-      <button v-if="type === 'button'" :type="type" class="btn btn-primary" :title="button.title"
-              @click="on_click (button, $event)">{{ button.text }}</button>
-    </template>
-  </b-button-group>
+<div class="button-group-vm btn-group btn-group-toggle btn-group-sm"
+     role="group"
+     :options="options">
+
+  <template v-for="button in buttons">
+    <label v-if="type !== 'button'" :key="button.value"
+           :class="'btn btn-primary btn-sm' + (is_active (button.value) ? ' active' : '')" :title="button.title">
+      <span>{{ button.text }}</span>
+      <input :type="type" :checked="is_active (button.value)"
+             @change="on_change (button, $event)" />
+    </label>
+    <button v-if="type === 'button'" :type="type" class="btn btn-primary" :title="button.title"
+            @click="on_click (button, $event)">{{ button.text }}</button>
+  </template>
+</div>
 </template>
 
 <script>

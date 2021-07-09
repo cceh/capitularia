@@ -7,6 +7,7 @@
  */
 
 import $ from 'jquery';
+import { Tooltip } from 'bootstrap';
 import panZoom from 'panzoom';
 
 /**
@@ -27,37 +28,44 @@ function initResetForm () {
 }
 
 /**
- * Initialize the footnote refs, ie. the '*', to open a popup on mouse
- * hover.  The popup contains the footnote text.
+ * Initialize the footnote refs, ie. the '*', to open a popup on mouse hover.
+ * The popup contains the footnote text.  The popup shall also stay open while
+ * the user hovers over the content, so that the user may click on links in the
+ * content.
+ *
+ * Footnotes are done with bootstrap 5.
  *
  * @memberof module:themes/capitularia
  */
 
 function initFootnoteTooltips () {
-    $ ('a.annotation-ref').tooltip ({
-        'placement' : 'top',
-        'title'     : function () {
-            const href = $ (this).attr ('href');
-            return $ (href).closest ('div.annotation-content').prop ('outerHTML');
-        },
-        'html'    : true,
-        'trigger' : 'manual',
-        // 'boundary'   : 'window',
-    }).on ('mouseenter', function () {
-        // keeps the tooltip open as long as the user hovers over it,
-        // the user may click on links
-        const that = this;
-        $ (this).tooltip ('show');
-        $ ('.tooltip').on ('mouseleave', function () {
-            $ (that).tooltip ('hide');
+    $ ('a.annotation-ref').each (function () {
+        const tt = new Tooltip (this, {
+            'trigger'   : 'manual',
+            'placement' : 'top',
+            'html'      : true,
+            'title'     : function () {
+                const href = $ (this).attr ('href');
+                return $ (href).closest ('div.annotation-content').prop ('outerHTML');
+            },
         });
-    }).on ('mouseleave', function () {
-        const that = this;
-        setTimeout (function () {
-            if (!$ ('.tooltip:hover').length) {
-                $ (that).tooltip ('hide');
-            }
-        }, 300);
+
+        $ (this).on ('mouseenter', function () {
+            tt.show ();
+        }).on ('mouseleave', function () {
+            // hack: are there any open tooltips hovered ?
+            const hovers = $ ('.tooltip:hover');
+            if (hovers.length) {
+                // pointer went over the content
+                // close when pointer leaves the content
+                hovers.on ('mouseleave', function () {
+                    tt.hide ();
+                });
+            } else {
+                // close now
+                tt.hide ();
+            };
+        });
     });
 }
 

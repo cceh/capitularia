@@ -1,8 +1,8 @@
 <template>
   <nav class="toolbar-vm" @button-group-click="on_click">
-    <b-button-toolbar class="justify-content-between">
+    <div class="row justify-content-between">
       <slot></slot>
-    </b-button-toolbar>
+    </div>
   </nav>
 </template>
 
@@ -19,7 +19,7 @@
  */
 
 import $ from 'jquery';
-import 'bootstrap';
+import { Tooltip } from 'bootstrap';
 
 export default {
     'props' : {
@@ -38,7 +38,9 @@ export default {
         },
     },
     mounted () {
-        $ (this.$el).find ('.dropdown-toggle').dropdown ();
+        for (const el of this.$el.querySelectorAll ('[data-bs-toggle="tooltip"]')) {
+            new Tooltip (el);
+        }
     },
 };
 </script>

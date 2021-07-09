@@ -6,6 +6,8 @@
 
 import $ from 'jquery';
 
+import { Tooltip } from 'bootstrap';
+
 /** The Wordpress Text Domain of the plugin. */
 const LANG = 'cap-collation';
 
@@ -215,4 +217,9 @@ export function get_sigla (item) {
         return this.getAttribute ('data-siglum');
     })
         .get ();
+}
+
+export function update_bs_tooltips () {
+    const bs_tooltips = [].slice.call (document.querySelectorAll ('[data-bs-toggle="tooltip"]'));
+    bs_tooltips.map ((el) => new Tooltip (el));
 }

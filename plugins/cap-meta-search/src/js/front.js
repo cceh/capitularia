@@ -8,6 +8,8 @@
 import $ from 'jquery';
 import jstree from 'imports-loader?imports=default|jquery|jQuery!jstree';
 
+import { Tooltip } from 'bootstrap';
+
 /**
  * Initialize the help button in the widget.
  *
@@ -17,9 +19,8 @@ function help_init () {
     $ ('.cap-meta-search-help').on ('click', function (dummy_event) {
         $ ('div.cap-meta-search-help-text').toggle ();
     });
-    $ ('div.cap-meta-search-box [title]').tooltip ({
-        'placement' : 'bottom',
-    });
+    const bs_tooltips = [].slice.call (document.querySelectorAll ('[data-bs-toggle="tooltip"]'));
+    bs_tooltips.map ((el) => new Tooltip (el, { 'placement' : 'left' } ));
 }
 
 /** @ignore */

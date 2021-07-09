@@ -1,21 +1,30 @@
-/* See: https://getbootstrap.com/docs/4.5/getting-started/theming/ */
+/* See: https://getbootstrap.com/docs/5.0/customize/sass/ */
 
-$theme-colors: (
-    'primary'     : $color-red,
-    'secondary'   : $color-beige,
+@import '~bootstrap/scss/functions';
+
+/* variable overrides */
+
+$font-size-base: 1rem;
+
+$primary:   $color-red;
+$secondary: $color-beige;
+
+$table-accent-bg: $color-row-odd;
+$table-head-bg:   $color-row-odd;
+
+$tooltip-arrow-color:  $secondary;
+
+$custom-colors: (
     'brand-color' : $color-red,
     'brand-beige' : $color-beige
 );
 
-@import '~bootstrap/scss/functions';
+$form-check-input-checked-bg-color: $color-red;
+
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 
-$font-size-base: 1rem;
-
-$table-accent-bg: $color-row-odd;
-
-$table-head-bg: $color-row-odd;
+$theme-colors: map-merge($theme-colors, $custom-colors);
 
 $grid-breakpoints: (
     // Extra small screen / phone
@@ -45,4 +54,3 @@ $container-max-widths: (
 );
 
 @import '~bootstrap';
-@import '~bootstrap-vue/src/index';

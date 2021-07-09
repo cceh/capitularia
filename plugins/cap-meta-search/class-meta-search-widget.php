@@ -100,7 +100,7 @@ class Widget extends \WP_Widget
         $selected = stripslashes (esc_attr ($_GET[$id] ?? ''));
         echo ("<div class='cap-meta-search-field cap-meta-search-field-$id'>\n");
         echo ("  <label for='$id'>$caption</label>\n");
-        echo ("  <select id='$id' name='$id' title='$tooltip' >\n");
+        echo ("  <select id='$id' name='$id' data-bs-toggle='tooltip' title='$tooltip' >\n");
         $this->echo_options ($items, $selected);
         echo ("  </select>\n");
         echo ("</div>\n");
@@ -121,7 +121,7 @@ class Widget extends \WP_Widget
     {
         $tooltip = esc_attr ($tooltip);
         echo ("<label for='$id'>$caption</label>\n");
-        echo ("<div id='$id' class='cap-meta-search-places' title='$tooltip'>\n");
+        echo ("<div id='$id' class='cap-meta-search-places' data-bs-toggle='tooltip' title='$tooltip'>\n");
         echo ("</div>\n");
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
 
@@ -148,7 +148,7 @@ class Widget extends \WP_Widget
         $value       = stripslashes (esc_attr ($_GET[$id] ?? ''));
         echo ("<div class='cap-meta-search-field cap-meta-search-field-$id'>\n");
         echo ("  <label for='$id'>$caption</label>\n");
-        echo ("  <input type='text' id='$id' name='$id' placeholder='$placeholder' title='$tooltip' value='$value' />\n");
+        echo ("  <input type='text' id='$id' name='$id' placeholder='$placeholder' data-bs-toggle='tooltip' title='$tooltip' value='$value' />\n");
         echo ("</div>\n");
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
     }
@@ -216,11 +216,11 @@ class Widget extends \WP_Widget
 
         $label   = __ ('Search', DOMAIN);
         $tooltip = __ ('Start the search', DOMAIN);
-        echo ("  <input class='cap-meta-search-submit' type='submit' value='$label' title='$tooltip' />\n");
+        echo ("  <input class='cap-meta-search-submit' type='submit' value='$label' data-bs-toggle='tooltip' title='$tooltip' />\n");
 
         $label   = __ ('Help', DOMAIN);
         $tooltip = __ ('Show some help', DOMAIN);
-        echo ("  <input class='cap-meta-search-help'   type='button' value='$label' title='$tooltip' />\n");
+        echo ("  <input class='cap-meta-search-help'   type='button' value='$label' data-bs-toggle='tooltip' title='$tooltip' />\n");
 
         echo ("</div>\n");
 
