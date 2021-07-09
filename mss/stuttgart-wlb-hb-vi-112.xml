@@ -371,8 +371,6 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <bibl corresp="#Mordek_1995"> Mordek 1995, S. 720-723</bibl>
                         <bibl corresp="#Schmitz_G_1996"> Schmitz G 1996, S. 152-153</bibl>
                         <bibl corresp="#Kéry_1999"> Kéry 1999, S. 52, 97</bibl>
-                        <!--     sk: Verweis auf Kéry nach Burkhart ergänzt, noch prüfen und ggf. scannen         -->
-
                         <bibl corresp="#Körntgen_2004"> Körntgen 2004</bibl>
                         <bibl corresp="#Bergmann_2005c">Bergmann 2005c, S. 1676-1677 Nr. 875c</bibl>
                         <bibl corresp="#Burkhart_2016"> Burkhart 2016, Nr. 34, S. 51-52</bibl>
@@ -386,8 +384,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage: Ein schwarz/weißer Mikrofilm sowie ein recht blasses Digitalisat
-            von diesem Film</p>
+         <p>Transkriptionsvorlage: Ein schwarz/weißer Mikrofilm sowie ein gutes Farbdigitalisat
+            der Württembergischen Landesbibliothek</p>
          <projectDesc>
             <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
@@ -406,10 +404,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
       <revisionDesc>
          <change who="DS" when="2016-03-01">Datei erstellt aus Mordek-XML</change>
          <change who="BM" when="2017-12-22">Datei veröffentlicht (BK 191)</change>
+         <change who="SK" when="2021-04-27">Transkription am neuen Farbdigitalisat geprüft</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
-      <graphic url=""/>
+      <graphic url="http://digital.wlb-stuttgart.de/purl/bsz42969900X"/>
    </facsimile>
    <text>
       <front>
@@ -477,70 +476,67 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
 
          <cb n="124v"/>
          <lb n="1"/>
-         <!-- NK bm: Bisher nur unclear-Stellen, Kommentare und Verwendung von ! am MF geprüft, komplette NK muss noch erfolgen.  -->
 
          <ab type="meta-text" xml:id="stuttgart-wlb-hb-vi-112-124v-1" corresp="BK.191_inscriptio">
-            <!-- sk: möglicherweise rend=coloured ?  -->
             <sic>INCPIVNT</sic>
             <choice>
                <abbr>CAP</abbr>
                <expan>CAPITULA</expan>
-            </choice> QUORUM MATERIES AB ALIQUIBUS EX MISSIS NOSTRIS <lb/>AD NOSTRAM NOTITIAM
+            </choice> QUORUM MATERIES AB ALIQUIBUS EX MISSIS NOSTRIS <lb/> AD NOSTRAM NOTITIAM
             PERLATA EST <lb/>
          </ab>
 
-         <ab type="text" xml:id="stuttgart-wlb-hb-vi-112-124v-2" corresp="BK.191_1"><seg type="initial">D</seg>e his qui sine consensu episcopi <expan>presbiteros</expan> in
+         <ab type="text" xml:id="stuttgart-wlb-hb-vi-112-124v-2" corresp="BK.191_1">
+            <seg type="initial">D</seg>e his qui sine consensu episcopi <expan>presbiteros</expan> in
             aeclesiis suis <choice>
                <abbr>constuunt</abbr>
                <expan>constituu<unclear>n</unclear>t</expan>
             </choice><note type="editorial">gek. <mentioned>constuu[n]t</mentioned>, ohne
                Kürzungszeichen</note>
-            <!-- DT: i erkennbar, also consti, danach schwierig, unclear erstmal lassen
-            - bm: Auf dem Film sieht es ziemlich eindeutig nach constuunt aus, vielleicht n unclear. 
-            sk: jetzt angepasst gemäß Film -->
-            uel <lb/>de eclesiis eiciunt et ab episcopo uel a quolibet misso dominico <lb/>admoniti
+            uel <lb/> de eclesiis eiciunt et ab episcopo uel a quolibet misso dominico <lb/> admoniti
             obędire noluerunt ut bannum nostrum reuuadia<lb break="no"/>re cogantur . et
             fideiussores ad palatium nostrum uenire iube<lb break="no"/>antur et tunc nos decernamus
             utrum nobis placeat ut aut il<lb break="no"/>lum bannum persoluat ! aut aliam
             harmiscaram sustineant . <lb/>
          </ab>
 
-         <ab type="text" xml:id="stuttgart-wlb-hb-vi-112-124v-3" corresp="BK.191_2"><seg type="initial">D</seg>e ecclesiis quę inter coheredes diuise sunt consideratum est
-            quatenus <lb/>si secundum prouidentiam et admonitionem episcopi ipsi coheredes eas
-            <lb/>uoluerint tenere et honorare ! faciant sin autem hoc contradixe<lb break="no"/>rint
-            ut in episcopi potestate maneat utrum eas ita consistere <lb/>permittat . aut reliquias
-            exinde auferat . et ubi ad nostrum <lb/>beneficium ecclesiae pertinentes . ita diuisę
-            inuentae fuerint <lb/>ut describantur et nobis renuntietur . <lb/>
+         <ab type="text" xml:id="stuttgart-wlb-hb-vi-112-124v-3" corresp="BK.191_2">
+            <seg type="initial">D</seg>e ecclesiis quę inter coheredes diuise sunt consideratum est
+            quatenus <lb/> si secundum prouidentiam et admonitionem episcopi ipsi coheredes eas
+            <lb/> uoluerint tenere et honorare ! faciant sin autem hoc contradixe<lb break="no"/>rint
+            ut in episcopi potestate maneat utrum eas ita consistere <lb/> permittat . aut reliquias
+            exinde auferat . et ubi ad nostrum <lb/> beneficium ecclesiae pertinentes . ita diuisę
+            inuentae fuerint <lb/> ut describantur et nobis renuntietur . <lb/>
          </ab>
 
-         <ab type="text" xml:id="stuttgart-wlb-hb-vi-112-124v-4" corresp="BK.191_3"><seg type="initial">D</seg>e ęcclęsiis destructis ut episcopi et missi inquisitione
-            faciant <lb/>utrum per neglegentiam aut inpossibilitatem de<subst>
+         <ab type="text" xml:id="stuttgart-wlb-hb-vi-112-124v-4" corresp="BK.191_3">
+            <seg type="initial">D</seg>e ęcclęsiis destructis ut episcopi et missi inquisitionem
+            faciant <lb/> utrum per neglegentiam aut inpossibilitatem de<subst>
                <del>t</del>
-               <add>s</add>
-            </subst>tructe sint <lb/>et ubi neglegentia inuenta fuerit <choice>
+               <add>structe</add>
+            </subst> sint . <lb/> et ubi neglegentia inuenta fuerit <choice>
                <abbr>epli</abbr>
                <expan>episcopali</expan>
             </choice> auctoritate emen<lb break="no"/>dare cogantur qui eam restaurare
-               <sic>deburant</sic> . si uero <lb/>per inpossibilitatem fuerit contigit ut
-               au<add>t</add> pluriores sint <lb/>quam necesse sit aut maiores magnitudinis quam ut
-            <lb/>ex rebus ad eas pertinentibus restaurari possint . episcopus modum <lb/>inueniat
+            <sic>deburant</sic> . si uero <lb/> per inpossibilitatem <del>fuerit</del> contigit ut
+            au<add>t</add> pluriores sint <lb/> quam necesse sit aut maiores magnitudinis quam ut
+            <lb/> ex rebus ad eas pertinentibus restaurari possint . episcopus modum <lb/> inueniat
             qualiter congrue emendari et consistere possint <lb/>
          </ab>
 
-         <ab type="text" xml:id="stuttgart-wlb-hb-vi-112-124v-5" corresp="BK.191_4"><seg type="initial">D</seg>e uno
-            <!-- DT: num braucht man hier nicht, eher pauschal hier gemeint
-            sk: sehe ich anders, denke schon, hier ist ganz konkret der 1 mansus Mindestausstattung gemeint,
-            der nur für den Bedarf der Kirche da sein soll -->
-            manso ad ecclesiam dato de quo aliqui homines <lb/>contra statuta sibi seruicium exigunt
-               <expan>quicumque</expan> pro hac cau<lb break="no"/>sa accusatus fuerit ! comes uel
-            missi hoc quod inde <lb/>subtractum est <expan>presbiteris</expan> cum sua lege restitui
-            faciant . <lb/>
+         <ab type="text" xml:id="stuttgart-wlb-hb-vi-112-124v-5" corresp="BK.191_4">
+            <seg type="initial">D</seg>e uno manso ad ecclesiam dato de quo aliqui homines <lb/> contra
+            statuta sibi seruicium exigunt <expan>quicumque</expan> pro hac cau<lb break="no"/>sa 
+            accusatus fuerit ! comes uel missi hoc quod inde <lb/> subtractum est 
+            <expan>presbiteris</expan> cum sua lege restitui faciant . <lb/>
          </ab>
 
-         <ab type="text" xml:id="stuttgart-wlb-hb-vi-112-124v-6" corresp="BK.191_6"><expan><seg type="initial">Q</seg>uicumque</expan> decimam abstrahit de ęclesia ad quam per
-               <sic>iustiam</sic> dari de<lb break="no"/>bet <expan>presumtiose</expan> uel propter
-            munera aut amicitiam uel aliam <lb/>qualibet ocasionem ad alteram dederit ! ab episcopo
-            et a comite <lb/>uel a misso nostro distringatur ut eiusdem decimę quantita<lb break="no"/>tem cum sua lege restituat . </ab>
+         <ab type="text" xml:id="stuttgart-wlb-hb-vi-112-124v-6" corresp="BK.191_6">
+            <expan><seg type="initial">Q</seg>uicumque</expan> decimam abstrahit de ęclesia ad quam
+            per <sic>iustiam</sic> dari de<lb break="no"/>bet <expan>presumtiose</expan> uel propter
+            munera aut amicitiam uel aliam <lb/> qualibet ocasionem ad alteram dederit ! ab episcopo
+            et a comite <lb/> uel a misso nostro distringatur ut eiusdem decimę 
+            quantita<lb break="no"/>tem cum sua lege restituat . </ab>
 
       </body>
    </text>

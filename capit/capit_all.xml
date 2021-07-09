@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+
+    <!-- Datei enthält Informationen zu allen Kapitularien; aus dieser werden die einzelnen Seiten generiert; DS -->
+
+    <!-- Links zu Kapitularienseiten werden nur gebaut für jene Kapitularien, die im <name> ein ref-Attribut enthalten!!! -->
+    <!-- Links zu Handschriftenseiten werden nur gebaut für jene Handschriften, die im <item> ein @n-Attribut publ enthalten!!! -->
+    <!-- Sobald neue Nummerierungen/Bezeichnungen verfügbar werden diese als @corresp in den items hinzugefügt -->
+    <!-- Lothar: BK 157-159, 162-168, 201-202, (Mordek 23), - an korrekter Position; Ausgabe auf Einzellisten wird durch @sortKey='other' unterdrückt; 
+        Nachfügen in neuer Liste unter Verwendung der entsprechenden Attribute notwendig -->
+    <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Kapitularienliste</title>
+                <respStmt>
+                    <resp>Projektleitung</resp>
+                    <name>Karl Ubl</name>
+                </respStmt>
+                <respStmt>
+                    <resp>Kapitularienliste</resp>
+                    <name>Dominik Trump</name>
+                </respStmt>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>MGH Kapitularien-Projekt</publisher>
+            </publicationStmt>
+            <sourceDesc>
+                <msDesc>
+                    <msIdentifier>
+                        <settlement>xxx</settlement>
+                        <idno>xxx</idno>
+                    </msIdentifier>
+                    <physDesc/>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <encodingDesc>
+            <p>xxx</p>
+        </encodingDesc>
+        <revisionDesc>
+            <change when="2014-09-23" who="DT">Datei angelegt.</change>
+            <change when="2015-01-06" who="DT">Kapitularien Ludwigs des Frommen vollständig
+                aufgenommen.</change>
+            <change when="2015-09-11" who="DS">Anpassen zur Verwendung auf neue Variablen</change>
+            <change when="2015-09-30" who="DS">Verwendung von @ref in name nur bei Kapitularien, zu
+                denen Seiten existieren. Existiert kein @ ref, wird kein Link gebaut</change>
+            <change when="2015-10-06" who="DS">Statusänderung (@corresp) für alle Handschriften, die
+                im Zuge der Launch veröffentlicht werden</change>
+            <change when="2015-10-20" who="DT">Kapitularienliste ergänzt, alle LdF-Kapitularien nun
+                vorhanden und online</change>
+            <change when="2015-10-28" who="AH">Kapitularienliste korrekturgelesen und kleine
+                Korrekturen vorgenommen (Schreibweise von Titeln in alten Editionen, Datierungen,
+                falsche Verlinkungen).</change>
+            <change when="2015-10-29" who="BM">Angaben zu Kapitularien ergänzt, die von Mordek
+                aussortiert wurden (BK 132, 133, 172, 197-200).</change>
+            <change when="2016-02-15" who="DT">Datei von Anja und mir zusammengefügt. Änderungen nur
+                noch in dieser vornehmen. Anjas Datei heißt nun _Archiv.</change>
+            <change when="2016-02-25" who="DS">Zusammenfassen zu einer Gesamtliste (capit_ldf +
+                capit_all), aus der alle Listen sowie die Einzelseiten gespeist werden</change>
+            <change when="2016-02-29" who="DS">Reihenfolge nach BK Nummern, damit diese in
+                Gesamtliste korrekt. Einführen eines @sortKey='other' Attributs für "falsch"
+                sortierte / zugewiesene Fälle wie Lothar</change>
+            <change when="2016-08-15" who="DS">Anlegen einer neuen Unterliste für die Kapitularien
+                Lothars (unter der Liste ldf)</change>
+        </revisionDesc>
+    </teiHeader>
+    <text>
+        <body>
+            <div xml:id="capit_all">
+                <list type="pre814">
+                    <item n="publ" xml:id="BK_001">
+                        <name ref="pre814/bk-nr-001">Chlodowici regis ad episcopos
+                        praeceptio</name></item>
+                    <item n="publ" xml:id="BK_002">
+                        <name ref="pre814/bk-nr-002">Childeberti I regis praeceptum</name></item>
+                    <item n="publ" xml:id="BK_003">
+                        <name ref="pre814/bk-nr-003">Pactus Childeberti I et Chlotharii
+                        I</name></item>
+                    <item n="publ" xml:id="BK_004">
+                        <name ref="pre814/bk-nr-004">Chilperici edictum</name></item>
+                    <item n="publ" xml:id="BK_005">
+                        <name ref="pre814/bk-nr-005">Guntchramni regis edictum</name></item>
+                    <item n="publ" xml:id="BK_006">
+                        <name ref="pre814/bk-nr-006">Pactum Guntchramni et Childeberti
+                        II</name></item>
+                    <item n="publ" xml:id="BK_007">
+                        <name ref="pre814/bk-nr-007">Childeberti II decretio</name></item>
+                    <item n="publ" xml:id="BK_008">
+                        <name ref="pre814/bk-nr-008">Chlotharii I vel II praeceptio</name></item>
+                    <item n="publ" xml:id="BK_009">
+                        <name ref="pre814/bk-nr-009">Chlotharii II edictum</name></item>
+                    <item n="publ" xml:id="BK_010">
+                        <name ref="pre814/bk-nr-010">Karlmanni principis capitulare</name></item>
+                    <item n="publ" xml:id="BK_011">
+                        <name ref="pre814/bk-nr-011">Karlmanni principis capitulare
+                            Liptinense</name></item>
+                    <item n="publ" xml:id="BK_012">
+                        <name ref="pre814/bk-nr-012">Pippini principis capitulare
+                            Suessionense</name></item>
+                    <item n="publ" xml:id="BK_013">
+                        <name ref="pre814/bk-nr-013">Pippini regis capitulare</name></item>
+                    <item n="publ" xml:id="BK_014">
+                        <name ref="pre814/bk-nr-014">Capitulare seu canones concilii
+                            Vernensis</name></item>
+                    <item n="publ" xml:id="BK_015">
+                        <name ref="pre814/bk-nr-015">Decretum Compendiense</name></item>
+                    <item n="publ" xml:id="BK_016">
+                        <name ref="pre814/bk-nr-016">Decretum Vermeriense</name></item>
+                    <item n="publ" xml:id="BK_017">
+                        <name ref="pre814/bk-nr-017">Pippini regis ad Lullum epistola</name></item>
+                    <item n="publ" xml:id="BK_018">
+                        <name ref="pre814/bk-nr-018">Pippini regis capitulare
+                        Aquitanicum</name></item>
+                    <item n="publ" xml:id="BK_019">
+                        <name ref="pre814/bk-nr-019">Karoli Magni capitulare primum</name></item>
+                    <item n="publ" xml:id="BK_020a">
+                        <name ref="pre814/bk-nr-020a">Capitulare Haristallense, Forma
+                            communis</name></item>
+                    <item n="publ" xml:id="BK_020b">
+                        <name ref="pre814/bk-nr-020b">Capitulare Haristallense, Forma
+                            Langobardica</name></item>
+                    <item xml:id="BK_021">
+                        <name ref="pre814/bk-nr-021">Capitulare Haristallense secundum
+                            speciale</name></item>
+                    <item xml:id="BK_022">
+                        <name ref="pre814/bk-nr-022">Admonitio generalis</name></item>
+                    <item xml:id="BK_023">
+                        <name ref="pre814/bk-nr-023">Duplex capitulare missorum</name></item>
+                    <item xml:id="BK_024">
+                        <name ref="pre814/bk-nr-024">Breviarium missorum Aquitanicum</name></item>
+                    <item xml:id="BK_025">
+                        <name ref="pre814/bk-nr-025">Capitulare missorum</name></item>
+                    <item xml:id="BK_026">
+                        <name ref="pre814/bk-nr-026">Capitulatio de partibus Saxoniae</name></item>
+                    <item xml:id="BK_027">
+                        <name ref="pre814/bk-nr-027">Capitulare Saxonicum</name></item>
+                    <item xml:id="BK_028">
+                        <name ref="pre814/bk-nr-028">Capitulare Francofurtense</name></item>
+                    <item xml:id="BK_029">
+                        <name ref="pre814/bk-nr-029">Karoli epistola de litteris
+                        colendis</name></item>
+                    <item xml:id="BK_030">
+                        <name ref="pre814/bk-nr-030">Karoli Magni epistola generalis</name></item>
+                    <item xml:id="BK_031">
+                        <name ref="pre814/bk-nr-031">Capitulum in pago Cenomannico
+                        datum</name></item>
+                    <item xml:id="BK_032">
+                        <name ref="pre814/bk-nr-032">Capitulare de villis</name></item>
+                    <item xml:id="BK_033">
+                        <name ref="pre814/bk-nr-033">Capitulare missorum generale</name></item>
+                    <item xml:id="BK_034">
+                        <name ref="pre814/bk-nr-034">Capitularia missorum specialia</name></item>
+                    <item xml:id="BK_035">
+                        <name ref="pre814/bk-nr-035">Capitulare missorum item speciale</name></item>
+                    <item xml:id="BK_036">
+                        <name ref="pre814/bk-nr-036">Capitula a sacerdotibus proposita</name></item>
+                    <item xml:id="BK_037">
+                        <name ref="pre814/bk-nr-037">Capitula ad lectionem canonum et regulae S.
+                            Benedicti pertinentia</name></item>
+                    <item xml:id="BK_038">
+                        <name ref="pre814/bk-nr-038">Capitula de examinandis
+                        ecclesiasticis</name></item>
+                    <item xml:id="BK_039">
+                        <name ref="pre814/bk-nr-039">Capitulare legibus additum</name></item>
+                    <item xml:id="BK_040">
+                        <name ref="pre814/bk-nr-040">Capitulare missorum</name></item>
+                    <item xml:id="BK_041">
+                        <name ref="pre814/bk-nr-041">Capitulare legi Ribuariae additum</name></item>
+                    <item xml:id="BK_042">
+                        <name ref="pre814/bk-nr-042">Capitula ecclesiastica ad Salz
+                        data</name></item>
+                    <item xml:id="BK_043">
+                        <name ref="pre814/bk-nr-043">Capitulare missorum in Theodonis villa datum
+                            primum, mere ecclesiasticum</name></item>
+                    <item xml:id="BK_044">
+                        <name ref="pre814/bk-nr-044">Capitulare missorum in Theodonis villa datum
+                            secundum, generale</name></item>
+                    <item xml:id="BK_045">
+                        <name ref="pre814/bk-nr-045">Divisio regnorum</name></item>
+                    <item xml:id="BK_046">
+                        <name ref="pre814/bk-nr-046">Capitulare missorum Niumagae
+                        datum</name></item>
+                    <item xml:id="BK_047">
+                        <name ref="pre814/bk-nr-047">Capitula excerpta de canone</name></item>
+                    <item xml:id="BK_048">
+                        <name ref="pre814/bk-nr-048">Memoratorium de exercitu in Gallia occidentali
+                            praeparando</name></item>
+                    <item xml:id="BK_049">
+                        <name ref="pre814/bk-nr-049">Capitula de causis diversis</name></item>
+                    <item xml:id="BK_050">
+                        <name ref="pre814/bk-nr-050">Capitulare missorum de exercitu
+                            promovendo</name></item>
+                    <item xml:id="BK_051">
+                        <name ref="pre814/bk-nr-051">Capitula cum primis conferenda</name></item>
+                    <item xml:id="BK_052">
+                        <name ref="pre814/bk-nr-052">Capitula cum primis constituta</name></item>
+                    <item xml:id="BK_053">
+                        <name ref="pre814/bk-nr-053">Capitula missorum</name></item>
+                    <item xml:id="BK_054">
+                        <name ref="pre814/bk-nr-054">Capitula per episcopos et comites nota
+                            facienda</name></item>
+                    <item xml:id="BK_055">
+                        <name ref="pre814/bk-nr-055">Capitula post a. <date when="0805">805</date>
+                            addita </name></item>
+                    <item xml:id="BK_056">
+                        <name ref="pre814/bk-nr-056">Capitula Karoli Magni</name></item>
+                    <item xml:id="BK_057">
+                        <name ref="pre814/bk-nr-057">Capitula omnibus cognita facienda</name></item>
+                    <item xml:id="BK_058">
+                        <name ref="pre814/bk-nr-058">Responsa misso cuidam data</name></item>
+                    <item xml:id="BK_059">
+                        <name ref="pre814/bk-nr-059">Capitula a misso cognita facta</name></item>
+                    <item xml:id="BK_060">
+                        <name ref="pre814/bk-nr-060">Capitulare missorum</name></item>
+                    <item xml:id="BK_061">
+                        <name ref="pre814/bk-nr-061">Capitulare Aquisgranense</name></item>
+                    <item xml:id="BK_062">
+                        <name ref="pre814/bk-nr-062">Capitulare missorum Aquisgranense
+                        primum</name></item>
+                    <item xml:id="BK_063">
+                        <name ref="pre814/bk-nr-063">Capitulare missorum Aquisgranense
+                            alterum</name></item>
+                    <item xml:id="BK_064">
+                        <name ref="pre814/bk-nr-064">Capitulare missorum Aquisgranense
+                        primum</name></item>
+                    <item xml:id="BK_065">
+                        <name ref="pre814/bk-nr-065">Capitulare missorum Aquisgranense
+                            secundum</name></item>
+                    <item xml:id="BK_066">
+                        <name ref="pre814/bk-nr-066">Capitula de missorum officiis</name></item>
+                    <item xml:id="BK_067">
+                        <name ref="pre814/bk-nr-067">Capitula per missos cognita
+                        facienda</name></item>
+                    <item xml:id="BK_068">
+                        <name ref="pre814/bk-nr-068">Capitula ad legem Baiwariorum
+                        addita</name></item>
+                    <item xml:id="BK_069">
+                        <name ref="pre814/bk-nr-069">Capitulare Baiwaricum</name></item>
+                    <item xml:id="BK_070">
+                        <name ref="pre814/bk-nr-070">Capitula Karoli apud Ansegisum
+                        servata</name></item>
+                    <item xml:id="BK_071">
+                        <name ref="pre814/bk-nr-071">Capitula tractanda cum comitibus, episcopis et
+                            abbatibus</name></item>
+                    <item xml:id="BK_072">
+                        <name ref="pre814/bk-nr-072">Capitula de causis cum episcopis et abbatibus
+                            tractandis</name></item>
+                    <item xml:id="BK_073">
+                        <name ref="pre814/bk-nr-073">Capitula de rebus exercitalibus in placito
+                            tractanda</name></item>
+                    <item xml:id="BK_074">
+                        <name ref="pre814/bk-nr-074">Capitulare Bononiense</name></item>
+                    <item xml:id="BK_075">
+                        <name ref="pre814/bk-nr-075">Karoli Magni ad Fulradum abbatem
+                            epistola</name></item>
+                    <item xml:id="BK_076">
+                        <name ref="pre814/bk-nr-076">Praeceptum pro Hispanis</name></item>
+                    <item xml:id="BK_077">
+                        <name ref="pre814/bk-nr-077">Capitulare Aquisgranense</name></item>
+                    <item xml:id="BK_078">
+                        <name ref="pre814/bk-nr-078">Capitula e canonibus excerpta</name></item>
+                    <item xml:id="BK_079">
+                        <name ref="pre814/bk-nr-079">Capitula originis incertae</name></item>
+                    <item xml:id="BK_080">
+                        <name ref="pre814/bk-nr-080">Capitulare de iustitiis faciendis</name></item>
+                    <item xml:id="BK_081">
+                        <name ref="pre814/bk-nr-081">Capitula ecclesiastica</name></item>
+                    <item xml:id="BK_082">
+                        <name ref="pre814/bk-nr-082">Capitulare Karoli Magni de
+                        latronibus</name></item>
+                    <item xml:id="BK_083">
+                        <name ref="pre814/bk-nr-083">Capitula missorum</name></item>
+                    <item xml:id="BK_084">
+                        <name ref="pre814/bk-nr-084">Capitula vel missorum vel
+                        synodalia</name></item>
+                    <item xml:id="BK_085">
+                        <name ref="pre814/bk-nr-085">Capitula a missis dominicis ad comites
+                            directa</name></item>
+                    <item xml:id="BK_086">
+                        <name ref="pre814/bk-nr-086">Capitula incerti anni</name></item>
+                    <item xml:id="BK_087">
+                        <name ref="pre814/bk-nr-087">Capitula de rebus ecclesiasticis</name></item>
+                    <item xml:id="BK_087a">
+                        <name ref="pre814/bk-nr-087a">Capitula e conciliis excerpta (nach
+                            Mordek)</name>
+                    </item>
+                    <item xml:id="BK_088">
+                        <name ref="pre814/bk-nr-088">Karoli Magni notitia Italica</name></item>
+                    <item xml:id="BK_089">
+                        <name ref="pre814/bk-nr-089">Capitulare cum episcopis Langobardicis
+                            deliberatum</name></item>
+                    <item xml:id="BK_090">
+                        <name ref="pre814/bk-nr-090">Capitulare Mantuanum</name></item>
+                    <item xml:id="BK_091">
+                        <name ref="pre814/bk-nr-091">Pippini Italiae regis capitulare</name></item>
+                    <item xml:id="BK_092">
+                        <name ref="pre814/bk-nr-092">Capitulare Mantuanum primum, mere
+                            ecclesiasticum</name></item>
+                    <item xml:id="BK_093">
+                        <name ref="pre814/bk-nr-093">Capitulare Mantuanum secundum,
+                        generale</name></item>
+                    <item xml:id="BK_094">
+                        <name ref="pre814/bk-nr-094">Pippini Italiae regis capitulare
+                            Papiense</name></item>
+                    <item xml:id="BK_095">
+                        <name ref="pre814/bk-nr-095">Karoli Magni capitulare Italicum</name></item>
+                    <item xml:id="BK_096">
+                        <name ref="pre814/bk-nr-096">Capitula cum Italiae episcopis
+                            deliberata</name></item>
+                    <item xml:id="BK_097">
+                        <name ref="pre814/bk-nr-097">Karoli Magni epistola in Italiam
+                        emissa</name></item>
+                    <item xml:id="BK_098">
+                        <name ref="pre814/bk-nr-098">Capitulare Italicum</name></item>
+                    <item xml:id="BK_099">
+                        <name ref="pre814/bk-nr-099">Karoli Magni capitulare missorum
+                            Italicum</name></item>
+                    <item xml:id="BK_100">
+                        <name ref="pre814/bk-nr-100">Pippini Italiae regis capitulare</name></item>
+                    <item xml:id="BK_101">
+                        <name ref="pre814/bk-nr-101">Karoli Magni capitula Italica</name></item>
+                    <item xml:id="BK_102">
+                        <name ref="pre814/bk-nr-102">Pippini regis capitulare Italicum</name></item>
+                    <item xml:id="BK_103">
+                        <name ref="pre814/bk-nr-103">Karoli Magni ad Pippinum filium
+                        epistola</name></item>
+                    <item xml:id="BK_104">
+                        <name ref="pre814/bk-nr-104">Capitula Francica Karolo Magno
+                        adscripta</name></item>
+                    <item xml:id="BK_105">
+                        <name ref="pre814/bk-nr-105">Capitula Italica Karolo Magno
+                        adscripta</name></item>
+                    <item xml:id="BK_106">
+                        <name ref="pre814/bk-nr-106">Nomina episcoporum et abbatum Attiniaci
+                            congregatorum</name></item>
+                    <item xml:id="BK_107">
+                        <name ref="pre814/bk-nr-107">Interrogationes et responsiones
+                            baptismales</name></item>
+                    <item xml:id="BK_108">
+                        <name ref="pre814/bk-nr-108">Indiculus superstitionum et
+                        paganiarum</name></item>
+                    <item xml:id="BK_109">
+                        <name ref="pre814/bk-nr-109">Precatio Franconica</name></item>
+                    <item xml:id="BK_110">
+                        <name ref="pre814/bk-nr-110">Summula de bannis</name></item>
+                    <item xml:id="BK_111">
+                        <name ref="pre814/bk-nr-111">Memoratorium missis datum ad papam Adrianum
+                            legatis</name></item>
+                    <item xml:id="BK_112">
+                        <name ref="pre814/bk-nr-112">Statuta Rhispacensia Frisingensia
+                            Salisburgensia</name></item>
+                    <item xml:id="BK_113">
+                        <name ref="pre814/bk-nr-113">Capitula excerpta canonica</name></item>
+                    <item xml:id="BK_114">
+                        <name ref="pre814/bk-nr-114">Capitula e conciliorum canonibus
+                            collecta</name></item>
+                    <item xml:id="BK_115">
+                        <name ref="pre814/bk-nr-115">Indiculus obsidum Saxonum Moguntiam
+                            deducendorum</name></item>
+                    <item xml:id="BK_116">
+                        <name ref="pre814/bk-nr-116">Interrogationes examinationis c. 12 = Karoli
+                            Magni capitulare (?)</name></item>
+                    <item xml:id="BK_117">
+                        <name ref="pre814/bk-nr-117">Quae a presbyteris discenda sint</name></item>
+                    <item xml:id="BK_118">
+                        <name ref="pre814/bk-nr-118">Quibus de rebus in synodo quadam provinciali
+                            tractandum sit</name></item>
+                    <item xml:id="BK_119">
+                        <name ref="pre814/bk-nr-119">Capitula in dioecesana quadam synodo
+                            tractata</name></item>
+                    <item xml:id="BK_120">
+                        <name ref="pre814/bk-nr-120">Capitula de presbyteris
+                        admonendis</name></item>
+                    <item xml:id="BK_121">
+                        <name ref="pre814/bk-nr-121">Missi cuiusdam admonitio</name></item>
+                    <item xml:id="BK_122">
+                        <name ref="pre814/bk-nr-122">Karoli Magni ad Ghaerbaldum epistola et
+                            Ghaerbaldi ad dioeceseos suae presbyteros epistola</name></item>
+                    <item xml:id="BK_123">
+                        <name ref="pre814/bk-nr-123">Ghaerbaldi Leodiensis episcopi
+                        capitula</name></item>
+                    <item xml:id="BK_124">
+                        <name ref="pre814/bk-nr-124">Karoli Magni ad Ghaerbaldum
+                        epistola</name></item>
+                    <item xml:id="BK_125">
+                        <name ref="pre814/bk-nr-125">Karoli Magni ad Odilbertum
+                        epistola</name></item>
+                    <item xml:id="BK_126">
+                        <name ref="pre814/bk-nr-126">Odilberti ad Karolum Magnum
+                        responsum</name></item>
+                    <item xml:id="BK_127">
+                        <name ref="pre814/bk-nr-127">Riculfi archiepiscopi Moguntini ad Eginonem
+                            episcopum Constantiensem epistola</name></item>
+                    <item xml:id="BK_128">
+                        <name ref="pre814/bk-nr-128">Brevium exempla ad describendas res
+                            ecclesiasticas et fiscales</name></item>
+                    <item xml:id="BK_129">
+                        <name ref="pre814/bk-nr-129">Iudicatum regium</name></item>
+                    <item xml:id="BK_130">
+                        <name ref="pre814/bk-nr-130">Capitula duo incerta</name></item>
+                    <item xml:id="BK_131">
+                        <name ref="pre814/bk-nr-131">Capitula de ludaeis, cc. 1-6
+                        (Spurium?)</name></item>
+                    <item xml:id="Mordek_01">
+                        <name ref="pre814/mordek-nr-01">Childeberti I regis edictum</name></item>
+                    <item xml:id="Mordek_02">
+                        <name ref="pre814/mordek-nr-02">Praeceptiones Chlodowici II</name></item>
+                    <item xml:id="Mordek_03">
+                        <name ref="pre814/mordek-nr-03">Decreta Childerici II</name></item>
+                    <item xml:id="Mordek_04">
+                        <name ref="pre814/mordek-nr-04">Capitulum post Decretum Vermeriense
+                            conferendum</name></item>
+                    <item xml:id="Mordek_05">
+                        <name ref="pre814/mordek-nr-05">Recordatio ad inquirendum de negotio
+                            clericorum</name></item>
+                    <item xml:id="Mordek_06">
+                        <name ref="pre814/mordek-nr-06">Karoli regis capitula ad Arnonem
+                            archiepiscopum Salisburgensem directa</name></item>
+                    <item xml:id="Mordek_07">
+                        <name ref="pre814/mordek-nr-07">Capitulum de sacrilegis</name></item>
+                    <item xml:id="Mordek_08">
+                        <name ref="pre814/mordek-nr-08">Capitula de baptismate (?)</name></item>
+                    <item xml:id="Mordek_09">
+                        <name ref="pre814/mordek-nr-09">Capitulum de libra et inpunda</name></item>
+                    <item xml:id="Mordek_10">
+                        <name ref="pre814/mordek-nr-10">Capitulare missorum de villis
+                            inquirendis</name></item>
+                    <item xml:id="Mordek_11">
+                        <name ref="pre814/mordek-nr-11">Capitulum de incestis</name></item>
+                    <item xml:id="Mordek_12">
+                        <name ref="pre814/mordek-nr-12">Caroli Magni capitulare
+                            ecclesiasticum</name></item>
+                    <item xml:id="Mordek_13">
+                        <name ref="pre814/mordek-nr-13">Caroli Magni capitulare
+                        generale</name></item>
+                    <item xml:id="Mordek_14">
+                        <name ref="pre814/mordek-nr-14">Capitula Italica incerta I </name></item>
+                    <!--<item xml:id="BK_xxx">
+                    <name ref="pre814/bk-nr-xxx"/>
+                    <note type="titles">
+                        <name resp="Baluze"> (<ref type="external" subtype="BSB" target="xxx">Baluze
+                                I</ref>, Sp. )</name>
+                        <name resp="Pertz"> (<ref type="external" subtype="Pertz1" target="xxx"
+                                >Pertz I</ref>, S. )</name>
+                        <name resp="bk"> (<ref type="external" subtype="BK1" target="xxx"
+                                >Boretius/Krause I</ref>, S. )</name>
+                    </note>
+                    <note type="date">
+                        <date resp="Baluze" when="0101"/>
+                        <date resp="Pertz" when="0101"/>
+                        <date resp="Boretius/Krause" when="0101"/>
+                    </note>
+                    <note type="annotation"/>
+                    <list type="transmission">
+                        <item/>
+                    </list>
+                    <!-\-<listBibl type="literature">
+                        <bibl>-</bibl>
+                    </listBibl>
+                    <listBibl type="translation">
+                        <bibl>-</bibl>
+                    </listBibl> -\->
+                </item>-->
+                </list>
+
+                <!-- <!-\- Achtung: Im folgenden schon einige "Dummies" angelegt wegen Kommentaren zu Neudatierungen etc.! 
+                Die Hinweise sind allerdings vorerst nur aus Davis, Charlemagne's Practice of Empire übernommen und noch nicht überprüft worden. bm 05.01.16 -\->
+            <item xml:id="BK_083"><!-\- als "italienisches" Kapitular klassifiziert von Azzaro/Moro, I capitolari S. 181 f. (rückgreifend auf Manacorda, Ricerche S. 132-136),
+                dagegen Davis, Charlemagne's Practice of Empire S. 280 m. Anm. 212: keine Lokalisierung nach Italien! -\-></item>
+            <item xml:id="BK_084"><!-\- als "italienisches" Kapitular klassifiziert von Azzaro/Moro, I capitolari S. 182 f. (rückgreifend auf Manacorda, Ricerche S. 132-136),
+                dagegen Davis, Charlemagne's Practice of Empire S. 280 m. Anm. 212: keine Lokalisierung nach Italien! -\-></item>
+            <item xml:id="BK_088"><!-\- Neudatierung auf "probably 774" in McKitterick, Charlemagne S. 111-113 -\-></item>
+            <item xml:id="BK_089"><!-\- Vorschlag für eine präzisere Datierung auf 781 in Mordek, Die Anfänge S. 27 -\-></item>
+            <item xml:id="BK_091"><!-\- Vorschlag für eine Neudatierung auf 781/82 in Mordek, Die Anfänge S. 32 f. -\-></item>
+            <item xml:id="BK_097"><!-\- Vorschlag für eine präzisere Datierung auf 780 in Mordek, Die Anfänge S. 8-13 -\-></item>
+            <item xml:id="BK_098"><!-\- Bei Literatur ergänzen: Davis, Charlemagne's Practice of Empire S. 285 f. -\-></item>-->
+
+                <list type="ldf">
+                    <item n="publ" xml:id="BK_132"><name ref="ldf/bk-nr-132">Constitutio de Hispanis
+                            in Francorum regnum profugis prima</name></item>
+                    <item n="publ" xml:id="BK_133"><name ref="ldf/bk-nr-133">Constitutio Hludowici
+                            de Hispanis secunda</name></item>
+                    <item n="publ" xml:id="BK_134">
+                        <name ref="ldf/bk-nr-134">Capitula legi addita</name></item>
+                    <item n="publ" xml:id="BK_135">
+                        <name ref="ldf/bk-nr-135">Item capitula legi addita</name></item>
+                    <item n="publ" xml:id="BK_136">
+                        <name ref="ldf/bk-nr-136">Ordinatio imperii</name></item>
+                    <item n="publ" xml:id="BK_137">
+                        <name ref="ldf/bk-nr-137">Hludowici prooemium generale ad capitularia tam
+                            ecclesiastica quam mundana</name></item>
+                    <item n="publ" xml:id="BK_138">
+                        <name ref="ldf/bk-nr-138">Capitulare ecclesiasticum</name></item>
+                    <item n="publ" xml:id="BK_139">
+                        <name ref="ldf/bk-nr-139">Capitula legibus addenda</name></item>
+                    <item n="publ" xml:id="BK_140">
+                        <name ref="ldf/bk-nr-140">Capitula per se scribenda</name></item>
+                    <item n="publ" xml:id="BK_141">
+                        <name ref="ldf/bk-nr-141">Capitulare missorum</name></item>
+                    <item n="publ" xml:id="BK_142">
+                        <name ref="ldf/bk-nr-142">Capitula legi Salicae addita</name></item>
+                    <item n="publ" xml:id="BK_143">
+                        <name ref="ldf/bk-nr-143">Capitula de functionibus publicis</name></item>
+                    <item n="publ" xml:id="BK_144">
+                        <name ref="ldf/bk-nr-144">Capitula de iustitiis faciendis</name></item>
+                    <item n="publ" xml:id="BK_145">
+                        <name ref="ldf/bk-nr-145">Responsa imperatoris de rebus fiscalibus
+                            data</name></item>
+                    <item n="publ" xml:id="BK_146">
+                        <name ref="ldf/bk-nr-146">Capitulare de disciplina palatii
+                            Aquisgranensis</name></item>
+                    <item n="publ" xml:id="BK_147">
+                        <name ref="ldf/bk-nr-147">Capitulare de moneta</name></item>
+                    <item n="publ" xml:id="BK_148">
+                        <name ref="ldf/bk-nr-148">Capitula missorum</name></item>
+                    <item n="publ" xml:id="BK_149">
+                        <name ref="ldf/bk-nr-149">Capitulare de monasterio S. Crucis
+                            Pictavensi</name></item>
+                    <item n="publ" xml:id="BK_150">
+                        <name ref="ldf/bk-nr-150">Admonitio ad omnes regni ordines</name></item>
+                    <item n="publ" xml:id="BK_151">
+                        <name ref="ldf/bk-nr-151">Commemoratio missis data</name></item>
+                    <item n="publ" xml:id="BK_152">
+                        <name ref="ldf/bk-nr-152">Legationis capitulum</name></item>
+                    <item n="publ" xml:id="BK_153">
+                        <name ref="ldf/bk-nr-153">Capitula e lege Romana excerpta</name></item>
+                    <item n="publ" xml:id="BK_154">
+                        <name ref="ldf/bk-nr-154">Capitula e conciliis excerpta</name></item>
+                    <item n="publ" xml:id="BK_155">
+                        <name ref="ldf/bk-nr-155">Responsa missis data</name></item>
+                    <item n="publ" xml:id="BK_156">
+                        <name ref="ldf/bk-nr-156">Capitula incerta</name></item>
+                    <item xml:id="BK_157" sortKey="other"><name ref="ldf/bk-nr-157">Capitulare
+                            Olonnense</name></item>
+                    <item xml:id="BK_158" sortKey="other"><name ref="ldf/bk-nr-158">Memoria Olonnae
+                            comitibus data</name></item>
+                    <item xml:id="BK_159" sortKey="other"><name ref="ldf/bk-nr-159">Concessio
+                            generalis</name></item>
+                    <item xml:id="BK_160" sortKey="other">
+                        <name ref="ldf/bk-nr-160">Capitula de inspiciendis monasteriis</name></item>
+                    <item n="publ" xml:id="BK_161">
+                        <name ref="ldf/bk-nr-161">Constitutio Romana</name></item>
+                    <item xml:id="BK_162" sortKey="other"><name ref="ldf/bk-nr-162">Capitula de
+                            expeditione Corsicana</name></item>
+                    <item xml:id="BK_163" sortKey="other"><name ref="ldf/bk-nr-163">Capitulare
+                            Olonnense ecclesiasticum primum</name></item>
+                    <item xml:id="BK_164" sortKey="other"><name ref="ldf/bk-nr-164">Capitulare
+                            Olonnense ecclesiasticum alterum</name></item>
+                    <item xml:id="BK_165" sortKey="other"><name ref="ldf/bk-nr-165">Capitulare
+                            Olonnense mundanum</name></item>
+                    <item xml:id="BK_166" sortKey="other"><name ref="ldf/bk-nr-166">Capitula de
+                            rebus ecclesiasticis</name></item>
+                    <item xml:id="BK_167" sortKey="other"><name ref="ldf/bk-nr-167">Capitula
+                            Francica</name></item>
+                    <item xml:id="BK_168" sortKey="other"><name ref="ldf/bk-nr-168">Capitula
+                            Italica</name></item>
+                    <item n="publ" xml:id="BK_169">
+                        <name ref="ldf/bk-nr-169">Hludowici ad archiepiscopos
+                        epistolae</name></item>
+                    <item n="publ" xml:id="BK_170">
+                        <name ref="ldf/bk-nr-170">Capitulare monasticum</name></item>
+                    <item n="publ" xml:id="BK_171">
+                        <name ref="ldf/bk-nr-171">Notitia de servitio monasteriorum</name></item>
+                    <item n="publ" xml:id="BK_172">
+                        <name ref="ldf/bk-nr-172">Pactum Hludowici Pii cum Paschali
+                        pontifice</name></item>
+                    <item n="publ" xml:id="BK_173">
+                        <name ref="ldf/bk-nr-173">Hludowici Pii ad Hetti archiepiscopum Trevirensem
+                            praeceptum</name></item>
+                    <item n="publ" xml:id="BK_174">
+                        <name ref="ldf/bk-nr-174">Capitula ab episcopis Attiniaci data</name></item>
+                    <item n="publ" xml:id="BK_175">
+                        <name ref="ldf/bk-nr-175">Capitula ab episcopis imperatori
+                        proposita</name></item>
+                    <item xml:id="BK_176" sortKey="other">
+                        <name ref="ldf/bk-nr-176">Concilium et capitulare de clericorum
+                            percussoribus</name></item>
+                    <item xml:id="BK_177" sortKey="other">
+                        <name ref="ldf/bk-nr-177">Haitonis episcopi Basileensis capitula
+                            ecclesiastica</name></item>
+                    <item n="publ" xml:id="BK_178">
+                        <name ref="ldf/bk-nr-178">Episcoporum ad Hludowicum imperatorem
+                            relatio</name></item>
+                    <item n="publ" xml:id="BK_179">
+                        <name ref="ldf/bk-nr-179">Episcoporum ad imperatorem de rebus ecclesiasticis
+                            relatio</name></item>
+                    <item xml:id="BK_180" sortKey="other">
+                        <name ref="ldf/bk-nr-180">Eugenii II concilium Romanum</name></item>
+                    <!-- BK 182 auf Liste post840 -->
+                    <item xml:id="BK_181" sortKey="other">
+                        <name ref="ldf/bk-nr-181">Indiculus eorum qui sacramentum fidelitatis
+                            iuraverunt</name></item>
+                    <item xml:id="BK_182" sortKey="other">
+                        <name ref="ldf/bk-nr-182">Hludowici capituli legibus addendi versio
+                            francica</name></item>
+                    <item xml:id="BK_183" sortKey="other">
+                        <name ref="ldf/bk-nr-183">Ansegisi abbatis capitularium
+                        collectio</name></item>
+                    <item n="publ" xml:id="BK_184">
+                        <name ref="ldf/bk-nr-184">Constitutio de synodis anno <date when="0829"
+                                >829</date> in regno Francorum habendis</name></item>
+                    <item n="publ" xml:id="BK_185">
+                        <name ref="ldf/bk-nr-185">Hludowici et Hlotharii epistola
+                        generalis</name></item>
+                    <item n="publ" xml:id="BK_186">
+                        <name ref="ldf/bk-nr-186">Capitula ab episcopis in placito
+                        tractanda</name></item>
+                    <item n="publ" xml:id="BK_187">
+                        <name ref="ldf/bk-nr-187">Capitula de missis instruendis</name></item>
+                    <item n="publ" xml:id="BK_188">
+                        <name ref="ldf/bk-nr-188">Capitulare missorum</name></item>
+                    <item n="publ" xml:id="BK_189">
+                        <name ref="ldf/bk-nr-189">Tractoria de coniectu missis dando</name></item>
+                    <item n="publ" xml:id="BK_190">
+                        <name ref="ldf/bk-nr-190">Capitula incerta</name></item>
+                    <item n="publ" xml:id="BK_191">
+                        <name ref="ldf/bk-nr-191">Capitulare Wormatiense</name></item>
+                    <item n="publ" xml:id="BK_192"><name ref="ldf/bk-nr-192">Capitulare missorum
+                            Wormatiense</name></item>
+                    <item n="publ" xml:id="BK_193"><name ref="ldf/bk-nr-193">Capitulare pro lege
+                            habendum Wormatiense</name></item>
+                    <item n="publ" xml:id="BK_194"><name ref="ldf/bk-nr-194">Regni
+                        divisio</name></item>
+
+                    <item xml:id="BK_195" sortKey="other"><name ref="ldf/bk-nr-195">Capitula de
+                            praescriptione temporis</name></item>
+                    <item n="publ" xml:id="BK_196"><name ref="ldf/bk-nr-196">Episcoporum ad
+                            Hludowicum imperatorem relatio</name></item>
+                    <item n="publ" xml:id="BK_197"><name ref="ldf/bk-nr-197">Episcoporum de
+                            poenitentia, quam Hludowicus imperator professus est, relatio
+                            Compendiensis</name></item>
+                    <item n="publ" xml:id="BK_198"><name ref="ldf/bk-nr-198">Agobardi cartula de
+                            poenitentia ab imperatore acta</name></item>
+                    <item n="publ" xml:id="BK_199"><name ref="ldf/bk-nr-199">Ebbonis Remensis
+                            archiepiscopi resignatio</name></item>
+                    <item n="publ" xml:id="BK_200"><name ref="ldf/bk-nr-200">Divisio
+                        imperii</name></item>
+                    <item n="publ" xml:id="Mordek_15"><name ref="ldf/mordek-nr-15">Capitula Italica
+                            incerta II</name></item>
+                    <item n="publ" xml:id="Mordek_16"><name ref="ldf/mordek-nr-16">Capitulare
+                            monasticum I</name></item>
+                    <item n="publ" xml:id="Mordek_17"><name ref="ldf/mordek-nr-17">Capitulare
+                            monasticum II</name></item>
+                    <item n="publ" xml:id="Mordek_18"><name ref="ldf/mordek-nr-18">Capitulare
+                            legibus seu legi Ribuariae addendum</name></item>
+                    <item n="publ" xml:id="Mordek_19"><name ref="ldf/mordek-nr-19">Capitula adhuc
+                            conferenda</name></item>
+                    <item n="publ" xml:id="Mordek_20"><name ref="ldf/mordek-nr-20">Capitulum de
+                            contentione inter partem ecclesiasticam et saecularem</name></item>
+                    <item n="publ" xml:id="Mordek_21"><name ref="ldf/mordek-nr-21">Capitulum de
+                            nonis et decimis</name></item>
+                    <item n="publ" xml:id="Mordek_22"><name ref="ldf/mordek-nr-22">Capitula de
+                            coniurationibus</name></item>
+                    <item xml:id="Mordek_23" sortKey="other"><name ref="ldf/mordek-nr-23">Capitula
+                            ecclesiastica Italica</name></item>
+                    <item n="publ" xml:id="Mordek_24"><name ref="ldf/mordek-nr-24">Capitula Italica
+                            incerta III</name></item>
+
+                    <item xml:id="BK_201" sortKey="other"><name ref="ldf/bk-nr-201">Hlotharii
+                            capitulare Papiense</name></item>
+                    <item xml:id="BK_202" sortKey="other"><name ref="ldf/bk-nr-202">Hlotharii
+                            capitulare missorum</name></item>
+
+                </list>
+                <list type="ltr">
+                    <!-- Hier sind die Lothar zugewiesenen Kapitularien gesammelt. Sie erscheinen nicht auf der Gesamliste. -->
+                    <item xml:id="ltr.BK_157" sortKey="other"><name ref="ltr/bk-nr-157">Capitulare
+                            Olonnense</name></item>
+                    <item xml:id="ltr.BK_158" sameAs="#BK_158" sortKey="other"><name
+                            ref="ltr/bk-nr-158">Memoria Olonnae comitibus data</name></item>
+                    <item xml:id="ltr.BK_159" sameAs="#BK_159" sortKey="other"><name
+                            ref="ltr/bk-nr-159">Concessio generalis</name></item>
+                    <item xml:id="ltr.BK_162" sameAs="#BK_162" sortKey="other"><name
+                            ref="ltr/bk-nr-162">Capitula de expeditione Corsicana</name></item>
+                    <item xml:id="ltr.BK_163" sameAs="#BK_163" sortKey="other"><name
+                            ref="ltr/bk-nr-163">Capitulare Olonnense ecclesiasticum
+                        primum</name></item>
+                    <item xml:id="ltr.BK_164" sameAs="#BK_164" sortKey="other"><name
+                            ref="ltr/bk-nr-164">Capitulare Olonnense ecclesiasticum
+                        alterum</name></item>
+                    <item xml:id="ltr.BK_165" sameAs="#BK_165" sortKey="other"><name
+                            ref="ltr/bk-nr-165">Capitulare Olonnense mundanum</name></item>
+                    <item xml:id="ltr.BK_166" sameAs="#BK_" sortKey="other"><name
+                            ref="ltr/bk-nr-166">Capitula de rebus ecclesiasticis</name></item>
+                    <item xml:id="ltr.BK_167" sameAs="#BK_167" sortKey="other"><name
+                            ref="ltr/bk-nr-167">Capitula Francica</name></item>
+                    <item xml:id="ltr.BK_168" sameAs="#BK_168" sortKey="other"><name
+                            ref="ltr/bk-nr-168">Capitula Italica</name></item>
+                    <item xml:id="ltr.BK_201" sameAs="#BK_201" sortKey="other"><name
+                            ref="ltr/bk-nr-201">Hlotharii capitulare Papiense</name></item>
+                    <item xml:id="ltr.BK_202" sameAs="#BK_202" sortKey="other"><name
+                            ref="ltr/bk-nr-202">Hlotharii capitulare missorum</name></item>
+                    <item xml:id="ltr.Mordek_23" sameAs="#Mordek_23" sortKey="other"><name
+                            ref="ltr/mordek-nr-23">Capitula ecclesiastica Italica</name></item>
+                </list>
+                <list type="post840">
+                    <item xml:id="BK_203"><name ref="post840/bk-nr-203">Hlotharii capitulare de
+                            expeditione contra Sarracenos facienda</name></item>
+                    <item xml:id="BK_204"><name ref="post840/bk-nr-204">Hlotharii, Hludowici et
+                            Karoli conventus apud Marsnam primus</name></item>
+                    <item xml:id="BK_205"><name ref="post840/bk-nr-205">Hlotharii, Hludowici et
+                            Karoli conventus apud Marsnam secundus</name></item>
+                    <item xml:id="BK_206"><name ref="post840/bk-nr-206">Hlotharii et Karoli
+                            conventus apud Valentianas</name></item>
+                    <item xml:id="BK_207"><name ref="post840/bk-nr-207">Hlotharii et Karoli
+                            conventus Leodii habitus</name></item>
+                    <item xml:id="BK_208"><name ref="post840/bk-nr-208">Hludowici II capitulum
+                            Italicum originis incertae</name></item>
+                    <item xml:id="BK_209"><name ref="post840/bk-nr-209">Hludowici II commonitorium
+                            episcopis Papiae traditum </name></item>
+                    <item xml:id="BK_210"><name ref="post840/bk-nr-210">Capitula episcoporum Papiae
+                            edita</name></item>
+                    <item xml:id="BK_211"><name ref="post840/bk-nr-211">Hludowici II
+                            capitulare</name></item>
+                    <item xml:id="BK_212"><name ref="post840/bk-nr-212">Capitula comitibus Papiae ab
+                            Hludowico II proposita</name></item>
+                    <item xml:id="BK_213"><name ref="post840/bk-nr-213">Hludowici II capitulare
+                            Papiense</name></item>
+                    <item xml:id="BK_214"><name ref="post840/bk-nr-214">Hludowici II capitula
+                            Papiensia in legem data</name></item>
+                    <item xml:id="BK_215"><name ref="post840/bk-nr-215">Capitulare Papiense pro lege
+                            tenendum</name></item>
+                    <item xml:id="BK_216"><name ref="post840/bk-nr-216">Capitula Papiae optimatibus
+                            ab imperatore pronuntiata</name></item>
+                    <item xml:id="BK_217"><name ref="post840/bk-nr-217">Capitulare
+                        missorum</name></item>
+                    <item xml:id="BK_218"><name ref="post840/bk-nr-218">Constitutio de expeditione
+                            Beneventana</name></item>
+                    <item xml:id="BK_219" sortKey="other"><name ref="post840/bk-nr-219">Capitula
+                            singillatim tradita Hlothario vel Hludowico II adscripta</name></item>
+                    <item xml:id="BK_220"><name ref="post840/bk-nr-220">Karoli II imperatoris
+                            electio</name></item>
+                    <item xml:id="BK_221"><name ref="post840/bk-nr-221">Karoli II capitulare
+                            Papiense</name></item>
+                    <item xml:id="BK_222"><name ref="post840/bk-nr-222">Widonis capitulatio
+                            electionis</name></item>
+                    <item xml:id="BK_223"><name ref="post840/bk-nr-223">Widonis regis (?) capitulum
+                            singillatim traditum</name></item>
+                    <item xml:id="BK_224"><name ref="post840/bk-nr-224">Widonis imperatoris
+                            capitulare Papiense legibus addendum</name></item>
+                    <item xml:id="BK_225"><name ref="post840/bk-nr-225">Lamberti capitulare
+                            Ravennas</name></item>
+                    <item xml:id="BK_226"><name ref="post840/bk-nr-226">Ebbonis Remensis
+                            archiepiscopi restitutio</name></item>
+                    <item xml:id="BK_227"><name ref="post840/bk-nr-227">Synodus ad Theodonis villam
+                            habita</name></item>
+                    <item xml:id="BK_228"><name ref="post840/bk-nr-228">Synodus
+                        Papiensis</name></item>
+                    <item xml:id="BK_229"><name ref="post840/bk-nr-229">Iuramentum Romanorum Arnolfo
+                            imperatori praestitum</name></item>
+                    <item xml:id="BK_230"><name ref="post840/bk-nr-230">Synodus
+                        Ravennas</name></item>
+                    <item xml:id="BK_231"><name ref="post840/bk-nr-231">Berengarii promissio
+                            Angiltrudae data</name></item>
+                    <!--<item xml:id="BK_232">
+                    <name>Capitula incerta Italica</name>
+                </item>-->
+                    <item xml:id="BK_232" sortKey="other">
+                        <name ref="post840/bk-nr-232">Capitula incerta Italica</name></item>
+                    <item xml:id="BK_233"><name ref="post840/bk-nr-233">Pactum Hlothari
+                        I.</name></item>
+                    <item xml:id="BK_234"><name ref="post840/bk-nr-234">Praeceptum Hlotharii
+                            I.</name></item>
+                    <item xml:id="BK_235"><name ref="post840/bk-nr-235">Praeceptum Hludowici
+                            II.</name></item>
+                    <item xml:id="BK_236"><name ref="post840/bk-nr-236">Pactum Karoli
+                        III.</name></item>
+                    <item xml:id="BK_237"><name ref="post840/bk-nr-237">Praeceptum Karoli
+                            III.</name></item>
+                    <item xml:id="BK_238"><name ref="post840/bk-nr-238">Pactum Berengarii
+                        I.</name></item>
+                    <item xml:id="BK_239"><name ref="post840/bk-nr-239">Praeceptum Widonis
+                            imperatoris</name></item>
+                    <item xml:id="BK_240"><name ref="post840/bk-nr-240">Praeceptum
+                        Rudolfi</name></item>
+                    <item xml:id="BK_241"><name ref="post840/bk-nr-241">Praeceptum
+                        Hugonis</name></item>
+                    <item xml:id="BK_242"><name ref="post840/bk-nr-242">Hludowici, Karoli et
+                            Hlotharii II conventus apud Confluentes</name></item>
+                    <item xml:id="BK_243"><name ref="post840/bk-nr-243">Hludowici, Karoli et
+                            Hlotharii II conventus apud Saponarias</name></item>
+                    <item xml:id="BK_244"><name ref="post840/bk-nr-244">Hludowici et Karoli pactum
+                            Tusiacense</name></item>
+                    <item xml:id="BK_245"><name ref="post840/bk-nr-245">Hludowici et Karoli
+                            pactiones Mettenses</name></item>
+                    <item xml:id="BK_246"><name ref="post840/bk-nr-246">Hludowici Iunioris et
+                            Hludowici Balbi conventio Furonensis</name></item>
+                    <item xml:id="BK_247"><name ref="post840/bk-nr-247">Hludowici et Karoli pactum
+                            Argentoratense</name></item>
+                    <item xml:id="BK_248"><name ref="post840/bk-nr-248">Concilium
+                        Moguntinum</name></item>
+                    <item xml:id="BK_249"><name ref="post840/bk-nr-249">Concilium
+                        Moguntinum</name></item>
+                    <item xml:id="BK_250"><name ref="post840/bk-nr-250">Pactiones
+                        Aquenses</name></item>
+                    <item xml:id="BK_251"><name ref="post840/bk-nr-251">Divisio regni Hlotharii
+                            II</name></item>
+                    <item xml:id="BK_252"><name ref="post840/bk-nr-252">Concilium
+                        Triburiense</name></item>
+                    <!--   <item xml:id="BK_252"><title>Concilium Triburiense: Statutum regium</title>
+                             <date when="0895">895</date>), <title>Forma
+                              Diessensis</title></item>
+                        <item xml:id="BK_252"><title>Concilium Triburiense: Propositio</title> (a.
+                                    <date when="0895">895</date></note></item>-->
+                    <item xml:id="BK_253"><name ref="post840/bk-nr-253">Inquisitio de theloneis
+                            Raffelstettensis</name></item>
+                    <item xml:id="BK_254"><name ref="post840/bk-nr-254">Conventus in villa
+                            Colonia</name></item>
+                    <item xml:id="BK_255"><name ref="post840/bk-nr-255">Capitulare Septimanicum apud
+                            Tolosam datum</name></item>
+                    <item xml:id="BK_256"><name ref="post840/bk-nr-256">Praeceptum pro
+                            Hispanis</name></item>
+                    <item xml:id="BK_257"><name ref="post840/bk-nr-257">Notitia de conciliorum
+                            canonibus in villa Sparnaco a Karolo rege confirmatis</name></item>
+                    <item xml:id="BK_258"><name ref="post840/bk-nr-258">Conventus
+                            Suessionensis</name></item>
+                    <item xml:id="BK_259"><name ref="post840/bk-nr-259">Capitulare missorum
+                            Suessionense</name></item>
+                    <item xml:id="BK_260"><name ref="post840/bk-nr-260">Capitulare missorum
+                            Silvacense</name></item>
+                    <item xml:id="BK_261"><name ref="post840/bk-nr-261">Capitulare missorum
+                            Attiniacense</name></item>
+                    <item xml:id="BK_262"><name ref="post840/bk-nr-262">Capitula ad Francos et
+                            Aquitanos missa de Carisiaco</name></item>
+                    <item xml:id="BK_263"><name ref="post840/bk-nr-263">Primum missaticum ad Francos
+                            et Aquitanos directum </name></item>
+                    <item xml:id="BK_264"><name ref="post840/bk-nr-264">Secundum missaticum ad
+                            Francos et Aquitanos directum </name></item>
+                    <item xml:id="BK_265"><name ref="post840/bk-nr-265">Tertium missaticum ad
+                            Francos et Aquitanos directum</name></item>
+                    <item xml:id="BK_266"><name ref="post840/bk-nr-266">Capitulare
+                            Carisiacense</name></item>
+                    <item xml:id="BK_267"><name ref="post840/bk-nr-267">Allocutio missi cuiusdam
+                            Divionensis</name></item>
+                    <item xml:id="BK_268"><name ref="post840/bk-nr-268">Karoli II et Hlotharii II
+                            conventus apud sanctum Quintinum</name></item>
+                    <item xml:id="BK_269"><name ref="post840/bk-nr-269">Sacramenta Carisiaci
+                            praestita</name></item>
+                    <item xml:id="BK_270"><name ref="post840/bk-nr-270">Capitula post conventum
+                            Confluentinum missis tradita</name></item>
+                    <item xml:id="BK_271"><name ref="post840/bk-nr-271">Constitutio Carisiacensis de
+                            moneta</name></item>
+                    <item xml:id="BK_272"><name ref="post840/bk-nr-272">Capitula
+                        Pistensia</name></item>
+                    <item xml:id="BK_273"><name ref="post840/bk-nr-273">Edictum
+                        Pistense</name></item>
+                    <item xml:id="BK_274"><name ref="post840/bk-nr-274">Capitulare Tusiacense in
+                            Burgundiam directum</name></item>
+                    <item xml:id="BK_275"><name ref="post840/bk-nr-275">Capitula
+                        Pistensia</name></item>
+                    <item xml:id="BK_276"><name ref="post840/bk-nr-276">Electionis Karoli capitula
+                            in regno Hlotharii factae </name></item>
+                    <item xml:id="BK_277"><name ref="post840/bk-nr-277">Sacramenta apud
+                            Gundulfi-villam facta</name></item>
+                    <item xml:id="BK_278"><name ref="post840/bk-nr-278">Capitulare
+                            Carisiacense</name></item>
+                    <item xml:id="BK_279">
+                        <name>Synodus Pontigonensis</name></item>
+                    <!-- siehe 
+oben Nr. 220 -->
+                    <item xml:id="BK_280">
+                        <name>Edictum Compendiense de tributo Nordmannico</name></item>
+                    <item xml:id="BK_281"><name ref="post840/bk-nr-281">Capitulare
+                            Carisiacense</name></item>
+                    <item xml:id="BK_282"><name ref="post840/bk-nr-282">Capitula excerpta in
+                            conventu Carisiacensi coram populo lecta</name></item>
+                    <item xml:id="BK_283"><name ref="post840/bk-nr-283">Capitula electionis
+                            Hludowici Balbi Compendii facta</name></item>
+                    <item xml:id="BK_284"><name ref="post840/bk-nr-284">Conventus
+                        Mantalensis</name></item>
+                    <item xml:id="BK_285"><name ref="post840/bk-nr-285">Karolomanni conventus
+                            Carisiacensis</name></item>
+                    <item xml:id="BK_286"><name ref="post840/bk-nr-286">Karolomanni capitula
+                            Compendii de rapinis promulgata</name></item>
+                    <item xml:id="BK_287"><name ref="post840/bk-nr-287">Karolomanni capitulare
+                            Vernense</name></item>
+                    <item xml:id="BK_288"><name ref="post840/bk-nr-288">Odonis regis
+                            promissio</name></item>
+                    <item xml:id="BK_289"><name ref="post840/bk-nr-289">Hludowici regis Arelatensis
+                            electio</name></item>
+                    <item xml:id="BK_290"><name ref="post840/bk-nr-290">Karoli III capitula de
+                            Tungrensi episcopatu proposita </name></item>
+                    <item xml:id="BK_291"><name ref="post840/bk-nr-291">Concilium
+                        Vernense</name></item>
+                    <item xml:id="BK_292"><name ref="post840/bk-nr-292">Synodus
+                        Bellovacensis</name></item>
+                    <item xml:id="BK_293"><name ref="post840/bk-nr-293">Concilium Meldense
+                            Parisiense</name></item>
+                    <!-- siehe oben Nr. 257 und MGH Conc. 3, S. 64 ff.  -->
+                    <item xml:id="BK_294"><name ref="post840/bk-nr-294">Synodus
+                        Vermeriensis</name></item>
+                    <item xml:id="BK_295"><name ref="post840/bk-nr-295">Consilium optimatum Karolo
+                            II datum</name></item>
+                    <item xml:id="BK_296"><name ref="post840/bk-nr-296">Coronatio Iudithae Karoli II
+                            filiae</name></item>
+                    <item xml:id="BK_297"><name ref="post840/bk-nr-297">Epistola synodi
+                            Carisiacensis ad Hludowicum regem Germaniae directa</name></item>
+                    <item xml:id="BK_298"><name ref="post840/bk-nr-298">Synodus
+                        Mettensis</name></item>
+                    <item xml:id="BK_299"><name ref="post840/bk-nr-299">Synodus apud Saponarias
+                            habita</name></item>
+                    <item xml:id="BK_300"><name ref="post840/bk-nr-300">Libellus proclamationis
+                            adversus Wenilonem</name></item>
+                    <item xml:id="BK_301"><name ref="post840/bk-nr-301">Coronatio Hermintrudis
+                            reginae</name></item>
+                    <item xml:id="BK_302"><name ref="post840/bk-nr-302">Ordo coronationis Karoli II.
+                            in regno Hlotharii II. factae</name></item>
+                    <item xml:id="BK_303"><name ref="post840/bk-nr-303">Synodus
+                        Attiniacensis</name></item>
+                    <item xml:id="BK_304"><name ref="post840/bk-nr-304">Ordo coronationis Hludowici
+                            Balbi</name></item>
+                    <item xml:id="BK_305"><name ref="post840/bk-nr-305">Synodus Aquensis
+                        I</name></item>
+                    <item xml:id="BK_306"><name ref="post840/bk-nr-306">Synodus Aquensis
+                        II</name></item>
+                    <item xml:id="BK_307"><name ref="post840/bk-nr-307">Relatio de Theutbergae
+                            receptione scripta</name></item>
+
+                    <!--<item xml:id="Mordek_24" n="publ"><name>Capitula Italica incerta
+                    III</name><date cert="unknown" from="0826" to="0840"
+                        >826/840</date>?)</item>-->
+                    <item xml:id="Mordek_25"><name>Caroli (Calvi?) Capitulum de immunitate
+                            infracta</name></item>
+                    <item xml:id="Mordek_26"><name>Capitulum de immunitatibus et placitis incertum,
+                            si non falsum</name></item>
+                    <!--<item xml:id="Mordek_27">
+                    <name>Capitula a Benedicto Levita singillatim tradita</name>
+                </item>-->
+                </list>
+                <list type="undated">
+
+                    <!--<item xml:id="BK_219"><title>Capitula singillatim tradita Hlothario vel
+                    Hludowico II adscripta</title>, cc. 1-5</item>-->
+
+                    <item xml:id="Mordek_27">
+                        <name ref="undated/mordek-nr-27">Capitula a Benedicto Levita singillatim
+                            tradita</name></item>
+                </list>
+                <list type="further">
+                    <!-- bei Mordek ohne BK Nummern - Datierung teils gegeben ### Slug klären! evtl. mit undatierten auf einer Liste zusammenfügen-->
+                    <item>
+                        <name>Ansegisi abbatis capitularium collectio</name></item>
+                    <item>
+                        <name>Capitula legi Salicae addita</name></item>
+                    <item><name>Capitula cum Concilio Germanico sive Liptinense seu etiam
+                            Suessionense conferenda</name></item>
+                    <item><name>Capitulare seu canones concilii Dingolfingensis</name></item>
+                    <item><name>Capitulare seu canones concilii Neuchingensis</name></item>
+                    <item><name>Capitula Remedii episcopi Curiensis et praesidis
+                        Raetiae</name></item>
+                    <item><name>Synodi primae Aquisgranensis acta praeliminaria</name></item>
+                    <item><name>Statuta capitularia per totum ordinem sancti Benedicti = Actuum
+                            praeliminarium synodi Aquisgranensis commentationes sive statuta
+                            capitularia Murbacensia</name></item>
+                    <item>
+                        <name>Legislationis monasticae Aquisgranensis collectio sancti Martialis
+                            Lemovicensis</name></item>
+                    <item><name>Capitulum in concilio apud Confluentiam editum</name></item>
+                    <item><name>Karoli Magni decretum de expeditione Romana</name></item>
+                </list>
+            </div>
+        </body>
+    </text>
+</TEI>
