@@ -20,6 +20,7 @@ Developer Manual
 
    intro
    overviews
+   troubleshooting
    webprojekt
    vm
 

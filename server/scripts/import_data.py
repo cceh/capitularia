@@ -15,9 +15,11 @@ import collections
 import datetime
 import io
 import json
-import re
+import logging
+import logging.handlers
 import os
 import os.path
+import re
 import urllib.parse
 
 import requests
@@ -658,68 +660,78 @@ def import_fulltext (conn, filenames, mode):
     for fn in filenames:
         log (logging.INFO, "Parsing %s ..." % fn)
         tree = etree.parse (fn, parser = parser)
-        for TEI in tree.xpath ("/tei:TEI", namespaces = NS):
-            ms_id = get_ns (TEI, "xml:id")
-            mscap_catalog = ''
-            mscap_no = ''
-            mscap_n = 1
+        try:
+            for TEI in tree.xpath ("/tei:TEI", namespaces = NS):
+                ms_id = get_ns (TEI, "xml:id")
+                mscap_catalog = ''
+                mscap_no = ''
+                mscap_n = 1
 
-            for item in TEI.xpath (".//tei:div[@corresp]|.//tei:milestone[@unit]", namespaces = NS):
-                if item.tag == QNAME_MILESTONE:
-                    unit = item.get ('unit')
-                    if unit == 'capitulare':
-                        try:
-                            n = item.get ('n')
-                            mscap_catalog, mscap_no, mscap_n = common.normalize_bk_capitulare (n)
-                        except ValueError as e:
+                for item in TEI.xpath (".//tei:div[@corresp]|.//tei:milestone[@unit]", namespaces = NS):
+                    if item.tag == QNAME_MILESTONE:
+                        unit = item.get ('unit')
+                        if unit == 'capitulare':
+                            try:
+                                n = item.get ('n')
+                                mscap_catalog, mscap_no, mscap_n = common.normalize_bk_capitulare (n)
+                            except ValueError as e:
+                                log (logging.WARNING, "%s: %s" % (ms_id, str (e)))
+                        continue
+
+                    corresp = item.get ("corresp")
+                    hand = 'original'
+                    if '?later_hands' in corresp:
+                        hand = 'later_hands'
+                        corresp = corresp.replace ('?later_hands', '')
+
+                    try:
+                        catalog, no, chapter = common.normalize_corresp (corresp)
+
+                        if (catalog, no) != (mscap_catalog, mscap_no):
+                            log (logging.DEBUG, "%s: Missing milestone capitulare for: %s" % (ms_id, corresp))
+
+                        params = {
+                            'ms_id'   : ms_id,
+                            'cap_id'  : "%s.%s" % (catalog, no),
+                            'mscap_n' : mscap_n,
+                            'chapter' : chapter,
+                            'type'    : hand,
+                        }
+
+                        if mode == 'xml':
+                            # we assume the chapters are already there from a corpus scrap
+                            res = execute (conn, """
+                            UPDATE mss_chapters
+                            SET xml = :text
+                            WHERE (ms_id, cap_id, mscap_n, chapter) =
+                                  (:ms_id, :cap_id, :mscap_n, :chapter)
+                            """, dict (params, text = etree.tostring (item, encoding='unicode')))
+                            if res.rowcount != 1:
+                                log (logging.ERROR,
+                                     "Import fulltext xml: Unknown manuscript or chapter {ms_id} {cap_id} {mscap_n} {chapter}".format (**params))
+
+                        if mode == 'txt':
+                            try:
+                                execute (conn, """
+                                INSERT INTO mss_chapters_text (ms_id, cap_id, mscap_n, chapter, type, text)
+                                VALUES (:ms_id, :cap_id, :mscap_n, :chapter, :type, :text)
+                                ON CONFLICT (ms_id, cap_id, mscap_n, chapter, type) DO UPDATE
+                                SET text = EXCLUDED.text
+                                """, dict (params, text = item.text))
+                            except psycopg2.errors.ForeignKeyViolation as e:
+                                log (logging.ERROR,
+                                     "Import fulltext txt: Unknown manuscript or chapter {ms_id} {cap_id} {mscap_n} {chapter}".format (**params))
+
+
+                    except ValueError as e:
+                        if corresp not in CORRESP_EXCEPTIONS:
                             log (logging.WARNING, "%s: %s" % (ms_id, str (e)))
-                    continue
 
-                corresp = item.get ("corresp")
-                hand = 'original'
-                if '?later_hands' in corresp:
-                    hand = 'later_hands'
-                    corresp = corresp.replace ('?later_hands', '')
+                execute (conn, "COMMIT", {})
 
-                try:
-                    catalog, no, chapter = common.normalize_corresp (corresp)
-
-                    if (catalog, no) != (mscap_catalog, mscap_no):
-                        log (logging.DEBUG, "%s: Missing milestone capitulare for: %s" % (ms_id, corresp))
-
-                    params = {
-                        'ms_id'   : ms_id,
-                        'cap_id'  : "%s.%s" % (catalog, no),
-                        'mscap_n' : mscap_n,
-                        'chapter' : chapter,
-                        'type'    : hand,
-                    }
-
-                    if mode == 'xml':
-                        # we assume the chapters are already there from a corpus scrap
-                        res = execute (conn, """
-                        UPDATE mss_chapters
-                        SET xml = :text
-                        WHERE (ms_id, cap_id, mscap_n, chapter) =
-                              (:ms_id, :cap_id, :mscap_n, :chapter)
-                        """, dict (params, text = etree.tostring (item, encoding='unicode')))
-                        if res.rowcount != 1:
-                            log (logging.ERROR,
-                                 "Import fulltext did not match row {ms_id} {cap_id} {mscap_n} {chapter}".format (**params))
-
-                    if mode == 'txt':
-                        execute (conn, """
-                        INSERT INTO mss_chapters_text (ms_id, cap_id, mscap_n, chapter, type, text)
-                        VALUES (:ms_id, :cap_id, :mscap_n, :chapter, :type, :text)
-                        ON CONFLICT (ms_id, cap_id, mscap_n, chapter, type) DO UPDATE
-                        SET text = EXCLUDED.text
-                        """, dict (params, text = item.text))
-
-                except ValueError as e:
-                    if corresp not in CORRESP_EXCEPTIONS:
-                        log (logging.WARNING, "%s: %s" % (ms_id, str (e)))
-
-            execute (conn, "COMMIT", {})
+        except AssertionError as e:
+            # AssertionError: ElementTree not initialized, missing root
+            log (logging.ERROR, "Parsing %s ...\n%s" % (fn, str (e)))
 
 
 def build_parser (default_config_file):
@@ -793,11 +805,21 @@ if __name__ == "__main__":
     build_parser ('server.conf').parse_args (namespace = args)
     args.config = config_from_pyfile (args.config_file)
 
-    init_logging (
-        args,
-        logging.StreamHandler (),
-        logging.FileHandler ('import.log')
-    )
+    handlers = [logging.StreamHandler (), logging.FileHandler ('import.log')]
+
+    if 'MAILTO' in args.config:
+        smtp_handler = logging.handlers.SMTPHandler (
+            mailhost = (args.config.get ('SMTPHOST', 'localhost'), 25),
+            fromaddr = "capitularia import_data.py <noreply@uni-koeln.de>",
+            toaddrs  = args.config.get ('MAILTO', 'root'),
+            subject  = "Capitularia import_data.py error"
+        )
+        handlers.append (smtp_handler)
+
+    init_logging (args, *handlers)
+
+    if 'MAILTO' in args.config:
+        smtp_handler.setLevel (logging.ERROR)
 
     log (logging.INFO, "Connecting to Postgres database ...")
 

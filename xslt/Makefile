@@ -169,7 +169,7 @@ scrape_geoplaces :   $(CACHE_DIR)/last_geoplaces_scrape
 
 scrape_status :   $(CACHE_DIR)/last_status_scrape
 
-scrape_all : scrape_corpus scrape_capits scrape_fulltext scrape_geoplaces scrape_status
+scrape_all : scrape_fulltext scrape_geoplaces scrape_status
 
 ################ Other Stuff
 
