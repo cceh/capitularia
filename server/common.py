@@ -550,7 +550,7 @@ NORMALIZATION_DICTS = [
     {
         # string is already lowercased
         'duodecim'    : '12',
-        'viginti'     : '20',
+        'uiginti'     : '20',
         'triginta'    : '30',
         'quadraginta' : '40',
         'sexaginta'   : '60',
