@@ -113,7 +113,7 @@ def normalize_with_patterns (patterns, text, whole_words = False):
     if whole_words:
         for p in patterns:
             search, replace = p
-            normalized = re.sub (r'\bsearch\b', replace, normalized)
+            normalized = re.sub (r'\b' + search + r'\b', replace, normalized)
     else:
         for p in patterns:
             search, replace = p
