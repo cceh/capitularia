@@ -83,7 +83,9 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intro.html#platforms">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#rrzk-web-projekt">RRZK Web Projekt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#capitularia-vm">Capitularia VM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#afs">AFS</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../overviews.html">Overviews</a><ul>
@@ -107,6 +109,13 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overviews/collections.html">Collections</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../overviews/collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
 </ul>
 </li>
 </ul>
@@ -1386,8 +1395,10 @@ by the editor, eg. 42ra-45vb.</p>
 <dl class="py attribute">
 <dt id="db.MssCapitularies.mscap_n">
 <code class="sig-name descname">mscap_n</code><a class="headerlink" href="#db.MssCapitularies.mscap_n" title="Permalink to this definition">¶</a></dt>
-<dd><p>Index used if there are more than one copy of this capitulary in the
-manuscript.</p>
+<dd><p>The n_th occurence of the capitulary in the manuscript.  Default is 1.</p>
+<p>Since msItem does not contain milestones, this value is inferred by counting
+the number of preceding loci that contain this capitulary.</p>
+<p>N.B.: The value in the mss_chapters table is found in a different way.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1480,6 +1491,20 @@ As recorded by the editor, eg. 42ra</p>
 <dt id="db.MssChapters.locus_index">
 <code class="sig-name descname">locus_index</code><a class="headerlink" href="#db.MssChapters.locus_index" title="Permalink to this definition">¶</a></dt>
 <dd><p>The index at the locus, eg. the ‘1’ in 42ra-1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="db.MssChapters.mscap_n">
+<code class="sig-name descname">mscap_n</code><a class="headerlink" href="#db.MssChapters.mscap_n" title="Permalink to this definition">¶</a></dt>
+<dd><p>This chapter was found in the n_th occurence of the capitulary in the
+manuscript.  Default is 1.</p>
+<p>The value is read from the milestone, eg.:</p>
+<blockquote>
+<div><p>&lt;milestone unit=’capitulare’ n=’BK.139_2’ /&gt;</p>
+</div></blockquote>
+<p>marks the second occurence of capitulary 139 in this manuscript.  All
+chapters of BK.139 following this milestone get a value of 2 in this field.</p>
+<p>N.B.: The value in the mss_capitularies table is found in a different way.</p>
 </dd></dl>
 
 <dl class="py attribute">
