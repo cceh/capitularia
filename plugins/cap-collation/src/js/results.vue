@@ -282,11 +282,11 @@ table.collation {
     }
 
     tbody tr {
-        &:first-child {
-            background-color: var(--brand-beige);
+        &:first-child > * {
+            background-color: var(--bs-brand-beige);
         }
 
-        &.highlight-witness.highlight-witness {
+        &.highlight-witness > * {
             background-color: #eea;
         }
     }

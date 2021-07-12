@@ -67,7 +67,7 @@ $(LANG_DEST)/$(TEXT_DOMAIN)-$(1).mo: $(LANG_SRC)/$(1).po
 	msgfmt -o $$@ $$?
 
 $(LANG_DEST)/$(TEXT_DOMAIN)-$(1)-$(HANDLE).json: $(LANG_SRC)/$(1).po
-	$(PO2JSON) $$? $$@ -f jed1.x --pretty
+	$(PO2JSON) $$? $$@ -f jed --pretty
 
 endef
 

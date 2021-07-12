@@ -44,7 +44,7 @@ JSHINT         := $(NODE)/jshint
 JSHINTFLAGS     = --reporter=unix
 STYLELINT       = $(NODE)/stylelint $(STYLELINTFLAGS)
 STYLELINTFLAGS  = -f unix
-RSYNC          := rsync -v -rlptz --exclude='*~' --exclude='.*'
+RSYNC          := rsync -v -crlptz --exclude='*~' --exclude='.*'
 RSYNCPY        := $(RSYNC) --exclude "**/__pycache__"  --exclude "*.pyc" --exclude "*.log"
 WP_CLI         := $(LOCALFS)/wp
 PO2JSON        := $(NODE)/po2json
