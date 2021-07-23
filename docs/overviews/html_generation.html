@@ -83,7 +83,9 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intro.html#platforms">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#rrzk-web-projekt">RRZK Web Projekt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#capitularia-vm">Capitularia VM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#afs">AFS</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../overviews.html">Overviews</a><ul class="current">
@@ -107,6 +109,13 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="collections.html">Collections</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
 </ul>
 </li>
 </ul>
@@ -233,7 +242,7 @@ entity html--><path d="M305.5,279 C305.5,269 369,269 369,269 C369,269 432.5,269 
 link tei to saxon--><path d="M369,70.13 C369,86.4 369,106.79 369,124.78 " fill="none" id="tei-&gt;saxon" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="369,129.78,373,120.78,369,124.78,365,120.78,369,129.78" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[219b7a9b396734858da37580f72c6614]
 link saxon to html--><path d="M369,209.05 C369,226.34 369,246.59 369,263.5 " fill="none" id="saxon-&gt;html" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="369,268.64,373,259.64,369,263.64,365,259.64,369,268.64" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[16b2f23e595c1c5de587a32b661386ae]
 link cron to make--><path d="M111.56,169.5 C121.55,169.5 131.55,169.5 141.54,169.5 " fill="none" id="cron-&gt;make" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="146.76,169.5,137.76,165.5,141.76,169.5,137.76,173.5,146.76,169.5" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[42211ccb8b439fe830e993a3999a0d06]
-link make to saxon--><path d="M243.26,169.5 C253.02,169.5 262.78,169.5 272.54,169.5 " fill="none" id="make-&gt;saxon" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="277.64,169.5,268.64,165.5,272.64,169.5,268.64,173.5,277.64,169.5" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8f273d1ec39c98f0745d5193de2ba120]
+link make to saxon--><path d="M243.26,169.5 C253.02,169.5 262.78,169.5 272.54,169.5 " fill="none" id="make-&gt;saxon" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="277.64,169.5,268.64,165.5,272.64,169.5,268.64,173.5,277.64,169.5" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[a377245d8fba630d18ac7d048fc30fde]
 @startuml
 
    skinparam backgroundColor transparent
@@ -270,7 +279,7 @@ PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.12-ea+4-post-Debian-1
+Java Version: 11.0.12-ea+6-post-Debian-1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en
@@ -303,7 +312,7 @@ link html to pp--><path d="M255,70.18 C255,95.07 255,130.7 255,158.72 " fill="no
 link pp to fi--><path d="M255,243.2 C255,260.42 255,280.58 255,297.47 " fill="none" id="pp-&gt;fi" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="255,302.6,259,293.6,255,297.6,251,293.6,255,302.6" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[df8f87e7a32bdc19e181481244a62650]
 link fi to client--><path d="M255,366.24 C255,383.19 255,404.06 255,420.47 " fill="none" id="fi-&gt;client" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="255,425.86,259,416.86,255,420.86,251,416.86,255,425.86" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[47a94eef6618897ac93409ef467c1cfe]
 link db to fi--><path d="M136.03,352.64 C145.92,355.3 155.82,356.93 165.71,357.51 " fill="none" id="db-&gt;fi" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="170.89,357.72,162.0576,353.3625,165.894,357.5196,161.7369,361.356,170.89,357.72" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[3b23ba4692d1b7e1ae60425e937d5fcf]
-reverse link db to fi--><path d="M140.93,315.12 C150.92,312.78 160.9,311.5 170.89,311.28 " fill="none" id="db&lt;-fi" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="136.03,316.36,145.7361,318.0309,140.8773,315.1339,143.7743,310.2752,136.03,316.36" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[d04ed36481abd90ee498a2c2fe2e39f7]
+reverse link db to fi--><path d="M140.93,315.12 C150.92,312.78 160.9,311.5 170.89,311.28 " fill="none" id="db&lt;-fi" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="136.03,316.36,145.7361,318.0309,140.8773,315.1339,143.7743,310.2752,136.03,316.36" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[62eab89bcb1ee7064419e1f618441bff]
 @startuml
 
    skinparam backgroundColor transparent
@@ -339,7 +348,7 @@ PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.12-ea+4-post-Debian-1
+Java Version: 11.0.12-ea+6-post-Debian-1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en

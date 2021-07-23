@@ -83,7 +83,9 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intro.html#platforms">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#rrzk-web-projekt">RRZK Web Projekt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#capitularia-vm">Capitularia VM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#afs">AFS</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../overviews.html">Overviews</a><ul class="current">
@@ -107,6 +109,13 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="collections.html">Collections</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
 </ul>
 </li>
 </ul>
@@ -239,7 +248,7 @@ link corpus to import--><path d="M302.5,298.01 C283,315.48 258.67,337.29 240,354
 link import to db--><path d="M211,404.13 C211,419.61 211,440.63 211,458.44 " fill="none" id="import-&gt;db" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="211,463.86,215,454.86,211,458.86,207,454.86,211,463.86" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[16b2f23e595c1c5de587a32b661386ae]
 link cron to make--><path d="M111.56,153 C121.55,153 131.55,153 141.54,153 " fill="none" id="cron-&gt;make" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="146.76,153,137.76,149,141.76,153,137.76,157,146.76,153" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[42211ccb8b439fe830e993a3999a0d06]
 link make to saxon--><path d="M243.25,153 C253.1,153 262.95,153 272.8,153 " fill="none" id="make-&gt;saxon" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="277.96,153,268.96,149,272.96,153,268.96,157,277.96,153" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[e731f16ea0a8d8bacc8eebde1022f2e9]
-link make to import--><path d="M146.87,175.83 C123,189.44 96.46,209.46 83,236 C70.53,260.58 69.78,273.82 83,298 C98.26,325.91 127.53,345.71 154.23,358.86 " fill="none" id="make-&gt;import" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="158.83,361.07,152.4433,353.5726,154.3213,358.9087,148.9852,360.7866,158.83,361.07" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[da181ad3a4843a0b4d3320eb5ef3579b]
+link make to import--><path d="M146.87,175.83 C123,189.44 96.46,209.46 83,236 C70.53,260.58 69.78,273.82 83,298 C98.26,325.91 127.53,345.71 154.23,358.86 " fill="none" id="make-&gt;import" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="158.83,361.07,152.4433,353.5726,154.3213,358.9087,148.9852,360.7866,158.83,361.07" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[ebb44ed2fc3e58f483f56de6942ad9c1]
 @startuml
 
    skinparam backgroundColor transparent
@@ -280,7 +289,7 @@ PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.12-ea+4-post-Debian-1
+Java Version: 11.0.12-ea+6-post-Debian-1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en
@@ -333,7 +342,7 @@ reverse link client to plugin--><path d="M105.45,76.31 C107.01,93.69 106.83,114.
 link plugin to api--><path d="M81.76,194.03 C79.94,210.66 79.77,231.32 81.25,248.7 " fill="none" id="plugin-&gt;api" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="81.76,253.98,84.8685,244.6346,81.2752,249.0036,76.9062,245.4103,81.76,253.98" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[d751fd97e97a4894620e396f1d848313]
 reverse link plugin to api--><path d="M105.45,199.31 C107.01,216.69 106.83,237.35 104.9,253.98 " fill="none" id="plugin&lt;-api" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="104.9,194.03,101.8446,203.3929,105.413,199.0036,109.8024,202.5721,104.9,194.03" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[1b9dbcfdb69d97b7ce5f2d963fc4ed75]
 link api to db--><path d="M81.72,317.22 C79.93,333.78 79.77,354.28 81.26,371.52 " fill="none" id="api-&gt;db" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="81.77,376.75,84.8785,367.4046,81.2852,371.7736,76.9162,368.1803,81.77,376.75" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[4deafffe8fa422dcef882ca302692840]
-reverse link api to db--><path d="M105.47,322.48 C107.02,339.77 106.82,360.27 104.89,376.75 " fill="none" id="api&lt;-db" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="104.94,317.22,101.8607,326.5751,105.4403,322.1949,109.8206,325.7745,104.94,317.22" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[276c3c73793844371587e7712f26bd42]
+reverse link api to db--><path d="M105.47,322.48 C107.02,339.77 106.82,360.27 104.89,376.75 " fill="none" id="api&lt;-db" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="104.94,317.22,101.8607,326.5751,105.4403,322.1949,109.8206,325.7745,104.94,317.22" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[c19fc6162457ba1230f8bfd9acedad64]
 @startuml
 
    skinparam backgroundColor transparent
@@ -365,7 +374,7 @@ PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 11.0.12-ea+4-post-Debian-1
+Java Version: 11.0.12-ea+6-post-Debian-1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en

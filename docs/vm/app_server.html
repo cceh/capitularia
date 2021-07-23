@@ -241,35 +241,308 @@
 <div class="section" id="module-data_server">
 <span id="data-server"></span><h2>data_server<a class="headerlink" href="#module-data_server" title="Permalink to this headline">¶</a></h2>
 <p>Data API server for Capitularia.</p>
-<p>REST Interface to perform various database queries</p>
-<dl class="py function">
-<dt id="data_server.capitularies">
-<code class="sig-name descname">capitularies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.capitularies" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return all capitularies.</p>
+<p>REST Interface to perform various database queries.</p>
+<div class="section" id="endpoints">
+<h3>Endpoints<a class="headerlink" href="#endpoints" title="Permalink to this headline">¶</a></h3>
+<dl class="http get">
+<dt id="get--data-manuscripts.json-">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/data/manuscripts.json/</code><a class="headerlink" href="#get--data-manuscripts.json-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all manuscripts.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/data/manuscripts.json/?status=publish</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.capitularia.uni-koeln.de</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/avranches-bm-145.xml&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ms_id&quot;</span><span class="p">:</span> <span class="s2">&quot;avranches-bm-145&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Avranches, Bibliothèque municipale, 145&quot;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/bamberg-sb-can-12.xml&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ms_id&quot;</span><span class="p">:</span> <span class="s2">&quot;bamberg-sb-can-12&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Bamberg, Staatsbibliothek, Can. 12&quot;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/barcelona-aca-ripoll-40.xml&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ms_id&quot;</span><span class="p">:</span> <span class="s2">&quot;barcelona-aca-ripoll-40&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Barcelona, Arxiu de la Corona d&#39;Aragó, Ripoll 40&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>status</strong> (<em>string</em>) – Optional.  ‘private’ or ‘publish’.  Default ‘publish’.
+Consider all manuscripts or just the published ones.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – no error</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--data-capitularies.json-">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/data/capitularies.json/</code><a class="headerlink" href="#get--data-capitularies.json-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all capitularies that have a transcription.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/data/capitularies.json/?status=private</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.capitularia.uni-koeln.de</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;cap_id&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.138&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Capitulare ecclesiasticum&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span> <span class="mi">17</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;cap_id&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.139&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Capitula legibus addenda&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span> <span class="mi">29</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;cap_id&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.140&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Capitula per se scribenda&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span> <span class="mi">24</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>status</strong> (<em>string</em>) – Optional.  ‘private’ or ‘publish’.  Default ‘publish’.
+Consider all manuscripts or just the published ones.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – no error</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--data-capitulary--cap_id--chapters.json-">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/data/capitulary/&lt;cap_id&gt;/chapters.json/</code><a class="headerlink" href="#get--data-capitulary--cap_id--chapters.json-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all chapters in capitulary cap_id.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/data/capitulary/BK.168/chapters.json/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.capitularia.uni-koeln.de</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;cap_id&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.168&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;chapter&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span> <span class="mi">7</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;cap_id&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.168&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;chapter&quot;</span><span class="p">:</span> <span class="s2">&quot;1_inscriptio&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;cap_id&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.168&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;chapter&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span> <span class="mi">8</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cap_id</strong> – The capitulary id, eg. ‘BK.123’ or ‘Mordek.4’</p></li>
+<li><p><strong>status</strong> (<em>string</em>) – Optional.  ‘private’ or ‘publish’.  Default ‘publish’.
+Consider all manuscripts or just the published ones.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – no error</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Bad Request</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--data-capitulary--cap_id--manuscripts.json-">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/data/capitulary/&lt;cap_id&gt;/manuscripts.json/</code><a class="headerlink" href="#get--data-capitulary--cap_id--manuscripts.json-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all manuscripts containing capitulary cap_id.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/data/capitulary/BK.40/manuscripts.json/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.capitularia.uni-koeln.de</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">[</span>
+  <span class="p">{</span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="s2">&quot;bk-textzeuge&quot;</span><span class="p">},</span>
+  <span class="p">{</span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="s2">&quot;vatikan-bav-chigi-f-iv-75&quot;</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cap_id</strong> – The capitulary id, eg. ‘BK.123’ or ‘Mordek.4’</p></li>
+<li><p><strong>status</strong> (<em>string</em>) – Optional.  ‘private’ or ‘publish’.  Default ‘publish’.
+Consider all manuscripts or just the published ones.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – no error</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Bad Request</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--data-corresp--corresp--manuscripts.json-">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/data/corresp/&lt;corresp&gt;/manuscripts.json/</code><a class="headerlink" href="#get--data-corresp--corresp--manuscripts.json-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all manuscripts containing corresp.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/data/corresp/BK.40_1/manuscripts.json/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.capitularia.uni-koeln.de</span>
+</pre></div>
+</div>
+<p><strong>Example response</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/cava-dei-tirreni-bdb-4.xml&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;locus&quot;</span><span class="p">:</span> <span class="s2">&quot;cava-dei-tirreni-bdb-4-243v-1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ms_id&quot;</span><span class="p">:</span> <span class="s2">&quot;cava-dei-tirreni-bdb-4&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Cava de&#39; Tirreni, Biblioteca Statale del Monumento Nazionale Badia di Cava, 4&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;original&quot;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/ivrea-bc-xxxiv.xml&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;locus&quot;</span><span class="p">:</span> <span class="s2">&quot;ivrea-bc-xxxiv-53v-8&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ms_id&quot;</span><span class="p">:</span> <span class="s2">&quot;ivrea-bc-xxxiv&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Ivrea, Biblioteca Capitolare, XXXIV&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;original&quot;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/vatikan-bav-chigi-f-iv-75.xml&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;locus&quot;</span><span class="p">:</span> <span class="s2">&quot;vatikan-bav-chigi-f-iv-75-94r-6&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ms_id&quot;</span><span class="p">:</span> <span class="s2">&quot;vatikan-bav-chigi-f-iv-75&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Vatikan, Biblioteca Apostolica Vaticana, Chigi F. IV. 75&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;original&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>corresp</strong> (<em>string</em>) – The &#64;corresp, eg. ‘BK.123_4’</p></li>
+<li><p><strong>status</strong> (<em>string</em>) – Optional.  ‘private’ or ‘publish’.  Default ‘publish’.
+Consider all manuscripts or just the published ones.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Response Headers</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – no error</p></li>
+<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Bad Request</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt id="get--data-capitulary--cap_id--chapter--chapter--manuscripts.json-">
+<code class="sig-name descname">GET </code><code class="sig-name descname">/data/capitulary/&lt;cap_id&gt;/chapter/&lt;chapter&gt;/manuscripts.json/</code><a class="headerlink" href="#get--data-capitulary--cap_id--chapter--chapter--manuscripts.json-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all manuscripts containing chapter.</p>
+<p><strong>Example request</strong>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/data/capitulary/BK.40/chapter/1/manuscripts.json/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.capitularia.uni-koeln.de</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Query Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cap_id</strong> (<em>string</em>) – The capitulary id, eg. ‘BK.123’ or ‘Mordek.4’</p></li>
+<li><p><strong>chapter</strong> (<em>string</em>) – The chapter, eg. ‘1’ or ‘1_inscriptio’</p></li>
+<li><p><strong>status</strong> (<em>string</em>) – Optional.  ‘private’ or ‘publish’.  Default ‘publish’.
+Consider all manuscripts or just the published ones.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Response format see above.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="data_server.capitulary_manuscripts_json">
-<code class="sig-name descname">capitulary_manuscripts_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cap_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.capitulary_manuscripts_json" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return all manuscripts containing capitulary cap_id.</p>
+<dt id="data_server.capitularies">
+<code class="sig-name descname">capitularies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.capitularies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all capitularies with transcriptions.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="data_server.chapter_manuscripts">
 <code class="sig-name descname">chapter_manuscripts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cap_id</span></em>, <em class="sig-param"><span class="n">chapter</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.chapter_manuscripts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return all manuscripts with chapter</p>
-</dd></dl>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt id="data_server.chapters">
 <code class="sig-name descname">chapters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cap_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.chapters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all chapters in capitulary cap_id.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="data_server.corresp_manuscripts">
-<code class="sig-name descname">corresp_manuscripts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">corresp</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.corresp_manuscripts" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return all manuscripts with corresp.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -309,12 +582,19 @@ highlight those words in the snippets.</p>
 <dd><p>Return manuscripts according to query.</p>
 </dd></dl>
 
+<dl class="py function">
+<dt id="data_server.stat">
+<code class="sig-name descname">stat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a filter on page status.</p>
+</dd></dl>
+
+</div>
 </div>
 <div class="section" id="module-collatex_server">
 <span id="collatex-server"></span><h2>collatex_server<a class="headerlink" href="#module-collatex_server" title="Permalink to this headline">¶</a></h2>
 <p>This module implements the CollateX API for the Capitularia Application Server.</p>
-<div class="section" id="endpoints">
-<h3>Endpoints<a class="headerlink" href="#endpoints" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Endpoints<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="http post">
 <dt id="post--collatex-collate">
 <code class="sig-name descname">POST </code><code class="sig-name descname">/collatex/collate</code><a class="headerlink" href="#post--collatex-collate" title="Permalink to this definition">¶</a></dt>
@@ -369,6 +649,11 @@ Retry later or with less witnesses.</p></li>
 </dl>
 </dd></dl>
 
+<dl class="py class">
+<dt id="collatex_server.CollatexBlueprint">
+<em class="property">class </em><code class="sig-name descname">CollatexBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.CollatexBlueprint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py exception">
 <dt id="collatex_server.CollatexError">
 <em class="property">exception </em><code class="sig-name descname">CollatexError</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.CollatexError" title="Permalink to this definition">¶</a></dt>
@@ -379,11 +664,6 @@ Retry later or with less witnesses.</p></li>
 <code class="sig-name descname">collate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.collate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements the /collatex/collate endpoint.</p>
 </dd></dl>
-
-<dl class="py class">
-<dt id="collatex_server.collatexBlueprint">
-<em class="property">class </em><code class="sig-name descname">collatexBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.collatexBlueprint" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py function">
 <dt id="collatex_server.normalize_with_patterns">
@@ -436,6 +716,11 @@ Normalizations applied to each word.</p>
 <div class="section" id="module-geo_server">
 <span id="geo-server"></span><h2>geo_server<a class="headerlink" href="#module-geo_server" title="Permalink to this headline">¶</a></h2>
 <p>Geo queries API server for Capitularia.</p>
+<dl class="py class">
+<dt id="geo_server.GeoBlueprint">
+<em class="property">class </em><code class="sig-name descname">GeoBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.GeoBlueprint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py function">
 <dt id="geo_server.capitularies_csv">
 <code class="sig-name descname">capitularies_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.capitularies_csv" title="Permalink to this definition">¶</a></dt>
@@ -453,11 +738,6 @@ Normalizations applied to each word.</p>
 <code class="sig-name descname">extent_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.extent_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the max. extent of all data points.</p>
 </dd></dl>
-
-<dl class="py class">
-<dt id="geo_server.geoBlueprint">
-<em class="property">class </em><code class="sig-name descname">geoBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.geoBlueprint" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py function">
 <dt id="geo_server.info_json">

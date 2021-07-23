@@ -38,15 +38,15 @@ To build development files and enable hot module reloading (HMR) compile with:
 
 .. code-block:: bash
 
-   webpack-dev-server --config webpack.dev.js
+   webpack serve --config webpack.dev.js
 
-webpack-dev-server adds some code to your JS to enable HMR.  Once loaded into
+webpack serve adds some code to your JS to enable HMR.  Once loaded into
 Wordpress this code opens a socket to the webpack-dev-server and awaits
 commands.  When webpack-dev-server detects a source code change it compiles the
 changed modules into hot-update.js files and sends a reload command down the
 socket.  The HMR code in your app then tries to reload the changed modules
 preserving application state.  If it fails to do so it will fallback on
-reloading the whole page (and losing application state).
+reloading the whole page (and will lose application state).
 
 Example webpack config:
 
@@ -133,23 +133,23 @@ In the JS section of Vue files, use the :func:`$t ()` function:
 This function tags the message for the string extractor and also translates
 the string at runtime.
 
-In the HTML template section of Vue files, you may use 3 different methods to
+In the HTML template section of Vue files, you may use two different methods to
 tag translatable strings:
 
 .. code-block:: html
 
    <h2 v-translate>Header to translate</h2>
-   <p>{{ 'Text to translate' | translate }}</p>
    <span title="$t ('Tooltip to translate')"></span>
 
-This is the Vue 2 boilerplate that enables translations in Vue files: Put this
+This is the Vue 3 boilerplate that enables translations in Vue files: Put this
 in main.js before initializing your Vue app.
 
 
 .. code-block:: js
-   :caption: Vue.js boilerplate
+   :caption: Vue.js 3 boilerplate
 
    const DOMAIN = 'my-text-domain';
+   const app    = createApp (App);
 
    // wrapper to call the Wordpress translate function
    function $t (text) {
@@ -157,21 +157,14 @@ in main.js before initializing your Vue app.
    }
 
    // the vm.$t function
-   Vue.prototype.$t = function (text) {
-       return $t (text);
-   };
-
-   // the {{ 'text' | translate }} filter
-   Vue.filter ('translate', function (text) {
-       return $t (text);
-   });
+   app.config.globalProperties.$t = $t;
 
    // the v-translate directive
-   Vue.directive ('translate', function (el) {
-       el.innerText = $t (el.innerText.trim ()));
+   app.directive ('translate', function (el) {
+       el.innerText = $t (el.innerText.trim ());
    });
 
-   new Vue (...);
+   app.mount ('...');
 
 
 Translate
