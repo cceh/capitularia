@@ -143,7 +143,10 @@ import * as tools from './tools.js';
 
 export default {
     'props' : {
-        'config' : Object, // a config file section if loaded from config
+        'config' : {
+            'type'    : Object, // a config file section if loaded from config
+            'default' : {},
+        },
     },
     data () {
         return {

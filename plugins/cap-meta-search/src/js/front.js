@@ -6,7 +6,7 @@
  */
 
 import $ from 'jquery';
-import jstree from 'imports-loader?imports=default|jquery|jQuery!jstree';
+import jstree from 'imports-loader?imports=default|jquery|jQuery!jstree'; // eslint-disable-line no-unused-vars
 
 import { Tooltip } from 'bootstrap';
 
@@ -60,8 +60,8 @@ function places_tree_init () {
 
     $ ('div.cap-meta-search-box form').submit (function (event) {
         var data = $ (event.target).serializeArray ();
-        var jstree = $ ('#places').jstree (true);
-        $.each (jstree.get_selected (true), function (i, node) {
+        var jst = $ ('#places').jstree (true);
+        $.each (jst.get_selected (true), function (i, node) {
             data.push ({ 'name' : 'places[]', 'value' : node.id });
             // used by "You searched for: X"
             data.push ({ 'name' : 'placenames[]', 'value' : node.text });

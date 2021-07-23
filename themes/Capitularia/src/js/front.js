@@ -64,7 +64,7 @@ function initFootnoteTooltips () {
             } else {
                 // close now
                 tt.hide ();
-            };
+            }
         });
     });
 }
@@ -106,10 +106,8 @@ function initPanZoom () {
     // first replace the <img> with the inline SVG
 
     for (const img of document.querySelectorAll ('img.svg-pan-zoom[src]')) {
-
         // retrieve the SVG
         $.get (img.getAttribute ('src'), function (data) {
-
             // only the SVG tag
             const $svg = $ (data).find ('svg');
             const svg  = $svg[0];
@@ -120,7 +118,7 @@ function initPanZoom () {
             // copy all attributes from <img> to <svg>
             for (const attr of img.attributes) {
                 svg.setAttribute (attr.name, attr.value);
-            };
+            }
 
             // switch tags
             $ (img).replaceWith ($svg);
@@ -133,13 +131,13 @@ function initPanZoom () {
                 return $container[0].getBoundingClientRect ();
             }
             let containerRect = calcScale ();
-            window.addEventListener ('resize', (ev) => { containerRect = calcScale (); });
+            window.addEventListener ('resize', () => { containerRect = calcScale (); });
 
             // enable pan & zoom
             const p = panZoom (svg, {
-                onTouch: function (ev) {
+                'onTouch' : function (ev) {
                     // enable click on links
-                    return !(ev.type == 'touchstart' || ev.type == 'touchend');
+                    return !(ev.type === 'touchstart' || ev.type === 'touchend');
                 },
             });
             // do not scroll the whole screen, only the svg
@@ -160,12 +158,11 @@ function initPanZoom () {
             const $controls = $ ('<div class="pan-zoom-controls"></div>');
             $controls.appendTo ($container);
 
-            $ ('<button>+</button>').appendTo ($controls).on ('click', () => { zoom (2); } );
-            $ ('<button>0</button>').appendTo ($controls).on ('click', () => { fit (); } );
-            $ ('<button>-</button>').appendTo ($controls).on ('click', () => { zoom (0.5); } );
-
+            $ ('<button>+</button>').appendTo ($controls).on ('click', () => { zoom (2); });
+            $ ('<button>0</button>').appendTo ($controls).on ('click', () => { fit (); });
+            $ ('<button>-</button>').appendTo ($controls).on ('click', () => { zoom (0.5); });
         }, 'xml');
-    };
+    }
 }
 
 $ (document).ready (function () {
