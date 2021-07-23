@@ -74,7 +74,7 @@ export function get_api_entrypoint () {
  * @returns {Promise} Promise resolved when call completed.
  */
 export function api (url, data = {}) {
-    data.status = cap_lib.read_private_pages ? 'private' : 'public';
+    data.status = cap_lib.read_private_pages ? 'private' : 'publish';
 
     const p = $.ajax ({
         'url'  : get_api_entrypoint () + url,
