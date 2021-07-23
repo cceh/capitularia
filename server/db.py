@@ -13,13 +13,13 @@ To create a new database: (must be database superuser)
    CREATE USER capitularia PASSWORD '<password>';
    CREATE DATABASE capitularia OWNER capitularia;
 
-   \c capitularia
+   \\c capitularia
    CREATE EXTENSION pg_trgm WITH SCHEMA public;
    CREATE EXTENSION postgis WITH SCHEMA public;
    CREATE SCHEMA capitularia AUTHORIZATION capitularia;
    CREATE SCHEMA gis AUTHORIZATION capitularia;
    ALTER DATABASE capitularia SET search_path = capitularia, gis, public;
-   \q
+   \\q
 
 .. code:: shell
 
@@ -34,9 +34,9 @@ from sqlalchemy.ext import compiler
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.schema import DDLElement
 from sqlalchemy.sql import text
-from sqlalchemy_utils import IntRangeType
 from sqlalchemy.dialects.postgresql.json import JSONB
 from sqlalchemy.dialects.postgresql import ARRAY, INT4RANGE, TEXT
+from sqlalchemy_utils import IntRangeType
 from geoalchemy2 import Geometry
 
 # let sqlalchemy manage our views

@@ -13,22 +13,14 @@ Includes the geographic information tables.
 import argparse
 import collections
 import datetime
-import io
 import json
 import logging
 import logging.handlers
-import os
-import os.path
 import re
-import urllib.parse
 
-import requests
-import lxml
 from lxml import etree
-
-from sqlalchemy_utils import IntRangeType
-from sqlalchemy.dialects.postgresql.json import JSONB
-from sqlalchemy.dialects.postgresql import ARRAY, INT4RANGE
+import psycopg2.errors
+import requests
 import sqlalchemy
 
 import common
@@ -56,16 +48,16 @@ QNAME_MILESTONE = etree.QName (NS['tei'], 'milestone')
 
 GEO_APIS = {
     'geonames' : {
-        're'       : re.compile ('//www.geonames.org/(\d+)/'),
+        're'       : re.compile (r'//www.geonames.org/(\d+)/'),
         # FIXME get an institutional user
         'endpoint' : 'http://api.geonames.org/hierarchyJSON?geonameId={id}&username=highlander',
     },
     'dnb' : {
-        're'       : re.compile ('http://d-nb.info/gnd/([-X\d]+)'),
+        're'       : re.compile (r'http://d-nb.info/gnd/([-X\d]+)'),
         'endpoint' : 'https://hub.culturegraph.org/entityfacts/{id}',
     },
     'viaf' : {
-        're'       : re.compile ('http://viaf.org/viaf/(\d+)'),
+        're'       : re.compile (r'http://viaf.org/viaf/(\d+)'),
         'endpoint' : 'https://viaf.org/viaf/{id}/justlinks.json',
     },
 }
@@ -743,7 +735,6 @@ def build_parser (default_config_file):
         description = __doc__,
         fromfile_prefix_chars = '@'
     )
-    config_path = os.path.abspath (os.path.dirname (__file__) + '/server.conf')
 
     parser.add_argument (
         '-v', '--verbose', dest='verbose', action='count',
@@ -802,8 +793,6 @@ def build_parser (default_config_file):
 
 
 if __name__ == "__main__":
-    import logging
-
     build_parser ('server.conf').parse_args (namespace = args)
     args.config = config_from_pyfile (args.config_file)
 

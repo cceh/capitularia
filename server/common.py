@@ -8,12 +8,13 @@ import csv
 import io
 import logging
 import re
-import requests
-import roman as rom
 import types
 
+import requests
+import roman as rom
+
 import flask
-from flask import abort, current_app, request
+from flask import current_app, request
 
 RE_WS              = re.compile (r'(\s+)')
 RE_PUNCT           = re.compile (r'[-.,:;!?*/]')
@@ -216,7 +217,7 @@ def _parse_locus_range (m):
 
     """
 
-    if not (m.group (0)):
+    if not m.group (0):
         # regex matched nothing
         raise ValueError ("Invalid locus range: empty")
 
@@ -564,9 +565,6 @@ NORMALIZATIONS = list (zip (
     [re.compile ('|'.join (d.keys ())) for d in NORMALIZATION_DICTS],
     NORMALIZATION_DICTS
 ))
-
-def convert (m):
-    return CONVERSIONS[m.group (0)]
 
 def roman_to_decimal (m):
     return str (sum ([ROMANS[x] for x in RE_ROMANS.findall (m.group (0).upper ())]))

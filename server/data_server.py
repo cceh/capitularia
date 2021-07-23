@@ -3,17 +3,268 @@
 
 """Data API server for Capitularia.
 
-REST Interface to perform various database queries
+REST Interface to perform various database queries.
+
+
+Endpoints
+---------
+
+.. http:get:: /data/manuscripts.json/
+
+   Return all manuscripts.
+
+   **Example request**:
+
+   .. sourcecode:: http
+
+      GET /data/manuscripts.json/?status=publish HTTP/1.1
+      Host: api.capitularia.uni-koeln.de
+
+   **Example response**:
+
+   .. sourcecode:: http
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      [
+        {
+          "filename": "file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/avranches-bm-145.xml",
+          "ms_id": "avranches-bm-145",
+          "title": "Avranches, Biblioth\u00e8que municipale, 145"
+        },
+        {
+          "filename": "file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/bamberg-sb-can-12.xml",
+          "ms_id": "bamberg-sb-can-12",
+          "title": "Bamberg, Staatsbibliothek, Can. 12"
+        },
+        {
+          "filename": "file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/barcelona-aca-ripoll-40.xml",
+          "ms_id": "barcelona-aca-ripoll-40",
+          "title": "Barcelona, Arxiu de la Corona d'Arag\u00f3, Ripoll 40"
+        }
+      ]
+
+   :query string status: Optional.  'private' or 'publish'.  Default 'publish'.
+                         Consider all manuscripts or just the published ones.
+   :resheader Content-Type: application/json
+   :statuscode 200: no error
+   :resjsonobj string ms_id: the id of the manuscript.
+   :resjsonobj string title: the title of the manuscript.
+   :resjsonobj string filename: the file in the AFS.
+
+
+.. http:get:: /data/capitularies.json/
+
+   Return all capitularies that have a transcription.
+
+   **Example request**:
+
+   .. sourcecode:: http
+
+      GET /data/capitularies.json/?status=private HTTP/1.1
+      Host: api.capitularia.uni-koeln.de
+
+   **Example response**:
+
+   .. sourcecode:: http
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      [
+        {
+          "cap_id": "BK.138",
+          "title": "Capitulare ecclesiasticum",
+          "transcriptions": 17
+        },
+        {
+          "cap_id": "BK.139",
+          "title": "Capitula legibus addenda",
+          "transcriptions": 29
+        },
+        {
+          "cap_id": "BK.140",
+          "title": "Capitula per se scribenda",
+          "transcriptions": 24
+        }
+      ]
+
+   :query string status: Optional.  'private' or 'publish'.  Default 'publish'.
+                         Consider all manuscripts or just the published ones.
+   :resheader Content-Type: application/json
+   :statuscode 200: no error
+   :resjsonobj string cap_id: the id of the capitulary.
+   :resjsonobj string title: the title of the capitulary.
+   :resjsonobj integer transcriptions: How many transcriptions
+                                       of this capitulary do we have?
+
+
+.. http:get:: /data/capitulary/<cap_id>/chapters.json/
+
+   Return all chapters in capitulary cap_id.
+
+   **Example request**:
+
+   .. sourcecode:: http
+
+      GET /data/capitulary/BK.168/chapters.json/ HTTP/1.1
+      Host: api.capitularia.uni-koeln.de
+
+   **Example response**:
+
+   .. sourcecode:: http
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      [
+        {
+          "cap_id": "BK.168",
+          "chapter": "1",
+          "transcriptions": 7
+        },
+        {
+          "cap_id": "BK.168",
+          "chapter": "1_inscriptio",
+          "transcriptions": 1
+        },
+        {
+          "cap_id": "BK.168",
+          "chapter": "2",
+          "transcriptions": 8
+        }
+      ]
+
+   :query cap_id: The capitulary id, eg. 'BK.123' or 'Mordek.4'
+   :query string status: Optional.  'private' or 'publish'.  Default 'publish'.
+                         Consider all manuscripts or just the published ones.
+   :resheader Content-Type: application/json
+   :statuscode 200: no error
+   :statuscode 400: Bad Request
+   :resjsonobj string cap_id: the id of the capitulary.
+   :resjsonobj string chapter: the chapter.
+   :resjsonobj integer transcriptions: How many transcriptions
+                                       of this chapter do we have?
+
+
+.. http:get:: /data/capitulary/<cap_id>/manuscripts.json/
+
+   Return all manuscripts containing capitulary cap_id.
+
+   **Example request**:
+
+   .. sourcecode:: http
+
+      GET /data/capitulary/BK.40/manuscripts.json/ HTTP/1.1
+      Host: api.capitularia.uni-koeln.de
+
+   **Example response**:
+
+   .. sourcecode:: http
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      [
+        {"ms_id":"bk-textzeuge"},
+        {"ms_id":"vatikan-bav-chigi-f-iv-75"}
+      ]
+
+   :query cap_id: The capitulary id, eg. 'BK.123' or 'Mordek.4'
+   :query string status: Optional.  'private' or 'publish'.  Default 'publish'.
+                         Consider all manuscripts or just the published ones.
+   :resheader Content-Type: application/json
+   :statuscode 200: no error
+   :statuscode 400: Bad Request
+   :resjsonobj string ms_id: the id of the manuscript.
+
+
+.. http:get:: /data/corresp/<corresp>/manuscripts.json/
+
+   Return all manuscripts containing corresp.
+
+   **Example request**:
+
+   .. sourcecode:: http
+
+      GET /data/corresp/BK.40_1/manuscripts.json/ HTTP/1.1
+      Host: api.capitularia.uni-koeln.de
+
+   **Example response**:
+
+   .. sourcecode:: http
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      [
+        {
+          "filename": "file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/cava-dei-tirreni-bdb-4.xml",
+          "locus": "cava-dei-tirreni-bdb-4-243v-1",
+          "ms_id": "cava-dei-tirreni-bdb-4",
+          "n": 1,
+          "title": "Cava de' Tirreni, Biblioteca Statale del Monumento Nazionale Badia di Cava, 4",
+          "type": "original"
+        },
+        {
+          "filename": "file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/ivrea-bc-xxxiv.xml",
+          "locus": "ivrea-bc-xxxiv-53v-8",
+          "ms_id": "ivrea-bc-xxxiv",
+          "n": 1,
+          "title": "Ivrea, Biblioteca Capitolare, XXXIV",
+          "type": "original"
+        },
+        {
+          "filename": "file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/vatikan-bav-chigi-f-iv-75.xml",
+          "locus": "vatikan-bav-chigi-f-iv-75-94r-6",
+          "ms_id": "vatikan-bav-chigi-f-iv-75",
+          "n": 1,
+          "title": "Vatikan, Biblioteca Apostolica Vaticana, Chigi F. IV. 75",
+          "type": "original"
+        }
+      ]
+
+   :query string corresp:  The @corresp, eg. 'BK.123_4'
+   :query string status: Optional.  'private' or 'publish'.  Default 'publish'.
+                         Consider all manuscripts or just the published ones.
+   :resheader Content-Type: application/json
+   :statuscode 200: no error
+   :statuscode 400: Bad Request
+   :resjsonobj string ms_id: the id of the manuscript.
+   :resjsonobj string title: the title of the manuscript.
+   :resjsonobj string locus: the locus of the chapter in the manuscript.
+   :resjsonobj string filename: the manuscript file in the AFS.
+   :resjsonobj int n: This chapter is part of the n_th occurence of the capitulary in the
+                      manuscript.  Default is 1.  See :ref:`MssChapters.mscap_n`.
+   :resjsonobj string type: Either 'original' or 'later_hands'.  The type of preprocessing applied.
+                            Whether the original hand was followed or a later corrector.
+
+
+.. http:get:: /data/capitulary/<cap_id>/chapter/<chapter>/manuscripts.json/
+
+   Return all manuscripts containing chapter.
+
+   **Example request**:
+
+   .. sourcecode:: http
+
+      GET /data/capitulary/BK.40/chapter/1/manuscripts.json/ HTTP/1.1
+      Host: api.capitularia.uni-koeln.de
+
+   :query string cap_id:  The capitulary id, eg. 'BK.123' or 'Mordek.4'
+   :query string chapter: The chapter, eg. '1' or '1_inscriptio'
+   :query string status: Optional.  'private' or 'publish'.  Default 'publish'.
+                         Consider all manuscripts or just the published ones.
+
+   Response format see above.
+
 
 """
 
 import collections
 
-import flask
 from flask import abort, current_app, request, Blueprint
-import werkzeug
-
-import intervals as I
 
 import common
 from db_tools import execute
@@ -36,6 +287,30 @@ def cache (response):
     return response
 
 
+def get_status_param ():
+    status = request.args.get ('status') or 'publish'
+    if status not in ('private', 'publish'):
+        raise ValueError ('Unknown status.')
+    return status
+
+
+def stat ():
+    """ Create a filter on page status. """
+
+    if get_status_param () == 'private':
+        return ("m.status IN ('private', 'publish')")
+    return ("m.status = 'publish'")
+
+
+def fstat ():
+    """ Create a filter on page status. """
+
+    status = get_status_param ()
+    if status == 'private':
+        return "m.status IN ('private', 'publish') AND mc.chapter !~ '_incipit|_explicit'"
+    return "m.status = 'publish' AND mc.chapter !~ '_inscriptio|_incipit|_explicit'"
+
+
 @app.route ('/manuscripts.json/')
 def manuscripts ():
     """ Return all manuscripts """
@@ -43,31 +318,20 @@ def manuscripts ():
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
         SELECT ms_id, title, filename
-        FROM manuscripts
+        FROM manuscripts m
+        WHERE %s
         ORDER BY natsort (ms_id)
-        """, {})
+        """ % stat (), {})
 
         Manuscripts = collections.namedtuple ('Manuscripts', 'ms_id, title, filename')
-        manuscripts = [ Manuscripts._make (r)._asdict () for r in res ]
+        mss = [ Manuscripts._make (r)._asdict () for r in res ]
 
-        return cache (make_json_response (manuscripts))
-
-
-def fstat ():
-    """ Create a filter on page status. """
-
-    status = request.args.get ('status')
-    where = ''
-    if status == 'private':
-        where = "AND m.status IN ('private', 'publish') AND mc.chapter !~ '_incipit|_explicit'"
-    if status == 'publish':
-        where = "AND m.status = 'publish' AND mc.chapter !~ '_inscriptio|_incipit|_explicit'"
-    return where
+        return cache (make_json_response (mss))
 
 
 @app.route ('/capitularies.json/')
 def capitularies ():
-    """ Return all capitularies. """
+    """ Return all capitularies with transcriptions. """
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
@@ -77,7 +341,7 @@ def capitularies ():
           SELECT mc.cap_id, mc.chapter, COUNT (m.ms_id) AS transcriptions
           FROM mss_chapters mc
             JOIN manuscripts m USING (ms_id)
-          WHERE true %s
+          WHERE %s
           GROUP BY (cap_id, chapter)
           ) b
           JOIN capitularies c USING (cap_id)
@@ -100,7 +364,7 @@ def chapters (cap_id):
         SELECT cap_id, chapter, COUNT (ms_id) AS transcriptions
         FROM mss_chapters mc
           JOIN manuscripts m USING (ms_id)
-        WHERE cap_id = :cap_id %s
+        WHERE cap_id = :cap_id AND %s
         GROUP BY cap_id, chapter
         ORDER BY natsort (chapter)
         """ % fstat (), { 'cap_id' : cap_id })
@@ -113,9 +377,10 @@ def chapters (cap_id):
 
 @app.route ('/capitulary/<string:cap_id>/manuscripts.json/')
 def capitulary_manuscripts_json (cap_id):
-    """ Return all manuscripts containing capitulary cap_id. """
-
-    cap_id = "%s.%s" % common.normalize_bk (cap_id)
+    try:
+        cap_id = "%s.%s" % common.normalize_bk (cap_id)
+    except ValueError:
+        abort (400, str (e))
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
@@ -131,6 +396,8 @@ def capitulary_manuscripts_json (cap_id):
 
 
 def _chapter_manuscripts (cap_id, chapter):
+    """
+    """
 
     with current_app.config.dba.engine.begin () as conn:
         res = execute (conn, """
@@ -138,7 +405,7 @@ def _chapter_manuscripts (cap_id, chapter):
         FROM manuscripts m
           JOIN mss_chapters mc USING (ms_id)
           JOIN mss_chapters_text mct USING (ms_id, cap_id, mscap_n, chapter)
-        WHERE (mc.cap_id, mc.chapter) = (:cap_id, :chapter) %s
+        WHERE (mc.cap_id, mc.chapter) = (:cap_id, :chapter) AND %s
         ORDER BY natsort (mc.ms_id), mc.mscap_n
         """ % fstat (), { 'cap_id' : cap_id, 'chapter' : chapter })
 
@@ -150,16 +417,23 @@ def _chapter_manuscripts (cap_id, chapter):
 
 @app.route ('/capitulary/<string:cap_id>/chapter/<string:chapter>/manuscripts.json/')
 def chapter_manuscripts (cap_id, chapter):
-    """ Return all manuscripts with chapter """
+    """
+    """
+
+    try:
+        cap_id = "%s.%s" % common.normalize_bk (cap_id)
+    except ValueError:
+        abort (400, str (e))
 
     return _chapter_manuscripts (cap_id, chapter)
 
 
 @app.route ('/corresp/<string:corresp>/manuscripts.json/')
 def corresp_manuscripts (corresp):
-    """ Return all manuscripts with corresp.  """
-
-    catalog, no, chapter = common.normalize_corresp (corresp)
+    try:
+        catalog, no, chapter = common.normalize_corresp (corresp)
+    except ValueError:
+        abort (400, str (e))
 
     return _chapter_manuscripts ("%s.%s" % (catalog, no), chapter or '')
 
@@ -175,7 +449,7 @@ def highlight (conn, text, fulltext):
     WORDS     = 6   # how many words to display on each side of the found word
     SEPARATOR = '[&hellip;]'
 
-    res = execute (conn, """
+    res = execute (conn, r"""
     SELECT word, word <<% :fulltext AS match
     FROM (
       SELECT REGEXP_SPLIT_TO_TABLE (:text, '\s+') AS word
@@ -187,7 +461,7 @@ def highlight (conn, text, fulltext):
     interval    = set ()
     for n, r in enumerate (res):
         words.append (r[0])
-        if (r[1]):
+        if r[1]:
             highlighted.add (n)
             interval = interval.union (range (n - WORDS, n + WORDS))
 

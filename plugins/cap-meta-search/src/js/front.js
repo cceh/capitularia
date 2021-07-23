@@ -20,7 +20,7 @@ function help_init () {
         $ ('div.cap-meta-search-help-text').toggle ();
     });
     const bs_tooltips = [].slice.call (document.querySelectorAll ('[data-bs-toggle="tooltip"]'));
-    bs_tooltips.map ((el) => new Tooltip (el, { 'placement' : 'left' } ));
+    bs_tooltips.map ((el) => new Tooltip (el, { 'placement' : 'left' }));
 }
 
 /** @ignore */
@@ -50,9 +50,9 @@ function places_tree_init () {
             'data' : function (node, callback) {
                 $.ajax (cap_lib.api_url + '/data/places.json/?lang=' + document.documentElement.lang.substring (0, 2))
                     .then ((response) => callback (response.map (
-                            function (r) {
-                                return { 'id' : r.geo_id, 'parent' : r.parent_id || '#', 'text' : r.geo_name };
-                            }
+                        function (r) {
+                            return { 'id' : r.geo_id, 'parent' : r.parent_id || '#', 'text' : r.geo_name };
+                        }
                     )));
             },
         },

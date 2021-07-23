@@ -58,16 +58,12 @@ Endpoints
 """
 
 import json
-import os
 import re
 import subprocess
 
 import flask
 from flask import abort, current_app, request, Blueprint
 import werkzeug
-
-import lxml.html
-from lxml import etree
 
 import common
 from db_tools import execute
@@ -89,13 +85,13 @@ def handle_collatex_error (e):
     return flask.Response (e.description, e.code, mimetype = 'text/plain')
 
 
-class collatexBlueprint (Blueprint):
+class CollatexBlueprint (Blueprint):
     def init_app (self, app):
         app.config.from_object (Config)
         app.register_error_handler (CollatexError, handle_collatex_error)
 
 
-app  = collatexBlueprint ('collatex', __name__)
+app = CollatexBlueprint ('collatex', __name__)
 
 WHOLE_TEXT_PATTERNS = [n.split ('=') for n in """
 ae=e
@@ -171,7 +167,7 @@ def to_collatex (id_, text, normalizations = None):
 
     tsplit = text.split ()
     nsplit = norm.split ()
-    assert (len (tsplit) == len (nsplit))
+    assert len (tsplit) == len (nsplit)
 
     tokens = [{ 't' : s[0], 'n' : s[1] } for s in zip (tsplit, nsplit)]
 

@@ -2,14 +2,11 @@
 
 """ This module contains helper functions for database access, config and logging. """
 
-import collections
 import configparser
 import datetime
-import io
 import logging
 import os
 import os.path
-import types
 
 import sqlalchemy
 from sqlalchemy.sql import text

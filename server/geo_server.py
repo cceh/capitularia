@@ -89,12 +89,12 @@ class Config (object):
     ]
 
 
-class geoBlueprint (Blueprint):
+class GeoBlueprint (Blueprint):
     def init_app (self, app):
         app.config.from_object (Config)
 
 
-geo_app  = geoBlueprint ('geo',  __name__)
+geo_app  = GeoBlueprint ('geo',  __name__)
 
 
 def init_geo_query_params (conn):
