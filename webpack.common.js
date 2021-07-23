@@ -87,7 +87,13 @@ module.exports = {
                 test    : /\.vue$/,
                 exclude : /node_modules/,
                 use     : [
-                    'vue-loader',
+                    {
+                        loader  : 'vue-loader',
+                        options : {
+                            compilerOptions : {
+                            }
+                        }
+                    }
                 ],
             },
             {

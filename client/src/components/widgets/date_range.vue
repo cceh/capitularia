@@ -23,7 +23,7 @@
 
 <script>
 /**
- * The date range slider.
+ * The date range slider.  NOT USED RIGHT NOW!
  *
  * It triggers a 'date_range' custom event with the selected date range as a
  * parameter.
@@ -61,7 +61,7 @@ export default {
     'methods' : {
         change (value) {
             this.$trigger (this.eventname, value);
-            this.$emit ('input', value);  // makes it work with v-model
+            this.$emit ('update:modelValue', value);  // makes it work with v-model
         },
         on_change (event) {
             this.change (event.target.value);

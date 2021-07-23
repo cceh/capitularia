@@ -10,31 +10,26 @@
  * @author Marcello Perathoner
  */
 
-import Vue          from 'vue';
-import VueRouter    from 'vue-router';
-import Vuex         from 'vuex';
+import { createRouter, createWebHistory } from 'vue-router';
+import { createStore } from 'vuex';
 
-import _            from 'lodash';
-import * as d3      from 'd3';
-import url          from 'url';
+import _        from 'lodash';
+import { json } from 'd3';
 
-import maps         from './maps.vue';
-
-Vue.use (VueRouter);
-Vue.use (Vuex);
+import maps     from './maps.vue';
 
 const routes = [
-    { 'path' : '/client/maps', 'component' : maps, },
+    { 'path' : '/client/maps', 'component' : maps },
 ];
 
-const router = new VueRouter ({
-    'mode'   : 'history',
-    'routes' : routes,
+export const router = createRouter ({
+    'history' : createWebHistory (),
+    'routes'  : routes,
 });
 
-const store = new Vuex.Store ({
+export const store = createStore ({
     'state' : {
-        'dates' : {    // date range of manuscripts to consider
+        'dates' : {          // date range of manuscripts to consider
             'notbefore' : 0, // year
             'notafter'  : 0,
         },
@@ -45,20 +40,20 @@ const store = new Vuex.Store ({
         'tile_layers'       : { 'layers' : [] },
     },
     'mutations' : {
-        toolbar_range (state, data) {
+        toolbar_range (state, toolbar) {
             _.merge (state, {
                 'dates' : {
-                    'notbefore' : Number (data.dates.notbefore),
-                    'notafter'  : Number (data.dates.notafter),
+                    'notbefore' : Number (toolbar.dates.notbefore),
+                    'notafter'  : Number (toolbar.dates.notafter),
                 },
-                'capitularies' : data.capitularies,
+                'capitularies' : toolbar.capitularies,
             });
         },
-        toolbar_area_layer_shown (state, data) {
-            this.state.area_layer_shown = data.area_layer_shown;
+        toolbar_area_layer_shown (state, toolbar) {
+            this.state.area_layer_shown = toolbar.area_layer_shown;
         },
-        toolbar_place_layer_shown (state, data) {
-            this.state.place_layer_shown = data.place_layer_shown;
+        toolbar_place_layer_shown (state, toolbar) {
+            this.state.place_layer_shown = toolbar.place_layer_shown;
         },
     },
     'getters' : {
@@ -74,10 +69,7 @@ const store = new Vuex.Store ({
     },
 });
 
-export default {
-    'router' : router,
-    'store'  : store,
-    'el': app,
+export const App = {
     data () {
         return {
         };
@@ -88,8 +80,8 @@ export default {
     mounted () {
         const vm = this;
         const xhrs = [
-            d3.json (vm.build_full_api_url ('geo/'),  { 'credentials' : 'include' }),
-            d3.json (vm.build_full_api_url ('tile/'), { 'credentials' : 'include' }),
+            json (vm.build_full_api_url ('geo/'),  { 'credentials' : 'include' }),
+            json (vm.build_full_api_url ('tile/'), { 'credentials' : 'include' }),
         ];
         Promise.all (xhrs).then (function (responses) {
             const [json_geo, json_tile] = responses;
@@ -98,6 +90,8 @@ export default {
         });
     },
 };
+
+export default App;
 
 </script>
 

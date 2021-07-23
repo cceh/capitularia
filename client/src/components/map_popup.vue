@@ -3,18 +3,22 @@
         :position_target="d.position_target"
         :data-fcode="geo_fcode"
         class="map-popup-vm card-floating">
-
     <card-caption class="bg-fcode" draggable="true" :slidable="true" :closable="true">
-      <h5 class="card-title">{{ geo_name }} ({{ geo_fcode }})</h5>
+      <h5 class="card-title">
+        {{ geo_name }} ({{ geo_fcode }})
+      </h5>
     </card-caption>
 
     <div class="card-slide">
-
       <div class="card-header">
         <toolbar :toolbar="toolbar">
           <layer-selector v-model="toolbar.place_layer_shown"
                           layer_type="place"
-                          :layers="geo_layers.layers"><h6 class="card-subtitle">{{ rows.length }}</h6></layer-selector>
+                          :layers="geo_layers.layers">
+            <h6 class="card-subtitle">
+              {{ rows.length }}
+            </h6>
+          </layer-selector>
         </toolbar>
       </div>
 
@@ -32,7 +36,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="row in rows" :title="row.ms_title">
+              <tr v-for="row in rows" :key="row.ms_id" :title="row.ms_title">
                 <td><a :href="'/mss/' + row.ms_id">{{ row.ms_id }}</a></td>
                 <td>{{ row.notbefore }}-{{ row.notafter }}</td>
               </tr>
@@ -56,7 +60,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="row in rows" :title="row.ms_title">
+              <tr v-for="row in rows" :key="row.ms_id + row.msp_part" :title="row.ms_title">
                 <td><a :href="'/mss/' + row.ms_id">{{ row.ms_id }}</a></td>
                 <td>{{ row.msp_part }}</td>
                 <td>{{ row.notbefore }}-{{ row.notafter }}</td>
@@ -81,7 +85,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="row in rows" :title="row.cap_title">
+              <tr v-for="row in rows" :key="row.cap_id" :title="row.cap_title">
                 <td><a :href="'/bk/' + row.cap_id">{{ row.cap_id }}</a></td>
                 <td>{{ row.count }}</td>
                 <td>{{ row.notbefore }}-{{ row.notafter }}</td>
@@ -90,7 +94,6 @@
           </table>
         </div>
       </template>
-
     </div>
   </card>
 </template>
@@ -104,17 +107,15 @@
  * @author Marcello Perathoner
  */
 
-import { mapGetters } from 'vuex'
-
-import $         from 'jquery';
-import _         from 'lodash';
-import * as d3   from 'd3';
-import * as papa from 'papaparse';
+import { mapGetters } from 'vuex';
+import $              from 'jquery';
+import _              from 'lodash';
+import { bin }        from 'd3';
+import { parse }      from 'papaparse';
 
 import card           from './widgets/card.vue';
 import card_caption   from './widgets/card_caption.vue';
 import toolbar        from './widgets/toolbar.vue';
-import button_group   from './widgets/button_group.vue';
 import layer_selector from './widgets/layer_selector.vue';
 import chart          from './widgets/chart.vue';
 
@@ -145,20 +146,19 @@ const SORTFUNCS = {
     'mss' : (d) => natural_sort (d.ms_id),
     'msp' : (d) => natural_sort (d.ms_id + d.msp_part),
     'cap' : (d) => natural_sort (d.cap_id),
-}
+};
 
 const ENDPOINTS = {
     'mss' : 'geo/mss.csv',
     'msp' : 'geo/msparts.csv',
     'cap' : 'geo/capitularies.csv',
-}
+};
 
 export default {
     'components' : {
         'card'           : card,
         'card-caption'   : card_caption,
         'toolbar'        : toolbar,
-        'button-group'   : button_group,
         'layer-selector' : layer_selector,
         'chart'          : chart,
     },
@@ -181,7 +181,7 @@ export default {
             'area_layer_shown',
             'place_layer_shown',
             'geo_layers',
-        ])
+        ]),
     },
     'watch' : {
         'xhr_params' : function () {
@@ -191,24 +191,50 @@ export default {
             this.update ();
         },
     },
+    created () {
+        this.hist = {
+            'mss' : bin ()
+                .domain ([0, 2000])
+                .thresholds ([800, 900, 1000, 1100, 1200])
+                .value (this.calc_date),
+            'msp' : bin ()
+                .domain ([0, 2000])
+                .thresholds ([800, 900, 1000, 1100, 1200])
+                .value (this.calc_date),
+            'cap' : bin ()
+                .domain ([0, 2000])
+                .thresholds ([768, 814, 840])
+                .value (this.calc_date),
+        };
+    },
+    mounted () {
+        const vm = this;
+
+        // this.toolbar.csv = () => this.download ('geo/msparts.csv');
+        const p = vm.d.properties;
+        vm.geo_name  = p.geo_name;
+        vm.geo_fcode = p.geo_fcode;
+
+        vm.update ();
+    },
     'methods' : {
         calc_date (d) {
             if (d.notbefore && d.notafter) {
-                return Math.floor ((+d.notbefore + +d.notafter) / 2.0)
+                return Math.floor ((+d.notbefore + +d.notafter) / 2.0);
             }
             return 0; // outside domain
         },
         category_name (bin) {
-            if (bin.x0 == 0) {
+            if (bin.x0 === 0) {
                 return 'undated';
             }
-            if (bin.x0 == 1) {
-                return `-${bin.x1}`
+            if (bin.x0 === 1) {
+                return `-${bin.x1}`;
             }
             if (bin.x1 >= 2000) {
-                return `${bin.x0}-`
+                return `${bin.x0}-`;
             }
-            return `${bin.x0}-${bin.x1}`
+            return `${bin.x0}-${bin.x1}`;
         },
         update () {
             const vm   = this;
@@ -216,7 +242,7 @@ export default {
 
             // get manuscripts inside area described by layer and geo_id
             vm.get (vm.build_url (vm.d)).then ((response) => {
-                const parsed = papa.parse (response.data, { 'header' : true, 'skipEmptyLines' : true });
+                const parsed = parse (response.data, { 'header' : true, 'skipEmptyLines' : true });
                 // console.log (parsed);
                 vm.rows = _.sortBy (parsed.data, [SORTFUNCS[place_layer_shown]]);
 
@@ -236,32 +262,6 @@ export default {
             window.open (this.build_full_api_url (this.build_url (), '_blank'));
         },
     },
-    created () {
-        this.hist = {
-            'mss' : d3.bin ()
-                .domain ([0, 2000])
-                .thresholds ([800, 900, 1000, 1100, 1200])
-                .value (this.calc_date),
-            'msp' : d3.bin ()
-                .domain ([0, 2000])
-                .thresholds ([800, 900, 1000, 1100, 1200])
-                .value (this.calc_date),
-            'cap' : d3.bin ()
-                .domain ([0, 2000])
-                .thresholds ([768, 814, 840])
-                .value (this.calc_date),
-        };
-    },
-    mounted () {
-        const vm = this;
-
-        // this.toolbar.csv = () => this.download ('geo/msparts.csv');
-        const p = vm.d.properties;
-        vm.geo_name  = p.geo_name;
-        vm.geo_fcode = p.geo_fcode;
-
-        vm.update ();
-    },
 };
 </script>
 
@@ -271,7 +271,7 @@ export default {
 
 div.map-popup-vm {
     position: absolute;
-	background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.9);
 
     .card-header {
         color: black;
@@ -345,7 +345,7 @@ div.map-popup-vm {
         max-height: 30em;
         overflow-y: auto;
         table.table {
-	        background: transparent;
+            background: transparent;
         }
     }
 }

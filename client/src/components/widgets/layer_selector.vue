@@ -4,10 +4,10 @@
           data-bs-toggle="tooltip"
           data-bs-placement="bottom"
           :title="title"
-          :value="value"
+          :value="modelValue"
           @change="on_change ($event)">
     <option v-for="d in filtered_layers" :value="d.id" :title="d.long_title"
-            :selected="d.id == value"
+            :selected="d.id == modelValue"
             >{{ d.title }}</option>
   </select>
 </div>
@@ -26,7 +26,7 @@
 
 export default {
     'props' : {
-        'value' : {
+        'modelValue' : {
             'type'     : String,
             'required' : true,
         },
@@ -63,9 +63,9 @@ export default {
     },
     'methods' : {
         on_change (event) {
-            const value = event.target.value;
-            this.$trigger (this.eventname, value);
-            this.$emit ('input', value);  // makes it work with v-model
+            const val = event.target.value;
+            this.$trigger (this.eventname, val);
+            this.$emit ('update:modelValue', val);  // makes it work with v-model
         },
         filter_layers (layers, type, addnone) {
             const res = [];
@@ -84,7 +84,7 @@ export default {
 </script>
 
 <style lang="scss">
-/* date_range.vue */
+/* layer_selector.vue */
 @import "../../css/bootstrap-custom";
 
 .layer-selector-vm {

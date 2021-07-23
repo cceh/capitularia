@@ -10,7 +10,7 @@
       <input :type="type" :checked="is_active (button.value)"
              @change="on_change (button, $event)" />
     </label>
-    <button v-if="type === 'button'" :type="type" class="btn btn-primary" :title="button.title"
+    <button v-if="type === 'button'" :key="button.value" :type="type" class="btn btn-primary" :title="button.title"
             @click="on_click (button, $event)">{{ button.text }}</button>
   </template>
 </div>
@@ -18,13 +18,12 @@
 
 <script>
 /**
- * A radio or checkbox group.
+ * A radio or checkbox group.  NOT USED RIGHT NOW!
  *
  * @component button-group
  * @author Marcello Perathoner
  */
 
-import $ from 'jquery';
 import _ from 'lodash';
 import 'bootstrap';
 
@@ -42,8 +41,8 @@ export default {
             'type'     : Array,
             'required' : true,
         },
-        'value' : {
-            'type'     : [String, Array],
+        'modelValue' : {
+            'type'     : [String, Array],  // string for radio, array for checkbox
         },
     },
     'data' : function () {
@@ -54,8 +53,8 @@ export default {
     'computed' : {
     },
     'watch' : {
-        value (newVal, oldVal) {
-            if (newVal !== oldVal || newVal !== this.value) {
+        modelValue (newVal, oldVal) {
+            if (newVal !== oldVal || newVal !== this.modelValue) {
                 this.$forceUpdate ();
             }
         }
@@ -67,27 +66,29 @@ export default {
             }
         },
         on_change (data, event) {
+            // we cannot directly modify modelValue because it is a prop
+
             if (this.type === 'radio') {
                 this.$trigger (this.eventname, data.value);
-                this.$emit ('input', data.value);  // makes it work with v-model
+                this.$emit ('update:modelValue', data.value);  // makes it work with v-model
             }
             if (this.type === 'checkbox') {
                 let a = [];
-                if (this.value.includes (data.value)) {
-                    a = _.without (this.value, data.value);
+                if (this.modelValue.includes (data.value)) {
+                    a = _.without (this.modelValue, data.value);
                 } else {
-                    a = a.concat (this.value);
+                    a = this.modelValue;
                     a.push (data.value);
                 }
                 this.$trigger (this.eventname, a);
-                this.$emit ('input', a);  // makes it work with v-model
+                this.$emit ('update:modelValue', a);  // makes it work with v-model
             }
         },
         is_active (value) {
             if (this.type === 'checkbox') {
-                return this.value.includes (value);
+                return this.modelValue.includes (value);
             }
-            return value === this.value;
+            return value === this.modelValue;
         },
     },
     mounted () {

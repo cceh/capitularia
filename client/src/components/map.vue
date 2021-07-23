@@ -1,6 +1,5 @@
 <template>
-    <div id="map">
-    </div>
+  <div id="map" />
 </template>
 
 <script>
@@ -20,21 +19,16 @@
  * http://bibliotheque-virtuelle.clermont-universite.fr/item/BCU_Atlas_general_Vidal_Lablache_1898
  */
 
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 
 import $        from 'jquery';
 import * as d3  from 'd3';
 import L        from 'leaflet';
-import _        from 'lodash';
-
-import options  from '../js/toolbar_options.js';
 
 import 'leaflet/dist/leaflet.css';
 
-const RE_CAP = new RegExp ('^(\w+)[._](\d+)');
-
 function add_centroids (feature_collection) {
-    if (feature_collection.type == 'FeatureCollection') {
+    if (feature_collection.type === 'FeatureCollection') {
         for (const feature of feature_collection.features) {
             feature.properties.centroid = d3.geoCentroid (feature);
         }
@@ -46,30 +40,30 @@ const colorScale = d3.scaleOrdinal (d3.schemeSet2);
 function wrap (text, width) {
     // Credit: adapted from https://bl.ocks.org/mbostock/7555321
     text.each (function () {
-        var text = d3.select (this),
+        let text = d3.select (this),
             words = text.text ().split (/\s+/).reverse (),
             word,
             line = [],
             lineNumber = 0,
             lineHeight = 1.3, // ems
-            y = text.attr ("y"),
-            dy = parseFloat (text.attr ("dy") || '0');
+            y = text.attr ('y'),
+            dy = parseFloat (text.attr ('dy') || '0');
         let tspan = text.text (null)
-            .append ("tspan")
-            .attr ("x", 0)
-            .attr ("y", y)
-            .attr ("dy", dy + "em");
+            .append ('tspan')
+            .attr ('x', 0)
+            .attr ('y', y)
+            .attr ('dy', dy + 'em');
         while (word = words.pop ()) {
             line.push (word);
-            tspan.text (line.join (" "));
+            tspan.text (line.join (' '));
             if (tspan.node ().getComputedTextLength () > width) {
                 line.pop ();
-                tspan.text (line.join (" "));
+                tspan.text (line.join (' '));
                 line = [word];
-                tspan = text.append ("tspan")
-                    .attr ("x", 0)
-                    .attr ("y", y)
-                    .attr ("dy", (++lineNumber * lineHeight + dy) + "em")
+                tspan = text.append ('tspan')
+                    .attr ('x', 0)
+                    .attr ('y', y)
+                    .attr ('dy', ((++lineNumber * lineHeight) + dy) + 'em')
                     .text (word);
             }
         }
@@ -86,16 +80,16 @@ L.D3_geoJSON = L.GeoJSON.extend ({
         this.map = map;
 
         this.svg = d3.select (this.getPane ())
-              .append ('svg')
-              .classed ('d3', true)
-              .classed (this.options.class, true);
+            .append ('svg')
+            .classed ('d3', true)
+            .classed (this.options.class, true);
 
         this.g = this.svg.append ('g')
             .classed ('leaflet-zoom-hide', true)
-            .on ('mousedown', function (event, d) {
+            .on ('mousedown', function (event) {
                 that.last_pos = { 'x' : event.x, 'y' : event.y };
             })
-            .on ('mouseup', function (event, d) {
+            .on ('mouseup', function () {
                 that.last_pos = { 'x' : 0, 'y' : 0 };
             });
 
@@ -171,10 +165,9 @@ L.D3_geoJSON = L.GeoJSON.extend ({
         if (this.last_pos) {
             const dx = event.x - this.last_pos.x;
             const dy = event.y - this.last_pos.y;
-            return Math.sqrt (dx * dx + dy * dy) > 5;
-        } else {
-            return true;
+            return Math.sqrt ((dx * dx) + (dy * dy)) > 5;
         }
+        return true;
     },
     d3_init (geojson) {
         // override this
@@ -203,7 +196,8 @@ L.Layer_Areas = L.D3_geoJSON.extend ({
             function (d) {
                 const p = d.properties;
                 return p.geo_source + '-' + p.geo_id;
-            });
+            }
+        );
 
         g.exit ().remove ();
 
@@ -233,7 +227,8 @@ L.Layer_Areas = L.D3_geoJSON.extend ({
             function (d) {
                 const p = d.properties;
                 return p.geo_source + '-' + p.geo_id;
-            });
+            }
+        );
 
         g.exit ().remove ();
 
@@ -251,7 +246,7 @@ L.Layer_Areas = L.D3_geoJSON.extend ({
                 return `translate(${pp.x},${pp.y})`;
             });
     },
-})
+});
 
 L.Layer_Places = L.D3_geoJSON.extend ({
     onAdd (map) {
@@ -275,9 +270,9 @@ L.Layer_Places = L.D3_geoJSON.extend ({
         g.exit ().transition (t).style ('opacity', 0).remove ();
 
         const entered = g.enter ()
-              .append ('g')
-              .attr ('class', 'place')
-              .style ('opacity', 0);
+            .append ('g')
+            .attr ('class', 'place')
+            .style ('opacity', 0);
 
         entered.append ('circle')
             .attr ('class', 'count')
@@ -313,19 +308,19 @@ L.Layer_Places = L.D3_geoJSON.extend ({
 
         entered.transition (t).style ('opacity', 1);
     },
-})
+});
 
 L.Control.Info_Pane = L.Control.extend ({
     onAdd (map) {
-	    this._div = L.DomUtil.create ('div', 'info-pane-control');
+        this._div = L.DomUtil.create ('div', 'info-pane-control');
         L.DomEvent.disableClickPropagation (this._div);
         L.DomEvent.disableScrollPropagation (this._div);
-	    $ (this._div).append ($ ('div.info-panels'));
-	    return this._div;
+        $ (this._div).append ($ ('div.info-panels'));
+        return this._div;
     },
 
     onRemove (map) {
-	},
+    },
 });
 
 export default {
@@ -335,11 +330,11 @@ export default {
             'required' : true,
         },
     },
-    'data'  : function () {
+    'data' : function () {
         return {
-            'geo_data' : null,
-            'parts_data' : null,
-            'area_layer_infos' : [],
+            'geo_data'          : null,
+            'parts_data'        : null,
+            'area_layer_infos'  : [],
             'place_layer_infos' : [],
         };
     },
@@ -350,7 +345,7 @@ export default {
             'place_layer_shown',
             'geo_layers',
             'tile_layers',
-        ])
+        ]),
     },
     'watch' : {
         'xhr_params' : function () {
@@ -362,11 +357,17 @@ export default {
         'area_layer_shown' : function (new_val) {
             this.register_area_layer (new_val);
         },
-        'geo_layers' : function (new_val) {
-            this.init_geo_layers (new_val);
+        'geo_layers' : {
+            handler (new_val) {
+                this.init_geo_layers (new_val);
+            },
+            'deep' : true,
         },
-        'tile_layers' : function (new_val) {
-            this.init_tile_layers (new_val);
+        'tile_layers' : {
+            handler (new_val) {
+                this.init_tile_layers (new_val);
+            },
+            'deep' : true,
         },
     },
     'methods' : {
@@ -382,7 +383,7 @@ export default {
         },
         register_place_layer (new_id) {
             for (const layer_info of this.place_layer_infos) {
-                if (layer_info.id == new_id) {
+                if (layer_info.id === new_id) {
                     this.place_layer.options.layer = layer_info.id;
                     this.place_layer.setAttribution (layer_info.attribution);
                     this.place_layer.options.url   = layer_info.url;
@@ -394,7 +395,7 @@ export default {
         },
         register_area_layer (new_id) {
             for (const layer_info of this.area_layer_infos) {
-                if (layer_info.id == new_id) {
+                if (layer_info.id === new_id) {
                     this.area_layer.options.layer = layer_info.id;
                     this.area_layer.setAttribution (layer_info.attribution);
                     this.area_layer.setDatasource  (
@@ -429,8 +430,9 @@ export default {
 
             baseLayers['OpenStreetMap'] = L.tileLayer (
                 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    'attribution' : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                });
+                    'attribution' : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                }
+            );
 
             L.control.layers (baseLayers, overlays, { 'collapsed' : true }).addTo (vm.map);
 
@@ -442,9 +444,9 @@ export default {
         init_geo_layers () {
             const vm = this;
 
-            vm.area_layer_infos = vm.place_layer_infos = [ { 'id' : 'none', 'url' : null, 'attribution' : '' } ];
-            vm.area_layer_infos.push  (... vm.geo_layers.layers.filter (d => d.type == 'area'));
-            vm.place_layer_infos.push (... vm.geo_layers.layers.filter (d => d.type == 'place'));
+            vm.area_layer_infos = vm.place_layer_infos = [{ 'id' : 'none', 'url' : null, 'attribution' : '' }];
+            vm.area_layer_infos.push  (... vm.geo_layers.layers.filter (d => d.type === 'area'));
+            vm.place_layer_infos.push (... vm.geo_layers.layers.filter (d => d.type === 'place'));
 
             vm.area_layer.addTo (vm.map);
 
@@ -492,7 +494,7 @@ export default {
             'bubblingMouseEvents' : false,
         });
 
-        new L.Control.Info_Pane ({ position: 'topleft' }).addTo (vm.map);
+        new L.Control.Info_Pane ({ 'position' : 'topleft' }).addTo (vm.map);
 
         vm.$store.commit ('toolbar_range',             vm.toolbar);
         vm.$store.commit ('toolbar_area_layer_shown',  vm.toolbar);
@@ -509,16 +511,16 @@ export default {
     position: absolute;
     overflow: hidden;
     width: 100%;
-    top: 55px;
+    top: 0;
     bottom: 0;
 }
 
 .leaflet-control-layers-toggle {
-	background-image: url(leaflet/dist/images/layers.png);
+    background-image: url(leaflet/dist/images/layers.png);
 }
 
 .leaflet-retina .leaflet-control-layers-toggle {
-	background-image: url(leaflet/dist/images/layers-2x.png);
+    background-image: url(leaflet/dist/images/layers-2x.png);
 }
 
 svg {

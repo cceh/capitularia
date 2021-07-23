@@ -8,13 +8,17 @@
  * @author Marcello Perathoner
  */
 
-import $     from 'jquery';
-import Vue   from 'vue';
-import axios from 'axios';
+import { createApp } from 'vue';
 
-import app   from '../components/app.vue';
+import $             from 'jquery';
+import axios         from 'axios';
 
-/** @class Vue */
+import { App, router, store } from '../components/app.vue';
+
+const app = createApp (App);
+
+app.use (router);
+app.use (store);
 
 /**
  * Ascend the VM tree until you find an api_url and use it as prefix to build
@@ -26,7 +30,7 @@ import app   from '../components/app.vue';
  * @returns {String} Full API url
  */
 
-Vue.prototype.build_full_api_url = function (url) {
+app.config.globalProperties.build_full_api_url = function (url) {
     let vm = this;
     /* eslint-disable-next-line no-constant-condition */
     while (true) {
@@ -50,15 +54,15 @@ Vue.prototype.build_full_api_url = function (url) {
  * @returns {Promise}
  */
 
-Vue.prototype.get = function (url, data = {}) {
+app.config.globalProperties.get = function (url, data = {}) {
     return axios.get (this.build_full_api_url (url), data);
 };
 
-Vue.prototype.post = function (url, data = {}) {
+app.config.globalProperties.post = function (url, data = {}) {
     return axios.post (this.build_full_api_url (url), data);
 };
 
-Vue.prototype.put = function (url, data = {}) {
+app.config.globalProperties.put = function (url, data = {}) {
     return axios.put (this.build_full_api_url (url), data);
 };
 
@@ -73,7 +77,7 @@ Vue.prototype.put = function (url, data = {}) {
  * @param {array}  data - data
  */
 
-Vue.prototype.$trigger = function (name, data) {
+app.config.globalProperties.$trigger = function (name, data) {
     // $ (this.$el).trigger (event, data);
 
     const event = new CustomEvent (name, {
@@ -82,9 +86,6 @@ Vue.prototype.$trigger = function (name, data) {
     });
     this.$el.dispatchEvent (event);
 };
-
-/* eslint-disable no-new */
-new Vue (app);
 
 $ (document).off ('.data-api'); // turn off bootstrap's data api
 
@@ -97,3 +98,5 @@ $ (window).on ('hashchange', function () {
         e.dispatchEvent (event);
     });
 });
+
+app.mount ('#app');

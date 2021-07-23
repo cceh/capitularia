@@ -7,25 +7,25 @@ module.exports = {
         'plugin:vue/recommended',
     ],
     'env' : {
-        'es6'      : true,
-        'browser'  : true,
-        'commonjs' : true,
-        'jquery'   : true,
+        'es2020'  : true,
+        'browser' : true,
+        'jquery'  : true,
     },
     'parserOptions' : {
-        'sourceType'  : 'module',
-        'ecmaVersion' : 8,
+        'sourceType' : 'module',
     },
     'globals' : {
-        'ajaxurl'            : 'readonly',  // added by wordpress
-        'pagenow'            : 'readonly',  // added by wordpress
-        'typenow'            : 'readonly',  // added by wordpress
-        'adminpage'          : 'readonly',  // added by wordpress
-        'thousandsSeparator' : 'readonly',  // added by wordpress
-        'decimalPoint'       : 'readonly',  // added by wordpress
-        'isRtl'              : 'readonly',  // added by wordpress
-        'wp'                 : 'readonly',  // added by wordpress
-        'cap_lib'            : 'readonly',
+        'ajaxurl'                 : 'readonly',  // added by wordpress
+        'pagenow'                 : 'readonly',  // added by wordpress
+        'typenow'                 : 'readonly',  // added by wordpress
+        'adminpage'               : 'readonly',  // added by wordpress
+        'thousandsSeparator'      : 'readonly',  // added by wordpress
+        'decimalPoint'            : 'readonly',  // added by wordpress
+        'isRtl'                   : 'readonly',  // added by wordpress
+        'wp'                      : 'readonly',  // added by wordpress
+        'cap_lib'                 : 'readonly',
+        'api_base_url'            : 'readonly',  // defined in api.conf.js
+        '__webpack_public_path__' : 'readonly',
     },
     'rules' : {
         // restrict airbnb

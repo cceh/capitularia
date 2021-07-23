@@ -1,63 +1,63 @@
 <template>
-<div class="row cap-selector">
-  <div class="col-md-6 no-print">
-    <div class="collation-bk">
-      <h3 v-translate>
-        Capitulary
-      </h3>
+  <div class="row cap-selector">
+    <div class="col-md-6 no-print">
+      <div class="collation-bk">
+        <h3 v-translate>
+          Capitulary
+        </h3>
 
-      <!--
+        <!--
           // Form with drop-downs for capitulary and corresp selection.  User
           // selection of a capitulary will AJAX-load the corresps drop-down.  User
           // selection of a corresp or user hitting submit will AJAX-load the list of
           // witnesses into the next form.
         -->
 
-      <form>
-        <div class="row mb-3">
-          <div class="col-sm-6">
-            <label class="form-label" v-translate>Select Capitulary</label>
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
-                      :id="id + '-dd-cap'"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                {{ bk }}
-              </button>
-              <ul class="dropdown-menu" :aria-labelledby="id + '-dd-cap'">
-                <li v-for="bki in bks" :key="bki">
-                  <button class="dropdown-item" type="button" :data-bk="bki" @click="on_select_bk">
-                    {{ bki }}
-                  </button>
-                </li>
-              </ul>
+        <form>
+          <div class="row mb-3">
+            <div class="col-sm-6">
+              <label v-translate class="form-label">Select Capitulary</label>
+              <div class="dropdown">
+                <button :id="id + '-dd-cap'" class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ bk }}
+                </button>
+                <ul class="dropdown-menu" :aria-labelledby="id + '-dd-cap'">
+                  <li v-for="bki in bks" :key="bki">
+                    <button class="dropdown-item" type="button" :data-bk="bki" @click="on_select_bk">
+                      {{ bki }}
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label v-translate class="form-label">Select Section</label>
+              <div class="dropdown">
+                <button :id="id + '-dd-sec'" class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ corresp }}
+                </button>
+                <ul class="dropdown-menu" :aria-labelledby="id + '-dd-sec'">
+                  <li v-for="s in corresps" :key="s">
+                    <button class="dropdown-item" type="button" :data-corresp="s" @click="on_select_corresp">
+                      {{ s }}
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
-          <div class="col-sm-6">
-            <label class="form-label" v-translate>Select Section</label>
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" type="button"
-                      :id="id + '-dd-sec'"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                {{ corresp }}
-              </button>
-              <ul class="dropdown-menu" :aria-labelledby="id + '-dd-sec'">
-                <li v-for="s in corresps" :key="s">
-                  <button class="dropdown-item" type="button" :data-corresp="s" @click="on_select_corresp">
-                    {{ s }}
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Later Hands checkbox -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" :id="id + '-lh'"
-                   v-model="later_hands" @change="on_later_hands">
+          <!-- Later Hands checkbox -->
+          <div class="form-check">
+            <input :id="id + '-lh'" v-model="later_hands" class="form-check-input" type="checkbox"
+                   value="" @change="on_later_hands">
             <label class="form-check-label" :for="id + '-lh'">
-              {{ 'Include corrections by different hands' | translate }}
+              {{ $t ('Include corrections by different hands') }}
             </label>
           </div>
         </form>
@@ -78,7 +78,7 @@
         </h3>
 
         <form>
-          <label class="form-label" v-translate>Select Textual Witnesses</label>
+          <label v-translate class="form-label">Select Textual Witnesses</label>
           <table class="table table-sm table-bordered witnesses">
             <thead class="table-light">
               <tr>
@@ -86,10 +86,10 @@
                   <div class="form-check"
                        data-bs-toggle="tooltip" data-bs-placement="left"
                        :title="$t ('Select all textual witnesses')">
-                    <input class="form-check-input" type="checkbox" value="" :id="id + '-all'"
-                           v-model="select_all">
+                    <input :id="id + '-all'" v-model="select_all" class="form-check-input" type="checkbox"
+                           value="">
                     <label class="form-check-label" :for="id + '-all'">
-                      {{ 'Textual Witness' | translate }}
+                      {{ $t ('Textual Witness') }}
                       <i v-if="spinner" class="spinner fas fa-spin" />
                     </label>
                   </div>
@@ -108,8 +108,8 @@
                   <div class="form-check"
                        data-bs-toggle="tooltip" data-bs-placement="left"
                        :title="$t ('Include this textual witness in the collation.')">
-                    <input class="form-check-input" type="checkbox" value="" :id="id + '-' + w.siglum"
-                           v-model="w.checked">
+                    <input :id="id + '-' + w.siglum" v-model="w.checked" class="form-check-input" type="checkbox"
+                           value="">
                     <label class="form-check-label" :for="id + '-' + w.siglum">
                       <a :href="w.href">{{ w.title }}</a>
                     </label>
@@ -132,7 +132,7 @@
  * @file
  */
 
-import uniqueid from 'lodash';
+import uniqueid from 'lodash-es';
 
 import * as tools from './tools.js';
 

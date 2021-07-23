@@ -2,7 +2,7 @@
   <div class="cap-collation">
     <cap-collation-selector
       v-for="(section, index) in sections"
-      ref="selector" :key="index" :config="section" />
+      :ref="set_selector_ref" :key="index" :config="section" />
 
     <div class="row mt-4 no-print">
       <div class="col-md-6">
@@ -12,14 +12,14 @@
           <i class="plus fas" />
         </button>
 
-        <label class="btn btn-secondary ml-2 mb-0">
-          {{ 'Load Configuration' | translate }}
+        <label class="btn btn-secondary ms-2 mb-0">
+          {{ $t ('Load Configuration') }}
           <input id="load-config" type="file" @change="on_load_config">
         </label>
 
-        <button type="button" class="btn btn-secondary ml-2"
+        <button type="button" class="btn btn-secondary ms-2"
                 @click="on_save_config">
-          {{ 'Save Configuration' | translate }}
+          {{ $t ('Save Configuration') }}
           <a id="save-config-a" href="" download="saved-config.txt" />
         </button>
       </div>
@@ -29,7 +29,7 @@
                 :disabled="collating"
                 @click="on_collate">
           <i class="spinner fas" :class="{ 'fa-spin' : collating }" />&nbsp;
-          {{ 'Collate' | translate }}
+          {{ $t ('Collate') }}
         </button>
       </div>
     </div> <!-- class row -->
@@ -55,7 +55,6 @@
 /** @module plugins/collation/front */
 
 import { pick } from 'lodash-es';
-import Vue from 'vue';
 
 import Selector from './selector.vue';
 import Results  from './results.vue';
@@ -64,7 +63,7 @@ import * as tools from './tools.js';
 
 /**
  * The vue.js instance that manages the whole page.
- * @class module:plugins/collation/front.VueFront
+ * @class module:plugins/collation/front.App
  */
 export default {
     'components' : {
@@ -75,10 +74,14 @@ export default {
         return {
             'sections'  : [{}],
             'collating' : false,
+            'selectors' : [],
         };
     },
     mounted () {
         tools.update_bs_tooltips ();
+    },
+    beforeUpdate () {
+        this.selectors = [];
     },
     /** @lends module:plugins/collation/front.VueFront.prototype */
     'methods' : {
@@ -89,7 +92,7 @@ export default {
          */
         ajax_params () {
             return {
-                'collate' : this.$refs.selector.map (sel => {
+                'collate' : this.selectors.map (sel => {
                     const data = pick (
                         sel.$data,
                         'bk', 'corresp', 'later_hands'
@@ -105,6 +108,11 @@ export default {
             vm.collating = true;
             const p = this.$refs.results.collate (this.ajax_params ());
             p.always (() => { vm.collating = false; });
+        },
+        set_selector_ref (el) {
+            if (el) {
+                this.selectors.push (el);
+            }
         },
         /**
          * Load configuration from a user-local file.  Called from the
