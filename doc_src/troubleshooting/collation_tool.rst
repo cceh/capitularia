@@ -22,4 +22,4 @@ Warning: Takes a long time to run.
 .. code:: shell
 
    cd ~/prj/capitularia/capitularia/xslt
-   make -B -k -r -j 4 corpus fulltext scrape_fulltext
+   solo -port=6666 make -B -k -r -j 4 corpus fulltext scrape_fulltext
