@@ -647,6 +647,23 @@ def process_body (conn, root, ms_id):
         DO NOTHING
         """, {}, chapters)
 
+        # remove obsolete relations
+        res = execute (conn, """
+        SELECT ms_id, cap_id, mscap_n, chapter
+        FROM mss_chapters
+        WHERE ms_id = :ms_id
+        """, { 'ms_id' : ms_id })
+
+        Chapters = collections.namedtuple ('Chapters', 'ms_id, cap_id, mscap_n, chapter')
+        ch1 = set ([ Chapters._make ((c['ms_id'], c['cap_id'], c['mscap_n'], c['chapter'])) for c in chapters])
+        for c in [ Chapters._make (r) for r in res ]:
+            if c not in ch1:
+                log (logging.WARNING, "Surplus chapter %s. Removing ..." % str (c))
+                res = execute (conn, """
+                DELETE FROM mss_chapters
+                WHERE (ms_id, cap_id, mscap_n, chapter) = (:ms_id, :cap_id, :mscap_n, :chapter)
+                """, c._asdict())
+
 
 def import_fulltext (conn, filenames, mode):
     """ Import the xml or plain text of the chapter transcriptions """
