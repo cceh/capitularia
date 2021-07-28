@@ -1,14 +1,10 @@
 /*
  * Configure the OpenSans, Fontawesome and Dashicon fonts.
- *
- * This module overrides Fontawesome not to webpack the eot and svg versions.
- * Copied from these files:
- *
- *   @import '~@fortawesome/fontawesome-free/scss/solid';
- *   @import '~@fortawesome/fontawesome-free/scss/regular';
  */
 
-/* OpenSans Font */
+/*
+ * OpenSans Font
+ */
 
 @mixin light {
     font-family: 'Open Sans','Helvetica','Arial','sans-serif','sans';
@@ -70,9 +66,19 @@
     font-style: italic;
 }
 
-/* Fontawesome Font */
 
-$fa-font-path:    '~@fortawesome/fontawesome-free/webfonts';
+/*
+ * Fontawesome Font
+ *
+ * This module overrides Fontawesome not to webpack the eot and svg versions.
+ * Copied from these files:
+ *
+ *   @import '~@fortawesome/fontawesome-free/scss/solid';
+ *   @import '~@fortawesome/fontawesome-free/scss/regular';
+ *
+ */
+
+$fa-font-path:    '@fortawesome/fontawesome-free/webfonts';
 $fa-font-display: 'block';
 
 /*!
@@ -140,7 +146,10 @@ $fa-font-display: 'block';
     font-weight: 400;
 }
 
-/* Wordpress Dashicons Font */
+
+/*
+ * Wordpress Dashicons Font
+ */
 
 @mixin dashicons {
     font-family: 'dashicons';

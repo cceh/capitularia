@@ -98,27 +98,17 @@ module.exports = {
             },
             {
                 test : /\.(png|jpg|jpeg|gif)$/,
-                use  : [
-                    {
-                        loader  : 'file-loader',
-                        options : {
-                            name       : '[name].[contenthash].[ext]',
-                            outputPath : 'images',
-                        },
-                    },
-                ],
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[name].[contenthash][ext]'
+                },
             },
             {
                 test : /\.(ttf|woff|woff2)$/,
-                use  : [
-                    {
-                        loader  : 'file-loader',
-                        options : {
-                            name       : '[name].[contenthash].[ext]',
-                            outputPath : 'webfonts',
-                        },
-                    },
-                ],
+                type: 'asset/resource',
+                generator: {
+                    filename: 'webfonts/[name].[contenthash][ext]'
+                },
             },
         ],
     },
