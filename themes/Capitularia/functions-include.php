@@ -632,3 +632,14 @@ function cap_rest_user_info (\WP_REST_Request $request)
     }
     wp_send_json_error ();
 }
+
+/**
+ * Remove widget-block-editor
+ *
+ * @return void
+ */
+
+function on_after_setup_theme ()
+{
+    remove_theme_support ('widgets-block-editor');
+}
