@@ -199,6 +199,7 @@
            BK.123_a        => BK 123 Abschnitt A
            BK.123_4        => BK 123 c. 4
            BK.123_a_4      => BK 123 Abschnitt A c. 4
+           BK.258a_1       => BK 258a c. 1
            BK_266_prolog   => BK 266 Prolog
            BK_273_b_prolog => BK 273 Abschnitt B Prolog
     -->
@@ -208,7 +209,7 @@
     <variable name="hr" expand-text="yes">
       <for-each select="tokenize ($corresp, '\s+')">
         <for-each select="analyze-string (.,
-                          '^([\w.]+?)[._]([\dAB]+)(?:_([a-z]))?(?:_(\d+))?(?:_(\w)(\w+))?$')/fn:match">
+                          '^(\w+)[._](\d+[ABab]?)(?:_([a-z]))?(?:_(\d+))?(?:_(\w)(\w+))?$')/fn:match">
           <value-of select="fn:group[@nr=1]" />
           <text> </text>
           <value-of select="fn:group[@nr=2]" />

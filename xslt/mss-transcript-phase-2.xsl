@@ -238,6 +238,7 @@ joined to the preceding word.
 
     <xsl:for-each select="tokenize ($corresp, '\s+')">
       <xsl:variable name="hr" select="cap:make-human-readable-bk (cap:strip-ignored-corresp (.))" />
+      <!-- FIXME: this is the same id as for capitularies above. Should be different. -->
       <a id="{cap:make-id (.)}" class="milestone milestone-chapter"></a>
       <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
         <!-- an anchor for the exclusive use of the dynamic menu in the sidebar -->

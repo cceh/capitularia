@@ -108,7 +108,8 @@ function init_dynamic_menues () {
             // optionally shorten nested menu entries (eg. BK 123 c. 2)
             if (level > 1 && n.hasAttribute ('data-fold-menu-entry')) {
                 const parent_caption = last_node_on_level[level - 1].getAttribute ('data-cap-dyn-menu-caption');
-                if (caption && parent_caption && caption.indexOf (parent_caption) === 0) {
+                if (caption && parent_caption && caption !== parent_caption
+                        && caption.indexOf (parent_caption) === 0) {
                     caption = caption.substr (parent_caption.length).trim ();
                 }
             }
