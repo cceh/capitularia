@@ -190,6 +190,10 @@
 
   <xsl:variable name="tei-graphic-targets">
     <root>
+      <item key="bavarikon.de">
+        <title>bavarikon</title>
+        <caption>bavarikon</caption>
+      </item>
       <item key="213.21.172.25/0b02da82800bed27">
         <title>Biblioteca Ambrosiana</title>
         <caption>Biblioteca Ambrosiana</caption>
