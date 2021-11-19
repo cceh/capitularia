@@ -251,6 +251,16 @@
         </a>
       </xsl:when>
 
+      <xsl:when test="@subtype='collom'">
+        <a class="internal collom" href="{$blog}{@target}">
+          <xsl:text>
+            [:de]Zum Artikel in der Rubrik "Sammlung des Monats"
+            [:en]To the "Collection of the Month" blogpost
+            [:]
+          </xsl:text>
+        </a>
+      </xsl:when>
+
       <xsl:otherwise>
         <a class="internal" href="{@target}">
           <xsl:apply-templates/>

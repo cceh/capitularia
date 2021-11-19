@@ -154,6 +154,8 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.header.html
     <xsl:apply-templates select=".//ref[@subtype='mom']" mode="#current" />
     <!-- Kapitular des Monats -->
     <xsl:apply-templates select=".//ref[@subtype='com']" mode="#current" />
+    <!-- Sammlung des Monats -->
+    <xsl:apply-templates select=".//ref[@subtype='collom']" mode="#current" />
   </xsl:template>
 
   <xsl:template name="ms-part">
