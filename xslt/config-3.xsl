@@ -250,6 +250,14 @@
         <title>Staatsbibliothek Bamberg</title>
         <caption>Staatsbibliothek Bamberg</caption>
       </item>
+      <item key="urn:nbn:de:bvb:12-sbb">
+        <title>Staatsbibliothek Bamberg</title>
+        <caption>Staatsbibliothek Bamberg</caption>
+      </item>
+      <item key="urn:nbn:de:bvb:22-dtl">
+        <title>Staatsbibliothek Bamberg</title>
+        <caption>Staatsbibliothek Bamberg</caption>
+      </item>
       <item key="bvmm.irht.cnrs.fr">
         <title>Bibliothèque virtuelle</title>
         <caption>Bibliothèque virtuelle</caption>
@@ -266,7 +274,7 @@
         <title>Free Library Philadelphia</title>
         <caption>Free Library Philadelphia</caption>
       </item>
-      <item key="nbn-resolving.org/urn:nbn:de:">
+      <item key="urn:nbn:de:urmel">
         <title>Digitale Historische Bibliothek Erfurt/Gotha</title>
         <caption>Digitale Historische Bibliothek Erfurt/Gotha</caption>
       </item>
