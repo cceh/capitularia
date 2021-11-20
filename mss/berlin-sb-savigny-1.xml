@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="berlin-sb-savigny-1">
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="berlin-sb-savigny-1">
    <teiHeader>
       <fileDesc>
-         <!-- ### Kommt bei Mordek nicht vor; rudimentäre Beschreibung von Bl übernommen ### -->
+
          <titleStmt>
             <title type="main" xml:lang="ger">Berlin, Staatsbibliothek - Preußischer Kulturbesitz,
                Savigny 1</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Trump</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Trump</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -128,27 +131,35 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <title type="main">Berlin, Staatsbibliothek - Preußischer Kulturbesitz, Savigny
                      1</title>
                   <origDate notBefore="0900" notAfter="0915">Anfang 10. Jh.</origDate> (Hänel),
-                  <origDate notBefore="0900" notAfter="0999">10. Jh.</origDate> (Liebs), 
-                  <origDate notBefore="0833" notAfter="0866">9. Jh., ca. 2. Drittel</origDate> (Bischoff);
-                  <origPlace ref="http://d-nb.info/gnd/4071403-2">Südliches Frankreich (?)</origPlace> (Bischoff)
-               </head>
+                     <origDate notBefore="0900" notAfter="0999">10. Jh.</origDate> (Liebs),
+                     <origDate notBefore="0833" notAfter="0866">9. Jh., ca. 2. Drittel</origDate>
+                  (Bischoff); <origPlace ref="http://d-nb.info/gnd/4071403-2">Südliches Frankreich
+                     (?)</origPlace> (Bischoff) </head>
                <msContents>
                   <summary/>
                   <msItem n="1">
                      <p><locus>1r-147v</locus> Lex Romana Visigothorum (Titelverzeichnis und Text)
-                        mit Explanationes titulorum </p>
+                        mit Explanationes titulorum (ed. Hänel) </p>
                   </msItem>
                   <msItem n="2">
                      <p><locus>148r-149r</locus>
-                        <title corresp="BK.39">Capitulare legibus additum (803) (cc. 1-9, 11, 10)</title>
-                     </p>
+                        <hi rend="italic">I. CAP. - X</hi>
+                        <title corresp="BK.39">Capitulare legibus additum</title> (a. 803), cc. 1-9,
+                        11, 10: <hi rend="italic">DE HOMIDIIS</hi> [!] <hi rend="italic">CLERICORUM.
+                           Si quis subdiaconum occiderit - aut XV ictus accipiat ab scabinis qui
+                           causam prius iudiuerunt</hi> [!] (MGH Capit. 1, Nr. 39, S. 113 Z. 4 - S.
+                        114 Z. 27); cc. 11, 10 sind unter <hi rend="italic">X</hi> subsumiert.</p>
                   </msItem>
                   <msItem n="3">
                      <p><locus>149r-v</locus>
-                        <title corresp="BK.7">Decretio Childeberti (cc. 6-13, 4,
-                           3)<!-- bm: Die Seitenangaben sind aufgrund einer freundlichen Information von Jennifer Davis
+                        <title corresp="BK.7">Childeberti II decretio </title> (a. 596), cc. 6-13,
+                        4, 3: <hi rend="italic">DE FARFALIIS</hi> (-<hi rend="italic">RFALII</hi>-
+                        auf Rasur). <hi rend="italic">Si quis farfalium ita conuenit - diximus quod
+                           signa huc usque detenuit pare conditionis conuenit obseuare</hi> [!] (MGH
+                        Capit. 1, Nr. 7, S. 15 Z. 30 - S. 16 Z. 15, S. 16 Z. 22 - S. 17 Z. 19)
+                        <!-- bm: Die Seitenangaben sind aufgrund einer freundlichen Information von Jennifer Davis
                (Mail an Herrn Ubl vom 29.09.2016) korrigiert worden; sie hat das Ms. im Original gesehen
-               und bemerkt, dass die Decretio Childeberti in der Hs. mit Varianten aus der MGH-Edition versehen wurde. --></title>
+               und bemerkt, dass die Decretio Childeberti in der Hs. mit Varianten aus der MGH-Edition versehen wurde. -->
                      </p>
                   </msItem>
                </msContents>
@@ -187,11 +198,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                <history>
                   <origin>
                      <p>
-                        <origDate notBefore="0900" notAfter="0915">Anfang 10. Jh.</origDate> (Hänel),
-                        <origDate notBefore="0900" notAfter="0999">10. Jh.</origDate> (Liebs), 
-                        <origDate notBefore="0833" notAfter="0866">9. Jh., ca. 2. Drittel</origDate> (Bischoff);
-                        <origPlace ref="http://d-nb.info/gnd/4071403-2">Südliches Frankreich (?)</origPlace> (Bischoff)
-                     </p>
+                        <origDate notBefore="0900" notAfter="0915">Anfang 10. Jh.</origDate>
+                        (Hänel), <origDate notBefore="0900" notAfter="0999">10. Jh.</origDate>
+                        (Liebs), <origDate notBefore="0833" notAfter="0866">9. Jh., ca. 2.
+                           Drittel</origDate> (Bischoff); <origPlace
+                           ref="http://d-nb.info/gnd/4071403-2">Südliches Frankreich (?)</origPlace>
+                        (Bischoff) </p>
                   </origin>
                   <provenance>
                      <p/>
@@ -202,15 +214,17 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <surrogates/>
                   <listBibl>
                      <listBibl type="cap">
-                        <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
-                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012. <ref type="external" subtype="Bl" target="berlin-sb-savigny-1"/>
-                        </bibl>
                         <bibl corresp="#Hänel_1849">Hänel 1849, S. LXVII-LXVIII</bibl>
                         <bibl corresp="#Liebs_2002">Liebs 2002, S. 183, Anm. 284</bibl>
                         <bibl corresp="#Bischoff_1998">Bischoff 1998, S. 93-94, Nr. 444</bibl>
+                        <bibl corresp="#Hartmann_W_2008">Hartmann W 2008, S. 325</bibl>
+                        <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter der
+                           Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 <ref
+                              type="external" subtype="Bl" target="berlin-sb-savigny-1"/>
+                        </bibl>
+                        <bibl resp="capit"><ref type="internal" subtype="mom"
+                           target="hdm-berlin-savigny-1"/></bibl>
                      </listBibl>
-                     <bibl corresp="#Hartmann_W_2008">Hartmann W 2008, S. 325</bibl>
-                     <bibl resp="capit"><ref type="internal" subtype="mom" target="hdm-berlin-savigny-1"/></bibl>
                   </listBibl>
                </additional>
             </msDesc>
@@ -219,9 +233,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
       <encodingDesc>
          <p>Transkriptionsvorlage:</p>
          <projectDesc>
-            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
-            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
          </projectDesc>
          <editorialDecl>
@@ -235,9 +251,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
       </encodingDesc>
       <revisionDesc>
          <change who="DS" when="2016-03-01">Datei erstellt aus Mordek-XML</change>
-         <change who="XXX" when="2016"/>
-         <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift
-            nach Bischoff 1998/2004/2014 ergänzt</change>
+         <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift nach Bischoff
+            1998/2004/2014 ergänzt</change>
+         <change who="DT" when="2021-09-15">Datei veröffentlicht</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>

@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
 schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="mailand-ba-o-55">
-
-   <!-- ACHTUNG! Kopie der Datei ist in Arbeit. -->
-
    <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main" xml:lang="ger">Mailand, Biblioteca Ambrosiana, O. 55 sup.</title>
             <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
-               Transkription der foll. 33r-v, 34v-35r, 36r, 39v-40r, 52r-v, 68r-v, 71r-v</title>
+               Transkription der foll. 33r-v, 34v-35r, 36r, 39v-40r, 52r-v, 68r-v, 71r-v, 72r-74r,
+               77r-78r</title>
             <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
-               transcription of fols 33r-v, 34v-35r, 36r, 39v-40r, 52r-v, 68r-v, 71r-v</title>
+               transcription of fols 33r-v, 34v-35r, 36r, 39v-40r, 52r-v, 68r-v, 71r-v, 72r-74r,
+               77r-78r</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -132,10 +131,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                </msIdentifier>
                <head>
                   <title type="main">Mailand, Biblioteca Ambrosiana, O. 55 sup.</title>
-                  <origDate notAfter="1060" notBefore="1041">11. Jh., etwa Mitte</origDate>
+                  <origDate notAfter="1060" notBefore="1041">11. Jh., etwa Mitte</origDate><note
+                     type="corr">Laut Radding 2018, S. 296 ca. 1030 entstanden.</note>
                   <origPlace ref="http://d-nb.info/gnd/4042547-2 http://viaf.org/viaf/246519243">
-                     von dem Notar Secundus (Kolophon fol. 75v wohl zusammen mit der voraufgehenden
-                     Teilhs. O. 53 sup. in Oberitalien geschrieben (<placeName
+                     von dem Notar Secundus (Kolophon fol. 75v), wohl zusammen mit der
+                     voraufgehenden Teilhs. O. 53 sup. in Oberitalien geschrieben (<placeName
                         ref="http://www.geonames.org/6541854/pavia.html http://d-nb.info/gnd/4044970-1 http://viaf.org/viaf/235908067"
                         >Pavia</placeName>?)</origPlace>
                </head>
@@ -621,6 +621,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
                            der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
                               type="external" subtype="Bl" target="mailand-ba-o-55"/></bibl>
+                        <bibl resp="capit"><ref type="internal" subtype="mom"
+                              target="sammlung-des-monats-oktober-2021/"/></bibl>
                      </listBibl>
                   </listBibl>
                </additional>
@@ -631,7 +633,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <p>Transkriptionsvorlage: Ein Graustufendigitalisat; einzelne Lesungen (foll. 52r-v, 68r-v,
             71r-v) wurden im September 2017 am Original geprüft.
             <!-- Später ergänzen: Auch der Kapitularienteil Karls des Großen größtenteils am Original 
-               geprüft, vgl. die Kollationsunterlagen der Mailand-Reise von September 2017!  --></p>
+               geprüft, vgl. die Kollationsunterlagen der Mailand-Reise von September 2017!  -->
+            Für die im Oktober 2020 ergänzten Transkriptionen (BK 224, 232) konnte ein farbiges
+            Online-Digitalisat der Biblioteca Ambrosiana benutzt werden. Auch die alten
+            Transkriptionen wurden anhand dieses neuen Digitalisates noch einmal überprüft.</p>
          <projectDesc>
             <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
                   target="http://capitularia.uni-koeln.de/project/about/"/>
@@ -651,7 +656,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
       </encodingDesc>
       <revisionDesc>
          <change who="DS" when="2016-03-01">Datei erstellt aus Mordek-XML</change>
-         <change who="BM" when="2017-12-22">Datei veröffentlicht (BK 88, 168, 208, 219)</change>
+         <change who="BM" when="2021-04-30">Datei veröffentlicht (BK 88, 168, 208, 219)</change>
+         <change who="BM" when="2021-07-30">Transkriptionen ergänzt (BK 224, 232)</change>
+
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -697,8 +704,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <ptr type="internal" target="#mailand-ba-o-55-53r-5"/>capitula que domnus lotarius
                   inperator ... in italia generale placitum curte olonna<list>
                      <item n="40.80">
-                        <ptr type="internal" target="#mailand-ba-o-55-68r-3"/>LXXVIIII
-                        capitulum</item>
+                        <ptr type="internal" target="#mailand-ba-o-55-68r-3"/>LXXVIIII</item>
                      <item n="40.90">
                         <ptr type="internal" target="#mailand-ba-o-55-68v-1"/>LXXX</item>
                      <item n="40.100">
@@ -715,6 +721,46 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         <ptr type="internal" target="#mailand-ba-o-55-71r-7"/>C</item>
                   </list>
                </item>
+               <item n="100">
+                  <ptr type="internal" target="#mailand-ba-o-55-72r-1"/>incipit capitula quod domnus
+                  uuido imperator adit ...<list>
+                     <item n="100.1">
+                        <ptr type="internal" target="#mailand-ba-o-55-72r-2"/>I</item>
+                     <item n="100.2">
+                        <ptr type="internal" target="#mailand-ba-o-55-72v-1"/>II</item>
+                     <item n="100.3">
+                        <ptr type="internal" target="#mailand-ba-o-55-72v-3"/>III</item>
+                     <item n="100.4">
+                        <ptr type="internal" target="#mailand-ba-o-55-73r-1"/>IIII</item>
+                     <item n="100.5">
+                        <ptr type="internal" target="#mailand-ba-o-55-73r-3"/>V</item>
+                     <item n="100.6">
+                        <ptr type="internal" target="#mailand-ba-o-55-73v-1"/>VI</item>
+                     <item n="100.7">
+                        <ptr type="internal" target="#mailand-ba-o-55-73v-3"/>VII</item>
+                     <item n="100.8">
+                        <ptr type="internal" target="#mailand-ba-o-55-73v-5"/>VIII</item>
+                     <item n="100.9">
+                        <ptr type="internal" target="#mailand-ba-o-55-74r-1"/>VIIII</item>
+                     <item n="100.10">
+                        <ptr type="internal" target="#mailand-ba-o-55-74r-3"/>X</item>
+                  </list></item>
+               <item n="200">
+                  <ptr type="internal" target="#mailand-ba-o-55-77r-1"/>IN NOMINE DOMINI INCIPIT
+                  CAPITULARE QVAS SINGVLAS REGIBVS VEL IMPERATORIBVS INSTITVTVM EST ...<list>
+                     <item n="200.1">
+                        <ptr type="internal" target="#mailand-ba-o-55-77r-2"/>primo capitulo</item>
+                     <item n="200.2">
+                        <ptr type="internal" target="#mailand-ba-o-55-77r-4"/>II</item>
+                     <item n="200.3">
+                        <ptr type="internal" target="#mailand-ba-o-55-77r-6"/>III</item>
+                     <item n="200.4">
+                        <ptr type="internal" target="#mailand-ba-o-55-77v-1"/>IIII</item>
+                     <item n="200.5">
+                        <ptr type="internal" target="#mailand-ba-o-55-77v-3"/>V</item>
+                     <item n="200.6">
+                        <ptr type="internal" target="#mailand-ba-o-55-77v-5"/>VI</item>
+                  </list></item>
             </list>
          </div>
 
@@ -725,61 +771,135 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                breite, runde karolingische Minuskel. Das lokale Sprachkolorit der in Oberitalien
                entstandenen Handschrift zeigt sich z.B. im Weglassen von anlautendem h
                   (<mentioned>ominibus</mentioned>, fol. 52v Z. 1; <mentioned>anc</mentioned>, ebd.
-               fol. 2), der Verwendung von d für t (<mentioned>faciad</mentioned>, fol. 68v Z. 9)
-               oder von x für s/ss (<mentioned>posexionem</mentioned>, <mentioned>xint</mentioned>,
-               fol. 52v Z. 3), bzw. gelegentlich auch von s für x (<mentioned>iusta</mentioned>,
-               fol. 71v Z. 8).</p>
+               Z. 2), der Verwendung von d für t (<mentioned>faciad</mentioned>, fol. 68v Z. 9) oder
+               von x für s/ss (<mentioned>posexionem</mentioned>, <mentioned>xint</mentioned>, fol.
+               52v, Z. 3), bzw. gelegentlich auch von s für x (<mentioned>iusta</mentioned>, fol.
+               71v, Z. 8). Generell folgen Orthographie und Grammatik "nicht mehr 'klassischen'
+               Grundsätzen, wodurch die Grenze zu 'echten' Fehllesungen zerfließt" (Kaiser W 2007,
+               S. 263, mit weiteren Beispielen). Oft ist der Wortlaut nahezu unverständlich; auch
+               scheint der Schreiber seine Vorlage nicht immer richtig verstanden zu haben (z.B.
+                  <locus>fol. 77r Z. 13-15</locus>: <mentioned>DE INSTITVCIONE INPVDOSII IMPERATORIS
+                  ET VALENTINA ANIMI BELXINVM PERFECTVM</mentioned> statt "de constitutione
+               Theodosii imperatoris et Valentiniani augusti ad Albinum praefectum", vgl. Boretius
+               1897, S. 127). An einigen Stellen hat ein Korrektor (vermutlich bei einem
+               nachträglichen Kolorierungsdurchgang, da die betreffenden Korrekturen teilweise in
+               farbiger Tinte ausgeführt wurden) versucht, dem unverständlichen Text Sinn zu
+               verleihen, was nicht immer gelang (z.B. auf <locus>fol. 77r Z. 17f.</locus>:
+                  <mentioned>o-</mentioned> [vor Zeilenwechsel] <mentioned>-dead</mentioned> (=
+               audeat) wurde nachträglich in roter Tinte 'korrigiert' zu <mentioned>omo
+                  dead</mentioned>).</p>
          </div>
          <div type="letters">
             <p>Einzelbuchstaben: Der obere Bogen von a ist nur im Ansatz vorhanden; steht a jedoch
                alleine oder am Wortanfang, dann greift der obere Bogen oft weit nach oben aus.
                Minuskel-e hat einen nach rechts ausgezogenen Balken. Der untere, kreisförmige Bogen
                von g ist offen. Die Bögen von d und q sind nicht rund, sondern aus einem Bogen und
-               einem senkrechten Deckbalken zusammengesetzt.</p>
+               einem waagerechten Deckbalken zusammengesetzt. Der Bogen von p ist nach oben hin oft
+               nicht ganz geschlossen. Der Schreiber verwendet Ligaturen bei ci- und ti-, bei denen
+               das i am Fuß des Konsonanten angesetzt und in die Unterlänge gezogen wird.</p>
          </div>
          <div type="abbreviations">
             <p>Der Schreiber verwendet oft Kürzungen, wobei meist ein einfacher Kürzungsstrich (für
                Nasale, e, Konsonantenverdopplungen etc.) eingesetzt wird. Gekürztes c-/co- vor p
-               wurde mit com- aufgelöst (der Schreiber schreibt es sowohl mit m als auch mit n). Die
-               Kürzung <mentioned>pbr</mentioned> wurde mit <mentioned>presbiter</mentioned>
-               aufgelöst.</p>
+               wurde mit con- aufgelöst (der Schreiber schreibt es sowohl mit m als auch, etwas
+               öfter, mit n). Die Kürzung <mentioned>pbr</mentioned> wurde mit
+                  <mentioned>presbiter</mentioned> aufgelöst.</p>
          </div>
          <div type="punctuation"/>
          <div type="structure">
             <p>Der Text wird gegliedert durch eine Kapitelzählung und Initialen in roter Tinte; die
-               Initialen sind zusätzlich mit gelber Tinte verziert und z. T. aufwändig mit floralen
-               und Flechtbandornamenten oder Tiermotiven gestaltet (z.B. auf <locus>fol. 33r und
-                  36r</locus>).</p>
+               Initialen sind zusätzlich mit gelber Tinte verziert und z. T. aufwendig mit floralen
+               und Flechtbandornamenten oder Tiermotiven gestaltet (z.B. auf <locus>fol.
+               33r</locus>, <locus>36r</locus> und <locus>72r</locus>). Die Handschrift gilt als die
+               ältste Überlieferung des sogenannten Liber Papiensis; sie lässt allerdings noch keine
+               systematische Einteilung in chronologische, bestimmten Herrschern zugeordnete
+               Abschnitte erkennen, die für den Liber Papiensis typisch sind. Die gelegentlich am
+               Anfang neu einsetzender Kapitularien stehenden roten Rubriken beziehen sich in der
+               Regel nur auf die jeweils ersten folgenden Kapitel, auf die weitere
+               Kapitularien(-exzerpte) in durchgehender Zählung folgen können, ohne dass ein
+               Einschnitt angezeigt würde.</p>
             <p><locus>Foll. 33r-40r</locus>: BK 168 c. 6 sowie 8-13 sind als c.
                   <mentioned>II</mentioned>, <mentioned>X</mentioned>, <mentioned>XI</mentioned>,
                   <mentioned>XVIIII</mentioned>, <mentioned>XX</mentioned> und
-                  <mentioned>XLII</mentioned> in einer Liste enthalten, die auf <mentioned>fol.
-                  33r</mentioned> beginnt und durch die Rubrik Ludwig II. zugeschrieben wird. BK 168
-               c. 7 wurde in dieser Liste am oberen und linken Seitenrand neben c.
-                  <mentioned>IIII</mentioned> vom selben Schreiber ohne Nummerierung nachgetragen.
+                  <mentioned>XLII</mentioned> in einer Liste enthalten, die auf <locus>fol.
+                  33r</locus> beginnt und durch die Rubrik Ludwig II. zugeschrieben wird
+                  (<mentioned>INCIPIT CAPITVLA SECUNDUM LODOICI IMPEPRIS. FILIVS LOTHARI
+                  IMPER.</mentioned>). Sie versammelt aber Exzerpte verschiedenster Herkunft und ist
+               nicht als ein eigenständiges Kapitular dieses Herrschers anzusehen (vgl. Geiselhart
+               2002 S. 215). BK 168 c. 7 wurde in dieser Liste am oberen und linken Seitenrand neben
+               c. <mentioned>IIII</mentioned> vom selben Schreiber ohne Nummerierung nachgetragen.
                BK 168 c. 10 und 11 waren zuerst in einem Kapitel (<mentioned>XVIIII</mentioned>)
                zusammengefasst, was aber nachträglich geändert wurde: Die Kapitelzählung vor BK 168
                c. 12 wurde durchgestrichen und stattdessen an den Anfang von BK 168 c. 11 (beginnend
                mit <mentioned>Quicumque homo alteri</mentioned> ...) gesetzt, so dass durch die
-               Korrektur c. 11 und 12 in einem Kapitel zusammengezogen wurden.</p>
-            <p><locus>Foll. 52r-71v</locus>: BK 168 c. 1-5 sind als c. <mentioned>LI</mentioned>,
-                  <mentioned>LIII</mentioned>, <mentioned>LXVIIII</mentioned>,
-                  <mentioned>LXXXI</mentioned> und <mentioned>XCVIII</mentioned> in einer Liste
-               enthalten, die auf <mentioned>fol. 40r</mentioned> beginnt und durch die Rubrik
-               Ludwig (dem Frommen?) zugeschrieben wird. Auf c. <mentioned>LXXXI</mentioned> folgt
-               BK 208 (von BK Ludwig dem II. zugeschrieben) als c. <mentioned>LXXXII</mentioned>. In
-               derselben Liste als c. <mentioned>XCVII</mentioned> ist auch BK 219 c. 1 (von BK
-               Lothar oder Ludwig II. zugeschrieben) enthalten, das nur durch den Liber Papiensis
-               überliefert wird, sowie c. 4 und der Epilog von BK 88 (Karoli Magni notitia Italica)
-               als c. <mentioned>XCVIIII</mentioned> - <mentioned>C</mentioned> (wobei der letzte
-               Satz aus BK 88 c. 4, <mentioned>Et hoc damus in mandatis - sic faciad sicut lex eorum
-                  fuerit</mentioned> c. <mentioned>XCVIIII</mentioned> entspricht und c.
+               Korrektur nunmehr c. 11 und 12 in einem Kapitel zusammengezogen wurden. Das letzte
+               Kapitel der Liste (<mentioned>XLII</mentioned>) ist BK 138 c. 12, das hier nur der
+               Vollständigkeit halber mit transkribiert wurde, da BK 138 eine umfangreiche
+               eigenständige Überlieferung außerhalb des Liber Papiensis aufweist.</p>
+            <p><locus>Foll. 52r-71v</locus>: BK 168 c. 1 und 2 sind als c. <mentioned>LI</mentioned>
+               und <mentioned>LIII</mentioned> in einer Liste enthalten, die auf <locus>fol.
+                  40r</locus> mit BK 135 einsetzt (Rubrik: <mentioned>IN NOMINE DOMINI LODOICUS A
+                  DEO CORONATUS SERENISSIMO AUG. OMNIBUS ABATIBUS DUCIBUS COMITIBUS ET CUNCTIS
+                  FIDELIBUS NOSTRIS CAP. CONPOSUIT DE CAUSIS OPORTUNIS EC SUNT</mentioned>). Sie
+               umfasst neben Auszügen aus Kapitularien Ludwigs des Frommen auch einige Einsprengsel
+               aus Kapitularien Karls des Großen. Auf <locus>fol. 53r</locus> beginn eine neue Liste
+               mit BK 158 und folgender, darauf bezogener Rubrik: <mentioned>CAP. QUE DOMNUS
+                  LOTARIUS INPERATOR ANNO IMPERII SUI COACES</mentioned> [!] <mentioned>IN ITALIA
+                  GENERALE PLACITUM CURTE OLONNA</mentioned>. Darin sind enthalten: BK 168 c. 3 und
+               4 als c. <mentioned>LXVIIII</mentioned> und <mentioned>LXXXI</mentioned>, BK 208 (von
+               BK Ludwig II. zugeschrieben) als c. <mentioned>LXXXII</mentioned>, BK 219 c. 1 (von
+               BK Lothar oder Ludwig II. zugeschrieben, hier unikal überliefert) als c.
+                  <mentioned>XCVII</mentioned> und BK 168 c. 5 als c. <mentioned>XCVIII</mentioned>.
+               Die Liste endet mit c. 4 und dem Epilog von BK 88 (Karoli Magni notitia Italica) als
+               c. <mentioned>XCVIIII</mentioned> - <mentioned>C</mentioned> (wobei der letzte Satz
+               aus BK 88 c. 4 [<mentioned>Et hoc damus in mandatis - sic faciad sicut lex eorum
+                  fuerit</mentioned>] c. <mentioned>XCVIIII</mentioned> entspricht und c.
                   <mentioned>C</mentioned> den Rest von BK 88 c. 4 sowie den Epilog umfasst).</p>
+            <p><locus>Foll. 72r-74r</locus>: BK 224 ist als eigene Liste enthalten; sie wird mit
+               einer roten Rubrik (<mentioned>INCIPIT CAP. Q. DOMMNUS UUIDO IMPERATOR ADIT IN KL.
+                  MADIAS CIUTE. TICINENSE ANO IMPERI PRIMO INDICTIONE IIII</mentioned>) und einer
+               aufwendig gestalteten Flechtbandinitiale (in rot und gelb) eingeleitet. Auch die
+               Initialen am Kapitelanfang sind zweifarbig (rot-gelb). C. 6 ist zweigeteilt
+                  (<mentioned>VI</mentioned> und <mentioned>VII</mentioned>). </p>
+            <p><locus>Foll. 77r-78r</locus>: Die Kapitelliste, die in einigen Handschriften in
+               direktem Zusammenhang mit Kapitularien überliefert wird (vgl. Kaiser W 2007, S. 255
+               ff.) und die Boretius und Krause unter dem Titel "Capitula incerta italica" ediert
+               haben (BK 232), erinnert an eine apokryphe Konstitution der Kaiser Theodosius II. und
+               Valentinian III. Die Einleitung wurde in Capitalis in hellbrauner Texttinte mit roter
+               Verzierung gestaltet und wird durch eine Flechtbandinitiale mit rot-gelber Verzierung
+               eingeleitet. Die teilweise mit Ornamenten und Tiermotiven geschmückten Initialen am
+               Kapitelanfang sind mit roter, gelber und grüner Tinte gemalt. Nach der (stark
+               verballhornten und nahezu unverständlichen) Einleitung folgen zunächst der jeweils
+               erste Satz von BK 232 c. 1 und 2 (gezählt als <mentioned>capitulo primo</mentioned> -
+                  <mentioned>II</mentioned>), bevor der volle Text von c. 1-4 einsetzt (Zählung:
+                  <mentioned>III-VII</mentioned>, c. 4 versehentlich - nach Seitenwechsel - doppelt
+               gezählt als <mentioned>VI</mentioned> und <mentioned>VII</mentioned>). Nach Kaiser
+               könnte es sich bei den ersten beiden Kapiteln um eine vorangestellte Capitulatio
+               handeln, wobei dies voraussetze, dass die Zählung (<mentioned>capitulo
+                  primo</mentioned>, <mentioned>II</mentioned>-<mentioned>III</mentioned>,
+                  <mentioned>CAP. IIII</mentioned>, <mentioned>V</mentioned>,
+                  <mentioned>VI</mentioned>) "jedenfalls ab Ziffer III, wodurch der eigentliche
+               Textbeginn als drittes Kapitel erscheint, erst nachträglich hinzukam." (Kaiser W
+               2007, S. 263). Der paläographische Befund stützt diese Vermutung: Die Kapitelzählung
+               steht entweder am Seitenrand (<mentioned>II</mentioned>, <mentioned>V</mentioned>,
+                  <mentioned>VII</mentioned>) oder in freigebliebenem Zeilenraum
+                  (<mentioned>capitulo primo</mentioned>, <mentioned>CAP. IIII</mentioned>,
+                  <mentioned>VI</mentioned>) und ist zudem sehr uneinheitlich gestaltet
+                  (<mentioned>capitulo primo</mentioned> in roter Tinte, <mentioned>II</mentioned>
+               und <mentioned>III</mentioned> in Texttinte mit rotem Schattenstrich;
+                  <mentioned>IIII</mentioned> und <mentioned>VI</mentioned> in braun mit grünem
+               Schattenstrich und <mentioned>V</mentioned> und <mentioned>VII</mentioned> in rot,
+                  <mentioned>VII</mentioned> zusätzlich mit grünem Schattenstrich). Es bliebe aber
+               die Merkwürdigkeit bestehen, dass in der mutmaßlichen Capitulatio nur zwei der
+               insgesamt vier Kapitel der Liste vermerkt worden wären. Nach den vier Kapiteln von BK
+               232 folgt noch, mit fortlaufender Zählung <mentioned>VIII</mentioned> (und Rubrik
+                  <mentioned>De ratoribus</mentioned> [sic], wohl ebenfalls nachgetragen), c. 6 des
+               Konzils von Ravenna 877 (MGH Conc. 5, S. 69).</p>
          </div>
          <div type="annotations">
-            <p>An manchen Stellen wurden mit <mentioned>.i.</mentioned> = <mentioned>id
-                  est</mentioned> eingeleitete, interlineare Glossen eingetragen, die jedoch
-               größtenteils unleserlich sind. Auf fol. <locus>fol. 34v</locus> findet sich ein
+            <p>An manchen Stellen wurden mit <mentioned>.i.</mentioned> (für <mentioned>id
+                  est</mentioned>) eingeleitete, interlineare Glossen eingetragen, die jedoch
+               größtenteils unleserlich sind. Auf <locus>fol. 34v</locus> findet sich ein
                Nota-Zeichen oder ein gekürztes <mentioned>Non</mentioned> (Majuskel-N mit
                Überstrich) am Rand auf Höhe von BK 168 c. 8; ähnliche Zeichen, allerdings mit einem
                Minuskel-n und weniger auffällig, auch auf <locus>fol. 71r</locus> am Rand neben c.
@@ -788,72 +908,79 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <locus>fol. 71r</locus> steht zusätzlich auf Höhe des Kapitelbeginns von c.
                   <mentioned>XCVII</mentioned> (= BK 219 c. 1) <mentioned>non sunt in
                   ceteris</mentioned>.</p>
+            <p>Auf <locus>fol. 72r</locus> (seitenübergreifend ab <locus>fol. 71v</locus>) und
+                  <locus>fol. 77v</locus> wurden Gebete am unteren Seitenrand eingetragen.</p>
+
          </div>
          <div type="other"/>
       </front>
       <body>
-         <milestone unit="capitulare" n="BK.168"/>
+
          <cb n="33r"/>
          <lb n="1"/>
+
+         <milestone unit="capitulare" n="BK.168"/>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-33r-1">INCIPIT CAPITVLA
-            SECUNDUM <rs type="person">LODOICI <lb/><choice>
-                  <abbr>IMPEPRIS</abbr>
-                  <expan>IMPERATORIS</expan>
-               </choice> FILIVS</rs>
-            <rs type="person">LOTHARI <choice>
-                  <abbr>IMPER</abbr>
-                  <expan>IMPERATORIS</expan>
-               </choice></rs>
+            SECUNDUM <rs type="person">LODOICI</rs>
+            <lb/>
+            <abbr>IMPEPRIS</abbr><note type="editorial">Nicht sicher aufzulösende Abkürzung;
+                  <mentioned>IMPERATORIS</mentioned>?</note> FILIVS <rs type="person">LOTHARI</rs>
+            <choice>
+               <abbr>IMPER</abbr>
+               <expan>IMPERATORIS</expan>
+            </choice>
             <lb/>
          </ab>
-         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-33r-2"><seg type="numDenom"
-               >CAPITULUM</seg> . <seg type="num" n="1">I</seg> . </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-33r-2">
+            <seg type="numDenom">CAPITULUM</seg> . <seg type="num" n="1">I</seg> . </ab>
          <ab type="text" xml:id="mailand-ba-o-55-33r-3">
             <seg type="initial" rend="coloured">D</seg>e<note type="editorial">Bei dem
                Eröffnungskapitel der Liste handelt es sich nicht um einen Auszug aus einem
-               Kapitular, sondern, laut Boretius 1864, S. 193, um "can. 38 der in Rom 826
-               abgehaltenen Synode" = MGH LL 2/2 S. 12 (Eugenii II. concilium Romanum von 826
-               November).</note> ince<subst>
+               Kapitular, sondern um eine veränderte Fassung von c. 38 des Konzils von Rom (826) in
+               der Forma minor; MGH Conc. 2, 2 S. 583.</note> ince<subst>
                <del/>
                <add>stis</add>
             </subst> coniuncionibus <sic>ic</sic>
-            <expan>preci<add>pi</add><metamark function="insertion"/>mus</expan> . <lb/> ut nullus
-            deinceps propinquam <subst>
-               <del/>
-               <add>ne</add>
-            </subst>c quam propin<lb break="no"/>cus abuit uxorem ducat ;. </ab>
+            <expan>preci<add><hi rend="coloured">pi</hi></add><metamark function="insertion"
+               />mus</expan> . <lb/> ut nullus deinceps propinquam <subst>
+               <del>m</del>
+               <add>nec</add>
+            </subst> quam propin<lb break="no"/>cus abuit uxorem ducat ;. </ab>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-33r-4"
             corresp="BK.168_6_inscriptio"><seg type="numDenom">capitulum</seg> . <seg type="num"
                n="2">II</seg> . <lb/>
          </ab>
-         <ab type="text" xml:id="mailand-ba-o-55-33r-5" corresp="BK.168_6"><seg type="initial"
-               rend="coloured">U</seg>t omnimodis diligentissima examina<lb break="no"/>cione
-            secundum scriptam legem quam diutissime <lb/>fieri poxit . iusto iudicio omnibus usus
-               iura<lb break="no"/>menti proibeatur ut deo donante consuetudo <lb/>pexima periurii a
-            cristiano populo aufe<lb break="no"/>ratur tamen omni nox
-               <add><unclear>f</unclear></add>iant uniuersi nullathenus <lb/>hoc consentire uol<subst>
+         <ab type="text" xml:id="mailand-ba-o-55-33r-5" corresp="BK.168_6">
+            <seg type="initial" rend="coloured">U</seg>t omnimodis diligentissima examina<lb
+               break="no"/>cione secundum scriptam legem quam diutissime <lb/> fieri poxit . iusto
+            iudicio omnibus usus iura<lb break="no"/>menti proibeatur ut deo donante consuetudo
+            <lb/> pexima periurii a cristiano populo aufe<lb break="no"/>ratur tamen omni nox<add
+               hand="X"><unclear>s</unclear></add>iant uniuersi nullathenus <lb/> hoc consentire uol<subst>
                <del>e</del>
-               <add>v</add>
+               <add hand="X">v</add>
             </subst>mus set <mod>si</mod> quis in periurio fuerit <lb/>
-            <expan>comprobatus</expan> aut manum destram perdat <unclear>aut</unclear> eam
-            <lb/>secundum scriptam legem redimad et <expan>numquam</expan> am<lb break="no"/>plius
-            in nullo iudicio a sa<add>cra</add><metamark function="insertion"/>mentum <del>in nullo
-               iudicio</del>
-            <lb/>uenire permitatur ;. </ab>
+            <expan>conprobatus</expan> aut manum destram perdat aut eam <lb/> secundum scriptam
+            legem redimad et <expan>numquam</expan> am<lb break="no"/>plius in nullo iudicio a
+                  sa<add><hi rend="coloured">cr</hi>a</add><metamark function="insertion"/>mentum
+               <del>in nullo iudicio</del>
+            <lb/> uenire permitatur ;. </ab>
+
          <gap reason="editorial"/>
+
          <cb n="33v"/>
          <lb n="1"/>
+
          <ab type="text" xml:id="mailand-ba-o-55-33v-1" corresp="BK.168_7"><seg type="initial"
-               rend="coloured">U</seg>t<note type="editorial">Der Text des Kapitels wurde am oberen
-               und linken Seitenrand neben c. <mentioned>IIII</mentioned> vom selben Schreiber ohne
+               >U</seg>t<note type="editorial">Der Text des Kapitels wurde am oberen und linken
+               Seitenrand neben c. <mentioned>IIII</mentioned> vom selben Schreiber ohne
                Nummerierung nachgetragen.</note> nullus ecclesiasticus <choice>
                <abbr>femia</abbr>
                <expan>femina</expan>
-            </choice><note type="editorial">gek. <mentioned>femia</mentioned>; der Kürzungsstrich
-               steht allerdings schon über dem <mentioned>m</mentioned>. Evtl. handelt es sich bei
-               dem vermeintlichen Kürzungsstrich aber auch nur um Reste einer Rasur über dem
-               Wort.</note> secum habere <expan>presummat</expan> . si <expan>presbiter</expan>
-               fu<mod>er</mod>it aut diaconus . aut episcopus . ab ordine deponatur si <choice>
+            </choice> secum habere <expan>presummat</expan> . si <expan>presbiter</expan>
+               fue<mod>r</mod>it aut diaconus . aut episcopus . ab ordine deponatur si <choice>
                <abbr>cls</abbr>
                <expan>clericus</expan>
             </choice> nudus ad palum uapuletur . et <choice>
@@ -863,78 +990,90 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <expan>que</expan> eum consensit <choice>
                <abbr>simil</abbr>
                <expan>similiter</expan>
-            </choice> uapuletur ! et <add>capud</add><metamark function="insertion"/> tondantur .
+            </choice> uapuletur . et <add>capud</add><metamark function="insertion"/> tondantur .
             Quia sic <choice>
                <abbr>dic</abbr>
                <expan>dicit</expan>
-            </choice> scriptura dei <choice>
-               <abbr>menbra</abbr>
-               <expan>mennbra</expan>
-            </choice><note type="editorial">gek. <mentioned>menbra</mentioned>, mit Kürzungsstrich
-               über -<mentioned>en</mentioned>-</note> christi noli tangere meretricis ;. </ab>
+            </choice> scriptura dei <abbr>menbra</abbr><note type="editorial">Über
+                  -<mentioned>en</mentioned>- ein Kürzungsstrich?</note> christi noli tangere
+            meretricis ;. </ab>
+
          <gap reason="editorial"/>
+
          <cb n="34v"/>
          <lb n="10"/>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-34v-2"
             corresp="BK.168_8_inscriptio"><seg type="numDenom">capitulum</seg> . <seg type="num"
-               n="9">VIIII</seg> . <lb/></ab>
-         <ab type="text" xml:id="mailand-ba-o-55-34v-3" corresp="BK.168_8" rend="nota"><seg
-               type="initial" rend="coloured">S</seg>tatuimus de decimis unde iam inter episcopo seu
-            reliquis <lb/>sacerdotibus et comitibus et <choice>
+               n="9">VIIII</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-34v-3" corresp="BK.168_8" rend="nota">
+            <seg type="initial" rend="coloured">S</seg>tatuimus de decimis unde iam inter episcopo
+            seu reliquis <lb/> sacerdotibus et comitibus et <choice>
                <abbr>uass</abbr>
                <expan>uassis</expan>
             </choice> et reliqui fide<lb break="no"/>libus nostris multa audiuimus intenciones set
             si e<lb break="no"/>clesie si<add>v</add>e in sua proprietate habeat sicut in capitulare
-            <lb/>constitutum est ipsa decima de suo domo coltile <lb/>rebus in eadem ecclesia
-            concedimus ipse sacerdus qui ibi <lb/>ordinatus fuerit ipsa decima disspenset pro
+            <lb/> constitutum est ipsa decima de suo domo coltile <lb/> rebus in eadem ecclesia
+            concedimus ipse sacerdus qui ibi <lb/> ordinatus fuerit ipsa decima disspenset pro
                lumi<lb break="no"/>naria siue elemosinis distribuad . <hi rend="coloured"
-            >S</hi>tatuimus <lb/>de suos manentes qui in eadem <sic>parrohia</sic> comanen<lb
+            >S</hi>tatuimus <lb/> de suos manentes qui in eadem <sic>parrohia</sic> comanen<lb
                break="no"/>tes sunt ipsa decima a plebe donent et si contradixerint <cb n="35r"/> a
-            publice distringantur sicut in capitulare nostro con<lb break="no"/>stituimus ;. </ab>
+               pub<mod>l</mod>ice distringantur sicut in capitulare nostro con<lb break="no"
+            />stituimus ;. </ab>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-35r-1"
             corresp="BK.168_9_inscriptio"><seg type="numDenom">capitulum</seg> . <seg type="num"
-               n="10">X</seg> . <lb/></ab>
-         <ab type="text" xml:id="mailand-ba-o-55-35r-2" corresp="BK.168_9"><seg type="initial"
-               rend="coloured">D</seg>e propi<add>n</add>cus<note type="editorial"
-                  ><mentioned>n</mentioned> ergänzt; über <mentioned>i</mentioned> ein getilgtes
-               (Kürzungs-?) Zeichen.</note> non accipiendas in coniungio quod <lb/>uxori pa<subst>
+               n="10">X</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-35r-2" corresp="BK.168_9">
+            <seg type="initial" rend="coloured">D</seg>e <subst>
+               <del>propi<gap/>cus</del>
+               <add>propincus</add>
+            </subst> non accipiendas in coniungio quod <lb/> uxori pa<subst>
                <del/>
                <add>r</add>
             </subst>entellam sit uiro sicut et propria parentella ;. </ab>
+
          <gap reason="editorial"/>
+
          <cb n="36r"/>
          <lb n="13"/>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-36r-5"
-            corresp="BK.168_10_inscriptio"><seg type="num" n="18">XVIII</seg> . <lb/></ab>
+            corresp="BK.168_10_inscriptio"><seg type="num" n="18">XVIII</seg> . <lb/>
+         </ab>
          <ab type="text" xml:id="mailand-ba-o-55-36r-6" corresp="BK.168_10">
             <seg type="initial" rend="coloured">R</seg>es <sic>litigosa</sic> nullathenus potest
-            dare neque <lb/>uendere antequam elitigetur ;. </ab>
-         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-36r-7"
-            corresp="BK.168_11_inscriptio"><add> . <seg type="num" n="19">XVIIII</seg> . </add><note
-               type="editorial">Die Kapitelzählung <mentioned>XVIIII</mentioned> wurde nachträglich
-               mitten in der Zeile ergänzt, über einer wegen eines Pergamentlochs frei gebliebenen
-               Stelle.</note></ab>
+            dare neque <lb/> uendere antequam elitigetur ;. </ab>
+
+         <ab type="meta-text" xml:id="mailand-ba-o-55-36r-7" corresp="BK.168_11_inscriptio"><add> .
+                  <seg type="num" n="19">XVIIII</seg> . </add><note type="editorial">Die
+               Kapitelzählung <mentioned>XVIIII</mentioned> wurde nachträglich mitten in der Zeile
+               ergänzt, über einer wegen eines Pergamentlochs frei gebliebenen Stelle. </note>
+         </ab>
          <ab type="text" xml:id="mailand-ba-o-55-36r-8"
             corresp="BK.168_11 BK.168_12_inscriptio BK.168_12">
-            <milestone unit="span" corresp="BK.168_11" spanTo="#mailand-ba-o-55-36r-8_1"
-               /><expan>Quicumque</expan>
+            <milestone unit="span" corresp="BK.168_11" spanTo="#mailand-ba-o-55-36r-8_1"/>
+            <expan>Quicumque</expan>
             <lb/> homo alteri debito fuerit ipsum debitum negare uo<lb break="no"/>luerit <add>et
                postea conuictus fuerit ipsum debitum</add><metamark function="insertion"/> in <choice>
                <abbr>dublu</abbr>
                <expan>dublum</expan>
             </choice><note type="editorial">gek. <mentioned>dublu</mentioned>, allerdings mit
                Kürzungsstrich durch den <mentioned>l</mentioned>-Schaft und nicht mit Nasalstrich
-               über <mentioned>u</mentioned>.</note> persoluad ;. <anchor
+               über <mentioned>u<hi rend="super">2</hi></mentioned>.</note> persoluad ;. <anchor
                xml:id="mailand-ba-o-55-36r-8_1"/>
             <milestone unit="span" corresp="BK.168_12_inscriptio" spanTo="#mailand-ba-o-55-36r-8_2"/>
             <del><hi rend="coloured"><seg type="numDenom">capitulum</seg> . <seg type="num" n="19"
                      >XVIIII</seg> . </hi>
             </del><note type="editorial">folgt getilgtes <mentioned>capitulum XVIIII</mentioned>.
-               Die Kapitelzählung wurde mit roter Tinte durchgestrichen und stattdessen zwei Zeilen
-               höher (vor <mentioned>Quicumque homo</mentioned>, am Anfang von BK 168 c. 11)
-               ergänzt.</note>
-            <lb/><anchor xml:id="mailand-ba-o-55-36r-8_2"/>
-            <milestone unit="span" corresp="BK.168_12" spanTo="#mailand-ba-o-55-36r-8_3"/><choice>
+               Die Kapitelzählung wurde durchgestrichen und stattdessen zwei Zeilen höher (vor
+                  <mentioned>Quicumque homo</mentioned>, am Anfang von BK 168 c. 11) ergänzt.</note>
+            <lb/>
+            <anchor xml:id="mailand-ba-o-55-36r-8_2"/>
+            <milestone unit="span" corresp="BK.168_12" spanTo="#mailand-ba-o-55-36r-8_3"/>
+            <choice>
                <abbr>Simil</abbr>
                <expan><seg type="initial" rend="coloured">S</seg>imiliter</expan>
             </choice> et ille homo qui res uendiderit et exinde <choice>
@@ -946,24 +1085,29 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <expan>cartula</expan>
             </choice> scriptum <del>non</del>
             <lb/> fuerit in dublo qui acceperit restituad ;. <anchor
-               xml:id="mailand-ba-o-55-36r-8_3"/></ab>
+               xml:id="mailand-ba-o-55-36r-8_3"/>
+         </ab>
+
          <gap reason="editorial"/>
+
          <cb n="39v"/>
          <lb n="18"/>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-39v-5"
             corresp="BK.168_13_inscriptio"> . <seg type="num" n="41">XLI</seg> * <lb/>
          </ab>
-         <ab type="text" xml:id="mailand-ba-o-55-39v-6" corresp="BK.168_13"><seg type="initial"
-               rend="coloured">S</seg>i de una causa plures fideiusores dati fuerint <lb/> et unum
-            ex <choice>
+         <ab type="text" xml:id="mailand-ba-o-55-39v-6" corresp="BK.168_13">
+            <seg type="initial" rend="coloured">S</seg>i de una causa plures fideiusores dati
+            fuerint <lb/> et unum ex <choice>
                <abbr>ips</abbr>
                <expan>ipsis</expan>
-            </choice> fideiusoribus mortui fuerint ut <lb/>proinde causam <add>suam</add><metamark
+            </choice> fideiusoribus mortui fuerint ut <lb/> proinde causam <add>suam</add><metamark
                function="insertion"/> non perdat set per eos qui de illi fideiu<cb break="no"
                n="40r"/>soribus <add>qui</add> uiui <add>sunt</add> soluatur <choice>
                <abbr>q</abbr>
                <expan>quod</expan>
             </choice> promisi ;. </ab>
+
 
          <milestone unit="capitulare" n="BK.138"/>
 
@@ -972,10 +1116,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <seg type="numDenom">capitulum</seg> . <seg type="num" n="42">XLII</seg> . <lb/>
          </ab>
          <ab type="text" xml:id="mailand-ba-o-55-40r-2" corresp="BK.138_12">
-            <seg type="initial" rend="coloured">S</seg>ancitum<note type="editorial">Das letzte
-               Kapitel der Liste ist BK 138 c. 12, das hier nur der Vollständigkeit halber mit
-               transkribiert wurde, da BK 138 eine umfangreiche eigenständige Überlieferung
-               außerhalb des Liber Papiensis aufweist.</note> est de uillis nouis ecclesiis in eius
+            <seg type="initial" rend="coloured">S</seg>ancitum est de uillis nouis ecclesiis in eius
             nouiter con<lb break="no"/>stitutis ut decimas de <choice>
                <abbr>ips</abbr>
                <expan>ipsis</expan>
@@ -984,11 +1125,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-40r-3"><subst>
                <del>cap<gap/></del>
                <add>In nomine</add>
-            </subst> domini <rs type="person">lodoicus a deo <lb/>coronatus serenissimo . <choice>
-                  <abbr>aug</abbr>
-                  <expan>augusto</expan>
-               </choice></rs> omnibus abatibus<note type="editorial">Am oberen Ende des Schaftes von
-                  <mentioned>b</mentioned><hi rend="super">1</hi> ein kleiner Strich.</note>
+            </subst> domini <rs type="person">lodoicus</rs> a deo <lb/> coronatus serenissimo . <choice>
+               <abbr>aug</abbr>
+               <expan>augusto</expan>
+            </choice> omnibus abatibus<note type="editorial">Am oberen Ende des Schaftes von
+                     <mentioned>b<hi rend="super">1</hi></mentioned> ein kleiner Strich; evtl.
+               Kürzungsstrich für <mentioned>abba</mentioned>-.</note>
             <lb/> ducibus comitibus et cunctis fi<subst>
                <del/>
                <add>d</add>
@@ -996,24 +1138,27 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <choice>
                <abbr>cap</abbr>
                <expan>capitula</expan>
-            </choice> conposuit<note type="editorial">Über -<mentioned>t</mentioned> und dem
-               folgenden <mentioned>de</mentioned> eine Rasur, oder nur verwischte Tinte?</note> de
-            causis oportunis <lb/>ec sunt </ab>
-         <milestone unit="capitulare" n="BK.168"/>
+            </choice> conposuit de causis oportunis <lb/> ec sunt ;. </ab>
+
          <gap reason="editorial"/>
+
          <cb n="52r"/>
          <lb n="10"/>
+
+
+         <milestone unit="capitulare" n="BK.168_1"/>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-52r-5"
             corresp="BK.168_1_inscriptio"><seg type="numDenom">capitulum</seg> . <seg type="num"
                n="51">LI</seg> . <lb/>
          </ab>
-         <ab type="text" xml:id="mailand-ba-o-55-52r-6" corresp="BK.168_1"><seg type="initial"
-               rend="coloured">V</seg>t omnis ordo ecclesiarum <subst>
+         <ab type="text" xml:id="mailand-ba-o-55-52r-6" corresp="BK.168_1">
+            <seg type="initial" rend="coloured">V</seg>t omnis ordo ecclesiarum <subst>
                <del>uiua</del>
                <add>secundum</add>
             </subst><note type="editorial">gek. <mentioned>scdm</mentioned>, korr. aus
-                  <mentioned>uiua-</mentioned></note>
-            <rs>legem romana</rs> uiuant <lb/>et sic inquiratur et defenda<add>n</add>tur res
+                  <mentioned>uiua-</mentioned>.</note>
+            <rs>legem romana</rs> uiuant <lb/> et sic inquiratur et defenda<add>n</add>tur res
             ecclesiastice ut per <lb/>
             <subst>
                <del/>
@@ -1021,34 +1166,43 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             </subst>ussin unde <sic>dannum</sic> ecclesie patitur non ob<lb break="no"/>seruetur
             secundum <rs>legem romana</rs> distruantur et pena non soluantur ;. <lb/>
          </ab>
+
          <gap reason="editorial"/>
+
          <lb n="20"/>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-52r-9"
             corresp="BK.168_2_inscriptio"><seg type="numDenom">capitulum</seg> . <seg type="num"
                n="53">LIII</seg> . <cb n="52v"/>
          </ab>
-         <ab type="text" xml:id="mailand-ba-o-55-52v-1" corresp="BK.168_2"><seg type="initial"
-               rend="coloured">P</seg>lacuit nobis de <del unit="chars" quantity="1"/>ilis ominibus
-            qui liberi per <hi rend="coloured">XXX</hi> . <del>annos</del><note type="editorial"
-               >folgt getilgtes <mentioned>annos</mentioned> (vor Zeilenwechsel)</note>
-            <lb/> annos esse dicunt uolumus atque instituimus ut per anc <lb/>posexionem si liberi
-            non xint ni<add>si</add> de ingenuo patre <lb/>aut matre nati sunt aut cartam libertatis
-               <del>osten</del> ostendant ;. <lb/>
+         <ab type="text" xml:id="mailand-ba-o-55-52v-1" corresp="BK.168_2">
+            <seg type="initial" rend="coloured">P</seg>lacuit nobis de <del unit="chars"
+               quantity="1"/>ilis ominibus qui liberi per <hi rend="coloured">XXX</hi> .
+               <del>annos</del><note type="editorial">folgt getilgtes <mentioned>annos</mentioned>
+               (vor Zeilenwechsel).</note>
+            <lb/> annos esse dicunt uolumus atque instituimus ut per anc <lb/> posexionem si liberi
+            non xint ni<add>si</add> de ingenuo patre <lb/> aut matre nati sunt aut cartam
+            libertatis <del>osten</del> ostendant ;. <lb/>
          </ab>
 
          <gap reason="editorial"/>
+
          <cb n="53r"/>
          <lb n="16"/>
 
-         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-53r-5"><choice>
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-53r-5"
+            corresp="BK.158_inscriptio"><choice>
                <abbr>cap</abbr>
                <expan>capitula</expan>
             </choice>
-            <expan>que</expan>
-            <rs type="person">domnus <lb/>lotarius inperator</rs> anno imperii sui <sic>coaces</sic>
-            in italia generale placitum <rs type="place">curte olonna</rs> . <lb/></ab>
+            <expan>que</expan> domnus <lb/>
+            <rs type="person">lotarius</rs> inperator <date>anno imperii sui <sic>coaces</sic> in
+                  <rs type="place">italia</rs></date> generale placitum <rs type="place">curte
+               olonna</rs> ;. <lb/>
+         </ab>
 
          <gap reason="editorial"/>
+
          <cb n="68r"/>
          <lb n="19"/>
 
@@ -1057,39 +1211,46 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <seg type="num" n="79">LXXVIIII</seg> . <lb/>
          </ab>
          <ab type="text" xml:id="mailand-ba-o-55-68r-4" corresp="BK.168_3"
-            next="#mailand-ba-o-55-68v-2"><seg type="initial" rend="coloured">U</seg>olumus ut si
-            quislibet personis <rs type="place">in finibus regni nostri</rs>
+            next="#mailand-ba-o-55-68v-2">
+            <seg type="initial" rend="coloured">U</seg>olumus ut si quislibet personis <rs
+               type="place">in finibus regni nostri</rs>
             <subst>
                <del>ige</del>
                <add>ignem</add>
-            </subst> per <lb/>siluam conui<subst>
+            </subst> per <lb/> siluam conui<subst>
                <del/>
                <add>v</add>
             </subst>are ausu<unclear>s</unclear> fuerit diligenter inquiratur et si
                <add>seruus</add>
             <cb n="68v"/>
-            <expan>comprobat<unclear>us</unclear></expan> fuerit hoc feciset aut dominus eius a flagel<subst>
+            <expan>conprobat<unclear>us</unclear></expan> fuerit hoc feciset aut dominus eius a flagel<subst>
                <del>e</del>
                <add>a</add>
-            </subst>n<gap unit="chars" quantity="2"/>
+            </subst>n<unclear>dum</unclear>
             <lb/> et capite tundendum tradat aut pro eo <choice>
                <abbr>qqt</abbr>
                <expan>quicquit</expan>
             </choice> damni<lb break="no"/>etas fecit emendare cogatur ;. </ab>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-68v-1"
             corresp="BK.168_3_inscriptio"><seg type="numDenom">capitulum</seg>
             <seg type="num" n="80">LXXX</seg>
             <lb/>
          </ab>
          <ab type="text" xml:id="mailand-ba-o-55-68v-2" corresp="BK.168_3"
-            prev="#mailand-ba-o-55-68r-4"><seg type="initial" rend="coloured">S</seg>i quoque libera
-            persona hoc feci<add>s</add>se probatus fuerit pe<lb break="no"/>nitus emendare cogatur
-            et insuper bannum nostrum <choice>
+            prev="#mailand-ba-o-55-68r-4">
+            <seg type="initial" rend="coloured">S</seg>i quoque libera persona hoc
+            feci<add>s</add>se probatus fuerit pe<lb break="no"/>nitus emendare cogatur et insuper
+            bannum <choice>
+               <abbr>nru</abbr>
+               <expan>nostrum</expan>
+            </choice>
+            <choice>
                <abbr>cop</abbr>
-               <expan>componat</expan>
-            </choice> et <lb/>si non abuerit unde <choice>
+               <expan>conponat</expan>
+            </choice> et <lb/> si non abuerit unde <choice>
                <abbr>cop</abbr>
-               <expan>componat</expan>
+               <expan>conponat</expan>
             </choice> flagelletur quod si factum fue<lb break="no"/>rit per meliores loci illius
             inquiratur si in qualibet <lb/> persona suspeccio fuerit si seruus est aut a<add>d</add>
                iudi<lb break="no"/>cium dominus eius mittat aut ipse pro eo sacramentum faciad <lb/>
@@ -1098,111 +1259,125 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <expan>quod</expan>
             </choice> si libera persona fuerit proprium sacramentum se idone<lb break="no"/>um
             redead ;. </ab>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-68v-3"
             corresp="BK.168_4_inscriptio"><seg type="numDenom">capitulum</seg>
             <seg type="num" n="81">LXXXI</seg>
             <lb/>
          </ab>
-         <ab type="text" xml:id="mailand-ba-o-55-68v-4" corresp="BK.168_4"><seg type="initial"
-               rend="coloured">A</seg>uditum comperimus<note type="editorial">Über dem Wort die
-               Glosse <mentioned>id est ...[a]mus</mentioned>.</note>
-            <rs type="place">In finibus tusie</rs> tali<unclear>a</unclear> scrip<lb break="no"/>ta
-            esse prolata<note type="editorial">Über dem Wort die Glosse: <mentioned>[id est
-                  pro]nunciata</mentioned></note>
-            <expan>que</expan> adque mense et die mens<add>em</add><note type="editorial">gek.
-                  <mentioned>mse</mentioned>, e ergänzt.</note> de quibus uo<lb break="no"/>lumus ut
-            si <sic>deimceps</sic> prolata fuerint nullum abead uigorem ;. <lb/>
+         <ab type="text" xml:id="mailand-ba-o-55-68v-4" corresp="BK.168_4" rend="glossa">
+            <seg type="initial" rend="coloured">A</seg>uditum comperimus<note type="editorial"> Über
+               dem Wort die Glosse <mentioned>id est (e)...(a)mus</mentioned>.</note>
+            <rs type="place">In finibus tusie</rs> tali<unclear>e</unclear> scrip<lb break="no"/>ta
+            esse prolata<note type="editorial">Über dem Wort die Glosse <mentioned>(id est)
+                  nunciata</mentioned>.</note>
+            <expan>que</expan> adque mense et die mens<subst>
+               <del>is</del>
+               <add>em</add>
+            </subst> de quibus uo<lb break="no"/>lumus ut si <sic>deimceps</sic> prolata fuerint
+            nullum abead uigorem ;. <lb/>
          </ab>
 
+
          <milestone unit="capitulare" n="BK.208"/>
-         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-68v-5"
+
+         <ab type="meta-text" rend="coloured glossa" xml:id="mailand-ba-o-55-68v-5"
             corresp="BK.208_inscriptio"> . <seg type="num" n="82">LXXXII</seg> . </ab>
-         <ab type="text" xml:id="mailand-ba-o-55-68v-6" corresp="BK.208"><sic><seg type="initial"
-                  rend="coloured">V</seg>et</sic> is personis <choice>
+         <ab type="text" xml:id="mailand-ba-o-55-68v-6" corresp="BK.208">
+            <sic><seg type="initial" rend="coloured">V</seg>et</sic> is personis <choice>
                <abbr>q</abbr>
                <expan>qui</expan>
             </choice> res suas ideo <lb/> i<mod>n</mod> a<add>l</add>teram partem personam
                delegunt<note type="editorial">Über dem Wort die Glosse <mentioned>id est
-                  ...[a]dient</mentioned></note> ut a platitum ue<lb break="no"/>nire non
-               <expan>compellantur</expan><note type="editorial">Über dem Wort die Glosse
-                  <mentioned>id est ...[ni]ant</mentioned>.</note> ut mala <expan>que</expan> facta
+                  ...(a)dient</mentioned></note> ut a platitum ue<lb break="no"/>nire non
+               <expan>conpellantur</expan><note type="editorial">Über dem Wort die Glosse
+                  <mentioned>id est ...niant</mentioned>.</note> ut mala <expan>que</expan> facta
             abent non emendent <lb/>
             <unclear>quodsi</unclear> aparuerit ideo delegasent nec iusticiam fa<lb break="no"
             />cerent uolumus ut ipsas res in bannum mittantur quod <lb/>
-            <sic><choice>
-                  <abbr>uq</abbr>
-                  <expan>uque</expan>
-               </choice></sic> illi<note type="editorial">Über <mentioned>uque illi</mentioned> eine
-               unleserliche Glosse (<mentioned>...tum</mentioned>?)</note> qui eas abent a
-               doctor<unclear>em</unclear> a placitum ad<lb break="no"/>ducant et isdem malefactor
-            iusticiam facia<unclear>nt</unclear>
+            <sic>uque</sic> illi<note type="editorial">Über <mentioned>uque illi</mentioned> eine
+               unleserliche Glosse (<mentioned>...(a)ntum</mentioned>?).</note> qui eas abent a
+            doctorem a placitum ad<lb break="no"/>ducant et isdem malefactor iusticiam
+               facia<unclear>nt ;. </unclear>
          </ab>
+
          <gap reason="editorial"/>
+
          <cb n="71r"/>
          <lb n="9"/>
 
+
          <milestone unit="capitulare" n="BK.219"/>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-71r-1"
-            corresp="BK.219_1_inscriptio"><seg type="numDenom">capitulum </seg><seg type="num"
-               n="97">XCVII</seg> . </ab>
-         <ab type="text" rend="glossa nota" xml:id="mailand-ba-o-55-71r-2" corresp="BK.219_1"><seg
-               type="initial" rend="coloured">D</seg>e<note type="editorial">Am Rand auf Höhe des
+            corresp="BK.219_1_inscriptio"><seg type="numDenom">capitulum </seg>
+            <seg type="num" n="97">XCVII</seg> . </ab>
+         <ab type="text" rend="glossa nota" xml:id="mailand-ba-o-55-71r-2" corresp="BK.219_1">
+            <seg type="initial" rend="coloured">D</seg>e<note type="editorial">Am Rand auf Höhe des
                Kapitelbeginns die Notiz <mentioned>non sunt in ceteris</mentioned> und, etwas weiter
-               unten, ein Nota-Zeichen bzw. ein gekürztes
-                  <mentioned>n</mentioned>(<mentioned>on</mentioned>).</note> is uero personis qui
-               <sic>apsque</sic> senioribus per <lb/> diuersa loca moram et
-               <expan>predaciones</expan> faciunt ministri <lb/>rei publici eos
-                  <sic><expan>compreendere</expan></sic> et ad nostra <expan>presenciam</expan>
-               duce<lb break="no"/>re studeam . <hi rend="coloured">S</hi>i quis se defendere
-            uoluerit et ibi<lb break="no"/>dem interfectus fuerit <choice>
+               unten, ein Nota-Zeichen bzw. ein gekürztes <mentioned>non</mentioned>. </note> is
+            uero personis qui apsque senioribus per <lb/> diuersa loca moram et
+               <expan>predaciones</expan> faciunt ministri <lb/> rei publici eos
+               <expan>conpreendere</expan> et ad nostra <expan>presenciam</expan> duce<lb break="no"
+            />re <choice>
+               <abbr>studea</abbr>
+               <expan>studeam</expan>
+            </choice> . <hi rend="coloured">S</hi>i quis se defendere uoluerit et ibi<lb break="no"
+            />dem interfectus fuerit <choice>
                <abbr>icpsitos</abbr>
-               <expan>incompositos</expan>
+               <expan>inconpositos</expan>
             </choice> iacead ;. </ab>
-         <milestone unit="capitulare" n="BK.168_1"/>
+
+
+         <milestone unit="capitulare" n="BK.168_2"/>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-71r-3"
             corresp="BK.168_5_inscriptio"><seg type="num" n="98">XCVIII</seg>
-            <lb/></ab>
-         <ab type="text" xml:id="mailand-ba-o-55-71r-4" corresp="BK.168_5"><seg type="initial"
-               rend="coloured">D</seg>e notarius qui <choice>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-71r-4" corresp="BK.168_5">
+            <seg type="initial" rend="coloured">D</seg>e notarius qui <choice>
                <abbr>carls</abbr>
                <expan>cartulas</expan>
-            </choice> accipiant ad scribendum si eas <lb/>non sc<mod>r</mod>ipserat aut si eas perdidera<subst>
+            </choice> accipiant ad scribendum si eas <lb/> non sc<mod>r</mod>ipserat aut si eas perdidera<subst>
                <del>s</del>
                <add>t</add>
-            </subst> restoras ipsas res <lb/>cuius ipsas <choice>
+            </subst>
+            <sic>restoras</sic> ipsas res <lb/> cuius ipsas <choice>
                <abbr>carls</abbr>
                <expan>cartulas</expan>
             </choice> eis tradite non fuiset iuret cum . <hi rend="coloured">XII</hi> ;. <lb/>
          </ab>
 
+
          <milestone unit="capitulare" n="BK.88"/>
-         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-71r-5"
+
+         <ab type="meta-text" rend="coloured nota" xml:id="mailand-ba-o-55-71r-5"
             corresp="BK.88_4_inscriptio"> . <seg type="num" n="99">XCVIIII</seg> . </ab>
          <ab type="text" xml:id="mailand-ba-o-55-71r-6" corresp="BK.88_4"
-            next="#mailand-ba-o-55-71v-1_1"><seg type="initial" rend="coloured">E</seg>t hoc damus
-            in mandatis ut <expan>quicumque</expan><note type="editorial">gek.
-                  <mentioned>qcuq</mentioned> ohne erkennbaren Kürzungsstrich</note> homo * <lb/> ab
-            ac <expan>presenti</expan> dię . <date>XX . die <choice>
+            next="#mailand-ba-o-55-71v-1_1">
+            <seg type="initial" rend="coloured">E</seg>t hoc damus in mandatis ut quicumque homo *
+            <lb/> ab ac <expan>presenti</expan> dię . <date>XX . die <choice>
                   <abbr>ms</abbr>
                   <expan>mensis</expan>
                </choice> februarii</date> res uenun<lb break="no"/>dare aut alienare uoluerit in
-            omnibus eorum perma<mod>ne</mod>ad <lb/> potestatem ta<add>n</add>tum<note
-               type="editorial"><mentioned>n</mentioned> ergänzt, obwohl bereits ein Nasalstrich
-               über <mentioned>a</mentioned> vorhanden war</note> sic faciad sicut lex eorum fuerit
-            ;. </ab>
+            omnibus eorum perma<mod>ne</mod>ad <lb/> potestatem tantum<note type="editorial">Über
+                  <mentioned>tan-</mentioned> (gek. <mentioned>ta</mentioned> mit Kürzungsstrich)
+                  <mentioned>n</mentioned> übergeschrieben; wohl zur Verdeutlichung</note> sic
+            faciad sicut lex eorum fuerit ;. </ab>
+
          <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-71r-7"
-            corresp="BK.88_4_inscriptio"><seg type="num" n="100">C</seg> . <cb n="71v"/>
+            corresp="BK.88_4_inscriptio"> . <seg type="num" n="100">C</seg> . <cb n="71v"/>
          </ab>
-         <ab type="text" rend="nota" xml:id="mailand-ba-o-55-71v-1" corresp="BK.88_4 BK.88_epilog"
-               ><milestone unit="span" xml:id="mailand-ba-o-55-71v-1_1" corresp="BK.88_4"
-               spanTo="#mailand-ba-o-55-71v-1_2" prev="#mailand-ba-o-55-71r-6"/><seg type="initial"
-               rend="coloured">D</seg>e<note type="editorial">Am Rand auf Höhe des Kapitelbeginns
-               ein Nota-Zeichen bzw. ein gekürztes
-                  <mentioned>n</mentioned>(<mentioned>on</mentioned>).</note> donacione uel
-            uindiccione <expan>que</expan> in loca uenaerabilia <lb/>facta sunt suspendi iuximus dum
-            enim <expan>compensauerimus</expan> in sino<lb break="no"/>dum cum episcopis et
-            comitibus comodo fieri debeant et oc iu<lb break="no"/>bemus ut illis partibus iustum
-            procedant iudicium ubi <lb/>nos aut nostris <sic>austes</sic> ut fueri<subst>
+         <ab type="text" rend="nota" xml:id="mailand-ba-o-55-71v-1" corresp="BK.88_4 BK.88_epilog">
+            <milestone unit="span" xml:id="mailand-ba-o-55-71v-1_1" corresp="BK.88_4"
+               spanTo="#mailand-ba-o-55-71v-1_2" prev="#mailand-ba-o-55-71r-6"/>
+            <seg type="initial" rend="coloured">D</seg>e<note type="editorial">Am Rand auf Höhe des
+               Kapitelbeginns ein Nota-Zeichen bzw. ein gekürztes <mentioned>non</mentioned>.</note>
+            donacione uel uindiccione <expan>que</expan> in loca uenaerabilia <lb/> facta sunt
+            suspendi iuximus dum enim <expan>conpensauerimus</expan> in sino<lb break="no"/>dum cum
+            episcopis et comitibus comodo fieri debeant et oc iu<lb break="no"/>bemus ut illis
+            partibus iustum procedant iudicium ubi <lb/> nos aut nostris <sic>austes</sic> ut fueri<subst>
                <del/>
                <add>mus</add>
             </subst> pro illut <choice>
@@ -1212,7 +1387,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <choice>
                <abbr>sstu</abbr>
                <expan>suprascriptum</expan>
-            </choice> est et oc <lb/>statuimus ut <choice>
+            </choice> est et oc <lb/> statuimus ut <choice>
                <abbr>carls</abbr>
                <expan>cartulas</expan>
             </choice> illas <expan>que</expan> in <choice>
@@ -1221,16 +1396,621 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             </choice>
             <rs type="person">desiderio</rs> facte <lb/>fuerint per districcionis famis aut per
                <expan>qualecumque</expan> in<lb break="no"/>genio ut ista causa non
-               <expan>computetur</expan> et iusta lege ipsorum <lb/>exinde procedat iudicium .
-               <anchor xml:id="mailand-ba-o-55-71v-1_2"/><milestone unit="span"
-               corresp="BK.88_epilog" spanTo="#mailand-ba-o-55-71v-1_3"/><hi rend="coloured"
-            >V</hi>nde qualiter nobis <expan>complacu<lb break="no"/>it</expan>
-            <expan>presenti</expan> deliberacione noticia pro amputandam <lb/>si intenciones fieri
-            iuximus et nobis relegere feci<lb break="no"/>mus et uolumus ut sicut procedat iudicium
-            si facta no<lb break="no"/>ticia <date>anno <choice>
+               <expan>conputetur</expan> et iusta lege ipsorum <lb/> exinde procedat iudicium .
+               <anchor xml:id="mailand-ba-o-55-71v-1_2"/>
+            <milestone unit="span" corresp="BK.88_epilog" spanTo="#mailand-ba-o-55-71v-1_3"/>
+            <hi rend="coloured">V</hi>nde <choice>
+               <abbr>qual</abbr>
+               <expan>qualiter</expan>
+            </choice> nobis <expan>conplacu<lb break="no"/>it</expan>
+            <expan>presenti</expan> deliberacione noticia pro amputandam <lb/> si intenciones fieri
+            iuximus et nobis relegere feci<lb break="no"/>mus et <subst>
+               <del>n</del>
+               <add>u</add>
+            </subst>olumus ut sicut procedat iudicium si facta no<lb break="no"/>ticia <date>anno <choice>
                   <abbr>donor</abbr>
                   <expan><hi rend="coloured">d</hi>ominorum</expan>
-               </choice> nostrorum tercio</date> ;. <anchor xml:id="mailand-ba-o-55-71v-1_3"/></ab>
+               </choice> nostrorum tercio</date> ;. <anchor xml:id="mailand-ba-o-55-71v-1_3"/>
+         </ab>
+
+         <gap reason="editorial"/>
+
+         <cb n="72r"/>
+         <lb n="3"/>
+
+         <milestone unit="capitulare" n="BK.224"/>
+
+         <ab type="meta-text" rend="coloured glossa" xml:id="mailand-ba-o-55-72r-1"
+            corresp="BK.224_inscriptio">incipit<note type="editorial">Am Rand auf Höhe des Beginns
+               von BK 224 steht die vom Schreiber selbst stammende Glosse <mentioned>hic debet esse
+                  II loduicus filius ip(sius) lotherius</mentioned>.</note>
+            <choice>
+               <abbr>cap</abbr>
+               <expan>capitula</expan>
+            </choice>
+            <choice>
+               <abbr>q</abbr>
+               <expan>que</expan>
+            </choice> dommnus <rs type="person">uuido</rs>
+            <lb/> imperator adit in <date><choice>
+                  <abbr>kl</abbr>
+                  <expan>kalendas</expan>
+               </choice> madias</date>
+            <choice>
+               <abbr>ciute</abbr>
+               <expan>ciuitate</expan>
+            </choice>
+            <rs type="place">ticinense</rs>
+            <date>ano imperi primo <choice>
+                  <abbr>idic</abbr>
+                  <expan>indictione</expan>
+               </choice> . IIII . </date></ab>
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-72r-2"
+            corresp="BK.224_1_inscriptio">
+            <seg type="numDenom">capitulum</seg> . <seg type="num" n="1">I</seg> ;. <lb/>
+         </ab>
+
+         <ab type="text" xml:id="mailand-ba-o-55-72r-3" corresp="BK.224_1">
+            <seg type="initial" rend="coloured">P</seg>lacuit nobis eciam<note type="editorial">Über
+               dem Wort eine unleserliche, durchgestrichene Glossierung (<mentioned>id est
+                  st...uere</mentioned>?).</note> sumopere . <mod>quod</mod> statuęre<note
+               type="editorial">Über dem Wort eine unleserliche Glossierung (<mentioned>statue...
+                  maior abe...et studium</mentioned>?).</note> ut <lb/> episcopi et <choice>
+               <abbr>coms</abbr>
+               <expan>comites</expan>
+            </choice> uniti<note type="editorial">Über dem Wort die Glosse <mentioned>id est uno
+                  ordo</mentioned>.</note> sint in suis <sic>parachiis</sic> et comitati<lb
+               break="no"/>bus<note type="editorial">Über <mentioned>parachiis et
+                  comitatibus</mentioned> die Glosse <mentioned>scilicet comitibus episcop(alis)
+               </mentioned>.</note> pro pace et saluacione in omnibus onoribus suis abi<lb
+               break="no"/>tantibus ita ut nullum <expan>predonem</expan> reptorem uel inceptu<note
+               type="editorial">Über dem Wort die Glosse <mentioned>id est
+               adulterium</mentioned>.</note>
+            <lb/> permittant<note type="editorial">Über dem Wort die Glosse <mentioned>id est
+                  concedat</mentioned>.</note> morari<note type="editorial">Über dem Wort die Glosse
+                  <mentioned>id est moram facere</mentioned>.</note> in suis sedibus uel <choice>
+               <abbr>ccess</abbr>
+               <expan>concessis</expan>
+            </choice> onoribus et <lb/> si intellexierint ex alia parte per ęorum
+               termin<add>o</add><note type="editorial">Über dem Wort die Glosse <mentioned>id est
+                  finis</mentioned>.</note> uelle<add>ant</add><metamark function="insertion"/> aut
+            <lb/> debere tranxire<note type="editorial">Über dem Wort die Glosse <mentioned>id est
+                  exstraneos</mentioned>.</note>
+            <subst>
+               <del/>
+               <add>et ceteros</add>
+            </subst><note type="editorial">Über dem Wort die Glosse <mentioned>scilicet
+                  ominibus</mentioned>.</note>
+            <hi rend="coloured">I</hi>stius regni uastatores<note type="editorial">Neben dem Wort am
+               Rand die Glosse <mentioned>id est contrarios</mentioned>.</note>
+            <lb/>
+            <sic>ouiam</sic> eis misos comunitorios<note type="editorial">Über dem Wort die Glosse
+                  <mentioned>id est comuno</mentioned>.</note> dirigant ut pa<add>ci</add>fice <lb/>
+            sine <expan>preda</expan> per eorum transeant terram uendere autem eis
+               <expan>que</expan>
+            <lb/> necessaria sunt faciant non plus<note type="editorial"> Über dem Wort die Glosse
+                  <mentioned>scilicet uendat</mentioned>.</note> carum se secundum usum<note
+               type="editorial">Über <mentioned>secundum usum</mentioned> eine Rasur.</note> et
+            <lb/> consuetudinem terre si uero noluerint aquiexere<note type="editorial">Über dem
+               Wort die Glosse <mentioned>id est credere</mentioned>.</note> set <expan>pre<lb
+                  break="no"/>das</expan> et rapinas exercuerint<note type="editorial">Über dem Wort
+               die Glosse <mentioned>id est fece...</mentioned>.</note> quicquit alteri rapue<lb
+               break="no"/>rint <choice>
+               <abbr>legal</abbr>
+               <expan>legaliter</expan>
+            </choice> cum banno nostro ad episcopo et comite eiusdem <lb/> loci emendare cogatur
+               quodsi<note type="editorial">Gek. <mentioned>qsi.</mentioned>, zwischen
+                  <mentioned>q</mentioned> und <mentioned>si</mentioned>, wohl zur Verdeutlichung,
+               ein <mentioned>d</mentioned> übergeschrieben.</note> exequi<note type="editorial"
+               >Über dem Wort die Glosse <mentioned>id est credere</mentioned>.</note> noluerint
+               <sic>statiim</sic>
+            <lb/> ab episcopo excomunicentur postea uero si <sic>contingnerit</sic>
+            <lb/> ut <choice>
+               <abbr>coms</abbr>
+               <expan>comes</expan>
+            </choice> loci populusque terre set per <subst>
+               <del/>
+               <add>ip</add>
+            </subst>sos <expan>predores</expan> uenerint <cb n="72v"/> et eos
+               <expan>impedierint</expan> et mortui fuerint <expan>precipimus</expan>
+            <del>nec f<gap unit="chars" quantity="2"/><lb break="no"/>da inde precimus</del> nec
+            faida inde crescat neque conpo<lb break="no"/>sicio aliquando<note type="editorial">Über
+               dem Wort die Glosse <mentioned>scilicet tempore</mentioned>.</note>
+               requi<add>re</add>tur pro is qui ibidem ocubuerit<note type="editorial">Über dem Wort
+               eine unleserliche Glosse (<mentioned>id est oci...rit</mentioned>?).</note>
+            <lb/> et si <choice>
+               <abbr>coms</abbr>
+               <expan>comes</expan>
+            </choice> eiusdem loci . hoc adinplere necglexerit <lb/> proprio honore
+               priue<del>ni</del>tur et si oportuerit<note type="editorial">Über dem Wort die Glosse
+                  <mentioned>id est euenerit</mentioned>(?)</note> et necese<note type="editorial"
+               >Über dem Wort die Glosse <mentioned>id est opus</mentioned>.</note>
+            <lb/> fuerit aut in suo auxilio<note type="editorial">Über dem Wort die Glosse
+                  <mentioned>id est aiutorio</mentioned>.</note> uicinu <sic>auocem<note
+                  type="editorial">Über den Worten <mentioned>uicinu auocem</mentioned> die Glosse
+                     <mentioned>scilicet uicinum comes</mentioned>.</note></sic>
+            <choice>
+               <abbr>coms</abbr>
+               <expan>comes</expan>
+            </choice> et il<lb break="no"/>le<note type="editorial">Am Rand auf Höhe der Zeile, die
+               mit diesem Wort (-<mentioned>le</mentioned> nach Zeilenwechsel) beginnt, ein
+                  <mentioned>s.</mentioned> (<mentioned>scilicet</mentioned>?).</note>
+            <add>si</add><metamark function="insertion"/> se su<add>b</add>traxerit . <choice>
+               <abbr>simil</abbr>
+               <expan>similiter</expan>
+            </choice> proprio hon<mod>or</mod>e<note type="editorial">Über
+                  -<mentioned>or</mentioned>- ein radiertes Zeichen.</note> priuetur et in<lb
+               break="no"/>super XXX libras argenti <add>comiti cui denegauit osilium</add><metamark
+               function="insertion"/><note type="editorial"><mentioned>comiti - osilium</mentioned>
+               ergänzt; es folgt eine unleserliche Glosse (<mentioned>id est
+               a...</mentioned>?).</note> persoluat ;. </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-72v-1"
+            corresp="BK.224_2_inscriptio"><seg type="numDenom">capitulum</seg> . <seg type="num"
+               n="2">II</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-72v-2" corresp="BK.224_2">
+            <expan><seg type="initial" rend="coloured">Q</seg>uicumque</expan> igitur ex laicali
+            ordine tam liberi quam <lb/> serui homines in comitatu cummanentes a proprio <lb/>
+            comites uel a <expan>conpublica</expan> partes <choice>
+               <abbr>ite</abbr>
+               <expan>it est</expan>
+            </choice> ab eis qui rem <lb/> publicam agunt amoniti fuerint si se
+               <mod>s</mod>ubtraxe<lb break="no"/>rint a<mod>b</mod> aiutorio suo propri<subst>
+               <del>i</del>
+               <add>o</add>
+            </subst> comite et eum non aiuuaue<lb break="no"/>rint infra ipsum comitatum contra
+            superuenientes <expan>pre<lb break="no"/>dones</expan> in suo comitatu liberi terciam
+            partem ex suis <lb/> mobilibus <choice>
+               <abbr>cop</abbr>
+               <expan>conponant</expan>
+            </choice> serui autem . <hi rend="coloured">LX</hi> . ictos uapuletur si ta<lb
+               break="no"/>men probatum fuerit <choice>
+               <abbr>q</abbr>
+               <expan>quod</expan>
+            </choice> at <choice>
+               <abbr>ips</abbr>
+               <expan>ipsis</expan>
+            </choice> denunciatum fuiset ;. </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-72v-3"
+            corresp="BK.224_3_inscriptio"><seg type="num" n="3">III</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-72v-4" rend="glossa" corresp="BK.224_3">
+            <seg type="initial" rend="coloured">N</seg>eque <choice>
+               <abbr>coms</abbr>
+               <expan>comes</expan>
+            </choice> neque l<subst>
+               <del/>
+               <add>oco</add>
+            </subst>prepositus eius neque sc<subst>
+               <del><gap unit="chars" quantity="1"/>udat</del>
+               <add>luldas</add>
+            </subst>cius <lb/> ab ariman<mod>nis</mod> suis aliquit per <sic>euim</sic> exigat
+               <expan>preter</expan><note type="editorial"> Über dem Wort die Glosse <mentioned>id
+                  est anteposito</mentioned></note> quod <lb/> in legibus constitutum est set neque
+            per suam forciam in <cb n="73r"/> manxionem arimanni sui <choice>
+               <abbr>aplicet</abbr>
+               <expan>amplicet</expan>
+            </choice><note type="editorial">gek. <mentioned>aplicet</mentioned>. Über dem Wort die
+               Glosse <mentioned>id est albergat</mentioned>.</note> aut placitum <lb/> tenead aut
+            aliquam uiolenciam faciant si uero de <lb/>
+            <expan>predictis</expan> personis publicis oc irritum fecerit<note type="editorial">Über
+               den beiden Worten die Glosse <mentioned>id est rumptum fecit</mentioned>.</note>
+               ono<lb break="no"/>r<mod>e</mod> proprio siue misterio <expan>preuetur</expan><note
+               type="editorial">Über dem Wort die Glosse <mentioned>id est
+               tolletur</mentioned>(?).</note> secundum legem emendet ;. </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-73r-1"
+            corresp="BK.224_4_inscriptio"> . <seg type="num" n="4">IIII</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-73r-2" rend="glossa" corresp="BK.224_4">
+            <seg type="initial" rend="coloured">S</seg>i igitur<note type="editorial">Über dem Wort
+               die Glosse <mentioned>id est certe</mentioned>(?).</note> ex <expan>precepto</expan>
+               imperiali<note type="editorial">Über dem Wort die Glosse <mentioned>id est
+                  comendamento</mentioned>(?).</note>
+            <choice>
+               <abbr>coms</abbr>
+               <expan>comes</expan>
+            </choice> loci a defenxio<lb break="no"/>ne patrie<note type="editorial">Über dem Wort
+               die Glosse <mentioned>(id est) regnum</mentioned>.</note> siue su<subst>
+               <del>i</del>
+               <add>os</add>
+            </subst> arimannos <choice>
+               <abbr>ostil</abbr>
+               <expan>ostiliter</expan>
+            </choice> properare<note type="editorial">Über dem Wort die Glosse <mentioned>id est
+                  ambulare</mentioned>.</note>
+            <lb/> monuerit aut per se aut per suum misum <add hand="X">si</add>
+            <choice>
+               <abbr>aliq</abbr>
+               <expan><hi rend="coloured">a</hi>liquis</expan>
+            </choice> eorum reman<lb break="no"/>serit exepto is<note type="editorial">Über dem Wort
+               eine unleserliche Glosse (<mentioned>id est ...)</mentioned>.</note> quos episcopus
+            eligerit necexitate aut <lb/>
+            <choice>
+               <abbr>coms</abbr>
+               <expan>comes</expan>
+            </choice> dimittere uoluerit nisi aliquod sunnis et cet<mod>e</mod>ris <lb/>
+            <expan>inpedimentis</expan> qui le<unclear>i</unclear>bus continetur detentus fuerit
+               uuid<unclear>eri</unclear><lb break="no"/>gild s<unclear>uo</unclear>s <choice>
+               <abbr>cop</abbr>
+               <expan>conponat</expan>
+            </choice> et hoc nullus <choice>
+               <abbr>coms</abbr>
+               <expan>comes</expan>
+            </choice> a<add hand="X">ut</add> public<mod>am</mod><note type="editorial">am Wortende
+               eine unklare Korrektur von anderer Hand; korr. zu <mentioned>publicam ex</mentioned>
+               oder zu <mentioned>publicarum</mentioned>?</note> pote<lb break="no"
+               /><unclear>st</unclear>atem abead exiendum<note type="editorial">Über dem Wort die
+               Glosse <mentioned>id est exquirendi</mentioned>(?).</note> nisi cum misso de palacio <choice>
+               <abbr>ipirs</abbr>
+               <expan>impiratoris</expan>
+            </choice> ;. <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-73r-3"
+            corresp="BK.224_5_inscriptio"><seg type="numDenom">capitulum</seg> . <seg type="num"
+               n="5">V</seg> . </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-73r-4" corresp="BK.224_5">
+            <seg type="initial" rend="coloured">D</seg>e cartis uero interdicimur<note
+               type="editorial">Über dem Wort eine unleserliche Glosse (<mentioned>id est
+                  uetamus</mentioned>?).</note> nemini<note type="editorial">Über dem Wort die
+               Glosse <mentioned>id est nullis omine</mentioned> oder <mentioned>id est nulli
+                  scilicet omini</mentioned>.</note> licead . <lb/> alienas res
+               <expan>presumtiue</expan><note type="editorial">Über dem Wort eine unleserliche
+               Glosse oder Korrektur (<mentioned>p...s...tiue</mentioned>?).</note> inuadere
+            occasionem <choice>
+               <abbr>carl</abbr>
+               <expan>cartula</expan>
+            </choice> a<lb break="no"/>b eo facta qui uestituram legitimam non abes
+                  <sic>d<mod>e</mod>gnositur<note type="editorial"> Über dem Wort die Glosse
+                     <mentioned>cogosit(ur)</mentioned>(?).</note></sic>
+            <lb/>
+            <choice>
+               <abbr>iuasiset</abbr>
+               <expan>inuassiset</expan>
+            </choice> set si quis aquisitores exstiterit non antea inua<lb break="no"/>dere alienas
+            res ecclesie uel cuiuspiam<note type="editorial"> Über <mentioned>u<hi rend="super"
+                     >2</hi></mentioned> eine redundante us-Kürze.</note> ominis <expan>presum<lb
+                  break="no"/>mat</expan> antequam <mod>o</mod>ctor <choice>
+               <abbr>cartul</abbr>
+               <expan>cartule</expan>
+            </choice> legali et iudicia<lb break="no"/>li difinicione eas<note type="editorial">
+               Über dem Wort die Glosse <mentioned>scilicet res</mentioned>.</note> uendicet<note
+               type="editorial"> Über dem Wort die Glosse <mentioned>id est
+               aquirat</mentioned>(?).</note> . et tunc demum<note type="editorial">Über dem Wort
+               eine unleserliche Glosse (<mentioned>i... ...utimum</mentioned>?)</note> cui <lb/>
+            uult libera tradendi abead facultate<note type="editorial">Über dem Wort die Glosse
+                  <mentioned>id est potestate</mentioned>.</note> et si quis ipsas <cb n="73v"/>
+            sine lege inuaserit non solum ipsas res amittant set insuper banum <choice>
+               <abbr>nru</abbr>
+               <expan>nostrum</expan>
+            </choice>
+            <choice>
+               <abbr>cop</abbr>
+               <expan>conponat</expan>
+            </choice>
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-73v-1"
+            corresp="BK.224_6_inscriptio"><seg type="numDenom">capitulum</seg>
+            <seg type="num" n="6">VI</seg>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-73v-2" rend="glossa" corresp="BK.224_6"
+            next="#mailand-ba-o-55-73v-4">
+            <seg type="initial" rend="coloured">D</seg>e cartis eciam<note type="editorial"> Über
+               dem Wort die Glosse <mentioned>id est insuper</mentioned>.</note> uel
+               <expan>quibuscumque</expan> scrip<lb break="no"/>cionibus <choice>
+               <abbr>q</abbr>
+               <expan>qui</expan>
+            </choice> a quibusdam personis false apellantur statuimus si nota<lb break="no"/>rius
+            uixerit et testes ut <add>e</add>idem notarius cum legitimis <lb/> sacramentalibus XII .
+            simul cum <choice>
+               <abbr>ips</abbr>
+               <expan>ipsis</expan>
+            </choice> testibus qui in eadem car<lb break="no"/>ta scripti sunt ipsam cartam ueram
+            faciant ;. </ab>
+
+         <ab type="meta-text" xml:id="mailand-ba-o-55-73v-3" rend="coloured"
+            corresp="BK.224_6_inscriptio"><seg type="numDenom">capitulum</seg>
+            <seg type="num" n="7">VII</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-73v-4" rend="glossa" corresp="BK.224_6"
+            prev="#mailand-ba-o-55-73v-2">
+            <choice>
+               <abbr>Simil</abbr>
+               <expan><seg type="initial" rend="coloured">S</seg>imiliter</expan>
+            </choice> et carte<note type="editorial">Über dem Wort die Glosse <mentioned>scilicet
+                  homo</mentioned>.</note> ostensor cum . XII . sacramentalibus sicut legi<lb
+               break="no"/>time iurare ualeant<note type="editorial">Über dem Wort die Glosse
+                  <mentioned>id est pesant</mentioned>(?)</note> ipsam cartam ueram et idoneam
+            faciam <lb/>
+            <hi rend="coloured">I</hi>nterpellator au<mod>t</mod>em primo iuret <choice>
+               <abbr>q</abbr>
+               <expan>quod</expan>
+            </choice>
+            <subst>
+               <del>se<gap unit="chars" quantity="1"/>scientem</del>
+               <add>senscientem</add>
+            </subst> nihil aliut <lb/> nisi uerissimam . et iusta racionibus <hi rend="coloured"
+               >I</hi>n omnibus exquirat si <lb/> autem notarius se subtraxerit et cartam suo
+            scripto no<lb break="no"/>men idoneam minime potuerit confirmare nullam redem<lb
+               break="no"/>cionem ei concedatur set manu propria amitat <subst>
+               <del>u</del>
+               <add>e</add>
+            </subst>t ostensor <lb/> ipsius post<note type="editorial">Über <mentioned>p</mentioned>
+               ein getilgtes Kürzungszeichen.</note> rerum amisione uuidrild suum <choice>
+               <abbr>cop</abbr>
+               <expan>conponat</expan>
+            </choice> et si notari<lb break="no"/>us defuerit et testes superaduixerit
+               ips<mod>e</mod> ostensor c<mod>ar</mod><lb break="no"/>te cum <choice>
+               <abbr>ips</abbr>
+               <expan>ipsis</expan>
+            </choice> testibus et cum . XII . sacramentalibus . <hi rend="coloured">VI</hi> suis
+            propinquis <add><hi rend="coloured">et</hi> ipse <lb/>
+               <unclear>se</unclear></add> septimo<note type="editorial">Boretius (MGH LL 4 S. 562)
+               liest hier, wie in London, British Library, Add. 5411 (L6), <mentioned>et ipse sit
+                  septimus</mentioned> statt <mentioned>et - septimo</mentioned>. Während die Lesung
+                  <mentioned>septimo</mentioned> gegen die Angabe von Boretius gesichert ist, könnte
+               es sich bei <mentioned>se</mentioned> auch um <mentioned>sit</mentioned>
+               handeln.</note> et . <hi rend="coloured">V</hi> . aliis idoneis <choice>
+               <abbr>ostens</abbr>
+               <expan>ostensis</expan>
+            </choice> primum duabus aliis car<lb break="no"/>tis manus coleccionis ab eodem notario
+               descript<unclear>a</unclear>s ipsam <lb/> terciam cartam per sacramentum ueram et
+            idoneam faciad ;. </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-73v-5"
+            corresp="BK.224_7_inscriptio"><seg type="numDenom">capitulum</seg>
+            <seg type="num" n="8">VIII</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-73v-6" rend="glossa" corresp="BK.224_7">
+            <seg type="initial" rend="coloured">V</seg>olumus<note type="editorial"> Über dem Wort
+               die Glosse <mentioned>scilicet statue</mentioned>.</note>
+            <sic>proterea<note type="editorial"> Über dem Wort die Glosse <mentioned>id est
+                     deinceps</mentioned>.</note></sic> adque<note type="editorial">Über dem Wort
+               die Glosse <mentioned>id est et</mentioned>.</note> sancimus<note type="editorial"
+               >Über dem Wort die Glosse <mentioned>id est iudicamus</mentioned>.</note> ut si quis
+            liber homo<note type="editorial"> Über dem Wort die Glosse <mentioned>id est aliquis
+                  colibet</mentioned>.</note> legitime uxo<cb break="no" n="74r"/>ri sui dum uixerit
+            res suas per scriptum usumfructum de<add>de</add><lb break="no"/>rit et filios .
+               <unclear>II</unclear> . uel plures abuerit <unclear>et</unclear> unum ex <choice>
+               <abbr>ips</abbr>
+               <expan>ipsis</expan>
+            </choice><note type="editorial">Über dem Wort die Glosse <mentioned>id est de
+                  filiis</mentioned>.</note> uel . <hi rend="coloured">II</hi> . <lb/> mortuus
+            fuerit et filios aut filias relinquerit <choice>
+               <abbr>equal</abbr>
+               <expan>equa<lb break="no"/>liter</expan>
+            </choice> ipsas res quas usufructuario <expan>pre<subst>
+                  <del/>
+                  <add>di</add>
+               </subst>cta</expan> uxor abu<lb break="no"/>erit filii defuncti cum patriis<note
+               type="editorial"> Über dem Wort die Glosse <mentioned>scilicet frater
+                  patris</mentioned>(?)</note> suis sicut cetera ę<lb break="no"/>reditate <hi
+               rend="coloured">I</hi>ta usufructuar<add>i</add>o diuidant ;. </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-74r-1"
+            corresp="BK.224_8_inscriptio"><seg type="numDenom">capitulum</seg> . <seg type="num"
+               n="9">VIIII</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-74r-2" rend="glossa" corresp="BK.224_8">
+            <seg type="initial" rend="coloured">C</seg>oncedimus ęciam ut sicut muliheres cum uiris
+            suis ue<lb break="no"/>nundare et donare res suas possunt ita comutare ualeant<note
+               type="editorial">Über dem Wort die Glosse <mentioned>id est
+               pesant</mentioned>(?)</note><lb/> ac familiam suam liberam facere ;. </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-74r-3"
+            corresp="BK.224_9_inscriptio"><seg type="numDenom">capitulum</seg>
+            <seg type="num" n="10">X</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-74r-4" rend="glossa" corresp="BK.224_9">
+            <seg type="initial" rend="coloured">S</seg>i quis iudicibus nostris in iudicio
+            residentibus minas<note type="editorial">Über dem Wort die Glosse <mentioned>id est
+                  minacas</mentioned>.</note> aut <lb/> ęciam cumuicia<note type="editorial"> Über
+               dem Wort die Glosse <mentioned>id est reprouerium</mentioned>(?)</note>
+               intullerit<note type="editorial"> Über dem Wort die Glosse <mentioned>id est
+                  fecerit</mentioned>.</note> eosque<note type="editorial">Über dem Wort die Glosse
+                  <mentioned>scilicet iudicibus</mentioned>.</note>
+            <choice>
+               <abbr>uerbs</abbr>
+               <expan>uerbis</expan>
+            </choice> aut factis turpi<lb break="no"/>ter<note type="editorial"> Über dem Wort die
+               Glosse <mentioned>id est uerecidint</mentioned>(?)</note> deonestauerit<note
+               type="editorial">Über dem Wort die Glosse <mentioned>id est
+               danauerit</mentioned>(?)</note> uuidrigild illi<note type="editorial">Über dem Wort
+               die Glosse <mentioned>scilicet iudex</mentioned>.</note>
+            <choice>
+               <abbr>cop</abbr>
+               <expan>conponat</expan>
+            </choice>
+            <expan>quem</expan> leserit<note type="editorial">Über dem Wort die Glosse <mentioned>id
+                  est da(m/n?)...uerit</mentioned>?</note> si <lb/> uero <choice>
+               <abbr>aliq</abbr>
+               <expan>aliquem</expan>
+            </choice> ex <choice>
+               <abbr>ips</abbr>
+               <expan>ipsis</expan>
+            </choice> iudicibus nostris pro ipso iudicio falsi<lb break="no"/>dicos dixerit <subst>
+               <del/>
+               <add hand="X"><hi rend="coloured">uel</hi></add>
+            </subst> pro ipsa intencione et causa qua<lb break="no"/>li<add hand="X"><hi
+                  rend="coloured">bet</hi></add> omine<del>m</del>
+            <hi rend="coloured">I</hi>nterfecerit . <hi rend="coloured">L</hi> . libras auri optimi <choice>
+               <abbr>cop</abbr>
+               <expan>conponat</expan>
+            </choice> me<lb break="no"/>dietatem<note type="editorial">Über dem Wort die Glosse
+                  <mentioned>scilicet conponat</mentioned> (gek.<mentioned>
+               cop.</mentioned>).</note> primum ęredes<note type="editorial">Über dem Wort eine
+               Tilgung (Glosse?).</note> interfecti iudicis et altera <lb/> mediętatem camere nostre
+            ;. </ab>
+
+
+         <gap reason="editorial"/>
+
+         <cb n="77r"/>
+         <lb n="9"/>
+
+
+         <milestone unit="capitulare" n="BK.232"/>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-77r-1"
+            corresp="BK.232_inscriptio BK.232_1">
+            <milestone unit="span" corresp="BK.232_inscriptio" spanTo="#mailand-ba-o-55-77r-1_1"/>
+            IN NOMINE DOMINI INCIPIT <choice>
+               <abbr>CAPR</abbr>
+               <expan>CAPITULARE</expan>
+            </choice> . QVAS SINGVLAS . <lb/> REGIBVS VEL IMPERATORIBVS INSTITVTVM <lb/> EST .
+               <anchor xml:id="mailand-ba-o-55-77r-1_1"/>
+            <milestone unit="span" xml:id="mailand-ba-o-55-77r-1_2" corresp="BK.232_1"
+               spanTo="#mailand-ba-o-55-77r-1_3" next="#mailand-ba-o-55-77r-3"/> DVM RELIGISIXIMVS <choice>
+               <abbr>CAPS</abbr>
+               <expan>CAPITVLIS</expan>
+            </choice> A ROMANIS LE<lb break="no"/>GIBVS IN N<unclear>O</unclear>VELLA <rs
+               type="person">IVSTINIANI</rs> INVENIMVS <lb/> SCRIPTVM INTER CETERA . DE INSTITVCIONE
+            . <rs type="person">INPV<lb break="no"/>DOSII</rs> IMPERATORIS ET <rs type="person"
+               >VALENTINA</rs> . ANIMI <lb/> BELXINVM PERFECTVM ;. <anchor
+               xml:id="mailand-ba-o-55-77r-1_3"/>
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-77r-2"
+            corresp="BK.232_1_inscriptio"><seg type="numDenom">capitulo</seg>
+            <seg type="num" n="1">primo</seg> . . <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-77r-3" corresp="BK.232_1"
+            prev="#mailand-ba-o-55-77r-1_2" next="#mailand-ba-o-55-77r-7">
+            <seg type="initial" rend="coloured">U</seg>t nulus de<add hand="X"><hi rend="coloured"
+                  >be</hi></add><metamark function="insertion"/>ad episcopos
+               <expan>presbiteros</expan>
+            <choice>
+               <abbr>diacs</abbr>
+               <expan>diaconos</expan>
+            </choice> acusare ;. </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-77r-4"
+            corresp="BK.232_2_inscriptio"> . <seg type="num" n="2">II</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-77r-5" corresp="BK.232_2">
+            <seg type="initial" rend="coloured">S</seg>i quis percuserit sacerdotem . <choice>
+               <abbr>i</abbr>
+               <expan><hi rend="coloured">id est</hi></expan>
+            </choice> . <expan>presbiter</expan> .
+            <!-- bm: Von der farblichen Gestaltung her dachte ich zunächst, es sollte heißen 
+               "sacerdotem I presbiter III"; ich schließe mich aber Kaiser an; ist 
+            auch näher am Text von BK 232 c. 2. - dt: ok -->
+         </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-77r-6"
+            corresp="BK.232_1_inscriptio">
+            <seg type="num" n="3">III</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-77r-7" corresp="BK.232_1"
+            prev="#mailand-ba-o-55-77r-3">
+            <seg type="initial" rend="coloured">U</seg>t nulus <subst>
+               <del>odead</del>
+               <add hand="X">o<hi rend="coloured">mo</hi>
+                  <lb/> dead</add>
+            </subst> episcopos <expan>presbiteros</expan>
+            <choice>
+               <abbr>diacos</abbr>
+               <expan>diaconos</expan>
+            </choice> acusare ot de nos quidem <lb/> sermonem facere solerter plus sermonem de <lb/>
+            <choice>
+               <abbr>sstis</abbr>
+               <expan>superscriptis</expan>
+            </choice><note>Zu erwarten wäre <mentioned>sanctis</mentioned> (so auch gelesen von
+               Kaiser W. 2007 S. 262), aber der Buchstabenbestand spricht dagegen. Vgl. auch
+                  <locus>fol. 77v Z. 15</locus>, wo sich eine analoge Abkürzung für
+                  <mentioned>superscripta</mentioned> findet. </note> ac uenerabilibus sacerdotibus
+            uel leuitis <lb/> omni timore quibus omnibus terra inclina caput <cb n="77v"/> tamen a<subst>
+               <del>t</del>
+               <add>d</add>
+            </subst>uc odiuimus perfidia in urbem at deum ui<lb break="no"/>uum * ot in tuum nomen
+            fieri set si quis ausus au<note type="editorial">Haplographie; lies
+                  <mentioned>aut</mentioned>.</note> temera<lb break="no"/>rius legi ecclesie uel
+            clero per quem nomen paulet <lb/> inperium iniuria odere uoluerit et si acu<lb
+               break="no"/>sacionem sedicior persona fuerit reposita penta<note type="editorial"
+               >Wort evtl. ergänzt; über die Zeile hinausgeschrieben, aber nicht von anderer
+               Hand.</note>
+            <lb/> fisco nostro <choice>
+               <abbr>i</abbr>
+               <expan><hi rend="coloured">id est</hi></expan>
+            </choice>
+            <hi rend="coloured">C</hi> . ponderas auri . et . <hi rend="coloured">C</hi> . ponderas
+            <lb/> argenti insere cogatur et si<note type="editorial">Haplographie
+                  (<mentioned>sic</mentioned>)? So bei Boretius 1897 S. 127 Z. 29.</note> cum
+            actoribus <lb/> ecclesie causam diderit si uero infirmior fuerit <lb/> persona prius
+            cogitet animo suo perfido et sic <lb/> aut acuset aut iniuriam faciet et discri<lb
+               break="no"/>minis si <subst>
+               <del/>
+               <add>c</add>
+            </subst>aus<mod>a</mod> di<add hand="X"><hi rend="coloured">de</hi></add><metamark
+               function="insertion"/>rit <choice>
+               <abbr>nuq</abbr>
+               <expan>numquam</expan>
+            </choice> aut quod recto <lb/> patrimonio nostro nisi <sic>oquilifidia</sic> adtemtare
+            <lb/> adsueuit militantes in palacio christi terre <lb/> currie opduti sumus manus eius <expan>implumba<subst>
+                  <del>tur</del>
+                  <add>ri</add>
+               </subst></expan> si <lb/> autem uoluerit <choice>
+               <abbr>ssta</abbr>
+               <expan>superscripta</expan>
+            </choice><!-- bm: Kaiser liest "ista"; siehe aber oben fol. 77r Z. 20, wo es eine
+               analoge Kürzung gibt, die Kaiser ebenfalls nicht erkannt hat. Außerdem wäre bei 
+            "ista" der Kürzungsstrich redundant. dt: ja, passt zu BK und zum bisherigen Kürzungsgebrauch -->
+            denegare uita nihil xit <lb/> carta ecclesie catholice ex codico <choice>
+               <abbr>enom</abbr>
+               <expan>enomen</expan>
+            </choice>
+            <lb/> canonum sentencia ;. </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-77v-1"
+            corresp="BK.232_2_inscriptio">
+            <seg type="numDenom">CAPITVLVM</seg>
+            <seg type="num" n="4">IIII</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-77v-2" corresp="BK.232_2">
+            <seg type="initial" rend="coloured">S</seg>i quis percuserit sacerdotem <del>
+               <expan>presbiter</expan>
+            </del><note type="editorial">Folgt getilgtes <mentioned>presbiter</mentioned> (gek.
+                  <mentioned>pbr</mentioned>).</note> siue <choice>
+               <abbr>diacs</abbr>
+               <expan>diaconus</expan>
+            </choice> de<lb break="no"/>cretum est ut det pe<subst>
+               <del/>
+               <add>n</add>
+            </subst>a auri libras . <hi rend="coloured">X</hi> . <choice>
+               <abbr>i</abbr>
+               <expan><hi rend="coloured">id est</hi></expan>
+            </choice> . solidos . <hi rend="coloured">CCXI</hi> . ;. </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-77v-3"
+            corresp="BK.232_3_inscriptio">
+            <seg type="num" n="5">V</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-77v-4" corresp="BK.232_3"><seg type="initial"
+               rend="coloured">S</seg>i quis percuserit diaconum ecclesie det pena auri li<lb
+               break="no"/>bras . <hi rend="coloured">V</hi> . oc est solidos . <hi rend="coloured"
+               >CCCLX</hi> ;. </ab>
+
+         <ab type="meta-text" rend="coloured" xml:id="mailand-ba-o-55-77v-5"
+            corresp="BK.232_4_inscriptio">
+            <seg type="num" n="6">VI</seg>
+            <cb n="78r"/><seg type="num" n="7">VII</seg>
+         </ab>
+         <ab type="text" xml:id="mailand-ba-o-55-78r-1" corresp="BK.232_4">
+            <seg type="initial" rend="coloured">S</seg>i quis lectorem percuserit det pena auri
+            libras <lb/> . <hi rend="coloured">III</hi> . oc est solidos . <hi rend="coloured"
+               >CCXVI</hi> ;. </ab>
+
+
       </body>
    </text>
 </TEI>

@@ -48,6 +48,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
+               <resp xml:lang="ger">Ergänzungen und Korrekturen nach Autopsie 2021</resp>
+               <resp xml:lang="eng">Additions and corrections after personal inspection 2021</resp>
             </respStmt>
             <respStmt>
                <persName key="FF">
@@ -325,6 +327,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <change who="BM" when="2018-10-02">Datei veröffentlicht (BK 45)</change>
          <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift
             nach Bischoff 1998/2004/2014 ergänzt</change>
+         <change who="BM" when="2018-10-02">Datei veröffentlicht (BK 45)</change>
+         <change who="SK" when="2021-10-05">Ergebnisse der Autopsie des Originals eingearbeitet</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -367,7 +371,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                die auch in den anderen Teilstücken anzutreffen ist.</p>
          </div>
          <div type="letters">
-            <p>Einzelbuchstaben: Gelegentliche Verwendung von cc-a (z.B. <locus>S. 29, Z.
+            <p>Einzelbuchstaben: Öfters Verwendung von cc-a (z.B. <locus>S. 29, Z.
                13</locus>: <mentioned>Italiam</mentioned>, <locus>ebd. Z. 14</locus>:
                   <mentioned>nomina</mentioned>) und Majuskel-N (z.B. <locus>S. 29, Z. 16</locus>:
                   <mentioned>alamanie</mentioned>). Zwischen Doppel-s wurde oft ein sehr großer
@@ -411,7 +415,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <p>Die Schrift auf <locus>S. 30</locus> und <locus>S. 31</locus> ist teils durch
                Feuchtigkeitseinfluss verlaufen, teils verblasst, so dass sich manche Passagen am
                Digitalisat nur schwer entziffern lassen.
-               <!-- bm: Evtl. am Original nachkollationieren? --> An einigen Stellen verursachen
+               An einigen Stellen verursachen
                Pergamentlöcher kleinere Textverluste, z.B. auf <locus>S. 32 Z. 17</locus>:
                   <mentioned>[a]uxilium</mentioned>.</p>
          </div>
@@ -480,6 +484,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <rs type="place"><sic>ducatur</sic> aeriensi</rs>
             <rs type="person">pippino dilecto filio nostro</rs> . <lb/>
          </ab>
+         
          <ab type="text" rend="nota" xml:id="paris-bn-lat-7561-29-3"
             corresp="BK.45_3 BK.45_4 BK.45_5">
             <milestone unit="span" corresp="BK.45_3" spanTo="#paris-bn-lat-7561-29-3_1"/>
@@ -504,73 +509,92 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <del>l</del>
                   <add>rolo</add>
                </subst></rs> concessimus . Ita ut <rs type="person">carolus</rs> et <rs
-               type="person">chlodouuicus</rs> . <cb n="30"/> uia<unclear>m</unclear> habere possint
-            in <rs type="place">i<unclear>ta</unclear>liam</rs> ad auxilium
-            fer<unclear>e</unclear>ndum fratri suo s<gap unit="chars" quantity="3"/>a necessitas
-            <lb/> extiterit . <rs type="person">Carolus</rs> per <rs type="place"><gap unit="chars"
-                  quantity="2"/>llem agust<gap unit="chars" quantity="3"/>m</rs> quę ad regnum
-            pertinet . <rs type="person">chlodouuicus</rs>
-            <lb/> per <rs type="place">ualla<note type="editorial">evtl. verblasster Nasalstrich
-                  über dem Endungs-a, also <mentioned>-am</mentioned>?</note> segusiam</rs> . <rs
+               type="person">chlodouuicus</rs> .
+            <cb n="30"/> 
+            
+            uia<unclear>m</unclear> <!-- sk: bei Autopsie 2021 geprüft: keine Tinte mehr erkennbar, 
+               aber unter der Lupe womöglich der Pergamenteindruck einer durch Feuchtigkeit ausgewaschenen 
+               Kürze (nach rechts aufsteigender Strich)  -->            
+            habere possint
+            in <rs type="place">i<unclear>ta</unclear>liam</rs><!-- sk: bei Autopsie 2021 geprüft: 
+               auch mit Lupe nicht deutlich --> ad auxilium
+            fer<unclear>e</unclear>ndum<!-- sk: bei Autopsie 2021 geprüft: auch mit Lupe nicht klar; 
+               dunkler Schatten überlagert den Buchstaben -->
+            fratri suo s<gap unit="chars" quantity="3"/>a<!-- sk: bei Autopsie 2021 geprüft: eigentlich auch 
+               undeutlich, ob vorn ein s oder ein f, und ob hinten ein a oder o oder noch etwas anderes steht --> 
+            necessitas <lb/> extiterit . <rs type="person">Carolus</rs> per 
+            <rs type="place"><unclear>ua</unclear>llem agust<gap unit="chars" quantity="2"/>tem</rs> quę 
+            ad regnum pertinet . <rs type="person">chlodouuicus</rs>
+            <lb/> per <rs type="place">ualla<unclear>m</unclear><!-- sk: bei Autopsie 2021 geprüft: 
+                  auch mit Lupe nicht sicherer --> segusiam</rs> . <rs
                type="person">Pipinus</rs> uero exitum . et ingressum per <rs type="place">alpes
-                  noric<unclear>a</unclear>s</rs>
-            <lb/> atque <rs type="place">curiam</rs> * <anchor xml:id="paris-bn-lat-7561-29-3_1"/>
+                  noric<unclear>a</unclear>s</rs><!-- sk: bei Autopsie 2021 geprüft: auch mit Lupe nicht
+               sicherer -->
+            <lb/> atque <rs type="place">curiam</rs> * 
+            <anchor xml:id="paris-bn-lat-7561-29-3_1"/>
+            
             <milestone unit="span" corresp="BK.45_4" spanTo="#paris-bn-lat-7561-29-3_2"/>
-               H<unclear>e</unclear>c autem tali ordinatione dispon<gap unit="chars" quantity="3"
-               /><unclear>t</unclear> si <rs type="person">carolus</rs> qui mai<unclear>or</unclear>
-            <lb/> natus est prius quam cęteris fratres su<unclear>i</unclear> diem obierit pars
-            regni q<unclear>u</unclear>am hab<unclear>e</unclear>at <lb/> diuiditur inter <rs
+            
+            H<unclear>e</unclear>c<!-- sk: bei Autopsie 2021 geprüft: bleibt unsicher (könnte ebenso Hoc sein) --> 
+            autem tali ordinatione dispon<gap unit="chars" quantity="2"
+               /><unclear>ant</unclear> si <rs type="person">carolus</rs> qui mai<unclear>or</unclear>
+            <lb/> natus est prius quam cęteris fratres sui diem obierit pars
+            regni quam hab<unclear>e</unclear>at <lb/> diuiditur inter <rs
                type="person">pippinum</rs> et <rs type="person">chlouicum</rs>
-            <mod>s</mod>icut qu<unclear>a</unclear>ndam diuisum est inter nos et <lb/>
-            <rs type="person">fratrem nostrum Carlomann<unclear>e</unclear>m </rs> quomodo ut <rs
+            sicut quandam diuisum est inter nos et <lb/>
+            <rs type="person">fratrem nostrum Carlomann<unclear>u</unclear>m </rs> quomodo ut <rs
                type="person">pipinus</rs> portionem habeat <lb/> quam <rs type="person">frater
-                  <unclear>noster</unclear> carlomannus</rs> habuit <rs type="person"
-                  >chlod<unclear>iui</unclear>cus</rs> uero illam partem accipi<unclear>at</unclear>
+                  noster carlomannus</rs> habuit <rs type="person"
+                  >chlodiuicus</rs> uero illam partem accipi<unclear>a</unclear>t
             <lb/> quam nos in illam portione suscipimus . Si autem <rs type="person">carolo</rs> et
                <rs type="person">chlodouico</rs> uiuen<lb break="no"/>tibus <rs type="person"
                >pippinus</rs> debitum sortis humane conpleuerit . <rs type="person">Carolus</rs> et <lb/>
             <rs type="person">chlodouicus</rs> diuidant inter se regnum quod ille habuit et eo
-            diuisio tal<unclear>i</unclear> modo <lb/> fiat ut ab ingressu <rs type="place"
+            diuisio tali modo <lb/> fiat ut ab ingressu <rs type="place"
                >italie</rs> per <rs type="place">agustam ciuitatem</rs>
-            <gap unit="chars" quantity="3"/>ipiat . <rs type="person">carolus</rs>
+            <gap unit="chars" quantity="1"/>ccipiat . <rs type="person">carolus</rs>
             <rs type="place">eboreiam</rs>
             <lb/>
             <rs type="place">uercellis</rs>
-            <rs type="place">papiami</rs> et inde per <rs type="place">padum fluuium</rs>
+            <sic><rs type="place">papiami</rs></sic> et inde per <rs type="place">padum fluuium</rs>
             <unclear>ter</unclear><gap unit="chars" quantity="4"/> currente usque ad finem <lb/>
-            <rs type="place">reg<unclear>e</unclear>nsium</rs> et ipsam <rs type="place">regiam</rs>
+            <rs type="place">regensium</rs> et ipsam <rs type="place">regiam</rs>
             et <rs type="place">ciui<unclear>ta</unclear>tem nou<unclear>am</unclear></rs> atque <rs
                type="place">mutinam</rs> usque <rs type="place">ad terminos <lb/>
-               <rs type="person">sancti petri</rs></rs> has c<gap unit="chars" quantity="5"/>tes cum
+               <rs type="person">sancti petri</rs></rs> has c<gap unit="chars" quantity="3"/>tates cum
             suburbanis et <sic>terratoriis</sic> suis atque comitatibus <lb/>
-            <expan>que</expan> ad ipsas pertin<gap unit="chars" quantity="1"/>nt et quicquid inde
-               <rs type="place">romam</rs> pergenti ad leuam respicit de regno <lb/> quod<note
+            <expan>que</expan> ad ipsas pertinent et quicquid inde
+               <rs type="place">romam</rs> pergenti ad leuam respicit de regno <lb/> 
+            quod<note
                type="editorial">gek. <mentioned>qd</mentioned> ohne erkennbaren
                Kürzungsstrich</note>
-            <rs type="person">pipinus</rs> hab<gap unit="chars" quantity="2"/>t una cum <rs
+            <rs type="person">pipinus</rs> hab<unclear>ui</unclear>t una cum <rs
                type="place">ducatu spolitano</rs> hanc portionem quod <expan>prediximus</expan>
-            <lb/> accipiat <rs type="person">carolus</rs> . Quicquid a<unclear>ut</unclear>em a
+            <lb/> accipiat <rs type="person">carolus</rs> . Quicquid autem a
             prędictis ciuitatibus uel comitatibus <lb/>
-            <rs type="place">romam</rs> eunti a dextram iacet<unclear>ur</unclear> de
+            <rs type="place">romam</rs> eunti a dextram iacetur de
                <expan>predicto</expan> regno id est portionem quę re<lb break="no"/>mansit de <rs
                type="place">regione transpadane</rs> una cum <rs type="place">tuscane ducatu</rs>
             usque <lb/> ad <rs type="place">mare australe</rs> et usque ad <rs type="place"
                >prouintiam</rs> . hoc <rs type="person">chlouicus</rs>
-            <del>fuer<gap unit="chars" quantity="2"/> defunctus</del>
+            <del>fuerit defunctus</del>
             <lb/> ad <sic>aumentum</sic> sui regni sortiatur . quod si ceteris superstitibus . <rs
                type="person">chlodouuicus</rs>
-            <lb/> fuerit defunctus eam partem <rs type="place">burgundi<mod>a</mod>e</rs> quam regno
+            <lb/> fuerit defunctus eam partem <rs type="place">burgundiae</rs> quam regno
             eius adiuncximus <lb/> cum <rs type="place">prouintia</rs> et <rs type="place"
-               >septimania</rs> siue <rs type="place">negotiam</rs> usque ad <rs type="place"
-               >hispaniam</rs>
-            <rs type="person">pippinus</rs>
-            <lb/> accipiat . <rs type="person"><hi rend="coloured">C</hi>arolus</rs> uero <rs
-               type="place">aquitaniam</rs> atque <rs type="place">uuasconiam</rs> . <anchor
-               xml:id="paris-bn-lat-7561-29-3_2"/>
-            <milestone unit="span" corresp="BK.45_5" spanTo="#paris-bn-lat-7561-29-3_3"/> quod si
-               t<unclear>ali</unclear>s <lb/> filius cuiuslibet horum t<mod>r</mod>ium fratrem .
+               >septimania</rs> siue <sic><rs type="place">negotiam</rs></sic> usque ad 
+            <rs type="place">hispaniam</rs> <rs type="person">pippinus</rs>
+            <lb/> accipiat . 
+            <rs type="person"><hi rend="coloured">C</hi>arolus</rs> uero <rs
+               type="place">aquitaniam</rs> atque <rs type="place">uuasconiam</rs> . 
+            <anchor xml:id="paris-bn-lat-7561-29-3_2"/>
+            
+            <milestone unit="span" corresp="BK.45_5" spanTo="#paris-bn-lat-7561-29-3_3"/> 
+            quod si tal<unclear>i</unclear>s <lb/> filius cuiuslibet horum trium fratrem .
             natus fuerit quam populus <lb/> elegere uellit . ut patri suo
-            succ<unclear>e</unclear>dit in regni hereditate uolumus . <cb n="31"/> ut omnia
+            succedit in regni hereditate uolumus . 
+            <cb n="31"/> 
+            ut omnia
             consentiunt patrui <choice>
                <abbr>ips</abbr>
                <expan>ipsius</expan>
@@ -583,32 +607,35 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             corresp="BK.45_6_inscriptio"><seg type="numDenom">CAPITULUM </seg>
             <seg type="num" n="1">I</seg>
          </ab>
-
-         <ab type="text" xml:id="paris-bn-lat-7561-31-2" corresp="BK.45_6"> Post hanc nostrae
+         <ab type="text" xml:id="paris-bn-lat-7561-31-2" corresp="BK.45_6"> 
+            Post hanc nostrae
             auctoritatis dispositione placuit inter <expan>predictos</expan> filios nostros <lb/>
             statuere atque <expan>precipere</expan> propter pacem et concordiam quam inter eos
-            permanere <lb/> perpetuo desideramus ut nu<mod>l</mod>lus eorum fratris sui terminos uel
+            permanere <lb/> perpetuo desideramus ut nullus eorum fratris sui terminos uel
             regni limites <lb/> inuadere <expan>presumat</expan> . nequę fraudulenter ingrediantur
                <sic>bandum</sic> eius <lb/> regnum uel marcas minuendas sed adiuuet unusquisque <subst>
                <del>un</del>
                <add>illorum</add>
             </subst> fratrem <lb/> suum et auxilium ei ferat contra inimicos eius iuxta rationem et
-               possi<lb break="no"/>bilitatem siue infra patriam siue contra exteras nationes . </ab>
+               possi<lb break="no"/>bilitatem siue infra patriam siue contra exteras nationes . 
+         </ab>
+         
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-7561-31-3"
             corresp="BK.45_7_inscriptio"><seg type="num" n="2">II</seg>
          </ab>
-
          <ab type="text" xml:id="paris-bn-lat-7561-31-4" corresp="BK.45_7">
             <hi rend="coloured">N</hi>eque ali<lb break="no"/>quis illorum hominem fratris<note
                type="editorial">gek. <mentioned>fris</mentioned> ohne erkennbares
                Kürzungszeichen</note> sui quamuis pro culpis aliquibus ad se confu<lb break="no"
             />gientem suscipiat . Nec intercessionem quidem pro eo fatiat quia uolumus <lb/> ut
             cuilibet homo pecans et intercessiones <sic>indiens</sic> intra regni domini sui <lb/>
-            uel ad sancta loca uel <unclear>ad h</unclear>onoratos homines confugiat et inde iuxta
-               in<lb break="no"/>tercessione mereatur . </ab>
+            uel ad sancta loca uel ad honoratos homines confugiat et inde iuxta
+               in<lb break="no"/>tercessione mereatur . 
+         </ab>
+         
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-7561-31-5"
-            corresp="BK.45_8_inscriptio"><seg type="num" n="3">III</seg></ab>
-
+            corresp="BK.45_8_inscriptio"><seg type="num" n="3">III</seg>
+         </ab>
          <ab type="text" xml:id="paris-bn-lat-7561-31-6" corresp="BK.45_8">
             <choice>
                <abbr><hi rend="coloured">S</hi>imlt</abbr>
@@ -619,22 +646,27 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             suscipiat neque hominibus suis <lb/> consentiat ut talem hominem uel recipiant uel
             iniuste retinere <expan>presu<lb break="no"/>mat</expan> hoc non solum de liberis sed
             etiam de seruis fugitiuis statuimus <lb/> obseruandum ut nulla discordiis relinquatur
-            occasio . </ab>
+            occasio . 
+         </ab>
+         
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-7561-31-7"
-            corresp="BK.45_9_inscriptio"><seg type="num" n="4">IIII</seg></ab>
-
+            corresp="BK.45_9_inscriptio"><seg type="num" n="4">IIII</seg>
+         </ab>
          <ab type="text" xml:id="paris-bn-lat-7561-31-8" corresp="BK.45_9 BK.45_10">
-            <milestone unit="span" corresp="BK.45_9" spanTo="#paris-bn-lat-7561-31-8_1"/> Quapropter
+            <milestone unit="span" corresp="BK.45_9" spanTo="#paris-bn-lat-7561-31-8_1"/> 
+            Quapropter
             <lb/> percipiendum nobis uidetur ut post nostrum ex hac mortalitate discessum <lb/>
             homines unuscuiusque eorum accipiant benefitia unusquisque in regno <lb/> domini sui et
             non in alterius . Ne forte per hoc si aliter fuerint scandalum <lb/> aliquid possint
             accedere hereditatem suam habeat unusquisque hominum <lb/> illorum . absque
             contradictione in <expan>quocumque</expan> regno hoc eum legitime <lb/> habere
-               cont<mod>i</mod>ngerint . <anchor xml:id="paris-bn-lat-7561-31-8_1"/>
+               cont<mod>i</mod>ngerint . 
+            <anchor xml:id="paris-bn-lat-7561-31-8_1"/>
+            
             <milestone unit="span" corresp="BK.45_10" spanTo="#paris-bn-lat-7561-31-8_2"/>
             <sic>E</sic> unusquisque liber homo post mortem domini sui <lb/> licentiam
                h<unclear>a</unclear>beat se <expan>commendandi</expan> inter haec tria regna ad quem
-               u<gap unit="chars" quantity="1"/>l<unclear>ue</unclear>rit <lb/> similiter et ille
+               u<unclear>olue</unclear>rit <lb/> similiter et ille
             qui nondum alicui <expan>commendatus</expan> est <anchor
                xml:id="paris-bn-lat-7561-31-8_2"/><cb n="32"/>
          </ab>
@@ -644,6 +676,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          </ab>
          <ab type="text" xml:id="paris-bn-lat-7561-32-2"
             corresp="BK.45_11 BK.45_12 BK.45_13 BK.45_14 BK.45_15">
+            
             <milestone unit="span" corresp="BK.45_11" spanTo="#paris-bn-lat-7561-32-2_1"/>
             <seg type="initial"> D</seg>e traditionibus <unclear>autem</unclear> atque uenditionibus
                <expan>que</expan> inter partes fi<del unit="chars" quantity="1"/>eri solent
@@ -662,8 +695,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <expan>excepto</expan>
             </choice> auro argento gemmas armis ac uestibus . <lb/> Necnon et mancipiis non cassatis
             et his speciebus quę proprię ad negotiatoribus <lb/> pertinere noscuntur . Ceteris uero
-            liberis hominibus hoc minime interdi<lb break="no"/>cendum uindicauimus . <anchor
-               xml:id="paris-bn-lat-7561-32-2_1"/>
+            liberis hominibus hoc minime interdi<lb break="no"/>cendum uindicauimus . 
+            <anchor xml:id="paris-bn-lat-7561-32-2_1"/>
+            
             <milestone unit="span" corresp="BK.45_12" spanTo="#paris-bn-lat-7561-32-2_2"/>
             <seg type="initial">S</seg>i quę autem femine sicut fieri solet inter partes et regni
             <lb/> limites fuerint ad coniugium postulate non deregentur iuxte poscentibus <lb/> sed
@@ -671,7 +705,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             uero femine potestatem habeant rerum suar<gap unit="chars" quantity="3"/> regno unde
                exi<lb break="no"/>erant quamquam in alio propter mariti
                so<unclear>ti</unclear>et<gap unit="chars" quantity="2"/>em <gap unit="chars"
-               quantity="3"/>itare debe<del>a</del>nt <anchor xml:id="paris-bn-lat-7561-32-2_2"/>
+               quantity="3"/>itare debe<del>a</del>nt 
+            <anchor xml:id="paris-bn-lat-7561-32-2_2"/>
+            
             <milestone unit="span" corresp="BK.45_13" spanTo="#paris-bn-lat-7561-32-2_3"/>
             <seg type="initial" rend="coloured">D</seg>e obsidibus autem qui <choice>
                <abbr>prop</abbr>
@@ -685,6 +721,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             postulauerit id est <lb/> iubemus et de his qui <mod>pro</mod> suis fatinoribus in
             exilium misse uel mittendi sunt . <lb/>
             <anchor xml:id="paris-bn-lat-7561-32-2_3"/>
+            
             <milestone unit="span" corresp="BK.45_14" spanTo="#paris-bn-lat-7561-32-2_4"/>
             <seg type="initial">S</seg>i causam uel intentio siue contr<mod>a</mod>uersia talis
             inter partes propter terminos <lb/> aut confinio regnorum orta fuerit que hominum
@@ -700,12 +737,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             </choice>
             <lb/>
             <anchor xml:id="paris-bn-lat-7561-32-2_4"/>
+            
             <milestone unit="span" corresp="BK.45_15" spanTo="#paris-bn-lat-7561-32-2_5"/>
             <seg type="initial">S</seg>uper <gap unit="chars" quantity="4"/>omnia<note
                type="editorial">gek. <mentioned>oma</mentioned> ohne erkennbares
                Kürzungszeichen.</note> autem iubemus atque <expan>precipimus</expan> ut ipsi . III .
-            fratres curam et defensionem<note type="editorial">An dieser Stelle endet der Text
-               fragmentarisch.</note>
+            fratres curam et defensionem<note type="editorial">An dieser Stelle bricht der Text
+               fragmentarisch ab.</note>
             <anchor xml:id="paris-bn-lat-7561-32-2_5"/>
          </ab>
 

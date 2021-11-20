@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
 schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-1567">
-   <teiHeader>
+   <teiHeader><!-- ACHTUNG! IN BEARBEITUNG! -->
       <fileDesc>
          <titleStmt>
             <title type="main" xml:lang="ger">Paris, Bibliothèque nationale de France, Lat. 1567 </title>
@@ -143,12 +143,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         Teile des verschollenen, einst von Sirmond und Baluze konsultierten großen
                         Kapitulariencodex von Beauvais kopiert sind.<lb/>Die Texte foll. 2r-63r
                         (Benedictus Levita bis Capitula apud Marsnam data secunda [a. 851]) stimmen
-                        weitgehend überein mit jener Tradition, die vollständiger in <ref
-                           type="internal" subtype="mss" target="vatikan-bav-vat-lat-4982"/>Cod.
-                        Vatikan Vat. Lat. 4982, bis fol. 75v, übernommen ist (weitere Hss. siehe
-                        dort).<lb/>Der Schluß (foll. 63r-88v) müßte sich direkt oder mittelbar auf
-                           <ref type="internal" subtype="mss" target="vatikan-bav-reg-lat-980"/>Cod.
-                        Vatikan Reg. Lat. 980 zurückführen und somit, da sich im Reginensis ein Rest
+                        weitgehend überein mit jener Tradition, die vollständiger in Cod. <ref
+                           type="internal" subtype="mss" target="vatikan-bav-vat-lat-4982">Vatikan
+                           Vat. Lat. 4982</ref>, bis fol. 75v, übernommen ist (weitere Hss. siehe
+                        dort).<lb/>Der Schluß (foll. 63r-88v) müßte sich direkt oder mittelbar auf Cod.
+                           <ref type="internal" subtype="mss" target="vatikan-bav-reg-lat-980">Vatikan
+                              Reg. Lat. 980</ref> zurückführen und somit, da sich im Reginensis ein Rest
                         des alten Bellovacensis erhalten hat, gleichfalls auf die Kapitularienhs.
                         von Beauvais.</p>
                   </summary>
@@ -171,10 +171,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      <p>
                         <locus>1v</locus> Leer. </p>
                   </msItem>
-                  <msItem n="5">
+                  <msItem n="5" corresp="Benedictus.Levita">
                      <p>
-                        <locus>2r-48r</locus> Benedicti Levitae capitularium collectio,
-                        Additiones2-4 (Addit. 3 und 4 zusammengefaßt und durchgezählt), mit
+                        <locus>2r-48r</locus> <title corresp="Benedictus.Levita">Benedicti Levitae capitularium collectio</title>,
+                        Additiones 2-4 (Addit. 3 und 4 zusammengefaßt und durchgezählt), mit
                         Capitulationes, aber ohne Rubriken imTextkorpus (MGH LL 2, 2, S. 133-158);
                         am Ende: <hi rend="italic">Finis.</hi>
                      </p>
@@ -186,13 +186,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <msItem n="7">
                      <p>
                         <locus>50r-51r</locus>
-                        <hi rend="italic">Cap</hi>. 1. - 3 (2 und 3 später nachgetragen?) - <title
+                        <hi rend="italic">Cap. 1. - 3</hi> (<hi rend="italic">2</hi> und <hi rend="italic">3</hi> später nachgetragen?) - <title
                            corresp="BK.254">Conventus in villa Colonia</title> (Konzil von
-                        Coulaines) (a. 843), ohne Vorwort: <hi rend="italic">Incipiunt capitula qucz
-                           acta sunt Anno IIII</hi>o<hi rend="italic">regni Domini Caroli gloriosi
-                           Regis Domini Hludowici Imperatoris filij in conuentu habito in villa qucz
-                           dicitur Colonia, quce etiam subscriptione eiusdem principis et
-                           Episcoporum ac cceterorum fidelium Dei confirmata fuere consensu Vuarini,
+                        Coulaines) (a. 843), ohne Vorwort: <hi rend="italic">Incipiunt capitula quæ
+                           acta sunt Anno IIII<hi rend="super">o</hi> regni Domini Caroli gloriosi
+                              Regis Domini Hludowici Imperatoris filij in conuentu habito in villa quæ
+                              dicitur Colonia, quæ etiam subscriptione eiusdem principis et
+                              Episcoporum ac cæterorum fidelium Dei confirmata fuere consensu Vuarini,
                            et aliorum optimatum indictione VI. De honore uidelicet et cultu Dei</hi>
                         - <hi rend="italic">irrefragabiliter peragat</hi> (MGH Capit. 2, Nr. 254, S.
                         253 Z. 10-16, S. 255 Z. 1-47; MGH Conc. 3, S. 14, 15-17, zur Hs. S. 11 f. u.
@@ -202,7 +202,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      <p>
                         <locus>51r-53r</locus>
                         <title corresp="BK.227">Synodus ad Theodonis villam habita</title> (Konzil
-                        von Yützbei Diedenhofen) (a. 844), ohne Inskription und ohne Vorwort: <hi
+                        von Yütz bei Diedenhofen) (a. 844), ohne Inskription und ohne Vorwort: <hi
                            rend="italic">Nobilissimi Domini</hi>, <hi rend="italic">ut cum pace
                            vestra dicamus</hi>- <hi rend="italic">qui loquitur in uobis</hi> (MGH
                         Capit. 2, Nr. 227, S. 113-116; MGH Conc. 3, S. 30-35); die Kanones der
@@ -266,7 +266,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                            Marsnam primus</title> (a. 847), Einleitung, cc. 1-9 mit cc. 5 und 6 der
                         Adnuntiatio Ludwigs des Deutschen und cc. 2-5 der Adnuntiatio Karls des
                         Kahlen: <hi rend="italic">Hæc quæ sequuntur capitula acta sunt - communiter
-                           pergat</hi> (MGH Capit. 2, Nr. 204, S. 68 Z. 30 - 35, S. 69 Z. 16-39, S.
+                           pergat</hi> (MGH Capit. 2, Nr. 204, S. 68 Z. 30-35, S. 69 Z. 16-39, S.
                         70 Z. 35 - S. 71 Z. 4, S. 71 Z. 14-25). </p>
                   </msItem>
                   <msItem n="16">
@@ -282,8 +282,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         <locus>63r-81v</locus>
                         <title corresp="BK.293">Konzil von Meaux-Paris</title> (a. 845-846), ohne
                         Capitulatio und wie fast alle Überlieferungen ohne c. 80 (MGH Capit. 2, Nr.
-                        293, S. 395 - 421; MGH Conc. 3, S. 81-84, 86-127, zur Hs. S. 65); cc. 74 -
-                        79, 81-83 werden - im Anschluß an die Zitate aus dem Toletanum IV, cc. 58
+                        293, S. 395-421; MGH Conc. 3, S. 81-84, 86-127, zur Hs. S. 65); cc. 74-79,
+                        81-83 werden - im Anschluß an die Zitate aus dem Toletanum IV, cc. 58
                         und 59 in c. 74 bzw. 75 - irrigerweise als cc. 58-66 gezählt. </p>
                   </msItem>
                   <msItem n="18">
@@ -294,7 +294,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         bereits oben foll. 55v-56r kopiert. </p>
                   </msItem>
                   <msItem n="19">
-                     <p>Direkt angehängt und weitergezählt: <locus>82r-v</locus> 9.-27. - <title
+                     <p>Direkt angehängt und weitergezählt: <locus>82r-v</locus> <hi rend="italic">9.-27.</hi> - <title
                            corresp="BK.257">Notitia de conciliorum canonibus in villa Sparnaco a
                            Karolo rege confirmatis</title> (a. 846), ohne Einleitung: <hi
                            rend="italic">De honore et cultu ecclesiarum</hi> - <hi rend="italic">De
@@ -303,20 +303,22 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   </msItem>
                   <msItem n="20">
                      <p>
-                        <locus>82v-84r</locus> I<hi rend="italic">- 12.</hi> - <title
-                           corresp="BK.258">Konzil von Soissons</title> (a. 853), Kanones in der
-                        Version B: <hi rend="italic">Regnante in sempiternum Domino Deo</hi> - <hi
-                           rend="italic">cohibentia immo licentia commutentur</hi> (MGH Capit. 2,
+                        <locus>82v-84r</locus> <hi rend="italic">I-12.</hi> - <title
+                           corresp="BK.258b">Konzil von Soissons</title> (a. 853), Kanones in der
+                        Version B: <hi rend="italic">Regnante in sempiternum Domino Deo - cohibentia immo 
+                           licentia commutentur</hi> (MGH Capit. 2,
                         Nr. 258, S. 263 Z. 29 - S. 266 Z. 25; MGH Conc. 3, S. 279 Z. 14 - S. 284 Z.
-                        20). Zur Einschätzung der Kanones siehe oben Cod. (Berlin Phill. 1762 +) Den
-                        Haag 10 D 2, foll. 27r-29v. </p>
+                        20). Zur Einschätzung der Kanones siehe oben Cod. (
+                        <ref type="internal" subtype="mss" target="berlin-sb-phill-1762">Berlin Phill. 1762</ref> +)
+                        <ref type="internal" subtype="mss" target="den-haag-rmw-10-d-2">Den Haag 10 D 2</ref>, foll. 27r-29v. </p>
                   </msItem>
                   <msItem n="21">
                      <p>
                         <locus>84r-88v</locus> Konzil von Soissons (a. 853), Verhandlungsprotokoll;
                         endet unvollständig mit <hi rend="italic">purificata esse</hi> wie in Cod.
-                        Vatikan Reg. Lat. 980 (MGH Conc. 3, S. 264 - S. 276 Z. 12); am Schluß: <hi
-                           rend="italic">FINIS.</hi>
+                        <ref type="internal" subtype="mss" target="vatikan-bav-reg-lat-980">Vatikan
+                           Reg. Lat. 980</ref> (MGH Conc. 3, S. 264 - S. 276 Z. 12); am Schluß: <hi
+                           rend="italic">FINIS</hi>.
                      </p>
                   </msItem>
                </msContents>
@@ -330,7 +332,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         </support>
                         <extent>89 foll. (numeriert I, 1-88), <dimensions type="leaf" unit="mm">
                               <height>355-360</height>
-                              <width> 235 </width>
+                              <width>235</width>
                            </dimensions>
                            <dimensions precision="medium" type="written" unit="mm">
                               <height>280-300</height>
@@ -355,7 +357,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <bindingDesc>
                      <binding>
                         <p>Dunkelroter Halbledereinband mit Rückenaufschrift: <hi rend="italic"
-                              >CAPITULA PER PAROECLAS DENUNT.</hi>
+                           >CAPITULA PER PAROECLAS DENUNT</hi>.
                         </p>
                         <p/>
                      </binding>
@@ -364,8 +366,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <history>
                   <origin>
                      <p>
-                        <origDate notAfter="1600" notBefore="1551"> 16. Jh., 2.
-                        Hälfte</origDate></p>
+                        <origDate notAfter="1600" notBefore="1551"> 16. Jh., 2. Hälfte</origDate></p>
                   </origin>
                   <provenance>
                      <p>Alte Signaturen: <idno>Mazarin 635</idno>; <idno>Regius 5110</idno>.</p>
@@ -377,11 +378,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <listBibl>
                      <listBibl type="cat">
                         <bibl>Bibliothèque Nationale. Catalogue général des manuscrits latins 2,
-                           publié sous la direction de Ph. <hi rend="smallcaps">Lauer</hi> (Paris
-                           1940) S. 70.</bibl>
+                           publié sous la direction de Ph. Lauer (Paris 1940) S. 70.</bibl>
                      </listBibl>
                      <listBibl type="cap">
-                        <bibl>Mordek 1995 S. 417-420</bibl>
+                        <bibl corresp="#Mordek_1995">Mordek 1995, S. 417-420</bibl>
 
                      </listBibl>
                   </listBibl>
