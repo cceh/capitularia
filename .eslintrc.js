@@ -4,7 +4,7 @@ module.exports = {
         // 'airbnb'
         'airbnb-base/legacy',
         // 'eslint:recommended'
-        'plugin:vue/recommended',
+        'plugin:vue/vue3-essential',
     ],
     'env' : {
         'es2020'  : true,
@@ -12,7 +12,8 @@ module.exports = {
         'jquery'  : true,
     },
     'parserOptions' : {
-        'sourceType' : 'module',
+        'ecmaVersion' : 2020,
+        'sourceType'  : 'module',
     },
     'globals' : {
         'ajaxurl'                 : 'readonly',  // added by wordpress
