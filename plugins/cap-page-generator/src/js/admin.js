@@ -238,6 +238,6 @@ function init_tabs () {
 
 $ (document).ready (function () {
     init_tabs ();
-    $ ('body').on ('click', 'div.tablenav-pages a', on_cap_load_section);
+    $ ('body').on ('click', 'div.cap-page-generator-dashboard div.tablenav-pages a', on_cap_load_section);
     $ ('body').on ('click', 'a.cap-page-generator-action', on_cap_action_file);
 });

@@ -95,7 +95,9 @@ export default {
                 'collate' : this.selectors.map (sel => {
                     const data = pick (
                         sel.$data,
-                        'bk', 'corresp', 'later_hands'
+                        'bk',
+                        'corresp',
+                        'later_hands'
                     );
                     data.witnesses = sel.selected;
                     return data;

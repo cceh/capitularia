@@ -52,7 +52,7 @@ class Dashboard_Page
         global $config;
 
         $title = esc_html (get_admin_page_title ());
-        echo ("<div class='wrap'>\n");
+        echo ("<div class='wrap cap-page-generator-dashboard'>\n");
         echo ("  <h1>$title</h1>\n");
         echo ('  <p><a href="/wp-admin/options-general.php?page=' . OPTIONS . '">' .
               __ ('Settings', DOMAIN) . "</a></p>\n");
