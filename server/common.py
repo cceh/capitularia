@@ -350,6 +350,9 @@ def normalize_bk_capitulare (n):
 
     """
 
+    if n is None:
+        raise ValueError ("No @n found on milestone capitulare")
+
     m = RE_BK.match (n) or RE_ANSEGIS.match (n)
     if m is None:
         raise ValueError ("Invalid milestone capitulare @n: '%s'" % n)

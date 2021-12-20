@@ -27,142 +27,23 @@ To create a new database: (must be database superuser)
 
 """
 
+import lxml.etree as etree
 import sqlalchemy
-from sqlalchemy import String, Integer, Float, Boolean, DateTime, Column, Index, ForeignKey
-from sqlalchemy import UniqueConstraint, CheckConstraint, ForeignKeyConstraint, PrimaryKeyConstraint
-from sqlalchemy.ext import compiler
-from sqlalchemy.ext.declarative import declarative_base, declared_attr
-from sqlalchemy.schema import DDLElement
-from sqlalchemy.sql import text
-from sqlalchemy.dialects.postgresql.json import JSONB
-from sqlalchemy.dialects.postgresql import ARRAY, INT4RANGE, TEXT
-from sqlalchemy_utils import IntRangeType
 from geoalchemy2 import Geometry
+from sqlalchemy import (DDL, Column, Float, ForeignKeyConstraint, Index,
+                        Integer, PrimaryKeyConstraint, String, event)
+from sqlalchemy.dialects.postgresql import ARRAY, INT4RANGE, TEXT
+from sqlalchemy.dialects.postgresql.json import JSONB
+from sqlalchemy.ext.declarative import declarative_base
 
 # let sqlalchemy manage our views
 
-class CreateView (DDLElement):
-    def __init__ (self, name, sql):
-        self.name = name
-        self.sql = sql.strip ()
-
-class DropView (DDLElement):
-    def __init__ (self, name):
-        self.name = name
-
-@compiler.compiles(CreateView)
-def compile (element, compiler, **kw):
-    return 'CREATE OR REPLACE VIEW %s AS %s' % (element.name, element.sql)
-
-@compiler.compiles(DropView)
-def compile (element, compiler, **kw):
+def view (name, metadata, sql):
+    event.listen (metadata, 'after_create', DDL ('CREATE OR REPLACE VIEW %s AS %s' % (name, sql)))
     # Use CASCADE to drop dependent views because we drop the views in the same
     # order as we created them instead of correctly using the reverse order.
-    return 'DROP VIEW IF EXISTS %s CASCADE' % (element.name)
+    event.listen (metadata, 'before_drop', DDL ('DROP VIEW IF EXISTS %s CASCADE' % (name)))
 
-def view (name, metadata, sql):
-    CreateView (name, sql).execute_at ('after-create', metadata)
-    DropView (name).execute_at ('before-drop', metadata)
-
-
-# let sqlalchemy manage our functions
-
-class CreateFunction (DDLElement):
-    def __init__ (self, name, params, returns, sql, **kw):
-        self.name       = name
-        self.params     = params
-        self.returns    = returns
-        self.sql        = sql.strip ()
-        self.language   = kw.get ('language', 'SQL')
-        self.volatility = kw.get ('volatility', 'VOLATILE')
-
-class DropFunction (DDLElement):
-    def __init__ (self, name, params):
-        self.name   = name
-        self.params = params
-
-@compiler.compiles(CreateFunction)
-def compile (element, compiler, **kw):
-    return 'CREATE OR REPLACE FUNCTION {name} ({params}) RETURNS {returns} LANGUAGE {language} {volatility} AS $$ {sql} $$'.format (**element.__dict__)
-
-@compiler.compiles(DropFunction)
-def compile (element, compiler, **kw):
-    return 'DROP FUNCTION IF EXISTS {name} ({params}) CASCADE'.format (**element.__dict__)
-
-def function (name, metadata, params, returns, sql, **kw):
-    CreateFunction (name, params, returns, sql, **kw).execute_at ('after-create', metadata)
-    DropFunction (name, params).execute_at ('before-drop', metadata)
-
-
-# let sqlalchemy manage our foreign data wrappers
-
-class CreateFDW (DDLElement):
-    def __init__ (self, name, pg_db, mysql_db):
-        self.name     = name
-        self.pg_db    = pg_db
-        self.mysql_db = mysql_db
-
-class DropFDW (DDLElement):
-    def __init__ (self, name, pg_db, mysql_db):
-        self.name     = name
-        self.pg_db    = pg_db
-        self.mysql_db = mysql_db
-
-@compiler.compiles(CreateFDW)
-def compile (element, compiler, **kw):
-    pp = element.pg_db.params
-    mp = element.mysql_db.params
-    return '''
-    CREATE SCHEMA {name};
-    -- Following commands don't work because you have to be superuser:
-    -- CREATE EXTENSION mysql_fdw;
-    -- GRANT USAGE ON FOREIGN DATA WRAPPER mysql_fdw TO {username};
-    CREATE SERVER {name}_server FOREIGN DATA WRAPPER mysql_fdw OPTIONS (host '{host}', port '{port}');
-    CREATE USER MAPPING FOR {pg_user} SERVER {name}_server OPTIONS (username '{username}', password '{password}');
-    IMPORT FOREIGN SCHEMA "{database}" FROM SERVER {name}_server INTO {name};
-    '''.format (name = element.name, pg_database = pp['database'], pg_user = pp['user'], **mp)
-
-@compiler.compiles(DropFDW)
-def compile (element, compiler, **kw):
-    pp = element.pg_db.params
-    mp = element.mysql_db.params
-    return '''
-    DROP SCHEMA IF EXISTS {name} CASCADE;
-    DROP USER MAPPING IF EXISTS FOR {pg_user} SERVER {name}_server;
-    DROP SERVER IF EXISTS {name}_server;
-    '''.format (name = element.name, pg_database = pp['database'], pg_user = pp['user'], **mp)
-
-def fdw (name, metadata, pg_database, mysql_db):
-    CreateFDW (name, pg_database, mysql_db).execute_at ('after-create', metadata)
-    DropFDW (name, pg_database, mysql_db).execute_at ('before-drop', metadata)
-
-
-# let sqlalchemy manage generic stuff like triggers, aggregates, unique partial indices
-
-class CreateGeneric (DDLElement):
-    def __init__ (self, create_cmd):
-        self.create = create_cmd
-
-class DropGeneric (DDLElement):
-    def __init__ (self, drop_cmd):
-        self.drop = drop_cmd
-
-@compiler.compiles(CreateGeneric)
-def compile (element, compiler, **kw):
-    return element.create
-
-@compiler.compiles(DropGeneric)
-def compile (element, compiler, **kw):
-    return element.drop
-
-def generic (metadata, create_cmd, drop_cmd, create_when='after-create', drop_when='before-drop'):
-    if create_cmd:
-        CreateGeneric (create_cmd).execute_at (create_when, metadata)
-    if drop_cmd:
-        DropGeneric (drop_cmd).execute_at (drop_when, metadata)
-
-
-import lxml.etree as etree
 
 class XML (sqlalchemy.types.UserDefinedType):
     def get_col_spec (self):
@@ -190,24 +71,24 @@ class XML (sqlalchemy.types.UserDefinedType):
 
 Base = declarative_base ()
 
-CreateGeneric ("""
+event.listen (Base.metadata, 'before_create', DDL ("""
 CREATE SCHEMA capitularia;
 ALTER DATABASE capitularia SET search_path = capitularia, public;
-"""
-).execute_at ('before-create', Base.metadata)
+"""))
 
-DropGeneric ("""
+event.listen (Base.metadata, 'after_drop', DDL ("""
 DROP SCHEMA IF EXISTS capitularia CASCADE;
-""").execute_at ('after-drop', Base.metadata)
+"""))
 
 Base.metadata.schema = 'capitularia'
 
-function ('natsort', Base.metadata, 't TEXT', 'TEXT', '''
+event.listen (Base.metadata, 'after_create', DDL (r'''
+CREATE OR REPLACE FUNCTION natsort (t TEXT) RETURNS TEXT LANGUAGE SQL IMMUTABLE AS $$
 -- SELECT REGEXP_REPLACE ($1, '0*([0-9]+)', length (\1) || \1, 'g');
 --
 SELECT STRING_AGG (COALESCE (r[2], LENGTH (r[1])::text || r[1]), '')
     FROM REGEXP_MATCHES ($1, '0*([0-9]+)|([^0-9]+)', 'g') r;
-''', volatility = 'IMMUTABLE')
+$$'''))
 
 
 class Manuscripts (Base):
@@ -461,13 +342,15 @@ class MssChaptersText (Base):
         ),
     )
 
-
-generic (Base.metadata, '''
+event.listen (Base.metadata, 'after_create', DDL ('''
 CREATE INDEX IF NOT EXISTS ix_mss_chapters_text_trgm ON mss_chapters_text USING GIN (text gin_trgm_ops);
-''', '''
+'''
+))
+
+event.listen (Base.metadata, 'before_drop', DDL ('''
 DROP INDEX IF EXISTS ix_mss_chapters_text_trgm;
 '''
-)
+))
 
 view ('chapters_count_transcriptions', Base.metadata, '''
 SELECT cap_id, chapter, COUNT (ms_id) AS transcriptions
@@ -489,15 +372,14 @@ view ('capitularies_view', Base.metadata, '''
 # The GIS schema
 #
 
-CreateGeneric ("""
+event.listen (Base.metadata, 'before_create', DDL ("""
 CREATE SCHEMA gis;
 ALTER DATABASE capitularia SET search_path = capitularia, gis, public;
-"""
-).execute_at ('before-create', Base.metadata)
+"""))
 
-DropGeneric ("""
+event.listen (Base.metadata, 'after_drop', DDL ("""
 DROP SCHEMA IF EXISTS gis CASCADE;
-""").execute_at ('after-drop', Base.metadata)
+"""))
 
 Base.metadata.schema = 'gis'
 

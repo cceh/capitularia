@@ -240,7 +240,7 @@ class PostgreSQLEngine ():
 
         self.engine = sqlalchemy.create_engine (
             self.url,
-            use_batch_mode = True
+            executemany_mode = 'batch'
         )
 
         self.params = args

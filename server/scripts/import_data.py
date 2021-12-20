@@ -103,12 +103,19 @@ MSS_WITHOUT_MSDESC = {
 }
 
 def ns (ns_name):
+    """ Convert prefix:tag into normal form {ns}tag """
+
     ns, name = ns_name.split (':')
     return '{%s}%s' % (NS[ns], name)
 
 def get_ns (e, ns_name):
-    return e.get (ns (ns_name))
+    """ Get an attribute with namespace prefix.
 
+    :param element e:      The element with the attribute
+    :param string ns_name: The attribute name as prefix:name.
+
+    """
+    return e.get (ns (ns_name))
 
 def get_date (dates):
     """Read a date range from a sequence of tei:date elements.
@@ -238,6 +245,8 @@ def lookup_geonames (conn, geo_source):
 
 
 def get_width_height (elem):
+    """ Get the width and height from TEI attributes. """
+
     w = ''
     h = ''
     for width in elem.xpath ('tei:width', namespaces = NS):
@@ -421,6 +430,7 @@ def process_cap (conn, filename):
 
 
 def lookup_published (conn, ajax_endpoint):
+    """ Update the published status of all manuscripts from the Wordpress database. """
 
     for status in ('publish', 'private'):
         params = {
@@ -496,7 +506,7 @@ def import_geoplaces (conn, args):
                 execute (conn, "COMMIT", {})
 
             except sqlalchemy.exc.IntegrityError as e:
-                log (logging.ERROR, e)
+                log (logging.WARNING, e)
                 execute (conn, "ROLLBACK", {})
 
 
@@ -514,9 +524,9 @@ def import_corpus (conn, args):
     for fn in fn_corpus:
         log (logging.INFO, "Parsing %s ..." % fn)
         tree = etree.parse (fn, parser = parser)
-        for TEI in tree.xpath ("//tei:TEI", namespaces = NS):
-            ms_id    = get_ns (TEI, "xml:id")
-            filename = get_ns (TEI, "cap:file")
+        for tei in tree.xpath ("//tei:TEI", namespaces = NS):
+            ms_id    = get_ns (tei, "xml:id")
+            filename = get_ns (tei, "cap:file")
             if ms_id in processed_ms_ids:
                 log (logging.ERROR, "xml:id %s (in %s) already seen in %s" %
                      (ms_id, filename or fn, processed_ms_ids[ms_id]))
@@ -526,7 +536,7 @@ def import_corpus (conn, args):
             row = {
                 'ms_id' : ms_id,
                 'title' : fix_ws (
-                    TEI.xpath ("tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']/text()",
+                    tei.xpath ("tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']/text()",
                                namespaces = NS)[0]
                 ),
                 'filename' : filename,
@@ -539,7 +549,7 @@ def import_corpus (conn, args):
                           filename = EXCLUDED.filename
             """, row)
 
-            for msdesc in TEI.xpath ("tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc", namespaces = NS):
+            for msdesc in tei.xpath ("tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc", namespaces = NS):
                 msparts = msdesc.xpath ("tei:msPart", namespaces = NS)
                 if msparts:
                     for mspart in msparts:
@@ -555,7 +565,7 @@ def import_corpus (conn, args):
                 ON CONFLICT (ms_id, msp_part) DO NOTHING
                 """, { 'ms_id' : ms_id, 'msp_part' : '', 'date' : MSS_WITHOUT_MSDESC[ms_id] })
 
-            for body in TEI.xpath ("tei:text/tei:body", namespaces = NS):
+            for body in tei.xpath ("tei:text/tei:body", namespaces = NS):
                 process_body (conn, body, ms_id)
 
             execute (conn, "COMMIT", {})
@@ -672,13 +682,13 @@ def import_fulltext (conn, filenames, mode):
         log (logging.INFO, "Parsing %s ..." % fn)
         tree = etree.parse (fn, parser = parser)
         try:
-            for TEI in tree.xpath ("/tei:TEI", namespaces = NS):
-                ms_id = get_ns (TEI, "xml:id")
+            for tei in tree.xpath ("/tei:TEI", namespaces = NS):
+                ms_id = get_ns (tei, "xml:id")
                 mscap_catalog = ''
                 mscap_no = ''
                 mscap_n = 1
 
-                for item in TEI.xpath (".//tei:div[@corresp]|.//tei:milestone[@unit]", namespaces = NS):
+                for item in tei.xpath (".//tei:div[@corresp]|.//tei:milestone[@unit]", namespaces = NS):
                     if item.tag == QNAME_MILESTONE:
                         unit = item.get ('unit')
                         if unit == 'capitulare':
@@ -729,6 +739,7 @@ def import_fulltext (conn, filenames, mode):
                                 ON CONFLICT (ms_id, cap_id, mscap_n, chapter, type) DO UPDATE
                                 SET text = EXCLUDED.text
                                 """, dict (params, text = item.text))
+                            # pylint: disable=no-member
                             except psycopg2.errors.ForeignKeyViolation as e:
                                 log (logging.ERROR,
                                      "Import fulltext txt: Unknown manuscript or chapter {ms_id} {cap_id} {mscap_n} {chapter}".format (**params))
