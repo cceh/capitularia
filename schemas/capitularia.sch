@@ -86,7 +86,7 @@
 	</pattern>
 	<pattern id="Unzulaessige-Kindelemente-in-abbr">
 		<rule context="tei:choice">
-			<report test="tei:abbr/*[not(self::tei:hi[@rend])]" role="warning">Codierung in "abbr" vorhanden(Ausnahme hi), darf aber nur in "expan" stehen</report>
+			<report test="tei:abbr/*[not(self::tei:hi[@rend]) and not(self::tei:gap)]" role="warning">Codierung in "abbr" vorhanden (Ausnahmen: hi und gap), darf aber nur in "expan" stehen</report>
 		</rule>
 	</pattern>
 	<!-- Nicht auflösbare Abkürzungen -->
