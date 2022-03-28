@@ -351,14 +351,16 @@ joined to the preceding word.
   </xsl:template>
 
   <xsl:template match="cb">
-    <xsl:choose>
-      <xsl:when test="@break = 'no'">
-        <span class="tei-cb"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <span class="tei-cb"> </span>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:variable name="cb_space">
+      <xsl:choose>
+        <xsl:when test="@break = 'no'">
+          <text/>
+        </xsl:when>
+        <xsl:otherwise>
+          <text> </text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
 
     <xsl:variable name="cb_prefix">
       <xsl:choose>
@@ -377,14 +379,20 @@ joined to the preceding word.
       </xsl:choose>
     </xsl:variable>
 
+    <span class="tei-cb" />
+
     <span class="folio" data-shortcuts="0">
+      <xsl:value-of select="$cb_space"/>
       <xsl:text>[cap_image_server id="</xsl:text>
       <xsl:value-of select="/TEI/@xml:id" />
       <xsl:text>" n="</xsl:text>
       <xsl:value-of select="@n" />
       <xsl:text>"]</xsl:text>
+
       <xsl:value-of select="concat ('[', $cb_prefix, '&#xa0;', @n, ']')"/>
+
       <xsl:text>[/cap_image_server]</xsl:text>
+      <xsl:value-of select="$cb_space"/>
     </span>
   </xsl:template>
 
