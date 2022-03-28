@@ -246,7 +246,7 @@
         <title>Bodleian Library Oxford</title>
         <caption>Bodleian</caption>
       </item>
-      <item key="daten.digitale-sammlungen.de">
+      <item key="digitale-sammlungen.de">
         <title>Bayerische Staatsbibliothek München</title>
         <caption>BSB München</caption>
       </item>
