@@ -83,10 +83,14 @@ Target: collation $(CACHE_DIR)/collation/%.xml
 
   </xsl:template>
 
-  <!-- We don't want to normalize V to U inside <seg type="num">
-       Replace these characters with true unicode roman numerals. -->
-  <xsl:template match="seg[@type='num']//text ()">
-    <xsl:value-of select="translate (., 'IVXLCDMivxlcdm', '&#x2160;&#x2164;&#x2169;&#x216c;&#x216d;&#x216e;&#x216f;&#x2170;&#x2174;&#x2179;&#x217c;&#x217d;&#x217e;&#x217f;')"/>
+  <!-- Don't normalize V -> U inside <seg type="num"> -->
+  <xsl:template match="seg[@type='num']//text ()[matches(., '^[IVXLCDM]+$', 'i')]">
+    <xsl:value-of select="."/>
+  </xsl:template>
+
+  <!-- Normalize V -> U -->
+  <xsl:template match="text ()">
+    <xsl:value-of select="translate (., 'Vv', 'Uu')"/>
   </xsl:template>
 
   <xsl:template match="note" />

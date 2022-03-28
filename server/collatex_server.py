@@ -97,7 +97,6 @@ WHOLE_TEXT_PATTERNS = [n.split ('=') for n in """
 ae=e
 ę=e
 j=i
-v=u
 """.split () if n]
 
 RE_WHITESPACE_EQUIV_CHARS = re.compile ("[.,:;!?-_*/]")
