@@ -209,7 +209,7 @@
     <variable name="hr" expand-text="yes">
       <for-each select="tokenize ($corresp, '\s+')">
         <for-each select="analyze-string (.,
-                          '^(\w+)[._](\d+[ABab]?)(?:_([a-z]))?(?:_(\d+))?(?:_(\w)(\w+))?$')/fn:match">
+                          '^(\w+)[._](\d+[ABab]?)(?:_([a-z]))?(?:_(\d+))?(?:_(\w)(\w+)(?:_(\d+))?)?$')/fn:match">
           <value-of select="fn:group[@nr=1]" />
           <text> </text>
           <value-of select="fn:group[@nr=2]" />
@@ -222,6 +222,9 @@
           </if>
           <if test="normalize-space (fn:group[@nr=5])">
             <text> {upper-case (fn:group[@nr=5])}{fn:group[@nr=6]}</text>
+          </if>
+          <if test="normalize-space (fn:group[@nr=7])">
+            <text> {fn:group[@nr=7]}</text>
           </if>
           <text> </text>
         </for-each>
