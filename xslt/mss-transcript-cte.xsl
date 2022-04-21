@@ -29,11 +29,13 @@ Target: mss $(CACHE_DIR)/mss/cte-137-de.html
 
   <xsl:import href="mss-transcript-phase-2.xsl" />
 
-  <xsl:template match="/TEI">
-    <!-- class=CTE is a switch for the footnote
-         post-processor to leave keyboard shortcuts alone. -->
-    <div class="tei-TEI mss-transcript-xsl transkription-body CTE">
-      <xsl:apply-templates select="text" />
+  <!-- do not replace punctuation -->
+  <xsl:template match="body">
+    <!-- This is the target for the "Contents *" links in the sidebar. -->
+    <div class="tei-body" id="start-of-text">
+      <xsl:copy-of select="@class"/>
+      <xsl:attribute name="data-shortcuts" select="0"/>
+      <xsl:apply-templates/>
     </div>
   </xsl:template>
 

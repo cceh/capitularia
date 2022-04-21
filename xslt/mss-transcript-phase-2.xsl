@@ -18,13 +18,13 @@ Phase 2 is a TEI to HTML conversion that:
 
  - converts all TEI elements into suitable HTML constructs,
 
- - puts all notes, generated and user-provided, out the main text and leaves
-   anchors at their place
+ - puts all notes, generated and user-provided, out the main text flow and leaves
+   <a>s at their place
 
 Post processing:
 
 The output of phase 2 will be processed by footnotes-post-processor.php.  That
-script will move generated footnotes to the end of the word eventually merging
+script will move generated footnotes to the end of the word, eventually merging
 multiple generated footnotes into one.  Generated footnotes will be suppressed
 if there is a editorial note at the end of the word.  Isolated footnotes will be
 joined to the preceding word.
@@ -113,6 +113,7 @@ joined to the preceding word.
   <xsl:template match="body">
     <!-- This is the target for the "Contents *" links in the sidebar. -->
     <div class="tei-body" id="start-of-text">
+      <xsl:copy-of select="@data-shortcuts|@class"/>
       <xsl:apply-templates/>
     </div>
   </xsl:template>
@@ -181,7 +182,7 @@ joined to the preceding word.
       <xsl:value-of select="cap:make-human-readable-bk (cap:strip-ignored-corresp (@corresp))" />
     </xsl:variable>
 
-    <div class="glossa-nota-wrapper">
+    <div class="glossa-nota-wrapper" data-shortcuts="0">
       <xsl:if test="contains (@rend, 'glossa')">
         <div class="glossa" title="[:de]Der Textabschnitt ist glossiert.[:en]The section is glossed.[:]">
         </div>
@@ -194,7 +195,7 @@ joined to the preceding word.
     </div>
     <xsl:text>&#x0a;&#x0a;</xsl:text>
 
-    <div class="corresp-wrapper">
+    <div class="corresp-wrapper" data-shortcuts="0">
       <xsl:if test="normalize-space ($corresp)"> <!-- is filtered by inscriptio incipit explicit etc. -->
         <div class="corresp">
           <xsl:text>[</xsl:text>
@@ -274,6 +275,7 @@ joined to the preceding word.
     <xsl:text>&#x0a;</xsl:text>
     <div id="{@xml:id}-content" class="annotation-content">
       <div class="annotation-text">
+        <xsl:copy-of select="@data-shortcuts"/>
         <xsl:apply-templates />
       </div>
     </div>
@@ -428,9 +430,7 @@ joined to the preceding word.
     <span class="milestone milestone-capitulatio-end" />
   </xsl:template>
 
-  <xsl:template match="anchor">
-    <!-- <span class="tei-anchor" data-note-id="{@xml:id}" /> -->
-  </xsl:template>
+  <xsl:template match="anchor" />
 
   <!--
       Typ-Unterscheidung hinzufügen!!!

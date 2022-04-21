@@ -14,9 +14,9 @@ Transforms: $(MSS_DIR)/texts/137-de.xml -> $(CACHE_DIR)/mss/cte-137-de.transcrip
 
 Phase 1 is a TEI to TEI conversion that:
 
- - Resolves add, del, subst, choose, and expan into one text flow
+ - Resolves add, del, subst, choose, and expan into one text flow, and
 
- - generates notes that explain how those constructs were resolved
+ - generates notes that explain how those constructs were resolved.
 
 Footnote generation examples:
 
@@ -108,6 +108,10 @@ The generated text of the footnote varies according to these cases.
   <xsl:template match="/TEI/text/body">
     <xsl:copy>
       <xsl:apply-templates select="@*" />
+      <xsl:if test="not (@data-shortcuts)">
+        <xsl:attribute name="data-shortcuts" select="1"/>
+      </xsl:if>
+
       <milestone type="tei-body-start" />
       <xsl:apply-templates />
       <milestone type="tei-body-end" />
@@ -421,27 +425,29 @@ The generated text of the footnote varies according to these cases.
     </note>
   </xsl:template>
 
-  <!--
-      default mode for <note>s
-
-      This mode generates the text section.  It only ever generates <anchor>s,
-      never <note>s.
-  -->
-
-  <xsl:template match="body//note">
-    <anchor xml:id="{generate-id ()}-ref" class="tei-note annotation annotation-{@type}">
-      <xsl:copy-of select="@*" />
-    </anchor>
-    <note xml:id="{generate-id ()}" class="tei-note">
+  <xsl:template name="xform-note">
+    <!-- transform a real (non-generated) note -->
+    <!-- the note, which will be moved behind the <ab> in phase 2 -->
+    <note xml:id="{generate-id ()}" class="tei-note" data-shortcuts="0">
       <xsl:copy-of select="@*" />
       <xsl:apply-templates />
     </note>
+    <!-- the post-processor turns this into a footnote ref -->
     <seg class="tei-note annotation annotation-{@type}" data-shortcuts="0"
          data-note-id="{generate-id ()}" />
   </xsl:template>
 
+  <!--
+      default mode for <note>s
+
+      This mode generates the text section.
+  -->
+
+  <xsl:template match="body//note">
+    <xsl:call-template name="xform-note"/>
+  </xsl:template>
+
   <xsl:template match="subst">
-    <anchor xml:id="{generate-id ()}-ref" />
     <xsl:call-template name="generate-note"/>
     <seg class="tei-subst" data-note-id="{generate-id ()}">
       <xsl:apply-templates select="del" />
@@ -450,7 +456,6 @@ The generated text of the footnote varies according to these cases.
   </xsl:template>
 
   <xsl:template match="choice">
-    <anchor xml:id="{generate-id ()}-ref" />
     <xsl:call-template name="generate-note" />
     <seg class="tei-choice"> <!-- data-note-id="{generate-id ()}"> -->
       <xsl:apply-templates select="expan" />
@@ -470,7 +475,7 @@ The generated text of the footnote varies according to these cases.
   -->
 
   <xsl:template match="body/ab">
-    <ab data-shortcuts="1">
+    <ab>
       <xsl:copy-of select="@*"/>
       <xsl:call-template name="handle-rend">
         <xsl:with-param name="extra-class" select="concat ('ab ab-', @type)" />
@@ -533,7 +538,6 @@ The generated text of the footnote varies according to these cases.
   </xsl:template>
 
   <xsl:template match="add">
-    <anchor xml:id="{generate-id ()}-ref" />
     <xsl:if test="not (parent::subst)">
       <xsl:call-template name="generate-note"/>
     </xsl:if>
@@ -580,7 +584,6 @@ The generated text of the footnote varies according to these cases.
 
   <xsl:template match="del">
     <!-- non-empty del -->
-    <anchor xml:id="{generate-id ()}-ref" />
     <xsl:if test="not (parent::subst)">
       <xsl:call-template name="generate-note"/>
     </xsl:if>
@@ -617,7 +620,6 @@ The generated text of the footnote varies according to these cases.
   </xsl:template>
 
   <xsl:template match="mod">
-    <anchor xml:id="{generate-id ()}-ref" />
     <xsl:call-template name="generate-note"/>
     <seg class="tei-mod" data-note-id="{generate-id ()}">
       <xsl:call-template name="handle-rend">
@@ -628,7 +630,6 @@ The generated text of the footnote varies according to these cases.
   </xsl:template>
 
   <xsl:template match="space">
-    <anchor xml:id="{generate-id ()}-ref" />
     <xsl:call-template name="generate-note"/>
     <seg class="tei-space" data-note-id="{generate-id ()}">
       <xsl:text> - - - </xsl:text>
@@ -636,7 +637,6 @@ The generated text of the footnote varies according to these cases.
   </xsl:template>
 
   <xsl:template match="handShift">
-    <anchor xml:id="{generate-id ()}-ref" />
     <xsl:call-template name="generate-note"/>
     <seg class="tei-handShift" data-note-id="{generate-id ()}" />
   </xsl:template>
@@ -734,21 +734,12 @@ The generated text of the footnote varies according to these cases.
   -->
 
   <xsl:template match="add|del[normalize-space ()]|subst|mod|space|choice|handShift" mode="notes-only">
-    <anchor xml:id="{generate-id ()}-ref" class="tei-{local-name ()}" />
     <xsl:call-template name="generate-note"/>
     <xsl:apply-templates mode="notes-only"/>
   </xsl:template>
 
   <xsl:template match="note" mode="notes-only">
-    <anchor xml:id="{generate-id ()}-ref" class="tei-note annotation annotation-{@type}">
-      <xsl:copy-of select="@*" />
-    </anchor>
-    <note xml:id="{generate-id ()}" class="tei-note">
-      <xsl:copy-of select="@*" />
-      <xsl:apply-templates />
-    </note>
-    <seg class="tei-note annotation annotation-{@type}" data-shortcuts="0"
-         data-note-id="{generate-id ()}" />
+    <xsl:call-template name="xform-note"/>
   </xsl:template>
 
   <xsl:template match="text ()" mode="notes-only">
@@ -807,15 +798,15 @@ The generated text of the footnote varies according to these cases.
           <xsl:copy-of select="$after"/>
         </xsl:variable>
         <xsl:if test="cap:is-phrase ($phrase)">
-          <seg class="{$rend}" data-shortcuts="1">
+          <seg class="{$rend}">
             <xsl:copy-of select="cap:shorten-phrase ($phrase)"/>
           </seg>
         </xsl:if>
-        <seg class="generated">
+        <seg class="generated" data-shortcuts="0">
           <xsl:call-template name="hand-blurb"/>
           <xsl:text> korr. zu </xsl:text>
         </seg>
-        <seg class="{$rend}" data-shortcuts="1">
+        <seg class="{$rend}">
           <xsl:copy-of select="$before"/>
           <xsl:apply-templates select="add/node()" />
           <xsl:copy-of select="$after"/>
@@ -828,15 +819,15 @@ The generated text of the footnote varies according to these cases.
           <xsl:copy-of select="$after"/>
         </xsl:variable>
         <xsl:if test="cap:is-phrase ($phrase)">
-          <seg class="{$rend}" data-shortcuts="1">
+          <seg class="{$rend}">
             <xsl:copy-of select="cap:shorten-phrase ($phrase)"/>
           </seg>
         </xsl:if>
-        <seg class="generated">
+        <seg class="generated" data-shortcuts="0">
           <xsl:call-template name="hand-blurb"/>
           <xsl:text> korr. aus </xsl:text>
         </seg>
-        <seg class="{$rend}" data-shortcuts="1">
+        <seg class="{$rend}">
           <xsl:copy-of select="$before"/>
           <xsl:apply-templates select="del" mode="original"/>
           <xsl:copy-of select="$after"/>
@@ -852,7 +843,7 @@ The generated text of the footnote varies according to these cases.
 
     <xsl:choose>
       <xsl:when test="cap:is-later-hand (.)">
-        <seg class="generated">
+        <seg class="generated" data-shortcuts="0">
           <xsl:choose>
             <xsl:when test="cap:is-whole-word ($before, $after)">
               <xsl:text> folgt </xsl:text>
@@ -868,7 +859,7 @@ The generated text of the footnote varies according to these cases.
             </xsl:otherwise>
           </xsl:choose>
         </seg>
-        <seg class="{$rend}" data-shortcuts="1">
+        <seg class="{$rend}">
           <xsl:copy-of select="$before"/>
           <xsl:apply-templates/>
           <xsl:copy-of select="$after"/>
@@ -881,7 +872,7 @@ The generated text of the footnote varies according to these cases.
                into $phrase but cap:shorten-phrase doesn't know enough to throw it out -->
           <xsl:apply-templates select="node ()[not (self::milestone)]" />
         </xsl:variable>
-        <seg class="{$rend}" data-shortcuts="1">
+        <seg class="{$rend}">
           <xsl:choose>
             <xsl:when test="string-length () = 1">
               <xsl:apply-templates/>
@@ -902,7 +893,7 @@ The generated text of the footnote varies according to these cases.
             </xsl:otherwise>
           </xsl:choose>
         </seg>
-        <seg class="generated">
+        <seg class="generated" data-shortcuts="0">
           <xsl:if test="@place='inspace'">
             <xsl:text> in Lücke </xsl:text>
           </xsl:if>
@@ -930,23 +921,23 @@ The generated text of the footnote varies according to these cases.
         <xsl:choose>
           <xsl:when test="cap:is-later-hand (.)">
             <xsl:if test="cap:is-phrase ($phrase)">
-              <seg class="{$rend}" data-shortcuts="1">
+              <seg class="{$rend}">
                 <xsl:copy-of select="cap:shorten-phrase ($phrase)"/>
               </seg>
             </xsl:if>
-            <seg class="generated">
+            <seg class="generated" data-shortcuts="0">
               <xsl:call-template name="hand-blurb"/>
               <xsl:text> getilgt</xsl:text>
             </seg>
           </xsl:when>
           <xsl:otherwise>
-            <seg class="generated">
+            <seg class="generated" data-shortcuts="0">
               <!-- The footnote reference will be moved to the end of the preceding word. -->
               <xsl:text>folgt</xsl:text>
               <xsl:call-template name="hand-blurb"/>
               <xsl:text> getilgtes </xsl:text>
             </seg>
-            <seg class="{$rend}" data-shortcuts="1">
+            <seg class="{$rend}">
               <xsl:copy-of select="$phrase"/>
             </seg>
           </xsl:otherwise>
@@ -957,21 +948,21 @@ The generated text of the footnote varies according to these cases.
         <!-- Part of word deleted. -->
         <xsl:choose>
           <xsl:when test="cap:is-later-hand (.)">
-            <seg class="generated">
+            <seg class="generated" data-shortcuts="0">
               <xsl:call-template name="hand-blurb"/>
               <xsl:text> korr. zu </xsl:text>
             </seg>
-            <seg class="{$rend}" data-shortcuts="1">
+            <seg class="{$rend}">
               <xsl:copy-of select="$before"/>
               <xsl:copy-of select="$after"/>
             </seg>
           </xsl:when>
           <xsl:otherwise>
-            <seg class="generated">
+            <seg class="generated" data-shortcuts="0">
               <xsl:call-template name="hand-blurb"/>
               <xsl:text> korr. aus </xsl:text>
             </seg>
-            <seg class="{$rend}" data-shortcuts="1">
+            <seg class="{$rend}">
               <xsl:copy-of select="$phrase"/>
             </seg>
           </xsl:otherwise>
@@ -987,10 +978,10 @@ The generated text of the footnote varies according to these cases.
 
     <xsl:choose>
       <xsl:when test="cap:is-whole-word ($before, $after)">
-        <seg class="generated">korr. (?)</seg>
+        <seg class="generated" data-shortcuts="0">korr. (?)</seg>
       </xsl:when>
       <xsl:otherwise>
-        <seg class="{$rend}" data-shortcuts="1">
+        <seg class="{$rend}">
           <xsl:choose>
             <xsl:when test="string-length (.) = 1">
               <xsl:apply-templates/>
@@ -1007,7 +998,7 @@ The generated text of the footnote varies according to these cases.
             </xsl:otherwise>
           </xsl:choose>
         </seg>
-        <seg class="generated"> korr. (?)</seg>
+        <seg class="generated" data-shortcuts="0"> korr. (?)</seg>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -1019,21 +1010,21 @@ The generated text of the footnote varies according to these cases.
 
     <xsl:if test="cap:is-phrase ($phrase)">
       <xsl:variable name="rend-expan" select="concat ('tei-mentioned', cap:get-rend-class (expan))"/>
-      <seg class="{$rend-expan}" data-shortcuts="1">
+      <seg class="{$rend-expan}">
         <xsl:copy-of select="cap:shorten-phrase ($phrase)"/>
       </seg>
     </xsl:if>
 
-    <seg class="generated"> gek. </seg>
+    <seg class="generated" data-shortcuts="0"> gek. </seg>
 
     <xsl:variable name="rend-abbr" select="concat ('tei-mentioned', cap:get-rend-class (abbr))"/>
-    <seg class="{$rend-abbr}" data-shortcuts="1">
+    <seg class="{$rend-abbr}">
       <xsl:apply-templates select="abbr"/>
     </seg>
   </xsl:template>
 
   <xsl:template match="space" mode="auto-note">
-    <seg class="generated">
+    <seg class="generated" data-shortcuts="0">
       <xsl:text>Lücke von ca. </xsl:text>
       <xsl:value-of select="@quantity"/>
       <xsl:text> </xsl:text>
@@ -1045,7 +1036,7 @@ The generated text of the footnote varies according to these cases.
   </xsl:template>
 
   <xsl:template match="handShift" mode="auto-note">
-    <seg class="generated">
+    <seg class="generated" data-shortcuts="0">
       <xsl:text>Ab diesem Wort Wechsel der Schreiberhand, vgl. die Vorbemerkung.</xsl:text>
     </seg>
   </xsl:template>

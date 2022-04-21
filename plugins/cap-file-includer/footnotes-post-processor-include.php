@@ -235,7 +235,7 @@ function insert_footnote_backref ($elem, $id)
     global $doc;
     $frag = $doc->createDocumentFragment ();
     $frag->appendXML (
-        "<a class='annotation-backref ssdone' href='#{$id}-ref'>" .
+        "<a class='annotation-backref ssdone' href='#{$id}-ref' data-shortcuts='0'>" .
         "<span class='print-only footnote-number-backref'></span>" .
         "<span class='screen-only footnote-siglum'></span></a>"
     );
@@ -303,9 +303,6 @@ function post_process ($doc)
 
     $notes = $xpath->query ('//' . FOOTNOTE_REF);
     foreach ($notes as $note) {
-        //if (trim ($note->nodeValue)) {
-        //    continue; // not empty, can't be moved
-        //}
 
         $ws_before = false;
         $ws_after  = false;
@@ -367,12 +364,6 @@ function post_process ($doc)
             if (is_note ($next)) {
                 merge_notes ($note, $next);
                 break;
-            }
-
-            // If we get here $next is a text node.
-            if ($next->parentNode->getAttribute ('data-shortcuts') == '0') {
-                // skip non-latin texts
-                continue;
             }
 
             $we_pos = word_end_pos ($next);
@@ -466,29 +457,22 @@ function post_process ($doc)
     }
 
     //
-    // Loop over text nodes to:
+    // Editorial shortcuts. Loop over text nodes to:
     //
     // - replace editors' keyboard shortcuts
     // - change whitespace before punctuation into nbsp
     //
 
-    // Test if this file was transformed with the CTE stylesheet.  In that case we
-    // don't want to replace shortcuts. FIXME: find a better way to configure this.
-    $divs = $xpath->query ('//div[contains (concat (" ", @class, " "), " CTE ")]');
-    $is_cte = ($divs !== false) && ($divs->length > 0);
+    $search  = array ('.:', ';.',  '.', '!',  '*');
+    $replace = array ('∴',  '·,·', '·', ".'", '˙');
 
-    if (!$is_cte) {
-        $search  = array ('.:', ';.',  '.', '!',  '*');
-        $replace = array ('∴',  '·,·', '·', ".'", '˙');
-
-        $textnodes = $xpath->query ('//text()[ancestor::*[@data-shortcuts][1]/@data-shortcuts = "1"]');
-        foreach ($textnodes as $textnode) {
-            $text = $textnode->nodeValue;
-            $text = preg_replace ('/\s+([[:punct:]])/u', ' $1', $text);
-            $text = str_replace ($search, $replace, $text);
-            if ($text != $textnode->nodeValue) {
-                $textnode->nodeValue = $text;
-            }
+    $textnodes = $xpath->query ('//text()[ancestor::*[@data-shortcuts][1]/@data-shortcuts = "1"]');
+    foreach ($textnodes as $textnode) {
+        $text = $textnode->nodeValue;
+        $text = preg_replace ('/\s+([[:punct:]])/u', ' $1', $text);
+        $text = str_replace ($search, $replace, $text);
+        if ($text != $textnode->nodeValue) {
+            $textnode->nodeValue = $text;
         }
     }
 
