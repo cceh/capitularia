@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
 schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="novara-bc-xv">
-   <teiHeader><!-- ACHTUNG! IN BEARBEITUNG! -->
+   <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main" xml:lang="ger">Novara, Archivio Storico Diocesano, XV <note
-               type="filiation">Soweit geprüft, bis fol. 67r genaue Kopie von Cod. <ref
-                  type="internal" subtype="mss" target="novara-bc-xxx">Novara, Archivio
-                  Storico Diocesano, XXX</ref>.</note></title>
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek</title>
-            <title type="sub" xml:lang="eng">Manuscript description according to Mordek</title>
+                  type="filiation">Soweit geprüft, bis fol. 67r genaue Kopie von Cod. <ref
+                     type="internal" subtype="mss" target="novara-bc-xxx">Novara, Archivio Storico
+                     Diocesano, XXX</ref>.</note></title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+               Transkripiton der foll. 63vb-64rb</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+               transcription of fols 63vb-64rb</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -19,9 +21,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <resp xml:lang="eng">Project lead</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="DT">
+                  <forename>Dominik</forename>
+                  <surname>Trump</surname>
                </persName>
                <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
                   Standard</resp>
@@ -29,17 +31,17 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   TEI P5 standard</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
                </persName>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">First revision of transcription and additions</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
@@ -113,8 +115,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <msIdentifier>
                   <settlement>Novara</settlement>
                   <repository>Archivio Storico Diocesano</repository>
-                  <idno>XV<!--, foll. 1-68--></idno>
-                  <!-- Angaben wg. Einfügung von msParts auskommentiert -->
+                  <idno>XV</idno>
                   <msName/>
                   <altIdentifier type="former">
                      <settlement/>
@@ -137,10 +138,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   </msIdentifier>
                   <head>
                      <title type="main">Novara, Archivio Storico Diocesano, XV </title>
-                     <origDate notAfter="1200" notBefore="1101"> 12. Jh.</origDate>
+                     <origDate notAfter="1200" notBefore="1101">12. Jh.</origDate>
                      <origPlace
                         ref="http://www.geonames.org/3172189/novara.html http://d-nb.info/gnd/4117934-1 http://viaf.org/viaf/139539679"
-                        > Novara</origPlace>
+                        >Novara</origPlace>
                   </head>
                   <msContents>
                      <summary> </summary>
@@ -166,10 +167,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      </msItem>
                      <msItem n="4">
                         <p>
-                           <locus>59ra-rb</locus> Konzil von Quierzy (a. 853) (MGH Conc. 3, S.
-                           297). Zur Einschätzung der vier Kapitel siehe unten Cod. <ref
-                              type="internal" subtype="mss" target="novara-bc-xxx">Novara XXX</ref>, fol.
-                           268ra-rb. </p>
+                           <locus>59ra-rb</locus> Konzil von Quierzy (a. 853) (MGH Conc. 3, S. 297).
+                           Zur Einschätzung der vier Kapitel siehe unten Cod. <ref type="internal"
+                              subtype="mss" target="novara-bc-xxx">Novara XXX</ref>, fol. 268ra-rb.
+                        </p>
                      </msItem>
                      <msItem n="5">
                         <p>
@@ -178,18 +179,19 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      </msItem>
                      <msItem n="6">
                         <p>
-                           <locus>63rb-vb</locus> Konzil von Saint-Laurent-lès-Mâcon (a. 855)
-                              (ed. <hi rend="smallcaps">Amelli, </hi>Spicilegium, S. 330-333 und MGH
-                           Conc. 3, S. 375 - 378). </p>
+                           <locus>63rb-vb</locus> Konzil von Saint-Laurent-lès-Mâcon (a. 855) (ed.
+                              <hi rend="smallcaps">Amelli, </hi>Spicilegium, S. 330-333 und MGH
+                           Conc. 3, S. 375-378). </p>
                      </msItem>
                      <msItem n="7">
                         <p>
                            <locus>63vb</locus> Nikolaus I., JE 2697, cc. 1-2 mit der redigierten
                            Einleitung: <hi rend="italic">Hęc uero quę sequuntur domnus apostolicus
-                              nobis rescribere curauit</hi> (korr. zu <hi rend="italic">curabit).
-                              Nosque lothario regi cum aliis quam plurimis capitulis de praesenti
-                              synodo dirigere curauimus</hi> (ed. <hi rend="smallcaps">Amelli,
-                           </hi>Spicilegium, S. 333 und MGH Epp. 6, S. 618 Z. 28 - S. 619 Z. 9).<lb/>
+                              nobis rescribere curauit</hi> (korr. zu <hi rend="italic"
+                           >curabit</hi>). <hi rend="italic">Nosque lothario regi cum aliis quam
+                              plurimis capitulis de praesenti synodo dirigere curauimus</hi> (ed.
+                              <hi rend="smallcaps">Amelli, </hi>Spicilegium, S. 333 und MGH Epp. 6,
+                           S. 618 Z. 28 - S. 619 Z. 9).<lb/>
                            <hi rend="italic">Cap. II inseruntur in cang. concilio. Statuimus ideo ut
                               nullus de ordinibus - pęnitus maneat</hi> (ed. <hi rend="smallcaps"
                               >Amelli, </hi>Spicilegium, S. 333). </p>
@@ -199,16 +201,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                            <locus>63vb-64rb</locus>
                            <hi rend="italic">cap. I-XIII</hi> - <title corresp="BK.203">Hlotharii
                               capitulare de expeditione contra Sarracenos facienda</title> (a. 847):
-                              <hi rend="italic">Incipit synodus habita francia</hi> (r später
-                           nachgetragen) <hi rend="italic">tempore domni hlotharii imperatoris pro
-                              edificatione nou</hi>ę<hi rend="italic"> rom</hi>ę<hi rend="italic">.
-                              Qvia diuina pietas nos et - Et sigiricus</hi> (ed. <hi
-                              rend="smallcaps">Amelli, </hi>Spicilegium, S. 334-336; MGH Capit. 2,
-                           Nr. 203, S. 65 Z. 28 f., S. 65 Z. 35 - S. 68 Z. 21 und MGH Conc. 3, S.
-                           135-139, zur Hs. S. 134 f.; vgl. <hi rend="smallcaps">Böhmer </hi>
-                           <hi rend="smallcaps">- </hi>
-                           <hi rend="smallcaps">Zielinski </hi>Nr. 46); anschließend 6 Zeilen leer.
-                        </p>
+                              <hi rend="italic">Incipit synodus habita francia</hi> (<hi
+                              rend="italic">r</hi> später nachgetragen) <hi rend="italic">tempore
+                              domni hlotharii imperatoris pro edificatione nouę romę. Qvia diuina
+                              pietas nos et - Et sigiricus</hi> (ed. <hi rend="smallcaps">Amelli,
+                           </hi>Spicilegium, S. 334-336; MGH Capit. 2, Nr. 203, S. 65 Z. 28 f., S.
+                           65 Z. 35 - S. 68 Z. 21 und MGH Conc. 3, S. 135-139, zur Hs. S. 134 f.;
+                           vgl. Böhmer-Zielinski Nr. 46); anschließend 6 Zeilen leer. </p>
                      </msItem>
                      <msItem n="9">
                         <p>
@@ -231,18 +230,18 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      <msItem n="11">
                         <p>
                            <locus>66v-67r</locus> Isidor von Sevilla, Etymologiae, VII, 12, 1-14
-                              (ed. <hi rend="smallcaps">Amelli, </hi>Spicilegium, S. 341-343 und <hi
+                           (ed. <hi rend="smallcaps">Amelli, </hi>Spicilegium, S. 341-343 und <hi
                               rend="smallcaps">Lindsay).</hi>
                         </p>
                      </msItem>
                      <msItem n="12">
                         <p>
-                           <locus>67r-68v</locus> Libellus responsionum Gregors I. an Augustinus
-                           von Canterbury, JE 1843 (MGH Epp. 2, S. 333 Z. 3 - S. 343 Z. 16 <hi
-                              rend="italic">animus carnis;</hi> danach Blattverlust). </p>
+                           <locus>67r-68v</locus> Libellus responsionum Gregors I. an Augustinus von
+                           Canterbury, JE 1843 (MGH Epp. 2, S. 333 Z. 3 - S. 343 Z. 16 <hi
+                              rend="italic">animus carnis</hi>; danach Blattverlust). </p>
                      </msItem>
-                     
-                     
+
+
                   </msContents>
                   <physDesc>
                      <objectDesc form="codex">
@@ -251,8 +250,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                               <material>Pergament</material>
                            </support>
                            <extent>Der Codex besteht aus zwei Hss. von insgesamt 140 foll.; dieser
-                              Teil (I) foll. 1-68. (in Teil II [69-140] fehlen Lage III und alles
-                              nach Lage X).<dimensions type="leaf" unit="mm">
+                              Teil (I) foll. 1-68.<dimensions type="leaf" unit="mm">
                                  <height>380-385</height>
                                  <width>280-285</width>
                               </dimensions>
@@ -261,9 +259,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                                  <width>220-225 </width>
                               </dimensions>
                            </extent>
-                           <collation><formula>7 IV<hi rend="super">56</hi> + 2 II (=
-                                 ursprünglich IV)<hi rend="super">64</hi> 4- II<hi rend="super"
-                                    >68</hi>.</formula>
+                           <collation><formula>7 IV<hi rend="super">56</hi> + 2 II (= ursprünglich
+                                    IV)<hi rend="super">64</hi> + II<hi rend="super"
+                                 >68</hi></formula>
                            </collation>
                         </supportDesc>
                         <layoutDesc>
@@ -273,12 +271,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      </objectDesc>
                      <handDesc>
                         <handNote>Fol. 1r von neuzeitlicher Hand: <hi rend="italic">Codex X et XI
-                              S</hi>ę<hi rend="italic">culi</hi> und unten <hi rend="italic">Ad usum
-                              ecclesi</hi>ę<hi rend="italic"> Novariensis.</hi>
+                              Sęculi</hi> und unten <hi rend="italic">Ad usum ecclesię
+                              Novariensis.</hi>
                         </handNote>
                      </handDesc>
                      <scriptDesc>
-                        <scriptNote>gotische Minuskel</scriptNote>
+                        <scriptNote>gotische Minuskel<note type="corr">Es handelt sich eher um eine
+                              spätkarolingische Minuskel.</note></scriptNote>
                      </scriptDesc>
                      <decoDesc>
                         <p>Rote Rubriken in Capitalis und Minuskel; meist einfache Initialen in Rot
@@ -295,10 +294,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <history>
                      <origin>
                         <p>
-                           <origDate notAfter="1200" notBefore="1101"> 12. Jh.</origDate>;
-                              <origPlace
+                           <origDate notAfter="1200" notBefore="1101">12. Jh.</origDate>; <origPlace
                               ref="http://www.geonames.org/3172189/novara.html http://d-nb.info/gnd/4117934-1 http://viaf.org/viaf/139539679"
-                              > Novara</origPlace>.</p>
+                              >Novara</origPlace></p>
                      </origin>
                      <provenance>
                         <p>Alte Signatur: <idno>30</idno>.</p>
@@ -309,45 +307,39 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      <surrogates/>
                      <listBibl>
                         <listBibl type="lit">
+                           <bibl corresp="#Maassen_1866"> Maassen 1866, S. 391</bibl>
+                           <bibl corresp="#Maassen_1870"> Maassen 1870, S. 717</bibl>
+                           <bibl corresp="#Lippert_1887">Lippert 1887, S. 533 ff.</bibl>
+                           <bibl> P. Fournier, La collezione canonica del Regesto di Farfa, in:
+                              Archivio della R. Società Romana di Storia Patria 17 (1894) S. 293
+                              Anm. 2, wiederabgedruckt in: ders., Mélanges 2, S. 693 Anm. 2</bibl>
                            <bibl corresp="#Boretius_1897">Boretius 1897, S. XXI</bibl>
+                           <bibl corresp="#Dupraz_1936">Dupraz 1936, S. 250-251</bibl>
+                           <bibl>G. De Ferrari, I più antichi codici della Biblioteca Capitolare di
+                              Santa Maria di Novara, in: Bollettino storico per la provincia di
+                              Novara 47 (1956) S. 180 f.</bibl>
+                           <bibl corresp="#de_Clercq_C_1958">de Clercq 1958, S. 123 f., 218</bibl>
                            <bibl> E. Cau, Scrittura e cultura a Novara (secoli VIII-X), in: Ricerche
                               medievali 6-9 (1971-74) S. 12 f.</bibl>
-                           <bibl> A. Cislaghi, L'iniziazione cristiana
-                              nella diocesi di Novara dal V al XIV secolo, in: Novarien. 8 (1977) S.
-                              37 ff.</bibl>
-                           <bibl corresp="#Boretius_1897">de Clercq 1958, S. 123 f., 218</bibl>
-                           <bibl>G. De Ferrari, I più antichi codici della
-                              Biblioteca Capitolare di Santa Maria di Novara, in: Bollettino storico
-                              per la provincia di Novara 47 (1956) S. 180 f.</bibl>
-                              <bibl corresp="#Dupraz_1936">Dupraz 1936, S. 250-251.</bibl>
-                             <bibl> P. Fournier, La collezione canonica del
-                              Regesto di Farfa, in: Archivio della R. Società Romana di Storia
-                              Patria 17 (1894) S. 293 Anm. 2, wiederabgedruckt in: ders., Mélanges
-                              2, S. 693 Anm. 2</bibl>   
-                           <bibl corresp="Fuhrmann_1972-1974">Fuhrmann 1972-1974, S. 451 Anm. 74</bibl>
-                           <bibl corresp="#Lippert_1887">Lippert 1887, S. 533 ff.</bibl>
-                           <bibl corresp="#Maassen_1866">
-                              Maassen 1866, S. 391</bibl>
-                           <bibl corresp="#Maassen_1870">
-                              Maassen 1870, S. 717</bibl>
-                           <bibl>
-                            H. Mordek, Handschriftenforschungen in
-                              Italien, in: QFIAB 51 (1972) S. 643</bibl>   
+                           <bibl corresp="Fuhrmann_1972-1974">Fuhrmann 1972-1974, S. 451 Anm.
+                              74</bibl>
+                           <bibl> H. Mordek, Handschriftenforschungen in Italien, in: QFIAB 51
+                              (1972) S. 643</bibl>
+                           <bibl> G. Picasso, I codici canonistici della biblioteca Capitolare di
+                              Novara nella recente storiografia, in: Novarien. 5 (1973) S. 7
+                              ff.</bibl>
                            <bibl corresp="#Mordek_1975">Mordek 1975, S. 11 Anm. 41</bibl>
-                           <bibl>
-                              G. Picasso, I codici canonistici della
-                              biblioteca Capitolare di Novara nella recente storiografia, in:
-                              Novarien. 5 (1973) S. 7 ff.</bibl>
-                         
+                           <bibl> A. Cislaghi, L'iniziazione cristiana nella diocesi di Novara dal V
+                              al XIV secolo, in: Novarien 8 (1977) S. 37 ff.</bibl>
+
                         </listBibl>
                         <listBibl type="cat">
-                           <bibl>N. <hi rend="smallcaps">Colombo, </hi>in: G. <hi rend="smallcaps"
-                                 >Mazzatinti </hi>- A. <hi rend="smallcaps">Sorbelli, </hi>Inventari
-                              dei Manoscritti delle Biblioteche d’Italia 6 (Forlì 1896) S. 77 Nr.
-                              16.</bibl>
+                           <bibl>N. Colombo, in: G. Mazzatinti - A. Sorbelli, Inventari dei
+                              Manoscritti delle Biblioteche d’Italia 6 (Forlì 1896) S. 77 Nr.
+                              16</bibl>
                         </listBibl>
                         <listBibl type="cap">
-                           <bibl corresp="#Mordek_1995">Mordek 1995 S. 393-395</bibl>
+                           <bibl corresp="#Mordek_1995">Mordek 1995, S. 393-395</bibl>
                         </listBibl>
                      </listBibl>
                   </additional>
@@ -360,10 +352,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   </msIdentifier>
                   <head>
                      <title type="main">Novara, Archivio Storico Diocesano, XV</title>
-                     <origDate notAfter="1200" notBefore="1101"> 12. Jh.</origDate>
+                     <origDate notAfter="1200" notBefore="1101">12. Jh.</origDate>
                      <origPlace
                         ref="http://www.geonames.org/3172189/novara.html http://d-nb.info/gnd/4117934-1 http://viaf.org/viaf/139539679"
-                        > Novara</origPlace>
+                        >Novara</origPlace>
                   </head>
                   <msContents>
                      <summary> </summary>
@@ -376,8 +368,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         <p>
                            <locus>70ra-140vb</locus> (11. Jh., 2. Hälfte) Fragment des Dekrets
                            Bischof Burchards von Worms bis III, 196 <hi rend="italic">aut
-                              homi&lt;cidium&gt; </hi>
-                           <hi rend="smallcaps">(Migne, </hi>PL 140, Sp. 537-711, ohne einen Teil
+                              homi&lt;cidium&gt; </hi> (Migne, PL 140, Sp. 537-711, ohne einen Teil
                            des 1. Buches [Lagenverlust]). </p>
                      </msItem>
                   </msContents>
@@ -387,38 +378,21 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                            <support>
                               <material>Pergament</material>
                            </support>
-                           <extent>Die Gesamthandschrift besteht aus zwei Hss. von insgesamt 140
-                              foll.; dieser Teil (II) 69-140<!--<dimensions type="leaf" unit="mm">
-                              <height>380-385</height>
-                              <width>280-285</width>
-                           </dimensions>                          
-                              <dimensions type="written" unit="mm">
-                                 <height>350</height>
-                                 <width>220 -225 </width>
-                              </dimensions>--><!-- Angaben nur für ersten Teil der Sammelhs. Bitte prüfen! ##DS 29.03.2016-->
-                           </extent>
+                           <extent>Der Codex besteht aus zwei Hss. von insgesamt 140 foll.; dieser
+                              Teil (II) foll. 69-140.</extent>
                            <collation><formula>Es fehlen Lage III und alles nach Lage X</formula>
                            </collation>
                         </supportDesc>
-                        <!--<layoutDesc>
-                           <layout columns="2">bis fol. 64 zwei Spalten</layout>
-                           <layout writtenLines="65">65 enge
-                              Zeilen</layout>
-                        </layoutDesc>-->
-                        <!-- rein auf Basis der Angaben unklar, ob das auch auf diesen Teil gilt. Bitte prüfen! ##DS 29.03.2016-->
+
                      </objectDesc>
                      <handDesc>
                         <handNote> </handNote>
                      </handDesc>
                      <scriptDesc>
-                        <scriptNote>gotische Minuskel</scriptNote>
+                        <scriptNote/>
                      </scriptDesc>
                      <decoDesc>
-                        <p><!--Rote Rubriken in Capitalis und Minuskel; meist einfache
-                           Initialen in Rot oder in brauner Texttinte oder in beidem, größere Initialen
-                           mit Blatt- oder Bandornamentik und rotem Hintergrund, auch rot mit braunem
-                           Hintergrund oder ganz rot; foll. 65-68 alles in Braun.--></p>
-                        <!-- rein auf Basis der Angaben unklar, ob das auch auf diesen Teil gilt. Bitte prüfen! ##DS 29.03.2016-->
+                        <p/>
                      </decoDesc>
                      <bindingDesc>
                         <binding>
@@ -429,10 +403,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <history>
                      <origin>
                         <p>
-                           <origDate notAfter="1200" notBefore="1101"> 12. Jh.</origDate>;
-                              <origPlace
+                           <origDate notAfter="1200" notBefore="1101">12. Jh.</origDate>; <origPlace
                               ref="http://www.geonames.org/3172189/novara.html http://d-nb.info/gnd/4117934-1 http://viaf.org/viaf/139539679"
-                              > Novara</origPlace>.</p>
+                              >Novara</origPlace></p>
                      </origin>
                      <provenance>
                         <p>Alte Signatur: <idno>30</idno>.</p>
@@ -442,10 +415,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <additional>
                      <surrogates/>
                      <listBibl>
-
                         <listBibl type="cap">
                            <bibl corresp="#Mordek_1995">Mordek 1995, S. 393-395</bibl>
-
                         </listBibl>
                      </listBibl>
                   </additional>
@@ -455,7 +426,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage:</p>
+         <p>Transkriptionsvorlage: Scan von Mikrofilm in ausreichender Qualität.</p>
          <projectDesc>
             <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
                   target="http://capitularia.uni-koeln.de/project/about/"/>
@@ -475,7 +446,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
       </encodingDesc>
       <revisionDesc>
          <change who="DS" when="2016-03-01">Datei erstellt aus Mordek-XML</change>
-         <change who="XXX" when="2016"/>
+         <change who="DT" when="2022-03-15">Datei veröffentlicht (BK 203)</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -483,17 +454,428 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
    </facsimile>
    <text>
       <front>
-         <div type="mshist"/>
-         <div type="scribe"/>
-         <div type="letters"/>
+         <div type="content">
+            <list>
+               <item n="00">
+                  <ptr type="internal" target="#novara-bc-xv-63vb-7"/>(Incipit synodus habita
+                  francia tempore domni hlotharii imperatoris pro edificatione nouę romę) <list>
+                     <item n="10">
+                        <ptr type="internal" target="#novara-bc-xv-63vb-8"/>I</item>
+                     <item n="20">
+                        <ptr type="internal" target="#novara-bc-xv-63vb-10"/>II</item>
+                     <item n="30">
+                        <ptr type="internal" target="#novara-bc-xv-64ra-1"/>III</item>
+                     <item n="40">
+                        <ptr type="internal" target="#novara-bc-xv-64ra-3"/>IIII</item>
+                     <item n="50">
+                        <ptr type="internal" target="#novara-bc-xv-64ra-5"/>V</item>
+                     <item n="60">
+                        <ptr type="internal" target="#novara-bc-xv-64ra-7"/>VI</item>
+                     <item n="70">
+                        <ptr type="internal" target="#novara-bc-xv-64ra-9"/>VII</item>
+                     <item n="80">
+                        <ptr type="internal" target="#novara-bc-xv-64ra-11"/>VIII</item>
+                     <item n="90">
+                        <ptr type="internal" target="#novara-bc-xv-64rb-1"/>VIIII</item>
+                     <item n="100">
+                        <ptr type="internal" target="#novara-bc-xv-64rb-3"/>X</item>
+                     <item n="110">
+                        <ptr type="internal" target="#novara-bc-xv-64rb-5"/>XI</item>
+                     <item n="120">
+                        <ptr type="internal" target="#novara-bc-xv-64rb-7"/>XII</item>
+                     <item n="130">
+                        <ptr type="internal" target="#novara-bc-xv-64rb-9"/>XIII</item>
+                     <item n="140">
+                        <ptr type="internal" target="#novara-bc-xv-64rb-11"/>Hęc sunt nomina eorum
+                        qui in italia beneficia habent</item>
+                     <item n="150">
+                        <ptr type="internal" target="#novara-bc-xv-64rb-13"/>Isti nichil habent in
+                        italia</item>
+                     <item n="160">
+                        <ptr type="internal" target="#novara-bc-xv-64rb-15"/>In prima scara sunt
+                        missi</item>
+                     <item n="170">
+                        <ptr type="internal" target="#novara-bc-xv-64rb-17"/>In secunda scara sunt
+                        missi</item>
+                     <item n="180">
+                        <ptr type="internal" target="#novara-bc-xv-64rb-19"/>In scara francisca sunt
+                        missi</item>
+                  </list></item>
+
+            </list>
+         </div>
+         <!-- <div type="mshist"/>-->
+         <div type="scribe">
+            <p>Der Text stammt von einer Hand, die eine gut lesbare Minuskel schreibt. Im Gegensatz
+               zu Mordeks Angabe handelt es sich dabei aber nicht um eine gotische Minuskel, sondern
+               um eine spätkarolingische.</p>
+         </div>
+         <!-- <div type="letters"/>
          <div type="abbreviations"/>
-         <div type="punctuation"/>
-         <div type="structure"/>
-         <div type="annotations"/>
-         <div type="other"/>
+         <div type="punctuation"/>-->
+         <div type="structure">
+            <p>Das Stück (BK 203) wird durch ein Incipit in Minuskel eingeleitet, das nur durch
+               einen Absatz vom vorangehenden Text getrennt ist, und daher insgesamt recht
+               unscheinbar daherkommt. Der Seitentitel auf <locus>fol. 64r</locus> wurde nach dem
+               Incipit formuliert: <mentioned>Sinodus in frantia lotaris inperatoris</mentioned>.
+               Nach einer Leerzeile folgen c. 1-13, die auch entsprechend von
+                  <mentioned>I</mentioned> bis <mentioned>XIII</mentioned> durchgezählt sind.
+               Gekürztes <mentioned>cap</mentioned> findet sich dabei nur vor den Kapitelnummern von
+               c. 1-2. Die einzelnen Kapitel werden jeweils durch eine auffällige Initiale
+               eingeleitet. Das letzte Kapitel, c. 13, ist zweigeteilt, da die Namenslisten als
+               eigenständiger Teil erscheinen, indem der sie einleitende Satz durch Absatz und
+               Initiale optisch vom vorangehenden Text getrennt ist. Die Namenslisten sind innerhalb
+               von <locus>fol. 64rb</locus> vierspaltig angelegt. Die letzte Namensliste steht dabei
+               allerdings unterhalb der anderen, wobei ihr einleitender Satz (<mentioned>In scara
+                  francisca sunt missi</mentioned>) wieder linksbündig beginnt und der Namenblock
+               als eigene, nicht an den vorherigen ausgerichtete neue Spalte erscheint.</p>
+         </div>
+         <!-- <div type="annotations"/>
+         <div type="other"/>-->
       </front>
       <body>
-         <ab type="text"/>
+
+         <cb n="63vb"/>
+         <lb n="58"/>
+
+         <milestone unit="capitulare" n="BK.203"/>
+
+         <ab type="text" xml:id="novara-bc-xv-63vb-7" corresp="BK.203_inscriptio"><choice>
+               <abbr>Incip</abbr>
+               <expan>Incipit</expan>
+            </choice> synodus habita <rs type="place">f<add>r</add>ancia</rs> . tempore domni <lb/>
+            <del quantity="1" unit="chars"/>
+            <rs type="person">hlotharii</rs> imperatoris . pro edificatione nouę <rs type="place"
+               >romę</rs> . <lb/>
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-63vb-8" corresp="BK.203_1_inscriptio"><seg
+               type="numDenom">capitulum</seg> . <seg type="num" n="1">I</seg> . </ab>
+         <ab type="text" xml:id="novara-bc-xv-63vb-9" corresp="BK.203_1"><seg type="initial"
+            >Q</seg>via diuina pietas nos et karissimum <rs type="person">filium <lb/> nostrum</rs>
+            ad commune colloquium peruenire con<lb break="no"/>cessit . Prudentię deuotionique
+            uestrę de quibus hic <lb/> tractauimus et definiuimus breuiter intimauimus . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-63vb-10" corresp="BK.203_2_inscriptio"><seg
+               type="numDenom">capitulum</seg> . <seg type="num" n="2">II</seg> . </ab>
+         <ab type="text" xml:id="novara-bc-xv-63vb-11" corresp="BK.203_2"><seg type="initial"
+               >N</seg>ulli dubium est quod peccatis nostris atque flagitiis <cb n="64ra"/>
+            merentibus tantum malum in ęcclesia christi contingerit ! <lb/> ut et ipsa romana
+            ęcclesia quę capud est christianitatis ! <lb/> infidelium manibus traderetur . et per
+            omnes fines regni <lb/> nostri fratrumque nostrorum paganorum populus
+               <expan>preualeret</expan> . Idcirco <lb/> necessarium ualde iudicauimus ! ut omnia in
+            quibus maxime <lb/> deum a nobis offensum esse cognoscimus ! ipsius adiuuante <lb/>
+            misericordia ! corrigamus . et ut per satisfactionem congruam ! <lb/> diuinam studeamus
+            placcare iusticiam . quatinus quem <lb/> iratum sensimus ! placcatum habere possimus .
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64ra-1" corresp="BK.203_3_inscriptio"><seg
+               type="num" n="3">III</seg>
+         </ab>
+         <ab type="text" xml:id="novara-bc-xv-64ra-2" corresp="BK.203_3"><seg type="initial">H</seg><subst>
+               <del>ę</del>
+               <add>a</add>
+            </subst>c de causa uolumus . et omnino proponimus . ut quicquid <lb/> in ęcclesias
+            christi . locisque sacratis . per neglegentiam <lb/> hucusque aliter fuit quam debuit !
+            in quantum adi<mod>u</mod>uat <lb/> superna pietas emendetur . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64ra-3" corresp="BK.203_4_inscriptio"><seg
+               type="num" n="4">IIII</seg>
+         </ab>
+         <ab type="text" xml:id="novara-bc-xv-64ra-4" corresp="BK.203_4"><seg type="initial"
+            >E</seg>t inprimis monachi qui ordinem suum per desidiam . <lb/> aut cupiditatem . seu
+            secularem habitum deseru<lb break="no"/>erunt ! admoniti ab episcopis . et abbatibus .
+            emendentur . <lb/> Quodsi audire contempserint ! seuerius districti suum <lb/> ordinem
+            repetere <expan>compellantur</expan> . Qui uero per inopiam <lb/> a suo proposito <choice>
+               <abbr>deuiauert</abbr>
+               <expan>deuiauerunt</expan>
+            </choice> ! si ipsa ino<subst>
+               <del>per</del>
+               <add>p</add>
+            </subst>ia per necessi<lb break="no"/>tatem generalem contigit ! prout
+               <sic>postest</sic> fieri emen<lb break="no"/>detur . donec largiente domino melius
+            atque perfectius ! <lb/> talem inopiam emendare possimus . Si uero per duritiam <lb/>
+            aut neglegentiam prelatorum euenit ! <expan>prelati</expan> ipsi <lb/> diligenter
+            admoniti . si emendauerint ! bene . si emendare <lb/> noluerint ! ab ipsa
+               <expan>prelatione</expan> remoueantur . Similiter <lb/> et in canonicis . et in
+            sanctimonialibus ! obseruandum esse <lb/> sancimus . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64ra-5" corresp="BK.203_5_inscriptio"><seg
+               type="num" n="5">V</seg>
+         </ab>
+         <ab type="text" xml:id="novara-bc-xv-64ra-6" corresp="BK.203_5"><seg type="initial"
+            >Q</seg>via <subst>
+               <del>inde </del>
+               <add>in de</add>
+            </subst>honoratione sanctorum locorum deum fre<lb break="no"/>quenter offendimus .
+            Volumus atque statuimus . <lb/> ut quicquid ab ęcclesiis christi ! iniuste et
+            inracionabiliter <lb/> nostro tempore ablatum esse cognoscitur ! pristinę pote<lb
+               break="no"/>stati ! competenti ordine restituatur . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64ra-7" corresp="BK.203_6_inscriptio"><seg
+               type="num" n="6">VI</seg>
+         </ab>
+         <ab type="text" xml:id="novara-bc-xv-64ra-8" corresp="BK.203_6"><seg type="initial"
+            >V</seg>olumus etiam et diligentissime <expan>precipimus</expan> obser<lb break="no"
+            />uandum . ut episcopi singuli ! in <mod>s</mod>uis parrochiis <lb/> diligenter
+            examinent ! et sollicite inuestigent . <lb/>
+            <expan>quicumque</expan> publicis sint inretiti flagitiis . hoc est <lb/> incestos .
+            adulteros . sanctimonialium <sic>struptores</sic> . <lb/> uel qui eas etiam in coniugium <choice>
+               <abbr>accepert</abbr>
+               <expan>acceperunt</expan>
+            </choice> . homicidas . <lb/> sacrilegos . alienarum rerum peruasores . atque
+               <expan>predones</expan> . <lb/> et hoc per omne regnum nostrum sollicite examinentur
+            . <lb/> ut quicumque tales fuerint inuenti ! pęnitentię <lb/> publice subdantur . aut si
+            hoc noluerint ! ab ęcclesia <lb/> separentur . donec a suis flagitiis corrigantur .
+               simi<lb break="no"/>liter de illis fiat ! qui in clericatu fuisse ! et postea <lb/>
+            comam sibi crescere dimisisse noscuntur . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64ra-9" corresp="BK.203_7_inscriptio"><seg
+               type="num" n="7">VII</seg>
+         </ab>
+         <ab type="text" xml:id="novara-bc-xv-64ra-10" corresp="BK.203_7"><seg type="initial"
+               >Q</seg>via pro peccatis nostris et offensionibus ęcclesię . <lb/> beati <rs
+               type="person">petri</rs>
+            <date>hoc anno</date> a paganis uastata <lb/> est et direpta ! Omni desiderio et summa
+            instantia <lb/> elaborare cupimus ! qualiter ęcclesia restauretur . et <lb/> deinceps !
+            ad eam paganorum accessio prohibeatur . <lb/> Itaque decernimus . et hoc <rs
+               type="person">apostolico</rs> per litteras nostras et <lb/> missos mandamus ! ut
+            murus firmissimus circa ęcclesiam <lb/> beati <rs type="person">petri</rs> construatur .
+            Ad hoc uero opus ! collationem <lb/> peccunię ex omni regno nostro ! fieri uolumus . ut
+            tantum <lb/> opus quod ad omnium gloriam pertinet ! omnium subsidio <lb/>
+            <expan>compleatur</expan> . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64ra-11" corresp="BK.203_8_inscriptio"><seg
+               type="num" n="8">VIII</seg>
+         </ab>
+         <ab type="text" xml:id="novara-bc-xv-64ra-12" corresp="BK.203_8"><seg type="initial"
+               >A</seg>dmonendi <choice>
+               <abbr>ert</abbr>
+               <expan>erunt</expan>
+            </choice> episcopi per omne<del>m</del> regnum domni im<lb break="no"/>peratoris <rs
+               type="person">hlotharii</rs> . ut <expan>predicent</expan> in ęcclesiis suis <lb/> et
+            ciuitatibus eos qui sine beneficiis <choice>
+               <abbr>st</abbr>
+               <expan>sunt</expan>
+            </choice> . et alod<add>i</add>os<note type="editorial"><mentioned>i</mentioned>
+               ergänzt. Hartmann W 1984, S. 137 gibt hier keine Korrektur an. Aufgrund des
+               vorhandenen Scans ist tatsächlich nicht eindeutig zu entscheiden, ob es sich bei dem
+               Strich über -<mentioned>do</mentioned>- wirklich um ein ergänztes
+                  <mentioned>i</mentioned> handelt.</note>
+            <lb/> atque peccunias habent . atque cohortando . et inci<lb break="no"/>tando suadeant
+            ! ut sicut illi facturi <choice>
+               <abbr>st</abbr>
+               <expan>sunt</expan>
+            </choice> qui beneficia <lb/> possident ! ita ipsi etiam de peccuniis suis collati<lb
+               break="no"/>onem faciant ! ad murum faciendum circa ęcclesiam beati <lb/>
+            <rs type="person">petri</rs> apostoli <rs type="place">romę</rs> . eo quod hoc deceat
+            plurimum ! ut <lb/> matrem filii honorent . et in quantum ualent ! <cb n="64rb"/>
+            tueantur atque defendant . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64rb-1" corresp="BK.203_9_inscriptio"><seg
+               type="num" n="9">VIIII</seg>
+         </ab>
+         <ab type="text" xml:id="novara-bc-xv-64rb-2" corresp="BK.203_9"><seg type="initial"
+            >D</seg>ecretum quoque et confirmatum habemus ! ut karissimus <lb/>
+            <rs type="person">filius noster</rs> cum omni exercitu <rs type="place">italię</rs> ! et
+            parte ex <lb/>
+            <rs type="place">francia</rs> . <rs type="place">burgundia</rs> . atque <rs type="place"
+               >prouintia</rs> . in <rs type="place">beneuentum</rs>
+            <lb/> proficiscatur . ut inde inimicos christi <rs>sarracenos</rs> et <rs>mauros</rs>
+            <lb/> eiciat . tam propter hoc quod ipse populus nostrum auxilium expetit . <lb/> quam
+            propterea quod certissime nouimus ! si infideles illam <lb/> terram obtinuerint ! eos
+               <rs type="place">roma<subst>
+                  <del>n</del>
+                  <add>ni</add>
+               </subst>am</rs> quod absit ! et magnam <lb/> partem <rs type="place">italię</rs>
+            inuasuros . Ipse uero <rs type="person">filius noster</rs> ita ire <lb/> debebit ! ut
+               <date>VIII <choice>
+                  <abbr>kl</abbr>
+                  <expan>kalendis</expan>
+               </choice>
+               <choice>
+                  <abbr>febr</abbr>
+                  <expan>februarii</expan>
+               </choice></date> ad <rs type="place">papiam</rs> cum exercitu ueniat . <lb/>
+            <date>medio marcio</date> ad <rs type="place">alarinum</rs> perueniat . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64rb-3" corresp="BK.203_10_inscriptio"><seg
+               type="num" n="10">X</seg> * </ab>
+         <ab type="text" xml:id="novara-bc-xv-64rb-4" corresp="BK.203_10"><seg type="initial"
+               >S</seg>umopere iubemus et modis omnibus obseruandum <lb/> cen<subst>
+               <del>c</del>
+               <add>s</add>
+            </subst>emus ! ut <expan>quicumque</expan> illuc <choice>
+               <abbr>ibt</abbr>
+               <expan>ibunt</expan>
+            </choice> sine <expan>predicatione</expan> christiani <lb/> populi uadant ! quoniam
+            propter hoc magnum nobis malum accidisse <lb/> non dubitamus . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64rb-5" corresp="BK.203_11_inscriptio"><seg
+               type="num" n="11">XI</seg>
+         </ab>
+         <ab type="text" xml:id="novara-bc-xv-64rb-6" corresp="BK.203_11"><seg type="initial"
+               >M</seg>issos quoque nostros constitutos habemus . <rs type="person">petrum</rs>
+            <lb/> uenerabilem episcopum . <rs type="person">anselmum</rs> uocatum episcopum . et <lb/>
+            <rs type="person">uuitonem</rs> inlustrem comitem qui in <rs type="place"
+               >beneuentum</rs> ad <rs type="person">sigenulfum</rs> . <lb/> et <rs type="person"
+               >radalgisum</rs> ua<subst>
+               <del/>
+               <add>dant</add>
+            </subst> . et eos inter se pacificent . legesque <lb/> et conditiones pa<mod>c</mod>is
+            ęquissimas inter eos decernant . <lb/> et regnum <rs type="place">beneuentanum</rs> si
+            pacificati fuerint ! inter eos <lb/> ęqualiter diuidant . atque ex nostra parte eis
+            securitatem . <lb/> et consensum honoris sacramento confirment . et ab eis ! <lb/>
+            similiter ad nostram partem adiutoriumque <rs type="person">filii nostri</rs> !
+            expulsionemque <lb/>
+            <rs>sarracenorum</rs> sacramentum accipiant . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64rb-7" corresp="BK.203_12_inscriptio"><seg
+               type="num" n="12">XII</seg>
+         </ab>
+         <ab type="text" xml:id="novara-bc-xv-64rb-8" corresp="BK.203_12"><rs type="person"><seg
+                  type="initial">S</seg>ergio</rs> quoque magistro militum mandamus . ut ipse <lb/>
+            pacis auctor inter illos . et auxiliator <rs type="person">filii nostri</rs> existat .
+            <lb/> Similiter <rs type="person">apostolico</rs> . et <rs type="person">petro</rs>
+            <rs>ueneciarum</rs> duci ! ut adiutorium <lb/> ex <rs type="place">pentapolim</rs> . et
+               <rs type="place">uenecia</rs> naual<mod>e</mod>m expeditionem faciant <lb/> ad
+            opprimendos in <rs type="place">beneuento</rs>
+            <rs>sarracenos</rs> . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64rb-9" corresp="BK.203_13_inscriptio"><seg
+               type="num" n="13">XIII</seg>
+         </ab>
+         <ab type="text" xml:id="novara-bc-xv-64rb-10" corresp="BK.203_13"><seg type="initial"
+               >V</seg>t autem hęc omnia <expan>competenter</expan> implere possimus ! ieiunio <lb/>
+            triduano per omne regnum nostrum deuotissime christi <lb/> misericordiam pro nostris
+            peccatis exorandum ! censemus . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64rb-11" corresp="BK.203_epilog_1_inscriptio"
+               ><seg type="initial">H</seg>ęc <choice>
+               <abbr>st</abbr>
+               <expan>sunt</expan>
+            </choice> nomina eorum qui in <rs type="place">italia</rs> beneficia habent . <cb
+               n="64rba"/>
+         </ab>
+         <ab type="text" xml:id="novara-bc-xv-64rb-12" corresp="BK.203_epilog_1">
+            <rs type="person">Rataldus</rs> . <lb/>
+            <rs type="person">Remboldus</rs> . <lb/>
+            <rs type="person">Eberhardus</rs> . <lb/>
+            <rs type="person">Beringarius</rs> . <lb/>
+            <rs type="person">Liuthfridus</rs> . <lb/>
+            <rs type="person">humfridus</rs> . <lb/>
+            <rs type="person">hrotfridus</rs> . <lb/>
+            <rs type="person">Teotboldus</rs> . <lb/>
+            <rs type="person">Fulcradus</rs> . <lb/>
+            <rs type="person">Cunibertus</rs> . <lb/>
+            <rs type="person">Bodradus</rs> . <lb/>
+            <rs type="person">hilpericus</rs> . <lb/>
+            <rs type="person">bebo</rs> . <lb/>
+            <rs type="person">Grozmannus</rs> . <lb/>
+            <rs type="person">Meinardus</rs> . <cb n="64rbb"/></ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64rb-13" corresp="BK.203_epilog_2_inscriptio"
+            >Isti nichil habent in <rs type="place">italia</rs> . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="novara-bc-xv-64rb-14" corresp="BK.203_epilog_2">
+            <rs type="person">harduicus</rs> . <lb/>
+            <rs type="person">amolo</rs> . <lb/>
+            <rs type="person">agilmarus</rs> . <lb/>
+            <rs type="person">audax</rs> . <lb/>
+            <rs type="person">heiminus</rs> . <lb/>
+            <rs type="person">Boso</rs>
+            <lb/>
+            <rs type="person">Vuilelmus</rs> . <lb/>
+            <rs type="person">Ioseph</rs> . <lb/>
+            <rs type="person">Erlardus</rs> . <lb/>
+            <rs type="person">Dauid</rs> . <lb/>
+            <rs type="person">Ebo</rs> . <lb/>
+            <rs type="person">haltbertus</rs> . <lb/>
+            <rs type="person">Riconsindus</rs> . <lb/>
+            <rs type="person">Remigius</rs> . <lb/>
+            <rs type="person">Teotgaudus</rs> . <lb/>
+            <rs type="person">Eicardus</rs> . <cb n="64rbc"/>
+            <rs type="person">Aquinus</rs> . <lb/>
+            <rs type="person">Sigericus</rs> . <lb/>
+            <rs type="person">heribertus</rs> . <lb/>
+            <rs type="person">heimericus</rs> . <lb/>
+            <rs type="person">Milo</rs> . <lb/>
+            <rs type="person">hucboldus</rs> . <lb/> De comitibus . <lb/>
+            <rs type="person">Gerardus</rs> . <lb/>
+            <rs type="person">Aldricus</rs> . <lb/>
+            <rs type="person">Fulcradus</rs> . <lb/>
+            <rs type="person">Ottramnus</rs> . <lb/>
+            <rs type="person">Ermenoldus</rs> . <lb/>
+            <rs type="person">albericus</rs> filius <rs type="person">richardi</rs> . <lb/>
+            <rs type="person">Beieri</rs> . <lb/>
+            <rs type="person">Arnulfus</rs> . <lb/>
+            <rs type="person">Odolricus</rs> . <lb/>
+            <rs type="person">Engilramnus</rs> . <cb n="64rbd"/></ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64rb-15" corresp="BK.203_epilog_3_inscriptio">In
+            prima scara <choice>
+               <abbr>st</abbr>
+               <expan>sunt</expan>
+            </choice> missi . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="novara-bc-xv-64rb-16" corresp="BK.203_epilog_3">
+            <rs type="person">Ebrardus</rs> . <lb/>
+            <rs type="person">Vuito</rs> . <lb/>
+            <rs type="person">Liutfridus</rs> . <lb/> Et <rs type="person">algisus</rs> . <lb/>
+            Signiferi . <lb/>
+            <rs type="person">Bernardus</rs> . <lb/>
+            <rs type="person">Albericus</rs> . <lb/> Et <rs type="person">bebbo</rs> . <lb/></ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64rb-17" corresp="BK.203_epilog_4_inscriptio">In <subst>
+               <del>sancta</del>
+               <add>secunda</add>
+            </subst> scara <choice>
+               <abbr>st</abbr>
+               <expan>sunt</expan>
+            </choice> missi . <lb/></ab>
+
+         <ab type="text" xml:id="novara-bc-xv-64rb-18" corresp="BK.203_epilog_4">
+            <rs type="person">Vuito</rs> . <lb/> Et <rs type="person">adalbertus</rs> . <lb/>
+            Signiferi . <lb/>
+            <lb/>
+            <rs type="person">Vuiofredus</rs> . <lb/> Et <rs type="person">autramnus</rs>
+            <choice>
+               <abbr>comts</abbr>
+               <expan>comites</expan>
+            </choice> . <lb/>
+            <rs type="person">heribrandus</rs> . <lb/>
+            <rs type="person">Farulfus</rs> . <lb/>
+            <rs type="person">hilpericus</rs> . <lb/> Et <rs type="person">tresegius</rs> . <cb
+               n="64rb"/></ab>
+
+         <ab type="meta-text" xml:id="novara-bc-xv-64rb-19" corresp="BK.203_epilog_5_inscriptio">In
+            scara francisca <choice>
+               <abbr>st</abbr>
+               <expan>sunt</expan>
+            </choice> missi . </ab>
+
+         <ab type="text" xml:id="novara-bc-xv-64rb-20" corresp="BK.203_epilog_5"><rs type="person"
+               >Gerardus</rs> . <rs type="person">fulcradus</rs> . <lb/> Et <rs type="person"
+               >hermenoldus</rs> . <lb/> Signiferi . <rs type="person">beieri</rs> . <lb/>
+            <rs type="person">Arnulfus</rs> . <rs type="person">hucboldus</rs> . <lb/>
+            <rs type="person">aquinus</rs> . Et <rs type="person">sigiricus</rs> . </ab>
+
       </body>
    </text>
 </TEI>

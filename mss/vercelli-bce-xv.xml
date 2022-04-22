@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
 schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="vercelli-bce-xv"><!-- IN BEARBEITUNG!! -->
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="vercelli-bce-xv">
    <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main" xml:lang="ger">Vercelli, Biblioteca Capitolare Eusebiana, XV</title>
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek</title>
-            <title type="sub" xml:lang="eng">Manuscript description according to Mordek</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+               Transkription von fol. 92rb-va</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+               transcription of fol 92rb-va</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -16,9 +18,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <resp xml:lang="eng">Project lead</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="DT">
+                  <forename>Dominik</forename>
+                  <surname>Trump</surname>
                </persName>
                <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
                   Standard</resp>
@@ -26,17 +28,17 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   TEI P5 standard</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
                </persName>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">First revision of transcription and additions</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
@@ -133,11 +135,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      ref="http://d-nb.info/gnd/4042547-2 http://viaf.org/viaf/246519243">
                      Oberitalien (<placeName
                         ref="http://www.geonames.org/6540116/vercelli.html http://d-nb.info/gnd/4119399-4 http://viaf.org/viaf/155400807"
-                        >Vercelli</placeName>?). Mit mehreren Ergänzungen der 1. bis 2.
-                        Hälfte des 10. Jh., <placeName
-                           ref="http://www.geonames.org/6540116/vercelli.html http://d-nb.info/gnd/4119399-4 http://viaf.org/viaf/155400807"
-                           >Vercelli</origPlace> (Mordek), <origPlace ref="http://d-nb.info/gnd/4037100-1"
-                        >Mailand</origPlace> (Bischoff)</head>
+                        >Vercelli</placeName>?). Mit mehreren Ergänzungen der 1. bis 2. Hälfte des
+                     10. Jh., <placeName
+                        ref="http://www.geonames.org/6540116/vercelli.html http://d-nb.info/gnd/4119399-4 http://viaf.org/viaf/155400807"
+                        >Vercelli</placeName>
+                  </origPlace> (Mordek), <origPlace ref="http://d-nb.info/gnd/4037100-1"
+                     >Mailand</origPlace> (Bischoff)</head>
+
                <msContents>
                   <summary>
                      <p> In die Collectio Anselmo dedicata fügte nach Buch 3, c. 192 eine Hand
@@ -150,58 +154,56 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         Nachtragscharakter der Stücke ist im Vercellensis nach c. <hi rend="italic"
                            >CXCII</hi> der Capitulatio fol. 69vb von derselben Hand eigens
                         hervorgehoben mit den Worten: <hi rend="italic">Aditum est etiam synodum
-                           actum rauenna tempore Iohannis pape et lamberti imperatoris</hi>).
-                        <lb/>
-                        C. 9 des Kapitulars läßt sich in Verbindung mit c. 1
-                        der Ravennater Konzilsbeschlüsse Lamberts und Johannes’ IX. auch in mehreren
+                           actum rauenna tempore Iohannis pape et lamberti imperatoris</hi>). <lb/>
+                        C. 9 des Kapitulars läßt sich in Verbindung mit c. 1 der Ravennater
+                        Konzilsbeschlüsse Lamberts und Johannes’ IX. auch in mehreren
                         hochmittelalterlichen Kirchenrechtswerken nachweisen, so bei Deusdedit III,
-                        182-183 (Cod. <ref type="internal" subtype="mss" target="vatikan-bav-vat-lat-3833">Vatikan Vat. Lat. 3833</ref>; besser die Überlieferung im
-                        fragmentarischen Cod. <ref type="internal" subtype="mss"
-                           target="paris-bn-lat-1458">Paris Lat. 1458</ref> mit den Inskriptionen:
-                           <hi rend="italic">Item ex legibus romanis a domno Lamberto imperatore
-                           promulgatis Capt. VIIII</hi> und <hi rend="italic">Eiusdem captl.
-                              XI</hi>) und in den Sammlungen der Hss. <ref type="internal" subtype="mss"
-                                 target="rom-bv-f-54">Rom Vallicell. F. 54</ref> (12. Jh., 1.
-                        Hälfte), <ref type="internal" subtype="mss" target="turin-bnu-d-iv-33">Turin D. IV. 33</ref> (12. Jh.) und
-                        <ref type="internal" subtype="mss" target="vatikan-bav-vat-lat-3831">Vatikan Vat. Lat. 3831</ref> (12. Jh.),
-                        vgl. <hi rend="smallcaps">Patetta, </hi>Nuove osservazioni, S. 751 f. <hi
-                           rend="smallcaps">Baluze </hi>(Capitularia 1, Praefatio, § XVIII) kannte
-                        die Kapitel aus einem Codex Thuanus, den Patetta, Boretius - Krause und
-                        Werminghoff zu Unrecht für verschollen hielten; es handelt sich um Cod.
-                        Paris Lat. 1458 (12. Jh.) (siehe Beschreibung oben), dessen foll. 242 - 261
-                        überliefertes Deusdedit-Fragment auch unsere Texte enthält.</p>
+                        182-183 (Cod. <ref type="internal" subtype="mss"
+                           target="vatikan-bav-vat-lat-3833">Vatikan Vat. Lat. 3833</ref>; besser
+                        die Überlieferung im fragmentarischen Cod. <ref type="internal"
+                           subtype="mss" target="paris-bn-lat-1458">Paris Lat. 1458</ref> mit den
+                        Inskriptionen: <hi rend="italic">Item ex legibus romanis a domno Lamberto
+                           imperatore promulgatis Capt. VIIII</hi> und <hi rend="italic">Eiusdem
+                           captl. XI</hi>) und in den Sammlungen der Hss. <ref type="internal"
+                           subtype="mss" target="rom-bv-f-54">Rom Vallicell. F. 54</ref> (12. Jh.,
+                        1. Hälfte), <ref type="internal" subtype="mss" target="turin-bnu-d-iv-33"
+                           >Turin D. IV. 33</ref> (12. Jh.) und <ref type="internal" subtype="mss"
+                           target="vatikan-bav-vat-lat-3831">Vatikan Vat. Lat. 3831</ref> (12. Jh.),
+                        vgl. Patetta, Nuove osservazioni, S. 751 f. Baluze (Capitularia 1,
+                        Praefatio, § XVIII) kannte die Kapitel aus einem Codex Thuanus, den Patetta,
+                        Boretius-Krause und Werminghoff zu Unrecht für verschollen hielten; es
+                        handelt sich um Cod. Paris Lat. 1458 (12. Jh.) (siehe Beschreibung oben),
+                        dessen foll. 242-261 überliefertes Deusdedit-Fragment auch unsere Texte
+                        enthält.</p>
                   </summary>
                   <msItem n="1">
                      <p>
                         <locus>91vb-92rb</locus>
                         <hi rend="italic">CAP. II</hi> (c. 1 [= Einleitung] ohne Kapitelzahl) - <hi
                            rend="italic">CAP. XI</hi> - Konzil von Ravenna (a. 898), Inskription,
-                        cc. 1 - 11: <hi rend="italic">SYNODUM ACTUM RAUENNA TEMPORE DOMNI IOHANNI
-                           XII PAPE ET LAMBERTI IMPERATORIS. Synodum tempore pice recordationis
-                           sexti Stephani papae</hi> - <hi rend="italic">imperiali indignatione
-                           feriatur</hi> (bei <hi rend="smallcaps">Mansi </hi>18 A, Sp. 223 - 226,
-                        als Concilium Romanum gedruckt). </p>
+                        cc. 1-11: <hi rend="italic">SYNODUM ACTUM RAUENNA TEMPORE DOMNI IOHANNI XII
+                           PAPE ET LAMBERTI IMPERATORIS. Synodum tempore pice recordationis sexti
+                           Stephani papae - imperiali indignatione feriatur</hi> (bei Mansi 18 A,
+                        Sp. 223-226, als Concilium Romanum gedruckt). </p>
                   </msItem>
                   <msItem n="2">
                      <p>
                         <locus>92rb</locus>
-                        <hi rend="italic">CAP. I - CAP. XI</hi> -
-                        <title corresp="BK.225">Lamberti capitulare Ravennas</title> (a. 898): <hi
-                           rend="italic">Ut comes inter honores suos - secundum antiquam
-                           consuetudinem hospitentur</hi> (MGH Capit. 2, Nr. 225, S. 109 Z. 32 - S.
-                        110 Z. 22). </p>
+                        <hi rend="italic">CAP. I - CAP. XI</hi> - <title corresp="BK.225">Lamberti
+                           capitulare Ravennas</title> (a. 898): <hi rend="italic">Ut comes inter
+                           honores suos - secundum antiquam consuetudinem hospitentur</hi> (MGH
+                        Capit. 2, Nr. 225, S. 109 Z. 32 - S. 110 Z. 22). </p>
                   </msItem>
                   <msItem n="3">
                      <p>
                         <locus>92rb-va</locus>
-                        <hi rend="italic">CAP: XII</hi> - <hi rend="italic">CAP. XIII</hi> - <title corresp="BK.230">Konzil von
-                           Ravenna</title> (a. 898), cc. 12 und 13: <hi rend="italic">Vt singulœ
-                           plebes archipresbiterum habeant. Propter assiduam erga populi dei
-                           curam</hi> - <hi rend="italic">ordinare presummant</hi> und <hi
-                           rend="italic">Pernitiosa inoleuit consuetudo ut iudex publicus</hi> - <hi
-                           rend="italic">conueniunt prosequendum</hi> (c. 12 als c. 12 des obigen
-                        Kapitulars von Ravenna ed. MGH Capit. 2, S. 110 Z. 23-32; c. 13 als c. 12
-                        des Konzils ed. <hi rend="smallcaps">Mansi </hi>18 A, Sp. 226). </p>
+                        <hi rend="italic">CAP: XII - CAP. XIII</hi> - <title corresp="BK.230">Konzil
+                           von Ravenna</title> (a. 898), cc. 12 und 13: <hi rend="italic">Vt
+                           singulae plebes archipresbiterum habeant. Propter assiduam erga populi
+                           dei curam - ordinare presummant</hi> und <hi rend="italic">Pernitiosa
+                           inoleuit consuetudo ut iudex publicus - conueniunt prosequendum</hi> (c.
+                        12 als c. 12 des obigen Kapitulars von Ravenna ed. MGH Capit. 2, S. 110 Z.
+                        23-32; c. 13 als c. 12 des Konzils ed. Mansi 18 A, Sp. 226). </p>
                   </msItem>
                   <msItem n="4">
                      <p>
@@ -211,8 +213,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         Kapitelzählung) - <title corresp="BK.230">Konzil von Ravenna</title> (a.
                         898), Ansprache Johannes’ IX., Responsio, Kapitel Lamberts und Johannes’
                         IX., Schlußwort Johannes' IX: <hi rend="italic">Quia diuina inspirante
-                           misericordia uestra</hi> - <hi rend="italic">in saecula saeculorum
-                           amen</hi> (MGH Capit. 2, Nr. 230, S. 124 Z. 1 - S. 126 Z. 21). </p>
+                           misericordia uestra - in saecula saeculorum amen</hi> (MGH Capit. 2, Nr.
+                        230, S. 124 Z. 1 - S. 126 Z. 21). </p>
                   </msItem>
                </msContents>
                <physDesc>
@@ -230,25 +232,25 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                               <width>240</width>
                            </dimensions>
                         </extent>
-                        <collation><formula>11 IV<hi rend="super">88</hi> + II<hi
-                                 rend="super">92</hi> + 8 IV<hi rend="super">156</hi> + I<hi
-                                 rend="super">158</hi> + 3 IV<hi rend="super">182</hi> + III<hi
-                                 rend="super">188</hi> + 9 IV<hi rend="super">260</hi> + III<hi
-                                 rend="super">266</hi> + II<hi rend="super">270</hi> + 1<hi
-                                 rend="super">271</hi>. Die Lagen X
-                           und XI wurden schon im Mittelalter (10./11. Jh.) ersetzt. Einige der
-                           ursprünglichen Blätter haben sich noch am Ende des Bandes erhalten: foll.
-                           267-271 (II + 1 + Rest des Gegenblattes); sie entsprechen im Wortlaut und
-                           in der Textanordnung nicht genau der im Codex befindlichen Version
-                           (Überarbeitung?). Auch foll. 168-174 sind ausgetauscht. Zwei der alten
-                           Blätter ließen sich in foll. 1 und 2 von Cod. Vercelli XLIX wiederfinden;
-                           sie beginnen und enden mit den gleichen Worten wie die heute im Codex
-                           befindlichen jüngeren foll. 172 und 169.
-                           </formula><catchwords>Kustoden: römische Zahlen.</catchwords></collation>
+                        <collation><formula>11 IV<hi rend="super">88</hi> + II<hi rend="super"
+                                 >92</hi> + 8 IV<hi rend="super">156</hi> + I<hi rend="super"
+                                 >158</hi> + 3 IV<hi rend="super">182</hi> + III<hi rend="super"
+                                 >188</hi> + 9 IV<hi rend="super">260</hi> + III<hi rend="super"
+                                 >266</hi> + II<hi rend="super">270</hi> + I<hi rend="super"
+                                 >271</hi>. Die Lagen X und XI wurden schon im Mittelalter (10./11.
+                              Jh.) ersetzt. Einige der ursprünglichen Blätter haben sich noch am
+                              Ende des Bandes erhalten: foll. 267-271 (II + 1 + Rest des
+                              Gegenblattes); sie entsprechen im Wortlaut und in der Textanordnung
+                              nicht genau der im Codex befindlichen Version (Überarbeitung?). Auch
+                              foll. 168-174 sind ausgetauscht. Zwei der alten Blätter ließen sich in
+                              foll. 1 und 2 von Cod. Vercelli XLIX wiederfinden; sie beginnen und
+                              enden mit den gleichen Worten wie die heute im Codex befindlichen
+                              jüngeren foll. 172 und 169. </formula>
+                           <catchwords>Kustoden: römische Zahlen</catchwords></collation>
                      </supportDesc>
                      <layoutDesc>
-                        <layout columns="2">in zwei Spalten</layout>
-                        <layout writtenLines="40 45">40 und 45 Zeilen</layout>
+                        <layout columns="2">zwei</layout>
+                        <layout writtenLines="40 45">40 und 45</layout>
                      </layoutDesc>
                   </objectDesc>
                   <handDesc>
@@ -260,7 +262,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <decoDesc>
                      <p>Rubriken (Unziale, Capitalis, Minuskel) in Rot und in brauner Texttinte;
                         Inskriptionen am Rand in Braun; rote und braune Initialen, einige größere
-                        mit Bandmuster und Zierleisten.</p>
+                        mit Bandmuster und Zierleisten</p>
                   </decoDesc>
                   <bindingDesc>
                      <binding>
@@ -271,26 +273,26 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <history>
                   <origin>
                      <p><origDate notAfter="0950" notBefore="0901"> 10. Jh., 1. Hälfte</origDate>
-                        (Mordek), <origDate notAfter="0920" notBefore="0880"> 10. Jh., Anfang oder 9./10.
-                           Jh.</origDate> (Bischoff); <origPlace
-                              ref="http://d-nb.info/gnd/4042547-2 http://viaf.org/viaf/246519243">
-                              Oberitalien (<placeName
-                                 ref="http://www.geonames.org/6540116/vercelli.html http://d-nb.info/gnd/4119399-4 http://viaf.org/viaf/155400807"
-                                 >Vercelli</placeName>?). Mit mehreren Ergänzungen der 1. bis 2.
-                              Hälfte des 10. Jh., <placeName
-                                 ref="http://www.geonames.org/6540116/vercelli.html http://d-nb.info/gnd/4119399-4 http://viaf.org/viaf/155400807"
-                                 >Vercelli</origPlace> (Mordek), <origPlace ref="http://d-nb.info/gnd/4037100-1"
-                                    >Mailand</origPlace> (Bischoff).</p>
+                        (Mordek), <origDate notAfter="0920" notBefore="0880"> 10. Jh., Anfang oder
+                           9./10. Jh.</origDate> (Bischoff); <origPlace
+                           ref="http://d-nb.info/gnd/4042547-2 http://viaf.org/viaf/246519243">
+                           Oberitalien (<placeName
+                              ref="http://www.geonames.org/6540116/vercelli.html http://d-nb.info/gnd/4119399-4 http://viaf.org/viaf/155400807"
+                              >Vercelli</placeName>?). Mit mehreren Ergänzungen der 1. bis 2. Hälfte
+                           des 10. Jh., <placeName
+                              ref="http://www.geonames.org/6540116/vercelli.html http://d-nb.info/gnd/4119399-4 http://viaf.org/viaf/155400807"
+                              >Vercelli</placeName></origPlace> (Mordek), <origPlace
+                           ref="http://d-nb.info/gnd/4037100-1">Mailand</origPlace> (Bischoff).</p>
                   </origin>
                   <provenance>
-                     <p>Urheber der Hs. war vielleicht Bf. Atto von
-                        Vercelli (924 - um 961), der sie u.a. für sein Capitulare ausgiebig benutzte
-                        (fol. 265v autographes Widmungsgedicht Attos an S. Eusebio, Vercelli, vgl.
-                        <hi rend="smallcaps">Wemple, </hi>Atto of Vercelli, S. 12 Anm. 52); fol. 1v u. a. hochmittelalterliches Bücherverzeichnis von S. Eusebio, ed.
-                           <hi rend="smallcaps">Werminghoff, </hi>Reise nach Italien, S. 603 f.; im
-                        16. Jh. in Rom, vgl. den Vermerk fol. 1r: <hi rend="italic">Restituatur
-                           ecclesiae cathedrali Vercellensi. Carolus episcopus Novariensis.</hi>
-                        Arabische Signatur nach <hi rend="smallcaps">Pastè</hi>: 53.</p>
+                     <p>Urheber der Hs. war vielleicht Bf. Atto von Vercelli (924 - um 961), der sie
+                        u.a. für sein Capitulare ausgiebig benutzte (fol. 265v autographes
+                        Widmungsgedicht Attos an S. Eusebio, Vercelli, vgl. Wemple, Atto of
+                        Vercelli, S. 12 Anm. 52); fol. 1v u. a. hochmittelalterliches
+                        Bücherverzeichnis von S. Eusebio, ed. Werminghoff, Reise nach Italien, S.
+                        603 f.; im 16. Jh. in Rom, vgl. den Vermerk fol. 1r: <hi rend="italic"
+                           >Restituatur ecclesiae cathedrali Vercellensi. Carolus episcopus
+                           Novariensis.</hi> Arabische Signatur nach Pastè: 53.</p>
                   </provenance>
                   <acquisition/>
                </history>
@@ -298,62 +300,43 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <surrogates/>
                   <listBibl>
                      <listBibl type="lit">
-                        <bibl>P. <hi rend="smallcaps">Levine, </hi>On the Question of Mediaeval
-                           Writing in Vercelli, in: Harvard Studies in Classical Philology 61 (1953)
-                           S. 176 f.</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Patetta, </hi>II Capitolare di Lamberto, in: <hi
-                              rend="smallcaps">ders., </hi>Studi, S. 731 ff.</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">ders., </hi>Nuove osservazioni, in: <hi
-                              rend="smallcaps">ders., </hi>Studi, S. 743 ff.</bibl>
                         <bibl corresp="#Boretius_1897">Boretius 1897, S. XXXII</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">G. Russo</hi>, Tradizione manoscritta di Leges
-                           Romanae nei codici dei secoli IX e X della Biblioteca Capitolare di
-                           Modena (Modena 1980) S. 48-50.</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">F. Patetta</hi>, Nota sull'età del codice Vercellese
-                           della collezione di canoni Anselmo dedicata, e sopra una classe di
-                           manoscritti, che da esso ebbe origine, in: Antologia giuridica 4 (1890)
-                           S. 209-215, wiederabgedruckt in: <hi rend="smallcaps">ders</hi>., Studi,
-                           S. 701-707</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">P. Fournier</hi>, L’origine de la collection
-                           «Anselmo dedicata», in: Mélanges Paul Frédéric Girard (Paris 1912) S. 477
-                           ff., 481 ff., wiederabgedruckt in: <hi rend="smallcaps">ders</hi>.,
-                           Mélanges 2, S. 191 ff., 195 ff.</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Fournier</hi> - <hi rend="smallcaps">Le Bras</hi>,
-                           Histoire des collections canoniques 1, S. 235 f. Anm. 1</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">J.-C. Besse</hi>, Collectionis <hi rend="italic"
-                              >Anselmo dedicata</hi> liber primus, in: Revue de droit canonique 9
-                           (1959) S. 210 f.</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Fuhrmann</hi>, Einfluß und Verbreitung 2, S. 315
-                           Anm. 52, S. 426 f. Anm. 8 und 9, Bd. 3, S. 774</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Reynolds</hi>, De officiis VII graduum, S. 124 Anm.
-                           47</bibl>
-                        <bibl> A <hi rend="smallcaps">Ambrosioni, </hi>Il più antico elenco di
-                           chierici della diocesi ambrosiana ed altre aggiunte al Decretum di
-                           Burcardo in un codice della Biblioteca Ambrosiana (E 144 sup.). Una voce
-                           della polemica antipatarinica?, in: Aevum 50 (1976) S. 290 f., 295 f.,
-                           302 f., 320</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">S. F. Wemple</hi>, Atto of Vercelli. Church, State
-                           and Christian Society in Tenth Century Italy (Rom 1979) S. 12, 38, 181,
-                           188, 204 ff., 212 ff.</bibl>
+                        <bibl>P. Fournier, L’origine de la collection «Anselmo dedicata», in:
+                           Mélanges Paul Frédéric Girard (Paris 1912) S. 477 ff., 481 ff.,
+                           wiederabgedruckt in: ders., Mélanges 2, S. 191 ff., 195 ff.</bibl>
+                        <bibl corresp="#Fournier_P_1931">Fournier P 1931, S. 235-236 Anm. 1</bibl>
+                        <bibl>P. Levine, On the Question of Mediaeval Writing in Vercelli, in:
+                           Harvard Studies in Classical Philology 61 (1953) S. 176-177</bibl>
+                        <bibl>J.-C. Besse, Collectionis <hi rend="italic">Anselmo dedicata</hi>
+                           liber primus, in: Revue de droit canonique 9 (1959) S. 210-211</bibl>
+                        <bibl corresp="#Patetta_1967">F. Patetta, Nota sull'età del codice
+                           Vercellese della collezione di canoni Anselmo dedicata, e sopra una
+                           classe di manoscritti, che da esso ebbe origine, in: Antologia giuridica
+                           4 (1890) S. 209-215, wiederabgedruckt in: ders., Studi, S. 701-707</bibl>
+                        <bibl corresp="#Patetta_1967a">Patetta 1967a, S. 731 ff.</bibl>
+                        <bibl corresp="#Patetta_1967c">Patetta 1967c, S. 743 ff.</bibl>
+                        <bibl corresp="#Reynolds_R_1972">Reynolds R 1972, S. 124 Anm. 47</bibl>
+                        <bibl corresp="#Fuhrmann_H_1972-1974">Fuhrmann H 1972-1974, 2, S. 315 Anm.
+                           52, S. 426-427 Anm. 8 und 9, Bd. 3, S. 774</bibl>
+                        <bibl> A. Ambrosioni, Il più antico elenco di chierici della diocesi
+                           ambrosiana ed altre aggiunte al Decretum di Burcardo in un codice della
+                           Biblioteca Ambrosiana (E 144 sup.). Una voce della polemica
+                           antipatarinica?, in: Aevum 50 (1976) S. 290-291, 295-296, 302-303,
+                           320</bibl>
+                        <bibl>S. F. Wemple, Atto of Vercelli. Church, State and Christian Society in
+                           Tenth Century Italy (Rom 1979) S. 12, 38, 181, 188, 204 ff., 212
+                           ff.</bibl>
+                        <bibl corresp="#Russo_1980a">Russo 1980a, S. 48-50</bibl>
                      </listBibl>
                      <listBibl type="cat">
-                        <bibl>R. <hi rend="smallcaps">Pastè, </hi>in: G. <hi rend="smallcaps"
-                              >Mazzatinti </hi>- A <hi rend="smallcaps">Sorbelli, </hi>Inventari dei
-                           Manoscritti delle Biblioteche d’Italia 31 (Florenz 1925) S. 80 f.</bibl>
+                        <bibl>R. Pastè, in: G. Mazzatinti - A. Sorbelli, Inventari dei Manoscritti
+                           delle Biblioteche d’Italia 31 (Florenz 1925) S. 80-81</bibl>
                      </listBibl>
                      <listBibl type="cap">
-                        <bibl corresp="#Mordek_1995">Mordek 1995 S. 888-890</bibl>
+                        <bibl corresp="#Mordek_1995">Mordek 1995, S. 888-890</bibl>
                         <bibl corresp="#Crivello_2004">Crivello 2004, S. 184 Anm. 57</bibl>
+                        <bibl corresp="#Hartmann_W_2012">Hartmann W 2012, S. S. 428 [zu Teil C = BK
+                           225], 431 [zur Hs.]</bibl>
                         <bibl corresp="#Bischoff_2014">Bischoff 2014, S. 460, Nr. 6980</bibl>
                      </listBibl>
                   </listBibl>
@@ -362,7 +345,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage:</p>
+         <p>Transkriptionsvorlage: Gutes Farbdigitalisat.</p>
          <projectDesc>
             <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
                   target="http://capitularia.uni-koeln.de/project/about/"/>
@@ -384,7 +367,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <change who="DS" when="2016-03-01">Datei erstellt aus Mordek-XML</change>
          <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift nach Bischoff
             1998/2004/2014 ergänzt</change>
-         <change who="XXX" when="2016"/>
+         <change who="DT" when="2022-03-15">Datei veröffentlicht (BK 225)</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -392,17 +375,237 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
    </facsimile>
    <text>
       <front>
+         <div type="content">
+            <list>
+               <item n="00">
+                  <ptr type="internal" target="#vercelli-bce-xv-92rb-3"/>[Liste ohne Rubrik] <list>
+                     <item n="10">
+                        <ptr type="internal" target="#vercelli-bce-xv-92rb-3"/>I</item>
+                     <item n="20">
+                        <ptr type="internal" target="#vercelli-bce-xv-92rb-5"/>II</item>
+                     <item n="30">
+                        <ptr type="internal" target="#vercelli-bce-xv-92rb-7"/>III</item>
+                     <item n="40">
+                        <ptr type="internal" target="#vercelli-bce-xv-92rb-9"/>IIII</item>
+                     <item n="50">
+                        <ptr type="internal" target="#vercelli-bce-xv-92rb-11"/>V</item>
+                     <item n="60">
+                        <ptr type="internal" target="#vercelli-bce-xv-92rb-13"/>VI</item>
+                     <item n="70">
+                        <ptr type="internal" target="#vercelli-bce-xv-92rb-15"/>VII</item>
+                     <item n="80">
+                        <ptr type="internal" target="#vercelli-bce-xv-92rb-17"/>VIII</item>
+                     <item n="90">
+                        <ptr type="internal" target="#vercelli-bce-xv-92rb-19"/>VIIII</item>
+                     <item n="100">
+                        <ptr type="internal" target="#vercelli-bce-xv-92rb-21"/>X</item>
+                     <item n="110">
+                        <ptr type="internal" target="#vercelli-bce-xv-92rb-23"/>XI</item>
+                     <item n="120">
+                        <ptr type="internal" target="#vercelli-bce-xv-92rb-25"/>XII </item>
+                     <item n="130">
+                        <ptr type="internal" target="#vercelli-bce-xv-92va-1"/>XIII</item>
+                     <item n="140">
+                        <ptr type="internal" target="#vercelli-bce-xv-92va-3"/>(Quia diuina
+                        inspirante misericordia uestra...)</item>
+                  </list></item>
+            </list>
+         </div>
          <div type="mshist"/>
-         <div type="scribe"/>
+         <div type="scribe">
+            <p>Der Schreiber verwendet eine gut lesbare karolingische Minuskel ohne auffällige
+               Buchstabenformen.</p>
+         </div>
          <div type="letters"/>
          <div type="abbreviations"/>
          <div type="punctuation"/>
-         <div type="structure"/>
-         <div type="annotations"/>
+         <div type="structure">
+            <p>Das Lamberti capitulare Ravennas (BK 225) schließt übergangslos an die ersten elf
+               Kapitel des Konzils von Ravenna (a. 898) an, nur die neu einsetzende Zählung verrät,
+               dass hier etwas Neues beginnt. Die Kapitel des Kapitulars sind von
+                  <mentioned>I</mentioned>-<mentioned>XI</mentioned> durchgezählt und bilden
+               zusammen mit weiteren Kapiteln des Konzils von Ravenna, <mentioned>XII</mentioned>
+               (c. 12 der 2. Kapitelreihe, MGH Conc. 5, Nr. 43, Teil C, S. 441 = BK 225 c. 12 nach
+               MGH Capit. 2, S. 110), <mentioned>XIII</mentioned> (c. 12 der 1. Kapitelreihe, MGH
+               Conc. 5, Nr. 43, Teil B, S. 439f.) und ein Kapitel ohne Zählung (c. 13 der 2.
+               Kapitelreihe, MGH Conc. 5, Nr. 43, Teil C, S. 441f.), eine eigene Kapitelliste. Den
+               Nummern ist jeweils <mentioned>CAP</mentioned> vorgeschaltet und die Kapitel werden
+               jeweils mit einer vergrößerten Majuskel eingeleitet.</p>
+         </div>
+         <div type="annotations">
+            <p>Die Kapitel 8-10, 12 wurden mit Nota-Zeichen markiert, die jeweils am rechten
+               Seitenrand stehen und in hellerer Tinte als die Haupthand geschrieben wurden.</p>
+         </div>
          <div type="other"/>
       </front>
       <body>
-         <ab type="text"/>
+
+         <cb n="92rb"/>
+         <lb n="9"/>
+
+         <milestone unit="capitulare" n="BK.225"/>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92rb-3" corresp="BK.225_1_inscriptio"><seg
+               type="numDenom">CAPITULUM</seg> . <seg type="num" n="1">I</seg> . </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92rb-4" corresp="BK.225_1"><seg type="initial"
+               >U</seg>t comes inter honores suos rapinam <choice>
+               <abbr>exercs</abbr>
+               <expan>exercens</expan>
+            </choice> . <lb/> legi subiaceat . </ab>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92rb-5" corresp="BK.225_2_inscriptio"><seg
+               type="numDenom">CAPITULUM</seg> . <seg type="num" n="2">II</seg> . </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92rb-6" corresp="BK.225_2"><seg type="initial"
+               >V</seg>t omnes imperiales homines <mod>ad colloquium</mod>
+            <subst>
+               <del/>
+               <add>siue seruitium . </add>
+            </subst>
+            <lb/> imperatoris properantes . suis stipendiis sint contenti . </ab>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92rb-7" corresp="BK.225_3_inscriptio"><seg
+               type="numDenom">CAPITULUM</seg> . <seg type="num" n="3">III</seg> . </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92rb-8" corresp="BK.225_3"><seg type="initial"
+               >V</seg>t nullus comitum <lb/>
+            <mod>ari</mod>mannos in benefitia suis hominibus tribuat . </ab>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92rb-9" corresp="BK.225_4_inscriptio"><seg
+               type="numDenom">CAPITULUM</seg> . <seg type="num" n="4">IIII</seg> . </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92rb-10" corresp="BK.225_4"><seg type="initial"
+               >U</seg>t homines <lb/> comitum nullatenus in domibus arimannorum resideant . sed
+            domos rei publicae instau<lb break="no"/>rent . ibique resideant . </ab>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92rb-11" corresp="BK.225_5_inscriptio"><seg
+               type="numDenom">CAPITULUM</seg> . <seg type="num" n="5">V</seg> . </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92rb-12" corresp="BK.225_5"><seg type="initial"
+               >U</seg>t scriptoribus publicis nullatenus interdicatur res <lb/> arimannorum
+            transscribere si <choice>
+               <abbr>qn</abbr>
+               <expan>quando</expan>
+            </choice> eis fuerit oportunum . Quodsi occasione uitandi <lb/> exercitus aut placitum
+            uenditae fuerint . et ipsi eas supersederint . exigatur ab eis utrumque <lb/> sicut ante
+            transscriptionem . </ab>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92rb-13" corresp="BK.225_6_inscriptio"><seg
+               type="numDenom">CAPITULUM</seg> . <seg type="num" n="6">VI</seg> . </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92rb-14" corresp="BK.225_6"><seg type="initial"
+               >U</seg>t ipsi arimanni frequentius quam in lege statutum est . <lb/> ad placitum ire
+            non cogantur . nec a comitibus nec a sculdassiis . </ab>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92rb-15" corresp="BK.225_7_inscriptio"><seg
+               type="numDenom">CAPITULUM</seg> . <seg type="num" n="7">VII</seg> . </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92rb-16" corresp="BK.225_7"><seg type="initial"
+               >U</seg>t bannum missi <lb/> exercitus imperialis solummodo exigant . </ab>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92rb-17" corresp="BK.225_8_inscriptio"><seg
+               type="numDenom">CAPITULUM</seg> . <seg type="num" n="8"><mod>VI</mod>II</seg> . </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92rb-18" corresp="BK.225_8" rend="nota"><seg
+               type="initial">U</seg>t pastus imperatoris ab episcopis <lb/> et comitibus secundum
+            antiquam consuetudinem soluatur . Quodsi nouo <choice>
+               <abbr>tepr</abbr>
+               <expan>tempore</expan>
+            </choice> fiscus comitalis in <subst>
+               <del/>
+               <add>ius</add>
+            </subst>
+            <lb/> ecclesiasticum concessus est . augeatur stipendium imperiale ab ecclesia . iuxta
+            quod res publicae <lb/> fuerint minoratae . </ab>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92rb-19" corresp="BK.225_9_inscriptio"><seg
+               type="numDenom">CAPITULUM</seg> . <seg type="num" n="9">VIIII</seg> . </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92rb-20" corresp="BK.225_9" rend="nota"><seg
+               type="initial">U</seg>t omnis decimatio episcopis uel his qui ab eis substitu<lb
+               break="no"/>ti sunt <expan>prebeatur</expan> . Nullusque eam ad suam capellam nisi
+            forte concession<mod>e</mod> episcopi conferat . <lb/> Quodsi fecisse contigerit .
+            primum legibus subiaceat humanis . postea <expan>excommunicatione</expan>
+            <lb/> episcopali constrictus . Ad ultimum ipsa capella quae magis contentionem quam
+               utili<lb break="no"/>tatem aliquam <expan>prestat</expan> destruatur . </ab>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92rb-21" corresp="BK.225_10_inscriptio"><seg
+               type="numDenom">CAPITULUM</seg> . <seg type="num" n="10">X</seg> . </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92rb-22" corresp="BK.225_10" rend="nota"><seg
+               type="initial">U</seg>t plebes ecclęsiasticę nullatenus aut co<lb break="no"/>mitibus
+            aut episcoporum uassallis . aut ullis laicis in benefitia tribuantur . </ab>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92rb-23" corresp="BK.225_11_inscriptio"><seg
+               type="numDenom">CAPITULUM</seg> . <seg type="num" n="11">XI</seg> . <lb/>
+         </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92rb-24" corresp="BK.225_11"><seg type="initial"
+               >V</seg>t in domibus ecclęsiarum neque missus neque comes uel iudex quasi pro
+            consuetudine <lb/> neque placitum neque ospitium uindicent . sed in publicis rebus domos
+            restituant . <lb/> in quibus placitum teneant . et secundum antiquam consuetudinem
+            hospitentur . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92rb-25" corresp="BK.225_12_inscriptio"><seg
+               type="numDenom">CAPITULUM</seg> . <seg type="num" n="12">XII</seg> . </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92rb-26" corresp="BK.225_12" rend="nota"><seg
+               type="initial">V</seg>t singulae plebes <expan>archipresbiterum</expan> habeant .
+               <del quantity="1" unit="chars"/> Propter assiduam er<lb break="no"/>ga popul<subst>
+               <del>um</del>
+               <add>i</add>
+            </subst> dei curam . singulis plebibus <expan>archipresbiteros</expan>
+            <expan>preesse</expan> uolumus . Qui non solum <lb/> imperiti uulgi sollicitudinem
+            gerant . uerum etiam eorum pre<add>s</add>biterorum <lb/> qui per minores titulos
+            habitant . uit<subst>
+               <del/>
+               <add>am iu</add>
+            </subst>gi circumspectione custodiant . <lb/> et qua unusquisque industria diuinum opus
+            exerceat . episcopo suo renuntient . <lb/> ne obtendat episcopus non egere plebem
+               <expan>archipresbitero</expan> . Quod si ipse eam gubernare non ualeat . <lb/> quia
+            etsi ualde idoneus . decet tamen ut partiatur . honera sua . Et sicut <lb/> ipse matrici
+               <expan>preest</expan> . ita <expan>archipresbiteri</expan> presint pleb<subst>
+               <del/>
+               <add>ibu</add>
+            </subst>s . ut in nullo titubet . <lb/> ecclęsiastica sollicitudo . Cuncta tamen ad
+            episcopum referant . <lb/> nec aliquid contra eius decretum ordinare presummant . <cb
+               n="92va"/></ab>
+
+         <ab type="meta-text" xml:id="vercelli-bce-xv-92va-1"><seg type="numDenom">CAPITULUM</seg> .
+               <seg type="num" n="13">XIII</seg> . </ab>
+         <ab type="text" xml:id="vercelli-bce-xv-92va-2"><seg type="initial">P</seg>ernitiosa in<subst>
+               <del/>
+               <add>ol</add>
+            </subst>euit consuetudo ut iudex publicus uel minister <lb/> peccata populi quae ab
+            episcopis sunt inquirenda quibus animarum sollicitudo <lb/>
+            <expan>commissa</expan> est . quasi inquirendo uendant . et ea occasione licenter <lb/>
+            scelestia uitia augmententur . Et si in proprietate ecclesiae uel clerici <lb/> feminas
+            inueniunt . adulteras . infamant . <expan>comprehendunt</expan> . dila<lb break="no"
+            />niant . Donec domini earum uel parentes eas redimant . pro quo consan<lb break="no"
+            />guinei earum in non modicam deueniunt paupertatem . et eo ordine <lb/> liberius post
+            uenditionem fornicari non metuunt . dicentes nil pertinere <lb/> ad episcopum . quae a
+            publico examinata . dinoscitur et redempta . quod om<lb break="no"/>nimodo inregulariter
+            inoleuisse . manifestum est . HAbeant <lb/> igitur episcopi singularum urbium in sua
+            diocesi liberam <sic>postestatem</sic> . ad<lb break="no"/>ulteria et scelera inquirere
+            . ulcisci . et iudicare secundum quod canones <lb/> censeunt . absque impedimento
+            alicuius . Et cum opus fuerit ad <expan>comprimen<lb break="no"/>dos</expan> rebelles et
+            contemptores . publicum conuocent non ad <expan>preiudicandum</expan> . sed <lb/>
+            <subst>
+               <del>p<gap quantity="1" unit="chars"/></del>
+               <add>potius</add>
+            </subst> ad eam quae deo placita sunt et saluti animarum conueniunt prosequendum . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="vercelli-bce-xv-92va-3"><seg type="initial">Q</seg>uia diuina
+            inspirante misericordia uestra nobiscum conuenit fraternitas . ut nutu <lb/> sancti
+            spiritus qui suis <expan>numquam</expan> deest fidelibus <expan>communi</expan> omnium
+            uestrum consultu fratres <lb/>
+            <choice>
+               <abbr>kmi</abbr>
+               <expan>karissimi</expan>
+            </choice> ea quae necessaria sanctae dei ecclesiae <expan>preuidimus</expan> . una cum
+            spiritali filio <lb/> nostro gloriosissimo scilicet imperatore <rs type="person"
+               >lantberto</rs> et uestro sancto collegio <lb/> ea quae nociuo surculo pullulare
+            conabantur in agro sanctae ecclesiae . canonico <lb/> sarculo eradicare studuimus . Quae
+            capitulatim adnotata sunt . si omnibus <lb/> placet in conspectu omnium legantur
+            examinentur . et examinata <lb/> manibus omnium . pro futura memoria roborentur . ne
+            ulli unquam <subst>
+               <del>fines <gap/></del>
+               <add>sine <lb/> status</add>
+            </subst> sui periculo eadem uiolare liceat . sed rata et firma in perpetuum <lb/>
+            consistant . ad statum et munimen sanctae dei ecclesiae et saluationem omn<mod>ium</mod>
+            <lb/> fidelium per dei misericordiam . </ab>
+
       </body>
    </text>
 </TEI>
