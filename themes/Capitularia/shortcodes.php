@@ -403,9 +403,10 @@ function on_shortcode_if_transcribed ($atts, $content)
 
 function on_shortcode_current_date ($atts, $dummy_content) // phpcs:ignore
 {
+    $formatter = new \IntlDateFormatter (qtranxf_getLanguage (), \IntlDateFormatter::LONG, \IntlDateFormatter::NONE);
     $atts = shortcode_atts (
         array (
-            'date' => strftime ('%x')
+            'date' => $formatter->format (time ())
         ),
         $atts,
         'current_date'

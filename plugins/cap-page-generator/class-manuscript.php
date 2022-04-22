@@ -210,7 +210,7 @@ class Manuscript
     public function parse_tei ()
     {
         libxml_use_internal_errors (true);
-        $xml = simplexml_load_file ($this->path);
+        $xml = \simplexml_load_file ($this->path);
         if ($xml === false) {
             // FIXME: handle errors here
             return null;
