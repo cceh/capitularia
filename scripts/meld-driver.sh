@@ -7,7 +7,7 @@
 #   meld-driver.sh tei-file
 #
 
-XSLT="${2-mss-transcript.xsl}"
+XSLT="${2-mss-transcript.xsl}" # default value mss-transcript.xsl
 XSLT1="xslt/$XSLT"
 XSLT2=~/uni/capitularia/http/docs/cap/publ/transform/$XSLT
 
