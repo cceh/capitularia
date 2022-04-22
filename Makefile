@@ -9,14 +9,16 @@ clean:
 	find . -name '*~' -type f -delete
 	rm -rf dist/*
 
-deploy: clean lint mo js geodata-client
+deploy: clean deploy_php geodata-client
+
+deploy_php: lint mo js
 	$(RSYNC) themes  $(WPCONTENT)
 	$(RSYNC) plugins $(WPCONTENT)
 	$(RSYNC) --delete --exclude "api.conf.js" dist    $(WPCONTENT)
 
 deploy_xslt: make_dependencies
+	$(RSYNC) xslt/*.xsl xslt/*.inc xslt/Makefile $(HOST_XSLT)/
 	$(RSYNC) xslt/*.xsl $(TRANSFORM)/
-	$(RSYNC) xslt/*.xsl xslt/*.inc xslt/Makefile $(HOST_SERVER)/../xslt/
 
 deploy_xml: deploy_mss deploy_capits
 
@@ -42,10 +44,10 @@ import_capits:
 	$(RSYNC) --del $(PUBL)/capit/*  capit/
 
 import_backups:
-	$(RSYNC) $(AFS)/backups/* ../backups/
+	$(RSYNC) $(SERVERFS)/backups/* ../backups/
 
 import_backup_mysql:
-	bzcat $(AFS)/backups/mysql/capitularia-mysql-$(shell date +%F).sql.bz2 | $(MYSQL_LOCAL)
+	bzcat $(SERVERFS)/backups/mysql/capitularia-mysql-$(shell date +%F).sql.bz2 | $(MYSQL_LOCAL)
 
 .PHONY: docs mysql-remote mysql-local
 

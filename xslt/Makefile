@@ -7,7 +7,7 @@
 # For a graph see:
 # https://cceh.github.io/capitularia/vm/transformations.html#graph-of-all-transformations
 #
-# The cache directory on AFS contains the HTML files for display to the user and
+# The cache directory on SERVERFS contains the HTML files for display to the user and
 # lots of other files: one big corpus file with all metadata tags and one file
 # for every chapter in every manuscript, and more.
 #

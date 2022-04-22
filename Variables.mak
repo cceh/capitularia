@@ -3,14 +3,14 @@ PRJ_DIR := prj/capitularia/capitularia
 ROOT      := $(UNI_DIR)/$(PRJ_DIR)
 HOST_ROOT := $(CAPITULARIA_SSHUSER)@$(CAPITULARIA_HOST)
 
-AFS     := $(or $(CAPITULARIA_AFS),/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia)
-LOCALFS := $(or $(CAPITULARIA_LOCALFS),/var/www/capitularia)
-BROWSER := $(or $(BROWSER),firefox)
-GITUSER := $(CAPITULARIA_GITUSER)
+SERVERFS := $(or $(CAPITULARIA_SERVERFS),$(UNI_DIR)/remote_fs/)
+LOCALFS  := $(or $(CAPITULARIA_LOCALFS),/var/www/capitularia)
+BROWSER  := $(or $(BROWSER),firefox)
+GITUSER  := $(CAPITULARIA_GITUSER)
 
-WPCONTENT := $(AFS)/http/docs/wp-content
-PUBL	  := $(AFS)/http/docs/cap/publ
-TRANSFORM := $(AFS)/http/docs/cap/publ/transform
+WPCONTENT := $(SERVERFS)/wp-content
+PUBL	  := $(SERVERFS)/cap/publ
+TRANSFORM := $(SERVERFS)/cap/publ/transform
 
 WPCONTENTLOCAL := $(LOCALFS)/wp-content
 
@@ -19,8 +19,9 @@ SERVER       := $(ROOT)/server
 XSLT         := $(ROOT)/xslt
 GIS          := $(ROOT)/gis
 
-HOST_CLIENT  := $(AFS)/http/docs/client
+HOST_CLIENT  := $(SERVERFS)/http/docs/client
 HOST_SERVER  := $(HOST_ROOT):~/$(PRJ_DIR)/server
+HOST_XSLT    := $(HOST_ROOT):~/$(PRJ_DIR)/xslt
 
 NODE_MODULES := $(ROOT)/node_modules
 NODE         := $(NODE_MODULES)/.bin

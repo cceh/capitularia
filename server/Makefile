@@ -4,7 +4,7 @@ IMPORT := python3 -m scripts.import_data -vvv -c ./server.conf
 
 upload:
 	$(RSYNCPY) --exclude "server.conf" ./* $(HOST_SERVER)
-	$(RSYNC) ../xslt/*.xsl ../xslt/Makefile $(HOST_SERVER)/../xslt/
+	$(RSYNC) ../xslt/*.xsl ../xslt/Makefile $(HOST_XSLT)/
 
 install_prereq:
 	sudo apt-get install python3-mapnik
