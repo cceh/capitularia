@@ -66,6 +66,92 @@
     font-style: italic;
 }
 
+/*
+ * The woff2 version lacks U+02D9 and maybe others. Use the woff version instead
+ * which is simpler to use too.
+ */
+
+$os-font-path: '@fontsource/open-sans/files';
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+  src: url('#{$os-font-path}/open-sans-all-300-normal.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('#{$os-font-path}/open-sans-all-400-normal.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url('#{$os-font-path}/open-sans-all-600-normal.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('#{$os-font-path}/open-sans-all-700-normal.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+  src: url('#{$os-font-path}/open-sans-all-800-normal.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 300;
+  src: url('#{$os-font-path}/open-sans-all-300-italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url('#{$os-font-path}/open-sans-all-400-italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 600;
+  src: url('#{$os-font-path}/open-sans-all-600-italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 700;
+  src: url('#{$os-font-path}/open-sans-all-700-italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 800;
+  src: url('#{$os-font-path}/open-sans-all-800-italic.woff') format('woff');
+}
 
 /*
  * Fontawesome Font
@@ -92,8 +178,7 @@ $fa-font-display: 'block';
     font-weight: 900;
     font-display: $fa-font-display;
     src: url('#{$fa-font-path}/fa-solid-900.woff2') format('woff2'),
-        url('#{$fa-font-path}/fa-solid-900.woff') format('woff'),
-        url('#{$fa-font-path}/fa-solid-900.ttf') format('truetype');
+         url('#{$fa-font-path}/fa-solid-900.ttf') format('truetype');
 }
 
 .fa,
@@ -115,8 +200,7 @@ $fa-font-display: 'block';
     font-weight: 400;
     font-display: $fa-font-display;
     src: url('#{$fa-font-path}/fa-regular-400.woff2') format('woff2'),
-        url('#{$fa-font-path}/fa-regular-400.woff') format('woff'),
-        url('#{$fa-font-path}/fa-regular-400.ttf') format('truetype');
+         url('#{$fa-font-path}/fa-regular-400.ttf') format('truetype');
 }
 
 .far,
@@ -136,8 +220,7 @@ $fa-font-display: 'block';
     font-weight: 400;
     font-display: $fa-font-display;
     src: url('#{$fa-font-path}/fa-brands-400.woff2') format('woff2'),
-        url('#{$fa-font-path}/fa-brands-400.woff') format('woff'),
-        url('#{$fa-font-path}/fa-brands-400.ttf') format('truetype');
+         url('#{$fa-font-path}/fa-brands-400.ttf') format('truetype');
 }
 
 .fab,
