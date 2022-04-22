@@ -740,7 +740,7 @@ def import_fulltext (conn, filenames, mode):
                                 SET text = EXCLUDED.text
                                 """, dict (params, text = item.text))
                             # pylint: disable=no-member
-                            except psycopg2.errors.ForeignKeyViolation as e:
+                            except sqlalchemy.exc.IntegrityError as e:
                                 log (logging.ERROR,
                                      "Import fulltext txt: Unknown manuscript or chapter {ms_id} {cap_id} {mscap_n} {chapter}".format (**params))
 
