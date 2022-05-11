@@ -202,12 +202,16 @@
            BK.258a_1       => BK 258a c. 1
            BK_266_prolog   => BK 266 Prolog
            BK_273_b_prolog => BK 273 Abschnitt B Prolog
+
+           Benedictus.Levita.1_279 => Benedictus Levita 1,279
+           Benedictus.Levita.1,279 => Benedictus Levita
     -->
 
     <param name="corresp" as="xs:string?" />
 
     <variable name="hr" expand-text="yes">
       <for-each select="tokenize ($corresp, '\s+')">
+        <!-- BK, Mordek -->
         <for-each select="analyze-string (.,
                           '^(\w+)[._](\d+[ABab]?)(?:_([a-z]))?(?:_(\d+))?(?:_(\w)(\w+)(?:_(\d+))?)?$')/fn:match">
           <value-of select="fn:group[@nr=1]" />
@@ -227,6 +231,17 @@
             <text> {fn:group[@nr=7]}</text>
           </if>
           <text> </text>
+        </for-each>
+        <!-- Benedictus Levita -->
+        <for-each select="analyze-string (., '^Benedictus[.]Levita[.](\d+)_(\d+)$')/fn:match">
+          <text>Benedictus Levita </text>
+          <value-of select="fn:group[@nr=1]" />
+          <text>,</text>
+          <value-of select="fn:group[@nr=2]" />
+          <text> </text>
+        </for-each>
+        <for-each select="analyze-string (., '^Benedictus[.]Levita$')/fn:match">
+          <text>Benedictus Levita </text>
         </for-each>
       </for-each>
     </variable>

@@ -217,8 +217,9 @@ joined to the preceding word.
     <xsl:variable name="id" select="generate-id ()" />
 
     <xsl:for-each select="tokenize ($corresp, '\s+')">
+      <!-- Strip everything after _ because in <milestone>s it means the n_th occurence of this capitular (and not the chapter as in <ab>s). -->
       <xsl:variable name="hr" select="cap:make-human-readable-bk (cap:strip-ignored-corresp (substring-before (concat (., '_'), '_')))" />
-      <a id="{cap:make-id (.)}" class="milestone"></a>
+      <a id="{cap:make-id (.)}" class="milestone milestone-capitular"></a>
       <xsl:if test="normalize-space ($hr) and not (contains (., 'Ansegis'))">
         <!-- an anchor for the exclusive use of the dynamic menu in the sidebar -->
         <a id="x-menu-{$id}" class="milestone"
@@ -411,7 +412,7 @@ joined to the preceding word.
         <xsl:call-template name="footnotes-wrapper" />
         <xsl:call-template name="page-break" />
       </xsl:when>
-      <xsl:when test="not (@unit='span')">
+      <xsl:when test="@unit='capitulare' and @n">
         <xsl:call-template name="make-sidebar-bk">
           <xsl:with-param name="corresp" select="@n" />
         </xsl:call-template>
