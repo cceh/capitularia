@@ -53,7 +53,7 @@ import_backup_mysql:
 
 doc_src/phpdoc/structure.xml: $(wildcard plugins/*/*.php $(THEMES)/*.php $(THEMES)/widgets/*.php)
 	mkdir -p doc_src/phpdoc
-	$(PHPDOC) -d "plugins,themes" -t ./doc_src/phpdoc --ignore="*/node_modules/*" --template="xml" --template="clean"
+	$(PHPDOC) -d "plugins,themes" -t ./doc_src/phpdoc --ignore="*/node_modules/*"
 
 doc_src/jsdoc/structure.json: $(shell find . -not -path "*node_modules*" -a -path "*/src/js/*.js")
 	mkdir -p doc_src/jsdoc/

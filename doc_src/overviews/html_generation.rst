@@ -66,7 +66,7 @@ User Delivery
    database "Manuscript files\n(HTML)" as html
    note left of html: AFS:publ/cache/mss
 
-   cloud "RRZK WebProjekt" {
+   cloud "Apache" {
      database  "Database\n(mysql)" as db
      rectangle "Wordpress" {
        component "Footnotes\nPost-Processor\n(PHP)" as pp

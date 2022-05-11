@@ -1,67 +1,35 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Application Server &mdash; Capitularia 0.1.1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Database Structure" href="database.html" />
-    <link rel="prev" title="Capitularia VM" href="../vm.html" /> 
+    <link rel="prev" title="Developer Notes" href="apache/wordpress/developer.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Capitularia
-          
-
-          
+            <a href="../index.html" class="icon icon-home"> Capitularia
           </a>
-
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -69,21 +37,9 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../intro.html#rrzk-web-projekt">RRZK Web Projekt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#capitularia-vm">Capitularia VM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#afs">AFS</a></li>
 </ul>
@@ -120,21 +76,13 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../webprojekt.html">RRZK Web Projekt Capitularia</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../webprojekt/wordpress.html">Wordpress Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../webprojekt/database.html">Wordpress Database Structure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../webprojekt/database.html#metadata">Metadata</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../webprojekt/wordpress-custom.html">Wordpress Customizations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../webprojekt/wordpress/theme.html">Wordpress Theme</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../webprojekt/wordpress/plugins.html">Wordpress Plugins</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../webprojekt/wordpress/developer.html">Developer Notes</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1 current"><a class="reference internal" href="../vm.html">Capitularia VM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="apache.html">Apache Web Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="apache/wordpress.html">Wordpress Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apache/database.html">Wordpress Database Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apache/wordpress-custom.html">Wordpress Customizations</a></li>
+</ul>
+</li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Application Server</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#server">server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-data_server">data_server</a></li>
@@ -154,99 +102,60 @@
 <li class="toctree-l3"><a class="reference internal" href="transformations.html#graph-of-stylesheet-dependencies">Graph of Stylesheet Dependencies</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">TSM Backup</a></li>
 </ul>
 </li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Capitularia</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="../vm.html">Capitularia VM</a> &raquo;</li>
-        
       <li>Application Server</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../_sources/vm/app_server.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="application-server">
+             
+  <section id="application-server">
 <span id="app-server"></span><h1>Application Server<a class="headerlink" href="#application-server" title="Permalink to this headline">¶</a></h1>
 <p>The application server is built with Python and Flask.</p>
 <p>It is composed of these modules:</p>
-<div class="section" id="server">
+<section id="server">
 <h2>server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h2>
 <p>The main server module.</p>
 <span class="target" id="module-server"></span><p>The API server for Capitularia.</p>
 <dl class="py function">
-<dt id="server.build_parser">
-<code class="sig-name descname">build_parser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">default_config_file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#server.build_parser" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="server.build_parser">
+<span class="sig-name descname"><span class="pre">build_parser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_config_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#server.build_parser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the commandline parser.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="module-data_server">
+</section>
+<section id="module-data_server">
 <span id="data-server"></span><h2>data_server<a class="headerlink" href="#module-data_server" title="Permalink to this headline">¶</a></h2>
 <p>Data API server for Capitularia.</p>
 <p>REST Interface to perform various database queries.</p>
-<div class="section" id="endpoints">
+<section id="endpoints">
 <h3>Endpoints<a class="headerlink" href="#endpoints" title="Permalink to this headline">¶</a></h3>
 <dl class="http get">
-<dt id="get--data-manuscripts.json-">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/data/manuscripts.json/</code><a class="headerlink" href="#get--data-manuscripts.json-" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object http" id="get--data-manuscripts.json-">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/data/manuscripts.json/</span></span><a class="headerlink" href="#get--data-manuscripts.json-" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all manuscripts.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/data/manuscripts.json/?status=publish</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -257,23 +166,23 @@
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
 
-<span class="p">[</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/avranches-bm-145.xml&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;ms_id&quot;</span><span class="p">:</span> <span class="s2">&quot;avranches-bm-145&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Avranches, Bibliothèque municipale, 145&quot;</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/bamberg-sb-can-12.xml&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;ms_id&quot;</span><span class="p">:</span> <span class="s2">&quot;bamberg-sb-can-12&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Bamberg, Staatsbibliothek, Can. 12&quot;</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/barcelona-aca-ripoll-40.xml&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;ms_id&quot;</span><span class="p">:</span> <span class="s2">&quot;barcelona-aca-ripoll-40&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Barcelona, Arxiu de la Corona d&#39;Aragó, Ripoll 40&quot;</span>
-  <span class="p">}</span>
-<span class="p">]</span>
+<span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/avranches-bm-145.xml&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;avranches-bm-145&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Avranches, Bibliothèque municipale, 145&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/bamberg-sb-can-12.xml&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bamberg-sb-can-12&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bamberg, Staatsbibliothek, Can. 12&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/barcelona-aca-ripoll-40.xml&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;barcelona-aca-ripoll-40&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Barcelona, Arxiu de la Corona d&#39;Aragó, Ripoll 40&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -285,20 +194,20 @@ Consider all manuscripts or just the published ones.</p></li>
 </dd>
 <dt class="field-even">Response Headers</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+<li><p><span><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Status Codes</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – no error</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – no error</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--data-capitularies.json-">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/data/capitularies.json/</code><a class="headerlink" href="#get--data-capitularies.json-" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object http" id="get--data-capitularies.json-">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/data/capitularies.json/</span></span><a class="headerlink" href="#get--data-capitularies.json-" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all capitularies that have a transcription.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/data/capitularies.json/?status=private</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -309,23 +218,23 @@ Consider all manuscripts or just the published ones.</p></li>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
 
-<span class="p">[</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;cap_id&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.138&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Capitulare ecclesiasticum&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span> <span class="mi">17</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;cap_id&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.139&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Capitula legibus addenda&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span> <span class="mi">29</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;cap_id&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.140&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Capitula per se scribenda&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span> <span class="mi">24</span>
-  <span class="p">}</span>
-<span class="p">]</span>
+<span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;cap_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BK.138&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Capitulare ecclesiasticum&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;cap_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BK.139&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Capitula legibus addenda&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;cap_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BK.140&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Capitula per se scribenda&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -337,20 +246,20 @@ Consider all manuscripts or just the published ones.</p></li>
 </dd>
 <dt class="field-even">Response Headers</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+<li><p><span><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Status Codes</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – no error</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – no error</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--data-capitulary--cap_id--chapters.json-">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/data/capitulary/&lt;cap_id&gt;/chapters.json/</code><a class="headerlink" href="#get--data-capitulary--cap_id--chapters.json-" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object http" id="get--data-capitulary--cap_id--chapters.json-">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/data/capitulary/&lt;cap_id&gt;/chapters.json/</span></span><a class="headerlink" href="#get--data-capitulary--cap_id--chapters.json-" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all chapters in capitulary cap_id.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/data/capitulary/BK.168/chapters.json/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -361,23 +270,23 @@ Consider all manuscripts or just the published ones.</p></li>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
 
-<span class="p">[</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;cap_id&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.168&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;chapter&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span> <span class="mi">7</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;cap_id&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.168&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;chapter&quot;</span><span class="p">:</span> <span class="s2">&quot;1_inscriptio&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span> <span class="mi">1</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;cap_id&quot;</span><span class="p">:</span> <span class="s2">&quot;BK.168&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;chapter&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span> <span class="mi">8</span>
-  <span class="p">}</span>
-<span class="p">]</span>
+<span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;cap_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BK.168&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;chapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;cap_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BK.168&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;chapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1_inscriptio&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;cap_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BK.168&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;chapter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;transcriptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -390,21 +299,21 @@ Consider all manuscripts or just the published ones.</p></li>
 </dd>
 <dt class="field-even">Response Headers</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+<li><p><span><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Status Codes</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – no error</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Bad Request</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – no error</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a></span> – Bad Request</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--data-capitulary--cap_id--manuscripts.json-">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/data/capitulary/&lt;cap_id&gt;/manuscripts.json/</code><a class="headerlink" href="#get--data-capitulary--cap_id--manuscripts.json-" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object http" id="get--data-capitulary--cap_id--manuscripts.json-">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/data/capitulary/&lt;cap_id&gt;/manuscripts.json/</span></span><a class="headerlink" href="#get--data-capitulary--cap_id--manuscripts.json-" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all manuscripts containing capitulary cap_id.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/data/capitulary/BK.40/manuscripts.json/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -415,10 +324,10 @@ Consider all manuscripts or just the published ones.</p></li>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
 
-<span class="p">[</span>
-  <span class="p">{</span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="s2">&quot;bk-textzeuge&quot;</span><span class="p">},</span>
-  <span class="p">{</span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="s2">&quot;vatikan-bav-chigi-f-iv-75&quot;</span><span class="p">}</span>
-<span class="p">]</span>
+<span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="s2">&quot;bk-textzeuge&quot;</span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="s2">&quot;vatikan-bav-chigi-f-iv-75&quot;</span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -431,21 +340,21 @@ Consider all manuscripts or just the published ones.</p></li>
 </dd>
 <dt class="field-even">Response Headers</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+<li><p><span><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Status Codes</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – no error</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Bad Request</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – no error</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a></span> – Bad Request</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--data-corresp--corresp--manuscripts.json-">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/data/corresp/&lt;corresp&gt;/manuscripts.json/</code><a class="headerlink" href="#get--data-corresp--corresp--manuscripts.json-" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object http" id="get--data-corresp--corresp--manuscripts.json-">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/data/corresp/&lt;corresp&gt;/manuscripts.json/</span></span><a class="headerlink" href="#get--data-corresp--corresp--manuscripts.json-" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all manuscripts containing corresp.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/data/corresp/BK.40_1/manuscripts.json/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -456,32 +365,32 @@ Consider all manuscripts or just the published ones.</p></li>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
 
-<span class="p">[</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/cava-dei-tirreni-bdb-4.xml&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;locus&quot;</span><span class="p">:</span> <span class="s2">&quot;cava-dei-tirreni-bdb-4-243v-1&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;ms_id&quot;</span><span class="p">:</span> <span class="s2">&quot;cava-dei-tirreni-bdb-4&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Cava de&#39; Tirreni, Biblioteca Statale del Monumento Nazionale Badia di Cava, 4&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;original&quot;</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/ivrea-bc-xxxiv.xml&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;locus&quot;</span><span class="p">:</span> <span class="s2">&quot;ivrea-bc-xxxiv-53v-8&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;ms_id&quot;</span><span class="p">:</span> <span class="s2">&quot;ivrea-bc-xxxiv&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Ivrea, Biblioteca Capitolare, XXXIV&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;original&quot;</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/vatikan-bav-chigi-f-iv-75.xml&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;locus&quot;</span><span class="p">:</span> <span class="s2">&quot;vatikan-bav-chigi-f-iv-75-94r-6&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;ms_id&quot;</span><span class="p">:</span> <span class="s2">&quot;vatikan-bav-chigi-f-iv-75&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Vatikan, Biblioteca Apostolica Vaticana, Chigi F. IV. 75&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;original&quot;</span>
-  <span class="p">}</span>
-<span class="p">]</span>
+<span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/cava-dei-tirreni-bdb-4.xml&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;locus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cava-dei-tirreni-bdb-4-243v-1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cava-dei-tirreni-bdb-4&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Cava de&#39; Tirreni, Biblioteca Statale del Monumento Nazionale Badia di Cava, 4&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;original&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/ivrea-bc-xxxiv.xml&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;locus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ivrea-bc-xxxiv-53v-8&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ivrea-bc-xxxiv&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ivrea, Biblioteca Capitolare, XXXIV&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;original&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/vatikan-bav-chigi-f-iv-75.xml&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;locus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vatikan-bav-chigi-f-iv-75-94r-6&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vatikan-bav-chigi-f-iv-75&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Vatikan, Biblioteca Apostolica Vaticana, Chigi F. IV. 75&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;original&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -494,21 +403,21 @@ Consider all manuscripts or just the published ones.</p></li>
 </dd>
 <dt class="field-even">Response Headers</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json</p></li>
+<li><p><span><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Status Codes</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – no error</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a> – Bad Request</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – no error</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1">400 Bad Request</a></span> – Bad Request</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="http get">
-<dt id="get--data-capitulary--cap_id--chapter--chapter--manuscripts.json-">
-<code class="sig-name descname">GET </code><code class="sig-name descname">/data/capitulary/&lt;cap_id&gt;/chapter/&lt;chapter&gt;/manuscripts.json/</code><a class="headerlink" href="#get--data-capitulary--cap_id--chapter--chapter--manuscripts.json-" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object http" id="get--data-capitulary--cap_id--chapter--chapter--manuscripts.json-">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/data/capitulary/&lt;cap_id&gt;/chapter/&lt;chapter&gt;/manuscripts.json/</span></span><a class="headerlink" href="#get--data-capitulary--cap_id--chapter--chapter--manuscripts.json-" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all manuscripts containing chapter.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/data/capitulary/BK.40/chapter/1/manuscripts.json/</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -529,120 +438,120 @@ Consider all manuscripts or just the published ones.</p></li>
 </dd></dl>
 
 <dl class="py function">
-<dt id="data_server.capitularies">
-<code class="sig-name descname">capitularies</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.capitularies" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="data_server.capitularies">
+<span class="sig-name descname"><span class="pre">capitularies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.capitularies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all capitularies with transcriptions.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="data_server.chapter_manuscripts">
-<code class="sig-name descname">chapter_manuscripts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cap_id</span></em>, <em class="sig-param"><span class="n">chapter</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.chapter_manuscripts" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="data_server.chapter_manuscripts">
+<span class="sig-name descname"><span class="pre">chapter_manuscripts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cap_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chapter</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.chapter_manuscripts" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="data_server.chapters">
-<code class="sig-name descname">chapters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cap_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.chapters" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="data_server.chapters">
+<span class="sig-name descname"><span class="pre">chapters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cap_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.chapters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all chapters in capitulary cap_id.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="data_server.dataBlueprint">
-<em class="property">class </em><code class="sig-name descname">dataBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.dataBlueprint" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="data_server.dataBlueprint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dataBlueprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">import_name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_folder:</span> <span class="pre">typing.Optional[typing.Union[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">os.PathLike]]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_url_path:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_folder:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_prefix:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subdomain:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_defaults:</span> <span class="pre">typing.Optional[dict]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_path:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cli_group:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.dataBlueprint" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="data_server.fstat">
-<code class="sig-name descname">fstat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.fstat" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="data_server.fstat">
+<span class="sig-name descname"><span class="pre">fstat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.fstat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a filter on page status.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="data_server.highlight">
-<code class="sig-name descname">highlight</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conn</span></em>, <em class="sig-param"><span class="n">text</span></em>, <em class="sig-param"><span class="n">fulltext</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.highlight" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="data_server.highlight">
+<span class="sig-name descname"><span class="pre">highlight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fulltext</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_server.highlight" title="Permalink to this definition">¶</a></dt>
 <dd><p>Snippet and highlight</p>
 <p>Produce snippets out of the text around any of the words in fulltext and
 highlight those words in the snippets.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="data_server.manuscripts">
-<code class="sig-name descname">manuscripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.manuscripts" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="data_server.manuscripts">
+<span class="sig-name descname"><span class="pre">manuscripts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.manuscripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all manuscripts</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="data_server.places_json">
-<code class="sig-name descname">places_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.places_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="data_server.places_json">
+<span class="sig-name descname"><span class="pre">places_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.places_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return hierarchy of known places for the meta-search box.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="data_server.query_manuscripts">
-<code class="sig-name descname">query_manuscripts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.query_manuscripts" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="data_server.query_manuscripts">
+<span class="sig-name descname"><span class="pre">query_manuscripts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.query_manuscripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return manuscripts according to query.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="data_server.stat">
-<code class="sig-name descname">stat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.stat" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="data_server.stat">
+<span class="sig-name descname"><span class="pre">stat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_server.stat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a filter on page status.</p>
 </dd></dl>
 
-</div>
-</div>
-<div class="section" id="module-collatex_server">
+</section>
+</section>
+<section id="module-collatex_server">
 <span id="collatex-server"></span><h2>collatex_server<a class="headerlink" href="#module-collatex_server" title="Permalink to this headline">¶</a></h2>
 <p>This module implements the CollateX API for the Capitularia Application Server.</p>
-<div class="section" id="id1">
+<section id="id1">
 <h3>Endpoints<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="http post">
-<dt id="post--collatex-collate">
-<code class="sig-name descname">POST </code><code class="sig-name descname">/collatex/collate</code><a class="headerlink" href="#post--collatex-collate" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object http" id="post--collatex-collate">
+<span class="sig-name descname"><span class="pre">POST</span> </span><span class="sig-name descname"><span class="pre">/collatex/collate</span></span><a class="headerlink" href="#post--collatex-collate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collate sections of witnesses.</p>
 <p><strong>Example request</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/collatex/collate</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">api.capitularia.uni-koeln.de</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json;charset=utf-8</span>
 
-<span class="p">{</span>
-    <span class="nt">&quot;collate&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&quot;BK.20a_3/bk-textzeuge&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;BK.20b_3/bk-textzeuge&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;BK.20b_3/vatikan-bav-reg-lat-263&quot;</span>
-    <span class="p">]</span>
-<span class="p">}</span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;collate&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;BK.20a_3/bk-textzeuge&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;BK.20b_3/bk-textzeuge&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;BK.20b_3/vatikan-bav-reg-lat-263&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p><strong>Example response</strong>:</p>
 <div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json;charset=utf-8</span>
 
-<span class="p">{</span>
-  <span class="nt">&quot;witnesses&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s2">&quot;BK.20a_3/bk-textzeuge&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;BK.20b_3/bk-textzeuge&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;BK.20b_3/vatikan-bav-reg-lat-263&quot;</span>
-  <span class="p">],</span>
-  <span class="nt">&quot;table&quot;</span><span class="p">:[</span>
-    <span class="p">[</span> <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>     <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span> <span class="p">}</span> <span class="p">],</span>     <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>      <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span> <span class="p">}</span> <span class="p">]</span> <span class="p">],</span>
-    <span class="p">[</span> <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span> <span class="p">}</span> <span class="p">],</span> <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span>  <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span> <span class="p">}</span> <span class="p">]</span> <span class="p">],</span>
-    <span class="p">[</span> <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span>   <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;cat&quot;</span> <span class="p">}</span> <span class="p">],</span>   <span class="p">[</span> <span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;kitten&quot;</span><span class="p">,</span> <span class="nt">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;kitten&quot;</span> <span class="p">}</span> <span class="p">]</span> <span class="p">]</span>
-  <span class="p">]</span>
-<span class="p">}</span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;witnesses&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;BK.20a_3/bk-textzeuge&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;BK.20b_3/bk-textzeuge&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s2">&quot;BK.20b_3/vatikan-bav-reg-lat-263&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;table&quot;</span><span class="p">:[</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="w">     </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">     </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="w">      </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;black&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;white&quot;</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;white&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="w">   </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cat&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w">   </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;t&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kitten&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kitten&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Response Headers</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a> – application/json;charset=utf-8</p></li>
+<li><p><span><a class="reference external" href="https://tools.ietf.org/html/rfc7231#section-3.1.1.5">Content-Type</a></span> – application/json;charset=utf-8</p></li>
 </ul>
 </dd>
 <dt class="field-even">Status Codes</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> – No errors.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a> – CollateX reported errors.
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – No errors.</p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a></span> – CollateX reported errors.
 A report was logged in the server logfile.</p></li>
-<li><p><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.5">504 Gateway Timeout</a> – The CollateX process took too long.
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.5">504 Gateway Timeout</a></span> – The CollateX process took too long.
 Retry later or with less witnesses.</p></li>
 </ul>
 </dd>
@@ -650,54 +559,54 @@ Retry later or with less witnesses.</p></li>
 </dd></dl>
 
 <dl class="py class">
-<dt id="collatex_server.CollatexBlueprint">
-<em class="property">class </em><code class="sig-name descname">CollatexBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.CollatexBlueprint" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="collatex_server.CollatexBlueprint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CollatexBlueprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">import_name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_folder:</span> <span class="pre">typing.Optional[typing.Union[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">os.PathLike]]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_url_path:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_folder:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_prefix:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subdomain:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_defaults:</span> <span class="pre">typing.Optional[dict]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_path:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cli_group:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.CollatexBlueprint" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py exception">
-<dt id="collatex_server.CollatexError">
-<em class="property">exception </em><code class="sig-name descname">CollatexError</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.CollatexError" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="collatex_server.CollatexError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CollatexError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.CollatexError" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="collatex_server.collate">
-<code class="sig-name descname">collate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.collate" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="collatex_server.collate">
+<span class="sig-name descname"><span class="pre">collate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.collate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implements the /collatex/collate endpoint.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="collatex_server.normalize_with_patterns">
-<code class="sig-name descname">normalize_with_patterns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">patterns</span></em>, <em class="sig-param"><span class="n">text</span></em>, <em class="sig-param"><span class="n">whole_words</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.normalize_with_patterns" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="collatex_server.normalize_with_patterns">
+<span class="sig-name descname"><span class="pre">normalize_with_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patterns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whole_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.normalize_with_patterns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Normalize text using a list of patterns</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="collatex_server.to_collatex">
-<code class="sig-name descname">to_collatex</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_</span></em>, <em class="sig-param"><span class="n">text</span></em>, <em class="sig-param"><span class="n">normalizations</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.to_collatex" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="collatex_server.to_collatex">
+<span class="sig-name descname"><span class="pre">to_collatex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalizations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.to_collatex" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the input to Collate-X</p>
 <p>Builds the representation for one witness.  Returns an object that must be
 combined into the witnesses array.</p>
 <p>Example of Collate-X input:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;witnesses&quot;</span> <span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="nt">&quot;id&quot;</span> <span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;tokens&quot;</span> <span class="p">:</span> <span class="p">[</span>
-          <span class="p">{</span> <span class="nt">&quot;t&quot;</span> <span class="p">:</span> <span class="s2">&quot;A &quot;</span><span class="p">,</span>      <span class="nt">&quot;n&quot;</span> <span class="p">:</span> <span class="s2">&quot;a&quot;</span>     <span class="p">},</span>
-          <span class="p">{</span> <span class="nt">&quot;t&quot;</span> <span class="p">:</span> <span class="s2">&quot;black &quot;</span> <span class="p">,</span> <span class="nt">&quot;n&quot;</span> <span class="p">:</span> <span class="s2">&quot;black&quot;</span> <span class="p">},</span>
-          <span class="p">{</span> <span class="nt">&quot;t&quot;</span> <span class="p">:</span> <span class="s2">&quot;cat.&quot;</span><span class="p">,</span>    <span class="nt">&quot;n&quot;</span> <span class="p">:</span> <span class="s2">&quot;cat&quot;</span>   <span class="p">}</span>
-      <span class="p">]</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="nt">&quot;id&quot;</span> <span class="p">:</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;tokens&quot;</span> <span class="p">:</span> <span class="p">[</span>
-          <span class="p">{</span> <span class="nt">&quot;t&quot;</span> <span class="p">:</span> <span class="s2">&quot;A &quot;</span><span class="p">,</span>      <span class="nt">&quot;n&quot;</span> <span class="p">:</span> <span class="s2">&quot;a&quot;</span>     <span class="p">},</span>
-          <span class="p">{</span> <span class="nt">&quot;t&quot;</span> <span class="p">:</span> <span class="s2">&quot;white &quot;</span> <span class="p">,</span> <span class="nt">&quot;n&quot;</span> <span class="p">:</span> <span class="s2">&quot;white&quot;</span> <span class="p">},</span>
-          <span class="p">{</span> <span class="nt">&quot;t&quot;</span> <span class="p">:</span> <span class="s2">&quot;kitten.&quot;</span><span class="p">,</span> <span class="nt">&quot;n&quot;</span> <span class="p">:</span> <span class="s2">&quot;cat&quot;</span>   <span class="p">}</span>
-      <span class="p">]</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;witnesses&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;tokens&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;t&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A &quot;</span><span class="p">,</span><span class="w">      </span><span class="nt">&quot;n&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="w">     </span><span class="p">},</span><span class="w"></span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;t&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;black &quot;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;n&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;black&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;t&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cat.&quot;</span><span class="p">,</span><span class="w">    </span><span class="nt">&quot;n&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cat&quot;</span><span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;tokens&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;t&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A &quot;</span><span class="p">,</span><span class="w">      </span><span class="nt">&quot;n&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="w">     </span><span class="p">},</span><span class="w"></span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;t&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;white &quot;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;n&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;white&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;t&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kitten.&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;n&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cat&quot;</span><span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -711,84 +620,84 @@ Normalizations applied to each word.</p>
 </dl>
 </dd></dl>
 
-</div>
-</div>
-<div class="section" id="module-geo_server">
+</section>
+</section>
+<section id="module-geo_server">
 <span id="geo-server"></span><h2>geo_server<a class="headerlink" href="#module-geo_server" title="Permalink to this headline">¶</a></h2>
 <p>Geo queries API server for Capitularia.</p>
 <dl class="py class">
-<dt id="geo_server.GeoBlueprint">
-<em class="property">class </em><code class="sig-name descname">GeoBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.GeoBlueprint" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="geo_server.GeoBlueprint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GeoBlueprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">import_name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_folder:</span> <span class="pre">typing.Optional[typing.Union[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">os.PathLike]]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_url_path:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_folder:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_prefix:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subdomain:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_defaults:</span> <span class="pre">typing.Optional[dict]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_path:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cli_group:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.GeoBlueprint" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="geo_server.capitularies_csv">
-<code class="sig-name descname">capitularies_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.capitularies_csv" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="geo_server.capitularies_csv">
+<span class="sig-name descname"><span class="pre">capitularies_csv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.capitularies_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return capitularies in geometry as CSV response.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="geo_server.capitularies_json">
-<code class="sig-name descname">capitularies_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.capitularies_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="geo_server.capitularies_json">
+<span class="sig-name descname"><span class="pre">capitularies_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.capitularies_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return capitularies in geometry as geojson response.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="geo_server.extent_json">
-<code class="sig-name descname">extent_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.extent_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="geo_server.extent_json">
+<span class="sig-name descname"><span class="pre">extent_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.extent_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the max. extent of all data points.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="geo_server.info_json">
-<code class="sig-name descname">info_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.info_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="geo_server.info_json">
+<span class="sig-name descname"><span class="pre">info_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.info_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Info endpoint: send information about server and available layers.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="geo_server.msparts_csv">
-<code class="sig-name descname">msparts_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.msparts_csv" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="geo_server.msparts_csv">
+<span class="sig-name descname"><span class="pre">msparts_csv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.msparts_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return location of manuscript parts as CSV response.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="geo_server.msparts_json">
-<code class="sig-name descname">msparts_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.msparts_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="geo_server.msparts_json">
+<span class="sig-name descname"><span class="pre">msparts_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.msparts_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return location of manuscript parts as geojson response.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="geo_server.mss_csv">
-<code class="sig-name descname">mss_csv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.mss_csv" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="geo_server.mss_csv">
+<span class="sig-name descname"><span class="pre">mss_csv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.mss_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return location of manuscripts as CSV response.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="geo_server.mss_json">
-<code class="sig-name descname">mss_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.mss_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="geo_server.mss_json">
+<span class="sig-name descname"><span class="pre">mss_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.mss_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return location of manuscripts as geojson response.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="geo_server.places_capitularies_json">
-<code class="sig-name descname">places_capitularies_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.places_capitularies_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="geo_server.places_capitularies_json">
+<span class="sig-name descname"><span class="pre">places_capitularies_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.places_capitularies_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all places along with capitularies count.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="geo_server.places_msparts_json">
-<code class="sig-name descname">places_msparts_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.places_msparts_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="geo_server.places_msparts_json">
+<span class="sig-name descname"><span class="pre">places_msparts_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.places_msparts_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all places along with msp_part count.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="geo_server.places_mss_json">
-<code class="sig-name descname">places_mss_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.places_mss_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="geo_server.places_mss_json">
+<span class="sig-name descname"><span class="pre">places_mss_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geo_server.places_mss_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all places along with mss count.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="module-tile_server">
+</section>
+<section id="module-tile_server">
 <span id="tile-server"></span><h2>tile_server<a class="headerlink" href="#module-tile_server" title="Permalink to this headline">¶</a></h2>
 <p>A tile server for Capitularia.</p>
 <p>This is a simple OpenStreetMap-style tile server using mapnik to render the
@@ -798,79 +707,54 @@ things up, we ask mapnik to render a bigger “metatile”, which we cut into ti
 and then cache the tiles.  We also add some padding around the metatile, which
 helps avoiding ugly label placement when a label is near a metatile border.</p>
 <dl class="py function">
-<dt id="tile_server.info_json">
-<code class="sig-name descname">info_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tile_server.info_json" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tile_server.info_json">
+<span class="sig-name descname"><span class="pre">info_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tile_server.info_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Info endpoint: send information about server and available layers.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="tile_server.tileBlueprint">
-<em class="property">class </em><code class="sig-name descname">tileBlueprint</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">import_name</em>, <em class="sig-param">static_folder=None</em>, <em class="sig-param">static_url_path=None</em>, <em class="sig-param">template_folder=None</em>, <em class="sig-param">url_prefix=None</em>, <em class="sig-param">subdomain=None</em>, <em class="sig-param">url_defaults=None</em>, <em class="sig-param">root_path=None</em>, <em class="sig-param">cli_group=&lt;object object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#tile_server.tileBlueprint" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tile_server.tileBlueprint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tileBlueprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">import_name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_folder:</span> <span class="pre">typing.Optional[typing.Union[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">os.PathLike]]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_url_path:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_folder:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_prefix:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subdomain:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_defaults:</span> <span class="pre">typing.Optional[dict]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_path:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cli_group:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tile_server.tileBlueprint" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="tile_server.tile_png">
-<code class="sig-name descname">tile_png</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mapid</span></em>, <em class="sig-param"><span class="n">zoom</span></em>, <em class="sig-param"><span class="n">xtile</span></em>, <em class="sig-param"><span class="n">ytile</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tile_server.tile_png" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="tile_server.tile_png">
+<span class="sig-name descname"><span class="pre">tile_png</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ytile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tile_server.tile_png" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tile endpoint: serve a tile as PNG.</p>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="database.html" class="btn btn-neutral float-right" title="Database Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../vm.html" class="btn btn-neutral float-left" title="Capitularia VM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="apache/wordpress/developer.html" class="btn btn-neutral float-left" title="Developer Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="database.html" class="btn btn-neutral float-right" title="Database Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2018-20 CCeH - Licensed under the GNU GPL v3 or later
-
-    </p>
+    <p>&#169; Copyright 2018-20 CCeH - Licensed under the GNU GPL v3 or later.</p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

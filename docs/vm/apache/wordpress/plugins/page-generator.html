@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Generator &mdash; Capitularia 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/my_theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Dynamic Menu" href="dynamic-menu.html" />
+    <link rel="prev" title="File Includer" href="file-includer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Capitularia
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../intro.html#capitularia-vm">Capitularia VM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../intro.html#afs">AFS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overviews.html">Overviews</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../overviews/html_generation.html">HTML Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/html_generation.html#xslt-transformations">XSLT Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/html_generation.html#user-delivery">User Delivery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../overviews/collation_tool.html">Overview of the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collation_tool.html#collation">Collation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collation_tool.html#custom-version-of-collatex">Custom Version of CollateX</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../overviews/meta_search.html">Meta Search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/meta_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/meta_search.html#geodata-extraction">Geodata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/meta_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../overviews/collections.html">Collections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../vm.html">Capitularia VM</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../apache.html">Apache Web Server</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../wordpress.html">Wordpress Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../database.html">Wordpress Database Structure</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../wordpress-custom.html">Wordpress Customizations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../app_server.html">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../app_server.html#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../app_server.html#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../app_server.html#module-collatex_server">collatex_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../app_server.html#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../app_server.html#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../database.html">Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#module-db">db.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transformations.html">XSLT Transformations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../transformations.html#graph-of-all-transformations">Graph of All Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../transformations.html#graph-of-stylesheet-dependencies">Graph of Stylesheet Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../backup.html">TSM Backup</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Capitularia</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../vm.html">Capitularia VM</a> &raquo;</li>
+          <li><a href="../../../apache.html">Apache Web Server</a> &raquo;</li>
+          <li><a href="../../wordpress-custom.html">Wordpress Customizations</a> &raquo;</li>
+          <li><a href="../plugins.html">Wordpress Plugins</a> &raquo;</li>
+      <li>Page Generator</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/vm/apache/wordpress/plugins/page-generator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="page-generator">
+<span id="id1"></span><h1>Page Generator<a class="headerlink" href="#page-generator" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#plugins-cap-page-generator-cap-page-generator-php" id="id2">plugins/cap-page-generator/cap-page-generator.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-page-generator-class-config-php" id="id3">plugins/cap-page-generator/class-config.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-page-generator-class-dashboard-page-php" id="id4">plugins/cap-page-generator/class-dashboard-page.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-page-generator-class-file-list-table-php" id="id5">plugins/cap-page-generator/class-file-list-table.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-page-generator-class-manuscript-php" id="id6">plugins/cap-page-generator/class-manuscript.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-page-generator-class-settings-page-php" id="id7">plugins/cap-page-generator/class-settings-page.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-page-generator-functions-php" id="id8">plugins/cap-page-generator/functions.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-page-generator" id="id9">plugins/page-generator</a></p></li>
+</ul>
+</div>
+<span class="target" id="module-plugins.cap-page-generator.cap-page-generator"></span><section id="plugins-cap-page-generator-cap-page-generator-php">
+<h2><a class="toc-backref" href="#id2">plugins/cap-page-generator/cap-page-generator.php</a><a class="headerlink" href="#plugins-cap-page-generator-cap-page-generator-php" title="Permalink to this headline">¶</a></h2>
+<p>Plugin Name: Capitularia Page Generator
+Plugin URI:
+Description: Generate Wordpress pages for our TEI files.</p>
+<p>Version:     0.1.1
+Author:      Marcello Perathoner
+Author URI:
+License:     GPLv2 or later
+Text Domain: cap-page-generator
+Domain Path: /languages</p>
+<p>Capitularia Page Generator plugin.</p>
+<p>The <em>Page Generator</em> plugin helps managing the publication of manuscript
+pages.  Whenever a new manuscript is transcribed and its file is put into the
+file repository in the AFS, a new Wordpress page needs to be made for the
+manuscript to actually appear in Wordpress.</p>
+<p>This plugin lets you choose among a configurable set of source directories.
+Then it displays a list of the TEI files in that directory and lets you
+create and manage the page for each file.  Bulk actions allow you to manage
+the pages in batches.</p>
+<p>The plugin can be configured to automatically put some text on newly created
+pages.  Usually this text consists in one or more shortcodes for the
+<a class="reference internal" href="file-includer.html#file-includer"><span class="std std-ref">Capitularia File Includer plugin</span></a>.  It is the File
+Includer plugin that actually puts the content onto the page.</p>
+<p>Note that this plugin does nothing on the public pages (except displaying a
+button on the admin toolbar).</p>
+<p>How do the TEI files get to the user?</p>
+<p>A cron process on the API server converts all the TEI files into HTML files
+and stores them in the AFS filesystem.  See also: the <span class="xref std std-ref">Makefile</span> in the
+xslt directory on the API server.</p>
+<p>The <a class="reference internal" href="file-includer.html#file-includer"><span class="std std-ref">Capitularia File Includer plugin</span></a> then includes
+those files from the AFS filesystem when outputting a Wordpress page to the
+user.</p>
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php const">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\NAME">
+<em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">NAME</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\NAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘Capitularia Page Generator’</p>
+<p>The name of the plugin.</p>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php const">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\DOMAIN">
+<em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">DOMAIN</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\DOMAIN" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘cap-page-generator’</p>
+<p>The Text Domain ofthe plugin.</p>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php const">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\OPTIONS">
+<em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">OPTIONS</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\OPTIONS" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘cap_page_gen_options’</p>
+<p>The Wordpress ID of the settings (option) page.</p>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php const">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\DASHBOARD">
+<em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">DASHBOARD</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\DASHBOARD" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘cap_page_gen_dashboard’</p>
+<p>The Wordpress ID of the dashboard page.</p>
+</dd></dl>
+
+<span class="target" id="module-plugins.cap-page-generator.class-config"></span></section>
+<section id="plugins-cap-page-generator-class-config-php">
+<h2><a class="toc-backref" href="#id3">plugins/cap-page-generator/class-config.php</a><a class="headerlink" href="#plugins-cap-page-generator-class-config-php" title="Permalink to this headline">¶</a></h2>
+<p>Capitularia Page Generator Configuration Class</p>
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php class">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Config">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Config</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains configuration parameters.</p>
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Config::$sections">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">sections</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\Config::$sections" title="Permalink to this definition">¶</a></dt>
+<dd><p>The configured sections and fields</p>
+<p>Array of arrays of arrays: sections / fields / properties</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">foreach ($this-&gt;sections as $section) {</span>
+<span class="x">     $section_id      = $section[0];</span>
+<span class="x">     $fields          = $section[1];</span>
+<span class="x">     foreach ($fields as $field) {</span>
+<span class="x">         $field_id            = $field[0];</span>
+<span class="x">         $field_caption       = $field[1];</span>
+<span class="x">         $field_description   = $field[2];</span>
+<span class="x">         $validation_callback = $field[3];</span>
+<span class="x">     }</span>
+<span class="x">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Config::$options">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\Config::$options" title="Permalink to this definition">¶</a></dt>
+<dd><p>(string[]|null)
+Array of options retrieved from database and cached.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Config::__construct">
+<span class="sig-name descname"><span class="pre">__construct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Config::__construct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref php php-class docutils literal notranslate"><span class="pre">cceh\capitularia\page_generator\Config</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Config::init">
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Config::init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up the options</p>
+<p>If we setup the options in the constructor it will be too early for
+translation to kick in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Config::get_opt">
+<span class="sig-name descname"><span class="pre">get_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">section_id</span></em>, <em class="sig-param"><span class="pre">field_id</span></em>, <em class="sig-param"><span class="pre">default</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Config::get_opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an option</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The section &#64;see $this-&gt;sections</p></li>
+<li><p><strong>field_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The field (or option) name</p></li>
+<li><p><strong>default</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The default value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The option</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Config::get_opt_path">
+<span class="sig-name descname"><span class="pre">get_opt_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">section_id</span></em>, <em class="sig-param"><span class="pre">path_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Config::get_opt_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The section &#64;see $this-&gt;sections</p></li>
+<li><p><strong>path_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The path option name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The path ending in ‘/’</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Config::section_can">
+<span class="sig-name descname"><span class="pre">section_can</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">section_id</span></em>, <em class="sig-param"><span class="pre">status</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Config::section_can" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if a certain page status is allowed in this section.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The section id</p></li>
+<li><p><strong>status</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The status to check</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if section can $status</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-plugins.cap-page-generator.class-dashboard-page"></span></section>
+<section id="plugins-cap-page-generator-class-dashboard-page-php">
+<h2><a class="toc-backref" href="#id4">plugins/cap-page-generator/class-dashboard-page.php</a><a class="headerlink" href="#plugins-cap-page-generator-class-dashboard-page-php" title="Permalink to this headline">¶</a></h2>
+<p>Capitularia Page Generator Dashboard Page</p>
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php class">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Dashboard_Page">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Dashboard_Page</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\Dashboard_Page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements the dashboard page.</p>
+<p>The dashboard page controls the plugin.</p>
+<p>You open the dashboard page by clicking on <span class="menuselection">Dashboard |
+Capitularia Page Generator</span> in the Wordpress admin page.</p>
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Dashboard_Page::$pagination_args">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">pagination_args</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\Dashboard_Page::$pagination_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>(array)
+The standard pagination args.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Dashboard_Page::__construct">
+<span class="sig-name descname"><span class="pre">__construct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Dashboard_Page::__construct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The Dashboard page</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref php php-class docutils literal notranslate"><span class="pre">cceh\capitularia\page_generator\Dashboard_Page</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Dashboard_Page::display">
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Dashboard_Page::display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output dashboard page.</p>
+<p>Outputs bare jQuery-UI tabs. They get filled by AJAX.  Also outputs
+messages we get thru AJAX.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Dashboard_Page::display_section">
+<span class="sig-name descname"><span class="pre">display_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">section</span></em>, <em class="sig-param"><span class="pre">paged</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Dashboard_Page::display_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output one section</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Section descriptor</p></li>
+<li><p><strong>paged</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – The page to go to</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Dashboard_Page::format_error_message">
+<span class="sig-name descname"><span class="pre">format_error_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">error_struct</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Dashboard_Page::format_error_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format error message as HTML snippet.</p>
+<p>These notices get inserted at the top of the dashboard page.  The user
+can click on the cross icon to dismiss the notice.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>error_struct</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The error struct</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The HTML-formatted message</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Dashboard_Page::process_bulk_actions">
+<span class="sig-name descname"><span class="pre">process_bulk_actions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">action</span></em>, <em class="sig-param"><span class="pre">section_id</span></em>, <em class="sig-param"><span class="pre">filenames</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Dashboard_Page::process_bulk_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle bulk actions</p>
+<p>Handles user actions performed on one or more files using the file
+checkboxes and the bulk actions dropdown menu.</p>
+<p>See: <code class="xref php php-func docutils literal notranslate"><span class="pre">cceh\capitularia\page_generator\on_cap_action_file()</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The action to perform</p></li>
+<li><p><strong>section_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The section id</p></li>
+<li><p><strong>filenames</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The filenames of the files to perform the action on</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Error messages formatted as HTML</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Dashboard_Page::on_cap_action_file">
+<span class="sig-name descname"><span class="pre">on_cap_action_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Dashboard_Page::on_cap_action_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ajax endpoint</p>
+<p>Handles user actions performed on one file using the links inside a table
+row.</p>
+<p>See: cceh\capitularia\page_generator\process_bulk_actions()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Dashboard_Page::on_cap_load_section">
+<span class="sig-name descname"><span class="pre">on_cap_load_section</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Dashboard_Page::on_cap_load_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ajax endpoint</p>
+<p>Load a section (represented by a jquery tab) in response to the user
+clicking on a tab or using the table pager.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Dashboard_Page::send_json">
+<span class="sig-name descname"><span class="pre">send_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">section_id</span></em>, <em class="sig-param"><span class="pre">error_struct</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Dashboard_Page::send_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the result of an Ajax action back to the user.</p>
+<p>The reason we use JSON instead of just sending HTML is that we want to
+send both, HTML and success / error messages.  A table update is sent as
+a JSON string of HTML table rows that simply replace the old table rows.
+We assume for now that the user dashboard changes only on successful
+operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The section id</p></li>
+<li><p><strong>error_struct</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The error messages</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-plugins.cap-page-generator.class-file-list-table"></span></section>
+<section id="plugins-cap-page-generator-class-file-list-table-php">
+<h2><a class="toc-backref" href="#id5">plugins/cap-page-generator/class-file-list-table.php</a><a class="headerlink" href="#plugins-cap-page-generator-class-file-list-table-php" title="Permalink to this headline">¶</a></h2>
+<p>Capitularia Page Generator File List Table class.</p>
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php class">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">File_List_Table</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table" title="Permalink to this definition">¶</a></dt>
+<dd><p>The file list table on the dashboard page.</p>
+<p>Lists all the files in a directory plus status information.</p>
+<p>See: <a class="reference external" href="https://core.trac.wordpress.org/browser/tags/4.4/src/wp-admin/includes/class-wp-list-table.php">https://core.trac.wordpress.org/browser/tags/4.4/src/wp-admin/includes/class-wp-list-table.php</a> WP_list_Table source code in Trac.</p>
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::$status_to_notice_class">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">status_to_notice_class</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::$status_to_notice_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>HTML classes for table rows.</p>
+<p>Classes set according to current page status. To colorize our table rows
+in the canonical way we use the same classes as Wordpress admin notices.</p>
+</dd></dl>
+
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::$bulk_actions">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">bulk_actions</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::$bulk_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enum bulk actions</p>
+<p>An associative array of bulk actions and relative captions for the action
+links and the drop-down menus above and below the table.</p>
+</dd></dl>
+
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::$statuses">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">statuses</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::$statuses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enum statuses of manuscripts</p>
+<p>An associative array of statuses and relative captions.  A manuscript can
+have a public page, a private page, or not have any page at all.</p>
+</dd></dl>
+
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::$section_id">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">section_id</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::$section_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The section id</p>
+</dd></dl>
+
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::$directory">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">directory</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::$directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>The directory to scan</p>
+</dd></dl>
+
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::$paths">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">paths</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::$paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>The scanned files</p>
+</dd></dl>
+
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::$xml_path">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">xml_path</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::$xml_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The URI path to the xml file.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::__construct">
+<span class="sig-name descname"><span class="pre">__construct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">section_id</span></em>, <em class="sig-param"><span class="pre">directory</span></em>, <em class="sig-param"><span class="pre">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::__construct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor.</p>
+<p>See: WP_List_Table::__construct() for more information on default arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The section id</p></li>
+<li><p><strong>directory</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The directory to scan</p></li>
+<li><p><strong>args</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – An associative array of arguments.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::get_table_classes">
+<span class="sig-name descname"><span class="pre">get_table_classes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::get_table_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of CSS classes for the list table table tag.</p>
+<p>Overrides method in base class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of CSS classes for the table tag.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::scandir_recursive">
+<span class="sig-name descname"><span class="pre">scandir_recursive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">root</span></em>, <em class="sig-param"><span class="pre">paths</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::scandir_recursive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively scan a directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The root directory</p></li>
+<li><p><strong>paths</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Array of strings: the paths still to scan</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::prepare_items">
+<span class="sig-name descname"><span class="pre">prepare_items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::prepare_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare the items to show in the table.</p>
+<p>Overrides abstract method in base class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::no_items">
+<span class="sig-name descname"><span class="pre">no_items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::no_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Message to be displayed when there are no items</p>
+<p>Overrides method in base class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The message</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::get_bulk_actions">
+<span class="sig-name descname"><span class="pre">get_bulk_actions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::get_bulk_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of bulk actions.</p>
+<p>Overrides method in base class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(option_name =&gt; option_title)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::get_columns">
+<span class="sig-name descname"><span class="pre">get_columns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::get_columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of table columns.</p>
+<p>Overrides abstract method in base class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(internal_name =&gt; HTML content)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::single_row">
+<span class="sig-name descname"><span class="pre">single_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">manuscript</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::single_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates content for a single row of the table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>manuscript</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">object</span></code></span>) – The current file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::column_cb">
+<span class="sig-name descname"><span class="pre">column_cb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">manuscript</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::column_cb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates contents of the _cb_ column.</p>
+<p>Called by the base class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>manuscript</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">object</span></code></span>) – The current file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::column_status">
+<span class="sig-name descname"><span class="pre">column_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">manuscript</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::column_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates contents of the _status_ column.</p>
+<p>Called by the base class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>manuscript</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">object</span></code></span>) – The current file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::column_slug">
+<span class="sig-name descname"><span class="pre">column_slug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">manuscript</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::column_slug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates contents of the _slug_ column.</p>
+<p>Called by the base class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>manuscript</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">object</span></code></span>) – The current file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::column_title">
+<span class="sig-name descname"><span class="pre">column_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">manuscript</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::column_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates contents of the _title_ column.</p>
+<p>Called by the base class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>manuscript</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">object</span></code></span>) – The current file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\File_List_Table::handle_row_actions">
+<span class="sig-name descname"><span class="pre">handle_row_actions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">manuscript</span></em>, <em class="sig-param"><span class="pre">column_name</span></em>, <em class="sig-param"><span class="pre">primary</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\File_List_Table::handle_row_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates and displays row action links.</p>
+<p>These are the links that appear when hovering over the table row.
+Clicking on the link initiates an Ajax request that performs the action
+and automagically redraws the table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>manuscript</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">object</span></code></span>) – File being acted upon.</p></li>
+<li><p><strong>column_name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – Current column name.</p></li>
+<li><p><strong>primary</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – Primary column name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Row action output for links.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-plugins.cap-page-generator.class-manuscript"></span></section>
+<section id="plugins-cap-page-generator-class-manuscript-php">
+<h2><a class="toc-backref" href="#id6">plugins/cap-page-generator/class-manuscript.php</a><a class="headerlink" href="#plugins-cap-page-generator-class-manuscript-php" title="Permalink to this headline">¶</a></h2>
+<p>Capitularia Page Generator Manuscript class.</p>
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php class">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Manuscript</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a manuscript file.</p>
+<p>This class represents TEI manuscripts stored in a directory on disk.  It also
+manages manuscripts in Wordpress.</p>
+<p>N.B. The class name is somewhat a misnomer because it can also represent a
+Capitulary file.</p>
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::$path">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">path</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::$path" title="Permalink to this definition">¶</a></dt>
+<dd><p>(string)
+The filesystem path to the manuscript file.</p>
+</dd></dl>
+
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::$section_id">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">section_id</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::$section_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>(string)
+The section of the manuscript, eg. ‘mss’, ‘capit/ldf’, .</p>
+</dd></dl>
+
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::$xml_id">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">xml_id</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::$xml_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>(string|null)
+The xml:id of the manuscript. Cached.</p>
+</dd></dl>
+
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::$title">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::$title" title="Permalink to this definition">¶</a></dt>
+<dd><p>(string|null)
+The title of the manuscript. Cached.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::__construct">
+<span class="sig-name descname"><span class="pre">__construct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">section_id</span></em>, <em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::__construct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The section id</p></li>
+<li><p><strong>path</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The full path to the manuscript file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::get_path">
+<span class="sig-name descname"><span class="pre">get_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::get_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for $path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The path</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::get_section_id">
+<span class="sig-name descname"><span class="pre">get_section_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::get_section_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for $section_id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The section id</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::get_filename">
+<span class="sig-name descname"><span class="pre">get_filename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::get_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the filename</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The filename and extension (without directories)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::get_slug">
+<span class="sig-name descname"><span class="pre">get_slug</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::get_slug" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a slug (without path).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The slug</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::get_slug_with_path">
+<span class="sig-name descname"><span class="pre">get_slug_with_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::get_slug_with_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a slug with path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The slug with path, eg. capit/ldf/slug</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::get_slug_with_link">
+<span class="sig-name descname"><span class="pre">get_slug_with_link</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::get_slug_with_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a HTML link that points to the page.</p>
+<p>A link the user can click to get to the relative page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The link pointing to slug</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::get_xml_id">
+<span class="sig-name descname"><span class="pre">get_xml_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::get_xml_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the xml:id of this manuscript.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The xml:id.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::get_title">
+<span class="sig-name descname"><span class="pre">get_title</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::get_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the title of this manuscript.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The title.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::get_page_id">
+<span class="sig-name descname"><span class="pre">get_page_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::get_page_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get ID of page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The page ID or false</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::get_status">
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current status of a manuscript page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The current status</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::parse_tei">
+<span class="sig-name descname"><span class="pre">parse_tei</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::parse_tei" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the manuscript id and title.</p>
+<p>Extracts the manuscript id and title from the TEI file.  We need the id
+for the post metadata.  We need the title for the file list table.</p>
+<p>Also puts qTranslate-X tags into the title iff the title has an xml:lang
+attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::delete_pages">
+<span class="sig-name descname"><span class="pre">delete_pages</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::delete_pages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete all pages with our slug</p>
+<p>Slugs must be unique for all children of one page, but the same slug may
+be used by more than one page provided each has a different parent
+page. Eg. /mss and /internal/mss both have the slug ‘mss’ but a
+different parent page, so we must account for that.</p>
+<p>We also delete all pages that have the same slug with a hyphen and number
+appended.  Eg. deleting the page /mss/my-slug would also delete the pages
+/mss/my-slug-1 and /mss/my-slug-42, but not the page
+/internal/mss/my-slug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Success or error messages</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::create_page">
+<span class="sig-name descname"><span class="pre">create_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">status</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::create_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a page containing one or more shortcodes.</p>
+<p>Build the content for the new page.  Some pages are made of more than one
+transformation, eg. the transcription pages have a header, transcription
+and footer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>status</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – Status to set on the newly created page.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Success or error messages</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Manuscript::do_action">
+<span class="sig-name descname"><span class="pre">do_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">action</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Manuscript::do_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform an action on the manuscript.</p>
+<p>Actions:
+publish:  create the page with publish status
+private:  create the page with private status
+refresh:  re-create the page with the same status as before
+delete:   delete the page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>action</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The action to perform with the manuscript.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>{ 0 =&gt; int error code: 0 = success, 1 = warning, 2 = error, 1 =&gt; string success or error message, 2 =&gt; array optionally more error messages }</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-plugins.cap-page-generator.class-settings-page"></span></section>
+<section id="plugins-cap-page-generator-class-settings-page-php">
+<h2><a class="toc-backref" href="#id7">plugins/cap-page-generator/class-settings-page.php</a><a class="headerlink" href="#plugins-cap-page-generator-class-settings-page-php" title="Permalink to this headline">¶</a></h2>
+<p>Capitularia Page Generator Settings Page</p>
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php class">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Settings_Page">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Settings_Page</span></span><a class="headerlink" href="#\cceh\capitularia\page_generator\Settings_Page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements the settings (options) page.</p>
+<p>Found in Wordpress admin under <span class="menuselection">Settings | Capitularia Page
+Generator</span>.</p>
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Settings_Page::__construct">
+<span class="sig-name descname"><span class="pre">__construct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Settings_Page::__construct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+<p>Add option fields so we can use the Wordpress function
+do_settings_fields() to output them.  All field descriptions are stored
+in the Config class.</p>
+<p>Also register _one_ POST parameter to be handled and validated by
+Wordpress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref php php-class docutils literal notranslate"><span class="pre">cceh\capitularia\page_generator\Settings_Page</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Settings_Page::display">
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Settings_Page::display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output the Settings page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Settings_Page::on_options_field">
+<span class="sig-name descname"><span class="pre">on_options_field</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Settings_Page::on_options_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output an option field.</p>
+<p>Output (echo) an option field with its description.</p>
+<p>We want all user entries to be returned into PHP as <em>one</em> string[] called
+<em>OPTIONS_PAGE_ID</em>.  This array will be passed by Wordpress to the
+validation function and stored in the database all in <em>one</em> row.</p>
+<p>See: <a class="reference external" href="http://planetozh.com/blog/2009/05/handling-plugins-options-in-wordpress-28-with-register_setting/">http://planetozh.com/blog/2009/05/handling-plugins-options-in-wordpress-28-with-register_setting/</a> Blog post: how to store all plugin options into one database row.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The arguments registered with add_settings_field ()</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\Settings_Page::on_validate">
+<span class="sig-name descname"><span class="pre">on_validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\Settings_Page::on_validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate options entered by user</p>
+<p>We get all user entries back in one string[] so we can store them in one
+database row.  This makes validation somewhat more difficult.</p>
+<p>See: cceh\capitularia\page_generator\on_options_field()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>options</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Array of key, value: the options as entered on the form.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array containing the validated options</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-plugins.cap-page-generator.functions"></span></section>
+<section id="plugins-cap-page-generator-functions-php">
+<h2><a class="toc-backref" href="#id8">plugins/cap-page-generator/functions.php</a><a class="headerlink" href="#plugins-cap-page-generator-functions-php" title="Permalink to this headline">¶</a></h2>
+<p>Capitularia Page Generator global functions.</p>
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\ns">
+<span class="sig-name descname"><span class="pre">ns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">function_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\ns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add current namespace</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>function_name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The class or function name without namespace</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Name with namespace</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\cap_get_parent_id">
+<span class="sig-name descname"><span class="pre">cap_get_parent_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">section_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\cap_get_parent_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get ID of the parent page of a section</p>
+<p>Returns the ID of the parent page of a section.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The section id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The parent page ID or false</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\cap_get_status">
+<span class="sig-name descname"><span class="pre">cap_get_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">page_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\cap_get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current status of a page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – The Wordpress page id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The current status</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\cap_get_section_page_status">
+<span class="sig-name descname"><span class="pre">cap_get_section_page_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">section_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\cap_get_section_page_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the current status of a section’s parent page.</p>
+<p>We need to check this so as not to make public children of private pages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The section id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The current status</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\cap_make_path_relative_to">
+<span class="sig-name descname"><span class="pre">cap_make_path_relative_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em>, <em class="sig-param"><span class="pre">base</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\cap_make_path_relative_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a path relative to base</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The path</p></li>
+<li><p><strong>base</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The base</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The path relative to base</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\cap_sanitize_nothing">
+<span class="sig-name descname"><span class="pre">cap_sanitize_nothing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">s</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\cap_sanitize_nothing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do nothing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The string to do nothing with</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The same string</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\cap_sanitize_caption">
+<span class="sig-name descname"><span class="pre">cap_sanitize_caption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">caption</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\cap_sanitize_caption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sanitize a caption</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>caption</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The caption to sanitize</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The sanitized caption</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\cap_sanitize_path">
+<span class="sig-name descname"><span class="pre">cap_sanitize_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\cap_sanitize_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sanitize a path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The path to sanitize</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The sanitized path</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\cap_sanitize_path_list">
+<span class="sig-name descname"><span class="pre">cap_sanitize_path_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\cap_sanitize_path_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sanitize a space-separated list of paths</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_list</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The space-separated list of paths to sanitize</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The space-separated list of sanitized paths</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\cap_sanitize_key">
+<span class="sig-name descname"><span class="pre">cap_sanitize_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\cap_sanitize_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sanitize a key</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The key to sanitize</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The sanitized key</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\cap_sanitize_key_list">
+<span class="sig-name descname"><span class="pre">cap_sanitize_key_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">key_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\cap_sanitize_key_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sanitize a space-separated list of keys</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key_list</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The space-separated list of keys to sanitize</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The space-separated list of sanitized keys</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\on_init">
+<span class="sig-name descname"><span class="pre">on_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\on_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the plugin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\on_cap_action_file">
+<span class="sig-name descname"><span class="pre">on_cap_action_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\on_cap_action_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>AJAX hook</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\on_cap_load_section">
+<span class="sig-name descname"><span class="pre">on_cap_load_section</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\on_cap_load_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>AJAX hook</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\on_enqueue_scripts">
+<span class="sig-name descname"><span class="pre">on_enqueue_scripts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\on_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enqueue the public pages scripts and styles</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\on_query_vars">
+<span class="sig-name descname"><span class="pre">on_query_vars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">vars</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\on_query_vars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register <em>cap_page_gen</em> as valid HTTP GET parameter</p>
+<p>We use the <em>cap_page_gen</em> parameter to call the dashboard from the
+<span class="guilabel">Page Generator</span> button on the user’s tool bar on the public pages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vars</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string[]</span></code></span>) – Already registered parameter names</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Augmented registered parameter names.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string[]</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\on_admin_enqueue_scripts">
+<span class="sig-name descname"><span class="pre">on_admin_enqueue_scripts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\on_admin_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enqueue the admin page scripts and styles</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\on_admin_menu">
+<span class="sig-name descname"><span class="pre">on_admin_menu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\on_admin_menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add menu entries to the Wordpress admin menu.</p>
+<p>Adds menu entries for the settings (options) and the dashboard pages to
+the Wordpress settings and dashboard admin page menus respectively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\on_admin_bar_menu">
+<span class="sig-name descname"><span class="pre">on_admin_bar_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">wp_admin_bar</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\on_admin_bar_menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a dashboard button to the Wordpress toolbar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wp_admin_bar</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">WP_Admin_Bar</span></code></span>) – The WP_Admin_Bar object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\page_generator"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\page_generator\on_plugin_action_links">
+<span class="sig-name descname"><span class="pre">on_plugin_action_links</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">links</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\page_generator\on_plugin_action_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a link to our settings page to the plugins admin dashboard.</p>
+<p>Adds hack value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>links</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The old links</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The augmented links</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<span class="target" id="module-plugins-page-generator"><span id="module-plugins/page-generator"></span></span><section id="plugins-page-generator">
+<h2><a class="toc-backref" href="#id9">plugins/page-generator</a><a class="headerlink" href="#plugins-page-generator" title="Permalink to this headline">¶</a></h2>
+<p>File: plugins/cap-page-generator/src/js/admin.js</p>
+<p>Some utility function for the Page Generator admin interface.</p>
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-page-generator.deparam">
+<span id="plugins/page-generator.deparam"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/page-generator</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">deparam</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-page-generator.deparam" title="Permalink to this definition">¶</a></dt>
+<dd><p>The inverse of the jQuery.param () function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – A string in the form “p=1&amp;q=2”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>{ p : 1, q : 2 }</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-page-generator.add_ajax_action">
+<span id="plugins/page-generator.add_ajax_action"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/page-generator</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">add_ajax_action</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-page-generator.add_ajax_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add action parameters to AJAX request data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Object()</span></code></span>) – The AJAX request data.</p></li>
+<li><p><strong>action</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Object()</span></code></span>) – The AJAX action.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The AJAX request data augmented.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-page-generator.on_cap_action_file">
+<span id="plugins/page-generator.on_cap_action_file"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/page-generator</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">on_cap_action_file</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-page-generator.on_cap_action_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform an action on a TEI file. The user clicked somewhere inside the table row listing that file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>event</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Event()</span></code></span>) – The click event</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-page-generator.on_cap_load_section">
+<span id="plugins/page-generator.on_cap_load_section"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/page-generator</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">on_cap_load_section</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-page-generator.on_cap_load_section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform an action on a tab. The user clicked on a tab. The tab contents must now be loaded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>event</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Event()</span></code></span>) – The click event</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-page-generator.make_cb_select_all">
+<span id="plugins/page-generator.make_cb_select_all"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/page-generator</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">make_cb_select_all</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ui</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-page-generator.make_cb_select_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Activate the ‘select all’ checkboxes on the tables. Check or uncheck all checkboxes when the user clicks on the “select all” checkbox. Stolen from wp-admin/js/common.js</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ev</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Event()</span></code></span>) – (unused) The tab loaded event emited by jQuery-ui</p></li>
+<li><p><strong>ui</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Element()</span></code></span>) – The tab element</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-page-generator.get_url_parameter">
+<span id="plugins/page-generator.get_url_parameter"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/page-generator</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">get_url_parameter</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-page-generator.get_url_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a parameter from the URL in the browser location bar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The name of the parameter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The value of the parameter or null</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-page-generator.init_tabs">
+<span id="plugins/page-generator.init_tabs"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/page-generator</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">init_tabs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plugins-page-generator.init_tabs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the jQuery tab interface.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="file-includer.html" class="btn btn-neutral float-left" title="File Includer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dynamic-menu.html" class="btn btn-neutral float-right" title="Dynamic Menu" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-20 CCeH - Licensed under the GNU GPL v3 or later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

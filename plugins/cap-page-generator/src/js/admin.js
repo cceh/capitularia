@@ -33,6 +33,7 @@ function deparam (s) {
  * Add action parameters to AJAX request data.
  *
  * @param {Object} data The AJAX request data.
+ * @param {Object} action The AJAX action.
  * @return {Object} The AJAX request data augmented.
  * @memberof module:plugins/page-generator
  */

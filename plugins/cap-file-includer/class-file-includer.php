@@ -147,7 +147,7 @@ class FileIncluderEngine
      * Process our shortcodes. Step 1.
      *
      * We are forced to hook into 'the_posts' because the qtranslate-x plugin
-     * does it this way and we must get in before qtranslate-x has `translated´
+     * does it this way and we must get in before qtranslate-x has 'translated'
      * away the unwanted languages.
      *
      * We cannot save inside the on_shortcode_early hook because there

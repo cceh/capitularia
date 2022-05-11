@@ -4,40 +4,44 @@
 
 Introduction to the Capitularia Digital Edition.
 
-The project runs on three hardware platforms:
+The project runs on two hardware platforms:
 
 .. pic:: pic
    :caption: Capitularia platforms
 
-   RRZ: circle component wid 1 "RRZK" "Webprojekt" at (0, 0)
-   VM:  circle component same  "Capitularia" "VM"  at (2, 0)
-   AFS: circle component same  "AFS"               at (1, -1.4142)
-   line <-> from RRZ to VM chop 0.5
-   line <-> from RRZ to AFS chop 0.5
+   VM:  circle component wid 1 "Capitularia" "VM"  at (0, 0)
+   AFS: circle component same  "AFS"               at (2, 0)
    line <-> from VM to AFS chop 0.5
 
 
-RRZK Web Projekt
-================
+Capitularia VM
+==============
 
-An :ref:`RRZK Web Projekt <webprojekt>` is a standard web hosting package
-offered by RRZK (Regionales Rechenzentrum der Universität zu Köln).  It consists
-of an Apache web server with PHP and a :ref:`mysql database <mysql>`.
+The :ref:`Capitularia VM <vm>` is a root VM offered by the RRZK.
 
-In the Capitularia Webprojekt (https://capitularia.uni-koeln.de) the Apache web
-server runs a Wordpress installation.  We wrote a Wordpress :ref:`theme <theme>`
+The VM hosts an Apache Web Server at https://capitularia.uni-koeln.de which
+runs a Wordpress installation.  We wrote a Wordpress :ref:`theme <theme>`
 and many :ref:`plugins <plugins>` to add the functionality we needed for our
 project.
 
+The VM runs a :ref:`Postgres database <db>` server and the :ref:`Python
+application server <app-server>`.  Next to that it hosts a recent OpenJDK, Saxon
+and a :ref:`customized version of CollateX <custom-collatex>`.
+
+We use the application server and its API (at
+https://api.capitularia.uni-koeln.de) for all functionality that is too
+inconvienent to implement in Wordpress plugins.
+
 .. pic:: pic
-   :caption: RRZK Webprojekt Components
+   :caption: Capitularia VM Components
 
    down
-   RRZK: [
-      "RRZK Webprojekt"
+   VM: [
+      "Capitularia VM"
       move 0.3
-      Apache: [
-         "Apache / PHP"
+
+      A: [
+         Apache: "Apache / PHP"
          move 0.3
          WP: [
             "Wordpress"
@@ -52,36 +56,9 @@ project.
          ]
          WPe: box wid WP.wid + 0.2 ht WP.ht + 0.2 with .c at WP.c
       ]
-      Apachee: box wid Apache.wid + 0.2 ht Apache.ht + 0.2 with .c at Apache.c
-      Mysql: db() with .n at Apache.WP.s - (0, 0.3)
-      "mysql" "Database" at Mysql.Caption
-   ]
-   box dashed wid RRZK.wid + 0.4 ht RRZK.ht + 0.4 with .c at RRZK.c
+      Ae: box wid A.wid + 0.2 ht A.ht + 0.2 with .c at A.c
 
-
-
-Capitularia VM
-==============
-
-The :ref:`Capitularia VM <vm>` (https://api.capitularia.uni-koeln.de) is a root
-VM also offered by the RRZK.  We use the VM for all functionality that is too
-inconvienent to implement in Wordpress plugins and to install and use software
-packages lacking in the Webprojekt package.
-
-The VM runs a :ref:`Postgres database <db>` server and the :ref:`Python
-application server <app-server>`.  Next to that it hosts a recent OpenJDK, Saxon
-and a :ref:`customized version of CollateX <custom-collatex>`.
-
-.. pic:: pic
-   :caption: Capitularia VM Components
-
-   down
-   VM: [
-      "Capitularia VM"
-      move 0.3
-      Make:     box component "Makefile"
-      move 0.5
-      A: [
+      S: [
          "Saxon"
          move 0.1
          XSLT1: box component "XSLT"
@@ -89,12 +66,10 @@ and a :ref:`customized version of CollateX <custom-collatex>`.
          XSLT2: box component "XSLT"
          move 0.05
          XSLT3: box component "..."
-      ]
-      XSLT: box wid A.wid + 0.2 ht A.ht + 0.2 with .c at A.c
+      ] with .nw at A.ne + (0.5, 0)
+      Se: box wid S.wid + 0.2 ht S.ht + 0.2 with .c at S.c
 
-      CollateX: box component wid 1.7 "Custom CollateX" with .w at Make.e + (0.5, 0)
-
-      B: [
+      P: [
          "Python App Server"
          move 0.1
          APP1: box component wid 1.7 "Collation Server"
@@ -102,14 +77,17 @@ and a :ref:`customized version of CollateX <custom-collatex>`.
          APP2: box component same "Data Server"
          move 0.05
          APP3: box component same "..."
-      ] with .w at A.e + (0.5, 0)
-      APP: box wid B.wid + 0.2 ht B.ht + 0.2 with .c at B.c
+      ] with .nw at S.ne + (0.5, 0)
+      Pe: box wid P.wid + 0.2 ht P.ht + 0.2 with .c at P.c
 
-      PG: db() with .n at 1/2 <A.se, B.sw> - (0, 0.3)
+      Make:     box component         "Makefile"        with .c at S.XSLT3.c - (0, 1)
+      CollateX: box component wid 1.7 "Custom CollateX" with .c at P.APP3.c  - (0, 1)
+
+      Mysql: db() with .n at A.s - (0, 0.3)
+      "mysql" "Database" at Mysql.Caption
+
+      PG: db() with .c at (1/2 <S.se, P.sw>, Mysql.c)
       "Postgres" "Database" at PG.Caption
-
-      # arrow from XSLT.s to PG.E.c
-      # arrow to APP.s
    ]
    box dashed wid VM.wid + 0.4 ht VM.ht + 0.4 with .c at VM.c
 
@@ -147,4 +125,4 @@ network filesystem.
 
 The AFS Filesystem holds all the original manuscript files encoded in TEI and
 versions thereof :ref:`converted to HTML <HTML-Generation>`.  It is accessible
-from the VM and the Webprojekt.  The editors also have access to it through ssh.
+from the VM.  The editors also have access to it through ssh.

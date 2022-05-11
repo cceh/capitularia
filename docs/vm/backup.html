@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TSM Backup &mdash; Capitularia 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="XSLT Transformations" href="transformations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Capitularia
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#capitularia-vm">Capitularia VM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#afs">AFS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../overviews.html">Overviews</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/html_generation.html">HTML Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/html_generation.html#xslt-transformations">XSLT Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/html_generation.html#user-delivery">User Delivery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/collation_tool.html">Overview of the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#collation">Collation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#custom-version-of-collatex">Custom Version of CollateX</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/meta_search.html">Meta Search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/meta_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/meta_search.html#geodata-extraction">Geodata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/meta_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/collections.html">Collections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../vm.html">Capitularia VM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="apache.html">Apache Web Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="apache/wordpress.html">Wordpress Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apache/database.html">Wordpress Database Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apache/wordpress-custom.html">Wordpress Customizations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app_server.html">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-collatex_server">collatex_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#module-db">db.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">XSLT Transformations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="transformations.html#graph-of-all-transformations">Graph of All Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transformations.html#graph-of-stylesheet-dependencies">Graph of Stylesheet Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">TSM Backup</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Capitularia</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../vm.html">Capitularia VM</a> &raquo;</li>
+      <li>TSM Backup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/vm/backup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tsm-backup">
+<span id="backup"></span><h1>TSM Backup<a class="headerlink" href="#tsm-backup" title="Permalink to this headline">¶</a></h1>
+<p>The Capitularia VM is backed up to the TSM service offered by the RRZK.
+The node name is: <code class="code docutils literal notranslate"><span class="pre">MPERATHO.CAPITULARIA</span></code> on the server <code class="code docutils literal notranslate"><span class="pre">TSM6</span></code>.</p>
+<p>The full configuration data is in the directory <code class="file docutils literal notranslate"><span class="pre">/opt/tivoli/tsm/client/ba/bin/</span></code>
+in the files <code class="file docutils literal notranslate"><span class="pre">dsm.opt</span></code> and <code class="file docutils literal notranslate"><span class="pre">dsm.sys</span></code>.</p>
+<p>An incremental backup is started by cron.daily which calls
+<strong class="program">/root/backup.sh</strong>.  This script makes a dump of the databases and of the
+published manuscripts before backing up the whole filesystem.  Past dumps are
+kept on a daily, weekly, montly and yearly basis in the directory <code class="file docutils literal notranslate"><span class="pre">/var/backup/</span></code>.</p>
+<p>To manually start a backup:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo /root/backup.sh
+</pre></div>
+</div>
+<p>To backup files or directories:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dsmc selective /var/backup/mysqldump.sql
+sudo dsmc selective /var/backup/
+sudo dsmc selective /var/backup/ -subdir<span class="o">=</span>yes
+</pre></div>
+</div>
+<p>To get a list of backed up files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dsmc query backup /var/backup/
+</pre></div>
+</div>
+<p>To restore a file to the same location:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dsmc restore /var/backup/mysqldump.sql
+sudo dsmc restore /home/joe/deleted_file.txt -latest
+</pre></div>
+</div>
+<p>To restore a file to a different location:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dsmc restore /var/backup/mysqldump.sql /var/backup/mysqldump_copy.sql
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://www.ibm.com/docs/en/spectrum-protect/8.1.14?topic=data-backing-up-using-command-line">https://www.ibm.com/docs/en/spectrum-protect/8.1.14?topic=data-backing-up-using-command-line</a></p>
+<p><a class="reference external" href="https://www.ibm.com/docs/en/spectrum-protect/8.1.14?topic=data-command-line-restore-examples">https://www.ibm.com/docs/en/spectrum-protect/8.1.14?topic=data-command-line-restore-examples</a></p>
+<p><a class="reference external" href="https://rrzk.uni-koeln.de/sites/rrzk/Daten_speichern_teilen_verwalten/TSM/20180813_ISP-Ubuntu-installationsanleitung.pdf">https://rrzk.uni-koeln.de/sites/rrzk/Daten_speichern_teilen_verwalten/TSM/20180813_ISP-Ubuntu-installationsanleitung.pdf</a></p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transformations.html" class="btn btn-neutral float-left" title="XSLT Transformations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-20 CCeH - Licensed under the GNU GPL v3 or later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

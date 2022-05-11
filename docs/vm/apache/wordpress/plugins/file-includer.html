@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Includer &mdash; Capitularia 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/my_theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Page Generator" href="page-generator.html" />
+    <link rel="prev" title="Meta Search" href="meta-search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Capitularia
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../intro.html#capitularia-vm">Capitularia VM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../intro.html#afs">AFS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../overviews.html">Overviews</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../overviews/html_generation.html">HTML Generation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/html_generation.html#xslt-transformations">XSLT Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/html_generation.html#user-delivery">User Delivery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../overviews/collation_tool.html">Overview of the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collation_tool.html#collation">Collation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collation_tool.html#custom-version-of-collatex">Custom Version of CollateX</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../overviews/meta_search.html">Meta Search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/meta_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/meta_search.html#fulltext-extraction">Fulltext Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/meta_search.html#geodata-extraction">Geodata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/meta_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../overviews/collections.html">Collections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../vm.html">Capitularia VM</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../apache.html">Apache Web Server</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../wordpress.html">Wordpress Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../database.html">Wordpress Database Structure</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../wordpress-custom.html">Wordpress Customizations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../app_server.html">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../app_server.html#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../app_server.html#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../app_server.html#module-collatex_server">collatex_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../app_server.html#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../app_server.html#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../database.html">Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database.html#module-db">db.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../transformations.html">XSLT Transformations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../transformations.html#graph-of-all-transformations">Graph of All Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../transformations.html#graph-of-stylesheet-dependencies">Graph of Stylesheet Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../backup.html">TSM Backup</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Capitularia</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../vm.html">Capitularia VM</a> &raquo;</li>
+          <li><a href="../../../apache.html">Apache Web Server</a> &raquo;</li>
+          <li><a href="../../wordpress-custom.html">Wordpress Customizations</a> &raquo;</li>
+          <li><a href="../plugins.html">Wordpress Plugins</a> &raquo;</li>
+      <li>File Includer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/vm/apache/wordpress/plugins/file-includer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-includer">
+<span id="id1"></span><h1>File Includer<a class="headerlink" href="#file-includer" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#plugins-cap-file-includer-cap-file-includer-php" id="id4">plugins/cap-file-includer/cap-file-includer.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-file-includer-class-file-includer-php" id="id5">plugins/cap-file-includer/class-file-includer.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-file-includer-class-settings-page-php" id="id6">plugins/cap-file-includer/class-settings-page.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-file-includer-footnotes-post-processor-include-php" id="id7">plugins/cap-file-includer/footnotes-post-processor-include.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-file-includer-functions-php" id="id8">plugins/cap-file-includer/functions.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-file-includer-post-process-cli-php" id="id9">plugins/cap-file-includer/post-process-cli.php</a></p></li>
+</ul>
+</div>
+<span class="target" id="module-plugins.cap-file-includer.cap-file-includer"></span><section id="plugins-cap-file-includer-cap-file-includer-php">
+<h2><a class="toc-backref" href="#id4">plugins/cap-file-includer/cap-file-includer.php</a><a class="headerlink" href="#plugins-cap-file-includer-cap-file-includer-php" title="Permalink to this headline">¶</a></h2>
+<p>Plugin Name: Capitularia File Includer
+Plugin URI:
+Description: Includes external HTML files in Wordpress pages.</p>
+<p>Version:     0.1.0
+Author:      Marcello Perathoner
+Author URI:
+License:     GPLv2 or later
+Text Domain: cap-file-includer
+Domain Path: /languages</p>
+<p>Capitularia File Includer plugin.</p>
+<p>The <em>File Includer plugin</em> registers a Wordpress shortcode that allows to
+include any external HTML file in a Worpdress page.  We use this shortcode to
+put the transcribed manuscripts into Wordpress.</p>
+<p>The TEI files are <a class="reference internal" href="../../../../overviews/html_generation.html#html-generation"><span class="std std-ref">transformed into HTML files</span></a> on the
+Capitularia VM.  On that server we maintain up-to-date python and java
+installations.  A customary Web Projekt at uni-koeln.de does not include
+those or includes outdated versions of them.</p>
+<p>This plugin also stores the included text into the Wordpress database.  This
+makes the built-in Wordpress search function work with the included material.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently (Nov. 2019) the plugin also does some post-processing of
+the HTML files.  This code will also be rewritten and moved to the VM.</p>
+</div>
+<p>The format of the shortcode is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">cap_include</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;path/to/file.html&quot;</span> <span class="n">post</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">param str path</dt>
+<dd class="field-odd"><p>Path of the file to include, relative to the root on the
+settings page.</p>
+</dd>
+<dt class="field-even">param str post</dt>
+<dd class="field-even"><p>Optional. If the included file should be post-processed by the
+footnotes-post-processor then set this parameter to true.</p>
+</dd>
+</dl>
+<p>See also: the <a class="reference internal" href="page-generator.html#page-generator"><span class="std std-ref">Page Generator plugin</span></a>, which generates
+batches of page stubs from directories of TEI files.  Those stubs usually
+contain the shortcodes for this plugin.</p>
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php const">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\NAME">
+<em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">NAME</span></span><a class="headerlink" href="#\cceh\capitularia\file_includer\NAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘Capitularia File Includer’</p>
+<p>The name of the plugin.</p>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php const">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\DOMAIN">
+<em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">DOMAIN</span></span><a class="headerlink" href="#\cceh\capitularia\file_includer\DOMAIN" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘cap-file-includer’</p>
+<p>The Text Domain of the plugin.</p>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php const">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\OPTIONS">
+<em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">OPTIONS</span></span><a class="headerlink" href="#\cceh\capitularia\file_includer\OPTIONS" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘cap_fi_options’</p>
+<p>The Wordpress ID of the settings (option) page.</p>
+</dd></dl>
+
+<span class="target" id="module-plugins.cap-file-includer.class-file-includer"></span></section>
+<section id="plugins-cap-file-includer-class-file-includer-php">
+<h2><a class="toc-backref" href="#id5">plugins/cap-file-includer/class-file-includer.php</a><a class="headerlink" href="#plugins-cap-file-includer-class-file-includer-php" title="Permalink to this headline">¶</a></h2>
+<p>Capitularia File Includer Main Class</p>
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php class">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\FileIncluderEngine">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">FileIncluderEngine</span></span><a class="headerlink" href="#\cceh\capitularia\file_includer\FileIncluderEngine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements the inclusion engine.</p>
+<p>One difficulty is to get in early enough so that the qtranslate-x plugin has
+not translated away the unwanted languages.  We need all languages to be
+there when we have to save the page.  qtranslate-x hooks into ‘the_posts’ so
+we must too.</p>
+<p>The other difficulty is to protect the included content from the wpautop and
+wptexturizer filters, which were implemented with boundless incompetence and
+try to put &lt;p&gt;’s around the included content everywhere and fuck up the HTML
+attributes with curly quotes.</p>
+<p>To get around those filters we insert &lt;pre&gt; tags around the included content,
+which is the only way to fend those filters off for some portion of a page,
+instead of disabling them wholesale.  We double the &lt;pre&gt; tags in this way:
+&lt;pre&gt;&lt;pre&gt;…&lt;/pre&gt;&lt;/pre&gt; so that we can filter them out again later without
+danger of removing tags of other provenience.</p>
+<p>We have to save the included content to the database to make it searchable by
+the built-in Wordpress search engine.</p>
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\FileIncluderEngine::$do_save">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">do_save</span></span><a class="headerlink" href="#\cceh\capitularia\file_includer\FileIncluderEngine::$do_save" title="Permalink to this definition">¶</a></dt>
+<dd><p>(bool)
+Do we have to save the post?</p>
+</dd></dl>
+
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\FileIncluderEngine::$post">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">post</span></span><a class="headerlink" href="#\cceh\capitularia\file_includer\FileIncluderEngine::$post" title="Permalink to this definition">¶</a></dt>
+<dd><p>(WP_Post)
+A ref to the post being processed.</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\FileIncluderEngine::on_shortcode_early">
+<span class="sig-name descname"><span class="pre">on_shortcode_early</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">atts</span></em>, <em class="sig-param"><span class="pre">content</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\FileIncluderEngine::on_shortcode_early" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process our shortcodes.  Step 1: Include the file.</p>
+<p>Called very early from on_the_posts ().</p>
+<p>See: cceh\capitularia\file_includer\on_the_content_early()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The shortcode attributes.</p></li>
+<li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The content to insert into the shortcode.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\FileIncluderEngine::on_shortcode">
+<span class="sig-name descname"><span class="pre">on_shortcode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dummy_atts</span></em>, <em class="sig-param"><span class="pre">content</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\FileIncluderEngine::on_shortcode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process our shortcodes. Step 2.</p>
+<p>Called after wpautop and wptexturizer did their nefarious work.  Clean up
+the &lt;pre&gt; tags we inserted only to protect against them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dummy_atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – (unused) The shortcode attributes.</p></li>
+<li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The content with &lt;pre&gt; tags stripped.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\FileIncluderEngine::on_the_posts">
+<span class="sig-name descname"><span class="pre">on_the_posts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">posts</span></em>, <em class="sig-param"><span class="pre">query</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\FileIncluderEngine::on_the_posts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process our shortcodes. Step 1.</p>
+<p>We are forced to hook into ‘the_posts’ because the qtranslate-x plugin
+does it this way and we must get in before qtranslate-x has <a href="#id2"><span class="problematic" id="id3">`</span></a>translated´
+away the unwanted languages.</p>
+<p>We cannot save inside the on_shortcode_early hook because there
+may be more than one shortcode on the page and besides there may
+be other content too.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>posts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">WP_Post[]</span></code></span>) – The array of posts.</p></li>
+<li><p><strong>query</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">WP_Query</span></code></span>) – The query.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The array of posts with our shortcode processed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">WP_Post[]</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-plugins.cap-file-includer.class-settings-page"></span></section>
+<section id="plugins-cap-file-includer-class-settings-page-php">
+<h2><a class="toc-backref" href="#id6">plugins/cap-file-includer/class-settings-page.php</a><a class="headerlink" href="#plugins-cap-file-includer-class-settings-page-php" title="Permalink to this headline">¶</a></h2>
+<p>Capitularia File Includer Settings Page</p>
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php class">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\Settings_Page">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Settings_Page</span></span><a class="headerlink" href="#\cceh\capitularia\file_includer\Settings_Page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements the settings (options) page.</p>
+<p>Found in Wordpress admin under <span class="menuselection">Settings | Capitularia File
+Includer</span>.</p>
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\Settings_Page::__construct">
+<span class="sig-name descname"><span class="pre">__construct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\Settings_Page::__construct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+<p>Add option fields so we can use the Wordpress function
+do_settings_sections() to output them.</p>
+<p>Also register <em>one</em> POST parameter to be handled and validated by
+Wordpress.  We want all user entries to be returned into PHP as <em>one</em>
+string array called <em>OPTIONS_PAGE_ID</em>.  This array will be passed by
+Wordpress to the validation function and stored in the database all in
+<em>one</em> row.</p>
+<p>See: <a class="reference external" href="http://planetozh.com/blog/2009/05/handling-plugins-options-in-wordpress-28-with-register_setting/">http://planetozh.com/blog/2009/05/handling-plugins-options-in-wordpress-28-with-register_setting/</a> Blog post: how to store all plugin options into one database row.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">self</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\Settings_Page::display">
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\Settings_Page::display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output the Settings page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+<dt class="field-even">Raises cceh\capitularia\file_includer\InvalidArgumentException</dt>
+<dd class="field-even"><p>if the provided argument is not of type ‘array’.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\Settings_Page::on_options_section_general">
+<span class="sig-name descname"><span class="pre">on_options_section_general</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\Settings_Page::on_options_section_general" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output the ‘general’ section.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\Settings_Page::on_options_field_root">
+<span class="sig-name descname"><span class="pre">on_options_field_root</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\Settings_Page::on_options_field_root" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output the root option field with its description.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\Settings_Page::on_options_field_shortcode">
+<span class="sig-name descname"><span class="pre">on_options_field_shortcode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\Settings_Page::on_options_field_shortcode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output the shortcode option field with its description.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\Settings_Page::sanitize_path">
+<span class="sig-name descname"><span class="pre">sanitize_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\Settings_Page::sanitize_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sanitize a field that should contain a path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The path to sanitize</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Sanitized path without trailing slash.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\Settings_Page::on_validate_options">
+<span class="sig-name descname"><span class="pre">on_validate_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">options</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\Settings_Page::on_validate_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate options entered by user</p>
+<p>We get all user entries back in one associative array so that we can
+store them in one database row.  This makes validation somewhat more
+difficult.</p>
+<p>See: cceh\capitularia\file_includer\__construct()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>options</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Array of key, value: the options as entered on the form.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array containing the validated options</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-plugins.cap-file-includer.footnotes-post-processor-include"></span></section>
+<section id="plugins-cap-file-includer-footnotes-post-processor-include-php">
+<h2><a class="toc-backref" href="#id7">plugins/cap-file-includer/footnotes-post-processor-include.php</a><a class="headerlink" href="#plugins-cap-file-includer-footnotes-post-processor-include-php" title="Permalink to this headline">¶</a></h2>
+<p>Capitularia Footnotes Post-Processor Include File</p>
+<p>This script processes the output of the xslt transformation.  Here we do
+those things that are easier in PHP than in XSLT:</p>
+<ul class="simple">
+<li><p>Merge adjacent footnotes and move footnotes to the end of the word.</p></li>
+<li><p>Drop footnotes followed by an editorial note in the same word.</p></li>
+<li><p>Insert footnote refs and backrefs and numbers them sequentially.</p></li>
+<li><p>Wrap initials (dropcaps) and the following word into a span.</p></li>
+<li><p>Substitute editors’ shortcuts with proper mediaeval punctuation.</p></li>
+<li><p>Accept XML or HTML input, always output HTML.</p></li>
+</ul>
+<p>This file only declares symbols (classes, functions, constants) in accordance
+with PSR-2.</p>
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php const">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\FOOTNOTE_SPAN">
+<em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">FOOTNOTE_SPAN</span></span><a class="headerlink" href="#\cceh\capitularia\file_includer\FOOTNOTE_SPAN" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘//span[&#64;data-note-id][not (ancestor::div[&#64;class=”footnotes-wrapper”])]’</p>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php const">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\FOOTNOTE_REF">
+<em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">FOOTNOTE_REF</span></span><a class="headerlink" href="#\cceh\capitularia\file_includer\FOOTNOTE_REF" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘a[contains (concat (” “, &#64;class, ” “), ” annotation-ref “)]’</p>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\is_note">
+<span class="sig-name descname"><span class="pre">is_note</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\is_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is the node a note?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMNode</span></code></span>) – The node to test.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true if the node is a note.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\add_class">
+<span class="sig-name descname"><span class="pre">add_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">node</span></em>, <em class="sig-param"><span class="pre">class</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\add_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a class to a node.</p>
+<p>Manages multiple classes .</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMElement</span></code></span>) – The node.</p></li>
+<li><p><strong>class</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The class to add.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\has_class">
+<span class="sig-name descname"><span class="pre">has_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">node</span></em>, <em class="sig-param"><span class="pre">class</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\has_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if node has class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMElement</span></code></span>) – The node.</p></li>
+<li><p><strong>class</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The class to test.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the node has the class.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\is_text_node">
+<span class="sig-name descname"><span class="pre">is_text_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\is_text_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if node is a text node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMElement</span></code></span>) – The node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the node is a text node.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\remove_node">
+<span class="sig-name descname"><span class="pre">remove_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\remove_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove node from parent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMElement</span></code></span>) – The node to remove.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\merge_notes">
+<span class="sig-name descname"><span class="pre">merge_notes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">note</span></em>, <em class="sig-param"><span class="pre">next</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\merge_notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge $note into $next.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>note</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMNode</span></code></span>) – The note to merge.</p></li>
+<li><p><strong>next</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMNode</span></code></span>) – The note to merge into.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\wrap">
+<span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">nodes</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\wrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap $nodes into a span.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nodes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Nodes to wrap.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\word_end_pos">
+<span class="sig-name descname"><span class="pre">word_end_pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">text_node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\word_end_pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the position of the character after the first word in $text_node.</p>
+<p>$text_node must be a text node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text_node</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMNode</span></code></span>) – The text node.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Position of first whitespace or false.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">mixed</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\query_copy">
+<span class="sig-name descname"><span class="pre">query_copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">xpath_query_result</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\query_copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies the result of an XPath query into an array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xpath_query_result</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMNodeList</span></code></span>) – The XPath result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An array of nodes.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\insert_footnote_ref">
+<span class="sig-name descname"><span class="pre">insert_footnote_ref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">elem</span></em>, <em class="sig-param"><span class="pre">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\insert_footnote_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a footnote reference into the document.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>elem</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMElement</span></code></span>) – The element after which insertion should take place.</p></li>
+<li><p><strong>id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The id of the footnote.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\insert_footnote_backref">
+<span class="sig-name descname"><span class="pre">insert_footnote_backref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">elem</span></em>, <em class="sig-param"><span class="pre">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\insert_footnote_backref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a footnote back reference into the document.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>elem</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMElement</span></code></span>) – The element after which insertion should take place.</p></li>
+<li><p><strong>id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The id of the footnote.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\post_process">
+<span class="sig-name descname"><span class="pre">post_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">doc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\post_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Post process the footnotes, etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMDocument</span></code></span>) – The document to process.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The processed document.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMDocument</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\load_xml_or_html">
+<span class="sig-name descname"><span class="pre">load_xml_or_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">in</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\load_xml_or_html" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load XML or HTML.</p>
+<p>We have (had) a mix of transformation scripts outputting
+either XML or HTML so we must read both formats.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The XML or HTML as string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The new document.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMDocument</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\save_html">
+<span class="sig-name descname"><span class="pre">save_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">doc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\save_html" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the document to HTML.</p>
+<p>We need the document as HTML because it gets embedded into a wordpress page.
+Also we need to get rid of &lt;DOCTYPE&gt;, &lt;html&gt;, &lt;head&gt;, and &lt;body&gt;.  We do this
+by starting output at the topmost &lt;div&gt;.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">DOMDocument</span></code></span>) – The document as DOM.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The document as embeddable HTML.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-plugins.cap-file-includer.functions"></span></section>
+<section id="plugins-cap-file-includer-functions-php">
+<h2><a class="toc-backref" href="#id8">plugins/cap-file-includer/functions.php</a><a class="headerlink" href="#plugins-cap-file-includer-functions-php" title="Permalink to this headline">¶</a></h2>
+<p>Capitularia File Includer functions.</p>
+<p>The main difficulty here is to get around the wpautop and wptexturizer
+filters that were implemented with boundless incompetence.</p>
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\make_shortcode_around">
+<span class="sig-name descname"><span class="pre">make_shortcode_around</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">atts</span></em>, <em class="sig-param"><span class="pre">content</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\make_shortcode_around" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put shortcodes and &lt;pre&gt; tags around the content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The shortcode attributes.</p></li>
+<li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The content surrounded by shortcodes and &lt;pre&gt; tags.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\strip_pre">
+<span class="sig-name descname"><span class="pre">strip_pre</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">content</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\strip_pre" title="Permalink to this definition">¶</a></dt>
+<dd><p>Strip &lt;pre&gt; tags from around the content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The content to strip.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The stripped content.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\ns">
+<span class="sig-name descname"><span class="pre">ns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">function_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\ns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add current namespace</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>function_name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The class or function name without namespace</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Name with namespace</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\get_opt">
+<span class="sig-name descname"><span class="pre">get_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name</span></em>, <em class="sig-param"><span class="pre">default</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\get_opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an option from Wordpress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The name of the option.</p></li>
+<li><p><strong>default</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The default value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The option value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\get_root">
+<span class="sig-name descname"><span class="pre">get_root</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\get_root" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the configured root directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The root directory</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\on_init">
+<span class="sig-name descname"><span class="pre">on_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\on_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the plugin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\on_admin_menu">
+<span class="sig-name descname"><span class="pre">on_admin_menu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\on_admin_menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add menu entry to the Wordpress admin menu.</p>
+<p>Add a menu entry for the settings (options) page to the Wordpress
+settings menu.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\file_includer"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\file_includer\on_plugin_action_links">
+<span class="sig-name descname"><span class="pre">on_plugin_action_links</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">links</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\file_includer\on_plugin_action_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a link to our settings page to the plugins admin dashboard.</p>
+<p>Adds hack value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>links</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The old links</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The augmented links</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-plugins.cap-file-includer.post-process-cli"></span></section>
+<section id="plugins-cap-file-includer-post-process-cli-php">
+<h2><a class="toc-backref" href="#id9">plugins/cap-file-includer/post-process-cli.php</a><a class="headerlink" href="#plugins-cap-file-includer-post-process-cli-php" title="Permalink to this headline">¶</a></h2>
+<p>Capitularia File Includer Main Class</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="meta-search.html" class="btn btn-neutral float-left" title="Meta Search" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="page-generator.html" class="btn btn-neutral float-right" title="Page Generator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-20 CCeH - Licensed under the GNU GPL v3 or later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

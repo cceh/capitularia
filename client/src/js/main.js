@@ -24,7 +24,6 @@ app.use (store);
  * Ascend the VM tree until you find an api_url and use it as prefix to build
  * the full API url.
  *
- * @param {Object} vm  - The Vue instance
  * @param {String} url - Url suffix
  *
  * @returns {String} Full API url
