@@ -21,7 +21,7 @@ done for the Collation Tool.
    skinparam componentStyle uml2
 
    database  "Manuscript files\n(XML+TEI)" as tei
-   note left of tei: AFS:publ/mss/*.xml
+   note left of tei: publ/mss/*.xml
 
    cloud "VM" {
      component "corpus.xsl"             as saxon
@@ -32,7 +32,7 @@ done for the Collation Tool.
      component "Makefile"               as make
      component "Cron"                   as cron
 
-     note left of corpus: AFS:publ/cache/lists/
+     note left of corpus: publ/cache/lists/
    }
 
    tei      --> saxon
@@ -45,8 +45,6 @@ done for the Collation Tool.
    make .> import
 
 The Makefile is run by cron on the Capitularia VM at regular intervals.
-
-The manuscript files are in the AFS.  The AFS is mounted onto the VM.
 
 The Makefile knows all the dependencies between the files and runs the
 appropriate tools to keep the database up-to-date with the manuscript files.
@@ -69,7 +67,7 @@ the plain text of every chapter is stored in the database.
 Geodata Extraction
 ~~~~~~~~~~~~~~~~~~
 
-Geodata is stored in the file :file:`AFS:publ/mss/lists/capitularia_geo.xml`.
+Geodata is stored in the file :file:`publ/mss/lists/capitularia_geo.xml`.
 This file is periodically processed with :program:`import --geoplaces` and its
 content is stored into the database.  Also the "places" tree in the meta search
 dialog is built using this data.

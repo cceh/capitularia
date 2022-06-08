@@ -107,8 +107,8 @@ class Settings_Page
         echo "<input class='file-input' type='text' name='{$this->options}[root]' value='$setting' />";
         echo '<p>' . sprintf (
             __ (
-                'Root directory of the files you want to include, relative to the AFS root.  ' .
-                'The AFS root is currently configured as<br>%s',
+                'Root directory of the files you want to include, relative to the FS root.  ' .
+                'The FS root is currently configured as<br>%s',
                 DOMAIN
             ),
             lib\get_opt ('afs')

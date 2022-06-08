@@ -13,4 +13,7 @@ directory and use the command :program:`wp` like this:
 .. code:: shell
 
    cd /var/www/capitularia.uni-koeln.de
+   ./wp cli update
    ./wp core update
+   ./wp theme update --all
+   ./wp plugin update --all

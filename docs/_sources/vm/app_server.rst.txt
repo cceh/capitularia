@@ -5,6 +5,9 @@ Application Server
 
 The application server is built with Python and Flask.
 
+The application server resides at :file:`~capitularia/prj/capitularia/capitularia/server/`.
+It is started as a systemd service by :file:`/etc/systemd/system/capitularia.service`.
+
 It is composed of these modules:
 
 

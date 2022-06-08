@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Introduction &mdash; Capitularia 0.1.1 documentation</title>
+  <title>Introduction &mdash; Capitularia 0.2.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/my_theme.css" type="text/css" />
@@ -41,7 +41,6 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#capitularia-vm">Capitularia VM</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#afs">AFS</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="overviews.html">Overviews</a><ul>
@@ -65,13 +64,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="overviews/collections.html">Collections</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overviews/collections.html#algorithm">Algorithm</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
 </ul>
 </li>
 </ul>
@@ -102,7 +94,19 @@
 <li class="toctree-l3"><a class="reference internal" href="vm/transformations.html#graph-of-stylesheet-dependencies">Graph of Stylesheet Dependencies</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="vm/user.html">Users of the VM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vm/user.html#adding-a-new-user">Adding a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vm/user.html#security">Security</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="vm/backup.html">TSM Backup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -134,74 +138,35 @@
   <section id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <p>Introduction to the Capitularia Digital Edition.</p>
-<p>The project runs on two hardware platforms:</p>
+<p>The project is hosted on its own VM (virtual machine).</p>
+<section id="capitularia-vm">
+<h2>Capitularia VM<a class="headerlink" href="#capitularia-vm" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="vm.html#vm"><span class="std std-ref">Capitularia VM</span></a> is a root VM offered by the RRZK.</p>
+<p>The VM hosts an Apache Web Server at <a class="reference external" href="https://capitularia.uni-koeln.de">https://capitularia.uni-koeln.de</a> which runs
+Wordpress.</p>
+<p>The VM also hosts an <a class="reference internal" href="vm/app_server.html#app-server"><span class="std std-ref">application server</span></a> written in Python.
+Next to that it hosts a recent OpenJDK, Saxon and a
+<a class="reference internal" href="overviews/collation_tool.html#custom-collatex"><span class="std std-ref">customized version of CollateX</span></a>.</p>
+<p>The VM also hosts a <span class="xref std std-ref">Postgres database</span> server for the application
+server and a mysql database server for Wordpress.</p>
+<p>We wrote a Wordpress <a class="reference internal" href="vm/apache/wordpress/theme.html#theme"><span class="std std-ref">theme</span></a> and many <a class="reference internal" href="vm/apache/wordpress/plugins.html#plugins"><span class="std std-ref">plugins</span></a> to add the
+functionality we needed for our project.  We use the application server (and its API at
+<a class="reference external" href="https://api.capitularia.uni-koeln.de">https://api.capitularia.uni-koeln.de</a>) for all functionality that is too inconvenient to
+implement in Wordpress plugins.</p>
 <figure class="align-center" id="id1">
 <div  class="pic pic-format-text-xml pic-language-pic">
 
 
 
 <!-- Creator: dpic version 2021.11.01 option -v for SVG 1.1 -->
-<!-- width="295" height="103" -->
+<!-- width="602" height="458" -->
 <svg
  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
  xml:space="preserve"
  style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision;
  image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
- width="294px" height="102px"
- viewBox="0 0 294 102"
- font-size="11pt" text-anchor="middle"
- stroke="black" stroke-miterlimit="10" stroke-width="1.066667" fill="none">
-<g>
-<circle fill="#fefece" stroke-width="2"
- stroke="#a80136"
- cx="50" cy="49" r="48" />
-<text font-size="11pt" stroke-width="0.2pt" fill="black" x="50" y="46.506667">Capitularia</text>
-<text font-size="11pt" stroke-width="0.2pt" fill="black" x="50" y="61.173333">VM</text>
-<circle fill="#fefece" stroke-width="2"
- stroke="#a80136"
- cx="242" cy="49" r="48" />
-<text font-size="11pt" stroke-width="0.2pt" fill="black" x="242" y="53.84">AFS</text>
-<polygon stroke-width="0" fill="black"
- points="104.4,49 107.6,51.4
-98,49 107.6,46.6" />
-<polygon stroke-width="0" fill="black"
- points="187.6,49 184.4,46.6
-194,49 184.4,51.4" />
-<line stroke-width="2"
- x1="102.123106" y1="49" x2="189.876894" y2="49" />
-</g></svg>
-</div>
-<figcaption>
-<p><span class="caption-text">Capitularia platforms</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<section id="capitularia-vm">
-<h2>Capitularia VM<a class="headerlink" href="#capitularia-vm" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="vm.html#vm"><span class="std std-ref">Capitularia VM</span></a> is a root VM offered by the RRZK.</p>
-<p>The VM hosts an Apache Web Server at <a class="reference external" href="https://capitularia.uni-koeln.de">https://capitularia.uni-koeln.de</a> which
-runs a Wordpress installation.  We wrote a Wordpress <a class="reference internal" href="vm/apache/wordpress/theme.html#theme"><span class="std std-ref">theme</span></a>
-and many <a class="reference internal" href="vm/apache/wordpress/plugins.html#plugins"><span class="std std-ref">plugins</span></a> to add the functionality we needed for our
-project.</p>
-<p>The VM runs a <span class="xref std std-ref">Postgres database</span> server and the <a class="reference internal" href="vm/app_server.html#app-server"><span class="std std-ref">Python
-application server</span></a>.  Next to that it hosts a recent OpenJDK, Saxon
-and a <a class="reference internal" href="overviews/collation_tool.html#custom-collatex"><span class="std std-ref">customized version of CollateX</span></a>.</p>
-<p>We use the application server and its API (at
-<a class="reference external" href="https://api.capitularia.uni-koeln.de">https://api.capitularia.uni-koeln.de</a>) for all functionality that is too
-inconvienent to implement in Wordpress plugins.</p>
-<figure class="align-center" id="id2">
-<div  class="pic pic-format-text-xml pic-language-pic">
-
-
-
-<!-- Creator: dpic version 2021.11.01 option -v for SVG 1.1 -->
-<!-- width="602" height="439" -->
-<svg
- xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
- xml:space="preserve"
- style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision;
- image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
- width="601.2px" height="438.24px"
- viewBox="0 0 601.2 438.24"
+ width="601.2px" height="457.44px"
+ viewBox="0 0 601.2 457.44"
  font-size="11pt" text-anchor="middle"
  stroke="black" stroke-miterlimit="10" stroke-width="1.066667" fill="none">
 <g>
@@ -210,10 +175,10 @@ inconvienent to implement in Wordpress plugins.</p>
  x="122" y="29.88">Capitularia VM</text>
 <text font-size="11pt" stroke-width="0.266667"
  fill="black"
- x="122" y="68.36">Apache / PHP</text>
+ x="122" y="68.36">Apache</text>
 <text font-size="11pt" stroke-width="0.266667"
  fill="black"
- x="122" y="106.84">Wordpress</text>
+ x="122" y="106.84">Wordpress / PHP</text>
 <rect fill="#fefece" stroke-width="2"
  stroke="#a80136"
  x="40.4" y="116.44" width="163.2" height="28.8" />
@@ -224,24 +189,24 @@ inconvienent to implement in Wordpress plugins.</p>
 <text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="174.08">File Include Plugin</text>
 <rect fill="#fefece" stroke-width="2"
  stroke="#a80136"
- x="40.4" y="183.64" width="163.2" height="28.8" />
-<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="202.88">Collation Plugin</text>
+ x="40.4" y="188.44" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="207.68">Collation Plugin</text>
 <rect fill="#fefece" stroke-width="2"
  stroke="#a80136"
- x="40.4" y="212.44" width="163.2" height="28.8" />
-<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="231.68">Meta Search Plugin</text>
+ x="40.4" y="222.04" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="241.28">Meta Search Plugin</text>
 <rect fill="#fefece" stroke-width="2"
  stroke="#a80136"
- x="40.4" y="241.24" width="163.2" height="28.8" />
-<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="260.48">Page Generator Plugin</text>
+ x="40.4" y="255.64" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="274.88">Page Generator Plugin</text>
 <rect fill="#fefece" stroke-width="2"
  stroke="#a80136"
- x="40.4" y="270.04" width="163.2" height="28.8" />
-<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="289.28">Dynamic Menu Plugin</text>
+ x="40.4" y="289.24" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="308.48">Dynamic Menu Plugin</text>
 <rect stroke-width="2"
- x="30.8" y="87.56" width="182.4" height="220.88" />
+ x="30.8" y="87.56" width="182.4" height="240.08" />
 <rect stroke-width="2"
- x="21.2" y="49.08" width="201.6" height="268.96" />
+ x="21.2" y="49.08" width="201.6" height="288.16" />
 <text font-size="11pt" stroke-width="0.266667"
  fill="black"
  x="309.2" y="68.36">Saxon</text>
@@ -261,7 +226,7 @@ inconvienent to implement in Wordpress plugins.</p>
  x="251.6" y="49.08" width="115.2" height="134.48" />
 <text font-size="11pt" stroke-width="0.266667"
  fill="black"
- x="486.8" y="68.36">Python App Server</text>
+ x="486.8" y="68.36">App Server / Python</text>
 <rect fill="#fefece" stroke-width="2"
  stroke="#a80136"
  x="405.2" y="77.96" width="163.2" height="28.8" />
@@ -278,127 +243,85 @@ inconvienent to implement in Wordpress plugins.</p>
  x="395.6" y="49.08" width="182.4" height="134.48" />
 <rect fill="#fefece" stroke-width="2"
  stroke="#a80136"
- x="261.2" y="241.16" width="96" height="28.8" />
-<text font-size="11pt" stroke-width="0.2pt" fill="black" x="309.2" y="260.4">Makefile</text>
+ x="261.2" y="222.04" width="96" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="309.2" y="241.28">Makefile</text>
 <rect fill="#fefece" stroke-width="2"
  stroke="#a80136"
- x="405.2" y="241.16" width="163.2" height="28.8" />
-<text font-size="11pt" stroke-width="0.2pt" fill="black" x="486.8" y="260.4">Custom CollateX</text>
+ x="405.2" y="222.04" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="486.8" y="241.28">Custom CollateX</text>
+<rect fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ x="405.2" y="289.24" width="163.2" height="28.8" />
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="486.8" y="308.48">TSM backup</text>
 <path stroke-width="0" stroke="#a80136"
  fill="#fefece"
- d="M 74,356.44
- C 74,361.72 74,376.84 74,390.04 74,403.24 95.6,414.04 122,414.04 148.4,414.04 170,403.24 170,390.04 170,376.84 170,361.72 170,356.44" />
+ d="M 74,375.64
+ C 74,380.92 74,396.04 74,409.24 74,422.44 95.6,433.24 122,433.24 148.4,433.24 170,422.44 170,409.24 170,396.04 170,380.92 170,375.64" />
 <path stroke-width="2"
  stroke="#a80136"
- d="M 74,356.44
- C 74,361.72 74,376.84 74,390.04 74,403.24 95.6,414.04 122,414.04 148.4,414.04 170,403.24 170,390.04 170,376.84 170,361.72 170,356.44" />
+ d="M 74,375.64
+ C 74,380.92 74,396.04 74,409.24 74,422.44 95.6,433.24 122,433.24 148.4,433.24 170,422.44 170,409.24 170,396.04 170,380.92 170,375.64" />
 <ellipse fill="#fefece" stroke-width="2"
  stroke="#a80136"
- cx="122" cy="356.44" rx="48" ry="19.2" />
+ cx="122" cy="375.64" rx="48" ry="19.2" />
 <text font-size="11pt" stroke-width="0.266667"
  fill="black"
- x="122" y="392.346667">mysql</text>
+ x="122" y="411.546667">mysql</text>
 <text font-size="11pt" stroke-width="0.266667"
  fill="black"
- x="122" y="407.013333">Database</text>
+ x="122" y="426.213333">Database</text>
 <path stroke-width="0" stroke="#a80136"
  fill="#fefece"
- d="M 333.2,356.44
- C 333.2,361.72 333.2,376.84 333.2,390.04 333.2,403.24 354.8,414.04 381.2,414.04 407.6,414.04 429.2,403.24 429.2,390.04 429.2,376.84 429.2,361.72 429.2,356.44" />
+ d="M 261.2,375.64
+ C 261.2,380.92 261.2,396.04 261.2,409.24 261.2,422.44 282.8,433.24 309.2,433.24 335.6,433.24 357.2,422.44 357.2,409.24 357.2,396.04 357.2,380.92 357.2,375.64" />
 <path stroke-width="2"
  stroke="#a80136"
- d="M 333.2,356.44
- C 333.2,361.72 333.2,376.84 333.2,390.04 333.2,403.24 354.8,414.04 381.2,414.04 407.6,414.04 429.2,403.24 429.2,390.04 429.2,376.84 429.2,361.72 429.2,356.44" />
+ d="M 261.2,375.64
+ C 261.2,380.92 261.2,396.04 261.2,409.24 261.2,422.44 282.8,433.24 309.2,433.24 335.6,433.24 357.2,422.44 357.2,409.24 357.2,396.04 357.2,380.92 357.2,375.64" />
 <ellipse fill="#fefece" stroke-width="2"
  stroke="#a80136"
- cx="381.2" cy="356.44" rx="48" ry="19.2" />
+ cx="309.2" cy="375.64" rx="48" ry="19.2" />
 <text font-size="11pt" stroke-width="0.266667"
  fill="black"
- x="381.2" y="392.346667">Postgres</text>
+ x="309.2" y="411.546667">Postgres</text>
 <text font-size="11pt" stroke-width="0.266667"
  fill="black"
- x="381.2" y="407.013333">Database</text>
+ x="309.2" y="426.213333">Database</text>
+<path stroke-width="0" stroke="#a80136"
+ fill="#fefece"
+ d="M 438.8,375.64
+ C 438.8,380.92 438.8,396.04 438.8,409.24 438.8,422.44 460.4,433.24 486.8,433.24 513.2,433.24 534.8,422.44 534.8,409.24 534.8,396.04 534.8,380.92 534.8,375.64" />
+<path stroke-width="2"
+ stroke="#a80136"
+ d="M 438.8,375.64
+ C 438.8,380.92 438.8,396.04 438.8,409.24 438.8,422.44 460.4,433.24 486.8,433.24 513.2,433.24 534.8,422.44 534.8,409.24 534.8,396.04 534.8,380.92 534.8,375.64" />
+<ellipse fill="#fefece" stroke-width="2"
+ stroke="#a80136"
+ cx="486.8" cy="375.64" rx="48" ry="19.2" />
+<text font-size="11pt" stroke-width="0.266667"
+ fill="black"
+ x="486.8" y="418.88">Files</text>
 <rect stroke-width="2"
  stroke-dasharray="5.6,4"
- x="2" y="1" width="595.2" height="432.24" />
+ x="2" y="1" width="595.2" height="451.44" />
 </g></svg>
 </div>
 <figcaption>
-<p><span class="caption-text">Capitularia VM Components</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Main Components of the Capitularia VM</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Many different <a class="reference internal" href="vm/transformations.html#transformations"><span class="std std-ref">XSLT transformations</span></a> are used to
 <a class="reference internal" href="overviews/html_generation.html#html-generation"><span class="std std-ref">generate the HTML files</span></a> of the TEI manuscripts and also
-many auxiliary files like lists of capitularies ans manuscripts.</p>
+many auxiliary files like lists of capitularies and manuscripts.
+The transformations are driven by <strong class="program">make</strong> and the Makefile.</p>
 <p>The Postgres database holds manuscript metadata and the pre-processed text of
 every chapter in every manuscript.</p>
 <p>The app server does <a class="reference internal" href="overviews/collation_tool.html#collation-tool-overview"><span class="std std-ref">collations</span></a> and offers
 <a class="reference internal" href="overviews/meta_search.html#meta-search-overview"><span class="std std-ref">metadata and fulltext search</span></a> in the Capitulars.</p>
-</section>
-<section id="afs">
-<h2>AFS<a class="headerlink" href="#afs" title="Permalink to this headline">¶</a></h2>
-<p>The AFS Filesystem (/afs/rrz.uni-koeln.de/vol/www/projekt/capitularia/) is a
-network filesystem.</p>
-<figure class="align-center" id="id3">
-<div  class="pic pic-format-text-xml pic-language-pic">
-
-
-
-<!-- Creator: dpic version 2021.11.01 option -v for SVG 1.1 -->
-<!-- width="285" height="161" -->
-<svg
- xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
- xml:space="preserve"
- style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision;
- image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
- width="284.4px" height="159.68px"
- viewBox="0 0 284.4 159.68"
- font-size="11pt" text-anchor="middle"
- stroke="black" stroke-miterlimit="10" stroke-width="1.066667" fill="none">
-<g>
-<text font-size="11pt" stroke-width="0.266667"
- fill="black"
- x="69.2" y="29.88">AFS</text>
-<path stroke-width="0" stroke="#a80136"
- fill="#fefece"
- d="M 21.2,77.88
- C 21.2,83.16 21.2,98.28 21.2,111.48 21.2,124.68 42.8,135.48 69.2,135.48 95.6,135.48 117.2,124.68 117.2,111.48 117.2,98.28 117.2,83.16 117.2,77.88" />
-<path stroke-width="2"
- stroke="#a80136"
- d="M 21.2,77.88
- C 21.2,83.16 21.2,98.28 21.2,111.48 21.2,124.68 42.8,135.48 69.2,135.48 95.6,135.48 117.2,124.68 117.2,111.48 117.2,98.28 117.2,83.16 117.2,77.88" />
-<ellipse fill="#fefece" stroke-width="2"
- stroke="#a80136"
- cx="69.2" cy="77.88" rx="48" ry="19.2" />
-<path stroke-width="0" stroke="#a80136"
- fill="#fefece"
- d="M 165.2,77.88
- C 165.2,83.16 165.2,98.28 165.2,111.48 165.2,124.68 186.8,135.48 213.2,135.48 239.6,135.48 261.2,124.68 261.2,111.48 261.2,98.28 261.2,83.16 261.2,77.88" />
-<path stroke-width="2"
- stroke="#a80136"
- d="M 165.2,77.88
- C 165.2,83.16 165.2,98.28 165.2,111.48 165.2,124.68 186.8,135.48 213.2,135.48 239.6,135.48 261.2,124.68 261.2,111.48 261.2,98.28 261.2,83.16 261.2,77.88" />
-<ellipse fill="#fefece" stroke-width="2"
- stroke="#a80136"
- cx="213.2" cy="77.88" rx="48" ry="19.2" />
-<text font-size="11pt" stroke-width="0.266667"
- fill="black"
- x="69.2" y="121.12">TEI Files</text>
-<text font-size="11pt" stroke-width="0.266667"
- fill="black"
- x="213.2" y="121.12">HTML Files</text>
-<rect stroke-width="2"
- stroke-dasharray="5.6,4"
- x="2" y="1" width="278.4" height="153.68" />
-</g></svg>
-</div>
-<figcaption>
-<p><span class="caption-text">AFS Components</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
-<p>The AFS Filesystem holds all the original manuscript files encoded in TEI and
-versions thereof <a class="reference internal" href="overviews/html_generation.html#html-generation"><span class="std std-ref">converted to HTML</span></a>.  It is accessible
-from the VM.  The editors also have access to it through ssh.</p>
+<p>There is a nightly <a class="reference internal" href="vm/backup.html#backup"><span class="std std-ref">TSM backup</span></a> of the whole VM.
+The TEI files and the databases are dumped and kept in multiple versions.</p>
+<p>The editors store the original manuscript files encoded in TEI in the VM filesystem.
+The TEI files are then <a class="reference internal" href="overviews/html_generation.html#html-generation"><span class="std std-ref">converted to HTML</span></a>.</p>
 </section>
 </section>
 
@@ -413,7 +336,7 @@ from the VM.  The editors also have access to it through ssh.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-20 CCeH - Licensed under the GNU GPL v3 or later.</p>
+    <p>&#169; Copyright 2018-22 CCeH - Licensed under the GNU GPL v3 or later.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

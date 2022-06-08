@@ -8,6 +8,9 @@ XSLT Transformations
 
 The transformations used to produce HTML from TEI.
 
+The xslt files reside at :file:`~capitularia/prj/capitularia/capitularia/xslt/`.
+The transformations are driven by the :file:`Makefile` in that directory.
+
 The XSLT stylesheets were first written in XSLT 1 because the WebProjekt setup
 by the RRZK offered only an XSLT 1 processor (xsltproc through PHP).
 

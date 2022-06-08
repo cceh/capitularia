@@ -47,7 +47,7 @@ class Settings_Page
 
         add_settings_field (
             OPTIONS . '_afs',
-            __ ('AFS Root', DOMAIN),
+            __ ('FS Root', DOMAIN),
             array ($this, 'on_options_field_afs'),
             OPTIONS,
             $section
@@ -91,7 +91,7 @@ class Settings_Page
     }
 
     /**
-     * Output the AFS option field with its description.
+     * Output the FS option field with its description.
      *
      * @return void
      */
@@ -100,7 +100,7 @@ class Settings_Page
     {
         $setting = get_opt ('afs');
         echo "<input class='file-input' type='text' name='{$this->options}[afs]' value='$setting' />";
-        echo '<p>' . sprintf (__ ('Root directory of Capitularia in the AFS', DOMAIN)) . '</p>';
+        echo '<p>' . sprintf (__ ('Root directory of Capitularia in the FS', DOMAIN)) . '</p>';
     }
 
     /**

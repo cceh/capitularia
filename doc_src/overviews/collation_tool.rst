@@ -28,14 +28,14 @@ The online collation tool knows about all versions and offers them to the user.
    skinparam componentStyle uml2
 
    database  "Manuscript files\n(XML+TEI)"      as tei
-   note left of tei: AFS:publ/mss/*.xml
+   note left of tei: publ/mss/*.xml
 
    cloud "VM" {
      component "Cron"                          as cron
      component "Makefile"                      as make
      component "mss-extract-chapters.xsl"      as saxon
      database  "Chapter files\n(plain text)"   as chapters
-     note left of chapters: AFS:publ/cache/extracted/*/*.txt
+     note left of chapters: publ/cache/extracted/*/*.txt
      component "import.py"                     as import
      database  "Database\n(Postgres)"          as db
    }
@@ -50,8 +50,6 @@ The online collation tool knows about all versions and offers them to the user.
    make .> import
 
 The Makefile is run by cron on the Capitularia VM at regular intervals.
-
-The manuscript files are in the AFS.  The AFS is mounted onto the VM.
 
 The Makefile knows all the dependencies between the files and runs the
 appropriate tools to keep the database up-to-date with the manuscript files.

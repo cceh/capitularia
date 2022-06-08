@@ -20,8 +20,8 @@ Developer Manual
 
    intro
    overviews
-   troubleshooting
    vm
+   troubleshooting
 
 
 

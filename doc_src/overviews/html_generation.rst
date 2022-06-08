@@ -18,7 +18,7 @@ XSLT Transformations
    skinparam componentStyle uml2
 
    database  "Manuscript files\n(XML+TEI)" as tei
-   note left of tei: AFS:publ/mss
+   note left of tei: publ/mss
 
    cloud "Capitularia VM" as vm {
      component "Cron"                       as cron
@@ -29,7 +29,7 @@ XSLT Transformations
    }
 
    database  "Manuscript files\n(HTML)"   as html
-   note left of html: AFS:publ/cache/mss
+   note left of html: publ/cache/mss
 
    tei      --> saxon
    saxon    --> html
@@ -39,9 +39,6 @@ XSLT Transformations
 
 
 The Makefile is run by cron on the Capitularia VM at regular intervals.
-
-The manuscript and HTML files reside in the AFS.  The AFS is mounted onto
-the VM.
 
 The Makefile knows all the dependencies between the files and runs the
 appropriate tools to keep the HTML files up-to-date with the manuscript files.
@@ -64,7 +61,7 @@ User Delivery
    skinparam componentStyle uml2
 
    database "Manuscript files\n(HTML)" as html
-   note left of html: AFS:publ/cache/mss
+   note left of html: publ/cache/mss
 
    cloud "Apache" {
      database  "Database\n(mysql)" as db
@@ -91,5 +88,5 @@ inserts the file's content into the page, which is finally sent to the user.
 
 .. note::
 
-   The Footnotes Post-Processor is still written in PHP.  We plan to rewrite it
-   in Python and move it to the VM. (Nov. 2019)
+   The Footnotes Post-Processor is still written in PHP.
+   We plan to rewrite it in Python. (Nov. 2019)

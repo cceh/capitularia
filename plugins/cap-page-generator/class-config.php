@@ -102,8 +102,8 @@ class Config
                 __ ('XML files directory', DOMAIN),
                 sprintf (
                     __ (
-                        'The path to the XML files, relative to the AFS Root. eg.: %s. ' .
-                        'The AFS root is currently configured as<br>%s',
+                        'The path to the XML files, relative to the FS Root. eg.: %s. ' .
+                        'The FS root is currently configured as<br>%s',
                         DOMAIN
                     ),
                     'publ/mss',

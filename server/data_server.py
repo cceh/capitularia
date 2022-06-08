@@ -29,17 +29,17 @@ Endpoints
 
       [
         {
-          "filename": "file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/avranches-bm-145.xml",
+          "filename": "file:/var/www/.../cap/publ/mss/avranches-bm-145.xml",
           "ms_id": "avranches-bm-145",
           "title": "Avranches, Biblioth\u00e8que municipale, 145"
         },
         {
-          "filename": "file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/bamberg-sb-can-12.xml",
+          "filename": "file:/var/www/.../cap/publ/mss/bamberg-sb-can-12.xml",
           "ms_id": "bamberg-sb-can-12",
           "title": "Bamberg, Staatsbibliothek, Can. 12"
         },
         {
-          "filename": "file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/barcelona-aca-ripoll-40.xml",
+          "filename": "file:/var/www/.../cap/publ/mss/barcelona-aca-ripoll-40.xml",
           "ms_id": "barcelona-aca-ripoll-40",
           "title": "Barcelona, Arxiu de la Corona d'Arag\u00f3, Ripoll 40"
         }
@@ -51,7 +51,7 @@ Endpoints
    :statuscode 200: no error
    :resjsonobj string ms_id: the id of the manuscript.
    :resjsonobj string title: the title of the manuscript.
-   :resjsonobj string filename: the file in the AFS.
+   :resjsonobj string filename: the absolute path to the file.
 
 
 .. http:get:: /data/capitularies.json/
@@ -200,7 +200,7 @@ Endpoints
 
       [
         {
-          "filename": "file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/cava-dei-tirreni-bdb-4.xml",
+          "filename": "file:/var/www/.../cap/publ/mss/cava-dei-tirreni-bdb-4.xml",
           "locus": "cava-dei-tirreni-bdb-4-243v-1",
           "ms_id": "cava-dei-tirreni-bdb-4",
           "n": 1,
@@ -208,7 +208,7 @@ Endpoints
           "type": "original"
         },
         {
-          "filename": "file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/ivrea-bc-xxxiv.xml",
+          "filename": "file:/var/www/.../cap/publ/mss/ivrea-bc-xxxiv.xml",
           "locus": "ivrea-bc-xxxiv-53v-8",
           "ms_id": "ivrea-bc-xxxiv",
           "n": 1,
@@ -216,7 +216,7 @@ Endpoints
           "type": "original"
         },
         {
-          "filename": "file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/vatikan-bav-chigi-f-iv-75.xml",
+          "filename": "file:/var/www/.../cap/publ/mss/vatikan-bav-chigi-f-iv-75.xml",
           "locus": "vatikan-bav-chigi-f-iv-75-94r-6",
           "ms_id": "vatikan-bav-chigi-f-iv-75",
           "n": 1,
@@ -234,7 +234,7 @@ Endpoints
    :resjsonobj string ms_id: the id of the manuscript.
    :resjsonobj string title: the title of the manuscript.
    :resjsonobj string locus: the locus of the chapter in the manuscript.
-   :resjsonobj string filename: the manuscript file in the AFS.
+   :resjsonobj string filename: the absolute path of the manuscript file.
    :resjsonobj int n: This chapter is part of the n_th occurence of the capitulary in the
                       manuscript.  Default is 1.  See :ref:`MssChapters.mscap_n`.
    :resjsonobj string type: Either 'original' or 'later_hands'.  The type of preprocessing applied.

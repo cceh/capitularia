@@ -12,7 +12,9 @@ in the files :file:`dsm.opt` and :file:`dsm.sys`.
 An incremental backup is started by cron.daily which calls
 :program:`/root/backup.sh`.  This script makes a dump of the databases and of the
 published manuscripts before backing up the whole filesystem.  Past dumps are
-kept on a daily, weekly, montly and yearly basis in the directory :file:`/var/backup/`.
+kept on a daily, weekly, montly and yearly basis in subdirectories of :file:`/var/backup/`.
+
+Logfiles: :file:`/var/log/dsmerror.log` and :file:`/var/log/dsminstr.log`.
 
 To manually start a backup:
 

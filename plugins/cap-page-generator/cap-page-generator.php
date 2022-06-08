@@ -13,10 +13,10 @@
  *
  * Capitularia Page Generator plugin.
  *
- * The *Page Generator* plugin helps managing the publication of manuscript
- * pages.  Whenever a new manuscript is transcribed and its file is put into the
- * file repository in the AFS, a new Wordpress page needs to be made for the
- * manuscript to actually appear in Wordpress.
+ * The *Page Generator* plugin helps managing the publication of manuscript pages.
+ * Whenever a new manuscript is transcribed and its file is put into the file
+ * repository, a new Wordpress page needs to be made for the manuscript to actually
+ * appear in Wordpress.
  *
  * This plugin lets you choose among a configurable set of source directories.
  * Then it displays a list of the TEI files in that directory and lets you
@@ -34,11 +34,11 @@
  * How do the TEI files get to the user?
  *
  * A cron process on the API server converts all the TEI files into HTML files
- * and stores them in the AFS filesystem.  See also: the :ref:`Makefile` in the
+ * and stores them in the filesystem.  See also: the :ref:`Makefile` in the
  * xslt directory on the API server.
  *
  * The :ref:`Capitularia File Includer plugin <file-includer>` then includes
- * those files from the AFS filesystem when outputting a Wordpress page to the
+ * those files from the filesystem when outputting a Wordpress page to the
  * user.
  *
  * @package Capitularia_Page_Generator

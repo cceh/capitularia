@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Application Server &mdash; Capitularia 0.1.1 documentation</title>
+  <title>Application Server &mdash; Capitularia 0.2.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
@@ -41,7 +41,6 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intro.html#capitularia-vm">Capitularia VM</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro.html#afs">AFS</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../overviews.html">Overviews</a><ul>
@@ -65,13 +64,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overviews/collections.html">Collections</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../overviews/collections.html#algorithm">Algorithm</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
 </ul>
 </li>
 </ul>
@@ -102,7 +94,19 @@
 <li class="toctree-l3"><a class="reference internal" href="transformations.html#graph-of-stylesheet-dependencies">Graph of Stylesheet Dependencies</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="user.html">Users of the VM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user.html#adding-a-new-user">Adding a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user.html#security">Security</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="backup.html">TSM Backup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -135,6 +139,8 @@
   <section id="application-server">
 <span id="app-server"></span><h1>Application Server<a class="headerlink" href="#application-server" title="Permalink to this headline">¶</a></h1>
 <p>The application server is built with Python and Flask.</p>
+<p>The application server resides at <code class="file docutils literal notranslate"><span class="pre">~capitularia/prj/capitularia/capitularia/server/</span></code>.
+It is started as a systemd service by <code class="file docutils literal notranslate"><span class="pre">/etc/systemd/system/capitularia.service</span></code>.</p>
 <p>It is composed of these modules:</p>
 <section id="server">
 <h2>server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h2>
@@ -168,17 +174,17 @@
 
 <span class="p">[</span><span class="w"></span>
 <span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/avranches-bm-145.xml&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/var/www/.../cap/publ/mss/avranches-bm-145.xml&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;avranches-bm-145&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Avranches, Bibliothèque municipale, 145&quot;</span><span class="w"></span>
 <span class="w">  </span><span class="p">},</span><span class="w"></span>
 <span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/bamberg-sb-can-12.xml&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/var/www/.../cap/publ/mss/bamberg-sb-can-12.xml&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bamberg-sb-can-12&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bamberg, Staatsbibliothek, Can. 12&quot;</span><span class="w"></span>
 <span class="w">  </span><span class="p">},</span><span class="w"></span>
 <span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/barcelona-aca-ripoll-40.xml&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/var/www/.../cap/publ/mss/barcelona-aca-ripoll-40.xml&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;barcelona-aca-ripoll-40&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Barcelona, Arxiu de la Corona d&#39;Aragó, Ripoll 40&quot;</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
@@ -367,7 +373,7 @@ Consider all manuscripts or just the published ones.</p></li>
 
 <span class="p">[</span><span class="w"></span>
 <span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/cava-dei-tirreni-bdb-4.xml&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/var/www/.../cap/publ/mss/cava-dei-tirreni-bdb-4.xml&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;locus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cava-dei-tirreni-bdb-4-243v-1&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cava-dei-tirreni-bdb-4&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
@@ -375,7 +381,7 @@ Consider all manuscripts or just the published ones.</p></li>
 <span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;original&quot;</span><span class="w"></span>
 <span class="w">  </span><span class="p">},</span><span class="w"></span>
 <span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/ivrea-bc-xxxiv.xml&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/var/www/.../cap/publ/mss/ivrea-bc-xxxiv.xml&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;locus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ivrea-bc-xxxiv-53v-8&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ivrea-bc-xxxiv&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
@@ -383,7 +389,7 @@ Consider all manuscripts or just the published ones.</p></li>
 <span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;original&quot;</span><span class="w"></span>
 <span class="w">  </span><span class="p">},</span><span class="w"></span>
 <span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/afs/rrz.uni-koeln.de/.../cap/publ/mss/vatikan-bav-chigi-f-iv-75.xml&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;filename&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;file:/var/www/.../cap/publ/mss/vatikan-bav-chigi-f-iv-75.xml&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;locus&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vatikan-bav-chigi-f-iv-75-94r-6&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;ms_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vatikan-bav-chigi-f-iv-75&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
@@ -737,7 +743,7 @@ helps avoiding ugly label placement when a label is near a metatile border.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-20 CCeH - Licensed under the GNU GPL v3 or later.</p>
+    <p>&#169; Copyright 2018-22 CCeH - Licensed under the GNU GPL v3 or later.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
