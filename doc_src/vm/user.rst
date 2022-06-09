@@ -16,6 +16,71 @@ Example:
    ssh meckhart@capitularia.uni-koeln.de
 
 
+Users and Groups
+----------------
+
+User ``capitularia``
+   The admin user for this project.  This user must have read/write access to all files.
+
+   The application server is installed under this user's home directory. The XSLT
+   transformations are also there. This user
+
+   - owns the Apache DocumentRoot directory for the Capitularia web site,
+   - runs the cron jobs to transform TEI files into HTML,
+   - runs scripts on demand to bulk-edit TEI files (also in editors' private directories)
+
+Group ``capitularia``
+   The group of the project admin user.
+
+User ``<editor>``
+   Personal user account for each editor.
+
+Group ``capitularia-editors``
+   All editors are members of this group.
+
+User ``www-data``
+   The web server. Must have read access to :file:`cap/publ/`.
+
+
+Groups for user:
+
+=========== ================================
+User        Groups
+=========== ================================
+capitularia capitularia, capitularia-editors
+<editor>    <editor>, capitularia-editors
+=========== ================================
+
+File permissions for users:
+
+=========== ======== ========== ============================
+User        cap/publ cap/intern cap/intern/InArbeit/<editor>
+=========== ======== ========== ============================
+capitularia rwx      rwx        rwx
+<editor>                        rwx
+www-data    r-x
+=========== ======== ========== ============================
+
+File permissions for groups:
+
+==================== ======== ========== ============================
+Group                cap/publ cap/intern cap/intern/InArbeit/<editor>
+==================== ======== ========== ============================
+capitularia-editors  rwx      rwx        r-x
+==================== ======== ========== ============================
+
+Most permissions are set through ACLs.  To see ACLs:
+
+.. code:: bash
+
+   getfacl .
+
+Example of how to set ACLs:
+
+.. code:: bash
+
+   setfacl -R -m u:www-data:rX,g:capitularia-editors:rwX,o::- <dir>
+
 Adding a New User
 -----------------
 

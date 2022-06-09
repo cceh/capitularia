@@ -95,6 +95,7 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Users of the VM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#users-and-groups">Users and Groups</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#adding-a-new-user">Adding a New User</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#security">Security</a></li>
 </ul>
@@ -146,6 +147,112 @@ password.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh meckhart@capitularia.uni-koeln.de
 </pre></div>
 </div>
+<section id="users-and-groups">
+<h2>Users and Groups<a class="headerlink" href="#users-and-groups" title="Permalink to this headline">¶</a></h2>
+<dl>
+<dt>User <code class="docutils literal notranslate"><span class="pre">capitularia</span></code></dt><dd><p>The admin user for this project.  This user must have read/write access to all files.</p>
+<p>The application server is installed under this user’s home directory. The XSLT
+transformations are also there. This user</p>
+<ul class="simple">
+<li><p>owns the Apache DocumentRoot directory for the Capitularia web site,</p></li>
+<li><p>runs the cron jobs to transform TEI files into HTML,</p></li>
+<li><p>runs scripts on demand to bulk-edit TEI files (also in editors’ private directories)</p></li>
+</ul>
+</dd>
+<dt>Group <code class="docutils literal notranslate"><span class="pre">capitularia</span></code></dt><dd><p>The group of the project admin user.</p>
+</dd>
+<dt>User <code class="docutils literal notranslate"><span class="pre">&lt;editor&gt;</span></code></dt><dd><p>Personal user account for each editor.</p>
+</dd>
+<dt>Group <code class="docutils literal notranslate"><span class="pre">capitularia-editors</span></code></dt><dd><p>All editors are members of this group.</p>
+</dd>
+<dt>User <code class="docutils literal notranslate"><span class="pre">www-data</span></code></dt><dd><p>The web server. Must have read access to <code class="file docutils literal notranslate"><span class="pre">cap/publ/</span></code>.</p>
+</dd>
+</dl>
+<p>Groups for user:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>User</p></th>
+<th class="head"><p>Groups</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>capitularia</p></td>
+<td><p>capitularia, capitularia-editors</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;editor&gt;</p></td>
+<td><p>&lt;editor&gt;, capitularia-editors</p></td>
+</tr>
+</tbody>
+</table>
+<p>File permissions for users:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 14%" />
+<col style="width: 18%" />
+<col style="width: 49%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>User</p></th>
+<th class="head"><p>cap/publ</p></th>
+<th class="head"><p>cap/intern</p></th>
+<th class="head"><p>cap/intern/InArbeit/&lt;editor&gt;</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>capitularia</p></td>
+<td><p>rwx</p></td>
+<td><p>rwx</p></td>
+<td><p>rwx</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;editor&gt;</p></td>
+<td></td>
+<td></td>
+<td><p>rwx</p></td>
+</tr>
+<tr class="row-even"><td><p>www-data</p></td>
+<td><p>r-x</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>File permissions for groups:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 12%" />
+<col style="width: 15%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Group</p></th>
+<th class="head"><p>cap/publ</p></th>
+<th class="head"><p>cap/intern</p></th>
+<th class="head"><p>cap/intern/InArbeit/&lt;editor&gt;</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>capitularia-editors</p></td>
+<td><p>rwx</p></td>
+<td><p>rwx</p></td>
+<td><p>r-x</p></td>
+</tr>
+</tbody>
+</table>
+<p>Most permissions are set through ACLs.  To see ACLs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getfacl .
+</pre></div>
+</div>
+<p>Example of how to set ACLs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setfacl -R -m u:www-data:rX,g:capitularia-editors:rwX,o::- &lt;dir&gt;
+</pre></div>
+</div>
+</section>
 <section id="adding-a-new-user">
 <h2>Adding a New User<a class="headerlink" href="#adding-a-new-user" title="Permalink to this headline">¶</a></h2>
 <p>To add a new user to the VM (needs root):</p>
