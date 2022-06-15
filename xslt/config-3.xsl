@@ -194,7 +194,7 @@
         <title>bavarikon</title>
         <caption>bavarikon</caption>
       </item>
-      <item key="213.21.172.25/0b02da82800bed27">
+      <item key="213.21.172.25/0b02da">
         <title>Biblioteca Ambrosiana</title>
         <caption>Biblioteca Ambrosiana</caption>
       </item>
@@ -254,17 +254,17 @@
         <title>Staatsbibliothek Bamberg</title>
         <caption>Staatsbibliothek Bamberg</caption>
       </item>
-      <item key="urn:nbn:de:bvb:12-sbb">
-        <title>Staatsbibliothek Bamberg</title>
-        <caption>Staatsbibliothek Bamberg</caption>
-      </item>
-      <item key="urn:nbn:de:bvb:22-dtl">
+      <item key="urn:nbn:de:bvb:">
         <title>Staatsbibliothek Bamberg</title>
         <caption>Staatsbibliothek Bamberg</caption>
       </item>
       <item key="bvmm.irht.cnrs.fr">
         <title>Bibliothèque virtuelle</title>
         <caption>Bibliothèque virtuelle</caption>
+      </item>
+      <item key="urn:nbn:de:hbz:kn28-3-2137">
+        <title>Diözesanbibliothek Köln</title>
+        <caption>Diözesanbibliothek Köln</caption>
       </item>
       <item key="e-codices.unifr.ch">
         <title>e-codices</title>
@@ -294,6 +294,10 @@
         <title>Erzbischöfliche Diözesan- und Dombibliothek Köln</title>
         <caption>Erzbischöfliche Diözesan- und Dombibliothek Köln</caption>
       </item>
+      <item key="uurl.kbr.be">
+        <title>KBR</title>
+        <caption>KBR</caption>
+      </item>
       <item key="landesarchiv-nrw.de">
         <title>Landesarchiv NRW</title>
         <caption>Landesarchiv NRW</caption>
@@ -301,6 +305,10 @@
       <item key="manus.iccu.sbn.it">
         <title>Manus online</title>
         <caption>Manus</caption>
+      </item>
+      <item key="manuscripta.at">
+        <title>manuscripta.at</title>
+        <caption>manuscripta.at</caption>
       </item>
       <item key="manuscripta-mediaevalia.de">
         <title>Manuscripta Mediaevalia</title>
@@ -357,6 +365,10 @@
       <item key="ulb.tu-darmstadt.de">
         <title>Universitäts- und Landesbibliothek Darmstadt</title>
         <caption>ULB Darmstadt</caption>
+      </item>
+      <item key="lib.ugent.be">
+        <title>Universiteitsbibliotheek Gent</title>
+        <caption>Universiteitsbibliotheek Gent</caption>
       </item>
       <item key="ub.uni-heidelberg.de">
         <title>UB Heidelberg</title>
