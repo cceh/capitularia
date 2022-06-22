@@ -115,66 +115,87 @@ export function sort_key (s) {
 }
 
 /**
- * Prepare a witness for display, add human-readable title, i18n.
+ * Build an URL that represents one witness to be collated.
  *
- * @param {Object} w  The witness to fix
+ * @param {Object} w  The witness object
+ * @returns {string}  The url
+ */
+export function build_witness_url (w) {
+    const url = new URL ('https://example.org/');
+    const params = new URLSearchParams ({});
+
+    if (w.siglum) {
+        params.append ('siglum', w.siglum);
+    }
+    if (w.type !== 'original') {
+        params.append ('hands', 'XYZ');
+    }
+    url.pathname = w.ms_id;
+    url.search = params;
+    if (w.n > 1) {
+        url.hash = w.n;
+    }
+    return url.toString ().substring (20);
+}
+
+/**
+ * Calculate some attributes for a witness object: a human-readable title, i18n, sort key.
+ *
+ * @param {Object} w  The witness object to fix
  * @returns {Object}  The fixed witness object
  */
 export function fix_witness (w) {
-    // add checked for vue reactivity
+    // add 'checked' attribute for vue reactivity
     w.checked  = false;
+    w.url = build_witness_url (w);
 
-    w.title    = w.siglum;
-    w.title    = w.title.replace (/#(\d+)/,       $pgettext ('2., 3., etc. copy of capitularies', ' ($1. copy)'));
-    w.title    = w.title.replace (/[?]hands=XYZ/, $pgettext ('corrected version of capitularies', ' (corrected)'));
-    w.sort_key = w.title;
-    w.title    = w.title.replace (/\//, ' : ');
-    w.title    = w.title.replace (/bk-textzeuge/, $pgettext ('title of the edition', 'Edition by Boretius/Krause'));
-    w.sort_key = w.sort_key.replace (/bk-textzeuge/, '_bk-textzeuge'); // always sort this first
-    w.sort_key = sort_key (w.sort_key);
+    const corresp = w.corresp ? `${w.corresp} : ` : '';
+    const siglum = w.siglum ? ` [${w.siglum}]` : '';
+    const corrected = w.type === 'later_hands' ? $pgettext ('corrected version of capitularies', ' (corrected)') : '';
+    const n = w.n > '1' ? $pgettext ('2., 3., etc. copy of capitularies', ' ($1. copy)').replace (/\$1/, w.n) : '';
+
+    w.title = `${corresp}${w.ms_id}${siglum}${corrected}${n}`;
+    w.short_title = `${w.ms_id}${siglum}${corrected}${n}`;
+
+    w.sort_key    = w.title;
+    w.title       = w.title.replace (
+        /bk-textzeuge/,
+        $pgettext ('title of the edition', 'Edition by Boretius/Krause')
+    );
+    w.short_title = w.short_title.replace (
+        /bk-textzeuge/,
+        $pgettext ('title of the edition', 'Edition by Boretius/Krause')
+    );
+    w.sort_key    = w.sort_key.replace (/bk-textzeuge/, '_bk-textzeuge'); // always sort this first
+    w.sort_key    = sort_key (w.sort_key);
     return w;
 }
 
 /**
- * Parse API server response into witness object
- *
- * @param {Object} r  The server response
- * @returns {Object}  The witness struct
- */
-export function parse_witness_response (r) {
-    let siglum = r.ms_id;
-    if (r.type !== 'original') {
-        siglum += '?hands=XYZ';
-    }
-    if (r.n > 1) {
-        siglum += '#' + r.n;
-    }
-
-    return fix_witness ({
-        'ms_id'  : r.ms_id,
-        'locus'  : r.locus,
-        'siglum' : siglum,
-        'type'   : r.type,
-    });
-}
-
-/**
- * Parse witness siglum into witness object
+ * Parse a locus url into a witness object similar to one returned by the data server.
  *
  * Currently used only to calculate the title length in the results table.
  *
- * @param {string} siglum  The witness siglum
+ * @param {string} url  The witness url
  * @returns {Object}  The witness object
  */
-export function parse_siglum (siglum) {
+export function parse_locus_url (url) {
+    const u = new URL (url, 'https://example.org/');
+    const [, corresp, ms_id] = u.pathname.split ('/', 3);
+
     return fix_witness ({
-        'siglum' : siglum,
-        'type'   : siglum.match (/[?]hands=XYZ/) ? 'later_hands' : 'original',
+        'corresp' : corresp,
+        'ms_id'   : ms_id,
+        'siglum'  : u.searchParams.get ('siglum') || '',
+        'type'    : u.searchParams.get ('hands') === 'XYZ' ? 'later_hands' : 'original',
+        'n'       : u.hash ? u.hash.substring (1) : '1',
     });
 }
 
 /**
  * Unroll collate struct
+ *
+ * Unrolls the witness list before sending it to the collation server.
  *
  * @param {Array} rolled  The collate struct
  * @returns {Array}  The unrolled witness array
@@ -211,12 +232,12 @@ export function unroll_witnesses (rolled) {
     return [].concat (... rolled.map (d => d.witnesses.map (w => `${d.corresp}/${w}`)));
 }
 
-export function get_sigla (item) {
-    // Get the sigla of all witnesses to collate in user-specified order
-    return $ (item).closest ('table').find ('tr[data-siglum]').map (function () {
-        return this.getAttribute ('data-siglum');
-    })
-        .get ();
+export function get_urls (elem) {
+    // Get the "url" of all witnesses to collate in user-specified order
+    const $table = $ (elem).closest ('table');
+    return $table.find ('tr[data-url]').map (function () {
+        return this.getAttribute ('data-url');
+    }).get ();
 }
 
 export function update_bs_tooltips () {

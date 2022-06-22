@@ -22,9 +22,14 @@ Endpoints
           "collate": [
               "BK.20a_3/bk-textzeuge",
               "BK.20b_3/bk-textzeuge",
-              "BK.20b_3/vatikan-bav-reg-lat-263"
+              "BK.20b_3/vatikan-bav-reg-lat-263[V10]"
+              "BK.20b_3/vatikan-bav-reg-lat-263[V10]?hands=XYZ"
+              "BK.20b_3/vatikan-bav-reg-lat-263[V10]?hands=XYZ#2"
           ]
       }
+
+   :reqjsonobj string[] collate: List of chapters to collate.  The items are of the form:
+                                 corresp/ms_id[siglum]?hands=XYZ#ms_cap_n
 
    **Example response**:
 
@@ -37,7 +42,7 @@ Endpoints
         "witnesses": [
           "BK.20a_3/bk-textzeuge",
           "BK.20b_3/bk-textzeuge",
-          "BK.20b_3/vatikan-bav-reg-lat-263"
+          "BK.20b_3/vatikan-bav-reg-lat-263[V10]"
         ],
         "table":[
           [ [ {"t": "A",     "n": "a" } ],     [ {"t": "A",      "n": "a" } ] ],
@@ -60,6 +65,7 @@ Endpoints
 import json
 import re
 import subprocess
+import urllib.parse
 
 import flask
 from flask import abort, current_app, request, Blueprint
@@ -204,17 +210,16 @@ def collate():
 
     with current_app.config.dba.engine.begin() as conn:
         for w in json_in["collate"]:
-            m = re.match(r"^([^/]+)/([^?#]+)(\?hands=XYZ)?(?:#(\d+))?$", w)
-            corresp = m.group(1)
-            ms_id = m.group(2)
-            hands = m.group(3)
+            u = urllib.parse.urlparse(w)
+            corresp, ms_id = u.path.split("/", 2)
+            hands = urllib.parse.parse_qs(u.query).get("hands") == "XYZ"
 
             catalog, no, chapter = common.normalize_corresp(corresp)
 
             params = {
                 "ms_id": ms_id,
                 "cap_id": "%s.%s" % (catalog, no),
-                "mscap_n": int(m.group(4) or "1"),
+                "mscap_n": int(u.fragment or "1"),
                 "chapter": chapter or "",
                 "type": "later_hands" if hands else "original",
             }
@@ -232,6 +237,7 @@ def collate():
             )
 
             doc = res.fetchone()[0]
+            # current_app.logger.info (doc)
             json_out.append(to_collatex(w, doc, normalizations))
 
     json_in["witnesses"] = json_out

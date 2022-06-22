@@ -31,17 +31,20 @@ Endpoints
         {
           "filename": "file:/var/www/.../cap/publ/mss/avranches-bm-145.xml",
           "ms_id": "avranches-bm-145",
-          "title": "Avranches, Biblioth\u00e8que municipale, 145"
+          "title": "Avranches, Biblioth\u00e8que municipale, 145",
+          "siglum": "Av"
         },
         {
           "filename": "file:/var/www/.../cap/publ/mss/bamberg-sb-can-12.xml",
           "ms_id": "bamberg-sb-can-12",
           "title": "Bamberg, Staatsbibliothek, Can. 12"
+          "siglum": "Ba",
         },
         {
           "filename": "file:/var/www/.../cap/publ/mss/barcelona-aca-ripoll-40.xml",
           "ms_id": "barcelona-aca-ripoll-40",
           "title": "Barcelona, Arxiu de la Corona d'Arag\u00f3, Ripoll 40"
+          "siglum": "Bc",
         }
       ]
 
@@ -52,6 +55,7 @@ Endpoints
    :resjsonobj string ms_id: the id of the manuscript.
    :resjsonobj string title: the title of the manuscript.
    :resjsonobj string filename: the absolute path to the file.
+   :resjsonobj string siglum: the siglum of the manuscript or null.
 
 
 .. http:get:: /data/capitularies.json/
@@ -203,6 +207,7 @@ Endpoints
           "filename": "file:/var/www/.../cap/publ/mss/cava-dei-tirreni-bdb-4.xml",
           "locus": "cava-dei-tirreni-bdb-4-243v-1",
           "ms_id": "cava-dei-tirreni-bdb-4",
+          "siglum": "C",
           "n": 1,
           "title": "Cava de' Tirreni, Biblioteca Statale del Monumento Nazionale Badia di Cava, 4",
           "type": "original"
@@ -211,6 +216,7 @@ Endpoints
           "filename": "file:/var/www/.../cap/publ/mss/ivrea-bc-xxxiv.xml",
           "locus": "ivrea-bc-xxxiv-53v-8",
           "ms_id": "ivrea-bc-xxxiv",
+          "siglum": "I1",
           "n": 1,
           "title": "Ivrea, Biblioteca Capitolare, XXXIV",
           "type": "original"
@@ -219,6 +225,7 @@ Endpoints
           "filename": "file:/var/www/.../cap/publ/mss/vatikan-bav-chigi-f-iv-75.xml",
           "locus": "vatikan-bav-chigi-f-iv-75-94r-6",
           "ms_id": "vatikan-bav-chigi-f-iv-75",
+          "siglum": "V5",
           "n": 1,
           "title": "Vatikan, Biblioteca Apostolica Vaticana, Chigi F. IV. 75",
           "type": "original"
@@ -232,6 +239,7 @@ Endpoints
    :statuscode 200: no error
    :statuscode 400: Bad Request
    :resjsonobj string ms_id: the id of the manuscript.
+   :resjsonobj string siglum: the siglum of the manuscript or null.
    :resjsonobj string title: the title of the manuscript.
    :resjsonobj string locus: the locus of the chapter in the manuscript.
    :resjsonobj string filename: the absolute path of the manuscript file.
@@ -322,7 +330,7 @@ def manuscripts():
         res = execute(
             conn,
             """
-        SELECT ms_id, title, filename
+        SELECT ms_id, title, filename, siglum
         FROM manuscripts m
         WHERE %s
         ORDER BY natsort (ms_id)
@@ -331,7 +339,9 @@ def manuscripts():
             {},
         )
 
-        Manuscripts = collections.namedtuple("Manuscripts", "ms_id, title, filename")
+        Manuscripts = collections.namedtuple(
+            "Manuscripts", "ms_id, title, filename, siglum"
+        )
         mss = [Manuscripts._make(r)._asdict() for r in res]
 
         return cache(make_json_response(mss))
@@ -426,7 +436,7 @@ def _chapter_manuscripts(cap_id, chapter):
         res = execute(
             conn,
             """
-        SELECT m.ms_id, m.title, mc.mscap_n, mc.locus, m.filename, mct.type
+        SELECT m.ms_id, m.siglum, m.title, mc.mscap_n, mc.locus, m.filename, mct.type
         FROM manuscripts m
           JOIN mss_chapters mc USING (ms_id)
           JOIN mss_chapters_text mct USING (ms_id, cap_id, mscap_n, chapter)
@@ -438,7 +448,7 @@ def _chapter_manuscripts(cap_id, chapter):
         )
 
         Manuscripts = collections.namedtuple(
-            "Manuscripts", "ms_id, title, n, locus, filename, type"
+            "Manuscripts", "ms_id, siglum, title, n, locus, filename, type"
         )
         manuscripts = [Manuscripts._make(r)._asdict() for r in res]
 
@@ -597,13 +607,13 @@ def query_manuscripts():
         res = execute(
             conn,
             """
-        SELECT m.ms_id, m.title, mc.cap_id, mc.mscap_n, mc.chapter, mc.locus, mct.text as snippet
+        SELECT m.ms_id, m.siglum, m.title, mc.cap_id, mc.mscap_n, mc.chapter, mc.locus, mct.text as snippet
         FROM manuscripts m
           JOIN mss_chapters mc USING (ms_id)
           JOIN mss_chapters_text mct USING (ms_id, cap_id, mscap_n, chapter)
           JOIN msparts msp USING (ms_id)
         %s
-        GROUP BY m.ms_id, m.title, mc.cap_id, mc.mscap_n, mc.chapter, mc.locus, mct.text
+        GROUP BY m.ms_id, m.siglum, m.title, mc.cap_id, mc.mscap_n, mc.chapter, mc.locus, mct.text
         ORDER BY natsort (m.ms_id), mc.cap_id, mc.mscap_n, mc.chapter
         """
             % where,
@@ -611,7 +621,8 @@ def query_manuscripts():
         )
 
         Manuscripts = collections.namedtuple(
-            "Manuscripts", "ms_id, title, cap_id, mscap_n, chapter, locus, snippet"
+            "Manuscripts",
+            "ms_id, siglum, title, cap_id, mscap_n, chapter, locus, snippet",
         )
         manuscripts = [Manuscripts._make(r)._asdict() for r in res]
 

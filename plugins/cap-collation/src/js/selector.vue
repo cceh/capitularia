@@ -102,16 +102,16 @@
                   No textual witnesses found.
                 </td>
               </tr>
-              <tr v-for="(w, index) of witnesses" :key="w.siglum"
-                  :data-siglum="`${corresp}/${w.siglum}`" :class="row_class (w, index)">
+              <tr v-for="(w, index) of witnesses" :key="w.url"
+                  :data-url="`${corresp}/${w.url}`" :class="row_class (w, index)">
                 <td class="checkbox">
                   <div class="form-check"
                        data-bs-toggle="tooltip" data-bs-placement="left"
                        :title="$t ('Include this textual witness in the collation.')">
-                    <input :id="id + '-' + w.siglum" v-model="w.checked" class="form-check-input" type="checkbox"
+                    <input :id="id + '-' + w.url" v-model="w.checked" class="form-check-input" type="checkbox"
                            value="">
-                    <label class="form-check-label" :for="id + '-' + w.siglum">
-                      <a :href="w.href">{{ w.title }}</a>
+                    <label class="form-check-label" :for="id + '-' + w.url">
+                      <a :href="w.href">{{ w.short_title }}</a>
                     </label>
                   </div>
                 </td>
@@ -132,7 +132,7 @@
  * @file
  */
 
-import uniqueid from 'lodash-es';
+import { uniqueId } from 'lodash';
 
 import * as tools from './tools.js';
 
@@ -142,6 +142,7 @@ import * as tools from './tools.js';
  */
 
 export default {
+    'name'  : 'capCollationSelector',
     'props' : {
         'config' : {
             'type'    : Object, // a config file section if loaded from config
@@ -154,7 +155,7 @@ export default {
             'bk'          : '',
             'corresp'     : '',
             'later_hands' : false,
-            'witnesses'   : [],    // list of sigla (urls in the form: skara-brae-42?hands=XYZ#2)
+            'witnesses'   : [],    // list of items (urls in the form: skara-brae-42?siglum=SB1&hands=XYZ#2)
             'select_all'  : false,
             'bks'         : [],    // the list of bks shown in the dropdown
             'corresps'    : [],    // the list of corresps shown in the dropdown
@@ -163,9 +164,9 @@ export default {
         };
     },
     'computed' : {
-        /** @returns The list of selected sigla in the correct order. */
+        /** @returns The list of selected items in the correct order. */
         'selected' : function () {
-            return this.witnesses.filter (w => w.checked).map (w => w.siglum);
+            return this.witnesses.filter (w => w.checked).map (w => w.url);
         },
     },
     'watch' : {
@@ -174,8 +175,8 @@ export default {
     },
     async mounted () {
         const vm = this;
+        vm.id = 'selector_' + uniqueId ();
         await vm.ajax_load_bks ();
-        this.id = uniqueid ();
     },
     /** @lends module:plugins/collation/front.VueFront.prototype */
     'methods' : {
@@ -215,10 +216,11 @@ export default {
 
             vm.spinner = true;
             const response = await tools.api (`/data/corresp/${vm.corresp}/manuscripts.json/`);
-            // list of { ms_id, n, type }
+            // list of { ms_id, siglum, n, type }
             vm.spinner = false;
 
-            vm.witnesses = response.map (tools.parse_witness_response);
+            vm.witnesses = response.map (w => { w.corresp = vm.corresp; return w; });
+            vm.witnesses = vm.witnesses.map (tools.fix_witness);
             vm.witnesses.sort ((a, b) => a.sort_key.localeCompare (b.sort_key));
 
             if (!vm.later_hands) {
@@ -226,6 +228,7 @@ export default {
             }
 
             for (const w of vm.witnesses) {
+                w.url = tools.build_witness_url (w);
                 if (w.ms_id) {
                     w.href = `/mss/${w.ms_id}/#${w.locus}`;
                 }
@@ -255,9 +258,9 @@ export default {
         /**
          * Check all witnesses in list but don't uncheck any.
          */
-        check_these (sigla) {
+        check_these (items) {
             this.witnesses.map (w => {
-                if (sigla.includes (w.siglum)) {
+                if (items.includes (w.url)) {
                     w.checked = true;
                 }
                 return w;

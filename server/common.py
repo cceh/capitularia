@@ -142,7 +142,8 @@ def to_csv(fields, rows):
     return fp.getvalue()
 
 
-def fix_ws(s):
+def fix_ws(s: str) -> str:
+    """Replaces multiple whitespace characters with one space."""
     return RE_WS.sub(" ", s)
 
 

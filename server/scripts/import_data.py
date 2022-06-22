@@ -609,6 +609,7 @@ def import_corpus(conn, args):
         for tei in tree.xpath("//tei:TEI", namespaces=NS):
             ms_id = get_ns(tei, "xml:id")
             filename = get_ns(tei, "cap:file")
+            siglum = None
             if ms_id in processed_ms_ids:
                 log(
                     logging.ERROR,
@@ -618,6 +619,11 @@ def import_corpus(conn, args):
                 continue
             processed_ms_ids[ms_id] = filename or fn
             log(logging.INFO, "Parsing Manuscript %s" % ms_id)
+            for idno in tei.xpath(
+                "tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:altIdentifier[@type='siglum']/tei:idno",
+                namespaces=NS,
+            ):
+                siglum = idno.text
             row = {
                 "ms_id": ms_id,
                 "title": fix_ws(
@@ -627,15 +633,18 @@ def import_corpus(conn, args):
                     )[0]
                 ),
                 "filename": filename,
+                "siglum": siglum,
             }
+
             execute(
                 conn,
                 """
-            INSERT INTO manuscripts (ms_id, title, filename)
-              VALUES (:ms_id, :title, :filename)
+            INSERT INTO manuscripts (ms_id, title, filename, siglum)
+              VALUES (:ms_id, :title, :filename, :siglum)
             ON CONFLICT (ms_id)
             DO UPDATE SET title = EXCLUDED.title,
-                          filename = EXCLUDED.filename
+                          filename = EXCLUDED.filename,
+                          siglum = EXCLUDED.siglum
             """,
                 row,
             )

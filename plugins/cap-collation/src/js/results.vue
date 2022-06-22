@@ -7,9 +7,9 @@
     <table v-for="(table, tindex) of tables" :key="tindex"
            class="table table-sm table-bordered table-striped collation" :class="table.class">
       <tbody>
-        <tr v-for="(row, rindex) of table.rows" :key="row.siglum"
-            class="witness" :class="row_class (row, rindex)" :data-siglum="row.siglum"
-            @mouseover="hovered = row.siglum" @mouseleave="hovered = null">
+        <tr v-for="(row, rindex) of table.rows" :key="row.url"
+            class="witness" :class="row_class (row, rindex)" :data-url="row.url"
+            @mouseover="hovered = row.url" @mouseleave="hovered = null">
           <th class="slim handle no-print" scope="row">
             <i class="fas" :title="$t ('Drag row to reorder the textual witness.')" />
           </th>
@@ -33,7 +33,7 @@
  */
 
 import $ from 'jquery';
-import { zip } from 'lodash-es';
+import { zip } from 'lodash';
 
 import * as tools from './tools.js';
 
@@ -43,15 +43,16 @@ import * as tools from './tools.js';
  */
 
 export default {
+    'name' : 'capCollationResults',
     data () {
         return {
             'api'             : null,  // API server
             'corresp'         : '',
-            'sigla'           : [],
+            'items'           : [],
             'witnesses'       : [],
             'unsorted_tables' : [],
             'tables'          : [],
-            'hovered'         : null,  // siglum of hovered witness
+            'hovered'         : null,  // item of hovered witness
             'spinner'         : false,
         };
     },
@@ -68,7 +69,7 @@ export default {
             'cursor'      : 'move',
             'containment' : 'parent',
             'update'      : function (event, ui) {
-                const new_order = tools.get_sigla (ui.item);
+                const new_order = tools.get_urls (ui.item);
                 vm.sort_like (new_order);
                 vm.$emit ('reordered', new_order);
             },
@@ -174,9 +175,9 @@ export default {
          *      ]
          *    }
          *
-         * @param {string[]} sigla The witnesses' sigla in table order
+         * @param {Object[]} witnesses The collated items as found in 'table'
          * @param {array}    table The collation table in column-major orientation
-         * @param {string[]} order The witnesses' sigla in the order they should be displayed
+         * @param {string[]} order The loci (corresp/witness) in the order they should be displayed
          *
          * @return {Object} The rows of the formatted table
          */
@@ -185,7 +186,7 @@ export default {
             if (order.length === 0) {
                 return  [];
             }
-            const sigla  = witnesses.map (ms => ms.siglum);
+            const urls  = witnesses.map (ms => `${ms.corresp}/${ms.url}`);
             const titles = witnesses.map (ms => ms.title);
             const out_table = {
                 'class' : '',
@@ -197,16 +198,16 @@ export default {
             let  master_text = null;
 
             // ouput the witnesses in the correct order
-            for (const siglum of order) {
-                const index = sigla.indexOf (siglum);
+            for (const url of order) {
+                const index = urls.indexOf (url);
                 if (index === -1) {
                     continue; // user messed with mss. list but didn't start another collation
                 }
                 const row = {
-                    'siglum' : siglum,
-                    'title'  : titles[index],
-                    'class'  : '',
-                    'cells'  : [],
+                    'url'   : url,
+                    'title' : titles[index],
+                    'class' : '',
+                    'cells' : [],
                 };
                 if (master_text === null) {
                     master_text = table[index];
@@ -234,7 +235,7 @@ export default {
         },
 
         update_tables (witnesses, table) {
-            this.witnesses = witnesses.map (tools.parse_siglum);
+            this.witnesses = witnesses.map (tools.parse_locus_url);
 
             const max_width = 120 - Math.max (... this.witnesses.map (ms => ms.title.length));
 
@@ -258,7 +259,7 @@ export default {
         row_class (row, dummy_index) {
             const cls = [];
             cls.push ('sortable');
-            if (this.hovered === row.siglum) {
+            if (this.hovered === row.url) {
                 cls.push ('highlight-witness');
             }
             return cls;
