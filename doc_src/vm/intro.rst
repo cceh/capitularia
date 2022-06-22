@@ -1,16 +1,9 @@
-==============
- Introduction
-==============
+============
+Introduction
+============
 
-Introduction to the Capitularia Digital Edition.
-
-The project is hosted on its own VM (virtual machine).
-
-
-Capitularia VM
-==============
-
-The :ref:`Capitularia VM <vm>` is a root VM offered by the RRZK.
+The Capitularia VM is a root virtual machine offered by the RRZK.
+It runs debian stable.
 
 The VM hosts an Apache Web Server at https://capitularia.uni-koeln.de which runs
 Wordpress.
@@ -19,7 +12,7 @@ The VM also hosts an :ref:`application server <app-server>` written in Python.
 Next to that it hosts a recent OpenJDK, Saxon and a
 :ref:`customized version of CollateX <custom-collatex>`.
 
-The VM also hosts a :ref:`Postgres database <db>` server for the application
+The VM also hosts a :ref:`Postgres database <database>` server for the application
 server and a mysql database server for Wordpress.
 
 We wrote a Wordpress :ref:`theme <theme>` and many :ref:`plugins <plugins>` to add the

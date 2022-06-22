@@ -18,7 +18,6 @@ Developer Manual
 .. toctree::
    :maxdepth: 3
 
-   intro
    overviews
    vm
    troubleshooting

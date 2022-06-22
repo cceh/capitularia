@@ -39,10 +39,6 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../../intro.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../intro.html#capitularia-vm">Capitularia VM</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../overviews.html">Overviews</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../../overviews/html_generation.html">HTML Generation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../overviews/html_generation.html#xslt-transformations">XSLT Transformations</a></li>
@@ -69,6 +65,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../../vm.html">Capitularia VM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../../apache.html">Apache Web Server</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../wordpress.html">Wordpress Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../database.html">Wordpress Database Structure</a></li>
@@ -367,13 +364,32 @@ The id of the “Obertext”.</p>
 </dd></dl>
 
 <dl class="js function">
-<dt class="sig sig-object js" id="plugins-collation-tools.fix_witness">
-<span id="plugins/collation/tools.fix_witness"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/collation/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">fix_witness</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-collation-tools.fix_witness" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prepare a witness for display, add human-readable title, i18n.</p>
+<dt class="sig sig-object js" id="plugins-collation-tools.build_witness_url">
+<span id="plugins/collation/tools.build_witness_url"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/collation/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">build_witness_url</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-collation-tools.build_witness_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build an URL that represents one witness to be collated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Arguments</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>w</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Object()</span></code></span>) – The witness to fix</p></li>
+<li><p><strong>w</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Object()</span></code></span>) – The witness object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The url</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-collation-tools.fix_witness">
+<span id="plugins/collation/tools.fix_witness"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/collation/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">fix_witness</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-collation-tools.fix_witness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate some attributes for a witness object: a human-readable title, i18n, sort key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>w</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Object()</span></code></span>) – The witness object to fix</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -386,32 +402,13 @@ The id of the “Obertext”.</p>
 </dd></dl>
 
 <dl class="js function">
-<dt class="sig sig-object js" id="plugins-collation-tools.parse_witness_response">
-<span id="plugins/collation/tools.parse_witness_response"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/collation/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">parse_witness_response</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-collation-tools.parse_witness_response" title="Permalink to this definition">¶</a></dt>
-<dd><p>Parse API server response into witness object</p>
+<dt class="sig sig-object js" id="plugins-collation-tools.parse_locus_url">
+<span id="plugins/collation/tools.parse_locus_url"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/collation/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">parse_locus_url</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-collation-tools.parse_locus_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a locus url into a witness object similar to one returned by the data server. Currently used only to calculate the title length in the results table.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Arguments</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>r</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Object()</span></code></span>) – The server response</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The witness struct</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Object</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="js function">
-<dt class="sig sig-object js" id="plugins-collation-tools.parse_siglum">
-<span id="plugins/collation/tools.parse_siglum"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/collation/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">parse_siglum</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">siglum</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-collation-tools.parse_siglum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Parse witness siglum into witness object Currently used only to calculate the title length in the results table.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Arguments</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>siglum</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The witness siglum</p></li>
+<li><p><strong>url</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The witness url</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -426,7 +423,7 @@ The id of the “Obertext”.</p>
 <dl class="js function">
 <dt class="sig sig-object js" id="plugins-collation-tools.unroll_witnesses">
 <span id="plugins/collation/tools.unroll_witnesses"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/collation/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">unroll_witnesses</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rolled</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-collation-tools.unroll_witnesses" title="Permalink to this definition">¶</a></dt>
-<dd><p>Unroll collate struct</p>
+<dd><p>Unroll collate struct Unrolls the witness list before sending it to the collation server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Arguments</dt>
 <dd class="field-odd"><ul class="simple">

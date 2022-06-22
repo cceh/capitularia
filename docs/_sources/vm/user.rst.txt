@@ -41,6 +41,16 @@ Group ``capitularia-editors``
 User ``www-data``
    The web server. Must have read access to :file:`cap/publ/`.
 
+Directory :file:`cap/publ/`
+   All editors have read/write access through group ``capitularia-editors``.
+
+Directory :file:`cap/intern/`
+   All editors have read/write access through group ``capitularia-editors``.
+
+Directory :file:`cap/intern/InArbeit/<editor>`
+   Semi-private directories owned by the the editor.
+   All editors have read/write access to all these directories
+   through group ``capitularia-editors``.
 
 Groups for user:
 
@@ -51,35 +61,36 @@ capitularia capitularia, capitularia-editors
 <editor>    <editor>, capitularia-editors
 =========== ================================
 
-File permissions for users:
+ACL permissions for users:
 
-=========== ======== ========== ============================
-User        cap/publ cap/intern cap/intern/InArbeit/<editor>
-=========== ======== ========== ============================
-capitularia rwx      rwx        rwx
-<editor>                        rwx
-www-data    r-x
-=========== ======== ========== ============================
+==================== ======== ========== ============================
+User                 cap/publ cap/intern cap/intern/InArbeit/<editor>
+==================== ======== ========== ============================
+capitularia          rwx      rwx        rwx
+www-data             r-x
+==================== ======== ========== ============================
 
-File permissions for groups:
+ACL permissions for groups:
 
 ==================== ======== ========== ============================
 Group                cap/publ cap/intern cap/intern/InArbeit/<editor>
 ==================== ======== ========== ============================
-capitularia-editors  rwx      rwx        r-x
+capitularia          rwx      rwx        rwx
+capitularia-editors  rwx      rwx        rwx
 ==================== ======== ========== ============================
 
-Most permissions are set through ACLs.  To see ACLs:
+To see ACLs for the current directory, say:
 
 .. code:: bash
 
    getfacl .
 
-Example of how to set ACLs:
+An example of how to set ACLs:
 
 .. code:: bash
 
    setfacl -R -m u:www-data:rX,g:capitularia-editors:rwX,o::- <dir>
+
 
 Adding a New User
 -----------------
