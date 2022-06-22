@@ -80,7 +80,11 @@ function init_dynamic_menues () {
         let cap_level = 1;
         for (const xpath of xpathes.split ('§')) {
             const snapshot = document.evaluate (
-                xpath, document.body, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null
+                xpath,
+                document.body,
+                null,
+                XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                null
             );
             for (let i = 0; i < snapshot.snapshotLength; ++i) {
                 const n = snapshot.snapshotItem (i);

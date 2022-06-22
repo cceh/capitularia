@@ -5,19 +5,19 @@
       :ref="set_selector_ref" :key="index" :config="section" />
 
     <div class="row mt-4 no-print">
-      <div class="col-md-6">
+      <div class="col-md-6 hstack gap-2">
         <button type="button" class="btn btn-secondary"
                 data-bs-toggle="tooltip" data-bs-placement="bottom" :title="$t ('Add Section')"
                 @click="on_add_section">
           <i class="plus fas" />
         </button>
 
-        <label class="btn btn-secondary ms-2 mb-0">
+        <label class="btn btn-secondary ms-auto">
           {{ $t ('Load Configuration') }}
           <input id="load-config" type="file" @change="on_load_config">
         </label>
 
-        <button type="button" class="btn btn-secondary ms-2"
+        <button type="button" class="btn btn-secondary"
                 @click="on_save_config">
           {{ $t ('Save Configuration') }}
           <a id="save-config-a" href="" download="saved-config.txt" />
@@ -54,7 +54,7 @@
 
 /** @module plugins/collation/front */
 
-import { pick } from 'lodash-es';
+import { pick } from 'lodash';
 
 import Selector from './selector.vue';
 import Results  from './results.vue';
@@ -66,6 +66,7 @@ import * as tools from './tools.js';
  * @class module:plugins/collation/front.App
  */
 export default {
+    'name'       : 'capCollationMain',
     'components' : {
         'cap-collation-selector' : Selector,
         'cap-collation-results'  : Results,

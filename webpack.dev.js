@@ -30,9 +30,6 @@ module.exports = merge (common, {
             },
         ],
     },
-    'watchOptions' : {
-        'ignored' : 'node_modules/**',
-    },
     'devServer' : {
         'host'       : devHost,
         'port'       : devPort,
@@ -53,7 +50,7 @@ module.exports = merge (common, {
 
         // Watch for changes to PHP files and reload the page when one changes.
         // See: https://mikeselander.com/hot-reloading-using-webpack-with-php-file-changes/
-        onBeforeSetupMiddleware (server) {
+        setupMiddlewares (middlewares, devServer) {
             chokidar
                 .watch (['themes/**/*.php', 'plugins/*/*.php'], {
                     'alwaysStat'     : true,
@@ -64,8 +61,9 @@ module.exports = merge (common, {
                     'usePolling'     : true,
                 })
                 .on ('all', () => {
-                    server.sockWrite (server.sockets, 'content-changed');
+                    devServer.sockWrite (server.sockets, 'content-changed');
                 });
+            return middlewares;
         },
     },
 });

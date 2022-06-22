@@ -1,6 +1,7 @@
 const glob = require ('glob');
 const path = require ('path');
 
+const webpack                   = require ('webpack');
 const HtmlWebpackPlugin         = require ('html-webpack-plugin');
 const { WebpackManifestPlugin } = require ('webpack-manifest-plugin');
 const { VueLoaderPlugin }       = require ('vue-loader');               // loads vue single-file components
@@ -129,10 +130,14 @@ module.exports = {
             'writeToFileEmit' : true,
         }),
         new VueLoaderPlugin (),
+        new webpack.DefinePlugin ({
+            __VUE_OPTIONS_API__ : true,
+            __VUE_PROD_DEVTOOLS__ : false,
+        })
     ],
     'resolve' : {
-        'modules' : [
-            'node_modules',
-        ],
+        'alias' : {
+            'lodash': 'lodash-es',
+        },
     },
 };
