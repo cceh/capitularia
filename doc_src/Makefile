@@ -51,8 +51,8 @@ clean:
 .PHONY: html
 html:
 	$(SPHINXBUILD) -T -b html $(ALLSPHINXOPTS) $(BUILDDIR) # -a -E
-	cp _config.yml $(BUILDDIR)/
-	cp _images/* $(BUILDDIR)/_images/
+	-cp _config.yml $(BUILDDIR)/
+	-cp _images/* $(BUILDDIR)/_images/
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)."
 
