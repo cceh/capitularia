@@ -6,7 +6,7 @@ const common = require ('./webpack.common.js');
 
 module.exports = merge (common, {
     'mode'    : 'production',
-    'devtool' : 'source-map', // but see: https://github.com/webpack/webpack-sources/issues/55
+    'devtool' : 'eval-source-map', // 'source-map', // but see: https://github.com/webpack/webpack-sources/issues/55
     'output'  : {
         'publicPath' : '/wp-content/dist/',
     },
