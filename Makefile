@@ -9,12 +9,12 @@ clean:
 	find . -name '*~' -type f -delete
 	rm -rf dist/*
 
-deploy: clean deploy_php geodata-client
+deploy: clean geodata-client deploy_php
 
 deploy_php: lint mo js
 	$(RSYNC) themes  $(WPCONTENT)
 	$(RSYNC) plugins $(WPCONTENT)
-	$(RSYNC) --delete --exclude "api.conf.js" dist    $(WPCONTENT)
+	$(RSYNC) --delete --exclude "api.conf.js" dist $(WPCONTENT)
 
 deploy_xslt: make_dependencies
 	$(RSYNC) xslt/*.xsl xslt/*.inc xslt/Makefile $(HOST_XSLT)/

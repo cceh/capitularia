@@ -16,10 +16,16 @@ helps avoiding ugly label placement when a label is near a metatile border.
 import math
 import os.path
 
+import cairo
 from flask import abort, current_app, make_response, Blueprint
 from cachelib import SimpleCache
 import mapnik
-import cairo
+from pyproj import Transformer
+"""Using pyproj instead of the projecting functions in mapnik because the current (2022-07)
+available version of python-mapnik is not compatible with proj6. Error is:
+
+  RuntimeError: projection::forward not supported without proj4 support (-DMAPNIK_USE_PROJ4)
+"""
 
 import common
 
@@ -70,7 +76,9 @@ TILE_CACHE_TIMEOUT = 3600  # in seconds
 PADDING_SIZE = int(PADDING_FACTOR * TILE_SIZE)
 METATILE_SIZE = (METATILE_FACTOR * TILE_SIZE) + (2 * PADDING_SIZE)
 
-epsg3857 = mapnik.Projection("+init=epsg:3857")  # OpenstreetMap  https://epsg.io/3857
+transformer = Transformer.from_crs("EPSG:4326", "EPSG:3857", always_xy=True)
+
+# epsg3857 = mapnik.Projection("epsg:3857")  # OpenstreetMap  https://epsg.io/3857
 # epsg3857 = mapnik.Projection ("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over")
 # epsg4326 = mapnik.Projection ("+init=epsg:4326") # WGS84 / GPS    https://epsg.io/4326
 
@@ -136,8 +144,10 @@ class Render:
         )
 
         # mapnik bounding box for the tile in lat/lng
+        w, s = transformer.transform(w, s)
+        e, n = transformer.transform(e, n)
         bbox = mapnik.Box2d(w, s, e, n)
-        bbox = bbox.forward(epsg3857)
+        # bbox = bbox.forward(epsg3857)
 
         self.map.zoom_to_box(bbox)
 
