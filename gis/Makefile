@@ -1,5 +1,7 @@
 include ../Variables.mak
 
+IMPORT := cd ../server; python3 -m scripts.import_data -vv -c ./server.conf
+
 GEODATA_SRC_DIR    = ./geodata
 
 GEODATA_CLIENT_DIR = ../dist/geodata
@@ -19,10 +21,6 @@ GEODATA_SERVER_FILES = $(GEODATA_SERVER_DIR)/NE2_HR_LC_SR/NE2_HR_LC_SR.tif \
 				       $(GEODATA_SERVER_DIR)/10m_physical/ne_10m_lakes.shp \
 				       $(GEODATA_SERVER_DIR)/10m_physical/ne_10m_lakes_europe.shp
 
-OGR2OGR = ogr2ogr -t_srs epsg:4326 -nlt MULTIPOLYGON
-#OGRPG   = PG:'host=$(CAPITULARIA_PGHOST) user=$(CAPITULARIA_PGSUPERUSER) dbname=$(CAPITULARIA_PGDATABASE)'
-#SQL     = $(PSQL) $(PGREMOTESUPER)
-OGRPG   = PG:'dbname=$(CAPITULARIA_PGDATABASE)'
 SQL     = $(PSQL) $(PGLOCAL)
 
 $(GEODATA_SERVER_DIR)/%.shp : $(GEODATA_SRC_DIR)/%.shp $(GEODATA_SERVER_DIR)/%.shx $(GEODATA_SERVER_DIR)/%.dbf
@@ -40,17 +38,14 @@ $(GEODATA_SERVER_DIR)/%.tif : $(GEODATA_SRC_DIR)/%.tif
 	cp $< $@
 
 $(GEODATA_CLIENT_DIR)/%.geojson: $(GEODATA_SRC_DIR)/%.geojson
-	mkdir -p $(GEODATA_CLIENT_DIR)
-	LAYER="$(basename $(notdir $<))"; \
-	$(SQL) -c "DELETE FROM geoareas WHERE geo_source = '$$LAYER'"; \
-	$(OGR2OGR) -f PostgreSQL $(OGRPG) -nln "geoareas" -append -sql "SELECT geo_id, '$$LAYER' as geo_source, geo_name, geo_fcode, geo_color, geo_label_x, geo_label_y FROM $$LAYER" $<; \
-	$(OGR2OGR) -f GeoJSON -where "geo_source='$$LAYER'" -preserve_fid -nln "$$LAYER" $@ $(OGRPG) "geoareas"
+	cp $< $@
 
-geodata: geodata-server geodata-client
+geodata: geodata-client geodata-server
 
 geodata-client: $(GEODATA_CLIENT_FILES)
+	$(IMPORT) --geoareas $^
 
-geodata-server: $(GEODATA_SERVER_FILES)
+geodata-server: geodata-client $(GEODATA_SERVER_FILES)
 
 directories:
 	mkdir -p $(GEODATA_SERVER_DIR)/10m_physical \

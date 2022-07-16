@@ -521,6 +521,39 @@ def lookup_published(conn, ajax_endpoint):
     )
 
 
+def import_geoareas(conn, args):
+    """Import a geoareas form geojson files."""
+
+    if args.truncate:
+        execute(conn, "TRUNCATE TABLE gis.geoareas CASCADE", {})
+
+    for fn in args.geoareas:
+        with open(fn, "r") as fp:
+            log(logging.INFO, "Parsing %s ..." % fn)
+            gj = json.load(fp)
+
+        execute(conn, "BEGIN", {})
+
+        params = {"geo_source": gj["name"]}
+        execute(conn, "DELETE FROM gis.geoareas WHERE geo_source = :geo_source", params)
+
+        for feature in gj["features"]:
+            params = feature["properties"]
+            params["geo_source"] = gj["name"]
+            params["geom"] = json.dumps(feature["geometry"])
+
+            execute(
+                conn,
+                """
+                INSERT INTO gis.geoareas (geo_id, geo_source, geo_name, geo_fcode, geo_color, geo_label_x, geo_label_y, geom)
+                VALUES (:geo_id, :geo_source, :geo_name, :geo_fcode, :geo_color, :geo_label_x, :geo_label_y, ST_GeomFromGeoJSON(:geom))
+                """,
+                params,
+            )
+
+        execute(conn, "COMMIT", {})
+
+
 def import_geoplaces(conn, args):
     """Import a geoplaces.xml file."""
 
@@ -958,6 +991,9 @@ def build_parser(default_config_file):
         "--fulltext", nargs="*", help="import per-chapter extracted fulltext from files"
     )
     parser.add_argument(
+        "--geoareas", nargs="+", help="import geoareas from geojson file"
+    )
+    parser.add_argument(
         "--publish",
         action="store_true",
         help="get the publish status from Wordpress Ajax API",
@@ -1033,6 +1069,11 @@ if __name__ == "__main__":
                 log(logging.INFO, "Parsing %s ..." % fn)
                 process_cap(conn, fn)
                 execute(conn, "COMMIT", {})
+
+    if args.geoareas:
+        log(logging.INFO, "Importing geoareas ...")
+        with dba.engine.begin() as conn:
+            import_geoareas(conn, args)
 
     if args.geoplaces:
         log(logging.INFO, "Importing geoplaces XML ...")
