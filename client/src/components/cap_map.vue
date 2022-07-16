@@ -29,9 +29,9 @@ import 'leaflet/dist/leaflet.css';
 
 const colorScale = d3.scaleOrdinal (d3.schemeSet2);
 
-function wrap (text, width) {
+function wrap (elems, width) {
     // Credit: adapted from https://bl.ocks.org/mbostock/7555321
-    text.each (function () {
+    elems.each (function () {
         let text = d3.select (this);
         let words = text.text ().split (/\s+/).reverse ();
         let word;
@@ -173,29 +173,31 @@ L.D3_geoJSON = L.GeoJSON.extend ({
 L.Layer_Areas = L.D3_geoJSON.extend ({
     onAdd (map) {
         L.D3_geoJSON.prototype.onAdd.call (this, map);
-
-        this.g_areas  = this.g.append ('g').classed ('areas',  true);
-        this.g_labels = this.g.append ('g').classed ('labels', true);
-
         this.load_data ();
     },
     d3_update (geojson) {
         const that = this;
         const vm = this.options.vm;
 
-        // areas
-        let g = that.g_areas.selectAll ('path').data (
-            geojson.features,
+        const t = d3.transition ()
+            .duration (500)
+            .ease (d3.easeLinear);
+
+        const g = this.g.selectAll ('g').data (
+            geojson.features.filter (d => d.properties.geo_label_y !== null),
             function (d) {
                 const p = d.properties;
                 return p.geo_source + '-' + p.geo_id;
             }
         );
 
-        g.exit ().remove ();
+        g.exit ().transition (t).style ('opacity', 0).remove ();
 
-        let entered = g.enter ()
-            .append ('path')
+        const entered = g.enter ()
+            .append ('g')
+            .attr ('class', 'area');
+
+        entered.append ('path')
             .on ('mouseup', function (event, d) {
                 if (that.is_dragging (event)) {
                     return;
@@ -203,7 +205,16 @@ L.Layer_Areas = L.D3_geoJSON.extend ({
                 vm.$trigger ('mss-tooltip-open', d);
             });
 
-        entered.merge (g)
+        entered.append ('text')
+            .classed ('caption', true);
+
+        entered.style ('opacity', 0)
+            .transition (t)
+            .style ('opacity', 1);
+
+        const merged = entered.merge (g);
+
+        merged.selectAll ('path')
             .attr ('d', that.transform_path)
             .attr ('data-fcode', d => d.properties.geo_fcode)
             .style ('fill', d => {
@@ -214,21 +225,7 @@ L.Layer_Areas = L.D3_geoJSON.extend ({
                 return fill;
             });
 
-        // labels
-        g = that.g_labels.selectAll ('text').data (
-            geojson.features.filter (d => d.properties.geo_label_y !== null),
-            function (d) {
-                const p = d.properties;
-                return p.geo_source + '-' + p.geo_id;
-            }
-        );
-
-        g.exit ().remove ();
-
-        g.enter ()
-            .append ('text')
-            .classed ('caption', true)
-            .merge (g)
+        merged.selectAll ('text')
             .text (d => d.properties.geo_name)
             .call (wrap, 150)
             .attr ('data-fcode', d => d.properties.geo_fcode)
@@ -266,8 +263,11 @@ L.Layer_Places = L.D3_geoJSON.extend ({
 
         const entered = g.enter ()
             .append ('g')
-            .attr ('class', 'place')
-            .style ('opacity', 0);
+            .attr ('class', 'place');
+
+        entered.style ('opacity', 0)
+            .transition (t)
+            .style ('opacity', 1);
 
         entered.append ('circle')
             .attr ('class', 'count')
@@ -296,12 +296,10 @@ L.Layer_Places = L.D3_geoJSON.extend ({
             const point = this.map.latLngToLayerPoint (new L.LatLng (y, x));
             return `translate(${point.x},${point.y})`;
         }).each (function (d) {
-            const g = d3.select (this);
-            g.selectAll ('circle.count').transition (t).attr ('r', 10 * Math.sqrt (d.properties.count));
-            g.selectAll ('text.count').text (d.properties.count);
+            const gr = d3.select (this);
+            gr.selectAll ('circle.count').transition (t).attr ('r', 10 * Math.sqrt (d.properties.count));
+            gr.selectAll ('text.count').text (d.properties.count);
         });
-
-        entered.transition (t).style ('opacity', 1);
     },
 });
 
@@ -523,32 +521,24 @@ svg {
         overflow: visible;
         pointer-events: none;
 
+        text {
+            pointer-events: none;
+            dominant-baseline: middle;
+            text-anchor: middle;
+        }
+
         &.areas {
             z-index: 200;
-        }
-
-        &.places {
-            z-index: 400;
-        }
-
-        path {
-            stroke-width: 1px;
-        }
-
-        g.areas {
-            opacity: 0.5;
             path {
                 cursor: pointer;
                 pointer-events: all;
                 stroke-width: 2px;
                 stroke: $country-color;
+                opacity: 0.5;
                 &:hover {
                     fill: $country-color;
                 }
             }
-        }
-
-        g.labels {
             text {
                 font: bold 16px sans-serif;
                 text-align: center;
@@ -557,40 +547,42 @@ svg {
             }
         }
 
-        circle.count {
-            stroke: white;
-            stroke-width: 1.5px;
-            fill-opacity: 0.5;
-            pointer-events: all;
-            cursor: pointer;
-
-            fill: $place-color;
-            &[data-fcode^="PCL"] {
-                fill: $country-color;
-            };
-            &[data-fcode^="ADM"] {
-                fill: $region-color;
-            };
-            &:hover {
-                fill-opacity: .7;
-            };
-        }
-
-        text {
-            pointer-events: none;
-            dominant-baseline: middle;
-            text-anchor: middle;
-            &.count {
-                font: bold 16px sans-serif;
-                fill: black;
-                text-shadow: 1px 1px 0 white, 1px -1px 0 white, -1px 1px 0 white, -1px -1px 0 white;
+        &.places {
+            z-index: 400;
+            path {
+                stroke-width: 1px;
             }
-            &.name {
-                x: 0;
-                y: 24px;
-                font: bold 12px sans-serif;
-                fill: black;
-                text-shadow: 1px 1px 0 white, 1px -1px 0 white, -1px 1px 0 white, -1px -1px 0 white;
+            circle.count {
+                stroke: white;
+                stroke-width: 1.5px;
+                fill-opacity: 0.5;
+                pointer-events: all;
+                cursor: pointer;
+
+                fill: $place-color;
+                &[data-fcode^="PCL"] {
+                    fill: $country-color;
+                };
+                &[data-fcode^="ADM"] {
+                    fill: $region-color;
+                };
+                &:hover {
+                    fill-opacity: .7;
+                };
+            }
+            text {
+                &.count {
+                    font: bold 16px sans-serif;
+                    fill: black;
+                    text-shadow: 1px 1px 0 white, 1px -1px 0 white, -1px 1px 0 white, -1px -1px 0 white;
+                }
+                &.name {
+                    x: 0;
+                    y: 24px;
+                    font: bold 12px sans-serif;
+                    fill: black;
+                    text-shadow: 1px 1px 0 white, 1px -1px 0 white, -1px 1px 0 white, -1px -1px 0 white;
+                }
             }
         }
     }

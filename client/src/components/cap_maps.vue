@@ -77,7 +77,7 @@ import { mapGetters } from 'vuex';
 
 import _              from 'lodash';
 
-import map            from './map.vue';
+import map            from './cap_map.vue';
 import map_popup      from './map_popup.vue';
 import toolbar        from './widgets/toolbar.vue';
 import layer_selector from './widgets/layer_selector.vue';

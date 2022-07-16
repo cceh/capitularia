@@ -106,6 +106,8 @@ module.exports = {
 
         'object-curly-newline' : ['error', { 'consistent' : true }],
 
+        'no-cond-assign' : 'off',
+
         'vue/max-attributes-per-line' : ['error', {
             'singleline' : 4,
             'multiline'  : 4,

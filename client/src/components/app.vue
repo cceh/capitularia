@@ -16,7 +16,7 @@ import { createStore } from 'vuex';
 import _        from 'lodash';
 import { json } from 'd3';
 
-import maps     from './maps.vue';
+import maps     from './cap_maps.vue';
 
 const routes = [
     { 'path' : '/client/maps', 'component' : maps },
