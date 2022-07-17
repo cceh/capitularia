@@ -3,7 +3,7 @@
      @dragstart="on_dragstart">
   <div class="d-flex justify-content-between">
     <slot />
-    <div>
+    <div class="d-flex ms-3">
       <template v-if="slidable">
         <button type="button" class="btn btn-sm" aria-label="Minimize" @click="minimize">
           <span class="fas fa-window-minimize"></span>

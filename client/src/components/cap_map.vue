@@ -122,10 +122,6 @@ L.D3_geoJSON = L.GeoJSON.extend ({
         const that = this;
         if (this.url) {
             d3.json (this.url).then (function (json) {
-                for (const f of json.features) {
-                    f.properties.geo_source = json.name;
-                    f.properties.key = json.name + '-' + f.properties.geo_id;
-                }
                 that.addData (json);
             });
         } else {
@@ -182,6 +178,11 @@ L.Layer_Areas = L.D3_geoJSON.extend ({
     d3_update (geojson) {
         const that = this;
         const vm = this.options.vm;
+
+        for (const f of geojson.features) {
+            f.properties.geo_source = geojson.name;
+            f.properties.key = geojson.name + '-' + f.properties.geo_id;
+        }
 
         const t = d3.transition ()
             .duration (500)

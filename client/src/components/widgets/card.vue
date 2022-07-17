@@ -127,8 +127,8 @@ export default {
             const vm = this;
 
             // get the offset of the mouse pointer into the dragged card
-            // (popperjs uses 'transform: translate' to position the element)
-            const m = [... this.$el.style.transform.matchAll (/(-?\d+)px/g)];
+            // (popperjs uses 'transform: translate3d' to position the element)
+            const m = [... this.$el.style.transform.matchAll (/(-?[0-9.]+)px/g)];
             let left = 0,
                 top = 0;
             if (m.length) {
@@ -146,7 +146,7 @@ export default {
 
         move (event, data) {
             const style = this.$el.style;
-            style.transform = `translate(${event.clientX - data.x}px, ${event.clientY - data.y}px)`;
+            style.transform = `translate3d(${event.clientX - data.x}px, ${event.clientY - data.y}px, 0px)`;
             // console.log (style.transform);
         },
 
