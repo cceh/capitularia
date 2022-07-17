@@ -87,7 +87,7 @@ mysql-local:
 	$(MYSQL_LOCAL)
 
 .PHONY: server
-server: geodata-server
+server:
 	export PYTHONPATH=$(ROOT)/server; \
 	python3 -m server.server -vvv
 

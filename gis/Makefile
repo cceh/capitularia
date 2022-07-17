@@ -38,6 +38,7 @@ $(GEODATA_SERVER_DIR)/%.tif : $(GEODATA_SRC_DIR)/%.tif
 	cp $< $@
 
 $(GEODATA_CLIENT_DIR)/%.geojson: $(GEODATA_SRC_DIR)/%.geojson
+	mkdir -p $(GEODATA_CLIENT_DIR)
 	cp $< $@
 
 geodata: geodata-client geodata-server

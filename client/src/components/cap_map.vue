@@ -122,6 +122,10 @@ L.D3_geoJSON = L.GeoJSON.extend ({
         const that = this;
         if (this.url) {
             d3.json (this.url).then (function (json) {
+                for (const f of json.features) {
+                    f.properties.geo_source = json.name;
+                    f.properties.key = json.name + '-' + f.properties.geo_id;
+                }
                 that.addData (json);
             });
         } else {
@@ -184,11 +188,8 @@ L.Layer_Areas = L.D3_geoJSON.extend ({
             .ease (d3.easeLinear);
 
         const g = this.g.selectAll ('g').data (
-            geojson.features.filter (d => d.properties.geo_label_y !== null),
-            function (d) {
-                const p = d.properties;
-                return p.geo_source + '-' + p.geo_id;
-            }
+            geojson.features,
+            d => d.properties.key
         );
 
         g.exit ().transition (t).style ('opacity', 0).remove ();
@@ -205,7 +206,8 @@ L.Layer_Areas = L.D3_geoJSON.extend ({
                 vm.$trigger ('mss-tooltip-open', d);
             });
 
-        entered.append ('text')
+        entered.filter(d => d.properties.geo_label_y !== null)
+            .append ('text')
             .classed ('caption', true);
 
         entered.style ('opacity', 0)
@@ -253,10 +255,7 @@ L.Layer_Places = L.D3_geoJSON.extend ({
 
         const g = this.g.selectAll ('g').data (
             geojson.features.filter (d => d.geometry !== null && d.geometry.coordinates !== null),
-            function (d) {
-                const p = d.properties;
-                return p.geo_source + '-' + p.geo_id;
-            }
+            d => d.properties.key
         );
 
         g.exit ().transition (t).style ('opacity', 0).remove ();
