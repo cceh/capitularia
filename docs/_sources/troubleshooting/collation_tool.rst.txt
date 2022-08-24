@@ -17,7 +17,7 @@ Warning: Takes a long time to run.
 
 .. code:: shell
 
-   ssh capitularia@ntg.cceh.uni-koeln.de
+   ssh capitularia@capitularia.uni-koeln.de
 
 .. code:: shell
 

@@ -20,6 +20,7 @@ Developer Manual
 
    overviews
    vm
+   maintenance
    troubleshooting
 
 

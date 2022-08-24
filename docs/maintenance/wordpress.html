@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Troubleshooting the Collation Tool &mdash; Capitularia 0.2.1 documentation</title>
+  <title>Wordpress Maintenance &mdash; Capitularia 0.2.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
@@ -19,7 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Troubleshooting" href="../troubleshooting.html" /> 
+    <link rel="next" title="Troubleshooting" href="../troubleshooting.html" />
+    <link rel="prev" title="Maintenance" href="../maintenance.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -99,16 +100,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../vm/backup.html">TSM Backup</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../maintenance.html">Maintenance</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../maintenance/wordpress.html">Wordpress Maintenance</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../maintenance/wordpress.html#wordpress-upgrades">Wordpress Upgrades</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../maintenance.html">Maintenance</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Wordpress Maintenance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wordpress-upgrades">Wordpress Upgrades</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Troubleshooting the Collation Tool</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
 </ul>
 </li>
 </ul>
@@ -129,10 +130,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../troubleshooting.html">Troubleshooting</a> &raquo;</li>
-      <li>Troubleshooting the Collation Tool</li>
+          <li><a href="../maintenance.html">Maintenance</a> &raquo;</li>
+      <li>Wordpress Maintenance</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/troubleshooting/collation_tool.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/maintenance/wordpress.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -140,22 +141,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="troubleshooting-the-collation-tool">
-<span id="collation-tool-troubleshooting"></span><h1>Troubleshooting the Collation Tool<a class="headerlink" href="#troubleshooting-the-collation-tool" title="Permalink to this headline">¶</a></h1>
-<section id="manuscripts-do-not-show-up">
-<h2>Manuscripts do not show up<a class="headerlink" href="#manuscripts-do-not-show-up" title="Permalink to this headline">¶</a></h2>
-<p>Manuscripts that contain a certain chapter do not show up in the collation tool
-when that chapter is selected.</p>
-<p>This command rebuilds all intermediate files and re-imports them into the
-database.  (But will not clear surplus entries in the database.)</p>
-<p>Warning: Takes a long time to run.</p>
+  <section id="wordpress-maintenance">
+<span id="maintenance-wordpress"></span><h1>Wordpress Maintenance<a class="headerlink" href="#wordpress-maintenance" title="Permalink to this headline">¶</a></h1>
+<section id="wordpress-upgrades">
+<h2>Wordpress Upgrades<a class="headerlink" href="#wordpress-upgrades" title="Permalink to this headline">¶</a></h2>
+<p>We use the <a class="reference external" href="https://wp-cli.org/">Wordpress cli tool</a> to upgrade Wordpress.</p>
+<p>N.B.: There already is a nightly <a class="reference internal" href="../vm/backup.html#backup"><span class="std std-ref">database backup</span></a> running.</p>
+<p>Login:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ssh capitularia@capitularia.uni-koeln.de
+<span class="nb">cd</span> /var/www/capitularia.uni-koeln.de
+./wp <span class="nb">help</span>
 </pre></div>
 </div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/prj/capitularia/capitularia/xslt
-solo -port<span class="o">=</span><span class="m">6666</span> make -B -k -r -j <span class="m">4</span> corpus fulltext scrape_fulltext
+<p>Upgrade the cli tool:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./wp cli update
 </pre></div>
 </div>
+<p>Upgrade Wordpress:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>./wp core update
+./wp theme update --all
+./wp plugin update --all
+</pre></div>
+</div>
+<section id="qtranslate-xt">
+<h3>qtranslate-xt<a class="headerlink" href="#qtranslate-xt" title="Permalink to this headline">¶</a></h3>
+<p>The plugin <a class="reference external" href="https://github.com/qtranslate/qtranslate-xt">qtranslate-xt</a> needs manual
+update:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /var/www/capitularia.uni-koeln.de/wp-content/plugins/
+wget https://github.com/qtranslate/qtranslate-xt/archive/3.6.2.zip
+unzip <span class="m">3</span>.6.2.zip
+rm <span class="m">3</span>.6.2.zip
+</pre></div>
+</div>
+<p>Replace “3.6.2” with the latest version.</p>
+<p>Then go to the <a class="reference external" href="https://capitularia.uni-koeln.de/wp-admin/">Wordpress admin page</a> and
+then to <span class="menuselection">Plugins ‣ Installed Plugins</span>, deactivate the old version and
+activate the new version of the plugin.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://github.com/cceh/capitularia/issues/62">https://github.com/cceh/capitularia/issues/62</a></p>
+</div>
+</section>
 </section>
 </section>
 
@@ -163,7 +189,8 @@ solo -port<span class="o">=</span><span class="m">6666</span> make -B -k -r -j <
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../troubleshooting.html" class="btn btn-neutral float-left" title="Troubleshooting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../maintenance.html" class="btn btn-neutral float-left" title="Maintenance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

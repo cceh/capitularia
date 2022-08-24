@@ -101,6 +101,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../vm/backup.html">TSM Backup</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../maintenance.html">Maintenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../maintenance/wordpress.html">Wordpress Maintenance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/wordpress.html#wordpress-upgrades">Wordpress Upgrades</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
@@ -164,7 +171,7 @@ link chapters to import--><path d="M362.64,298.01 C335.11,315.84 300.6,338.18 27
 link import to db--><path d="M236,404.13 C236,419.61 236,440.63 236,458.44 " fill="none" id="import-&gt;db" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="236,463.86,240,454.86,236,458.86,232,454.86,236,463.86" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[16b2f23e595c1c5de587a32b661386ae]
 link cron to make--><path d="M111.56,153 C121.55,153 131.55,153 141.54,153 " fill="none" id="cron-&gt;make" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="146.76,153,137.76,149,141.76,153,137.76,157,146.76,153" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[42211ccb8b439fe830e993a3999a0d06]
 link make to saxon--><path d="M243.1,153 C253.11,153 263.11,153 273.12,153 " fill="none" id="make-&gt;saxon" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="278.35,153,269.35,149,273.35,153,269.35,157,278.35,153" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[e731f16ea0a8d8bacc8eebde1022f2e9]
-link make to import--><path d="M158.66,176.1 C138.78,190.43 116.02,211.06 105,236 C93.87,261.21 91.65,273.89 105,298 C120.91,326.73 151.56,346.74 179.22,359.79 " fill="none" id="make-&gt;import" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="183.98,361.99,177.4787,354.5918,179.4385,359.8983,174.132,361.8582,183.98,361.99" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[daf1d9c34fbe7f8beb67f8315a7afb8b]
+link make to import--><path d="M158.66,176.1 C138.78,190.43 116.02,211.06 105,236 C93.87,261.21 91.65,273.89 105,298 C120.91,326.73 151.56,346.74 179.22,359.79 " fill="none" id="make-&gt;import" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="183.98,361.99,177.4787,354.5918,179.4385,359.8983,174.132,361.8582,183.98,361.99" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[055e9a5a38651af8772ccbfb7be791de]
 @startuml
 
    skinparam backgroundColor transparent
@@ -203,7 +210,7 @@ PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 17.0.3+7-Debian-1
+Java Version: 18.0.2-ea+9-Debian-2
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en
@@ -239,7 +246,7 @@ entity client--><rect fill="#FEFECE" filter="url(#fymh7yceef3at)" height="62.593
 link db to api--><path d="M93,121.1 C93,137.65 93,158.29 93,175.67 " fill="none" id="db-&gt;api" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="93,180.95,97,171.95,93,175.95,89,171.95,93,180.95" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8bbc512d03c057d4411096abd71c9ff2]
 link api to client--><path d="M93,244.03 C93,260.66 93,281.32 93,298.7 " fill="none" id="api-&gt;client" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="93,303.98,97,294.98,93,298.98,89,294.98,93,303.98" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[5044fd0ed8a343a6b052e3d200e8e14b]
 reverse link api to cx--><path d="M152.81,235.67 C162.82,236.62 172.84,236.09 182.86,234.1 " fill="none" id="api&lt;-cx" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="147.57,235.03,156.0241,240.0825,152.5338,235.6308,156.9854,232.1404,147.57,235.03" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[3fea2d4c4febec761046b87d6bc08f42]
-link api to cx--><path d="M147.57,189.97 C157.68,188.49 167.79,188.51 177.9,190.03 " fill="none" id="api-&gt;cx" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="182.86,190.9,174.6812,185.4131,177.9344,190.0409,173.3066,193.2941,182.86,190.9" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8749558a68c7e49533b555664bdf90f5]
+link api to cx--><path d="M147.57,189.97 C157.68,188.49 167.79,188.51 177.9,190.03 " fill="none" id="api-&gt;cx" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="182.86,190.9,174.6812,185.4131,177.9344,190.0409,173.3066,193.2941,182.86,190.9" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[e990136976512f0fc6b6e8f0519dd100]
 @startuml
 
    skinparam backgroundColor transparent
@@ -268,7 +275,7 @@ PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 17.0.3+7-Debian-1
+Java Version: 18.0.2-ea+9-Debian-2
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en

@@ -100,6 +100,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../../backup.html">TSM Backup</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../maintenance.html">Maintenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../maintenance/wordpress.html">Wordpress Maintenance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../maintenance/wordpress.html#wordpress-upgrades">Wordpress Upgrades</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
@@ -185,75 +192,75 @@ socket.  The HMR code in your app then tries to reload the changed modules
 preserving application state.  If it fails to do so it will fallback on
 reloading the whole page (and will lose application state).</p>
 <p>Example webpack config:</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">{</span> <span class="nx">merge</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span><span class="s1">&#39;webpack-merge&#39;</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">chokidar</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span><span class="s1">&#39;chokidar&#39;</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">common</span> <span class="o">=</span> <span class="nx">require</span> <span class="p">(</span><span class="s1">&#39;./webpack.common.js&#39;</span><span class="p">);</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">merge</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;webpack-merge&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">chokidar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;chokidar&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">common</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;./webpack.common.js&#39;</span><span class="p">);</span><span class="w"></span>
 
-<span class="kd">const</span> <span class="nx">host</span>    <span class="o">=</span> <span class="s1">&#39;capitularia.fritz.box&#39;</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">devHost</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">devPort</span> <span class="o">=</span> <span class="mf">8081</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">host</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;capitularia.fritz.box&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">devHost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">devPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8081</span><span class="p">;</span><span class="w"></span>
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">merge</span> <span class="p">(</span><span class="nx">common</span><span class="p">,</span> <span class="p">{</span>
-    <span class="s1">&#39;mode&#39;</span>    <span class="o">:</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;devtool&#39;</span> <span class="o">:</span> <span class="s1">&#39;eval-source-map&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;output&#39;</span>  <span class="o">:</span> <span class="p">{</span>
-        <span class="s1">&#39;publicPath&#39;</span> <span class="o">:</span> <span class="sb">`http://</span><span class="si">${</span><span class="nx">devHost</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">devPort</span><span class="si">}</span><span class="sb">/`</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;module&#39;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s1">&#39;rules&#39;</span> <span class="o">:</span> <span class="p">[</span>
-            <span class="p">{</span>
-                <span class="s1">&#39;test&#39;</span> <span class="o">:</span> <span class="sr">/\.s?css$/</span><span class="p">,</span>
-                <span class="s1">&#39;use&#39;</span>  <span class="o">:</span> <span class="p">[</span>
-                    <span class="s1">&#39;style-loader&#39;</span><span class="p">,</span>
-                    <span class="p">{</span>
-                        <span class="s1">&#39;loader&#39;</span>  <span class="o">:</span> <span class="s1">&#39;css-loader&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;options&#39;</span> <span class="o">:</span> <span class="p">{</span>
-                            <span class="s1">&#39;importLoaders&#39;</span> <span class="o">:</span> <span class="mf">2</span><span class="p">,</span>
-                        <span class="p">},</span>
-                    <span class="p">},</span>
-                    <span class="s1">&#39;postcss-loader&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;sass-loader&#39;</span><span class="p">,</span>
-                <span class="p">],</span>
-            <span class="p">},</span>
-        <span class="p">],</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;devServer&#39;</span> <span class="o">:</span> <span class="p">{</span>
-        <span class="s1">&#39;host&#39;</span>       <span class="o">:</span> <span class="nx">devHost</span><span class="p">,</span>
-        <span class="s1">&#39;port&#39;</span>       <span class="o">:</span> <span class="nx">devPort</span><span class="p">,</span>
-        <span class="c1">// Enable hot module reloading (HMR).</span>
-        <span class="s1">&#39;hot&#39;</span>        <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s1">&#39;liveReload&#39;</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-        <span class="s1">&#39;static&#39;</span>     <span class="o">:</span> <span class="p">{</span>
-            <span class="s1">&#39;directory&#39;</span> <span class="o">:</span> <span class="s1">&#39;./dist&#39;</span><span class="p">,</span>
-        <span class="p">},</span>
-        <span class="s1">&#39;devMiddleware&#39;</span> <span class="o">:</span> <span class="p">{</span>
-            <span class="c1">// write images because we still load them the traditional way</span>
-            <span class="s1">&#39;writeToDisk&#39;</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="p">},</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">merge</span><span class="w"> </span><span class="p">(</span><span class="nx">common</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;mode&#39;</span><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;development&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;devtool&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;eval-source-map&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;output&#39;</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="s1">&#39;publicPath&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="sb">`http://</span><span class="si">${</span><span class="nx">devHost</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">devPort</span><span class="si">}</span><span class="sb">/`</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;module&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="s1">&#39;rules&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">            </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="s1">&#39;test&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="sr">/\.s?css$/</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s1">&#39;use&#39;</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                    </span><span class="s1">&#39;style-loader&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="s1">&#39;loader&#39;</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;css-loader&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="s1">&#39;options&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="s1">&#39;importLoaders&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                        </span><span class="p">},</span><span class="w"></span>
+<span class="w">                    </span><span class="p">},</span><span class="w"></span>
+<span class="w">                    </span><span class="s1">&#39;postcss-loader&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="s1">&#39;sass-loader&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;devServer&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="s1">&#39;host&#39;</span><span class="w">       </span><span class="o">:</span><span class="w"> </span><span class="nx">devHost</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s1">&#39;port&#39;</span><span class="w">       </span><span class="o">:</span><span class="w"> </span><span class="nx">devPort</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Enable hot module reloading (HMR).</span><span class="w"></span>
+<span class="w">        </span><span class="s1">&#39;hot&#39;</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s1">&#39;liveReload&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s1">&#39;static&#39;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="s1">&#39;directory&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./dist&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="s1">&#39;devMiddleware&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// write images because we still load them the traditional way</span><span class="w"></span>
+<span class="w">            </span><span class="s1">&#39;writeToDisk&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
 
-        <span class="c1">// Needed because we access port devPort from port 80.</span>
-        <span class="s1">&#39;allowedHosts&#39;</span> <span class="o">:</span> <span class="p">[</span><span class="nx">host</span><span class="p">],</span>
-        <span class="s1">&#39;headers&#39;</span>      <span class="o">:</span> <span class="p">{</span> <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span> <span class="o">:</span> <span class="sb">`http://</span><span class="si">${</span><span class="nx">host</span><span class="si">}</span><span class="sb">`</span> <span class="p">},</span>
+<span class="w">        </span><span class="c1">// Needed because we access port devPort from port 80.</span><span class="w"></span>
+<span class="w">        </span><span class="s1">&#39;allowedHosts&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">host</span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="s1">&#39;headers&#39;</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="sb">`http://</span><span class="si">${</span><span class="nx">host</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
 
-        <span class="c1">// Watch for changes to PHP files and reload the page when one changes.</span>
-        <span class="c1">// See: https://mikeselander.com/hot-reloading-using-webpack-with-php-file-changes/</span>
-        <span class="nx">setupMiddlewares</span> <span class="p">(</span><span class="nx">middlewares</span><span class="p">,</span> <span class="nx">devServer</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">chokidar</span>
-                <span class="p">.</span><span class="nx">watch</span> <span class="p">([</span><span class="s1">&#39;themes/**/*.php&#39;</span><span class="p">,</span> <span class="s1">&#39;plugins/*/*.php&#39;</span><span class="p">],</span> <span class="p">{</span>
-                    <span class="s1">&#39;alwaysStat&#39;</span>     <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                    <span class="s1">&#39;atomic&#39;</span>         <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-                    <span class="s1">&#39;followSymlinks&#39;</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-                    <span class="s1">&#39;ignoreInitial&#39;</span>  <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                    <span class="s1">&#39;persistent&#39;</span>     <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                    <span class="s1">&#39;usePolling&#39;</span>     <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                <span class="p">})</span>
-                <span class="p">.</span><span class="nx">on</span> <span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-                    <span class="nx">devServer</span><span class="p">.</span><span class="nx">sockWrite</span> <span class="p">(</span><span class="nx">server</span><span class="p">.</span><span class="nx">sockets</span><span class="p">,</span> <span class="s1">&#39;content-changed&#39;</span><span class="p">);</span>
-                <span class="p">});</span>
-            <span class="k">return</span> <span class="nx">middlewares</span><span class="p">;</span>
-        <span class="p">},</span>
-    <span class="p">},</span>
-<span class="p">});</span>
+<span class="w">        </span><span class="c1">// Watch for changes to PHP files and reload the page when one changes.</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// See: https://mikeselander.com/hot-reloading-using-webpack-with-php-file-changes/</span><span class="w"></span>
+<span class="w">        </span><span class="nx">setupMiddlewares</span><span class="w"> </span><span class="p">(</span><span class="nx">middlewares</span><span class="p">,</span><span class="w"> </span><span class="nx">devServer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nx">chokidar</span><span class="w"></span>
+<span class="w">                </span><span class="p">.</span><span class="nx">watch</span><span class="w"> </span><span class="p">([</span><span class="s1">&#39;themes/**/*.php&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;plugins/*/*.php&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="s1">&#39;alwaysStat&#39;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="s1">&#39;atomic&#39;</span><span class="w">         </span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="s1">&#39;followSymlinks&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="s1">&#39;ignoreInitial&#39;</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="s1">&#39;persistent&#39;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">                    </span><span class="s1">&#39;usePolling&#39;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="p">})</span><span class="w"></span>
+<span class="w">                </span><span class="p">.</span><span class="nx">on</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nx">devServer</span><span class="p">.</span><span class="nx">sockWrite</span><span class="w"> </span><span class="p">(</span><span class="nx">devServer</span><span class="p">.</span><span class="nx">sockets</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;content-changed&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="p">});</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">middlewares</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -279,24 +286,24 @@ files can be extracted using the <a class="reference external" href="https://git
 <section id="js-files">
 <h4><a class="toc-backref" href="#id7">JS Files</a><a class="headerlink" href="#js-files" title="Permalink to this headline">¶</a></h4>
 <p>In JS files, add this boilerplate to the file:</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/** The Wordpress Text Domain of the plugin. */</span>
-<span class="kd">const</span> <span class="nx">LANG</span> <span class="o">=</span> <span class="s1">&#39;cap-dynamic-menu&#39;</span><span class="p">;</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/** The Wordpress Text Domain of the plugin. */</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">LANG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;cap-dynamic-menu&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="kd">function</span> <span class="nx">$gettext</span> <span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">__</span> <span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">LANG</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kd">function</span> <span class="nx">$pgettext</span> <span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_x</span> <span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">LANG</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kd">function</span> <span class="nx">$ngettext</span> <span class="p">(</span><span class="nx">singular</span><span class="p">,</span> <span class="nx">plural</span><span class="p">,</span> <span class="nx">number</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_n</span> <span class="p">(</span><span class="nx">singular</span><span class="p">,</span> <span class="nx">plural</span><span class="p">,</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">LANG</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">$gettext</span><span class="w"> </span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">__</span><span class="w"> </span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="nx">LANG</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">$pgettext</span><span class="w"> </span><span class="p">(</span><span class="nx">context</span><span class="p">,</span><span class="w"> </span><span class="nx">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_x</span><span class="w"> </span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="p">,</span><span class="w"> </span><span class="nx">LANG</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">$ngettext</span><span class="w"> </span><span class="p">(</span><span class="nx">singular</span><span class="p">,</span><span class="w"> </span><span class="nx">plural</span><span class="p">,</span><span class="w"> </span><span class="nx">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_n</span><span class="w"> </span><span class="p">(</span><span class="nx">singular</span><span class="p">,</span><span class="w"> </span><span class="nx">plural</span><span class="p">,</span><span class="w"> </span><span class="nx">number</span><span class="p">,</span><span class="w"> </span><span class="nx">LANG</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Then use like this:</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">message</span>  <span class="o">=</span> <span class="nx">$gettext</span>  <span class="p">(</span><span class="s1">&#39;Message to translate&#39;</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">pmessage</span> <span class="o">=</span> <span class="nx">$pgettext</span> <span class="p">(</span><span class="s1">&#39;Hint to translators&#39;</span><span class="p">,</span> <span class="s1">&#39;Message to translate&#39;</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">nmessage</span> <span class="o">=</span> <span class="nx">$ngettext</span> <span class="p">(</span><span class="s1">&#39;Singular&#39;</span><span class="p">,</span> <span class="s1">&#39;Plural&#39;</span><span class="p">,</span> <span class="nx">number</span><span class="p">);</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nx">$gettext</span><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Message to translate&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pmessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$pgettext</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Hint to translators&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Message to translate&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">nmessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$ngettext</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Singular&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Plural&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">number</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>We must use the <code class="xref py py-func docutils literal notranslate"><span class="pre">$gettext()</span></code> names for our functions, or the stupid
@@ -309,7 +316,7 @@ runtime.</p>
 <p>Vue single component files contain 3 sections: HTML, JS, and CSS.  The CSS
 section does not need to be translated.</p>
 <p>In the JS section of Vue files, use the <code class="xref py py-func docutils literal notranslate"><span class="pre">$t</span> <span class="pre">()</span></code> function:</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">$t</span> <span class="p">(</span><span class="s1">&#39;Message to translate&#39;</span><span class="p">);</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$t</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Message to translate&#39;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>This function tags the message for the string extractor and also translates
@@ -324,23 +331,23 @@ tag translatable strings:</p>
 in main.js before initializing your Vue app.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Vue.js 3 boilerplate</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;my-text-domain&#39;</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">app</span>    <span class="o">=</span> <span class="nx">createApp</span> <span class="p">(</span><span class="nx">App</span><span class="p">);</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">DOMAIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;my-text-domain&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nx">createApp</span><span class="w"> </span><span class="p">(</span><span class="nx">App</span><span class="p">);</span><span class="w"></span>
 
-<span class="c1">// wrapper to call the Wordpress translate function</span>
-<span class="kd">function</span> <span class="nx">$t</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">__</span> <span class="p">(</span><span class="nx">text</span><span class="p">,</span> <span class="nx">DOMAIN</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="c1">// wrapper to call the Wordpress translate function</span><span class="w"></span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">$t</span><span class="w"> </span><span class="p">(</span><span class="nx">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">__</span><span class="w"> </span><span class="p">(</span><span class="nx">text</span><span class="p">,</span><span class="w"> </span><span class="nx">DOMAIN</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="c1">// the vm.$t function</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">globalProperties</span><span class="p">.</span><span class="nx">$t</span> <span class="o">=</span> <span class="nx">$t</span><span class="p">;</span>
+<span class="c1">// the vm.$t function</span><span class="w"></span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">globalProperties</span><span class="p">.</span><span class="nx">$t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$t</span><span class="p">;</span><span class="w"></span>
 
-<span class="c1">// the v-translate directive</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">directive</span> <span class="p">(</span><span class="s1">&#39;translate&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">el</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="nx">$t</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">innerText</span><span class="p">.</span><span class="nx">trim</span> <span class="p">());</span>
-<span class="p">});</span>
+<span class="c1">// the v-translate directive</span><span class="w"></span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">directive</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;translate&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">el</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">el</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$t</span><span class="w"> </span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">innerText</span><span class="p">.</span><span class="nx">trim</span><span class="w"> </span><span class="p">());</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">mount</span> <span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
