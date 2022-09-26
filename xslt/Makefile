@@ -124,6 +124,10 @@ fulltext   : extraction collation
 
 ################ Scrape Targets
 
+scrape_extraction: $(patsubst %,$(CACHE_DIR)/extracted/%.xml.fulltext.xml.touch,$(IDS))
+
+scrape_collation: $(patsubst %,$(CACHE_DIR)/collation/%.xml.fulltext.txt.touch,$(IDS))
+
 init_db:
 	$(IMPORT) --init
 	$(RM) $(CACHE_DIR)/last_*_scrape
@@ -139,13 +143,11 @@ $(CACHE_DIR)/last_capit_scrape : $(CAPIT_FILES)
 	$(IMPORT) --cap-list $(CAPIT_FILES)
 	touch "$@"
 
-$(CACHE_DIR)/last_extracted_scrape : $(wildcard $(CACHE_DIR)/extracted/*.xml)
-	$(IMPORT) --extracted $?
-	touch "$@"
+$(CACHE_DIR)/extracted/%.xml.fulltext.xml.touch : $(CACHE_DIR)/extracted/%.xml
+	$(IMPORT) --extracted $<
 
-$(CACHE_DIR)/last_fulltext_scrape : $(wildcard $(CACHE_DIR)/collation/*.xml)
-	$(IMPORT) --fulltext $?
-	touch "$@"
+$(CACHE_DIR)/collation/%.xml.fulltext.txt.touch : $(CACHE_DIR)/collation/%.xml
+	$(IMPORT) --fulltext $<
 
 $(CACHE_DIR)/last_geoplaces_scrape : $(GEOPLACES)
 	$(IMPORT) --geoplaces $?
@@ -163,7 +165,7 @@ scrape_corpus :   $(CACHE_DIR)/last_corpus_scrape
 
 scrape_capits :   $(CACHE_DIR)/last_capit_scrape
 
-scrape_fulltext : scrape_corpus scrape_capits $(CACHE_DIR)/last_extracted_scrape $(CACHE_DIR)/last_fulltext_scrape
+scrape_fulltext : scrape_corpus scrape_capits scrape_extraction scrape_collation
 
 scrape_geoplaces :   $(CACHE_DIR)/last_geoplaces_scrape
 

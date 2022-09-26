@@ -19,6 +19,7 @@ deploy_php: lint mo js
 deploy_xslt: make_dependencies
 	$(RSYNC) xslt/*.xsl xslt/*.inc xslt/Makefile $(HOST_XSLT)/
 	$(RSYNC) xslt/*.xsl $(TRANSFORM)/
+	$(RSYNC) server/scripts/import_data.py $(HOST_SERVER)/scripts/
 
 deploy_xml: deploy_mss deploy_capits
 
