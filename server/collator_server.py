@@ -1,9 +1,9 @@
-"""This module implements the CollateX API for the Capitularia Application Server.
+"""This module implements the collator API for the Capitularia Application Server.
 
 Endpoints
 ---------
 
-.. http:post:: /collatex/collate
+.. http:post:: /collator/collate
 
    Collate sections of witnesses.
 
@@ -11,7 +11,7 @@ Endpoints
 
    .. sourcecode:: http
 
-      POST /collatex/collate HTTP/1.1
+      POST /collator/collate HTTP/1.1
       Host: api.capitularia.uni-koeln.de
       Content-Type: application/json;charset=utf-8
 
@@ -50,53 +50,50 @@ Endpoints
 
    :resheader Content-Type: application/json;charset=utf-8
    :statuscode 200: No errors.
-   :statuscode 500: CollateX reported errors.
-                    A report was logged in the server logfile.
-   :statuscode 504: The CollateX process took too long.
-                    Retry later or with less witnesses.
    :resjsonobj string[] witnesses: List of manuscript ids.
-   :resjsonobj array table: The collateX response.
+   :resjsonobj array table: The collated tokens.
 
 """
 
+import functools
 import json
 import re
-import subprocess
+from typing import Optional, Tuple, List, Sequence, Dict
 import urllib.parse
 
 import flask
-from flask import abort, current_app, request, Blueprint
+from flask import current_app, request, Blueprint
 import werkzeug
+
+from super_collator.aligner import Aligner
+from super_collator.ngrams import NGrams
 
 import common
 from db_tools import execute
 
 
 class Config(object):
-    COLLATEX = (
-        "/usr/bin/java -jar /usr/local/share/java/collatex-tools-1.8-SNAPSHOT.jar"
-    )
-    COLLATEX_TIMEOUT = 120
+    pass
 
 
-class CollatexError(werkzeug.exceptions.HTTPException):
+class CollatorError(werkzeug.exceptions.HTTPException):
     def __init__(self, msg):
         super().__init__(self)
         self.code = 500
         self.description = msg.decode("utf-8")
 
 
-def handle_collatex_error(e):
+def handle_collator_error(e):
     return flask.Response(e.description, e.code, mimetype="text/plain")
 
 
-class CollatexBlueprint(Blueprint):
+class CollatorBlueprint(Blueprint):
     def init_app(self, app):
         app.config.from_object(Config)
-        app.register_error_handler(CollatexError, handle_collatex_error)
+        app.register_error_handler(CollatorError, handle_collator_error)
 
 
-app = CollatexBlueprint("collatex", __name__)
+app = CollatorBlueprint("collator", __name__)
 
 WHOLE_TEXT_PATTERNS = [
     n.split("=")
@@ -126,41 +123,16 @@ def normalize_with_patterns(patterns, text, whole_words=False):
     return normalized
 
 
-def to_collatex(id_, text, normalizations=None):
-    """Build the input to Collate-X
+def preprocess(text: str, normalizations: Optional[List[str]] = None) -> List[List[NGrams]]:
+    """Preprocess the input to the collator
 
     Builds the representation for one witness.  Returns an object that must be
     combined into the witnesses array.
 
-    Example of Collate-X input:
-
-    .. code:: json
-
-       {
-         "witnesses" : [
-           {
-             "id" : "A",
-             "tokens" : [
-                 { "t" : "A ",      "n" : "a"     },
-                 { "t" : "black " , "n" : "black" },
-                 { "t" : "cat.",    "n" : "cat"   }
-             ]
-           },
-           {
-             "id" : "B",
-             "tokens" : [
-                 { "t" : "A ",      "n" : "a"     },
-                 { "t" : "white " , "n" : "white" },
-                 { "t" : "kitten.", "n" : "cat"   }
-             ]
-           }
-         ]
-       }
-
     :param string[] normalizations: List of string in the form: oldstring=newstring
                                     Normalizations applied to each word.
 
-    :return Object: The representation of one witness.
+    :return: The representation of one witness.
 
     """
 
@@ -179,32 +151,55 @@ def to_collatex(id_, text, normalizations=None):
     nsplit = norm.split()
     assert len(tsplit) == len(nsplit)
 
-    tokens = [{"t": s[0], "n": s[1]} for s in zip(tsplit, nsplit)]
+    res = []
+    for t, n in zip(tsplit, nsplit):
+        res.append([memoized_ngrams(t, n)])
+    return res
 
-    return {"id": id_, "tokens": tokens}
+NGRAMS_CACHE : Dict[str,NGrams] = {}
 
+def memoized_ngrams(t, n):
+    if ngrams := NGRAMS_CACHE.get(t):
+        return ngrams
+    ngrams = NGrams([{"t" : t, "n" : n}])
+    ngrams.load(n, 3)
+    ngrams.hash = hash(ngrams)
+    NGRAMS_CACHE[t] = ngrams
+    return ngrams
+
+@functools.lru_cache(maxsize=10000)
+def memoized_similarity(a, b):
+    return -1.0 + 2.0 * NGrams.similarity(a, b) # like we did in collatex
+
+def similarity(aa: List[NGrams], bb: List[NGrams]) -> float:
+    sim = -1.0
+    for a in aa:
+        for b in bb:
+            if (a.hash < b.hash):
+                score = memoized_similarity(a, b)
+            else:
+                score = memoized_similarity(b, a)
+
+            if score > sim:
+                sim = score
+    return sim
 
 @app.route("/collate", methods=["POST"])
 def collate():
-    """Implements the /collatex/collate endpoint."""
+    """Implements the /collator/collate endpoint."""
 
     json_in = {
-        "levenshtein_distance": 0,
-        "levenshtein_ratio": 1,
-        "joined": False,
-        "segmentation": False,
-        "transpositions": False,
-        "algorithm": "needleman-wunsch-gotoh",
         "normalizations": [],
         "collate": [],
     }
     json_in.update(request.get_json())
-    json_out = []
 
     current_app.logger.info(json.dumps(json_in, indent=4))
 
-    normalizations = json_in["normalizations"]
+    normalizations: List[str] = json_in["normalizations"]
+    sequences: List[List[NGram]] = []
 
+    # build the sequences to collate
     with current_app.config.dba.engine.begin() as conn:
         for w in json_in["collate"]:
             u = urllib.parse.urlparse(w)
@@ -235,66 +230,36 @@ def collate():
 
             doc = res.fetchone()[0]
             # current_app.logger.info (doc)
-            json_out.append(to_collatex(w, doc, normalizations))
+            sequences.append(preprocess(doc, normalizations))
 
-    json_in["witnesses"] = json_out
+    # Produce a multi-alignment by naively aligning the sequences in the order they
+    # arrived.  A better (but much more computationally expensive) method would be to
+    # first ascertain the similarity of each manuscript pair (time-complexity of O(n²)
+    # in the number of manuscripts) and then align them starting with the two most
+    # similar ones.
+    aligner = Aligner()
+    aligner.open_score = -1.0
+    aligner.extend_score = -0.5
+    aligner.start_score = aligner.open_score
 
-    cmdline = current_app.config["COLLATEX"].split() + ["-f", "json", "-"]
-    status = 200
-
-    proc = subprocess.Popen(
-        cmdline,
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        close_fds=True,
-        encoding="utf-8",
-    )
-
-    # current_app.logger.info (json.dumps (json_in, indent = 4))
-
-    try:
-        stdout, stderr = proc.communicate(
-            input=json.dumps(json_in), timeout=current_app.config["COLLATEX_TIMEOUT"]
+    aa = sequences[0]
+    for n, bb in enumerate(sequences[1:], start=1):
+        aa, bb, score = aligner.align(aa, bb, similarity,
+            lambda: [memoized_ngrams("-", "")] * n,
+            lambda: [memoized_ngrams("-", "")]
         )
-    except subprocess.TimeoutExpired:
-        proc.kill()
-        stdout, stderr = proc.communicate()
-        abort(504)
+        aa = [a + b for a, b in zip(aa, bb)]
 
-    # The Collate-X response
-    #
-    # {
-    #   "witnesses":["A","B"],
-    #   "table":[
-    #     [ [ {"t":"A","ref":123 } ],      [ {"t":"A" } ] ],
-    #     [ [ {"t":"black","adj":true } ], [ {"t":"white","adj":true } ] ],
-    #     [ [ {"t":"cat","id":"xyz" } ],   [ {"t":"kitten.","n":"cat" } ] ]
-    #   ]
-    # }
+    json_data = {
+        "witnesses": json_in["collate"],
+        "table": [[n.user_data for n in a] for a in aa],
+    }
 
-    stderr = stderr.splitlines()
-
-    # current_app.logger.info (stdout)
-
-    try:
-        stdout = json.loads(stdout)
-    except json.decoder.JSONDecodeError as e:
-        stderr.append("Error: %s decoding JSON response from CollateX" % str(e))
-
-    for line in stderr:
-        if line.startswith("Error: "):
-            current_app.logger.error(line[7:])
-            status = 500
-        elif line.startswith("Warning: "):
-            current_app.logger.warning(line[9:])
-        else:
-            current_app.logger.info(line)
-    current_app.logger.info("Done the CollateX")
+    current_app.logger.info(json.dumps(json_data, indent=4))
 
     return flask.make_response(
-        flask.json.jsonify(stdout),
-        status,
+        flask.json.jsonify(json_data),
+        200,
         {
             "Content-Type": "application/json;charset=utf-8",
         },

@@ -90,7 +90,7 @@ mysql-local:
 .PHONY: server
 server:
 	export PYTHONPATH=$(ROOT)/server; \
-	python3 -m server.server -vvv
+	python3 -OO -m server.server -vvv
 
 dist/api.conf.js: client/src/api.conf.js
 	mkdir -p dist
@@ -147,6 +147,9 @@ phpmetrics:
 # PHP_CodeSniffer https://github.com/squizlabs/PHP_CodeSniffer
 phpcs:
 	-vendor/bin/phpcs --standard=tools/phpcs --report=emacs -s --extensions=php --ignore=node_modules themes plugins
+
+mypy:
+	-mypy server/
 
 
 TARGETS = csslint jslint phplint mo po pot

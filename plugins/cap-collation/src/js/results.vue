@@ -57,7 +57,7 @@ export default {
         };
     },
     mounted () {
-        this.api = tools.get_api_entrypoint () + '/collatex/collate';
+        this.api = tools.get_api_entrypoint () + '/collator/collate';
     },
     updated () {
         const vm = this;
