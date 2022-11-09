@@ -78,7 +78,7 @@ def init_logging(args, *handlers):
     root.setLevel(args.log_level)
 
     formatter = Formatter(
-        fmt="{esc0}{relativeCreated:6.0f} - {levelname:7} - {message}{esc1}", style="{"
+        fmt="{esc0}{asctime} - {levelname:7} - {message}{esc1}", style="{"
     )
 
     if not handlers:
