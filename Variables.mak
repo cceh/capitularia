@@ -1,9 +1,9 @@
 PRJ_DIR := prj/capitularia/capitularia
 
 ROOT      := $(UNI_DIR)/$(PRJ_DIR)
-HOST_ROOT := $(CAPITULARIA_SSHUSER)@$(CAPITULARIA_HOST)
+HOST_ROOT := $(CAPITULARIA_SSHUSER)@capitularia.uni-koeln.de
 
-SERVERFS := $(or $(CAPITULARIA_SERVERFS),$(UNI_DIR)/remote_fs/)
+SERVERFS := $(HOST_ROOT):/var/www/capitularia.uni-koeln.de
 LOCALFS  := $(or $(CAPITULARIA_LOCALFS),/var/www/capitularia)
 BROWSER  := $(or $(BROWSER),firefox)
 GITUSER  := $(CAPITULARIA_GITUSER)
@@ -19,7 +19,7 @@ SERVER       := $(ROOT)/server
 XSLT         := $(ROOT)/xslt
 GIS          := $(ROOT)/gis
 
-HOST_CLIENT  := $(SERVERFS)/http/docs/client
+HOST_CLIENT  := $(WPCONTENT)/dist
 HOST_SERVER  := $(HOST_ROOT):~/$(PRJ_DIR)/server
 HOST_XSLT    := $(HOST_ROOT):~/$(PRJ_DIR)/xslt
 
