@@ -9,8 +9,7 @@ The VM hosts an Apache Web Server at https://capitularia.uni-koeln.de which runs
 Wordpress.
 
 The VM also hosts an :ref:`application server <app-server>` written in Python.
-Next to that it hosts a recent OpenJDK, Saxon and a
-:ref:`customized version of CollateX <custom-collatex>`.
+Next to that it hosts a recent OpenJDK and Saxon.
 
 The VM also hosts a :ref:`Postgres database <database>` server for the application
 server and a mysql database server for Wordpress.
@@ -73,8 +72,7 @@ implement in Wordpress plugins.
       Pe: box wid P.wid + 0.2 ht P.ht + 0.2 with .c at P.c
 
       box component         "Makefile"        with .c at (S.c, A.WP.PS.c)
-      box component wid 1.7 "Custom CollateX" with .c at (P.c, A.WP.PS.c)
-      box component wid 1.7 "TSM backup"      with .c at (P.c, A.WP.PD.c)
+      box component wid 1.7 "TSM backup"      with .c at (P.c, A.WP.PS.c)
 
       Mysql: db() with .n at A.s - (0, 0.3)
       "mysql" "Database" at Mysql.Caption

@@ -8,6 +8,7 @@
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/my_theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon-cceh-blue.png"/>
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -29,6 +30,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
             <a href="../index.html" class="icon icon-home"> Capitularia
+            <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -48,7 +50,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../overviews/collation_tool.html">Overview of the Collation Tool</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#collation">Collation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#custom-version-of-collatex">Custom Version of CollateX</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overviews/meta_search.html">Meta Search</a><ul>
@@ -75,7 +76,7 @@
 <li class="toctree-l2"><a class="reference internal" href="app_server.html">Application Server</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="app_server.html#server">server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="app_server.html#module-data_server">data_server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-collatex_server">collatex_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-collator_server">collator_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="app_server.html#module-geo_server">geo_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="app_server.html#module-tile_server">tile_server</a></li>
 </ul>
@@ -97,7 +98,10 @@
 <li class="toctree-l3"><a class="reference internal" href="user.html#security">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="backup.html">TSM Backup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">TSM Backup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="backup.html#update">Update</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../maintenance.html">Maintenance</a><ul>
@@ -148,8 +152,7 @@ It runs debian stable.</p>
 <p>The VM hosts an Apache Web Server at <a class="reference external" href="https://capitularia.uni-koeln.de">https://capitularia.uni-koeln.de</a> which runs
 Wordpress.</p>
 <p>The VM also hosts an <a class="reference internal" href="app_server.html#app-server"><span class="std std-ref">application server</span></a> written in Python.
-Next to that it hosts a recent OpenJDK, Saxon and a
-<a class="reference internal" href="../overviews/collation_tool.html#custom-collatex"><span class="std std-ref">customized version of CollateX</span></a>.</p>
+Next to that it hosts a recent OpenJDK and Saxon.</p>
 <p>The VM also hosts a <a class="reference internal" href="database.html#database"><span class="std std-ref">Postgres database</span></a> server for the application
 server and a mysql database server for Wordpress.</p>
 <p>We wrote a Wordpress <a class="reference internal" href="apache/wordpress/theme.html#theme"><span class="std std-ref">theme</span></a> and many <a class="reference internal" href="apache/wordpress/plugins.html#plugins"><span class="std std-ref">plugins</span></a> to add the
@@ -251,11 +254,7 @@ implement in Wordpress plugins.</p>
 <rect fill="#fefece" stroke-width="2"
  stroke="#a80136"
  x="405.2" y="222.04" width="163.2" height="28.8" />
-<text font-size="11pt" stroke-width="0.2pt" fill="black" x="486.8" y="241.28">Custom CollateX</text>
-<rect fill="#fefece" stroke-width="2"
- stroke="#a80136"
- x="405.2" y="289.24" width="163.2" height="28.8" />
-<text font-size="11pt" stroke-width="0.2pt" fill="black" x="486.8" y="308.48">TSM backup</text>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="486.8" y="241.28">TSM backup</text>
 <path stroke-width="0" stroke="#a80136"
  fill="#fefece"
  d="M 74,375.64

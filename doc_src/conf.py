@@ -228,8 +228,10 @@ html_theme_options = {
 # Add any paths that contain custom themes here, relative to this directory.
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-def setup (app):
-    app.add_css_file ('my_theme.css')
+html_static_path = ["_static"]
+html_logo = "logo-cceh-white.svg"
+html_favicon = "favicon-cceh-blue.png"
+html_css_files = ["my_theme.css"]
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
