@@ -48,7 +48,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../overviews/collation_tool.html">Overview of the Collation Tool</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#collation">Collation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#custom-version-of-collatex">Custom Version of CollateX</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overviews/meta_search.html">Meta Search</a><ul>
@@ -75,7 +74,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Application Server</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#server">server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-data_server">data_server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-collatex_server">collatex_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-collator_server">collator_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-geo_server">geo_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-tile_server">tile_server</a></li>
 </ul>
@@ -97,7 +96,10 @@
 <li class="toctree-l3"><a class="reference internal" href="user.html#security">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="backup.html">TSM Backup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">TSM Backup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="backup.html#update">Update</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../maintenance.html">Maintenance</a><ul>
@@ -511,17 +513,17 @@ highlight those words in the snippets.</p>
 
 </section>
 </section>
-<section id="module-collatex_server">
-<span id="collatex-server"></span><h2>collatex_server<a class="headerlink" href="#module-collatex_server" title="Permalink to this headline">¶</a></h2>
-<p>This module implements the CollateX API for the Capitularia Application Server.</p>
+<section id="module-collator_server">
+<span id="collator-server"></span><h2>collator_server<a class="headerlink" href="#module-collator_server" title="Permalink to this headline">¶</a></h2>
+<p>This module implements the collator API for the Capitularia Application Server.</p>
 <section id="id1">
 <h3>Endpoints<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="http post">
-<dt class="sig sig-object http" id="post--collatex-collate">
-<span class="sig-name descname"><span class="pre">POST</span> </span><span class="sig-name descname"><span class="pre">/collatex/collate</span></span><a class="headerlink" href="#post--collatex-collate" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object http" id="post--collator-collate">
+<span class="sig-name descname"><span class="pre">POST</span> </span><span class="sig-name descname"><span class="pre">/collator/collate</span></span><a class="headerlink" href="#post--collator-collate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Collate sections of witnesses.</p>
 <p><strong>Example request</strong>:</p>
-<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/collatex/collate</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/collator/collate</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">api.capitularia.uni-koeln.de</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json;charset=utf-8</span>
 
@@ -565,72 +567,45 @@ highlight those words in the snippets.</p>
 <dt class="field-even">Status Codes</dt>
 <dd class="field-even"><ul class="simple">
 <li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – No errors.</p></li>
-<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a></span> – CollateX reported errors.
-A report was logged in the server logfile.</p></li>
-<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.5">504 Gateway Timeout</a></span> – The CollateX process took too long.
-Retry later or with less witnesses.</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="collatex_server.CollatexBlueprint">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CollatexBlueprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">import_name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_folder:</span> <span class="pre">typing.Optional[typing.Union[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">os.PathLike]]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_url_path:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_folder:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_prefix:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subdomain:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_defaults:</span> <span class="pre">typing.Optional[dict]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_path:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cli_group:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.CollatexBlueprint" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="collator_server.CollatorBlueprint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CollatorBlueprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">import_name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_folder:</span> <span class="pre">typing.Optional[typing.Union[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">os.PathLike]]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_url_path:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_folder:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_prefix:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subdomain:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_defaults:</span> <span class="pre">typing.Optional[dict]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_path:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cli_group:</span> <span class="pre">typing.Optional[str]</span> <span class="pre">=</span> <span class="pre">&lt;object</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collator_server.CollatorBlueprint" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py exception">
-<dt class="sig sig-object py" id="collatex_server.CollatexError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CollatexError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.CollatexError" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="collator_server.CollatorError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CollatorError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collator_server.CollatorError" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="collatex_server.collate">
-<span class="sig-name descname"><span class="pre">collate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.collate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implements the /collatex/collate endpoint.</p>
+<dt class="sig sig-object py" id="collator_server.collate">
+<span class="sig-name descname"><span class="pre">collate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#collator_server.collate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements the /collator/collate endpoint.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="collatex_server.normalize_with_patterns">
-<span class="sig-name descname"><span class="pre">normalize_with_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patterns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whole_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.normalize_with_patterns" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="collator_server.normalize_with_patterns">
+<span class="sig-name descname"><span class="pre">normalize_with_patterns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patterns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whole_words</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collator_server.normalize_with_patterns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Normalize text using a list of patterns</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="collatex_server.to_collatex">
-<span class="sig-name descname"><span class="pre">to_collatex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalizations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#collatex_server.to_collatex" title="Permalink to this definition">¶</a></dt>
-<dd><p>Build the input to Collate-X</p>
+<dt class="sig sig-object py" id="collator_server.preprocess">
+<span class="sig-name descname"><span class="pre">preprocess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalizations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">super_collator.ngrams.NGrams</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#collator_server.preprocess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Preprocess the input to the collator</p>
 <p>Builds the representation for one witness.  Returns an object that must be
 combined into the witnesses array.</p>
-<p>Example of Collate-X input:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;witnesses&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;tokens&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;t&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A &quot;</span><span class="p">,</span><span class="w">      </span><span class="nt">&quot;n&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="w">     </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;t&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;black &quot;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;n&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;black&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;t&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cat.&quot;</span><span class="p">,</span><span class="w">    </span><span class="nt">&quot;n&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cat&quot;</span><span class="w">   </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;id&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;tokens&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;t&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A &quot;</span><span class="p">,</span><span class="w">      </span><span class="nt">&quot;n&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="w">     </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;t&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;white &quot;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;n&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;white&quot;</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;t&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kitten.&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;n&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cat&quot;</span><span class="w">   </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">]</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>normalizations</strong> (<em>string</em><em>[</em><em>]</em>) – List of string in the form: oldstring=newstring
 Normalizations applied to each word.</p>
 </dd>
-<dt class="field-even">Return Object</dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The representation of one witness.</p>
 </dd>
 </dl>

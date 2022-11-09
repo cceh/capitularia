@@ -48,7 +48,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../overviews/collation_tool.html">Overview of the Collation Tool</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#collation">Collation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#custom-version-of-collatex">Custom Version of CollateX</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overviews/meta_search.html">Meta Search</a><ul>
@@ -75,7 +74,7 @@
 <li class="toctree-l2"><a class="reference internal" href="app_server.html">Application Server</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="app_server.html#server">server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="app_server.html#module-data_server">data_server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-collatex_server">collatex_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-collator_server">collator_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="app_server.html#module-geo_server">geo_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="app_server.html#module-tile_server">tile_server</a></li>
 </ul>
@@ -97,7 +96,10 @@
 <li class="toctree-l3"><a class="reference internal" href="user.html#security">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">TSM Backup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">TSM Backup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#update">Update</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../maintenance.html">Maintenance</a><ul>
@@ -175,12 +177,27 @@ sudo dsmc restore /home/joe/deleted_file.txt -latest
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dsmc restore /var/backup/mysqldump.sql /var/backup/mysqldump_copy.sql
 </pre></div>
 </div>
+<section id="update">
+<h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<p>To manually update the TSM client (replace 8.1.15.1 with the new version):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget http://ftp.software.ibm.com/storage/tivoli-storage-management/patches/client/v8r1/Linux/LinuxX86_DEB/v8115/8.1.15.1-TIV-TSMBAC-LinuxX86_DEB.tar
+tar -xvf <span class="m">8</span>.1.15.1-TIV-TSMBAC-LinuxX86_DEB.tar
+
+sudo dpkg -i tivsm-api64.amd64.deb
+sudo dpkg -i tivsm-ba.amd64.deb
+sudo dpkg -i tivsm-apicit.amd64.deb
+sudo dpkg -i tivsm-bacit.amd64.deb
+sudo systemctl restart dsmcad.service
+sudo systemctl status dsmcad.service
+</pre></div>
+</div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference external" href="https://www.ibm.com/docs/en/spectrum-protect/8.1.14?topic=data-backing-up-using-command-line">https://www.ibm.com/docs/en/spectrum-protect/8.1.14?topic=data-backing-up-using-command-line</a></p>
 <p><a class="reference external" href="https://www.ibm.com/docs/en/spectrum-protect/8.1.14?topic=data-command-line-restore-examples">https://www.ibm.com/docs/en/spectrum-protect/8.1.14?topic=data-command-line-restore-examples</a></p>
 <p><a class="reference external" href="https://rrzk.uni-koeln.de/sites/rrzk/Daten_speichern_teilen_verwalten/TSM/20180813_ISP-Ubuntu-installationsanleitung.pdf">https://rrzk.uni-koeln.de/sites/rrzk/Daten_speichern_teilen_verwalten/TSM/20180813_ISP-Ubuntu-installationsanleitung.pdf</a></p>
 </div>
+</section>
 </section>
 
 

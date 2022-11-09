@@ -45,7 +45,6 @@
 <li class="toctree-l2"><a class="reference internal" href="overviews/collation_tool.html">Overview of the Collation Tool</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="overviews/collation_tool.html#collation">Collation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="overviews/collation_tool.html#custom-version-of-collatex">Custom Version of CollateX</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="overviews/meta_search.html">Meta Search</a><ul>
@@ -72,7 +71,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vm/app_server.html">Application Server</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#server">server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#module-data_server">data_server</a></li>
-<li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#module-collatex_server">collatex_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#module-collator_server">collator_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#module-geo_server">geo_server</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vm/app_server.html#module-tile_server">tile_server</a></li>
 </ul>
@@ -94,7 +93,10 @@
 <li class="toctree-l3"><a class="reference internal" href="vm/user.html#security">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="vm/backup.html">TSM Backup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm/backup.html">TSM Backup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vm/backup.html#update">Update</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="maintenance.html">Maintenance</a><ul>
@@ -321,20 +323,20 @@
         <li><a href="vm/apache/wordpress/theme/widgets.html#\cceh\capitularia\theme\Frontpage_Widget_Base::$class"><strong>(Frontpage_Widget_Base property)</strong></a>
 </li>
       </ul></li>
-      <li><a href="vm/app_server.html#collatex_server.collate">collate() (in module collatex_server)</a>
-</li>
-      <li>
-    collatex_server
-
-      <ul>
-        <li><a href="vm/app_server.html#module-collatex_server">module</a>
-</li>
-      </ul></li>
-      <li><a href="vm/app_server.html#collatex_server.CollatexBlueprint">CollatexBlueprint (class in collatex_server)</a>
-</li>
-      <li><a href="vm/app_server.html#collatex_server.CollatexError">CollatexError</a>
+      <li><a href="vm/app_server.html#collator_server.collate">collate() (in module collator_server)</a>
 </li>
       <li><a href="vm/apache/wordpress/plugins/meta-search.html#plugins-meta-search.collator">collator (None attribute)</a>
+</li>
+      <li>
+    collator_server
+
+      <ul>
+        <li><a href="vm/app_server.html#module-collator_server">module</a>
+</li>
+      </ul></li>
+      <li><a href="vm/app_server.html#collator_server.CollatorBlueprint">CollatorBlueprint (class in collator_server)</a>
+</li>
+      <li><a href="vm/app_server.html#collator_server.CollatorError">CollatorError</a>
 </li>
       <li><a href="vm/apache/wordpress/plugins/page-generator.html#\cceh\capitularia\page_generator\File_List_Table::column_cb"><strong>column_cb() (File_List_Table method)</strong></a>
 </li>
@@ -747,7 +749,7 @@
     module
 
       <ul>
-        <li><a href="vm/app_server.html#module-collatex_server">collatex_server</a>
+        <li><a href="vm/app_server.html#module-collator_server">collator_server</a>
 </li>
         <li><a href="vm/app_server.html#module-data_server">data_server</a>
 </li>
@@ -924,7 +926,7 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="vm/app_server.html#collatex_server.normalize_with_patterns">normalize_with_patterns() (in module collatex_server)</a>
+      <li><a href="vm/app_server.html#collator_server.normalize_with_patterns">normalize_with_patterns() (in module collator_server)</a>
 </li>
       <li><a href="vm/apache/wordpress/plugins/collation-tool.html#\cceh\capitularia\collation_user\ns"><strong>ns() (function in \cceh\capitularia\collation_user)</strong></a>
 
@@ -1363,6 +1365,8 @@
 </li>
       <li><a href="vm/apache/wordpress/plugins/page-generator.html#\cceh\capitularia\page_generator\File_List_Table::prepare_items"><strong>prepare_items() (File_List_Table method)</strong></a>
 </li>
+      <li><a href="vm/app_server.html#collator_server.preprocess">preprocess() (in module collator_server)</a>
+</li>
       <li><a href="vm/apache/wordpress/plugins/page-generator.html#\cceh\capitularia\page_generator\Dashboard_Page::process_bulk_actions"><strong>process_bulk_actions() (Dashboard_Page method)</strong></a>
 </li>
   </ul></td>
@@ -1701,8 +1705,6 @@
         <li><a href="vm/apache/wordpress/plugins/meta-search.html#\cceh\capitularia\meta_search\Widget::$title"><strong>(Widget property)</strong></a>
 </li>
       </ul></li>
-      <li><a href="vm/app_server.html#collatex_server.to_collatex">to_collatex() (in module collatex_server)</a>
-</li>
       <li><a href="vm/database.html#db.MssChapters.transcribed">transcribed (MssChapters attribute)</a>
 </li>
       <li><a href="vm/apache/wordpress/theme/main.html#\cceh\capitularia\theme\translate_month_year"><strong>translate_month_year() (function in \cceh\capitularia\theme)</strong></a>

@@ -49,6 +49,25 @@ To restore a file to a different location:
 
    sudo dsmc restore /var/backup/mysqldump.sql /var/backup/mysqldump_copy.sql
 
+
+Update
+------
+
+To manually update the TSM client (replace 8.1.15.1 with the new version):
+
+.. code:: bash
+
+   wget http://ftp.software.ibm.com/storage/tivoli-storage-management/patches/client/v8r1/Linux/LinuxX86_DEB/v8115/8.1.15.1-TIV-TSMBAC-LinuxX86_DEB.tar
+   tar -xvf 8.1.15.1-TIV-TSMBAC-LinuxX86_DEB.tar
+
+   sudo dpkg -i tivsm-api64.amd64.deb
+   sudo dpkg -i tivsm-ba.amd64.deb
+   sudo dpkg -i tivsm-apicit.amd64.deb
+   sudo dpkg -i tivsm-bacit.amd64.deb
+   sudo systemctl restart dsmcad.service
+   sudo systemctl status dsmcad.service
+
+
 .. seealso::
 
    https://www.ibm.com/docs/en/spectrum-protect/8.1.14?topic=data-backing-up-using-command-line

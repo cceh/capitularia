@@ -64,11 +64,10 @@ The import.py script imports the intermediate text files into the database.
 Collation
 ~~~~~~~~~
 
-The collation tool is divided in two parts, one frontend written in JavaScript
-and the Vue.js library, and one backend application server written in Python.
-The backend retrieves the chapters to collate from the database and calls the
-CollateX executable to do the actual collation. The results are sent to the
-frontend that does the formatting for display.
+The collation tool is divided in two parts, one frontend written in JavaScript and the
+Vue.js library, and one backend application server written in Python.  The application
+server retrieves the chapters to collate from the database and collates them. The
+results are sent to the frontend that does the formatting for display.
 
 .. pic:: uml
    :caption: Data flow during collation
@@ -80,41 +79,22 @@ frontend that does the formatting for display.
    cloud "VM" {
      database  "Database\n(Postgres)"   as db
      component "API Server\n(Python)"   as api
-     component "CollateX\n(Java)"       as cx
    }
    component "Frontend\n(Javascript)" as client
 
    db     --> api
    api    --> client
-   api    <- cx
-   api    -> cx
 
 
 The collation unit is the chapter, so that only short texts need to be collated,
 saving much processing time.
 
-We aim to rewrite all the functionality we need of CollateX in Python or
-Javascript and then drop the dependency on CollateX.
-
 The Wordpress collation plugin delivers the Javascript client to the user.
 After that, all communication happens directly between the client and the
 application server.
 
-
-.. _custom-collatex:
-
-Custom Version of CollateX
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The stock version of CollateX [CollateX]_ uses word comparison functions that
-return a *boolean*, signalling either a match or a mismatch.  Our customized
-version of Collate-X uses a word comparison function that returns a *float*
-value between 0 and 1, signalling a greater or lesser similarity between to
-words.  This approach works better when aligning variant orthographies of the
-same word.
-
-In our custom CollateX we also implemented an enhancement of the
-Needleman-Wunsch algorithm by Gotoh. [Gotoh1982]_
+The application server uses an enhacement of the Needleman-Wunsch algorithm by Gotoh.
+[Gotoh1982]_
 
 
 Word Comparison Function
@@ -143,11 +123,11 @@ An example calculation follows:
 .. pic:: trigram hlodouuico ludouico
    :caption: Calculating similarity using trigrams
 
-The similarity based on trigrams was chosen because its calculation can be done
-in O(n) time whereas a similarity based on Levenshtein distance needs O(n²)
-time.  The sets of trigrams for each input word are calculated only once and if
-you presort the trigrams in these sets, the common set can be found in O(n)
-time.
+The similarity based on trigrams was chosen because its calculation can be done in
+:math:`\mathcal{O}(n)` time whereas a similarity based on Levenshtein distance needs
+:math:`\mathcal{O}(n^2)` time.  The sets of trigrams for each input word are calculated
+only once and if you presort the trigrams in these sets (to be implemented), the common
+set can be found in :math:`\mathcal{O}(n)` time.
 
 Optimizations yet to be implemented: in a first step gather all trigrams in all
 input texts, give each one an integer id, and later operate on the ids only.
@@ -158,6 +138,3 @@ later operate on the masks only.
 .. [Gotoh1982] Gotoh, O. 1982,  *An Improved Algorithm for Matching Biological
                Sequences,* J. Mol. Biol. 162, 705-708
                http://jaligner.sourceforge.net/references/gotoh1982.pdf
-
-.. [CollateX] Dekker, R.H. et al. 2010-2019, *CollateX -- Software for Collating
-              Textual Sources,* https://collatex.net/

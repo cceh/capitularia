@@ -27,10 +27,10 @@ data_server
    :members:
 
 
-collatex_server
+collator_server
 ---------------
 
-.. automodule:: collatex_server
+.. automodule:: collator_server
    :members:
 
 
