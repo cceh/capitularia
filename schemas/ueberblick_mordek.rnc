@@ -1,0 +1,82 @@
+default namespace = "http://www.tei-c.org/ns/1.0"
+
+start =
+  element lists {
+    element list {
+      attribute xml:id { xsd:NCName },
+      (element item {
+         attribute status { xsd:NCName }?,
+         attribute xml:id { xsd:NCName },
+         element idno {
+           attribute type { xsd:NCName },
+           (text | hi)+
+         }+,
+         element note {
+           attribute type { xsd:NCName },
+           (text | ref)+
+         }?,
+         element origin {
+           (text
+            | locus
+            | origPlace
+            | element origDate {
+                attribute cert { xsd:NCName }?,
+                attribute notAfter { xsd:integer }?,
+                attribute notBefore { xsd:integer }?,
+                attribute resp { xsd:NCName }?,
+                attribute when { xsd:integer }?,
+                (text | locus)+
+              })+
+         }*,
+         element content {
+           (text
+            | element capit {
+                (text
+                 | locus
+                 | element term {
+                     attribute list { xsd:NCName }?,
+                     attribute n { xsd:NCName }?,
+                     attribute status { xsd:NCName }?,
+                     (text | hi | locus)+
+                   })+
+              })+
+         }
+       }
+       | element milestone {
+           attribute n { xsd:NCName },
+           attribute unit { xsd:NCName }
+         })+
+    }
+  }
+hi =
+  element hi {
+    attribute rend { xsd:NCName },
+    (text | hi)+
+  }
+ref =
+  element ref {
+    attribute subtype { xsd:NCName },
+    attribute target { xsd:NCName },
+    attribute type { xsd:NCName },
+    (text | hi)+
+  }
+locus = element locus { (text | hi)+ }
+origPlace =
+  element origPlace {
+    attribute corresp { xsd:anyURI }?,
+    attribute ref { xsd:anyURI }?,
+    attribute xml:id { xsd:NCName }?,
+    (text
+     | hi
+     | locus
+     | origPlace
+     | ref
+     | element placeName {
+         attribute ref { xsd:anyURI },
+         text
+       }
+     | element placename {
+         attribute ref { text },
+         xsd:NCName
+       })+
+  }
