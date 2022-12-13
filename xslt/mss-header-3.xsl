@@ -173,7 +173,7 @@ Target: mss_priv $(CACHE_DIR)/internal/mss/%.header.html
 
   <xsl:template match="msIdentifier">
     <div class="tei-msIdentifier">
-      <h5>[:de]Aufbewahrungsort:[:en]Repository:[:]</h5>
+      <h5>[:de]Aufbewahrungsort[:en]Repository[:]</h5>
 
       <xsl:value-of select="settlement"/>
       <br/>
