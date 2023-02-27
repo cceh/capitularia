@@ -366,6 +366,10 @@
         <title>Universitäts- und Landesbibliothek Darmstadt</title>
         <caption>ULB Darmstadt</caption>
       </item>
+      <item key="digital.library.ucla.edu">
+        <title>UCLA Library Digital Collections</title>
+        <caption>UCLA Library Digital Collections</caption>
+      </item>
       <item key="lib.ugent.be">
         <title>Universiteitsbibliotheek Gent</title>
         <caption>Universiteitsbibliotheek Gent</caption>
