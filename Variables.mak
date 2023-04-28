@@ -20,8 +20,9 @@ XSLT         := $(ROOT)/xslt
 GIS          := $(ROOT)/gis
 
 HOST_CLIENT  := $(WPCONTENT)/dist
-HOST_SERVER  := $(HOST_ROOT):~/$(PRJ_DIR)/server
-HOST_XSLT    := $(HOST_ROOT):~/$(PRJ_DIR)/xslt
+HOST_PRJ_DIR := $(HOST_ROOT):~/$(PRJ_DIR)
+HOST_SERVER  := $(HOST_PRJ_DIR)/server
+HOST_XSLT    := $(HOST_PRJ_DIR)/xslt
 
 NODE_MODULES := $(ROOT)/node_modules
 NODE         := $(NODE_MODULES)/.bin

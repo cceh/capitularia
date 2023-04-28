@@ -263,6 +263,9 @@ Target: lists $(CACHE_DIR)/lists/bib.html
     <xsl:if test="cap:has-text (.)">
       <span class="tei-biblscope tei-biblscope-{@unit}">
         <xsl:choose>
+          <xsl:when test="@unit = 'column'">
+            <xsl:text>Sp. </xsl:text>
+          </xsl:when>
           <xsl:when test="@unit = 'page'">
             <xsl:text>S. </xsl:text>
           </xsl:when>
