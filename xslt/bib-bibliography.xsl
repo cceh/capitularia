@@ -515,6 +515,7 @@ Target: lists $(CACHE_DIR)/lists/bib.html
 
     <xsl:apply-templates select="$n/imprint/biblScope[@unit='chapter']" />
     <xsl:apply-templates select="$n/imprint/biblScope[@unit='page']" />
+    <xsl:apply-templates select="$n/imprint/biblScope[@unit='column']" />
   </xsl:template>
 
   <xsl:template name="notes">
