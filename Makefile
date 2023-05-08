@@ -33,8 +33,8 @@ deploy_scripts:
 	$(RSYNC) --exclude='env' scripts $(PUBL)
 
 deploy_schemas:
-	# $(RSYNC) --exclude='env' schemas $(PUBL)/schemata
-	$(RSYNC) --exclude='env' bibl/schemas/*.rng bibl/schemas/*.sch $(PUBL)/bibl
+	# $(RSYNC) schemas $(PUBL)/schemata
+	$(RSYNC) bibl/*.rng bibl/*.sch $(PUBL)/bibl
 
 upload_scripts:
 	$(RSYNC) --exclude='env' scripts $(HOST_PRJ_DIR)

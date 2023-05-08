@@ -76,17 +76,17 @@
 	<pattern id="biblStruct_rs">
 		<rule context="tei:biblStruct/tei:monogr/tei:title/tei:rs">
 			<assert test="parent::*/parent::*/parent::*/tei:note[@type='rel_text']">Es fehlt note type='rel_text' obwohl ein ns type='place' im Titel vorhanden ist.</assert>
-		</rule>	
+		</rule>
 	</pattern>
 	<pattern id="biblStruct_note_type_notes">
 		<rule context="tei:biblStruct/tei:note[@type='notes']">
 			<assert test="tei:p">Strukturierende p-Elemente fehlen</assert>
-		</rule>	
+		</rule>
 	</pattern>
 	<pattern id="biblStruct_note">
 		<rule context="tei:biblStruct">
 			<report test="count(tei:note[@type='notes'])> 1">Mehr als eine allgemeine Anmerkung</report>
-		</rule>	
+		</rule>
 	</pattern>
 	<!--  -->
 	<!--  -->
@@ -128,7 +128,7 @@
 			<assert test="tei:imprint/tei:biblScope[@unit='volume'] or tei:imprint/tei:biblScope[@unit='issue']" role="error">Bandangabe (biblScope mit @unit="volume") oder Bandnummer (biblScope mit @unit="issue") muss vorhanden sein [biblStruct_journalArticle_monogr_004]</assert>
 			<report test="tei:imprint/tei:biblScope[@unit='volume'][. = '']" role="error">Bandangabe fehlt (ist leer) [biblStruct_journalArticle_monogr_005]</report>
 			<report test="tei:imprint/tei:biblScope[@unit='issue'][. = '']" role="warn">Nummmer für issue fehlt (ist leer) [biblStruct_journalArticle_monogr_006]</report>
-			<assert test="tei:imprint/tei:biblScope[@unit='page']" role="error">Seitenangabe fehlt [biblStruct_journalArticle_monogr_007]</assert>
+			<assert test="tei:imprint/tei:biblScope[@unit='page'][. != ''] or tei:imprint/tei:biblScope[@unit='column'][. != '']" role="error">Seiten- oder Spaltenangabe fehlt [biblStruct_journalArticle_monogr_007]</assert>
 			<assert test="tei:imprint/tei:date[. != '']" role="error">Erscheinungsjahr fehlt [biblStruct_journalArticle_monogr_008]</assert>
 		</rule>
 	</pattern>
@@ -158,7 +158,7 @@
 			<assert test="tei:edition" role="error">Enthält keine Informationen zur Auflage(edition) [biblStruct_bookSection_monogr_005]</assert>
 			<assert test="tei:imprint/tei:pubPlace[. != '']" role="error">Erscheinungsort fehlt (pubPlace) [biblStruct_bookSection_monogr_006]</assert>
 			<assert test="tei:imprint/tei:date[. != '']" role="error">Erscheinungsjahr fehlt (date) [biblStruct_bookSection_monogr_008]</assert>
-			<assert test="tei:imprint/tei:biblScope[@unit='page'][. != '']" role="error">Seitenangabe fehlt [biblStruct_bookSection_monogr_009]</assert>
+			<assert test="tei:imprint/tei:biblScope[@unit='page'][. != ''] or tei:imprint/tei:biblScope[@unit='column'][. != '']" role="error">Seiten- oder Spaltenangabe fehlt [biblStruct_bookSection_monogr_009]</assert>
 		</rule>
 	</pattern>
 	<pattern id="biblStruct_bookSection_analytic">
