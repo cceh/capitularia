@@ -17,7 +17,7 @@ module.exports = {
                 './themes/Capitularia/src/js/front.js',
                 './themes/Capitularia/src/css/front.scss',
                 './themes/Capitularia/src/css/content-col.scss',
-            ].concat (glob.sync ('./themes/Capitularia/src/images/*.png')),
+            ].concat (glob.sync ('./themes/Capitularia/src/images/*.png', { 'dotRelative' : true })),
             'dependOn' : 'cap-vendor',
         },
         'cap-theme-admin' : {

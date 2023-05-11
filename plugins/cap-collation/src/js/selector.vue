@@ -189,7 +189,7 @@ export default {
             const response = await tools.api ('/data/capitularies.json/');
             // list of { cap_id, title, transcriptions }
             // Do not show Ansegis etc.
-            vm.bks = response.filter ((r) => r.cap_id.match (/^BK|^Mordek/)).map ((r) => r.cap_id);
+            vm.bks = response.filter ((r) => r.cap_id.match (/^BK|^Mordek|^Benedictus\.Levita\.1\.279/)).map ((r) => r.cap_id);
             vm.bk = vm.config.bk || vm.bks[0] || '';
 
             await vm.ajax_load_corresps (vm.config);

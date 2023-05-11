@@ -102,11 +102,11 @@ export default {
         },
 
         /**
-         * Transpose a table returned by CollateX
+         * Transpose a table returned by the API
          *
          * Turn rows into columns and vice versa.
          *
-         * @param {array} matrix The CollateX table
+         * @param {array} matrix The table as returned by the API
          *
          * @return {array} The transposed table
          */
@@ -160,9 +160,9 @@ export default {
         },
 
         /**
-         * Format a CollateX table into HTML
+         * Format a table as returned by the API into HTML
          *
-         * The Collate-X response:
+         * The format returned by the API:
          *
          * .. code:: json
          *

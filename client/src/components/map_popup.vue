@@ -117,7 +117,7 @@ import card           from './widgets/card.vue';
 import card_caption   from './widgets/card_caption.vue';
 import toolbar        from './widgets/toolbar.vue';
 import layer_selector from './widgets/layer_selector.vue';
-import chart          from './widgets/chart.vue';
+import chart          from './widgets/cap_chart.vue';
 
 import options        from '../js/toolbar_options.js';
 

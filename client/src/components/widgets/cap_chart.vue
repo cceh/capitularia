@@ -6,12 +6,10 @@
 </template>
 
 <script>
-import _       from 'lodash';
 import * as d3 from 'd3';
 
-
 export default {
-    props: {
+    'props' : {
         // the inner height (the height of y-axis)
         // the whole widget will be adding margins + padding for the POI text
         'height' : {
@@ -29,32 +27,33 @@ export default {
     data () {
         return {
             'viewbox' : {
-                'left'   :  0,
-                'right'  :  0,
-                'top'    :  0,
-                'bottom' :  0,
+                'left'   : 0,
+                'right'  : 0,
+                'top'    : 0,
+                'bottom' : 0,
             },
             'padding' : { // padding around d3.area
-                'left'   :  7,
-                'right'  :  5,
-                'top'    :  5,
-                'bottom' :  5,
+                'left'   : 7,
+                'right'  : 5,
+                'top'    : 5,
+                'bottom' : 5,
             },
-        }
+        };
     },
-    watch: {
+    'watch' : {
         'data' : {
             handler () {
                 this.update ();
             },
             'deep' : true,
-        }
+        },
     },
-    methods: {
+    'methods' : {
         update () {
             const vm = this;
-            if (vm.data === null)
+            if (vm.data === null) {
                 return;
+            }
 
             // the y-axis
 
@@ -66,9 +65,9 @@ export default {
             const y_domain = vm.data.map (d => label (d));
 
             const y = d3.scaleBand ()
-                  .domain (y_domain)
-                  .rangeRound ([-vm.height, 0])
-                  .padding (0.2);
+                .domain (y_domain)
+                .rangeRound ([-vm.height, 0])
+                .padding (0.2);
 
             vm.g.append ('g')
                 .classed ('axis axis-y', true)
@@ -78,8 +77,8 @@ export default {
             // the x-axis
 
             const x = d3.scaleLinear ()
-                  .domain ([0, d3.max (vm.data, d => d.length)])
-                  .range ([0, vm.width]);
+                .domain ([0, d3.max (vm.data, d => d.length)])
+                .range ([0, vm.width]);
 
             vm.g.append ('g')
                 .classed ('axis axis-x', true)
@@ -94,10 +93,10 @@ export default {
                 .classed ('bar', true)
                 .attr ('x', x (0))
                 .attr ('width', d => x (d.length) - x (0)) // data
-                .attr ('y', (d, i) => y (label (d)))
+                .attr ('y', (d, dummy_i) => y (label (d)))
                 .attr ('height', y.bandwidth ());
 
-                // the bar labels
+            // the bar labels
 
             vm.g.selectAll ('text.value')
                 .data (vm.data)
@@ -105,7 +104,7 @@ export default {
                 .classed ('value', true)
                 .classed ('short', d => x (d.length) - x (0) < 25)
                 .attr ('x', d => x (d.length) - x (0))
-                .attr ('y', (d, i) => y (label (d)) + y.bandwidth () / 2)
+                .attr ('y', (d, dummy_i) => y (label (d)) + (y.bandwidth () / 2))
                 .attr ('dx', d => x (d.length) - x (0) < 25 ? '0.5em' : '-0.5em')
                 .text (d => d.length);
 
@@ -116,14 +115,14 @@ export default {
             vb.right  =  bb.x + bb.width  + vm.padding.right;
             vb.left   =  bb.x;
             vb.bottom =  bb.y + bb.height;
-        }
+        },
     },
     mounted () {
         const vm = this;
         vm.g = d3.select (vm.$el).select ('g.graph');
         vm.update ();
     },
-}
+};
 </script>
 
 <style lang="scss">
