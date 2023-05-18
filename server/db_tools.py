@@ -265,7 +265,7 @@ class PostgreSQLEngine:
             "PostgreSQLEngine: Connecting to URL: {url}".format(url=self.url),
         )
 
-        self.engine = sqlalchemy.create_engine(self.url, executemany_mode="batch")
+        self.engine = sqlalchemy.create_engine(self.url)
 
         self.params = args
 

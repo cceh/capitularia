@@ -16,7 +16,7 @@ helps avoiding ugly label placement when a label is near a metatile border.
 import math
 import os.path
 
-import cairo
+# import cairo
 from flask import abort, current_app, make_response, Blueprint
 from cachelib import SimpleCache
 import mapnik
@@ -81,7 +81,7 @@ transformer = Transformer.from_crs("EPSG:4326", "EPSG:3857", always_xy=True)
 
 # epsg3857 = mapnik.Projection("epsg:3857")  # OpenstreetMap  https://epsg.io/3857
 # epsg3857 = mapnik.Projection ("+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over")
-# epsg4326 = mapnik.Projection ("+init=epsg:4326") # WGS84 / GPS    https://epsg.io/4326
+# epsg4326 = mapnik.Projection ("epsg:4326") # WGS84 / GPS    https://epsg.io/4326
 
 
 class Render:
@@ -90,7 +90,24 @@ class Render:
         self.mapid = layer["id"]
 
         self.map = mapnik.Map(METATILE_SIZE, METATILE_SIZE)
-        mapnik.load_map(self.map, os.path.join(app.root_path, layer["map_style"]))
+
+        # FIXME: this horrible hack is needed because the developer machine has
+        # libproj25 but the VM has libproj19.  It can be removed once the VM has updated
+        # to libproj25. Must fix the style files too.
+        #
+        # make XML style files compatible with both proj4 and proj6 syntax:
+        # proj4 needs srs="+init=epsg:3857"
+        # proj6 needs srs="epsg:3857"
+        filename = os.path.join(app.root_path, layer["map_style"])
+        try:
+            app.logger.info(f"Loading map from style: {filename}")
+            mapnik.load_map(self.map, filename)
+        except RuntimeError:
+            with open(filename, "r") as fp:
+                app.logger.info(f"Patching old-style proj4 syntax in: {filename}")
+                xml_as_string = fp.read().replace("+init=epsg:", "epsg:")
+                app.logger.debug(xml_as_string)
+                mapnik.load_map_from_string(self.map, xml_as_string, False, app.root_path)
 
     def render_with_agg(self, tile_size):
         """Render tile with Agg renderer."""
@@ -98,11 +115,11 @@ class Render:
         mapnik.render(self.map, img)
         return img
 
-    def render_with_cairo(self, tile_size):
-        """Render tile with cairo renderer."""
-        surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, tile_size, tile_size)
-        mapnik.render(self.map, surface)
-        return mapnik.Image.from_cairo(surface)
+    # def render_with_cairo(self, tile_size):
+    #     """Render tile with cairo renderer."""
+    #     surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, tile_size, tile_size)
+    #     mapnik.render(self.map, surface)
+    #     return mapnik.Image.from_cairo(surface)
 
     # @staticmethod
     # def deg2num (lat_deg, lon_deg, zoom):

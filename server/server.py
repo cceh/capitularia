@@ -61,6 +61,14 @@ def create_app(Config):
 
     app.config.from_object(Config)
 
+    # load the config file only to get the log file destination
+    app.config.from_pyfile(Config.CONFIG_FILE)
+    init_logging(
+        args, flask.logging.default_handler, logging.FileHandler(app.config["LOG_FILE"])
+    )
+    Config.LOG_LEVEL = args.log_level
+    app.logger.setLevel(Config.LOG_LEVEL)
+
     app.register_blueprint(data_app, url_prefix="/data")
     data_app.init_app(app)
 
@@ -79,13 +87,8 @@ def create_app(Config):
     app.register_blueprint(collator_app, url_prefix="/collator")
     collator_app.init_app(app)
 
+    # reload the config file to overwrite default values
     app.config.from_pyfile(Config.CONFIG_FILE)
-
-    init_logging(
-        args, flask.logging.default_handler, logging.FileHandler(app.config["LOG_FILE"])
-    )
-    Config.LOG_LEVEL = args.log_level
-    app.logger.setLevel(Config.LOG_LEVEL)
 
     app.config.dba = PostgreSQLEngine(**app.config)
 
