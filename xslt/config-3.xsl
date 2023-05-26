@@ -246,9 +246,14 @@
         <title>Bodleian Library Oxford</title>
         <caption>Bodleian</caption>
       </item>
+      <item key="mdz-nbn-resolving.de/details:bsb">
+        <!-- redirect -->
+        <title>Bayerische Staatsbibliothek</title>
+        <caption>Bayerische Staatsbibliothek</caption>
+      </item>
       <item key="digitale-sammlungen.de">
         <title>Bayerische Staatsbibliothek München</title>
-        <caption>BSB München</caption>
+        <caption>Bayerische Staatsbibliothek München</caption>
       </item>
       <item key="bsb.lrz.de">
         <title>Staatsbibliothek Bamberg</title>
