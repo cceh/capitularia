@@ -287,6 +287,10 @@
         <title>Digitale Historische Bibliothek Erfurt/Gotha</title>
         <caption>Digitale Historische Bibliothek Erfurt/Gotha</caption>
       </item>
+      <item key="dhb.thulb.uni-jena.de">
+        <title>Digitale Historische Bibliothek Erfurt/Gotha</title>
+        <caption>Digitale Historische Bibliothek Erfurt/Gotha</caption>
+      </item>
       <item key=".hab.de">
         <title>Herzog August Bibliothek</title>
         <caption>HAB</caption>
