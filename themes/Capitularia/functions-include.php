@@ -449,6 +449,29 @@ function bk_to_permalink ($corresp)
 }
 
 /**
+ * Get the manuscript page url corresponding to a manuscript siglum.
+ *
+ * Note: If the siglum is not unique, a random manuscript with that siglum will be
+ * returned.
+ *
+ * @param string $siglum eg. "Ba2"
+ *
+ * @return string The path to the page, eg. "/mss/bamberg-sb-can-7/" or null
+ */
+
+ function siglum_to_permalink ($siglum)
+ {
+     $params = array (
+         'siglum' => $siglum
+     );
+     foreach (lib\api_json_request ('/data/manuscripts.json/', $params) as $r) {
+         return '/mss/'. $r['ms_id'];
+     }
+     return null;
+ }
+
+
+/**
  * Redirector for Capitulary pages
  *
  * Eg. redirects from
@@ -491,6 +514,13 @@ function on_do_parse_request ($do_parse, $wp, $extra_query_vars) // phpcs:ignore
     }
     if (preg_match ('!^/capit/(BK|Mordek)(.*)$!i', $request, $matches)) {
         $url = bk_to_permalink ($matches[1] . $matches[2]);
+        if ($url) {
+            wp_redirect ($url);
+            exit ();
+        }
+    }
+    if (preg_match ('!^/siglum/(.*)$!i', $request, $matches)) {
+        $url = siglum_to_permalink ($matches[1]);
         if ($url) {
             wp_redirect ($url);
             exit ();

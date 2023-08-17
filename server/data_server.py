@@ -50,6 +50,8 @@ Endpoints
 
    :query string status: Optional.  'private' or 'publish'.  Default 'publish'.
                          Consider all manuscripts or just the published ones.
+   :query string siglum: Optional.  Return only manuscripts that have the given siglum.
+                         Note: sigla are not necessarily unique.
    :resheader Content-Type: application/json
    :statuscode 200: no error
    :resjsonobj string ms_id: the id of the manuscript.
@@ -326,6 +328,15 @@ def fstat():
 def manuscripts():
     """Return all manuscripts"""
 
+    siglum = request.args.get("siglum")
+
+    where = [stat()]
+    params = {}
+
+    if siglum:
+        where.append("siglum = :siglum")
+        params["siglum"] = siglum
+
     with current_app.config.dba.engine.begin() as conn:
         res = execute(
             conn,
@@ -335,8 +346,8 @@ def manuscripts():
         WHERE %s
         ORDER BY natsort (ms_id)
         """
-            % stat(),
-            {},
+            % " AND ".join(where),
+            params,
         )
 
         Manuscripts = collections.namedtuple(
