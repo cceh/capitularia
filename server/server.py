@@ -18,7 +18,8 @@ from data_server import app as data_app
 from tile_server import tile_app
 from geo_server import geo_app
 from xslt_server import app as xslt_app
-from collatex_server import app as collatex_app
+from saxon_server import app as saxon_app
+# from collatex_server import app as collatex_app
 from collator_server import app as collator_app
 
 
@@ -81,8 +82,11 @@ def create_app(Config):
     app.register_blueprint(xslt_app, url_prefix="/xslt")
     xslt_app.init_app(app)
 
-    app.register_blueprint(collatex_app, url_prefix="/collatex")
-    collatex_app.init_app(app)
+    app.register_blueprint(saxon_app, url_prefix="/saxon")
+    saxon_app.init_app(app)
+
+    # app.register_blueprint(collatex_app, url_prefix="/collatex")
+    # collatex_app.init_app(app)
 
     app.register_blueprint(collator_app, url_prefix="/collator")
     collator_app.init_app(app)
