@@ -166,6 +166,11 @@ class FileIncluderEngine
             return $posts;
         }
 
+        // process only on single posts, otherwise may timeout
+        if (count ($posts) > 1) {
+            return $posts;
+        }
+
         if ($query->query_vars['post_type'] == 'nav_menu_item') {
             return $posts;
         }
