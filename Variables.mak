@@ -56,7 +56,7 @@ XGETTEXT       := xgettext --default-domain=capitularia --from-code=utf-8 \
 	--msgid-bugs-address=marcello@perathoner.de \
 	-k'__' -k'_e' -k'_n:1,2' -k'_x:1,2c' -k'_ex:1,2c'
 
-PHPDOC         := tools/phpDocumentor
+PHPDOC         := vendor/phpdoc
 JSDOC          := $(NODE)/jsdoc -c jsdoc.conf.js
 
 MYSQL_REMOTE     := mysql --defaults-file=~/.my.cnf.capitularia

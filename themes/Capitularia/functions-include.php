@@ -448,6 +448,7 @@ function bk_to_permalink ($corresp)
     return null;
 }
 
+
 /**
  * Get the manuscript page url corresponding to a manuscript siglum.
  *
@@ -456,33 +457,31 @@ function bk_to_permalink ($corresp)
  *
  * @param string $siglum eg. "Ba2"
  *
- * @return string The path to the page, eg. "/mss/bamberg-sb-can-7/" or null
+ * @return string The path to the page, eg. "/mss/bamberg-sb-can-7" or null
  */
 
- function siglum_to_permalink ($siglum)
- {
-     $params = array (
-         'siglum' => $siglum
-     );
-     foreach (lib\api_json_request ('/data/manuscripts.json/', $params) as $r) {
-         return '/mss/'. $r['ms_id'];
-     }
-     return null;
- }
+function siglum_to_permalink ($siglum)
+{
+    $params = array (
+        'siglum' => $siglum
+    );
+    foreach (lib\api_json_request ('/data/manuscripts.json/', $params) as $r) {
+        return '/mss/'. $r['ms_id'];
+    }
+    return null;
+}
 
 
 /**
- * Redirector for Capitulary pages
+ * Implements URL-Redirects
  *
- * Eg. redirects from
+ * Examples of implemented redirects:
  *
  *     /capit/BK.42a    => /capit/<subdir>/bk-nr-042a/
  *     /capit/Mordek_27 => /capit/<subdir>/mordek-nr-27/
  *     /bk/42a          => /capit/<subdir>/bk-nr-042a/
  *     /mordek/27       => /capit/<subdir>/mordek-nr-27/
- *
- * We cannot just use mod_rewrite because we don't know which subdirectory the
- * capitulary page is in.
+ *     /siglum/Ba2      => /mss/bamberg-sb-can-7
  *
  * @param boolean      $do_parse         (unused) Whether or not to parse the request.
  * @param \WP          $wp               (unused) The current WordPress environment instance.
