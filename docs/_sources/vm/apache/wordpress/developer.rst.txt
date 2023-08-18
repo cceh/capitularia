@@ -5,7 +5,7 @@ Developer Notes
 
 Description of our development environment for Wordpress customizations.
 
-Skills needed: Wordpress, PHP, JS, SCSS, Vue.js, jQuery, Bootstrap, Webpack,
+Skills needed: Wordpress, PHP, Javascript, Sass, Vue.js, jQuery, Bootstrap, Webpack,
 Makefile.
 
 .. contents::

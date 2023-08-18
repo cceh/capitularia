@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Users of the VM &mdash; Capitularia 0.2.1 documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -29,12 +31,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> Capitularia
-            <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Capitularia
+              <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -109,6 +115,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../maintenance/wordpress.html#wordpress-upgrades">Wordpress Upgrades</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../maintenance/logfiles.html">Location of Logfiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#apache-php">Apache / PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-app-server">Python App Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-import-script">Python Import Script</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul>
@@ -133,9 +145,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../vm.html">Capitularia VM</a> &raquo;</li>
-      <li>Users of the VM</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../vm.html">Capitularia VM</a></li>
+      <li class="breadcrumb-item active">Users of the VM</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/vm/user.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -146,17 +158,17 @@
            <div itemprop="articleBody">
              
   <section id="users-of-the-vm">
-<span id="user"></span><h1>Users of the VM<a class="headerlink" href="#users-of-the-vm" title="Permalink to this headline">¶</a></h1>
+<span id="user"></span><h1>Users of the VM<a class="headerlink" href="#users-of-the-vm" title="Permalink to this heading">¶</a></h1>
 <p>Each editor is a user on the VM.
 The username is the same as the username of the UniKim account.</p>
 <p>Users must access the VM by SSH, WinSCP, etc. using their UniKim account’s username and
 password.</p>
 <p>Example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh meckhart@capitularia.uni-koeln.de
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>meckhart@capitularia.uni-koeln.de
 </pre></div>
 </div>
 <section id="users-and-groups">
-<h2>Users and Groups<a class="headerlink" href="#users-and-groups" title="Permalink to this headline">¶</a></h2>
+<h2>Users and Groups<a class="headerlink" href="#users-and-groups" title="Permalink to this heading">¶</a></h2>
 <dl>
 <dt>User <code class="docutils literal notranslate"><span class="pre">capitularia</span></code></dt><dd><p>The admin user for this project.  This user must have read/write access to all files.</p>
 <p>The application server is installed under this user’s home directory. The XSLT
@@ -186,10 +198,6 @@ through group <code class="docutils literal notranslate"><span class="pre">capit
 </dl>
 <p>Groups for user:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 26%" />
-<col style="width: 74%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>User</p></th>
 <th class="head"><p>Groups</p></th>
@@ -206,12 +214,6 @@ through group <code class="docutils literal notranslate"><span class="pre">capit
 </table>
 <p>ACL permissions for users:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 30%" />
-<col style="width: 12%" />
-<col style="width: 15%" />
-<col style="width: 42%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>User</p></th>
 <th class="head"><p>cap/publ</p></th>
@@ -234,12 +236,6 @@ through group <code class="docutils literal notranslate"><span class="pre">capit
 </table>
 <p>ACL permissions for groups:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 30%" />
-<col style="width: 12%" />
-<col style="width: 15%" />
-<col style="width: 42%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Group</p></th>
 <th class="head"><p>cap/publ</p></th>
@@ -261,25 +257,25 @@ through group <code class="docutils literal notranslate"><span class="pre">capit
 </tbody>
 </table>
 <p>To see ACLs for the current directory, say:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getfacl .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getfacl<span class="w"> </span>.
 </pre></div>
 </div>
 <p>An example of how to set ACLs:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setfacl -R -m u:www-data:rX,g:capitularia-editors:rwX,o::- &lt;dir&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setfacl<span class="w"> </span>-R<span class="w"> </span>-m<span class="w"> </span>u:www-data:rX,g:capitularia-editors:rwX,o::-<span class="w"> </span>&lt;dir&gt;
 </pre></div>
 </div>
 </section>
 <section id="adding-a-new-user">
-<h2>Adding a New User<a class="headerlink" href="#adding-a-new-user" title="Permalink to this headline">¶</a></h2>
+<h2>Adding a New User<a class="headerlink" href="#adding-a-new-user" title="Permalink to this heading">¶</a></h2>
 <p>To add a new user to the VM (needs root):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ~capitularia/add_capitularia_user.sh &lt;username&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>~capitularia/add_capitularia_user.sh<span class="w"> </span>&lt;username&gt;
 </pre></div>
 </div>
 <p>Each user should also have a semi-personal subdirectory in: <code class="file docutils literal notranslate"><span class="pre">cap/intern/InArbeit/</span></code>.
 They can create that themselves.</p>
 </section>
 <section id="security">
-<h2>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h2>
+<h2>Security<a class="headerlink" href="#security" title="Permalink to this heading">¶</a></h2>
 <p>The users are authenticated by the RRZK Kerberos system through PAM and the pam_krb5
 module.  For particulars see the voice: “Zugang zu Gast-VM (debian) mit UniKim-Account”
 in the internal CCeH wiki.</p>

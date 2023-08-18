@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Database Structure &mdash; Capitularia 0.2.1 documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -29,12 +31,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> Capitularia
-            <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Capitularia
+              <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -109,6 +115,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../maintenance/wordpress.html#wordpress-upgrades">Wordpress Upgrades</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../maintenance/logfiles.html">Location of Logfiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#apache-php">Apache / PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-app-server">Python App Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-import-script">Python Import Script</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul>
@@ -133,9 +145,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../vm.html">Capitularia VM</a> &raquo;</li>
-      <li>Database Structure</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../vm.html">Capitularia VM</a></li>
+      <li class="breadcrumb-item active">Database Structure</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/vm/database.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -146,9 +158,9 @@
            <div itemprop="articleBody">
              
   <section id="database-structure">
-<span id="database"></span><h1>Database Structure<a class="headerlink" href="#database-structure" title="Permalink to this headline">¶</a></h1>
+<span id="database"></span><h1>Database Structure<a class="headerlink" href="#database-structure" title="Permalink to this heading">¶</a></h1>
 <section id="schema-capitularia">
-<h2>Schema <em>capitularia:</em><a class="headerlink" href="#schema-capitularia" title="Permalink to this headline">¶</a></h2>
+<h2>Schema <em>capitularia:</em><a class="headerlink" href="#schema-capitularia" title="Permalink to this heading">¶</a></h2>
 <p>The teiHeader contains in msDesc/msPart references to capitularies and loci but
 no reference to chapters.  The teiHeader includes capitularies not yet
 transcribed.  This relation is caught in table <cite>mss_capitularies</cite>.  The map
@@ -431,7 +443,7 @@ indicate the same concept.</p>
 </figure>
 </section>
 <section id="schema-gis">
-<h2>Schema <em>gis:</em><a class="headerlink" href="#schema-gis" title="Permalink to this headline">¶</a></h2>
+<h2>Schema <em>gis:</em><a class="headerlink" href="#schema-gis" title="Permalink to this heading">¶</a></h2>
 <figure class="align-center" id="id2">
 <div  class="pic pic-format-text-xml pic-language-sauml">
 
@@ -584,10 +596,10 @@ indicate the same concept.</p>
 <text text-anchor="start" x="758.5" y="-382.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
 <text text-anchor="start" x="652.5" y="-367.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_label_x</text>
 <text text-anchor="start" x="739.5" y="-367.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
-<text text-anchor="start" x="758.5" y="-367.5" font-family="DejaVu Sans Mono" font-size="10.00">DOUBLE_PRECISION</text>
+<text text-anchor="start" x="758.5" y="-367.5" font-family="DejaVu Sans Mono" font-size="10.00">DOUBLE PRECISION</text>
 <text text-anchor="start" x="652.5" y="-352.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_label_y</text>
 <text text-anchor="start" x="739.5" y="-352.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
-<text text-anchor="start" x="758.5" y="-352.5" font-family="DejaVu Sans Mono" font-size="10.00">DOUBLE_PRECISION</text>
+<text text-anchor="start" x="758.5" y="-352.5" font-family="DejaVu Sans Mono" font-size="10.00">DOUBLE PRECISION</text>
 <text text-anchor="start" x="652.5" y="-337.5" font-family="DejaVu Sans Mono" font-size="10.00">geom</text>
 <text text-anchor="start" x="739.5" y="-337.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
 <text text-anchor="start" x="758.5" y="-337.5" font-family="DejaVu Sans Mono" font-size="10.00">NULL</text>
@@ -702,13 +714,13 @@ indicate the same concept.</p>
 </figure>
 </section>
 <section id="module-db">
-<span id="db-py"></span><h2>db.py<a class="headerlink" href="#module-db" title="Permalink to this headline">¶</a></h2>
+<span id="db-py"></span><h2>db.py<a class="headerlink" href="#module-db" title="Permalink to this heading">¶</a></h2>
 <p>This module contains the sqlalchemy classes that initialize the database structure.</p>
 <p>To create a new database: (must be database superuser)</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo -u postgres psql
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql
 </pre></div>
 </div>
-<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">capitularia</span><span class="w"> </span><span class="k">PASSWORD</span><span class="w"> </span><span class="s1">&#39;&lt;password&gt;&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">capitularia</span><span class="w"> </span><span class="k">PASSWORD</span><span class="w"> </span><span class="s1">&#39;&lt;password&gt;&#39;</span><span class="p">;</span>
 <span class="go">CREATE DATABASE capitularia OWNER capitularia;</span>
 
 <span class="go">\c capitularia</span>
@@ -720,7 +732,7 @@ indicate the same concept.</p>
 <span class="go">\q</span>
 </pre></div>
 </div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make rebuild_db
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>rebuild_db
 </pre></div>
 </div>
 <dl class="py class">
@@ -855,10 +867,10 @@ indicate the same concept.</p>
 <text text-anchor="start" x="110.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
 <text text-anchor="start" x="4.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_label_x</text>
 <text text-anchor="start" x="91.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
-<text text-anchor="start" x="110.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">DOUBLE_PRECISION</text>
+<text text-anchor="start" x="110.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">DOUBLE PRECISION</text>
 <text text-anchor="start" x="4.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_label_y</text>
 <text text-anchor="start" x="91.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
-<text text-anchor="start" x="110.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">DOUBLE_PRECISION</text>
+<text text-anchor="start" x="110.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">DOUBLE PRECISION</text>
 <text text-anchor="start" x="4.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">geom</text>
 <text text-anchor="start" x="91.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
 <text text-anchor="start" x="110.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">NULL</text>
@@ -1515,7 +1527,7 @@ of <code class="xref py py-meth docutils literal notranslate"><span class="pre">
 </div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>dialect</strong> – Dialect instance in use.</p>
 </dd>
 </dl>
@@ -1548,7 +1560,7 @@ of <code class="xref py py-meth docutils literal notranslate"><span class="pre">
 </div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dialect</strong> – Dialect instance in use.</p></li>
 <li><p><strong>coltype</strong> – DBAPI coltype argument received in cursor.description.</p></li>

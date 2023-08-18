@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>XSLT Transformations &mdash; Capitularia 0.2.1 documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -29,12 +31,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> Capitularia
-            <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Capitularia
+              <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -109,6 +115,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../maintenance/wordpress.html#wordpress-upgrades">Wordpress Upgrades</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../maintenance/logfiles.html">Location of Logfiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#apache-php">Apache / PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-app-server">Python App Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-import-script">Python Import Script</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul>
@@ -133,9 +145,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../vm.html">Capitularia VM</a> &raquo;</li>
-      <li>XSLT Transformations</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../vm.html">Capitularia VM</a></li>
+      <li class="breadcrumb-item active">XSLT Transformations</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/vm/transformations.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -146,13 +158,13 @@
            <div itemprop="articleBody">
              
   <section id="xslt-transformations">
-<span id="transformations"></span><h1>XSLT Transformations<a class="headerlink" href="#xslt-transformations" title="Permalink to this headline">¶</a></h1>
-<div class="contents local topic" id="contents">
+<span id="transformations"></span><h1>XSLT Transformations<a class="headerlink" href="#xslt-transformations" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#graph-of-all-transformations" id="id1">Graph of All Transformations</a></p></li>
 <li><p><a class="reference internal" href="#graph-of-stylesheet-dependencies" id="id2">Graph of Stylesheet Dependencies</a></p></li>
 </ul>
-</div>
+</nav>
 <p>The transformations used to produce HTML from TEI.</p>
 <p>The xslt files reside at <code class="file docutils literal notranslate"><span class="pre">~capitularia/prj/capitularia/capitularia/xslt/</span></code>.
 The transformations are driven by the <code class="file docutils literal notranslate"><span class="pre">Makefile</span></code> in that directory.</p>
@@ -163,1569 +175,1569 @@ rewrote all the stylesheets in XSLT 3.  (Rewrite completed in June 2020.)</p>
 <p>See also the overview: <a class="reference internal" href="../overviews/html_generation.html#html-generation"><span class="std std-ref">HTML Generation</span></a>.</p>
 <p>These graphs were generated by the tool <strong class="command">python/xslt_dep.py</strong>.</p>
 <section id="graph-of-all-transformations">
-<h2><a class="toc-backref" href="#id1">Graph of All Transformations</a><a class="headerlink" href="#graph-of-all-transformations" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Graph of All Transformations</a><a class="headerlink" href="#graph-of-all-transformations" title="Permalink to this heading">¶</a></h2>
 <div align="center" class="pic align-center pic-format-text-xml pic-language-xslt_dep_dot">
 
 
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="2173pt" height="1696pt"
- viewBox="0.00 0.00 2173.29 1696.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="2054pt" height="1696pt"
+ viewBox="0.00 0.00 2053.68 1696.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1692)">
 <title>G</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-1692 2169.29,-1692 2169.29,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1692 2049.68,-1692 2049.68,4 -4,4"/>
 <g id="clust1" class="cluster">
 <title>cluster_capits</title>
-<polygon fill="none" stroke="black" points="737.49,-1447 737.49,-1680 953.49,-1680 953.49,-1447 737.49,-1447"/>
-<text text-anchor="middle" x="775.49" y="-1668" font-family="sans" font-size="10.00">make capits</text>
+<polygon fill="none" stroke="black" points="691.86,-1447 691.86,-1680 897.86,-1680 897.86,-1447 691.86,-1447"/>
+<text text-anchor="middle" x="727.36" y="-1668" font-family="sans" font-size="10.00">make capits</text>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_collation</title>
-<polygon fill="none" stroke="black" points="754.49,-595 754.49,-666 936.49,-666 936.49,-595 754.49,-595"/>
-<text text-anchor="middle" x="798.99" y="-654" font-family="sans" font-size="10.00">make collation</text>
+<polygon fill="none" stroke="black" points="709.36,-595 709.36,-666 880.36,-666 880.36,-595 709.36,-595"/>
+<text text-anchor="middle" x="750.86" y="-654" font-family="sans" font-size="10.00">make collation</text>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_extraction</title>
-<polygon fill="none" stroke="black" points="15.5,-631 15.5,-702 201.5,-702 201.5,-631 15.5,-631"/>
-<text text-anchor="middle" x="63.5" y="-690" font-family="sans" font-size="10.00">make extraction</text>
+<polygon fill="none" stroke="black" points="14.5,-631 14.5,-702 190.5,-702 190.5,-631 14.5,-631"/>
+<text text-anchor="middle" x="59.5" y="-690" font-family="sans" font-size="10.00">make extraction</text>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_lists</title>
-<polygon fill="none" stroke="black" points="734.49,-720 734.49,-1439 956.49,-1439 956.49,-720 734.49,-720"/>
-<text text-anchor="middle" x="767.99" y="-1427" font-family="sans" font-size="10.00">make lists</text>
+<polygon fill="none" stroke="black" points="689.86,-720 689.86,-1439 899.86,-1439 899.86,-720 689.86,-720"/>
+<text text-anchor="middle" x="720.86" y="-1427" font-family="sans" font-size="10.00">make lists</text>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_mss</title>
-<polygon fill="none" stroke="black" points="1014.99,-169 1014.99,-402 1987.29,-402 1987.29,-169 1014.99,-169"/>
-<text text-anchor="middle" x="1048.49" y="-390" font-family="sans" font-size="10.00">make mss</text>
+<polygon fill="none" stroke="black" points="955.86,-169 955.86,-402 1874.68,-402 1874.68,-169 955.86,-169"/>
+<text text-anchor="middle" x="986.86" y="-390" font-family="sans" font-size="10.00">make mss</text>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_mss_priv</title>
-<polygon fill="none" stroke="black" points="994.49,-465 994.49,-536 1976.79,-536 1976.79,-465 994.49,-465"/>
-<text text-anchor="middle" x="1039.99" y="-524" font-family="sans" font-size="10.00">make mss_priv</text>
+<polygon fill="none" stroke="black" points="936.36,-465 936.36,-536 1865.18,-536 1865.18,-465 936.36,-465"/>
+<text text-anchor="middle" x="978.86" y="-524" font-family="sans" font-size="10.00">make mss_priv</text>
 </g>
 <!-- $(CACHE_DIR)/lists/corpus.xml -->
 <g id="node1" class="node">
 <title>$(CACHE_DIR)/lists/corpus.xml</title>
-<polygon fill="none" stroke="green" points="192,-966 25,-966 25,-930 192,-930 192,-966"/>
-<text text-anchor="middle" x="108.5" y="-945.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/corpus.xml</text>
+<polygon fill="none" stroke="green" points="181,-966 24,-966 24,-930 181,-930 181,-966"/>
+<text text-anchor="middle" x="102.5" y="-945.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/corpus.xml</text>
 </g>
 <!-- changes.xsl -->
 <g id="node52" class="node">
 <title>changes.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-908" rx="43.62" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-905.5" font-family="sans" font-size="10.00">changes.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-908" rx="41.41" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-905.5" font-family="sans" font-size="10.00">changes.xsl</text>
 </g>
 <!-- $(CACHE_DIR)/lists/corpus.xml&#45;&gt;changes.xsl -->
 <g id="edge29" class="edge">
 <title>$(CACHE_DIR)/lists/corpus.xml:e&#45;&gt;changes.xsl</title>
-<path fill="none" stroke="black" d="M192.5,-948C203.26,-948 258.52,-932.77 299.27,-921.1"/>
-<polygon fill="black" stroke="black" points="300.37,-924.43 309.02,-918.3 298.44,-917.7 300.37,-924.43"/>
+<path fill="none" stroke="black" d="M182.5,-948C192.6,-948 243.96,-932.96 282.18,-921.33"/>
+<polygon fill="black" stroke="black" points="283.53,-924.57 292.07,-918.3 281.49,-917.88 283.53,-924.57"/>
 </g>
 <!-- downloads.xsl -->
 <g id="node54" class="node">
 <title>downloads.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-854" rx="50.75" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-851.5" font-family="sans" font-size="10.00">downloads.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-854" rx="47.86" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-851.5" font-family="sans" font-size="10.00">downloads.xsl</text>
 </g>
 <!-- $(CACHE_DIR)/lists/corpus.xml&#45;&gt;downloads.xsl -->
 <g id="edge34" class="edge">
 <title>$(CACHE_DIR)/lists/corpus.xml:e&#45;&gt;downloads.xsl</title>
-<path fill="none" stroke="black" d="M192.5,-948C232.92,-948 219.74,-902.45 254,-881 264.94,-874.15 277.7,-868.96 290.14,-865.05"/>
-<polygon fill="black" stroke="black" points="291.37,-868.34 299.99,-862.19 289.41,-861.62 291.37,-868.34"/>
+<path fill="none" stroke="black" d="M182.5,-948C222.32,-948 208.67,-902.8 242,-881 251.73,-874.64 263.08,-869.66 274.21,-865.82"/>
+<polygon fill="black" stroke="black" points="275.43,-869.1 283.89,-862.73 273.3,-862.44 275.43,-869.1"/>
 </g>
 <!-- mss&#45;idno.xsl -->
 <g id="node58" class="node">
 <title>mss&#45;idno.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-1070" rx="46.51" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-1067.5" font-family="sans" font-size="10.00">mss&#45;idno.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-1070" rx="42.94" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-1067.5" font-family="sans" font-size="10.00">mss&#45;idno.xsl</text>
 </g>
 <!-- $(CACHE_DIR)/lists/corpus.xml&#45;&gt;mss&#45;idno.xsl -->
 <g id="edge39" class="edge">
 <title>$(CACHE_DIR)/lists/corpus.xml:e&#45;&gt;mss&#45;idno.xsl</title>
-<path fill="none" stroke="black" d="M192.5,-948C242.8,-948 213.76,-1012.82 254,-1043 264.95,-1051.21 278.38,-1056.94 291.5,-1060.93"/>
-<polygon fill="black" stroke="black" points="290.86,-1064.38 301.43,-1063.65 292.71,-1057.63 290.86,-1064.38"/>
+<path fill="none" stroke="black" d="M182.5,-948C232.32,-948 202.72,-1012.35 242,-1043 252.01,-1050.81 264.36,-1056.4 276.45,-1060.39"/>
+<polygon fill="black" stroke="black" points="275.46,-1063.74 286.04,-1063.25 277.46,-1057.04 275.46,-1063.74"/>
 </g>
 <!-- mss -->
 <g id="node90" class="node">
 <title>mss</title>
-<path fill="none" stroke="blue" d="M406.24,-976.73C406.24,-978.53 378.9,-980 345.24,-980 311.58,-980 284.24,-978.53 284.24,-976.73 284.24,-976.73 284.24,-947.27 284.24,-947.27 284.24,-945.47 311.58,-944 345.24,-944 378.9,-944 406.24,-945.47 406.24,-947.27 406.24,-947.27 406.24,-976.73 406.24,-976.73"/>
-<path fill="none" stroke="blue" d="M406.24,-976.73C406.24,-974.92 378.9,-973.45 345.24,-973.45 311.58,-973.45 284.24,-974.92 284.24,-976.73"/>
-<text text-anchor="middle" x="345.24" y="-959.5" font-family="sans" font-size="10.00">import_data.py &#45;&#45;mss</text>
+<path fill="none" stroke="blue" d="M382.68,-976.73C382.68,-978.53 357.35,-980 326.18,-980 295,-980 269.68,-978.53 269.68,-976.73 269.68,-976.73 269.68,-947.27 269.68,-947.27 269.68,-945.47 295,-944 326.18,-944 357.35,-944 382.68,-945.47 382.68,-947.27 382.68,-947.27 382.68,-976.73 382.68,-976.73"/>
+<path fill="none" stroke="blue" d="M382.68,-976.73C382.68,-974.92 357.35,-973.45 326.18,-973.45 295,-973.45 269.68,-974.92 269.68,-976.73"/>
+<text text-anchor="middle" x="326.18" y="-959.5" font-family="sans" font-size="10.00">import_data.py &#45;&#45;mss</text>
 </g>
 <!-- $(CACHE_DIR)/lists/corpus.xml&#45;&gt;mss -->
 <g id="edge95" class="edge">
 <title>$(CACHE_DIR)/lists/corpus.xml:e&#45;&gt;mss:w</title>
-<path fill="none" stroke="black" d="M192.5,-948C229.64,-948 240.54,-959.6 272.97,-961.68"/>
-<polygon fill="black" stroke="black" points="273.14,-965.19 283.24,-962 273.36,-958.19 273.14,-965.19"/>
+<path fill="none" stroke="black" d="M182.5,-948C217.47,-948 227.73,-959.5 258.07,-961.65"/>
+<polygon fill="black" stroke="black" points="258.06,-965.16 268.18,-962 258.3,-958.16 258.06,-965.16"/>
 </g>
 <!-- $(MSS_PRIV_DIR)/%&#45;toc.xml -->
 <g id="node2" class="node">
 <title>$(MSS_PRIV_DIR)/%&#45;toc.xml</title>
-<polygon fill="none" stroke="green" points="922.99,-426 771.99,-426 767.99,-422 767.99,-390 918.99,-390 922.99,-394 922.99,-426"/>
-<polyline fill="none" stroke="green" points="918.99,-422 767.99,-422 "/>
-<polyline fill="none" stroke="green" points="918.99,-422 918.99,-390 "/>
-<polyline fill="none" stroke="green" points="918.99,-422 922.99,-426 "/>
-<text text-anchor="middle" x="845.49" y="-405.5" font-family="sans" font-size="10.00">$(MSS_PRIV_DIR)/%&#45;toc.xml</text>
+<polygon fill="none" stroke="green" points="867.36,-426 726.36,-426 722.36,-422 722.36,-390 863.36,-390 867.36,-394 867.36,-426"/>
+<polyline fill="none" stroke="green" points="863.36,-422 722.36,-422 "/>
+<polyline fill="none" stroke="green" points="863.36,-422 863.36,-390 "/>
+<polyline fill="none" stroke="green" points="863.36,-422 867.36,-426 "/>
+<text text-anchor="middle" x="794.86" y="-405.5" font-family="sans" font-size="10.00">$(MSS_PRIV_DIR)/%&#45;toc.xml</text>
 </g>
 <!-- $(CACHE_DIR)/internal/mss/%.transcript.phase&#45;1.xml -->
 <g id="node3" class="node">
 <title>$(CACHE_DIR)/internal/mss/%.transcript.phase&#45;1.xml</title>
-<polygon fill="none" stroke="green" points="983.49,-198 711.49,-198 707.49,-194 707.49,-162 979.49,-162 983.49,-166 983.49,-198"/>
-<polyline fill="none" stroke="green" points="979.49,-194 707.49,-194 "/>
-<polyline fill="none" stroke="green" points="979.49,-194 979.49,-162 "/>
-<polyline fill="none" stroke="green" points="979.49,-194 983.49,-198 "/>
-<text text-anchor="middle" x="845.49" y="-177.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/internal/mss/%.transcript.phase&#45;1.xml</text>
+<polygon fill="none" stroke="green" points="925.36,-198 668.36,-198 664.36,-194 664.36,-162 921.36,-162 925.36,-166 925.36,-198"/>
+<polyline fill="none" stroke="green" points="921.36,-194 664.36,-194 "/>
+<polyline fill="none" stroke="green" points="921.36,-194 921.36,-162 "/>
+<polyline fill="none" stroke="green" points="921.36,-194 925.36,-198 "/>
+<text text-anchor="middle" x="794.86" y="-177.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/internal/mss/%.transcript.phase&#45;1.xml</text>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;2.xsl -->
 <g id="node46" class="node">
 <title>mss&#45;transcript&#45;phase&#45;2.xsl</title>
-<ellipse fill="none" stroke="black" cx="1350.39" cy="-143" rx="86.57" ry="18"/>
-<text text-anchor="middle" x="1350.39" y="-140.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;phase&#45;2.xsl</text>
+<ellipse fill="none" stroke="black" cx="1272.02" cy="-143" rx="80.79" ry="18"/>
+<text text-anchor="middle" x="1272.02" y="-140.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;phase&#45;2.xsl</text>
 </g>
 <!-- $(CACHE_DIR)/internal/mss/%.transcript.phase&#45;1.xml&#45;&gt;mss&#45;transcript&#45;phase&#45;2.xsl -->
 <g id="edge17" class="edge">
 <title>$(CACHE_DIR)/internal/mss/%.transcript.phase&#45;1.xml:e&#45;&gt;mss&#45;transcript&#45;phase&#45;2.xsl</title>
-<path fill="none" stroke="black" d="M984.49,-180C992.5,-180 987.54,-169 994.49,-165 1037.24,-140.38 1164.96,-137.93 1254.88,-139.56"/>
-<polygon fill="black" stroke="black" points="1255.03,-143.06 1265.1,-139.77 1255.17,-136.07 1255.03,-143.06"/>
+<path fill="none" stroke="black" d="M926.36,-180C934.37,-180 929.42,-169.01 936.36,-165 976.62,-141.72 1096.96,-138.93 1181.75,-140.12"/>
+<polygon fill="black" stroke="black" points="1181.86,-143.62 1191.91,-140.28 1181.97,-136.62 1181.86,-143.62"/>
 </g>
 <!-- $(CACHE_DIR)/mss/%.transcript.phase&#45;1.xml -->
 <g id="node4" class="node">
 <title>$(CACHE_DIR)/mss/%.transcript.phase&#45;1.xml</title>
-<polygon fill="none" stroke="green" points="963.49,-144 731.49,-144 727.49,-140 727.49,-108 959.49,-108 963.49,-112 963.49,-144"/>
-<polyline fill="none" stroke="green" points="959.49,-140 727.49,-140 "/>
-<polyline fill="none" stroke="green" points="959.49,-140 959.49,-108 "/>
-<polyline fill="none" stroke="green" points="959.49,-140 963.49,-144 "/>
-<text text-anchor="middle" x="845.49" y="-123.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/%.transcript.phase&#45;1.xml</text>
+<polygon fill="none" stroke="green" points="905.36,-144 688.36,-144 684.36,-140 684.36,-108 901.36,-108 905.36,-112 905.36,-144"/>
+<polyline fill="none" stroke="green" points="901.36,-140 684.36,-140 "/>
+<polyline fill="none" stroke="green" points="901.36,-140 901.36,-108 "/>
+<polyline fill="none" stroke="green" points="901.36,-140 905.36,-144 "/>
+<text text-anchor="middle" x="794.86" y="-123.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/%.transcript.phase&#45;1.xml</text>
 </g>
 <!-- $(CACHE_DIR)/mss/%.transcript.phase&#45;1.xml&#45;&gt;mss&#45;transcript&#45;phase&#45;2.xsl -->
 <g id="edge52" class="edge">
 <title>$(CACHE_DIR)/mss/%.transcript.phase&#45;1.xml:e&#45;&gt;mss&#45;transcript&#45;phase&#45;2.xsl</title>
-<path fill="none" stroke="black" d="M964.49,-126C1064.83,-126 1179.74,-131.84 1257.69,-136.67"/>
-<polygon fill="black" stroke="black" points="1257.76,-140.18 1267.96,-137.32 1258.2,-133.2 1257.76,-140.18"/>
+<path fill="none" stroke="black" d="M906.86,-126C1002.06,-126 1111.12,-131.87 1184.87,-136.71"/>
+<polygon fill="black" stroke="black" points="1184.83,-140.22 1195.04,-137.39 1185.3,-133.23 1184.83,-140.22"/>
 </g>
 <!-- mss&#45;transcript&#45;with&#45;comments.xsl -->
 <g id="node62" class="node">
 <title>mss&#45;transcript&#45;with&#45;comments.xsl</title>
-<ellipse fill="none" stroke="black" cx="1350.39" cy="-89" rx="108.81" ry="18"/>
-<text text-anchor="middle" x="1350.39" y="-86.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;with&#45;comments.xsl</text>
+<ellipse fill="none" stroke="black" cx="1272.02" cy="-89" rx="100.82" ry="18"/>
+<text text-anchor="middle" x="1272.02" y="-86.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;with&#45;comments.xsl</text>
 </g>
 <!-- $(CACHE_DIR)/mss/%.transcript.phase&#45;1.xml&#45;&gt;mss&#45;transcript&#45;with&#45;comments.xsl -->
 <g id="edge50" class="edge">
 <title>$(CACHE_DIR)/mss/%.transcript.phase&#45;1.xml:e&#45;&gt;mss&#45;transcript&#45;with&#45;comments.xsl</title>
-<path fill="none" stroke="black" d="M964.49,-126C977.89,-126 981.15,-124.31 994.49,-123 1078.89,-114.74 1174.6,-105.58 1245.35,-98.85"/>
-<polygon fill="black" stroke="black" points="1245.98,-102.31 1255.6,-97.88 1245.31,-95.34 1245.98,-102.31"/>
+<path fill="none" stroke="black" d="M906.86,-126C906.86,-126 1065.65,-109.87 1173.52,-98.91"/>
+<polygon fill="black" stroke="black" points="1174.2,-102.36 1183.79,-97.86 1173.49,-95.39 1174.2,-102.36"/>
 </g>
 <!-- $(CACHE_DIR)/mss/cte&#45;137&#45;de.transcript.phase&#45;1.xml -->
 <g id="node5" class="node">
 <title>$(CACHE_DIR)/mss/cte&#45;137&#45;de.transcript.phase&#45;1.xml</title>
-<polygon fill="none" stroke="green" points="984.49,-36 706.49,-36 706.49,0 984.49,0 984.49,-36"/>
-<text text-anchor="middle" x="845.49" y="-15.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/cte&#45;137&#45;de.transcript.phase&#45;1.xml</text>
+<polygon fill="none" stroke="green" points="926.36,-36 663.36,-36 663.36,0 926.36,0 926.36,-36"/>
+<text text-anchor="middle" x="794.86" y="-15.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/cte&#45;137&#45;de.transcript.phase&#45;1.xml</text>
 </g>
 <!-- mss&#45;transcript&#45;cte.xsl -->
 <g id="node63" class="node">
 <title>mss&#45;transcript&#45;cte.xsl</title>
-<ellipse fill="none" stroke="black" cx="1350.39" cy="-35" rx="72.31" ry="18"/>
-<text text-anchor="middle" x="1350.39" y="-32.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;cte.xsl</text>
+<ellipse fill="none" stroke="black" cx="1272.02" cy="-35" rx="67.22" ry="18"/>
+<text text-anchor="middle" x="1272.02" y="-32.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;cte.xsl</text>
 </g>
 <!-- $(CACHE_DIR)/mss/cte&#45;137&#45;de.transcript.phase&#45;1.xml&#45;&gt;mss&#45;transcript&#45;cte.xsl -->
 <g id="edge56" class="edge">
 <title>$(CACHE_DIR)/mss/cte&#45;137&#45;de.transcript.phase&#45;1.xml:e&#45;&gt;mss&#45;transcript&#45;cte.xsl</title>
-<path fill="none" stroke="black" d="M984.49,-18C1083.22,-18 1196.81,-24.29 1270.68,-29.21"/>
-<polygon fill="black" stroke="black" points="1270.62,-32.72 1280.83,-29.9 1271.09,-25.73 1270.62,-32.72"/>
+<path fill="none" stroke="black" d="M926.36,-18C1020,-18 1127.79,-24.34 1197.53,-29.27"/>
+<polygon fill="black" stroke="black" points="1197.32,-32.77 1207.54,-29.99 1197.82,-25.79 1197.32,-32.77"/>
 </g>
 <!-- $(CACHE_DIR)/mss/cte&#45;137.transcript.phase&#45;1.xml -->
 <g id="node6" class="node">
 <title>$(CACHE_DIR)/mss/cte&#45;137.transcript.phase&#45;1.xml</title>
-<polygon fill="none" stroke="green" points="976.99,-90 713.99,-90 713.99,-54 976.99,-54 976.99,-90"/>
-<text text-anchor="middle" x="845.49" y="-69.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/cte&#45;137.transcript.phase&#45;1.xml</text>
+<polygon fill="none" stroke="green" points="918.86,-90 670.86,-90 670.86,-54 918.86,-54 918.86,-90"/>
+<text text-anchor="middle" x="794.86" y="-69.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/cte&#45;137.transcript.phase&#45;1.xml</text>
 </g>
 <!-- $(CACHE_DIR)/mss/cte&#45;137.transcript.phase&#45;1.xml&#45;&gt;mss&#45;transcript&#45;cte.xsl -->
 <g id="edge60" class="edge">
 <title>$(CACHE_DIR)/mss/cte&#45;137.transcript.phase&#45;1.xml:e&#45;&gt;mss&#45;transcript&#45;cte.xsl</title>
-<path fill="none" stroke="black" d="M978.49,-72C1083.55,-72 1204.54,-57.12 1278.99,-46.23"/>
-<polygon fill="black" stroke="black" points="1279.8,-49.65 1289.18,-44.72 1278.78,-42.72 1279.8,-49.65"/>
+<path fill="none" stroke="black" d="M919.86,-72C1019.63,-72 1134.46,-57.05 1204.89,-46.15"/>
+<polygon fill="black" stroke="black" points="1205.61,-49.58 1214.95,-44.58 1204.53,-42.67 1205.61,-49.58"/>
 </g>
 <!-- $(CACHE_DIR)/capits/ldf/%.html -->
 <g id="node7" class="node">
 <title>$(CACHE_DIR)/capits/ldf/%.html</title>
-<polygon fill="none" stroke="red" points="931.99,-1653 762.99,-1653 758.99,-1649 758.99,-1617 927.99,-1617 931.99,-1621 931.99,-1653"/>
-<polyline fill="none" stroke="red" points="927.99,-1649 758.99,-1649 "/>
-<polyline fill="none" stroke="red" points="927.99,-1649 927.99,-1617 "/>
-<polyline fill="none" stroke="red" points="927.99,-1649 931.99,-1653 "/>
-<text text-anchor="middle" x="845.49" y="-1632.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/capits/ldf/%.html</text>
+<polygon fill="none" stroke="red" points="876.36,-1653 717.36,-1653 713.36,-1649 713.36,-1617 872.36,-1617 876.36,-1621 876.36,-1653"/>
+<polyline fill="none" stroke="red" points="872.36,-1649 713.36,-1649 "/>
+<polyline fill="none" stroke="red" points="872.36,-1649 872.36,-1617 "/>
+<polyline fill="none" stroke="red" points="872.36,-1649 876.36,-1653 "/>
+<text text-anchor="middle" x="794.86" y="-1632.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/capits/ldf/%.html</text>
 </g>
 <!-- capit/ldf/%/ -->
 <g id="node67" class="node">
 <title>capit/ldf/%/</title>
-<polygon fill="none" stroke="blue" points="1386.39,-1653 1318.39,-1653 1314.39,-1649 1314.39,-1617 1382.39,-1617 1386.39,-1621 1386.39,-1653"/>
-<polyline fill="none" stroke="blue" points="1382.39,-1649 1314.39,-1649 "/>
-<polyline fill="none" stroke="blue" points="1382.39,-1649 1382.39,-1617 "/>
-<polyline fill="none" stroke="blue" points="1382.39,-1649 1386.39,-1653 "/>
-<text text-anchor="middle" x="1350.39" y="-1632.5" font-family="sans" font-size="10.00">capit/ldf/%/</text>
+<polygon fill="none" stroke="blue" points="1307.02,-1653 1241.02,-1653 1237.02,-1649 1237.02,-1617 1303.02,-1617 1307.02,-1621 1307.02,-1653"/>
+<polyline fill="none" stroke="blue" points="1303.02,-1649 1237.02,-1649 "/>
+<polyline fill="none" stroke="blue" points="1303.02,-1649 1303.02,-1617 "/>
+<polyline fill="none" stroke="blue" points="1303.02,-1649 1307.02,-1653 "/>
+<text text-anchor="middle" x="1272.02" y="-1632.5" font-family="sans" font-size="10.00">capit/ldf/%/</text>
 </g>
 <!-- $(CACHE_DIR)/capits/ldf/%.html&#45;&gt;capit/ldf/%/ -->
 <g id="edge66" class="edge">
 <title>$(CACHE_DIR)/capits/ldf/%.html:e&#45;&gt;capit/ldf/%/:w</title>
-<path fill="none" stroke="black" d="M933.49,-1635C1098.87,-1635 1142.76,-1635 1303.16,-1635"/>
-<polygon fill="black" stroke="black" points="1303.39,-1638.5 1313.39,-1635 1303.39,-1631.5 1303.39,-1638.5"/>
+<path fill="none" stroke="black" d="M877.86,-1635C1033.62,-1635 1075.07,-1635 1225.92,-1635"/>
+<polygon fill="black" stroke="black" points="1226.02,-1638.5 1236.02,-1635 1226.02,-1631.5 1226.02,-1638.5"/>
 </g>
 <!-- $(CACHE_DIR)/capits/post840/%.html -->
 <g id="node8" class="node">
 <title>$(CACHE_DIR)/capits/post840/%.html</title>
-<polygon fill="none" stroke="red" points="944.99,-1599 749.99,-1599 745.99,-1595 745.99,-1563 940.99,-1563 944.99,-1567 944.99,-1599"/>
-<polyline fill="none" stroke="red" points="940.99,-1595 745.99,-1595 "/>
-<polyline fill="none" stroke="red" points="940.99,-1595 940.99,-1563 "/>
-<polyline fill="none" stroke="red" points="940.99,-1595 944.99,-1599 "/>
-<text text-anchor="middle" x="845.49" y="-1578.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/capits/post840/%.html</text>
+<polygon fill="none" stroke="red" points="889.36,-1599 704.36,-1599 700.36,-1595 700.36,-1563 885.36,-1563 889.36,-1567 889.36,-1599"/>
+<polyline fill="none" stroke="red" points="885.36,-1595 700.36,-1595 "/>
+<polyline fill="none" stroke="red" points="885.36,-1595 885.36,-1563 "/>
+<polyline fill="none" stroke="red" points="885.36,-1595 889.36,-1599 "/>
+<text text-anchor="middle" x="794.86" y="-1578.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/capits/post840/%.html</text>
 </g>
 <!-- capit/post840/%/ -->
 <g id="node68" class="node">
 <title>capit/post840/%/</title>
-<polygon fill="none" stroke="blue" points="1399.39,-1599 1305.39,-1599 1301.39,-1595 1301.39,-1563 1395.39,-1563 1399.39,-1567 1399.39,-1599"/>
-<polyline fill="none" stroke="blue" points="1395.39,-1595 1301.39,-1595 "/>
-<polyline fill="none" stroke="blue" points="1395.39,-1595 1395.39,-1563 "/>
-<polyline fill="none" stroke="blue" points="1395.39,-1595 1399.39,-1599 "/>
-<text text-anchor="middle" x="1350.39" y="-1578.5" font-family="sans" font-size="10.00">capit/post840/%/</text>
+<polygon fill="none" stroke="blue" points="1320.02,-1599 1228.02,-1599 1224.02,-1595 1224.02,-1563 1316.02,-1563 1320.02,-1567 1320.02,-1599"/>
+<polyline fill="none" stroke="blue" points="1316.02,-1595 1224.02,-1595 "/>
+<polyline fill="none" stroke="blue" points="1316.02,-1595 1316.02,-1563 "/>
+<polyline fill="none" stroke="blue" points="1316.02,-1595 1320.02,-1599 "/>
+<text text-anchor="middle" x="1272.02" y="-1578.5" font-family="sans" font-size="10.00">capit/post840/%/</text>
 </g>
 <!-- $(CACHE_DIR)/capits/post840/%.html&#45;&gt;capit/post840/%/ -->
 <g id="edge67" class="edge">
 <title>$(CACHE_DIR)/capits/post840/%.html:e&#45;&gt;capit/post840/%/:w</title>
-<path fill="none" stroke="black" d="M946.49,-1581C1100.24,-1581 1141.27,-1581 1289.97,-1581"/>
-<polygon fill="black" stroke="black" points="1290.39,-1584.5 1300.39,-1581 1290.39,-1577.5 1290.39,-1584.5"/>
+<path fill="none" stroke="black" d="M890.86,-1581C1035.02,-1581 1073.6,-1581 1212.82,-1581"/>
+<polygon fill="black" stroke="black" points="1213.02,-1584.5 1223.02,-1581 1213.02,-1577.5 1213.02,-1584.5"/>
 </g>
 <!-- $(CACHE_DIR)/capits/pre814/%.html -->
 <g id="node9" class="node">
 <title>$(CACHE_DIR)/capits/pre814/%.html</title>
-<polygon fill="none" stroke="red" points="942.49,-1545 752.49,-1545 748.49,-1541 748.49,-1509 938.49,-1509 942.49,-1513 942.49,-1545"/>
-<polyline fill="none" stroke="red" points="938.49,-1541 748.49,-1541 "/>
-<polyline fill="none" stroke="red" points="938.49,-1541 938.49,-1509 "/>
-<polyline fill="none" stroke="red" points="938.49,-1541 942.49,-1545 "/>
-<text text-anchor="middle" x="845.49" y="-1524.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/capits/pre814/%.html</text>
+<polygon fill="none" stroke="red" points="887.36,-1545 706.36,-1545 702.36,-1541 702.36,-1509 883.36,-1509 887.36,-1513 887.36,-1545"/>
+<polyline fill="none" stroke="red" points="883.36,-1541 702.36,-1541 "/>
+<polyline fill="none" stroke="red" points="883.36,-1541 883.36,-1509 "/>
+<polyline fill="none" stroke="red" points="883.36,-1541 887.36,-1545 "/>
+<text text-anchor="middle" x="794.86" y="-1524.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/capits/pre814/%.html</text>
 </g>
 <!-- capit/pre814/%/ -->
 <g id="node69" class="node">
 <title>capit/pre814/%/</title>
-<polygon fill="none" stroke="blue" points="1396.89,-1545 1307.89,-1545 1303.89,-1541 1303.89,-1509 1392.89,-1509 1396.89,-1513 1396.89,-1545"/>
-<polyline fill="none" stroke="blue" points="1392.89,-1541 1303.89,-1541 "/>
-<polyline fill="none" stroke="blue" points="1392.89,-1541 1392.89,-1509 "/>
-<polyline fill="none" stroke="blue" points="1392.89,-1541 1396.89,-1545 "/>
-<text text-anchor="middle" x="1350.39" y="-1524.5" font-family="sans" font-size="10.00">capit/pre814/%/</text>
+<polygon fill="none" stroke="blue" points="1318.02,-1545 1230.02,-1545 1226.02,-1541 1226.02,-1509 1314.02,-1509 1318.02,-1513 1318.02,-1545"/>
+<polyline fill="none" stroke="blue" points="1314.02,-1541 1226.02,-1541 "/>
+<polyline fill="none" stroke="blue" points="1314.02,-1541 1314.02,-1509 "/>
+<polyline fill="none" stroke="blue" points="1314.02,-1541 1318.02,-1545 "/>
+<text text-anchor="middle" x="1272.02" y="-1524.5" font-family="sans" font-size="10.00">capit/pre814/%/</text>
 </g>
 <!-- $(CACHE_DIR)/capits/pre814/%.html&#45;&gt;capit/pre814/%/ -->
 <g id="edge68" class="edge">
 <title>$(CACHE_DIR)/capits/pre814/%.html:e&#45;&gt;capit/pre814/%/:w</title>
-<path fill="none" stroke="black" d="M943.49,-1527C1099.57,-1527 1141.11,-1527 1292.27,-1527"/>
-<polygon fill="black" stroke="black" points="1292.39,-1530.5 1302.39,-1527 1292.39,-1523.5 1292.39,-1530.5"/>
+<path fill="none" stroke="black" d="M888.86,-1527C1034.76,-1527 1073.8,-1527 1214.7,-1527"/>
+<polygon fill="black" stroke="black" points="1215.02,-1530.5 1225.02,-1527 1215.02,-1523.5 1215.02,-1530.5"/>
 </g>
 <!-- $(CACHE_DIR)/capits/undated/%.html -->
 <g id="node10" class="node">
 <title>$(CACHE_DIR)/capits/undated/%.html</title>
-<polygon fill="none" stroke="red" points="945.49,-1491 749.49,-1491 745.49,-1487 745.49,-1455 941.49,-1455 945.49,-1459 945.49,-1491"/>
-<polyline fill="none" stroke="red" points="941.49,-1487 745.49,-1487 "/>
-<polyline fill="none" stroke="red" points="941.49,-1487 941.49,-1455 "/>
-<polyline fill="none" stroke="red" points="941.49,-1487 945.49,-1491 "/>
-<text text-anchor="middle" x="845.49" y="-1470.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/capits/undated/%.html</text>
+<polygon fill="none" stroke="red" points="889.86,-1491 703.86,-1491 699.86,-1487 699.86,-1455 885.86,-1455 889.86,-1459 889.86,-1491"/>
+<polyline fill="none" stroke="red" points="885.86,-1487 699.86,-1487 "/>
+<polyline fill="none" stroke="red" points="885.86,-1487 885.86,-1455 "/>
+<polyline fill="none" stroke="red" points="885.86,-1487 889.86,-1491 "/>
+<text text-anchor="middle" x="794.86" y="-1470.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/capits/undated/%.html</text>
 </g>
 <!-- capit/undated/%/ -->
 <g id="node70" class="node">
 <title>capit/undated/%/</title>
-<polygon fill="none" stroke="blue" points="1399.89,-1491 1304.89,-1491 1300.89,-1487 1300.89,-1455 1395.89,-1455 1399.89,-1459 1399.89,-1491"/>
-<polyline fill="none" stroke="blue" points="1395.89,-1487 1300.89,-1487 "/>
-<polyline fill="none" stroke="blue" points="1395.89,-1487 1395.89,-1455 "/>
-<polyline fill="none" stroke="blue" points="1395.89,-1487 1399.89,-1491 "/>
-<text text-anchor="middle" x="1350.39" y="-1470.5" font-family="sans" font-size="10.00">capit/undated/%/</text>
+<polygon fill="none" stroke="blue" points="1320.52,-1491 1227.52,-1491 1223.52,-1487 1223.52,-1455 1316.52,-1455 1320.52,-1459 1320.52,-1491"/>
+<polyline fill="none" stroke="blue" points="1316.52,-1487 1223.52,-1487 "/>
+<polyline fill="none" stroke="blue" points="1316.52,-1487 1316.52,-1455 "/>
+<polyline fill="none" stroke="blue" points="1316.52,-1487 1320.52,-1491 "/>
+<text text-anchor="middle" x="1272.02" y="-1470.5" font-family="sans" font-size="10.00">capit/undated/%/</text>
 </g>
 <!-- $(CACHE_DIR)/capits/undated/%.html&#45;&gt;capit/undated/%/ -->
 <g id="edge69" class="edge">
 <title>$(CACHE_DIR)/capits/undated/%.html:e&#45;&gt;capit/undated/%/:w</title>
-<path fill="none" stroke="black" d="M946.49,-1473C1099.81,-1473 1140.72,-1473 1288.99,-1473"/>
-<polygon fill="black" stroke="black" points="1289.39,-1476.5 1299.39,-1473 1289.39,-1469.5 1289.39,-1476.5"/>
+<path fill="none" stroke="black" d="M890.86,-1473C1034.59,-1473 1073.05,-1473 1211.85,-1473"/>
+<polygon fill="black" stroke="black" points="1212.02,-1476.5 1222.02,-1473 1212.02,-1469.5 1212.02,-1476.5"/>
 </g>
 <!-- $(CACHE_DIR)/collation/%.xml -->
 <g id="node11" class="node">
 <title>$(CACHE_DIR)/collation/%.xml</title>
-<polygon fill="none" stroke="green" points="928.49,-639 766.49,-639 762.49,-635 762.49,-603 924.49,-603 928.49,-607 928.49,-639"/>
-<polyline fill="none" stroke="green" points="924.49,-635 762.49,-635 "/>
-<polyline fill="none" stroke="green" points="924.49,-635 924.49,-603 "/>
-<polyline fill="none" stroke="green" points="924.49,-635 928.49,-639 "/>
-<text text-anchor="middle" x="845.49" y="-618.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/collation/%.xml</text>
+<polygon fill="none" stroke="green" points="872.36,-639 721.36,-639 717.36,-635 717.36,-603 868.36,-603 872.36,-607 872.36,-639"/>
+<polyline fill="none" stroke="green" points="868.36,-635 717.36,-635 "/>
+<polyline fill="none" stroke="green" points="868.36,-635 868.36,-603 "/>
+<polyline fill="none" stroke="green" points="868.36,-635 872.36,-639 "/>
+<text text-anchor="middle" x="794.86" y="-618.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/collation/%.xml</text>
 </g>
 <!-- fulltext -->
 <g id="node89" class="node">
 <title>fulltext</title>
-<path fill="none" stroke="blue" d="M1418.89,-635.73C1418.89,-637.53 1388.19,-639 1350.39,-639 1312.59,-639 1281.89,-637.53 1281.89,-635.73 1281.89,-635.73 1281.89,-606.27 1281.89,-606.27 1281.89,-604.47 1312.59,-603 1350.39,-603 1388.19,-603 1418.89,-604.47 1418.89,-606.27 1418.89,-606.27 1418.89,-635.73 1418.89,-635.73"/>
-<path fill="none" stroke="blue" d="M1418.89,-635.73C1418.89,-633.92 1388.19,-632.45 1350.39,-632.45 1312.59,-632.45 1281.89,-633.92 1281.89,-635.73"/>
-<text text-anchor="middle" x="1350.39" y="-618.5" font-family="sans" font-size="10.00">import_data.py &#45;&#45;fulltext</text>
+<path fill="none" stroke="blue" d="M1336.02,-635.73C1336.02,-637.53 1307.33,-639 1272.02,-639 1236.7,-639 1208.02,-637.53 1208.02,-635.73 1208.02,-635.73 1208.02,-606.27 1208.02,-606.27 1208.02,-604.47 1236.7,-603 1272.02,-603 1307.33,-603 1336.02,-604.47 1336.02,-606.27 1336.02,-606.27 1336.02,-635.73 1336.02,-635.73"/>
+<path fill="none" stroke="blue" d="M1336.02,-635.73C1336.02,-633.92 1307.33,-632.45 1272.02,-632.45 1236.7,-632.45 1208.02,-633.92 1208.02,-635.73"/>
+<text text-anchor="middle" x="1272.02" y="-618.5" font-family="sans" font-size="10.00">import_data.py &#45;&#45;fulltext</text>
 </g>
 <!-- $(CACHE_DIR)/collation/%.xml&#45;&gt;fulltext -->
 <g id="edge94" class="edge">
 <title>$(CACHE_DIR)/collation/%.xml:e&#45;&gt;fulltext:w</title>
-<path fill="none" stroke="black" d="M929.49,-621C1081.94,-621 1122.62,-621 1270.05,-621"/>
-<polygon fill="black" stroke="black" points="1270.39,-624.5 1280.39,-621 1270.39,-617.5 1270.39,-624.5"/>
+<path fill="none" stroke="black" d="M873.86,-621C1018.46,-621 1057.15,-621 1196.79,-621"/>
+<polygon fill="black" stroke="black" points="1197.02,-624.5 1207.02,-621 1197.02,-617.5 1197.02,-624.5"/>
 </g>
 <!-- $(CACHE_DIR)/extracted/%.xml -->
 <g id="node12" class="node">
 <title>$(CACHE_DIR)/extracted/%.xml</title>
-<polygon fill="none" stroke="green" points="193.5,-675 27.5,-675 23.5,-671 23.5,-639 189.5,-639 193.5,-643 193.5,-675"/>
-<polyline fill="none" stroke="green" points="189.5,-671 23.5,-671 "/>
-<polyline fill="none" stroke="green" points="189.5,-671 189.5,-639 "/>
-<polyline fill="none" stroke="green" points="189.5,-671 193.5,-675 "/>
-<text text-anchor="middle" x="108.5" y="-654.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/extracted/%.xml</text>
+<polygon fill="none" stroke="green" points="182.5,-675 26.5,-675 22.5,-671 22.5,-639 178.5,-639 182.5,-643 182.5,-675"/>
+<polyline fill="none" stroke="green" points="178.5,-671 22.5,-671 "/>
+<polyline fill="none" stroke="green" points="178.5,-671 178.5,-639 "/>
+<polyline fill="none" stroke="green" points="178.5,-671 182.5,-675 "/>
+<text text-anchor="middle" x="102.5" y="-654.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/extracted/%.xml</text>
 </g>
 <!-- mss&#45;extract&#45;chapters&#45;txt.xsl -->
 <g id="node40" class="node">
 <title>mss&#45;extract&#45;chapters&#45;txt.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-621" rx="91.49" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-618.5" font-family="sans" font-size="10.00">mss&#45;extract&#45;chapters&#45;txt.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-621" rx="84.36" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-618.5" font-family="sans" font-size="10.00">mss&#45;extract&#45;chapters&#45;txt.xsl</text>
 </g>
 <!-- $(CACHE_DIR)/extracted/%.xml&#45;&gt;mss&#45;extract&#45;chapters&#45;txt.xsl -->
 <g id="edge9" class="edge">
 <title>$(CACHE_DIR)/extracted/%.xml:e&#45;&gt;mss&#45;extract&#45;chapters&#45;txt.xsl</title>
-<path fill="none" stroke="black" d="M194.5,-657C211.9,-657 250.31,-647.69 283.87,-638.55"/>
-<polygon fill="black" stroke="black" points="284.94,-641.88 293.65,-635.85 283.08,-635.14 284.94,-641.88"/>
+<path fill="none" stroke="black" d="M183.5,-657C200,-657 236.3,-647.71 268.02,-638.57"/>
+<polygon fill="black" stroke="black" points="269.07,-641.91 277.69,-635.75 267.11,-635.19 269.07,-641.91"/>
 </g>
 <!-- extracted -->
 <g id="node88" class="node">
 <title>extracted</title>
-<path fill="none" stroke="blue" d="M419.24,-689.73C419.24,-691.53 386.07,-693 345.24,-693 304.41,-693 271.24,-691.53 271.24,-689.73 271.24,-689.73 271.24,-660.27 271.24,-660.27 271.24,-658.47 304.41,-657 345.24,-657 386.07,-657 419.24,-658.47 419.24,-660.27 419.24,-660.27 419.24,-689.73 419.24,-689.73"/>
-<path fill="none" stroke="blue" d="M419.24,-689.73C419.24,-687.92 386.07,-686.45 345.24,-686.45 304.41,-686.45 271.24,-687.92 271.24,-689.73"/>
-<text text-anchor="middle" x="345.24" y="-672.5" font-family="sans" font-size="10.00">import_data.py &#45;&#45;extracted</text>
+<path fill="none" stroke="blue" d="M395.68,-689.73C395.68,-691.53 364.53,-693 326.18,-693 287.83,-693 256.68,-691.53 256.68,-689.73 256.68,-689.73 256.68,-660.27 256.68,-660.27 256.68,-658.47 287.83,-657 326.18,-657 364.53,-657 395.68,-658.47 395.68,-660.27 395.68,-660.27 395.68,-689.73 395.68,-689.73"/>
+<path fill="none" stroke="blue" d="M395.68,-689.73C395.68,-687.92 364.53,-686.45 326.18,-686.45 287.83,-686.45 256.68,-687.92 256.68,-689.73"/>
+<text text-anchor="middle" x="326.18" y="-672.5" font-family="sans" font-size="10.00">import_data.py &#45;&#45;extracted</text>
 </g>
 <!-- $(CACHE_DIR)/extracted/%.xml&#45;&gt;extracted -->
 <g id="edge93" class="edge">
 <title>$(CACHE_DIR)/extracted/%.xml:e&#45;&gt;extracted:w</title>
-<path fill="none" stroke="black" d="M194.5,-657C225.45,-657 233.95,-671.4 260.17,-674.44"/>
-<polygon fill="black" stroke="black" points="260.06,-677.94 270.24,-675 260.45,-670.95 260.06,-677.94"/>
+<path fill="none" stroke="black" d="M183.5,-657C212.63,-657 220.63,-671.15 244.97,-674.36"/>
+<polygon fill="black" stroke="black" points="244.98,-677.87 255.18,-675 245.42,-670.88 244.98,-677.87"/>
 </g>
 <!-- $(CACHE_DIR)/lists/bib.html -->
 <g id="node13" class="node">
 <title>$(CACHE_DIR)/lists/bib.html</title>
-<polygon fill="none" stroke="red" points="921.99,-764 768.99,-764 768.99,-728 921.99,-728 921.99,-764"/>
-<text text-anchor="middle" x="845.49" y="-743.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/bib.html</text>
+<polygon fill="none" stroke="red" points="866.86,-764 722.86,-764 722.86,-728 866.86,-728 866.86,-764"/>
+<text text-anchor="middle" x="794.86" y="-743.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/bib.html</text>
 </g>
 <!-- resources/biblio/ -->
 <g id="node72" class="node">
 <title>resources/biblio/</title>
-<polygon fill="none" stroke="blue" points="1398.89,-764 1301.89,-764 1301.89,-728 1398.89,-728 1398.89,-764"/>
-<text text-anchor="middle" x="1350.39" y="-743.5" font-family="sans" font-size="10.00">resources/biblio/</text>
+<polygon fill="none" stroke="blue" points="1319.02,-764 1225.02,-764 1225.02,-728 1319.02,-728 1319.02,-764"/>
+<text text-anchor="middle" x="1272.02" y="-743.5" font-family="sans" font-size="10.00">resources/biblio/</text>
 </g>
 <!-- $(CACHE_DIR)/lists/bib.html&#45;&gt;resources/biblio/ -->
 <g id="edge73" class="edge">
 <title>$(CACHE_DIR)/lists/bib.html:e&#45;&gt;resources/biblio/:w</title>
-<path fill="none" stroke="black" d="M923.49,-746C1088,-746 1131.66,-746 1291.21,-746"/>
-<polygon fill="black" stroke="black" points="1291.39,-749.5 1301.39,-746 1291.39,-742.5 1291.39,-749.5"/>
+<path fill="none" stroke="black" d="M867.86,-746C1022.75,-746 1063.97,-746 1213.98,-746"/>
+<polygon fill="black" stroke="black" points="1214.02,-749.5 1224.02,-746 1214.02,-742.5 1214.02,-749.5"/>
 </g>
 <!-- $(CACHE_DIR)/lists/capit&#45;all.html -->
 <g id="node14" class="node">
 <title>$(CACHE_DIR)/lists/capit&#45;all.html</title>
-<polygon fill="none" stroke="red" points="934.49,-1304 756.49,-1304 756.49,-1268 934.49,-1268 934.49,-1304"/>
-<text text-anchor="middle" x="845.49" y="-1283.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/capit&#45;all.html</text>
+<polygon fill="none" stroke="red" points="876.86,-1304 712.86,-1304 712.86,-1268 876.86,-1268 876.86,-1304"/>
+<text text-anchor="middle" x="794.86" y="-1283.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/capit&#45;all.html</text>
 </g>
 <!-- capit/list/ -->
 <g id="node73" class="node">
 <title>capit/list/</title>
-<polygon fill="none" stroke="blue" points="1381.39,-1304 1319.39,-1304 1319.39,-1268 1381.39,-1268 1381.39,-1304"/>
-<text text-anchor="middle" x="1350.39" y="-1283.5" font-family="sans" font-size="10.00">capit/list/</text>
+<polygon fill="none" stroke="blue" points="1301.52,-1304 1242.52,-1304 1242.52,-1268 1301.52,-1268 1301.52,-1304"/>
+<text text-anchor="middle" x="1272.02" y="-1283.5" font-family="sans" font-size="10.00">capit/list/</text>
 </g>
 <!-- $(CACHE_DIR)/lists/capit&#45;all.html&#45;&gt;capit/list/ -->
 <g id="edge74" class="edge">
 <title>$(CACHE_DIR)/lists/capit&#45;all.html:e&#45;&gt;capit/list/:w</title>
-<path fill="none" stroke="black" d="M935.49,-1286C1102.17,-1286 1146.41,-1286 1308.08,-1286"/>
-<polygon fill="black" stroke="black" points="1308.39,-1289.5 1318.39,-1286 1308.39,-1282.5 1308.39,-1289.5"/>
+<path fill="none" stroke="black" d="M877.86,-1286C1035.79,-1286 1077.82,-1286 1230.78,-1286"/>
+<polygon fill="black" stroke="black" points="1231.02,-1289.5 1241.02,-1286 1231.02,-1282.5 1231.02,-1289.5"/>
 </g>
 <!-- $(CACHE_DIR)/lists/capit&#45;ldf.html -->
 <g id="node15" class="node">
 <title>$(CACHE_DIR)/lists/capit&#45;ldf.html</title>
-<polygon fill="none" stroke="red" points="934.49,-1250 756.49,-1250 756.49,-1214 934.49,-1214 934.49,-1250"/>
-<text text-anchor="middle" x="845.49" y="-1229.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/capit&#45;ldf.html</text>
+<polygon fill="none" stroke="red" points="877.86,-1250 711.86,-1250 711.86,-1214 877.86,-1214 877.86,-1250"/>
+<text text-anchor="middle" x="794.86" y="-1229.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/capit&#45;ldf.html</text>
 </g>
 <!-- capit/ldf/ -->
 <g id="node74" class="node">
 <title>capit/ldf/</title>
-<polygon fill="none" stroke="blue" points="1379.89,-1250 1320.89,-1250 1320.89,-1214 1379.89,-1214 1379.89,-1250"/>
-<text text-anchor="middle" x="1350.39" y="-1229.5" font-family="sans" font-size="10.00">capit/ldf/</text>
+<polygon fill="none" stroke="blue" points="1301.02,-1250 1243.02,-1250 1243.02,-1214 1301.02,-1214 1301.02,-1250"/>
+<text text-anchor="middle" x="1272.02" y="-1229.5" font-family="sans" font-size="10.00">capit/ldf/</text>
 </g>
 <!-- $(CACHE_DIR)/lists/capit&#45;ldf.html&#45;&gt;capit/ldf/ -->
 <g id="edge75" class="edge">
 <title>$(CACHE_DIR)/lists/capit&#45;ldf.html:e&#45;&gt;capit/ldf/:w</title>
-<path fill="none" stroke="black" d="M935.49,-1232C1102.61,-1232 1146.96,-1232 1309.05,-1232"/>
-<polygon fill="black" stroke="black" points="1309.39,-1235.5 1319.39,-1232 1309.39,-1228.5 1309.39,-1235.5"/>
+<path fill="none" stroke="black" d="M878.86,-1232C1036.79,-1232 1078.82,-1232 1231.78,-1232"/>
+<polygon fill="black" stroke="black" points="1232.02,-1235.5 1242.02,-1232 1232.02,-1228.5 1232.02,-1235.5"/>
 </g>
 <!-- $(CACHE_DIR)/lists/capit&#45;post840.html -->
 <g id="node16" class="node">
 <title>$(CACHE_DIR)/lists/capit&#45;post840.html</title>
-<polygon fill="none" stroke="red" points="947.99,-1196 742.99,-1196 742.99,-1160 947.99,-1160 947.99,-1196"/>
-<text text-anchor="middle" x="845.49" y="-1175.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/capit&#45;post840.html</text>
+<polygon fill="none" stroke="red" points="891.36,-1196 698.36,-1196 698.36,-1160 891.36,-1160 891.36,-1196"/>
+<text text-anchor="middle" x="794.86" y="-1175.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/capit&#45;post840.html</text>
 </g>
 <!-- capit/post840/ -->
 <g id="node75" class="node">
 <title>capit/post840/</title>
-<polygon fill="none" stroke="blue" points="1393.39,-1196 1307.39,-1196 1307.39,-1160 1393.39,-1160 1393.39,-1196"/>
-<text text-anchor="middle" x="1350.39" y="-1175.5" font-family="sans" font-size="10.00">capit/post840/</text>
+<polygon fill="none" stroke="blue" points="1314.02,-1196 1230.02,-1196 1230.02,-1160 1314.02,-1160 1314.02,-1196"/>
+<text text-anchor="middle" x="1272.02" y="-1175.5" font-family="sans" font-size="10.00">capit/post840/</text>
 </g>
 <!-- $(CACHE_DIR)/lists/capit&#45;post840.html&#45;&gt;capit/post840/ -->
 <g id="edge76" class="edge">
 <title>$(CACHE_DIR)/lists/capit&#45;post840.html:e&#45;&gt;capit/post840/:w</title>
-<path fill="none" stroke="black" d="M948.49,-1178C1104.14,-1178 1145.56,-1178 1296.3,-1178"/>
-<polygon fill="black" stroke="black" points="1296.39,-1181.5 1306.39,-1178 1296.39,-1174.5 1296.39,-1181.5"/>
+<path fill="none" stroke="black" d="M892.86,-1178C1038.76,-1178 1077.8,-1178 1218.7,-1178"/>
+<polygon fill="black" stroke="black" points="1219.02,-1181.5 1229.02,-1178 1219.02,-1174.5 1219.02,-1181.5"/>
 </g>
 <!-- $(CACHE_DIR)/lists/capit&#45;pre814.html -->
 <g id="node17" class="node">
 <title>$(CACHE_DIR)/lists/capit&#45;pre814.html</title>
-<polygon fill="none" stroke="red" points="945.49,-1412 745.49,-1412 745.49,-1376 945.49,-1376 945.49,-1412"/>
-<text text-anchor="middle" x="845.49" y="-1391.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/capit&#45;pre814.html</text>
+<polygon fill="none" stroke="red" points="888.86,-1412 700.86,-1412 700.86,-1376 888.86,-1376 888.86,-1412"/>
+<text text-anchor="middle" x="794.86" y="-1391.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/capit&#45;pre814.html</text>
 </g>
 <!-- capit/pre814/ -->
 <g id="node76" class="node">
 <title>capit/pre814/</title>
-<polygon fill="none" stroke="blue" points="1390.39,-1412 1310.39,-1412 1310.39,-1376 1390.39,-1376 1390.39,-1412"/>
-<text text-anchor="middle" x="1350.39" y="-1391.5" font-family="sans" font-size="10.00">capit/pre814/</text>
+<polygon fill="none" stroke="blue" points="1312.02,-1412 1232.02,-1412 1232.02,-1376 1312.02,-1376 1312.02,-1412"/>
+<text text-anchor="middle" x="1272.02" y="-1391.5" font-family="sans" font-size="10.00">capit/pre814/</text>
 </g>
 <!-- $(CACHE_DIR)/lists/capit&#45;pre814.html&#45;&gt;capit/pre814/ -->
 <g id="edge77" class="edge">
 <title>$(CACHE_DIR)/lists/capit&#45;pre814.html:e&#45;&gt;capit/pre814/:w</title>
-<path fill="none" stroke="black" d="M946.49,-1394C1104.31,-1394 1146.31,-1394 1299.16,-1394"/>
-<polygon fill="black" stroke="black" points="1299.39,-1397.5 1309.39,-1394 1299.39,-1390.5 1299.39,-1397.5"/>
+<path fill="none" stroke="black" d="M889.86,-1394C1038.08,-1394 1077.63,-1394 1220.97,-1394"/>
+<polygon fill="black" stroke="black" points="1221.02,-1397.5 1231.02,-1394 1221.02,-1390.5 1221.02,-1397.5"/>
 </g>
 <!-- $(CACHE_DIR)/lists/capit&#45;undated.html -->
 <g id="node18" class="node">
 <title>$(CACHE_DIR)/lists/capit&#45;undated.html</title>
-<polygon fill="none" stroke="red" points="948.49,-1358 742.49,-1358 742.49,-1322 948.49,-1322 948.49,-1358"/>
-<text text-anchor="middle" x="845.49" y="-1337.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/capit&#45;undated.html</text>
+<polygon fill="none" stroke="red" points="891.86,-1358 697.86,-1358 697.86,-1322 891.86,-1322 891.86,-1358"/>
+<text text-anchor="middle" x="794.86" y="-1337.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/capit&#45;undated.html</text>
 </g>
 <!-- capit/undated/ -->
 <g id="node77" class="node">
 <title>capit/undated/</title>
-<polygon fill="none" stroke="blue" points="1393.39,-1358 1307.39,-1358 1307.39,-1322 1393.39,-1322 1393.39,-1358"/>
-<text text-anchor="middle" x="1350.39" y="-1337.5" font-family="sans" font-size="10.00">capit/undated/</text>
+<polygon fill="none" stroke="blue" points="1314.52,-1358 1229.52,-1358 1229.52,-1322 1314.52,-1322 1314.52,-1358"/>
+<text text-anchor="middle" x="1272.02" y="-1337.5" font-family="sans" font-size="10.00">capit/undated/</text>
 </g>
 <!-- $(CACHE_DIR)/lists/capit&#45;undated.html&#45;&gt;capit/undated/ -->
 <g id="edge78" class="edge">
 <title>$(CACHE_DIR)/lists/capit&#45;undated.html:e&#45;&gt;capit/undated/:w</title>
-<path fill="none" stroke="black" d="M949.49,-1340C1104.7,-1340 1146.01,-1340 1296.33,-1340"/>
-<polygon fill="black" stroke="black" points="1296.39,-1343.5 1306.39,-1340 1296.39,-1336.5 1296.39,-1343.5"/>
+<path fill="none" stroke="black" d="M892.86,-1340C1038.33,-1340 1077.25,-1340 1217.73,-1340"/>
+<polygon fill="black" stroke="black" points="1218.02,-1343.5 1228.02,-1340 1218.02,-1336.5 1218.02,-1343.5"/>
 </g>
 <!-- $(CACHE_DIR)/lists/changes.html -->
 <g id="node19" class="node">
 <title>$(CACHE_DIR)/lists/changes.html</title>
-<polygon fill="none" stroke="red" points="934.99,-980 755.99,-980 755.99,-944 934.99,-944 934.99,-980"/>
-<text text-anchor="middle" x="845.49" y="-959.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/changes.html</text>
+<polygon fill="none" stroke="red" points="878.86,-980 710.86,-980 710.86,-944 878.86,-944 878.86,-980"/>
+<text text-anchor="middle" x="794.86" y="-959.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/changes.html</text>
 </g>
 <!-- mss/status/ -->
 <g id="node78" class="node">
 <title>mss/status/</title>
-<polygon fill="none" stroke="blue" points="1386.89,-954 1313.89,-954 1313.89,-918 1386.89,-918 1386.89,-954"/>
-<text text-anchor="middle" x="1350.39" y="-933.5" font-family="sans" font-size="10.00">mss/status/</text>
+<polygon fill="none" stroke="blue" points="1307.02,-954 1237.02,-954 1237.02,-918 1307.02,-918 1307.02,-954"/>
+<text text-anchor="middle" x="1272.02" y="-933.5" font-family="sans" font-size="10.00">mss/status/</text>
 </g>
 <!-- $(CACHE_DIR)/lists/changes.html&#45;&gt;mss/status/ -->
 <g id="edge79" class="edge">
 <title>$(CACHE_DIR)/lists/changes.html:e&#45;&gt;mss/status/:w</title>
-<path fill="none" stroke="black" d="M936.49,-962C1100.52,-962 1143.19,-937.06 1302.24,-936.03"/>
-<polygon fill="black" stroke="black" points="1302.4,-939.53 1312.39,-936 1302.38,-932.53 1302.4,-939.53"/>
+<path fill="none" stroke="black" d="M879.86,-962C1035.16,-962 1075.58,-937.11 1225.95,-936.04"/>
+<polygon fill="black" stroke="black" points="1226.03,-939.54 1236.02,-936 1226.01,-932.54 1226.03,-939.54"/>
 </g>
 <!-- $(CACHE_DIR)/lists/changes90.html -->
 <g id="node20" class="node">
 <title>$(CACHE_DIR)/lists/changes90.html</title>
-<polygon fill="none" stroke="red" points="940.99,-926 749.99,-926 749.99,-890 940.99,-890 940.99,-926"/>
-<text text-anchor="middle" x="845.49" y="-905.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/changes90.html</text>
+<polygon fill="none" stroke="red" points="884.86,-926 704.86,-926 704.86,-890 884.86,-890 884.86,-926"/>
+<text text-anchor="middle" x="794.86" y="-905.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/changes90.html</text>
 </g>
 <!-- $(CACHE_DIR)/lists/changes90.html&#45;&gt;mss/status/ -->
 <g id="edge80" class="edge">
 <title>$(CACHE_DIR)/lists/changes90.html:e&#45;&gt;mss/status/:w</title>
-<path fill="none" stroke="black" d="M942.49,-908C1103.81,-908 1145.73,-934.81 1301.93,-935.96"/>
-<polygon fill="black" stroke="black" points="1302.38,-939.46 1312.39,-936 1302.4,-932.46 1302.38,-939.46"/>
+<path fill="none" stroke="black" d="M885.86,-908C1038.47,-908 1078.13,-934.76 1225.68,-935.96"/>
+<polygon fill="black" stroke="black" points="1226,-939.46 1236.02,-936 1226.03,-932.46 1226,-939.46"/>
 </g>
 <!-- $(CACHE_DIR)/lists/downloads.html -->
 <g id="node21" class="node">
 <title>$(CACHE_DIR)/lists/downloads.html</title>
-<polygon fill="none" stroke="red" points="940.99,-872 749.99,-872 749.99,-836 940.99,-836 940.99,-872"/>
-<text text-anchor="middle" x="845.49" y="-851.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/downloads.html</text>
+<polygon fill="none" stroke="red" points="884.36,-872 705.36,-872 705.36,-836 884.36,-836 884.36,-872"/>
+<text text-anchor="middle" x="794.86" y="-851.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/downloads.html</text>
 </g>
 <!-- resources/downloads/ -->
 <g id="node79" class="node">
 <title>resources/downloads/</title>
-<polygon fill="none" stroke="blue" points="1411.39,-872 1289.39,-872 1289.39,-836 1411.39,-836 1411.39,-872"/>
-<text text-anchor="middle" x="1350.39" y="-851.5" font-family="sans" font-size="10.00">resources/downloads/</text>
+<polygon fill="none" stroke="blue" points="1331.52,-872 1212.52,-872 1212.52,-836 1331.52,-836 1331.52,-872"/>
+<text text-anchor="middle" x="1272.02" y="-851.5" font-family="sans" font-size="10.00">resources/downloads/</text>
 </g>
 <!-- $(CACHE_DIR)/lists/downloads.html&#45;&gt;resources/downloads/ -->
 <g id="edge81" class="edge">
 <title>$(CACHE_DIR)/lists/downloads.html:e&#45;&gt;resources/downloads/:w</title>
-<path fill="none" stroke="black" d="M942.49,-854C1092.77,-854 1132.87,-854 1278.2,-854"/>
-<polygon fill="black" stroke="black" points="1278.39,-857.5 1288.39,-854 1278.39,-850.5 1278.39,-857.5"/>
+<path fill="none" stroke="black" d="M885.86,-854C1026.85,-854 1064.67,-854 1200.62,-854"/>
+<polygon fill="black" stroke="black" points="1201.02,-857.5 1211.02,-854 1201.02,-850.5 1201.02,-857.5"/>
 </g>
 <!-- $(CACHE_DIR)/lists/mss&#45;capit.html -->
 <g id="node22" class="node">
 <title>$(CACHE_DIR)/lists/mss&#45;capit.html</title>
-<polygon fill="none" stroke="red" points="938.49,-1142 752.49,-1142 752.49,-1106 938.49,-1106 938.49,-1142"/>
-<text text-anchor="middle" x="845.49" y="-1121.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/mss&#45;capit.html</text>
+<polygon fill="none" stroke="red" points="881.36,-1142 708.36,-1142 708.36,-1106 881.36,-1106 881.36,-1142"/>
+<text text-anchor="middle" x="794.86" y="-1121.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/mss&#45;capit.html</text>
 </g>
 <!-- mss/capit/ -->
 <g id="node80" class="node">
 <title>mss/capit/</title>
-<polygon fill="none" stroke="blue" points="1383.89,-1142 1316.89,-1142 1316.89,-1106 1383.89,-1106 1383.89,-1142"/>
-<text text-anchor="middle" x="1350.39" y="-1121.5" font-family="sans" font-size="10.00">mss/capit/</text>
+<polygon fill="none" stroke="blue" points="1304.02,-1142 1240.02,-1142 1240.02,-1106 1304.02,-1106 1304.02,-1142"/>
+<text text-anchor="middle" x="1272.02" y="-1121.5" font-family="sans" font-size="10.00">mss/capit/</text>
 </g>
 <!-- $(CACHE_DIR)/lists/mss&#45;capit.html&#45;&gt;mss/capit/ -->
 <g id="edge82" class="edge">
 <title>$(CACHE_DIR)/lists/mss&#45;capit.html:e&#45;&gt;mss/capit/:w</title>
-<path fill="none" stroke="black" d="M939.49,-1124C1103.13,-1124 1146.55,-1124 1305.27,-1124"/>
-<polygon fill="black" stroke="black" points="1305.39,-1127.5 1315.39,-1124 1305.39,-1120.5 1305.39,-1127.5"/>
+<path fill="none" stroke="black" d="M882.86,-1124C1037.75,-1124 1078.97,-1124 1228.98,-1124"/>
+<polygon fill="black" stroke="black" points="1229.02,-1127.5 1239.02,-1124 1229.02,-1120.5 1229.02,-1127.5"/>
 </g>
 <!-- $(CACHE_DIR)/lists/mss&#45;idno.html -->
 <g id="node23" class="node">
 <title>$(CACHE_DIR)/lists/mss&#45;idno.html</title>
-<polygon fill="none" stroke="red" points="936.99,-1088 753.99,-1088 753.99,-1052 936.99,-1052 936.99,-1088"/>
-<text text-anchor="middle" x="845.49" y="-1067.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/mss&#45;idno.html</text>
+<polygon fill="none" stroke="red" points="880.36,-1088 709.36,-1088 709.36,-1052 880.36,-1052 880.36,-1088"/>
+<text text-anchor="middle" x="794.86" y="-1067.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/mss&#45;idno.html</text>
 </g>
 <!-- mss/idno/ -->
 <g id="node81" class="node">
 <title>mss/idno/</title>
-<polygon fill="none" stroke="blue" points="1382.39,-1088 1318.39,-1088 1318.39,-1052 1382.39,-1052 1382.39,-1088"/>
-<text text-anchor="middle" x="1350.39" y="-1067.5" font-family="sans" font-size="10.00">mss/idno/</text>
+<polygon fill="none" stroke="blue" points="1303.02,-1088 1241.02,-1088 1241.02,-1052 1303.02,-1052 1303.02,-1088"/>
+<text text-anchor="middle" x="1272.02" y="-1067.5" font-family="sans" font-size="10.00">mss/idno/</text>
 </g>
 <!-- $(CACHE_DIR)/lists/mss&#45;idno.html&#45;&gt;mss/idno/ -->
 <g id="edge83" class="edge">
 <title>$(CACHE_DIR)/lists/mss&#45;idno.html:e&#45;&gt;mss/idno/:w</title>
-<path fill="none" stroke="black" d="M938.49,-1070C1103.43,-1070 1147.21,-1070 1307.18,-1070"/>
-<polygon fill="black" stroke="black" points="1307.39,-1073.5 1317.39,-1070 1307.39,-1066.5 1307.39,-1073.5"/>
+<path fill="none" stroke="black" d="M881.86,-1070C1037.62,-1070 1079.07,-1070 1229.92,-1070"/>
+<polygon fill="black" stroke="black" points="1230.02,-1073.5 1240.02,-1070 1230.02,-1066.5 1230.02,-1073.5"/>
 </g>
 <!-- $(CACHE_DIR)/lists/mss&#45;key.html -->
 <g id="node24" class="node">
 <title>$(CACHE_DIR)/lists/mss&#45;key.html</title>
-<polygon fill="none" stroke="red" points="934.49,-1034 756.49,-1034 756.49,-998 934.49,-998 934.49,-1034"/>
-<text text-anchor="middle" x="845.49" y="-1013.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/mss&#45;key.html</text>
+<polygon fill="none" stroke="red" points="877.86,-1034 711.86,-1034 711.86,-998 877.86,-998 877.86,-1034"/>
+<text text-anchor="middle" x="794.86" y="-1013.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/mss&#45;key.html</text>
 </g>
 <!-- mss/key/ -->
 <g id="node82" class="node">
 <title>mss/key/</title>
-<polygon fill="none" stroke="blue" points="1380.39,-1034 1320.39,-1034 1320.39,-998 1380.39,-998 1380.39,-1034"/>
-<text text-anchor="middle" x="1350.39" y="-1013.5" font-family="sans" font-size="10.00">mss/key/</text>
+<polygon fill="none" stroke="blue" points="1301.02,-1034 1243.02,-1034 1243.02,-998 1301.02,-998 1301.02,-1034"/>
+<text text-anchor="middle" x="1272.02" y="-1013.5" font-family="sans" font-size="10.00">mss/key/</text>
 </g>
 <!-- $(CACHE_DIR)/lists/mss&#45;key.html&#45;&gt;mss/key/ -->
 <g id="edge84" class="edge">
 <title>$(CACHE_DIR)/lists/mss&#45;key.html:e&#45;&gt;mss/key/:w</title>
-<path fill="none" stroke="black" d="M935.49,-1016C1102.61,-1016 1146.96,-1016 1309.05,-1016"/>
-<polygon fill="black" stroke="black" points="1309.39,-1019.5 1319.39,-1016 1309.39,-1012.5 1309.39,-1019.5"/>
+<path fill="none" stroke="black" d="M878.86,-1016C1036.79,-1016 1078.82,-1016 1231.78,-1016"/>
+<polygon fill="black" stroke="black" points="1232.02,-1019.5 1242.02,-1016 1232.02,-1012.5 1232.02,-1019.5"/>
 </g>
 <!-- $(CACHE_DIR)/lists/mss&#45;table.html -->
 <g id="node25" class="node">
 <title>$(CACHE_DIR)/lists/mss&#45;table.html</title>
-<polygon fill="none" stroke="red" points="938.99,-818 751.99,-818 751.99,-782 938.99,-782 938.99,-818"/>
-<text text-anchor="middle" x="845.49" y="-797.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/mss&#45;table.html</text>
+<polygon fill="none" stroke="red" points="881.86,-818 707.86,-818 707.86,-782 881.86,-782 881.86,-818"/>
+<text text-anchor="middle" x="794.86" y="-797.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/lists/mss&#45;table.html</text>
 </g>
 <!-- mss/table/ -->
 <g id="node83" class="node">
 <title>mss/table/</title>
-<polygon fill="none" stroke="blue" points="1384.39,-818 1316.39,-818 1316.39,-782 1384.39,-782 1384.39,-818"/>
-<text text-anchor="middle" x="1350.39" y="-797.5" font-family="sans" font-size="10.00">mss/table/</text>
+<polygon fill="none" stroke="blue" points="1304.52,-818 1239.52,-818 1239.52,-782 1304.52,-782 1304.52,-818"/>
+<text text-anchor="middle" x="1272.02" y="-797.5" font-family="sans" font-size="10.00">mss/table/</text>
 </g>
 <!-- $(CACHE_DIR)/lists/mss&#45;table.html&#45;&gt;mss/table/ -->
 <g id="edge85" class="edge">
 <title>$(CACHE_DIR)/lists/mss&#45;table.html:e&#45;&gt;mss/table/:w</title>
-<path fill="none" stroke="black" d="M939.49,-800C1103.13,-800 1146.55,-800 1305.27,-800"/>
-<polygon fill="black" stroke="black" points="1305.39,-803.5 1315.39,-800 1305.39,-796.5 1305.39,-803.5"/>
+<path fill="none" stroke="black" d="M882.86,-800C1037.32,-800 1078.42,-800 1228.01,-800"/>
+<polygon fill="black" stroke="black" points="1228.02,-803.5 1238.02,-800 1228.02,-796.5 1228.02,-803.5"/>
 </g>
 <!-- $(CACHE_DIR)/mss/%.footer.html -->
 <g id="node26" class="node">
 <title>$(CACHE_DIR)/mss/%.footer.html</title>
-<polygon fill="none" stroke="red" points="1202.99,-375 1026.99,-375 1022.99,-371 1022.99,-339 1198.99,-339 1202.99,-343 1202.99,-375"/>
-<polyline fill="none" stroke="red" points="1198.99,-371 1022.99,-371 "/>
-<polyline fill="none" stroke="red" points="1198.99,-371 1198.99,-339 "/>
-<polyline fill="none" stroke="red" points="1198.99,-371 1202.99,-375 "/>
-<text text-anchor="middle" x="1112.99" y="-354.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/%.footer.html</text>
+<polygon fill="none" stroke="red" points="1133.86,-375 967.86,-375 963.86,-371 963.86,-339 1129.86,-339 1133.86,-343 1133.86,-375"/>
+<polyline fill="none" stroke="red" points="1129.86,-371 963.86,-371 "/>
+<polyline fill="none" stroke="red" points="1129.86,-371 1129.86,-339 "/>
+<polyline fill="none" stroke="red" points="1129.86,-371 1133.86,-375 "/>
+<text text-anchor="middle" x="1048.86" y="-354.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/%.footer.html</text>
 </g>
 <!-- mss/%/ -->
 <g id="node84" class="node">
 <title>mss/%/</title>
-<polygon fill="none" stroke="blue" points="2117.79,-421 2067.79,-421 2063.79,-417 2063.79,-385 2113.79,-385 2117.79,-389 2117.79,-421"/>
-<polyline fill="none" stroke="blue" points="2113.79,-417 2063.79,-417 "/>
-<polyline fill="none" stroke="blue" points="2113.79,-417 2113.79,-385 "/>
-<polyline fill="none" stroke="blue" points="2113.79,-417 2117.79,-421 "/>
-<text text-anchor="middle" x="2090.79" y="-400.5" font-family="sans" font-size="10.00">mss/%/</text>
+<polygon fill="none" stroke="blue" points="2001.68,-421 1951.68,-421 1947.68,-417 1947.68,-385 1997.68,-385 2001.68,-389 2001.68,-421"/>
+<polyline fill="none" stroke="blue" points="1997.68,-417 1947.68,-417 "/>
+<polyline fill="none" stroke="blue" points="1997.68,-417 1997.68,-385 "/>
+<polyline fill="none" stroke="blue" points="1997.68,-417 2001.68,-421 "/>
+<text text-anchor="middle" x="1974.68" y="-400.5" font-family="sans" font-size="10.00">mss/%/</text>
 </g>
 <!-- $(CACHE_DIR)/mss/%.footer.html&#45;&gt;mss/%/ -->
 <g id="edge86" class="edge">
 <title>$(CACHE_DIR)/mss/%.footer.html:e&#45;&gt;mss/%/:w</title>
-<path fill="none" stroke="black" d="M1203.99,-357C1223.09,-357 1223.21,-372.45 1241.49,-378 1445.75,-440.03 1507.05,-406.01 1720.29,-416 1843.28,-421.76 1874.17,-419.11 1997.29,-420 2023.61,-420.19 2030.99,-407.03 2052.57,-403.74"/>
-<polygon fill="black" stroke="black" points="2053.07,-407.21 2062.79,-403 2052.56,-400.23 2053.07,-407.21"/>
+<path fill="none" stroke="black" d="M1134.86,-357C1153.57,-357 1153.49,-372.43 1171.36,-378 1363.09,-437.74 1421.1,-405.25 1621.68,-415 1738.44,-420.68 1767.78,-418.11 1884.68,-419 1909.36,-419.19 1916.46,-407.02 1936.47,-403.78"/>
+<polygon fill="black" stroke="black" points="1936.98,-407.25 1946.68,-403 1936.44,-400.27 1936.98,-407.25"/>
 </g>
 <!-- $(CACHE_DIR)/mss/%.header.html -->
 <g id="node27" class="node">
 <title>$(CACHE_DIR)/mss/%.header.html</title>
-<polygon fill="none" stroke="red" points="1682.29,-358 1501.29,-358 1497.29,-354 1497.29,-322 1678.29,-322 1682.29,-326 1682.29,-358"/>
-<polyline fill="none" stroke="red" points="1678.29,-354 1497.29,-354 "/>
-<polyline fill="none" stroke="red" points="1678.29,-354 1678.29,-322 "/>
-<polyline fill="none" stroke="red" points="1678.29,-354 1682.29,-358 "/>
-<text text-anchor="middle" x="1589.79" y="-337.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/%.header.html</text>
+<polygon fill="none" stroke="red" points="1583.68,-358 1414.68,-358 1410.68,-354 1410.68,-322 1579.68,-322 1583.68,-326 1583.68,-358"/>
+<polyline fill="none" stroke="red" points="1579.68,-354 1410.68,-354 "/>
+<polyline fill="none" stroke="red" points="1579.68,-354 1579.68,-322 "/>
+<polyline fill="none" stroke="red" points="1579.68,-354 1583.68,-358 "/>
+<text text-anchor="middle" x="1497.18" y="-337.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/%.header.html</text>
 </g>
 <!-- $(CACHE_DIR)/mss/%.header.html&#45;&gt;mss/%/ -->
 <g id="edge87" class="edge">
 <title>$(CACHE_DIR)/mss/%.header.html:e&#45;&gt;mss/%/:w</title>
-<path fill="none" stroke="black" d="M1683.79,-340C1709.2,-340 1697.6,-372.56 1720.29,-384 1853.37,-451.08 1907.87,-405.17 2052.66,-403.07"/>
-<polygon fill="black" stroke="black" points="2052.82,-406.57 2062.79,-403 2052.77,-399.57 2052.82,-406.57"/>
+<path fill="none" stroke="black" d="M1585.18,-340C1610.59,-340 1599.01,-372.53 1621.68,-384 1747.76,-447.78 1799.55,-405.11 1936.66,-403.07"/>
+<polygon fill="black" stroke="black" points="1936.71,-406.57 1946.68,-403 1936.65,-399.57 1936.71,-406.57"/>
 </g>
 <!-- $(CACHE_DIR)/mss/cte&#45;137&#45;de.html -->
 <g id="node28" class="node">
 <title>$(CACHE_DIR)/mss/cte&#45;137&#45;de.html</title>
-<polygon fill="none" stroke="red" points="1945.29,-213 1754.29,-213 1754.29,-177 1945.29,-177 1945.29,-213"/>
-<text text-anchor="middle" x="1849.79" y="-192.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/cte&#45;137&#45;de.html</text>
+<polygon fill="none" stroke="red" points="1834.68,-213 1653.68,-213 1653.68,-177 1834.68,-177 1834.68,-213"/>
+<text text-anchor="middle" x="1744.18" y="-192.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/cte&#45;137&#45;de.html</text>
 </g>
 <!-- resources/texts/ldf&#45;bk137/ -->
 <g id="node86" class="node">
 <title>resources/texts/ldf&#45;bk137/</title>
-<polygon fill="none" stroke="blue" points="2162.29,-247 2019.29,-247 2019.29,-211 2162.29,-211 2162.29,-247"/>
-<text text-anchor="middle" x="2090.79" y="-226.5" font-family="sans" font-size="10.00">resources/texts/ldf&#45;bk137/</text>
+<polygon fill="none" stroke="blue" points="2044.68,-247 1904.68,-247 1904.68,-211 2044.68,-211 2044.68,-247"/>
+<text text-anchor="middle" x="1974.68" y="-226.5" font-family="sans" font-size="10.00">resources/texts/ldf&#45;bk137/</text>
 </g>
 <!-- $(CACHE_DIR)/mss/cte&#45;137&#45;de.html&#45;&gt;resources/texts/ldf&#45;bk137/ -->
 <g id="edge90" class="edge">
 <title>$(CACHE_DIR)/mss/cte&#45;137&#45;de.html:e&#45;&gt;resources/texts/ldf&#45;bk137/:w</title>
-<path fill="none" stroke="black" d="M1946.79,-195C1978.09,-195 1982.21,-222.21 2007.77,-227.95"/>
-<polygon fill="black" stroke="black" points="2007.48,-231.43 2017.79,-229 2008.21,-224.47 2007.48,-231.43"/>
+<path fill="none" stroke="black" d="M1836.18,-195C1865.97,-195 1869.59,-221.73 1893.45,-227.79"/>
+<polygon fill="black" stroke="black" points="1893.34,-231.3 1903.68,-229 1894.16,-224.35 1893.34,-231.3"/>
 </g>
 <!-- $(CACHE_DIR)/mss/cte&#45;137.html -->
 <g id="node29" class="node">
 <title>$(CACHE_DIR)/mss/cte&#45;137.html</title>
-<polygon fill="none" stroke="red" points="1937.29,-267 1762.29,-267 1762.29,-231 1937.29,-231 1937.29,-267"/>
-<text text-anchor="middle" x="1849.79" y="-246.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/cte&#45;137.html</text>
+<polygon fill="none" stroke="red" points="1827.18,-267 1661.18,-267 1661.18,-231 1827.18,-231 1827.18,-267"/>
+<text text-anchor="middle" x="1744.18" y="-246.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/cte&#45;137.html</text>
 </g>
 <!-- $(CACHE_DIR)/mss/cte&#45;137.html&#45;&gt;resources/texts/ldf&#45;bk137/ -->
 <g id="edge91" class="edge">
 <title>$(CACHE_DIR)/mss/cte&#45;137.html:e&#45;&gt;resources/texts/ldf&#45;bk137/:w</title>
-<path fill="none" stroke="black" d="M1938.79,-249C1971.33,-249 1979.93,-232.86 2007.61,-229.58"/>
-<polygon fill="black" stroke="black" points="2008,-233.06 2017.79,-229 2007.61,-226.07 2008,-233.06"/>
+<path fill="none" stroke="black" d="M1828.18,-249C1859.23,-249 1867.37,-233 1893.59,-229.62"/>
+<polygon fill="black" stroke="black" points="1893.91,-233.11 1903.68,-229 1893.48,-226.12 1893.91,-233.11"/>
 </g>
 <!-- $(CACHE_DIR)/mss/%.transcript.commented.html -->
 <g id="node30" class="node">
 <title>$(CACHE_DIR)/mss/%.transcript.commented.html</title>
-<polygon fill="none" stroke="red" points="1979.29,-321 1724.29,-321 1720.29,-317 1720.29,-285 1975.29,-285 1979.29,-289 1979.29,-321"/>
-<polyline fill="none" stroke="red" points="1975.29,-317 1720.29,-317 "/>
-<polyline fill="none" stroke="red" points="1975.29,-317 1975.29,-285 "/>
-<polyline fill="none" stroke="red" points="1975.29,-317 1979.29,-321 "/>
-<text text-anchor="middle" x="1849.79" y="-300.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/%.transcript.commented.html</text>
+<polygon fill="none" stroke="red" points="1866.68,-321 1625.68,-321 1621.68,-317 1621.68,-285 1862.68,-285 1866.68,-289 1866.68,-321"/>
+<polyline fill="none" stroke="red" points="1862.68,-317 1621.68,-317 "/>
+<polyline fill="none" stroke="red" points="1862.68,-317 1862.68,-285 "/>
+<polyline fill="none" stroke="red" points="1862.68,-317 1866.68,-321 "/>
+<text text-anchor="middle" x="1744.18" y="-300.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/%.transcript.commented.html</text>
 </g>
 <!-- internal/mss&#45;comments/%/ -->
 <g id="node85" class="node">
 <title>internal/mss&#45;comments/%/</title>
-<polygon fill="none" stroke="blue" points="2165.29,-321 2020.29,-321 2016.29,-317 2016.29,-285 2161.29,-285 2165.29,-289 2165.29,-321"/>
-<polyline fill="none" stroke="blue" points="2161.29,-317 2016.29,-317 "/>
-<polyline fill="none" stroke="blue" points="2161.29,-317 2161.29,-285 "/>
-<polyline fill="none" stroke="blue" points="2161.29,-317 2165.29,-321 "/>
-<text text-anchor="middle" x="2090.79" y="-300.5" font-family="sans" font-size="10.00">internal/mss&#45;comments/%/</text>
+<polygon fill="none" stroke="blue" points="2045.68,-321 1907.68,-321 1903.68,-317 1903.68,-285 2041.68,-285 2045.68,-289 2045.68,-321"/>
+<polyline fill="none" stroke="blue" points="2041.68,-317 1903.68,-317 "/>
+<polyline fill="none" stroke="blue" points="2041.68,-317 2041.68,-285 "/>
+<polyline fill="none" stroke="blue" points="2041.68,-317 2045.68,-321 "/>
+<text text-anchor="middle" x="1974.68" y="-300.5" font-family="sans" font-size="10.00">internal/mss&#45;comments/%/</text>
 </g>
 <!-- $(CACHE_DIR)/mss/%.transcript.commented.html&#45;&gt;internal/mss&#45;comments/%/ -->
 <g id="edge89" class="edge">
 <title>$(CACHE_DIR)/mss/%.transcript.commented.html:e&#45;&gt;internal/mss&#45;comments/%/:w</title>
-<path fill="none" stroke="black" d="M1980.79,-303C1992.5,-303 1997.69,-303 2006.04,-303"/>
-<polygon fill="black" stroke="black" points="2006.29,-306.5 2016.29,-303 2006.29,-299.5 2006.29,-306.5"/>
+<path fill="none" stroke="black" d="M1868.18,-303C1879.89,-303 1885.08,-303 1893.43,-303"/>
+<polygon fill="black" stroke="black" points="1893.68,-306.5 1903.68,-303 1893.68,-299.5 1893.68,-306.5"/>
 </g>
 <!-- $(CACHE_DIR)/mss/%.transcript.html -->
 <g id="node31" class="node">
 <title>$(CACHE_DIR)/mss/%.transcript.html</title>
-<polygon fill="none" stroke="red" points="1948.29,-375 1755.29,-375 1751.29,-371 1751.29,-339 1944.29,-339 1948.29,-343 1948.29,-375"/>
-<polyline fill="none" stroke="red" points="1944.29,-371 1751.29,-371 "/>
-<polyline fill="none" stroke="red" points="1944.29,-371 1944.29,-339 "/>
-<polyline fill="none" stroke="red" points="1944.29,-371 1948.29,-375 "/>
-<text text-anchor="middle" x="1849.79" y="-354.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/%.transcript.html</text>
+<polygon fill="none" stroke="red" points="1837.18,-375 1655.18,-375 1651.18,-371 1651.18,-339 1833.18,-339 1837.18,-343 1837.18,-375"/>
+<polyline fill="none" stroke="red" points="1833.18,-371 1651.18,-371 "/>
+<polyline fill="none" stroke="red" points="1833.18,-371 1833.18,-339 "/>
+<polyline fill="none" stroke="red" points="1833.18,-371 1837.18,-375 "/>
+<text text-anchor="middle" x="1744.18" y="-354.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/mss/%.transcript.html</text>
 </g>
 <!-- $(CACHE_DIR)/mss/%.transcript.html&#45;&gt;mss/%/ -->
 <g id="edge88" class="edge">
 <title>$(CACHE_DIR)/mss/%.transcript.html:e&#45;&gt;mss/%/:w</title>
-<path fill="none" stroke="black" d="M1949.79,-357C2000.41,-357 2007.74,-397.09 2052.62,-402.42"/>
-<polygon fill="black" stroke="black" points="2052.61,-405.92 2062.79,-403 2053.01,-398.93 2052.61,-405.92"/>
+<path fill="none" stroke="black" d="M1838.18,-357C1886.98,-357 1893.56,-396.93 1936.59,-402.38"/>
+<polygon fill="black" stroke="black" points="1936.49,-405.88 1946.68,-403 1936.91,-398.9 1936.49,-405.88"/>
 </g>
 <!-- $(CACHE_DIR)/internal/mss/%.footer.html -->
 <g id="node32" class="node">
 <title>$(CACHE_DIR)/internal/mss/%.footer.html</title>
-<polygon fill="none" stroke="red" points="1223.49,-509 1006.49,-509 1002.49,-505 1002.49,-473 1219.49,-473 1223.49,-477 1223.49,-509"/>
-<polyline fill="none" stroke="red" points="1219.49,-505 1002.49,-505 "/>
-<polyline fill="none" stroke="red" points="1219.49,-505 1219.49,-473 "/>
-<polyline fill="none" stroke="red" points="1219.49,-505 1223.49,-509 "/>
-<text text-anchor="middle" x="1112.99" y="-488.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/internal/mss/%.footer.html</text>
+<polygon fill="none" stroke="red" points="1153.36,-509 948.36,-509 944.36,-505 944.36,-473 1149.36,-473 1153.36,-477 1153.36,-509"/>
+<polyline fill="none" stroke="red" points="1149.36,-505 944.36,-505 "/>
+<polyline fill="none" stroke="red" points="1149.36,-505 1149.36,-473 "/>
+<polyline fill="none" stroke="red" points="1149.36,-505 1153.36,-509 "/>
+<text text-anchor="middle" x="1048.86" y="-488.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/internal/mss/%.footer.html</text>
 </g>
 <!-- internal/mss/%/ -->
 <g id="node71" class="node">
 <title>internal/mss/%/</title>
-<polygon fill="none" stroke="blue" points="2137.29,-555 2048.29,-555 2044.29,-551 2044.29,-519 2133.29,-519 2137.29,-523 2137.29,-555"/>
-<polyline fill="none" stroke="blue" points="2133.29,-551 2044.29,-551 "/>
-<polyline fill="none" stroke="blue" points="2133.29,-551 2133.29,-519 "/>
-<polyline fill="none" stroke="blue" points="2133.29,-551 2137.29,-555 "/>
-<text text-anchor="middle" x="2090.79" y="-534.5" font-family="sans" font-size="10.00">internal/mss/%/</text>
+<polygon fill="none" stroke="blue" points="2019.68,-555 1933.68,-555 1929.68,-551 1929.68,-519 2015.68,-519 2019.68,-523 2019.68,-555"/>
+<polyline fill="none" stroke="blue" points="2015.68,-551 1929.68,-551 "/>
+<polyline fill="none" stroke="blue" points="2015.68,-551 2015.68,-519 "/>
+<polyline fill="none" stroke="blue" points="2015.68,-551 2019.68,-555 "/>
+<text text-anchor="middle" x="1974.68" y="-534.5" font-family="sans" font-size="10.00">internal/mss/%/</text>
 </g>
 <!-- $(CACHE_DIR)/internal/mss/%.footer.html&#45;&gt;internal/mss/%/ -->
 <g id="edge70" class="edge">
 <title>$(CACHE_DIR)/internal/mss/%.footer.html:e&#45;&gt;internal/mss/%/:w</title>
-<path fill="none" stroke="black" d="M1223.49,-491C1255.61,-491 1216.1,-541.32 1241.49,-561 1317.99,-620.32 1362.49,-561.81 1459.29,-561 1698.87,-559 1762.19,-592.75 1998.29,-552 2015,-549.12 2020.16,-541.02 2032.7,-538.08"/>
-<polygon fill="black" stroke="black" points="2033.22,-541.54 2042.79,-537 2032.48,-534.58 2033.22,-541.54"/>
+<path fill="none" stroke="black" d="M1153.36,-491C1185.48,-491 1145.97,-541.32 1171.36,-561 1242.07,-615.83 1283.21,-561.78 1372.68,-561 1600.71,-559 1661.19,-592.06 1885.68,-552 1901.71,-549.14 1906.68,-541.17 1918.56,-538.17"/>
+<polygon fill="black" stroke="black" points="1919.15,-541.62 1928.68,-537 1918.35,-534.67 1919.15,-541.62"/>
 </g>
 <!-- $(CACHE_DIR)/internal/mss/%.header.html -->
 <g id="node33" class="node">
 <title>$(CACHE_DIR)/internal/mss/%.header.html</title>
-<polygon fill="none" stroke="red" points="1702.29,-509 1481.29,-509 1477.29,-505 1477.29,-473 1698.29,-473 1702.29,-477 1702.29,-509"/>
-<polyline fill="none" stroke="red" points="1698.29,-505 1477.29,-505 "/>
-<polyline fill="none" stroke="red" points="1698.29,-505 1698.29,-473 "/>
-<polyline fill="none" stroke="red" points="1698.29,-505 1702.29,-509 "/>
-<text text-anchor="middle" x="1589.79" y="-488.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/internal/mss/%.header.html</text>
+<polygon fill="none" stroke="red" points="1603.68,-509 1394.68,-509 1390.68,-505 1390.68,-473 1599.68,-473 1603.68,-477 1603.68,-509"/>
+<polyline fill="none" stroke="red" points="1599.68,-505 1390.68,-505 "/>
+<polyline fill="none" stroke="red" points="1599.68,-505 1599.68,-473 "/>
+<polyline fill="none" stroke="red" points="1599.68,-505 1603.68,-509 "/>
+<text text-anchor="middle" x="1497.18" y="-488.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/internal/mss/%.header.html</text>
 </g>
 <!-- $(CACHE_DIR)/internal/mss/%.header.html&#45;&gt;internal/mss/%/ -->
 <g id="edge71" class="edge">
 <title>$(CACHE_DIR)/internal/mss/%.header.html:e&#45;&gt;internal/mss/%/:w</title>
-<path fill="none" stroke="black" d="M1702.29,-491C1716.71,-491 1707.78,-510.82 1720.29,-518 1841.79,-587.7 1896.51,-539.49 2032.43,-537.09"/>
-<polygon fill="black" stroke="black" points="2032.82,-540.59 2042.79,-537 2032.76,-533.59 2032.82,-540.59"/>
+<path fill="none" stroke="black" d="M1603.68,-491C1618.1,-491 1609.18,-510.81 1621.68,-518 1737.15,-584.47 1789.3,-539.42 1918.43,-537.09"/>
+<polygon fill="black" stroke="black" points="1918.71,-540.59 1928.68,-537 1918.65,-533.59 1918.71,-540.59"/>
 </g>
 <!-- $(CACHE_DIR)/internal/mss/%.transcript.html -->
 <g id="node34" class="node">
 <title>$(CACHE_DIR)/internal/mss/%.transcript.html</title>
-<polygon fill="none" stroke="red" points="1968.79,-509 1734.79,-509 1730.79,-505 1730.79,-473 1964.79,-473 1968.79,-477 1968.79,-509"/>
-<polyline fill="none" stroke="red" points="1964.79,-505 1730.79,-505 "/>
-<polyline fill="none" stroke="red" points="1964.79,-505 1964.79,-473 "/>
-<polyline fill="none" stroke="red" points="1964.79,-505 1968.79,-509 "/>
-<text text-anchor="middle" x="1849.79" y="-488.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/internal/mss/%.transcript.html</text>
+<polygon fill="none" stroke="red" points="1857.18,-509 1635.18,-509 1631.18,-505 1631.18,-473 1853.18,-473 1857.18,-477 1857.18,-509"/>
+<polyline fill="none" stroke="red" points="1853.18,-505 1631.18,-505 "/>
+<polyline fill="none" stroke="red" points="1853.18,-505 1853.18,-473 "/>
+<polyline fill="none" stroke="red" points="1853.18,-505 1857.18,-509 "/>
+<text text-anchor="middle" x="1744.18" y="-488.5" font-family="sans" font-size="10.00">$(CACHE_DIR)/internal/mss/%.transcript.html</text>
 </g>
 <!-- $(CACHE_DIR)/internal/mss/%.transcript.html&#45;&gt;internal/mss/%/ -->
 <g id="edge72" class="edge">
 <title>$(CACHE_DIR)/internal/mss/%.transcript.html:e&#45;&gt;internal/mss/%/:w</title>
-<path fill="none" stroke="black" d="M1969.79,-491C2004.39,-491 2004.76,-528.45 2032.68,-535.77"/>
-<polygon fill="black" stroke="black" points="2032.44,-539.27 2042.79,-537 2033.29,-532.32 2032.44,-539.27"/>
+<path fill="none" stroke="black" d="M1858.18,-491C1891.79,-491 1891.72,-528.13 1918.49,-535.67"/>
+<polygon fill="black" stroke="black" points="1918.31,-539.18 1928.68,-537 1919.22,-532.24 1918.31,-539.18"/>
 </g>
 <!-- $(CAPIT_DIR)/ldf/%.xml -->
 <g id="node35" class="node">
 <title>$(CAPIT_DIR)/ldf/%.xml</title>
-<polygon fill="none" stroke="green" points="174,-1652 47,-1652 43,-1648 43,-1616 170,-1616 174,-1620 174,-1652"/>
-<polyline fill="none" stroke="green" points="170,-1648 43,-1648 "/>
-<polyline fill="none" stroke="green" points="170,-1648 170,-1616 "/>
-<polyline fill="none" stroke="green" points="170,-1648 174,-1652 "/>
-<text text-anchor="middle" x="108.5" y="-1631.5" font-family="sans" font-size="10.00">$(CAPIT_DIR)/ldf/%.xml</text>
+<polygon fill="none" stroke="green" points="165,-1652 44,-1652 40,-1648 40,-1616 161,-1616 165,-1620 165,-1652"/>
+<polyline fill="none" stroke="green" points="161,-1648 40,-1648 "/>
+<polyline fill="none" stroke="green" points="161,-1648 161,-1616 "/>
+<polyline fill="none" stroke="green" points="161,-1648 165,-1652 "/>
+<text text-anchor="middle" x="102.5" y="-1631.5" font-family="sans" font-size="10.00">$(CAPIT_DIR)/ldf/%.xml</text>
 </g>
 <!-- capit.xsl -->
 <g id="node36" class="node">
 <title>capit.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-1553" rx="34.29" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-1550.5" font-family="sans" font-size="10.00">capit.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-1553" rx="31.4" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-1550.5" font-family="sans" font-size="10.00">capit.xsl</text>
 </g>
 <!-- $(CAPIT_DIR)/ldf/%.xml&#45;&gt;capit.xsl -->
 <g id="edge1" class="edge">
 <title>$(CAPIT_DIR)/ldf/%.xml:e&#45;&gt;capit.xsl</title>
-<path fill="none" stroke="black" d="M175.5,-1634C230.45,-1634 286.43,-1598.66 318.11,-1574.66"/>
-<polygon fill="black" stroke="black" points="320.63,-1577.14 326.38,-1568.24 316.33,-1571.61 320.63,-1577.14"/>
+<path fill="none" stroke="black" d="M166.5,-1634C218.8,-1634 271.24,-1598.66 300.82,-1574.66"/>
+<polygon fill="black" stroke="black" points="303.09,-1577.33 308.54,-1568.24 298.61,-1571.95 303.09,-1577.33"/>
 </g>
 <!-- capit.xsl&#45;&gt;$(CACHE_DIR)/capits/ldf/%.html -->
 <g id="edge2" class="edge">
 <title>capit.xsl&#45;&gt;$(CACHE_DIR)/capits/ldf/%.html:w</title>
-<path fill="none" stroke="black" d="M374.28,-1562.57C438.7,-1583.69 602.85,-1632.63 747.13,-1634.92"/>
-<polygon fill="black" stroke="black" points="747.46,-1638.42 757.49,-1635 747.51,-1631.42 747.46,-1638.42"/>
+<path fill="none" stroke="black" d="M352.89,-1562.41C412.66,-1583.42 566.18,-1632.52 701.72,-1634.91"/>
+<polygon fill="black" stroke="black" points="701.83,-1638.41 711.86,-1635 701.89,-1631.41 701.83,-1638.41"/>
 </g>
 <!-- capit.xsl&#45;&gt;$(CACHE_DIR)/capits/post840/%.html -->
 <g id="edge4" class="edge">
 <title>capit.xsl&#45;&gt;$(CACHE_DIR)/capits/post840/%.html:w</title>
-<path fill="none" stroke="black" d="M378.71,-1556.83C444.89,-1564.32 600.45,-1580.2 734.47,-1580.97"/>
-<polygon fill="black" stroke="black" points="734.48,-1584.47 744.49,-1581 734.5,-1577.47 734.48,-1584.47"/>
+<path fill="none" stroke="black" d="M356.99,-1556.78C418.34,-1564.22 563.46,-1580.13 688.73,-1580.97"/>
+<polygon fill="black" stroke="black" points="688.85,-1584.47 698.86,-1581 688.87,-1577.47 688.85,-1584.47"/>
 </g>
 <!-- capit.xsl&#45;&gt;$(CACHE_DIR)/capits/pre814/%.html -->
 <g id="edge6" class="edge">
 <title>capit.xsl&#45;&gt;$(CACHE_DIR)/capits/pre814/%.html:w</title>
-<path fill="none" stroke="black" d="M378.96,-1549.44C445.65,-1542.49 602.41,-1527.74 737.39,-1527.03"/>
-<polygon fill="black" stroke="black" points="737.49,-1530.53 747.49,-1527 737.48,-1523.53 737.49,-1530.53"/>
+<path fill="none" stroke="black" d="M357.16,-1549.49C418.85,-1542.58 564.78,-1527.81 690.68,-1527.03"/>
+<polygon fill="black" stroke="black" points="690.87,-1530.53 700.86,-1527 690.85,-1523.53 690.87,-1530.53"/>
 </g>
 <!-- capit.xsl&#45;&gt;$(CACHE_DIR)/capits/undated/%.html -->
 <g id="edge8" class="edge">
 <title>capit.xsl&#45;&gt;$(CACHE_DIR)/capits/undated/%.html:w</title>
-<path fill="none" stroke="black" d="M374.34,-1543.35C437.32,-1522.59 595.13,-1475.38 734.09,-1473.09"/>
-<polygon fill="black" stroke="black" points="734.52,-1476.58 744.49,-1473 734.46,-1469.58 734.52,-1476.58"/>
+<path fill="none" stroke="black" d="M352.9,-1543.51C411.2,-1522.86 558.45,-1475.49 688.71,-1473.09"/>
+<polygon fill="black" stroke="black" points="688.89,-1476.59 698.86,-1473 688.83,-1469.59 688.89,-1476.59"/>
 </g>
 <!-- $(CAPIT_DIR)/post840/%.xml -->
 <g id="node37" class="node">
 <title>$(CAPIT_DIR)/post840/%.xml</title>
-<polygon fill="none" stroke="green" points="187.5,-1598 33.5,-1598 29.5,-1594 29.5,-1562 183.5,-1562 187.5,-1566 187.5,-1598"/>
-<polyline fill="none" stroke="green" points="183.5,-1594 29.5,-1594 "/>
-<polyline fill="none" stroke="green" points="183.5,-1594 183.5,-1562 "/>
-<polyline fill="none" stroke="green" points="183.5,-1594 187.5,-1598 "/>
-<text text-anchor="middle" x="108.5" y="-1577.5" font-family="sans" font-size="10.00">$(CAPIT_DIR)/post840/%.xml</text>
+<polygon fill="none" stroke="green" points="178.5,-1598 30.5,-1598 26.5,-1594 26.5,-1562 174.5,-1562 178.5,-1566 178.5,-1598"/>
+<polyline fill="none" stroke="green" points="174.5,-1594 26.5,-1594 "/>
+<polyline fill="none" stroke="green" points="174.5,-1594 174.5,-1562 "/>
+<polyline fill="none" stroke="green" points="174.5,-1594 178.5,-1598 "/>
+<text text-anchor="middle" x="102.5" y="-1577.5" font-family="sans" font-size="10.00">$(CAPIT_DIR)/post840/%.xml</text>
 </g>
 <!-- $(CAPIT_DIR)/post840/%.xml&#45;&gt;capit.xsl -->
 <g id="edge3" class="edge">
 <title>$(CAPIT_DIR)/post840/%.xml:e&#45;&gt;capit.xsl</title>
-<path fill="none" stroke="black" d="M188.5,-1580C228.44,-1580 273.31,-1571.27 304.59,-1563.74"/>
-<polygon fill="black" stroke="black" points="305.79,-1567.05 314.65,-1561.25 304.1,-1560.26 305.79,-1567.05"/>
+<path fill="none" stroke="black" d="M179.5,-1580C217.01,-1580 259.05,-1571.24 288.29,-1563.7"/>
+<polygon fill="black" stroke="black" points="289.3,-1567.05 298.07,-1561.1 287.51,-1560.29 289.3,-1567.05"/>
 </g>
 <!-- $(CAPIT_DIR)/pre814/%.xml -->
 <g id="node38" class="node">
 <title>$(CAPIT_DIR)/pre814/%.xml</title>
-<polygon fill="none" stroke="green" points="184.5,-1544 36.5,-1544 32.5,-1540 32.5,-1508 180.5,-1508 184.5,-1512 184.5,-1544"/>
-<polyline fill="none" stroke="green" points="180.5,-1540 32.5,-1540 "/>
-<polyline fill="none" stroke="green" points="180.5,-1540 180.5,-1508 "/>
-<polyline fill="none" stroke="green" points="180.5,-1540 184.5,-1544 "/>
-<text text-anchor="middle" x="108.5" y="-1523.5" font-family="sans" font-size="10.00">$(CAPIT_DIR)/pre814/%.xml</text>
+<polygon fill="none" stroke="green" points="176,-1544 33,-1544 29,-1540 29,-1508 172,-1508 176,-1512 176,-1544"/>
+<polyline fill="none" stroke="green" points="172,-1540 29,-1540 "/>
+<polyline fill="none" stroke="green" points="172,-1540 172,-1508 "/>
+<polyline fill="none" stroke="green" points="172,-1540 176,-1544 "/>
+<text text-anchor="middle" x="102.5" y="-1523.5" font-family="sans" font-size="10.00">$(CAPIT_DIR)/pre814/%.xml</text>
 </g>
 <!-- $(CAPIT_DIR)/pre814/%.xml&#45;&gt;capit.xsl -->
 <g id="edge5" class="edge">
 <title>$(CAPIT_DIR)/pre814/%.xml:e&#45;&gt;capit.xsl</title>
-<path fill="none" stroke="black" d="M185.5,-1526C226.62,-1526 272.89,-1534.91 304.82,-1542.5"/>
-<polygon fill="black" stroke="black" points="304.11,-1545.93 314.66,-1544.9 305.77,-1539.13 304.11,-1545.93"/>
+<path fill="none" stroke="black" d="M177.5,-1526C215.62,-1526 258.38,-1534.81 288.05,-1542.37"/>
+<polygon fill="black" stroke="black" points="287.4,-1545.82 297.96,-1544.97 289.18,-1539.05 287.4,-1545.82"/>
 </g>
 <!-- $(CAPIT_DIR)/undated/%.xml -->
 <g id="node39" class="node">
 <title>$(CAPIT_DIR)/undated/%.xml</title>
-<polygon fill="none" stroke="green" points="187.5,-1490 33.5,-1490 29.5,-1486 29.5,-1454 183.5,-1454 187.5,-1458 187.5,-1490"/>
-<polyline fill="none" stroke="green" points="183.5,-1486 29.5,-1486 "/>
-<polyline fill="none" stroke="green" points="183.5,-1486 183.5,-1454 "/>
-<polyline fill="none" stroke="green" points="183.5,-1486 187.5,-1490 "/>
-<text text-anchor="middle" x="108.5" y="-1469.5" font-family="sans" font-size="10.00">$(CAPIT_DIR)/undated/%.xml</text>
+<polygon fill="none" stroke="green" points="178.5,-1490 30.5,-1490 26.5,-1486 26.5,-1454 174.5,-1454 178.5,-1458 178.5,-1490"/>
+<polyline fill="none" stroke="green" points="174.5,-1486 26.5,-1486 "/>
+<polyline fill="none" stroke="green" points="174.5,-1486 174.5,-1454 "/>
+<polyline fill="none" stroke="green" points="174.5,-1486 178.5,-1490 "/>
+<text text-anchor="middle" x="102.5" y="-1469.5" font-family="sans" font-size="10.00">$(CAPIT_DIR)/undated/%.xml</text>
 </g>
 <!-- $(CAPIT_DIR)/undated/%.xml&#45;&gt;capit.xsl -->
 <g id="edge7" class="edge">
 <title>$(CAPIT_DIR)/undated/%.xml:e&#45;&gt;capit.xsl</title>
-<path fill="none" stroke="black" d="M188.5,-1472C239.54,-1472 290.45,-1506.66 319.56,-1530.64"/>
-<polygon fill="black" stroke="black" points="317.63,-1533.59 327.52,-1537.38 322.15,-1528.25 317.63,-1533.59"/>
+<path fill="none" stroke="black" d="M179.5,-1472C227.75,-1472 274.95,-1506.37 302,-1530.33"/>
+<polygon fill="black" stroke="black" points="299.98,-1533.22 309.73,-1537.38 304.7,-1528.06 299.98,-1533.22"/>
 </g>
 <!-- mss&#45;extract&#45;chapters&#45;txt.xsl&#45;&gt;$(CACHE_DIR)/collation/%.xml -->
 <g id="edge10" class="edge">
 <title>mss&#45;extract&#45;chapters&#45;txt.xsl&#45;&gt;$(CACHE_DIR)/collation/%.xml:w</title>
-<path fill="none" stroke="black" d="M436.56,-621C518.13,-621 641.8,-621 751.28,-621"/>
-<polygon fill="black" stroke="black" points="751.49,-624.5 761.49,-621 751.49,-617.5 751.49,-624.5"/>
+<path fill="none" stroke="black" d="M410.58,-621C486.75,-621 602.82,-621 705.63,-621"/>
+<polygon fill="black" stroke="black" points="705.86,-624.5 715.86,-621 705.86,-617.5 705.86,-624.5"/>
 </g>
 <!-- $(MSS_DIR)/%.xml -->
 <g id="node41" class="node">
 <title>$(MSS_DIR)/%.xml</title>
-<polygon fill="none" stroke="green" points="162.5,-472 58.5,-472 54.5,-468 54.5,-436 158.5,-436 162.5,-440 162.5,-472"/>
-<polyline fill="none" stroke="green" points="158.5,-468 54.5,-468 "/>
-<polyline fill="none" stroke="green" points="158.5,-468 158.5,-436 "/>
-<polyline fill="none" stroke="green" points="158.5,-468 162.5,-472 "/>
-<text text-anchor="middle" x="108.5" y="-451.5" font-family="sans" font-size="10.00">$(MSS_DIR)/%.xml</text>
+<polygon fill="none" stroke="green" points="153,-472 56,-472 52,-468 52,-436 149,-436 153,-440 153,-472"/>
+<polyline fill="none" stroke="green" points="149,-468 52,-468 "/>
+<polyline fill="none" stroke="green" points="149,-468 149,-436 "/>
+<polyline fill="none" stroke="green" points="149,-468 153,-472 "/>
+<text text-anchor="middle" x="102.5" y="-451.5" font-family="sans" font-size="10.00">$(MSS_DIR)/%.xml</text>
 </g>
 <!-- mss&#45;extract&#45;chapters.xsl -->
 <g id="node42" class="node">
 <title>mss&#45;extract&#45;chapters.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-508" rx="81.47" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-505.5" font-family="sans" font-size="10.00">mss&#45;extract&#45;chapters.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-508" rx="75.2" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-505.5" font-family="sans" font-size="10.00">mss&#45;extract&#45;chapters.xsl</text>
 </g>
 <!-- $(MSS_DIR)/%.xml&#45;&gt;mss&#45;extract&#45;chapters.xsl -->
 <g id="edge11" class="edge">
 <title>$(MSS_DIR)/%.xml:e&#45;&gt;mss&#45;extract&#45;chapters.xsl</title>
-<path fill="none" stroke="black" d="M163.5,-454C163.7,-454 233.46,-474.86 286.24,-490.65"/>
-<polygon fill="black" stroke="black" points="285.3,-494.02 295.88,-493.53 287.3,-487.31 285.3,-494.02"/>
+<path fill="none" stroke="black" d="M154.5,-454C157.58,-454 222.22,-474.68 271.05,-490.45"/>
+<polygon fill="black" stroke="black" points="269.99,-493.78 280.58,-493.53 272.14,-487.12 269.99,-493.78"/>
 </g>
 <!-- mss&#45;footer&#45;3.xsl -->
 <g id="node44" class="node">
 <title>mss&#45;footer&#45;3.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-454" rx="56.52" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-451.5" font-family="sans" font-size="10.00">mss&#45;footer&#45;3.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-454" rx="54.31" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-451.5" font-family="sans" font-size="10.00">mss&#45;footer&#45;3.xsl</text>
 </g>
 <!-- $(MSS_DIR)/%.xml&#45;&gt;mss&#45;footer&#45;3.xsl -->
 <g id="edge46" class="edge">
 <title>$(MSS_DIR)/%.xml:e&#45;&gt;mss&#45;footer&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M163.5,-454C201.46,-454 243.91,-454 278.13,-454"/>
-<polygon fill="black" stroke="black" points="278.47,-457.5 288.47,-454 278.47,-450.5 278.47,-457.5"/>
+<path fill="none" stroke="black" d="M154.5,-454C189.93,-454 229.49,-454 261.6,-454"/>
+<polygon fill="black" stroke="black" points="261.75,-457.5 271.75,-454 261.75,-450.5 261.75,-457.5"/>
 </g>
 <!-- mss&#45;header&#45;3.xsl -->
 <g id="node45" class="node">
 <title>mss&#45;header&#45;3.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-336" rx="59.41" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-333.5" font-family="sans" font-size="10.00">mss&#45;header&#45;3.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-336" rx="55.85" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-333.5" font-family="sans" font-size="10.00">mss&#45;header&#45;3.xsl</text>
 </g>
 <!-- $(MSS_DIR)/%.xml&#45;&gt;mss&#45;header&#45;3.xsl -->
 <g id="edge48" class="edge">
 <title>$(MSS_DIR)/%.xml:e&#45;&gt;mss&#45;header&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M163.5,-454C217.48,-454 208.25,-401.65 254,-373 266.59,-365.11 281.15,-358.29 294.86,-352.72"/>
-<polygon fill="black" stroke="black" points="296.14,-355.97 304.17,-349.07 293.58,-349.46 296.14,-355.97"/>
+<path fill="none" stroke="black" d="M154.5,-454C207.49,-454 197.75,-402.16 242,-373 253.36,-365.52 266.48,-358.88 278.9,-353.37"/>
+<polygon fill="black" stroke="black" points="280.4,-356.54 288.21,-349.38 277.64,-350.1 280.4,-356.54"/>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;1.xsl -->
 <g id="node47" class="node">
 <title>mss&#45;transcript&#45;phase&#45;1.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-157" rx="86.57" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-154.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;phase&#45;1.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-157" rx="80.79" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-154.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;phase&#45;1.xsl</text>
 </g>
 <!-- $(MSS_DIR)/%.xml&#45;&gt;mss&#45;transcript&#45;phase&#45;1.xsl -->
 <g id="edge54" class="edge">
 <title>$(MSS_DIR)/%.xml:e&#45;&gt;mss&#45;transcript&#45;phase&#45;1.xsl</title>
-<path fill="none" stroke="black" d="M163.5,-454C200.57,-454 197.23,-421.36 217,-390 238.1,-356.52 235.65,-344.07 254,-309 277.6,-263.91 308.49,-213.45 327.33,-183.5"/>
-<polygon fill="black" stroke="black" points="330.38,-185.22 332.77,-174.89 324.47,-181.48 330.38,-185.22"/>
+<path fill="none" stroke="black" d="M154.5,-454C190.73,-454 186.12,-420.92 205,-390 225.63,-356.22 224.27,-344.38 242,-309 264.26,-264.59 292.41,-214.23 309.59,-184.07"/>
+<polygon fill="black" stroke="black" points="312.84,-185.44 314.76,-175.02 306.76,-181.97 312.84,-185.44"/>
 </g>
 <!-- corpus.xsl -->
 <g id="node53" class="node">
 <title>corpus.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-562" rx="38.7" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-559.5" font-family="sans" font-size="10.00">corpus.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-562" rx="37.17" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-559.5" font-family="sans" font-size="10.00">corpus.xsl</text>
 </g>
 <!-- $(MSS_DIR)/%.xml&#45;&gt;corpus.xsl -->
 <g id="edge32" class="edge">
 <title>$(MSS_DIR)/%.xml:e&#45;&gt;corpus.xsl</title>
-<path fill="none" stroke="black" d="M163.5,-454C217.48,-454 206.9,-508.63 254,-535 267.8,-542.72 284.04,-548.47 298.92,-552.62"/>
-<polygon fill="black" stroke="black" points="298.4,-556.1 308.96,-555.25 300.17,-549.33 298.4,-556.1"/>
+<path fill="none" stroke="black" d="M154.5,-454C207.49,-454 196.29,-508.19 242,-535 254.21,-542.16 268.56,-547.69 281.87,-551.82"/>
+<polygon fill="black" stroke="black" points="281.21,-555.27 291.79,-554.71 283.17,-548.55 281.21,-555.27"/>
 </g>
 <!-- mss&#45;extract&#45;chapters.xsl&#45;&gt;$(CACHE_DIR)/extracted/%.xml -->
 <g id="edge12" class="edge">
 <title>mss&#45;extract&#45;chapters.xsl&#45;&gt;$(CACHE_DIR)/extracted/%.xml:_</title>
-<path fill="none" stroke="black" d="M287.93,-520.96C276.35,-524.68 264.5,-529.32 254,-535 206.49,-560.71 160.36,-603.76 133.46,-631.25"/>
-<polygon fill="black" stroke="black" points="130.83,-628.94 126.4,-638.56 135.87,-633.8 130.83,-628.94"/>
+<path fill="none" stroke="black" d="M273.63,-521.1C262.83,-524.83 251.76,-529.44 242,-535 196.39,-560.99 152.44,-603.68 126.7,-631.05"/>
+<polygon fill="black" stroke="black" points="123.86,-628.97 119.62,-638.68 128.99,-633.73 123.86,-628.97"/>
 </g>
 <!-- $(MSS_PRIV_DIR)/%.xml -->
 <g id="node43" class="node">
 <title>$(MSS_PRIV_DIR)/%.xml</title>
-<polygon fill="none" stroke="green" points="176.5,-381 44.5,-381 40.5,-377 40.5,-345 172.5,-345 176.5,-349 176.5,-381"/>
-<polyline fill="none" stroke="green" points="172.5,-377 40.5,-377 "/>
-<polyline fill="none" stroke="green" points="172.5,-377 172.5,-345 "/>
-<polyline fill="none" stroke="green" points="172.5,-377 176.5,-381 "/>
-<text text-anchor="middle" x="108.5" y="-360.5" font-family="sans" font-size="10.00">$(MSS_PRIV_DIR)/%.xml</text>
+<polygon fill="none" stroke="green" points="166.5,-381 42.5,-381 38.5,-377 38.5,-345 162.5,-345 166.5,-349 166.5,-381"/>
+<polyline fill="none" stroke="green" points="162.5,-377 38.5,-377 "/>
+<polyline fill="none" stroke="green" points="162.5,-377 162.5,-345 "/>
+<polyline fill="none" stroke="green" points="162.5,-377 166.5,-381 "/>
+<text text-anchor="middle" x="102.5" y="-360.5" font-family="sans" font-size="10.00">$(MSS_PRIV_DIR)/%.xml</text>
 </g>
 <!-- $(MSS_PRIV_DIR)/%.xml&#45;&gt;mss&#45;footer&#45;3.xsl -->
 <g id="edge13" class="edge">
 <title>$(MSS_PRIV_DIR)/%.xml:e&#45;&gt;mss&#45;footer&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M177.5,-363C221.83,-363 214.96,-405.99 254,-427 264.58,-432.69 276.51,-437.34 288.15,-441.07"/>
-<polygon fill="black" stroke="black" points="287.24,-444.46 297.83,-444 289.27,-437.75 287.24,-444.46"/>
+<path fill="none" stroke="black" d="M167.5,-363C211.15,-363 203.94,-405.62 242,-427 251.33,-432.24 261.83,-436.64 272.14,-440.27"/>
+<polygon fill="black" stroke="black" points="271.34,-443.69 281.93,-443.51 273.54,-437.04 271.34,-443.69"/>
 </g>
 <!-- $(MSS_PRIV_DIR)/%.xml&#45;&gt;mss&#45;header&#45;3.xsl -->
 <g id="edge15" class="edge">
 <title>$(MSS_PRIV_DIR)/%.xml:e&#45;&gt;mss&#45;header&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M177.5,-363C214.94,-363 256.51,-356.28 288.78,-349.55"/>
-<polygon fill="black" stroke="black" points="289.87,-352.9 298.92,-347.37 288.4,-346.05 289.87,-352.9"/>
+<path fill="none" stroke="black" d="M167.5,-363C202.81,-363 241.93,-356.34 272.38,-349.64"/>
+<polygon fill="black" stroke="black" points="273.37,-353 282.35,-347.37 271.82,-346.17 273.37,-353"/>
 </g>
 <!-- $(MSS_PRIV_DIR)/%.xml&#45;&gt;mss&#45;transcript&#45;phase&#45;1.xsl -->
 <g id="edge19" class="edge">
 <title>$(MSS_PRIV_DIR)/%.xml:e&#45;&gt;mss&#45;transcript&#45;phase&#45;1.xsl</title>
-<path fill="none" stroke="black" d="M177.5,-363C223.06,-363 297.92,-239.72 329.48,-183.89"/>
-<polygon fill="black" stroke="black" points="332.67,-185.36 334.51,-174.92 326.57,-181.93 332.67,-185.36"/>
+<path fill="none" stroke="black" d="M167.5,-363C212.1,-363 282.06,-239.72 311.45,-183.89"/>
+<polygon fill="black" stroke="black" points="314.61,-185.41 316.13,-174.92 308.4,-182.17 314.61,-185.41"/>
 </g>
 <!-- generate_toc.xsl -->
 <g id="node66" class="node">
 <title>generate_toc.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-400" rx="57.88" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-397.5" font-family="sans" font-size="10.00">generate_toc.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-400" rx="54.99" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-397.5" font-family="sans" font-size="10.00">generate_toc.xsl</text>
 </g>
 <!-- $(MSS_PRIV_DIR)/%.xml&#45;&gt;generate_toc.xsl -->
 <g id="edge64" class="edge">
 <title>$(MSS_PRIV_DIR)/%.xml:e&#45;&gt;generate_toc.xsl</title>
-<path fill="none" stroke="black" d="M177.5,-363C188.77,-363 245.44,-376.04 289.63,-386.64"/>
-<polygon fill="black" stroke="black" points="288.87,-390.06 299.41,-389 290.51,-383.26 288.87,-390.06"/>
+<path fill="none" stroke="black" d="M167.5,-363C178.14,-363 231.32,-375.94 273.02,-386.51"/>
+<polygon fill="black" stroke="black" points="272.24,-389.92 282.8,-389 273.97,-383.14 272.24,-389.92"/>
 </g>
 <!-- mss&#45;footer&#45;3.xsl&#45;&gt;$(CACHE_DIR)/mss/%.footer.html -->
 <g id="edge47" class="edge">
 <title>mss&#45;footer&#45;3.xsl&#45;&gt;$(CACHE_DIR)/mss/%.footer.html:w</title>
-<path fill="none" stroke="black" d="M401.62,-455.6C547.84,-459.37 936.32,-466.29 984.49,-435 1013.34,-416.25 989.8,-368.63 1012.05,-358.79"/>
-<polygon fill="black" stroke="black" points="1012.77,-362.22 1021.99,-357 1011.52,-355.33 1012.77,-362.22"/>
+<path fill="none" stroke="black" d="M380.19,-455.45C518.26,-458.78 881.43,-464.59 926.36,-435 954.95,-416.17 930.97,-368.61 952.99,-358.79"/>
+<polygon fill="black" stroke="black" points="953.64,-362.23 962.86,-357 952.39,-355.34 953.64,-362.23"/>
 </g>
 <!-- mss&#45;footer&#45;3.xsl&#45;&gt;$(CACHE_DIR)/internal/mss/%.footer.html -->
 <g id="edge14" class="edge">
 <title>mss&#45;footer&#45;3.xsl&#45;&gt;$(CACHE_DIR)/internal/mss/%.footer.html:w</title>
-<path fill="none" stroke="black" d="M396.81,-461.46C414.96,-463.9 435.61,-466.38 454.49,-468 693.27,-488.43 756.11,-490.93 990.77,-491"/>
-<polygon fill="black" stroke="black" points="990.98,-494.5 1000.99,-491 990.99,-487.5 990.98,-494.5"/>
+<path fill="none" stroke="black" d="M375.45,-461.61C392.17,-464 411.05,-466.42 428.36,-468 652.85,-488.5 712.18,-490.93 932.58,-491"/>
+<polygon fill="black" stroke="black" points="932.86,-494.5 942.86,-491 932.86,-487.5 932.86,-494.5"/>
 </g>
 <!-- mss&#45;header&#45;3.xsl&#45;&gt;$(CACHE_DIR)/mss/%.header.html -->
 <g id="edge49" class="edge">
 <title>mss&#45;header&#45;3.xsl&#45;&gt;$(CACHE_DIR)/mss/%.header.html:w</title>
-<path fill="none" stroke="black" d="M404.76,-336.03C545.69,-336.13 915.08,-336.52 1223.49,-338 1341.08,-338.57 1372.98,-339.92 1485.72,-340"/>
-<polygon fill="black" stroke="black" points="1485.79,-343.5 1495.79,-340 1485.79,-336.5 1485.79,-343.5"/>
+<path fill="none" stroke="black" d="M382.29,-336.03C515.01,-336.13 862.91,-336.51 1153.36,-338 1263.62,-338.56 1293.68,-339.91 1399.08,-340"/>
+<polygon fill="black" stroke="black" points="1399.18,-343.5 1409.18,-340 1399.18,-336.5 1399.18,-343.5"/>
 </g>
 <!-- mss&#45;header&#45;3.xsl&#45;&gt;$(CACHE_DIR)/internal/mss/%.header.html -->
 <g id="edge16" class="edge">
 <title>mss&#45;header&#45;3.xsl&#45;&gt;$(CACHE_DIR)/internal/mss/%.header.html:w</title>
-<path fill="none" stroke="black" d="M400.7,-342.56C417.89,-344.49 436.97,-346.48 454.49,-348 513.27,-353.09 936.68,-346.42 984.49,-381 994.18,-388.01 985.2,-398.45 994.49,-406 1034.74,-438.7 1386.66,-486.19 1467.27,-490.66"/>
-<polygon fill="black" stroke="black" points="1467.18,-494.16 1477.29,-491 1467.42,-487.16 1467.18,-494.16"/>
+<path fill="none" stroke="black" d="M378.34,-342.59C394.34,-344.51 412.06,-346.5 428.36,-348 483.58,-353.1 881.49,-348.41 926.36,-381 936.04,-388.03 927.11,-398.4 936.36,-406 974.03,-436.94 1303.26,-485.73 1380.53,-490.6"/>
+<polygon fill="black" stroke="black" points="1380.55,-494.11 1390.68,-491 1380.82,-487.11 1380.55,-494.11"/>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;2.xsl&#45;&gt;$(CACHE_DIR)/mss/%.transcript.html -->
 <g id="edge53" class="edge">
 <title>mss&#45;transcript&#45;phase&#45;2.xsl&#45;&gt;$(CACHE_DIR)/mss/%.transcript.html:w</title>
-<path fill="none" stroke="black" d="M1430.53,-149.9C1440.93,-153.35 1450.89,-158.22 1459.29,-165 1474.78,-177.5 1463.43,-191.72 1477.29,-206 1554.4,-285.47 1610.92,-250.44 1702.29,-313 1722.7,-326.97 1721.86,-349.42 1739.48,-355.46"/>
-<polygon fill="black" stroke="black" points="1739.38,-358.99 1749.79,-357 1740.42,-352.06 1739.38,-358.99"/>
+<path fill="none" stroke="black" d="M1345.65,-150.51C1355.44,-153.87 1364.8,-158.54 1372.68,-165 1388.06,-177.62 1376.98,-191.57 1390.68,-206 1463.62,-282.83 1516.95,-252.17 1603.68,-313 1623.7,-327.04 1622.64,-349.44 1640,-355.47"/>
+<polygon fill="black" stroke="black" points="1639.77,-358.97 1650.18,-357 1640.81,-352.05 1639.77,-358.97"/>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;2.xsl&#45;&gt;$(CACHE_DIR)/internal/mss/%.transcript.html -->
 <g id="edge18" class="edge">
 <title>mss&#45;transcript&#45;phase&#45;2.xsl&#45;&gt;$(CACHE_DIR)/internal/mss/%.transcript.html:w</title>
-<path fill="none" stroke="black" d="M1354.63,-161.25C1364.15,-209.19 1396.56,-339.6 1477.29,-406 1557.05,-471.6 1612.38,-413.2 1702.29,-464 1713.24,-470.19 1713.7,-481.85 1719.96,-487.61"/>
-<polygon fill="black" stroke="black" points="1719.2,-491.05 1729.79,-491 1721.48,-484.43 1719.2,-491.05"/>
+<path fill="none" stroke="black" d="M1275.71,-161.16C1283.78,-208.9 1312.21,-338.83 1390.68,-406 1465.21,-469.8 1519.04,-414.37 1603.68,-464 1614.33,-470.25 1614.56,-481.88 1620.59,-487.62"/>
+<polygon fill="black" stroke="black" points="1619.59,-490.97 1630.18,-491 1621.91,-484.37 1619.59,-490.97"/>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;1.xsl&#45;&gt;$(CACHE_DIR)/internal/mss/%.transcript.phase&#45;1.xml -->
 <g id="edge20" class="edge">
 <title>mss&#45;transcript&#45;phase&#45;1.xsl&#45;&gt;$(CACHE_DIR)/internal/mss/%.transcript.phase&#45;1.xml:w</title>
-<path fill="none" stroke="black" d="M423.45,-164.79C493.84,-171.23 601.08,-179.42 696.41,-179.97"/>
-<polygon fill="black" stroke="black" points="696.48,-183.47 706.49,-180 696.5,-176.47 696.48,-183.47"/>
+<path fill="none" stroke="black" d="M399.22,-164.79C464.7,-171.21 564.36,-179.37 653.14,-179.97"/>
+<polygon fill="black" stroke="black" points="653.35,-183.47 663.36,-180 653.37,-176.47 653.35,-183.47"/>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;1.xsl&#45;&gt;$(CACHE_DIR)/mss/%.transcript.phase&#45;1.xml -->
 <g id="edge55" class="edge">
 <title>mss&#45;transcript&#45;phase&#45;1.xsl&#45;&gt;$(CACHE_DIR)/mss/%.transcript.phase&#45;1.xml:w</title>
-<path fill="none" stroke="black" d="M418.99,-147.53C493.03,-138.7 611.5,-126.77 716.38,-126.04"/>
-<polygon fill="black" stroke="black" points="716.5,-129.54 726.49,-126 716.47,-122.54 716.5,-129.54"/>
+<path fill="none" stroke="black" d="M394.88,-147.57C463.95,-138.76 574.64,-126.82 672.79,-126.04"/>
+<polygon fill="black" stroke="black" points="672.87,-129.54 682.86,-126 672.84,-122.54 672.87,-129.54"/>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;1.xsl&#45;&gt;$(CACHE_DIR)/mss/cte&#45;137&#45;de.transcript.phase&#45;1.xml -->
 <g id="edge59" class="edge">
 <title>mss&#45;transcript&#45;phase&#45;1.xsl&#45;&gt;$(CACHE_DIR)/mss/cte&#45;137&#45;de.transcript.phase&#45;1.xml:w</title>
-<path fill="none" stroke="black" d="M362.78,-139.11C382.57,-118.84 417.69,-86.37 454.49,-69 554.69,-21.69 590.07,-18.18 696.32,-18.01"/>
-<polygon fill="black" stroke="black" points="696.49,-21.51 706.49,-18 696.48,-14.51 696.49,-21.51"/>
+<path fill="none" stroke="black" d="M342.43,-139.17C360.75,-118.95 393.4,-86.53 428.36,-69 520.82,-22.64 554.32,-18.25 653.25,-18.01"/>
+<polygon fill="black" stroke="black" points="653.36,-21.51 663.36,-18 653.35,-14.51 653.36,-21.51"/>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;1.xsl&#45;&gt;$(CACHE_DIR)/mss/cte&#45;137.transcript.phase&#45;1.xml -->
 <g id="edge63" class="edge">
 <title>mss&#45;transcript&#45;phase&#45;1.xsl&#45;&gt;$(CACHE_DIR)/mss/cte&#45;137.transcript.phase&#45;1.xml:w</title>
-<path fill="none" stroke="black" d="M386.99,-141.11C451.97,-117.21 583.82,-74.51 702.17,-72.11"/>
-<polygon fill="black" stroke="black" points="702.52,-75.6 712.49,-72 702.45,-68.6 702.52,-75.6"/>
+<path fill="none" stroke="black" d="M364.96,-141.21C425.48,-117.35 548.66,-74.6 659.83,-72.11"/>
+<polygon fill="black" stroke="black" points="659.9,-75.61 669.86,-72 659.82,-68.61 659.9,-75.61"/>
 </g>
 <!-- $(BIB_DIR)/Bibliographie_Capitularia.xml -->
 <g id="node48" class="node">
 <title>$(BIB_DIR)/Bibliographie_Capitularia.xml</title>
-<polygon fill="none" stroke="green" points="217,-764 0,-764 0,-728 217,-728 217,-764"/>
-<text text-anchor="middle" x="108.5" y="-743.5" font-family="sans" font-size="10.00">$(BIB_DIR)/Bibliographie_Capitularia.xml</text>
+<polygon fill="none" stroke="green" points="205,-764 0,-764 0,-728 205,-728 205,-764"/>
+<text text-anchor="middle" x="102.5" y="-743.5" font-family="sans" font-size="10.00">$(BIB_DIR)/Bibliographie_Capitularia.xml</text>
 </g>
 <!-- bib&#45;bibliography.xsl -->
 <g id="node49" class="node">
 <title>bib&#45;bibliography.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-746" rx="65.86" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-743.5" font-family="sans" font-size="10.00">bib&#45;bibliography.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-746" rx="61.62" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-743.5" font-family="sans" font-size="10.00">bib&#45;bibliography.xsl</text>
 </g>
 <!-- $(BIB_DIR)/Bibliographie_Capitularia.xml&#45;&gt;bib&#45;bibliography.xsl -->
 <g id="edge21" class="edge">
 <title>$(BIB_DIR)/Bibliographie_Capitularia.xml:e&#45;&gt;bib&#45;bibliography.xsl</title>
-<path fill="none" stroke="black" d="M217,-746C233.74,-746 251.72,-746 268.73,-746"/>
-<polygon fill="black" stroke="black" points="269.18,-749.5 279.18,-746 269.18,-742.5 269.18,-749.5"/>
+<path fill="none" stroke="black" d="M205,-746C220.83,-746 237.84,-746 253.93,-746"/>
+<polygon fill="black" stroke="black" points="254.35,-749.5 264.35,-746 254.35,-742.5 254.35,-749.5"/>
 </g>
 <!-- bib&#45;bibliography.xsl&#45;&gt;$(CACHE_DIR)/lists/bib.html -->
 <g id="edge22" class="edge">
 <title>bib&#45;bibliography.xsl&#45;&gt;$(CACHE_DIR)/lists/bib.html:w</title>
-<path fill="none" stroke="black" d="M411.19,-746C491.75,-746 633.6,-746 757.46,-746"/>
-<polygon fill="black" stroke="black" points="757.49,-749.5 767.49,-746 757.49,-742.5 757.49,-749.5"/>
+<path fill="none" stroke="black" d="M388.03,-746C463.35,-746 595.89,-746 711.77,-746"/>
+<polygon fill="black" stroke="black" points="711.86,-749.5 721.86,-746 711.86,-742.5 711.86,-749.5"/>
 </g>
 <!-- $(CAPIT_DIR)/lists/capit_all.xml -->
 <g id="node50" class="node">
 <title>$(CAPIT_DIR)/lists/capit_all.xml</title>
-<polygon fill="none" stroke="green" points="193.5,-1264 23.5,-1264 23.5,-1228 193.5,-1228 193.5,-1264"/>
-<text text-anchor="middle" x="108.5" y="-1243.5" font-family="sans" font-size="10.00">$(CAPIT_DIR)/lists/capit_all.xml</text>
+<polygon fill="none" stroke="green" points="181.5,-1264 23.5,-1264 23.5,-1228 181.5,-1228 181.5,-1264"/>
+<text text-anchor="middle" x="102.5" y="-1243.5" font-family="sans" font-size="10.00">$(CAPIT_DIR)/lists/capit_all.xml</text>
 </g>
 <!-- capit&#45;list.xsl -->
 <g id="node51" class="node">
 <title>capit&#45;list.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-1286" rx="45.15" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-1283.5" font-family="sans" font-size="10.00">capit&#45;list.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-1286" rx="40.74" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-1283.5" font-family="sans" font-size="10.00">capit&#45;list.xsl</text>
 </g>
 <!-- $(CAPIT_DIR)/lists/capit_all.xml&#45;&gt;capit&#45;list.xsl -->
 <g id="edge23" class="edge">
 <title>$(CAPIT_DIR)/lists/capit_all.xml:e&#45;&gt;capit&#45;list.xsl</title>
-<path fill="none" stroke="black" d="M194.5,-1246C205.03,-1246 258.71,-1260.97 298.8,-1272.59"/>
-<polygon fill="black" stroke="black" points="297.83,-1275.95 308.41,-1275.39 299.79,-1269.23 297.83,-1275.95"/>
+<path fill="none" stroke="black" d="M182.5,-1246C192.63,-1246 244.26,-1261.13 282.51,-1272.78"/>
+<polygon fill="black" stroke="black" points="281.82,-1276.23 292.41,-1275.8 283.87,-1269.53 281.82,-1276.23"/>
 </g>
 <!-- cap&#45;list -->
 <g id="node87" class="node">
 <title>cap&#45;list</title>
-<path fill="none" stroke="blue" d="M413.74,-1246.73C413.74,-1248.53 383.04,-1250 345.24,-1250 307.45,-1250 276.74,-1248.53 276.74,-1246.73 276.74,-1246.73 276.74,-1217.27 276.74,-1217.27 276.74,-1215.47 307.45,-1214 345.24,-1214 383.04,-1214 413.74,-1215.47 413.74,-1217.27 413.74,-1217.27 413.74,-1246.73 413.74,-1246.73"/>
-<path fill="none" stroke="blue" d="M413.74,-1246.73C413.74,-1244.92 383.04,-1243.45 345.24,-1243.45 307.45,-1243.45 276.74,-1244.92 276.74,-1246.73"/>
-<text text-anchor="middle" x="345.24" y="-1229.5" font-family="sans" font-size="10.00">import_data.py &#45;&#45;cap&#45;list</text>
+<path fill="none" stroke="blue" d="M389.68,-1246.73C389.68,-1248.53 361.22,-1250 326.18,-1250 291.14,-1250 262.68,-1248.53 262.68,-1246.73 262.68,-1246.73 262.68,-1217.27 262.68,-1217.27 262.68,-1215.47 291.14,-1214 326.18,-1214 361.22,-1214 389.68,-1215.47 389.68,-1217.27 389.68,-1217.27 389.68,-1246.73 389.68,-1246.73"/>
+<path fill="none" stroke="blue" d="M389.68,-1246.73C389.68,-1244.92 361.22,-1243.45 326.18,-1243.45 291.14,-1243.45 262.68,-1244.92 262.68,-1246.73"/>
+<text text-anchor="middle" x="326.18" y="-1229.5" font-family="sans" font-size="10.00">import_data.py &#45;&#45;cap&#45;list</text>
 </g>
 <!-- $(CAPIT_DIR)/lists/capit_all.xml&#45;&gt;cap&#45;list -->
 <g id="edge92" class="edge">
 <title>$(CAPIT_DIR)/lists/capit_all.xml:e&#45;&gt;cap&#45;list:w</title>
-<path fill="none" stroke="black" d="M194.5,-1246C227.22,-1246 236.92,-1234.7 264.97,-1232.4"/>
-<polygon fill="black" stroke="black" points="265.39,-1235.89 275.24,-1232 265.11,-1228.9 265.39,-1235.89"/>
+<path fill="none" stroke="black" d="M182.5,-1246C214.41,-1246 223.82,-1234.7 251.16,-1232.4"/>
+<polygon fill="black" stroke="black" points="251.33,-1235.9 261.18,-1232 251.05,-1228.91 251.33,-1235.9"/>
 </g>
 <!-- capit&#45;list.xsl&#45;&gt;$(CACHE_DIR)/lists/capit&#45;all.html -->
 <g id="edge24" class="edge">
 <title>capit&#45;list.xsl&#45;&gt;$(CACHE_DIR)/lists/capit&#45;all.html:w</title>
-<path fill="none" stroke="black" d="M390.75,-1286C464.01,-1286 614.89,-1286 745.33,-1286"/>
-<polygon fill="black" stroke="black" points="745.49,-1289.5 755.49,-1286 745.49,-1282.5 745.49,-1289.5"/>
-<text text-anchor="middle" x="571.49" y="-1289" font-family="sans" font-size="10.00">type=all</text>
+<path fill="none" stroke="black" d="M367.05,-1286C435.06,-1286 578.16,-1286 701.85,-1286"/>
+<polygon fill="black" stroke="black" points="701.86,-1289.5 711.86,-1286 701.86,-1282.5 701.86,-1289.5"/>
+<text text-anchor="middle" x="536.86" y="-1289" font-family="sans" font-size="10.00">type=all</text>
 </g>
 <!-- capit&#45;list.xsl&#45;&gt;$(CACHE_DIR)/lists/capit&#45;ldf.html -->
 <g id="edge25" class="edge">
 <title>capit&#45;list.xsl&#45;&gt;$(CACHE_DIR)/lists/capit&#45;ldf.html:w</title>
-<path fill="none" stroke="black" d="M385.24,-1277.38C455.98,-1262.51 610.63,-1233.46 745.41,-1232.05"/>
-<polygon fill="black" stroke="black" points="745.5,-1235.55 755.49,-1232 745.47,-1228.55 745.5,-1235.55"/>
-<text text-anchor="middle" x="571.49" y="-1266" font-family="sans" font-size="10.00">type=ldf</text>
+<path fill="none" stroke="black" d="M362.39,-1277.68C427.9,-1262.93 573.43,-1233.6 700.57,-1232.06"/>
+<polygon fill="black" stroke="black" points="700.88,-1235.56 710.86,-1232 700.84,-1228.56 700.88,-1235.56"/>
+<text text-anchor="middle" x="536.86" y="-1266" font-family="sans" font-size="10.00">type=ldf</text>
 </g>
 <!-- capit&#45;list.xsl&#45;&gt;$(CACHE_DIR)/lists/capit&#45;post840.html -->
 <g id="edge26" class="edge">
 <title>capit&#45;list.xsl&#45;&gt;$(CACHE_DIR)/lists/capit&#45;post840.html:w</title>
-<path fill="none" stroke="black" d="M388.99,-1280.92C405.4,-1277.14 423.32,-1270.53 436.49,-1259 451.15,-1246.16 438.9,-1230.72 454.49,-1219 555.1,-1143.35 610.24,-1176.14 732.41,-1177.93"/>
-<polygon fill="black" stroke="black" points="732.46,-1181.43 742.49,-1178 732.51,-1174.43 732.46,-1181.43"/>
-<text text-anchor="middle" x="571.49" y="-1222" font-family="sans" font-size="10.00">type=post840</text>
+<path fill="none" stroke="black" d="M365.35,-1280.55C380.82,-1276.7 397.92,-1270.15 410.36,-1259 424.87,-1245.99 412.83,-1230.79 428.36,-1219 521.76,-1148.04 573.18,-1176.27 686.76,-1177.93"/>
+<polygon fill="black" stroke="black" points="686.83,-1181.43 696.86,-1178 686.88,-1174.43 686.83,-1181.43"/>
+<text text-anchor="middle" x="536.86" y="-1222" font-family="sans" font-size="10.00">type=post840</text>
 </g>
 <!-- capit&#45;list.xsl&#45;&gt;$(CACHE_DIR)/lists/capit&#45;pre814.html -->
 <g id="edge27" class="edge">
 <title>capit&#45;list.xsl&#45;&gt;$(CACHE_DIR)/lists/capit&#45;pre814.html:w</title>
-<path fill="none" stroke="black" d="M366.46,-1302.12C387.27,-1317.8 421.24,-1340.96 454.49,-1353 573.65,-1396.14 612.28,-1394.14 734.38,-1394.01"/>
-<polygon fill="black" stroke="black" points="734.49,-1397.51 744.49,-1394 734.48,-1390.51 734.49,-1397.51"/>
-<text text-anchor="middle" x="571.49" y="-1397" font-family="sans" font-size="10.00">type=pre814</text>
+<path fill="none" stroke="black" d="M345.97,-1301.82C365.33,-1317.22 397.02,-1340 428.36,-1352 539.15,-1394.43 575.69,-1394.06 689.69,-1394"/>
+<polygon fill="black" stroke="black" points="689.86,-1397.5 699.86,-1394 689.86,-1390.5 689.86,-1397.5"/>
+<text text-anchor="middle" x="536.86" y="-1396" font-family="sans" font-size="10.00">type=pre814</text>
 </g>
 <!-- capit&#45;list.xsl&#45;&gt;$(CACHE_DIR)/lists/capit&#45;undated.html -->
 <g id="edge28" class="edge">
 <title>capit&#45;list.xsl&#45;&gt;$(CACHE_DIR)/lists/capit&#45;undated.html:w</title>
-<path fill="none" stroke="black" d="M384.99,-1294.86C453.72,-1309.79 601.95,-1338.49 731.41,-1339.94"/>
-<polygon fill="black" stroke="black" points="731.47,-1343.44 741.49,-1340 731.51,-1336.44 731.47,-1343.44"/>
-<text text-anchor="middle" x="571.49" y="-1341" font-family="sans" font-size="10.00">type=undated</text>
+<path fill="none" stroke="black" d="M362.1,-1294.56C425.62,-1309.37 564.76,-1338.36 686.62,-1339.93"/>
+<polygon fill="black" stroke="black" points="686.83,-1343.43 696.86,-1340 686.88,-1336.43 686.83,-1343.43"/>
+<text text-anchor="middle" x="536.86" y="-1340" font-family="sans" font-size="10.00">type=undated</text>
 </g>
 <!-- changes.xsl&#45;&gt;$(CACHE_DIR)/lists/changes.html -->
 <g id="edge30" class="edge">
 <title>changes.xsl&#45;&gt;$(CACHE_DIR)/lists/changes.html:w</title>
-<path fill="none" stroke="black" d="M384.01,-916.38C454.04,-931.18 609.22,-960.52 744.38,-961.95"/>
-<polygon fill="black" stroke="black" points="744.47,-965.45 754.49,-962 744.5,-958.45 744.47,-965.45"/>
-<text text-anchor="middle" x="571.49" y="-962" font-family="sans" font-size="10.00">prefix=A</text>
+<path fill="none" stroke="black" d="M362.82,-916.44C428.41,-931.22 573.14,-960.41 699.62,-961.94"/>
+<polygon fill="black" stroke="black" points="699.84,-965.44 709.86,-962 699.88,-958.44 699.84,-965.44"/>
+<text text-anchor="middle" x="536.86" y="-962" font-family="sans" font-size="10.00">prefix=A</text>
 </g>
 <!-- changes.xsl&#45;&gt;$(CACHE_DIR)/lists/changes90.html -->
 <g id="edge31" class="edge">
 <title>changes.xsl&#45;&gt;$(CACHE_DIR)/lists/changes90.html:w</title>
-<path fill="none" stroke="black" d="M388.81,-908C460.36,-908 609.55,-908 738.45,-908"/>
-<polygon fill="black" stroke="black" points="738.49,-911.5 748.49,-908 738.49,-904.5 738.49,-911.5"/>
-<text text-anchor="middle" x="571.49" y="-911" font-family="sans" font-size="10.00">prefix=B scope=P90D</text>
+<path fill="none" stroke="black" d="M367.59,-908C434.67,-908 573.54,-908 693.76,-908"/>
+<polygon fill="black" stroke="black" points="693.86,-911.5 703.86,-908 693.86,-904.5 693.86,-911.5"/>
+<text text-anchor="middle" x="536.86" y="-911" font-family="sans" font-size="10.00">prefix=B scope=P90D</text>
 </g>
 <!-- corpus.xsl&#45;&gt;$(CACHE_DIR)/lists/corpus.xml -->
 <g id="edge33" class="edge">
 <title>corpus.xsl&#45;&gt;$(CACHE_DIR)/lists/corpus.xml:_</title>
-<path fill="none" stroke="black" d="M307.07,-566.21C288.42,-570.28 267.07,-578.28 254,-594 186.95,-674.62 261.84,-732.22 217,-827 198.89,-865.28 164.85,-900.42 139.91,-922.85"/>
-<polygon fill="black" stroke="black" points="137.36,-920.44 132.17,-929.68 141.98,-925.69 137.36,-920.44"/>
+<path fill="none" stroke="black" d="M290.43,-567.06C273.32,-571.37 253.88,-579.33 242,-594 176.03,-675.5 248.49,-731.59 205,-827 187.76,-864.82 155.34,-900.28 131.77,-922.91"/>
+<polygon fill="black" stroke="black" points="129.34,-920.39 124.46,-929.79 134.14,-925.49 129.34,-920.39"/>
 </g>
 <!-- downloads.xsl&#45;&gt;$(CACHE_DIR)/lists/downloads.html -->
 <g id="edge35" class="edge">
 <title>downloads.xsl&#45;&gt;$(CACHE_DIR)/lists/downloads.html:w</title>
-<path fill="none" stroke="black" d="M396.1,-854C470.11,-854 613.73,-854 738.4,-854"/>
-<polygon fill="black" stroke="black" points="738.49,-857.5 748.49,-854 738.49,-850.5 738.49,-857.5"/>
+<path fill="none" stroke="black" d="M373.86,-854C443.03,-854 577.13,-854 693.71,-854"/>
+<polygon fill="black" stroke="black" points="693.86,-857.5 703.86,-854 693.86,-850.5 693.86,-857.5"/>
 </g>
 <!-- $(MSS_DIR)/lists/manuscripts.xml -->
 <g id="node55" class="node">
 <title>$(MSS_DIR)/lists/manuscripts.xml</title>
-<polygon fill="none" stroke="green" points="199.5,-1088 17.5,-1088 17.5,-1052 199.5,-1052 199.5,-1088"/>
-<text text-anchor="middle" x="108.5" y="-1067.5" font-family="sans" font-size="10.00">$(MSS_DIR)/lists/manuscripts.xml</text>
+<polygon fill="none" stroke="green" points="187.5,-1088 17.5,-1088 17.5,-1052 187.5,-1052 187.5,-1088"/>
+<text text-anchor="middle" x="102.5" y="-1067.5" font-family="sans" font-size="10.00">$(MSS_DIR)/lists/manuscripts.xml</text>
 </g>
 <!-- mss&#45;capit.xsl -->
 <g id="node56" class="node">
 <title>mss&#45;capit.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-1124" rx="48.04" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-1121.5" font-family="sans" font-size="10.00">mss&#45;capit.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-1124" rx="43.62" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-1121.5" font-family="sans" font-size="10.00">mss&#45;capit.xsl</text>
 </g>
 <!-- $(MSS_DIR)/lists/manuscripts.xml&#45;&gt;mss&#45;capit.xsl -->
 <g id="edge36" class="edge">
 <title>$(MSS_DIR)/lists/manuscripts.xml:e&#45;&gt;mss&#45;capit.xsl</title>
-<path fill="none" stroke="black" d="M200.5,-1070C227.13,-1070 229.26,-1087.14 254,-1097 267.2,-1102.26 281.84,-1107.06 295.42,-1111.11"/>
-<polygon fill="black" stroke="black" points="294.5,-1114.48 305.08,-1113.91 296.46,-1107.76 294.5,-1114.48"/>
+<path fill="none" stroke="black" d="M188.5,-1070C215.13,-1070 217.37,-1086.86 242,-1097 254.19,-1102.02 267.67,-1106.74 280.17,-1110.78"/>
+<polygon fill="black" stroke="black" points="279.35,-1114.19 289.94,-1113.88 281.47,-1107.52 279.35,-1114.19"/>
 </g>
 <!-- $(MSS_DIR)/lists/manuscripts.xml&#45;&gt;mss&#45;idno.xsl -->
 <g id="edge41" class="edge">
 <title>$(MSS_DIR)/lists/manuscripts.xml:e&#45;&gt;mss&#45;idno.xsl</title>
-<path fill="none" stroke="black" d="M200.5,-1070C229.47,-1070 261.73,-1070 288.33,-1070"/>
-<polygon fill="black" stroke="black" points="288.6,-1073.5 298.6,-1070 288.6,-1066.5 288.6,-1073.5"/>
+<path fill="none" stroke="black" d="M188.5,-1070C216.34,-1070 247.37,-1070 272.82,-1070"/>
+<polygon fill="black" stroke="black" points="273,-1073.5 283,-1070 273,-1066.5 273,-1073.5"/>
 </g>
 <!-- mss&#45;key.xsl -->
 <g id="node59" class="node">
 <title>mss&#45;key.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-1016" rx="43.62" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-1013.5" font-family="sans" font-size="10.00">mss&#45;key.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-1016" rx="40.06" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-1013.5" font-family="sans" font-size="10.00">mss&#45;key.xsl</text>
 </g>
 <!-- $(MSS_DIR)/lists/manuscripts.xml&#45;&gt;mss&#45;key.xsl -->
 <g id="edge42" class="edge">
 <title>$(MSS_DIR)/lists/manuscripts.xml:e&#45;&gt;mss&#45;key.xsl</title>
-<path fill="none" stroke="black" d="M200.5,-1070C227.13,-1070 229.26,-1052.86 254,-1043 268.07,-1037.39 283.77,-1032.31 298.09,-1028.11"/>
-<polygon fill="black" stroke="black" points="299.09,-1031.46 307.73,-1025.34 297.16,-1024.73 299.09,-1031.46"/>
+<path fill="none" stroke="black" d="M188.5,-1070C215.13,-1070 217.37,-1053.14 242,-1043 254.87,-1037.7 269.18,-1032.74 282.25,-1028.55"/>
+<polygon fill="black" stroke="black" points="283.47,-1031.83 291.97,-1025.5 281.38,-1025.15 283.47,-1031.83"/>
 </g>
 <!-- mss&#45;capit.xsl&#45;&gt;$(CACHE_DIR)/lists/mss&#45;capit.html -->
 <g id="edge37" class="edge">
 <title>mss&#45;capit.xsl&#45;&gt;$(CACHE_DIR)/lists/mss&#45;capit.html:w</title>
-<path fill="none" stroke="black" d="M393.66,-1124C467.32,-1124 614.03,-1124 741.2,-1124"/>
-<polygon fill="black" stroke="black" points="741.49,-1127.5 751.49,-1124 741.49,-1120.5 741.49,-1127.5"/>
-<text text-anchor="middle" x="571.49" y="-1127" font-family="sans" font-size="10.00">manuscripts=$(MSS_DIR)/lists/manuscripts.xml</text>
+<path fill="none" stroke="black" d="M369.88,-1124C438.24,-1124 576.74,-1124 696.78,-1124"/>
+<polygon fill="black" stroke="black" points="696.86,-1127.5 706.86,-1124 696.86,-1120.5 696.86,-1127.5"/>
+<text text-anchor="middle" x="536.86" y="-1127" font-family="sans" font-size="10.00">manuscripts=$(MSS_DIR)/lists/manuscripts.xml</text>
 </g>
 <!-- $(MSS_DIR)/lists/mss_by_cap.xml -->
 <g id="node57" class="node">
 <title>$(MSS_DIR)/lists/mss_by_cap.xml</title>
-<polygon fill="none" stroke="green" points="199.5,-1142 17.5,-1142 17.5,-1106 199.5,-1106 199.5,-1142"/>
-<text text-anchor="middle" x="108.5" y="-1121.5" font-family="sans" font-size="10.00">$(MSS_DIR)/lists/mss_by_cap.xml</text>
+<polygon fill="none" stroke="green" points="186.5,-1142 18.5,-1142 18.5,-1106 186.5,-1106 186.5,-1142"/>
+<text text-anchor="middle" x="102.5" y="-1121.5" font-family="sans" font-size="10.00">$(MSS_DIR)/lists/mss_by_cap.xml</text>
 </g>
 <!-- $(MSS_DIR)/lists/mss_by_cap.xml&#45;&gt;mss&#45;capit.xsl -->
 <g id="edge38" class="edge">
 <title>$(MSS_DIR)/lists/mss_by_cap.xml:e&#45;&gt;mss&#45;capit.xsl</title>
-<path fill="none" stroke="black" d="M200.5,-1124C228.81,-1124 260.26,-1124 286.5,-1124"/>
-<polygon fill="black" stroke="black" points="286.66,-1127.5 296.66,-1124 286.66,-1120.5 286.66,-1127.5"/>
+<path fill="none" stroke="black" d="M187.5,-1124C215.44,-1124 246.57,-1124 272.15,-1124"/>
+<polygon fill="black" stroke="black" points="272.39,-1127.5 282.39,-1124 272.39,-1120.5 272.39,-1127.5"/>
 </g>
 <!-- mss&#45;idno.xsl&#45;&gt;$(CACHE_DIR)/lists/mss&#45;idno.html -->
 <g id="edge40" class="edge">
 <title>mss&#45;idno.xsl&#45;&gt;$(CACHE_DIR)/lists/mss&#45;idno.html:w</title>
-<path fill="none" stroke="black" d="M391.94,-1070C465.22,-1070 613.86,-1070 742.48,-1070"/>
-<polygon fill="black" stroke="black" points="742.49,-1073.5 752.49,-1070 742.49,-1066.5 742.49,-1073.5"/>
-<text text-anchor="middle" x="571.49" y="-1073" font-family="sans" font-size="10.00">corpus=$(CACHE_DIR)/lists/corpus.xml</text>
+<path fill="none" stroke="black" d="M369.43,-1070C437.75,-1070 577.04,-1070 697.73,-1070"/>
+<polygon fill="black" stroke="black" points="697.86,-1073.5 707.86,-1070 697.86,-1066.5 697.86,-1073.5"/>
+<text text-anchor="middle" x="536.86" y="-1073" font-family="sans" font-size="10.00">corpus=$(CACHE_DIR)/lists/corpus.xml</text>
 </g>
 <!-- mss&#45;key.xsl&#45;&gt;$(CACHE_DIR)/lists/mss&#45;key.html -->
 <g id="edge43" class="edge">
 <title>mss&#45;key.xsl&#45;&gt;$(CACHE_DIR)/lists/mss&#45;key.html:w</title>
-<path fill="none" stroke="black" d="M388.96,-1016C461.51,-1016 613.75,-1016 745.25,-1016"/>
-<polygon fill="black" stroke="black" points="745.49,-1019.5 755.49,-1016 745.49,-1012.5 745.49,-1019.5"/>
+<path fill="none" stroke="black" d="M366.39,-1016C434,-1016 577.15,-1016 700.85,-1016"/>
+<polygon fill="black" stroke="black" points="700.86,-1019.5 710.86,-1016 700.86,-1012.5 700.86,-1019.5"/>
 </g>
 <!-- $(MSS_DIR)/lists/ueberblick_mordek.xml -->
 <g id="node60" class="node">
 <title>$(MSS_DIR)/lists/ueberblick_mordek.xml</title>
-<polygon fill="none" stroke="green" points="216,-818 1,-818 1,-782 216,-782 216,-818"/>
-<text text-anchor="middle" x="108.5" y="-797.5" font-family="sans" font-size="10.00">$(MSS_DIR)/lists/ueberblick_mordek.xml</text>
+<polygon fill="none" stroke="green" points="204,-818 1,-818 1,-782 204,-782 204,-818"/>
+<text text-anchor="middle" x="102.5" y="-797.5" font-family="sans" font-size="10.00">$(MSS_DIR)/lists/ueberblick_mordek.xml</text>
 </g>
 <!-- mss&#45;table.xsl -->
 <g id="node61" class="node">
 <title>mss&#45;table.xsl</title>
-<ellipse fill="none" stroke="black" cx="345.24" cy="-800" rx="48.72" ry="18"/>
-<text text-anchor="middle" x="345.24" y="-797.5" font-family="sans" font-size="10.00">mss&#45;table.xsl</text>
+<ellipse fill="none" stroke="black" cx="326.18" cy="-800" rx="44.98" ry="18"/>
+<text text-anchor="middle" x="326.18" y="-797.5" font-family="sans" font-size="10.00">mss&#45;table.xsl</text>
 </g>
 <!-- $(MSS_DIR)/lists/ueberblick_mordek.xml&#45;&gt;mss&#45;table.xsl -->
 <g id="edge44" class="edge">
 <title>$(MSS_DIR)/lists/ueberblick_mordek.xml:e&#45;&gt;mss&#45;table.xsl</title>
-<path fill="none" stroke="black" d="M217,-800C239.6,-800 264.45,-800 286.16,-800"/>
-<polygon fill="black" stroke="black" points="286.21,-803.5 296.21,-800 286.21,-796.5 286.21,-803.5"/>
+<path fill="none" stroke="black" d="M204.5,-800C226.28,-800 250.26,-800 271.08,-800"/>
+<polygon fill="black" stroke="black" points="271.33,-803.5 281.33,-800 271.33,-796.5 271.33,-803.5"/>
 </g>
 <!-- mss&#45;table.xsl&#45;&gt;$(CACHE_DIR)/lists/mss&#45;table.html -->
 <g id="edge45" class="edge">
 <title>mss&#45;table.xsl&#45;&gt;$(CACHE_DIR)/lists/mss&#45;table.html:w</title>
-<path fill="none" stroke="black" d="M394.28,-800C468.15,-800 614.41,-800 741.23,-800"/>
-<polygon fill="black" stroke="black" points="741.49,-803.5 751.49,-800 741.49,-796.5 741.49,-803.5"/>
+<path fill="none" stroke="black" d="M371.03,-800C439.78,-800 577.45,-800 696.83,-800"/>
+<polygon fill="black" stroke="black" points="696.86,-803.5 706.86,-800 696.86,-796.5 696.86,-803.5"/>
 </g>
 <!-- mss&#45;transcript&#45;with&#45;comments.xsl&#45;&gt;$(CACHE_DIR)/mss/%.transcript.commented.html -->
 <g id="edge51" class="edge">
 <title>mss&#45;transcript&#45;with&#45;comments.xsl&#45;&gt;$(CACHE_DIR)/mss/%.transcript.commented.html:w</title>
-<path fill="none" stroke="black" d="M1434.98,-100.36C1443.94,-104.24 1452.31,-109.33 1459.29,-116 1479.43,-135.23 1456.14,-157.89 1477.29,-176 1553.97,-241.66 1629.2,-137.37 1702.29,-207 1730.65,-234.02 1687.14,-290.44 1710.27,-301.21"/>
-<polygon fill="black" stroke="black" points="1709.83,-304.68 1720.29,-303 1711.06,-297.79 1709.83,-304.68"/>
+<path fill="none" stroke="black" d="M1349.29,-100.72C1357.92,-104.52 1366,-109.5 1372.68,-116 1392.63,-135.42 1369.6,-157.81 1390.68,-176 1463.11,-238.5 1534.67,-140.75 1603.68,-207 1631.94,-234.13 1588.51,-290.46 1611.65,-301.21"/>
+<polygon fill="black" stroke="black" points="1611.22,-304.69 1621.68,-303 1612.45,-297.8 1611.22,-304.69"/>
 </g>
 <!-- mss&#45;transcript&#45;cte.xsl&#45;&gt;$(CACHE_DIR)/mss/cte&#45;137&#45;de.html -->
 <g id="edge57" class="edge">
 <title>mss&#45;transcript&#45;cte.xsl&#45;&gt;$(CACHE_DIR)/mss/cte&#45;137&#45;de.html:w</title>
-<path fill="none" stroke="black" d="M1402.49,-47.56C1420.46,-52.04 1440.79,-57.17 1459.29,-62 1567.58,-90.25 1609.61,-65.27 1702.29,-128 1729.91,-146.7 1718.69,-185.56 1742.7,-193.55"/>
-<polygon fill="black" stroke="black" points="1742.39,-197.04 1752.79,-195 1743.39,-190.11 1742.39,-197.04"/>
-<text text-anchor="middle" x="1589.79" y="-131" font-family="sans" font-size="10.00">title=Übersetzung</text>
+<path fill="none" stroke="black" d="M1336.51,-40.3C1407.3,-48.88 1522.49,-71.1 1603.68,-128 1630.61,-146.87 1618.75,-185.59 1642.27,-193.55"/>
+<polygon fill="black" stroke="black" points="1641.78,-197.02 1652.18,-195 1642.79,-190.09 1641.78,-197.02"/>
+<text text-anchor="middle" x="1497.18" y="-131" font-family="sans" font-size="10.00">title=Übersetzung</text>
 </g>
 <!-- mss&#45;transcript&#45;cte.xsl&#45;&gt;$(CACHE_DIR)/mss/cte&#45;137.html -->
 <g id="edge61" class="edge">
 <title>mss&#45;transcript&#45;cte.xsl&#45;&gt;$(CACHE_DIR)/mss/cte&#45;137.html:w</title>
-<path fill="none" stroke="black" d="M1419.74,-40.36C1434.4,-44.48 1448.66,-51.2 1459.29,-62 1483.95,-87.04 1450.85,-115.84 1477.29,-139 1515.08,-172.1 1663.57,-129 1702.29,-161 1724.08,-179.01 1703.53,-199.24 1720.29,-222 1730.82,-236.29 1736.77,-245.3 1750.51,-248.08"/>
-<polygon fill="black" stroke="black" points="1750.52,-251.6 1760.79,-249 1751.14,-244.62 1750.52,-251.6"/>
-<text text-anchor="middle" x="1589.79" y="-164" font-family="sans" font-size="10.00">title=Edition</text>
+<path fill="none" stroke="black" d="M1335.44,-41.11C1349.25,-45.18 1362.72,-51.68 1372.68,-62 1397.09,-87.28 1364.31,-115.77 1390.68,-139 1462.1,-201.9 1530.49,-100.17 1603.68,-161 1625.42,-179.07 1605.19,-199.04 1621.68,-222 1631.59,-235.79 1637.02,-245 1649.91,-247.96"/>
+<polygon fill="black" stroke="black" points="1649.88,-251.48 1660.18,-249 1650.58,-244.51 1649.88,-251.48"/>
+<text text-anchor="middle" x="1497.18" y="-164" font-family="sans" font-size="10.00">title=Edition</text>
 </g>
 <!-- $(MSS_DIR)/texts/137&#45;de.xml -->
 <g id="node64" class="node">
 <title>$(MSS_DIR)/texts/137&#45;de.xml</title>
-<polygon fill="none" stroke="green" points="188.5,-202 28.5,-202 28.5,-166 188.5,-166 188.5,-202"/>
-<text text-anchor="middle" x="108.5" y="-181.5" font-family="sans" font-size="10.00">$(MSS_DIR)/texts/137&#45;de.xml</text>
+<polygon fill="none" stroke="green" points="178.5,-202 26.5,-202 26.5,-166 178.5,-166 178.5,-202"/>
+<text text-anchor="middle" x="102.5" y="-181.5" font-family="sans" font-size="10.00">$(MSS_DIR)/texts/137&#45;de.xml</text>
 </g>
 <!-- $(MSS_DIR)/texts/137&#45;de.xml&#45;&gt;mss&#45;transcript&#45;phase&#45;1.xsl -->
 <g id="edge58" class="edge">
 <title>$(MSS_DIR)/texts/137&#45;de.xml:e&#45;&gt;mss&#45;transcript&#45;phase&#45;1.xsl</title>
-<path fill="none" stroke="black" d="M189.5,-184C219.74,-184 252.81,-178.93 280.59,-173.19"/>
-<polygon fill="black" stroke="black" points="281.53,-176.57 290.57,-171.05 280.06,-169.73 281.53,-176.57"/>
+<path fill="none" stroke="black" d="M179.5,-184C208.01,-184 239.14,-178.94 265.28,-173.2"/>
+<polygon fill="black" stroke="black" points="266.07,-176.61 275.04,-170.97 264.51,-169.78 266.07,-176.61"/>
 </g>
 <!-- $(MSS_DIR)/texts/137.xml -->
 <g id="node65" class="node">
 <title>$(MSS_DIR)/texts/137.xml</title>
-<polygon fill="none" stroke="green" points="180.5,-148 36.5,-148 36.5,-112 180.5,-112 180.5,-148"/>
-<text text-anchor="middle" x="108.5" y="-127.5" font-family="sans" font-size="10.00">$(MSS_DIR)/texts/137.xml</text>
+<polygon fill="none" stroke="green" points="171,-148 34,-148 34,-112 171,-112 171,-148"/>
+<text text-anchor="middle" x="102.5" y="-127.5" font-family="sans" font-size="10.00">$(MSS_DIR)/texts/137.xml</text>
 </g>
 <!-- $(MSS_DIR)/texts/137.xml&#45;&gt;mss&#45;transcript&#45;phase&#45;1.xsl -->
 <g id="edge62" class="edge">
 <title>$(MSS_DIR)/texts/137.xml:e&#45;&gt;mss&#45;transcript&#45;phase&#45;1.xsl</title>
-<path fill="none" stroke="black" d="M181.5,-130C214.05,-130 249.77,-135.32 279.44,-141.24"/>
-<polygon fill="black" stroke="black" points="278.75,-144.67 289.25,-143.26 280.17,-137.82 278.75,-144.67"/>
+<path fill="none" stroke="black" d="M172.5,-130C202.83,-130 236.03,-135.23 263.71,-141.09"/>
+<polygon fill="black" stroke="black" points="263.12,-144.54 273.64,-143.26 264.62,-137.7 263.12,-144.54"/>
 </g>
 <!-- generate_toc.xsl&#45;&gt;$(MSS_PRIV_DIR)/%&#45;toc.xml -->
 <g id="edge65" class="edge">
 <title>generate_toc.xsl&#45;&gt;$(MSS_PRIV_DIR)/%&#45;toc.xml:w</title>
-<path fill="none" stroke="black" d="M402.99,-401.77C481.61,-404.06 628.41,-407.8 756.15,-407.99"/>
-<polygon fill="black" stroke="black" points="756.48,-411.49 766.49,-408 756.49,-404.49 756.48,-411.49"/>
+<path fill="none" stroke="black" d="M380.66,-401.78C454.31,-404.07 591.42,-407.79 710.83,-407.99"/>
+<polygon fill="black" stroke="black" points="710.85,-411.49 720.86,-408 710.86,-404.49 710.85,-411.49"/>
 </g>
 </g>
 </svg>
 </div>
 </section>
 <section id="graph-of-stylesheet-dependencies">
-<h2><a class="toc-backref" href="#id2">Graph of Stylesheet Dependencies</a><a class="headerlink" href="#graph-of-stylesheet-dependencies" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Graph of Stylesheet Dependencies</a><a class="headerlink" href="#graph-of-stylesheet-dependencies" title="Permalink to this heading">¶</a></h2>
 <div align="center" class="pic align-center pic-format-text-xml pic-language-xslt_dep_dot">
 
 
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: G Pages: 1 -->
-<svg width="747pt" height="689pt"
- viewBox="0.00 0.00 747.26 689.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="705pt" height="689pt"
+ viewBox="0.00 0.00 704.88 689.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 685)">
 <title>G</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-685 743.26,-685 743.26,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-685 700.88,-685 700.88,4 -4,4"/>
 <g id="clust1" class="cluster">
 <title>cluster_3.0</title>
-<polygon fill="none" stroke="black" points="8,-8 8,-673 731.26,-673 731.26,-8 8,-8"/>
-<text text-anchor="middle" x="37" y="-661" font-family="sans" font-size="10.00">XSLT 3.0</text>
+<polygon fill="none" stroke="black" points="8,-8 8,-673 688.88,-673 688.88,-8 8,-8"/>
+<text text-anchor="middle" x="36" y="-661" font-family="sans" font-size="10.00">XSLT 3.0</text>
 </g>
 <!-- bib&#45;bibliography.xsl -->
 <g id="node1" class="node">
 <title>bib&#45;bibliography.xsl</title>
-<ellipse fill="none" stroke="black" cx="124.9" cy="-628" rx="65.86" ry="18"/>
-<text text-anchor="middle" x="124.9" y="-625.5" font-family="sans" font-size="10.00">bib&#45;bibliography.xsl</text>
+<ellipse fill="none" stroke="black" cx="116.66" cy="-628" rx="61.62" ry="18"/>
+<text text-anchor="middle" x="116.66" y="-625.5" font-family="sans" font-size="10.00">bib&#45;bibliography.xsl</text>
 </g>
 <!-- capit&#45;list.xsl -->
 <g id="node2" class="node">
 <title>capit&#45;list.xsl</title>
-<ellipse fill="none" stroke="black" cx="356.34" cy="-358" rx="45.15" ry="18"/>
-<text text-anchor="middle" x="356.34" y="-355.5" font-family="sans" font-size="10.00">capit&#45;list.xsl</text>
+<ellipse fill="none" stroke="black" cx="333.97" cy="-358" rx="40.74" ry="18"/>
+<text text-anchor="middle" x="333.97" y="-355.5" font-family="sans" font-size="10.00">capit&#45;list.xsl</text>
 </g>
 <!-- common&#45;3.xsl -->
 <g id="node3" class="node">
 <title>common&#45;3.xsl</title>
-<ellipse fill="none" stroke="black" cx="539.5" cy="-331" rx="50.75" ry="18"/>
-<text text-anchor="middle" x="539.5" y="-328.5" font-family="sans" font-size="10.00">common&#45;3.xsl</text>
+<ellipse fill="none" stroke="black" cx="507.13" cy="-331" rx="47.86" ry="18"/>
+<text text-anchor="middle" x="507.13" y="-328.5" font-family="sans" font-size="10.00">common&#45;3.xsl</text>
 </g>
 <!-- capit&#45;list.xsl&#45;&gt;common&#45;3.xsl -->
 <g id="edge1" class="edge">
 <title>capit&#45;list.xsl&#45;&gt;common&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M398.9,-351.81C423.63,-348.12 455.34,-343.39 482.29,-339.38"/>
-<polygon fill="black" stroke="black" points="482.98,-342.81 492.36,-337.88 481.95,-335.89 482.98,-342.81"/>
+<path fill="none" stroke="black" d="M372.53,-352.07C396.07,-348.36 426.78,-343.52 452.82,-339.41"/>
+<polygon fill="black" stroke="black" points="453.59,-342.83 462.92,-337.82 452.5,-335.92 453.59,-342.83"/>
 </g>
 <!-- common&#45;html.xsl -->
 <g id="node4" class="node">
 <title>common&#45;html.xsl</title>
-<ellipse fill="none" stroke="black" cx="539.5" cy="-250" rx="60.76" ry="18"/>
-<text text-anchor="middle" x="539.5" y="-247.5" font-family="sans" font-size="10.00">common&#45;html.xsl</text>
+<ellipse fill="none" stroke="black" cx="507.13" cy="-250" rx="56.52" ry="18"/>
+<text text-anchor="middle" x="507.13" y="-247.5" font-family="sans" font-size="10.00">common&#45;html.xsl</text>
 </g>
 <!-- capit&#45;list.xsl&#45;&gt;common&#45;html.xsl -->
 <g id="edge2" class="edge">
 <title>capit&#45;list.xsl&#45;&gt;common&#45;html.xsl</title>
-<path fill="none" stroke="black" d="M396.14,-349.27C411.27,-344.97 428.42,-338.98 442.87,-331 457.61,-322.87 489.48,-294.97 512.38,-274.17"/>
-<polygon fill="black" stroke="black" points="515.04,-276.48 520.06,-267.15 510.32,-271.31 515.04,-276.48"/>
+<path fill="none" stroke="black" d="M369.98,-349.42C384.37,-345.07 400.85,-338.99 414.62,-331 428.82,-322.76 459.29,-294.88 481.17,-274.12"/>
+<polygon fill="black" stroke="black" points="483.69,-276.55 488.51,-267.12 478.86,-271.49 483.69,-276.55"/>
 </g>
 <!-- config&#45;3.xsl -->
 <g id="node7" class="node">
 <title>config&#45;3.xsl</title>
-<ellipse fill="none" stroke="black" cx="679.7" cy="-250" rx="43.62" ry="18"/>
-<text text-anchor="middle" x="679.7" y="-247.5" font-family="sans" font-size="10.00">config&#45;3.xsl</text>
+<ellipse fill="none" stroke="black" cx="640.26" cy="-250" rx="40.74" ry="18"/>
+<text text-anchor="middle" x="640.26" y="-247.5" font-family="sans" font-size="10.00">config&#45;3.xsl</text>
 </g>
 <!-- common&#45;html.xsl&#45;&gt;config&#45;3.xsl -->
 <g id="edge5" class="edge">
 <title>common&#45;html.xsl&#45;&gt;config&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M600.31,-250C608.73,-250 617.32,-250 625.6,-250"/>
-<polygon fill="black" stroke="black" points="625.87,-253.5 635.87,-250 625.87,-246.5 625.87,-253.5"/>
+<path fill="none" stroke="black" d="M563.74,-250C572.27,-250 581.04,-250 589.44,-250"/>
+<polygon fill="black" stroke="black" points="589.46,-253.5 599.46,-250 589.46,-246.5 589.46,-253.5"/>
 </g>
 <!-- capit.xsl -->
 <g id="node5" class="node">
 <title>capit.xsl</title>
-<ellipse fill="none" stroke="black" cx="356.34" cy="-304" rx="34.29" ry="18"/>
-<text text-anchor="middle" x="356.34" y="-301.5" font-family="sans" font-size="10.00">capit.xsl</text>
+<ellipse fill="none" stroke="black" cx="333.97" cy="-304" rx="31.4" ry="18"/>
+<text text-anchor="middle" x="333.97" y="-301.5" font-family="sans" font-size="10.00">capit.xsl</text>
 </g>
 <!-- capit.xsl&#45;&gt;common&#45;3.xsl -->
 <g id="edge3" class="edge">
 <title>capit.xsl&#45;&gt;common&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M389.31,-308.76C415.05,-312.6 451.85,-318.08 482.46,-322.65"/>
-<polygon fill="black" stroke="black" points="482.17,-326.14 492.57,-324.15 483.2,-319.22 482.17,-326.14"/>
+<path fill="none" stroke="black" d="M364.39,-308.64C388.59,-312.46 423.51,-317.97 452.63,-322.56"/>
+<polygon fill="black" stroke="black" points="452.24,-326.04 462.66,-324.14 453.33,-319.13 452.24,-326.04"/>
 </g>
 <!-- capit.xsl&#45;&gt;common&#45;html.xsl -->
 <g id="edge4" class="edge">
 <title>capit.xsl&#45;&gt;common&#45;html.xsl</title>
-<path fill="none" stroke="black" d="M386.45,-295.32C413.28,-287.33 453.73,-275.27 486.17,-265.6"/>
-<polygon fill="black" stroke="black" points="487.37,-268.89 495.96,-262.68 485.37,-262.18 487.37,-268.89"/>
+<path fill="none" stroke="black" d="M361.71,-295.56C386.99,-287.59 425.55,-275.42 456.47,-265.67"/>
+<polygon fill="black" stroke="black" points="457.73,-268.94 466.21,-262.59 455.63,-262.26 457.73,-268.94"/>
 </g>
 <!-- changes.xsl -->
 <g id="node6" class="node">
 <title>changes.xsl</title>
-<ellipse fill="none" stroke="black" cx="124.9" cy="-574" rx="43.62" ry="18"/>
-<text text-anchor="middle" x="124.9" y="-571.5" font-family="sans" font-size="10.00">changes.xsl</text>
+<ellipse fill="none" stroke="black" cx="116.66" cy="-574" rx="41.41" ry="18"/>
+<text text-anchor="middle" x="116.66" y="-571.5" font-family="sans" font-size="10.00">changes.xsl</text>
 </g>
 <!-- corpus.xsl -->
 <g id="node8" class="node">
 <title>corpus.xsl</title>
-<ellipse fill="none" stroke="black" cx="356.34" cy="-628" rx="38.7" ry="18"/>
-<text text-anchor="middle" x="356.34" y="-625.5" font-family="sans" font-size="10.00">corpus.xsl</text>
+<ellipse fill="none" stroke="black" cx="333.97" cy="-628" rx="37.17" ry="18"/>
+<text text-anchor="middle" x="333.97" y="-625.5" font-family="sans" font-size="10.00">corpus.xsl</text>
 </g>
 <!-- corpus.xsl&#45;&gt;common&#45;3.xsl -->
 <g id="edge6" class="edge">
 <title>corpus.xsl&#45;&gt;common&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M394.45,-623.87C411.1,-620.27 429.88,-613.55 442.87,-601 512.28,-533.95 531.41,-413.4 536.61,-358.99"/>
-<polygon fill="black" stroke="black" points="540.1,-359.29 537.47,-349.03 533.12,-358.69 540.1,-359.29"/>
+<path fill="none" stroke="black" d="M370.03,-623.26C385.47,-619.53 402.74,-612.87 414.62,-601 482.23,-533.39 499.91,-414.06 504.51,-359.57"/>
+<polygon fill="black" stroke="black" points="508.03,-359.51 505.29,-349.27 501.05,-358.98 508.03,-359.51"/>
 </g>
 <!-- downloads.xsl -->
 <g id="node9" class="node">
 <title>downloads.xsl</title>
-<ellipse fill="none" stroke="black" cx="124.9" cy="-520" rx="50.75" ry="18"/>
-<text text-anchor="middle" x="124.9" y="-517.5" font-family="sans" font-size="10.00">downloads.xsl</text>
+<ellipse fill="none" stroke="black" cx="116.66" cy="-520" rx="47.86" ry="18"/>
+<text text-anchor="middle" x="116.66" y="-517.5" font-family="sans" font-size="10.00">downloads.xsl</text>
 </g>
 <!-- generate_toc.xsl -->
 <g id="node10" class="node">
 <title>generate_toc.xsl</title>
-<ellipse fill="none" stroke="black" cx="124.9" cy="-466" rx="57.88" ry="18"/>
-<text text-anchor="middle" x="124.9" y="-463.5" font-family="sans" font-size="10.00">generate_toc.xsl</text>
+<ellipse fill="none" stroke="black" cx="116.66" cy="-466" rx="54.99" ry="18"/>
+<text text-anchor="middle" x="116.66" y="-463.5" font-family="sans" font-size="10.00">generate_toc.xsl</text>
 </g>
 <!-- geo&#45;places&#45;to&#45;jstree.xsl -->
 <g id="node11" class="node">
 <title>geo&#45;places&#45;to&#45;jstree.xsl</title>
-<ellipse fill="none" stroke="black" cx="124.9" cy="-412" rx="77.91" ry="18"/>
-<text text-anchor="middle" x="124.9" y="-409.5" font-family="sans" font-size="10.00">geo&#45;places&#45;to&#45;jstree.xsl</text>
+<ellipse fill="none" stroke="black" cx="116.66" cy="-412" rx="72.31" ry="18"/>
+<text text-anchor="middle" x="116.66" y="-409.5" font-family="sans" font-size="10.00">geo&#45;places&#45;to&#45;jstree.xsl</text>
 </g>
 <!-- mss&#45;capit.xsl -->
 <g id="node12" class="node">
 <title>mss&#45;capit.xsl</title>
-<ellipse fill="none" stroke="black" cx="356.34" cy="-250" rx="48.04" ry="18"/>
-<text text-anchor="middle" x="356.34" y="-247.5" font-family="sans" font-size="10.00">mss&#45;capit.xsl</text>
+<ellipse fill="none" stroke="black" cx="333.97" cy="-250" rx="43.62" ry="18"/>
+<text text-anchor="middle" x="333.97" y="-247.5" font-family="sans" font-size="10.00">mss&#45;capit.xsl</text>
 </g>
 <!-- mss&#45;capit.xsl&#45;&gt;common&#45;3.xsl -->
 <g id="edge7" class="edge">
 <title>mss&#45;capit.xsl&#45;&gt;common&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M396.28,-260.43C411.12,-264.88 428.02,-270.55 442.87,-277 464.32,-286.32 487.16,-299.1 505.14,-309.89"/>
-<polygon fill="black" stroke="black" points="503.7,-313.11 514.07,-315.32 507.34,-307.13 503.7,-313.11"/>
+<path fill="none" stroke="black" d="M370.07,-260.17C384.17,-264.7 400.42,-270.49 414.62,-277 435.18,-286.43 457.04,-299.22 474.24,-309.98"/>
+<polygon fill="black" stroke="black" points="472.45,-312.99 482.77,-315.39 476.2,-307.08 472.45,-312.99"/>
 </g>
 <!-- mss&#45;capit.xsl&#45;&gt;common&#45;html.xsl -->
 <g id="edge8" class="edge">
 <title>mss&#45;capit.xsl&#45;&gt;common&#45;html.xsl</title>
-<path fill="none" stroke="black" d="M404.94,-250C424.31,-250 447.09,-250 468.3,-250"/>
-<polygon fill="black" stroke="black" points="468.57,-253.5 478.57,-250 468.57,-246.5 468.57,-253.5"/>
+<path fill="none" stroke="black" d="M377.72,-250C396.61,-250 419.25,-250 440.22,-250"/>
+<polygon fill="black" stroke="black" points="440.36,-253.5 450.36,-250 440.36,-246.5 440.36,-253.5"/>
 </g>
 <!-- mss&#45;extract&#45;chapters&#45;txt.xsl -->
 <g id="node13" class="node">
 <title>mss&#45;extract&#45;chapters&#45;txt.xsl</title>
-<ellipse fill="none" stroke="black" cx="124.9" cy="-358" rx="91.49" ry="18"/>
-<text text-anchor="middle" x="124.9" y="-355.5" font-family="sans" font-size="10.00">mss&#45;extract&#45;chapters&#45;txt.xsl</text>
+<ellipse fill="none" stroke="black" cx="116.66" cy="-358" rx="84.36" ry="18"/>
+<text text-anchor="middle" x="116.66" y="-355.5" font-family="sans" font-size="10.00">mss&#45;extract&#45;chapters&#45;txt.xsl</text>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;1.xsl -->
 <g id="node14" class="node">
 <title>mss&#45;transcript&#45;phase&#45;1.xsl</title>
-<ellipse fill="none" stroke="black" cx="356.34" cy="-574" rx="86.57" ry="18"/>
-<text text-anchor="middle" x="356.34" y="-571.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;phase&#45;1.xsl</text>
+<ellipse fill="none" stroke="black" cx="333.97" cy="-574" rx="80.79" ry="18"/>
+<text text-anchor="middle" x="333.97" y="-571.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;phase&#45;1.xsl</text>
 </g>
 <!-- mss&#45;extract&#45;chapters&#45;txt.xsl&#45;&gt;mss&#45;transcript&#45;phase&#45;1.xsl -->
 <g id="edge9" class="edge">
 <title>mss&#45;extract&#45;chapters&#45;txt.xsl&#45;&gt;mss&#45;transcript&#45;phase&#45;1.xsl</title>
-<path fill="none" stroke="black" d="M204.86,-366.75C215.67,-370.9 225.79,-376.77 233.81,-385 285.26,-437.84 219.97,-492.63 269.81,-547 273.4,-550.92 277.55,-554.27 282.05,-557.14"/>
-<polygon fill="black" stroke="black" points="280.63,-560.35 291.08,-562.08 283.99,-554.21 280.63,-560.35"/>
+<path fill="none" stroke="black" d="M189.39,-367.17C199.84,-371.24 209.65,-376.96 217.32,-385 268.27,-438.34 204.06,-492.1 253.32,-547 256.77,-550.84 260.78,-554.14 265.14,-556.96"/>
+<polygon fill="black" stroke="black" points="263.45,-560.03 273.88,-561.84 266.86,-553.91 263.45,-560.03"/>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;1.xsl&#45;&gt;common&#45;3.xsl -->
 <g id="edge22" class="edge">
 <title>mss&#45;transcript&#45;phase&#45;1.xsl&#45;&gt;common&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M419.17,-561.52C427.79,-557.86 436.03,-553.13 442.87,-547 499.87,-496.01 524.57,-404.7 533.79,-358.86"/>
-<polygon fill="black" stroke="black" points="537.23,-359.49 535.67,-349.02 530.35,-358.18 537.23,-359.49"/>
+<path fill="none" stroke="black" d="M391.85,-561.42C400.15,-557.77 408.09,-553.06 414.62,-547 470.01,-495.56 493.18,-405.16 501.74,-359.34"/>
+<polygon fill="black" stroke="black" points="505.24,-359.68 503.53,-349.22 498.34,-358.46 505.24,-359.68"/>
 </g>
 <!-- mss&#45;extract&#45;chapters.xsl -->
 <g id="node15" class="node">
 <title>mss&#45;extract&#45;chapters.xsl</title>
-<ellipse fill="none" stroke="black" cx="356.34" cy="-520" rx="81.47" ry="18"/>
-<text text-anchor="middle" x="356.34" y="-517.5" font-family="sans" font-size="10.00">mss&#45;extract&#45;chapters.xsl</text>
+<ellipse fill="none" stroke="black" cx="333.97" cy="-520" rx="75.2" ry="18"/>
+<text text-anchor="middle" x="333.97" y="-517.5" font-family="sans" font-size="10.00">mss&#45;extract&#45;chapters.xsl</text>
 </g>
 <!-- mss&#45;extract&#45;chapters.xsl&#45;&gt;common&#45;3.xsl -->
 <g id="edge10" class="edge">
 <title>mss&#45;extract&#45;chapters.xsl&#45;&gt;common&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M416.34,-507.68C425.82,-503.99 435.07,-499.2 442.87,-493 487.55,-457.48 515.79,-394.97 529.22,-358.86"/>
-<polygon fill="black" stroke="black" points="532.68,-359.59 532.77,-349 526.09,-357.22 532.68,-359.59"/>
+<path fill="none" stroke="black" d="M389.2,-507.62C398.31,-503.92 407.19,-499.15 414.62,-493 458.09,-456.99 484.85,-394.66 497.46,-358.72"/>
+<polygon fill="black" stroke="black" points="500.9,-359.49 500.79,-348.89 494.27,-357.25 500.9,-359.49"/>
 </g>
 <!-- mss&#45;footer&#45;3.xsl -->
 <g id="node16" class="node">
 <title>mss&#45;footer&#45;3.xsl</title>
-<ellipse fill="none" stroke="black" cx="356.34" cy="-196" rx="56.52" ry="18"/>
-<text text-anchor="middle" x="356.34" y="-193.5" font-family="sans" font-size="10.00">mss&#45;footer&#45;3.xsl</text>
+<ellipse fill="none" stroke="black" cx="333.97" cy="-196" rx="54.31" ry="18"/>
+<text text-anchor="middle" x="333.97" y="-193.5" font-family="sans" font-size="10.00">mss&#45;footer&#45;3.xsl</text>
 </g>
 <!-- mss&#45;footer&#45;3.xsl&#45;&gt;common&#45;3.xsl -->
 <g id="edge11" class="edge">
 <title>mss&#45;footer&#45;3.xsl&#45;&gt;common&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M405.34,-204.99C418.39,-209.01 431.92,-214.77 442.87,-223 465.93,-240.32 460.04,-255.15 478.87,-277 488.32,-287.96 499.89,-298.89 510.31,-308.02"/>
-<polygon fill="black" stroke="black" points="508.14,-310.77 518,-314.63 512.69,-305.46 508.14,-310.77"/>
+<path fill="none" stroke="black" d="M380.1,-205.65C392.12,-209.67 404.54,-215.26 414.62,-223 437.49,-240.57 432.18,-254.82 450.62,-277 459.43,-287.61 470.1,-298.38 479.71,-307.49"/>
+<polygon fill="black" stroke="black" points="477.44,-310.15 487.14,-314.4 482.2,-305.03 477.44,-310.15"/>
 </g>
 <!-- mss&#45;footer&#45;3.xsl&#45;&gt;common&#45;html.xsl -->
 <g id="edge12" class="edge">
 <title>mss&#45;footer&#45;3.xsl&#45;&gt;common&#45;html.xsl</title>
-<path fill="none" stroke="black" d="M398.45,-208.25C424.5,-216.02 458.44,-226.13 486.37,-234.46"/>
-<polygon fill="black" stroke="black" points="485.4,-237.82 495.98,-237.33 487.4,-231.12 485.4,-237.82"/>
+<path fill="none" stroke="black" d="M373.81,-208.25C398.3,-215.98 430.15,-226.03 456.47,-234.33"/>
+<polygon fill="black" stroke="black" points="455.67,-237.75 466.26,-237.42 457.77,-231.07 455.67,-237.75"/>
 </g>
 <!-- mss&#45;header&#45;3.xsl -->
 <g id="node17" class="node">
 <title>mss&#45;header&#45;3.xsl</title>
-<ellipse fill="none" stroke="black" cx="356.34" cy="-142" rx="59.41" ry="18"/>
-<text text-anchor="middle" x="356.34" y="-139.5" font-family="sans" font-size="10.00">mss&#45;header&#45;3.xsl</text>
+<ellipse fill="none" stroke="black" cx="333.97" cy="-142" rx="55.85" ry="18"/>
+<text text-anchor="middle" x="333.97" y="-139.5" font-family="sans" font-size="10.00">mss&#45;header&#45;3.xsl</text>
 </g>
 <!-- mss&#45;header&#45;3.xsl&#45;&gt;common&#45;3.xsl -->
 <g id="edge13" class="edge">
 <title>mss&#45;header&#45;3.xsl&#45;&gt;common&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M409.55,-150.05C421.72,-154.05 433.77,-160.04 442.87,-169 478.93,-204.49 451.21,-234.63 478.87,-277 486.6,-288.84 497.54,-299.75 507.94,-308.63"/>
-<polygon fill="black" stroke="black" points="505.77,-311.38 515.73,-315 510.2,-305.96 505.77,-311.38"/>
+<path fill="none" stroke="black" d="M383.22,-150.56C394.69,-154.55 406.07,-160.41 414.62,-169 450.3,-204.87 423.72,-234.14 450.62,-277 457.84,-288.5 468,-299.33 477.66,-308.23"/>
+<polygon fill="black" stroke="black" points="475.42,-310.93 485.23,-314.93 480.06,-305.69 475.42,-310.93"/>
 </g>
 <!-- mss&#45;header&#45;3.xsl&#45;&gt;common&#45;html.xsl -->
 <g id="edge14" class="edge">
 <title>mss&#45;header&#45;3.xsl&#45;&gt;common&#45;html.xsl</title>
-<path fill="none" stroke="black" d="M404,-153.07C417.02,-157.12 430.87,-162.38 442.87,-169 470.04,-183.99 496.62,-207.42 514.83,-225.23"/>
-<polygon fill="black" stroke="black" points="512.55,-227.9 522.11,-232.48 517.49,-222.94 512.55,-227.9"/>
+<path fill="none" stroke="black" d="M378.08,-153.15C390.33,-157.23 403.38,-162.48 414.62,-169 440.79,-184.19 466.21,-207.59 483.58,-225.35"/>
+<polygon fill="black" stroke="black" points="481.06,-227.78 490.52,-232.57 486.11,-222.93 481.06,-227.78"/>
 </g>
 <!-- mss&#45;idno.xsl -->
 <g id="node18" class="node">
 <title>mss&#45;idno.xsl</title>
-<ellipse fill="none" stroke="black" cx="356.34" cy="-88" rx="46.51" ry="18"/>
-<text text-anchor="middle" x="356.34" y="-85.5" font-family="sans" font-size="10.00">mss&#45;idno.xsl</text>
+<ellipse fill="none" stroke="black" cx="333.97" cy="-88" rx="42.94" ry="18"/>
+<text text-anchor="middle" x="333.97" y="-85.5" font-family="sans" font-size="10.00">mss&#45;idno.xsl</text>
 </g>
 <!-- mss&#45;idno.xsl&#45;&gt;common&#45;3.xsl -->
 <g id="edge15" class="edge">
 <title>mss&#45;idno.xsl&#45;&gt;common&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M401.31,-92.84C416.38,-96.63 432.14,-103.29 442.87,-115 492.71,-169.37 441.79,-213.24 478.87,-277 485.92,-289.12 496.62,-300.04 507.01,-308.84"/>
-<polygon fill="black" stroke="black" points="504.85,-311.59 514.83,-315.14 509.24,-306.14 504.85,-311.59"/>
+<path fill="none" stroke="black" d="M375.14,-93.3C389.43,-97.12 404.48,-103.7 414.62,-115 463.87,-169.9 414.68,-212.59 450.62,-277 457.18,-288.77 467.11,-299.59 476.77,-308.42"/>
+<polygon fill="black" stroke="black" points="474.54,-311.12 484.38,-315.04 479.14,-305.84 474.54,-311.12"/>
 </g>
 <!-- mss&#45;idno.xsl&#45;&gt;common&#45;html.xsl -->
 <g id="edge16" class="edge">
 <title>mss&#45;idno.xsl&#45;&gt;common&#45;html.xsl</title>
-<path fill="none" stroke="black" d="M399.02,-95.4C413.85,-99.45 430.04,-105.64 442.87,-115 481.61,-143.25 510.49,-192.06 525.9,-222.61"/>
-<polygon fill="black" stroke="black" points="522.88,-224.4 530.42,-231.83 529.16,-221.31 522.88,-224.4"/>
+<path fill="none" stroke="black" d="M373.09,-95.52C387.13,-99.62 402.54,-105.8 414.62,-115 452.22,-143.64 479.69,-192.33 494.26,-222.75"/>
+<polygon fill="black" stroke="black" points="491.14,-224.34 498.53,-231.93 497.49,-221.39 491.14,-224.34"/>
 </g>
 <!-- mss&#45;key.xsl -->
 <g id="node19" class="node">
 <title>mss&#45;key.xsl</title>
-<ellipse fill="none" stroke="black" cx="356.34" cy="-34" rx="43.62" ry="18"/>
-<text text-anchor="middle" x="356.34" y="-31.5" font-family="sans" font-size="10.00">mss&#45;key.xsl</text>
+<ellipse fill="none" stroke="black" cx="333.97" cy="-34" rx="40.06" ry="18"/>
+<text text-anchor="middle" x="333.97" y="-31.5" font-family="sans" font-size="10.00">mss&#45;key.xsl</text>
 </g>
 <!-- mss&#45;key.xsl&#45;&gt;common&#45;3.xsl -->
 <g id="edge17" class="edge">
 <title>mss&#45;key.xsl&#45;&gt;common&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M398.99,-37.91C414.9,-41.51 431.85,-48.3 442.87,-61 506.69,-134.48 432.21,-191.59 478.87,-277 485.6,-289.31 496.22,-300.27 506.65,-309.04"/>
-<polygon fill="black" stroke="black" points="504.52,-311.82 514.52,-315.31 508.88,-306.35 504.52,-311.82"/>
+<path fill="none" stroke="black" d="M372.99,-38.39C388.05,-42.06 404.21,-48.76 414.62,-61 477.65,-135.15 405.49,-190.77 450.62,-277 456.86,-288.94 466.73,-299.8 476.42,-308.61"/>
+<polygon fill="black" stroke="black" points="474.22,-311.33 484.08,-315.21 478.79,-306.03 474.22,-311.33"/>
 </g>
 <!-- mss&#45;key.xsl&#45;&gt;common&#45;html.xsl -->
 <g id="edge18" class="edge">
 <title>mss&#45;key.xsl&#45;&gt;common&#45;html.xsl</title>
-<path fill="none" stroke="black" d="M397.63,-39.83C413.15,-43.73 430.17,-50.21 442.87,-61 493.67,-104.14 520.47,-180.92 531.8,-222.09"/>
-<polygon fill="black" stroke="black" points="528.47,-223.21 534.41,-231.98 535.24,-221.42 528.47,-223.21"/>
+<path fill="none" stroke="black" d="M371.79,-40.06C386.48,-44.01 402.69,-50.47 414.62,-61 464.01,-104.62 489.28,-180.87 499.86,-221.93"/>
+<polygon fill="black" stroke="black" points="496.5,-222.93 502.3,-231.8 503.3,-221.25 496.5,-222.93"/>
 </g>
 <!-- mss&#45;table.xsl -->
 <g id="node20" class="node">
 <title>mss&#45;table.xsl</title>
-<ellipse fill="none" stroke="black" cx="356.34" cy="-466" rx="48.72" ry="18"/>
-<text text-anchor="middle" x="356.34" y="-463.5" font-family="sans" font-size="10.00">mss&#45;table.xsl</text>
+<ellipse fill="none" stroke="black" cx="333.97" cy="-466" rx="44.98" ry="18"/>
+<text text-anchor="middle" x="333.97" y="-463.5" font-family="sans" font-size="10.00">mss&#45;table.xsl</text>
 </g>
 <!-- mss&#45;table.xsl&#45;&gt;common&#45;3.xsl -->
 <g id="edge19" class="edge">
 <title>mss&#45;table.xsl&#45;&gt;common&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M399.8,-457.46C414.22,-453.34 429.94,-447.4 442.87,-439 475.98,-417.5 504.58,-381.53 521.66,-357.06"/>
-<polygon fill="black" stroke="black" points="524.68,-358.84 527.43,-348.61 518.9,-354.9 524.68,-358.84"/>
+<path fill="none" stroke="black" d="M373.8,-457.41C387.45,-453.25 402.42,-447.29 414.62,-439 446.65,-417.21 473.93,-381.3 490.17,-356.93"/>
+<polygon fill="black" stroke="black" points="493.12,-358.81 495.64,-348.52 487.25,-354.99 493.12,-358.81"/>
 </g>
 <!-- mss&#45;table.xsl&#45;&gt;common&#45;html.xsl -->
 <g id="edge20" class="edge">
 <title>mss&#45;table.xsl&#45;&gt;common&#45;html.xsl</title>
-<path fill="none" stroke="black" d="M402.82,-460.45C417.32,-456.57 432.33,-450.03 442.87,-439 485.78,-394.11 446.53,-357.01 478.87,-304 485.99,-292.33 496.38,-281.7 506.5,-273.01"/>
-<polygon fill="black" stroke="black" points="508.96,-275.51 514.49,-266.47 504.53,-270.09 508.96,-275.51"/>
+<path fill="none" stroke="black" d="M376.54,-460.02C390.3,-456.11 404.64,-449.66 414.62,-439 457.05,-393.66 419.23,-357.58 450.62,-304 457.25,-292.67 466.9,-282.13 476.3,-273.42"/>
+<polygon fill="black" stroke="black" points="478.89,-275.8 484.07,-266.56 474.26,-270.56 478.89,-275.8"/>
 </g>
 <!-- mss&#45;transcript&#45;cte.xsl -->
 <g id="node21" class="node">
 <title>mss&#45;transcript&#45;cte.xsl</title>
-<ellipse fill="none" stroke="black" cx="124.9" cy="-304" rx="72.31" ry="18"/>
-<text text-anchor="middle" x="124.9" y="-301.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;cte.xsl</text>
+<ellipse fill="none" stroke="black" cx="116.66" cy="-304" rx="67.22" ry="18"/>
+<text text-anchor="middle" x="116.66" y="-301.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;cte.xsl</text>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;2.xsl -->
 <g id="node22" class="node">
 <title>mss&#45;transcript&#45;phase&#45;2.xsl</title>
-<ellipse fill="none" stroke="black" cx="356.34" cy="-412" rx="86.57" ry="18"/>
-<text text-anchor="middle" x="356.34" y="-409.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;phase&#45;2.xsl</text>
+<ellipse fill="none" stroke="black" cx="333.97" cy="-412" rx="80.79" ry="18"/>
+<text text-anchor="middle" x="333.97" y="-409.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;phase&#45;2.xsl</text>
 </g>
 <!-- mss&#45;transcript&#45;cte.xsl&#45;&gt;mss&#45;transcript&#45;phase&#45;2.xsl -->
 <g id="edge21" class="edge">
 <title>mss&#45;transcript&#45;cte.xsl&#45;&gt;mss&#45;transcript&#45;phase&#45;2.xsl</title>
-<path fill="none" stroke="black" d="M190.03,-311.89C205.33,-315.9 220.94,-321.93 233.81,-331 257.38,-347.62 246.74,-367.68 269.81,-385 274.87,-388.81 280.49,-392.08 286.35,-394.91"/>
-<polygon fill="black" stroke="black" points="285.16,-398.2 295.72,-398.97 287.95,-391.78 285.16,-398.2"/>
+<path fill="none" stroke="black" d="M176.14,-312.42C190.52,-316.42 205.25,-322.31 217.32,-331 240.74,-347.85 230.44,-367.43 253.32,-385 258.07,-388.65 263.34,-391.82 268.84,-394.57"/>
+<polygon fill="black" stroke="black" points="267.72,-397.9 278.27,-398.82 270.6,-391.52 267.72,-397.9"/>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;2.xsl&#45;&gt;common&#45;3.xsl -->
 <g id="edge23" class="edge">
 <title>mss&#45;transcript&#45;phase&#45;2.xsl&#45;&gt;common&#45;3.xsl</title>
-<path fill="none" stroke="black" d="M409.09,-397.57C420.38,-393.9 432.16,-389.65 442.87,-385 464.32,-375.68 487.16,-362.9 505.14,-352.11"/>
-<polygon fill="black" stroke="black" points="507.34,-354.87 514.07,-346.68 503.7,-348.89 507.34,-354.87"/>
+<path fill="none" stroke="black" d="M382.77,-397.59C393.41,-393.88 404.53,-389.63 414.62,-385 435.18,-375.57 457.04,-362.78 474.24,-352.02"/>
+<polygon fill="black" stroke="black" points="476.2,-354.92 482.77,-346.61 472.45,-349.01 476.2,-354.92"/>
 </g>
 <!-- mss&#45;transcript&#45;phase&#45;2.xsl&#45;&gt;common&#45;html.xsl -->
 <g id="edge24" class="edge">
 <title>mss&#45;transcript&#45;phase&#45;2.xsl&#45;&gt;common&#45;html.xsl</title>
-<path fill="none" stroke="black" d="M419.17,-399.52C427.78,-395.85 436.02,-391.12 442.87,-385 472.25,-358.75 455.77,-335.91 478.87,-304 487.01,-292.75 497.83,-282.1 508.01,-273.27"/>
-<polygon fill="black" stroke="black" points="510.55,-275.71 515.97,-266.6 506.06,-270.34 510.55,-275.71"/>
+<path fill="none" stroke="black" d="M391.75,-399.32C400.07,-395.68 408.04,-391 414.62,-385 443.72,-358.44 428.09,-336.32 450.62,-304 458.32,-292.95 468.5,-282.27 478.03,-273.37"/>
+<polygon fill="black" stroke="black" points="480.41,-275.95 485.48,-266.65 475.72,-270.75 480.41,-275.95"/>
 </g>
 <!-- mss&#45;transcript&#45;with&#45;comments.xsl -->
 <g id="node23" class="node">
 <title>mss&#45;transcript&#45;with&#45;comments.xsl</title>
-<ellipse fill="none" stroke="black" cx="124.9" cy="-250" rx="108.81" ry="18"/>
-<text text-anchor="middle" x="124.9" y="-247.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;with&#45;comments.xsl</text>
+<ellipse fill="none" stroke="black" cx="116.66" cy="-250" rx="100.82" ry="18"/>
+<text text-anchor="middle" x="116.66" y="-247.5" font-family="sans" font-size="10.00">mss&#45;transcript&#45;with&#45;comments.xsl</text>
 </g>
 <!-- mss&#45;transcript&#45;with&#45;comments.xsl&#45;&gt;mss&#45;transcript&#45;phase&#45;2.xsl -->
 <g id="edge25" class="edge">
 <title>mss&#45;transcript&#45;with&#45;comments.xsl&#45;&gt;mss&#45;transcript&#45;phase&#45;2.xsl</title>
-<path fill="none" stroke="black" d="M209.03,-261.45C218.12,-265.31 226.65,-270.37 233.81,-277 270.93,-311.38 233.74,-349.51 269.81,-385 273.76,-388.89 278.27,-392.22 283.1,-395.07"/>
-<polygon fill="black" stroke="black" points="281.61,-398.24 292.11,-399.71 284.82,-392.02 281.61,-398.24"/>
+<path fill="none" stroke="black" d="M193.25,-261.7C202.1,-265.5 210.42,-270.48 217.32,-277 254.11,-311.74 217.64,-349.13 253.32,-385 257.03,-388.72 261.26,-391.93 265.8,-394.7"/>
+<polygon fill="black" stroke="black" points="264.38,-397.91 274.86,-399.49 267.66,-391.72 264.38,-397.91"/>
 </g>
 </g>
 </svg>

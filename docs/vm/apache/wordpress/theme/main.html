@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wordpress Theme &mdash; Capitularia 0.2.1 documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -29,12 +31,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> Capitularia
-            <img src="../../../../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Capitularia
+              <img src="../../../../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -109,6 +115,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../maintenance/wordpress.html#wordpress-upgrades">Wordpress Upgrades</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../maintenance/logfiles.html">Location of Logfiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../maintenance/logfiles.html#apache-php">Apache / PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../maintenance/logfiles.html#python-app-server">Python App Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../maintenance/logfiles.html#python-import-script">Python Import Script</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting</a><ul>
@@ -133,12 +145,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../vm.html">Capitularia VM</a> &raquo;</li>
-          <li><a href="../../../apache.html">Apache Web Server</a> &raquo;</li>
-          <li><a href="../../wordpress-custom.html">Wordpress Customizations</a> &raquo;</li>
-          <li><a href="../theme.html">Wordpress Theme</a> &raquo;</li>
-      <li>Wordpress Theme</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../vm.html">Capitularia VM</a></li>
+          <li class="breadcrumb-item"><a href="../../../apache.html">Apache Web Server</a></li>
+          <li class="breadcrumb-item"><a href="../../wordpress-custom.html">Wordpress Customizations</a></li>
+          <li class="breadcrumb-item"><a href="../theme.html">Wordpress Theme</a></li>
+      <li class="breadcrumb-item active">Wordpress Theme</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/vm/apache/wordpress/theme/main.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -149,9 +161,9 @@
            <div itemprop="articleBody">
              
   <section id="wordpress-theme">
-<span id="theme-main"></span><h1>Wordpress Theme<a class="headerlink" href="#wordpress-theme" title="Permalink to this headline">¶</a></h1>
+<span id="theme-main"></span><h1>Wordpress Theme<a class="headerlink" href="#wordpress-theme" title="Permalink to this heading">¶</a></h1>
 <p>The Wordpress theme for Capitularia.</p>
-<div class="contents local topic" id="contents">
+<nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#themes-capitularia-404-php" id="id1">themes/Capitularia/404.php</a></p></li>
 <li><p><a class="reference internal" href="#themes-capitularia-footer-php" id="id2">themes/Capitularia/footer.php</a></p></li>
@@ -169,21 +181,21 @@
 <li><p><a class="reference internal" href="#themes-capitularia-sidebars-php" id="id14">themes/Capitularia/sidebars.php</a></p></li>
 <li><p><a class="reference internal" href="#themes-capitularia" id="id15">themes/capitularia</a></p></li>
 </ul>
-</div>
+</nav>
 <span class="target" id="module-themes.Capitularia.404"></span><section id="themes-capitularia-404-php">
-<h2><a class="toc-backref" href="#id1">themes/Capitularia/404.php</a><a class="headerlink" href="#themes-capitularia-404-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">themes/Capitularia/404.php</a><a class="headerlink" href="#themes-capitularia-404-php" title="Permalink to this heading">¶</a></h2>
 <p>Template for 404 Page not found.</p>
 <span class="target" id="module-themes.Capitularia.footer"></span></section>
 <section id="themes-capitularia-footer-php">
-<h2><a class="toc-backref" href="#id2">themes/Capitularia/footer.php</a><a class="headerlink" href="#themes-capitularia-footer-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">themes/Capitularia/footer.php</a><a class="headerlink" href="#themes-capitularia-footer-php" title="Permalink to this heading">¶</a></h2>
 <p>The HTML footer on every page.</p>
 <span class="target" id="module-themes.Capitularia.front-page"></span></section>
 <section id="themes-capitularia-front-page-php">
-<h2><a class="toc-backref" href="#id3">themes/Capitularia/front-page.php</a><a class="headerlink" href="#themes-capitularia-front-page-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">themes/Capitularia/front-page.php</a><a class="headerlink" href="#themes-capitularia-front-page-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Theme front-page.php file</p>
 <span class="target" id="module-themes.Capitularia.functions-include"></span></section>
 <section id="themes-capitularia-functions-include-php">
-<h2><a class="toc-backref" href="#id4">themes/Capitularia/functions-include.php</a><a class="headerlink" href="#themes-capitularia-functions-include-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">themes/Capitularia/functions-include.php</a><a class="headerlink" href="#themes-capitularia-functions-include-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Theme functions-include.php file</p>
 <p>This file only declares symbols (classes, functions, constants) in accordance
 with PSR-2.</p>
@@ -198,15 +210,15 @@ with PSR-2.</p>
 <span class="sig-name descname"><span class="pre">ns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">function_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\ns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add current namespace</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>function_name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The class or function name without namespace</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Name with namespace</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -218,15 +230,15 @@ with PSR-2.</p>
 <dd><p>Get the first path component of the slug.</p>
 <p>If a page has a slug of: “top/sub/current” this function returns “top”.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>page_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – Wordpress Page ID.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The slug root.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -237,15 +249,15 @@ with PSR-2.</p>
 <span class="sig-name descname"><span class="pre">get_parent_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\get_parent_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the path of the parent page.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The path of the page.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The path of the parent page.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -256,13 +268,13 @@ with PSR-2.</p>
 <span class="sig-name descname"><span class="pre">echo_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name</span></em>, <em class="sig-param"><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\echo_attribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo a name=”value” pair.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The name of the attribute.</p></li>
 <li><p><strong>value</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The value of the attribute.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -274,10 +286,10 @@ with PSR-2.</p>
 <dd><p>Returns an opening &lt;a&gt; containing a permalink to the current page.</p>
 <p>It is the responsibilty of the caller to close the &lt;a&gt; tag.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>An opening &lt;a&gt; tag.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -288,12 +300,12 @@ with PSR-2.</p>
 <span class="sig-name descname"><span class="pre">get_main_start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">class</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\get_main_start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the tag to start the main section.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>class</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – CSS classes to add to the tag.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -304,7 +316,7 @@ with PSR-2.</p>
 <span class="sig-name descname"><span class="pre">get_main_end</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\get_main_end" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the tag to end the main section.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -315,7 +327,7 @@ with PSR-2.</p>
 <span class="sig-name descname"><span class="pre">get_sidebar_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\get_sidebar_start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the tag to start the sideabr section.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -326,7 +338,7 @@ with PSR-2.</p>
 <span class="sig-name descname"><span class="pre">get_sidebar_end</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\get_sidebar_end" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the tag to end the sidebar section.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -337,7 +349,7 @@ with PSR-2.</p>
 <span class="sig-name descname"><span class="pre">get_content_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\get_content_start" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the tag to start the content section.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -348,7 +360,7 @@ with PSR-2.</p>
 <span class="sig-name descname"><span class="pre">get_content_end</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\get_content_end" title="Permalink to this definition">¶</a></dt>
 <dd><p>Echo the tag to end the content section.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -361,7 +373,7 @@ with PSR-2.</p>
 <p>Add JS and CSS the wordpress way.</p>
 <p>N.B. We use our own copy of jquery and bootstrap on the front.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -375,7 +387,7 @@ with PSR-2.</p>
 <p>N.B. We use wordpress’ copy of jquery and jquery-ui on the admin pages, and
 no bootstrap because it breaks too many things.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -390,16 +402,16 @@ bookmark the page.</p>
 <p>if root: “Capitularia | Edition der fränkischen Herrschererlasse”
 else:    “[Name of page] | Capitularia”</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>title</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – Default title text for current view.</p></li>
 <li><p><strong>sep</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – Optional separator.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The customized title.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -410,16 +422,16 @@ else:    “[Name of page] | Capitularia”</p>
 <span class="sig-name descname"><span class="pre">on_the_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">title</span></em>, <em class="sig-param"><span class="pre">post_ID</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\on_the_title" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mark wiki post titles with “Wiki:”</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>title</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The post title</p></li>
 <li><p><strong>post_ID</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – The post ID</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The edited post title</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -432,15 +444,15 @@ else:    “[Name of page] | Capitularia”</p>
 <p>Add a class to the HTML &lt;body&gt; tag depending on which section of the website
 we are in.  Eg.: adds class=”cap-slug-mss” in the /mss/ section of the site.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>classes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Old classes added by Wordpress or other plugins.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>New classes</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
 </dd>
 </dl>
@@ -451,7 +463,7 @@ we are in.  Eg.: adds class=”cap-slug-mss” in the /mss/ section of the site.
 <span class="sig-name descname"><span class="pre">on_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\on_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the theme.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -464,16 +476,16 @@ we are in.  Eg.: adds class=”cap-slug-mss” in the /mss/ section of the site.
 <p>Only public pages are eligible for parenting in vanilla Wordpress.  We want
 other pages also.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dropdown_args</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The previous args.</p></li>
 <li><p><strong>dummy_post</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – (unused) The post ID.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The new args.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
 </dd>
 </dl>
@@ -484,15 +496,15 @@ other pages also.</p>
 <span class="sig-name descname"><span class="pre">translate_month_year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">month_year</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\translate_month_year" title="Permalink to this definition">¶</a></dt>
 <dd><p>Translate the archive widget month names</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>month_year</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – Link containing untranslated MMMMMMM YYYY</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Link containing translated MMMMMMM YYYY</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -517,15 +529,15 @@ ldf/all-of-the-above</p>
 <p>bk-nr-042
 mordek-nr-27</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>corresp</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – eg. “BK.42a” or “Mordek_15”</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The canonical BK no.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -538,15 +550,36 @@ mordek-nr-27</p>
 <p>This function figures out which subdirectory the Capitular page is in,
 eg. pre814/ or ldf/ or post840/ …</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>corresp</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – eg. “BK.42a” or “Mordek_15”</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The url to the page, eg. “<a class="reference external" href="http://.../capit/pre814/bk-nr-042a">http://…/capit/pre814/bk-nr-042a</a>” or null</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\theme"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\theme\siglum_to_permalink">
+<span class="sig-name descname"><span class="pre">siglum_to_permalink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">siglum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\siglum_to_permalink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the manuscript page url corresponding to a manuscript siglum.</p>
+<p>Note: If the siglum is not unique, a random manuscript with that siglum will be
+returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>siglum</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – eg. “Ba2”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The path to the page, eg. “/mss/bamberg-sb-can-7” or null</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -555,28 +588,25 @@ eg. pre814/ or ldf/ or post840/ …</p>
 <span class="target" id="namespace-\cceh\capitularia\theme"></span><dl class="php function">
 <dt class="sig sig-object php" id="\cceh\capitularia\theme\on_do_parse_request">
 <span class="sig-name descname"><span class="pre">on_do_parse_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">do_parse</span></em>, <em class="sig-param"><span class="pre">wp</span></em>, <em class="sig-param"><span class="pre">extra_query_vars</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\on_do_parse_request" title="Permalink to this definition">¶</a></dt>
-<dd><p>Redirector for Capitulary pages</p>
-<p>Eg. redirects from</p>
-<blockquote>
-<div><p>/capit/BK.42a    =&gt; /capit/&lt;subdir&gt;/bk-nr-042a/
+<dd><p>Implements URL-Redirects</p>
+<p>Examples of implemented redirects:</p>
+<p>/capit/BK.42a    =&gt; /capit/&lt;subdir&gt;/bk-nr-042a/
 /capit/Mordek_27 =&gt; /capit/&lt;subdir&gt;/mordek-nr-27/
 /bk/42a          =&gt; /capit/&lt;subdir&gt;/bk-nr-042a/
-/mordek/27       =&gt; /capit/&lt;subdir&gt;/mordek-nr-27/</p>
-</div></blockquote>
-<p>We cannot just use mod_rewrite because we don’t know which subdirectory the
-capitulary page is in.</p>
+/mordek/27       =&gt; /capit/&lt;subdir&gt;/mordek-nr-27/
+/siglum/Ba2      =&gt; /mss/bamberg-sb-can-7</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>do_parse</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span>) – (unused) Whether or not to parse the request.</p></li>
 <li><p><strong>wp</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">WP</span></code></span>) – (unused) The current WordPress environment instance.</p></li>
 <li><p><strong>extra_query_vars</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array|string</span></code></span>) – (unused) Extra passed query variables.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The $do_parse parameter unchanged.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
@@ -587,7 +617,7 @@ capitulary page is in.</p>
 <span class="sig-name descname"><span class="pre">on_nav_menu_link_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">atts</span></em>, <em class="sig-param"><span class="pre">item</span></em>, <em class="sig-param"><span class="pre">args</span></em>, <em class="sig-param"><span class="pre">depth</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\on_nav_menu_link_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add dynamic url to login menu.  Remove text from twitter and fb logos.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The old HTML attributes.</p></li>
 <li><p><strong>item</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">cceh\capitularia\theme\WP_Post</span></code></span>) – The current menu item.</p></li>
@@ -595,10 +625,10 @@ capitulary page is in.</p>
 <li><p><strong>depth</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – Depth of menu item. Used for padding.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The updated HTML attributes.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
 </dd>
 </dl>
@@ -609,15 +639,15 @@ capitulary page is in.</p>
 <span class="sig-name descname"><span class="pre">on_upload_mimes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">mimes</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\on_upload_mimes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Allow upload of SVG files.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mimes</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The old list of allowed mime types.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The updated list of allowed mime types.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
 </dd>
 </dl>
@@ -628,7 +658,7 @@ capitulary page is in.</p>
 <span class="sig-name descname"><span class="pre">on_login_redirect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">redirect_to</span></em>, <em class="sig-param"><span class="pre">requested_redirect_to</span></em>, <em class="sig-param"><span class="pre">user</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\on_login_redirect" title="Permalink to this definition">¶</a></dt>
 <dd><p>Redirect the user to the current page after login</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>redirect_to</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The redirect destination URL.</p></li>
 <li><p><strong>requested_redirect_to</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The requested redirect destination URL passed as a parameter.</p></li>
@@ -638,10 +668,10 @@ capitulary page is in.</p>
 </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The target URL of the redirection.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -652,13 +682,13 @@ capitulary page is in.</p>
 <span class="sig-name descname"><span class="pre">on_registered_post_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">post_type</span></em>, <em class="sig-param"><span class="pre">post_type_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\on_registered_post_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>HACK! make the “WP Help” wiki plugin’s post type searchable</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>post_type</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The post type</p></li>
 <li><p><strong>post_type_object</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">WP_Post_Type</span></code></span>) – The post object</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -669,12 +699,12 @@ capitulary page is in.</p>
 <span class="sig-name descname"><span class="pre">on_pre_get_posts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">query</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\on_pre_get_posts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search only wiki pages if search string contains ‘wiki:’</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>query</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">WP_Query</span></code></span>) – The query</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -685,12 +715,12 @@ capitulary page is in.</p>
 <span class="sig-name descname"><span class="pre">cap_rest_user_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\cap_rest_user_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>REST endpoint to get user information from auth cookie</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>request</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">WP_REST_Request</span></code></span>) – The request</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -701,7 +731,7 @@ capitulary page is in.</p>
 <span class="sig-name descname"><span class="pre">on_after_setup_theme</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\on_after_setup_theme" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove widget-block-editor</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -709,7 +739,7 @@ capitulary page is in.</p>
 
 <span class="target" id="module-themes.Capitularia.functions"></span></section>
 <section id="themes-capitularia-functions-php">
-<h2><a class="toc-backref" href="#id5">themes/Capitularia/functions.php</a><a class="headerlink" href="#themes-capitularia-functions-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">themes/Capitularia/functions.php</a><a class="headerlink" href="#themes-capitularia-functions-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Theme functions.php file</p>
 <p>Loads the text domain and adds all actions, filters and shortcodes.</p>
 <p>This file executes only logic with side-effects in accordance with PSR-2.
@@ -724,38 +754,38 @@ The functions are defined in
 
 <span class="target" id="module-themes.Capitularia.header"></span></section>
 <section id="themes-capitularia-header-php">
-<h2><a class="toc-backref" href="#id6">themes/Capitularia/header.php</a><a class="headerlink" href="#themes-capitularia-header-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">themes/Capitularia/header.php</a><a class="headerlink" href="#themes-capitularia-header-php" title="Permalink to this heading">¶</a></h2>
 <p>The HTML header.</p>
 <p>This is the HTML header that is output on every page.</p>
 <span class="target" id="module-themes.Capitularia.index"></span></section>
 <section id="themes-capitularia-index-php">
-<h2><a class="toc-backref" href="#id7">themes/Capitularia/index.php</a><a class="headerlink" href="#themes-capitularia-index-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">themes/Capitularia/index.php</a><a class="headerlink" href="#themes-capitularia-index-php" title="Permalink to this heading">¶</a></h2>
 <p>Template for single posts or multiple excerpts.</p>
 <span class="target" id="module-themes.Capitularia.page"></span></section>
 <section id="themes-capitularia-page-php">
-<h2><a class="toc-backref" href="#id8">themes/Capitularia/page.php</a><a class="headerlink" href="#themes-capitularia-page-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">themes/Capitularia/page.php</a><a class="headerlink" href="#themes-capitularia-page-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Theme page.php file</p>
 <span class="target" id="module-themes.Capitularia.page_blank"></span></section>
 <section id="themes-capitularia-page-blank-php">
-<h2><a class="toc-backref" href="#id9">themes/Capitularia/page_blank.php</a><a class="headerlink" href="#themes-capitularia-page-blank-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">themes/Capitularia/page_blank.php</a><a class="headerlink" href="#themes-capitularia-page-blank-php" title="Permalink to this heading">¶</a></h2>
 <p>Template Name: Blank Page (only header and footer)</p>
 <p>Capitularia Theme page_blank.php file</p>
 <span class="target" id="module-themes.Capitularia.page_no-sidebar"></span></section>
 <section id="themes-capitularia-page-no-sidebar-php">
-<h2><a class="toc-backref" href="#id10">themes/Capitularia/page_no-sidebar.php</a><a class="headerlink" href="#themes-capitularia-page-no-sidebar-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">themes/Capitularia/page_no-sidebar.php</a><a class="headerlink" href="#themes-capitularia-page-no-sidebar-php" title="Permalink to this heading">¶</a></h2>
 <p>Template Name: Page Without Sidebar</p>
 <p>Capitularia Theme page_no-sidebar.php file</p>
 <span class="target" id="module-themes.Capitularia.phpinfo"></span></section>
 <section id="themes-capitularia-phpinfo-php">
-<h2><a class="toc-backref" href="#id11">themes/Capitularia/phpinfo.php</a><a class="headerlink" href="#themes-capitularia-phpinfo-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">themes/Capitularia/phpinfo.php</a><a class="headerlink" href="#themes-capitularia-phpinfo-php" title="Permalink to this heading">¶</a></h2>
 <p>Print server info (for debug use only).</p>
 <span class="target" id="module-themes.Capitularia.search"></span></section>
 <section id="themes-capitularia-search-php">
-<h2><a class="toc-backref" href="#id12">themes/Capitularia/search.php</a><a class="headerlink" href="#themes-capitularia-search-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">themes/Capitularia/search.php</a><a class="headerlink" href="#themes-capitularia-search-php" title="Permalink to this heading">¶</a></h2>
 <p>The template for displaying Search Results pages.</p>
 <span class="target" id="module-themes.Capitularia.shortcodes"></span></section>
 <section id="themes-capitularia-shortcodes-php">
-<h2><a class="toc-backref" href="#id13">themes/Capitularia/shortcodes.php</a><a class="headerlink" href="#themes-capitularia-shortcodes-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">themes/Capitularia/shortcodes.php</a><a class="headerlink" href="#themes-capitularia-shortcodes-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Theme shortcodes.php file</p>
 <p>Define actions for various shortcodes.</p>
 <span class="target" id="namespace-\cceh\capitularia\theme"></span><dl class="php function">
@@ -767,16 +797,16 @@ The functions are defined in
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dummy_atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – (unused) The shortocde attributes.</p></li>
 <li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The shortcode content if logged in else the empty string.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -791,16 +821,16 @@ The functions are defined in
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dummy_atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – (unused) The shortocde attributes.</p></li>
 <li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The shortcode content if logged out else the empty string.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -813,16 +843,16 @@ The functions are defined in
 <p>This shortcode wraps the content in a link to the image server if the user is
 logged in.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The shortocde attributes.</p></li>
 <li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The shortcode content wrapped in a link.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -837,15 +867,15 @@ Wordpress turns each status check into one SQL query.  This function reads
 the statuses of all children of a parent page in one SQL query, potentially
 saving hundreds of queries.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The path of the page without leading or trailing slashes.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A dictionary of path =&gt; status which is guaranteed to contain the page’s status if the page exists.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
 </dd>
 </dl>
@@ -856,15 +886,15 @@ saving hundreds of queries.</p>
 <span class="sig-name descname"><span class="pre">if_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">atts</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\if_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find out the status of a page.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The shortocde attributes. status = status, path = path of page</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>if page has that status.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">true</span></code></span></p>
 </dd>
 </dl>
@@ -875,15 +905,15 @@ saving hundreds of queries.</p>
 <span class="sig-name descname"><span class="pre">get_transcribed_in_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">cap_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\get_transcribed_in_cache" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cache a list of all manuscripts with a transcription of capitular cap_id</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>cap_id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The BK-no of the capitular.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>List of manuscripts.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
 </dd>
 </dl>
@@ -900,16 +930,16 @@ saving hundreds of queries.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The shortocde attributes. status = status, path = path of page</p></li>
 <li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The shortcode content if the ms. has that status else the empty string.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -926,16 +956,16 @@ saving hundreds of queries.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The shortocde attributes. status = status, path = path of page</p></li>
 <li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The shortcode content if the ms. doesn’t have that status else the empty string.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -947,15 +977,15 @@ saving hundreds of queries.</p>
 <dd><p>Check if the current user can see a page.</p>
 <p>Check if the user’s permissions are sufficient to see a particular page.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The path of the page.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>if the current user can see the page.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">true</span></code></span></p>
 </dd>
 </dl>
@@ -979,16 +1009,16 @@ the pages in the path attribute.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The shortocde attributes. path = space separated paths of pages</p></li>
 <li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The shortcode content if the user can see the page in path or else the empty string.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -1006,16 +1036,16 @@ of the pages in the path attribute.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The shortocde attributes. path = space separated paths of pages</p></li>
 <li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The shortcode content if the current user cannot see the page in path else the empty string.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -1031,16 +1061,16 @@ in the manuscript with the xml:id.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The shortocde attributes.</p></li>
 <li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The shortcode content if the corresp is transcribed, else the empty string.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -1060,16 +1090,16 @@ representation for the current locale without the time.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The shortocde attributes.</p></li>
 <li><p><strong>dummy_content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content. (empty)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The current date.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -1088,16 +1118,16 @@ representation for the current locale without the time.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dummy_atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – (unused) The shortocde attributes.</p></li>
 <li><p><strong>dummy_content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – (unused) The shortcode content.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The page permalink.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -1112,16 +1142,16 @@ representation for the current locale without the time.</p>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>atts</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The shortocde attributes.</p></li>
 <li><p><strong>dummy_content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The shortcode content. (empty)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A description of how to cite.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -1129,31 +1159,31 @@ representation for the current locale without the time.</p>
 
 <span class="target" id="module-themes.Capitularia.sidebars"></span></section>
 <section id="themes-capitularia-sidebars-php">
-<h2><a class="toc-backref" href="#id14">themes/Capitularia/sidebars.php</a><a class="headerlink" href="#themes-capitularia-sidebars-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">themes/Capitularia/sidebars.php</a><a class="headerlink" href="#themes-capitularia-sidebars-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Theme sidebars.php file</p>
 <p>Register the sidebars for various page types.</p>
 </section>
-<span class="target" id="module-themes-capitularia"><span id="module-themes/capitularia"></span></span><section id="themes-capitularia">
-<h2><a class="toc-backref" href="#id15">themes/capitularia</a><a class="headerlink" href="#themes-capitularia" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-themes-capitularia"></span><section id="themes-capitularia">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">themes/capitularia</a><a class="headerlink" href="#themes-capitularia" title="Permalink to this heading">¶</a></h2>
 <p>File: themes/Capitularia/src/js/admin.js</p>
 <p>This file contains the Javascript for the Capitularia theme Admin side. Dummy file to make webpack happy.</p>
 <p>File: themes/Capitularia/src/js/front.js</p>
 <p>This file contains the Javascript for the Capitularia theme.</p>
 <dl class="js function">
 <dt class="sig sig-object js" id="themes-capitularia.initResetForm">
-<span id="themes/capitularia.initResetForm"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">themes/capitularia</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">initResetForm</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initResetForm" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="n"><span class="pre">themes/capitularia</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">initResetForm</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initResetForm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize reset buttons to reset input and select controls on the parent form.</p>
 </dd></dl>
 
 <dl class="js function">
 <dt class="sig sig-object js" id="themes-capitularia.initFootnoteTooltips">
-<span id="themes/capitularia.initFootnoteTooltips"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">themes/capitularia</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">initFootnoteTooltips</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initFootnoteTooltips" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="n"><span class="pre">themes/capitularia</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">initFootnoteTooltips</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initFootnoteTooltips" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the footnote refs, ie. the ‘*’, to open a popup on mouse hover. The popup contains the footnote text. The popup shall also stay open while the user hovers over the content, so that the user may click on links in the content. Footnotes are done with bootstrap 5.</p>
 </dd></dl>
 
 <dl class="js function">
 <dt class="sig sig-object js" id="themes-capitularia.initLegend">
-<span id="themes/capitularia.initLegend"></span><span class="sig-prename descclassname"><span class="n"><span class="pre">themes/capitularia</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">initLegend</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initLegend" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="n"><span class="pre">themes/capitularia</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">initLegend</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#themes-capitularia.initLegend" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the legend slide-out. Make the legend slide out (and back in) if the user clicks on the respective tab.</p>
 </dd></dl>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TSM Backup &mdash; Capitularia 0.2.1 documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -29,12 +31,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> Capitularia
-            <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Capitularia
+              <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -109,6 +115,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../maintenance/wordpress.html#wordpress-upgrades">Wordpress Upgrades</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../maintenance/logfiles.html">Location of Logfiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#apache-php">Apache / PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-app-server">Python App Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-import-script">Python Import Script</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a><ul>
@@ -133,9 +145,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../vm.html">Capitularia VM</a> &raquo;</li>
-      <li>TSM Backup</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../vm.html">Capitularia VM</a></li>
+      <li class="breadcrumb-item active">TSM Backup</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/vm/backup.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -146,7 +158,7 @@
            <div itemprop="articleBody">
              
   <section id="tsm-backup">
-<span id="backup"></span><h1>TSM Backup<a class="headerlink" href="#tsm-backup" title="Permalink to this headline">¶</a></h1>
+<span id="backup"></span><h1>TSM Backup<a class="headerlink" href="#tsm-backup" title="Permalink to this heading">¶</a></h1>
 <p>The Capitularia VM is backed up to the TSM service offered by the RRZK.
 The node name is: <code class="code docutils literal notranslate"><span class="pre">MPERATHO.CAPITULARIA</span></code> on the server <code class="code docutils literal notranslate"><span class="pre">TSM6</span></code>.</p>
 <p>The full configuration data is in the directory <code class="file docutils literal notranslate"><span class="pre">/opt/tivoli/tsm/client/ba/bin/</span></code>
@@ -157,40 +169,40 @@ published manuscripts before backing up the whole filesystem.  Past dumps are
 kept on a daily, weekly, montly and yearly basis in subdirectories of <code class="file docutils literal notranslate"><span class="pre">/var/backup/</span></code>.</p>
 <p>Logfiles: <code class="file docutils literal notranslate"><span class="pre">/var/log/dsmerror.log</span></code> and <code class="file docutils literal notranslate"><span class="pre">/var/log/dsminstr.log</span></code>.</p>
 <p>To manually start a backup:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo /root/backup.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>/root/backup.sh
 </pre></div>
 </div>
 <p>To backup files or directories:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dsmc selective /var/backup/mysqldump.sql
-sudo dsmc selective /var/backup/
-sudo dsmc selective /var/backup/ -subdir<span class="o">=</span>yes
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dsmc<span class="w"> </span>selective<span class="w"> </span>/var/backup/mysqldump.sql
+sudo<span class="w"> </span>dsmc<span class="w"> </span>selective<span class="w"> </span>/var/backup/
+sudo<span class="w"> </span>dsmc<span class="w"> </span>selective<span class="w"> </span>/var/backup/<span class="w"> </span>-subdir<span class="o">=</span>yes
 </pre></div>
 </div>
 <p>To get a list of backed up files:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dsmc query backup /var/backup/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dsmc<span class="w"> </span>query<span class="w"> </span>backup<span class="w"> </span>/var/backup/
 </pre></div>
 </div>
 <p>To restore a file to the same location:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dsmc restore /var/backup/mysqldump.sql
-sudo dsmc restore /home/joe/deleted_file.txt -latest
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dsmc<span class="w"> </span>restore<span class="w"> </span>/var/backup/mysqldump.sql
+sudo<span class="w"> </span>dsmc<span class="w"> </span>restore<span class="w"> </span>/home/joe/deleted_file.txt<span class="w"> </span>-latest
 </pre></div>
 </div>
 <p>To restore a file to a different location:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dsmc restore /var/backup/mysqldump.sql /var/backup/mysqldump_copy.sql
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dsmc<span class="w"> </span>restore<span class="w"> </span>/var/backup/mysqldump.sql<span class="w"> </span>/var/backup/mysqldump_copy.sql
 </pre></div>
 </div>
 <section id="update">
-<h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<h2>Update<a class="headerlink" href="#update" title="Permalink to this heading">¶</a></h2>
 <p>To manually update the TSM client (replace 8.1.15.1 with the new version):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget http://ftp.software.ibm.com/storage/tivoli-storage-management/patches/client/v8r1/Linux/LinuxX86_DEB/v8115/8.1.15.1-TIV-TSMBAC-LinuxX86_DEB.tar
-tar -xvf <span class="m">8</span>.1.15.1-TIV-TSMBAC-LinuxX86_DEB.tar
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>http://ftp.software.ibm.com/storage/tivoli-storage-management/patches/client/v8r1/Linux/LinuxX86_DEB/v8115/8.1.15.1-TIV-TSMBAC-LinuxX86_DEB.tar
+tar<span class="w"> </span>-xvf<span class="w"> </span><span class="m">8</span>.1.15.1-TIV-TSMBAC-LinuxX86_DEB.tar
 
-sudo dpkg -i tivsm-api64.amd64.deb
-sudo dpkg -i tivsm-ba.amd64.deb
-sudo dpkg -i tivsm-apicit.amd64.deb
-sudo dpkg -i tivsm-bacit.amd64.deb
-sudo systemctl restart dsmcad.service
-sudo systemctl status dsmcad.service
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>tivsm-api64.amd64.deb
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>tivsm-ba.amd64.deb
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>tivsm-apicit.amd64.deb
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>tivsm-bacit.amd64.deb
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>dsmcad.service
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>dsmcad.service
 </pre></div>
 </div>
 <div class="admonition seealso">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Library &mdash; Capitularia 0.2.1 documentation</title>
@@ -16,7 +16,9 @@
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -29,12 +31,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> Capitularia
-            <img src="../../../../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Capitularia
+              <img src="../../../../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -109,6 +115,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../maintenance/wordpress.html#wordpress-upgrades">Wordpress Upgrades</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../maintenance/logfiles.html">Location of Logfiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../maintenance/logfiles.html#apache-php">Apache / PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../maintenance/logfiles.html#python-app-server">Python App Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../maintenance/logfiles.html#python-import-script">Python Import Script</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting</a><ul>
@@ -133,12 +145,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../vm.html">Capitularia VM</a> &raquo;</li>
-          <li><a href="../../../apache.html">Apache Web Server</a> &raquo;</li>
-          <li><a href="../../wordpress-custom.html">Wordpress Customizations</a> &raquo;</li>
-          <li><a href="../plugins.html">Wordpress Plugins</a> &raquo;</li>
-      <li>Library</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../vm.html">Capitularia VM</a></li>
+          <li class="breadcrumb-item"><a href="../../../apache.html">Apache Web Server</a></li>
+          <li class="breadcrumb-item"><a href="../../wordpress-custom.html">Wordpress Customizations</a></li>
+          <li class="breadcrumb-item"><a href="../plugins.html">Wordpress Plugins</a></li>
+      <li class="breadcrumb-item active">Library</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/vm/apache/wordpress/plugins/lib.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -149,17 +161,17 @@
            <div itemprop="articleBody">
              
   <section id="library">
-<span id="id1"></span><h1>Library<a class="headerlink" href="#library" title="Permalink to this headline">¶</a></h1>
-<div class="contents local topic" id="contents">
+<span id="id1"></span><h1>Library<a class="headerlink" href="#library" title="Permalink to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#plugins-cap-lib-cap-lib-php" id="id2">plugins/cap-lib/cap-lib.php</a></p></li>
 <li><p><a class="reference internal" href="#plugins-cap-lib-class-settings-page-php" id="id3">plugins/cap-lib/class-settings-page.php</a></p></li>
 <li><p><a class="reference internal" href="#plugins-cap-lib-functions-php" id="id4">plugins/cap-lib/functions.php</a></p></li>
 <li><p><a class="reference internal" href="#plugins-lib" id="id5">plugins/lib</a></p></li>
 </ul>
-</div>
+</nav>
 <span class="target" id="module-plugins.cap-lib.cap-lib"></span><section id="plugins-cap-lib-cap-lib-php">
-<h2><a class="toc-backref" href="#id2">plugins/cap-lib/cap-lib.php</a><a class="headerlink" href="#plugins-cap-lib-cap-lib-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">plugins/cap-lib/cap-lib.php</a><a class="headerlink" href="#plugins-cap-lib-cap-lib-php" title="Permalink to this heading">¶</a></h2>
 <p>Plugin Name: Capitularia Library
 Plugin URI:
 Description: Library of functions for Capitularia plugins. (REQUIRED)
@@ -197,7 +209,7 @@ duplicated.</p>
 
 <span class="target" id="module-plugins.cap-lib.class-settings-page"></span></section>
 <section id="plugins-cap-lib-class-settings-page-php">
-<h2><a class="toc-backref" href="#id3">plugins/cap-lib/class-settings-page.php</a><a class="headerlink" href="#plugins-cap-lib-class-settings-page-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">plugins/cap-lib/class-settings-page.php</a><a class="headerlink" href="#plugins-cap-lib-class-settings-page-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Library Settings Page</p>
 <span class="target" id="namespace-\cceh\capitularia\lib"></span><dl class="php class">
 <dt class="sig sig-object php" id="\cceh\capitularia\lib\Settings_Page">
@@ -217,7 +229,7 @@ Wordpress to the validation function and stored in the database all in
 <em>one</em> row.</p>
 <p>See: <a class="reference external" href="http://planetozh.com/blog/2009/05/handling-plugins-options-in-wordpress-28-with-register_setting/">http://planetozh.com/blog/2009/05/handling-plugins-options-in-wordpress-28-with-register_setting/</a> Blog post: how to store all plugin options into one database row.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref php php-class docutils literal notranslate"><span class="pre">cceh\capitularia\lib\Settings_Page</span></code></p>
 </dd>
 </dl>
@@ -228,7 +240,7 @@ Wordpress to the validation function and stored in the database all in
 <span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\Settings_Page::display" title="Permalink to this definition">¶</a></dt>
 <dd><p>Output the Settings page.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -239,7 +251,7 @@ Wordpress to the validation function and stored in the database all in
 <span class="sig-name descname"><span class="pre">on_options_section_general</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\Settings_Page::on_options_section_general" title="Permalink to this definition">¶</a></dt>
 <dd><p>Output the ‘general’ section.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -248,9 +260,9 @@ Wordpress to the validation function and stored in the database all in
 <dl class="php method">
 <dt class="sig sig-object php" id="\cceh\capitularia\lib\Settings_Page::on_options_field_afs">
 <span class="sig-name descname"><span class="pre">on_options_field_afs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\Settings_Page::on_options_field_afs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Output the AFS option field with its description.</p>
+<dd><p>Output the FS option field with its description.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -261,7 +273,7 @@ Wordpress to the validation function and stored in the database all in
 <span class="sig-name descname"><span class="pre">on_options_field_api</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\Settings_Page::on_options_field_api" title="Permalink to this definition">¶</a></dt>
 <dd><p>Output the API option field with its description.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -272,15 +284,15 @@ Wordpress to the validation function and stored in the database all in
 <span class="sig-name descname"><span class="pre">sanitize_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\Settings_Page::sanitize_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sanitize a field that should contain a path.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The path to sanitize</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Sanitized path without trailing slash.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -294,15 +306,15 @@ Wordpress to the validation function and stored in the database all in
 database row.  This makes validation somewhat more difficult.</p>
 <p>See: cceh\capitularia\lib\__construct()</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>options</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Array of key, value: the options as entered on the form.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Array containing the validated options</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
 </dd>
 </dl>
@@ -312,7 +324,7 @@ database row.  This makes validation somewhat more difficult.</p>
 
 <span class="target" id="module-plugins.cap-lib.functions"></span></section>
 <section id="plugins-cap-lib-functions-php">
-<h2><a class="toc-backref" href="#id4">plugins/cap-lib/functions.php</a><a class="headerlink" href="#plugins-cap-lib-functions-php" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">plugins/cap-lib/functions.php</a><a class="headerlink" href="#plugins-cap-lib-functions-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Library functions.</p>
 <span class="target" id="namespace-\cceh\capitularia\lib"></span><dl class="php const">
 <dt class="sig sig-object php" id="\cceh\capitularia\lib\NONCE_SPECIAL_STRING">
@@ -333,15 +345,15 @@ database row.  This makes validation somewhat more difficult.</p>
 <span class="sig-name descname"><span class="pre">ns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">function_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\ns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add current namespace</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>function_name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The class or function name without namespace</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Name with namespace</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -352,12 +364,12 @@ database row.  This makes validation somewhat more difficult.</p>
 <span class="sig-name descname"><span class="pre">add_nopriv_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">action</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\add_nopriv_action" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an AJAX action on both the admin and the front side.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>action</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The ajax wp_ajax_$action</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -370,15 +382,15 @@ database row.  This makes validation somewhat more difficult.</p>
 <p>Make a key that sorts the numbers in strings in a sensible way, eg. (BK1, BK2,
 BK10), or (paris-bn-lat-4626, paris-bn-lat-18238).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>s</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – Any string</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The key to sort with</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -390,7 +402,7 @@ BK10), or (paris-bn-lat-4626, paris-bn-lat-18238).</p>
 <dd><p>AJAX endpoint to get the API server endpoint</p>
 <p>Send JSON response with the URL to talk directly to the API server.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -402,12 +414,12 @@ BK10), or (paris-bn-lat-4626, paris-bn-lat-18238).</p>
 <dd><p>AJAX endpoint to query user capabilities</p>
 <p>Sends a JSON response.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>cap</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The capability to query, eg. ‘read_private_pages’.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -421,7 +433,7 @@ BK10), or (paris-bn-lat-4626, paris-bn-lat-18238).</p>
 API server calls this function to update its database.</p>
 <p>Output: JSON list of visible xml:ids</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -436,7 +448,7 @@ manuscripts.</p>
 ‘private’ return all privately published manuscripts.  These two sets are
 distinct.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>status</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – <ul>
 <li><p>Include all manuscripts with this visibility.</p></li>
@@ -444,7 +456,7 @@ distinct.</p>
 </p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string[]</span></code></span></p>
 </dd>
 </dl>
@@ -455,16 +467,16 @@ distinct.</p>
 <span class="sig-name descname"><span class="pre">api_json_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">endpoint</span></em>, <em class="sig-param"><span class="pre">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\api_json_request" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a json request to the configured API.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>endpoint</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – Endpoint relative to configured root.</p></li>
 <li><p><strong>params</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – URL parameters to send.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The decoded JSON response.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -475,7 +487,7 @@ distinct.</p>
 <span class="sig-name descname"><span class="pre">save_button</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\save_button" title="Permalink to this definition">¶</a></dt>
 <dd><p>Output a localized ‘save changes’ button</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -486,16 +498,16 @@ distinct.</p>
 <span class="sig-name descname"><span class="pre">get_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name</span></em>, <em class="sig-param"><span class="pre">default</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\get_opt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get an option from Wordpress.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The name of the option.</p></li>
 <li><p><strong>default</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The default value.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The option value</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -506,16 +518,16 @@ distinct.</p>
 <span class="sig-name descname"><span class="pre">urljoin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">url1</span></em>, <em class="sig-param"><span class="pre">url2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\urljoin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Join two paths.  The second one may be absolute or relative.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>url1</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The first path.</p></li>
 <li><p><strong>url2</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The second path.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>and url2 joined by exactly one slash.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">cceh\capitularia\lib\url1</span></code></span></p>
 </dd>
 </dl>
@@ -528,15 +540,15 @@ distinct.</p>
 <p>Return the public uri where manifest items distributed by the Capitularia
 theme an plugins are found.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The manifest key.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The uri</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -549,10 +561,10 @@ theme an plugins are found.</p>
 <p>Return the public uri where the stock images distributed by the Capitularia
 theme an plugins are found.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The uri</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -565,10 +577,10 @@ theme an plugins are found.</p>
 <p>Return the local path where the stock images distributed by the Capitularia
 theme an plugins are found.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The path</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -579,15 +591,15 @@ theme an plugins are found.</p>
 <span class="sig-name descname"><span class="pre">get_image_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">key</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\get_image_uri" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the url of an image from a manifest key.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The image key in manifest.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The public url of the image.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -600,10 +612,10 @@ theme an plugins are found.</p>
 <p>Return the local path where the language files distributed by the Capitularia
 theme an plugins are found.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The path</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
 </dd>
 </dl>
@@ -615,15 +627,15 @@ theme an plugins are found.</p>
 <dd><p>Load the PHP translations for a text domain.</p>
 <p>Load a .mo file into the text domain $domain.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>domain</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The text domain.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True on success, false on failure.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
@@ -635,16 +647,16 @@ theme an plugins are found.</p>
 <dd><p>Load the Javascript translations for a text domain.</p>
 <p>Load a .json file into the Javascript text domain $domain.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The manifest key used to register the script.</p></li>
 <li><p><strong>domain</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The text domain.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True on success, false on failure.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
@@ -655,16 +667,16 @@ theme an plugins are found.</p>
 <span class="sig-name descname"><span class="pre">enqueue_from_manifest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">key</span></em>, <em class="sig-param"><span class="pre">dependencies</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\enqueue_from_manifest" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enqueue scripts or stylesheets from the webpack manifest.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>key</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The manifest key, eg. ‘cap-collation-front.js’.</p></li>
 <li><p><strong>dependencies</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string[]</span></code></span>) – The dependencies, eg. [‘vendor.js’].</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True on success.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 </dl>
@@ -675,7 +687,7 @@ theme an plugins are found.</p>
 <span class="sig-name descname"><span class="pre">on_enqueue_scripts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\on_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enqueue the frontpage script.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -686,7 +698,7 @@ theme an plugins are found.</p>
 <span class="sig-name descname"><span class="pre">on_admin_enqueue_scripts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\on_admin_enqueue_scripts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enqueue the admin page script.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -697,7 +709,7 @@ theme an plugins are found.</p>
 <span class="sig-name descname"><span class="pre">check_ajax_referrer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\check_ajax_referrer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the AJAX nonce.  Die if invalid.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -708,7 +720,7 @@ theme an plugins are found.</p>
 <span class="sig-name descname"><span class="pre">on_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\lib\on_init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the plugin.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -720,7 +732,7 @@ theme an plugins are found.</p>
 <dd><p>Initialize the settings page.</p>
 <p>First hook called on every admin page.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -733,7 +745,7 @@ theme an plugins are found.</p>
 <p>Add a menu entry for the settings (options) page to the Wordpress
 settings menu.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
 </dd>
 </dl>
@@ -745,23 +757,23 @@ settings menu.</p>
 <dd><p>Add a link to our settings page to the plugins admin dashboard.</p>
 <p>Adds hack value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>links</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The old links</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The augmented links</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
 
 </section>
-<span class="target" id="module-plugins-lib"><span id="module-plugins/lib"></span></span><section id="plugins-lib">
-<h2><a class="toc-backref" href="#id5">plugins/lib</a><a class="headerlink" href="#plugins-lib" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-plugins-lib"></span><section id="plugins-lib">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">plugins/lib</a><a class="headerlink" href="#plugins-lib" title="Permalink to this heading">¶</a></h2>
 <p>File: plugins/cap-lib/src/js/front.js</p>
 <p>An empty script for Wordpress to localize.</p>
 </section>

@@ -8,3 +8,4 @@ Maintenance
    :maxdepth: 2
 
    maintenance/wordpress
+   maintenance/logfiles
