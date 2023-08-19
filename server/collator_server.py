@@ -105,7 +105,7 @@ j=i
     if n
 ]
 
-RE_WHITESPACE_EQUIV_CHARS = re.compile("[.,:;!?-_*/]")
+RE_WHITESPACE_EQUIV_CHARS = re.compile("[-.,:;!?_*/]")
 
 
 def normalize_with_patterns(patterns, text, whole_words=False):

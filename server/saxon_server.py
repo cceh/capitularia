@@ -83,28 +83,30 @@ app = SaxonBlueprint("saxon", __name__)
 
 XSLT_CACHE: dict[str, Tuple[float, PyXsltExecutable]] = dict()
 
-def get_cached_stylesheet(xslt_path: str) -> PyXsltExecutable:
+def get_cached_stylesheet(stylesheet_path: str) -> PyXsltExecutable:
     """Compiles and caches a stylesheet
 
     On retrieval compares the mtime of the cached stylesheet with the mtime of the file
     on disk and re-compiles if necessary.
 
-    :param str xslt_path: the stylesheet path relative to the configured STYLESHEET_FOLDER.
+    :param str stylesheet_path: the stylesheet path relative to the configured STYLESHEET_FOLDER.
     """
 
     sheet_folder = os.path.expanduser(current_app.config["STYLESHEET_FOLDER"])
-    xslt_path = os.path.abspath(os.path.join(sheet_folder, xslt_path))
+    sheet_path = os.path.normpath(os.path.join(sheet_folder, stylesheet_path))
+    if not sheet_path.startswith(sheet_folder):
+        raise OSError(f"Invalid stylesheet: {stylesheet_path}")
 
-    dt_disk = os.path.getmtime(xslt_path) # throws OSError
-    if xslt_path in XSLT_CACHE:
-        dt_cached, executable = XSLT_CACHE[xslt_path]
+    dt_disk = os.path.getmtime(sheet_path) # throws OSError on missing file
+    if sheet_path in XSLT_CACHE:
+        dt_cached, executable = XSLT_CACHE[sheet_path]
         if dt_disk <= dt_cached:
-            current_app.logger.info(f"Return cached stylesheet: {xslt_path}")
+            current_app.logger.info(f"Return cached stylesheet: {sheet_path}")
             return executable
 
-    executable = XSLT_PROC.compile_stylesheet(stylesheet_file=xslt_path)
-    XSLT_CACHE[xslt_path] = (dt_disk, executable)
-    current_app.logger.info(f"Compiled stylesheet: {xslt_path}")
+    executable = XSLT_PROC.compile_stylesheet(stylesheet_file=sheet_path)
+    XSLT_CACHE[sheet_path] = (dt_disk, executable)
+    current_app.logger.info(f"Compiled stylesheet: {sheet_path}")
 
     return executable
 
