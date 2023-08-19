@@ -150,7 +150,7 @@ class Highlighter
     /**
      * Highlight the search terms in the post.
      *
-     * Highlight the full post if it we came through the search page.  We use
+     * Highlight the full post if we came through the search page.  We use
      * the query string in the HTTP referrer to highlight the content.
      *
      * The naive approach:

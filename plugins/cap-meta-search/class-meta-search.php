@@ -102,15 +102,14 @@ class MetaSearch
     public function on_get_the_excerpt ()
     {
         $id     = get_the_ID ();
-        $href   = get_the_permalink ();
+        $href   = apply_filters ('cap_meta_search_the_permalink', get_the_permalink ());
         $xml_id = get_post_meta ($id, 'tei-xml-id', true);
 
         $excerpts = [];
         foreach ($this->json as $s) {
             if ($s['ms_id'] === $xml_id && $s['snippet']) {
-                $hr      = $s['cap_id'] . ($s['chapter'] ? "&#x2009;c.&#x2009;{$s['chapter']}" : '');
-                $locus   = $s['ms_id'] . '-' . $s['locus'];
-                $corresp = $s['cap_id'] . ($s['chapter'] ? "_{$s['chapter']}" : '');
+                $hr    = $s['cap_id'] . ($s['chapter'] ? "&#x2009;c.&#x2009;{$s['chapter']}" : '');
+                $locus = $s['locus'];
                 $excerpts[] = "<li class='snippet'><a href='$href#$locus' class='excerpt-corresp'>{$hr}:</a> {$s['snippet']}</li>";
             }
         }
