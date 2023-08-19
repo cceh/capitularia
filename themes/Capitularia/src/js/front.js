@@ -40,12 +40,13 @@ function initResetForm () {
 
 function initFootnoteTooltips () {
     $ ('a.annotation-ref').each (function () {
+        const that = this;
         const tt = new Tooltip (this, {
             'trigger'   : 'manual',
             'placement' : 'top',
             'html'      : true,
             'title'     : function () {
-                const href = $ (this).attr ('href');
+                const href = $ (that).attr ('href');
                 return $ (href).closest ('div.annotation-content').prop ('outerHTML');
             },
         });
@@ -94,9 +95,9 @@ function initLegend () {
 }
 
 function initSidebarToc () {
-    var sidebar = $ ('div.sidebar-toc');
-    var top = parseInt (sidebar.css ('top'), 10);
-    var height = $ (window).height () - (2 * top) + 'px';
+    const sidebar = $ ('div.sidebar-toc');
+    const top = parseInt (sidebar.css ('top'), 10);
+    const height = $ (window).height () - (2 * top) + 'px';
     sidebar.css ('max-height', height);
     sidebar.closest ('li').css ('height', '100%');
     sidebar.closest ('ul').css ('height', '100%');

@@ -6,229 +6,103 @@
  * OpenSans Font
  */
 
+@import "@fontsource/open-sans/300.css";
+@import "@fontsource/open-sans/400.css";
+@import "@fontsource/open-sans/600.css";
+@import "@fontsource/open-sans/700.css";
+@import "@fontsource/open-sans/800.css";
+@import "@fontsource/open-sans/300-italic.css";
+@import "@fontsource/open-sans/400-italic.css";
+@import "@fontsource/open-sans/600-italic.css";
+@import "@fontsource/open-sans/700-italic.css";
+@import "@fontsource/open-sans/800-italic.css";
+
 @mixin light {
-    font-family: 'Open Sans','Helvetica','Arial','sans-serif','sans';
+    font-family: 'Open Sans','Helvetica','Arial',sans-serif;
     font-weight: 300;
     font-style: normal;
 }
 
 @mixin regular {
-    font-family: 'Open Sans','Helvetica','Arial','sans-serif','sans';
+    font-family: 'Open Sans','Helvetica','Arial',sans-serif;
     font-weight: 400;
     font-style: normal;
 }
 
 @mixin semibold {
-    font-family: 'Open Sans','Helvetica','Arial','sans-serif','sans';
+    font-family: 'Open Sans','Helvetica','Arial',sans-serif;
     font-weight: 600;
     font-style: normal;
 }
 
 @mixin bold {
-    font-family: 'Open Sans','Helvetica','Arial','sans-serif','sans';
+    font-family: 'Open Sans','Helvetica','Arial',sans-serif;
     font-weight: 700;
     font-style: normal;
 }
 
 @mixin extrabold {
-    font-family: 'Open Sans','Helvetica','Arial','sans-serif','sans';
+    font-family: 'Open Sans','Helvetica','Arial',sans-serif;
     font-weight: 800;
     font-style: normal;
 }
 
 @mixin light-italic {
-    font-family: 'Open Sans','Helvetica','Arial','sans-serif','sans';
+    font-family: 'Open Sans','Helvetica','Arial',sans-serif;
     font-weight: 300;
     font-style: italic;
 }
 
 @mixin italic {
-    font-family: 'Open Sans','Helvetica','Arial','sans-serif','sans';
+    font-family: 'Open Sans','Helvetica','Arial',sans-serif;
     font-weight: 400;
     font-style: italic;
 }
 
 @mixin semibold-italic {
-    font-family: 'Open Sans','Helvetica','Arial','sans-serif','sans';
+    font-family: 'Open Sans','Helvetica','Arial',sans-serif;
     font-weight: 600;
     font-style: italic;
 }
 
 @mixin bold-italic {
-    font-family: 'Open Sans','Helvetica','Arial','sans-serif','sans';
+    font-family: 'Open Sans','Helvetica','Arial',sans-serif;
     font-weight: 700;
     font-style: italic;
 }
 
 @mixin extrabold-italic {
-    font-family: 'Open Sans','Helvetica','Arial','sans-serif','sans';
+    font-family: 'Open Sans','Helvetica','Arial',sans-serif;
     font-weight: 800;
     font-style: italic;
 }
 
 /*
- * The woff2 version lacks U+02D9 and maybe others. Use the woff version instead
- * which is simpler to use too.
- */
-
-$os-font-path: '@fontsource/open-sans/files';
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 300;
-  src: url('#{$os-font-path}/open-sans-all-300-normal.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-  src: url('#{$os-font-path}/open-sans-all-400-normal.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 600;
-  src: url('#{$os-font-path}/open-sans-all-600-normal.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 700;
-  src: url('#{$os-font-path}/open-sans-all-700-normal.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 800;
-  src: url('#{$os-font-path}/open-sans-all-800-normal.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-display: swap;
-  font-weight: 300;
-  src: url('#{$os-font-path}/open-sans-all-300-italic.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-display: swap;
-  font-weight: 400;
-  src: url('#{$os-font-path}/open-sans-all-400-italic.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-display: swap;
-  font-weight: 600;
-  src: url('#{$os-font-path}/open-sans-all-600-italic.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-display: swap;
-  font-weight: 700;
-  src: url('#{$os-font-path}/open-sans-all-700-italic.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-display: swap;
-  font-weight: 800;
-  src: url('#{$os-font-path}/open-sans-all-800-italic.woff') format('woff');
-}
-
-/*
  * Fontawesome Font
- *
- * This module overrides Fontawesome not to webpack the eot and svg versions.
- * Copied from these files:
- *
- *   @import '~@fortawesome/fontawesome-free/scss/solid';
- *   @import '~@fortawesome/fontawesome-free/scss/regular';
- *
  */
 
-$fa-font-path:    '@fortawesome/fontawesome-free/webfonts';
-$fa-font-display: 'block';
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 
-/*!
- * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
- * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- */
+@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
 
-@font-face {
-    font-family: 'Font Awesome 5 Free';
-    font-style: normal;
-    font-weight: 900;
-    font-display: $fa-font-display;
-    src: url('#{$fa-font-path}/fa-solid-900.woff2') format('woff2'),
-         url('#{$fa-font-path}/fa-solid-900.ttf') format('truetype');
+@import '@fortawesome/fontawesome-free/scss/regular.scss';
+@import '@fortawesome/fontawesome-free/scss/solid.scss';
+@import '@fortawesome/fontawesome-free/scss/brands.scss';
+
+@mixin far {
+    font-family: $fa-style-family;
+    font-weight: 400;
 }
 
-.fa,
-%fa,
-.fas,
-%fas {
-    font-family: 'Font Awesome 5 Free';
+@mixin fas {
+    font-family: $fa-style-family;
     font-weight: 900;
 }
 
-/*!
- * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
- * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- */
-
-@font-face {
-    font-family: 'Font Awesome 5 Free';
-    font-style: normal;
-    font-weight: 400;
-    font-display: $fa-font-display;
-    src: url('#{$fa-font-path}/fa-regular-400.woff2') format('woff2'),
-         url('#{$fa-font-path}/fa-regular-400.ttf') format('truetype');
+@mixin fab {
+    font-family: 'Font Awesome 6 Brands';
+    font-weight: 900;
 }
-
-.far,
-%far {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 400;
-}
-
-/*!
- * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
- * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- */
-
-@font-face {
-    font-family: 'Font Awesome 5 Brands';
-    font-style: normal;
-    font-weight: 400;
-    font-display: $fa-font-display;
-    src: url('#{$fa-font-path}/fa-brands-400.woff2') format('woff2'),
-         url('#{$fa-font-path}/fa-brands-400.ttf') format('truetype');
-}
-
-.fab,
-%fab {
-    font-family: 'Font Awesome 5 Brands';
-    font-weight: 400;
-}
-
 
 /*
  * Wordpress Dashicons Font
@@ -239,20 +113,6 @@ $fa-font-display: 'block';
     line-height: 1;
 }
 
-@mixin far {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 400;
-}
-
-@mixin fas {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-}
-
-@mixin fab {
-    font-family: 'Font Awesome 5 Brands';
-    font-weight: 900;
-}
 
 /* Other Fonts */
 
