@@ -371,7 +371,7 @@ class File_List_Table extends \WP_List_Table
             $classes = ['cap-page-generator-action'];
             if ($action == 'delete') {
                 // if 'delete' make it red
-                $classes[] = submitdelete;
+                $classes[] = 'submitdelete';
             }
             $class = join (' ', $classes);
             $actions[$action] = "<a class=\"{$class}\" data-action=\"{$action}\">{$caption}</a>";
