@@ -46,6 +46,7 @@
  */
 
 import $ from 'jquery';
+import { escape } from 'lodash';
 
 /** The Wordpress Text Domain of the plugin. */
 const LANG = 'cap-dynamic-menu';
@@ -72,7 +73,7 @@ function init_dynamic_menues () {
                          || '//h3[@id]§//h4[@id]§//h5[@id]§//h6[@id]')
         // undo the bloody wp_texturizer that even messes with html data attributes
             .replace (/[′’]/g, "'")
-            .replace (/[”]/g,  '"');
+            .replace (/”/g,  '"');
         const wp_classes = (menu.parentNode.getAttribute ('class') || '').trim ().split (' ');
         const level_attr = 'data-cap-level-' + menu_id;
 
@@ -104,17 +105,17 @@ function init_dynamic_menues () {
 
         for (const n of document.querySelectorAll (`[${level_attr}]`)) {
             const id      = 'cap-menu-item-id-' + last_id++;
-            const href    = n.hasAttribute ('id') ? '#' + n.getAttribute ('id') : n.getAttribute ('href');
+            const href    = escape (n.hasAttribute ('id') ? '#' + n.getAttribute ('id') : n.getAttribute ('href'));
             const level   = Number (n.getAttribute (level_attr));
             let   caption = n.getAttribute ('data-cap-dyn-menu-caption');
-            const title   = caption.replace (/\s+/g, ' ').trim ();
+            const title   = escape (caption.replace (/\s+/g, ' ').trim ());
 
             // optionally shorten nested menu entries (eg. BK 123 c. 2)
             if (level > 1 && n.hasAttribute ('data-fold-menu-entry')) {
                 const parent_caption = last_node_on_level[level - 1].getAttribute ('data-cap-dyn-menu-caption');
                 if (caption && parent_caption && caption !== parent_caption
                         && caption.indexOf (parent_caption) === 0) {
-                    caption = caption.substr (parent_caption.length).trim ();
+                    caption = caption.substring (parent_caption.length).trim ();
                 }
             }
 
@@ -148,13 +149,14 @@ function init_dynamic_menues () {
                 a.push ('<ul>');
             }
 
-            a.push (`<li id="${id}" class="${classes.join (' ')}">`);
+            a.push (`<li id="${id}" class="${escape (classes.join (' '))}">`);
+            caption = escape (caption);
             if (href) {
                 a.push (`<a href="${href}" title="${title}">${caption}</a>`);
 
                 // horrible hack for linebreak checkbox, close your eyes
                 if (href === '#editorial-preface') {
-                    const message = $pgettext ('Checkbox label', 'Show line breaks');
+                    const message = escape ($pgettext ('Checkbox label', 'Show line breaks'));
 
                     a.push (`<a class="ssdone">
 <div class="form-check">
