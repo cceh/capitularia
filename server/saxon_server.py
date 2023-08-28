@@ -95,9 +95,15 @@ def get_cached_stylesheet(stylesheet_path: str) -> PyXsltExecutable:
     sheet_folder = os.path.expanduser(current_app.config["STYLESHEET_FOLDER"])
     sheet_path = os.path.normpath(os.path.join(sheet_folder, stylesheet_path))
     if not sheet_path.startswith(sheet_folder):
-        raise OSError(f"Invalid stylesheet: {stylesheet_path}")
+        current_app.logger.error("Invalid stylesheet path: %s", stylesheet_path)
+        raise OSError()
 
-    dt_disk = os.path.getmtime(sheet_path) # throws OSError on missing file
+    try:
+        dt_disk = os.path.getmtime(sheet_path) # throws OSError on missing file
+    except OSError:
+        current_app.logger.error("Stylesheet not found: %s", stylesheet_path)
+        raise
+
     if sheet_path in XSLT_CACHE:
         dt_cached, executable = XSLT_CACHE[sheet_path]
         if dt_disk <= dt_cached:
@@ -119,14 +125,13 @@ def collate():
     if xslt is None:
         abort(400, "Missing parameter: xslt")
 
-    xml = request.get_data().decode("UTF-8")
-
     try:
         executable = get_cached_stylesheet(xslt)
-        document = SAXON_PROC.parse_xml(xml_text=xml)
+    except OSError:
+        abort(400, f"File not found: {xslt}")
 
-        output = executable.transform_to_string(xdm_node=document)
-        return flask.make_response(output, 200, { "Content-Type" : "application/xml" })
+    xml = request.get_data().decode("UTF-8")
+    document = SAXON_PROC.parse_xml(xml_text=xml)
+    output = executable.transform_to_string(xdm_node=document)
 
-    except (PySaxonApiError, OSError) as err:
-        return flask.make_response(f"Error: {str(err)}", 500, { "Content-Type" : "text/plain" })
+    return flask.make_response(output, 200, { "Content-Type" : "application/xml" })
