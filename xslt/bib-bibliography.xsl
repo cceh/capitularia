@@ -40,6 +40,8 @@ Target: lists $(CACHE_DIR)/lists/bib.html
 
   <xsl:variable name="vDigitalisatePfad">https://capitularia.uni-koeln.de/cap/publ/bibl</xsl:variable>
 
+  <xsl:variable name="collation">http://www.w3.org/2013/collation/UCA?lang=de;fallback=yes</xsl:variable>
+
   <xsl:variable name="config">
     <root xmlns="http://www.tei-c.org/ns/1.0">
       <section rel_text="Edition">
@@ -191,9 +193,7 @@ Target: lists $(CACHE_DIR)/lists/bib.html
 
         <xsl:variable name="bibls_in_section">
           <xsl:for-each select="$n/biblStruct[note[@type = 'rel_text'][string() = $rel_text]]">
-            <xsl:sort select="*/idno[@short_title]"
-                      collation="http://www.w3.org/2013/collation/UCA?lang=de;fallback=yes" />
-
+            <xsl:sort select="*/idno[@short_title]" collation="{$collation}" />
             <xsl:choose>
               <xsl:when test="$pShow = 'published' and @status = 'published'">
                 <xsl:copy-of select="."/>
@@ -534,7 +534,8 @@ Target: lists $(CACHE_DIR)/lists/bib.html
       <xsl:value-of select="cap:first-letter (.)" />
     </xsl:variable>
 
-    <xsl:if test="$first_letter != cap:first-letter (preceding-sibling::biblStruct[1])">
+    <xsl:if test="compare ($first_letter, cap:first-letter (preceding-sibling::biblStruct[1]),
+                    concat ($collation, ';strength=primary')) != 0">
       <tr class="alpha">
         <th id="{$first_letter}_{$rel_text}">
           <h5><xsl:value-of select="$first_letter" /></h5>
@@ -542,6 +543,7 @@ Target: lists $(CACHE_DIR)/lists/bib.html
       </tr>
       <xsl:text>&#x0a;&#x0a;</xsl:text>
     </xsl:if>
+
     <tr class="bib-{@type}">
       <td>
         <xsl:choose>
