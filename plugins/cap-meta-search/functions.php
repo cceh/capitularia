@@ -28,7 +28,7 @@ function is_meta_search ()
 
 function is_highlight ()
 {
-    $highlight = $_GET[HIGHLIGHT] ?? $_GET['s'];
+    $highlight = $_GET[HIGHLIGHT] ?? $_GET['s'] ?? '';
     return !is_admin () && !empty ($highlight);
 }
 
@@ -136,7 +136,7 @@ function on_query_vars ($vars)
 
 function on_cap_meta_search_the_permalink ($permalink)
 {
-    $highlight = $_GET['fulltext'] ?? $_GET['s'];
+    $highlight = $_GET['fulltext'] ?? $_GET['s'] ?? '';
     if (!empty ($highlight)) {
         return esc_attr (add_query_arg (HIGHLIGHT, $highlight, $permalink));
     }
