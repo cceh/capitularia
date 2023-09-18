@@ -150,7 +150,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Capitularia'
-copyright = '2018-22 CCeH - Licensed under the GNU GPL v3 or later'
+copyright = '2018-23 CCeH - Licensed under the GNU GPL v3 or later'
 author = 'Marcello Perathoner'
 
 # The version info for the project you're documenting, acts as replacement for

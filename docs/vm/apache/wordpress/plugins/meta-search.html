@@ -320,7 +320,7 @@ the preg separator, eg. #term#u .</p>
 <dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Highlighter::on_the_content">
 <span class="sig-name descname"><span class="pre">on_the_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">content</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Highlighter::on_the_content" title="Permalink to this definition">¶</a></dt>
 <dd><p>Highlight the search terms in the post.</p>
-<p>Highlight the full post if it we came through the search page.  We use
+<p>Highlight the full post if we came through the search page.  We use
 the query string in the HTTP referrer to highlight the content.</p>
 <p>The naive approach:</p>
 <blockquote>
@@ -744,8 +744,8 @@ our widget.</p>
 <dt class="sig sig-object php" id="\cceh\capitularia\meta_search\on_cap_meta_search_the_permalink">
 <span class="sig-name descname"><span class="pre">on_cap_meta_search_the_permalink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">permalink</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\on_cap_meta_search_the_permalink" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the permalink for the search result</p>
-<p>Return a link that will go to the post <em>and</em> highlight the search terms
-if followed.</p>
+<p>Called from the search results page of the Capitularia theme.  Return a link that
+will go to the post <em>and</em> highlight the search terms if followed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -797,7 +797,7 @@ if followed.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-22 CCeH - Licensed under the GNU GPL v3 or later.</p>
+    <p>&#169; Copyright 2018-23 CCeH - Licensed under the GNU GPL v3 or later.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
