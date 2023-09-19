@@ -112,8 +112,7 @@ two strings: *the quick brown fox jumps over the lazy dog* and *sick fox is craz
 .. raw:: html
    :file: ../_static/super-collator-phase1.html
 
-Every cell in the table contains three values, referred to as `D`, `P`, and `Q` in
-Gotoh's paper, and an arrow, like this:
+Every cell in the table contains three values: `D`, `P`, and `Q`, and an arrow, like this:
 
 .. raw:: html
     :align: center
@@ -128,6 +127,12 @@ Gotoh's paper, and an arrow, like this:
    </tr>
    </table>
 
+We define the score `S` for each cell as:
+
+.. math::
+
+    S = \max(D, P, Q)
+
 The grayed cells in the first row and first column are initialized using the *gap start*
 and *gap extension* penalties.  The numbers for each remaining cell are calculated using
 only values from the three cells, to the top-left, the top, and the left, of the current
@@ -135,15 +140,15 @@ cell:
 
 .. math::
 
-   D = \max(D_↖, P_↖, Q_↖) + \mbox{similarity}(word_←, word_↑)
+   D = S_↖ + \mbox{similarity}(word_←, word_↑)
 
 .. math::
 
-   P = \max(D_↑ + openingpenalty, P_↑ + extensionpenalty)
+   P = \max(S_↑ + openingpenalty, P_↑ + extensionpenalty)
 
 .. math::
 
-   Q = \max(D_← + openingpenalty, Q_← + extensionpenalty)
+   Q = \max(S_← + openingpenalty, Q_← + extensionpenalty)
 
 Finally the arrow in the current cell is set to point to that cell which yielded the
 highest of the current cell's `D`, `P`, and `Q` values.
