@@ -463,7 +463,8 @@ function bk_to_permalink ($corresp)
 function siglum_to_permalink ($siglum)
 {
     $params = array (
-        'siglum' => $siglum
+        'siglum' => $siglum,
+        'status' => is_user_logged_in () ? 'private' : 'publish'
     );
     foreach (lib\api_json_request ('/data/manuscripts.json/', $params) as $r) {
         return '/mss/'. $r['ms_id'];
