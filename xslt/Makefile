@@ -143,10 +143,10 @@ $(CACHE_DIR)/last_capit_scrape : $(CAPIT_FILES)
 	$(IMPORT) --cap-list $(CAPIT_FILES)
 	touch "$@"
 
-$(CACHE_DIR)/extracted/%.xml.fulltext.xml.touch : $(CACHE_DIR)/extracted/%.xml
+$(CACHE_DIR)/extracted/%.xml.fulltext.xml.touch : $(CACHE_DIR)/extracted/%.xml $(CACHE_DIR)/last_corpus_scrape
 	$(IMPORT) --extracted $<
 
-$(CACHE_DIR)/collation/%.xml.fulltext.txt.touch : $(CACHE_DIR)/collation/%.xml
+$(CACHE_DIR)/collation/%.xml.fulltext.txt.touch : $(CACHE_DIR)/collation/%.xml $(CACHE_DIR)/last_corpus_scrape
 	$(IMPORT) --fulltext $<
 
 $(CACHE_DIR)/last_geoplaces_scrape : $(GEOPLACES)
