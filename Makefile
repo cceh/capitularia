@@ -30,7 +30,7 @@ deploy_capits:
 	$(RSYNC) capit/ $(PUBL)/capit/
 
 deploy_scripts:
-	$(RSYNC) --exclude='env' scripts $(PUBL)
+	$(RSYNC) --exclude='env' scripts $(HOST_PRJ_DIR)/
 
 deploy_schemas:
 	# $(RSYNC) schemas $(PUBL)/schemata
