@@ -323,6 +323,10 @@
         <title>Manuscripta Mediaevalia</title>
         <caption>MM</caption>
       </item>
+      <item key="mediatheque-jacques-chirac.fr">
+        <title>Médiathèque Jacques-Chirac</title>
+        <caption>Médiathèque Jacques-Chirac</caption>
+      </item>
       <item key=".mgh.de">
         <title>Monumenta Germaniae Historica</title>
         <caption>MGH</caption>
