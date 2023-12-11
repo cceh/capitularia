@@ -46,11 +46,12 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
 
       <xsl:call-template name="hr"/>
 
-      <xsl:if test="text/body//ref[@subtype='com']">
-        <div id="com">
-          <!-- Link zum Artikel: Kapitular des Monats -->
-          <xsl:apply-templates select="text/body//ref[@subtype='com']"/>
-        </div>
+      <xsl:if test="text/body//ref[@subtype]">
+        <!-- Links zum Artikel: Manuskript/Kapitular/Kapitel/Sammlung des Monats -->
+        <xsl:apply-templates select="text/body//ref[@subtype='mom']"/>
+        <xsl:apply-templates select="text/body//ref[@subtype='com']"/>
+        <xsl:apply-templates select="text/body//ref[@subtype='chom']"/>
+        <xsl:apply-templates select="text/body//ref[@subtype='collom']"/>
 
         <xsl:call-template name="hr"/>
       </xsl:if>
