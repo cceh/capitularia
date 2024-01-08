@@ -117,6 +117,7 @@ add_filter ('do_parse_request',                    ns ('on_do_parse_request'), 1
 /* add login url to menu */
 if (!is_admin ()) {
     add_filter ('nav_menu_link_attributes',        ns ('on_nav_menu_link_attributes'), 20, 4);
+    add_filter ('wp_get_nav_menu_items',           ns ('on_wp_get_nav_menu_items' ), 10, 3 );
 }
 
 /* allow SVG uploads */

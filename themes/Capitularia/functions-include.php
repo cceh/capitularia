@@ -530,6 +530,31 @@ function on_do_parse_request ($do_parse, $wp, $extra_query_vars) // phpcs:ignore
 }
 
 /**
+ * Removes the login menu if already logged in.
+ *
+ * This assumes the menu entry is a top-level one with an URL of: #cap_login_menu#
+ *
+ * @param array  $items An array of menu item post objects.
+ * @param object $menu  The menu object.
+ * @param array  $args  An array of arguments used to retrieve menu item objects.
+ *
+ * @return array The modified array of menu item post objects.
+ */
+function on_wp_get_nav_menu_items ($items, $menu, $args) {
+    foreach ($items as $key => $item) {
+        if (isset ($item->url)) {
+            if (strcmp ($item->url, MAGIC_LOGIN) === 0) {
+                if (is_user_logged_in()) {
+                    unset ($items[$key]);
+                }
+            }
+        }
+    }
+    return $items;
+}
+
+
+/**
  * Add dynamic url to login menu.  Remove text from twitter and fb logos.
  *
  * @param array    $atts  The old HTML attributes.
