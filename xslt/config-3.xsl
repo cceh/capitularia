@@ -335,6 +335,10 @@
         <title>The Morgan Library &amp; Museum</title>
         <caption>The Morgan Library &amp; Museum</caption>
       </item>
+      <item key="online-service.nuernberg.de">
+        <title>Stadtbibliothek Nürnberg</title>
+        <caption>Stadtbibliothek Nürnberg</caption>
+      </item>
       <item key="onb.ac.at">
         <title>Österreichische Nationalbibliothek</title>
         <caption>ÖNB</caption>
