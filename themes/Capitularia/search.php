@@ -8,15 +8,20 @@
 
 namespace cceh\capitularia\theme;
 
+require 'class-cap-query.php';
+
 get_header ();
 
 get_main_start ('search-php');
+
+// use our custom query class that collpases whitespace in the search data
+$cap_query = new CapQuery ($wp_query->query);
 
 /*
  * Build the "You searched for ..." message
  */
 
-$n_results = $wp_query->found_posts;
+$n_results = $cap_query->found_posts;
 $your_search = sprintf (
     _n (
         'Your search for: %1$s gave %2$d result.',
@@ -36,7 +41,7 @@ $page_msg = __ ('Page:', 'capitularia');
 $pagination = paginate_links (
     array (
         'current'            => max (1, get_query_var ('paged')),
-        'total'              => $wp_query->max_num_pages,
+        'total'              => $cap_query->max_num_pages,
         'before_page_number' => "<span class='screen-reader-text'>$page_msg </span>",
         'prev_text'          => __ ('« Previous', 'capitularia'),
         'next_text'          => __ ('Next »', 'capitularia'),
@@ -67,10 +72,10 @@ if ($pagination) {
 }
 echo ("</header>\n");
 
-if (have_posts ()) {
+if ($cap_query->have_posts ()) {
     echo ("<div class='search-results'>\n");
-    while (have_posts ()) {
-        the_post ();
+    while ($cap_query->have_posts ()) {
+        $cap_query->the_post ();
         $id = get_the_ID ();
         // See the cap-meta-search plugin
         $href = apply_filters ('cap_meta_search_the_permalink', get_the_permalink ($id));
