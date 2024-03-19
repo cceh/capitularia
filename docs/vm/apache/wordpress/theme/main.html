@@ -55,7 +55,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../overviews/collation_tool.html">Overview of the Collation Tool</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collation_tool.html#collation">Collation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collation_tool.html#id1">Collation Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collation_tool.html#collation-algorithm">Collation Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../overviews/collation_tool.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../overviews/meta_search.html">Meta Search</a><ul>
@@ -166,36 +169,71 @@
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#themes-capitularia-404-php" id="id1">themes/Capitularia/404.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-footer-php" id="id2">themes/Capitularia/footer.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-front-page-php" id="id3">themes/Capitularia/front-page.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-functions-include-php" id="id4">themes/Capitularia/functions-include.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-functions-php" id="id5">themes/Capitularia/functions.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-header-php" id="id6">themes/Capitularia/header.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-index-php" id="id7">themes/Capitularia/index.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-page-php" id="id8">themes/Capitularia/page.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-page-blank-php" id="id9">themes/Capitularia/page_blank.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-page-no-sidebar-php" id="id10">themes/Capitularia/page_no-sidebar.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-phpinfo-php" id="id11">themes/Capitularia/phpinfo.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-search-php" id="id12">themes/Capitularia/search.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-shortcodes-php" id="id13">themes/Capitularia/shortcodes.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia-sidebars-php" id="id14">themes/Capitularia/sidebars.php</a></p></li>
-<li><p><a class="reference internal" href="#themes-capitularia" id="id15">themes/capitularia</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-class-cap-query-php" id="id2">themes/Capitularia/class-cap-query.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-footer-php" id="id3">themes/Capitularia/footer.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-front-page-php" id="id4">themes/Capitularia/front-page.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-functions-include-php" id="id5">themes/Capitularia/functions-include.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-functions-php" id="id6">themes/Capitularia/functions.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-header-php" id="id7">themes/Capitularia/header.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-index-php" id="id8">themes/Capitularia/index.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-page-php" id="id9">themes/Capitularia/page.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-page-blank-php" id="id10">themes/Capitularia/page_blank.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-page-no-sidebar-php" id="id11">themes/Capitularia/page_no-sidebar.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-phpinfo-php" id="id12">themes/Capitularia/phpinfo.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-search-php" id="id13">themes/Capitularia/search.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-shortcodes-php" id="id14">themes/Capitularia/shortcodes.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia-sidebars-php" id="id15">themes/Capitularia/sidebars.php</a></p></li>
+<li><p><a class="reference internal" href="#themes-capitularia" id="id16">themes/capitularia</a></p></li>
 </ul>
 </nav>
 <span class="target" id="module-themes.Capitularia.404"></span><section id="themes-capitularia-404-php">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">themes/Capitularia/404.php</a><a class="headerlink" href="#themes-capitularia-404-php" title="Permalink to this heading">¶</a></h2>
 <p>Template for 404 Page not found.</p>
+<span class="target" id="module-themes.Capitularia.class-cap-query"></span></section>
+<section id="themes-capitularia-class-cap-query-php">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">themes/Capitularia/class-cap-query.php</a><a class="headerlink" href="#themes-capitularia-class-cap-query-php" title="Permalink to this heading">¶</a></h2>
+<p>The template for displaying Search Results pages.</p>
+<span class="target" id="namespace-\cceh\capitularia\theme"></span><dl class="php class">
+<dt class="sig sig-object php" id="\cceh\capitularia\theme\CapQuery">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">CapQuery</span></span><a class="headerlink" href="#\cceh\capitularia\theme\CapQuery" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\theme\CapQuery::parse_search">
+<span class="sig-name descname"><span class="pre">parse_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">q</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\CapQuery::parse_search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates SQL for the WHERE clause based on passed search terms.</p>
+<p>Copied from class-wp-query.php and doctored to accept any amount of whitespace
+between each word in phrase searches.</p>
+<p>Prerequisite:</p>
+<p>mysql&gt; create fulltext index post_content on wp_posts(post_content);
+mysql&gt; create fulltext index post_title   on wp_posts(post_title);
+mysql&gt; create fulltext index post_excerpt on wp_posts(post_excerpt);</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Query variables.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>WHERE clause.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <span class="target" id="module-themes.Capitularia.footer"></span></section>
 <section id="themes-capitularia-footer-php">
-<h2><a class="toc-backref" href="#id2" role="doc-backlink">themes/Capitularia/footer.php</a><a class="headerlink" href="#themes-capitularia-footer-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">themes/Capitularia/footer.php</a><a class="headerlink" href="#themes-capitularia-footer-php" title="Permalink to this heading">¶</a></h2>
 <p>The HTML footer on every page.</p>
 <span class="target" id="module-themes.Capitularia.front-page"></span></section>
 <section id="themes-capitularia-front-page-php">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">themes/Capitularia/front-page.php</a><a class="headerlink" href="#themes-capitularia-front-page-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">themes/Capitularia/front-page.php</a><a class="headerlink" href="#themes-capitularia-front-page-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Theme front-page.php file</p>
 <span class="target" id="module-themes.Capitularia.functions-include"></span></section>
 <section id="themes-capitularia-functions-include-php">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">themes/Capitularia/functions-include.php</a><a class="headerlink" href="#themes-capitularia-functions-include-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">themes/Capitularia/functions-include.php</a><a class="headerlink" href="#themes-capitularia-functions-include-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Theme functions-include.php file</p>
 <p>This file only declares symbols (classes, functions, constants) in accordance
 with PSR-2.</p>
@@ -613,6 +651,28 @@ returned.</p>
 </dd></dl>
 
 <span class="target" id="namespace-\cceh\capitularia\theme"></span><dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\theme\on_wp_get_nav_menu_items">
+<span class="sig-name descname"><span class="pre">on_wp_get_nav_menu_items</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">items</span></em>, <em class="sig-param"><span class="pre">menu</span></em>, <em class="sig-param"><span class="pre">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\on_wp_get_nav_menu_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the login menu if already logged in.</p>
+<p>This assumes the menu entry is a top-level one with an URL of: #cap_login_menu#</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>items</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – An array of menu item post objects.</p></li>
+<li><p><strong>menu</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">object</span></code></span>) – The menu object.</p></li>
+<li><p><strong>args</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – An array of arguments used to retrieve menu item objects.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The modified array of menu item post objects.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="namespace-\cceh\capitularia\theme"></span><dl class="php function">
 <dt class="sig sig-object php" id="\cceh\capitularia\theme\on_nav_menu_link_attributes">
 <span class="sig-name descname"><span class="pre">on_nav_menu_link_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">atts</span></em>, <em class="sig-param"><span class="pre">item</span></em>, <em class="sig-param"><span class="pre">args</span></em>, <em class="sig-param"><span class="pre">depth</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\theme\on_nav_menu_link_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add dynamic url to login menu.  Remove text from twitter and fb logos.</p>
@@ -739,7 +799,7 @@ returned.</p>
 
 <span class="target" id="module-themes.Capitularia.functions"></span></section>
 <section id="themes-capitularia-functions-php">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">themes/Capitularia/functions.php</a><a class="headerlink" href="#themes-capitularia-functions-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">themes/Capitularia/functions.php</a><a class="headerlink" href="#themes-capitularia-functions-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Theme functions.php file</p>
 <p>Loads the text domain and adds all actions, filters and shortcodes.</p>
 <p>This file executes only logic with side-effects in accordance with PSR-2.
@@ -754,38 +814,38 @@ The functions are defined in
 
 <span class="target" id="module-themes.Capitularia.header"></span></section>
 <section id="themes-capitularia-header-php">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">themes/Capitularia/header.php</a><a class="headerlink" href="#themes-capitularia-header-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">themes/Capitularia/header.php</a><a class="headerlink" href="#themes-capitularia-header-php" title="Permalink to this heading">¶</a></h2>
 <p>The HTML header.</p>
 <p>This is the HTML header that is output on every page.</p>
 <span class="target" id="module-themes.Capitularia.index"></span></section>
 <section id="themes-capitularia-index-php">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">themes/Capitularia/index.php</a><a class="headerlink" href="#themes-capitularia-index-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">themes/Capitularia/index.php</a><a class="headerlink" href="#themes-capitularia-index-php" title="Permalink to this heading">¶</a></h2>
 <p>Template for single posts or multiple excerpts.</p>
 <span class="target" id="module-themes.Capitularia.page"></span></section>
 <section id="themes-capitularia-page-php">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">themes/Capitularia/page.php</a><a class="headerlink" href="#themes-capitularia-page-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">themes/Capitularia/page.php</a><a class="headerlink" href="#themes-capitularia-page-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Theme page.php file</p>
 <span class="target" id="module-themes.Capitularia.page_blank"></span></section>
 <section id="themes-capitularia-page-blank-php">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">themes/Capitularia/page_blank.php</a><a class="headerlink" href="#themes-capitularia-page-blank-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">themes/Capitularia/page_blank.php</a><a class="headerlink" href="#themes-capitularia-page-blank-php" title="Permalink to this heading">¶</a></h2>
 <p>Template Name: Blank Page (only header and footer)</p>
 <p>Capitularia Theme page_blank.php file</p>
 <span class="target" id="module-themes.Capitularia.page_no-sidebar"></span></section>
 <section id="themes-capitularia-page-no-sidebar-php">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">themes/Capitularia/page_no-sidebar.php</a><a class="headerlink" href="#themes-capitularia-page-no-sidebar-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">themes/Capitularia/page_no-sidebar.php</a><a class="headerlink" href="#themes-capitularia-page-no-sidebar-php" title="Permalink to this heading">¶</a></h2>
 <p>Template Name: Page Without Sidebar</p>
 <p>Capitularia Theme page_no-sidebar.php file</p>
 <span class="target" id="module-themes.Capitularia.phpinfo"></span></section>
 <section id="themes-capitularia-phpinfo-php">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">themes/Capitularia/phpinfo.php</a><a class="headerlink" href="#themes-capitularia-phpinfo-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">themes/Capitularia/phpinfo.php</a><a class="headerlink" href="#themes-capitularia-phpinfo-php" title="Permalink to this heading">¶</a></h2>
 <p>Print server info (for debug use only).</p>
 <span class="target" id="module-themes.Capitularia.search"></span></section>
 <section id="themes-capitularia-search-php">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">themes/Capitularia/search.php</a><a class="headerlink" href="#themes-capitularia-search-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">themes/Capitularia/search.php</a><a class="headerlink" href="#themes-capitularia-search-php" title="Permalink to this heading">¶</a></h2>
 <p>The template for displaying Search Results pages.</p>
 <span class="target" id="module-themes.Capitularia.shortcodes"></span></section>
 <section id="themes-capitularia-shortcodes-php">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">themes/Capitularia/shortcodes.php</a><a class="headerlink" href="#themes-capitularia-shortcodes-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">themes/Capitularia/shortcodes.php</a><a class="headerlink" href="#themes-capitularia-shortcodes-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Theme shortcodes.php file</p>
 <p>Define actions for various shortcodes.</p>
 <span class="target" id="namespace-\cceh\capitularia\theme"></span><dl class="php function">
@@ -1159,12 +1219,12 @@ representation for the current locale without the time.</p>
 
 <span class="target" id="module-themes.Capitularia.sidebars"></span></section>
 <section id="themes-capitularia-sidebars-php">
-<h2><a class="toc-backref" href="#id14" role="doc-backlink">themes/Capitularia/sidebars.php</a><a class="headerlink" href="#themes-capitularia-sidebars-php" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">themes/Capitularia/sidebars.php</a><a class="headerlink" href="#themes-capitularia-sidebars-php" title="Permalink to this heading">¶</a></h2>
 <p>Capitularia Theme sidebars.php file</p>
 <p>Register the sidebars for various page types.</p>
 </section>
 <span class="target" id="module-themes-capitularia"></span><section id="themes-capitularia">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">themes/capitularia</a><a class="headerlink" href="#themes-capitularia" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">themes/capitularia</a><a class="headerlink" href="#themes-capitularia" title="Permalink to this heading">¶</a></h2>
 <p>File: themes/Capitularia/src/js/admin.js</p>
 <p>This file contains the Javascript for the Capitularia theme Admin side. Dummy file to make webpack happy.</p>
 <p>File: themes/Capitularia/src/js/front.js</p>

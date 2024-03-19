@@ -55,7 +55,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overviews/collation_tool.html">Overview of the Collation Tool</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#collation">Collation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#id1">Collation Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#collation-algorithm">Collation Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overviews/meta_search.html">Meta Search</a><ul>
@@ -197,6 +200,40 @@ activate the new version of the plugin.</p>
 <p class="admonition-title">See also</p>
 <p><a class="reference external" href="https://github.com/cceh/capitularia/issues/62">https://github.com/cceh/capitularia/issues/62</a></p>
 </div>
+</section>
+<section id="wordfence">
+<h3>wordfence<a class="headerlink" href="#wordfence" title="Permalink to this heading">¶</a></h3>
+<p>The plugin Wordfence needs write access to the location
+<code class="file docutils literal notranslate"><span class="pre">/var/www/capitularia.uni-koeln.de/wp-content/wflogs</span></code>. The <cite>wp</cite> commandline update
+tool also needs access to that location during plugin update.  So both users <cite>www-data</cite>
+and <cite>capitularia</cite> have write access to that location.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>getfacl<span class="w"> </span>wflogs
+<span class="c1"># file: wflogs</span>
+<span class="c1"># owner: capitularia</span>
+<span class="c1"># group: capitularia</span>
+user::rwx
+user:www-data:rwx
+user:capitularia:rwx
+group::r-x
+mask::rwx
+other::r-x
+default:user::rwx
+default:user:www-data:rwx
+default:user:capitularia:rwx
+default:group::r-x
+default:mask::rwx
+default:other::r-x
+</pre></div>
+</div>
+</section>
+<section id="restore-database">
+<h3>Restore Database<a class="headerlink" href="#restore-database" title="Permalink to this heading">¶</a></h3>
+<p>Restore the Wordpress database from the backup.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mysql<span class="w"> </span>&lt;<span class="w"> </span>/var/backups/mysqldump.backup
+</pre></div>
+</div>
+<p>Note: The database contains all Wordpress settings.  After restoring the production
+database on a developer machine, the Wordpress settings must be adjusted.</p>
 </section>
 </section>
 </section>

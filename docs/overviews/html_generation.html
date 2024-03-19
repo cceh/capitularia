@@ -55,7 +55,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="collation_tool.html">Overview of the Collation Tool</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#collation">Collation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#id1">Collation Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#collation-algorithm">Collation Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="meta_search.html">Meta Search</a><ul>
@@ -176,7 +179,7 @@ entity html--><path d="M303.5,292 C303.5,282 368,282 368,282 C368,282 432.5,282 
 link tei to saxon--><path d="M368,75.18 C368,91.59 368,111.77 368,129.86 " fill="none" id="tei-&gt;saxon" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="368,134.91,372,125.91,368,129.91,364,125.91,368,134.91" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[219b7a9b396734858da37580f72c6614]
 link saxon to html--><path d="M368,222.21 C368,239.72 368,259.8 368,276.75 " fill="none" id="saxon-&gt;html" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="368,281.91,372,272.91,368,276.91,364,272.91,368,281.91" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[16b2f23e595c1c5de587a32b661386ae]
 link cron to make--><path d="M110.09,178.5 C120.14,178.5 130.19,178.5 140.24,178.5 " fill="none" id="cron-&gt;make" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="145.49,178.5,136.49,174.5,140.49,178.5,136.49,182.5,145.49,178.5" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[42211ccb8b439fe830e993a3999a0d06]
-link make to saxon--><path d="M242.6,178.5 C252.47,178.5 262.34,178.5 272.21,178.5 " fill="none" id="make-&gt;saxon" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="277.38,178.5,268.38,174.5,272.38,178.5,268.38,182.5,277.38,178.5" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[c72c4a02fa230e9a3fc45caddc90b1b9]
+link make to saxon--><path d="M242.6,178.5 C252.47,178.5 262.34,178.5 272.21,178.5 " fill="none" id="make-&gt;saxon" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="277.38,178.5,268.38,174.5,272.38,178.5,268.38,182.5,277.38,178.5" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[6b29ecb4ab0ebe3cbf6e0a8e0d44aece]
 @startuml
 
    skinparam backgroundColor transparent
@@ -213,7 +216,7 @@ PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 19.0.2+7-Debian-4
+Java Version: 21.0.3-ea+6-Debian-1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en
@@ -246,7 +249,7 @@ link html to pp--><path d="M242,75.01 C242,101.64 242,139.7 242,169.78 " fill="n
 link pp to fi--><path d="M242,262 C242,279.44 242,299.49 242,316.5 " fill="none" id="pp-&gt;fi" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="242,321.67,246,312.67,242,316.67,238,312.67,242,321.67" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[df8f87e7a32bdc19e181481244a62650]
 link fi to client--><path d="M242,390.07 C242,407.24 242,428.01 242,444.54 " fill="none" id="fi-&gt;client" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="242,449.97,246,440.97,242,444.97,238,440.97,242,449.97" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[47a94eef6618897ac93409ef467c1cfe]
 link db to fi--><path d="M121.77,375.23 C131.5,378.15 141.23,379.99 150.96,380.74 " fill="none" id="db-&gt;fi" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="156.05,381.03,147.2936,376.5216,151.0582,380.7439,146.8359,384.5085,156.05,381.03" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[3b23ba4692d1b7e1ae60425e937d5fcf]
-reverse link db to fi--><path d="M126.59,335.41 C136.41,332.82 146.23,331.34 156.05,330.97 " fill="none" id="db&lt;-fi" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="121.77,336.77,131.5177,338.178,126.5824,335.4134,129.3471,330.4781,121.77,336.77" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[ad1065a56e9c9867911edc734c89e21e]
+reverse link db to fi--><path d="M126.59,335.41 C136.41,332.82 146.23,331.34 156.05,330.97 " fill="none" id="db&lt;-fi" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="121.77,336.77,131.5177,338.178,126.5824,335.4134,129.3471,330.4781,121.77,336.77" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[b6ba05a71a07529303c0f4a16eedee82]
 @startuml
 
    skinparam backgroundColor transparent
@@ -282,7 +285,7 @@ PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM
-Java Version: 19.0.2+7-Debian-4
+Java Version: 21.0.3-ea+6-Debian-1
 Operating System: Linux
 Default Encoding: UTF-8
 Language: en

@@ -99,7 +99,7 @@ To add a new user to the VM (needs root):
 
 .. code:: bash
 
-   sudo ~capitularia/add_capitularia_user.sh <username>
+   sudo ~root/add_capitularia_user.sh <username>
 
 Each user should also have a semi-personal subdirectory in: :file:`cap/intern/InArbeit/`.
 They can create that themselves.
