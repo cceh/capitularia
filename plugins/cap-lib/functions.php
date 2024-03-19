@@ -336,7 +336,7 @@ function languages_dir_path ()
 function load_textdomain ($domain)
 {
     $locale = apply_filters ('plugin_locale', determine_locale (), $domain);
-    $mo_file = "/${domain}-${locale}.mo";
+    $mo_file = "/{$domain}-{$locale}.mo";
     $mo_path = languages_dir_path () . $mo_file;
     // echo ("<pre>$mo_path</pre>\n");
     return \load_textdomain ($domain, $mo_path);
