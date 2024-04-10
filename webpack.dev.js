@@ -61,7 +61,7 @@ module.exports = merge (common, {
                     'usePolling'     : true,
                 })
                 .on ('all', () => {
-                    devServer.sockWrite (devServer.sockets, 'content-changed');
+                    devServer.sendMessage (devServer.sockets, 'content-changed');
                 });
             return middlewares;
         },
