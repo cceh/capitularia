@@ -41,12 +41,11 @@ class MetaSearch
     {
         // don't interfere with standard Wordpress query
         if (is_meta_search () && $query->is_main_query ()) {
-            $meta_query_args = array ();
-
             $query->query['status'] = current_user_can ('read_private_pages') ? 'private' : 'publish';
 
-            // The metadata is kept on the API server, so reflect the query
-            // there.
+            // The metadata is kept on the API server, so reflect the query there. This
+            // is the same query as in the browser location bar, plus the status
+            // parameter.
 
             $this->json = lib\api_json_request (
                 '/data/query_manuscripts.json/',
@@ -67,12 +66,12 @@ class MetaSearch
             // The data server already did all the heavy lifting for us.
             // The Wordpress query only has to filter the manuscripts by
             // tei-xml-id.
-            $meta_query_args[] = array (
+            $meta_query_args = array (array (
                 'key' => 'tei-xml-id',
                 'value' => $xml_ids,
                 'compare' => 'IN',
                 'type' => 'CHAR'
-            );
+            ));
 
             $query->set ('meta_query', $meta_query_args);
             $query->query_vars['search_terms'] = array ();

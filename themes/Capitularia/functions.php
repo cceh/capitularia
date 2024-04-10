@@ -68,8 +68,7 @@ add_action ('wp_enqueue_scripts',    ns ('on_enqueue_scripts'));
 add_action ('admin_enqueue_scripts', ns ('on_admin_enqueue_scripts'));
 add_action ('registered_post_type',  ns ('on_registered_post_type'), 10, 2);
 add_action ('pre_get_posts',         ns ('on_pre_get_posts'));
-/* disable widgets block editor */
-add_action ('after_setup_theme',     ns ('on_after_setup_theme'));
+add_action ('after_setup_theme',     ns ('on_after_setup_theme'), 1, 0);
 
 add_action (
     'rest_api_init',

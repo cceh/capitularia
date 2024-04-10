@@ -13,6 +13,8 @@ namespace cceh\capitularia\theme;
 
 use cceh\capitularia\lib;
 
+require 'class-cap-query.php';
+
 const MAGIC_LOGIN            = '#cap_login_menu#';
 
 /**
@@ -696,5 +698,12 @@ function cap_rest_user_info (\WP_REST_Request $request)
 
 function on_after_setup_theme ()
 {
+    // disable widgets block editor
     remove_theme_support ('widgets-block-editor');
+
+    // use our custom query class that collapses whitespace in the search data
+    if (!is_admin()) {
+        $GLOBALS['wp_the_query'] = new \cceh\capitularia\theme\CapQuery();
+        $GLOBALS['wp_query'] = $GLOBALS['wp_the_query'];
+    }
 }

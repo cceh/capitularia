@@ -8,14 +8,11 @@
 
 namespace cceh\capitularia\theme;
 
-require 'class-cap-query.php';
-
 get_header ();
 
 get_main_start ('search-php');
 
-// use our custom query class that collpases whitespace in the search data
-$cap_query = new CapQuery ($wp_query->query);
+$cap_query = $GLOBALS['wp_the_query'];
 
 /*
  * Build the "You searched for ..." message
