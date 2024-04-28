@@ -578,6 +578,15 @@ function on_nav_menu_link_attributes ($atts, $item, $args, $depth) // phpcs:igno
             $atts['class'] = 'logo-social logo-twitter';
             $item->title   = '';
         }
+        if (strpos ($item->url, 'x.com') !== false) {
+            $atts['class'] = 'logo-social logo-x';
+            $item->title   = '';
+        }
+        // https://bsky.app/profile/capitularia.bsky.social
+        if (strpos ($item->url, 'bsky.app') !== false) {
+            $atts['class'] = 'logo-social logo-bluesky';
+            $item->title   = '';
+        }
         if (strpos ($item->url, 'facebook.com') !== false) {
             $atts['class'] = 'logo-social logo-facebook';
             $item->title   = '';
