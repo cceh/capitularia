@@ -35,8 +35,8 @@ function places_tree_init () {
     $ ('#places').jstree ({
         'plugins'  : ['checkbox', 'sort', 'state', 'wholerow'],
         'checkbox' : {
-            'three_state' : false,
-            // 'cascade'     : 'down',
+            // 'three_state' : false,
+            'cascade'     : 'down',
         },
         'sort' : function (a, b) {
             return collator.compare (this.get_text (a), this.get_text (b));
