@@ -199,8 +199,8 @@ class Widget extends \WP_Widget
         $tooltip = __ ('Only show manuscripts created in this region.', DOMAIN);
         $this->echo_places_tree ($label, 'places', $tooltip);
 
-        $label       = __ ('Free Text', DOMAIN);
-        $tooltip     = __ ('Free text search', DOMAIN);
+        $label       = __ ('Free Text In Transcription', DOMAIN);
+        $tooltip     = __ ('Free text search in transcription', DOMAIN);
         $placeholder = __ ('Free Text', DOMAIN);
         // Use 'fulltext' as query parameter instead of 's' to switch to our own
         // search implementation.  Because our manuscript pages contain only a
