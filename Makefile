@@ -36,11 +36,8 @@ deploy_schemas:
 	# $(RSYNC) schemas $(PUBL)/schemata
 	$(RSYNC) bibl/*.rng bibl/*.sch $(PUBL)/bibl
 
-upload_scripts:
-	$(RSYNC) --exclude='env' scripts $(HOST_PRJ_DIR)
-
-upload_server:
-	cd $(SERVER) && $(MAKE) upload
+deploy_server:
+	cd $(SERVER) && $(MAKE) deploy
 	$(RSYNC) Makefile* Variables.mak $(HOST_SERVER)/../
 
 import_xml: import_mss import_capits
@@ -97,7 +94,7 @@ mysql-local:
 .PHONY: server
 server:
 	export PYTHONPATH=$(ROOT)/server; \
-	python3 -OO -m server.server -vvv
+	$(PYTHON) -OO -m server.server -vvv
 
 dist/api.conf.js: client/src/api.conf.js
 	mkdir -p dist

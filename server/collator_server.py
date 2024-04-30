@@ -136,6 +136,7 @@ def preprocess(text: str, normalizations: Optional[List[str]] = None) -> List[Li
 
     """
 
+    text = text or ""
     text = text.strip().lower()
     text = common.RE_BRACKETS.sub("", text)
     text = RE_WHITESPACE_EQUIV_CHARS.sub("", text)
@@ -204,7 +205,7 @@ def collate():
         for w in json_in["collate"]:
             u = urllib.parse.urlparse(w)
             corresp, ms_id = u.path.split("/", 2)
-            hands = urllib.parse.parse_qs(u.query).get("hands") == "XYZ"
+            hands = urllib.parse.parse_qs(u.query).get("hands") == ["XYZ"]
 
             catalog, no, chapter = common.normalize_corresp(corresp)
 

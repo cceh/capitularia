@@ -26,6 +26,7 @@ HOST_XSLT    := $(HOST_PRJ_DIR)/xslt
 
 NODE_MODULES := $(ROOT)/node_modules
 NODE         := $(NODE_MODULES)/.bin
+PYTHON       := $(ROOT)/.venv/bin/python3
 
 NAT_EARTH    := https://naciscdn.org/naturalearth
 

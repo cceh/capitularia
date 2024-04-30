@@ -643,6 +643,9 @@ def import_corpus(conn, args):
             ms_id = get_ns(tei, "xml:id")
             filename = get_ns(tei, "cap:file")
             siglum = None
+            # set bk-textzeuge's id
+            if filename.endswith("bk-textzeuge.xml"):
+                ms_id = common.BK_ZEUGE
             if ms_id in processed_ms_ids:
                 log(
                     logging.ERROR,
@@ -854,6 +857,9 @@ def import_fulltext(conn, filenames, mode):
                 mscap_catalog = ""
                 mscap_no = ""
                 mscap_n = 1
+                # set bk-textzeuge's id
+                if fn.endswith("bk-textzeuge.xml"):
+                    ms_id = common.BK_ZEUGE
 
                 for item in tei.xpath(
                     ".//tei:div[@corresp]|.//tei:milestone[@unit]", namespaces=NS

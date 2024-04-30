@@ -45,8 +45,9 @@ There are 2 classes of hands:
 - The hands A - W are considered original scribes.
 - The hands X - Z are considered later hands.
 
-The "include-later-hand" parameter controls which text is selected for the
-reader.
+The "include-later-hand" tunneled parameter can be used to control which text is
+output. If false, the text by the original hand is output, if true, the text corrected
+by a later hand is output.
 
 There are 3 classes of corrections:
 
@@ -72,8 +73,6 @@ The generated text of the footnote varies according to these cases.
     xpath-default-namespace="http://www.tei-c.org/ns/1.0"
     default-mode="phase1"
     exclude-result-prefixes="cap tei xs xsl">
-
-  <xsl:param name="include-later-hand" select="true ()" />
 
   <!-- Needed for the correct determination of the word around an editorial
        intervention. -->
@@ -364,6 +363,7 @@ The generated text of the footnote varies according to these cases.
     <!-- If these hands made corrections we put them in
          the apparatus and display the old text. -->
     <xsl:param name="context" />
+    <xsl:param name="include-later-hand" />
 
     <xsl:variable name="hand" select="cap:get-hand ($context)"/>
     <xsl:sequence select="normalize-space ($hand) and contains ('XYZ', $hand) and not ($include-later-hand)"/>
@@ -538,6 +538,8 @@ The generated text of the footnote varies according to these cases.
   </xsl:template>
 
   <xsl:template match="add">
+    <xsl:param name="include-later-hand" select="true ()" tunnel="yes" />
+
     <xsl:if test="not (parent::subst)">
       <xsl:call-template name="generate-note"/>
     </xsl:if>
@@ -546,7 +548,7 @@ The generated text of the footnote varies according to these cases.
         <xsl:attribute name="data-note-id" select="generate-id ()"/>
       </xsl:if>
       <xsl:choose>
-        <xsl:when test="cap:is-later-hand (.)">
+        <xsl:when test="cap:is-later-hand (., $include-later-hand)">
           <xsl:apply-templates mode="notes-only" />
         </xsl:when>
         <xsl:otherwise>
@@ -583,6 +585,8 @@ The generated text of the footnote varies according to these cases.
   </xsl:template>
 
   <xsl:template match="del">
+    <xsl:param name="include-later-hand" select="true ()" tunnel="yes" />
+
     <!-- non-empty del -->
     <xsl:if test="not (parent::subst)">
       <xsl:call-template name="generate-note"/>
@@ -592,7 +596,7 @@ The generated text of the footnote varies according to these cases.
         <xsl:attribute name="data-note-id" select="generate-id ()"/>
       </xsl:if>
       <xsl:choose>
-        <xsl:when test="cap:is-later-hand (.)">
+        <xsl:when test="cap:is-later-hand (., $include-later-hand)">
           <xsl:call-template name="handle-rend">
             <xsl:with-param name="extra-class" select="'tei-del'"/>
           </xsl:call-template>
@@ -606,10 +610,12 @@ The generated text of the footnote varies according to these cases.
   </xsl:template>
 
   <xsl:template match="del[not (normalize-space ())]">
+    <xsl:param name="include-later-hand" select="true ()" tunnel="yes" />
+
     <!-- empty del -->
     <seg class="tei-del">
       <xsl:choose>
-        <xsl:when test="parent::subst and cap:is-later-hand (.)">
+        <xsl:when test="parent::subst and cap:is-later-hand (., $include-later-hand)">
           <xsl:call-template name="empty-del"/>
         </xsl:when>
         <xsl:when test="not (parent::subst)">
@@ -786,12 +792,15 @@ The generated text of the footnote varies according to these cases.
   -->
 
   <xsl:template match="subst" mode="auto-note">
+    <xsl:param name="include-later-hand" select="true ()" tunnel="yes" />
+
     <xsl:variable name="before" select="cap:word-before (.)"/>
     <xsl:variable name="after"  select="cap:word-after (.)"/>
     <xsl:variable name="rend"   select="concat ('tei-mentioned', cap:get-rend-class (.))"/>
 
+
     <xsl:choose>
-      <xsl:when test="cap:is-later-hand (.)">
+      <xsl:when test="cap:is-later-hand (., $include-later-hand)">
         <xsl:variable name="phrase">
           <xsl:copy-of select="$before"/>
           <xsl:apply-templates select="del" mode="original"/>
@@ -837,12 +846,14 @@ The generated text of the footnote varies according to these cases.
   </xsl:template>
 
   <xsl:template match="add" mode="auto-note">
+    <xsl:param name="include-later-hand" select="true ()" tunnel="yes" />
+
     <xsl:variable name="before" select="cap:word-before (.)"/>
     <xsl:variable name="after"  select="cap:word-after (.)"/>
     <xsl:variable name="rend"   select="concat ('tei-mentioned', cap:get-rend-class (.))"/>
 
     <xsl:choose>
-      <xsl:when test="cap:is-later-hand (.)">
+      <xsl:when test="cap:is-later-hand (., $include-later-hand)">
         <seg class="generated" data-shortcuts="0">
           <xsl:choose>
             <xsl:when test="cap:is-whole-word ($before, $after)">
@@ -866,7 +877,7 @@ The generated text of the footnote varies according to these cases.
         </seg>
       </xsl:when>
       <xsl:otherwise>
-        <!-- not (cap:is-later-hand (.)) -->
+        <!-- not (cap:is-later-hand (., $include-later-hand)) -->
         <xsl:variable name="phrase">
           <!-- tentative fix for #125.  A milestone gets a <seg display:none>
                into $phrase but cap:shorten-phrase doesn't know enough to throw it out -->
@@ -905,6 +916,8 @@ The generated text of the footnote varies according to these cases.
   </xsl:template>
 
   <xsl:template match="del[normalize-space ()]" mode="auto-note">
+    <xsl:param name="include-later-hand" select="true ()" tunnel="yes" />
+
     <xsl:variable name="before" select="cap:word-before (.)"/>
     <xsl:variable name="after"  select="cap:word-after (.)"/>
     <xsl:variable name="rend"   select="concat ('tei-mentioned', cap:get-rend-class (.))"/>
@@ -919,7 +932,7 @@ The generated text of the footnote varies according to these cases.
       <xsl:when test="cap:is-whole-word ($before, $after)">
         <!-- Whole word deleted. -->
         <xsl:choose>
-          <xsl:when test="cap:is-later-hand (.)">
+          <xsl:when test="cap:is-later-hand (., $include-later-hand)">
             <xsl:if test="cap:is-phrase ($phrase)">
               <seg class="{$rend}">
                 <xsl:copy-of select="cap:shorten-phrase ($phrase)"/>
@@ -947,7 +960,7 @@ The generated text of the footnote varies according to these cases.
       <xsl:otherwise>
         <!-- Part of word deleted. -->
         <xsl:choose>
-          <xsl:when test="cap:is-later-hand (.)">
+          <xsl:when test="cap:is-later-hand (., $include-later-hand)">
             <seg class="generated" data-shortcuts="0">
               <xsl:call-template name="hand-blurb"/>
               <xsl:text> korr. zu </xsl:text>
