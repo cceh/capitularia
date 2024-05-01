@@ -41,7 +41,7 @@ CAPITS    := $(patsubst $(CAPIT_DIR)/%.xml,%,$(CAPIT_FILES))
 
 XSLTPROC  := /usr/bin/xsltproc --nonet --novalid --nomkdir
 SAXON     := /usr/bin/saxon
-IMPORT    := cd ../server; python3 -m scripts.import_data -vv -c ./server.conf
+IMPORT    := cd ../server; ../.venv/bin/python3 -m scripts.import_data -vv -c ./server.conf
 
 TOUCH = mkdir -p $(dir $@) && touch "$@"
 CLEAN_TARGET_DIR = rm -rf $(dir $@) && mkdir -p $(dir $@)
