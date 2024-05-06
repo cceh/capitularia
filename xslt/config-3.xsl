@@ -190,6 +190,10 @@
 
   <xsl:variable name="tei-graphic-targets">
     <root>
+      <item key="arca.irht.cnrs.fr">
+        <title>ARCA</title>
+        <caption>ARCA</caption>
+      </item>
       <item key="bavarikon.de">
         <title>bavarikon</title>
         <caption>bavarikon</caption>
