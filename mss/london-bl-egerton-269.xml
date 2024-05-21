@@ -594,7 +594,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <milestone unit="capitulare" n="BK.139"/>
          <cb n="9r"/>
          <lb n="1"/>
-         <ab type="text" xml:id="london-bl-egerton-269-9r-1" corresp="BK.139_6">uiuit testes idoneos
+         <ab type="text" xml:id="london-bl-egerton-269-9r-1" corresp="BK.139_6">
+            
+            <ref type="internal" subtype="mss" target="london-bl-egerton-2832#london-bl-egerton-2832-53v-6"/>
+            
+            uiuit testes idoneos
             . uel si illos habere non potuerit . tunc de aliis <lb/>quales sibi meliores inuenire
             possit . et coram eis rerum suarum <lb/>traditionem fatiat . et fideiussores uestiture
             donet . qui illam <lb/>tradi<unclear>t</unclear>ionem accepit uestituram fatiat . Et
@@ -927,16 +931,17 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                spanTo="#london-bl-egerton-269-13r-1_1"/>
             <seg type="num" n="6">VI</seg> . DE <sic>DONIS</sic> ET DECIMIS <anchor
                xml:id="london-bl-egerton-269-13r-1_1"/>
-            <milestone unit="span" corresp="BK.140_5" spanTo="#london-bl-egerton-269-13r-1_2"/>
+            <milestone unit="span" corresp="BK.140_5" xml:id="london-bl-egerton-269-13r-1_2"
+               next="#london-bl-egerton-269-13r-2" spanTo="#london-bl-egerton-269-13r-1_3"/>
                CONSIDE<lb break="no"/>RANDUM EST UT DE FRUGIBUS PERSOLUANT <lb/>
-            <anchor xml:id="london-bl-egerton-269-13r-1_2"/>
+            <anchor xml:id="london-bl-egerton-269-13r-1_3"/>
          </ab>
 
-         <ab type="text" xml:id="london-bl-egerton-269-13r-2" corresp="BK.140_5"><seg type="initial"
-               >D</seg>e opere uero uel de restaurationem eclesiarum <lb/>comis . et episcopus . et
-            abbas . una cum misso nostro quem ipsi sibi . adhuc <lb/>elegerint considerationem
-            fatiant . ut unusquisque eorum <lb/>tantum inde accipiat ad operandum et restaurandum .
-            quantum <lb/>
+         <ab type="text" xml:id="london-bl-egerton-269-13r-2" corresp="BK.140_5"
+            prev="#london-bl-egerton-269-13r-1_2"><seg type="initial">D</seg>e opere uero uel de
+            restaurationem eclesiarum <lb/>comis . et episcopus . et abbas . una cum misso nostro
+            quem ipsi sibi . adhuc <lb/>elegerint considerationem fatiant . ut unusquisque eorum
+            <lb/>tantum inde accipiat ad operandum et restaurandum . quantum <lb/>
             <subst>
                <del/>
                <add>ipse de rebus eccles</add>
@@ -987,12 +992,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <milestone unit="capitulare" n="BK.156"/>
 
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-13v-3"
-            corresp="BK.156_1_inscriptio Ansegis.1_102bis_inscriptio">
+            corresp="BK.156_1_inscriptio">
             <seg type="num" n="9">IX</seg> . DE EO QUI SPONSAM ALIENAM RAPUERIT . <lb/>
          </ab>
 
          <!--         <ab type="text" xml:id="london-bl-egerton-269-13v-4" corresp="BK.156_1"> -->
-         <ab type="text" xml:id="london-bl-egerton-269-13v-4" corresp="BK.156_1 Ansegis.1_102bis.b">
+         <ab type="text" xml:id="london-bl-egerton-269-13v-4" corresp="BK.156_1">
             <seg type="initial">S</seg>I quis sponsam alienam ipsa non consentiente rapuerit licet
             <lb/>cum ea concubuerit . et reddat eam ei . cuius sponsa est . <lb/>et eis ducat eam si
             uelit . quia uim passa potius quam uiolata <lb/>uidetur . Quodsi eam ducere uoluerit
@@ -1006,13 +1011,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <add>qui eam</add>
             </subst> accepturus <lb/>erat . aliam quam uoluerit accipiat . </ab>
          <ab type="meta-text" rend="coloured" xml:id="london-bl-egerton-269-13v-5"
-            corresp="BK.156_2_inscriptio Ansegis.4_26bis_inscriptio">
+            corresp="BK.156_2_inscriptio">
             <seg type="num" n="10">X</seg> . DE EO QUI <lb/>HOMINEM DE STATU SUO INTERPELLAT
             <lb/></ab>
-         <ab type="text" xml:id="london-bl-egerton-269-13v-6"
-            corresp="BK.156_2 BK.156_3 Ansegis.4_26bis_a Ansegis.4_26bis_b">
-            <milestone unit="span" corresp="BK.156_2 Ansegis.4_26bis_a"
-               spanTo="#london-bl-egerton-269-13v-6_1"/>
+         <ab type="text" xml:id="london-bl-egerton-269-13v-6" corresp="BK.156_2 BK.156_3">
+            <milestone unit="span" corresp="BK.156_2" spanTo="#london-bl-egerton-269-13v-6_1"/>
             <seg type="initial">H</seg>omo de statu suo . pulsatus si is qui eum pulsat ad
                conuincen<lb break="no"/>dum illum procinctum <sic>huerit</sic> . athibeat sibi .
             VIII . coniura<lb break="no"/>tores legi<add hand="X">ti</add>mos ex ea parte unde
@@ -1022,11 +1025,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <expan>undecumquę</expan> duodecim lib<add>e</add>ros homines idoneos . et iurando
                inge<lb break="no"/>nuitatem suam defendat . <anchor
                xml:id="london-bl-egerton-269-13v-6_1"/>
-            <milestone unit="span" corresp="BK.156_3 Ansegis.4_26bis_b"
-               spanTo="#london-bl-egerton-269-13v-6_2"/> Omnis controuersia . coram centena<lb
-               break="no"/>rio diffiniri potest . Excepto . redditione terrae et mancipiorum . <lb/>
-            quę nonnisi coram comite fieri potest . <lb/><anchor
-               xml:id="london-bl-egerton-269-13v-6_2"/></ab>
+            <milestone unit="span" corresp="BK.156_3" spanTo="#london-bl-egerton-269-13v-6_2"/>
+            Omnis controuersia . coram centena<lb break="no"/>rio diffiniri potest . Excepto .
+            redditione terrae et mancipiorum . <lb/> quę nonnisi coram comite fieri potest .
+               <lb/><anchor xml:id="london-bl-egerton-269-13v-6_2"/></ab>
 
          <milestone unit="capitulare" n="BK.45"/>
 

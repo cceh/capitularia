@@ -346,7 +346,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                            Pal. Lat. 582</ref> und <ref type="internal" subtype="mss"
                            target="paris-bn-lat-9654">Paris Lat. 9654</ref>), für ein wohl
                         aquitanisches missaticum (Cod. <ref target="leiden-bru-voss-lat-q-119"
-                           subtype="mss" type="internal">Leiden Voss. Lat. Q. 119</ref>), für den
+                           subtype="mss" type="internal">Leiden VLQ 119</ref>), für den
                         späteren Erzbischof von Reims Wulfar (auszugsweise zitiert, wie W. Levison,
                         Das Formularbuch von Saint-Denis, in: NA 41 [1919] S. 299 ff. nachgewiesen
                         hat, in Flodoards Historia Remensis ecclesiae 2, 18) und vielleicht für
@@ -542,6 +542,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                            Tab. A</bibl>
                         <bibl corresp="#Nelson_1990"> Nelson 1990, S. 283</bibl>
                         <bibl corresp="#de_Sousa_Costa_1993">de Sousa Costa 1993, S. 54 u. ö.</bibl>
+                        <bibl corresp="#Coumert_2023">Coumert 2023, S. 17, 214, 317</bibl>
                      </listBibl>
 
                      <listBibl type="cat">
@@ -592,8 +593,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
       <revisionDesc>
          <change who="DS" when="2015-04-01">Datei erstellt aus Mordek-XML</change>
          <change who="SK" when="2017-02-17">Datei veröffentlicht (BK 138, 139, 140, 156)</change>
-         <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift
-            nach Bischoff 1998/2004/2014 ergänzt</change>
+         <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift nach Bischoff
+            1998/2004/2014 ergänzt</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -1467,13 +1468,15 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <lb/>
          </ab>
 
-         <milestone unit="capitulare" n="BK.138"/>
+         <milestone unit="capitulare" n="BK.140"/>
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4995-17r-8"
             corresp="BK.140_inscriptio">ITEM ALIA <choice>
                <abbr>CAP</abbr>
                <expan>CAPITULA</expan>
             </choice> * </ab>
+
+         <milestone unit="capitulare" n="BK.138"/>
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4995-17r-9"
             corresp="BK.138_6_inscriptio">DE SERVIS AD SA<lb break="no"/>CROS ORDINES NON MITENDIS
@@ -1487,7 +1490,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             grados ecclesiasticos peruenerit deponatur et domi<lb break="no"/>nus eius eum recipiat </ab>
 
 
-         <milestone unit="capitulare" n="BK.140"/>
+         <milestone unit="capitulare" n="BK.140_1"/>
 
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4995-17v-1"
@@ -1712,32 +1715,39 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             </subst>miuratores legitimos ex ea parte unde pul<lb break="no"/>satur . siue illa
             paterna siue materna sit . et IIII . ali<lb break="no"/>unde non minus legitimos et
             iurando uindicet <lb/> libertatem suam . <hi rend="coloured">Q</hi>uodsi procinctus
-            defuerit adsumat <lb/> unde<anchor xml:id="paris-bn-lat-4995-18v-6_2"/><add hand="X"
-                  ><milestone unit="span" corresp="BK.156_2" xml:id="paris-bn-lat-4995-18v-6_3"
-                  spanTo="#paris-bn-lat-4995-18v-6_4" prev="#paris-bn-lat-4995-18v-6_1"/>cunque XII
-               liberos homines et iurando ingenuitate<unclear>m suam defen</unclear>dat . <anchor
-                  xml:id="paris-bn-lat-4995-18v-6_4"/><milestone unit="span" corresp="BK.156_3"
-                  spanTo="#paris-bn-lat-4995-18v-6_5"/>Omnis <unclear>controuers</unclear>ia co<gap
-                  unit="chars" quantity="3"/> centenario def<unclear>iniri</unclear> potest
-                  <unclear>ex</unclear>cepta <unclear>emp</unclear>tione terra<unclear>e</unclear>
-               et <unclear>mancipiorum . quae</unclear> non<unclear>nisi coram</unclear> Comite
-               fieri potest<anchor xml:id="paris-bn-lat-4995-18v-6_5"/></add><metamark
-               function="insertion"/>
+            defuerit adsumat <lb/> unde
+            <anchor xml:id="paris-bn-lat-4995-18v-6_2"/>
+            
+            <add hand="X">
+               <milestone unit="span" corresp="BK.156_2" xml:id="paris-bn-lat-4995-18v-6_3"
+                  spanTo="#paris-bn-lat-4995-18v-6_4" prev="#paris-bn-lat-4995-18v-6_1"/>
+               cunque XII liberos homines et iurando ingenuitate<unclear>m 
+               suam defen</unclear>dat . 
+               <anchor xml:id="paris-bn-lat-4995-18v-6_4"/>
+               
+               <milestone unit="span" corresp="BK.156_3"
+                  spanTo="#paris-bn-lat-4995-18v-6_5"/>
+               Omnis <unclear>controuers</unclear>ia co<gap unit="chars" quantity="3"/> centenario
+               def<unclear>iniri</unclear> potest <unclear>ex</unclear>cepta <unclear>emp</unclear>tione 
+               terra<unclear>e</unclear> et <unclear>mancipiorum . quae</unclear> non<unclear>nisi 
+               coram</unclear> Comite fieri potest
+               <anchor xml:id="paris-bn-lat-4995-18v-6_5"/></add><metamark function="insertion"/>
             <!--    sk: nach Klärung der Kodierung für den Übergang von c. 2 zu c. 3 noch eine manuelle Note
             ergänzen, die den Sachverhalt (neuzeitliche Ergänzung vom Schluss von c. 2 
             mit angehängtem c. 3 auf dem Rand) erläutert oder jedenfalls auf die Vorbemerkung
-            verweist?  -->
+            verweist? 
+            Transkription der Ergänzung noch in Paris am Original prüfen.
+            -->
          </ab>
 
-
-
-         <!--  sk: sehr blasse 3-zeilige Notiz (wohl Hand X) oben auf fol. 19r, wohl zum 
-            Einfügungszeichen am Ende von BK 156 c. 2; Wortlaut oft mehr nach BK ergänzt,
-            als dass er hier klar zu entziffern wäre; Notiz aber deutlich länger als Text 
-            von c. 2, noch prüfen, ob evtl. Text von c. 3 gleich mit ergänzt. 
-            Nach Abschluss am Original pr.  -->
-
-
+         <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4995-19r-1">
+            DE ANCILLA PER CARTAM FACTA LIBERA <lb/> <seg type="num" n="11">XI</seg> 
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4995-19r-2">
+            <seg type="initial" rend="coloured">S</seg>i ancilla libera dimisa fuerit per cartam et
+            post <lb/> hec seruo uel colono <add>nupserit</add><metamark function="insertion"></metamark>
+            ipse dominus qui prius pos<lb break="no"/>sederat taliter deturpatam reci<add>pi</add>at
+         </ab>
 
 
       </body>

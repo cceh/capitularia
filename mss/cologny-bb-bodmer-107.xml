@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="cologny-bb-bodmer-107">
-   <!-- msParts? -->
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="cologny-bb-bodmer-107">
+
    <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main" xml:lang="ger">Cologny (Genf), Fondation Martin Bodmer, Cod. Bodmer
                107 </title>
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek</title>
-            <title type="sub" xml:lang="eng">Manuscript description according to Mordek</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+               Transkription der foll. 133r-140r, 142r-143v</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+               transcription of fols 133r-140r, 142r-143v</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -17,9 +20,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                <resp xml:lang="eng">Project lead</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="DT">
+                  <forename>Dominik</forename>
+                  <surname>Trump</surname>
                </persName>
                <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
                   Standard</resp>
@@ -27,17 +30,17 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   TEI P5 standard</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
                </persName>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">First revision of transcription and additions</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="GB">
+                  <forename>Grigorii</forename>
+                  <surname>Borisov</surname>
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
@@ -129,48 +132,52 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                <head>
                   <title type="main">Cologny (Genf), Fondation Martin Bodmer, Cod. Bodmer 107 </title>
                   <origDate notAfter="0900" notBefore="0881">9. Jh., Ende</origDate> (Mordek),
-                  <origDate notAfter="0850" notBefore="0826">9. Jh., 2. Viertel</origDate> (Bischoff);
-                  <origPlace ref="http://d-nb.info/gnd/4075486-8 http://viaf.org/viaf/239898530"> wohl Nordwestdeutschland</origPlace> (Mordek),
-                  <origPlace ref="http://d-nb.info/gnd/4075454-6"> Niederdeutschland</origPlace> (Bischoff)
-               </head>
+                     <origDate notAfter="0850" notBefore="0826">9. Jh., 2. Viertel</origDate>
+                  (Bischoff); <origPlace
+                     ref="http://d-nb.info/gnd/4075486-8 http://viaf.org/viaf/239898530"> wohl
+                     Nordwestdeutschland</origPlace> (Mordek), <origPlace
+                     ref="http://d-nb.info/gnd/4075454-6"> Niederdeutschland</origPlace> (Bischoff) </head>
                <msContents>
                   <summary>
                      <p>Die auf das Leges-Quartett (Salica, Ribuaria, Alamannorum, Baiuvariorum)
                         folgende kleine Kapitulariensammlung mit Erlassen Karls des Großen ist nur
                         noch fragmentarisch erhalten. Am Schluß könnten jene Texte verlorengegangen
-                        sein, die in der nahestehenden Kapitulariensammlung der Codd. <ref type="internal" subtype="mss" target="vatikan-bav-reg-lat-1036">Vatikan
-                           Reg. Lat. 1036</ref> und <ref type="internal" subtype="mss" target="vatikan-bav-reg-lat-1728">Reg. Lat. 1728</ref> an dieser Stelle
+                        sein, die in der nahestehenden Kapitulariensammlung der Codd. <ref
+                           type="internal" subtype="mss" target="vatikan-bav-reg-lat-1036">Vatikan
+                           Reg. Lat. 1036</ref> und <ref type="internal" subtype="mss"
+                           target="vatikan-bav-reg-lat-1728">Reg. Lat. 1728</ref> an dieser Stelle
                         auftauchen: Capitulare Bononiense und Capitulare de iustitiis faciendis,
                         beide vom Jahre 811. Möglicherweise kommen auch die zahlreicheren,
-                        gleichfalls nur bis 811 reichenden Stücke des Cod. <ref type="internal" subtype="mss" target="nuernberg-sb-cent-v-app-96">Nürnberg Cent. V, App.
+                        gleichfalls nur bis 811 reichenden Stücke des Cod. <ref type="internal"
+                           subtype="mss" target="nuernberg-sb-cent-v-app-96">Nürnberg Cent. V, App.
                            96</ref> in Betracht, der in einer ähnlichen Abfolge von Texten (siehe
-                        dort) als Mittradent des seltenen c. 3 Nr. 104
-                        <!-- lr: gemeint ist BK 104, umstellen?-->auszumachen ist.<lb/>Verwandt ist
-                        das Opusculum zudem mit der Kapitulariensammlung des Cod.<ref type="internal" subtype="mss" target="st-petersburg-sb-q-v-ii-11"> St.
-                           Petersburg Q. v. II. 11</ref>; die Gemeinsamkeiten beginnen, abgesehen
-                        von der Lex Salica, ab fol. 133r mit MGH Capit. 1, Nr. 39 und den
-                        Lex-Salica-Kapiteln 71 und 72, 1 (Nachtrag) und reichen über MGH Capit. 1,
-                        Nrn. 40, 104 c. 3 und Recapitulatio solidorum der Lex Salica bis Nr. 67, dem
-                        fragmentarischen Ende der St. Petersburger Hs.<lb/> Der durchaus zu
-                        beachtende Cod. Cologny Bodmer 107 ist zwar im Conspectus librorum (MGH
-                        Capit. 2, S. XVII) vermerkt, doch mit ganz unzureichender Inhaltsangabe, so
-                        daß Werminghoff seine Information aus zweiter Hand bezogen haben muß. Dem
-                        Herausgeber Boretius dürfte das Manuskript unbekannt geblieben sein, denn er
-                        hat es für seine Ausgabe nicht benutzt.</p>
+                        dort) als Mittradent des seltenen c. 3 <title corresp="BK.104">Nr.
+                           104</title> auszumachen ist.<lb/>Verwandt ist das Opusculum zudem mit der
+                        Kapitulariensammlung des Cod. <ref type="internal" subtype="mss"
+                           target="st-petersburg-sb-q-v-ii-11">St. Petersburg Q. v. II. 11</ref>;
+                        die Gemeinsamkeiten beginnen, abgesehen von der Lex Salica, ab fol. 133r mit
+                        MGH Capit. 1, Nr. 39 und den Lex-Salica-Kapiteln 71 und 72, 1 (Nachtrag) und
+                        reichen über MGH Capit. 1, Nrn. 40, 104 c. 3 und Recapitulatio solidorum der
+                        Lex Salica bis Nr. 67, dem fragmentarischen Ende der St. Petersburger
+                        Hs.<lb/> Der durchaus zu beachtende Cod. Cologny Bodmer 107 ist zwar im
+                        Conspectus librorum (MGH Capit. 2, S. XVII) vermerkt, doch mit ganz
+                        unzureichender Inhaltsangabe, so daß Werminghoff seine Information aus
+                        zweiter Hand bezogen haben muß. Dem Herausgeber Boretius dürfte das
+                        Manuskript unbekannt geblieben sein, denn er hat es für seine Ausgabe nicht
+                        benutzt.</p>
                   </summary>
                   <msItem n="1">
                      <p>
                         <locus>1r-3v</locus> Exzerpte <hi rend="italic">DE LEGIBVS</hi> aus dem V.
-                        Buch der Etymologiae Isidors von Sevilla: cc. 1, 2, 10, 18-21, 23, 24,1-3,
-                        27, 1-4 (ed. <hi rend="smallcaps">Lindsay; </hi>zur Hs. <hi rend="smallcaps">Beeson, </hi>Isidor-Studien, S. 93). </p>
+                        Buch der Etymologiae Isidors von Sevilla: cc. 1, 2, 10, 18-21, 23, 24, 1-3,
+                        27, 1-4 (ed. Lindsay; zur Hs. Beeson, Isidor-Studien, S. 93). </p>
                   </msItem>
                   <msItem n="2">
                      <p>
                         <locus>3v-17r</locus> Exzerpte <hi rend="italic">DE ACCVSATIONIBVS ET
                            INSCRIPCIONIBVS</hi> aus den Büchern 9-16 des Codex Theodosianus
-                        (genauere Angaben bei <hi rend="smallcaps">Conrat (Cohn), </hi>Aus
-                        Handschriften, S. 390 f. und im Katalog von <hi rend="smallcaps">Pellegrin,
-                        </hi>S. 210 f.); Blatt- und Textverlust nach fol. 8. </p>
+                        (genauere Angaben bei Conrat (Cohn), Aus Handschriften, S. 390 f. und im
+                        Katalog von Pellegrin, S. 210 f.); Blatt- und Textverlust nach fol. 8. </p>
                   </msItem>
                   <msItem n="3">
                      <p>
@@ -180,16 +187,17 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <msItem n="4">
                      <p>
                         <locus>19r</locus> Isidor von Sevilla, Sententiae, II, 44, §§ 4-8, II, 41,
-                        §§ 3-5 und II, 43, §§ 1-2 <hi rend="smallcaps">(Migne, </hi>PL 83, Sp. 651 C
-                        - 652 A, Sp. 645 B - 646 A, Sp. 649 C - 650 A) mit einem vorangestellten
-                        Gebet: <hi rend="italic">SEQVITUR ORATIO. Misericors pater pius largire
-                           michi fidem</hi> - <hi rend="italic">perseuerentiam bonam</hi> (vgl. <hi rend="smallcaps">Salmon, </hi>Analecta liturgica, Nr. 313). </p>
+                        §§ 3-5 und II, 43, §§ 1-2 (Migne, PL 83, Sp. 651 C - 652 A, Sp. 645 B - 646
+                        A, Sp. 649 C - 650 A) mit einem vorangestellten Gebet: <hi rend="italic"
+                           >SEQVITUR ORATIO. Misericors pater pius largire michi fidem -
+                           perseuerentiam bonam</hi> (vgl. Salmon, Analecta liturgica, Nr. 313).
+                     </p>
                   </msItem>
                   <msItem n="5">
                      <p>
                         <locus>19r-v</locus> Zwei Gebete (das erste, als Werk des hl. Ephraem
-                        bezeichnet, ed. <hi rend="smallcaps">Wilmart, </hi>Precum libelli quattuor,
-                        S. 14; das zweite, unter den Werken Alkuins laufend, bei <hi rend="smallcaps">Migne, </hi>PL 101, Sp. 553 C). </p>
+                        bezeichnet, ed. Wilmart, Precum libelli quattuor, S. 14; das zweite, unter
+                        den Werken Alkuins laufend, bei Migne, PL 101, Sp. 553 C). </p>
                   </msItem>
                   <msItem n="6">
                      <p>
@@ -222,14 +230,14 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                      <p>
                         <locus>76&lt;bis&gt;r-104v</locus> Lex Alamannorum (Klasse B),
                         Titelverzeichnis (kaum erhalten) und Text (MGH LL nat. Germ. 5, 1, S. 56-59
-                        und 63 -156; Sigle B 1 b; zur Hs. S. 14 f.). </p>
+                        und 63-156; Sigle B 1 b; zur Hs. S. 14 f.). </p>
                   </msItem>
                   <msItem n="11">
                      <p>
                         <locus>105r-132v</locus> Lex Baiuvariorum, Titelverzeichnis und Text bis
                         Titel XII, 9 <hi rend="italic">columnis</hi> (MGH LL nat. Germ. 5, 2, S.
-                        261-264, 267 - 300, 303 - 403; Sigle K; zur Hs. S. 182 und 184); Textverlust
-                        in Titel II (nach fol. 115). </p>
+                        261-264, 267-300, 303-403; Sigle K; zur Hs. S. 182 und 184); Textverlust in
+                        Titel II (nach fol. 115). </p>
                   </msItem>
                   <msItem n="12">
                      <p>
@@ -249,38 +257,41 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <msItem n="14">
                      <p>
                         <locus>135v-138v</locus>
-                        <hi rend="italic">CAPITULO PRIMO - XXII</hi> - <title corresp="BK.20">Capitulare Haristallense (a. 779) in der Forma communis</title>: <hi rend="italic">ANNO FELICITER XI REGnante domno nostro karolo
+                        <hi rend="italic">CAPITULO PRIMO - XXII</hi> - <title corresp="BK.20a"
+                           >Capitulare Haristallense (a. 779) in der Forma communis</title>: <hi
+                           rend="italic">ANNO FELICITER XI REGnante domno nostro karolo
                            gloriosissimo regis in mense marcio facta capitulare - consenserunt
                            decretum. De metropolitanis ut suffraganeis episcopis eis corrigant ut
                            eis secundum canonis - emendauerit moriatur</hi> (MGH Capit. 1, Nr. 20,
                         S. 47 Z. 16 - S. 51 Z. 26); cc. 4-5 unter <hi rend="italic">IIII</hi>
-                        subsumiert, Teil 2 von c. 10 <hi rend="italic">(Haec uero de minoribus
+                        subsumiert, Teil 2 von c. 10 (<hi rend="italic">Haec uero de minoribus
                            causis - custodiant</hi>) ist an den Schluß des Kapitulars gesetzt.
-                        Danach, als ob das Kapitular von Herstal zur Lex Salica gehörte: <hi rend="italic">EXPLICIT LEX SALICA.</hi>
+                        Danach, als ob das Kapitular von Herstal zur Lex Salica gehörte: <hi
+                           rend="italic">EXPLICIT LEX SALICA.</hi>
                      </p>
                   </msItem>
                   <msItem n="15">
                      <p>
                         <locus>138v-140r</locus>
-                        <hi rend="italic">CAP. I, V-XIII -</hi>
-                        <title corresp="BK.40">Capitulare missorum</title> (a. 803), Rubrik, cc.1-2,
-                        6, 3-5, 7-13, 15-19, 14, 20-22, 25 -28, 23 und 24: <hi rend="italic">DE
-                           CAUSIS EMENDANDIS. De ecclesiis emendandis et ubi in unum - qui
-                           menciendo</hi>
-                        <hi rend="italic">uadunt</hi> (insgesamt MGH Capit. 1, Nr. 40, S. 115 Z. 17
-                        - S. 116 Z. 27). </p>
+                        <hi rend="italic">CAP. I, V-XIII</hi> - <title corresp="BK.40">Capitulare
+                           missorum</title> (a. 803), Rubrik, cc. 1-2, 6, 3-5, 7-13, 15-19, 14,
+                        20-22, 25-28, 23 und 24: <hi rend="italic">DE CAUSIS EMENDANDIS. De
+                           ecclesiis emendandis et ubi in unum - qui menciendo uadunt</hi>
+                        (insgesamt MGH Capit. 1, Nr. 40, S. 115 Z. 17 - S. 116 Z. 27). </p>
                   </msItem>
                   <msItem n="16">
                      <p>
                         <locus>140r</locus>
-                        <title corresp="BK.104">Capitula Francica</title>, c. 3: <hi rend="italic">Vt missi nostri una cum sociis</hi> -<hi rend="italic">nullatenus
-                           tardant</hi> (MGH Capit. 1, Nr. 104, S. 213 Z. 22 - 24, ed. nach Cod.
-                        Nürnberg Cent. V, App. 96, fol. 32r).</p>
+                        <title corresp="BK.104">Capitula Francica</title>, c. 3: <hi rend="italic"
+                           >Vt missi nostri una cum sociis - nullatenus tardant</hi> (MGH Capit. 1,
+                        Nr. 104, S. 213 Z. 22 - 24, ed. nach Cod. Nürnberg Cent. V, App. 96, fol.
+                        32r).</p>
                   </msItem>
                   <msItem n="17">
                      <p>
-                        <locus>140r-142r</locus> Lex Salica, Recapitulatio solidorum (ed. K. A. <hi rend="smallcaps">Eckhardt, </hi>Pactus legis Salicae II 2, S. 529-532);
-                           <hi rend="italic">EXPLICIT LEX SALICA.</hi>
+                        <locus>140r-142r</locus> Lex Salica, Recapitulatio solidorum (ed. K. A.
+                        Eckhardt, Pactus legis Salicae II 2, S. 529-532); <hi rend="italic">EXPLICIT
+                           LEX SALICA.</hi>
                      </p>
                   </msItem>
                   <msItem n="18">
@@ -298,24 +309,27 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <locus>143r</locus>
                         <title corresp="BK.46">Capitulare missorum Niumagae datum</title> (a. 806),
                         Fragment der cc. 8 und 15: <hi rend="italic">Sunt et alii qu.. - res quas...
-                        </hi>(MGH Capit. 1, Nr. 46, S. 131 Z. 40 - S. 132 Z. 2, S. 132 Z. 19-20; <hi rend="smallcaps">de Clercq, </hi>Neuf capitulaires, S. 63). Durch
-                        Pergamentabriß ist jeweils nur das erste Drittel der Zeile erhalten. </p>
+                        </hi> (MGH Capit. 1, Nr. 46, S. 131 Z. 40 - S. 132 Z. 2, S. 132 Z. 19-20; de
+                        Clercq, Neuf capitulaires, S. 63). Durch Pergamentabriß ist jeweils nur das
+                        erste Drittel der Zeile erhalten. </p>
                   </msItem>
                   <msItem n="20">
                      <p>
                         <title corresp="BK.44">Capitulare missorum in Theodonis villa datum
-                           secundum, generale</title> (a. 805), Fragment von c. 22: <hi rend="italic">De liberis hom...</hi> (MGH Capit. 1, Nr. 44, S. 125 Z. 38
+                           secundum, generale</title> (a. 805), Fragment von c. 22: <hi
+                           rend="italic">De liberis hom...</hi> (MGH Capit. 1, Nr. 44, S. 125 Z. 38
                         - S. 126 Z. 3). Durch Pergamentabriß ist jeweils nur das erste Drittel der
                         Zeile vorhanden. </p>
                   </msItem>
                   <msItem n="21">
                      <p>
                         <locus>143r-v</locus>
-                        <title corresp="BK.104">Capitula Francica</title>, c. 7: <hi rend="italic">Si quis per cartam... -..xsoluere</hi> (MGH Capit. 1, Nr. 104, S. 215 Z.
-                        1-12). Wegen Pergamentabriß ist fol. 143r jeweils nur das erste Drittel der
-                        Zeile erhalten, fol. 143v lassen sich nur noch wenige Worte und Buchstaben
-                        lesen, immerhin unter der Quarzlampe aber so viel, daß es am Inhalt des
-                        kopierten Textes keinen Zweifel geben kann. </p>
+                        <title corresp="BK.104">Capitula Francica</title>, c. 7: <hi rend="italic"
+                           >Si quis per cartam... - ..xsoluere</hi> (MGH Capit. 1, Nr. 104, S. 215
+                        Z. 1-12). Wegen Pergamentabriß ist fol. 143r jeweils nur das erste Drittel
+                        der Zeile erhalten, fol. 143v lassen sich nur noch wenige Worte und
+                        Buchstaben lesen, immerhin unter der Quarzlampe aber so viel, daß es am
+                        Inhalt des kopierten Textes keinen Zweifel geben kann. </p>
                   </msItem>
                </msContents>
                <physDesc>
@@ -333,12 +347,16 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                               <width>120-125</width>
                            </dimensions>
                         </extent>
-                        <collation><formula>IV<hi rend="super">8</hi> + (IV-3)<hi rend="super">13</hi> + IV<hi rend="super">21</hi> + (IV-1 [vor 22])<hi rend="super">28</hi> + 3 IV<hi rend="super">52</hi> + (IV-2 [vor
+                        <collation><formula>IV<hi rend="super">8</hi> + (IV-3)<hi rend="super"
+                                 >13</hi> + IV<hi rend="super">21</hi> + (IV-1 [vor 22])<hi
+                                 rend="super">28</hi> + 3 IV<hi rend="super">52</hi> + (IV-2 [vor
                                  57])<hi rend="super">58</hi> + IV<hi rend="super">66</hi> + (IV-1
                               [vor 69])<hi rend="super">73</hi> + IV-5 [nach 76; noch 2 schmale
                               Blattreste mit Schrift erhalten: 76<hi rend="super">&lt;bis&gt;</hi>
                               und 76<hi rend="super">&lt;ter&gt;</hi>])<hi rend="super">76</hi> + 4
-                                 IV<hi rend="super">108</hi> + (IV-1 [nach 115])<hi rend="super">115</hi> + IV<hi rend="super">123</hi> + (V-1 [vor 132])<hi rend="super">132</hi> + IV<hi rend="super">140</hi> + (IV-5 [4
+                                 IV<hi rend="super">108</hi> + (IV-1 [nach 115])<hi rend="super"
+                                 >115</hi> + IV<hi rend="super">123</hi> + (V-1 [vor 132])<hi
+                                 rend="super">132</hi> + IV<hi rend="super">140</hi> + (IV-5 [4
                               Blätter fehlen nach 142, eins nach 143])<hi rend="super">143</hi> ,
                               danach noch Blattreste von IV + II + IV. Geht man davon aus, daß der
                               heutige Binio einst ein Quaternio war, so käme man - mit K. Lehmann -
@@ -346,24 +364,17 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                               fehlenden Schlußteil könnten weitere Kapitularien gestanden haben (auf
                               den Resten nach 143 sind nur noch wenige Buchstaben lesbar, keine
                               Worte.</formula>
-                           <catchwords>Jüngere Kustoden: <hi rend="italic">IIII</hi>
-                              <hi rend="italic">(52</hi>
-                              <hi rend="super">v</hi>
-                              <hi rend="italic">), VI (66</hi>
-                              <hi rend="super">v</hi>
-                              <hi rend="italic">),</hi>
-                              <hi rend="italic">VIIII (84</hi>
-                              <hi rend="super">v</hi>
-                              <hi rend="italic">), X (92</hi>
-                              <hi rend="super">v</hi>
-                              <hi rend="italic">)</hi>, d. h. die Hs. begann einst mit der Lex
-                              Salica emendata vor fol. 22. Die Blätter 1-21 waren wohl ursprünglich
-                              an einer anderen Stelle der Hs. plaziert oder separat
-                              aufbewahrt.</catchwords>
+                           <catchwords>Jüngere Kustoden: <hi rend="italic">IIII</hi> (52<hi
+                                 rend="super">v</hi>), <hi rend="italic">VI</hi> (66<hi rend="super"
+                                 >v</hi>), <hi rend="italic">VIIII</hi> (84<hi rend="super">v</hi>),
+                                 <hi rend="italic">X</hi> (92<hi rend="super">v</hi>), d. h. die Hs.
+                              begann einst mit der Lex Salica emendata vor fol. 22. Die Blätter 1-21
+                              waren wohl ursprünglich an einer anderen Stelle der Hs. plaziert oder
+                              separat aufbewahrt.</catchwords>
                         </collation>
                      </supportDesc>
                      <layoutDesc>
-                        <layout writtenLines="22">22 Zeilen</layout>
+                        <layout writtenLines="22">22</layout>
                         <layout columns="1"/>
                      </layoutDesc>
                   </objectDesc>
@@ -375,7 +386,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   </scriptDesc>
                   <decoDesc>
                      <p>Text in hell- und dunkelbrauner Tinte; Rubriken in Capitalis rustica oder
-                        Unziale, rot und braun, ebenso die einfachen Initialen; rote Zahlen.</p>
+                        Unziale, rot und braun, ebenso die einfachen Initialen; rote Zahlen</p>
                   </decoDesc>
                   <bindingDesc>
                      <binding>
@@ -387,18 +398,21 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <origin>
                      <p>
                         <origDate notAfter="0900" notBefore="0881">9. Jh., Ende</origDate> (Mordek),
-                        <origDate notAfter="0850" notBefore="0826">9. Jh., 2. Viertel</origDate> (Bischoff);
-                        <origPlace ref="http://d-nb.info/gnd/4075486-8 http://viaf.org/viaf/239898530"> wohl Nordwestdeutschland</origPlace> (Mordek),
-                        <origPlace ref="http://d-nb.info/gnd/4075454-6"> Niederdeutschland</origPlace> (Bischoff).</p>
+                           <origDate notAfter="0850" notBefore="0826">9. Jh., 2. Viertel</origDate>
+                        (Bischoff); <origPlace
+                           ref="http://d-nb.info/gnd/4075486-8 http://viaf.org/viaf/239898530"> wohl
+                           Nordwestdeutschland</origPlace> (Mordek), <origPlace
+                           ref="http://d-nb.info/gnd/4075454-6"> Niederdeutschland</origPlace>
+                        (Bischoff).</p>
                   </origin>
                   <provenance>
                      <p>Die Hs. wurde im Jahre 1794 von Graf Johann-Christian Solms, ansässig auf
                         Schloß Klitschdorf bei Bunzlau (Schlesien), erworben und wird deshalb in der
                         älteren Literatur als Klitschdorfer Hs. oder als Hs. des Grafen Solms-Baruth
-                        (Codex Solmsianus) zitiert. <hi rend="smallcaps">Werminghoff </hi>notierte
-                        1897 (MGH Capit. 2, S. XVII): „Codex Klitschdorfianus ... nunc in castro
-                        Wehrau prope Bunzlau sub ‘Rep. X<hi rend="super">b</hi>. IV. I´ asservatus“.
-                        1960 von Martin Bodmer bei H. P. Kraus in New York gekauft.</p>
+                        (Codex Solmsianus) zitiert. Werminghoff notierte 1897 (MGH Capit. 2, S.
+                        XVII): „Codex Klitschdorfianus ... nunc in castro Wehrau prope Bunzlau sub
+                        ‘Rep. X<hi rend="super">b</hi>. IV. I´ asservatus“. 1960 von Martin Bodmer
+                        bei H. P. Kraus in New York gekauft.</p>
                   </provenance>
                   <acquisition/>
                </history>
@@ -410,7 +424,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                            389-393</bibl>
                         <bibl corresp="#Conrat_1891"> Conrat 1891, S. 92 mit Anm. 2, S. 312</bibl>
                         <bibl corresp="#Boretius_1897">Boretius 1897, S. XVII</bibl>
-                        <bibl corresp="#Mommsen_1905"> Mommsen 1905, Bd. 1, 1, S. LVII</bibl>
+                        <bibl corresp="#Mommsen_1905">Mommsen 1905, Bd. 1, 1, S. LVII</bibl>
                         <bibl> E. von Schwind, Kritische Studien zur Lex Baiuvariorum, in: NA 37
                            (1912) S. 418</bibl>
                         <bibl corresp="#Krusch_1924"> Krusch 1924, S. 89-99, 347</bibl>
@@ -421,11 +435,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <bibl corresp="#Kottje_1987"> Kottje 1987, S. 374, 377</bibl>
                         <bibl corresp="#Krämer_1989"> Krämer 1989, S. 284 und 3, S. 129 („Nicht aus
                            Fulda“)</bibl>
+                        <bibl corresp="#Coumert_2023">Coumert 2023, S. 16, 299, 310, 316, 317, 321,
+                           385, 386</bibl>
                      </listBibl>
                      <listBibl type="cat">
                         <bibl>E. Pellegrin, Manuscrits latins de la Bodmeriana (Bibliotheca
                            Bodmeriana. Catalogus V: Manuscrits latins, Fondation Martin Bodmer,
-                           Cologny-Genève 1982) S. 207 -217</bibl>
+                           Cologny-Genève 1982) S. 207-217</bibl>
                      </listBibl>
                      <listBibl type="abb">
                         <bibl>B. Gagnebin, Une source capitale pour la recherche à Genève: La
@@ -437,10 +453,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <bibl corresp="#Mordek_1995">Mordek 1995, S. 113-118</bibl>
                         <bibl corresp="#Bischoff_1998">Bischoff 1998, S. 207-208, Nr. 962</bibl>
                         <bibl><ref type="external"
-                           target="https://db.innovatingknowledge.nl/#detail/M0085">Innovating
-                           Knowledge Database</ref></bibl>
+                              target="https://db.innovatingknowledge.nl/#detail/M0085">Innovating
+                              Knowledge Database</ref></bibl>
                         <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
-                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 <ref type="external" subtype="Bl" target="cologny-bb-bodmer-107"/>
+                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff.<ref
+                              type="external" subtype="Bl" target="cologny-bb-bodmer-107"/>
                         </bibl>
                      </listBibl>
                   </listBibl>
@@ -449,11 +466,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage:</p>
+         <p>Transkriptionsvorlage: Sehr gutes Farbdigitalisat.</p>
          <projectDesc>
-            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
-            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
          </projectDesc>
          <editorialDecl>
@@ -467,9 +486,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
       </encodingDesc>
       <revisionDesc>
          <change who="DS" when="2016-03-01">Datei erstellt aus Mordek-XML</change>
-         <change who="XXX" when="2016"/>
-         <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift
-            nach Bischoff 1998/2004/2014 ergänzt</change>
+         <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift nach Bischoff
+            1998/2004/2014 ergänzt</change>
+         <change who="DT" when="2023">Datei veröffentlicht (BK 20a, 39, 40, 44, 46, 67,
+            104)</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -477,17 +497,1146 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
    </facsimile>
    <text>
       <front>
+         <div type="content">
+            <list>
+               <item n="10">
+                  <ptr type="internal" target="#cologny-bb-bodmer-107-133r-1"/>CAPITULA QUE IN LEGE
+                  SALICA DE HOMICIDIIS CLERICORUM MITTENDE SUNT <list>
+                     <item n="20">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-133r-2"/>I</item>
+                     <item n="30">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-133r-4"/>II</item>
+                     <item n="40">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-133v-1"/>III</item>
+                     <item n="50">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-133v-3"/>IIII</item>
+                     <item n="60">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-134r-1"/>V</item>
+                     <item n="70">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-134r-3"/>VI</item>
+                     <item n="80">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-134v-1"/>VII</item>
+                     <item n="90">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-134v-3"/>VIII</item>
+                     <item n="100">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-135r-1"/>VIII</item>
+                     <item n="110">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-135r-3"/>VIIII</item>
+                  </list></item>
+
+               <item n="120">
+                  <ptr type="internal" target="#cologny-bb-bodmer-107-135v-5"/>[Liste ohne Rubrik] <list>
+                     <item n="120">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-135v-5"/>(ANNO FELICITER
+                        XI REGnante domno nostro karolo gloriosissimo regis...)</item>
+                     <item n="120">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-135v-6"/>CAPITULO
+                        PRIMO</item>
+                     <item n="130">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-136r-3"/>II</item>
+                     <item n="140">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-136r-5"/>III</item>
+                     <item n="150">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-136r-7"/>IIII</item>
+                     <item n="160">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-136r-9"/>V</item>
+                     <item n="170">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-136r-11"/>VI</item>
+                     <item n="180">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-136v-1"/>VII</item>
+                     <item n="190">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-136v-3"/>VIII</item>
+                     <item n="200">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-136v-5"/>VIIII</item>
+                     <item n="210">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-136v-7"/>X</item>
+                     <item n="220">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-137r-1"/>XI</item>
+                     <item n="230">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-137r-3"/>XII</item>
+                     <item n="240">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-137r-5"/>XIII</item>
+                     <item n="250">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-137r-7"/>XIIII</item>
+                     <item n="260">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-137r-9"/>XV</item>
+                     <item n="270">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-137v-1"/>XVI</item>
+                     <item n="280">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-137v-3"/>XVII</item>
+                     <item n="290">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-137v-5"/>XVIII</item>
+                     <item n="300">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-138r-1"/>XVIIII</item>
+                     <item n="310">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-138r-3"/>XX</item>
+                     <item n="320">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-138r-5"/>XXI</item>
+                     <item n="330">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-138r-7"/>XXII</item>
+                     <item n="340">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-138v-1"/>(Haec uero de
+                        minoribus causis...)</item>
+                     <item n="340">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-138v-2"/>EXPLICIT LEX
+                        SALICA</item>
+                  </list></item>
+
+               <item n="350">
+                  <ptr type="internal" target="#cologny-bb-bodmer-107-138v-3"/>DE CAUSIS EMENDANDIS <list>
+                     <item n="360">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-138v-4"/>I</item>
+                     <item n="370">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-138v-6"/>(Vt presbiteri
+                        non ordinentur...) </item>
+                     <item n="370">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-138v-7"/>(De fugitiuis
+                        ac peregrinis ut distringantur...) </item>
+                     <item n="370">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-138v-8"/>(Vt missi
+                        nostri scabinios aduocatos notarios...) </item>
+                     <item n="370">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139r-1"/>V</item>
+                     <item n="380">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139r-3"/>VI</item>
+                     <item n="390">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139r-5"/>VII</item>
+                     <item n="400">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139r-7"/>VIII</item>
+                     <item n="410">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139r-9"/>VIIII</item>
+                     <item n="420">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139r-11"/>X</item>
+                     <item n="430">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139r-13"/>XI</item>
+                     <item n="440">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139r-15"/>XII</item>
+                     <item n="450">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139r-17"/>XIII</item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139v-1"/>(Vt nullus
+                        ebrius suam causam...) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139v-2"/>(Vt nemini
+                        liceat cogere ad bibendum) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139v-3"/>(De missis
+                        nostris discurrentibus...) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139v-4"/>(De canibus qui
+                        in dextro armo...) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139v-5"/>(Vt populus
+                        interrogetur de capitula...) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139v-6"/>(De episcopis
+                        abbatibus comitibus...) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-139v-7"/>(Vt nullus ad
+                        placitum banniatur...) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-140r-1"/>(De falsis
+                        testibus ut non recipiantur) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-140r-2"/>(Vt nullus
+                        praesumat per uitam regis...)</item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-140r-3"/>(Vt missi
+                        nostri qui iam breues detulerunt...) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-140r-4"/>(Quantam moram
+                        faciant...) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-140r-5"/>(De prudentia
+                        et constantia missorum nostrorum) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-140r-6"/>(De falsis
+                        monetariis requirendum est) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-140r-7"/>(De illis
+                        saxonibus qui uxores non habent) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-140r-8"/>(De signatis
+                        qui menciendo uadunt...) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-140r-9"/>(Vt missi
+                        nostri una cum sociis...) </item>
+                     <item n="460">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-140r-10"/>(Episcopi
+                        abbatibus comites seu uuassi nostri...) </item>
+                  </list></item>
+
+               <item n="460">
+                  <ptr type="internal" target="#cologny-bb-bodmer-107-142r-5"/>HAEC CAPITULA MISSI
+                  NOSTRI COGNITA FACIANT OMNIBUS IN OMNES PATRIAS <list>
+                     <item n="470">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-142r-6"/>I</item>
+                     <item n="480">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-142r-8"/>II</item>
+                     <item n="490">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-142v-1"/>III</item>
+                     <item n="500">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-142v-3"/>IIII</item>
+                     <item n="510">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-142v-5"/>V</item>
+                  </list></item>
+
+               <item n="520">
+                  <ptr type="internal" target="#cologny-bb-bodmer-107-143r-1"/>[Fragment einer
+                  Liste, Anfang verloren]<list>
+                     <item n="520.1"><ptr type="internal" target="#cologny-bb-bodmer-107-143r-1"
+                        />(Sunt et alii qu...) </item>
+                     <item n="520.2">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-143r-2"/>(De liberis
+                        hom...) </item>
+                     <item n="520.3">
+                        <ptr type="internal" target="#cologny-bb-bodmer-107-143r-3"/>(Si quis per
+                        carta...) </item>
+                  </list></item>
+            </list>
+         </div>
+
          <div type="mshist"/>
-         <div type="scribe"/>
-         <div type="letters"/>
-         <div type="abbreviations"/>
+         <div type="scribe">
+            <p>Der Schreiber kopierte den Text in einer sehr sauber ausgeführten karolingischen
+               Minuskel. Die Worttrennung wurde aber nicht immer korrekt vorgenommen (z.B.
+                  <locus>fol. 136r</locus>: <mentioned>Vtepi depbris etclericis</mentioned>.) </p>
+         </div>
+         <div type="letters">
+            <p>Ligaturen werden insgesamt relativ sparsam eingesetzt, es finden sich Ligaturen von
+               et, bei denen der obere Teil keine übliche Schlaufe, sondern nur ein diagonaler
+               Strich ist, sowie NT, or, ra und us. Bei Verneinungen (non, neque etc.) verwendet der
+               Schreiber gerne Majuskel-N.</p>
+         </div>
+         <div type="abbreviations">
+            <p>Der Schreiber verwendet nur gängige Abkürzungen, auffälliger ist nur
+                  <mentioned>nrt</mentioned> für <mentioned>noster</mentioned> (<locus>fol. 137r Z.
+                  5</locus>). </p>
+         </div>
          <div type="punctuation"/>
-         <div type="structure"/>
-         <div type="annotations"/>
-         <div type="other"/>
+         <div type="structure">
+            <p>BK 39 wird durch eine rote Rubrik in Unziale eingeleitet. Die Kapitelnummern sind
+               ebenfalls in Rot ausgeführt. Bei c. 5 steht zusätzlich <mentioned>CAP</mentioned> vor
+               der Kapitelnummer. C. 8 und 9 wurden beide mit <mentioned>VIII</mentioned> gezählt
+               und c. 10 wurde bei der Zählung übersprungen, so dass c. 11 die Kapitelnummer
+                  <mentioned>VIIII</mentioned> erhielt. Die Initialen, die jedes Kapitel einleiten,
+               sind mal in roter, mal in Texttinte geschrieben worden.</p>
+            <p>BK 20a, die sog. Forma communis des Capitulare Haristallense, wird durch den Prolog
+               eingeleitet, dessen erste Zeile in Capitalis rustica geschrieben wurde. C. 1 wird mit
+                  <mentioned>CAPITULO PRIMO</mentioned> in roter Tinte gezählt. Die Kapitel 4 und 5
+               sind unter <mentioned>IIII</mentioned> subsumiert, sodass die Zählung, die in roter
+               Tinte ausgeführt ist, danach um eins zu niedrig ist. C. 10 wird in verkürzter Fassung
+               geboten (bis <mentioned>accusator emendet</mentioned>), der Rest des Textes folgt als
+               eigener, aber ungezählter Abschnitt nach c. 23. Danach folgt <mentioned>EXPLICIT LEX
+                  SALICA</mentioned>. Die einzelnen Kapitel werden mit Initialen in Texttinte
+               eingeleitet.</p>
+            <p>BK 40 wird bis auf c. 29 vollständig geboten (c. 1-2, 6, 3-5, 7-13, 15-19, 14, 20-22,
+               25-28, 23-24): Nach der Rubrik, die in Unziale geschrieben wurde, folgt c. 1, das mit
+                  <mentioned>CAP. I</mentioned> eingeleitet wird. Die folgenden drei Kapitel sind
+               ungezählt, ehe c. 4 und 5 als <mentioned>V</mentioned> und <mentioned>VI</mentioned>
+               erscheinen. Darauf folgen c. 7-13 in korrekter Zählung. Ab dem danach folgenden c. 15
+               gibt es keine Zählung mehr, aber die Kapitel sind durch Absätze und Initialen
+               deutlich als solche erkennbar. Die Kapitelnummern und die Initiale von c. 1 wurden in
+               roter Tinte ausgeführt. Direkt an BK 40 schließt sich BK 104 c. 3 an, das auf zwei
+               ungezählte Abschnitte aufgeteilt wurde.</p>
+            <p>BK 67 wird durch eine rote Rubrik in Unziale eingeleitet. Die Zählung und die
+               Initiale von c. 1 sind ebenfalls in roter Tinte ausgeführt. Alle Kapitel sind korrekt
+               durchgezählt (wobei die Kapitelzahl <mentioned>V</mentioned> aufgrund von
+               Pergamentschäden nicht mehr erkennbar ist), c. 6 fehlt wegen Blattverlusts.</p>
+            <p>Auf dem letzten Blatt des Codex folgen noch BK 46 c. 8 und 15, die sehr
+               wahrscheinlich in einem Textblock zusammengefasst wurden. Daran schließen sich BK 44
+               c. 22 und - nach einer Leerzeile - BK 104 c. 7 an.</p>
+         </div>
+         <div type="annotations">
+            <p>In der Leerzeile vor BK 104 c. 7 steht eine fragmentarische Notiz von anderer Hand in
+               dunklerer Tinte.</p>
+         </div>
+         <div type="other">
+            <p><locus>Fol. 142v</locus> ist sehr fleckig und nachgedunkelt sowie die Tinte an
+               einigen Stellen verblasst; der Text lässt sich aber dennoch ganz überwiegend
+               problemlos lesen. Von <locus>fol. 143</locus> hat sich nur ein langer Streifen
+               erhalten, sodass etwa nur ein Drittel einer jeden Zeile lesbar ist. Auf <locus>fol.
+                  143v</locus> ist zudem die Tinte stark abgerieben und verblasst, sodass nicht mehr
+               alles entziffert werden kann.</p>
+         </div>
       </front>
       <body>
-         <ab type="text"/>
+
+
+         <cb n="133r"/>
+         <lb n="1"/>
+
+         <milestone unit="capitulare" n="BK.39"/>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-133r-1" corresp="BK.39_inscriptio"
+            rend="coloured"><seg type="initial">C</seg>APITULA QUE IN LEGE SALICA <lb/> DE
+            HOMICIDIIS <choice>
+               <abbr>CLERICOR</abbr>
+               <expan>CLERICORUM</expan>
+            </choice> MITTENDE <choice>
+               <abbr>ST</abbr>
+               <expan>SUNT</expan>
+            </choice>
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-133r-2" corresp="BK.39_1_inscriptio"
+            rend="coloured"><seg type="num" n="1">I</seg></ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-133r-3" corresp="BK.39_1"><seg type="initial"
+               rend="coloured">Q</seg>ui subdiaconum occiderit . CCC . <choice>
+               <abbr>sl</abbr>
+               <expan>solidos</expan>
+            </choice>
+            <choice>
+               <abbr>cop</abbr>
+               <expan>conponat</expan>
+            </choice>
+            <lb/>
+            <seg type="initial" rend="coloured">Q</seg>ui diaconum . CCCC . <choice>
+               <abbr>sl</abbr>
+               <expan>solidos</expan>
+            </choice> componat <lb/>
+            <seg type="initial" rend="coloured">Q</seg>ui <expan>presbiterum</expan> . DC . <choice>
+               <abbr>sl</abbr>
+               <expan>solidos</expan>
+            </choice> componat . <lb/>
+            <seg rend="coloured" type="initial">Q</seg>ui episcopum . DCCCC . <choice>
+               <abbr>sl</abbr>
+               <expan>solidos</expan>
+            </choice>
+            <choice>
+               <abbr>cop</abbr>
+               <expan>conponat</expan>
+            </choice>
+            <seg type="initial" rend="coloured">Q</seg>ui monachum <lb/> CCCC . <choice>
+               <abbr>sl</abbr>
+               <expan>solidos</expan>
+            </choice> . conponat <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-133r-4" corresp="BK.39_2_inscriptio"
+            rend="coloured"><seg type="num" n="2">II</seg></ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-133r-5" corresp="BK.39_2"><seg type="initial"
+               rend="coloured">S</seg>i quis inmunitatem damnum aliquod fecerit DC . <choice>
+               <abbr>sl</abbr>
+               <expan>solidos</expan>
+            </choice>
+            <choice>
+               <abbr>cp</abbr>
+               <expan>conponat</expan>
+            </choice>
+            <lb/>
+            <seg type="initial">S</seg>i autem homo furtum aut homicidium . uel quod<lb break="no"
+            />libet crimen foris <expan>committerit</expan> . infra <lb/> inmunitatem fugiens .
+            mandet comes episcopo <lb/> uel abbati . uel uicedomini . uel <expan>quicumque</expan>
+            locum <lb/> episcopi aut abbati tenuerit . ut reddat ei reum . <lb/> Si ille
+            contradixerit . et eum reddere nolu<lb break="no"/>erit . in prima contradictione . <choice>
+               <abbr>sl</abbr>
+               <expan>solidis</expan>
+            </choice> XV . <choice>
+               <abbr>cul</abbr>
+               <expan>culpabilis</expan>
+            </choice>
+            <choice>
+               <abbr>iud</abbr>
+               <expan>iudicetur</expan>
+            </choice>
+            <lb/> Si ad secundam eum reddere noluerit . XXX . <choice>
+               <abbr>sl</abbr>
+               <expan>solidis</expan>
+            </choice>
+            <choice>
+               <abbr>cul</abbr>
+               <expan>culpabilis</expan>
+            </choice>
+            <choice>
+               <abbr>iud</abbr>
+               <expan>iudicetur</expan>
+            </choice>
+            <lb/> Si nec ad terciam consentire noluerit . quicquit <lb/> reus damni fecerat . totum
+            ille qui cum <lb/> infra inmunitatem retinet . nec reddere <lb/> uult . soluere cogatur
+            . et ipse comes <lb/> ueniens licentiam habeat ipsum hominem <lb/> infra inmunitatem
+            quaerendi . <expan>ubicumque</expan> eum <cb n="133v"/> inuenire potuerit . Si autem
+            statim in prima <lb/> inquisicione comiti responsum fuerit <lb/> quod reus infra
+            immunitatem quidem fuisset <lb/> sed fuga lapsus sit . statim iuret quod ipse <lb/> eum
+            ad iustitiam cuiuslibet disfaciendam <lb/> fugire non fecisset . et sit ei in hoc
+               satis<lb break="no"/>factum . Si autem intranti in ipsam inmunitatem <lb/> comiti
+               <sic>collectu</sic> manu quislibet resistere <lb/> temptauerit . Comes hoc ad regem
+            uel <lb/> principem deferat . ibique iudicetur . <lb/> Ut sicut ille qui inmunitatem
+            damnum fecit . <lb/> DC . <choice>
+               <abbr>sl</abbr>
+               <expan>solidos</expan>
+            </choice> conponere debeat . Ita qui comiti <lb/> collecta manu resistere
+               <expan>praesumserit</expan> . DC . <choice>
+               <abbr>sl</abbr>
+               <expan>solidis</expan>
+            </choice> . <choice>
+               <abbr>cul</abbr>
+               <expan>culpabilis</expan>
+            </choice>
+            <choice>
+               <abbr>id</abbr>
+               <expan>iudicetur</expan>
+            </choice>
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-133v-1" corresp="BK.39_3_inscriptio"
+            rend="coloured"><seg type="num" n="3">III</seg></ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-133v-2" corresp="BK.39_3"><seg type="initial"
+               >S</seg>i quis ad ecclesiam confugium fecerit . <lb/> in atrio ipsius ecclesiae pacem
+            habeat . <lb/> nec sit ei necesse ecclesiam ingredi . et <lb/> nullus eum inde per uim
+            abstrahere <expan>praesumat</expan> . <lb/> sed liceat confiteri quod fecit . et inde
+            per manus <lb/> bonorum hominum ad discussionem in pub<lb break="no"/>lico producatur
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-133v-3" corresp="BK.39_4_inscriptio"
+            rend="coloured"><seg type="num" n="4">IIII</seg></ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-133v-4" corresp="BK.39_4"><seg type="initial"
+               >S</seg>i quis hominem in iuditio iniuste <lb/> contra alium altercantem adiuuare <cb
+               n="134r"/> per malum ingenium praesumpserit . <lb/> atque inde coram iudicibus uel
+            comite <lb/> increpatus fuerit et negare non po<lb break="no"/>tuerit . XV . <choice>
+               <abbr>sl</abbr>
+               <expan>solidis</expan>
+            </choice>
+            <choice>
+               <abbr>culp</abbr>
+               <expan>culpabilis</expan>
+            </choice>
+            <choice>
+               <abbr>iud</abbr>
+               <expan>iudicetur</expan>
+            </choice>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-134r-1" corresp="BK.39_5_inscriptio"
+            rend="coloured"><seg type="numDenom">CAPITULUM</seg>
+            <seg type="num" n="5">V</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-134r-2" corresp="BK.39_5"><seg type="initial"
+               rend="coloured">S</seg>i quis de libertate sua fuerit inter<lb break="no"/>pellatus .
+            et timens ne in seruicium <lb/> cadat . aliquem de propinquis suis <lb/> per quem se in
+            seruitium casurum timens <lb/> occiderit . Id est . patrem . matrem . <lb/> patruelem .
+            auunculum . uel quemlibet <lb/> huiusmodi propinquitate persona <lb/> Ipse qui hoc
+            perpetrauerit . moriatur . <lb/> agnicio eius et consanguinitas . in serui<lb break="no"
+            />tutem cadat . Et si negauerit se illum occidisse . <lb/> ad nouem uomeres ignitos
+            iuditio dei exa<lb break="no"/>minando accedat </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-134r-3" corresp="BK.39_6_inscriptio"
+            rend="coloured"><seg type="num" n="6">VI</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-134r-4" corresp="BK.39_6"><seg type="initial"
+               >Q</seg>ui res suas pro anima sua ad casa dei tra<lb break="no"/>dere uoluerit . domi
+            traditionem faciat . <lb/> coram testibus legitimis . et qui actenus <lb/> in hoste
+            facte sunt traditiones de quibus <lb/> nulla est questio . stabiles permaneant . <lb/>
+            Si uero aliquis alii res suas tradiderit <cb n="134v"/> et in hoste profectus fuerit .
+            et ille cui res <lb/> tradite sunt interim mortuus fuerit <lb/> adhibitis testibus coram
+            quibus traditio <lb/> facta est . res suas recipiat . Si autem ipse <lb/> mortuus fuerit
+            heredes eius legitimi <lb/> res traditas recipiat . </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-134v-1" corresp="BK.39_7_inscriptio"
+            rend="coloured"><seg type="num" n="7">VII</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-134v-2" corresp="BK.39_7"><seg type="initial"
+               rend="coloured">S</seg>i quis per cartam ingenuitatis a domino <lb/> suo legitimo .
+            libertatem est consecutus . <lb/> liber permaneat . Si uero aliquis eum <lb/> iniuste
+            inseruire temptauerit . <lb/> et ille cartam ingenuitatis suae osten<lb break="no"
+            />derit . et aduersarium se inseruire <lb/> uelle conprobauerit . ille qui hoc tem<lb
+               break="no"/>tauit . multa quae in carta discripta est . <lb/> soluere cogatur . <seg
+               type="initial">S</seg>i uero non pa<lb break="no"/>ruerit . sed iam ab illo qui eum
+            inseruire <lb/> uoluerat disfacta est . uuitrigeldum <lb/> eius conponat . duas partes
+            illi quem <lb/> inseruire uoluerit . terciam regi . <lb/> et ille iterum per praeceptum
+            regis <lb/> libertatem suam conquirat <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-134v-3" corresp="BK.39_8_inscriptio"
+            rend="coloured"><seg type="num" n="8">VIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-134v-4" corresp="BK.39_8"><seg type="initial"
+               >L</seg>iber qui se loco uuadii in alterius <cb n="135r"/> potestate
+               <expan>commisserit</expan> . ibique <sic>costitutus</sic>
+            <lb/> damnum <sic>aliquodlibet</sic> fecerit . qui eum <lb/> in loco uuadii suscepit .
+            aut damnum <lb/> soluat . aut hominem in mallo productum <lb/> dimittat . perdens simul
+            debitum propter <lb/> quod eum uuadio suscepit . et qui damnum <lb/> fecit . dimissus
+            iuxta qualitatem regi<del>s</del>
+            <lb/> cogantur emendare . Si uero liberam <lb/> feminam habuerit . usque dum in pignus
+            <lb/> extiterit . et filios habuerit . liberi <lb/> permaneant : </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-135r-1" corresp="BK.39_9_inscriptio"
+            rend="coloured"><seg type="num" n="8">VIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-135r-2" corresp="BK.39_9 BK.39_10">
+            <milestone unit="span" corresp="BK.39_9" spanTo="#cologny-bb-bodmer-107-135r-2_1"/>
+            <seg type="initial" rend="coloured">O</seg>mnia debita quae ad <lb/> partem regis solui
+            debent <choice>
+               <abbr>sold</abbr>
+               <expan>solidis</expan>
+            </choice> . <lb/> XII <sic>dinnariorum</sic> soluant . excepto <lb/> freda quae in lege
+            salica conscrip<lb break="no"/>ta est . Illa eadem <choice>
+               <abbr>sold</abbr>
+               <expan>solido</expan>
+            </choice> quo cetere <lb/> conpositiones solui debent conponatur . <lb/>
+            <anchor xml:id="cologny-bb-bodmer-107-135r-2_1"/>
+            <milestone unit="span" corresp="BK.39_10" spanTo="#cologny-bb-bodmer-107-135r-2_2"/>
+            <seg type="initial">S</seg>i quis causam iudicatam repetere <lb/> praesumpserit in mallo
+            . ibique testibus <lb/> conuictus fuerit . aut XV <choice>
+               <abbr>sold</abbr>
+               <expan>solidos</expan>
+            </choice>
+            <lb/> conponat . aut XV ictos ab scabiniis <lb/> qui causam prius iudicauerunt accipiat
+            . <lb/>
+            <anchor xml:id="cologny-bb-bodmer-107-135r-2_2"/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-135r-3" corresp="BK.39_11_inscriptio"
+            rend="coloured"><seg type="num" n="9">VIIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-135r-4" corresp="BK.39_11"><seg
+               type="initial" rend="coloured">O</seg>btimi quisque in pago uel in ciuitate <cb
+               n="135v"/> in testimonium adsumantur . et cui his <lb/> contra quem testimoniari
+            debent . <lb/> nullum crimen possit indicere<note type="editorial">Es folgen,
+               eingeschoben zwischen BK 39 c. 11 und dem Beginn von BK 20a, Titel 71 und 72, 1 der
+               Lex Salica Karolina emendata (MGH LL nat. Germ. 4, 1, S. 235).</note>
+            <lb/>
+         </ab>
+
+         <gap reason="editorial"/>
+         <lb n="13"/>
+
+
+         <milestone unit="capitulare" n="BK.20a"/>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-135v-5" corresp="BK.20a_prolog">
+            <date><seg type="initial">A</seg>NNO FELICITER XI REG<lb break="no"/>nante domno nostro
+                  <rs type="person">karolo</rs>
+               <lb/> gloriosissimo regis . in mense <lb/> marcio</date> . facta capitulare qualiter
+            <lb/> congregatis in unum synodalem consilio <lb/> episcopos . abbatis . uirisque
+            inlustribus . una <lb/> cum piissimo domno nostro . secundum uolun<lb break="no"/>tatem
+            deo nostro . pro causis oportunis <lb/> consenserunt decretum <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-135v-6" corresp="BK.20a_1_inscriptio"
+            rend="coloured"><seg type="numDenom">CAPITULO</seg>
+            <seg type="num" n="1">PRIMO</seg>
+            <cb n="136r"/>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-136r-1" corresp="BK.20a_1"><seg
+               type="initial">D</seg>e metropolitanis . ut suffraganeis episcopis <lb/> eis
+            corrigant . ut eis secundum canonis <lb/> subiecti sint . et ea quae erga ministerium
+            <lb/> illorum emendanda cognoscunt . libenti <lb/> animo emendant atque corrigant <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-136r-3" corresp="BK.20a_2_inscriptio"
+            rend="coloured"><seg type="num" n="2">II</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-136r-4" corresp="BK.20a_2"><seg
+               type="initial">D</seg>e episcopis . ubi praesens episcopi ordinati non sunt . <lb/>
+            sine tarditate ordinentur <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-136r-5" corresp="BK.20a_3_inscriptio"
+            rend="coloured"><seg type="num" n="3">III</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-136r-6" corresp="BK.20a_3"><seg
+               type="initial">D</seg>e monasteriis qui regulares fuerunt <lb/> ut secundum regulam
+            uiuant . Necnon <lb/> et monasteria puellarum . ordinem sanctum <lb/> custodiant . et
+            unaqueque abbatissa in suo <lb/> monasterio . sine intermissione resedeat <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-136r-7" corresp="BK.20a_4_inscriptio"
+            rend="coloured"><seg type="num" n="4">IIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-136r-8" corresp="BK.20a_4 BK.20a_5">
+            <milestone unit="span" corresp="BK.20a_4" spanTo="#cologny-bb-bodmer-107-136r-8_1"/>
+            <seg type="initial">V</seg>t episcopi de <expan>presbiteris</expan> et c<subst>
+               <del>r</del>
+               <add>lericis</add>
+            </subst> . infra illorum <lb/> parroechia potestatem habeant secun<lb break="no"/>dum
+            canones . <anchor xml:id="cologny-bb-bodmer-107-136r-8_1"/>
+            <milestone unit="span" corresp="BK.20a_5" spanTo="#cologny-bb-bodmer-107-136r-8_2"/>
+            Similiter et de incestu<lb break="no"/>osis hominibus emendandi licentiam <lb/> habeant
+            . Seu et de uiduis infra suam <lb/> parrochiam potestatem habeant ad corrigendum . <lb/>
+            <anchor xml:id="cologny-bb-bodmer-107-136r-8_2"/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-136r-9" corresp="BK.20a_6_inscriptio"
+            rend="coloured"><seg type="num" n="5">V</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-136r-10" corresp="BK.20a_6"><seg
+               type="initial">V</seg>t nulli liceat alterius <lb/> clericum recipere . aut ordinare
+            . in a<lb break="no"/>liquo gradu . </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-136r-11" corresp="BK.20a_7_inscriptio"
+            rend="coloured"><seg type="num" n="6">VI</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-136r-12" corresp="BK.20a_7"><seg
+               type="initial">D</seg>e decimis . ut unusquisque suam decimam donet <cb n="136v"/>
+            atque per iussionem episcopi dispensentur <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-136v-1" corresp="BK.20a_8_inscriptio"
+            rend="coloured"><seg type="num" n="7">VII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-136v-2" corresp="BK.20a_8"><seg
+               type="initial">V</seg>t homicidas aut ceteros reos qui moriri <lb/> legibus debent .
+            et ad ecclesiam confugiunt . <lb/> Non excusentur . Neque eis ibidem uictus detur .
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-136v-3" corresp="BK.20a_9_inscriptio"
+            rend="coloured"><seg type="num" n="8">VIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-136v-4" corresp="BK.20a_9"><seg
+               type="initial">V</seg>t latrones de infra emunitate illi iudicis <lb/> ad comitum
+            praesentetur placitum . et qui <lb/> hoc non fecerit . beneficium et honorem <lb/>
+            perdant . Similiter et uassus noster . si hoc <lb/> Non adimpleuerint . beneficium et
+            honorem <lb/> perdant . Et qui beneficium Non habuerit <lb/> bannum soluat . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-136v-5" corresp="BK.20a_10_inscriptio"
+            rend="coloured"><seg type="num" n="9">VIIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-136v-6" corresp="BK.20a_10"
+            next="#cologny-bb-bodmer-107-138v-1"><seg type="initial">D</seg>e eo qui periurium
+            fecerint . Nullam redem<lb break="no"/>tionem . Nisi manum perdant . Quod si accu<lb
+               break="no"/>sator contendere uoluerit de ipso per<lb break="no"/>iurio . stant ad
+            crucem . et si iurator <lb/> uinciat . legem suam accusator emendet . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-136v-7" corresp="BK.20a_11_inscriptio"
+            rend="coloured"><seg type="num" n="10">X</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-136v-8" corresp="BK.20a_11"><seg
+               type="initial" rend="coloured">D</seg>e uindicta et iuditium latronibus factum <lb/>
+            testimonium episcoporum . absque peccato <lb/> comitis esse dicunt . Ita tamen . ut
+            absque <lb/> inuidia aut occasione mala . et nihil aliut <lb/> ibi interponatur . Nisi
+            uera iustitia ad per<lb break="no"/>ficiendo . Et si per hodio aut male ingenio <cb
+               n="137r"/> Nisi per iustitiam faciendam homine<note type="editorial">Über e eventuell
+               eine radierte Kürze (für -m).</note> defe<lb break="no"/>cerit . honorem suam perdat
+            . et legibus contra <lb/> quem iniuste fecit . secundum penam quam <lb/> intulit
+            emendetur </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-137r-1" corresp="BK.20a_12_inscriptio"
+            rend="coloured"><seg type="num" n="11">XI</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-137r-2" corresp="BK.20a_12"><seg
+               type="initial">V</seg>ere boneque memoriae genitor noster <lb/> in sua placita
+            constituit . et synodus <lb/> conseruare uolemus <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-137r-3" corresp="BK.20a_13_inscriptio"
+            rend="coloured"><seg type="num" n="12">XII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-137r-4" corresp="BK.20a_13"><seg
+               type="initial">D</seg>e rebus uero ecclesiarum . unde nunc <lb/> census exeunt .
+            decima et nona . cum <lb/> ipso consenso sit soluta . Et unde antea <lb/> Non> exierunt
+            similiter Nona et decima <lb/> detur . Atque de casatis L . <choice>
+               <abbr>sl</abbr>
+               <expan>solidum</expan>
+            </choice> . I . et de casa<lb break="no"/>tis XXX . medio <choice>
+               <abbr>sl</abbr>
+               <expan>solido</expan>
+            </choice> ; et tremissem . de XX . <lb/> Et praecarias ubi modi s<subst>
+               <del>i</del>
+               <add>v</add>
+            </subst>nt renouentur . <lb/> et sit descriptio inter <expan>praecarias</expan> de uerbo
+            nostro <lb/> factas . et inter eas quae spontanea<del>e</del> uolun<lb break="no"/>tate
+            . de ipsis rebus ecclesiarum faciunt . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-137r-5" corresp="BK.20a_14_inscriptio"
+            rend="coloured"><seg type="num" n="13">XIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-137r-6" corresp="BK.20a_14"><seg
+               type="initial">D</seg>e trusta facienda . Nemo praesumatur <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-137r-7" corresp="BK.20a_15_inscriptio"
+            rend="coloured"><seg type="num" n="14">XIIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-137r-8" corresp="BK.20a_15"><seg
+               type="initial">D</seg>e cerariis et tabulariis . atque cartularii <lb/> sicut a longo
+            tempore fuit obseruetur . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-137r-9" corresp="BK.20a_16_inscriptio"
+            rend="coloured"><seg type="num" n="15">XV</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-137r-10" corresp="BK.20a_16"><seg
+               type="initial">D</seg>e <subst>
+               <del>c</del>
+               <add>sacramentis</add>
+            </subst> pro geldonia . in inuicem <lb/> coniurantibus . ut nemo facere pręsumat . <cb
+               n="137v"/> Alio uero modo de illorum helemosinis <lb/> aut de incendio . aut de
+            naufragio . <lb/> quamuis conuenencia faciant . nemo <lb/> in hoc iurare praesumat .
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-137v-1" corresp="BK.20a_17_inscriptio"
+            rend="coloured"><seg type="num" n="16">XVI</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-137v-2" corresp="BK.20a_17"><seg
+               type="initial">D</seg>e iter agentibus qui ad palatium . aut ali<lb break="no"/>ubi
+            pergunt . ut eos cum collecta . nemo sit <lb/> ausus adsallire . et nemo herbam alterius
+            <lb/> defensionis <choice>
+               <abbr>tepr</abbr>
+               <expan>tempore</expan>
+            </choice> tollere <expan>praesumat</expan> . nisi <lb/> in hoste pergendum . aut missus
+            noster sit . <lb/> et qualiter facere presumat eme<mod>n</mod>det . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-137v-3" corresp="BK.20a_18_inscriptio"
+            rend="coloured"><seg type="num" n="17">XVII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-137v-4" corresp="BK.20a_18"><seg
+               type="initial">D</seg>e teloneis qui iam antea forbanniti <lb/> fuerint . nemo tollat
+            . nisi ubi antiquo <lb/> tempore fuerunt <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-137v-5" corresp="BK.20a_19_inscriptio"
+            rend="coloured"><seg type="num" n="18">XVIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-137v-6" corresp="BK.20a_19"><seg
+               type="initial">D</seg>e mancipia quae uenduntur . ut in <expan>prae<lb break="no"
+               />sencia</expan> episcopi . uel comitis sit . aut in <expan>praesen<lb break="no"
+               />cia</expan> archidiaconi . et centenarii . <lb/> aut in <expan>praesentia</expan>
+            uicedomino . et uice<lb break="no"/>comitis . aut ante bene nota testimo<lb break="no"
+            />nia . Et foris marca Nemo manci<lb break="no"/>pium uendat . et qui hoc fecerit .
+            tantas <lb/> uices bannum soluat . quanta mancipia <lb/> uendidit . et si non habet
+            praecium <cb n="138r"/> semetipsum in uuadio donec bannum persoluet <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-138r-1" corresp="BK.20a_20_inscriptio"
+            rend="coloured"><seg type="num" n="19">XVIIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-138r-2" corresp="BK.20a_20"><seg
+               type="initial">D</seg>e brunias . ut nullus foris nostro regno <lb/> uendere
+            praesumat </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-138r-3" corresp="BK.20a_21_inscriptio"
+            rend="coloured"><seg type="num" n="20">XX</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-138r-4" corresp="BK.20a_21">
+            <seg type="initial">S</seg>i comes in suo ministerio iustitias Non fe<lb break="no"
+            />cerit . misso nostro de sua causa soniare <lb/> faciat . usque dum iustitias ibidem
+            factas <lb/> fuerint . Et si u<mod>u</mod>assus noster iustitias <lb/> Non fecerit .
+            tunc et comis et missus <lb/> ad ipsius casa resedeant . et de suo uiuant <lb/> quousque
+            iustitiam faciant </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-138r-5" corresp="BK.20a_22_inscriptio"
+            rend="coloured"><seg type="num" n="21">XXI</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-138r-6" corresp="BK.20a_22"><seg
+               type="initial">S</seg>i quis pro faida praecium recipere <lb/> Non uult tunc ad nos
+            transmissus sit . <lb/> et nos eum dirigamus . ubi damnum mini<lb break="no"/>me facere
+            possit . Simili modo <lb/> et qui pro faida praecium soluere <lb/> noluerit . Nec
+            iustitiam exinde <lb/> facere . in tale loco eum mittere <lb/> uolumus . ut pro eodem
+            maior . <lb/> damnus Non crescat </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-138r-7" corresp="BK.20a_23_inscriptio"
+            rend="coloured"><seg type="num" n="22">XXII</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-138r-8" corresp="BK.20a_23"><seg
+               type="initial">D</seg>e latronibus . ita praecipimus obser<lb break="no"/>uandum . ut
+            prima culpa . Non mo<lb break="no"/>riatur . sed oculum dextrum perdat . <cb n="138v"/>
+            De secunda uero culpa . Nasus ipsius latro<lb break="no"/>nis . capuletur . Tercia uero
+            culpa . si non <lb/> emendauerit . moriatur . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-138v-1" corresp="BK.20a_10"
+            prev="#cologny-bb-bodmer-107-136v-6"><seg type="initial">H</seg>aec uero de minoribus
+            causis obseruandum . <lb/> De maioribus uero rebus . aut de statu <lb/> ingenuitatis
+            secundum legem custodiant . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-138v-2">EXPLICIT LEX SALICA <lb/>
+         </ab>
+
+
+         <milestone unit="capitulare" n="BK.40"/>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-138v-3" corresp="BK.40_inscriptio"
+            rend="coloured">DE CAUSIS EMENDANDIS <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-138v-4" corresp="BK.40_1_inscriptio"
+            rend="coloured"><seg type="numDenom">CAPITULUM</seg> . <seg type="num" n="1">I</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-138v-5" corresp="BK.40_1"><seg type="initial"
+               rend="coloured">D</seg>e ecclesiis emendandis . et ubi in unum <lb/> locum plures
+            sunt quam necesse sit . <lb/> ut destruantur quae necessaria Non <lb/> sunt . et aliae
+            construantur <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-138v-6" corresp="BK.40_2"><seg type="initial"
+               >V</seg>t <expan>presbiteri</expan> Non ordinentur priusquam <lb/> examinentur . et
+            ut <expan>excommunica<lb break="no"/>tionis</expan> passim . et sine cause Non fiant .
+            <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-138v-7" corresp="BK.40_6"><seg type="initial"
+               >D</seg>e fugitiuis ac peregrinis . ut distrin<lb break="no"/>gantur . ut scire
+            possimus quae sint <lb/> aut unde uenerunt <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-138v-8" corresp="BK.40_3"><seg type="initial"
+               >V</seg>t missi nostri scabinios . aduocatos . No<lb break="no"/>tarios per singula
+            loca eligant . ut eorum <lb/> nomina quando reuersi fuerint <lb/> secum scripta deferant
+               <cb n="139r"/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-139r-1" corresp="BK.40_4_inscriptio"
+            rend="coloured"><seg type="num" n="5">V</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139r-2" corresp="BK.40_4"><seg type="initial"
+               >D</seg>e his qui legem conseruare contemserint . <lb/> et per fideiussores ad
+            presentiam <lb/> regis deducantur </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-139r-3" corresp="BK.40_5_inscriptio"
+            rend="coloured"><seg type="num" n="6">VI</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139r-4" corresp="BK.40_5"><seg type="initial"
+               >V</seg>t ille qui haribanno soluere debent <lb/> coniectum faciant ad haribannatorem
+            <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-139r-5" corresp="BK.40_7_inscriptio"
+            rend="coloured"><seg type="num" n="7">VII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139r-6" corresp="BK.40_7"><seg type="initial"
+               >U</seg>t bauca . et brunia . Non dentur <lb/> Negociatoribus <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-139r-7" corresp="BK.40_8_inscriptio"
+            rend="coloured"><seg type="num" n="8">VIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139r-8" corresp="BK.40_8"><seg type="initial"
+               >D</seg>e mensuris . ut secundum iussionem nostram <lb/> aequales fiant <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-139r-9" corresp="BK.40_9_inscriptio"
+            rend="coloured"><seg type="num" n="9">VIIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139r-10" corresp="BK.40_9"><seg
+               type="initial">V</seg>t non mittantur testimonia super <lb/> uestitura domni <rs
+               type="person">pipini</rs> regis . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-139r-11" corresp="BK.40_10_inscriptio"
+            rend="coloured"><seg type="num" n="10">X</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139r-12" corresp="BK.40_10"><seg
+               type="initial">U</seg>t nec colonus . Nec fiscalinus . <lb/> possint aliubi
+            traditiones facere . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-139r-13" corresp="BK.40_11_inscriptio"
+            rend="coloured"><seg type="num" n="11">XI</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139r-14" corresp="BK.40_11"><seg
+               type="initial">V</seg>t nullus praesumat hominem ad iudicium <lb/> sine causa iactare
+            . nisi iudicatum fiat <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-139r-15" corresp="BK.40_12_inscriptio"
+            rend="coloured"><seg type="num" n="12">XII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139r-16" corresp="BK.40_12"><seg
+               type="initial">U</seg>t liber * homo qui in monasterio <lb/> regulari comam
+            deposuerit . et res <lb/> suas ibidem delegauerit . promissionem <lb/> factam secundum
+            regulam . firmiter teneat . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-139r-17" corresp="BK.40_13_inscriptio"
+            rend="coloured"><seg type="num" n="13">XIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139r-18" corresp="BK.40_13"><seg
+               type="initial">V</seg>t omnia quae uuadiare debent . iuxta <lb/> quod in legem
+            continet . pleniter secundum <lb/> ipsam legem reuuadite fiant . et in postmodum <cb
+               n="139v"/> uel domnus rex . uel ille cuius causa est . <lb/> iuxta quod ei placuerit
+            misericordiam faciant <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139v-1" corresp="BK.40_15"><seg
+               type="initial">V</seg>t nullus ebrius suam causam <lb/> in mallum conquirere possit .
+            Nec testi<lb break="no"/>monium dicere . Nec placitum comis <lb/> habere . Nisi ieiunus
+            <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139v-2" corresp="BK.40_16"><seg
+               type="initial">V</seg>t nemini liceat cogere ad bibendum <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139v-3" corresp="BK.40_17"><seg
+               type="initial">D</seg>e missis nostris discurrentibus . uel cete<lb break="no"/>ris
+            hominibus propter utilitatem nostram <lb/> iter agentibus . ut nullus mansionem <lb/>
+            contradicere praesumat <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139v-4" corresp="BK.40_18"><seg
+               type="initial">D</seg>e canibus qui in dextro armo tonsi sunt . <lb/> ut homo qui eum
+            habuerit . cum ipso cano <lb/> in <expan>praesencia</expan> regis ueniat <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139v-5" corresp="BK.40_19"><seg
+               type="initial">V</seg>t populus interrogetur de capitula <lb/> quae in lege
+               <sic>nouite</sic> addita sunt . et <lb/> postquam omnes consenserint . subscrip<lb
+               break="no"/>tionis . uel manufirmationis suas . <lb/> in ipsis capitulis faciunt .
+            <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139v-6" corresp="BK.40_14"><seg
+               type="initial">D</seg>e episcopis . abbatibus . comitibus . qui ad <lb/> placitum Non
+            uenerunt <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-139v-7" corresp="BK.40_20"><seg
+               type="initial">V</seg>t nullus ad placitum banniatur <cb n="140r"/> Nisi qui causam
+            suam quaerit . aut si alteri <lb/> quaerere debet <del quantity="3" unit="chars"/> .
+            excepto scabineis <lb/> VII . qui per omnia placita <expan>praeesse</expan> debent .
+            <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-140r-1" corresp="BK.40_21"><seg
+               type="initial">D</seg>e falsis testibus . ut non recipiantur <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-140r-2" corresp="BK.40_22"><seg
+               type="initial">V</seg>t nullus praesumat per uitam regis <lb/> et filiorum eius
+            iurare <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-140r-3" corresp="BK.40_25"><seg
+               type="initial">V</seg>t missi nostri qui iam breues detulerunt <lb/> de adnunciatione
+            . uolumus ut adducat de opere<note type="editorial">Der Wortteil
+                  -<mentioned>pere</mentioned> steht zwei Zeilen höher im Freiraum am
+               Zeilenende.</note>
+            <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-140r-4" corresp="BK.40_26"><seg
+               type="initial">Q</seg>uantam moram faciant in unoquoque loco <lb/> et quod homines
+            secum habeant <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-140r-5" corresp="BK.40_27"><seg
+               type="initial">D</seg>e prudentia et constantia missorum Nostrorum . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-140r-6" corresp="BK.40_28"><seg
+               type="initial">D</seg>e falsis monetariis requirendum est <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-140r-7" corresp="BK.40_23"><seg
+               type="initial">D</seg>e illis <rs>saxonibus</rs> qui uxores Non habent . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-140r-8" corresp="BK.40_24"><seg
+               type="initial">D</seg>e signatis qui menciendo uadunt <lb/>
+         </ab>
+
+
+         <milestone unit="capitulare" n="BK.104"/>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-140r-9" corresp="BK.104_3"
+            next="#cologny-bb-bodmer-107-140r-10"><seg type="initial">V</seg>t missi nostri una cum
+            sociis . qui in eorum <lb/> sacro commonere uidentur <lb/>
+         </ab>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-140r-10" corresp="BK.104_3"
+            prev="#cologny-bb-bodmer-107-140r-9"><seg type="initial">E</seg>piscopi . abbatibus .
+            comites . seu uuassi nostri <lb/> omnes generalitatem si necesse fuerit <lb/> festinare
+            Nullatenus tardant <lb/>
+         </ab>
+
+         <gap reason="editorial"/>
+
+         <cb n="142r"/>
+         <lb n="12"/>
+
+
+         <milestone unit="capitulare" n="BK.67"/>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-142r-5" corresp="BK.67_inscriptio"
+            rend="coloured">HAEC CAPITULA MISSI NOSTRI <lb/> COGNITA FACIANT OMNIBUS <lb/> IN OMNES
+            PATRIAS <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-142r-6" corresp="BK.67_1_inscriptio"
+            rend="coloured"><seg type="num" n="1">I</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-142r-7" corresp="BK.67_1"><seg type="initial"
+               rend="coloured">V</seg>t nullus ad mallum uel ad placitum <lb/> infra patriam . arma <choice>
+               <abbr>ide</abbr>
+               <expan>id est</expan>
+            </choice> . scutum <lb/> uel lancea non portet . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-142r-8" corresp="BK.67_2_inscriptio"
+            rend="coloured"><seg type="num" n="2">II</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-142r-9" corresp="BK.67_2">
+            <seg type="initial">D</seg>e latronibus . <expan>quicumque</expan>
+            <date>post missam <rs type="person">sancti <lb/> iohannis</rs></date> latronem mansionem
+            dedit . <lb/> si <rs>francus</rs> . est . cum XII . similibus <expan>francis</expan>
+            iuret <lb/> quod latronem eum fuisse * Non sciret . licet <lb/> pater eius sit . uel
+            frater . aut propinqu<unclear>us</unclear>
+            <cb n="142v"/> si hoc iurare Non potuerit . et ab aliquo <lb/> conuictus fuerit . quod
+            latronem in hospi<lb break="no"/>cio su<unclear>sc</unclear>episset . quasi latro et
+            infidelis iudi<lb break="no"/>cetur . Qui latro est . et infidelis est noster <lb/> et
+                  <rs>fra<unclear>n</unclear>cor<unclear>um</unclear></rs> . Et <mod>q</mod>ui illum
+            suscepit . similis est . <lb/> illi . Si autem audiuit quod latro fuisset . et ta<lb
+               break="no"/>men Non scit firmiter . aut iuret solus <lb/> quod <expan>numquam</expan>
+            eum audisset . Nec per ueritatem <lb/> Nec per mend<gap unit="chars" quantity="3"/>um
+            latronem . aut sit paratus <lb/> si ille de latrocinio postea uictus fuerat <lb/> ut
+            similiter damnetur <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-142v-1" corresp="BK.67_3_inscriptio"
+            rend="coloured"><seg type="num" n="3">III</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-142v-2" corresp="BK.67_3"><seg type="initial"
+               >V</seg>t nullus comparet caballum . bouem . et iu<lb break="no"/>menta . uel alia .
+            Nisi illum homin<unclear>em</unclear> cognoscat <lb/> qui ei uendidit . aut de quo pago
+            est . uel ubi <lb/> manet . aut quis est ei se<unclear>ni</unclear>or <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-142v-3" corresp="BK.67_4_inscriptio"
+            rend="coloured"><seg type="num" n="43">IIII</seg>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-142v-4" corresp="BK.67_4"><seg type="initial"
+               >D</seg>e <unclear>a</unclear>uenticiis . ut missi nostri ad placitum uenirent .
+            <lb/> habea<gap unit="chars" quantity="2"/> descrip<gap unit="chars" quantity="3"/>
+            quanti aduenticii sunt . <lb/> illor<gap unit="chars" quantity="1"/> mis<gap
+               unit="chars" quantity="3"/>co . et de quo pago sunt . et <lb/> nomina eorum . et qui
+            sunt eorum seniores . <lb/>
+         </ab>
+
+         <ab type="meta-text" xml:id="cologny-bb-bodmer-107-142v-5" corresp="BK.67_5_inscriptio">
+            <gap unit="chars" quantity="1"/><note type="editorial">Die Kapitelzahl
+                  <mentioned>V</mentioned> ist aufgrund von Pergamentschäden nicht mehr zu
+               erkennen.</note>
+         </ab>
+         <ab type="text" xml:id="cologny-bb-bodmer-107-142v-6" corresp="BK.67_5"><seg type="initial"
+               >S</seg><gap unit="chars" quantity="2"/>iliter direxi<gap unit="chars" quantity="2"
+            />s missos in <rs type="place">aquitania</rs>
+            <lb/> et <rs type="place">langobardia</rs> ut omnes fugitiuos <lb/> et aduenticios ad
+            nostrum placitum adducant . <cb n="143r"/>
+         </ab>
+
+
+         <milestone unit="capitulare" n="BK.46"/>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-143r-1" corresp="BK.46_8 BK.46_15">
+            <milestone unit="span" corresp="BK.46_8" spanTo="#cologny-bb-bodmer-107-143r-1_1"/>
+            <seg type="initial">S</seg>unt et alii qu<gap unit="chars" quantity="22"/>
+            <lb/> debent . et in t<gap unit="chars" quantity="22"/>
+            <lb break="no"/>cis fatigati . <gap unit="chars" quantity="21"/>
+            <lb break="no"/>iussorum man<gap unit="chars" quantity="23"/>
+            <lb/> uel paruum pos<gap unit="chars" quantity="22"/>
+            <lb/> suscipiant m<gap unit="chars" quantity="22"/>
+            <anchor xml:id="cologny-bb-bodmer-107-143r-1_1"/>
+            <milestone unit="span" corresp="BK.46_15" spanTo="#cologny-bb-bodmer-107-143r-1_2"/>
+            <lb/> lucrum ex<gap unit="chars" quantity="25"/>
+            <lb break="no"/>uenciones l<gap unit="chars" quantity="23"/>
+            <lb/> res quaslibe<gap unit="chars" quantity="22"/>
+            <lb/>
+            <anchor xml:id="cologny-bb-bodmer-107-143r-1_2"/>
+         </ab>
+
+
+         <milestone unit="capitulare" n="BK.44"/>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-143r-2" corresp="BK.44_22">
+            <seg type="initial">D</seg>e liberis hom<gap unit="chars" quantity="22"/>
+            <lb/> regias et fe<gap unit="chars" quantity="24"/>
+            <lb/> similiter fis<gap unit="chars" quantity="21"/>
+            <lb/> ut de heredit<gap unit="chars" quantity="22"/>
+            <lb/> quaerenda . <gap unit="chars" quantity="23"/>
+            <lb/> abiciantur . <gap unit="chars" quantity="22"/>
+            <lb/> causa honor <gap unit="chars" quantity="23"/>
+            <lb break="no"/>ribus nostris r<gap unit="chars" quantity="22"/>
+            <lb/>
+         </ab>
+
+
+         <milestone unit="capitulare" n="BK.104_1"/>
+
+         <ab type="text" xml:id="cologny-bb-bodmer-107-143r-3" corresp="BK.104_7">
+            <seg type="initial">S</seg>i<note type="editorial">In der vorangehenden Zeile, die wohl
+               leer geblieben ist, steht von anderer Hand eine Notiz in karolingischer Minuskel, die
+               wie der Text nur teilweise zu lesen ist: <mentioned>...i si de duobus causis . ut
+                  testim...</mentioned></note> quis per carta<gap unit="chars" quantity="22"/>
+            <lb/> quolibet h<unclear>o</unclear><gap unit="chars" quantity="23"/>
+            <lb/> fuerit . Pr<gap unit="chars" quantity="24"/>
+            <lb/> libertatis <gap unit="chars" quantity="23"/>
+            <cb n="143v"/>
+            <gap unit="chars" quantity="17"/>egitim<unclear>us au</unclear><gap unit="chars"
+               quantity="5"/>
+            <lb/>
+            <gap unit="chars" quantity="20"/>onorum <gap unit="chars" quantity="7"/>
+            <lb/>
+            <gap unit="chars" quantity="18"/>do ipse <gap unit="chars" quantity="6"/>
+            <lb/>
+            <gap unit="chars" quantity="18"/>ur . Si ue<unclear>ro</unclear><gap unit="chars"
+               quantity="4"/>
+            <lb/>
+            <gap unit="chars" quantity="18"/> du<unclear>a</unclear>b<unclear>us</unclear> aliis
+               c<gap unit="chars" quantity="5"/>
+            <lb/>
+            <gap unit="chars" quantity="20"/> manu firm<unclear>at</unclear><gap unit="chars"
+               quantity="5"/>
+            <lb/>
+            <gap unit="chars" quantity="14"/> fuerint <unclear>suam</unclear>
+            <lb/>
+            <gap unit="chars" quantity="19"/>eracem et leg<gap unit="chars" quantity="3"
+            />mam <lb/>
+            <gap unit="chars" quantity="17"/>ellari<unclear>us tam</unclear><gap unit="chars"
+               quantity="2"/>
+            <lb/>
+            <gap unit="chars" quantity="18"/><unclear>sib</unclear><gap unit="chars" quantity="1"/>
+            <unclear>loci</unclear>
+            <gap unit="chars" quantity="1"/><unclear>llius</unclear>
+            <lb/>
+            <gap unit="chars" quantity="20"/>s . <seg type="initial">S</seg><gap unit="chars"
+               quantity="9"/>
+            <lb/>
+            <gap unit="chars" quantity="30"/>
+            <lb/>
+            <gap unit="chars" quantity="18"/><unclear>abuerit</unclear>
+            <gap unit="chars" quantity="5"/>
+            <lb/>
+            <gap unit="chars" quantity="19"/>onfir<unclear>mand</unclear><gap unit="chars"
+               quantity="2"/>
+            <lb/>
+            <gap unit="chars" quantity="20"/>his<gap unit="chars" quantity="8"/>
+            <lb/>
+            <gap unit="chars" quantity="24"/> fals<unclear>am</unclear>
+            <lb/>
+            <gap unit="chars" quantity="25"/>t . Si <unclear>uero</unclear>
+            <lb/>
+            <gap unit="chars" quantity="22"/>em aut <gap unit="chars" quantity="6"/>
+            <lb/>
+            <gap unit="chars" quantity="22"/><unclear>ne . uictus</unclear>
+            <lb/>
+            <gap unit="chars" quantity="21"/> eff<gap unit="chars" quantity="2"/>ere <gap
+               unit="chars" quantity="4"/>
+            <lb/>
+            <gap unit="chars" quantity="22"/> ingenui<unclear>tatis</unclear>
+            <lb/>
+            <gap unit="chars" quantity="23"/>xsoluere </ab>
+
       </body>
    </text>
 </TEI>

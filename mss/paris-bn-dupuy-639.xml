@@ -6,8 +6,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <titleStmt>
             <title type="main" xml:lang="ger">Paris, Bibliothèque nationale de France, Dupuy
                639</title>
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift</title>
-            <title type="sub" xml:lang="eng">Manuscript description</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Trump</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Trump</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -104,7 +104,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <p xml:lang="eng">Content is freely available on a non-commercial basis. Some digital
                   images and texts are only available to staff due to copyright issues.</p>
             </availability>
-            <date when="2016-03-03">11.03.2021</date>
+            <date when="2021-03-11">11.03.2021</date>
          </publicationStmt>
          <sourceDesc>
             <msDesc>
@@ -144,8 +144,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <summary>
                      <p>Dieser Codex, dessen Inhalt auf fol. 4r treffend mit <hi rend="italic"
                            >Melanges</hi> angesprochen wird und 1647 zusammengestellt wurde, vereint
-                        insbesondere etliche Exzerpte von Texten aus unterschiedlichen Quellen,
-                        viele davon von der Hand Dupuys geschrieben. Darunter befinden sich:</p>
+                        insbesondere Exzerpte von Texten aus unterschiedlichen Quellen, viele davon
+                        von der Hand Dupuys geschrieben. Die beiden hier interessierenden Stücke
+                        sind wahrscheinlich aus der Handschrift <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-4638">Paris Lat. 4638</ref>, foll. 181v-183v
+                        abgeschrieben worden.</p>
                   </summary>
                   <msItem n="1">
                      <p>
@@ -157,12 +160,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                            >Alciodriso, Avaliso.</hi> (MGH Capit. 2, Nr. 260, S. 275 Z. 1 - S. 276
                         Z. 13). </p>
                   </msItem>
-                  <msItem n="1">
+                  <msItem n="2">
                      <p>
                         <locus>160v</locus>
-                        <title corresp="BK.261">Capitulare missorum Attiniacense</title>,
-                        Inskription und 13 Kapitel (a. 854): <hi rend="italic">Haec memorialia
-                           capitula quae sequuntur dedit</hi> - <hi rend="italic">ipsam fidelitatem
+                        <title corresp="BK.261">Capitulare missorum Attiniacense</title> (a. 854),
+                        Inskription und 13 Kapitel : <hi rend="italic">Haec memorialia capitula quae
+                           sequuntur dedit</hi> - <hi rend="italic">ipsam fidelitatem
                            promittant</hi> (MGH Capit. 2, Nr. 261, S. 277 Z. 20 - S. 278 Z. 17).
                      </p>
                   </msItem>
@@ -188,7 +191,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         </collation>
                      </supportDesc>
                      <layoutDesc>
-                        <layout writtenLines="0"/>
+                        <!--  <layout writtenLines="0"/>-->
                         <layout columns="1"/>
                      </layoutDesc>
                   </objectDesc>
@@ -241,7 +244,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage:</p>
+      <!--   <p>Transkriptionsvorlage:</p>-->
          <projectDesc>
             <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
                   target="http://capitularia.uni-koeln.de/project/about/"/>
@@ -261,13 +264,14 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
       </encodingDesc>
       <revisionDesc>
          <change who="DT" when="2021-03-11">Datei erstellt</change>
+         <change who="DT" when="2022-11-14">Datei veröffentlicht</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
       <graphic url="https://gallica.bnf.fr/ark:/12148/btv1b10035121z"/>
    </facsimile>
-   <text>
-      <front>
+   <!--<text>
+      <!-\- <front>
          <div type="mshist"/>
          <div type="scribe"/>
          <div type="letters"/>
@@ -276,9 +280,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <div type="structure"/>
          <div type="annotations"/>
          <div type="other"/>
-      </front>
+      </front>-\->
       <body>
          <ab type="text" xml:id="paris-bn-dupuy-639-160r-1"/>
       </body>
-   </text>
+   </text>-->
 </TEI>

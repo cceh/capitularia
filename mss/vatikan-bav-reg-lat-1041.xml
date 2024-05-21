@@ -2,15 +2,14 @@
 schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="vatikan-bav-reg-lat-1041" xml:lang="de">
    <teiHeader>
-      <!-- nur indirekt als Abschrift(?) von Vat. Lat. 3827 genannt (S. 858); dortige Angaben nachgetragen; weitere müssten nachgefügt werden ## DS 29.03.2016 -->
       <fileDesc>
          <titleStmt>
             <title type="main" xml:lang="ger">Vatikan, Biblioteca Apostolica Vaticana, Reg. Lat.
-               1041 <note type="filiation">Neuzeitliche Abschrift (direkt oder indirekt) von <ref
-                     type="internal" subtype="mss" target="vatikan-bav-vat-lat-3827"/>Vatikan, BAV,
-                  Vat. Lat. 3827</note></title>
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek</title>
-            <title type="sub" xml:lang="eng">Manuscript description according to Mordek</title>
+               1041</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Brommer 1984 S. 97
+               mit Erweiterungen. Inhalt nach dem Onlineeintrag der BAV.</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Brommer 1984 p. 97
+               with additions. Contents according to the Online description of BAV.</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -20,9 +19,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <resp xml:lang="eng">Project lead</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="GB">
+                  <forename>Grigorii</forename>
+                  <surname>Borisov</surname>
                </persName>
                <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
                   Standard</resp>
@@ -30,17 +29,17 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   TEI P5 standard</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
                </persName>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">First revision of transcription and additions</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
@@ -128,19 +127,67 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                </msIdentifier>
                <head>
                   <title type="main">Vatikan, Biblioteca Apostolica Vaticana, Reg. Lat. 1041
+                        <origDate notBefore="1601" notAfter="1700">17. Jh.</origDate> (Brommer), vor
+                        <origDate notBefore="1601" notAfter="1689">1689</origDate>
+                     <origPlace
+                        ref="http://www.geonames.org/3175395/repubblica-italiana.html http://d-nb.info/gnd/4027833-5 http://viaf.org/viaf/303334755"
+                        >Schriftheimat: Italien? (Brommer 1984 S. 97)</origPlace>
                   </title>
                </head>
                <msContents>
-                  <summary><p>beginnt wie Cod. Vatikan, Chigi C. VIII. 239 mit Ver a. 755 und endet
-                        mit Valence a. 855 <hi rend="italic">auctoritate muniri</hi> (MGH Conc. 3,
-                        S. 364)</p></summary>
-                  <msItem>
+                  <summary><p>Diese Handschrift des 17. Jh. beginnt mit dem Konzil von Ver a. 755
+                        und endet mit dem Konzil von Valence a. 855 <hi rend="italic">auctoritate
+                           muniri</hi> (MGH Conc. 3, S. 364). Sie wird in der jüngeren Forschung als
+                        eine direkte oder indirekte Teilkopie von <ref type="internal" subtype="mss"
+                           target="vatikan-bav-vat-lat-3827">Vatikan, BAV, Vat. Lat. 3827</ref>
+                        betrachtet (wie die andere Teilkopie Vatikan, Chig. C. VIII. 239, s. Mordek
+                        1995 S. 858; Patzold 2024 S. 494). </p></summary>
+
+                  <msItem n="1">
+                     <p>
+                        <locus>1r-4r</locus>
+                        <hi rend="italic">CAPVT</hi> (-<hi rend="italic">VT</hi> getilgt) <hi
+                           rend="italic">I - 25</hi> - <title corresp="BK.14">Capitulare seu canones
+                           concilii Vernensis</title> (a. 755): <hi rend="italic">Synodus uerno
+                           palatio facta . Sufficerant quaedam priscorum patrum regulae -
+                           gloriosissimi Pipini regis. Ut episcopi debeant per singulas ciuitates -
+                           iusticia euacua est</hi> (MGH Capit. 1, Nr. 14, S. 33 Z. 19 - S. 37 Z.
+                        12). </p>
+                  </msItem>
+                  <msItem n="2">
+                     <p>
+                        <locus>5r-6r</locus>
+                        <title corresp="BK.12">Pippini principis capitulare Suessionense</title> (a.
+                        744): <hi rend="italic">Alia Synodus apud Suessionas In Dei nomine
+                           Trinitatis, Anno septingentesimo, quadragesimo quarto ab incarnatione
+                           Christi - Signum Helmigando </hi>(MGH Capit. 1, Nr. 12, S. 29 Z. 1 - S.
+                        30 Z. 21; MGH Conc. 2, 1, S. 33-36). </p>
+                  </msItem>
+                  <msItem n="3">
+                     <p>
+                        <locus>6r-7r</locus>
+                        <hi rend="italic">CAPVT</hi> (-<hi rend="italic">VT</hi> getilgt) <hi
+                           rend="italic">I - 7</hi> - <title corresp="BK.13">Pippini regis
+                           capitulare</title> (a. 751/755): <hi rend="italic">Incipiunt</hi>
+                        (getilgt) <hi rend="italic">capitula de alia synodo sub ipso</hi> (<hi
+                           rend="italic">domino</hi> ergänzt) <hi rend="italic">Rege Pepino</hi>
+                        (korrigiert aus <hi rend="italic">Pipino</hi>) <hi rend="italic">facta.
+                           CAPVT I. De incaestis. Si homo incaestum commiserit, de istis causis -
+                           causa transmiserit</hi> (MGH Capit. 1, Nr. 13, S. 31 Z. 14, S. 31 Z. 18 -
+                        S. 32 Z. 27).</p>
+                  </msItem>
+                  <msItem n="4">
                      <p>
                         <locus>59r-60r</locus>
                         <title corresp="BK.185b">Hludowici et Hlotharii epistola generalis</title>
                         (a. 828), Fassung B: <hi rend="italic">Incipit epistola Caesarea. In nomine
                            Domini Dei et saluatoris nostri - diligenter fideliterque conseruet</hi>
                         (MGH Capit. 2, Nr. 185, S. 4 Z. 5 - S. 6 Z. 16). </p>
+                  </msItem>
+                  <msItem>
+                     <p>Für weitere Inhalte der Handschrift siehe den <ref type="external"
+                           target="https://digi.vatlib.it/mss/detail/Reg.lat.1041"
+                           >Online-Katalogeintrag der BAV</ref>.</p>
                   </msItem>
                </msContents>
                <physDesc>
@@ -150,7 +197,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         <extent>128 foll.</extent>
                      </supportDesc>
                      <layoutDesc>
-
+                        <layout writtenLines="33 39">33-39</layout>
                         <layout columns="1"/>
                      </layoutDesc>
                   </objectDesc>
@@ -158,7 +205,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      <handNote/>
                   </handDesc>
                   <scriptDesc>
-                     <scriptNote/>
+                     <scriptNote>Kalligraphische Kursivschrift des 17. Jh., von einer Hand
+                        geschrieben </scriptNote>
                   </scriptDesc>
                   <decoDesc>
                      <p/>
@@ -170,16 +218,46 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   </bindingDesc>
                </physDesc>
                <history>
-                  <origin/>
-                  <provenance/>
+                  <origin><p>
+                        <origDate notBefore="1601" notAfter="1700">17. Jh.</origDate> (Brommer),
+                           <origDate notBefore="1601" notAfter="1689">vor 1689 </origDate><origPlace
+                           ref="http://www.geonames.org/3175395/repubblica-italiana.html http://d-nb.info/gnd/4027833-5 http://viaf.org/viaf/303334755"
+                           > Schriftheimat: Italien?</origPlace>
+                     </p></origin>
+                  <provenance><p> Die Handschrift fand ihren Weg in die Handschriftensammlung der
+                        schwedischen Königin Christina spätestens in den 1680er Jahren; in den
+                        älteren Teilinventaren der Sammlung Reginensis ist sie mit Sicherheit nicht
+                        zu erkennen (vgl. Bignami Odier 1962 S. 159-186). Die älteste Beschreibung
+                        der Handschrift in der Sammlung erfolgte unter Nr. 250 "Collectio variarum
+                        Synodorum Galliae cum Hadriani Papae Tractatu de imaginibus ad Carolum
+                        Regem" in jenem Katalog der Handschriftensammlung der Königin, der bald nach
+                        ihrem Tod, zwischen dem 9. und 16. August 1689, erstellt wurde (Rom,
+                        Archivio di Stato. Notari del tribunale dell'A.C., prot. 917)
+                        <!-- gb: von mir nicht überprüft, da Digitalisat nicht vorliegt, s. Bignami Odier 1964 S. 174, 184 -->.
+                     Diese Beschreibung wurde kurz danach in die Hs. <a class="external" href="https://digi.vatlib.it/view/MSS_Vat.lat.10255" target="_blank" title="[:de]Zur externen Ressource[:en]To the external resource[:]" rel="noopener">Vatikan, BAV, Vat. lat.
+                        10255,</a> p. 19, und in den im Jahre 1691 hergestellten Katalog der Mauriner
+                        Paris, BnF, lat. 13076, <ref type="external"
+                           target="https://gallica.bnf.fr/ark:/12148/btv1b90661198/f16.item">fol.
+                           13r</ref> unter dieselben Nummer kopiert. Aus den Bücherverzeichnissen
+                        der Mauriner wurde 1739 die Beschreibung von Bernard de Montfaucon
+                        veröffentlicht (De Montfaucon 1964 S. 19). Im weiteren wurde die Handschrift
+                        von Dudik, Bethmann, Pflugk-Harttung untersucht und von Brommer
+                        beschrieben.</p>
+                  </provenance>
                   <acquisition/>
                </history>
                <additional>
                   <surrogates/>
                   <listBibl>
                      <listBibl type="cap">
-                        <bibl>Mordek 1995 S. 858</bibl>
-
+                        <bibl corresp="#Bethmann_1874">Bethmann 1874, S. 313</bibl>
+                        <bibl corresp="#Brommer_1984">Brommer 1984, S. 97</bibl>
+                        <bibl>Dudik, Iter Romanum 1 1855, S. 175-176, Anm. 1</bibl>
+                        <bibl>Les manuscrits de la Reine de Suède au Vatican. Réédition du catalogue
+                           de Montfaucon et cotes actuelles, 1964, S. 19</bibl>
+                        <bibl corresp="#Mordek_1995">Mordek 1995, S. 858 </bibl>
+                        <bibl corresp="#Bignami_Odier_1962">Bignami Odier 1962, S. 159-189</bibl>
+                        <bibl>Von Pflugk-Harttung, Iter Italicum 1, 1883, S. 145</bibl>
                      </listBibl>
                   </listBibl>
                </additional>
@@ -187,7 +265,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage:</p>
+         <p>Transkriptionsvorlage: Hochauflösendes Farbdigitalisat der Biblioteca Apostolica
+            Vaticana.</p>
          <projectDesc>
             <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
                   target="http://capitularia.uni-koeln.de/project/about/"/>
@@ -215,17 +294,184 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
    </facsimile>
    <text>
       <front>
+         <div type="content">
+            <list>
+               <item n="10">
+                  <ptr type="internal" target="#vatikan-bav-reg-lat-1041-59r-13"/>Incipit epistola Caesarea<list>
+                     <item n="10.1">
+                        <ptr type="internal" target="#vatikan-bav-reg-lat-1041-59r-14"/> (In nomine
+                        Domini Dei et saluatoris nostri ...) </item>
+                     <item n="10.2"><ptr type="internal" target="#vatikan-bav-reg-lat-1041-59r-15"/>
+                        (Recordari uos credimus ...)</item>
+                     <item n="10.3">
+                        <ptr type="internal" target="#vatikan-bav-reg-lat-1041-59v-1"/> (Quis enim
+                        non sentiat ...) </item>
+                  </list></item>
+            </list>
+         </div>
          <div type="mshist"/>
-         <div type="scribe"/>
-         <div type="letters"/>
+         <div type="scribe">
+            <p>zu <locus>fol. 59r-60r</locus>: BK 185B wurde von einer Hand des 17. Jh.
+               abgeschrieben, die als einzige Haupthand des Codex zu erkennen ist. Auf den
+               angegebenen Seiten kommen keine weiteren (Korrektur-) Hände vor.</p>
+         </div>
+         <div type="letters">
+            <p>Unter den Merkmalen der Haupthand ist ein unverkennbares Streben nach
+               kalligraphischer Stilisierung zu erkennen, das besonders in der Ausführung der
+               Kürzung -orum, den Ligaturen st, et, ct und beispielsweise in den langen, nach links
+               ausgeführten Endstrichen von R, L, Q in Erscheinung tritt.</p>
+         </div>
          <div type="abbreviations"/>
          <div type="punctuation"/>
-         <div type="structure"/>
-         <div type="annotations"/>
+         <div type="structure">
+            <p><locus>fol. 59r-60r</locus> (BK 185B): Die Rubrik von BK 185B (<locus>fol.
+                  59r</locus>) wurde in einer vergrößerten Minuskelschrift ausgeschrieben. Vom
+               Schreiber wurde - von der Rubrik abgesehen - keine ausdrückliche Gliederung des
+               Textes unternommen. Einige Hinweise auf eine solche können im frei gelassenen Raum
+               zwischen der Eingangsformel und der Fortsetzung des Textes erkannt werden. Außerdem
+               sieht die Initiale Q <locus><hi rend="italic">Quis enim non sentiat</hi></locus> ein
+               wenig größer als die anderen in BK 185B aus, aber diese Besonderheiten können kaum
+               aufschlussreich für die Gliederung sein . </p>
+         </div>
+         <div type="annotations">
+            <p>Der Text wurde vom Schreiber selbst an einigen Stellen korrigiert, zweifellos noch
+               während des laufenden Abschreibprozesses. Diese Kopie von BK 185B wird in der Forschung
+               als "schlechtere[r] Text" als ihre mutmaßliche Vorlage Vat. lat. 3827 bewertet (vgl.
+               künftig die Neuedition des Textes von Steffen Patzold in MGH Capit. NS 4, Nr. 39
+               (828), S. 494 2024).</p>
+         </div>
          <div type="other"/>
       </front>
       <body>
-         <ab type="text"/>
+
+         <cb n="59r"/>
+         <lb n="35"/>
+
+         <milestone unit="capitulare" n="BK.185b"/>
+
+         <ab type="meta-text" xml:id="vatikan-bav-reg-lat-1041-59r-13" corresp="BK.185b_inscriptio">
+            <seg type="initial">I</seg>ncipit epistola Caesarea . <lb/>
+         </ab>
+         <ab type="text" xml:id="vatikan-bav-reg-lat-1041-59r-14" corresp="BK.185b"
+            prev="#vatikan-bav-reg-lat-1041-59r-13" next="#vatikan-bav-reg-lat-1041-59r-15"><seg
+               type="initial">I</seg>n nomine Domini Dei et saluatoris nostri Iesu Christi <rs
+               type="person">Hludouuicus</rs> et <rs type="person">Hlotharius</rs>
+            <lb/> diuina ordinante prouidentia Imperatores Augusti omnibus fidelibus sanctae <lb/>
+            Dei Ecclesiae et nostris . </ab>
+         <ab type="text" xml:id="vatikan-bav-reg-lat-1041-59r-15" corresp="BK.185b"
+            prev="#vatikan-bav-reg-lat-1041-59r-14" next="#vatikan-bav-reg-lat-1041-59v-1">
+            <seg type="initial">R</seg>ecordari uos credimus , qualiter hoc anno concilio <lb/>
+            sacerdotum et aliorum fidelium nostrorum generale ieiunium per totum regnum nostrum <cb
+               n="59v"/> celebrare iussimus Deumque tota deuotione <add>de</add>poscere , ut nobis
+            propitiari , et in quibus <lb/> illum maxime offenderimus , nobis manifestare , et ad
+            correctionem nostram necessariam <lb/> tranquillum tempus nobis tribuere dignaretur .
+            Volueramus siquidem tempore congruo <lb/> placitum nostrum generale habere , et in eodem
+               <expan>communi</expan> correctione agere , et ita <lb/> Deo miserante fieret , nisi
+               <expan>commotio</expan> inimicorum praepediisset . Sed quia tunc fieri non potuit ,
+            <lb/> iuxta uoluntatem nostram , uisum nobis fuit , praesens placitum cum aliquibus ex
+            <lb/> nostris fidelibus habere , et in <mod>eo</mod> de his , quae propter
+               <expan>praedictum</expan> impedimentum re<lb break="no"/>manserunt , qualiter ad
+            effectum peruenirent , Domino adiuuante , considerare . <lb/> Quapropter nosse uolumus
+            solertiam uestram , quod in isto praesenti placito cum fidelibus no<lb break="no"/>stris
+            considerauimus , ut primo omnium Archiepiscopi cum suis suffraganeis in locis <lb/>
+            congruis tempore oportuno conuenirent , et ibi tam de sua , quam de omnium nostrum <lb/>
+            correctione et emendatione , secundum diuinam authoritatem quaerendo inuenirent , <lb/>
+            et nobis atque fidelibus nostris secundum ministerium sibi <expan>commissum</expan>
+            annunciarent . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="vatikan-bav-reg-lat-1041-59v-1" corresp="BK.185b"
+            prev="#vatikan-bav-reg-lat-1041-59r-15">
+            <seg type="initial">Q</seg>uis enim non sentiat deum nostris pr<subst>
+               <del>i</del>
+               <add>a</add>
+            </subst>uissimis actibus esse offensum , et ad iracundiam <lb/> prouocatum , cum uideat
+            tot annis multifariis flagellis iram illius in regno nobis <lb/> ab <subst>
+               <del>illo</del>
+               <add>eo</add>
+            </subst>
+            <expan>commisso</expan> desaeuire , uidelicet in fame continua , mortalitate animalium ,
+            <lb/> in pestilentia hominum , sterilitate pene omnium frugum , et ut ita
+               <del>pene</del> dixe<lb break="no"/>rim , diuersissimis morborum cladibus atque
+            ingentibus penuriis populum istius <lb/> regni miserabiliter uexatum et
+            aff<mod>li</mod>ctum , atque omni abundantia rerum <lb/> quodammodo exinanitum , nec
+            illud etiam dubitamus ex iusta uindicta <lb/> illius euenire . Quod saepe scandala per
+            Tyrannos in hoc regno exsurgunt , <lb/> qui pacem populi Christiani et unitatem imperii
+            sua prauitate nituntur scindere . <del>et</del>
+            <lb/> Nam et illud nihilominus peccatis nostris deputandum est , quod inimici Christi
+            nominis <lb/>
+            <date>praeterito anno</date> in hoc regnum ingressi , depraedationes , incendia
+            ecclesiarum , et captiua<lb break="no"/>tiones Christianorum et interfectiones seruorum
+            Dei audentes et impunite , imo cru<lb break="no"/>deliter fecerunt . Agitur siquidem
+            iusto Dei iudicio , ut qui in cunctis delinquimus , in<lb break="no"/>terius simul et
+            exterius flagellemur . Beneficiis quippe Dei euidenter existimus <lb/> ingrati , quoniam
+            his non ad uoluntatem Dei , sed ad libitum nostrum carnalem uti inue<lb break="no"
+            />nimur , Et idcirco merito creaturae Dei nobis diuinitus concessae , pro Deo contra nos
+            <lb/> ingratos pugnant , iuxta illud : Pugnabit pro eo orbis terrarum contra insensatos
+            . <lb/> Verum quia tot modis uexamur atque percutimur , ad eum , a quo percutimur , toto
+            <lb/> corde dignum necessariumque est ut reuertamur , quatenus illud propheticum in
+            <lb/> nobis impleatur oraculum , quo dicitur , sola uexatio intellectum dabit auditui .
+            Sed <lb/> quia pius et clemens Dominus sic ipsum flagellum moderat , ut non ad interitum
+            , <lb/> sed potius correctionem nostram inferre uideatur , debemus in conspectu eius
+               ueraci<lb break="no"/>ter humiliari , et famem illius in confessione praeuenire ,
+            eiusque pietatem pronis <lb/> mentibus exorare , ut qui fecit nos iustissima
+            dispensatione flagella sentire <lb/> faciat nobis peccata nostra , pro quibus iuste ab
+            eo flagellamur , cognoscere , <lb/> ut in quibus maxime illum offendimus , et iram
+            illius prouocauimus manifestius <cb n="60r"/>
+            <del>m</del> intelligere , ut post , eo miserante praua d<subst>
+               <del>e</del>
+               <add>i</add>
+            </subst>fferendo et corrigendo , bona etiam sectando , et <lb/> tota cum deuotione
+            exequendo ualeamus per spiritum humilitatis et animam contritam <lb/> sacrificium Deo
+            libitum offerre iramque illius indignationis euadere , et per dignam congru<lb
+               break="no"/>amque correctionem . Et bonorum operum exhibitionem gratiam eius
+            propitiationis , licet <lb/> indigni promereri . At quia nos magis in hoc peccasse
+            cognouimus , qui forma salutis <lb/> omnibus esse debuimus , et omnium moram gerere , et
+            per authoritatem imperialem proauo<lb break="no"/>rum acta ne tantum accrescerent ,
+            corrigere cupimus Domino nobis propitio in conspectu <lb/> pietatis illius per dignam
+            satisfactionem ueniam adipisci , et per saluberrimam correctionem <lb/> uel per bonum
+            studium , quod nostra desidia et ignorantia hactenus neglectum est . <lb/> Consulta
+            fidelium tempore opportuno , quantum in nobis est studiosissime emendare , et <lb/>
+            nostram in hoc uoluntatem omnibus manifestam facere . Quapropter statuimus , ut
+               qua<mod>e</mod>
+            <lb/> decreuimus cum consultu sacerdotum , caeterorumque fidelium nostrorum , huius rei
+            gratia , ob <lb/> placandam scilicet contra nos , nobisque subiectos Domini furorem ,
+            conuentusque eorundem <lb/> Episcoporum in quatuor imperii nostri locis congruentissime
+            fieri . Primum scilicet in <lb/>
+            <rs type="place">Maguntiacensi</rs> urbe , ubi conueniant Metropolitani , <rs
+               type="person">Antgarius</rs> , <rs type="person">Adul<mod>b</mod>aldus</rs> et <rs
+               type="person">Hiberuinus</rs> , <lb/> cum suffraganeis suis . Secundo quoque in <rs
+               type="place">Parrhisiorum</rs> urbe , ubi futurus Antistes Cano<lb break="no"/>nicus
+            et <rs type="person">Ebbo</rs>
+            <rs type="person">Raugmoardus</rs> , et <rs type="person">Landraimus</rs> ,
+            metropolitani cum suffraganeis suis <lb/> conueniant . Tertio uero apud <rs type="place"
+               >Lugdunum</rs> , ubi <rs type="person">Agoberdus</rs> , <rs type="person"
+               >Bernardus</rs> , <rs type="person">Andreas</rs> , <rs type="person">Benedictus</rs>
+            , <lb/>
+            <del>cu</del>
+            <rs type="person">Agericus</rs> , cum suffraganeis suis similiter conueniant . Quarto
+            etiam apud <rs type="place">Tholosanam</rs>
+            <lb/> urbem , quo simul conueniant <rs type="person">Notho</rs> , <rs type="person"
+               >Bartholomeus</rs> , <rs type="person">Adalelmus</rs> , <rs type="person"
+               >Aguilfius</rs> , cum suffra<lb break="no"/>ganeis suis , in quibus conuentibus
+            tractare , quaerere , et cum Dei adiutorio inueniri debent , <lb/> de causis ad
+            religionem Christianam et eorum aram pertinentibus , quid a principibus et reliquo <lb/>
+            populo , uel ita , ut diuina authoritas docet , uel aliter teneatur , uel quid inde ex
+            parte , uel ex <lb/> toto dimissum sit , ut non teneatur . Deinde quid in ipsorum qui
+            pastores populi constituti <lb/> sunt moribus , conuersatione et actibus inueniri possit
+            , quod diuinae regulae atque authoritati <lb/> non concordet , simulque inueniant , quae
+            occasiones in utroque ordine id effecerint , ut a recto <lb/> tramite deuiatum sit , et
+            quicquid <subst>
+               <del>ab</del>
+
+               <add>de</add>
+            </subst> his causis inuentum fuerit , <del>ut a recto tramite deuiatum sit</del>
+            <lb/> tam solerti cura custodiatur , ut nullatenus ad aliorum <lb/> notitiam peruenire
+            permittant , ante tempus constitutum . Et ideo <lb/> unus notarius inter omnes eligatur
+            , qui , quod ipsi inuenerint , <lb/> describat , et ipse <del>sub</del> sub iuramento
+            constrictus , <lb/> ea , quae inuenta et digesta fuerint dili<lb break="no"/>genter
+            fideliterque conseruet . </ab>
+
       </body>
    </text>
 </TEI>

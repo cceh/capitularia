@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
 schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<!-- ACHTUNG! Kopie der Datei ist in Bearbeitung! -->
+
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-4613">
    <teiHeader>
       <fileDesc>
@@ -613,6 +616,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         <bibl corresp="#de_Sousa_Costa_1993">de Sousa Costa 1993, S. 55 Anm. 35 u.
                            ö.</bibl>
                         <bibl corresp="#Krah_1993">Krah 1993, S. 24</bibl>
+                        <bibl corresp="#Coumert_2023">Coumert 2023, S. 213-214</bibl>
                      </listBibl>
 
                      <listBibl type="abb">
@@ -639,8 +643,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                            der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012ff. <ref
                               type="external" subtype="Bl" target="paris-bn-lat-4613"/>
                         </bibl>
+                        
                         <bibl resp="capit"><ref type="internal" subtype="mom"
                               target="handschrift-des-monats-juli-2018/"/></bibl>
+                        
+                        <bibl resp="capit"><ref type="internal" subtype="chom"
+                           target="kapitel-des-monats-april-2023/"/>
+                        </bibl>
                      </listBibl>
                   </listBibl>
                </additional>
@@ -913,6 +922,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <gap reason="editorial"/>
          <cb n="83v"/>
          <lb n="9"/>
+
+         <milestone unit="capitulare" n="BK.33"/>
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-83v-2"
             corresp="BK.33_1_inscriptio"><seg type="num" n="1">PRIMUM</seg>
@@ -1524,11 +1535,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             considerauimus etiam ea que ad nos . <lb/> iam pridie peruenerunt . et ad resecandas
             malorum insidiatores . <lb/> hisdem adiungere capitulis id est ;. <anchor
                xml:id="paris-bn-lat-4613-97v-8_1"/>
-            
             <milestone unit="capitulare" n="BK.214"/>
-            
-            <milestone unit="span" corresp="BK.214_1" spanTo="#paris-bn-lat-4613-97v-8_2"/> 
-            Si quis
+            <milestone unit="span" corresp="BK.214_1" spanTo="#paris-bn-lat-4613-97v-8_2"/> Si quis
             aliquem de aliquo malla<lb break="no"/>uerit negotio . et ille qui mallatus fuerit dicat
             ;. Ideo ei respon<lb break="no"/>dere nollet quia seruus est alterius . aut si
             testimonia produxerit . <lb/> et similiter dixerit quod eum recipere non debet quia
@@ -1543,8 +1551,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             adduxerit . qui se dominum eius dicat et illum que de <lb/> seruitium appellauit
             applicare ad seruitium non ualuerit . <lb/> Tunc ipse qui se dominus <add hand="X"
                >essę</add><!-- bm: Am Original
-               überprüfen! dt: ja, ist das da wirklich eine cauda? -->
-            dixerit bannum nostrum illi <choice>
+               überprüfen! dt: ja, ist das da wirklich eine cauda? --> dixerit bannum
+            nostrum illi <choice>
                <abbr>conp</abbr>
                <expan>conponat</expan>
             </choice> . Eo quod concul<lb break="no"/>candam iustitiam inieiunium tale ausus fuerit
@@ -1587,7 +1595,6 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             uuadia dant . <lb/> in tantum eos mutandi placidum laterant . ut uis . <cb n="98v"/> pro
             sua paupertate euadere possint unde tertium <sic>adere</sic> capitulum <lb/> placuit ;.
                <anchor xml:id="paris-bn-lat-4613-98r-4_2"/>
-            
             <milestone unit="span" corresp="BK.214_3" spanTo="#paris-bn-lat-4613-98r-4_3"/> Si uero
             aliquid alium ad seruitium mallauerint et ille <lb/> qui mallatus fuerit uuadiam de sua
             probanda libertate dede<lb break="no"/>rit . iuuemus ut supra ad primum aut secundum uel
@@ -1607,7 +1614,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             corresp="BK.219_inscriptio"> alio tempor<unclear>e</unclear><!-- dt: am Original prüfen -->
             <lb/> EDICTVS SERENISSIMVS <rs type="person">AUGVSTVS</rs> INSTITUERE <lb/> PREVIDIT
             CAPITULA ;. </ab>
-         
+
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4613-98v-2"
             corresp="BK.219_3_inscriptio">
             <seg type="num" n="9">VIIII</seg>

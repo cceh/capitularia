@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="st-petersburg-sb-q-v-ii-11">
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="st-petersburg-sb-q-v-ii-11">
+
    <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main" xml:lang="ger">Sankt Petersburg, Rossijskaja Nacional'naja
                Biblioteka, Q. v. II. 11</title>
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek</title>
-            <title type="sub" xml:lang="eng">Manuscript description according to Mordek</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+               Transkription der foll. 34r-40v</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+               transcription of fols 34r-40v</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -16,9 +20,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                <resp xml:lang="eng">Project lead</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="GB">
+                  <forename>Grigorii</forename>
+                  <surname>Borisov</surname>
                </persName>
                <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
                   Standard</resp>
@@ -26,17 +30,17 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   TEI P5 standard</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
                </persName>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">First revision of transcription and additions</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
@@ -128,10 +132,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                <head>
                   <title type="main">Sankt Petersburg, Rossijskaja Nacional'naja Biblioteka, Q. v.
                      II. 11</title>
-                  <origDate notAfter="0850" notBefore="0801"> 9. Jh., 1. bis 2. Viertel</origDate> (Mordek, Bischoff);
-                  <origPlace ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"> Frankreich</origPlace> (Mordek),
-                  <origPlace ref="http://d-nb.info/gnd/4110086-4">Nordfrankreich</origPlace> (Bischoff)
-               </head>
+                  <origDate notAfter="0850" notBefore="0801"> 9. Jh., 1. bis 2. Viertel</origDate>
+                  (Mordek, Bischoff); <origPlace
+                     ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
+                     > Frankreich</origPlace> (Mordek), <origPlace
+                     ref="http://d-nb.info/gnd/4110086-4">Nordfrankreich</origPlace> (Bischoff) </head>
                <msContents>
                   <summary>
                      <p>Trotz ihres fragmentarischen Charakters verdient die alte St. Petersburger
@@ -139,27 +144,34 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         Salica und einigen oft und, wie damit bewiesen, schon früh mit ihr
                         verbundenen Kapitularien Kaiser Karls des Großen ein nur hier bezeugtes
                         Kapitularienkapitel bewahrt.<lb/>Zur Verwandtschaft des Werkes mit den
-                        umfangreicheren Sammlungen des Cod. <ref type="internal" subtype="mss" target="cologny-bb-bodmer-107">Cologny Bodmer 107</ref>, des Cod. <ref type="internal" subtype="mss" target="nuernberg-sb-cent-v-app-95">Nürnberg Cent. V, App. 95</ref> und der Codd. <ref type="internal" subtype="mss" target="vatikan-bav-reg-lat-1036">Vatikan Reg. Lat.
-                           1036</ref> und <ref type="internal" subtype="mss" target="vatikan-bav-reg-lat-1728">Reg. Lat. 1728</ref>, siehe jeweils am
+                        umfangreicheren Sammlungen des Cod. <ref type="internal" subtype="mss"
+                           target="cologny-bb-bodmer-107">Cologny Bodmer 107</ref>, des Cod. <ref
+                           type="internal" subtype="mss" target="nuernberg-sb-cent-v-app-95"
+                           >Nürnberg Cent. V, App. 95</ref> und der Codd. <ref type="internal"
+                           subtype="mss" target="vatikan-bav-reg-lat-1036">Vatikan Reg. Lat.
+                           1036</ref> und <ref type="internal" subtype="mss"
+                           target="vatikan-bav-reg-lat-1728">Reg. Lat. 1728</ref>, siehe jeweils am
                         Ort. Aus ihnen läßt sich mutmaßen, was einst am Ende der St. Petersburger
                         Hs. gestanden haben könnte, wenigstens wohl noch das allen gemeinsame
                         Capitulare missorum in Theodonis villa datum.<lb/>Schon Hubé, S. XXI,
                         vertrat die Meinung, das handliche Bändchen sei für den praktischen Gebrauch
-                        bestimmt gewesen.</p><p> Montfaucon 2, S. 1068, erwähnt unter der Nr. 46
-                        eine noch zu ermittelnde Hs. mit Kapitularienauszügen, die gleichfalls über
-                        Coislin nach Saint-Germain-des-Prés kam: <hi rend="italic">,Excerpta e
-                           capitularibus Regum Francorum quibus apparet Ecclesiasticos debere
-                           mittere ad exercitum suos homines bene armatos, &amp; terras quæ dabantur
-                           Ecclesiis tributo &amp; censui esse obnoxias.</hi> Plusieurs extraits,
-                        lettres &amp; traités, qui prouvent que les Ecclesiastiques doivent fournir
-                        des aides &amp; subsides au Roi“. Offenbar waren die Kapitularienexzerpte
-                        hier in traktatförmige Ausführungen eingearbeitet. </p>
+                        bestimmt gewesen.</p>
+                     <p> Montfaucon 2, S. 1068, erwähnt unter der Nr. 46 eine noch zu ermittelnde
+                        Hs. mit Kapitularienauszügen, die gleichfalls über Coislin nach
+                        Saint-Germain-des-Prés kam: <hi rend="italic">"Excerpta e capitularibus
+                           Regum Francorum quibus apparet Ecclesiasticos debere mittere ad exercitum
+                           suos homines bene armatos, &amp; terras quae dabantur Ecclesiis tributo
+                           &amp; censui esse obnoxias.</hi> Plusieurs extraits, lettres &amp;
+                        traités, qui prouvent que les Ecclesiastiques doivent fournir des aides
+                        &amp; subsides au Roi". Offenbar waren die Kapitularienexzerpte hier in
+                        traktatförmige Ausführungen eingearbeitet. </p>
                   </summary>
                   <msItem n="1">
                      <p>
                         <locus>1r-33v</locus> Fragment der Lex Salica (Karolina emendata): Titel 18
-                        bis 64, 1 <hi rend="italic">(et insuper I.CC dr. qui)</hi> und Titel 67, 3
-                        (ab <hi rend="italic">et conuicta)</hi> bis 70, endet mit <hi rend="italic">EXPLICIT LEX SALICAE</hi>. Von zeitgenössischer Hand nachgetragen: Titel
+                        bis 64, 1 (<hi rend="italic">et insuper I.CC dr. qui</hi>) und Titel 67, 3
+                        (ab <hi rend="italic">et conuicta</hi>) bis 70, endet mit <hi rend="italic"
+                           >EXPLICIT LEX SALICAE</hi>. Von zeitgenössischer Hand nachgetragen: Titel
                         71 und 72, 1 (MGH LL nat. Germ. 4, 1, S. 71-227, 231-235; Sigle K 81; zur
                         Hs. S. XXVI). </p>
                   </msItem>
@@ -169,46 +181,57 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <title corresp="BK.39">Capitulare legibus additum</title> (a. 803),
                         Inskription: <hi rend="italic">CAPL. QUE IN LEGE SALICE MITTENDA SUNT</hi>,
                         cc. 1-2 <hi rend="italic">damnum fecerit DC</hi> (danach Blattverlust), c. 6
-                        ab <hi rend="italic">coram traditio quibus</hi> bis c. 11 <hi rend="italic">possit indicere</hi> (MGHCapit. 1, Nr. 39, S. 111 Z. 44 f., S. 113 Z.
+                        ab <hi rend="italic">coram traditio quibus</hi> bis c. 11 <hi rend="italic"
+                           >possit indicere</hi> (MGH Capit. 1, Nr. 39, S. 111 Z. 44 f., S. 113 Z.
                         4-21, S. 114 Z. 4-27). Daran angehängt: </p>
                   </msItem>
                   <msItem n="3">
                      <p>
                         <locus>36r</locus>
                         <title corresp="BK.57">Capitula omnibus cognita facienda</title> (a.
-                        802/813), c. 7 in verderbter Kurzversion (besser Cod. <ref type="internal" subtype="mss" target="wolfenbuettel-hab-gud-lat-299">Wolfenbüttel Gud.
+                        802/813), c. 7 in verderbter Kurzversion (besser Cod. <ref type="internal"
+                           subtype="mss" target="wolfenbuettel-hab-gud-lat-299">Wolfenbüttel Gud.
                            Lat. 299</ref>, fol. 36v): <hi rend="italic">Telonis aut census non
-                           exigatur a quolibet uel nec aqua nauigium aut ponte transeundum est
-                        </hi>(MGH LL 1, S. 116 Z. 15 f.; MGH Capit. 1, Nr. 57, S. 144 Anm. o;
-                        jeweils nach dem Guelferbytanus). <title corresp="Mordek.9">Capitulum de
-                           libra et inpunda</title> (a. 802/813?): <hi rend="italic">Ubique in
-                           cartis libra et inpunda legitur, pro uno id est pro libra
-                           intellegitur</hi> (bisher unbekanntes Kapitularienfragment, siehe unten
-                        Anhang I, Nr. 9; vielleicht mit dem vorausgehenden Kapitel Teil einer
-                        Missus-Ausfertigung der Capitula omnibus cognita facienda). </p>
+                           exigatur a quolibet uel nec aqua nauigium aut ponte transeundum est</hi>
+                        (MGH LL 1, S. 116 Z. 15 f.; MGH Capit. 1, Nr. 57, S. 144 Anm. o; jeweils
+                        nach dem Guelferbytanus). </p>
                   </msItem>
+
                   <msItem n="4">
                      <p>
-                        <locus>36r-38r</locus>
-                        <title corresp="BK.40">Capitulare missorum</title> (a. 803): <hi rend="italic">De ecclesiis emendandis et ubi</hi> - <hi rend="italic">habere uolumus</hi> (MGH Capit. 1, Nr. 40, S. 115 Z. 18 - S. 116 Z. 30);
-                        cc. 3-5 stehen nach c. 6, cc. 23 - 24 nach c. 28. Nach c. 24 ist
-                        eingeschoben: </p>
+                        <locus>36r</locus>
+                        <title corresp="Mordek.9">Capitulum de libra et inpunda</title> (a.
+                        802/813?): <hi rend="italic">Ubique in cartis libra et inpunda legitur, pro
+                           uno id est pro libra intellegitur</hi> (bisher unbekanntes
+                        Kapitularienfragment, siehe Anhang I, Nr. 9; vielleicht mit dem
+                        vorausgehenden Kapitel Teil einer Missus-Ausfertigung der Capitula omnibus
+                        cognita facienda). </p>
                   </msItem>
                   <msItem n="5">
                      <p>
-                        <locus>38r</locus>
-                        <title corresp="BK.104">Capitula Francica</title>, c. 3: <hi rend="italic">Ut missi nostri una com sociis - nullatenus tradant</hi> (MGH Capit. 1,
-                        Nr. 104, S. 213 Z. 22-24, ed. nach <ref type="internal" subtype="mss" target="nuernberg-sb-cent-v-app-96">Cod. Nürnberg Cent. V, App. 96</ref>,
-                        fol. 32r). </p>
+                        <locus>36r-38r</locus>
+                        <title corresp="BK.40">Capitulare missorum</title> (a. 803): <hi
+                           rend="italic">De ecclesiis emendandis et ubi - habere uolumus</hi> (MGH
+                        Capit. 1, Nr. 40, S. 115 Z. 18 - S. 116 Z. 30); cc. 3-5 stehen nach c. 6,
+                        cc. 23-24 nach c. 28. Nach c. 24 ist eingeschoben: </p>
                   </msItem>
                   <msItem n="6">
                      <p>
-                        <locus>38r-40r</locus> Lex Salica, Recapitulatio solidorum (ed. K. A. <hi rend="smallcaps">Eck</hi>
-                        <hi rend="smallcaps">hardt, </hi>Pactus legis Salicae II 2, S. 529-532); am
-                        Schluß nochmals die Anfangsworte: <hi rend="italic">sciendum est.</hi>
-                     </p>
+                        <locus>38r</locus>
+                        <title corresp="BK.104">Capitula Francica</title>, c. 3: <hi rend="italic"
+                           >Ut missi nostri una com sociis - nullatenus tradant</hi> (MGH Capit. 1,
+                        Nr. 104, S. 213 Z. 22-24, ed. nach Cod. <ref type="internal" subtype="mss"
+                           target="nuernberg-sb-cent-v-app-96">Nürnberg Cent. V, App. 96</ref>, fol.
+                        32r). </p>
                   </msItem>
                   <msItem n="7">
+                     <p>
+                        <locus>38r-40r</locus> Lex Salica, Recapitulatio solidorum (ed. K. A.
+                        Eckhardt, Pactus legis Salicae II 2, S. 529-532); am Schluß nochmals die
+                        Anfangsworte: <hi rend="italic">sciendum est.</hi>
+                     </p>
+                  </msItem>
+                  <msItem n="8">
                      <p>
                         <locus>40v</locus>
                         <title corresp="BK.67">Capitula per missos cognita facienda</title> (a.
@@ -224,7 +247,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <support>
                            <material>Pergament</material>
                         </support>
-                        <extent>40 foll., typische Gebrauchshs. im Taschenbuchformat <dimensions precision="medium" type="leaf" unit="mm">
+                        <extent>40 foll., typische Gebrauchshs. im Taschenbuchformat <dimensions
+                              precision="medium" type="leaf" unit="mm">
                               <height>190-194</height>
                               <width>132</width>
                            </dimensions>
@@ -233,14 +257,16 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                               <width>100-107</width>
                            </dimensions></extent>
                         <collation>(der Textverlust läßt auf zwei fehlende Quaternionen zu Beginn
-                           des Codex schließen) + <formula>4 IV<hi rend="super">32</hi> + (II-2)<hi rend="super">34</hi> + 1<hi rend="super">35</hi> + II<hi rend="super">39</hi> + 1<hi rend="super">40</hi> (Blattverlust nach
-                              fol. 40).</formula>
+                           des Codex schließen) + <formula>4 IV<hi rend="super">32</hi> + (II-2)<hi
+                                 rend="super">34</hi> + 1<hi rend="super">35</hi> + II<hi
+                                 rend="super">39</hi> + 1<hi rend="super">40</hi> (Blattverlust nach
+                              fol. 40)</formula>
                         </collation>
                         <condition>Die Hs. ist besonders vorn und hinten durch Wassereinwirkung
                            beschädigt, der Text daher z. T. unleserlich.</condition>
                      </supportDesc>
                      <layoutDesc>
-                        <layout writtenLines="19 21">19-21 Zeilen</layout>
+                        <layout writtenLines="19 21">19-21</layout>
                         <layout columns="1"/>
                      </layoutDesc>
                   </objectDesc>
@@ -252,11 +278,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   </scriptDesc>
                   <decoDesc>
                      <p>Rubriken in roter Unziale (stark verblichen), einfache Initialen in brauner
-                        Texttinte. </p>
+                        Texttinte </p>
                   </decoDesc>
                   <bindingDesc>
                      <binding>
-                        <p>Heller Ledereinband.</p>
+                        <p>heller Ledereinband</p>
                         <p/>
                      </binding>
                   </bindingDesc>
@@ -264,9 +290,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                <history>
                   <origin>
                      <p>
-                        <origDate notAfter="0850" notBefore="0801"> 9. Jh., 1. bis 2. Viertel</origDate> (Mordek, Bischoff);
-                        <origPlace ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"> Frankreich</origPlace> (Mordek),
-                        <origPlace ref="http://d-nb.info/gnd/4110086-4">Nordfrankreich</origPlace> (Bischoff).</p>
+                        <origDate notAfter="0850" notBefore="0801"> 9. Jh., 1. bis 2.
+                           Viertel</origDate> (Mordek, Bischoff); <origPlace
+                           ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
+                           > Frankreich</origPlace> (Mordek), <origPlace
+                           ref="http://d-nb.info/gnd/4110086-4">Nordfrankreich</origPlace>
+                        (Bischoff)</p>
                   </origin>
                   <provenance>
                      <p>H. C. du Cambout de Coislin, Bischof von Metz (Vol. 780 im Katalog der
@@ -286,26 +315,26 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <surrogates/>
                   <listBibl>
                      <listBibl type="lit">
-                        <bibl> R. Hubé, La loi Salique, d’après un manuscrit de la Bibliothèque
-                           centrale de Varsovie. Précédée d’une préface et d’une notice sur un
+                        <bibl> R. Hubé, La loi Salique, d'après un manuscrit de la Bibliothèque
+                           centrale de Varsovie. Précédée d'une préface et d'une notice sur un
                            manuscrit de la lex emendata de la Bibliothèque Impériale de
                            Saint-Pétersbourg (Warschau 1867) S. XIX-XXI</bibl>
                         <bibl> B. Dudík, Historische Forschungen in der kaiserlichen öffentlichen
                            Bibliothek zu St. Petersburg, in: SB Wien 95 (1879) S. 361 Nr. 108</bibl>
                         <bibl> K. Gillert, Lateinische Handschriften in St. Petersburg, in: NA 5
                            (1880) S. 614-616 (dort wohl irrtümlich die Signatur O. II. 11, die noch
-                           bei Bühler, Capitularia Relecta, S. 395 Anm. 27 genannt wird</bibl>
+                           bei Bühler, Capitularia Relecta, S. 395 Anm. 27 genannt wird)</bibl>
                         <bibl corresp="#Boretius_1897"> Boretius 1897, S. XXVI</bibl>
                         <bibl> G. M. Danilova, O spiskach i redakcijach «Saliceskoj pravdy» u
                            opisanie rukopisi «Leninopolitanus», in: Ucenye zapiski 68 (1948) S.
                            104-107</bibl>
                         <bibl corresp="#Eckhardt_K_1954"> Eckhardt K 1954, Pactus legis Salicae I 1,
                            S. 38</bibl>
-                        <bibl corresp="#McKitterick_1989"> McKitterick 1989, S. 46, 55 Tab. A: O.v.
-                           II. 11)</bibl>
+                        <bibl corresp="#McKitterick_1989"> McKitterick 1989, S. 46, 55 Tab. A
+                           (ähnlich wie Gillert und Bühler: O. v. II. 11)</bibl>
                      </listBibl>
                      <listBibl type="cat">
-                        <bibl> A Staerk, Les manuscrits latins du Ve au XIIIe siècle conservés à la
+                        <bibl> A. Staerk, Les manuscrits latins du Ve au XIIIe siècle conservés à la
                            Bibliothèque Impériale des Saint-Pétersbourg 1 (Saint-Pétersbourg 1910)
                            S. 41</bibl>
                      </listBibl>
@@ -316,10 +345,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <bibl corresp="#Mordek_1995"> Mordek 1995, S. 702-705</bibl>
                         <bibl corresp="#Bischoff_2004">Bischoff 2004, S. 86, Nr. 2331</bibl>
                         <bibl> Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
-                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 <ref type="external" subtype="Bl" target="st-petersburg-sb-q-v-ii-11"/>
+                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
+                              type="external" subtype="Bl" target="st-petersburg-sb-q-v-ii-11"/>
                            <bibl resp="capit"><ref type="internal" subtype="collom"
-                              target="sammlung-des-monats-februar-2020-spuren-einer-verlorenen-kapitulariensammlung/"
-                           /></bibl>
+                                 target="sammlung-des-monats-februar-2020-spuren-einer-verlorenen-kapitulariensammlung/"
+                              /></bibl>
                         </bibl>
                      </listBibl>
                   </listBibl>
@@ -328,11 +358,14 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage:</p>
+         <p>Transkriptionsvorlage: Am Original kollationiert und nachher mit dem Digitalisat, teils
+            farbig (fol. 34r), teils schwerz-weiß (foll. 34v-40v) verglichen. </p>
          <projectDesc>
-            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
-            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
          </projectDesc>
          <editorialDecl>
@@ -346,27 +379,664 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
       </encodingDesc>
       <revisionDesc>
          <change who="DS" when="2016-03-01">Datei erstellt aus Mordek-XML</change>
-         <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift
-            nach Bischoff 1998/2004/2014 ergänzt</change>
-         <change who="XXX" when="2016"/>
+         <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift nach Bischoff
+            1998/2004/2014 ergänzt</change>
+         <change who="GB" when="2023">Datei veröffentlicht (BK 39, 40, 57, 67, 104, Mordek 9)
+         </change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
-      <graphic url=""/>
+      <graphic url="..."/>
    </facsimile>
    <text>
       <front>
+         <div type="content">
+
+            <list>
+               <item n="10">
+                  <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-34r-1"/>CAPITULA QUE IN
+                  LEGE SALICE MITTENDA SUNT <list>
+                     <item n="10.1">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-34r-2"/>(De
+                        homicidiis clericorum ...) </item>
+                     <item n="10.2">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-34r-3"/>(Si quis in
+                        inmunitatem damnum aliquid fecerit ...) </item>
+                     <item n="10.6">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-35r-1"/>[Anfang des
+                        Kapitels fehlt] </item>
+                     <item n="10.7">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-35r-2"/>(Si quis
+                        per castam ingenuitatis ...) </item>
+                     <item n="10.8">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-35r-3"/>(Liber qui
+                        se loco uuadii ...) </item>
+                     <item n="10.9">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-35v-1"/>(Omnia
+                        debita que ad parte reges ...) </item>
+                     <item n="10.10">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-35v-2"/>(Si quis
+                        causam iudicatam ...) </item>
+                     <item n="10.11">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-35v-3"/>(Obtime
+                        quisque in pago uel ciuitate ...) </item>
+                     <item n="20">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36r-1"/>(Telonis
+                        aut census non exigatur ...) </item>
+                     <item n="30">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36r-2"/>(Ubique in
+                        cartis libra et inpunda ...) </item>
+                  </list>
+               </item>
+
+
+               <item n="40">
+                  <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36r-3"/>(Liste ohne Rubrik)<list>
+                     <item n="40.1">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36r-3"/>(De
+                        ecclesiis emendandis ...) </item>
+                     <item n="40.2">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36r-4"/>(Ut
+                        presbiter non ordinentur ...) </item>
+                     <item n="40.6">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36r-5"/>(De
+                        fugitiuus ac peregrinus ...) </item>
+                     <item n="40.3">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36r-6"/>(Ut missi
+                        nostri a scabineos ...) </item>
+                     <item n="40.4">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36v-1"/>(De his qui
+                        legem seruuare ...) </item>
+                     <item n="40.5">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36v-2"/>(Ut ille
+                        qui hairbaNno solvere ...) </item>
+                     <item n="40.7">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36v-3"/>(Ut bauca
+                        et brunia non deNTur ...) </item>
+                     <item n="40.8">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36v-4"/>(De
+                        mensuris ut secondum iussionem ...) </item>
+                     <item n="40.9">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36v-5"/>(Ut non
+                        mittaNTur testimonia ...) </item>
+                     <item n="40.10">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36v-6"/>(Ut nec
+                        colus nec ficalinus ...) </item>
+                     <item n="40.11">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36v-7"/>(Ut nullus
+                        presummat hominem ...) </item>
+                     <item n="40.12">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-36v-8"/>(Ut liber
+                        homo qui in monasterio ...) </item>
+                     <item n="40.13">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37r-1"/>(Ut omnia
+                        que uuadiare debeNT ...) </item>
+                     <item n="40.14">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37r-2"/>(De
+                        episcopis abatis comitibus ...) </item>
+                     <item n="40.15">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37r-3"/>(Ut nullus
+                        ebrius suam causam ...) </item>
+                     <item n="40.16">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37r-4"/>(Ut nemini
+                        liciat alium cogere ...) </item>
+                     <item n="40.17">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37r-5"/>(De missis
+                        nostris discureNTibus ...) </item>
+                     <item n="40.18">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37r-6"/>(De canibus
+                        qui dextro armo tunsi suNT ...) </item>
+                     <item n="40.19">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37v-1"/>(Ut populus
+                        interrogetur de capitola ...) </item>
+                     <item n="40.20">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37v-2"/>(Ut nullus
+                        ad placitum baneatur ...) </item>
+                     <item n="40.21">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37v-3"/>(De falsis
+                        testibus ut ...) </item>
+                     <item n="40.22">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37v-4"/>(Ut nulus
+                        presummat per uitam regis ...) </item>
+                     <item n="40.25">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37v-5"/>(Ut missi
+                        nostri qui iam breuis ...) </item>
+                     <item n="40.26">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37v-6"/>(Quanta
+                        moram faciaNT ...) </item>
+                     <item n="40.27">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37v-7"/>(De
+                        prudeNcia et costancia missorum ...) </item>
+                     <item n="40.28">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37v-8"/>(De
+                        falfalsis monitariis ...) </item>
+                     <item n="40.23">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-37v-9"/>(De illis
+                        saxonibus ...) </item>
+                     <item n="40.24">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-38r-1"/>(De
+                        signatis qui ...) </item>
+                  </list>
+               </item>
+
+
+               <item n="50">
+                  <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-38r-2"/>(Liste ohne Rubrik)<list>
+                     <item n="50.1">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-38r-3"/>(Ut missi
+                        nostri una cum sociis ...) </item>
+                  </list>
+               </item>
+
+
+               <item n="60">
+                  <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-40v-1"/>(Liste ohne Rubrik)<list>
+                     <item n="60.1">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-40v-2"/>(Ut nullus
+                        ad mallum ...) </item>
+                     <item n="60.2">
+                        <ptr type="internal" target="#st-petersburg-sb-q-v-ii-11-40v-3"/>(...
+                        latronibus quicumque ...) </item>
+                  </list>
+               </item>
+            </list>
+         </div>
+
          <div type="mshist"/>
-         <div type="scribe"/>
-         <div type="letters"/>
-         <div type="abbreviations"/>
+         <div type="scribe">
+            <p>Der Kapitularienteil wurde von drei Schreibern (A, B, C, hier nicht mit den Siglen
+               für die Hände der gesamten Handschrift zu verwechseln) in einer frühen karolingischen
+               Minuskel kopiert. Die Kapitularienhand A schreibt <locus>fol. 34r-v</locus> und
+                  <locus>35v-36r</locus> in einer ziemlich disziplinierten, frühen karolingische
+               Minuskel, von ihr stammt vermutlich auch die einzige Überschrift des
+               Kapitularienteiles in einer Mischung von Unzial- und Minuskelformen (<locus>fol.
+                  34r</locus> zu BK 39). Die Kapitularienhand B setzt auf <locus>fol. 35r</locus>
+               ein und schreibt danach <locus>fol. 36v-40r</locus>. Von der Partie der
+               Kapitularienhand C ist nur eine Seite (<locus>fol. 40v</locus>) erhalten, die darüber
+               hinaus an mehreren Stellen verblasst ist. Von diesen drei Händen des
+               Kapitularienteils ist die Hand B in zweierlei Hinsicht bemerkenswert. Zum einen
+               schreibt sie ein sehr ungeregeltes Latein, in dem unter anderen frühkarolingischen
+               orthographischen Gepflogenheiten wie -ci statt -ti, o statt u (und umgekehrt) etc.
+               auch grob falsche Kasusendungen (z. B. <mentioned>ingenuitates</mentioned> statt
+                  <mentioned>ingenuitatis</mentioned>), sinnstörende Irrtümer (z. B. erum statt
+               eorum) und unglückliche Verwechslungen von den Ligaturen rt und st beim Abschreiben
+               (castam statt cartam) nicht selten vorkommen. Zum anderen weist ihre Schrift manche
+               graphischen Merkmale auf, die mit der Schrift des Reimser Skriptoriums im ersten
+               Drittel des 9. Jh. übereinstimmen, z. B. die Form von x mit dem langen, in der Endung
+               nach rechts gekurvten Haarstrich, die auffällige und sehr seltene Ligatur sp
+               (sponsam, <locus>fol. 39r</locus>), die in der Reimser Gedichtsammlung Vatikan, BAV,
+               Reg. lat. 2078, fol. 70r (splendet) einmal vorkommt, oder in der Form von g mit
+               beiden etwa gleichmäßigen, nicht breit geschriebenen Bögen. Die Lokalisierung der
+               Hand B im Reimser Umfeld des ersten Drittels des 9. Jh. macht auch die Lokalisierung
+               der Hände A und C in der Gegend von Reims wahrscheinlich. Sie schreiben allerdings in
+               einem anderen, ausgewogeneren und disziplinierteren Schriftstil, der auch in anderen
+               frühkarolingischen Reimser Handschriften vorkommt. Die Hand C des Kapitularienteiles
+               ist vermutlich mit der zweiten Hand der Lex Salica Karolina (<locus>fol.
+                  25r-33v</locus>) identisch und legt dadurch nahe, dass beide Teile der Handschrift
+               in einem nicht besonders großen zeitlichen Abstand zu datieren sind. Der
+               paläographische Befund mit der Lokalisierung der Handschrift im Reimser Umfeld stimmt
+               mit der jüngeren Hypothese von Ch. West überein, dass die Handschrift mit dem Reimser
+               Einflussbereich verbunden ist (West C 2009, S. 197).</p>
+         </div>
+         <div type="letters">
+            <p>Während die Hände A und C des Kapitularienteiles standardmäßige Ligaturen verwenden,
+               kennzeichnet sich die Hand B durch die selteneren Ligaturen sp und uT. </p>
+         </div>
+         <div type="abbreviations"> </div>
          <div type="punctuation"/>
-         <div type="structure"/>
-         <div type="annotations"/>
-         <div type="other"/>
+         <div type="structure">
+            <p>Der Kapitularienteil wird durch eine rote Überschrift des BK 39 in Unziale
+               eingeleitet, im Weiteren aber sind weder eine Kapitelzählung noch
+               Kapitelüberschriften vorhanden. Eine Orientierung für den Beginn jedes Kapitels
+               bieten dabei in der Partie der Hand A die in gewöhnlicher Tintenfarbe ausgeführten
+               größeren Initialen, deren Bögen durch zwei Linien mit dem leeren Raum dazwischen
+               ausgeführt wurden. Als Satzinitiale wurden gelegentlich die einfacheren vergrößerten
+               Majuskelbuchstaben oder Minuskelligaturen verwendet. Sonstiger Schmuck fehlt dem
+               Kapitularienteil völlig. Hand B zeigt diesen Unterschied nur einmal in der Abschrift
+               der Recapitulatio solidorum, <locus>fol. 38r, Z. 12</locus>, in der erhaltenen Partie
+               der Hand C sind Initialen sehr schlecht erhalten. Die größere Initiale E erscheint z.
+               B. in der Mitte des Kapitels 2 von BK 39, Kapitel 9 und 11 beginnen jeweils mit einer
+               einfacher ausgeführten Satzinitiale O und ebenso wie das Capitulum de libra et
+               inpunda, Mordek, Anhang 1 Nr. 9, mit einem einfachen Majuskelbuchstaben U. Einige
+               Kapitel wurden umgestellt: So findet sich die Regelung für den Totschlag eines
+               Mönches nicht am Ende des ersten Kapitels von BK 39, sondern vorne, nach der Regelung
+               zum Totschlag an einem Diakon und vor den Bußen für den Totschlag eines Priesters und
+               eines Bischofs. Die Kapitel 3, 4 und 5 von BK 40 wurden nach Kapitel 6 verschoben und
+               Kapitel 23-24 nach Kapitel 28.</p>
+         </div>
+         <div type="annotations">
+            <p>Im Kapitularienteil gibt es so gut wie keine mittelalterliche Nachträge oder
+               Randbemerkungen. Auf fol. 40r und 40v finden sich ein moderner Besitzvermerk "Ex
+               Museo Petri Dubrowsky" und der Vermerk eines St. Petersburger Bibliothekars.</p>
+
+         </div>
+         <div type="other">
+            <p>Der Handschrift fehlten bereits im 18. Jh. die ersten zwei Lagen, als sie von
+               Montfaucon beschrieben wurde, so dass die Beschädigungen des Kapitularienteils
+               vermutlich auf die noch früheren Zeiten zurückgehen. Außerdem ist nach <locus>fol.
+                  34v</locus> der Schluss von c. 2 sowie vollständig c. 3, 4, 5 und der Anfang von
+               c. 6 von BK 39 zu einem unbekannten Zeitpunkt einem Blattverlust zum Opfer gefallen.
+               Der Schluss der Handschrift nach fol. 40v enthielt eine unbekannte Anzahl von
+               weiteren, heute verlorenen Blättern; <locus>fol. 40v</locus> mit dem Anfang von BK 67
+               ist verblaßt und z. T. unlesbar. In der oberen linken Ecke von <locus>fol.
+                  40v</locus> findet sich ein Stempel der Öffentlichen Kaiserlichen Bibliothek zu
+               St. Petersburg.</p>
+         </div>
       </front>
+
       <body>
-         <ab type="text"/>
+
+         <cb n="34r"/>
+         <lb n="1"/>
+
+         <milestone unit="capitulare" n="BK.39"/>
+
+         <ab type="meta-text" xml:id="st-petersburg-sb-q-v-ii-11-34r-1" corresp="BK.39_inscriptio"
+            rend="coloured"><handShift new="A"/><choice>
+               <abbr>CAPL</abbr>
+               <expan>CAPITULA</expan>
+            </choice> QUE IN LEGE SALICE MITTENDA <unclear>SUNT</unclear>
+            <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-34r-2" corresp="BK.39_1">
+            <seg type="initial"> D</seg>e homicidiis clericorum qui sub<lb break="no"/>diaconum
+            occiderit CCC <choice>
+               <abbr>sold</abbr>
+               <expan>solidos</expan>
+            </choice>
+            <choice>
+               <abbr>conp</abbr>
+               <expan>conponat</expan>
+            </choice>
+            <lb/>
+            <seg type="initial">Q</seg>ui diaconum CCCC <choice>
+               <abbr>sold</abbr>
+               <expan>solidos</expan>
+            </choice>
+            <choice>
+               <abbr>conp</abbr>
+               <expan>conponat</expan>
+            </choice> . <seg type="initial">Q</seg>ui mo<lb break="no"/>nachum . CCCC <choice>
+               <abbr>sold</abbr>
+               <expan>solidos</expan>
+            </choice>
+            <choice>
+               <abbr>conp</abbr>
+               <expan>conponat</expan>
+            </choice> . <lb/>
+            <seg type="initial">Q</seg>ui <choice>
+               <abbr>prbm</abbr>
+               <expan>presbiterum</expan>
+            </choice> . DC . <choice>
+               <abbr>sold</abbr>
+               <expan>solidos</expan>
+            </choice>
+            <choice>
+               <abbr>conp</abbr>
+               <expan>conponat</expan>
+            </choice>
+            <seg type="initial">Q</seg>ui episcopum DCCCC . <lb/>
+            <choice>
+               <abbr>sold</abbr>
+               <expan>solidos</expan>
+            </choice>
+            <choice>
+               <abbr>conp</abbr>
+               <expan>conponat</expan>
+            </choice>
+            <choice>
+               <abbr>culp</abbr>
+               <expan>culpabilis</expan>
+            </choice> iudicetur . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-34r-3" corresp="BK.39_2">
+            <seg type="initial">S</seg>i quis in inmunitatem . damnum <lb/> aliquid fecerit . DC . <choice>
+               <abbr>sold</abbr>
+               <expan>solidos</expan>
+            </choice>
+            <choice>
+               <abbr>conp</abbr>
+               <expan>conponat</expan>
+            </choice> . si autem <lb/> homo furtum . aut homicidium uel <lb/> quemlibet crimen foras
+            cummittit <lb/> infra inmunitatem fugerit mandet <lb/> comus . episcopus uel abbate uel
+               uicedomin<unclear>o</unclear>
+            <lb/> uel quicumque loco . episcopi uel abbate <lb/> tenuerunt ut reddat ei reum <seg
+               type="initial">S</seg>i ille contradixerit et eum reddere <lb/> noluerit in prima
+            contradicione <lb/>
+            <choice>
+               <abbr>sold</abbr>
+               <expan>solidos</expan>
+            </choice> XV . <choice>
+               <abbr>culp</abbr>
+               <expan>culpabilis</expan>
+            </choice>
+            <choice>
+               <abbr>iud</abbr>
+               <expan>iudicetur</expan>
+            </choice> si ad secundam <lb/> eum reddere noluerit XXX <choice>
+               <abbr>sol</abbr>
+               <expan>solidos</expan>
+            </choice>
+            <choice>
+               <abbr>conp</abbr>
+               <expan>co<unclear>np</unclear>onat</expan>
+            </choice>
+            <lb/> culpabilis iudicetur . <cb n="34v"/>
+            <seg type="initial">S</seg>i nec ad tertiam consentire noluerit <lb/> quidquid reus
+            damnum fecerit totum <lb/> ille qui infra inmunitate eum retenit <lb/> nec reddere uult
+            soluere cogatur <lb/>
+            <seg type="initial">E</seg>t ipse comes ueniens licentiam habeat <lb/> ipsum hominem
+            infra inmunitatem . <lb/> querendi . ubicumque eum inuenire <lb/> potuerit . si ante
+            statim in prima <lb/> inquesicione cum responsum fuerit <lb/> quod reus infra
+            inmunitatem quidem <lb/> fuisset sed fuga lapsus statim iuret <lb/>
+            <choice>
+               <abbr>qd</abbr>
+               <expan>quod</expan>
+            </choice> ipse eum ad iusticiam cuiuslibet <lb/> diffaciendam fugire non fecisset <lb/>
+            <seg type="initial">Et</seg> sit ei in hoc satisfactum si autem <lb/> intrantem in ipsam
+            inmunitatem <lb/> comiti colectu manu quislibet resis<lb break="no"/>tere temtauerit
+            comes ad hoc re<lb break="no"/>gem uel principem deferat ibique <lb/> iudicetur ut sicut
+            ille qui in <lb/>
+            <unclear>m</unclear>unitatem damnum fecerit . DC . <cb n="35r"/><handShift new="B"
+            /></ab>
+
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-35r-1" corresp="BK.39_6"><handShift
+               new="B"/><seg type="initial">C</seg>oram tradicio quibus facta est res <lb/> soas
+            reciat <seg type="initial">S</seg>i autem <sic>ipe</sic> mortuus fu<lb break="no"/>erit
+            heredis eius legitimi res traditas <lb/> recipiant . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-35r-2" corresp="BK.39_7">
+            <seg type="initial">S</seg>i quis per <sic>castam</sic> ingenuitatis ad do<lb break="no"
+            />mino suo legitime libertatem est consecutus <lb/> liber permaneat . <seg
+               type="initial">S</seg>i uero aliquis eum <lb/> iniuste inseruire
+               <expan>temtauerit</expan> et ille car<lb break="no"/>tam ingenuitates sue ostenderit
+            et aduer<lb break="no"/>sarium se inseruire uelle conprobauerit <lb/> ille qui hoc
+            temptauit multa que in carta e<unclear>st</unclear>
+            <lb/> soluere cogatur <seg type="initial">S</seg>i uero carta non parue<lb break="no"
+            />rit sed iam ab illo que eum inseruire uolu<lb break="no"/>erit disfacta est
+            uuidrigildum eius <lb/> componat duos partes ille quem inser<lb break="no"/>uire
+            uoluerit terciam rei et ille iterum <lb/> per preceptum regis libertatem suam con<lb
+               break="no"/>quirat . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-35r-3" corresp="BK.39_8">
+            <seg type="initial">L</seg>iber qui se loco uuadii in alterius <lb/> potestatem
+            commiserit ibique consti<unclear>t</unclear>
+            <lb/> damnum aliquid cuilibet fecerit <cb n="35v"/><handShift new="A"/> qui eum in loco
+            . uuadii susceperit . aut <lb/> damnum soluat aut hominem in <lb/> mallo productum
+            dimittat perdens <lb/> simul debitum propter quod eum <lb/> uuadium . suscepit et qui
+            damnum fecit <lb/> demisus iuxta . qualitatem regi cogatur <lb/> emendare Si uero
+            liberam feminam <lb/> habuerit usque dum . in pignus extite<lb break="no"/>rit et
+               fili<mod>o</mod>s habuerit liberi permaneant <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-35v-1" corresp="BK.39_9">
+            <seg type="initial">O</seg>mnia debita que ad parte reges . <lb/> soluere debent <choice>
+               <abbr>sold</abbr>
+               <expan>solidis</expan>
+            </choice> XII <choice>
+               <abbr>den</abbr>
+               <expan>denariorum</expan>
+            </choice> soluant . <lb/> excepto fredo . que in lege salicam scrip<lb break="no"/>ta
+            est . ille . id est quo ceteri conposicionis <lb/> solui debeant conponant . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-35v-2" corresp="BK.39_10">
+            <seg type="initial">S</seg>i quis causam iudicatam repetere <lb/> presumpserit in mallo
+            ibique testibus <lb/> conuictus fuerit aut . XV . <choice>
+               <abbr>sold</abbr>
+               <expan>solidos</expan>
+            </choice>
+            <choice>
+               <abbr>conpon</abbr>
+               <expan>conponat</expan>
+            </choice>
+            <lb/> aut . XV . ictus a scabineis qui causam <lb/> prius iudicauerit accipiat . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-35v-3" corresp="BK.39_11">
+            <seg type="initial">O</seg>btime quisque in pago uel ciuitate <lb/> in testimonia
+            adsumantur et cui his . <cb n="36r"/> contra quem testimoniare debet <lb/> nullum crimen
+            possit indicere <lb/>
+         </ab>
+
+
+         <milestone unit="capitulare" n="BK.57"/>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36r-1" corresp="BK.57_7">
+            <seg type="initial">T</seg>elonis aut census non exigatur <lb/> a quolibet uel nec aqua
+            nauigium . <lb/> aut ponte transeundum est . <lb/>
+         </ab>
+
+
+         <milestone unit="capitulare" n="Mordek.9"/>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36r-2" corresp="Mordek.9"> Ubique in
+            cartis libra et inpunda <lb/> legitur pro uno id est pro libra intel<lb break="no"
+            />legitur . <lb/>
+            <lb/>
+         </ab>
+
+
+         <milestone unit="capitulare" n="BK.40"/>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36r-3" corresp="BK.40_1">
+            <seg type="initial">D</seg>e ecclesiis emendandis et ubi in <unclear>unum</unclear>
+            <lb/> locum . plurioris sunt quam necesse <lb/> sit ut distruantur que necessario <lb/>
+            non sunt . et alia construantur <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36r-4" corresp="BK.40_2">
+            <seg type="initial">U</seg>t <expan>presbiter</expan> non ordinentur priusquam . <lb/>
+            examinentur et ut excommunicatio<lb break="no"/>nis passim et sine cause non fiant .
+            <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36r-5" corresp="BK.40_6">
+            <seg type="initial">D</seg>e fugitiuus ac peregrinus ut dis<lb break="no"/>tringantur ut
+            scire possumus que sint <lb/> aut unde ueniunt . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36r-6" corresp="BK.40_3">
+            <seg type="initial">U</seg>t missi nostri . a scabineos aduoca<lb break="no"/>tos
+            notarios per <del>l</del> singula loca eliga<unclear>nt</unclear>
+            <cb n="36v"/><handShift new="B"/> Et eorum nomina quando reuersi <lb/> fuerint secom
+            scripta defereant . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36v-1" corresp="BK.40_4">
+            <seg type="initial">D</seg>e his qui legem seruuare contempse<lb break="no"/>rint et per
+               fideiussorum<note type="editorial">In der Wortmitte zwischen o und r ist freier Platz
+               für etwa 3 Buchstaben</note> ad presen<lb break="no"/>ciam regis deducantur . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36v-2" corresp="BK.40_5">
+            <seg type="initial">U</seg>t ille qui hairbanno soluere <sic>bent</sic> con<lb
+               break="no"/>iectum ad hairbanatore . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36v-3" corresp="BK.40_7">
+            <seg type="initial">U</seg>t bauca et brunia non dentur <lb/> neguciatoribus <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36v-4" corresp="BK.40_8">
+            <seg type="initial">D</seg>e mensuris ut secondum iussionem <lb/> nostram ęqualis fiant
+            <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36v-5" corresp="BK.40_9">
+            <seg type="initial">U</seg>t non mittantur testimonia super <lb/> uestidura domno <rs
+               type="person">pipino</rs> regis <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36v-6" corresp="BK.40_10">
+            <seg type="initial">U</seg>t nec <sic>colus</sic> nec <sic>ficalinus</sic> possint
+               aliu<lb break="no"/>bi tradicionis facere . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36v-7" corresp="BK.40_11">
+            <seg type="initial">U</seg>t nullus presummat hominem ad iudi<lb break="no"/>cium sine
+            causa iectare nisi iudicatum fiat . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-36v-8" corresp="BK.40_12">
+            <seg type="initial">U</seg>t liber homo qui in monasterio regula<lb break="no"/>ri comam
+            deposuerit et res suas ibidem <lb/>
+            <unclear>e</unclear>llegauerit promisionem factam secom<lb break="no"/>dum regulam
+            firmiter teneat . <cb n="37r"/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37r-1" corresp="BK.40_13">
+            <seg type="initial">U</seg>t omnia que uuadiare debent iuxta quod <lb/> legem contenit
+            pleniter secondum ip<lb break="no"/>sam legem reuuadiati fiant et in post<lb break="no"
+            />modum uel domnus rex uel ille cuius <lb/> causa est iuxta quod ei placuerit <lb/>
+            misericordiam fiat . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37r-2" corresp="BK.40_14">
+            <seg type="initial">D</seg>e <choice>
+               <abbr>eps</abbr>
+               <expan>episcopis</expan>
+            </choice> abatis comitibus quod ad placi<lb break="no"/>tum non uenerunt . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37r-3" corresp="BK.40_15">
+            <seg type="initial">U</seg>t nullus ebrius suam causam in m<unclear>al</unclear><lb
+               break="no"/>lum <sic>contiuere</sic> repossit nec testimo<lb break="no"/>nium dicere
+            nec placitum comis abe<unclear>re</unclear>
+            <lb/> nisi ieiunus <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37r-4" corresp="BK.40_16">
+            <seg type="initial">U</seg>t nemini liciat alium cogere ad <lb/> bibendum . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37r-5" corresp="BK.40_17">
+            <seg type="initial">D</seg>e missis nostris discurentibus uel cete<lb break="no"/>ris
+            hominibus propter hutilitatem <lb/> nostram iter agentibus ut nullus man<lb break="no"
+            />sionem contradicere presummat . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37r-6" corresp="BK.40_18">
+            <seg type="initial">D</seg>e canibus qui dextro armo tunsi sunt <lb/> ut homo qui eum
+            habuerit com ipso <lb/> cano <seg type="initial">I</seg>n <expan>presenciam</expan>
+            regis ueniat . <cb n="37v"/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37v-1" corresp="BK.40_19">
+            <seg type="initial">U</seg>t populus interrogetur de capitola <lb/> que in lege nouiter
+            addita sunt et post<lb break="no"/>quam omnes conserunt subscripcionis <lb/> uel
+            manufirmacionis suas in ipsis capitulis <lb/> faciunt <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37v-2" corresp="BK.40_20">
+            <seg type="initial">U</seg>t nullus ad placitum baneatur nisi qui <lb/> causam suam
+            querit ut si alteri que<lb break="no"/>rere deberet excepto escabineis . <seg
+               type="initial">Q</seg>ui per <lb/> omnia placita . preesse debent . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37v-3" corresp="BK.40_21">
+            <seg type="initial">D</seg>e falsis testibus ut non recipiantur . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37v-4" corresp="BK.40_22">
+            <seg type="initial">U</seg>t nulus presummat per uitam regis <lb/> et filiorum eius
+            iurare . <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37v-5" corresp="BK.40_25">
+            <seg type="initial">U</seg>t missi nostri qui iam breuis detullerunt <lb/>
+            <seg type="initial">D</seg>e adnonciacione uolumus ut addu<lb break="no"/>cant de opere
+            <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37v-6" corresp="BK.40_26">
+            <seg type="initial">Q</seg>uanta moram faciant i<unclear>nuo</unclear> quoque <lb/> loco
+            et quod homines secom habeant <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37v-7" corresp="BK.40_27">
+            <seg type="initial">D</seg>e prudencia et costan<unclear>c</unclear>ia missorum <lb/>
+            nostrorum <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37v-8" corresp="BK.40_28">
+            <seg type="initial">D</seg>e <sic>falfalsis</sic> monitariis requirendum est <lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-37v-9" corresp="BK.40_23">
+            <seg type="initial">D</seg>e illis <rs>saxonibus</rs> qui uxoris erum
+            <!-- gb: der Schreiber schreibt immer erum statt eorum, weswegen hier das im Digitalisat
+               potentiell erkennbare, aber von mir während der Autopsie der Hs. nicht vermerkte o 
+               nicht kollationiert wurde - bm: Aber es sieht ja wirklich so aus, als sei es hier 
+               ergänzt worden; also e<add>o</add>rum? - sk: wobei das nachgetragene o jetzt
+               nicht 100% deutlich ist. Es könnte tatsächlich sein, ggf. ja von anderer
+               Hand nachgetragen. Idealiter irgendwann einmal das Original prüfen...  -->
+            non <cb n="38r"/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-38r-1" corresp="BK.40_24">
+            <seg type="initial">D</seg>e signatis qui menciendo uadunt <lb/>
+         </ab>
+
+
+         <milestone unit="capitulare" n="BK.104"/>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-38r-2" corresp="BK.104_3">
+            <seg type="initial">U</seg>t missi nostri una com sociis qui in erum <lb/>
+            <unclear>s</unclear>acra commonere uident episcopi <lb/>
+            <choice>
+               <abbr>abbt</abbr>
+               <expan>abbati</expan>
+
+            </choice> comites seo uassi nostri omni gene<lb break="no"/>ralitati se
+               necess<unclear>i</unclear> fuerit ubiconque eis <lb/> iniunctum fuerit festinare
+               null<unclear>atenus</unclear>
+            <lb/> tradant <lb/>
+         </ab>
+         <gap reason="editorial"/>
+         <cb n="40v"/>
+         <lb n="1"/>
+
+         <milestone unit="capitulare" n="BK.67"/>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-40v-1" corresp="BK.67_1">
+            <handShift new="C"/> Ut<note type="editorial">Vor der ersten lesbaren Zeile sind noch
+               undeutliche Spuren einer roten Rubrik zu erkennen, die allerdings mit dem bloßen Auge
+               nicht lesbar ist.</note> nullus ad mallum uel <unclear>ad</unclear>
+            <lb/> placitum infra patriam a<gap unit="chars" quantity="3"/>
+            <lb/> id est scutum et lancia non port<gap unit="chars" quantity="2"/><lb/>
+         </ab>
+
+         <ab type="text" xml:id="st-petersburg-sb-q-v-ii-11-40v-4" corresp="BK.67_2">
+            <gap unit="chars" quantity="2"/> latronibus quicumque post <lb/>
+            <gap unit="chars" quantity="5"/>m sancti <rs type="person">iohannis</rs> latronem <lb/>
+            <gap unit="chars" quantity="5"/>onem dedit si fran<gap unit="chars" quantity="3"/>
+            <unclear>est</unclear>
+            <lb/>
+            <gap unit="chars" quantity="4"/><unclear>II</unclear> . <gap unit="chars" quantity="4"
+            />libus f<gap unit="chars" quantity="3"/>cis <gap unit="chars" quantity="5"/> quod <lb/>
+            <gap unit="chars" quantity="3"/>ron<gap unit="chars" quantity="6"/>iss<gap unit="chars"
+               quantity="1"/> non sc<gap unit="chars" quantity="5"/>
+            <lb/> licet pater eius sit uel frater <lb/> aut propinquis . si hoc iurare non po<lb
+               break="no"/>tuerit et ab aliquo conuictus fue<lb break="no"/>rit quod latronem in
+            hospicio susce<lb break="no"/>pisset qu<gap unit="chars" quantity="1"/>si latro et
+            infidelis <unclear>iu</unclear>di<lb break="no"/>cet<gap unit="chars" quantity="5"/> qui
+               latr<gap unit="chars" quantity="1"/>
+            <unclear>est</unclear> et <gap unit="chars" quantity="10"/>
+            <lb/> noster et <rs>francorum</rs> et qui <gap unit="chars" quantity="1"/>ll<gap
+               unit="chars" quantity="1"/> susce<lb break="no"/>pit similis est illi . si
+               <unclear>ut</unclear>
+            <gap unit="chars" quantity="1"/>utem audiuit <lb/> quod <unclear>la</unclear>tro fuisset
+            et <gap unit="chars" quantity="3"/> non scit pro fir<lb break="no"/>miter aut iuret
+            solus quod nun<gap unit="chars" quantity="3"/>
+            <lb/>
+            <gap unit="chars" quantity="3"/> audisset . nec per ueritatem </ab>
+
       </body>
    </text>
 </TEI>

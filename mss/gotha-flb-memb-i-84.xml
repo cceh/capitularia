@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
 schematypens="http://purl.oclc.org/dsdl/schematron"?><!--
-sk: noch ausstehende Anpassungen und Kontrolle: 
-in der Inhaltsübersicht nach Mordek die corresp-Werte direkt in die title-tags verschieben
+   ***  ACHTUNG  ***
+   DATEi Z.ZT. IN BEARBEITUNG  (sk)
 -->
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="gotha-flb-memb-i-84">
     <teiHeader>
@@ -502,7 +502,9 @@ in der Inhaltsübersicht nach Mordek die corresp-Werte direkt in die title-tags 
                                             target="handschrift-des-monats-dezember-2018/"/></bibl>
                                     <bibl resp="capit"><ref type="internal" subtype="collom"
                                             target="sammlung-des-monats-maerz-2019-eine-italienische-vier-kapitularien-sammlung-bk-20a-22-23-95/"
-                                        /></bibl>
+                                    /><ref type="internal" subtype="collom"
+                                        target="sammlung-des-monats-februar-2023"/>
+                                    </bibl>
                                 </listBibl>
                                 <listBibl type="lit">
                                     <bibl corresp="#Pertz_G_1835">Pertz G 1835, S. XXVIII f.</bibl>
@@ -590,6 +592,7 @@ in der Inhaltsübersicht nach Mordek die corresp-Werte direkt in die title-tags 
                                     <bibl corresp="#Mütherich_1994">Mütherich 1994, S. 81 f.,
                                         86</bibl>
                                     <bibl corresp="#Mordek_1995a">Mordek 1995a, S. 1030-1032</bibl>
+                                    <bibl corresp="#Coumert_2023">Coumert 2023, S. 17, 54, 85, 88, 188, 191-193, 195, 305, 387</bibl>
                                 </listBibl>
 
                                 <listBibl type="abb">
@@ -2187,7 +2190,8 @@ in der Inhaltsübersicht nach Mordek die corresp-Werte direkt in die title-tags 
     </teiHeader>
     <facsimile>
         <graphic
-            url="https://nbn-resolving.org/urn:nbn:de:urmel-f72988ea-e48d-4855-b3f4-12e08774fc810"/>
+            url="https://dhb.thulb.uni-jena.de/rsc/viewer/ufb_derivate_00010754/Memb-I-00084_0001r.tif"
+        />
     </facsimile>
     <text>
         <front>
@@ -3066,6 +3070,719 @@ in der Inhaltsübersicht nach Mordek die corresp-Werte direkt in die title-tags 
 
         </front>
         <body>
+           <!-- <milestone unit="capitulare" n="BK.39"/>
+            <cb n="216va"/>
+            <lb n="1"/>
+            <ab xml:id="gotha-flb-memb-i-84-216va-1" type="meta-text"
+                corresp="BK.39_inscriptio BK.39_1" rend="coloured">
+                <milestone unit="span" spanTo="#gotha-flb-memb-i-84-216va-1_1"/>INCIPIUNT CAPITULA
+                LEGI <lb/> SALICAE CONSTITUIT <lb/>DOMNUS KAROLUS IMPERATOR <anchor
+                    xml:id="gotha-flb-memb-i-84-216va-1_1"/><lb/><milestone unit="span"
+                    spanTo="#gotha-flb-memb-i-84-216va-1_2" xml:id="gotha-flb-memb-i-84-216va-1_3"
+                    next="#gotha-flb-memb-i-84-216va-3"/> DE HOMICIDIIS CLERICORUM<anchor
+                    xml:id="gotha-flb-memb-i-84-216va-1_2"/><lb/></ab>
+            <ab xml:id="gotha-flb-memb-i-84-216va-2" type="meta-text" corresp="BK.39_1_inscriptio"
+                rend="coloured"> . <seg type="num" n="1">I</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-216va-3" type="text" corresp="BK.39_1"
+                prev="#gotha-flb-memb-i-84-216va-1_3"><seg type="initial" rend="coloured">Q</seg>ui
+                subdiaconum occiderit CCC solidos componat qui diaconum CCCC qui presbiterum DC qui
+                episcopum DCCCC solidos componat qui monachum CCCC solidis culpabilis iudicetur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-216va-4" type="meta-text" corresp="BK.39_2_inscriptio"
+                rend="coloured"><seg type="num" n="2">II</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-216va-5" type="text" corresp="BK.39_2"
+                next="#gotha-flb-memb-i-84-216va-7"><seg type="initial" rend="coloured">S</seg>i
+                quis in emunitatem damnum aliquid fecerit DC solidos componat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-216va-6" type="meta-text" corresp="BK.39_2_inscriptio"
+                rend="coloured">
+                <seg type="num" n="3">III</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-216va-7" type="text" corresp="BK.39_2"
+                prev="#gotha-flb-memb-i-84-216va-5"><seg type="initial" rend="coloured">S</seg>i
+                autem homo furtum aut homicidium vel quodlibet crimen foris committens infra
+                emunitatem fugerit mandet comes vel episcopo vel abbati vel vicedomino vel quicumque
+                locum episcopi vel abbatis tenuerit ut reddat ei reum Si ille contradixerit et eum
+                reddere noluerit in prima contradictione solidis XV culpabilis iudicetur si ad
+                secundam inquisitionem eum reddere noluerit XXX solidis culpabilis iudicetur si nec
+                ad tertiam consentire noluerit quicquid reus damnum fecerat totum ille qui eum infra
+                emunitatem retinet nec reddere vult solvere cogatur et ipse comes veniens licentiam
+                habeat ipsum hominem infra emunitatem quaerendi ubicumque eum invenire potuerit Si
+                autem statim in prima inquisitione comiti responsum fuerit quod reus infra
+                emunitatem quidem fuisset sed fugalapsus sit statim iuret quod ipse eum ad iusticiam
+                cuiuslibet disfaciendam fugire non fecisset et sit ei in hoc satisfactum Si autem
+                intranti in ipsam emunitatem comiti collecta manu quilibet resistere temptaverit
+                comes hoc ad regem vel ad principem deferat ibique iudicetur ut sicut ille qui in
+                emunitatem damnum fecit DC solidos conponere debuit ita qui comiti collecta manu
+                resistere praesumpserit DC solidis culpabilis iudicetur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-216va-8" type="meta-text" corresp="BK.39_3_inscriptio"
+                rend="coloured">
+                <seg type="num" n="4">IIII</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-216va-9" type="text" corresp="BK.39_3"><seg
+                    type="initial" rend="coloured">S</seg>i quis ad ecclesiam confugium fecerit in
+                atrio ipsius ecclesiae pacem habeat nec sit ei necesse ecclesiam ingredi et nullus
+                eum inde per vim abstrahere praesumat sed liceat ei confiteri quod fecit et inde per
+                manus bonorum hominum ad discussionem in publico perducatur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-216va-10" type="meta-text" corresp="BK.39_4_inscriptio"
+                rend="coloured">
+                <seg type="num" n="5">V</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-216va-11" type="text" corresp="BK.39_4"><seg
+                    type="initial" rend="coloured">S</seg>i quis hominem in iudicio iniuste contra
+                alio altercantem adiuvare per malum ingenium praesumpserit atque inde coram
+                iudicibus vel comite increpatus fuerit et negare non potuerit solidis XV culpabilis
+                iudicetur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-216va-12" type="meta-text" corresp="BK.39_5_inscriptio"
+                rend="coloured"><seg type="num" n="6">VI</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-216va-13" type="text" corresp="BK.39_5"><seg
+                    type="initial" rend="coloured">S</seg>i quis de libertate sua fuerit
+                interpellatus et timens ne in servitium cadat aliquem de propinquis suis per quem se
+                    <cb n="216vb"/> in servitium casurum timens occiderit id est patrem matrem
+                patruelem avunculum vel quamlibet huiusmodi propinquitatis personam ipse qui hoc
+                perpetraverit moriatur agnatio vero et consanguinitas eius in servitutem cadat Et si
+                negaverit se illum occidisse ad novem vomeres ignitos iudicio Dei examinandus
+                accedat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-216vb-1" type="meta-text" corresp="BK.39_6_inscriptio"
+                rend="coloured"><seg type="num" n="7">VII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-216vb-2" type="text" corresp="BK.39_6"
+                next="#gotha-flb-memb-i-84-216vb-4"><seg type="initial" rend="coloured">Q</seg>ui
+                res suas pro anima sua ad casam Dei tradere voluerit domi traditionem faciat coram
+                testibus legitimis et quae actenus in hoste factae sunt traditiones de quibus nulla
+                est quesitio stabilis permaneant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-216vb-3" type="meta-text" corresp="BK.39_6_inscriptio"
+                rend="coloured"><seg type="num" n="8">VIII</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-216vb-4" type="text" corresp="BK.39_6"
+                prev="#gotha-flb-memb-i-84-216vb-2"><seg type="initial" rend="coloured">S</seg>i
+                vero aliquis alii res suas tradiderit et in hoste profectus fuerit et ille cui res
+                traditae sunt interim mortuus fuerit qui res suas tradidit cum reversus fuerit
+                adhibitis testibus coram quibus traditio facta est res suas recipiat si autem et
+                ipse mortuus fuerit heredes eius legitimi res traditas recipiant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-216vb-5" type="meta-text" corresp="BK.39_7_inscriptio"
+                rend="coloured"><seg type="num" n="9">VIIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-216vb-6" type="text" corresp="BK.39_7"><seg
+                    type="initial" rend="coloured">S</seg>i quis per cartam ingenuitatis a domino
+                suo legitime libertatem est consecutus liber permaneat Si vero aliquis eum iniuste
+                inservire temptaverit et ille cartam ingenuitatis suae ostenderit et adversarium se
+                inservire velle comprobaverit ille qui hoc temptavit multam quae in carta scripta
+                est solvere cogatur Si vero carta non paruerit sed iam ab illo qui eum inservire
+                voluerit disfacta est weregeldum eius componat duas partes illi quem inservire
+                voluerit tertiam regi et ille iterum per praeceptum regis libertatem suam
+                conquirat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-216vb-7" type="meta-text" corresp="BK.39_8_inscriptio"
+                rend="coloured"><seg type="num" n="10">X</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-216vb-8" type="text" corresp="BK.39_8"><seg
+                    type="initial" rend="coloured">L</seg>iber qui se loco wadii in alterius
+                potestatem commiserit ibique constitutus damnum aliquod cuilibet fecerit qui eum in
+                loco wadii suscepit aut damnum solvat aut hominem in mallo productum demittat
+                perdens simul debitum propter quod eum in wadio suscepit et qui damnum fecit
+                demissus iuxta qualitatem rei cogatur emendare Si vero liberam feminam habuerit
+                usque dum in pignus extiterit et filios habuerit liberi permaneant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-216vb-9" type="meta-text" corresp="BK.39_9_inscriptio"
+                rend="coloured"><seg type="num" n="11">XI</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-216vb-10" type="text" corresp="BK.39_9"><seg
+                    type="initial" rend="coloured">O</seg>mnia debita quae ad partem regis solvere
+                debent solidis <cb n="217ra"/> duodecim denariorum solvant excepto freda quae in
+                lege Saliga scripta est illa eodem solido quo caeterae compositiones solvi debent
+                componatur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-1" type="meta-text" corresp="BK.39_10_inscriptio"
+                rend="coloured"><seg type="num" n="12">XII</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-2" type="text" corresp="BK.39_10"><seg
+                    type="initial" rend="coloured">S</seg>i quis causam iudicatam repetere in mallo
+                praesumpserit ibique testibus convictus fuerit aut quindecim solidos componat aut
+                quindecim ictus ab scabinis qui causam prius iudicaverunt accipiat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-3" type="meta-text" corresp="BK.39_11_inscriptio"
+                rend="coloured"><seg type="num" n="13">XIII</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-4" type="text" corresp="BK.39_11"><seg
+                    type="initial" rend="coloured">O</seg>ptimus quisque in pago vel civitate in
+                testimonium adsumatur et cui is contra quem testimoniari debent nullum crimen possit
+                indicere</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-5" type="meta-text"
+                corresp="BK.39_11_inscriptio_2" rend="coloured"><seg type="num" n="14"
+                >XIIII</seg></ab>
+            <!-\- co: Der Schreiber hat sich vermutlich in der Zählung vertan und nochmal eine rubrizierte
+                Zahl ans Ende gesetzt, obwohl diese stets für den Anfang des folgendne Kapitels gilt. Zug-
+                leich beginnt aber beim anschließenden BK 40 eine neue Zählung.  -\->
+            <ab xml:id="gotha-flb-memb-i-84-217ra-6" type="text" corresp="BK.40_prolog">Item de
+                capitulis</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-7" type="meta-text" corresp="BK.40_1_inscriptio"
+                rend="coloured" next="#gotha-flb-memb-i-84-217ra-8_2"><seg type="num" n="1">I</seg>
+                . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-8" type="text"
+                corresp="BK.40_1_inscriptio BK.40_1"><milestone unit="span"
+                    spanTo="#gotha-flb-memb-i-84-217ra-8_1" corresp="BK.40_1_inscriptio"
+                    xml:id="gotha-flb-memb-i-84-217ra-8_2" prev="#gotha-flb-memb-i-84-217ra-7"/><seg
+                    type="initial" rend="coloured">D</seg>e causis ammonendis <anchor
+                    xml:id="gotha-flb-memb-i-84-217ra-8_1"/><milestone unit="span"
+                    spanTo="#gotha-flb-memb-i-84-217ra-8_3" corresp="BK.40_1"/>vel ecclesias
+                emendandis et ubi in unum locum plures sunt quam necesse sit ut destruantur quae
+                necessaria non sunt et alia conserventur<anchor
+                    xml:id="gotha-flb-memb-i-84-217ra-8_3"/></ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-9" type="meta-text" corresp="BK.40_2_inscriptio"
+                rend="coloured"><seg type="num" n="2">II</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-10" type="text" corresp="BK.40_2"><seg
+                    type="initial" rend="coloured">U</seg>t presbyteri non ordinentur priusquam
+                examinentur Et ut excommunicationes passim et sine causa non fiant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-11" type="meta-text" corresp="BK.40_3_inscriptio"
+                rend="coloured"><seg type="num" n="3">III</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-12" type="text" corresp="BK.40_3"><seg
+                    type="initial" rend="coloured">U</seg>t missi nostri scabinios advocatos
+                notarios per singula loca elegant et eorum nomina quando reversi fuerint secum
+                scripta deferant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-13" type="meta-text" corresp="BK.40_4_inscriptio"
+                rend="coloured"><seg type="num" n="4">IIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-14" type="text" corresp="BK.40_4"><seg
+                    type="initial" rend="coloured">D</seg>e his qui legem servare contempserint ut
+                per fideiussores ad praesentiam regis deducantur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-15" type="meta-text" corresp="BK.40_5_inscriptio"
+                rend="coloured"><seg type="num" n="5">V</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-16" type="text" corresp="BK.40_5"><seg
+                    type="initial" rend="coloured">U</seg>t illi qui haribannum solvere debent
+                coniectum faciant ad haribannatorem</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-17" type="meta-text" corresp="BK.40_6_inscriptio"
+                rend="coloured"><seg type="num" n="6">VI</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-18" type="text" corresp="BK.40_6"><seg
+                    type="initial" rend="coloured">D</seg>e fugitivis ac peregrinis ut distringantur
+                ut scire possimus qui sint aut unde venerint</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-19" type="meta-text" corresp="BK.40_7_inscriptio"
+                rend="coloured"><seg type="num" n="7">VII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-20" type="text" corresp="BK.40_7"><seg
+                    type="initial" rend="coloured">U</seg>t bauga et brunias non dentur
+                negotiatoribus</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-21" type="meta-text" corresp="BK.40_8_inscriptio"
+                rend="coloured"><seg type="num" n="8">VIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-22" type="text" corresp="BK.40_8"><seg
+                    type="initial" rend="coloured">D</seg>e mensuris ut secundum iussionem nostram
+                aequales fiant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-23" type="meta-text" corresp="BK.40_9_inscriptio"
+                rend="coloured"><seg type="num" n="9">VIIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-24" type="text" corresp="BK.40_9"><seg
+                    type="initial" rend="coloured">U</seg>t non mittantur testimonia super vestitura
+                domni Pippini regis</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-25" type="meta-text" corresp="BK.40_10_inscriptio"
+                rend="coloured"><seg type="num" n="10">X</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-26" type="text" corresp="BK.40_10"><seg
+                    type="initial" rend="coloured">U</seg>t nec colonus nec fiscalinus foras mitio
+                possint aliubi traditiones facere</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-27" type="meta-text" corresp="BK.40_11_inscriptio"
+                rend="coloured"><seg type="num" n="11">XI</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-28" type="text" corresp="BK.40_11"><seg
+                    type="initial" rend="coloured">U</seg>t nullus praesumat hominem in iuditio
+                mittere sine causa nisi iudicatum fiat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-29" type="meta-text" corresp="BK.40_12_inscriptio"
+                rend="coloured"><seg type="num" n="12">XII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-30" type="text" corresp="BK.40_12"><seg
+                    type="initial" rend="coloured">U</seg>t liber homo qui in monasterio regulari
+                comam deposuerit et res suas ibidem delegaverit promissionem factam secundum regulam
+                firmiter teneat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-31" type="meta-text" corresp="BK.40_13_inscriptio"
+                rend="coloured"><seg type="num" n="13">XIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-32" type="text" corresp="BK.40_13"><seg
+                    type="initial" rend="coloured">U</seg>t omnia quae wadiare debent iuxta quod in
+                lege continet pleniter secundum ipsam legem rewadiata fiant et in postmodum vel
+                domnus rex vel ille cuius causa est iuxta quod ei placuerit misericordiam
+                faciat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-33" type="meta-text" corresp="BK.40_14_inscriptio"
+                rend="coloured"><seg type="num" n="14">XIIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217ra-34" type="text" corresp="BK.40_14"><seg
+                    type="initial" rend="coloured">D</seg>e episcopis abbatibus comitibus qui ad
+                placitum nostrum non venerunt <cb n="217rb"/></ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-1" type="meta-text" corresp="BK.40_15_inscriptio"
+                rend="coloured"><seg type="num" n="15">XV</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-2" type="text" corresp="BK.40_15"><seg
+                    type="initial" rend="coloured">V</seg>t nullus ebrius suam causam in mallo
+                possit conquirere nec testimonium dicere nec placitum comis habeat nisi ieiunus</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-3" type="meta-text" corresp="BK.40_16_inscriptio"
+                rend="coloured"><seg type="num" n="16">XVI</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-4" type="text" corresp="BK.40_16"><seg
+                    type="initial" rend="coloured">V</seg>t nemini liceat alium cogere ad
+                bibendum</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-5" type="meta-text" corresp="BK.40_17_inscriptio"
+                rend="coloured"><seg type="num" n="17">XVII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-6" type="text" corresp="BK.40_17"><seg
+                    type="initial" rend="coloured">D</seg>e missis nostris discurrentibus vel
+                caeteris hominibus propter utilitatem nostram iter agentibus ut nullus mansionem
+                contradicere praesumat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-7" type="meta-text" corresp="BK.40_18_inscriptio"
+                rend="coloured"><seg type="num" n="18">XVIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-8" type="text" corresp="BK.40_18"><seg
+                    type="initial" rend="coloured">D</seg>e canibus qui in dextro armo tunsi sunt ut
+                homo qui eum habuerit cum ipse cane in praesentia regis veniat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-9" type="meta-text" corresp="BK.40_19_inscriptio"
+                rend="coloured"><seg type="num" n="19">XVIIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-10" type="text" corresp="BK.40_19"><seg
+                    type="initial" rend="coloured">V</seg>t populus interrogetur de capitulis quae
+                in lege noviter addita sunt et postquam omnes consenserint subscriptiones et
+                manufirmationes suas in ipsis capitulis faciant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-11" type="meta-text" corresp="BK.40_20_inscriptio"
+                rend="coloured"><seg type="num" n="20">XX</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-12" type="text" corresp="BK.40_20"><seg
+                    type="initial" rend="coloured">V</seg>t nullus ad placitum banniatur nisi qui
+                causam suam quaerere aut si alter ei quaerere debet exceptis scabineis septem qui ad
+                omnia placita praeesse debent</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-13" type="meta-text" corresp="BK.40_21_inscriptio"
+                rend="coloured"><seg type="num" n="21">XXI</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-14" type="text" corresp="BK.40_21"><seg
+                    type="initial" rend="coloured">D</seg>e falsis testibus ut non recipiantur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-15" type="meta-text" corresp="BK.40_22_inscriptio"
+                rend="coloured"><seg type="num" n="22">XXII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-16" type="text" corresp="BK.40_22"><seg
+                    type="initial" rend="coloured">V</seg>t nullus praesumat per vitam regis et
+                filiorum eius iurare</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-17" type="meta-text" corresp="BK.40_25_inscriptio"
+                rend="coloured"><seg type="num" n="23">XXIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-18" type="text" corresp="BK.40_25"><seg
+                    type="initial" rend="coloured">V</seg>t missi nostri qui iam breves detulerunt
+                de adnuntiatione volumus ut adhuc adducant de opere</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-19" type="meta-text" corresp="BK.40_26_inscriptio"
+                rend="coloured"><seg type="num" n="24">XXIIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-20" type="text" corresp="BK.40_26"><seg
+                    type="initial" rend="coloured">Q</seg>uantam moram faciant in unoquoque loco et
+                quot homines secum habeant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-21" type="meta-text" corresp="BK.40_27_inscriptio"
+                rend="coloured"><seg type="num" n="25">XXV</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-22" type="text" corresp="BK.40_27"><seg
+                    type="initial" rend="coloured">D</seg>e prudentia et constantia missorum
+                nostrorum</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-23" type="meta-text" corresp="BK.40_28_inscriptio"
+                rend="coloured"><seg type="num" n="26">XXVI</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-24" type="text" corresp="BK.40_28"><seg
+                    type="initial" rend="coloured">D</seg>e falsis monetariis requirendum est</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-25" type="meta-text" corresp="BK.40_23_inscriptio"
+                rend="coloured"><seg type="num" n="27">XXVII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-26" type="text" corresp="BK.40_23"><seg
+                    type="initial" rend="coloured">D</seg>e illis Saxonibus qui uxores non
+                habent</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-27" type="meta-text" corresp="BK.40_24_inscriptio"
+                rend="coloured"><seg type="num" n="28">XXVIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-28" type="text" corresp="BK.40_24"><seg
+                    type="initial" rend="coloured">D</seg>e signatis qui mentiendo vadunt</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-29" type="meta-text" corresp="BK.40_29_inscriptio"
+                rend="coloured"><seg type="num" n="29">XXVIIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-30" type="text" corresp="BK.40_29"><seg
+                    type="initial" rend="coloured">S</seg>i aliae res fortuitu non praeoccupaverint
+                VIII Kalendas Iulias id est missa sancti Iohannis baptistae ad Magontiam sive a
+                Cabillionem generale placitum nostram habere volumus</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217rb-31" type="meta-text" corresp="BK.20a_prolog"
+                rend="coloured">Anno feliciter undecimo regni domni nostri Karoli gloriosissimi
+                regis in mense Martio factum capitulare qualiter congregatis in unum sinodali
+                concilio episcopis abbatibus virisque inlustribus comitibus una cum piissimo domno
+                nostro secundum Dei voluntatem
+                <!-\- co: Könnte auch als neuer Absatz gelesen werden -\-> pro causis oportunis
+                consenserunt decretum <cb n="217va"/></ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-1" type="meta-text" corresp="BK.20a_1_inscriptio"
+                rend="coloured"><seg type="num" n="1">I</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-2" type="meta-text" corresp="BK.20a_1"
+                rend="coloured"><seg type="initial" rend="coloured">V</seg>t suffraganii episcopi
+                eis secundum canones subiecti sint et ea quae erga ministerium illorum emendanda
+                cognoscunt libenti animo emendent atque corrigant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-3" type="meta-text" corresp="BK.20a_2_inscriptio"
+                rend="coloured"><seg type="num" n="2">II</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-4" type="meta-text" corresp="BK.20a_2"
+                rend="coloured"><seg type="initial" rend="coloured">V</seg>bi praesens episcopi
+                ordinati non sunt sine tarditate ordinentur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-5" type="meta-text" corresp="BK.20a_3_inscriptio"
+                rend="coloured"><seg type="num" n="3">III</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-6" type="meta-text" corresp="BK.20a_3"
+                rend="coloured"><seg type="initial" rend="coloured">D</seg>e monasteriis qui
+                regulares fuerunt ut secundum regulam vivant necnon et monasteria puellarum ordinem
+                sanctum custodiant et unaquaeque abbatissa in suo monasterio sine intermissione
+                resedeat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-7" type="meta-text" corresp="BK.20a_4_inscriptio"
+                rend="coloured"><seg type="num" n="4">IIII</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-8" type="meta-text" corresp="BK.20a_4"
+                rend="coloured"><seg type="initial" rend="coloured">V</seg>t episcopi de presbiteris
+                et clericis infra illorum parrochia potestatem habeant secundum canones</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-9" type="meta-text" corresp="BK.20a_5_inscriptio"
+                rend="coloured"><seg type="num" n="5">V</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-10" type="meta-text" corresp="BK.20a_5"
+                rend="coloured"><seg type="initial" rend="coloured">U</seg>t episcopi de incestuosis
+                hominibus emendandi licentiam habeant seu et de viduis infra sua parrochia
+                potestatem habeant ad corrigendum</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-11" type="meta-text" corresp="BK.20a_6_inscriptio"
+                rend="coloured"><seg type="num" n="6">VI</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-12" type="meta-text" corresp="BK.20a_6"
+                rend="coloured"><seg type="initial" rend="coloured">V</seg>t nulli liceat alterius
+                clericum recipere aut ordinare in aliquo gradu</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-13" type="meta-text" corresp="BK.20a_7_inscriptio"
+                rend="coloured"><seg type="num" n="7">VII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-14" type="meta-text" corresp="BK.20a_7"
+                rend="coloured"><seg type="initial" rend="coloured">U</seg>t unusquisque suam
+                decimam donet atque per iussionem pontificis dispensentur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-15" type="meta-text" corresp="BK.20a_8_inscriptio"
+                rend="coloured"><seg type="num" n="8">VIII</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-16" type="meta-text" corresp="BK.20a_8"
+                rend="coloured"><seg type="initial" rend="coloured">U</seg>t homicidas aut caeteros
+                reos qui legibus mori debent si ad ecclesiam confugerint non excusentur neque eis
+                ibidem victus detur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-17" type="meta-text" corresp="BK.20a_9_inscriptio"
+                rend="coloured"><seg type="num" n="9">VIIII</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-18" type="meta-text" corresp="BK.20a_9"
+                rend="coloured"><seg type="initial" rend="coloured">U</seg>t latrones de infra
+                inmunitatem illi iudicis ad comitum placita praesentetur et qui hoc non fecerit
+                beneficium et honorem perdat Similiter et vassus noster si hoc non adimpleverit
+                beneficium et honorem perdat et qui beneficium non habuerit bannum solvat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-19" type="meta-text"
+                corresp="BK.20a_10_inscriptio" rend="coloured"><seg type="num" n="11">XI</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-20" type="meta-text" corresp="BK.20a_10"
+                rend="coloured" next="#gotha-flb-memb-i-84-217va-21"><seg type="initial"
+                    rend="coloured">D</seg>e eo qui periurium fecerit nullam redemptionem nisi manum
+                perdat Quod si accusator contendere voluerit de ipso periurio stent ad crucem et si
+                iurator vicerit legem suam accusator emendet</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-21" type="meta-text"
+                corresp="BK.20a_10_inscriptio" rend="coloured"><seg type="num" n="12">XII</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-22" type="meta-text" corresp="BK.20a_10"
+                rend="coloured" prev="#gotha-flb-memb-i-84-217va-20"
+                next="#gotha-flb-memb-i-84-217va-24"><seg type="initial" rend="coloured">H</seg>aec
+                vero de minoribus causis observandum est</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-23" type="meta-text"
+                corresp="BK.20a_10_inscriptio" rend="coloured"><seg type="num" n="13">XIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-24" type="meta-text" corresp="BK.20a_10"
+                rend="coloured" prev="#gotha-flb-memb-i-84-217va-22"><seg type="initial"
+                    rend="coloured">D</seg>e maioribus vero rebus aut de statu ingenuitatis secundum
+                legem custodiant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-25" type="meta-text"
+                corresp="BK.20a_11_inscriptio" rend="coloured"><seg type="num" n="14">XIIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-26" type="meta-text" corresp="BK.20a_11"
+                rend="coloured"><seg type="initial" rend="coloured">D</seg>e vindicta et iudicio in
+                latrones factum testimonium episcoporum absque peccato comitis esse dicunt ita tamen
+                ut absque invidia aut occansione mala et nihil aliud ibi interponatur nisi vera
+                iustitia ad perficiendum Et si per odium aut malo ingenio nisi per iustitiam
+                faciendam hominem diffecerit honorem suum perdat et legibus contra quem iniuste
+                fecit secundum penam quam intulit emendetur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-27" type="meta-text"
+                corresp="BK.20a_12_inscriptio" rend="coloured"><seg type="num" n="15">XV</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217va-28" type="meta-text" corresp="BK.20a_11"
+                rend="coloured"><seg type="initial" rend="coloured">U</seg>tquae bonae memoriae
+                genitor noster in sua placita <cb n="217vb" break="no"/> constituit et sinodus
+                conservare volumus</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-1" type="meta-text" corresp="BK.20a_13_inscriptio"
+                rend="coloured"><seg type="num" n="16">XVI</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-2" type="meta-text" corresp="BK.20a_13"
+                rend="coloured"><seg type="initial" rend="coloured">D</seg>e rebus vero ecclesiarum
+                unde nunc census exeunt decima et nona cum ipso censu sit soluta et unde antea non
+                exierunt similiter nona et decima detur atque de casatis quinquaginta solidum unum
+                et de casatis triginta dimidium solidum et de viginti trimisse uno Et de precariis
+                ubi modo sunt renoventur et ubi non sunt scribantur Et sit discretio inter precarias
+                de verbo nostro factas et inter eas quae spontanea voluntate de ipsis rebus
+                ecclesiarum faciunt</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-3" type="meta-text" corresp="BK.20a_14_inscriptio"
+                rend="coloured"><seg type="num" n="17">XVII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-4" type="meta-text" corresp="BK.20a_14"
+                rend="coloured"><seg type="initial" rend="coloured">D</seg>e truste faciendo nemo
+                praesumat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-5" type="meta-text" corresp="BK.20a_15_inscriptio"
+                rend="coloured"><seg type="num" n="18">XVIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-6" type="meta-text" corresp="BK.20a_15"
+                rend="coloured"><seg type="initial" rend="coloured">D</seg>cerariis et tabulariis
+                atque cartolariis sicut a longo tempore fuit observetur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-7" type="meta-text" corresp="BK.20a_16_inscriptio"
+                rend="coloured"><seg type="num" n="19">XVIIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-8" type="meta-text" corresp="BK.20a_16"
+                rend="coloured" next="#gotha-flb-memb-i-84-217vb-9"><seg type="initial"
+                    rend="coloured">D</seg>e sacramentis per gildonia invicem coniurantibus ut nemo
+                facere praesumat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-9" type="meta-text" corresp="BK.20a_16"
+                rend="coloured" prev="#gotha-flb-memb-i-84-217vb-8"><seg type="initial"
+                    rend="coloured">A</seg>lio vero modo de illorum elemosinis aut de incendio aut
+                de naufragio quamvis convenentias faciant nemo in hoc iurare praesumat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-10" type="meta-text" corresp="BK.20a_17"
+                rend="coloured" next="#gotha-flb-memb-i-84-217vb-12"><seg type="initial"
+                    rend="coloured">D</seg>e iterantibus qui ad palatium aut aliubi pergunt ut eos
+                cum collecta nemo sit ausus adsalire</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-11" type="meta-text"
+                corresp="BK.20a_15_inscriptio" rend="coloured"><seg type="num" n="20">XX</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-12" type="meta-text" corresp="BK.20a_17"
+                rend="coloured" prev="#gotha-flb-memb-i-84-217vb-10"><seg type="initial"
+                    rend="coloured">U</seg>t nemo alterius erbam defensionis tempore tollere
+                praesumat nisi in hoste pergendum aut missus noster sit et qui aliter facere
+                praesumit emendet</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-13" type="meta-text"
+                corresp="BK.20a_18_inscriptio" rend="coloured"><seg type="num" n="21">XXI</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-14" type="meta-text" corresp="BK.20a_18"
+                rend="coloured"><seg type="initial" rend="coloured">D</seg>e toloneis qui iam antea
+                forbanniti fuerunt nemo tollat nisi ubi antiquo tempore fuerunt</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-15" type="meta-text"
+                corresp="BK.20a_19_inscriptio" rend="coloured"><seg type="num" n="22">XXII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-16" type="meta-text" corresp="BK.20a_19"
+                rend="coloured"><seg type="initial" rend="coloured">D</seg>e mancipia quae vendunt
+                ut in praesentia episcopi vel comitis sit aut in praesentia archidiaconi aut
+                centenarii aut in praesentia vicedomni aut iudicis comitis aut ante bene nota
+                testimonia et foris marca nemo mancipium vendat Et qui hoc fecerit tantas vices
+                bannos solvat quanta mancipias vendidit et si non habet pretium in wadio pro servo
+                semetipsum comiti donet usque dum ipsum bannum solvat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-17" type="meta-text"
+                corresp="BK.20a_20_inscriptio" rend="coloured"><seg type="num" n="23">XXIII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-18" type="meta-text" corresp="BK.20a_20"
+                rend="coloured"><seg type="initial" rend="coloured">D</seg>e brunias ut nullus foris
+                nostro regno vendere praesumat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-19" type="meta-text"
+                corresp="BK.20a_21_inscriptio" rend="coloured"><seg type="num" n="24"
+                >XXIIII</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-217vb-20" type="meta-text" corresp="BK.20a_21"
+                rend="coloured"><seg type="initial" rend="coloured">S</seg>i comis in suo ministerio
+                iustitias non fecerit misso nostro de sua casa soniare faciat usque dum iustitiae
+                ibidem factae fuerint et si vassus noster iustitiam non fecerit tunc et comis et
+                missus ad ipsius casa sedeant et de suo vivant quousque <cb n="218ra"/>iustitiam
+                faciat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218ra-1" type="meta-text" corresp="BK.20a_22_inscriptio"
+                rend="coloured"><seg type="num" n="25">XXV</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-218ra-2" type="meta-text" corresp="BK.20a_22"
+                rend="coloured" next="#gotha-flb-memb-i-84-218ra-4"><seg type="initial"
+                    rend="coloured">S</seg>i quis pro faida precium recipere non vult tunc ad nos
+                sit transmissus et nos eum dirigamus ubi damnum minime facere possit</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218ra-3" type="meta-text" corresp="BK.20a_22_inscriptio"
+                rend="coloured"><seg type="num" n="26">XXVI</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-218ra-4" type="meta-text" corresp="BK.20a_22"
+                rend="coloured" prev="#gotha-flb-memb-i-84-218ra-2"><seg type="initial"
+                    rend="coloured">S</seg>imili modo et qui pro faida pretium solvere noluerit nec
+                iustitiam exinde facere in tali loco eum mittere volumus ut per eum maior damnum non
+                crescat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218ra-5" type="meta-text" corresp="BK.20a_23_inscriptio"
+                rend="coloured"><seg type="num" n="27">XXVII</seg> . </ab>
+            <ab xml:id="gotha-flb-memb-i-84-218ra-6" type="meta-text" corresp="BK.20a_23"
+                rend="coloured" next="#gotha-flb-memb-i-84-218ra-7"><seg type="initial"
+                    rend="coloured">D</seg>e latronibus ita precipimus observandum ut pro prima vice
+                non moriatur sed oculum perdat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218ra-7" type="meta-text" corresp="BK.20a_23"
+                rend="coloured" prev="#gotha-flb-memb-i-84-218ra-6"
+                next="#gotha-flb-memb-i-84-218ra-8"><seg type="initial" rend="coloured">D</seg>e
+                secunda vero culpa nasus ipsius latronis abscidatur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218ra-8" type="meta-text" corresp="BK.20a_23"
+                rend="coloured" prev="#gotha-flb-memb-i-84-218ra-8"><seg type="initial"
+                    rend="coloured">D</seg>e tertia vero culpa si non emendaverit moriatur</ab>
+
+
+
+            <milestone unit="capitulare" n="BK.22"/>
+
+
+            <ab xml:id="gotha-flb-memb-i-84-218ra-9" type="meta-text"
+                corresp="BK.22_prolog_inscriptio" rend="coloured"><seg type="num" n="28"
+                    >XXVIII</seg></ab>
+            <ab xml:id="gotha-flb-memb-i-84-218ra-10" type="meta-text" corresp="BK.22_prolog"
+                rend="coloured"><seg type="initial" rend="coloured">R</seg>egnante domino nostro
+                Iesu Christo in perpetuum Ego Karolus gratia Dei eiusque misericordia donante rex et
+                rector regni Francorum et devotus sanctae aeclesiae defensor humilisque adiutor
+                omnibus ecclesiasticae pietatis ordinibus seu saecularis potentiae dignitatibus in
+                Christo domino Deo aeterno perpetuae pacis et beatitudinis salutem Considerans
+                pacifico piae mentis intuitu una cum sacerdotibus et consiliariis nostris abundantem
+                in nos nostrumque populum Christi regis clementiam et quam necessarium est non solum
+                toto corde et ore eius pietati agere gratias incessanter sed etiam continua bonorum
+                operum exercitatione eius insistere laudibus quatenus qui nostro regno tantos
+                contulit honores sua protectione nos nostrumque regnum in aeternum conservare
+                dignetur quapropter placuit nobis vestram rogare solertiam o pastores ecclesiarum
+                Christi et ductores gregis eius et clarissima mundi luminaria ut vigili cura et
+                sedula ammonitione populum Dei ad pascua vitae aeternae ducere studeatis et errantes
+                oves bonorum exemplorum seu adhortationum humeris intra ecclesiasticae firmitatis
+                muros reportare satagimini ne lupus insidians aliquem canonicas sanctiones
+                transgredientem vel paternas traditiones universalium conciliorum excedentem quod
+                absit inveniens devoret Ideo magno <cb n="218rb"/> devotionis studio ammonendi et
+                adhortandi sunt immo conpellendi ut firma fide et infatigabili perseverantia intra
+                paternas sanctiones se conteneant in quo opere et studio sciat certissime sanctitas
+                vestra nostram vobis cooperare diligentiam Quapropter et nostros ad vos direximus
+                missos qui ex nostri nominis auctoritate una vobiscum corrigerent quae corrigenda
+                essent Sed et aliqua capitula ex canonicis institutionibus quae magis nobis
+                necessaria videbantur subiunximus Ne aliquis quaeso huius pietatis ammonitionem esse
+                praesumtiosam iudicet qua nos errata corrigere superflua abscidere recta cohartare
+                studemus sed magis benivolo caritatis animo suscipiat Nam legimus in regnorum libris
+                quomodo sanctus Iosias regnum sibi a Deo datum circumeundo corrigendo ammonendo ad
+                cultum veri Dei studuit revocare non ut me eius sanctitate aequiparabilem faciam sed
+                quod nobis sunt ubique sanctorum semper exempla sequenda et quoscumque poterimus ad
+                studium bonae vitae in laudem et in gloriam domini nostri Iesu Christi congregare
+                necesse est Quapropter ut praediximus aliqua capitula notare iussimus ut simul haec
+                eadem vos ammonere studeatis et quaecumque vobis alia necessaria esse scitis ut et
+                ista et illa aequali intentiono praedicetis Nec aliquid quod vestrae sanctitati
+                populo Dei utile videatur omittite ut pio studio non ammoneatis quatenus ut et
+                vestra sollertia et subiectorum oboedientia aeterna felicitate ab omnipotente Deo
+                remuneretur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218rb-1" type="meta-text" corresp="BK.22_1"
+                rend="coloured"><seg type="initial" rend="coloured">S</seg>unt enim aliqui qui
+                culpis exigentibus ab episcopo proprio excommunicantur et ab aliis ecclesiasticis
+                vel laicis praesumptiose in communionem accipiuntur quod omnino sanctum Nicenum
+                concilium simul et Calcidonense necnon et Antiochenum atque Sardicense fieri
+                prohibent</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218rb-2" type="meta-text" corresp="BK.22_2"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem enim habetur in eodem
+                concilio ut eorum qui ad ordinandum veniunt fides et vita prius ab episcopo
+                diligenter discutiatur et sic ordinentur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218rb-4" type="meta-text" corresp="BK.22_3"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem concilio
+                necnon et in Antiocheno simul et in Calcidonense ut fugitivi clerici et peregrini a
+                nullo recipiantur nec ordinentur sine commendaticiis litteris et sui episcopi vel
+                abbatis licentia</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218rb-5" type="meta-text" corresp="BK.22_4"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem sinodo
+                interdictum est presbyteris et diaconibus vel omnibus qui in clero sunt mulierem <cb
+                    n="218va"/> habere in domo sua propter suspicionem nisi matrem aut sororem vel
+                eas tantum personas quae suspiciones effugiunt</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218va-1" type="meta-text" corresp="BK.22_5"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem concilio seu
+                in decretis papae Leonis necnon et in canonibus quae dicuntur apostolorurn sicut et
+                in lege ipse Dominus praecepit omnino omnibus interdictum est ad usuram aliquid
+                dare</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218va-2" type="meta-text" corresp="BK.22_6"
+                rend="coloured" next="#gotha-flb-memb-i-84-218va-3"><seg type="initial"
+                    rend="coloured">A</seg>uditum est aliquos presbyteros missam celebrare et non
+                communicare quod omnino in canonibus apostolorum interdictum esse legitur Vel
+                quomodo dicere recte potest si non communicaverit sumpsimus Domine sacramenta</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218va-3" type="meta-text" corresp="BK.22_6"
+                rend="coloured" prev="#gotha-flb-memb-i-84-218va-2"><seg type="initial"
+                    rend="coloured">H</seg>aec vero per singula capitula in statutis Nicoeni
+                concilii legere potestis seu in aliis sanctorum patrum synodalibus edictis</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218va-4" type="meta-text" corresp="BK.22_7"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>n Antioceno concilio quod
+                his qui damnati sunt a synodo vel a suo episcopo et postea ministrare praesumunt
+                praecipitur ut nullus audeat ei communicare Si quis vero ei communicat simili
+                sententia subiaceat sicut et damnatus</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218va-5" type="meta-text" corresp="BK.22_8"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio ut ad metropolitanum episcopum suffragani episcopi
+                respiciant et nihil nove audeant facere in suis parrochiis sine
+                conscientia et consilio sui metropolitani nec metropolitanus sine
+                eorum consilio</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218va-6" type="meta-text" corresp="BK.22_9"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio simul et Acyronense ut corepiscopi cognoscant modum suum
+                et nihil faciant absque licentia episcopi in cuius parrochia
+                habitant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218va-7" type="meta-text" corresp="BK.22_10"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio ut episcopus vel quilibet ex clero sine consilio vel
+                litteris episcoporum vel metropolitani non audeant regalem
+                dignitatem pro suis causis clamare sed in commune episcoporum
+                concilio causa eius examinetur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218va-8" type="meta-text" corresp="BK.22_11"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio simul et in Sardicense necnon et in decretis Innocenti
+                papae ut nullus episcopus in alterius parrochia ordinationes
+                aliquas audeat efficere vel negotia peragere quae ad eum non
+                pertinent</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218va-9" type="meta-text" corresp="BK.22_12"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio ut episcopus eius ecclesiae curam habeat ad quam ordinatus
+                est</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218va-10" type="meta-text" corresp="BK.22_13"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio necnon et in Caleidonense ut provinciales episcopi cum suo
+                metropolitano bis in anno propter causas ecclesiae concilia
+                celebrent</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218va-11" type="meta-text" corresp="BK.22_14"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>n concilio
+                Laudicense necnon in Affricano praecipitur ut monachi et clerici
+                tabernas non ingrediantur edendi vel bibendi causa</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218va-12" type="meta-text" corresp="BK.22_15"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem <cb n="218vb"/>in eodem
+                concilio ut a vespera usque ad vesperam dies dominica
+                servetur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-1" type="meta-text" corresp="BK.22_16"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio ut ignota angelorum nomina nec fingantur nec nominentur
+                nisi illos quos habemus in auctoritate id sunt Michahel Gabrihel
+                Rafahel</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-2" type="meta-text" corresp="BK.22_17"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio quod non oporteat mulieres ad altare ingredi</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-3" type="meta-text" corresp="BK.22_18"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio ut cauclearii malefici incantatores vel incantatrices
+                fieri non sinantur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-4" type="meta-text" corresp="BK.22_19"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio necnon et in Sardicense quod non oporteat in villolis vel
+                in agris episcopos constitui</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-5" type="meta-text" corresp="BK.22_20"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio ut canonici libri tantum legantur in ecclesia</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-6" type="meta-text" corresp="BK.22_21"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>n concilio
+                Caleidonense ut non oporteat episcopos aut quemlibet ex clero per
+                pecunias ordinari quia utrique deponendi sunt et qui ordinat et
+                qui ordinatur necnon et qui mediator est inter eos</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-7" type="meta-text" corresp="BK.22_22"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem de eadem re in
+                canonibus apostolorum legitur quam heresim iam ipse princeps
+                apostolorum in Simone mago terribiliter damnavit</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-8" type="meta-text" corresp="BK.22_23"
+                rend="coloured" next="#gotha-flb-memb-i-84-218vb-9"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio infra duo capitula necnon et in decretis Leonis papae ut
+                nec monachus nec clericus in secularia negotia transeat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-9" type="meta-text" corresp="BK.22_23"
+                rend="coloured" prev="#gotha-flb-memb-i-84-218vb-8"><seg type="initial" rend="coloured">E</seg>t ut
+                servum alterius nullus sollicitet ad clericalem vel monachicum
+                ordinem sine voluntate et licentia domini sui</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-10" type="meta-text" corresp="BK.22_24"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio infra duo capitula necnon et in Sardicense ut nec episcopi
+                nec clerici non transmigrentur de civitate in civitatem</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-11" type="meta-text" corresp="BK.22_25"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                synodo ut nullus absolute ordinetur sine pronuntiatione et
+                stabilitate loci ad quem ordinatur</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-12" type="meta-text" corresp="BK.22_26"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio ut clerici et monachi in suo proposito et voto quod Deo
+                promiserunt permaneant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-13" type="meta-text" corresp="BK.22_27"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in decretis
+                Innocenti papae de eadem re ut monachus si ad clericatum
+                proveatur propositum monachicae professionis non ammittat</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-14" type="meta-text" corresp="BK.22_28"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio ut si clerici inter se negotium aliquod habuerint a suo
+                episcopo diiudicentur non a secularibus</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-15" type="meta-text" corresp="BK.22_29"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio ut nec clerici nec monachi conspirationes vel insidias
+                contra pastorem suum faciant</ab>
+            <ab xml:id="gotha-flb-memb-i-84-218vb-16" type="meta-text" corresp="BK.22_30"
+                rend="coloured"><seg type="initial" rend="coloured">I</seg>tem in eodem
+                concilio ut laici episcopos aut clericos non <cb n="219ra"/>accusent nisi prius
+                eorum discutiatur existimationis opinio</ab>
+            -->
+            
+            
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <milestone unit="capitulare" n="BK.140"/>
             <cb n="376rb"/>
             <lb n="23"/>
@@ -3081,11 +3798,13 @@ in der Inhaltsübersicht nach Mordek die corresp-Werte direkt in die title-tags 
                 <rs type="person">CHLOTHARII</rs> FILII EIVS QVE PER <lb/>SCRIBENDA ET AB OMNIBVS
                 <lb/>OBSERVANDA SVNT <anchor xml:id="gotha-flb-memb-i-84-376rb-3_1"/>
                 <milestone unit="span" corresp="BK.140_1_inscriptio"
-                    spanTo="#gotha-flb-memb-i-84-376rb-3_2"/>DE FORCAPITIS<anchor
-                    xml:id="gotha-flb-memb-i-84-376rb-3_2"/> . <lb/>
+                    xml:id="gotha-flb-memb-i-84-376rb-3_2" next="#gotha-flb-memb-i-84-376rb-4"
+                    spanTo="#gotha-flb-memb-i-84-376rb-3_3"/>DE FORCAPITIS<anchor
+                    xml:id="gotha-flb-memb-i-84-376rb-3_3"/> . <lb/>
             </ab>
             <ab corresp="BK.140_1_inscriptio" type="meta-text" xml:id="gotha-flb-memb-i-84-376rb-4"
-                rend="coloured"><seg type="num" n="34">XXXIIII </seg>
+                prev="#gotha-flb-memb-i-84-376rb-3_2" rend="coloured"><seg type="num" n="34">XXXIIII
+                </seg>
             </ab>
             <ab type="text" xml:id="gotha-flb-memb-i-84-376rb-5" corresp="BK.140_1"><seg
                     type="initial" rend="coloured">S</seg>i mancipia dominos suos <lb/>fug<subst>
@@ -3667,8 +4386,8 @@ in der Inhaltsübersicht nach Mordek die corresp-Werte direkt in die title-tags 
                 </subst> successores nostros ratum <lb/>foret . et inuiolabiliter conseruaretur
                     confir<lb break="no"/>mauimus . </ab>
             <ab type="meta-text" rend="coloured" xml:id="gotha-flb-memb-i-84-378rb-5"
-                corresp="BK.138_6_inscriptio"><seg type="num" n="77">LXXVII </seg>De ordinatione
-                seruorum . <lb/>
+                corresp="BK.138_6_inscriptio" next="#gotha-flb-memb-i-84-378va-1"><seg type="num"
+                    n="77">LXXVII </seg>De ordinatione seruorum . <lb/>
             </ab>
             <ab type="text" xml:id="gotha-flb-memb-i-84-378rb-6" corresp="BK.138_6"
                 next="#gotha-flb-memb-i-84-378va-2"><seg type="initial" rend="coloured">D</seg>e
@@ -3713,7 +4432,7 @@ in der Inhaltsübersicht nach Mordek die corresp-Werte direkt in die title-tags 
                 <lb/>obseruetur . quod in canonibus de consecrantis <lb/>nihil habentibus
                 constitutum est . </ab>
             <ab type="meta-text" rend="coloured" xml:id="gotha-flb-memb-i-84-378va-1"
-                corresp="BK.138_6_inscriptio">
+                corresp="BK.138_6_inscriptio" prev="#gotha-flb-memb-i-84-378rb-5">
                 <seg type="numDenom">capitulum </seg>
                 <seg type="num" n="78">LXXVIII</seg> . Ex <sic>conconcilio</sic>
                 <rs type="place">cartaginensis</rs><note type="editorial">Kürzungsszeichen für die

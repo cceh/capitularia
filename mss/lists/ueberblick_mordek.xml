@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/ueberblick_mordek.rnc" type="application/relax-ng-compact-syntax"?>
+<?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
 <!-- Kapitularien vor 814: @list="pre814" (Mordek analog) -->
 <!-- Kapitularien LDF ohne weiteres Attribut -->
 <!-- für Kapitularien nach 840 ("post840") und undatierte ("undated") müssen entsprechende Listenattribute noch nachgetragen werden; DS 01.07.2016 -->
@@ -6,6 +9,22 @@
 <lists xmlns="http://www.tei-c.org/ns/1.0">
     <list xml:id="manuscripts">
         <milestone n="A" unit="section"/>
+        <item xml:id="aachen-sa-k-regherr-10">
+            <idno type="main">Aachen, Stadtarchiv, K. Regulierherren 10</idno>
+            <origin>
+                <origDate notAfter="1500" notBefore="1401">15. Jh.</origDate>
+            </origin>
+            <content>
+                <capit>
+                    <locus>78<hi rend="super">rb-va</hi></locus>
+                    <term n="BK.220">Karoli II imperatoris electio</term>
+                </capit>
+                <capit>
+                    <locus>78<hi rend="super">va-vb</hi></locus>
+                    <term n="BK.221">Karoli II capitulare Papiense</term>
+                </capit>
+            </content>
+        </item>
         <item xml:id="admont-sb-712">
             <idno type="main">Admont, Stiftsbibliothek, 712</idno>
             <idno type="siglum">Ad</idno>
@@ -273,7 +292,7 @@
                         Francorum habendis</term>
                 </capit>
                 <capit>
-                    <locus/>
+                    <locus>5<hi rend="super">r</hi><hi rend="super">a</hi></locus>
                     <term n="BK.186" status="publ">Capitula ab episcopis in placito tractanda</term>
                 </capit>
                 <capit>
@@ -372,8 +391,9 @@
         </item>
         <item xml:id="barcelona-bc-945">
             <idno type="main">Barcelona, Biblioteca de Catalunya, 945</idno>
+            <idno type="siglum">Bc1</idno>
             <origin>
-                <origDate notAfter="0999" notBefore="0801">9./10. Jh.</origDate>, <origPlace
+                <origDate notAfter="0950" notBefore="0851">9./10. Jh.</origDate>, <origPlace
                     ref="http://viaf.org/viaf/264091107 http://viaf.org/viaf/157147403"
                     >Nordostfrankreich und Ripoll oder Südfrankreich (?)</origPlace>
             </origin>
@@ -610,8 +630,8 @@
             <idno type="siglum">B1</idno>
             <origin>
                 <origDate notAfter="0920" notBefore="0881">9. Jh., Ende oder 9./10. Jh.</origDate>
-                (Mordek), <origDate notAfter="0999" notBefore="0801">9./10. Jh.</origDate>
-                (Bischoff); <origPlace ref="http://vocab.getty.edu/tgn/6000160">Alamannien
+                (Mordek), <origDate notAfter="0950" notBefore="0801">9./10. Jh.</origDate>
+                (Bischoff); <origPlace ref="http://vocab.getty.edu/tgn/6000160">Alemannien
                         (<placeName
                         ref="http://www.geonames.org/2658822/sankt-gallen.html http://d-nb.info/gnd/4051594-1 http://viaf.org/viaf/127834916"
                         >St. Gallen</placeName>?)</origPlace> (Mordek, Bischoff) </origin>
@@ -894,7 +914,21 @@
                     <term n="BK.170" status="publ">Capitulare monasticum III innerhalb der Collectio
                         capitularis Benedicti Levitae monastica</term>
                 </capit>
-
+            </content>
+        </item>
+        <item xml:id="berlin-sb-phill-1765">
+            <idno type="main">Berlin, Staatsbibliothek - Preußischer Kulturbesitz, Phill.
+                1765</idno>
+            <idno type="siglum">B11</idno>
+            <origin>
+                <origDate notAfter="0950" notBefore="0901">10. Jh., 1. Hälfte</origDate>, <origPlace
+                    ref="http://www.geonames.org/2984114/reims.html http://d-nb.info/gnd/4103640-2 http://viaf.org/viaf/235513543"
+                    >Reims</origPlace></origin>
+            <content>
+                <capit>
+                    <locus>94<hi rend="super">v</hi></locus>
+                    <term n="Mordek.21">Capitulum de nonis et decimis</term>
+                </capit>
             </content>
         </item>
         <item xml:id="berlin-sb-savigny-1">
@@ -1088,7 +1122,8 @@
             </content>
         </item>
         <item xml:id="breslau-bu-akc-1949-kn-397">
-            <idno type="main">Breslau, Biblioteka Uniwersytecka, Akc. 1949 KN 397</idno>
+            <idno type="main">Breslau, Biblioteka Uniwersytecka, Steinw. II F 3</idno>
+            <idno type="siglum">Bs</idno>
             <origin>Teile A und D: <origDate when="1508">1508</origDate> (Tischler) <origPlace>,
                         <placeName ref="http://viaf.org/viaf/235489154">Süddeutschland</placeName>,
                     wohl <placename
@@ -1554,6 +1589,18 @@
                 </capit>
             </content>
         </item>
+        <item xml:id="durham-cl-b-iv-15">
+            <idno type="main">Durham, Cathedral Library, B.IV.15</idno>
+            <origin>
+                <origDate notAfter="1200" notBefore="1101">12. Jh.</origDate>
+            </origin>
+            <content>
+                <capit>
+                    <locus>150<hi rend="super">r-v</hi></locus>
+                    <term n="BK.078">Capitula e canonibus excerpta</term>
+                </capit>
+            </content>
+        </item>
         <!-- hier vorher Fragment Düsseldorf -->
         <milestone n="E" unit="section"/>
         <item xml:id="einsiedeln-sb-191">
@@ -1576,7 +1623,8 @@
             <idno type="siglum">Fi</idno>
             <origin>
                 <origDate notAfter="1100" notBefore="1051">11. Jh., 2. Hälfte</origDate>, <origPlace
-                    ref="https://www.geonames.org/3175395/italian-republic.html">Italien</origPlace>
+                    ref="http://vocab.getty.edu/page/tgn/4005363">Oberitalien (Radding nach
+                    Petrucci) </origPlace>
             </origin>
             <content>
                 <capit>
@@ -1590,8 +1638,20 @@
                     <term n="BK.168">Capitula Italica</term>
                 </capit>
                 <capit>
+                    <locus>120<hi rend="super">r-v</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
+                </capit>
+                <capit>
+                    <locus>128<hi rend="super">r-v</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
+                </capit>
+                <capit>
                     <locus>129<hi rend="super">v</hi>, 131<hi rend="super">r</hi></locus>
                     <term n="BK.168">Capitula Italica</term>
+                </capit>
+                <capit>
+                    <locus>133<hi rend="super">v</hi></locus>
+                    <term n="BK.164">Capitulare Olonnense ecclesiasticum alterum</term>
                 </capit>
                 <capit>
                     <locus>133<hi rend="super">v</hi></locus>
@@ -1643,7 +1703,7 @@
         </item>
         <milestone n="G" unit="section"/>
         <item status="publ" xml:id="gent-ru-cb-506">
-            <idno type="main">Gent, Rijksuniversiteit - Centrale Bibliotheek, 506</idno>
+            <idno type="main">Gent, Universiteitsbibliotheek, 506</idno>
             <idno type="siglum">Gt</idno>
             <origin>
                 <origDate notAfter="0900" notBefore="0881">9. Jh., gegen Ende</origDate> (Mordek),
@@ -2117,7 +2177,7 @@
                 </capit>
                 <capit>
                     <locus>269<hi rend="super">r-v</hi></locus>
-                    <term>Benedictus Levita I 279</term>
+                    <term>Benedictus Levita 1, 279</term>
                 </capit>
                 <capit>
                     <locus>269<hi rend="super">v</hi>-271<hi rend="super">r</hi></locus>
@@ -2773,7 +2833,7 @@
             </content>
         </item>
         <item xml:id="leiden-bru-bpl-22">
-            <idno type="main">Leiden, Bibliotheek der Rijksuniversiteit, BPL 22</idno>
+            <idno type="main">Leiden, Universiteitsbibliotheek, BPL 22</idno>
             <idno type="siglum">Le1</idno>
             <origin>
                 <origDate notAfter="1000" notBefore="0901">10. Jh.</origDate>, <origPlace
@@ -2788,7 +2848,7 @@
             </content>
         </item>
         <item xml:id="leiden-bru-bpl-114">
-            <idno type="main">Leiden, Bibliotheek der Rijksuniversiteit, BPL 114</idno>
+            <idno type="main">Leiden, Universiteitsbibliotheek, BPL 114</idno>
             <idno type="siglum">P13</idno>
             <note type="filiation"> zusammen mit <ref type="internal" subtype="mss"
                     target="paris-bn-lat-4629">Paris, Bibliothèque nationale de France, Lat.
@@ -2801,7 +2861,7 @@
             <content>enthält keine Kapitularien</content>
         </item>
         <item xml:id="leiden-bru-bpl-2005">
-            <idno type="main">Leiden, Bibliotheek der Rijksuniversiteit, BPL 2005</idno>
+            <idno type="main">Leiden, Universiteitsbibliotheek, BPL 2005</idno>
             <idno type="siglum">Le2</idno>
             <origin>
                 <origDate notAfter="1555" notBefore="1545">Um 1550</origDate>, <origPlace
@@ -2817,7 +2877,7 @@
             </content>
         </item>
         <item xml:id="leiden-bru-voss-lat-f-4">
-            <idno type="main">Leiden, Bibliotheek der Rijksuniversiteit, Voss. Lat. F. 4</idno>
+            <idno type="main">Leiden, Universiteitsbibliotheek, VLF 4</idno>
             <idno type="siglum">Le3</idno>
             <origin>
                 <origDate notAfter="0900" notBefore="0851">9. Jh., 2. Hälfte</origDate> (Mordek),
@@ -2833,7 +2893,7 @@
         </item>
 
         <item xml:id="leiden-bru-voss-lat-oct-29">
-            <idno type="main">Leiden, Bibliotheek der Rijksuniversiteit, Voss. Lat. oct. 29</idno>
+            <idno type="main">Leiden, Universiteitsbibliotheek, VLO 29</idno>
             <idno type="siglum">Le6</idno>
             <origin>
                 <origDate notAfter="0900" notBefore="0867">9. Jh., 3. Drittel</origDate> (Mordek),
@@ -2863,7 +2923,7 @@
 
 
         <item xml:id="leiden-bru-voss-lat-q-13">
-            <idno type="main">Leiden, Bibliotheek der Rijksuniversiteit, Voss. Lat. Q. 13</idno>
+            <idno type="main">Leiden, Universiteitsbibliotheek, VLQ 13</idno>
             <idno type="siglum">Le5</idno>
             <origin>
                 <origDate notAfter="1000" notBefore="0951">10. Jh., wohl 2. Hälfte</origDate>,
@@ -2879,7 +2939,7 @@
             </content>
         </item>
         <item status="publ" xml:id="leiden-bru-voss-lat-q-119">
-            <idno type="main">Leiden, Bibliotheek der Rijksuniversiteit, Voss. Lat. Q. 119</idno>
+            <idno type="main">Leiden, Universiteitsbibliotheek, VLQ 119</idno>
             <idno type="siglum">Le</idno>
             <origin><locus>Foll. 1-119</locus>: <origDate notAfter="0900" notBefore="0876">9. Jh.,
                     4. Viertel</origDate> (Mordek), <origDate notAfter="0920" notBefore="0880"
@@ -2976,7 +3036,7 @@
             </content>
         </item>
         <item xml:id="leiden-bru-vulc-91-b">
-            <idno type="main">Leiden, Bibliotheek der Rijksuniversiteit, Vulc. 91 B</idno>
+            <idno type="main">Leiden, Universiteitsbibliotheek, VUL 91 B</idno>
             <idno type="siglum">Le4</idno>
             <origin>
                 <origDate notAfter="1200" notBefore="1101">12. Jh.</origDate>
@@ -3001,13 +3061,21 @@
             <idno type="siglum">L6</idno>
             <origin>
                 <origDate notAfter="1100" notBefore="1051">11. Jh., 2. Hälfte</origDate>, <origPlace
-                    ref="https://www.geonames.org/3175395/italian-republic.html">Norditalien
-                </origPlace>
+                    ref="https://www.geonames.org/3175395/italian-republic.html">Oberitalien;
+                    Mittelitalien (Radding nach Supino Martini) </origPlace>
             </origin>
             <content>
                 <capit>
                     <locus>153<hi rend="super">r</hi></locus>
                     <term n="BK.168">Capitula Italica</term>
+                </capit>
+                <capit>
+                    <locus>155<hi rend="super">v</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
+                </capit>
+                <capit>
+                    <locus>166<hi rend="super">r</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
                 </capit>
                 <capit>
                     <locus>167<hi rend="super">v</hi>-168<hi rend="super">r</hi></locus>
@@ -3016,6 +3084,10 @@
                 <capit>
                     <locus>171<hi rend="super">r</hi></locus>
                     <term n="BK.168">Capitula Italica</term>
+                </capit>
+                <capit>
+                    <locus>171<hi rend="super">r</hi></locus>
+                    <term n="BK.164">Capitulare Olonnense ecclesiasticum alterum</term>
                 </capit>
                 <capit>
                     <locus>171<hi rend="super">r</hi></locus>
@@ -3085,7 +3157,6 @@
                     <locus>7<hi rend="super">vb</hi>-8<hi rend="super">rb</hi></locus>
                     <term n="BK.232">Capitula incerta</term>
                 </capit>
-
             </content>
         </item>
         <item xml:id="london-bl-cott-tiberius-a-iii">
@@ -3325,6 +3396,26 @@
                 </capit>
             </content>
         </item>
+
+        <item xml:id="mailand-ba-g-58">
+            <idno type="main">Mailand, Biblioteca Ambrosiana, G. 58 sup.</idno>
+            <!--<idno type="siglum">Mi</idno>-->
+            <note type="filiation"> Die foll. 41-73 gehören zur Handschrift <ref type="internal"
+                    subtype="mss" target="vatikan-bav-vat-lat-5751">Vatikan, Biblioteca Apostolica
+                    Vaticana, Vat. Lat. 5751</ref>, wo sie sich an fol. 54 anschließen.</note>
+            <origin>
+                <origDate notAfter="0900" notBefore="0851">9. Jh., 3./4. Viertel</origDate>
+                (Bischoff), <origPlace
+                    ref="http://www.geonames.org/6539653/bobbio.html http://d-nb.info/gnd/4080441-0 http://viaf.org/viaf/238367598"
+                    >wohl Bobbio</origPlace> (Bischoff) </origin>
+            <content>
+                <capit>
+                    <locus>41<hi rend="super">r</hi></locus>
+                    <term n="BK.022">Admonitio generalis</term>
+                </capit>
+            </content>
+        </item>
+
         <item xml:id="mailand-ba-o-55">
             <idno type="main">Mailand, Biblioteca Ambrosiana, O. 55 sup.</idno>
             <idno type="siglum">Mi4</idno>
@@ -3402,6 +3493,14 @@
                 <capit>
                     <locus>52<hi rend="super">v</hi>-53<hi rend="super">r</hi></locus>
                     <term n="BK.105" list="pre814">Capitula Italica</term>
+                </capit>
+                <capit>
+                    <locus>54<hi rend="super">r-v</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
+                </capit>
+                <capit>
+                    <locus>66<hi rend="super">r-v</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
                 </capit>
                 <capit>
                     <locus>68<hi rend="super">r-v</hi></locus>
@@ -3530,6 +3629,14 @@
                     <term n="BK.168">Capitula Italica</term>
                 </capit>
                 <capit>
+                    <locus>125<hi rend="super">r</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
+                </capit>
+                <capit>
+                    <locus>128<hi rend="super">v</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
+                </capit>
+                <capit>
                     <locus>129<hi rend="super">v</hi></locus>
                     <term n="BK.168">Capitula Italica</term>
                 </capit>
@@ -3542,7 +3649,8 @@
                     <term n="BK.219" list="post840">Capitula singillatim tradita Hlothario vel
                         Hludowico II adscripta</term>
                 </capit>
-            </content></item>
+            </content>
+        </item>
 
         <item status="publ" xml:id="modena-bc-o-i-2">
             <idno type="main">Modena, Archivio Capitolare, O. I. 2</idno>
@@ -3692,7 +3800,7 @@
         <item xml:id="montecassino-ada-125">
             <idno type="main">Montecassino, Archivio dell'Abbazia, 125</idno>
             <origin/>
-            <content>Vgl. Vatkan, Biblioteca Apostolica Vaticana, Vat. Lat. 1339</content>
+            <content>Vgl. Vatikan, Biblioteca Apostolica Vaticana, Vat. Lat. 1339</content>
         </item>
         <item xml:id="montecassino-ada-175">
             <idno type="main">Montecassino, Archivio dell'Abbazia, 175</idno>
@@ -3892,7 +4000,7 @@
             <idno type="main">München, Bayerische Staatsbibliothek, Inc. s. a. 26<hi rend="super"
                     >m</hi>, hinteres Schutzblatt</idno>
             <idno type="siglum">M4</idno>
-            <note type="filiation">zusammen mit <ref type="internal" subtype="mss"
+            <note type="filiation"> zusammen mit <ref type="internal" subtype="mss"
                     target="muenchen-bsb-lat-29555-1">München, Bayerische Staatsbibliothek, Lat.
                     29555/1</ref> und <ref type="internal" subtype="mss"
                     target="muenchen-ub-fragmente">München, Universitätsbibliothek, †
@@ -3968,8 +4076,8 @@
             <origin>
                 <origDate notAfter="0900" notBefore="0881">9. Jh., Ende</origDate> (Mordek,
                 Brommer), <origDate notAfter="0900" notBefore="0876">9. Jh., 4. Viertel</origDate>
-                (Bischoff); <origPlace ref="http://d-nb.info/gnd/4044063-1">Ostfranzösisch
-                        (<placeName
+                (Bischoff); <origDate when="0882">ca. 882</origDate> (Geary); <origPlace
+                    ref="http://d-nb.info/gnd/4044063-1">Ostfranzösisch (<placeName
                         ref="https://www.geonames.org/2997551/lorraine.html http://viaf.org/viaf/244072377 http://d-nb.info/gnd/4036377-6"
                         >Lotharingien</placeName>)</origPlace> (Mordek), <origPlace>
                     <placeName ref="http://d-nb.info/gnd/4079211-0">Westdeutschland</placeName> /
@@ -4046,7 +4154,7 @@
                 </capit>
                 <capit>
                     <locus>250<hi rend="super">r</hi>-251<hi rend="super">r</hi></locus>
-                    <term>Benedictus Levita I 279</term>
+                    <term>Benedictus Levita 1, 279</term>
                 </capit>
                 <capit>
                     <locus>251<hi rend="super">r</hi>-252<hi rend="super">r</hi></locus>
@@ -4509,7 +4617,7 @@
                 </capit>
                 <capit>
                     <locus>89<hi rend="super">v</hi></locus>
-                    <term>Benedictus Levita I 279</term>
+                    <term>Benedictus Levita 1, 279</term>
                 </capit>
             </content>
         </item>
@@ -4563,7 +4671,7 @@
                 <origDate notAfter="0875" notBefore="0851">9. Jh., 3. Viertel</origDate>, <origPlace
                     ref="http://d-nb.info/gnd/4110086-4 http://d-nb.info/gnd/4044063-1"
                     >Nordostfrankreich („z. T. Reims-ähnliche Hände“ [Bischoff])</origPlace>
-                (Mordek, Bischoff 2014) </origin>
+                (Mordek, Bischoff) </origin>
             <content>
                 <capit>
                     <locus>128<hi rend="super">v</hi>-146<hi rend="super">v</hi></locus>
@@ -4830,7 +4938,7 @@
                     <term n="BK.191" status="publ">Capitulare Wormatiense</term>
                 </capit>
                 <capit>
-                    <locus>80a<hi rend="super">r</hi>-84<hi rend="super">v</hi></locus>
+                    <locus>81<hi rend="super">r</hi>-84<hi rend="super">v</hi></locus>
                     <term n="BK.192" status="publ">Capitulare missorum Wormatiense</term>
                 </capit>
                 <capit>
@@ -4888,7 +4996,7 @@
         <item xml:id="muenchen-bsb-lat-29555-1">
             <idno type="main">München, Bayerische Staatsbibliothek, Lat. 29555/1</idno>
             <idno type="siglum">M4</idno>
-            <note type="filiation">zusammen mit <ref type="internal" subtype="mss"
+            <note type="filiation"> zusammen mit <ref type="internal" subtype="mss"
                     target="muenchen-bsb-inc-s-a-26m">München, Bayerische Staatsbibliothek, Inc. s.
                     a. 26<hi rend="super">m</hi></ref>, hinteres Schutzblatt und <ref
                     type="internal" subtype="mss" target="muenchen-ub-fragmente">München,
@@ -4901,99 +5009,89 @@
                     ref="http://d-nb.info/gnd/4027833-5">Italien</origPlace> (Bischoff) </origin>
             <content>
                 <capit>
-                    <locus>Teil A, 1<hi rend="super">r-v</hi></locus>
-                    <term n="BK.102" list="pre814">Capitula Italica incerta III (a. 826/ 840?),
-                        Schluss von c. 2, oder Pippini regis capitulare Italicum</term>
+                    <locus>1<hi rend="super">r-v</hi></locus>
+                    <term n="BK.102" list="pre814">Pippini regis capitulare Italicum</term>
                 </capit>
                 <capit>
-                    <locus>Teil A, 1<hi rend="super">r-v</hi></locus>
-                    <term n="BK.091" list="pre814">Capitula Italica incerta III (a. 826/840?), cc. 3
-                        und 4, oder Pippini Italiae regis capitulare</term>
+                    <locus>1<hi rend="super">r-v</hi></locus>
+                    <term n="BK.091" list="pre814">Pippini Italiae regis capitulare</term>
                 </capit>
                 <capit>
-                    <locus>Teil A, 1<hi rend="super">r-v</hi></locus>
-                    <term n="BK.095" list="pre814">Capitula Italica incerta III (a. 826/840?), c. 5,
-                        oder Karoli Magni capitulare Italicum</term>
+                    <locus>1<hi rend="super">r-v</hi></locus>
+                    <term n="BK.095" list="pre814">Karoli Magni capitulare Italicum</term>
                 </capit>
                 <capit>
-                    <locus>Teil A, 1<hi rend="super">r-v</hi></locus>
-                    <term n="BK.158">Capitula Italica incerta III (a. 826/840?), c. 6, oder Memoria
-                        Olonnae comitibus data</term>
+                    <locus>1<hi rend="super">r-v</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
                 </capit>
                 <capit>
-                    <locus>Teil A, 1<hi rend="super">r-v</hi></locus>
-                    <term n="BK.180">Capitula Italica incerta III (a. 826/840?) oder Eugenii II
-                        concilium Romanum</term>
+                    <locus>1<hi rend="super">r-v</hi></locus>
+                    <term n="BK.180">Eugenii II concilium Romanum</term>
                 </capit>
                 <capit>
-                    <locus>Teil A, 2<hi rend="super">r-v</hi></locus>
-                    <term n="Mordek.14" list="pre814">Capitula Italica incerta I</term>
+                    <locus>2<hi rend="super">r-v</hi></locus>
+                    <term n="BK.105" list="pre814">Capitula Italica</term>
                 </capit>
                 <capit>
-                    <locus>Teil A, 2<hi rend="super">r-v</hi></locus>
-                    <term n="Mordek.15 BK.105" list="pre814">Capitula Italica incerta I</term>
+                    <locus>2<hi rend="super">r-v</hi></locus>
+                    <term n="BK.093" list="pre814">Capitulare Mantuanum secundum, generale</term>
                 </capit>
                 <capit>
-                    <locus>Teil A, 2<hi rend="super">r-v</hi></locus>
-                    <term n="BK.093" list="pre814">Capitula Italica incerta I (a. 813?), cc. 14-18,
-                        oder Capitulare Mantuanum secundum, generale</term>
-                </capit>
-                <capit>
-                    <locus>Teil B I, Einzelblatt</locus>
+                    <locus>3<hi rend="super">r-v</hi></locus>
                     <term n="BK.183">Ansegisi abbatis capitularium collectio</term>
                 </capit>
                 <capit>
-                    <locus>unnummeriertes Einzelblatt</locus>
+                    <locus>4<hi rend="super">r-v</hi></locus>
                     <term n="BK.183">Ansegisi abbatis capitularium collectio</term>
                 </capit>
                 <capit>
-                    <locus>Teil B II, 1<hi rend="super">r</hi>-2<hi rend="super">r</hi></locus>
+                    <locus>5<hi rend="super">r</hi>-6<hi rend="super">r</hi></locus>
                     <term n="BK.183">Ansegisi abbatis capitularium collectio</term>
                 </capit>
                 <capit>
-                    <locus>Teil B II, 2<hi rend="super">r-v</hi></locus>
-                    <term n="BK.093" list="pre814">Capitula Italica incerta II oder Capitulare
-                        Mantuanum secundum, generale</term>
+                    <locus>6<hi rend="super">r-v</hi></locus>
+                    <term n="BK.093" list="pre814">Capitulare Mantuanum secundum, generale</term>
                 </capit>
                 <capit>
-                    <locus>Teil B II, 2<hi rend="super">r-v</hi></locus>
-                    <term n="BK.105" list="pre814">Capitula Italica incerta II</term>
+                    <locus>6<hi rend="super">r-v</hi></locus>
+                    <term n="BK.105" list="pre814">Capitula Italica</term>
                 </capit>
                 <capit>
-                    <locus>Teil B II, 2<hi rend="super">v</hi></locus>
+                    <locus>6<hi rend="super">v</hi></locus>
                     <term n="BK.196" status="publ">Episcoporum ad Hludowicum imperatorem
                         relatio</term>
                 </capit>
                 <capit>
-                    <locus>Teil B II, 3<hi rend="super">r</hi>-4<hi rend="super">v</hi></locus>
+                    <locus>7<hi rend="super">r</hi>-8<hi rend="super">v</hi></locus>
                     <term n="BK.196" status="publ">Episcoporum ad Hludowicum imperatorem
                         relatio</term>
                 </capit>
                 <capit>
-                    <locus>unnummeriertes Doppelblatt</locus>
+                    <locus>9<hi rend="super">r</hi>-10<hi rend="super">v</hi></locus>
                     <term n="BK.196" status="publ">Episcoporum ad Hludowicum imperatorem
                         relatio</term>
                 </capit>
                 <capit>
-                    <locus>unnummeriertes Einzelblatt</locus>
+                    <locus>11<hi rend="super">r-v</hi></locus>
                     <term n="BK.196" status="publ">Episcoporum ad Hludowicum imperatorem
                         relatio</term>
                 </capit>
                 <capit>
-                    <locus>unnummeriertes Einzelblatt</locus>
+                    <locus>12<hi rend="super">r-v</hi></locus>
                     <term n="BK.196" status="publ">Episcoporum ad Hludowicum imperatorem
                         relatio</term>
                 </capit>
                 <capit>
-                    <locus>Teil C</locus>
+                    <locus>14<hi rend="super">r</hi>-17r<hi rend="super">v</hi>, 13<hi rend="super"
+                            >r-v</hi></locus>
                     <term n="BK.228">Konzil von Pavia</term>
                 </capit>
                 <capit>
-                    <locus>Teil D</locus>
+                    <locus>18<hi rend="super">r</hi>-26<hi rend="super">v</hi></locus>
                     <term n="BK.273">Edictum Pistense</term>
                 </capit>
                 <capit>
-                    <locus>Teil E</locus>
+                    <locus>27<hi rend="super">r-v</hi></locus>
                     <term n="BK.224">Widonis imperatoris capitulare Papiense legibus addendum</term>
                 </capit>
             </content>
@@ -5032,7 +5130,7 @@
         <item xml:id="muenchen-ub-fragmente">
             <idno type="main">München, Universitätsbibliothek, † Fragmente</idno>
             <idno type="siglum">M4</idno>
-            <note type="filiation">zusammen mit <ref type="internal" subtype="mss"
+            <note type="filiation"> zusammen mit <ref type="internal" subtype="mss"
                     target="muenchen-bsb-lat-29555-1">München, Bayerische Staatsbibliothek, Lat.
                     29555/1</ref> und <ref type="internal" subtype="mss"
                     target="muenchen-bsb-inc-s-a-26m">München, Bayerische Staatsbibliothek, Inc. s.
@@ -5190,7 +5288,7 @@
             <idno type="main">New York, The Hispanic Society of America, MS HC 380/819</idno>
             <idno type="siglum">Ny1</idno>
             <origin>
-                <origDate notAfter="1100" notBefore="1001">11. Jh.</origDate>, <origPlace
+                <origDate notAfter="1050" notBefore="1001">11. Jh., 1. Hälfte</origDate>, <origPlace
                     ref="https://www.geonames.org/3125609/catalunya.html"
                 >Katalonien</origPlace></origin>
             <content>
@@ -5413,6 +5511,14 @@
                     <term n="BK.168">Capitula Italica</term>
                 </capit>
                 <capit>
+                    <locus>144</locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
+                </capit>
+                <capit>
+                    <locus>154-155</locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
+                </capit>
+                <capit>
                     <locus>156-157</locus>
                     <term n="BK.168">Capitula Italica</term>
                 </capit>
@@ -5450,6 +5556,7 @@
                     <term n="BK.221">Karoli II capitulare Papiense</term>
                 </capit>
                 <capit>
+                    <locus>294<hi rend="super">v</hi>-296<hi rend="super">r</hi></locus>
                     <term n="BK.279">Konzil von Ponthion</term>
                 </capit>
             </content>
@@ -5470,6 +5577,9 @@
         </item>
         <item xml:id="paris-bn-dupuy-639">
             <idno type="main">Paris, Bibliothèque nationale de France, Dupuy 639</idno>
+            <note type="filiation"> (wohl Abschrift von <ref type="internal" subtype="mss"
+                    target="paris-bn-lat-4638">Paris, Bibliothèque nationale de France, Lat.
+                    4638</ref>)</note>
             <origin>
                 <origDate notAfter="1700" notBefore="1501">16./17. Jh.</origDate>, <origPlace
                     ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
@@ -5608,7 +5718,6 @@
                     <term n="BK.293">Capitula conciliorum Meldensis et Parisiensis in villa Sparnaco
                         a Karolo rege confirmata</term>
                 </capit>
-
                 <capit>
                     <locus>61<hi rend="super">r-v</hi></locus>
                     <term n="BK.204">Hlotharii, Hludowici et Karoli conventus apud Marsnam
@@ -5656,13 +5765,13 @@
             <idno type="main">Paris, Bibliothèque nationale de France, Lat. 2400</idno>
             <idno type="siglum">P59</idno>
             <origin>
-                <origDate notAfter="1033" notBefore="1000">11. Jh., 1. Drittel</origDate>,
+                <origDate notAfter="1033" notBefore="1000">11. Jh., 1. Drittel</origDate>;
                     <origPlace>Saint-Cybard, Angoulême</origPlace>
             </origin>
             <content>
                 <capit>
                     <locus>183<hi rend="super">r</hi></locus>
-                    <term n="BK.138" status="publ">Capitulare ecclesiasticum (c. 10)</term>
+                    <term n="BK.138" status="publ">Capitulare ecclesiasticum</term>
                 </capit>
             </content>
         </item>
@@ -5847,7 +5956,7 @@
             <content>
                 <capit>
                     <locus>137<hi rend="super">v</hi></locus>
-                    <term>Benedictus Levita I 279</term>
+                    <term>Benedictus Levita 1, 279</term>
                 </capit>
             </content>
         </item>
@@ -5981,7 +6090,7 @@
         <item xml:id="paris-bn-lat-3878">
             <idno type="main">Paris, Bibliothèque nationale de France, Lat. 3878</idno>
             <idno type="siglum">P30</idno>
-            <note type="filiation">zusammen mit <ref type="internal" subtype="mss"
+            <note type="filiation"> zusammen mit <ref type="internal" subtype="mss"
                     target="weimar-hsa-depositum-hardenberg-fragm-9">Weimar, Hauptstaatsarchiv,
                     Depositum Hardenberg Fragm. 9</ref></note>
             <origin>
@@ -6022,7 +6131,7 @@
                 </capit>
                 <capit>
                     <locus>97<hi rend="super">v</hi></locus>
-                    <term>Benedictus Levita I 279</term>
+                    <term>Benedictus Levita 1, 279</term>
                 </capit>
                 <capit>
                     <locus>160<hi rend="super">r</hi>-161<hi rend="super">v</hi></locus>
@@ -6034,6 +6143,25 @@
                 </capit>
             </content>
         </item>
+
+        <item xml:id="paris-bn-lat-4278">
+            <idno type="main">Paris, Bibliothèque nationale de France, Lat. 4278</idno>
+            <idno type="siglum">P65</idno>
+            <origin>
+                <origDate notAfter="0900" notBefore="0851">9. Jh., 2. Hälfte</origDate> (foll.
+                1-127; Mordek/Bischoff), <origDate notAfter="1020" notBefore="0981">10. Jh.,
+                    Ende/11. Jh., Anfang</origDate> (foll. 128-167; Kéry); <origPlace
+                    ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
+                    >Frankreich</origPlace></origin>
+            <content>
+                <capit>
+                    <locus>128<hi rend="super">r</hi></locus>
+                    <term>Benedictus Levita 1, 279</term>
+                </capit>
+            </content>
+        </item>
+
+
         <item xml:id="paris-bn-lat-4280a">
             <idno type="main">Paris, Bibliothèque nationale de France, Lat. 4280 A</idno>
             <idno type="siglum">P10</idno>
@@ -6307,6 +6435,10 @@
                 <capit>
                     <locus>94<hi rend="super">v</hi>-97<hi rend="super">r</hi></locus>
                     <term n="BK.201">Hlotharii capitulare Papiense</term>
+                </capit>
+                <capit>
+                    <locus>96<hi rend="super">v</hi>-97<hi rend="super">r</hi></locus>
+                    <term n="BK.157">Capitulare Olonnense</term>
                 </capit>
                 <capit>
                     <locus>97<hi rend="super">r-v</hi></locus>
@@ -6678,7 +6810,7 @@
         <item xml:id="paris-bn-lat-4629">
             <idno type="main">Paris, Bibliothèque nationale de France, Lat. 4629</idno>
             <idno type="siglum">P13</idno>
-            <note type="filiation">zusammen mit Leiden, Bibliotheek der Rijksuniversiteit, BPL
+            <note type="filiation"> zusammen mit Leiden, Universiteitsbibliotheek, BPL
                 114</note>
             <origin>
                 <origDate>9. Jh., Anfang (bald nach 805)</origDate>, <origPlace
@@ -6811,7 +6943,7 @@
                     <term n="Mordek.27">Capitula a Benedicto Levita singillatim tradita</term>
                 </capit>
                 <capit>
-                    <locus/>
+                    <locus>82<hi rend="super">v</hi><hi rend="super">a</hi></locus>
                     <term n="BK.156" status="publ">Capitula incerta</term>
                 </capit>
                 <capit>
@@ -6955,7 +7087,7 @@
         <item status="publ" xml:id="paris-bn-lat-4633">
             <idno type="main">Paris, Bibliothèque nationale de France, Lat. 4633</idno>
             <idno type="siglum">L</idno>
-            <note type="filiation">zusammen mit <ref type="internal" subtype="mss"
+            <note type="filiation"> zusammen mit <ref type="internal" subtype="mss"
                     target="london-bl-egerton-269">London, British Library, Egerton 269</ref>, <ref
                     type="internal" subtype="mss" target="london-bl-egerton-2832">London, British
                     Library, Egerton 2832</ref> und <ref type="internal" subtype="mss"
@@ -7009,7 +7141,7 @@
                     <term n="BK.183">Ansegisi abbatis capitularium collectio</term>
                 </capit>
                 <capit>
-                    <locus>48<hi rend="super">(bis)</hi></locus>
+                    <locus>48<hi rend="super">bis</hi></locus>
                     <term n="BK.167">Capitula Francica</term>
                 </capit>
             </content>
@@ -7466,7 +7598,7 @@
                         Aquisgranensis</term>
                 </capit>
                 <capit>
-                    <locus>117<hi rend="super">r</hi>-118</locus>
+                    <locus>117<hi rend="super">r</hi>-118<hi rend="super">r</hi></locus>
                     <term n="BK.147" status="publ">Capitulare de moneta</term>
                 </capit>
             </content>
@@ -7601,7 +7733,7 @@
                     >zum Teil etwa Reims (?)</origPlace> (Bischoff) </origin>
             <content>
                 <capit>
-                    <locus>116r-117r</locus>
+                    <locus>116<hi rend="super">r</hi>-117<hi rend="super">r</hi></locus>
                     <term n="BK.185b">Hludowici et Hlotharii epistola generalis (Fassung B)</term>
                 </capit>
             </content>
@@ -7625,7 +7757,7 @@
         <item xml:id="paris-bn-lat-7561">
             <idno type="main">Paris, Bibliothèque nationale de France, Lat. 7561</idno>
             <idno type="siglum">L</idno>
-            <note type="filiation">zusammen mit <ref type="internal" subtype="mss"
+            <note type="filiation"> zusammen mit <ref type="internal" subtype="mss"
                     target="london-bl-egerton-269">London, British Library, Egerton 269</ref>, <ref
                     type="internal" subtype="mss" target="london-bl-egerton-2832">London, British
                     Library, Egerton 2832</ref> und <ref type="internal" subtype="mss"
@@ -7672,7 +7804,7 @@
                     ref="http://www.geonames.org/3030967/region-bourgogne.html http://d-nb.info/gnd/4129468-3 http://viaf.org/viaf/249019852"
                     >Burgund (B. Bischoff: Nähe von <placeName
                         ref="http://www.geonames.org/6454573/lyon.html http://d-nb.info/gnd/4036770-8 http://viaf.org/viaf/158189703"
-                        >Lyon</placeName>) (Mordek, Bischoff 2014)</origPlace>
+                        >Lyon</placeName>) (Mordek, Bischoff)</origPlace>
             </origin>
             <content>
                 <capit>
@@ -7901,7 +8033,7 @@
                 </capit>
                 <capit>
                     <locus>56<hi rend="super">v</hi>-57<hi rend="super">r</hi></locus>
-                    <term>Benedictus Levita I 279</term>
+                    <term>Benedictus Levita 1, 279</term>
                 </capit>
                 <capit>
                     <locus>66<hi rend="super">r-v</hi></locus>
@@ -8033,6 +8165,14 @@
                 <capit>
                     <locus>88<hi rend="super">r</hi></locus>
                     <term n="BK.168">Capitula Italica</term>
+                </capit>
+                <capit>
+                    <locus>89<hi rend="super">r</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
+                </capit>
+                <capit>
+                    <locus>93<hi rend="super">v</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
                 </capit>
                 <capit>
                     <locus>95<hi rend="super">r</hi></locus>
@@ -8178,7 +8318,7 @@
                     <term n="BK.167">Capitula Francica</term>
                 </capit>
                 <capit>
-                    <locus>200<hi rend="super">(bis)</hi></locus>
+                    <locus>200<hi rend="super">bis</hi></locus>
                     <term n="BK.167">Capitula Francica</term>
                 </capit>
                 <capit>
@@ -8694,10 +8834,6 @@
                     <locus>350<hi rend="super">r</hi></locus>
                     <term n="BK.230">Konzil von Ravenna</term>
                 </capit>
-                <capit>
-                    <locus>350<hi rend="super">r</hi></locus>
-                    <term n="BK.230">Konzil von Ravenna</term>
-                </capit>
             </content>
         </item>
         <item xml:id="rom-bv-b-11">
@@ -8714,7 +8850,7 @@
             <content>
                 <capit>
                     <locus>3<hi rend="super">r-v</hi></locus>
-                    <term n="BK.279">Karoli II imperatoris electio</term>
+                    <term n="BK.220">Karoli II imperatoris electio</term>
                 </capit>
                 <capit>
                     <locus>3<hi rend="super">v</hi></locus>
@@ -9652,7 +9788,7 @@
                     9. Jh.</origDate> (Bischoff); <origPlace ref="http://d-nb.info/gnd/4244951-0"
                     >Westfrankreich (B. Bischoff) (Mordek)</origPlace> oder <origPlace
                     ref="http://d-nb.info/gnd/4079211-0">Westdeutschland-Lothringen (?)</origPlace>
-                (Bischoff 2014) </origin>
+                (Bischoff) </origin>
             <origin>Teil III (<locus>foll. 94-98</locus>): <origDate>9. Jh., 3. Drittel</origDate>
                 (Mordek), <origPlace ref="http://d-nb.info/gnd/4244951-0">Westfrankreich (B.
                     Bischoff)</origPlace>
@@ -9761,12 +9897,12 @@
                     <term n="BK.139" status="publ">Capitula legibus addenda</term>
                 </capit>
                 <capit>
-                    <locus>145<hi rend="super">v</hi>-146<hi rend="super">v</hi></locus>
-                    <term n="BK.140" status="publ">Capitula per se scribenda</term>
+                    <locus>145<hi rend="super">v</hi></locus>
+                    <term n="BK.138" status="publ">Capitulare ecclesiasticum</term>
                 </capit>
                 <capit>
                     <locus>145<hi rend="super">v</hi>-146<hi rend="super">v</hi></locus>
-                    <term n="BK.138" status="publ">Capitulare ecclesiasticum</term>
+                    <term n="BK.140" status="publ">Capitula per se scribenda</term>
                 </capit>
             </content>
         </item>
@@ -9790,7 +9926,7 @@
             <idno type="main">Straßburg, ehemalige Stadtbibliothek, † C. V. 6</idno>
             <origin>
                 <origDate notAfter="0900" notBefore="0867">9. Jh., 3. Drittel</origDate>, <origPlace
-                    ref="http://vocab.getty.edu/tgn/6000160">wohl alamannisches Gebiet</origPlace>
+                    ref="http://vocab.getty.edu/tgn/6000160">wohl alemannisches Gebiet</origPlace>
             </origin>
             <content>
                 <capit>
@@ -9886,7 +10022,7 @@
             <origin>
                 <origDate notAfter="1100" notBefore="0901">10./11. Jh. oder 11. Jh., 1.
                     Hälfte</origDate>, <origPlace ref="http://vocab.getty.edu/tgn/6000160"
-                    >Alamannien (H. Hoffmann: <placeName
+                    >Alemannien (H. Hoffmann: <placeName
                         ref="http://www.geonames.org/2658822/sankt-gallen.html http://d-nb.info/gnd/4051594-1 http://viaf.org/viaf/127834916"
                         >St. Gallen</placeName>)</origPlace>
             </origin>
@@ -10049,7 +10185,6 @@
                     <locus>227<hi rend="super">v</hi>-238<hi rend="super">r</hi></locus>
                     <term n="BK.022" list="pre814">Admonitio generalis</term>
                 </capit>
-
             </content>
         </item>
         <item xml:id="turin-ads-bobbio-m-1">
@@ -10241,7 +10376,7 @@
             </content>
         </item>
         <item xml:id="vatikan-bav-chigi-c-viii-239">
-            <idno type="main">Vatikan, Biblioteca Apostolica Vaticana, Chigi C. VIII. 239</idno>
+            <idno type="main">Vatikan, Biblioteca Apostolica Vaticana, Chig. C. VIII. 239</idno>
             <idno type="siglum">V35</idno>
             <origin>
                 <origDate notAfter="1600" notBefore="1551">16. Jh., 2. Hälfte</origDate>
@@ -10277,7 +10412,7 @@
             </content>
         </item>
         <item status="publ" xml:id="vatikan-bav-chigi-f-iv-75">
-            <idno type="main">Vatikan, Biblioteca Apostolica Vaticana, Chigi F. IV. 75</idno>
+            <idno type="main">Vatikan, Biblioteca Apostolica Vaticana, Chig. F. IV. 75</idno>
             <idno type="siglum">V5</idno>
             <origin>
                 <origDate notAfter="1005" notBefore="0995">Um 1000</origDate>, <origPlace
@@ -10521,19 +10656,19 @@
             </content>
         </item>
         <item xml:id="vatikan-bav-ottob-lat-258">
-            <idno type="main">Vatikan, Biblioteca Apostolica Vaticana, Ottob. Lat. 258</idno>
+            <idno type="main">Vatikan, Biblioteca Apostolica Vaticana, Ott. Lat. 258</idno>
             <idno type="siglum">V6</idno>
             <origin>
                 <origDate notAfter="0950" notBefore="0901">10. Jh., 1. Hälfte</origDate> (mit 3
                 älteren Lagen [<locus>foll. 17-24, 31-38, 67-74</locus>]: <origDate notAfter="0900"
-                    notBefore="0850">9. Jh., 2. Hälfte</origDate> [so auch Bischoff 2014]) (Mordek),
+                    notBefore="0850">9. Jh., 2. Hälfte</origDate> [so auch Bischoff]) (Mordek),
                     <origPlace
                     ref="http://www.geonames.org/6454431/compiegne.html http://d-nb.info/gnd/4090519-6 http://viaf.org/viaf/247655690"
                     >Compiègne (?)</origPlace> (B. Bischoff) (Mordek), <origPlace
                     ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
                     >Frankreich (<placeName
                         ref="http://www.geonames.org/6454431/compiegne.html http://d-nb.info/gnd/4090519-6 http://viaf.org/viaf/247655690"
-                        >Compiègne [?]</placeName>) (Bischoff 2014)</origPlace>
+                        >Compiègne [?]</placeName>) (Bischoff)</origPlace>
             </origin>
             <content>
                 <capit>
@@ -10875,7 +11010,6 @@
                     <locus>77<hi rend="super">r</hi>-78<hi rend="super">v</hi></locus>
                     <term n="BK.193" status="publ">Capitulare pro lege habendum Wormatiense</term>
                 </capit>
-
                 <capit>
                     <locus>78<hi rend="super">v</hi></locus>
                     <term n="BK.189" status="publ">Tractoria de coniectu missis dando</term>
@@ -11095,7 +11229,7 @@
                 </capit>
                 <capit>
                     <locus>228<hi rend="super">r</hi></locus>
-                    <term n="BK.183">Ansegisi abbatis capitularium collectio</term>
+                    <term n="BK.191">Capitulare Wormatiense</term>
                 </capit>
                 <capit>
                     <locus>228<hi rend="super">r-v</hi></locus>
@@ -11282,6 +11416,18 @@
                     <term n="BK.183">Ansegisi abbatis capitularium collectio</term>
                 </capit>
                 <capit>
+                    <locus>125<hi rend="super">v</hi></locus>
+                    <term>Benedictus Levita 1, 186</term>
+                </capit>
+                <capit>
+                    <locus>126<hi rend="super">r</hi></locus>
+                    <term n="BK.191">Capitulare Wormatiense</term>
+                </capit>
+                <capit>
+                    <locus>126<hi rend="super">r-v</hi></locus>
+                    <term n="BK.167">Capitula Francica</term>
+                </capit>
+                <capit>
                     <locus>140<hi rend="super">v</hi>-141<hi rend="super">r</hi></locus>
                     <term n="BK.227">Synodus ad Theodonis villam habita</term>
                 </capit>
@@ -11316,6 +11462,9 @@
                 <capit>
                     <locus>142<hi rend="super">v</hi>-143<hi rend="super">r</hi></locus>
                     <term n="BK.258">Konzil von Soissons</term>
+                </capit>
+                <capit>
+                    <term n="BK.022">Admonitio generalis</term>
                 </capit>
             </content>
         </item>
@@ -11473,6 +11622,16 @@
                 </capit>
             </content>
         </item>
+        <item xml:id="vatikan-bav-reg-lat-733">
+            <idno type="main">Vatikan, Biblioteca Apostolica Vaticana, Reg. Lat. 733</idno>
+            <!--  <origin> </origin>-->
+            <content>
+                <capit>
+                    <locus>49<hi rend="super">v</hi></locus>
+                    <term>Benedictus Levita 1, 279</term>
+                </capit>
+            </content>
+        </item>
         <item xml:id="vatikan-bav-reg-lat-846">
             <idno type="main">Vatikan, Biblioteca Apostolica Vaticana, Reg. Lat. 846</idno>
             <idno type="siglum">V13</idno>
@@ -11624,7 +11783,7 @@
                     Bischoff wohl westdeutsch mit Corbieer Nachträgen <locus>foll. 11<hi
                             rend="super">r</hi>, 42<hi rend="super">v</hi></locus></origPlace>,
                     <origPlace ref="http://d-nb.info/gnd/4079211-0 http://viaf.org/viaf/237713044"
-                    >Westdeutschland (?)</origPlace> (Bischoff 2014) </origin>
+                    >Westdeutschland (?)</origPlace> (Bischoff) </origin>
             <content>
                 <capit>
                     <locus>1<hi rend="super">r</hi>-87<hi rend="super">v</hi></locus>
@@ -11633,6 +11792,10 @@
                 <capit>
                     <locus>87<hi rend="super">v</hi>-88<hi rend="super">r</hi></locus>
                     <term n="BK.157">Capitulare Olonnense</term>
+                </capit>
+                <capit>
+                    <locus>88<hi rend="super">v</hi></locus>
+                    <term n="BK.201">Hlotharii capitulare Papiense</term>
                 </capit>
                 <capit>
                     <locus>88<hi rend="super">v</hi></locus>
@@ -11722,6 +11885,7 @@
         </item>
         <item xml:id="vatikan-bav-reg-lat-1041">
             <idno type="main">Vatikan, Biblioteca Apostolica Vaticana, Reg. Lat. 1041</idno>
+            <idno type="siglum">V44</idno>
             <origin/>
             <content>Vgl. Vatikan, Biblioteca Apostolica Vaticana, Vat. Lat. 3827</content>
         </item>
@@ -11755,7 +11919,7 @@
             <idno type="main">Vatikan, Biblioteca Apostolica Vaticana, Reg. Lat. 1283<hi
                     rend="super">a</hi></idno>
             <idno type="siglum">V21</idno>
-            <note type="filiation">zusammen mit <ref type="internal" subtype="mss"
+            <note type="filiation"> zusammen mit <ref type="internal" subtype="mss"
                     target="vatikan-bav-reg-lat-980">Vatikan, Biblioteca Apostolica Vaticana, Reg.
                     Lat. 980, foll. 13-14</ref></note>
             <origin>
@@ -11857,10 +12021,10 @@
             <origin>
                 <origDate notAfter="0900" notBefore="0867">9. Jh., 3. Drittel (etwa ausgehendes 9.
                     Jh. [Bischoff])</origDate> (Mordek), <origDate notAfter="0900" notBefore="0851"
-                    >9. Jh., 3. oder 4. Viertel</origDate> (Bischoff 2014); <origPlace
+                    >9. Jh., 3. oder 4. Viertel</origDate> (Bischoff); <origPlace
                     ref="http://d-nb.info/gnd/4110086-4">Nordfrankreich</origPlace> (Mordek),
                     <origPlace ref="http://d-nb.info/gnd/4214099-7">Frankreich (östlich von
-                    Paris)</origPlace> (Bischoff 2014)</origin>
+                    Paris)</origPlace> (Bischoff)</origin>
             <content>
                 <capit>
                     <locus>5<hi rend="super">v</hi></locus>
@@ -11949,7 +12113,7 @@
             <content>
                 <capit>
                     <locus>39<hi rend="super">r</hi></locus>
-                    <term>Benedictus Levita I 279</term>
+                    <term>Benedictus Levita 1, 279</term>
                 </capit>
                 <capit>
                     <locus>39<hi rend="super">v</hi>-40<hi rend="super">r</hi></locus>
@@ -11973,7 +12137,7 @@
         <item xml:id="vatikan-bav-vat-lat-4977">
             <idno type="main">Vatikan, Biblioteca Apostolica Vaticana, Vat. Lat. 4977</idno>
             <origin>
-                <origDate notAfter="1115" notBefore="1085">11. Jh., Ende/12. Jh., Anfang</origDate>,
+                <origDate notAfter="1120" notBefore="1081">11. Jh., Ende/12. Jh., Anfang</origDate>,
                     <origPlace
                     ref="http://www.geonames.org/3175395/repubblica-italiana.html http://d-nb.info/gnd/4027833-5 http://viaf.org/viaf/303334755"
                     >Italien</origPlace>
@@ -12191,7 +12355,7 @@
 
         <item xml:id="vatikan-bav-vat-lat-5359">
             <idno type="main">Vatikan, Biblioteca Apostolica Vaticana, Vat. Lat. 5359</idno>
-            <idno type="siglum">V 25</idno>
+            <idno type="siglum">V25</idno>
             <origin>
                 <origDate notAfter="0900" notBefore="0851">9. Jh., 2. Hälfte</origDate>, <origPlace
                     ref="http://d-nb.info/gnd/4042547-2 http://viaf.org/viaf/246519243">Oberitalien
@@ -12204,7 +12368,7 @@
                     <term n="BK.201">Hlotharii capitulare Papiense</term>
                 </capit>
                 <capit>
-                    <locus>146<hi rend="super">r</hi></locus>
+                    <locus>145<hi rend="super">v</hi> (?), 146<hi rend="super">r</hi></locus>
                     <term n="BK.165">Capitulare Olonnense mundanum</term>
                 </capit>
             </content>
@@ -12374,7 +12538,7 @@
         <item xml:id="weimar-hsa-depositum-hardenberg-fragm-9">
             <idno type="main">Weimar, Hauptstaatsarchiv, Depositum Hardenberg Fragm. 9</idno>
             <idno type="siglum">P30</idno>
-            <note type="filiation">zusammen mit <ref type="internal" subtype="mss"
+            <note type="filiation"> zusammen mit <ref type="internal" subtype="mss"
                     target="paris-bn-lat-3878">Paris, Bibliothèque nationale de France, Lat.
                     3878</ref></note>
             <origin>
@@ -12435,6 +12599,14 @@
                     <term n="BK.168">Capitula Italica</term>
                 </capit>
                 <capit>
+                    <locus>118<hi rend="super">v</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
+                </capit>
+                <capit>
+                    <locus>124<hi rend="super">v</hi></locus>
+                    <term n="BK.158">Memoria Olonnae comitibus data</term>
+                </capit>
+                <capit>
                     <locus>126<hi rend="super">r</hi></locus>
                     <term n="BK.168">Capitula Italica</term>
                 </capit>
@@ -12478,7 +12650,7 @@
                 <origDate notAfter="1000" notBefore="0901">10. Jh.</origDate>, <origPlace
                     ref="http://d-nb.info/gnd/4078022-3 http://viaf.org/viaf/235489154"
                     >Süddeutschland (<placeName ref="http://vocab.getty.edu/tgn/6000160"
-                        >alamannisch</placeName>?)</origPlace>
+                        >alemannisch</placeName>?)</origPlace>
             </origin>
             <content>
                 <capit>
@@ -12533,6 +12705,20 @@
                     <locus>89<hi rend="super">r</hi><hi rend="super">a</hi>-90<hi rend="super"
                             >r</hi><hi rend="super">b</hi></locus>
                     <term n="BK.170" status="publ">Capitulare monasticum III</term>
+                </capit>
+            </content>
+        </item>
+        <item xml:id="wien-oenb-2153">
+            <idno type="main">Wien, Österreichische Nationalbibliothek, 2153</idno>
+            <idno type="siglum">Wi8</idno>
+            <origin>
+                <origDate notAfter="1200" notBefore="1101">12. Jh.</origDate>, <origPlace
+                    ref="http://viaf.org/viaf/147169281">Niederösterreich</origPlace>
+            </origin>
+            <content>
+                <capit>
+                    <locus>75<hi rend="super">v</hi>-76<hi rend="super">r</hi></locus>
+                    <term>Benedictus Levita 1, 279</term>
                 </capit>
             </content>
         </item>
@@ -12859,6 +13045,10 @@
                     <term n="BK.158">Memoria Olonnae comitibus data</term>
                 </capit>
                 <capit>
+                    <locus>123<hi rend="super">v</hi>-128<hi rend="super">v</hi></locus>
+                    <term n="BK.180">Eugenii II concilium Romanum</term>
+                </capit>
+                <capit>
                     <locus>128<hi rend="super">v</hi>-130<hi rend="super">v</hi></locus>
                     <term n="BK.210">Capitula episcoporum Papiae edita</term>
                 </capit>
@@ -12927,6 +13117,22 @@
                 </capit>
             </content>
         </item>
+
+        <item xml:id="wolfenbuettel-hab-gud-lat-212">
+            <idno type="main">Wolfenbüttel, Herzog August Bibliothek, Cod. Guelf. 212 Gud.
+                Lat.</idno>
+            <idno type="siglum">W8</idno>
+            <origin>
+                <origDate notAfter="1300" notBefore="1201">13. Jh.</origDate>, <origPlace
+                    ref="http://d-nb.info/gnd/4110086-4">Nordfrankreich</origPlace>
+            </origin>
+            <content>
+                <capit>
+                    <locus>58<hi rend="super">r</hi></locus>
+                    <term n="Mordek.21">Capitulum de nonis et decimis</term>
+                </capit>
+            </content>
+        </item>
         <item status="publ" xml:id="wolfenbuettel-hab-gud-lat-299">
             <idno type="main">Wolfenbüttel, Herzog August Bibliothek, Cod. Guelf. 299 Gud.
                 Lat.</idno>
@@ -12966,7 +13172,7 @@
             <origin>
                 <origDate notAfter="0850" notBefore="0801">9. Jh., 1. Hälfte (B. Bischoff:
                     825-830/850)</origDate> (Mordek), <origDate notAfter="0850" notBefore="0826">9.
-                    Jh., 2. Viertel</origDate> (Bischoff 2014); <origPlace
+                    Jh., 2. Viertel</origDate> (Bischoff); <origPlace
                     ref="http://www.geonames.org/2923822/fulda.html http://d-nb.info/gnd/4018860-7 http://viaf.org/viaf/237226428"
                     >Fulda</origPlace>, <origPlace
                     ref="http://d-nb.info/gnd/4049788-4 http://viaf.org/viaf/264478910"> oder
@@ -12974,7 +13180,7 @@
                         ref="http://www.geonames.org/2886242/koeln.html http://d-nb.info/gnd/2015732-0 http://viaf.org/viaf/147743348"
                         >Köln</placeName>?)</origPlace> (Mordek), <origPlace
                     ref="http://d-nb.info/gnd/4079211-0">wohl Westdeutschland (?)</origPlace>
-                (Bischoff 2014) </origin>
+                (Bischoff) </origin>
             <content>
                 <capit>
                     <locus>9<hi rend="super">r</hi>-12<hi rend="super">r</hi></locus>

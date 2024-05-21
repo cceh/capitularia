@@ -314,7 +314,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      <item n="50.1">
                         <ptr type="internal" target="#turin-bnu-fragment-verso-2"/>Capitulum</item>
                      <item n="50.2">
-                        <ptr type="internal" target="#turin-bnu-fragment-verso-4"/>qII</item>
+                        <ptr type="internal" target="#turin-bnu-fragment-verso-4"/>[.]II</item>
                   </list></item>
 
             </list>
@@ -386,8 +386,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                der Kürzung <mentioned>Cap</mentioned> ohne Nummerierung eingeleitet. Der Text weist
                - außer den Initialen zu Beginn des Prologs (<mentioned>C</mentioned>) und des nach
                Boretius/Krause zweiten Kapitels (<mentioned>S</mentioned>) mit voranstehender,
-               vermutlich leicht verunglückter Nummerierung (<mentioned>qII</mentioned>?,
-                  <locus>drittletzte Zeile</locus>) - keine weitere Binnengliederung auf.</p>
+               vermutlich von anderer Hand korrigierter Nummerierung (<mentioned>II</mentioned>) -
+               keine weitere Binnengliederung auf.</p>
          </div>
          <div type="annotations">
             <p>Vermutlich sind über <mentioned>uolumus</mentioned> (<locus>drittletzte
@@ -406,7 +406,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
          <milestone n="BK.201" unit="capitulare"/>
          <cb n="recto"/>
-         <ab corresp="BK.201_11_inscriptio" type="meta-text" xml:id="turin-bnu-fragment-recto-1">
+         <ab corresp="BK.201_11_inscriptio" type="meta-text" xml:id="turin-bnu-fragment-recto-1"
+               ><ref type="internal" subtype="mss" target="ivrea-bc-xxxiv#ivrea-bc-xxxiv-167v-8"/>
             <seg type="numDenom"><choice>
                   <abbr>Cap</abbr>
                   <expan>Capitulum</expan>
@@ -472,8 +473,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <lb/>imperatoris</rs> ab omnibus sancte dei ecclesię et nostris fidelibus in <rs
                type="place">regno italiae</rs> con<lb break="no"/>sistentibus pro lege teneantur et
             obseruentur et quicumque horum c<gap quantity="1" unit="chars"/><lb break="no"
-            />pitulorum contemptor <sic>existeterit</sic> sexaginta solidorum multo<gap quantity="3"
-               unit="chars"/>
+            />pitulorum contemptor <sic>existeterit</sic> sexaginta solidorum mult<gap quantity="1"
+               unit="chars"/><note type="editorial">Das Wortende ist auf den Abbildungen nicht mehr
+               zu erkennen; Cipolla 1883 las
+               <mentioned>multor</mentioned>(<mentioned>um</mentioned>), korrigierte (?) dies aber
+               in Cipolla 1907 zu <mentioned>multam</mentioned>.</note>
             <lb/><choice>
                <abbr>com</abbr>
                <expan>componat</expan>
@@ -519,15 +523,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             cuius seruus fuit ambo reuer<lb break="no"/>tantur . <anchor
                xml:id="turin-bnu-fragment-verso-3_2"/>
          </ab>
-         <ab corresp="BK.159_2_inscriptio" type="meta-text" xml:id="turin-bnu-fragment-verso-4"><seg
-               type="num">qII</seg><note type="editorial">Auf den Abbildungen ist die Zeichenfolge
-                  <mentioned>qII</mentioned> zu erkennen. Nach Cipolla 1883, S. 7 Anm. 3 stehen die
-               Buchstaben vermutlich über einer Rasur einer älteren Hand. Er vermutet, dass es sich
-               hier um ein verunglücktes Betonungszeichen (?) handelt und schlägt vor,
-                  <mentioned>VIII</mentioned> zu lesen (Cipolla 1883, S. 9). Die Angaben Cipollas
-               sind auf Basis der Abbildungen nicht zu verifizieren. Eventuell könnte dort auch
-                  <mentioned>CIII</mentioned> stehen, was jedoch ebenfalls keinen Sinn
-            macht.</note></ab>
+         <ab corresp="BK.159_2_inscriptio" type="meta-text" xml:id="turin-bnu-fragment-verso-4"><add
+               hand="X"><seg type="num"><gap unit="chars" quantity="1"/>II</seg></add><note
+               type="editorial"> Nach Cipolla 1883, S. 7 Anm. 3 stehen die drei Zeichen auf einer
+               Rasur. Er liest <mentioned>qII</mentioned> und schlägt für die offensichtlich
+               verunglückte Korrektur die Emendation zu <mentioned>VIII</mentioned> vor (Cipolla
+               1883, S. 9), was aber unwahrscheinlich ist. Eventuell ist das erste, nicht mehr
+               erkennbare Zeichen als Paragraphen- oder Kapitelzeichen zu verstehen.</note></ab>
          <ab corresp="BK.159_2" type="text" xml:id="turin-bnu-fragment-verso-5"><seg type="initial"
                >S</seg>imiliter concedere uolumus cunctis liberis <lb/>personis ut nullus iudex
             publicus seu ministri publ<unclear>ic</unclear><gap unit="chars" quantity="1"/>

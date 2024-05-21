@@ -134,8 +134,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <origPlace ref="http://d-nb.info/gnd/4042547-2 http://viaf.org/viaf/246519243">
                      Oberitalien (<placeName
                         ref="http://www.geonames.org/6541865/verona.html http://d-nb.info/gnd/4063110-2 http://viaf.org/viaf/142469996"
-                        >Verona</placeName>?)</origPlace> (Verona auch bei Bischoff)
-               </head>
+                        >Verona</placeName>?)</origPlace> (Verona auch bei Bischoff) </head>
                <msContents>
                   <summary>
                      <p>Großteils Palimpsest; Erstschrift foll. 1-50, 53-118, 139: Psalterium cum
@@ -194,7 +193,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                            mundanum</title> (a. 825), cc. 10 (fragmentarischer Beginn) - 14: <hi
                            rend="italic">Uidentur uobis ut quicumque liber - sicut lex habet</hi>
                         (danach Blatt angerissen); c. 14 nicht numeriert (MGH Capit. 1, Nr. 165, S.
-                        331 Z. 4-20; S. 329 falsche Inhaltsangabe). </p>
+                        331 Z. 4-20; S. 329 falsche Inhaltsangabe).</p>
                   </msItem>
                   <msItem n="5">
                      <p>
@@ -257,18 +256,18 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <origin>
                      <p>
                         <origDate notAfter="0900" notBefore="0851"> 9. Jh., 2. Hälfte</origDate>;
-                        <origPlace ref="http://d-nb.info/gnd/4042547-2 http://viaf.org/viaf/246519243">
-                           Oberitalien (<placeName ref="http://www.geonames.org/6541865/verona.html http://d-nb.info/gnd/4063110-2 http://viaf.org/viaf/142469996"
-                              >Verona</placeName>?)</origPlace> (Verona auch bei Bischoff).
-                     </p>
+                           <origPlace
+                           ref="http://d-nb.info/gnd/4042547-2 http://viaf.org/viaf/246519243">
+                           Oberitalien (<placeName
+                              ref="http://www.geonames.org/6541865/verona.html http://d-nb.info/gnd/4063110-2 http://viaf.org/viaf/142469996"
+                              >Verona</placeName>?)</origPlace> (Verona auch bei Bischoff). </p>
                   </origin>
                   <provenance>
                      <p>S. Zeno Maggiore (Verona) (1r, 14. Jh.: <hi rend="italic">Liber monasterii
                            sancti Zenonis maioris Verone</hi>); Theodor van Malsen, Utrecht (nach
                         Moschetti eventuell Theodorus Canterus) (1r, im 16. Jh. mit dicker Tinte
                         über den Besitzvermerk von S. Zeno geschrieben: <hi rend="italic">Liber hic
-                           est Theodori à Malsen Ultraiectini</hi>).
-                     </p>
+                           est Theodori à Malsen Ultraiectini</hi>). </p>
                   </provenance>
                   <acquisition/>
                </history>
@@ -323,7 +322,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      <listBibl type="cap">
                         <bibl corresp="#Schneider_H_1938">Schneider H 1938</bibl>
                         <bibl corresp="#Mordek_1995">Mordek 1995, S. 881-883</bibl>
-                        <bibl corresp="#Bischoff_2014">Bischoff 2014, S. 452-453, Nr. 6903-6904</bibl>
+                        <bibl corresp="#Bischoff_2014">Bischoff 2014, S. 452-453, Nr.
+                           6903-6904</bibl>
+                        <bibl corresp="#Garipzanov_2021"> Garipzanov 2021</bibl>
+                        <bibl corresp="#Pani_2022"> Pani 2022, S. 25, 28</bibl>
                         <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
                            der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
                               type="external" subtype="Bl" target="vatikan-bav-vat-lat-5359"/>
@@ -365,8 +367,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             kollationiert</change>
          <change who="BM" when="2019-05-22">Ergebnisse der Autopsie des Originals
             eingearbeitet</change>
-         <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift
-            nach Bischoff 1998/2004/2014 ergänzt</change>
+         <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift nach Bischoff
+            1998/2004/2014 ergänzt</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -546,11 +548,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <lb n="16"/>
 
          <ab type="meta-text" xml:id="vatikan-bav-vat-lat-5359-142v-2" corresp="BK.201_1_inscriptio"
-               ><seg type="initial">D</seg>e ęclęsiis emendandis <lb/>
+            next="#vatikan-bav-vat-lat-5359-142v-3_2"><seg type="initial">D</seg>e ęclęsiis
+            emendandis <lb/>
          </ab>
 
-         <ab type="text" xml:id="vatikan-bav-vat-lat-5359-142v-3" corresp="BK.201_inscriptio"
-            >Incipit <choice>
+         <ab type="text" xml:id="vatikan-bav-vat-lat-5359-142v-3"
+            corresp="BK.201_inscriptio BK.201_1_inscriptio"><milestone unit="span"
+               corresp="BK.201_inscriptio" spanTo="#vatikan-bav-vat-lat-5359-142v-3_1"/>Incipit <choice>
                <abbr>captl</abbr>
                <expan>capitula</expan>
             </choice> que <rs type="person"><choice>
@@ -575,11 +579,15 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <lb/> populo in <rs type="place">regno etalie</rs> consensis
                conserua<unclear>ri</unclear>
             <gap unit="chars" quantity="1"/><lb break="no"/>cipit<!-- Am Original geprüft; nichts mehr zu erkennen -->
-            <rs type="person"><choice>
+            <anchor xml:id="vatikan-bav-vat-lat-5359-142v-3_1"/><milestone unit="span"
+               xml:id="vatikan-bav-vat-lat-5359-142v-3_2" corresp="BK.201_1_inscriptio"
+               spanTo="#vatikan-bav-vat-lat-5359-142v-3_3" prev="#vatikan-bav-vat-lat-5359-142v-2"
+               /><rs type="person"><choice>
                   <abbr>dom</abbr>
                   <expan>domnus</expan>
                </choice>
-               <sic>lothariis</sic></rs> ; <cb n="143r"/>
+               <sic>lothariis</sic></rs> ; <anchor xml:id="vatikan-bav-vat-lat-5359-142v-3_3"/><cb
+               n="143r"/>
          </ab>
 
          <ab type="text" xml:id="vatikan-bav-vat-lat-5359-143r-1" corresp="BK.201_1"><seg

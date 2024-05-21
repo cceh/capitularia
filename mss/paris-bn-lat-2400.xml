@@ -6,9 +6,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <titleStmt>
             <title type="main" xml:lang="ger">Paris, Bibliothèque nationale de France, Lat.
                2400</title>
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Trump und
                Transkription von fol. 183r</title>
-            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+            <title type="sub" xml:lang="eng">Manuscript description according to Trump and
                transcription of fol 183r</title>
             <respStmt>
                <persName key="KU">
@@ -129,17 +129,39 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                </msIdentifier>
                <head>
                   <title type="main">Paris, Bibliothèque nationale de France, Lat. 2400</title>
-                  <origDate notAfter="1033" notBefore="1000">11. Jh., 1. Drittel</origDate>
-                  <origPlace>Saint-Cybard, Angoulême</origPlace>
+                  <origDate notAfter="1033" notBefore="1000">11. Jh., 1. Drittel</origDate>;
+                     <origPlace>Saint-Cybard, Angoulême</origPlace>
                </head>
                <msContents>
-                  <summary/>
+                  <summary>Diese Sammelhandschrift reichen Inhalts (u.a. die Collectio Herovalliana
+                     und der Liber pontificalis), die ab fol. 85 wohl von Ademar von Chabannes
+                     zwischen 1031 und 1034 geschrieben wurde, tradiert als unmittelbaren Anhang an
+                     die Collectio canonum Abbos von Fleury ein Kapitel des Capitulare
+                     ecclesiasticum Ludwigs des Frommen:</summary>
+                  <msItem n="1">
+                     <p>
+                        <locus>183r</locus>
+                        <title corresp="BK.138">Capitulare ecclesiasticum</title> (a. 818/819), c.
+                        10: <hi rend="italic">Canones caenomannenses tempore ludouici imperatoris.
+                           cap. XVI. De uno manso ad ecclesiae famulatum pertinente et obsequio
+                           eius. Sancitum est ut unicuique ecclesiae unus mansus - senioribus suis
+                           debitum seruitium impendant</hi> (MGH Capit. 1, Nr. 138, S. 277 Z.
+                        25-29). </p>
+                  </msItem>
                </msContents>
                <physDesc>
                   <objectDesc form="codex">
-                     <supportDesc/>
+                     <supportDesc material="parch">
+                        <support>Pergament</support>
+                        <extent>V + 200 foll. <dimensions type="leaf" unit="mm">
+                              <height>290</height>
+                              <width>190</width>
+                           </dimensions></extent>
+                        <collation> </collation>
+                        <condition/>
+                     </supportDesc>
                      <layoutDesc>
-                        <layout writtenLines="0"/>
+                        <!--  <layout writtenLines="0"/>-->
                         <layout columns="1"/>
                      </layoutDesc>
                   </objectDesc>
@@ -147,7 +169,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      <handNote/>
                   </handDesc>
                   <scriptDesc>
-                     <scriptNote/>
+                     <scriptNote>karolingische Minuskel</scriptNote>
                   </scriptDesc>
                   <decoDesc>
                      <p/>
@@ -160,20 +182,26 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                </physDesc>
                <history>
                   <origin>
-                     <origDate notAfter="1033" notBefore="1000">11. Jh., 1. Drittel</origDate>
-                     <origPlace>Saint-Cybard, Angoulême</origPlace>
+                     <origDate notAfter="1033" notBefore="1000">11. Jh., 1. Drittel</origDate>;
+                        <origPlace>Saint-Cybard, Angoulême</origPlace>
                   </origin>
-                  <provenance/>
+                  <provenance><p>Saint-Martial in Limoges; Alte Signaturen: LXV; Regius 4069<hi
+                           rend="super">3</hi></p></provenance>
                   <acquisition/>
                </history>
                <additional>
                   <surrogates/>
                   <listBibl>
                      <listBibl type="cap">
-                        <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
-                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
-                              type="external" subtype="Bl" target="paris-bn-lat-2400"/>
-                        </bibl>
+                        <bibl corresp="#Duchesne_1886-1955">Duchesne 1886-1955, 1 S.
+                           CLXXXII-CLXXXIV</bibl>
+                        <bibl>L. Delisle, Notice sur les manuscrits originaux d'Adémar de Chabannes,
+                           in: Notices et extraits des manuscrits de la Bibliothèque Nationale et
+                           autres bibliothèques 35, 1 (1896), S. 241-358, hier S. 296-301</bibl>
+                        <bibl corresp="#Mordek_1995">Mordek 1995, S. 1038-1039</bibl>
+                        <bibl><ref type="external"
+                              target="https://archivesetmanuscrits.bnf.fr/ark:/12148/cc60231z"
+                              >Beschreibung</ref> bei Gallica</bibl>
                      </listBibl>
                   </listBibl>
                </additional>
@@ -182,7 +210,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
       </fileDesc>
       <encodingDesc>
          <p>Transkriptionsvorlage: Die Transkription wurde auf Grundlage eines hochauflösenden
-            Farbdigitalisates erstellt. </p>
+            Farbdigitalisates erstellt.</p>
          <projectDesc>
             <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
                   target="http://capitularia.uni-koeln.de/project/about/"/>
@@ -201,10 +229,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          </editorialDecl>
       </encodingDesc>
       <revisionDesc>
-         <change who="DS" when="2016-03-01">Datei erstellt aus Mordek-XML</change>
-         <change who="BM" when="2016-10-06">Datei private veröffentlicht (BK 138)</change>
-         <change who="AO" when="2020-12-29">origDate und origPlace gemäß Überblicksliste
-            (Gesamtliste Handschriften) ergänzt.</change>
+         <change who="BM" when="2016-09-30">Datei erstellt</change>
+         <!--    <change who="AO" when="2020-12-29">origDate und origPlace gemäß Überblicksliste
+            (Gesamtliste Handschriften) ergänzt.</change>-->
+         <change who="BM" when="2022-11-14">Datei veröffentlicht (BK 138)</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -212,6 +240,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
    </facsimile>
    <text>
       <front>
+         <div type="content">
+            <list>
+               <item n="10">
+                  <ptr type="internal" target="#paris-bn-lat-2400-183r-2"/>Canones caenomannenses
+                  tempore ludouici imperatoris. XVI De uno manso...</item>
+            </list>
+         </div>
          <div type="mshist"/>
          <div type="scribe"/>
          <div type="letters">
@@ -233,6 +268,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <div type="other"/>
       </front>
       <body>
+
+         <gap reason="editorial"/>
 
          <milestone unit="capitulare" n="BK.138"/>
 

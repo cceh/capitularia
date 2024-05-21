@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
-schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="vatikan-bav-vat-lat-1339" xml:lang="de">
+schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="vatikan-bav-vat-lat-1339" xml:lang="de">
    <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main" xml:lang="ger">Vatikan, Biblioteca Apostolica Vaticana, Vat. Lat.
                1339 </title>
-            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek</title>
-            <title type="sub" xml:lang="eng">Manuscript description according to Mordek</title>
+            <title type="sub" xml:lang="ger">Beschreibung der Handschrift nach Mordek und
+               Transkription der foll. 108rb, 142vb-143ra</title>
+            <title type="sub" xml:lang="eng">Manuscript description according to Mordek and
+               transcription of fols 108rb, 142vb-143ra</title>
             <respStmt>
                <persName key="KU">
                   <forename>Karl</forename>
@@ -16,9 +19,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                <resp xml:lang="eng">Project lead</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="DT">
+                  <forename>Dominik</forename>
+                  <surname>Trump</surname>
                </persName>
                <resp xml:lang="ger">Transkription, Beschreibung und Auszeichnung nach TEI P5
                   Standard</resp>
@@ -26,17 +29,17 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   TEI P5 standard</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
                </persName>
                <resp xml:lang="ger">Erste Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">First revision of transcription and additions</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="BM">
+                  <forename>Britta</forename>
+                  <surname>Mischke</surname>
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
@@ -128,64 +131,72 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                <head>
                   <title type="main">Vatikan, Biblioteca Apostolica Vaticana, Vat. Lat. 1339 </title>
                   <origDate notAfter="1060" notBefore="1041"> 11. Jh., etwa Mitte</origDate>
-                  <origPlace ref="http://www.geonames.org/3169071/roma-capitale.html http://www.geonames.org/3165048/umbria.html http://d-nb.info/gnd/4050471-2 http://d-nb.info/gnd/4061581-9 http://viaf.org/viaf/273679855 http://viaf.org/viaf/239891104"> umbro-römisch (<placeName ref="http://www.geonames.org/6539972/narni.html http://d-nb.info/gnd/4288080-4 http://viaf.org/viaf/293790250">Narni</placeName>?)</origPlace>
+                  <origPlace
+                     ref="http://www.geonames.org/3169071/roma-capitale.html http://www.geonames.org/3165048/umbria.html http://d-nb.info/gnd/4050471-2 http://d-nb.info/gnd/4061581-9 http://viaf.org/viaf/273679855 http://viaf.org/viaf/239891104"
+                     > umbro-römisch (<placeName
+                        ref="http://www.geonames.org/6539972/narni.html http://d-nb.info/gnd/4288080-4 http://viaf.org/viaf/293790250"
+                        >Narni</placeName>?)</origPlace>
                </head>
                <msContents>
                   <summary>
                      <p>Die in 5 Büchern angelegte Kirchenrechtssammlung (CC Cont. med. 6, Bücher
-                        1-3, ed. <hi rend="smallcaps">M. Fornasari</hi>) mit ihrem hier
-                        herangezogenen Vertreter Cod. Vatikan Vat. Lat. 1339 (weitere
-                        Überlieferungen: Montecassino, Biblioteca dell'Abbazia, 125 [11. Jh.: um
-                        1023] und Rom, Biblioteca Vallicelliana, B. 11 [11. Jh.: vor 1087]) tradiert
-                        zahlreiche Einzelkapitel karolingischer Herrscher. Die Analyse dieser Texte
-                        gehört in eine noch ausstehende Studie über die Kapitulariennachwirkung im
-                        kanonistischen Bereich. Die These von <hi rend="smallcaps">C. G. Mor</hi>,
-                        Diskussionsbeitrag in: Settimane di studio del Centro italiano di studi
-                        sull’alto medioevo 4 (Spoleto 1957) S. 520, die fränkischen Kapitularien
-                        leiteten sich sehr wahrscheinlich vom Codex
-                        <ref type="internal" subtype="mss" target="cava-dei-tirreni-bdb-4">Cavensis</ref> her, dürfte aber schon
-                        daran scheitern, daß der Cavensis nur einen Teil dieser Texte tradiert. Auch
-                        Ansegis scheidet als Vorlage aus. Zu verweisen ist aber auf die Nähe zu
-                        Texten in den Codd. <ref type="internal" subtype="mss" target="st-paul-abs-4-1">St. Paul im Lavanttal 4/1</ref>,
-                        <ref type="internal" subtype="mss" target="paris-bn-lat-4613">Paris Lat. 4613</ref> und
-                        <ref type="internal" subtype="mss" target="wolfenbuettel-hab-blankenb-130">Wolfenbüttel Blankenb. 130</ref>.</p>
+                        1-3, ed. M. Fornasari) mit ihrem hier herangezogenen Vertreter Cod. Vatikan
+                        Vat. Lat. 1339 (weitere Überlieferungen: Montecassino, Biblioteca
+                        dell'Abbazia, 125 [11. Jh.: um 1023] und Rom, Biblioteca Vallicelliana, B.
+                        11 [11. Jh.: vor 1087]) tradiert zahlreiche Einzelkapitel karolingischer
+                        Herrscher. Die Analyse dieser Texte gehört in eine noch ausstehende Studie
+                        über die Kapitulariennachwirkung im kanonistischen Bereich. Die These von C.
+                        G. Mor, Diskussionsbeitrag in: Settimane di studio del Centro italiano di
+                        studi sull’alto medioevo 4 (Spoleto 1957) S. 520, die fränkischen
+                        Kapitularien leiteten sich sehr wahrscheinlich vom Codex <ref
+                           type="internal" subtype="mss" target="cava-dei-tirreni-bdb-4"
+                           >Cavensis</ref> her, dürfte aber schon daran scheitern, daß der Cavensis
+                        nur einen Teil dieser Texte tradiert. Auch Ansegis scheidet als Vorlage aus.
+                        Zu verweisen ist aber auf die Nähe zu Texten in den Codd. <ref
+                           type="internal" subtype="mss" target="st-paul-abs-4-1">St. Paul im
+                           Lavanttal 4/1</ref>, <ref type="internal" subtype="mss"
+                           target="paris-bn-lat-4613">Paris Lat. 4613</ref> und <ref type="internal"
+                           subtype="mss" target="wolfenbuettel-hab-blankenb-130">Wolfenbüttel
+                           Blankenb. 130</ref>.</p>
                      <p>Auf die in der 5-Bücher-Sammlung faßbare Teilüberlieferung des Capitulare
-                        missorum generale (a. 802) wurde bereits oben bei <ref target="#P5">Cod.
-                           Paris Lat. 4613</ref> verwiesen. Der Nachtrag in der
-                        Burchard-von-Worms-Hs. Vatikan Vat. Lat. 1355 (11./12. Jh.), fol. 311v mit c. 3 des Capitulare Papiense Lothars I. (a. 832)
-                        stammt gleichfalls aus der Collectio V librorum (II, 88; anschließend noch
-                        II, 87). Auch die „Frammenti di capitolari di età carolingia relativi alle
-                        decime“, notiert von <hi rend="smallcaps">V. Jemolo</hi>, in: Censimento dei
-                        codici dei secoli X-XII (Studi medievali, Serie terza, 11, 1970) S. 1033 zu
-                        Cod. Rom, Biblioteca Vallicelliana, B. 63 (12. Jh.; Kloster Sant’Eutizio
-                        bei Norcia, Mittelitalien), fol. 218r-v sind der
-                        5-Bücher-Sammlung entlehnt (III, 67-69, 1, III, 73, III, 244, 2); der Index
-                        der Hs. weist sie vorn unter der Nr. 14 als „Capitularia Lotharii et Karoli
-                        Regum de solvendis decimis“ aus (bei Teil II = foll. 193-219 des
-                        Vallicellianus B. 63 handelt es sich um ein Palimpsest, dessen ältere Schrift
-                        nicht mehr zu lesen ist). Eine andere Nachwirkung fassen wir etwa in der 2.
-                        Sammlung der Hs.<ref type="internal" subtype="mss" target="vatikan-bav-vat-lat-4977">Vatikan Vat. Lat. 4977</ref>
-                        - wohl nicht 4979, wie MGH Capit. 2,
-                        S. 106 vermerkt nach „LL. IV, p. 205, n. 2, ex schedis Iohannis Merkel“. Zu
-                        weiteren Derivaten vgl. Reynolds, The South-Italian Canon Law <hi rend="italic">Collection in Five Books,</hi> S. 286 ff.</p>
+                        missorum generale (a. 802) wurde bereits oben bei Cod. Paris Lat. 4613
+                        verwiesen. Der Nachtrag in der Burchard-von-Worms-Hs. Vatikan Vat. Lat. 1355
+                        (11./12. Jh.), fol. 311v mit c. 3 des Capitulare Papiense Lothars I. (a.
+                        832) stammt gleichfalls aus der Collectio V librorum (II, 88; anschließend
+                        noch II, 87). Auch die „Frammenti di capitolari di età carolingia relativi
+                        alle decime“, notiert von V. Jemolo, in: Censimento dei codici dei secoli
+                        X-XII (Studi medievali, Serie terza, 11, 1970) S. 1033 zu Cod. Rom,
+                        Biblioteca Vallicelliana, B. 63 (12. Jh.; Kloster Sant’Eutizio bei Norcia,
+                        Mittelitalien), fol. 218r-v sind der 5-Bücher-Sammlung entlehnt (III, 67-69,
+                        1, III, 73, III, 244, 2); der Index der Hs. weist sie vorn unter der Nr. 14
+                        als „Capitularia Lotharii et Karoli Regum de solvendis decimis“ aus (bei
+                        Teil II = foll. 193-219 des Vallicellianus B. 63 handelt es sich um ein
+                        Palimpsest, dessen ältere Schrift nicht mehr zu lesen ist). Eine andere
+                        Nachwirkung fassen wir etwa in der 2. Sammlung der Hs. <ref type="internal"
+                           subtype="mss" target="vatikan-bav-vat-lat-4977">Vatikan Vat. Lat.
+                           4977</ref> - wohl nicht 4979, wie MGH Capit. 2, S. 106 vermerkt nach „LL.
+                        IV, p. 205, n. 2, ex schedis Iohannis Merkel“. Zu weiteren Derivaten vgl.
+                        Reynolds, The South-Italian Canon Law <hi rend="italic">Collection in Five
+                           Books</hi>, S. 286 ff.</p>
                   </summary>
                   <msItem n="1">
                      <p>Zu erwähnen bleibt noch, da Unikat, folgendes von der 5-Bücher-Sammlung Wido
                         zugeschriebene Kapitel:<lb/>
                         <locus>142vb-143ra</locus>
-                        <title corresp="BK.223">Widonis regis (?) capitulum singillatim traditum</title> (a.
-                        889/891), hier das zweite Unterkapitel von Buch 3, c. 195 der
-                        5-Bücher-Sammlung: <hi rend="italic">UUIDO REX. DECLERICIS QUI ARMA
-                           baiulant</hi> (über <hi rend="italic">u</hi>: <hi rend="italic">o</hi>) - <hi rend="italic">filii eorum</hi> (MGH Capit.
-                        2, Nr. 223, S. 106 Z. 32-35 [die Z. 32 vor <hi rend="italic">UUIDO REX</hi>
-                        gedruckte Rubrik bezieht sich auf alle drei Unterkapitel von c. <hi rend="italic">CXCV</hi>]; CC Cont. med. 6, S. 436
-                        Z. 6-10 [Kapitelzählung 249 statt <hi rend="italic">CXCV</hi>; die
-                        verdruckte Quellenangabe - Regino I, 196 statt richtig 169 - gilt für das
-                        erste, nicht für das zweite Unterkapitel]); vgl. zur Echtheitsfrage <hi rend="smallcaps">P. Fournier</hi>, Un groupe de recueils canoniques italiens
-                        des Xe et XIe siècles, in: Mémoires de l'Institut nationale de France.
-                        Académie des inscriptions et belles-lettres 40 (1916) S. 184 mit Anm. 5,
-                        wiederabgedruckt in: <hi rend="smallcaps">ders., </hi>Mélanges 2, S. 302 mit
-                        Anm. 5. </p>
+                        <title corresp="BK.223">Widonis regis (?) capitulum singillatim
+                           traditum</title> (a. 889/891), hier das zweite Unterkapitel von Buch 3,
+                        c. 195 der 5-Bücher-Sammlung: <hi rend="italic">UUIDO REX. DE CLERICIS QUI
+                           ARMA baiulant</hi> (über <hi rend="italic">u</hi>: <hi rend="italic"
+                           >o</hi>) - <hi rend="italic">filii eorum</hi> (MGH Capit. 2, Nr. 223, S.
+                        106 Z. 32-35 [die Z. 32 vor <hi rend="italic">UUIDO REX</hi> gedruckte
+                        Rubrik bezieht sich auf alle drei Unterkapitel von c. <hi rend="italic"
+                           >CXCV</hi>]; CC Cont. med. 6, S. 436 Z. 6-10 [Kapitelzählung 249 statt
+                           <hi rend="italic">CXCV</hi>; die verdruckte Quellenangabe - Regino I, 196
+                        statt richtig 169 - gilt für das erste, nicht für das zweite Unterkapitel]);
+                        vgl. zur Echtheitsfrage P. Fournier, Un groupe de recueils canoniques
+                        italiens des Xe et XIe siècles, in: Mémoires de l'Institut nationale de
+                        France. Académie des inscriptions et belles-lettres 40 (1916) S. 184 mit
+                        Anm. 5, wiederabgedruckt in: ders., Mélanges 2, S. 302 mit Anm. 5. </p>
                   </msItem>
                </msContents>
                <physDesc>
@@ -195,7 +206,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                            <material>Pergament</material>
                         </support>
                         <extent>317 foll.; Lage 38 wohl 1 Blatt verlorengegangen; der hier
-                           vorgestellte Text steht auf der letzten Seite des Quaternio <hi rend="italic">XVI</hi> und auf der ersten des Quaternio <hi rend="italic">XVII</hi><dimensions type="leaf" unit="mm">
+                           vorgestellte Text steht auf der letzten Seite des Quaternio <hi
+                              rend="italic">XVI</hi> und auf der ersten des Quaternio <hi
+                              rend="italic">XVII</hi>
+                           <dimensions type="leaf" unit="mm">
                               <height>400</height>
                               <width>280</width>
                            </dimensions>
@@ -205,12 +219,14 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                            </dimensions>
                         </extent>
                         <collation><formula>ab Sammlungsbeginn (fol. 15) Quaternionen</formula>
-                           <catchwords>am Ende mit Kustoden von <hi rend="italic">I</hi> (22<hi rend="super">v</hi>) bis <hi rend="italic">XXXVII</hi> (310<hi rend="super">v</hi>)</catchwords>
+                           <catchwords>am Ende mit Kustoden von <hi rend="italic">I</hi> (22<hi
+                                 rend="super">v</hi>) bis <hi rend="italic">XXXVII</hi> (310<hi
+                                 rend="super">v</hi>)</catchwords>
                         </collation>
                      </supportDesc>
                      <layoutDesc>
-                        <layout writtenLines="34">34 Zeilen</layout>
-                        <layout columns="2">zwei Spalten</layout>
+                        <layout writtenLines="34">34</layout>
+                        <layout columns="2">2</layout>
                      </layoutDesc>
                   </objectDesc>
                   <handDesc>
@@ -239,14 +255,19 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <origin>
                      <p>
                         <origDate notAfter="1060" notBefore="1041"> 11. Jh., etwa
-                           Mitte</origDate>;<origPlace ref="http://www.geonames.org/3169071/roma-capitale.html http://www.geonames.org/3165048/umbria.html http://d-nb.info/gnd/4050471-2 http://d-nb.info/gnd/4061581-9 http://viaf.org/viaf/273679855 http://viaf.org/viaf/239891104"> umbro-römisch (<placeName ref="http://www.geonames.org/6539972/narni.html http://d-nb.info/gnd/4288080-4 http://viaf.org/viaf/293790250">Narni</placeName>?)</origPlace>.</p>
+                           Mitte</origDate>;<origPlace
+                           ref="http://www.geonames.org/3169071/roma-capitale.html http://www.geonames.org/3165048/umbria.html http://d-nb.info/gnd/4050471-2 http://d-nb.info/gnd/4061581-9 http://viaf.org/viaf/273679855 http://viaf.org/viaf/239891104"
+                           > umbro-römisch (<placeName
+                              ref="http://www.geonames.org/6539972/narni.html http://d-nb.info/gnd/4288080-4 http://viaf.org/viaf/293790250"
+                              >Narni</placeName>?)</origPlace></p>
                   </origin>
                   <provenance>
-                     <p>Narni, S. Maria Maggiore (ovales Schema einer Siegelumschrift fol. 205v: <hi rend="italic">SIGILLVS ARCHIPR. SCE. MARIE MA.
-                           NAR</hi>.; Besitzvermerk fol. 315r: <hi rend="italic">Iste liber est conventus fratrum praedicatorum de
-                           Narnia</hi>), vielleicht auch aus dem nahen Borgaria (Besitzvermerk fol.
-                           lr: <hi rend="italic">Iste liber est fratmm
-                           praedicatorum de V&lt;ulgari?&gt;a</hi> [so Supino Martini]).</p>
+                     <p>Narni, S. Maria Maggiore (ovales Schema einer Siegelumschrift fol. 205v: <hi
+                           rend="italic">SIGILLVS ARCHIPR. SCE. MARIE MA. NAR.</hi>; Besitzvermerk
+                        fol. 315r: <hi rend="italic">Iste liber est conventus fratrum praedicatorum
+                           de Narnia</hi>), vielleicht auch aus dem nahen Borgaria (Besitzvermerk
+                        fol. lr: <hi rend="italic">Iste liber est fratrum praedicatorum de
+                           V&lt;ulgari?&gt;a</hi> [so Supino Martini]).</p>
                   </provenance>
                   <acquisition/>
                </history>
@@ -255,34 +276,34 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                   <listBibl>
                      <listBibl type="lit">
                         <bibl corresp="#Bluhme_1868a">Bluhme 1868a, S. 205 Anm. 2</bibl>
-                        <bibl corresp="#Boretius_1897">Boretius 1897, S. XXVII.</bibl>
+                        <bibl corresp="#Boretius_1897">Boretius 1897, S. XXVII</bibl>
                         <bibl corresp="#Nürnberger_1899">Nürnberger 1899, S. 53</bibl>
-                        <bibl>B. Degenhart, Autonome Zeichnungen bei
-                           mittelalterlichen Künstlern, in: Münchner Jb. der Bildenden Kunst, 3.
-                           Folge, Bd. 1 (1950) S. 108 u. ö.</bibl>
-                        <bibl>M. Fornasari, Un manoscritto e una collezione
-                           canonica del secolo XI provenienti da Farfa, in: Benedictina 10 (1956) S.
-                           199-210</bibl>
-                        <bibl>E. B. Garrison, Studies in the History of
-                           Mediaeval Italian Painting 4 (Florenz 1960-1962) S. 235-241</bibl>
-                        <bibl>P. Salmon, Les manuscrits liturgiques latins de
-                           la Bibliothèque Vaticane 2 (Studi e Testi 253, Vatikan 1969) S. 149 u. Bd. 3
-                           (Studi e Testi 260, Vatikan 1970) S. 83</bibl>
-                        <bibl> H. Schadt, Die Darstellungen der Arbores
-                           Consanguinitatis und der Arbores Affinitatis. Bildschemata in
-                           juristischen Handschriften (Tübingen 1982) S. 90ff. u.ö.</bibl>
+                        <bibl>B. Degenhart, Autonome Zeichnungen bei mittelalterlichen Künstlern,
+                           in: Münchner Jb. der Bildenden Kunst, 3. Folge, Bd. 1 (1950) S. 108 u.
+                           ö.</bibl>
+                        <bibl>M. Fornasari, Un manoscritto e una collezione canonica del secolo XI
+                           provenienti da Farfa, in: Benedictina 10 (1956) S. 199-210</bibl>
+                        <bibl>E. B. Garrison, Studies in the History of Mediaeval Italian Painting 4
+                           (Florenz 1960-1962) S. 235-241</bibl>
+                        <bibl>P. Salmon, Les manuscrits liturgiques latins de la Bibliothèque
+                           Vaticane 2 (Studi e Testi 253, Vatikan 1969) S. 149 u. Bd. 3 (Studi e
+                           Testi 260, Vatikan 1970) S. 83</bibl>
+                        <bibl> H. Schadt, Die Darstellungen der Arbores Consanguinitatis und der
+                           Arbores Affinitatis. Bildschemata in juristischen Handschriften (Tübingen
+                           1982) S. 90ff. u. ö.</bibl>
                         <bibl corresp="#Buonocore_1986">Buonocore 1986, 2, S. 1027-1028</bibl>
-                        <bibl corresp="#Supino_Martini_1987">Supino Martini 1987, S. 226-231 u.ö.
+                        <bibl corresp="#Supino_Martini_1987">Supino Martini 1987, S. 226-231 u. ö.
                            (Literatur)</bibl>
                         <bibl corresp="#Reynolds_R_1988">Reynolds R 1988, S. 79, 87</bibl>
-                        <bibl>L. Schmugge, The canonistic tradition of Leo
-                           IX's ‘Relatum est' (JL 4269), in: P. Linehan
-                           (Ed.), Proceedings of the Seventh International Congress of Medieval
-                           Canon Law, Cambridge, 23-27 July 1984 (Monumenta iuris canonici. Series
-                           C: Subsidia 8, Città del Vaticano 1988) S. 92</bibl>
-                        <bibl>R. E. Reynolds, The South-Italian Canon Law <hi rend="italic">Collection in Five Books</hi> and Its Derivatives: New
-                           Evidence on Its Origins, Diffusion, and Use, in: Mediaeval Studies 52
-                           (1990) S. 279-283 u. ö. (auch zu den anderen Überlieferungen der 5-
+                        <bibl>L. Schmugge, The canonistic tradition of Leo IX's ‘Relatum est' (JL
+                           4269), in: P. Linehan (Ed.), Proceedings of the Seventh International
+                           Congress of Medieval Canon Law, Cambridge, 23-27 July 1984 (Monumenta
+                           iuris canonici. Series C: Subsidia 8, Città del Vaticano 1988) S.
+                           92</bibl>
+                        <bibl>R. E. Reynolds, The South-Italian Canon Law <hi rend="italic"
+                              >Collection in Five Books</hi> and Its Derivatives: New Evidence on
+                           Its Origins, Diffusion, and Use, in: Mediaeval Studies 52 (1990) S.
+                           279-283 u. ö. (auch zu den anderen Überlieferungen der 5-
                            Bücher-Sammlung; Literatur)</bibl>
                         <bibl corresp="#Ceresa_1991">Ceresa 1991, S. 453-454</bibl>
                      </listBibl>
@@ -290,28 +311,27 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
                         <bibl>Inventarium librorum latinorum Mss. Bib. Vat. 3 (handschriftlich in
                            der Biblioteca Apostolica Vaticana)</bibl>
                         <bibl>A Catalogue of Canon and Roman Law Manuscripts in the Vatican Library
-                           1. Codices Vaticani latini 541-2299, hg. von St. Kuttner - R. Elze (Studi e Testi 322,
-                           Vatikan 1986) S. 71-74</bibl>
+                           1. Codices Vaticani latini 541-2299, hg. von St. Kuttner - R. Elze (Studi
+                           e Testi 322, Vatikan 1986) S. 71-74</bibl>
                      </listBibl>
                      <listBibl type="abb">
-                        <bibl>
-                           <hi rend="smallcaps">Degenhart,</hi> Autonome Zeichnungen, S. 109, Abb.
-                           39 (fol. 9v)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Garrison,</hi> Studies, Fig. 186 (fol. 7r), 187-190
-                           (foll. 8v, 13v, 14v, Ausschnitte)</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Schadt,</hi> Die Darstellungen der Arbores
-                           Consanguinitatis, Abb. 34 (fol. 303v)</bibl>
+                        <bibl> Degenhart, Autonome Zeichnungen, S. 109, Abb. 39 (fol. 9v)</bibl>
+                        <bibl> Garrison, Studies, Fig. 186 (fol. 7r), 187-190 (foll. 8v, 13v, 14v,
+                           Ausschnitte)</bibl>
+                        <bibl> Schadt, Die Darstellungen der Arbores Consanguinitatis, Abb. 34 (fol.
+                           303v)</bibl>
                      </listBibl>
                      <listBibl type="cap">
                         <bibl corresp="#Patetta_1967d">Patetta 1967d, passim</bibl>
-                        <bibl corresp="#Mordek_1995">Mordek 1995 S. 855-857</bibl>
+                        <bibl corresp="#Mordek_1995">Mordek 1995, S. 855-857</bibl>
                         <bibl corresp="#Koal_1999">Koal 1999</bibl>
+                        <bibl corresp="#Koal_2001">Koal 2001, S. 67-80, 86-88, 220-225</bibl>
                         <bibl corresp="#Gyug_2004">Gyug 2004</bibl>
-                        <bibl corresp="#Trivellone_2009">Trivellone 2009, S. 106-141, mit Abb. 33-40 auf S. 107-114 (fol. 7r-10r, 14v)</bibl>
+                        <bibl corresp="#Trivellone_2009">Trivellone 2009, S. 106-141, mit Abb. 33-40
+                           auf S. 107-114 (fol. 7r-10r, 14v)</bibl>
                         <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
-                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012. <ref subtype="Bl" target="vatikan-bav-vat-lat-1339" type="external"/>
+                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
+                              subtype="Bl" target="vatikan-bav-vat-lat-1339" type="external"/>
                         </bibl>
                      </listBibl>
                   </listBibl>
@@ -320,11 +340,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage:</p>
+         <p>Transkriptionsvorlage: Gutes Farbdigitalisat der Vaticana.</p>
          <projectDesc>
-            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
-            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr target="http://capitularia.uni-koeln.de/project/about/"/>
+            <p xml:lang="eng">Capitularia. Edition of the Frankish capitularies: <ptr
+                  target="http://capitularia.uni-koeln.de/project/about/"/>
             </p>
          </projectDesc>
          <editorialDecl>
@@ -338,25 +360,88 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?><TEI xmlns="http://www.tei-
       </encodingDesc>
       <revisionDesc>
          <change when="2016-03-01" who="DS">Datei erstellt aus Mordek-XML</change>
-         <change when="2016" who="XXX"/>
+         <change when="2022-11-14" who="DT">Datei veröffentlicht (BK 223)</change>
       </revisionDesc>
    </teiHeader>
    <facsimile>
-      <graphic url="https://digi.vatlib.it/mss/detail/Vat.lat.1339"/>
+      <graphic url="https://digi.vatlib.it/view/MSS_Vat.lat.1339"/>
    </facsimile>
    <text>
       <front>
+         <div type="content">
+            <list>
+               <item n="10">
+                  <ptr type="internal" target="#vatikan-bav-vat-lat-1339-108rb-23"/>INCIPIT TEXTUS
+                  LIBRI TERTII... <list>
+                     <item n="20">
+                        <ptr type="internal" target="#vatikan-bav-vat-lat-1339-142vb-10"
+                        />CXCV</item>
+                     <item n="30">
+                        <ptr type="internal" target="#vatikan-bav-vat-lat-1339-142vb-13"/>UUIDO
+                        REX</item>
+                  </list></item>
+            </list>
+         </div>
          <div type="mshist"/>
-         <div type="scribe"/>
+         <div type="scribe">
+            <p>Der Schreiber kopierte den Text in einer gut lesbaren Minuskel (Romanesca).</p>
+         </div>
          <div type="letters"/>
          <div type="abbreviations"/>
          <div type="punctuation"/>
-         <div type="structure"/>
+         <div type="structure">
+            <p>Das Kapitel Widos (BK 223) ist Teil des dritten Buches der kanonistischen
+               5-Bücher-Sammlung. Es erscheint als Unterkapitel von c. <mentioned>CXCV</mentioned>
+               unter der in roter Tinte gestalteten Überschrift <mentioned>UUIDO REX</mentioned> und
+               wird mit einer D-Initiale eingeleitet.</p>
+         </div>
          <div type="annotations"/>
          <div type="other"/>
       </front>
       <body>
-         <ab type="text"/>
+
+         <cb n="108rb"/>
+         <lb n="24"/>
+
+         <ab type="meta-text" xml:id="vatikan-bav-vat-lat-1339-108rb-23"><seg type="initial"
+               rend="coloured">I</seg><hi rend="coloured">NCIPIT TEXTUS LIBRI TERTII * </hi>
+            <lb/> DE BAPTISMO * ET CHRISMATE * <lb/>
+            <hi rend="coloured">ATQUE DE DIE DOMINICO * AC FESTIUITATIBUS SANCTORUM * </hi>
+            <lb/>
+            <seg type="initial">I</seg>NPRIMIS * UT EPISCOPUS PER DIOCESES SUAS <lb/>
+            <hi rend="coloured">AMBULET * <seg type="initial">P</seg>RIMUM DISCUTIAT CLERICOS</hi>
+            <lb/> QUOMODO BAPTISMI ORDINEM TENEANT * <lb/>
+            <hi rend="coloured"><seg type="initial">E</seg>X CONCILIO <rs type="place"
+                  >BRACCARENSI</rs></hi> * </ab>
+
+         <gap reason="editorial"/>
+         <cb n="142vb"/>
+         <lb n="23"/>
+
+         <milestone unit="capitulare" n="BK.223"/>
+
+         <ab type="meta-text" xml:id="vatikan-bav-vat-lat-1339-142vb-10">
+            <seg type="num" n="195">CXCV</seg> . </ab>
+
+         <lb n="30"/>
+
+         <ab type="meta-text" xml:id="vatikan-bav-vat-lat-1339-142vb-13" rend="coloured"
+            corresp="BK.223_inscriptio">
+            <rs type="person">UUIDO</rs> REX * </ab>
+
+         <ab type="text" xml:id="vatikan-bav-vat-lat-1339-142vb-14" corresp="BK.223" rend="glossa">
+            <seg type="initial">D</seg>E CLERICIS QUI ARMA <lb/> bai<subst>
+               <del>u</del>
+               <add>o</add>
+            </subst>lant et in suis propriis re<lb break="no"/>sident<note type="editorial">Über dem
+               Wort die Glosse: <mentioned>id est habitant</mentioned>.</note> . ad ęcclesiam seu ad
+                  <sic>epis<lb break="no"/>copium</sic> non militant ! negotia <lb/> sęcularia agunt
+            . in lege uiuant . <cb n="143ra"/> sicut et cęteri <rs>l<subst>
+                  <del>a</del>
+                  <add>o</add>
+               </subst>ngobardi</rs> . <lb/> tam ipsi quam et filii eorum . <lb/>
+         </ab>
+
       </body>
    </text>
 </TEI>

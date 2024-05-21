@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia-msDesc-Transcription.rnc" type="application/relax-ng-compact-syntax"?><?xml-model href="http://capitularia.uni-koeln.de/cap/publ/schemata/capitularia.sch" type="application/xml"
 schematypens="http://purl.oclc.org/dsdl/schematron"?>
-
-<!-- ACHTUNG!!! Kopie der Datei ist in Arbeit. -->
-
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="de" xml:id="paris-bn-lat-4788">
    <teiHeader>
       <fileDesc>
@@ -40,9 +37,9 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <resp xml:lang="eng">First revision of transcription and additions</resp>
             </respStmt>
             <respStmt>
-               <persName key="NN">
-                  <forename>NN</forename>
-                  <surname>NN</surname>
+               <persName key="SK">
+                  <forename>Sören</forename>
+                  <surname>Kaschke</surname>
                </persName>
                <resp xml:lang="ger">Zweite Überprüfung der Transkription und Ergänzungen</resp>
                <resp xml:lang="eng">Second revision of transcription and additions</resp>
@@ -164,7 +161,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      der Text auf den heute verlorenen Blättern des Cod. Paris Lat. 4788 gestanden
                      hat, eine m. E. wenig wahrscheinliche Möglichkeit, die hier aber wenigstens
                      kurz angedeutet sei. Zum gleichfalls verschollenen Codex Laudunensis Sirmonds
-                     siehe unten bei Cod. Vatikan Vat. Lat. 4982. </summary>
+                     siehe bei Cod. <ref type="internal" subtype="mss"
+                        target="vatikan-bav-vat-lat-4982">Vatikan Vat. Lat. 4982</ref> . </summary>
                   <msItem n="1">
                      <p>
                         <locus>1r-62v</locus> Lex Salica (Karolina emendata), Titelverzeichnis und
@@ -197,10 +195,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                            rend="italic">HEC CAPITVLA PROPRIE AD E&lt;POS.&gt; VEL AD ORDINES
                            QVOSQVE ECCLESIASTICOS PERTINENTIA QUE NON SOLVM HI OBSERUARE SED ETIAM
                            SIBI SVBIECTIS &lt;VEL&gt; COMMISSIS FACIENDA PERDOCERE DEBENT cap. I.
-                           Quia iuxta sanctorum patrum traditionem</hi> - <hi rend="italic">hic
-                           inserenda sunt </hi>(MGH Capit. 1, Nr. 138, S. 275 Z. 34 - S. 280 Z. 3);
-                        cc. 18 und 19 unter <hi rend="italic">XVIII</hi> subsumiert, im folgenden
-                        Zählung um eins zurück. </p>
+                           Quia iuxta sanctorum patrum traditionem - hic inserenda sunt</hi> (MGH
+                        Capit. 1, Nr. 138, S. 275 Z. 34 - S. 280 Z. 3); cc. 18 und 19 unter <hi
+                           rend="italic">XVIII</hi> subsumiert, im folgenden Zählung um eins zurück.
+                     </p>
                   </msItem>
                   <msItem n="5">
                      <p>
@@ -208,24 +206,24 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         <hi rend="italic">II-XI</hi> (c. 1 nicht numeriert) - <title
                            corresp="BK.139">Capitula legibus addenda</title> (a. 818/819),
                         Inskription, cc. 1-11: <hi rend="italic">INCIP. CAP. QUȨ LEGIBUS ADDENDA
-                           SUNT - FACERE DEBENT. DE HONORE ECCLESIARUM. Si quis autem ex leui
-                           causa</hi> - <hi rend="italic">faciamus peruenire</hi> (MGH Capit. 1, Nr.
-                        139, S. 281 Z. 1 - S. 283 Z. 38). </p>
+                           SUNT - FACERE DEBENT. DE HONORE ECCLESIARUM. Si quis autem ex leui causa
+                           - faciamus peruenire</hi> (MGH Capit. 1, Nr. 139, S. 281 Z. 1 - S. 283 Z.
+                        38). </p>
                   </msItem>
                   <msItem n="6">
                      <p>
                         <locus>91v-97v</locus>
                         <title corresp="BK.141">Capitulare missorum</title> (a. 818/819): <hi
-                           rend="italic">HEC CPL. PRAECIPUȨ AD LEGATIONEM MISORUM NOSTRORUM</hi>-
-                           <hi rend="italic">AGE</hi> (!) <hi rend="italic">DEBEANT. Legatio
-                           missorum nostrorum hȩc est primo ut sicut - ad caballos mod II</hi> (MGH
-                        Capit. 1, Nr. 141, S. 289 Z. 1 - S. 291 Z. 37). </p>
+                           rend="italic">HEC CPL. PRAECIPUȨ AD LEGATIONEM MISORUM NOSTRORUM -
+                           AGE</hi> (!) <hi rend="italic">DEBEANT. Legatio missorum nostrorum hȩc
+                           est primo ut sicut - ad caballos mod II</hi> (MGH Capit. 1, Nr. 141, S.
+                        289 Z. 1 - S. 291 Z. 37). </p>
                   </msItem>
                   <msItem n="7">
                      <p>
                         <locus>97v-101v</locus>
                         <hi rend="italic">XIII-XXII -</hi>
-                        <title corresp="BK.139">Capitula legibus addenda</title> (a. 818/819),cc.
+                        <title corresp="BK.139">Capitula legibus addenda</title> (a. 818/819), cc.
                         12-21, mit Rubriken: <hi rend="italic">DE MANIRE. Si quis de statu suo - eis
                            conplacuerit</hi> (MGH Capit. 1, Nr. 139, S. 283 Z. 39 - S. 285 Z. 23;
                         von Boretius übersehen). </p>
@@ -243,23 +241,61 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <msItem n="9">
                      <p>
                         <locus>104v-113v</locus>
-                        <hi rend="italic">INCIPIT OMELIA AGUSTINI.</hi> Am Anfang und auchsonst in
-                        großen Teilen unleserlich verblaßt. </p>
+                        <hi rend="italic">INCIPIT OMELIA AGUSTINI.</hi> Am Anfang und auch sonst in
+                        großen Teilen unleserlich verblaßt.</p>
+                     <p>
+                        <hi rend="italic">Mordeks pauschale Angabe kann genauer gefasst
+                        werden:</hi></p>
                   </msItem>
                   <msItem n="10">
+                     <p>
+                        <locus>-- 104v-106v</locus>
+                        <hi rend="italic">INCIPIT OMELIA AGUSTINI.</hi> Ps.-Augustinus, De timore
+                        domini et avaritia vitanda (Migne PL 40, Sp. 1345).</p>
+                  </msItem>
+                  <msItem n="11">
+                     <p>
+                        <locus>-- 106v-107r</locus>
+                        <hi rend="italic">DE ARCU QUOD IN NUBIBUS APPARET</hi>. Isidor von Sevilla,
+                        De natura rerum, Zusatz nach 31, 2 (Migne PL 83, Sp. 1003).</p>
+                  </msItem>
+                  <msItem n="12">
+                     <p>
+                        <locus>-- 107r-109r</locus><hi rend="italic">INCIPIUNT HOMELIAE</hi> (gek.
+                           <hi rend="italic">HOML</hi>) <hi rend="italic">SANCTI AGUSTINI EPISCOPI
+                           DE DIEM</hi> (!) <hi rend="italic">IUDICII</hi>. Ps.-Augustinus, De
+                        judicio extremo (Migne PL 39, Sp. 2210). </p>
+                  </msItem>
+                  <msItem n="13">
+                     <p>
+                        <locus>-- 109r-110v</locus> Gregor der Große, Homiliae in Evangelia, Homilia
+                        XIII, 4-5 (Migne PL 76, Sp. 1125-1126).</p>
+                  </msItem>
+                  <msItem n="14">
+                     <p>
+                        <locus>-- 110v-112r</locus>
+                        <hi rend="italic">DE FALSIS TESTIBUS</hi>. Alkuin, De virtutibus et vitiis,
+                        c. 12 (Migne PL 101, S. 629-630).</p>
+                  </msItem>
+                  <msItem n="15">
+                     <p>
+                        <locus>-- 112r-113v</locus> Pirmin, Scarapsus 33 (MGH QQ zur Geistesgesch.
+                        25, S. 137-141).</p>
+                  </msItem>
+                  <msItem n="16">
                      <p>
                         <locus>114r-117r</locus>
                         <hi rend="italic">I CAP. - &lt;VIII&gt;</hi> - <title corresp="BK.146"
                            >Capitulare de disciplina palatii Aquisgranensis</title> (a. 820?): <hi
                            rend="italic">Unusquisque ministerialis palatinus - ueritatem
-                           indic&lt;assent&gt;</hi> (MGH Capit. 1, Nr.146, S. 298 Z. 1-45). Der Text
+                           indic&lt;assent&gt;</hi> (MGH Capit. 1, Nr. 146, S. 298 Z. 1-45). Der Text
                         ist heute an vielen Stellen unleserlich. </p>
                   </msItem>
-                  <msItem n="11">
+                  <msItem n="17">
                      <p>
-                        <locus>117r-118</locus>
+                        <locus>117r-118r</locus>
                         <title corresp="BK.147">Capitulare de moneta</title> (a. 820?) (MGH Capit.
-                        1, Nr.147, S. 299 Z. 27 - S. 300 Z. 8). Nur noch vereinzelte Wörter oder
+                        1, Nr. 147, S. 299 Z. 27 - S. 300 Z. 8). Nur noch vereinzelte Wörter oder
                         Silben zu lesen. </p>
                   </msItem>
                </msContents>
@@ -272,24 +308,25 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         <extent>118 foll. (rote Zählung) <dimensions type="leaf" unit="mm">
                               <height>140-145</height>
                               <width>100</width>
-                           </dimensions> (<dimensions type="written" unit="mm">
+                           </dimensions>
+                           <dimensions type="written" unit="mm">
                               <height>95-102</height>
                               <width>65-75</width>
                            </dimensions>
                         </extent>
-                        <collation>Lagen: <formula>4 IV<hi rend="super">32</hi> + III<hi
-                                 rend="super">38</hi> + 10 IV<hi rend="super">118</hi>.</formula>
+                        <collation><formula>4 IV<hi rend="super">32</hi> + III<hi rend="super"
+                                 >38</hi> + 10 IV<hi rend="super">118</hi></formula>
                            <catchwords>Kustoden (die erste Lage fehlt): <hi rend="italic">III</hi>
                               (16*), <hi rend="italic">IIII</hi> (24<hi rend="super">v</hi>), <hi
                                  rend="italic">VI</hi> (38<hi rend="super">v</hi>) bis <hi
-                                 rend="italic">XIIII</hi> (102<hi rend="super">v</hi>).</catchwords>
+                                 rend="italic">XIIII</hi> (102<hi rend="super">v</hi>)</catchwords>
                         </collation>
                         <condition>Die im kleinen Taschenbuchformat gehaltene Hs. ist durch
                            Feuchtigkeit und wohl auch Abnutzung so stark in Mitleidenschaft gezogen,
                            daß weite Teile unleserlich sind.</condition>
                      </supportDesc>
                      <layoutDesc>
-                        <layout writtenLines="16">16 Zeilen</layout>
+                        <layout writtenLines="16">16</layout>
                         <layout columns="1"/>
                      </layoutDesc>
                   </objectDesc>
@@ -300,12 +337,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      <scriptNote>karolingische Minuskel</scriptNote>
                   </scriptDesc>
                   <decoDesc>
-                     <p>Text in verwaschener brauner Tinte; meist rote Rubriken und Zahlen.</p>
+                     <p>Text in verwaschener brauner Tinte; meist rote Rubriken und Zahlen</p>
                   </decoDesc>
                   <bindingDesc>
                      <binding>
-                        <p>Roter Ledereinband mit französischem Königswappen; auf dem Rücken: <hi
-                              rend="italic">FRAG</hi>- <hi rend="italic">MEN&lt; TA &gt; VARIA.</hi>
+                        <p>roter Ledereinband mit französischem Königswappen; auf dem Rücken: <hi
+                              rend="italic">FRAGMEN&lt;TA&gt; VARIA</hi>
                         </p>
                         <p/>
                      </binding>
@@ -320,11 +357,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                            ref="http://www.geonames.org/3017382/republic-of-france.html http://d-nb.info/gnd/4155151-5 http://viaf.org/viaf/265271214"
                            > wohl Frankreich</origPlace> (Mordek), <origPlace
                            ref="http://d-nb.info/gnd/4214099-7">wohl Nordostfrankreich</origPlace>
-                        (Bischoff). </p>
+                        (Bischoff) </p>
                   </origin>
                   <provenance>
                      <p>Provenienz: Kloster Saint-Vincent, Laon (Besitzvermerk fol. 110v). Alte
-                        Signaturen: <idno>Baluze 864</idno>, <idno>Regius 4655.a.</idno>
+                        Signaturen: <idno>Baluze 864</idno>, <idno>Regius 4655.a</idno>
                      </p>
                   </provenance>
                   <acquisition/>
@@ -333,46 +370,34 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <surrogates/>
                   <listBibl>
                      <listBibl type="cap">
-                        <bibl corresp="#Mordek_1995">Mordek, 1995, S. 546-549</bibl>
+                        <bibl corresp="#Mordek_1995">Mordek 1995, S. 546-549</bibl>
                         <bibl corresp="#Bischoff_2014">Bischoff 2014, S. 102, Nr. 4333</bibl>
                         <bibl>Bibliotheca legum regni Francorum manuscripta, Karl Ubl (Hrsg.) unter
-                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012, ff. URL:
-                           http://www.leges.uni-koeln.de</bibl>
+                           der Mitarbeit von Dominik Trump und Daniela Schulz, Köln 2012 ff. <ref
+                              type="external" subtype="Bl" target="paris-bn-lat-4788"/>
+                        </bibl>
                      </listBibl>
                      <listBibl type="lit">
-                        <bibl>
-                           <hi rend="smallcaps">Deusle, </hi>Le cabinet des manuscrits 2, S.
-                           413.</bibl>
+                        <bibl corresp="#Delisle_1868-1881">Delisle 1868-1881, S. 413</bibl>
                         <bibl corresp="#Pertz_1835">Pertz 1835, S. XXIII</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Pardessus, </hi>Loi Salique, S. XXIII f.</bibl>
+                        <bibl corresp="#Pardessus_1843">Pardessus 1843, S. XXIII f.</bibl>
                         <bibl corresp="#Boretius_1897">Boretius 1897, S. XXIV</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Besta, </hi>Fonti, S. 240 (mit fehlerhafter
-                           Inhaltsangabe), S. 245 Anm. 1(siehe Cod. Paris Lat. 4995)</bibl>
-                        <bibl> K. A. <hi rend="smallcaps">Eckhardt, </hi>Pactus legis Salicae 11, S.
-                           32</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">McKitterick, </hi>Some Carolingian law-books, S.
-                           25</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Bühler, </hi>Capitularia Relecta, S. 367 f. u.
-                           ö.</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Schmitz, </hi>Die Waffe der Fälschung, S. 82
-                           f.</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">McKitterick, </hi>The Carolingians and the written
-                           word, S. 51 Tab. A.</bibl>
-                        <bibl>
-                           <hi rend="smallcaps">Dolezalek, </hi>Verzeichnis 2.</bibl>
+                        <bibl> Besta, Fonti, S. 240 (mit fehlerhafter Inhaltsangabe), S. 245 Anm. 1
+                           (siehe Cod. Paris Lat. 4995)</bibl>
+                        <bibl corresp="#Eckhartdt_K_1955a">Eckhardt K 1955a, S. 32</bibl>
+                        <bibl corresp="#McKitterick_1980">McKitterick 1980, S. 25</bibl>
+                        <bibl corresp="#Bühler_A_1990">Bühler A 1990, S. 367 f. u. ö.</bibl>
+                        <bibl corresp="#Schmitz_G_1988a">Schmitz G 1988a, S. 82 f.</bibl>
+                        <bibl corresp="#McKitterick_1989">McKitterick 1989, S. 51 Tab. A</bibl>
+                        <bibl corresp="#Dolezalek_1972">Dolezalek 1972</bibl>
+                        <bibl corresp="#Coumert_2023">Coumert 2023, S. 15, 385</bibl>
                      </listBibl>
                      <listBibl type="cat">
                         <bibl>Catalogus codicum manuscriptorum Bibliothecae Regiae 3, 3 (Paris 1744)
-                           S. 632.</bibl>
+                           S. 632</bibl>
                      </listBibl>
                      <listBibl type="abb">
-                        <bibl corresp="#Pertz_1835">Pertz 1835, Taf. IV, 2 nach S. XXIV.</bibl>
+                        <bibl corresp="#Pertz_1835">Pertz 1835, Taf. IV, 2 nach S. XXIV</bibl>
                      </listBibl>
                   </listBibl>
                </additional>
@@ -380,22 +405,23 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
-         <p>Transkriptionsvorlage: Eine erste Transkription wurde erstellt aufgrund eines Scans vom
-            Mikrofilm (in Graustufen), der aufgrund der sich in einem schlechten Erhaltungszustand
-            befindlichen Vorlage teilweise nicht entzifferbar ist. Eine Autopsie des Originals
-            erfolgte am 27./28. April 2016 in der BNF, bei der die Transkription wesentlich
-            erweitert und korrigiert werden konnte (nur der Text von BK 141 wurde aus Zeitmangel
-            nicht kollationiert). Große Teile des Textes sind allerdings zerstört bzw. mit bloßem
-            Auge nicht mehr erkennbar und könnten nur unter Einsatz von technischen Hilfsmitteln
-            (z.B. Multispektralaufnahmen/MSI, wie sie z.B. das Centre for the Study of Manuscript
-            Cultures in Hamburg verwendet) evtl. noch sichtbar gemacht werden.</p>
+         <p>Transkriptionsvorlage: Eine erste Transkription wurde erstellt anhand eines Scans vom
+            Mikrofilm, die bei einer Autopsie des Originals 2016 in der BnF erweitert und korrigiert
+            wurde. 2021 wurden mit Erlaubnis der BnF von einem Technikerteam des SFB
+            Manuskriptkulturen der Universität Hamburg (Ivan Shevchuk, Olivier Bonnerot)
+            Multispektralaufnahmen der besonders stark beschädigten Seiten der Handschrift
+            angefertigt (neben den fol. 114r-118v mit den unikalen Texten BK 146 und 147 auch die
+            fol. 101v-104v mit BK 140). Dabei konnten Teile des Textes wieder sichtbar gemacht
+            werden. Aufgrund der vielfältigen Pergamentschäden (Wasserschaden, Schimmelpilzbefall
+            und Löcher, die mit Pergament ausgebessert wurden) war eine Rekonstruktion der Schrift
+            aber an vielen Stellen unmöglich. </p>
          <p>Die zum Teil erheblichen Textlücken wurden wie folgt behandelt: Dort, wo der vorhandene
             Platz für den bei Boretius/Krause gebotenen Text ausreichen würde, wurde die Anzahl der
             nicht lesbaren Buchstaben in der gap-Codierung entsprechend angegeben, ggf. reduziert um
             wahrscheinliche Kürzungen, die der Schreiber oft verwendet. Dort, wo der vorhandene
             Platz nicht ausreicht, wurde die Anzahl der ausgefallenen Buchstaben geschätzt
-            (Bemessungsgrundlage: durchschnittlich 28 Buchstaben pro Zeile) und ggf. eine Anmerkung
-            gesetzt, die auf die Diskrepanz zu Boretius/Krause hinweist.</p>
+            (Bemessungsgrundlage: durchschnittlich 26-28 Buchstaben pro Zeile) und ggf. eine
+            Anmerkung gesetzt, die auf die Diskrepanz zu Boretius/Krause hinweist.</p>
          <projectDesc>
             <p xml:lang="ger">Capitularia. Edition der fränkischen Herrschererlasse: <ptr
                   target="http://capitularia.uni-koeln.de/project/about/"/>
@@ -415,11 +441,12 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
       </encodingDesc>
       <revisionDesc>
          <change who="DS" when="2015-04-01">Datei erstellt aus Mordek-XML</change>
-         <change who="BM" when="2016-09-14">Datei veröffentlicht (private) (BK 138, 139, 140, 141;
-            Ergebnisse der Nachkollation am Original noch nicht eingearbeitet bei: BK 146,
-            147)</change>
          <change who="AO" when="2020-12-11">Verortung und Datierung der Handschrift nach Bischoff
             1998/2004/2014 ergänzt</change>
+         <change who="BM" when="2022">Datei veröffentlicht (BK 138, 139, 140, 141, 146,
+            147)</change>
+         <!-- Dateum bei Veröffentlichung aktualisieren -->
+
       </revisionDesc>
    </teiHeader>
    <facsimile>
@@ -456,11 +483,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      <item n="1.12">
                         <ptr target="#paris-bn-lat-4788-76v-3" type="internal"/>XIII</item>
                      <item n="1.13">
-                        <ptr target="#paris-bn-lat-4788-76v-5" type="internal"/>X</item>
+                        <ptr target="#paris-bn-lat-4788-76v-5" type="internal"/>X[...]</item>
                      <item n="1.14">
                         <ptr target="#paris-bn-lat-4788-77r-1" type="internal"/>[...] </item>
                      <item n="1.15">
-                        <ptr target="#paris-bn-lat-4788-77r-3" type="internal"/>VI</item>
+                        <ptr target="#paris-bn-lat-4788-77r-3" type="internal"/>[...]VI</item>
                      <item n="1.16">
                         <ptr target="#paris-bn-lat-4788-77r-5" type="internal"/>XVII</item>
                      <item n="1.17">
@@ -503,79 +530,81 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                      <item n="2.5">
                         <ptr target="#paris-bn-lat-4788-86r-1" type="internal"/>V</item>
                      <item n="2.6">
-                        <ptr target="#paris-bn-lat-4788-87v-1" type="internal"/>VII</item>
+                        <ptr type="internal" target="#paris-bn-lat-4788-86r-3"/>(Si quis res suas
+                        ...) </item>
                      <item n="2.7">
-                        <ptr target="#paris-bn-lat-4788-87v-3" type="internal"/>VIII</item>
+                        <ptr target="#paris-bn-lat-4788-87v-1" type="internal"/>VII</item>
                      <item n="2.8">
-                        <ptr target="#paris-bn-lat-4788-88r-1" type="internal"/>VIIII</item>
+                        <ptr target="#paris-bn-lat-4788-87v-3" type="internal"/>VIII</item>
                      <item n="2.9">
-                        <ptr target="#paris-bn-lat-4788-88v-1" type="internal"/>X</item>
+                        <ptr target="#paris-bn-lat-4788-88r-1" type="internal"/>VIIII</item>
                      <item n="2.10">
+                        <ptr target="#paris-bn-lat-4788-88v-1" type="internal"/>X</item>
+                     <item n="2.11">
                         <ptr target="#paris-bn-lat-4788-90r-1" type="internal"/>XI DE PROPRIO IN
                         BANNUM MI[..]O</item>
-                     <item n="2.11">
+                     <item n="2.12">
                         <ptr target="#paris-bn-lat-4788-91v-1" type="internal"/>[Hec] s[unt
                         capitula] p[re]cipuę ad legationem [missorum] NOSTRO[rum]...</item>
-                     <item n="2.12">
+                     <item n="2.13">
                         <ptr target="#paris-bn-lat-4788-97v-1" type="internal"/>XIII DE
                         MANIRE</item>
-                     <item n="2.13">
+                     <item n="2.14">
                         <ptr target="#paris-bn-lat-4788-98r-1" type="internal"/>XIIII DE FAIDIS
                         COERCENDIS</item>
-                     <item n="2.14">
+                     <item n="2.15">
                         <ptr target="#paris-bn-lat-4788-98v-1" type="internal"/>XV UBI SACRAMENTA
                         IURANDI SINT</item>
-                     <item n="2.15">
+                     <item n="2.16">
                         <ptr target="#paris-bn-lat-4788-98v-3" type="internal"/>XVI DE HIS QUI FURTU
                         accusati fuerint</item>
-                     <item n="2.16">
+                     <item n="2.17">
                         <ptr target="#paris-bn-lat-4788-99r-2" type="internal"/>XVII DE DISPECTU
                         LITTERARUM DOMINICARUM</item>
-                     <item n="2.17">
+                     <item n="2.18">
                         <ptr target="#paris-bn-lat-4788-100r-1" type="internal"/>DE NITIDIS TELONEIS
                         ET CONSUETUDIN[.]</item>
-                     <item n="2.18">
+                     <item n="2.19">
                         <ptr target="#paris-bn-lat-4788-100v-1" type="internal"/>XVIIII DE HIS QUI
                         BONOS DENARIOS ACCIPERE NOLUNT</item>
-                     <item n="2.19">
+                     <item n="2.20">
                         <ptr target="#paris-bn-lat-4788-100v-3" type="internal"/>XX DE
                         AD[...]T[...]BUS MONETE</item>
-                     <item n="2.20">
+                     <item n="2.21">
                         <ptr target="#paris-bn-lat-4788-100v-5" type="internal"/>XXI DE PROPRIO
                         DOMINCO SINE IUSSISIONE ILLIUS REDITO</item>
-                     <item n="2.21">
+                     <item n="2.22">
                         <ptr target="#paris-bn-lat-4788-101r-2" type="internal"/>XXII DE PUER[.]S
                         INUITIS PARENTIBUS DETONSIS AUT PUELLIS UE[..]TIS</item>
                   </list></item>
                <item n="3">
-                  <ptr target="#paris-bn-lat-4788-101v-1" type="internal"/>INCIPIUNT CAPITULA QUE
-                  PER SE SCR[I]BEN[D]A ET AB OMNIBUS OBSERUANDA SUNT<list>
+                  <ptr target="#paris-bn-lat-4788-101v-1" type="internal"/>INCIPIUNT CAPITULA ALIA
+                  QUE PER SE SCRIBENDA ET AB OMNIBUS OBSERUANDA SUNT<list>
                      <item n="3.1">
                         <ptr target="#paris-bn-lat-4788-101v-2" type="internal"/>I DE
                         FORCAPIIS</item>
                      <item n="3.2">
-                        <ptr target="#paris-bn-lat-4788-101v-4" type="internal"/>[II?] D[E T]ERRA
+                        <ptr target="#paris-bn-lat-4788-101v-3" type="internal"/>DE TERRA
                         TRIBUTARIA</item>
                      <item n="3.3">
-                        <ptr target="#paris-bn-lat-4788-102r-2" type="internal"/>[III?][De
-                        beneficiis destructis]</item>
+                        <ptr target="#paris-bn-lat-4788-102r-2" type="internal"/>DE [...]</item>
                      <item n="3.4">
-                        <ptr target="#paris-bn-lat-4788-102r-4" type="internal"/>[IIII?] D[e terra
-                        censali]</item>
+                        <ptr target="#paris-bn-lat-4788-102r-4" type="internal"/>DE TERRA
+                        [...]ALI</item>
                      <item n="3.5">
-                        <ptr target="#paris-bn-lat-4788-102v-1" type="internal"/>V [DE] NONIS [ET
-                        DECI]MIS</item>
+                        <ptr target="#paris-bn-lat-4788-102v-1" type="internal"/>V DE NONIS ET
+                        DECIMIS</item>
                      <item n="3.6">
                         <ptr target="#paris-bn-lat-4788-103v-1" type="internal"/>VI DE MANCIPIIS IN
                         UILLAS DOMINICAS CONFUGIENT</item>
                      <item n="3.7">
                         <ptr target="#paris-bn-lat-4788-104r-1" type="internal"/>DE FORESTIBUS
-                        NOUITER INSTITU[TI]S</item>
+                        NOUITER INSTITUTIS</item>
                   </list></item>
                <item n="4">
-                  <ptr target="#paris-bn-lat-4788-114r-1" type="internal"/>[Ohne Rubrik]<list>
+                  <ptr target="#paris-bn-lat-4788-114r-1" type="internal"/>[Liste ohne Rubrik]<list>
                      <item n="4.1">
-                        <ptr target="#paris-bn-lat-4788-114r-1" type="internal"/>I CAPITULUM</item>
+                        <ptr target="#paris-bn-lat-4788-114r-1" type="internal"/>I</item>
                      <item n="4.2">
                         <ptr target="#paris-bn-lat-4788-114v-1" type="internal"/>II</item>
                      <item n="4.3">
@@ -584,10 +613,25 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                         <ptr target="#paris-bn-lat-4788-116r-1" type="internal"/>[...] </item>
                      <item n="4.5">
                         <ptr target="#paris-bn-lat-4788-116r-3" type="internal"/>[...] </item>
+
                      <item n="4.6">
                         <ptr target="#paris-bn-lat-4788-116v-1" type="internal"/>[...] </item>
                      <item n="4.7">
                         <ptr target="#paris-bn-lat-4788-116v-3" type="internal"/>VII</item>
+                     <item n="4.8">
+                        <ptr type="internal" target="#paris-bn-lat-4788-116v-5"/>VIII</item>
+                  </list></item>
+               <item n="5"><ptr target="#paris-bn-lat-4788-117r-1" type="internal"/>[Liste ohne Rubrik]<list>
+                     <item n="5.1">
+                        <ptr type="internal" target="#paris-bn-lat-4788-117r-1"/>I</item>
+                     <item n="5.2">
+                        <ptr type="internal" target="#paris-bn-lat-4788-117r-3"/>II</item>
+                     <item n="5.3">
+                        <ptr type="internal" target="#paris-bn-lat-4788-117v-1"/>III</item>
+                     <item n="5.4">
+                        <ptr type="internal" target="#paris-bn-lat-4788-117v-3"/>IIII</item>
+                     <item n="5.5">
+                        <ptr type="internal" target="#paris-bn-lat-4788-117v-5"/>V</item>
                   </list></item>
             </list>
          </div>
@@ -595,93 +639,93 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <div type="scribe">
             <p>Der Schreiber schreibt regelmäßig <mentioned>comis</mentioned> anstatt
                   <mentioned>comes</mentioned> und verwendet gelegentlich <mentioned>con</mentioned>
-               für <mentioned>cum</mentioned> (Z.B. auf <locus>fol. 90v, Z. 14</locus> und
+               für <mentioned>cum</mentioned> (z. B. auf <locus>fol. 90v, Z. 14</locus> und
                   <locus>fol. 98v, Z. 7</locus>).</p>
             <p>Vor einem Foliowechsel beendet er gerne den schon begonnenen Satz und benutzt dazu
                den Freiraum unter der letzten, durch die Blindlinierung vorgegebenen Zeile.</p>
          </div>
          <div type="letters">
             <p>Einzelbuchstaben: Das a ist in der Regel doppelstöckig, wobei selten auch offenes a
-               vorkommt; z.B. auf <locus>fol. 95v, Z. 3</locus>: <mentioned>centenarii</mentioned>
+               vorkommt; z. B. auf <locus>fol. 95v, Z. 3</locus>: <mentioned>centenarii</mentioned>
                oder <locus>fol. 97r, Z. 5</locus>: <mentioned>abbatissa</mentioned>.</p>
             <p>Ligaturen: Der Schreiber verwendet gelegentlich am Wortende eine ungewöhnliche
                us-Ligatur, bei der der rechte Schaft des u in einem s-Schwung in die Unterlänge
-               gezogen wird (z.B. auf <locus>fol. 89r Z. 4 und 6</locus>, bei
+               gezogen wird (z. B. auf <locus>fol. 89r, Z. 4 und 6</locus>, bei
                   <mentioned>uictus</mentioned> und <mentioned>manus</mentioned>). Auch eine
                ungewöhnliche ut-Ligatur taucht gelegentlich auf, bei der der rechte Schaft des u
-               nach oben verlängert und mit einem Deckbalken versehen wird (z.B. fol. 82r, Z. 3 und
+               nach oben verlängert und mit einem Deckbalken versehen wird (z. B. fol. 82r, Z. 3 und
                fol. 83v, Z. 5: <mentioned>aut</mentioned>).</p>
          </div>
          <div type="abbreviations">
             <p>Der Schreiber benutzt hauptsächlich Standardkürzungen wie den Nasalstrich am
                Wortende, n. für <mentioned>non</mentioned>, nrm. für <mentioned>nostrum</mentioned>
                etc. Diese Standardfälle wurden bei der Berechnung des ausgefallenen Textes an den
-               zahlreichen unlesbaren Stellen ggf. berücksichtigt. Gekürztes com. wird, der
-               Gewohnheit des Schreibers folgend, mit <mentioned>comis</mentioned> aufgelöst;
-               gekürztes pbtr. mit <mentioned>presbiter</mentioned>, entsprechend der
-               ausgeschriebenen Variante z.B. auf <locus>fol. 77v, Z. 7</locus>.</p>
+               zahlreichen unlesbaren Stellen ggf. berücksichtigt. Die Kürzung com. wird, der
+               Gewohnheit des Schreibers folgend, mit <mentioned>comis</mentioned> aufgelöst; die
+               Kürzung pbtr. mit <mentioned>presbiter</mentioned>, entsprechend der ausgeschriebenen
+               Variante z. B. auf <locus>fol. 77v, Z. 7</locus>.</p>
          </div>
          <div type="punctuation"/>
          <div type="structure">
-            <p>Foll. 70v-83r (BK 138): Für die Überschrift in Capitalis rustica wurde rote Tinte
-               verwendet, die heute allerdings als dunkelbraun erscheint, ebenso für die
+            <p><locus>Foll. 70v-83r</locus> (BK 138): Für die Überschrift in Capitalis rustica wurde
+               rote Tinte verwendet, die heute allerdings als dunkelbraun erscheint, ebenso für die
                Kapitelzählung in römischen Ziffern. Die Anfangsinitialen der einzelnen Kapitel sind
                offenbar durchgängig in Texttinte ausgeführt (obwohl es an manchen Stellen aufgrund
-               der Tintenverfärbung schwierig zu entscheiden ist, z.B. bei BK 138 c. 5). BK 138 c. 2
+               der Tintenverfärbung schwierig zu entscheiden ist, z. B. bei BK 138 c. 5). BK 138 c. 2
                wurde bei der Kapitelzählung übersprungen; ob der Anfang des Kapitels dennoch durch
                eine Initiale hervorgehoben war, lässt sich aufgrund der an dieser Stelle völlig
                verblassten Schrift nicht mehr sagen. Die Kapitelzahl II findet sich erst bei BK 138
                c. 3. Danach geht es allerdings korrekt weiter mit IIII für BK 138 c. 4. BK 138 cc.
                18 und 19 werden zusammengezogen, so dass die Zählung ab c. XVIIII im Vergleich mit
                der BK-Edition um eins zu tief angesetzt ist.<!-- bm: Am Or. geprüft. --></p>
-            <p>Foll. 83r-91r (BK 139): Bis auf die Überschrift in Unziale und roter (heute
-               dunkelbraun erscheinender) Tinte sind alle Gliederungselemente (Kapitelzahlen sowie
-               die Anfangsinitialen der Kapitel) bis c. X in Texttinte gehalten; Kapitelrubriken
-               fehlen. Ab c. XI werden die einzelnen Kapitel mit Rubriken in Unziale (die z.T. in
-               Minuskelschrift übergeht, z.B. auf <locus>fol. 98v, letzte Zeile von unten</locus>)
-               und anschließender Kapitelzählung in roter (dunkelbraun erscheinender) Tinte
-               eingeleitet.<!-- bm: Am Or. geprüft. --></p>
+            <p><locus>Foll. 83r-91r</locus> (BK 139): Bis auf die Überschrift in Unziale und roter
+               (heute dunkelbraun erscheinender) Tinte sind alle Gliederungselemente (Kapitelzahlen
+               sowie die Anfangsinitialen der Kapitel) bis c. X in Texttinte gehalten;
+               Kapitelrubriken fehlen. Ab c. XI werden die einzelnen Kapitel mit Rubriken in Unziale
+               (die z. T. in Minuskelschrift übergeht, z. B. auf <locus>fol. 98v, letzte Zeile von
+                  unten</locus>) und anschließender Kapitelzählung in roter (dunkelbraun
+               erscheinender) Tinte eingeleitet.<!-- bm: Am Or. geprüft. --></p>
             <p>Die Kapitelzahlen von BK 139 sind teilweise sehr verblasst; in Einzelfällen lassen
-               sie sich gar nicht mehr erkennen (z.B. cc. IIII-VI, XVIII). C. I hat keine Nummer
+               sie sich gar nicht mehr erkennen (z. B. cc. IIII-VI, XVIII). C. I hat keine Nummer
                (wird aber mitgezählt), dafür aber eine Überschrift, die sich allerdings optisch
                nicht von der Überschrift des Gesamtkapitulars absetzt, sondern diese fortzusetzen
                scheint (<mentioned>INCIPIUNT CAPITULA ... DE HONORE ECCLESIARUM</mentioned>). Die
-               Rubrik, die zu BK 139 c. 6 paßt, steht am Ende von c. V als Fortsetzung des Textes,
-               ohne daß sie optisch als von diesem getrennt erscheint.</p>
+               Rubrik, die zu BK 139 c. 6 passt, steht am Ende von c. V als Fortsetzung des Textes,
+               ohne dass sie optisch als von diesem getrennt erscheint.</p>
             <p>Zwischen BK 139 c. 11 und 12 wird auf <locus>fol. 91v-97v</locus> BK 141 eingeschoben
                und hier offenbar als Bestandteil derselben Kapitelliste verstanden: Zwar ist zu
-               Beginn von BK 141 aufgrund des schlechten Erhaltungszustandes der Hs.
-               <!-- bm: Oder kann man am Original doch noch mehr erkennen? - bm: Um dies zu prüfen, war leider keine Zeit mehr! -->keine
-               Kapitelzählung erkennbar, aber BK 139 c. 12 folgt direkt im Anschluß mit der
-               Kapitelnummer XIII, was darauf hindeutet, daß BK 141 als c. XII gezählt wird.
-               <!-- Vgl. dazu auch die Vorbemerkung von Paris lat. 4632. Ivrea 33/34: Ivrea 34 hat an
-                     der Stelle, an der Kopien von BK 139 und BK 141 stehen, eine Lagenvertauschung, die 
-                     BK 139 auseinanderreißt; allerdings findet der Bruch hier in c. 3 statt. Ivrea 34
-                     ist die vollständigere Schwesterhs. von Ivrea 33 (die BK 139 nur als Fragment bis c. 2
-                     enthält); zwischen beiden Ivrea-Hss. und Paris lat. 4632 und 4788 gibt es einige
-                     Textverbindungen, am deutlichsten ist diese jedoch bei Ivrea 33 und Paris lat. 4632
-                     greifbar (v.a. BK 104 c. 7; über die gemeinsamen Kapitularien hinaus auch Lex Ribuaria
-                     Kl. A und Lex Salica emendata (K)).  -->
-            </p>
-            <p>Foll. 101v-104r (BK 140): Rubriken und Kapitelzählung in roter Tinte, Initialen in
-               Texttinte. Die Kapitelzählung (II-IV?) verschwindet auf <mentioned>fol.
-                  102r</mentioned> in der Bindung; da es auf <mentioned>fol. 102v</mentioned> jedoch
+               Beginn von BK 141 aufgrund des schlechten Erhaltungszustandes der Handschrift keine
+               Kapitelzählung erkennbar, aber BK 139 c. 12 folgt direkt im Anschluss mit der
+               Kapitelnummer XIII, was darauf hindeutet, dass BK 141 als c. XII gezählt wird. </p>
+            <p><locus>Foll. 101v-104r</locus> (BK 140): Rubriken und Kapitelzählung in roter Tinte,
+               Initialen in Texttinte. Die Kapitelzählung
+                  (<mentioned>II</mentioned>-<mentioned>IV</mentioned>?) verschwindet auf
+                  <locus>fol. 102r</locus> in der Bindung; da es auf <locus>fol. 102v</locus> jedoch
                weitergeht mit <mentioned>V</mentioned>, wird sie vorhanden sein.</p>
-            <p>Foll. 114r-118r (BK 146, 147):
-               <!-- bm: Siehe Unterlagen der Autopsie am Original von Februar 2016. --></p>
+            <p><locus>Foll. 114r-118r</locus> (BK 146, 147): Kapitelzählung in roter Tinte, ohne
+               einleitende Rubriken. Das erste Kapitel von BK 146 ist zusätzlich zur Nummerierung
+               als <mentioned>CAP.</mentioned> bezeichnet, beim ersten Kapitel von BK 147 ist nur
+               noch <mentioned>CAP.</mentioned> erkennbar. Aufgrund des schlechten
+               Erhaltungszustandes der letzten Blätter der Handschrift sind insbesondere von BK 147
+               nur noch Fragmente der Schrift und damit auch der optischen Gliederung zu
+               erkennen.</p>
+
          </div>
          <div type="annotations">
             <p>Am unteren Rand von <locus>fol. 78v</locus> finden sich einige Federproben.
-               Randmarkierungen in Form von Kreuzen finden sich an folgenden Stellen: <locus>fol.
-                  88v</locus> auf Höhe von <locus>Z.
-               5</locus><!-- bm: auf fol. 88r durchgedrückt -->; <locus>fol. 90r</locus> auf Höhe
-               von <locus>Z. 7</locus> sowie <locus>fol. 97v</locus> auf Höhe von <locus>Z.
-                  12</locus> (jeweils zu Beginn der Kapitel XI und XIII<locus>); fol. 99r Z.
-                  12</locus> (auf Höhe der Bestimmung aus BK 139 c. 15, in der es um die Haftung des
-               Herrn für den Diebstahl seines Sklaven geht)
-               <!-- bm: sowie an mehreren Stellen in BK 141 -->.</p>
+               Randmarkierungen in Form von Kreuzen finden sich z. B. an folgenden Stellen:
+                  <locus>fol. 88v</locus> auf Höhe von Z. 5<!-- bm: auf fol. 88r durchgedrückt -->;
+                  <locus>fol. 90r</locus> auf Höhe von <locus>Z. 7</locus> sowie <locus>fol.
+                  97v</locus> auf Höhe von <locus>Z. 12</locus> (jeweils zu Beginn der Kapitel XI
+               und XIII); <locus>fol. 99r, Z. 12</locus> (auf Höhe der Bestimmung aus BK 139 c. 15,
+               in der es um die Haftung des Herrn für den Diebstahl seines Sklaven geht). Weitere
+               Markierungen finden sich im Text von BK 141.</p>
          </div>
-         <div type="other"/>
+         <div type="other">
+            <p>Auf <locus>fol. 117</locus> befindet sich um oberen Drittel der Seite ein großes Loch
+               im Pergament, das schon vor dem Beschreiben vorhanden war, da ihm die die Schrift in
+                  <locus>Z. 3-7</locus> ausweicht.</p>
+         </div>
       </front>
       <body>
 
@@ -694,17 +738,15 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             daher habe ich entsprechende doppelte lb codiert. -->
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4788-70v-1"
-            corresp="BK.138_inscriptio"
-            >H<unclear>I</unclear>C<!-- bm: Am Or. eigentlich I gelesen, aber da die E sehr schmal sind,
-               ist es dennoch möglich, dass dort ein E mit verblassten Querbalken stand. Daher in unclear. -->
-            . CAPITULA PROPRIE AD E<gap unit="chars" quantity="3"/><note type="editorial">Der Rest
-               ist wegen der engen Bindung bzw. der verblassten Schrift am Anfang der nächsten Zeile
-               nicht mehr zu erkennen. Es müsste folgen <mentioned>-PISCOPOS</mentioned>, wofür aber
-               weder im verbleibenden Rest der Zeile noch zu Beginn der nächsten ausreichend Platz
-               vorhanden zu sein scheint (zu Beginn der folgenden Zeile wäre für das vermutlich
-               folgende <mentioned>UEL</mentioned> gerade ausreichend Platz), weshalb bei der Angabe
-               der wahrscheinlich fehlenden Buchstaben von einer Kürzung
-                  (<mentioned>EPOS.</mentioned>?) ausgegangen wurde.</note>
+            corresp="BK.138_inscriptio">H<unclear>E</unclear>C . CAPITULA PROPRIE AD E<gap
+               unit="chars" quantity="3"/><note type="editorial">Der Rest ist wegen der engen
+               Bindung bzw. der verblassten Schrift am Anfang der nächsten Zeile nicht mehr zu
+               erkennen. Es müsste folgen <mentioned>-PISCOPOS</mentioned>, wofür aber weder im
+               verbleibenden Rest der Zeile noch zu Beginn der nächsten ausreichend Platz vorhanden
+               zu sein scheint (zu Beginn der folgenden Zeile wäre für das vermutlich folgende
+                  <mentioned>UEL</mentioned> gerade ausreichend Platz), weshalb bei der Angabe der
+               wahrscheinlich fehlenden Buchstaben von einer Kürzung (<mentioned>EPOS.</mentioned>?)
+               ausgegangen wurde.</note>
             <lb/><lb/>
             <gap unit="chars" quantity="3"/> A<gap unit="chars" quantity="1"/> O<gap unit="chars"
                quantity="2"/>INES QVOSQVE ECCLE<lb break="no"/><lb break="no"/><gap unit="chars"
@@ -717,7 +759,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
          <ab corresp="BK.138_1_inscriptio" type="meta-text" xml:id="paris-bn-lat-4788-70v-2"><seg
                type="numDenom">capitulum</seg><note type="editorial">Eine evtl. folgende
-               Kapitelnummer ist aufgrund der engen Bindung nicht mehr nachzuweisen.</note><cb
+               Kapitelnummer ist aufgrund der engen Bindung nicht mehr nachzuweisen.</note> <cb
                n="71r"/></ab>
 
          <ab type="text" xml:id="paris-bn-lat-4788-71r-1" corresp="BK.138_1 BK.138_2"><milestone
@@ -778,7 +820,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                quantity="5"/>m duximus deo annuante<!-- bm: 
                Über dem Schluss-e ein senkrechter Strich? So auch am Beginn der nächsten Zeile auf dem
                folgenden Blatt. Am Or. prüfen! - bm: Geprüft: Nein! -->
-            <cb n="72r"/>apud sanctarum conue<gap unit="chars" quantity="8"/>
+            <cb n="72r"/> apud sanctarum conue<gap unit="chars" quantity="8"/>
             <lb/>dictis sanctorum patrum uelut <gap unit="chars" quantity="4"/><lb break="no"
             />uersis pratis q<gap unit="chars" quantity="2"
                /><unclear>s</unclear>da<unclear>m</unclear> uerna<gap unit="chars" quantity="1"/><lb
@@ -842,43 +884,43 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             xml:id="paris-bn-lat-4788-72v-3"><seg type="num" n="5">V </seg></ab>
 
          <ab type="text" xml:id="paris-bn-lat-4788-72v-4" corresp="BK.138_5"><seg type="initial"
-               >M</seg><gap unit="chars" quantity="8"/>m siquidem causam <lb/>qu<gap unit="chars"
-               quantity="16"/>nte ex parte <lb/><gap unit="chars" quantity="5"/>s<gap unit="chars"
+               >M</seg><gap unit="chars" quantity="8"/>m siquidem causam <lb/> qu<gap unit="chars"
+               quantity="16"/>nte ex parte <lb/> <gap unit="chars" quantity="5"/>s<gap unit="chars"
                quantity="4"/>m<gap unit="chars" quantity="1"/>s et quomodo exe<!-- bm: eindeutig exe- vor lb! Am Or. geprüft.--><lb/>
             <gap unit="chars" quantity="9"/><unclear>eli</unclear>g<gap unit="chars" quantity="1"
             />ndi abbates licen<lb break="no"/><gap unit="chars" quantity="10"/>mus et qualiter
-               <lb/><gap unit="chars" quantity="3"/>
+               <lb/> <gap unit="chars" quantity="3"/>
             <unclear>o</unclear>p<gap unit="chars" quantity="5"/>nte <sic>quiet</sic> uiuere <cb
-               n="73r"/>propositumquę suum indefe<gap unit="chars" quantity="3"/>
+               n="73r"/> propositumquę suum indefe<gap unit="chars" quantity="3"/>
             <lb/>custodire <sic>ualer<unclear>er</unclear><gap unit="chars" quantity="1"
                   /><unclear>n</unclear>t</sic> ordinaue<lb break="no"/>rimus in alia
-               sced<unclear>u</unclear>la diligenter <lb/>adnotari fecimus et ut apud
-            <lb/>successores nostros ratum foret <lb/>et uiolabiliter conseruaretur
-            <lb/>confirmauimus . </ab>
+               sced<unclear>u</unclear>la diligenter <lb/> adnotari fecimus et ut apud
+            <lb/> successores nostros ratum foret <lb/> et uiolabiliter conseruaretur
+            <lb/> confirmauimus . </ab>
 
          <ab corresp="BK.138_6_inscriptio" type="meta-text" rend="coloured"
             xml:id="paris-bn-lat-4788-73r-1"><seg type="num" n="6">VI </seg><del unit="chars"
                quantity="1"/><lb/></ab>
 
          <ab type="text" xml:id="paris-bn-lat-4788-73r-2" corresp="BK.138_6"><seg type="initial"
-               >D</seg>e seruorum uero ordinatione <lb/>qui passim ad gradus ecclesiasti<lb
+               >D</seg>e seruorum uero ordinatione <lb/> qui passim ad gradus ecclesiasti<lb
                break="no"/>cus<!-- bm: Lesung des u (statt o) am Or. kontrolliert -->
                indiscre<unclear>t</unclear><gap unit="chars" quantity="1"/> promouebantur
-            <lb/>placuit omni<unclear>bus</unclear> cum s<unclear>a</unclear>cris cano<lb break="no"
+            <lb/> placuit omni<unclear>bus</unclear> cum s<unclear>a</unclear>cris cano<lb break="no"
             />nibus concordari debere <gap unit="chars" quantity="10"/><note type="editorial">Das
                bei Boretius/Krause folgende <mentioned>et statutum est</mentioned> könnte in dem
-               verbleibenden Platz gestanden haben, wenn man Kürzungen annimmt (z.B. <mentioned>et
+               verbleibenden Platz gestanden haben, wenn man Kürzungen annimmt (z. B. <mentioned>et
                   statutu. e.</mentioned>, ein Kürzungsstrich ist am Zeilenende noch erkennbar);
                auch ein <mentioned>et statum e.</mentioned> ist aber möglich.</note>
-            <lb/>ut nullus episcop<gap unit="chars" quantity="3"/>m deinceps <lb/>eos ad sacros
+            <lb/>ut nullus episcop<gap unit="chars" quantity="3"/>m deinceps <lb/> eos ad sacros
             ordines promouer<gap unit="chars" quantity="1"/>
             <lb/><expan>presumant</expan> . <subst>
                <del>s</del>
                <add>N</add>
             </subst>isi prius <unclear>a</unclear> do<gap unit="chars" quantity="5"/>
             <lb/>propriis libe<gap unit="chars" quantity="3"/>tem <gap unit="chars" quantity="9"/>
-            <lb/>fuerint et si quilibet <gap unit="chars" quantity="1"/>eruus <cb n="73v"/><gap
-               unit="chars" quantity="11"/> fugiens aut la<lb break="no"/><gap unit="chars"
+            <lb/>fuerint et si quilibet <gap unit="chars" quantity="1"/>eruus <cb n="73v"/>
+            <gap unit="chars" quantity="11"/> fugiens aut la<lb break="no"/><gap unit="chars"
                quantity="18"/> testibus munere <lb/>
             <gap unit="chars" quantity="12"/>
             <unclear>corr</unclear>uptis aut quilibet<!-- bm: qui- = q mit übergeschriebenem i; am Or. geprüft -->
@@ -900,7 +942,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             sanccitum . est <lb/><gap unit="chars" quantity="19"/> libertatem <lb/><gap unit="chars"
                quantity="4"/>
             <unclear>uo</unclear><gap unit="chars" quantity="2"/><unclear>er</unclear>it
-               <unclear>in</unclear> gradu suo permaneat <cb n="74r"/>Si uero eum ca<gap
+               <unclear>in</unclear> gradu suo permaneat <cb n="74r"/> Si uero eum ca<gap
                unit="chars" quantity="3"/>a s<gap unit="chars" quantity="9"/>
             <lb/>ad castris dom<gap unit="chars" quantity="3"/>c<gap unit="chars" quantity="11"/>
             <lb/>uolu<gap unit="chars" quantity="1"/>rit ut g<unclear>r</unclear><gap unit="chars"
@@ -921,13 +963,14 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                quantity="6"/>
             <lb/>illud obserua<gap unit="chars" quantity="13"/><lb break="no"/>nibus de
                c<unclear>on</unclear>s<gap unit="chars" quantity="12"/>
-            <lb/>habentibus co<gap unit="chars" quantity="12"/><cb n="74v"/>D<gap unit="chars"
-               quantity="3"/>clesiarum uero seruus com<lb break="no"/><gap unit="chars" quantity="2"
-            />ni <sic>sentia</sic><!-- bm: Lesart "sentia" statt "sententia" am Or. geprüft -->
-            decretum est <gap unit="chars" quantity="1"/>t <lb/><gap unit="chars" quantity="2"
-            />chiepiscopi per singulas prouin<gap unit="chars" quantity="1"/>ias <lb/>constituti
-            nostram auctoritatem <lb/>suffragane uero illorum exem<lb break="no"/>plar illius pene
-            se habeant et <lb/>quandocumq<unclear>u</unclear><gap unit="chars" quantity="1"/> de
+            <lb/>habentibus co<gap unit="chars" quantity="12"/>
+            <cb n="74v"/> D<gap unit="chars" quantity="3"/>clesiarum uero seruus com<lb break="no"
+               /><gap unit="chars" quantity="2"/>ni
+            <sic>sentia</sic><!-- bm: Lesart "sentia" statt "sententia" am Or. geprüft --> decretum
+            est <gap unit="chars" quantity="1"/>t <lb/><gap unit="chars" quantity="2"/>chiepiscopi
+            per singulas prouin<gap unit="chars" quantity="1"/>ias <lb/>constituti nostram
+            auctoritatem <lb/>suffragane uero illorum exem<lb break="no"/>plar illius pene se
+            habeant et <lb/>quandocumq<unclear>u</unclear><gap unit="chars" quantity="1"/> de
             familia <lb/>
             <unclear>e</unclear><gap unit="chars" quantity="2"/>lesie utilis aliquis inuentus
             <lb/>ordinandum est in ambone ip<lb break="no"/>s<gap unit="chars" quantity="1"/>
@@ -938,7 +981,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <lb/><gap unit="chars" quantity="3"/>seq<unclear>uat</unclear>ur et
                t<unclear>u</unclear>nc demum <lb/><gap unit="chars" quantity="1"/>d gr<gap
                unit="chars" quantity="1"/>d<unclear>o</unclear>s ecclesiasticos promoueatur <cb
-               n="75r"/>similiter quoque de his ag<gap unit="chars" quantity="4"/>
+               n="75r"/> similiter quoque de his ag<gap unit="chars" quantity="4"/>
             <lb/>est quos <sic>laci</sic> de familia ecclesi<lb break="no"/>a<gap unit="chars"
                quantity="1"/>um <unclear>a</unclear>d sacros ordines promo<gap unit="chars"
                quantity="2"/><lb break="no"/>re uoluerint sed et de his quos
@@ -952,7 +995,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <ab type="text" xml:id="paris-bn-lat-4788-75r-2" corresp="BK.138_7"><seg type="initial"
                >S</seg>tatutum est ut nullus quilibet <lb/>ecclesiasticus ab his personis res
             <lb/>deinceps accipere <expan>presumet</expan> qua<lb break="no"/>rum liberi
-            ad<!-- bm: Obwohl das Pergament unter d etwas dunkler ist, scheint hier nichts korr. worden zu sein (eig. würde man "aut" erwarten); am Or. geprüft -->
+            ad<!-- bm: Obwohl das Pergament unter d etwas dunkler ist, scheint hier nichts korr. worden
+               zu sein (eig. würde man "aut" erwarten); am Or. geprüft -->
             propinqui ac <gap unit="chars" quantity="2"/><unclear>con</unclear><lb break="no"/>sulta
             oblatione possent rerum <lb/>propriarum exheredari quod si a<lb break="no"/>liquis
             deinceps hoc facere te<gap unit="chars" quantity="2"/><lb break="no"/>tauerit ut et
@@ -967,8 +1011,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             </subst>entia<note type="editorial">korr. aus <mentioned>sen[†]entia</mentioned>; das
                   <mentioned>sen-</mentioned> außerhalb des Schriftspiegels am Ende der
                vorangehenden Zeile, so dass es wahrscheinlich im Zuge desselben Korrekturvorganges
-               ergänzt wurde.</note> districte feriatur et res <cb n="75v"/><gap unit="chars"
-               quantity="12"/>s redeant . </ab>
+               ergänzt wurde.</note> districte feriatur et res <cb n="75v"/>
+            <gap unit="chars" quantity="12"/>s redeant . </ab>
 
          <ab corresp="BK.138_8_inscriptio" type="meta-text" rend="coloured"
             xml:id="paris-bn-lat-4788-75v-1"><seg type="num" n="8">VIII </seg><lb/></ab>
@@ -1011,7 +1055,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                BK folgende <mentioned>eos</mentioned>, ist unsicher.</note> reiciant </ab>
 
          <ab corresp="BK.138_10_inscriptio" type="meta-text" rend="coloured"
-            xml:id="paris-bn-lat-4788-75v-5"><seg type="num" n="10">X </seg><cb n="76r"/></ab>
+            xml:id="paris-bn-lat-4788-75v-5"><seg type="num" n="10">X</seg>
+            <cb n="76r"/></ab>
 
          <ab type="text" xml:id="paris-bn-lat-4788-76r-1" corresp="BK.138_10"><sic><seg
                   type="initial">S</seg>canccitum</sic> est <gap unit="chars" quantity="5"/>cuique ecclesie<!-- bm: kein e-caudata; am Or. geprüft -->
@@ -1098,8 +1143,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                unit="chars" quantity="2"/>nari nobis pla<lb break="no"/>cuerit et aliis
                capitulis<note type="editorial">Zwischen <mentioned>capi-</mentioned> und
                   <mentioned>-tulis</mentioned> eine beschädigte Stelle im Pergament, die aber
-               scheinbar keinen Textverlust verursacht hat.</note> subter <cb n="77r"/>adnotauimus .
-            <lb/></ab>
+               scheinbar keinen Textverlust verursacht hat.</note> subter <cb n="77r"/> adnotauimus
+            . <lb/></ab>
 
          <ab corresp="BK.138_15_inscriptio" type="meta-text" xml:id="paris-bn-lat-4788-77r-1"><seg
                type="num" n="15"><gap unit="chars" quantity="2"
@@ -1140,7 +1185,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <mentioned>epis.</mentioned>, das <mentioned>i</mentioned> jedoch nicht mehr
                erkennbar.</note> de <expan>presbiteris</expan>
             <gap unit="chars" quantity="3"/><lb break="no"/>minas secum indiscrete habitare <cb
-               n="77v"/>promittunt et propter hoc mal<unclear>e</unclear>
+               n="77v"/> promittunt et propter hoc mal<unclear>e</unclear>
             <lb/>opinionis suspicionem deno<lb break="no"/>tantur ut si deinceps amoniti <lb/>non se
                corr<unclear>exer</unclear>it<!-- bm: eig. -int; Kürzungszeichen für n aber nicht zu sehen; am Or. geprüft -->
             uelut contempto<lb break="no"/>res sacrorum canonum cano<lb break="no"/>nica inuectione
@@ -1163,21 +1208,21 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                Nachkollation am Or. mehr. Transkription also auf Basis des Digitalisats; wo etwas am Or. geprüft wurde, angemerkt. --><gap
                unit="chars" quantity="3"/>m q<gap unit="chars" quantity="2"/>ttuor aut quinque
                <lb/><gap unit="chars" quantity="2"/>libus habitant more solito <lb/>ad accipiendum
-            crisma per se ueniant <cb n="78r"/>Discendi uero gratia alio non <choice>
+            crisma per se ueniant <cb n="78r"/> Discendi uero gratia alio non <choice>
                <abbr>XLme</abbr>
                <expan>quadragesime</expan>
             </choice>
             <lb/>tempore ad ciuitates conuocentur . <lb/></ab>
 
          <ab corresp="BK.138_19_inscriptio" type="meta-text" xml:id="paris-bn-lat-4788-78r-1"><seg
-               type="num" n="18"><gap unit="chars" quantity="1"/>VIII<note type="editorial">Am
-                  linken Rand nahe der Bindung sind Reste roter Tinte zu erkennen, darunter in
-                  Texttinte <mentioned>...VIII</mentioned>. Offenbar stand hier vorher eine andere
-                  Kapitelnummer, die zu <mentioned>[X]VIII</mentioned> korrigiert wurde. Damit wird
-                  BK 138 c. 19 als (zweites) c. XVIII gezählt und die folgende Nummerierung ist
-                  jeweils um eins zu tief angesetzt. Der Beginn dieses Kapitels ist zudem nicht
-                  durch eine vergrößerte Anfangsinitiale hervorgehoben.</note>
-            </seg></ab>
+               type="num" n="18"><gap unit="chars" quantity="1"/>VIII</seg><note type="editorial">Am
+               linken Rand nahe der Bindung sind Reste roter Tinte zu erkennen, darunter in
+               Texttinte <mentioned>...VIII</mentioned>. Offenbar stand hier vorher eine andere
+               Kapitelnummer, die zu <mentioned>[X]VIII</mentioned> korrigiert wurde. Damit wird BK
+               138 c. 19 als (zweites) c. XVIII gezählt und die folgende Nummerierung ist jeweils um
+               eins zu tief angesetzt. Der Beginn dieses Kapitels ist zudem nicht durch eine
+               vergrößerte Anfangsinitiale hervorgehoben.</note>
+         </ab>
 
          <ab type="text" xml:id="paris-bn-lat-4788-78r-2" corresp="BK.138_19">Ne uero episcopi
             occassionem <expan>predicandi</expan>
@@ -1201,7 +1246,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                unit="chars" quantity="4"/>
             <lb/> contemptauerit multa<note type="editorial">Über dem <mentioned>a</mentioned> evtl.
                ein verblasster Kürzungsstrich für <mentioned>-am</mentioned>.</note> quę in
-            <lb/>capitolis . <cb n="78v"/>legis mundane a nobis consti<lb break="no"/>tutis
+            <lb/>capitolis . <cb n="78v"/> legis mundane a nobis consti<lb break="no"/>tutis
             continetur persoluere coga<gap unit="chars" quantity="3"/>
             <lb/></ab>
 
@@ -1234,9 +1279,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                Buchstabe fehlt jedoch wegen eines Pergamentschadens.</note> auctorita<lb break="no"
             />tem donec deliberent quid agant <lb/>
             <gap unit="chars" quantity="2"/>erentur specialiter<!-- dt: nur diese zwei Wörter in der Zeile? komisch
-            - bm: Ja, Platz wäre für mehr ... aber anhand des Scans lässt sich nichts richtig erkennen; am Original prüfen. -->
-            <cb n="79r"/>pro his capitula fieri et legis munda<lb break="no"/>ne capitolis inserendo
-               decre<lb break="no"/>uimus . </ab>
+            - bm: Ja, Platz wäre für mehr ... aber anhand des Scans lässt sich nichts richtig erkennen. - bm: Am
+            Original geprüft: Federproben. -->
+            <cb n="79r"/> pro his capitula fieri et legis munda<lb break="no"/>ne capitolis
+            inserendo decre<lb break="no"/>uimus . </ab>
 
          <ab corresp="BK.138_22_inscriptio" type="meta-text" rend="coloured"
             xml:id="paris-bn-lat-4788-79r-1"><seg type="num" n="21"
@@ -1250,10 +1296,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             quid pati debeant <lb/>qui hoc nefas facere temptaue<lb break="no"/>rint quid tamen
             super his sacri <lb/>canones <expan>precipiant</expan> hic <gap unit="chars"
                quantity="4"
-               /><!-- dt: ja, gap, aber viel Platz hier wieder - bm: Am Original prüfen. --><lb
+               /><!-- dt: ja, gap, aber viel Platz hier wieder - bm: Am Original prüfen. [Keine Notiz in den Unterlagen.] --><lb
                break="no"/>rendum necessarium duximus <lb/>quatenus omnibus pateat quan<lb
                break="no"/><gap unit="chars" quantity="1"/>um
-            malum<!-- dt: u sieht auch so aus, als hätte es langen Schaft - bm: Evtl. korr. aus mallum? Am Original prüfen. -->
+            malum<!-- dt: u sieht auch so aus, als hätte es langen Schaft - bm: Evtl. korr. aus mallum? Am Original prüfen. [Keine Notiz in den Unterlagen.] -->
             sit et <gap unit="chars" quantity="2"/><unclear>n</unclear> s<gap unit="chars"
                quantity="3"/><unclear>m</unclear>
             <lb/>
@@ -1272,7 +1318,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                >D</seg>e puellis ra<gap unit="chars" quantity="3"/>s necdum d<gap unit="chars"
                quantity="1"/>s<lb break="no"/>ponsatis <add>ita</add><metamark function="insertion"
             /> in concilio <rs type="place">calcidonensi</rs><!-- bm: [...]nsi unter der letzten Zeile -->
-            <cb n="79v"/>ubi DCXXX patres adfuerun<gap unit="chars" quantity="1"/>
+            <cb n="79v"/> ubi DCXXX patres adfuerun<gap unit="chars" quantity="1"/>
             <lb/>capitulo
             <!-- bm: eig. "XXVII", aber hier (in der Lücke danach nichts mehr, am Or. geprüft): -->
             XXXVIII ita habetur eos <lb/>qui rapiunt puellas sub nomi<lb break="no"/>nes simul
@@ -1300,7 +1346,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          </ab>
 
          <ab corresp="BK.138_24_inscriptio" type="meta-text" rend="coloured"
-            xml:id="paris-bn-lat-4788-79v-1"><seg type="num" n="23">XXIII </seg><cb n="80r"/></ab>
+            xml:id="paris-bn-lat-4788-79v-1"><seg type="num" n="23">XXIII </seg>
+            <cb n="80r"/></ab>
 
          <ab type="text" xml:id="paris-bn-lat-4788-80r-1" corresp="BK.138_24"><seg type="initial"
                >D</seg>esponsatis puellis et ab alias <lb/>raptas placuit erui et <gap unit="chars"
@@ -1333,11 +1380,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <ab type="text" xml:id="paris-bn-lat-4788-80r-3" corresp="BK.138_25"><seg type="initial"
                >D</seg>e his uero q<gap unit="chars" quantity="5"/>ri uirginib<unclear>us</unclear>
             <lb/>se sociant i<gap unit="chars" quantity="2"/> in dec<gap unit="chars" quantity="2"
-            />tis <cb n="80v"/><rs type="person">pape gelasii</rs> capitulo XX continetur
-            <lb/>uirginibus sacris tenere se qu<gap unit="chars" quantity="2"/><lb break="no"/>dam
-            sociare cognouimus et post <lb/>dicatum deo propositum incesta <lb/>federa sacri
-               legateq<gap unit="chars" quantity="2"/>e egerint <lb/>penitentia omni non
-               <sic>recipia</sic><!-- bm: Dahinter folgt nichts mehr. dt: vllt. zu aut schon angesetzt, dann aber abgebrochen  -->
+            />tis <cb n="80v"/>
+            <rs type="person">pape gelasii</rs> capitulo XX continetur <lb/>uirginibus sacris tenere
+            se qu<gap unit="chars" quantity="2"/><lb break="no"/>dam sociare cognouimus et post
+            <lb/>dicatum deo propositum incesta <lb/>federa sacri legateq<gap unit="chars"
+               quantity="2"/>e egerint <lb/>penitentia omni non <sic>recipia</sic><!-- bm: Dahinter folgt nichts mehr. dt: vllt. zu aut schon angesetzt, dann aber abgebrochen  -->
             <lb/>aut his certe uiaticum de <expan>seculo</expan>
             <lb/>transeuntibus si tamen penituerin<gap unit="chars" quantity="1"/>
             <lb/>non negetur si uero de copula<lb break="no"/>tione
@@ -1353,7 +1400,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <lb/><unclear>radic</unclear><gap unit="chars" quantity="5"/>mputetur . </ab>
 
          <ab corresp="BK.138_26_inscriptio" type="meta-text" rend="coloured"
-            xml:id="paris-bn-lat-4788-80v-1"><seg type="num" n="25">XXV </seg><cb n="81r"/></ab>
+            xml:id="paris-bn-lat-4788-80v-1"><seg type="num" n="25">XXV </seg>
+            <cb n="81r"/></ab>
 
          <ab type="text" xml:id="paris-bn-lat-4788-81r-1" corresp="BK.138_26"><seg type="initial"
                >N</seg><gap unit="chars" quantity="1"/> uero puelle indiscrete <lb/>uelentur placuit
@@ -1376,7 +1424,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             </subst>r uel si etiam aliquo mortis p<gap unit="chars" quantity="1"/><lb break="no"
             />riculoso sc<gap unit="chars" quantity="2"/>pulo conpuncta <lb/>fuerit ne non uelata
                moriat<unclear>ur</unclear>
-            <cb n="81v"/>aut exigentibus parentibus aut his <lb/>at quorum curam <sic>petinet</sic>
+            <cb n="81v"/> aut exigentibus parentibus aut his <lb/>at quorum curam <sic>petinet</sic>
                uela<lb break="no"/>uerit uirginem seu uelauerit <lb/>ante XXV <mod>a</mod>nnos
             ętatis non ei ob<lb break="no"/>sit concilium quod de i<unclear>st</unclear><gap
                unit="chars" quantity="1"/> annorum <lb/>numero constitutum est . Unde
@@ -1424,7 +1472,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <gap unit="chars" quantity="2"/>structas sibi perti<lb break="no"/>nentes iuxta uires
                em<unclear>en</unclear>dent<note type="editorial">Ein Kürzungsstrich über
                   <mentioned>m</mentioned> für <mentioned>-en-</mentioned> ist nicht sicher
-               erkennbar.</note> . <cb n="82v"/>qualiter etiam uiduas diligenter <lb/>instruunt
+               erkennbar.</note> . <cb n="82v"/> qualiter etiam uiduas diligenter <lb/>instruunt
             quomodo etiam <lb/>secundum
             <sic>aposticam</sic><!-- bm: Ein Kürzungszeichen für -oli- = "apostolicam" sehe ich auch am Or. nicht. -->
                auctori<lb break="no"/>tatem conuersari debeant aedo<lb break="no"/>ceant et ut
@@ -1444,11 +1492,11 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          <ab type="text" xml:id="paris-bn-lat-4788-82v-2" corresp="BK.138_29"><seg type="initial"
                >N</seg>on<gap unit="chars" quantity="5"/> uero capitula sicut de in<lb break="no"
             />cestis nuptiis necnon et de
-               ec<!-- dt: Danach folgt nichts mehr? - bm: Am Original prüfen. --><lb break="no"
-            />clesiis qu<unclear>e</unclear> in<gap unit="chars" quantity="3"/> quoheredes
-               <lb/><unclear>diuidu</unclear><gap unit="chars" quantity="6"/>
-            <unclear>tali o</unclear>ccansione <cb n="83r"/>proprio <sic>honere</sic> carent siue de
-            his <lb/>ecclesiis que nimium rebus proprii <lb/>sunt adtenuate uel certe de his
+               ec<!-- dt: Danach folgt nichts mehr? - bm: Offenbar nein; am Or. geprüft. --><lb
+               break="no"/>clesiis qu<unclear>e</unclear> in<gap unit="chars" quantity="3"/>
+            quoheredes <lb/><unclear>diuidu</unclear><gap unit="chars" quantity="6"/>
+            <unclear>tali o</unclear>ccansione <cb n="83r"/> proprio <sic>honere</sic> carent siue
+            de his <lb/>ecclesiis que nimium rebus proprii <lb/>sunt adtenuate uel certe de his
             <lb/>rebus que<!-- bm: u nicht korr.; am Or. geprüft --> nuper necessitate con<lb
                break="no"/>pellente <sic>an</sic> nonnullis e<gap unit="chars" quantity="1"/>clesiis
             sunt <lb/>ablate et qu<gap unit="chars" quantity="2"/> sunt alia siue in
@@ -1468,23 +1516,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
          <milestone unit="capitulare" n="BK.139"/>
 
-         <!-- bm: BK 139: Der Text ist teilweise nahezu oder ganz unlesbar. Ich habe aber 
-            nur dort mit <gap> codiert, wo wirklich nichts mehr zu erkennen war bzw. wo sich das, was man
-         erahnen konnte, nicht mit dem deckte, was bei BK steht. Bzgl. der bei <gap> anzugebenden vermutlichen
-         Zahl der unlesbaren Buchstaben habe ich mich in der Regel auch an dem orientiert, was laut BK da
-         wahrscheinlich gestanden hat (mögliche Abkürzungen eingerechnet), außer, es ließ sich überhaupt nicht 
-         mit dem Befund in Übereinstimmung bringen. Wo sich das, was man mit gutem Willen erkennen konnte auch 
-         noch mit dem gedeckt hat, was laut BK da stehen müßte, habe ich ohne Codierung transkribiert bzw. in 
-         Zweifelsfällen ein <unclear> gesetzt. Ansonsten wäre ein noch längerer Anmerkungsapparat herausgekommen. 
-         - Letztlich muß der Text eh am Original nachkollationiert werden. -->
-
          <!-- bm: Ab hier (BK 139) wieder komplett am Original nachkollationiert! -->
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4788-83r-1"
             corresp="BK.139_inscriptio"><choice>
                <abbr>INCIP</abbr>
                <expan>INCIPIUNT</expan>
-            </choice> CAPITULA QUĘ LEGIBUS AD<lb break="no"/>DENDA SUNT <cb n="83v"/>QUĘ ET
+            </choice> CAPITULA QUĘ LEGIBUS AD<lb break="no"/>DENDA SUNT <cb n="83v"/> QUĘ ET
                <sic>OASSI</sic>
             <unclear>ET</unclear> COM<gap quantity="1" unit="chars"/>TAS SI <unclear>ET</unclear>
             <lb/>CO<unclear>M</unclear>ITES HAB<gap quantity="2" unit="chars"/>E ET CETERIS <lb/>
@@ -1505,24 +1543,24 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <unclear>d</unclear>efendendo eum interfecisse <lb/>et p<unclear>ost</unclear>
             hęc<!-- DT: 
                Ich sehe zugegebenermaßen kein e. Eher ein o. Vllt. ist dies auch keine cauda? Vllt. auch e mod?
-            - bm: hęc; am Original geprüft --> DC solidos ad partem ecclesię <lb/>quam
-            illo homicidio pulluerat <lb/>et insuper bannum nostrum soluere <lb break="no"/>cogatur
-            . <cb n="84r"/>his uero qui interfectus est <lb/>absque conpositione iaceat <lb/>ac
-            deinde interfector secundum iudi<lb break="no"/>cium canonicum congruam <lb/>facinori
-            quod admisit penitentiam <lb/>accipiat si prop<unclear>r</unclear>ius seruus hoc
-            <lb/>commiserit . i<gap quantity="1" unit="chars"/><unclear>di</unclear>cio aque
-            feruentis <lb/>examinetur utrum hoc sponte <lb/>an se defendendo fecisset et si
-            <lb/>manus eius exusta fuerit interfi<lb break="no"/>ciatur si
-            autem<!-- bm: au. mit Kürzungsstrich; am Original geprüft --> non fuerit dominus
-            <lb/>eius iuxta quod uuirgildus <unclear>e</unclear><gap quantity="2" unit="chars"/>s
-            <lb/>est ad ecclesiam persoluat au<gap quantity="4" unit="chars"/>
+            - bm: hęc; am Original geprüft -->
+            DC solidos ad partem ecclesię <lb/> quam illo homicidio pulluerat <lb/> et insuper
+            bannum nostrum soluere <lb/> cogatur . <cb n="84r"/> his uero qui interfectus est
+            <lb/>absque conpositione iaceat <lb/> ac deinde interfector secundum iudi<lb break="no"
+            />cium canonicum congruam <lb/>facinori quod admisit penitentiam <lb/>accipiat si
+               prop<unclear>r</unclear>ius seruus hoc <lb/>commiserit . i<gap quantity="1"
+               unit="chars"/><unclear>di</unclear>cio aque feruentis <lb/>examinetur utrum hoc
+            sponte <lb/>an se defendendo fecisset et si <lb/>manus eius exusta fuerit interfi<lb
+               break="no"/>ciatur si autem<!-- bm: au. mit Kürzungsstrich; am Original geprüft -->
+            non fuerit dominus <lb/>eius iuxta quod uuirgildus <unclear>e</unclear><gap quantity="2"
+               unit="chars"/>s <lb/>est ad ecclesiam persoluat au<gap quantity="4" unit="chars"/>
             <lb/>si uoluerit eidem ecclesie tra<unclear>da</unclear>t <lb/>de ecclesiastico et
             fiscalino et <gap quantity="1" unit="chars"/><unclear>e</unclear><lb break="no"
             />neficiario seruo uolumus <sic>u</sic> pro u<lb break="no"/>na uice <choice>
                <abbr>uuirgild</abbr>
                <expan>uuirgildus</expan>
             </choice> eius pro eo conponat<gap quantity="2" unit="chars"/>
-            <cb n="84v"/>altera uice ipse seruus ad suppli<lb break="no"/>cium tradatur hereditas
+            <cb n="84v"/> altera uice ipse seruus ad suppli<lb break="no"/>cium tradatur hereditas
             tamen <lb/>liberi hominis qui propter talem <lb/>facinus ad mortem fuerit iudi<lb
                break="no"/>catus ad <sic>legimos</sic> heredes illius <lb/>perueniat . si in atrio
             ecclesiae <lb/>cuius porta reliquiis sanctorum con<lb break="no"/>secrata est
@@ -1540,7 +1578,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
          </ab>
          <ab type="text" xml:id="paris-bn-lat-4788-84v-2" corresp="BK.139_2"><sic><seg
                   type="initial">S</seg>anguis</sic> effusio in ecclesia<unclear>m</unclear> facta
-            <lb/>cum fuste si <expan>presbiter</expan> fuerit triplo <cb n="85r"/>conponatur duas
+            <lb/>cum fuste si <expan>presbiter</expan> fuerit triplo <cb n="85r"/> conponatur duas
             partes eidem pres<lb break="no"/>bitero tertia pro fredo ad ecclesiam <lb/>insuper
             bannus noster . Similiter de dia<lb break="no"/>cono <sic>iux</sic> conpositionem eius
             in tri<lb break="no"/>plo cum banno nostro conponatur . <lb/>De subdiacono similiter
@@ -1555,7 +1593,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                zu <mentioned>trib-</mentioned></note>
             <lb/>et bannus noster . et qui non habet <lb/>unde ecclesiam persoluat trad<gap
                quantity="2" unit="chars"/>
-            <lb/>se in seruitium eidem ecclesię <cb n="85v"/>usque dum debitum totum persoluat
+            <lb/>se in seruitium eidem ecclesię <cb n="85v"/> usque dum debitum totum persoluat
             <lb/></ab>
          <ab corresp="BK.139_3_inscriptio" type="meta-text" xml:id="paris-bn-lat-4788-85v-1">
             <seg type="num" n="3">III </seg>
@@ -1571,16 +1609,15 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <sic>comus</sic> illos <lb/>et illas adiuuet dando eis <sic>telem</sic>
             <lb/>hominem qui rationem eorum te<lb break="no"/>neat uel pro eis loquatur . <lb/></ab>
          <ab corresp="BK.139_4_inscriptio" type="meta-text" xml:id="paris-bn-lat-4788-85v-3">
-            <seg type="num" n="4"><gap quantity="1" unit="chars"/>III<note type="editorial">Von der
-                  Nummerierung am Rand ist nur noch eine letzte <mentioned>I</mentioned> sicher zu
-                  erkennen. Davor die Reste von zwei weiteren Schäften (?), sowie ein Schrägstrich
-                  unklarer Funktion unter der Zahl. Wenn man davon ausgeht, daß der Schreiber die
-                     <mentioned>III</mentioned> nicht doppelt zählte (wofür die korrekt fortgeführte
-                  Zählung im folgenden keinen Anlaß bietet), dann wird hier ursprünglich eine
-                     <mentioned>IIII</mentioned> gestanden haben.
-                  <!-- bm: Am Original sieht man eher noch weniger als auf dem Scan; auf den 2. Blick
+            <seg type="num" n="4"><gap quantity="1" unit="chars"/>III</seg><note type="editorial"
+               >Von der Nummerierung am Rand ist nur noch eine letzte <mentioned>I</mentioned>
+               sicher zu erkennen. Davor die Reste von zwei weiteren Schäften (?), sowie ein
+               Schrägstrich unklarer Funktion unter der Zahl. Wenn man davon ausgeht, dass der
+               Schreiber die <mentioned>III</mentioned> nicht doppelt zählte (wofür die korrekt
+               fortgeführte Zählung im folgenden keinen Anlass bietet), dann wird hier ursprünglich
+               eine <mentioned>IIII</mentioned> gestanden haben.
+               <!-- bm: Am Original sieht man eher noch weniger als auf dem Scan; auf den 2. Blick
                      "III" nur noch als als Einritzung der Feder im Pergament, nicht als Tintenspur. --></note>
-            </seg>
          </ab>
          <ab type="text" xml:id="paris-bn-lat-4788-85v-4" corresp="BK.139_4"><seg type="initial"
                >Q</seg>ui uid<gap quantity="2" unit="chars"/><unclear>m</unclear> intra primos XXX
@@ -1593,9 +1630,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <lb/>legem suam ei conponat illam <lb/>uero alterius non adtingat . <cb n="86r"/>
          </ab>
          <ab corresp="BK.139_5_inscriptio" type="meta-text" xml:id="paris-bn-lat-4788-86r-1">
-            <seg type="num" n="5"><unclear>V</unclear><note type="editorial">Die Kapitelzählung ist
-                  am rechten Seitenrand nur zu erahnen.</note>
-            </seg>
+            <seg type="num" n="5"><unclear>V</unclear></seg><note type="editorial">Die
+               Kapitelzählung ist am rechten Seitenrand nur zu erahnen.</note>
          </ab>
          <ab type="text" xml:id="paris-bn-lat-4788-86r-2" corresp="BK.139_5 BK.139_6_inscriptio"
                ><milestone unit="span" corresp="BK.139_5" spanTo="#paris-bn-lat-4788-86r-2_1"/><seg
@@ -1617,7 +1653,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             intra ipsum comita<lb break="no"/>tum fuerit in quo res ille posite sunt <lb/>legitimam
             traditionem facere <lb/>studeat quodsi eodem tempore <lb/>quo illa<gap unit="chars"
                quantity="1"/> tradere uult extra ea<lb break="no"/>dem comitatum fuerit id est . <cb
-               n="86v"/>siue in exercitu siue in palatio <lb/>siue in alio quolibet loco adhi<lb
+               n="86v"/> siue in exercitu siue in palatio <lb/>siue in alio quolibet loco adhi<lb
                break="no"/>beat sibi uel de suis pagensibus <lb/>uel de aliis qui eadem legem ui<lb
                break="no"/>uant qua ipse uiuit testes ido<lb break="no"/>ne<subst>
                <del>u</del>
@@ -1632,8 +1668,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             </subst> ita fuerit <lb/>heres illius nullam de
                <expan><unclear>pre</unclear>dictis</expan>
             <lb/>rebus ualeat face<gap quantity="2" unit="chars"/> repetitio<lb break="no"/>nem
-            insuper et ipse per se fidelem <cb n="87r"/>iussionem faciat eiusdem uesti<lb break="no"
-            />ture ne <add>h</add>eredi illa<note type="editorial"><mentioned>heredi
+            insuper et ipse per se fidelem <cb n="87r"/> iussionem faciat eiusdem uesti<lb
+               break="no"/>ture ne <add>h</add>eredi illa<note type="editorial"><mentioned>heredi
                   illa</mentioned> (<mentioned>h</mentioned> ergänzt). Theoretisch ist aber auch die
                Lesung <mentioned>hered ulla</mentioned> möglich.</note> occasione <lb/>maneat hanc
             traditionem in<lb break="no"/>mutandi sed potius necesitas <lb/>incumbat illam
@@ -1649,7 +1685,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                unit="chars"/><unclear>d</unclear>ere rogauit coheres <lb/>eius eam <gap quantity="3"
                unit="chars"/>em <gap quantity="2" unit="chars"/>m ill<gap quantity="6" unit="chars"/>
             <lb/> de <expan>predicta</expan> hereditate habe<gap quantity="2" unit="chars"/>
-            <cb n="87v"/>quam cum alio coher<gap quantity="1" unit="chars"/><unclear>d</unclear>e
+            <cb n="87v"/> quam cum alio coher<gap quantity="1" unit="chars"/><unclear>d</unclear>e
             suo <lb/>habere <sic>redebebat</sic> et o<mod>b</mod>seruetur <lb/>erga patrem et filium
             et ne<lb break="no"/>potem usque ad annos legitimos <lb/>postea <sic>ipses</sic> res ad
                inmunita<lb break="no"/>tem ipsius ecclesię redeant <lb/></ab>
@@ -1677,7 +1713,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                quantity="3" unit="chars"/> in lege <lb/> continentur exce<gap quantity="5"
                unit="chars"/>cipitre <lb/>
             <gap quantity="6" unit="chars"/>a quia propter <gap quantity="3" unit="chars"
-               /><unclear>a</unclear> aliquoties <cb n="88r"/>periur<gap quantity="2" unit="chars"
+               /><unclear>a</unclear> aliquoties <cb n="88r"/> periur<gap quantity="2" unit="chars"
             />m committitur quan<lb break="no"/>do maioris <expan>pretii</expan> quam illa sunt esse
             <lb/>iurantur * </ab>
          <ab corresp="BK.139_9_inscriptio" type="meta-text" xml:id="paris-bn-lat-4788-88r-1">
@@ -1707,14 +1743,13 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <lb/>bann<gap quantity="7" unit="chars"/> id est XL solidos <gap quantity="3"
                unit="chars"/>
             <lb break="no"/>uat uel <gap quantity="5" unit="chars"/>sentiam <gap unit="chars"
-               quantity="7"/><cb n="88v"/> comis eum aduenire faciat <lb/>et quanto tempore nobis
-               pla<lb break="no"/>cuerit in exilio maneat et illam <lb/>feminam ei habere non liceat
-            * <lb/></ab>
+               quantity="7"/>
+            <cb n="88v"/> comis eum aduenire faciat <lb/>et quanto tempore nobis pla<lb break="no"
+            />cuerit in exilio maneat et illam <lb/>feminam ei habere non liceat * <lb/></ab>
          <ab corresp="BK.139_10_inscriptio" type="meta-text" xml:id="paris-bn-lat-4788-88v-1">
-            <seg type="num" n="10">X<note type="editorial">Links am (offenbar beschnittenen) Rand,
-                  schräg unter dem <mentioned>X</mentioned>, ein weiteres <mentioned>X</mentioned>
-                  in derselben (oder ähnlichen) hellbraunen Tinte.</note>
-            </seg>
+            <seg type="num" n="10">X</seg><note type="editorial">Links am (offenbar beschnittenen)
+               Rand, schräg unter dem <mentioned>X</mentioned>, ein weiteres
+                  <mentioned>X</mentioned> in derselben (oder ähnlichen) hellbraunen Tinte.</note>
          </ab>
          <ab type="text" rend="nota" xml:id="paris-bn-lat-4788-88v-2" corresp="BK.139_10"><seg
                type="initial">S</seg>i quis cum altero de <subst>
@@ -1736,7 +1771,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <gap quantity="13" unit="chars"/>ig<gap quantity="3" unit="chars"/>
             <unclear>d</unclear>uo ex ip<lb break="no"/><gap unit="chars" quantity="4"/>d <gap
                unit="chars" quantity="3"/>
-            <unclear>ex</unclear> utraq<unclear>ue</unclear> parte unus <cb n="89r"/>qui cum scutis
+            <unclear>ex</unclear> utraq<unclear>ue</unclear> parte unus <cb n="89r"/> qui cum scutis
             et fustibus in campo <lb/>decertent utra pars falsitatem <lb/>utra ueritatem suo
             testimonio <lb/>sequatur et campioni qui uictus <lb/>fuerit propter periurium qd<note
                type="editorial">Sic Hs.; gemeint ist wohl <mentioned>quod</mentioned>, ein
@@ -1759,7 +1794,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <lb/>eccles<gap quantity="1" unit="chars"/>ast<gap quantity="2" unit="chars"/>um
                nego<gap quantity="3" unit="chars"/>m <unclear>e</unclear><gap quantity="2"
                unit="chars"/>
-            <cb n="89v"/>idem modis obseruetur ubi uero <lb/>ex utraque parte ecclesiasticum
+            <cb n="89v"/> idem modis obseruetur ubi uero <lb/>ex utraque parte ecclesiasticum
             <lb/>fuerit r<unclear>ec</unclear>tores <choice>
                <abbr>earde</abbr>
                <expan>earundem</expan>
@@ -1778,8 +1813,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <gap quantity="1" unit="chars"/> non est credibile ut uel <unclear>d</unclear>e testa<lb
                break="no"/><gap quantity="2" unit="chars"/> hominis <gap unit="chars" quantity="1"/>
             de pos<unclear>s</unclear><gap quantity="1" unit="chars"/>ssione <lb/>
-            <gap quantity="3" unit="chars"/>libet per alios melius rei ueritas <cb n="90r"/>cognosci
-            ualeat quam per illos qui ui<lb break="no"/>ciniore sunt<note type="editorial"
+            <gap quantity="3" unit="chars"/>libet per alios melius rei ueritas <cb n="90r"/>
+            cognosci ualeat quam per illos qui ui<lb break="no"/>ciniore sunt<note type="editorial"
                   ><mentioned>uiciniore sunt</mentioned>: <mentioned>uiciniores</mentioned> mit
                Kürzungsstrich über dem <mentioned>s</mentioned>, ein <mentioned>s</mentioned> wurde
                also vom Schreiber vergessen; oder der Kürzungsstrich wurde erst von einem späteren
@@ -1802,9 +1837,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                   <expan>com<lb break="no"
             />missum</expan><!-- bm: Auf dem Scan sieht es nach co(m)- vor dem Zeilenwechsel so aus,
                als würde noch etwas folgen (verblasst oder radiert), das ist aber nur ein kleiner Riss;
-               am Or. geprüft. --> in bannum fuerit missa <lb/>et ille rem cognita
-               n<unclear>e</unclear> iustitiam <lb/>faciat uenire distu<gap quantity="1"
-               unit="chars"/>eri<gap quantity="2" unit="chars"/>nnum<lb break="no"/>que ac diem in
+               am Or. geprüft. -->
+            in bannum fuerit missa <lb/>et ille rem cognita n<unclear>e</unclear> iustitiam
+            <lb/>faciat uenire distu<gap quantity="1" unit="chars"/>eri<gap quantity="2"
+               unit="chars"/>nnum<lb break="no"/>que ac diem in
             eo<!-- DT: Wirkt eher wie ein t. - bm: Nein; am Or. geprüft. --> banno <gap quantity="7"
                unit="chars"/> per<lb break="no"/>miserit ulterius <unclear>e</unclear>a<gap
                quantity="4" unit="chars"/>q<gap quantity="1" unit="chars"
@@ -1813,7 +1849,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <lb/>uero quod <gap quantity="13" unit="chars"/>
             <lb/>soluere de<gap quantity="1" unit="chars"/>uit p<unclear>er</unclear> comite<gap
                quantity="1" unit="chars"/>
-            <cb n="90v"/>hac ministros eius iuxta esti<lb break="no"/>mationem dandi de rebus mo<lb
+            <cb n="90v"/> hac ministros eius iuxta esti<lb break="no"/>mationem dandi de rebus mo<lb
                break="no"/>bilibus que in eadem proprietate . <lb/>inuente fuerint his quibus idem
             <lb/>debitor fuerit <sic>exoluatur</sic> quod<lb break="no"/>si rerum mobilium ibidem
                inuen<lb break="no"/><gap quantity="2" unit="chars"/>rum quantitatis
@@ -1832,7 +1868,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <!-- bm: Am Or. geprüft; das zweite "esset" verschwindet auf dem Scan im Schatten der Bindung. -->
             <lb/>
             <gap quantity="5" unit="chars"/>s <gap quantity="2" unit="chars"/>g<gap quantity="3"
-               unit="chars"/>mam diuisionem <cb n="91r"/>faciat et tunc iam sicut dictum
+               unit="chars"/>mam diuisionem <cb n="91r"/> faciat et tunc iam sicut dictum
                <add>est</add><metamark function="insertion"/> partem <lb/>eius fisco nostro addicat
             et conposi<lb break="no"/>tionem de ea iuxta modum supe<lb break="no"/>rius
                <expan>conprehensum</expan> his ad quos illa <lb/>legibus pertineat et soluat<note
@@ -1857,7 +1893,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                f</unclear><gap quantity="1" unit="chars"/><unclear>ciam</unclear><gap quantity="7"
                unit="chars"/><note type="editorial">Die Kopie von BK 139 wird hier unterbrochen von
                BK 141 und setzt auf <locus>fol. 97v</locus> wieder ein; siehe dazu die Vorbemerkung
-               oben.</note><cb n="91v"/></ab>
+               oben.</note>
+            <cb n="91v"/></ab>
 
          <!-- bm: Den Einschub von BK 141 habe ich in Paris wegen Zeitknappheit ausgelassen. Das folgende
          ist daher nur mithilfe des Digitalisates transkribiert worden. -->
@@ -1891,7 +1928,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             />BE<unclear>A</unclear>NT . <lb/></ab>
 
          <ab type="text" xml:id="paris-bn-lat-4788-91v-2"
-            corresp="BK.141_inscriptio_2 BK.141_1 BK.141_2 BK.141_3 BK.141_4 BK.141_5 BK.141_6 BK.141_7             BK.141_8 BK.141_9 BK.141_10 BK.141_11 BK.141_12 BK.141_13 BK.141_14 BK.141_15 BK.141_16              BK.141_17 BK.141_18 BK.141_19 BK.141_20 BK.141_21 BK.141_22 BK.141_23 BK.141_24 BK.141_25              BK.141_26 BK.141_27 BK.141_28 BK.141_29">
+            corresp="BK.141_inscriptio_2 BK.141_1 BK.141_2 BK.141_3 BK.141_4 BK.141_5 BK.141_6 BK.141_7 BK.141_8 BK.141_9 BK.141_10 BK.141_11 BK.141_12 BK.141_13 BK.141_14 BK.141_15 BK.141_16              BK.141_17 BK.141_18 BK.141_19 BK.141_20 BK.141_21 BK.141_22 BK.141_23 BK.141_24 BK.141_25              BK.141_26 BK.141_27 BK.141_28 BK.141_29">
             <milestone unit="span" corresp="BK.141_inscriptio_2" spanTo="#paris-bn-lat-4788-91v-2_1"/>
             <seg type="initial">L</seg>egatio missorum nostrorum<note type="editorial">gek.
                   <mentioned>nrorum</mentioned> ohne erkennbaren Kürzungsstrich</note> hęc <gap
@@ -1906,14 +1943,14 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <lb/><gap unit="chars" quantity="2"/>t uicar<unclear>iu</unclear>s aut aduocatus
                <lb/><gap unit="chars" quantity="3"/>s quis<gap unit="chars" quantity="3"
                /><unclear>et</unclear><!-- das quis- ist noch erahnbar, davor steht aber eindeutig ein Wort, das auf -s endet??? dt: Ja, genau, könnte gar -us sein, aber keine Ahnung, 
-               was das zu bedeuten hat. --> de plebe hoc fe<lb break="no"/><gap
-               unit="chars" quantity="12"
+               was das zu bedeuten hat. -->
+            de plebe hoc fe<lb break="no"/><gap unit="chars" quantity="12"
             />s<!-- dt: ein s von fecisse auch erkennbar, -entus meine ich zu erahnen, aber gap hier sicherer -->
             fuerit statim <lb/><gap unit="chars" quantity="10"/>r . si uero uel comes uel <lb/><gap
                unit="chars" quantity="6"/>ominicus uel alter <lb/><gap unit="chars" quantity="9"
             />atinus hoc perpetra<lb break="no"/><gap unit="chars" quantity="9"/>m<!-- dt: ja, gap, nostrum gek. wohl -->
             <unclear>p</unclear>otestatem redi<lb break="no"/><gap unit="chars" quantity="9"
-               /><unclear>igenter</unclear> inuestigata <cb n="92r"/>et descripta ad nostrum
+               /><unclear>igenter</unclear> inuestigata <cb n="92r"/> et descripta ad nostrum
             iudicium <lb/>reseruetur <anchor xml:id="paris-bn-lat-4788-91v-2_2"/>
             <milestone unit="span" corresp="BK.141_2" spanTo="#paris-bn-lat-4788-91v-2_3"/> uolumus
             autem ut de his <lb/><unclear>l</unclear>ibertatibus et rebus reddendis que <lb/>in
@@ -1943,7 +1980,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                könnte zudem korrigiert worden sein, da die Tinte auf dem Scan dunkler
                erscheint.</note> o<gap unit="chars" quantity="5"/><lb break="no"/>onibus et cons<gap
                unit="chars" quantity="11"/>
-            <cb n="92v"/>nouiter iniustis <choice>
+            <cb n="92v"/> nouiter iniustis <choice>
                <abbr>sic</abbr>
                <expan>sicut</expan>
             </choice> sunt tributa <lb/>et tolonei in media uia ubi ne<gap unit="chars" quantity="1"/>
@@ -1965,7 +2002,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                /><unclear>t</unclear>is notum effeciant <anchor xml:id="paris-bn-lat-4788-91v-2_6"/>
             <milestone unit="span" corresp="BK.141_6" spanTo="#paris-bn-lat-4788-91v-2_7"/> de
                <lb/><gap unit="chars" quantity="4"/>s <unclear>et</unclear> decimis ut secundum <cb
-               n="93r"/>iussionem nostram dentur <anchor xml:id="paris-bn-lat-4788-91v-2_7"/>
+               n="93r"/> iussionem nostram dentur <anchor xml:id="paris-bn-lat-4788-91v-2_7"/>
             <milestone unit="span" corresp="BK.141_7" spanTo="#paris-bn-lat-4788-91v-2_8"/>de locis
                <lb/><unclear>d</unclear>andis ad claustra canonicorum <lb/>facienda si <add>d</add>e
                e<mod>i</mod>usdem ecclesia rebus <lb/>fuerit reddatur ibi si de alterius . <lb/>uel
@@ -1999,11 +2036,14 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                unit="chars" quantity="4"/>
             <lb/><gap unit="chars" quantity="2"/> iu<mod>xt</mod>a possibilit<gap unit="chars"
                quantity="10"/><!-- dt: ja, mit dem cb schwierig, vermute mal, dass anti- noch 93r steht -->
-            <cb n="93v"/><!-- bm: cb irgendwo hier; in der ersten Zeile von fol. 93v offenbar etwas radiert; prüfen! -->
+            <cb n="93v"/>
+            <!-- bm: cb irgendwo hier; in der ersten Zeile von fol. 93v offenbar etwas radiert; prüfen!
+            [Keine Notiz in den Unterlagen.] -->
             <del unit="chars" quantity="10"/> reformantur <lb/>
             <anchor xml:id="paris-bn-lat-4788-91v-2_11"/>
             <milestone unit="span" corresp="BK.141_11" spanTo="#paris-bn-lat-4788-91v-2_12"/> de
-            beneficiis<!-- dt: zwischen b und e ein Bogen, c oder was Ähnliches? - bm: Am Or. prüfen. -->
+            beneficiis<!-- dt: zwischen b und e ein Bogen, c oder was Ähnliches? - bm: Am Or. prüfen.
+            [Keine Notiz in den Unterlagen.] -->
             nostris que destruc<lb break="no"/>ta inueniuntur hoc impleatur <lb/>quod<note
                type="editorial"><mentioned>qd</mentioned> ohne erkennbares Kürzungszeichen.</note> a
             nobis nuper constitutum est <lb/>
@@ -2023,7 +2063,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             uoluimus <lb/><gap unit="chars" quantity="4"/>ss<gap unit="chars" quantity="1"/>
                nostr<gap unit="chars" quantity="1"/> obseruent ut qu<lb break="no"/><gap
                unit="chars" quantity="6"/> de his causis uel singill<gap unit="chars" quantity="1"
-               /><lb break="no"/>tim <cb n="94r"/>emendare potuerint emendent
+               /><lb break="no"/>tim <cb n="94r"/> emendare potuerint emendent
             <lb/><!-- bm: eig. folgt "et", aber hier nicht zu sehen -->ea que non emendauerint
             diligenter <lb/>scriptis notent et hoc sic pergere <lb/>curent quatenus iuste
                   <expan>reprehen<lb break="no"/>dendi</expan> a quoq<gap unit="chars" quantity="2"
@@ -2048,7 +2088,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <unclear>q</unclear><gap unit="chars" quantity="8"/><lb break="no"/>tis de omnibus
                qu<gap unit="chars" quantity="2"/><unclear>ll</unclear><gap unit="chars" quantity="2"
             /> per<gap unit="chars" quantity="10"/>
-            <cb n="94v"/>rationem reddere ualeant <lb/>
+            <cb n="94v"/> rationem reddere ualeant <lb/>
             <anchor xml:id="paris-bn-lat-4788-91v-2_14"/>
             <milestone unit="span" corresp="BK.141_14" spanTo="#paris-bn-lat-4788-91v-2_15"/> de
             placitis siquidem quos <lb/>liberi homines obseruare <lb/>debent <add>uel</add>
@@ -2068,7 +2108,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <lb/><gap unit="chars" quantity="11"/>it . Ad cetera <lb/><gap unit="chars"
                quantity="11"/>enarii ten<gap unit="chars" quantity="3"/>
             <lb/><gap unit="chars" quantity="11"/>ire iubeatur <lb/><gap unit="chars" quantity="2"
-            />si <gap unit="chars" quantity="9"/>igat . <cb n="95r"/>aut iudicat aut testificatur
+            />si <gap unit="chars" quantity="9"/>igat . <cb n="95r"/> aut iudicat aut testificatur
                <anchor xml:id="paris-bn-lat-4788-91v-2_15"/>
             <milestone unit="span" corresp="BK.141_15" spanTo="#paris-bn-lat-4788-91v-2_16"/> ut de
             <lb/>debito quod opus nostrum fuerit reuuat<lb break="no"/>diatum talis consideratio
@@ -2103,7 +2143,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                für das bei Boretius/Krause folgende <mentioned>nec abbas</mentioned> eigentlich
                nicht mehr ausreichend Platz vorhanden, es sei denn, der Text ging deutlich über den
                Zeilenspiegel hinaus.</note>
-            <cb n="95v"/>nec comis nec abbatissam cente<lb break="no"/>narium comis aduocatum habeat <lb/>
+            <cb n="95v"/> nec comis nec abbatissam cente<lb break="no"/>narium comis aduocatum
+            habeat <lb/>
             <anchor xml:id="paris-bn-lat-4788-91v-2_20"/>
             <milestone unit="span" corresp="BK.141_20" spanTo="#paris-bn-lat-4788-91v-2_21"/>
                u<mod>t</mod> uicarii et centenarii qui fures et <lb/>latrones uel celauerint uel
@@ -2135,7 +2176,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <gap unit="chars" quantity="8"/>q<unclear>ue</unclear> missi nostri au<note
                type="editorial">Ein Kürzungsstrich für <mentioned>aut</mentioned> ist auf dem
                Digitalisat nicht zu erkennen.</note> episcopum <lb/><gap unit="chars" quantity="10"
-            /> aut aliam quamlibet <cb n="96r"/>quocumque honore <expan>predictum</expan><note
+            /> aut aliam quamlibet <cb n="96r"/> quocumque honore <expan>predictum</expan><note
                type="editorial">Das <mentioned>p</mentioned> wurde mit zwei Kürzungsstrichen
                versehen; sowohl mit einem Strich durch den Schaft für <mentioned>per-</mentioned>
                als auch mit dem übergeschriebenen Strich für <mentioned>pre-</mentioned>.</note>
@@ -2164,7 +2205,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <lb/> reuersus ut caus<gap unit="chars" quantity="1"/> q<gap unit="chars" quantity="7"/>
             <lb/> coram comite non <unclear>f</unclear><gap unit="chars" quantity="12"/>
             <lb/> reclamat propter su<gap unit="chars" quantity="12"/>
-            <cb n="96v"/>aut contumatiam comite inde <lb/>appellare noluit iterum co<mod>mi</mod>ti
+            <cb n="96v"/> aut contumatiam comite inde <lb/>appellare noluit iterum co<mod>mi</mod>ti
             <lb/> commandetur . <anchor xml:id="paris-bn-lat-4788-91v-2_26"/>
             <milestone unit="span" corresp="BK.141_26" spanTo="#paris-bn-lat-4788-91v-2_27"/> Ut
             missi nostri qui uel <lb/>episcopi uel abbates uel comites sunt . quam<lb break="no"
@@ -2183,7 +2224,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                quantity="3"/><unclear>b</unclear>anno reuadiant <lb/><gap unit="chars" quantity="7"
             />s his qui propter necesaria<gap unit="chars" quantity="1"/>
             <lb/><gap unit="chars" quantity="3"/>sas et a <rs type="person">domno ac genitor<gap
-                  unit="chars" quantity="1"/> nostro <cb n="97r"/>karalo</rs> constituitas<note
+                  unit="chars" quantity="1"/> nostro <cb n="97r"/> karalo</rs> constituitas<note
                type="editorial">Unter <mentioned>i</mentioned><hi rend="super">2</hi> ist auf dem
                Digitalisat ein Schatten zu erkennen; evtl. eine Expungierung?</note> domi dimissi
             <lb/>fuerunt . Idem qui a comite propter <lb/>pacem conseruandam et propter coniugem
@@ -2205,7 +2246,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <lb/>qualitatem dandu<unclear>m uel ac</unclear><gap unit="chars" quantity="2"/>p<gap
                unit="chars" quantity="3"/>d<gap unit="chars" quantity="2"/> s<gap unit="chars"
                quantity="2"/>
-            <cb n="97v"/>uidelicet episcopo panes XL <choice>
+            <cb n="97v"/> uidelicet episcopo panes XL <choice>
                <abbr>fring</abbr>
                <expan>friskingas</expan>
             </choice> III <lb/>de potu <choice>
@@ -2243,7 +2284,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
          <!-- bm: Ab hier wieder am Original kollationiert. -->
 
-         <milestone unit="capitulare" n="BK.139"/>
+         <milestone unit="capitulare" n="BK.139_1"/>
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4788-97v-1"
             corresp="BK.139_12_inscriptio">DE MANIRE <seg type="num" n="13">XIII </seg><lb/></ab>
@@ -2255,7 +2296,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <gap quantity="9" unit="chars"/> D<gap quantity="2" unit="chars"
             /><unclear>et</unclear>eris uero causis <lb/>
             <gap quantity="7" unit="chars"/>s <gap quantity="3" unit="chars"/>ionem est redditurus <lb/>
-            <gap quantity="10" unit="chars"/> sed per comitem baniatur <cb n="98r"/>et si per unam
+            <gap quantity="10" unit="chars"/> sed per comitem baniatur <cb n="98r"/> et si per unam
             et alteram comitis ad<lb break="no"/>monitionem aliquis ad mallum ue<lb break="no"/>nire
                nolu<add>er</add>it r<unclear>eb</unclear>us eius in bannum <lb/>missis uenire et
             iustitiam facere <lb/>conpellatur <lb/></ab>
@@ -2273,10 +2314,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                /><unclear>am</unclear> per sa<lb break="no"/>cramentum pacificare f<gap quantity="5"
                unit="chars"/> Quod<lb break="no"/>si una pars
             <!-- bm: Unter dem Schulterstrich des r ein kleines Loch im Pergament, keine Tilgung o.ä.,
-               daher nichts angemerkt. Am Or. geprüft. --> ei hoc<gap quantity="9"
-               unit="chars"/>oluerit <lb/>id est aut ille qu<gap quantity="13" unit="chars"/>mmi<lb
-               break="no"/>sit aut his qui conp<gap quantity="14" unit="chars"/><lb break="no"/>pere
-            debet faci<unclear>at</unclear>
+               daher nichts angemerkt. Am Or. geprüft. -->
+            ei hoc<gap quantity="9" unit="chars"/>oluerit <lb/>id est aut ille qu<gap quantity="13"
+               unit="chars"/>mmi<lb break="no"/>sit aut his qui conp<gap quantity="14" unit="chars"
+               /><lb break="no"/>pere debet faci<unclear>at</unclear>
             <gap quantity="5" unit="chars"/>
             <unclear>q</unclear><gap quantity="7" unit="chars"/><lb break="no"/>max fuerit ad
                <expan>presentiam</expan> nostram <gap quantity="2" unit="chars"/>
@@ -2284,7 +2325,7 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                type="editorial">Für den laut BK folgenden Passus <mentioned>quod nobis
                   placuerit</mentioned> verbleibt am Zeilenende nicht genügend Platz; zu erkennen
                sind ca. 6 verblasste Buchstaben.</note>
-            <cb n="98v"/>in exilio mittamus donec ibi casti<lb break="no"/>getur ut comiti
+            <cb n="98v"/> in exilio mittamus donec ibi casti<lb break="no"/>getur ut comiti
                su<mod>o</mod> inobediens esse <lb/><sic>ulte</sic> non audeatur et maius dam<lb
                break="no"/>num inde non adcrescat . <lb/></ab>
 
@@ -2332,7 +2373,8 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4788-99r-2"
             corresp="BK.139_16_inscriptio">DE DISPECTU LITTERARUM DOMINICARUM <lb/><seg type="num"
-               n="17"><unclear>X</unclear>VII </seg><cb n="99v"/></ab>
+               n="17"><unclear>X</unclear>VII </seg>
+            <cb n="99v"/></ab>
          <ab type="text" xml:id="paris-bn-lat-4788-99v-1" corresp="BK.139_16"><seg type="initial"
                >S</seg>i quis litteras nostras<note type="editorial">Über der gängigen Kürzung
                   <mentioned>nras</mentioned> wurde offenbar der Kürzungsstrich vergessen.</note>
@@ -2342,10 +2384,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                verblasst, aber es scheint sich kein i dazwischen zu befinden.</note> aut honores
             quas <lb/> habet amittat a<unclear>u</unclear><gap quantity="1" unit="chars"/> in eo
             loco ubi <lb/><expan>predictus</expan> missus cipere<note type="editorial"
-                  ><mentioned>missuscipere</mentioned> ohne Wortabstand zusammengeschrieben, so daß
+                  ><mentioned>missuscipere</mentioned> ohne Wortabstand zusammengeschrieben, so dass
                unklar ist, ob die Endung des ersten Wortes (<mentioned>missus</mentioned>) oder der
                Anfang des zweiten (<mentioned>suscipere</mentioned>) vergessen wurde.</note> debuit
-            <lb/>tamdiu resideat et de suis rebus <lb/>le<unclear>g</unclear><gap quantity="2"
+            <lb/> tamdiu resideat et de suis rebus <lb/>le<unclear>g</unclear><gap quantity="2"
                unit="chars"/><unclear>i</unclear>ones ill<unclear>uc</unclear> uenientes suscipi<lb
                break="no"/>a<gap quantity="3" unit="chars"/>ousque <gap quantity="5" unit="chars"/>
                n<gap quantity="2" unit="chars"/> satisfactum ha<lb break="no"
@@ -2432,10 +2474,10 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                Abkürzung nicht aufgelöst.</note>
          </ab>
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4788-100v-3"
-            corresp="BK.139_19_inscriptio"><seg type="num" n="20">XX<note type="editorial">Die
-                  Kapitelzahl steht nicht, wie zu erwarten, am Ende der Überschriftenzeile, sondern
-                  links ausgerückt vor dem Schriftspiegel auf Höhe von <locus>Z.
-               13</locus>.</note></seg> D<unclear>E</unclear>
+            corresp="BK.139_19_inscriptio"><seg type="num" n="20">XX</seg><note type="editorial">Die
+               Kapitelzahl steht nicht, wie zu erwarten, am Ende der Überschriftenzeile, sondern
+               links ausgerückt vor dem Schriftspiegel auf Höhe von <locus>Z. 13</locus>.</note>
+               D<unclear>E</unclear>
             <unclear>AD</unclear><gap quantity="2" unit="chars"/><unclear>T</unclear><gap
                quantity="7" unit="chars"/><unclear>BUS</unclear>
             <unclear>M</unclear>ONETE<lb/></ab>
@@ -2482,18 +2524,26 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
             <lb/> tetonderit <gap quantity="16" unit="chars"/>
             <lb/>legem suam <gap quantity="16" unit="chars"/>
             <lb/>aut ipso puer<gap quantity="15" unit="chars"/>
-            <cb n="101v"/>potestatis sunt aut illi in cuius <sic>postea<lb break="no"/>te</sic>
-            fuerint ille uero potestatem habe<lb break="no"/>ant capit<gap quantity="1" unit="chars"
-            />s sui aut in tali habitu per<lb break="no"/>maneant qualis eis conplacuerit <lb/></ab>
+            <cb n="101v"/>
+            <!--  sk: ab hier 2. NK anhand der neuen MSI-Scans   --> potestatis sunt aut illi in
+            cuius <sic>postea<lb break="no"/>te</sic> fuerint ille uero potestatem habe<lb
+               break="no"/>ant capiti sui aut in tali habitu per<lb break="no"/>maneant qualis eis
+            conplacuerit <lb/>
+         </ab>
 
          <!-- bm: Neue Transkription zur Nachkollation; am Original geprüft.
-         Zur Verwendung farbiger Tinte: Rubriken und Kapitelnummern rot, Initialen in Texttinte. -->
+         Zur Verwendung farbiger Tinte: Rubriken und Kapitelnummern rot, Initialen in Texttinte.
+         NEU: An den MSI-Aufnahmen nachkollationiert! Auf den Bildern ist der Seitenrand in
+         Richtung Bindung teilweise nicht vollständig sichtbar. Wo in der Transkription
+         an diesen Stellen dennoch Lesungen ohne unclear o. Ä. stehen, ergibt sich das 
+         aus den Autopsie-Unterlagen von 2016. -->
 
          <milestone unit="capitulare" n="BK.140"/>
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4788-101v-1"
-            corresp="BK.140_inscriptio BK.140_1_inscriptio"><milestone unit="span"
-               corresp="BK.140_inscriptio" spanTo="#paris-bn-lat-4788-101v-1_1"/><choice>
+            corresp="BK.140_inscriptio BK.140_1_inscriptio">
+            <milestone unit="span" corresp="BK.140_inscriptio" spanTo="#paris-bn-lat-4788-101v-1_1"/>
+            <choice>
                <abbr>INCIP</abbr>
                <expan>INCIPIUNT</expan>
             </choice>
@@ -2501,358 +2551,566 @@ schematypens="http://purl.oclc.org/dsdl/schematron"?>
                <abbr>CAP</abbr>
                <expan>CAPITULA</expan>
             </choice>
-            <unclear>ALI</unclear><gap unit="chars" quantity="1"/> QUE PER SE
-               SCR<unclear>I</unclear><lb break="no"/>BEN<unclear>D</unclear>A ET AB OMNIBUS
-               OBSER<lb break="no"/>UANDA SUNT <anchor xml:id="paris-bn-lat-4788-101v-1_1"/>
+            ALIA<!-- NEU bm: Offenes a. Das verwendet der Schreiber manchmal im normalen Fließtext. 
+               U würde zum einen wenig Sinn machen (erst recht ohne Kürzungsstrich), zum anderen
+               sieht das U bei OMNIBUS doch anders aus. -->
+            QUE PER SE SCRI<lb break="no"/>BENDA ET AB OMNIBUS OBSER<lb break="no"/>UANDA SUNT
+               <anchor xml:id="paris-bn-lat-4788-101v-1_1"/>
             <milestone unit="span" corresp="BK.140_1_inscriptio"
-               spanTo="#paris-bn-lat-4788-101v-1_2"/>DE FORCAPIIS <anchor
-               xml:id="paris-bn-lat-4788-101v-1_2"/>
-            <lb/>
-            <seg type="num" n="1">I</seg></ab>
+               spanTo="#paris-bn-lat-4788-101v-1_2"/>DE FORCAPIIS <lb/>
+            <seg type="num" n="1">I</seg>
+            <anchor xml:id="paris-bn-lat-4788-101v-1_2"/>
+         </ab>
 
-         <ab type="text" xml:id="paris-bn-lat-4788-101v-2" corresp="BK.140_1"><seg type="initial"
-               >S</seg><gap unit="chars" quantity="1"/> mancip<gap unit="chars" quantity="11"/>os
-               fuge<unclear>r</unclear><lb break="no"/><gap unit="chars" quantity="5"/> alienam
-            potestatem ut propter <lb/><gap unit="chars" quantity="5"/><unclear>ll</unclear><gap
-               unit="chars" quantity="11"/>pi<gap unit="chars" quantity="1"/>t ille in <lb/><gap
-               unit="chars" quantity="14"/> fuer<gap unit="chars" quantity="4"/>nuenta pro eo
-               <lb/><gap unit="chars" quantity="22"/><note type="editorial">Laut Boretius/Krause
-               wäre hier zu erwarten: <mentioned>quod ea uel reddiderit uel foras eiecerit et
-               </mentioned>, wofür der Platz allerdings nicht auszureichen
-               scheint.</note><unclear>non</unclear> solum <lb/><gap unit="chars" quantity="24"/>ras
-               eice<lb break="no"/><gap unit="chars" quantity="22"/> ea contra<lb break="no"/><gap
-               unit="chars" quantity="21"
-            /><!-- bm: Annahme: postea gek. p.ea und et-Ligatur -->fugerint secundum<!-- bm: gek. scdm. -->
-            <lb/><gap unit="chars" quantity="16"/>gatur . <lb/></ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-101v-2" corresp="BK.140_1">
+            <seg type="initial">S</seg><gap unit="chars" quantity="1"/> mancipia dominos suos
+               fuge<lb break="no"/>rint in alienam potestatem ut propter <lb/> hoc nullum
+               <expan>premium</expan> accipiant ille in <lb/> cuius potestate fuerint inuenta pro eo
+            <lb/> quod ea uel reddiderit uel foras eicerit et non solum <lb/> ho<unclear>c</unclear>
+            <gap unit="chars" quantity="2"/>d etiam nec red<unclear>d</unclear>ere ne<mod>c</mod>
+            foras eice<lb break="no"/>re uoluerit et <gap unit="chars" quantity="4"/>timo domino ea
+               contra<lb break="no"/>dixerit et ille de post<gap unit="chars" quantity="1"/>a
+            effugerint secundum<!-- NEU bm: gek. scdm. -->
+            <lb/>
+            <gap unit="chars" quantity="2"/>gem eam soluere cogatur . <lb/>
+         </ab>
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4788-101v-3"
-            corresp="BK.140_2_inscriptio">D<gap unit="chars" quantity="2"/>ERRA TRIBUTARIA<note
-               type="editorial">Eine evtl. vorhandene Kapitelzählung ist wegen der engen Bindung
-               nicht zu erkennen; so auch bei den folgenden Kapiteln auf <locus>fol.
-               102r</locus>.</note>
-            <cb n="102r"/></ab>
-         <ab type="text" xml:id="paris-bn-lat-4788-102r-1" corresp="BK.140_2"><seg type="initial"
-               >Q</seg>uicumque terram tributariam unde <lb/>tributum ad partem nostram exire
-            solebat uel <lb/>ad ecclesiam uel cuilibet alteri tradiderit <lb/>his qui eam susciperit
-            tributum quod inde <lb/>soluebatur omni mod<unclear>o a</unclear>d partem nostram
-               trans<lb break="no"/>soluat nisi f<gap unit="chars" quantity="11"/>rmitatem de partem
-            <lb/>dominica hab<unclear>eat p</unclear><gap unit="chars" quantity="17"
-            /><!-- bm: Annahme: p(er) qua(m) ipsu(m) tributu(m) sib- dt: finde ich sehr überzeugend! -->i
-               perdo<lb break="no"/><unclear>n</unclear>atum p<gap unit="chars" quantity="14"/>
-            <lb/>
+            corresp="BK.140_2_inscriptio"><gap unit="chars" quantity="2"/> DE TERRA TRIBUTARIA<note
+               type="editorial">Eine evtl. vorhandene Kapitelzählung ist nicht zu erkennen. Sie
+               könnte sowohl vor der Rubrik gestanden haben als auch erst auf <locus>fol.
+                  102r</locus> folgen, aber dort aufgrund der engen Bindung nicht mehr sichtbar
+               sein.</note>
+            <cb n="102r"/>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-102r-1" corresp="BK.140_2">
+            <seg type="initial">Q</seg>uicumque terram tributariam unde <lb/> tributum ad partem
+            nostram exire solebat uel <lb/> ad ecclesiam uel cuilibet alteri tradiderit <lb/> his
+            qui eam susciperit tributum quod inde <lb/> soluebatur omni modo ad partem nostram
+               trans<lb break="no"/>soluat nisi forte<unclear>m</unclear> natalem firmitatem de
+            partem <lb/> dominica habeat per quam ipsum tributum sibi perdo<lb break="no"/>natum
+            possit os<unclear>te</unclear><gap unit="chars" quantity="2"/>ere <lb/>
          </ab>
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4788-102r-2"
-            corresp="BK.140_3_inscriptio"><gap unit="chars" quantity="25"
-            /><!-- bm: Die Rubrik war vorhanden
-               (in eigener Zeile und roter Tinte), aber es ist nichts mehr entzifferbar (am Original geprüft).
-            Habe die Anzahl der Buchstaben mit Kapitelzahl angegeben. -->
-         </ab>
+            corresp="BK.140_3_inscriptio">
+            <unclear>DE</unclear>
+            <gap unit="chars" quantity="22"/>S . <lb/></ab>
          <ab type="text" xml:id="paris-bn-lat-4788-102r-3" corresp="BK.140_3"><seg type="initial"
-               >Q</seg>uicum<gap unit="chars" quantity="20"
-               /><!-- bm: Annahme: -que suu(m) beneficiu(m) occas-  --><lb break="no"/>sione
-               prop<gap unit="chars" quantity="20"/>
+               >Q</seg>uicumque suum beneficium occa<lb break="no"/>sione proprii de<gap
+               unit="chars" quantity="5"/>m habuerit <gap unit="chars" quantity="2"/>
             <lb/>
-            <gap unit="chars" quantity="2"/>tra ann<gap unit="chars" quantity="21"/><!-- bm: Annahme: -u(m) p(ost)quam ei a com(ite) (ue)l
-            misso n(ost)ro -->
-            <lb/>notum <gap unit="chars" quantity="24"/>
-            <lb/>non habu<gap unit="chars" quantity="24"/>
-            <lb/></ab>
+            <gap unit="chars" quantity="2"
+            />tra<!-- dt: also irgendwie kann das hier nicht stimmen, oder? Mir kommt es so vor, als müsste "et intra"
+               in der einen Zeile stehen, dann "annum" in der nächsten, passt da echt noch "tra" vor das "annum"? Schaut 
+               auf dem Normal-Farbscan der Seite, wo man den Falz sieht, nicht so aus. Wenn Du es am Original so gesehen
+               hast, dann natürlich ok
+               bm: Ja, in den Autopsieunterlagen von 2016 steht, dass der Zeilenwechsel nach et kommt, -tra vor der 
+               nächsten Zeile steht, in- nicht mehr erkennbar war. -->
+            annum postqua<unclear>m . </unclear>
+            <gap unit="chars" quantity="5"/><unclear>mite</unclear> uel <gap unit="chars"
+               quantity="4"/>sorum<!-- bm: missorum statt misso nostro auch in Mp -->
+            <lb/> notum factum <gap unit="chars" quantity="6"/> il<gap unit="chars" quantity="2"
+               /><unclear>d</unclear> em<unclear>en</unclear><gap unit="chars" quantity="1"
+               /><unclear>atum</unclear>
+            <lb/> non habuerit ips<gap unit="chars" quantity="2"/><unclear>eneficium</unclear>
+            amittat <lb/>
+         </ab>
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4788-102r-4"
-            corresp="BK.140_4_inscriptio">D<gap unit="chars" quantity="17"
-            /><!-- bm: Von der Rubrik außer dem D nichts zu sehen; auch hier wieder: plus Kapitelzahl IIII --><lb/>
+            corresp="BK.140_4_inscriptio">DE TERRA <gap unit="chars" quantity="4"/>ALI <!-- NEU bm: Zwischen
+               dem I und der IIII steht noch etwas, das ich zunächst für ein S gehalten habe;
+               jetzt glaube ich aber, dass es doch wohl nur ein Paragraphenzeichen ist 
+               (auf dem violetten Bild sichtbar). -->
+            <seg type="num" n="4">IIII</seg>
+            <lb/>
          </ab>
          <ab type="text" xml:id="paris-bn-lat-4788-102r-5" corresp="BK.140_4"><seg type="initial"
-               >S</seg>i quis terram cen<gap unit="chars" quantity="7"/>b<gap unit="chars"
-               quantity="13"/><lb break="no"/>cessoris sui <gap unit="chars" quantity="25"/><!-- bm: Annahme: (ue)l ad aliqua(m) ecclesia(m) (ue)l ad
-            uilla(m) -->
-            <cb n="102v"/>nostram dederunt nullatenus eam <lb/> tenere potest . Nisi ille uoluerit
-            ad <lb/>cuius potestatem uel illa ecclesia uel illa uilla <lb/>pertinet nisi forte
-            filius aut nepotus <lb/>sit qui eam tradidit et ei eidem terra ad te<lb break="no"
-            />nendum placita sit sed in hac re con<lb break="no"/>sid<gap unit="chars" quantity="2"
-            />andum est utrum ille qui hanc <lb/>te<gap unit="chars" quantity="3"/> diues <gap
-               unit="chars" quantity="13"/> utrum aliud <lb/>beneficium habe<gap unit="chars"
-               quantity="8"/> proprium et q<unclear>ui</unclear>
-            <lb/><gap unit="chars" quantity="19"/><!-- bm: Annahme: horu(m) neutru(m) habet erga -->
-            hunc mise<unclear>ri</unclear><lb break="no"/><gap unit="chars" quantity="24"/>to dis<lb
-               break="no"/><gap unit="chars" quantity="26"/><!-- bm: Annahme: -poliatus in egestatem incidat;
-                  in meinen Unterlagen steht zwar statt "incidat" "in[dic?]/at", aber auf dem Scan sieht es so
-                  aus, als würde -at am Zeilenende stehen. Daher lieber so gelöst. dt: Ja, tatsächlich, sollte man dann nicht besser gap 24 und -at hier an
-               der Stelle machen? - bm: Nein; Laut den Unterlagen stünde das -at ja erst in der nächsten Zeile ... -->
-            <lb/><gap unit="chars" quantity="20"/> p<unclear>er</unclear>sol<lb break="no"/><gap
-               unit="chars" quantity="24"/><!-- bm: Annahme: -uat qualis ei fuerit
-            c(on)stitut(us) --> uel ad por<lb break="no"/><gap unit="chars"
-               quantity="1"/><unclear>ionem</unclear>
-            <gap unit="chars" quantity="3"/><unclear>quam</unclear>
-            <gap unit="chars" quantity="1"/><unclear>nd</unclear><gap unit="chars" quantity="1"/>
-            <sic><unclear>in be</unclear>ficium</sic>
+               >S</seg>i quis terram censalem habuerit quam <unclear>an</unclear><gap unit="chars"
+               quantity="2"/><lb break="no"/>cessoris sui uel aliquam ecclesiam uel <gap
+               unit="chars" quantity="1"/>d u<gap unit="chars" quantity="2"/>lam <cb n="102v"/>
+            nostram dederunt nullatenus eam <lb/> tenere potest . Nisi ille uoluerit ad <lb/> cuius
+            potestatem uel illa ecclesia uel illa uilla <lb/> pertinet nisi forte filius aut nepotus
+               <unclear>ei</unclear><gap unit="chars" quantity="2"/>
+            <lb/> sit qui eam tradidit et ei eadem terra ad te<lb break="no"/>nendum placita sit sed
+            in hac re con<lb break="no"/>siderandum est utrum ille qui hanc <lb/> ten<gap
+               unit="chars" quantity="2"/> diues in pau<gap unit="chars" quantity="6"/> et utrum
+            aliud <lb/> beneficium habeat <gap unit="chars" quantity="3"/>iam proprium et q<gap
+               unit="chars" quantity="2"/>
+            <lb/> neutrum habet erga hunc mise<unclear>ri</unclear><lb break="no"/><gap unit="chars"
+               quantity="3"/>diter agend<unclear>um est</unclear> ne ex toto dis<lb break="no"
+               />poli<unclear>ent</unclear><gap unit="chars" quantity="2"/> in eg<gap unit="chars"
+               quantity="1"/>statem indicat <lb/> ut a<gap unit="chars" quantity="1"/>t
+               ta<unclear>l</unclear>em ce<gap unit="chars" quantity="1"/>sum inde persol<lb
+               break="no"/>uat qualis <gap unit="chars" quantity="2"/> fuer<gap unit="chars"
+               quantity="2"/>
+            <sic>constitus</sic> uel ad por<lb break="no"/><gap unit="chars" quantity="1"
+               /><unclear>i</unclear>onem aliquam inde in <sic>beficium</sic>
             <lb/>
-            <gap unit="chars" quantity="6"/><unclear>at</unclear>
-            <gap unit="chars" quantity="2"/><unclear>de s</unclear><gap unit="chars" quantity="9"
-            />re ualeat . <lb/></ab>
+            <gap unit="chars" quantity="2"/>cipiat unde se sustentare ualeat . <lb/>
+         </ab>
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4788-102v-1"
-            corresp="BK.140_5_inscriptio">DE NONIS ET DECIMIS <seg type="num" n="5">V</seg><cb
-               n="103r"/>
+            corresp="BK.140_5_inscriptio">DE NONIS ET DECIMIS <seg type="num" n="5">V</seg>
+            <cb n="103r"/>
          </ab>
-         <ab type="text" xml:id="paris-bn-lat-4788-103r-1" corresp="BK.140_5"><seg type="initial"
-               >C</seg>onsideratum est ut de frugibus terre <lb/>et animalium nutrimine persoluantur
-            <lb/> opere uero uel restauratione ecclesiarum <lb/>comis et episcopus<note
-               type="editorial">Gek. <mentioned>ps</mentioned>, d.h., das <mentioned>e</mentioned>
-               wurde vergessen; wohl, weil direkt vorher <mentioned>et</mentioned> (in Ligatur)
-               steht.</note> et abbas una cum <sic>missu</sic> nostro <lb/>quem ipsi sibi ad hoc
-            heligerint considera<lb break="no"/>tionem faciant ut unusquisque eorum tantum <lb/>inde
-               accip<gap unit="chars" quantity="6"/>perandum <gap unit="chars" quantity="3"
-               />estau<lb break="no"/>randum qua<gap unit="chars" quantity="5"/><note
-               type="editorial">In der durch einen Pergamentschaden verursachten Textlücke hätten
-               ca. 5 Buchstaben Platz. Am Original lassen sich nach der Lücke noch Reste eines
-               Buchstabens erkennen, der evtl. ein <mentioned>-e</mentioned> gewesen sein könnte;
-               statt des nach Boretius/Krause zu erwartenden <mentioned>-ntum</mentioned> könnte
-               daher vielleicht <mentioned>-ntu(m)</mentioned>
-                  (<mentioned>d</mentioned>?)<mentioned>e</mentioned> hier gestanden haben.</note>
-            ipsis rebus ecclesiarum <lb/>habere c<gap unit="chars" quantity="9"/>r similiter et
-            uassi <lb/>nostri au<gap unit="chars" quantity="13"/>
-            <unclear>ope</unclear><gap unit="chars" quantity="5"/><lb break="no"
-               />cipia<unclear>nt</unclear>
-            <gap unit="chars" quantity="15"/><!-- bm: Annahme: quantu(m)
-            reru(m) eccl(esi)a- --><unclear>st</unclear><gap unit="chars" quantity="6"/>
-            <lb/>habent <gap unit="chars" quantity="24"
-               /><!-- bm: Annahme: (ue)l unusquisque p(er) se iuxta quan- --><lb break="no"/>titatem
-               q<gap unit="chars" quantity="21"/><lb break="no"/>r eos conue<gap unit="chars"
-               quantity="19"/><!-- bm: Annahme: -nerit ut p(ro) opere facien- --><lb break="no"/>do
-               argentu<gap unit="chars" quantity="8"/><unclear>u</unclear><gap unit="chars"
-               quantity="7"/><lb break="no"/>mationem op<gap unit="chars" quantity="8"/>gen<gap
-               unit="chars" quantity="10"/><!-- bm: Annahme: -to p(er)soluant -->
-            <cb n="103v"/>cum quo pretio rector ecclesie ad <expan>pre<lb break="no"/>dictam</expan>
-            restaurationem <sic>operios</sic> con<lb break="no"/>ducere et materiam emere possit
-            <lb/>et qui <gap unit="chars" quantity="1"/>onas et decimas dare neglex<lb break="no"
-            />erit primum quidem illas cum le<lb break="no"/>ge sua restituat
-               <unclear>in</unclear><gap unit="chars" quantity="2"/>per et bannum <lb/>nostrum
-               so<gap unit="chars" quantity="6"/>
-            <unclear>it</unclear>a castigatur caue<lb break="no"/><unclear>at</unclear> ne <sic>sepe
-               pius</sic>
-            <gap unit="chars" quantity="6"/>do benefici<lb break="no"/>um <gap unit="chars"
-               quantity="7"/></ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-103r-1" corresp="BK.140_5">
+            <seg type="initial">C</seg>onsideratum est ut de frugibus terre <lb/> et animalium
+            nutrimine persoluantur <lb/> opere uero uel restauratione ecclesiarum <lb/> comis et
+               episcopus<note type="editorial">Gek. <mentioned>ps</mentioned>, d.h. das
+                  <mentioned>e</mentioned> wurde vergessen; wohl, weil direkt vorher
+                  <mentioned>et</mentioned> (in Ligatur) steht.</note> et abbas una cum
+               <sic>missu</sic> nostro <lb/> quem ipsi sibi ad hoc heligerint considera<lb
+               break="no"/>tionem fatiant ut unusquisque eorum tantum <lb/> inde accipiat ad
+            operandum <gap unit="chars" quantity="2"/>
+            <unclear>r</unclear>estau<lb break="no"/>randum quant<unclear>um</unclear> de ipsis
+            rebus ecclesiarum <lb/> habere cognoscitur . similiter et uassi <lb/> nostri aut in
+               <expan>commune</expan> tantum operis ac<lb break="no"/>cipiant tantum rerum
+            ecclesiasticarum <lb/> habent uel unusquisque per se iu<unclear>x</unclear><gap
+               unit="chars" quantity="1"/>a quan<lb break="no"/>titatem quam ipse tenet aut si inter <lb/>
+            <sic>seos</sic> conuenerint ut opere fac<unclear>i</unclear><gap unit="chars"
+               quantity="2"/><lb break="no"/>do argentum donent iuxta <unclear>e</unclear><gap
+               unit="chars" quantity="3"/><lb break="no"/>mationem operis in argento persoluant <cb
+               n="103v"/> cum quo <expan>pretio</expan> rector ecclesie ad <expan>pre<lb break="no"
+               />dictam</expan> restaurationem <sic>operios</sic> con<lb break="no"/>ducere et
+            materiam emere possit <lb/> et qui nonas et decimas dare neglex<lb break="no"/>erit
+            primum quidem illas cum le<lb break="no"/>ge sua restituat insuper et bannum <lb/>
+            nostrum soluat ut ita castigatur caue<lb break="no"/>at ne <sic>sepe</sic>
+            <sic>pius</sic> ite<gap unit="chars" quantity="1"/><unclear>a</unclear>ndo benefici<lb
+               break="no"/>um amittat . </ab>
 
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4788-103v-1"
-            corresp="BK.140_6_inscriptio"><seg type="num" n="6">VI </seg>DE MANCIPIIS <lb/>IN UILLAS
-            DOMINICAS CONFUGIENT <lb/></ab>
+            corresp="BK.140_6_inscriptio">
+            <seg type="num" n="6">VI</seg> DE MANCIPIIS <lb/> IN UILLAS DOMINICAS CONFUGIENT <lb/>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-103v-2" corresp="BK.140_6">
+            <seg type="initial">S</seg>i cuiuslibet mancipia in uillam <lb/> nostram confugerint
+            auctor eiusdem <lb/> uille querenti do<gap unit="chars" quantity="1"/>ino ea non
+               contradica<unclear>t</unclear>
+            <lb/>
+            <gap unit="chars" quantity="1"/>ed statim ea foras de eadem uilla ei<lb break="no"/>ciat
+            et si se <sic>pultat</sic> ad <add>ea</add> repetenda <lb/> iustitiam habere putat et
+            secundum . <cb n="104r"/> legem adquirat si uero tempore <lb/> domni <rs type="person"
+               >karoli</rs> genitoris nostri in uillam <lb/> illam confugerunt . et dominus ea <lb/>
+            querit auctor eiusdem uille ante <lb/> legitime <sic>contenat</sic> ad querenti domino
+            <lb/> reddat et auctor propter uestituram <lb/> domni <rs type="person">karoli</rs>
+            genitoris nostri eadem <lb/> mancipia c<gap unit="chars" quantity="2"/>tradicere non
+            audeat <lb/> si illius propria <unclear>es</unclear>se noscuntur * <lb/>
+         </ab>
 
-         <ab type="text" xml:id="paris-bn-lat-4788-103v-2" corresp="BK.140_6"><seg type="initial"
-               >S</seg><gap unit="chars" quantity="28"
-            /><!-- bm: Annahme: -i cuiuslibet mancipia in uilla(m) n(ost)r- -->am <lb/><gap
-               unit="chars" quantity="26"/><note type="editorial">In der fast völlig unleserlichen
-               Zeile wäre mehr Platz (für ca. 6 weitere Buchstaben) als für das nach Boretius/Krause
-               hier zu erwartende <mentioned>confugerint actor
-            eius-</mentioned>.</note><!-- bm: eig. "confugerint actor eius-", aber das wären nur 20 Buchstaben. Sonst passen in eine Zeile ca. 28 Buchstaben.
-               B5 hat statt "confugerint" "confugium fecerint", das würde vom Platz her gut hinkommen; daher 26 Buchstaben angenommen. -->dem <lb/>
-            <gap unit="chars" quantity="22"
-               /><!-- bm: Annahme: uille q(ue)renti d(o)m(in)o ea n(on) contr- --><unclear>a</unclear>dica<unclear>t</unclear>
-            <lb/><gap unit="chars" quantity="23"/>uilla ei<lb break="no"/><gap unit="chars"
-               quantity="21"/>petenda <lb/><gap unit="chars" quantity="20"/><unclear>a</unclear>t et
-            secundum <cb n="104r"/>legem adquirat si uero tempore <lb/><rs type="person">domni
-               karoli genitoris nostri</rs> in uillam <lb/>illam confugerunt et dominus ea
-            <lb/>querit auctor eiusdem uille ante <lb/>legitime
-               <sic>conten<unclear>at</unclear></sic> adquerenti domino <lb/>reddat et a<gap
-               unit="chars" quantity="3"/>or propter uestituram <lb/><rs type="person">domni ka<gap
-                  unit="chars" quantity="5"/>enitoris nostri</rs> e<gap unit="chars" quantity="1"
-            />dem <lb/>mancipia <gap unit="chars" quantity="13"/>on <gap unit="chars" quantity="1"
-            />udeat <lb/>si illiu<gap unit="chars" quantity="14"/><unclear>untur . </unclear>
-            <lb/></ab>
          <ab type="meta-text" rend="coloured" xml:id="paris-bn-lat-4788-104r-1"
-            corresp="BK.140_7_inscriptio">DE FORESTIBUS NOUITER INSTITU<gap unit="chars"
-               quantity="2"/>S
-            <lb/><!-- bm: Eine Kapitelzahl (VII?) ist auch am Original nirgends zu sehen. --></ab>
-         <ab type="text" xml:id="paris-bn-lat-4788-104r-2" corresp="BK.140_7 BK.140_8"><milestone
-               unit="span" corresp="BK.140_7" spanTo="#paris-bn-lat-4788-104r-2_1"/><seg
-               type="initial">U</seg><gap unit="chars" quantity="25"/>at <lb/>nis<gap unit="chars"
-               quantity="25"/><note type="editorial">Der nach Boretius/Krause hier zu erwartende
-               Text <mentioned>-i forte indicio ueraci ostendere possit</mentioned> scheint zu lang
-               zu sein für den in der Zeile verbleibenden Platz.</note><!-- dt: deswegen pauschal auf 25 runter? - bm: Ja; wegen Durchschnittsbuchstabenanzahl von 28 pro Zeile. -->
-            <lb/>quod per iuss<gap unit="chars" quantity="21"/>
-            <lb/><rs type="person">domni
-               kar</rs><!-- bm: Ist zwar blöd mit dem End-Tag, aber ich wollte keine zwei gaps machen,
-                  nur damit das tag an die "richtige" Stelle kommt. - Annahme: -oli genitoris nri. eas insti- --><gap
-               unit="chars" quantity="23"/><lb break="no"/>tuisset propt<gap unit="chars"
-               quantity="18"/><!-- bm: Annahme: -er als Kürzungszeichen, dann illas que ad
-            nrum. opus -->
-            <lb/>pertinet . Unde <unclear>h</unclear>os decerner<gap unit="chars" quantity="1"/>
-               uol<gap unit="chars" quantity="1"/>mus <cb n="104v"/>quicquid nobis placuerit <anchor
-               xml:id="paris-bn-lat-4788-104r-2_1"/><milestone unit="span" corresp="BK.140_8"
-               spanTo="#paris-bn-lat-4788-104r-2_2"/>uolumus <lb/>ut missi nostri per singulas
-            ciuitates una <lb/>cum episcopo et <choice>
+            corresp="BK.140_7_inscriptio">DE FORESTIBUS NOUITER INSTITUTIS
+            <lb/><!-- NEU bm: Eine Kapitelzahl (VII?) ist weder am Original noch auf den MSI-Bildern zu sehen. -->
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-104r-2" corresp="BK.140_7 BK.140_8">
+            <milestone unit="span" corresp="BK.140_7" spanTo="#paris-bn-lat-4788-104r-2_1"/>
+            <seg type="initial">U</seg><gap unit="chars" quantity="4"/>cumqu<gap unit="chars"
+               quantity="1"/> illas habet dimittat <lb/> nisi forte inditio ostendere possit <lb/>
+            quod per iussionem siue permissionem <lb/> domni <rs type="person">karoli</rs> genitoris
+            nostri eas ins<unclear>ti</unclear>tuisset propter illas que ad nostrum opus <lb/>
+            pertinet . Unde nos decernere uolumus <cb n="104v"/> quicquid nobis placuerit * <anchor
+               xml:id="paris-bn-lat-4788-104r-2_1"/>
+            <milestone unit="span" corresp="BK.140_8" spanTo="#paris-bn-lat-4788-104r-2_2"/> uolumus
+            <lb/> ut missi nostri per singulas ciuitates una <lb/> cum episcopo et <choice>
                <abbr>com</abbr>
                <expan>comite</expan>
             </choice> missos uel nostros ho<lb break="no"/>mines ibidem <expan>commanentes</expan>
-            eligantur <lb/>quorum cure sit pontes et diuersa <lb/>loca emendar<unclear>e
-               et</unclear> eos qui illos emen<lb break="no"/>dare debe<unclear>nt</unclear>
-            <gap unit="chars" quantity="2"/> nostr<unclear>a</unclear>
-            <gap unit="chars" quantity="2"/>ssione admo<lb break="no"/>n<unclear>e</unclear>re ut
-               unu<gap unit="chars" quantity="8"/> iuxta suam <lb/><gap unit="chars" quantity="23"
-            />atem eos <lb/><gap unit="chars" quantity="15"/><!-- bm: In dieser Zeile scheint die rote Rubrik von der Rückseite her durch. -->
-            <anchor xml:id="paris-bn-lat-4788-104r-2_2"/></ab>
+            eligantur <lb/> quorum cure sit pontes et diuersa <lb/> loca emendaret eos qui illos
+               emen<lb break="no"/>dare debent et nostra iussione admo<lb break="no"/>nere ut
+               unusquis<gap unit="chars" quantity="2"/>e iuxta suam <lb/> possibilitatem et
+            quantitatem eos <lb/> emendare stud<unclear>ea</unclear>t <anchor
+               xml:id="paris-bn-lat-4788-104r-2_2"/>
+         </ab>
 
          <!-- bm: Im folgenden bis fol. 113v "Omelia Augustini". 
-            Auf fol. 110v ist allerdings die Rubrik "[De] falsis testibus" zu lesen. -->
+            Auf fol. 110v ist die Rubrik "[De] falsis testibus" zu lesen. -->
 
-         <!-- bm: Die folgenden Transkriptionen von BK 146 und 147 wurden auf Basis des Digitalisats erstellt.
-            In Paris habe ich 2016 das Original eingesehen, die Unterlagen dazu befinden sich im Ordner "Archiv- und Bibliotheksbesuche"
-            und sind noch nicht hier eingearbeitet. Das muss also noch erfolgen, wobei die eckigen Klammern dann durch
-            gap-Codierungen etc. ersetzt werden müssen. Vielleicht ergibt sich inzwischen aber doch noch die
-         Gelegenheit, das Original mit Hilfe technischer Unterstützung besser lesbar zu machen, mit bloßem 
-         Auge war nämlich sehr wenig zu erkennen. -->
+         <gap reason="editorial"/>
+         <cb n="114r"/>
+         <lb n="1"/>
+
+         <!-- NEU bm: Die folgenden Transkriptionen von BK 146 und 147 wurden auf Basis der MSI-Bilder unter
+            Hinzuziehung der Kollationsunterlagen von 2016 erstellt. -->
 
          <milestone unit="capitulare" n="BK.146"/>
 
          <ab corresp="BK.146_1_inscriptio" type="meta-text" rend="coloured"
-            xml:id="paris-bn-lat-4788-114r-1"><seg type="num" n="1">I</seg><note type="editorial"
-               >Achtung: Die folgenden Transkriptionen von BK 146 und 147 sind noch nicht anhand der
-               Autopsie in Paris überarbeitet
-               worden.</note><!-- bm: note wieder löschen, wenn die Einarbeitung der Autopsie erfolgt ist! --><seg
-               type="numDenom"> CAPITULUM</seg></ab>
-
-         <ab type="text" xml:id="paris-bn-lat-4788-114r-2" corresp="BK.146_1"><seg type="initial"
-               >U</seg>[nusqui]sq[ue] <lb/>minister[ialis palatinus] dili[gentis]<lb break="no"
-            />sima inquis[iti]one discutiat <lb/>primo homines suos et pos[tea] <lb/>pares suos si
-            alique[m inter eo]s
-            <lb/>uel<!-- bm: gekürztes uel (l mit Kürzungsstrich)? Dann wäre aber noch Platz für mind. einen weiteren Buchstaben? -->
-            apud uos<!-- dt: angepasst nach Autopsie-Unterlagen, am Digi auch erkennbar --> igrotu[m
-            hominem <lb/>uel] meretricem [latitantem] <lb/>inuenire p[ossit] et [si inuentus
-            <lb/>ho]mo [a]liq[uis] uel [aliqua femina] <lb/>huius[modi fuerit custodiatur ne fugere
-            possit usque dum nobis]<!-- bm: bis hierher gar nicht zu lesen; irgendwo dazwischen ein lb -->
-            <lb/>adn[untietur Et ille homo qui] <lb/>tale[m hominem uel talem feminam] <lb/>se[cum
-            habuit si se emendare no]<lb break="no"
-            />luer[<!-- bm: ab hier wieder unlesbar bis zum Schluss der Seite -->it in palatio
-            nostro obseruetur Similiter uolumus <unclear>ut faciant</unclear>
+            xml:id="paris-bn-lat-4788-114r-1"><seg type="num" n="1">I</seg>
+            <seg type="numDenom"> CAPITULUM</seg>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-114r-2" corresp="BK.146_1">
+            <sic><seg type="initial">U</seg>unusquisque</sic>
+            <lb/> ministerialis palatinus diligent<gap unit="chars" quantity="1"/>s<lb break="no"
+            />sima inquisitione discutiat <lb/> primo homines suos et postea <lb/> pares suos si
+            aliquem inter eos <lb/> uel apud uos igrotum h<gap unit="chars" quantity="1"
+               /><unclear>minem</unclear>
+            <lb/> uel meretricem latitan<gap unit="chars" quantity="2"/>m <lb/> inuenire possit et
+            si inuentu<unclear>s</unclear>
+            <lb/> homo aliquis uel aliqu<gap unit="chars" quantity="1"/> femina<note
+               type="editorial">Über -a evtl. ein Kürzungsstrich (-<mentioned>am</mentioned>?), auf
+               den Digitalisaten nicht sicher zu erkennen.</note>
+            <lb/> huiusmod<gap unit="chars" quantity="1"/>
+            <unclear>f</unclear>uerit <unclear>cu</unclear>stodiatu<gap unit="chars" quantity="1"/>
+            <lb/> ne fugere <gap unit="chars" quantity="1"/>ossit usque dum nobis<!-- bm: nob. mit Kürzungsstrich durch den Schaft des b. -->
+            <lb/> adnu<unclear>ntie</unclear>tur <gap unit="chars" quantity="2"/>lle homo qui <lb/>
+            talem homine<unclear>m</unclear> uel <gap unit="chars" quantity="1"/>alem femin<gap
+               unit="chars" quantity="2"/>
+            <lb/> secu<unclear>m</unclear> habui<unclear>t</unclear> si s<gap unit="chars"
+               quantity="1"/> em<gap unit="chars" quantity="1"/>ndare no<lb break="no"/>lueri<gap
+               unit="chars" quantity="4"/><unclear>alatio nostro obser</unclear><gap unit="chars"
+               quantity="1"/><unclear>etur</unclear>
+            <lb/> Similiter uolumus <unclear>ut faciant</unclear>
             <choice>
                <abbr><gap unit="chars" quantity="5"/>terial</abbr>
                <expan><gap unit="chars" quantity="5"/><lb break="no"/>teriales</expan>
-            </choice> dilec<gap unit="chars" quantity="3"/>
-            <unclear>con</unclear>iug<gap unit="chars" quantity="1"/>s <gap unit="chars"
-               quantity="7"/><lb/><gap unit="chars" quantity="18"/><cb n="114v"/></ab>
+            </choice> dilec<unclear>te</unclear> coniug<gap unit="chars" quantity="1"/>s
+               <unclear>nostre</unclear>
+            <lb/> uel <unclear>fi</unclear><gap unit="chars" quantity="13"/>
+            <cb n="114v"/>
+         </ab>
 
          <ab corresp="BK.146_2_inscriptio" type="meta-text" rend="coloured"
-            xml:id="paris-bn-lat-4788-114v-1"><seg type="num" n="2">II </seg></ab>
-
-         <ab type="text" xml:id="paris-bn-lat-4788-114v-2" corresp="BK.146_2"><seg type="initial"
-               >V</seg><!-- bm: Die Initiale sieht nicht nach anderer Tinte aus; prüfen! -->[t
-            ra]tb[ertus act]o[r] per su[um] <lb/>ministeriu[m id] est per domos <lb/>seruorum
-            [n]os[trorum] tam [in] aquis <lb/>quam in proximis uillulis nostris <lb/>[a]d [a]quis
-            pertinentibus similem <lb/>in[qu]isi[ti]onem faciat <rs type="person">petrus</rs> ue<lb
-               break="no"/>ro et <rs type="person">g[u]nzo</rs> per scruas et alias <lb/>[mansiones]
-            actorum nostrorum <lb/>[similiter] f[acian]t . Et <rs type="person">ernaldus</rs> [per
-            mansiones omnium ne]gotia<lb break="no"/>[torum siue in mercato siue] aliubi
-            <lb/>[<!-- bm: ab hier bis zum Seitenende, außer dem unten angezeigten lb, nichts mehr zu erkennen -->negotientur
-            tam christianorum quam et Iudaeorum Mansionarius autem faciat simili modo cum suis
-            iunioribus per mansiones episcopo<lb break="no"/>rum et abbatum et comitum qui actores
-            non sunt et uassorum nostrorum eo tempore <cb n="115r"/>quando illis s[e]n[i]ores in
-            ips[is <lb break="no"/>mansionibus [non s]unt . </ab>
+            xml:id="paris-bn-lat-4788-114v-1"><seg type="num" n="2">II </seg>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-114v-2" corresp="BK.146_2">
+            <seg type="initial">V</seg>t <rs type="person">ratbertus</rs> auctor per suum <lb/>
+            ministerium id est per domos <lb/> seruorum nostrorum<note type="editorial"
+                  ><mentioned>nrorum</mentioned> ohne Kürzungsstrich</note> tam in <rs type="place"
+               >aquis</rs>
+            <lb/> quam in proximis uillulis nostris<note type="editorial"
+                  ><mentioned>nris</mentioned> ohne Kürzungsstrich</note>
+            <lb/> ad <rs type="place">aquis</rs> pertinentibus similem <lb/> inquisitionem faciat .
+               <rs type="person">petrus</rs> ue<lb break="no"/>ro et <rs type="person">gunzo</rs>
+            per scruas et alias <lb/> mansiones actorum nostrorum <lb/> similiter faciant . Et <rs
+               type="person">ernaldus</rs>
+            <lb/> per mansiones omnium negotia<lb break="no"/>torum siue in mercato siue aliubi
+            <lb/> residenti<unclear>um</unclear> tam cristianorum <lb/> quam et <gap unit="chars"
+               quantity="2"/>deorum * Mansionari<lb break="no"/>us <unclear>autem faci</unclear>at
+            simili modo cum suis <lb/> i<gap unit="chars" quantity="2"/>ioribus per mansion<gap
+               unit="chars" quantity="3"/>piscoporum <lb/> et abbatorum et comitum qui actores <lb/>
+            non sunt et <sic>uassarum</sic> nostrorum eo tempore <cb n="115r"/> quando illis
+            seniores in ipsis <lb/> mansionibus <gap unit="chars" quantity="2"/>n sunt . </ab>
 
          <ab corresp="BK.146_3_inscriptio" type="meta-text" rend="coloured"
-            xml:id="paris-bn-lat-4788-115r-1"><seg type="num" n="3">III </seg><lb/></ab>
-
-         <ab type="text" xml:id="paris-bn-lat-4788-115r-2" corresp="BK.146_3"><seg type="initial"
-               >V</seg>olu[m]us atque [i]ubemus ut nul]<lb break="no"/>lus de his qui nobis in
-            nostro palat[io] <lb/>deseruiunt aliquem homin[e]m <lb/>propter furtum a[u]t aliquem
-               homi<lb break="no"/>cidium uel adulterium uel aliud <lb/>aliquod crimen ab [i]ps[o]
-            p[er]petratum <lb/>et propter hoc ad pal[atium nostrum] <lb/>uenientem atqu[e i]bi
-            [l]at[itare] <lb/>uolentem [recipere praesumat Et] <lb/>si lib[er homo hanc
-            constitutionem transgressus fuerit et
-            talem<!-- bm: bis hierhin nicht lesbar; dazwischen ein lb -->] <lb/>hom[inem receperit
-            sciat se eundem] <lb/>hom[inem qui apud eum inuentus fuerit in collo suo
-            portare<!-- bm: bis hierhin nicht lesbar; dazwischen ein lb -->] <lb/>de[bere primum
-            circa palatium <cb n="115v"/><!-- bm: cb hier irgendwo -->deinde a]d ci[ppum in] quem
-            idem <lb/>[malefactor mitten]dus est <lb/>[si autem seruu]s [fu]erit qu[i] hanc
-            <lb/>nostram iussion[em] se[ru]are contemp<lb break="no"/>[ser]it s[i]m[iliter] illum
-               malum<lb break="no"/>[fact]ore[m in collo su]o usque <lb/>ad cip[pum deport]et et
-            ipse p[o<lb break="no"/><!-- bm: lb hier irgendwo -->stea ad
-            marcatum<!-- bm: So bei Pertz und Boretius --> adducatur] et ib[i
-            <lb/><!-- bm: lb hier irgendwo -->secundum merita sua fla]gell<lb break="no"
-            /><!-- bm: lb hier irgendwo -->[etur Similiter de] g[a]dal[ibus] et<!-- bm: am Seitenrand auf Höhe dieser Zeile ein Zeichen? Prüfen! -->
-            <lb/>[<!-- bm: ab hier bis zum Seitenende wieder unleserlich -->meretricibus uolumus ut
-            apud quemcumque inuentae fuerint ab eis portentur usque ad mercatum ubi ipsae
-            flagellandae sunt uel si noluerit uolumus ut simul cum illa in eodem loco uapuletur] </ab>
+            xml:id="paris-bn-lat-4788-115r-1"><seg type="num" n="3">III </seg><lb/>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-115r-2" corresp="BK.146_3">
+            <seg type="initial">V</seg>olumus atque iu<unclear>b</unclear>emus ut nul<lb break="no"
+            />lus de his qui nobis in nostro palatio <lb/> deseruiunt aliquem hominem <lb/> propter
+            furtum aut aliquem homi<lb break="no"/>cidium uel adulterium uel aliud <lb/> aliquod
+            crimen ab ipso perpetratum <lb/> et propter hoc ad palatium nostrum <lb/> uenientem
+            atque ibi latitare <lb/> uolentem recip<unclear>e</unclear>re <expan>presumat</expan> Et
+            <lb/> si liber homo hanc nostram iussionem <lb/> transgressus fuerit et
+            h<add>u</add>iusmodi <lb/> hominem recip<add>er</add><metamark function="insertion"/>it
+            sciat se eundem <lb/> homin<unclear>em</unclear>
+            <gap unit="chars" quantity="3"/><note type="editorial">Nach Pertz und Boretius müsste
+               hier <mentioned>qui</mentioned> stehen; Baluze konnte gar nichts mehr lesen.</note>
+            apud eum <unclear>inuent</unclear><gap unit="chars" quantity="2"/>
+            <lb/> fuerit in collo suo por<unclear>ta</unclear><gap unit="chars" quantity="1"
+               /><unclear>e</unclear>
+            <lb/> debere . primum circa pala<unclear>c</unclear><gap unit="chars" quantity="3"/>
+            <cb n="115v"/> d<unclear>e</unclear>inde ad cipp<gap unit="chars" quantity="1"/>m i<gap
+               unit="chars" quantity="1"/> quem idem <lb/> malefa<gap unit="chars" quantity="4"/>
+            <gap unit="chars" quantity="5"/>ndus est . <lb/> Si au<gap unit="chars" quantity="3"/>
+               se<gap unit="chars" quantity="2"/>us fuerit qui hanc <lb/> nostram<note
+               type="editorial"><mentioned>nram</mentioned> ohne Kürzungsstrich</note> iussionem
+               <sic>seuerare</sic> contemp<lb break="no"/>serit similiter illum malum<lb break="no"
+            />factorem in collo suo usque <lb/> ad cippum deportet . et ipse postea <lb/> in
+            marcatum adducatur et ibi <lb/> secundum merita sua flagelle<lb break="no"/>tur
+            Similiter de gadalibus et <lb/> meretricibus uolumus ut apud <lb/> quemcumque
+               <unclear>inuen</unclear><gap unit="chars" quantity="2"/>
+            <unclear>f</unclear>uerint <lb/>
+            <!-- NEU bm: Für das Folgende am besten das grün-violette Bild mit dem Ausschnitt
+               des "Flecks" auf fol. 115v und die Gesamtaufnahme der Seite, die fast ganz weiß erscheint bis auf
+               den "Fleck" im Ordner mit den Originalaufnahmen (also nicht im Ordner "Reprocessing"). -->
+            <gap unit="chars" quantity="1"/><unclear>b ei</unclear>s porte<unclear>ntu</unclear>r
+               <gap unit="chars" quantity="2"/>qu<gap unit="chars" quantity="1"/> ad mer<lb
+               break="no"/><gap unit="chars" quantity="1"/><unclear>at</unclear><gap unit="chars"
+               quantity="2"/> ubi ipsa flagell<gap unit="chars" quantity="1"/>nda est <lb/>
+            <gap unit="chars" quantity="14"/>
+            <unclear>fece</unclear>rit<note type="editorial">Bei Baluze, Pertz und Boretius statt
+                  <mentioned>ipsa flagell</mentioned>[.]<mentioned>nda est ...</mentioned>
+                  [<mentioned>fece</mentioned>]<mentioned>rit</mentioned>: <mentioned>ipsae
+                  flagellendae sunt, vel, si noluerit</mentioned>. Der Platz zwischen
+                  <mentioned>flagellenda est</mentioned> und
+                  [<mentioned>fece</mentioned>]<mentioned>rit</mentioned> reicht jedoch für ca. 14
+               Buchstaben.</note> uolu<lb break="no"/>mus ut <unclear>s</unclear><gap unit="chars"
+               quantity="1"/><unclear>mul</unclear> cum illa <gap unit="chars" quantity="2"/> eo<lb
+               break="no"/><gap unit="chars" quantity="2"/>m lo<gap unit="chars" quantity="1"/>o
+            uapuletur <cb n="116r"/>
+         </ab>
 
          <ab corresp="BK.146_4_inscriptio" type="meta-text" rend="coloured"
-            xml:id="paris-bn-lat-4788-116r-1"><seg type="num" n="4"
-               ><!-- BM: Die hier zu erwartende "IIII" ist nicht zu erkennen -->
-            </seg></ab>
-
-         <ab type="text" xml:id="paris-bn-lat-4788-116r-2" corresp="BK.146_4"><seg type="initial"
-               >Q</seg>uicumque [homine]s [rixantes in palatio inuenerit et
-            eos<!-- bm: dazwischen irgendwo ein lb -->] <lb/>pacifi[care potuerit et noluerit]
-            <lb/>s[ci]at d[amnum quod inter eos fac]<lb break="no"
-            /><!-- bm: lb hier irgendwo -->[t]um fuer[it participem esse debere Quod si rixantes
-            uiderit et eos pacificare non potuerit<!-- bm: dazwischen zwei lb -->] <lb/>et qui sint
-            [illi qui inter se rixan<lb break="no"/><!-- bm: lb hier irgendwo -->tur] co[g]nos[cere
-            noluerit ut hoc] <lb/>ind[i]car[e possit similiter uolumus ut damnum quod inter eos
-            commissum fuerit in conpositione communionem
-            habeat]<!-- Bis hierher nicht lesbar, ca. 4 lb dazwischen --></ab>
+            xml:id="paris-bn-lat-4788-116r-1"><seg type="num" n="4">IIII </seg>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-116r-2" corresp="BK.146_4">
+            <seg type="initial">Q</seg>uicumque homines <gap unit="chars" quantity="2"/>xantes <lb/>
+            in palati<gap unit="chars" quantity="1"/>
+            <gap unit="chars" quantity="5"/>erit et eos <lb/> pacificare po<gap unit="chars"
+               quantity="1"/>uerit et n<gap unit="chars" quantity="2"/>uerit <lb/>
+            <sic>s<mod>i</mod>at</sic> d<unclear>a</unclear>mnu<unclear>m</unclear> quod inter eos
+               fac<lb break="no"/>tum fuerit <gap unit="chars" quantity="1"/>articipem esse debe<lb
+               break="no"/>re . <gap unit="chars" quantity="1"/>d<note type="editorial">Gekürztes
+                  <mentioned>d</mentioned>. Vermutlich stand an der Stelle des vorangehendes Lochs
+               ein <mentioned>q</mentioned>, also <mentioned>quod</mentioned> wie bei Baluze, Pertz
+               und Boretius.</note> s<gap unit="chars" quantity="1"/> ri<gap unit="chars"
+               quantity="2"/>ntes uiderit <lb/> et eos pacificare non potuerit <lb/> et qui sint
+            illi qui inter se rixan<lb break="no"/><gap unit="chars" quantity="1"/>ur cognoscere
+            noluerit ut hoc <lb/> indicare p<gap unit="chars" quantity="1"/>ssit similiter uolu<lb
+               break="no"/>mus ut d<gap unit="chars" quantity="2"/><unclear>num quod</unclear>
+            <gap unit="chars" quantity="3"/><unclear>er eo</unclear>s <lb/> commisum
+               <unclear>fuerit</unclear>
+            <gap unit="chars" quantity="6"/>osi<lb break="no"/>tione com<unclear>m</unclear><gap
+               unit="chars" quantity="2"/>io<gap unit="chars" quantity="3"/> habea<gap unit="chars"
+               quantity="1"/>
+            <lb/>
+         </ab>
 
          <ab corresp="BK.146_5_inscriptio" type="meta-text" rend="coloured"
-            xml:id="paris-bn-lat-4788-116r-3"><seg type="num" n="5"
-               ><!-- BM: Die hier zu erwartende "V" ist nicht zu erkennen -->
-            </seg></ab>
-
-         <ab type="text" xml:id="paris-bn-lat-4788-116r-4" corresp="BK.146_5"><seg type="initial"
-               >Q</seg>[<!-- bm: ab hier bis zum Ende der Seite nichts zu erkennen -->uicumque
-            hominem undecunque ad palatium nostrum uenientem receperit siue adduxerit nec expellere
-            curauerit damnum <lb/><!-- bm: lb hier irgendwo -->quod ha]b [eo fuerit] in palatio
-            nostro fa<lb break="no"/><!-- bm: lb hier irgendwo -->[ctum aut eum praesentet aut si
-            praesentare non potu<!-- dazwischen irgendwo ein lb -->]erit dam<lb break="no"/>[num
-            quod ipse fecerat] p[ro] ip[so] <lb/>conp[onat] <lb/></ab>
+            xml:id="paris-bn-lat-4788-116r-3"><seg type="num" n="5">V </seg>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-116r-4" corresp="BK.146_5">
+            <seg type="initial">Q</seg>uicumque h<gap unit="chars" quantity="3"
+               /><unclear>n</unclear>em unde<lb break="no"/>cumque <gap unit="chars" quantity="1"/>d
+               palati<gap unit="chars" quantity="1"/>m <gap unit="chars" quantity="3"/>
+            <lb/> uenientem <gap unit="chars" quantity="4"/>erit <gap unit="chars" quantity="6"/><lb
+               break="no"/>duxerit <gap unit="chars" quantity="1"/>ac <gap unit="chars"
+               quantity="26"/><note type="editorial">Statt [.]<mentioned>ac</mentioned> bei Baluze,
+               Pertz und Boretius <mentioned>nec</mentioned>, es soll folgen: <mentioned>expellere
+                  curaverit damnum quod</mentioned>. Diese Lesung lässt sich auch mit Hilfe der
+               Multispektralaufnahmen nicht mehr verifizieren. Der in derselben Zeile verbleibende
+               Platz reicht für ca. 15 Buchstaben, was nicht ausreichend wäre; allerdings setzt der
+               Schreiber auch an anderer Stelle den Text unter der letzten Zeile fort.</note>
+            <cb n="116v"/> hab eo fuerit in palatio nostro fac<lb break="no"/>tum aut <gap
+               unit="chars" quantity="3"/> sentet<note type="editorial">Nach Pertz und Boretius
+               folgt nach <mentioned>aut</mentioned>: <mentioned>eum praesentet</mentioned>, was
+               nicht mehr verifiziert werden kann. Nach <mentioned>aut</mentioned> Platz für ca. 3
+               Buchstaben, unmittelbar vor <mentioned>sentet</mentioned> scheint kein Buchstabe mehr
+               zu stehen.</note> aut si <lb/>
+            <expan>prese<unclear>n</unclear>tare</expan> non potuerit dam<lb break="no"/>num quod
+               ips<unclear>e</unclear> fecerat pro ipso <lb/> conponat * </ab>
 
          <ab corresp="BK.146_6_inscriptio" type="meta-text" rend="coloured"
-            xml:id="paris-bn-lat-4788-116v-1"><seg type="num" n="6"
-               ><!-- BM: Die hier zu erwartende "VI" ist nicht zu erkennen;
-               evtl. am äußeren Seitenrand? -->
-            </seg></ab>
-
-         <ab type="text" xml:id="paris-bn-lat-4788-116v-2" corresp="BK.146_6"><seg type="initial"
-               >U</seg>[t c]om[ite]s [palatini omnem diligentiam adhibeant ut
-            clamatores<!-- bm: Bis hierhin wieder nichts zu erkennen, dazwischen zwei lb -->]
-            postquam indiculum<!-- bm: mit Kürzungsstrich durch l? -->
-            <lb/>[ab eis] acceper[i]nt [i]n pa[la]ti[o <lb/>nostro non remaneant] </ab>
+            xml:id="paris-bn-lat-4788-116v-1"><seg type="num" n="6">VI </seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-116v-2" corresp="BK.146_6">
+            <seg type="initial">U</seg>t comites <unclear>p</unclear><gap unit="chars" quantity="1"
+               />lat<gap unit="chars" quantity="2"/> cu<gap unit="chars" quantity="2"/>m et<note
+               type="editorial">Nach Pertz und Boretius folgt nach <mentioned>comites</mentioned>:
+                  <mentioned>palatini omnem</mentioned>. Die auf den MSI-Aufnahmen noch erkennbaren
+               Buchstaben bestätigen diese Lesung nicht; wahrscheinlicher ist <mentioned>palatii
+                  curam et</mentioned>; vgl. auch die in c. 7 verwendete Formulierung
+                  <mentioned>curam et providentiam</mentioned>.</note>
+            <lb/> diligentiam adhibeant ut cla<lb break="no"/>matores postquam <choice>
+               <abbr>indicul</abbr>
+               <expan>indiculum</expan>
+            </choice>
+            <lb/> ab eis acceperint in palatio <unclear>n</unclear><gap unit="chars" quantity="2"/>
+            <lb/> non <unclear>r</unclear>emaneant * </ab>
 
          <ab corresp="BK.146_7_inscriptio" type="meta-text" rend="coloured"
-            xml:id="paris-bn-lat-4788-116v-3"><seg type="num" n="7">VII </seg><lb/></ab>
+            xml:id="paris-bn-lat-4788-116v-3"><seg type="num" n="7">VII</seg>
+            <lb/>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-116v-4" corresp="BK.146_7">
+            <seg type="initial">U</seg>t super mendicos et pauperes <lb/> magistri constituatur<note
+               type="editorial">Nach Pertz und Boretius <mentioned>constituantur</mentioned>, ein n
+               oder eine Kürzung sind aber nicht zu erkennen.</note> qui de is <lb/>
+            <gap unit="chars" quantity="9"/>am et prouid<gap unit="chars" quantity="1"/>ntia<note
+               type="editorial">Nach Pertz und Boretius <mentioned>providentiam</mentioned>, aber
+               weder ein Endungs-m noch ein Kürzungsstrich erkennbar.</note>
+            <lb/> hab<gap unit="chars" quantity="2"/>t <unclear>ut</unclear> s<gap unit="chars"
+               quantity="2"/><unclear>i</unclear><note type="editorial">Nach Pertz und Boretius nach
+                  <mentioned>prouidentia</mentioned>: <mentioned>habeant ut ...ores</mentioned>, die
+               noch erkennbaren Buchstabenreste sprechen aber gegen diese Lesung.</note> et
+               <sic>similatores</sic>
+            <lb/> inter eos <gap unit="chars" quantity="1"/>atitare<note type="editorial">Nach Pertz
+               und Boretius nach <mentioned>eos</mentioned>: <mentioned>se celare</mentioned>, was
+               nicht zutrifft. Zu erkennen ist <mentioned>-atitare</mentioned>, wahrscheinlich
+                  <mentioned>latitare</mentioned>.</note> non possint . <lb/>
+         </ab>
 
-         <ab type="text" xml:id="paris-bn-lat-4788-116v-4" corresp="BK.146_7">[Ut super mendicos et
-            pauperes magistri constituantur<!-- bm: bis hier nichts zu erkennen, ein lb -->] qui de eis<!-- bm: sieht eher aus nach "qui de is" -->
-            <lb/>[magnam curam et providentiam habeant ut .... ores et simu]latores <lb/>[inter eos
-            se celare non possint] </ab>
-
-         <ab type="text" xml:id="paris-bn-lat-4788-116v-5" corresp="BK.146_8"
-            >[<!-- bm: Irgendwo hier muss das nächste Kapitel beginnen. Ggf. einen weiteren ab für die Nummer ergänzen! -->Ut
-            omni hebdomada per diem sabbati agentes vel ministeriales nostri in]<cb n="117r"
-               break="no"/>dicent [qui]d [de hac in]quisitio<lb break="no"/>ne factum
-            [<!-- bm: Das folgende wieder unleserlich -->habeant et hoc quod
-            <!-- bm: Evtl. hier ein lb? "nobis" könnte hinkommen, danach aber etwas wie "XL"?! Oder doch "ind ..."? -->nobis
-            indicauerint sic diligenter ac ueraciter habeant inquisitum et inuestigatum ut si nobis
-               placu]<!-- bm: dazwischen ca. drei lb -->]<lb break="no"/>erit [i]n m[anu nostra
-            ualeant ad]<lb break="no"/>[fi]rm[a]re qu[od non aliud nobis nisi] <lb/>[u]er[i]ta[te]m
-            ind[icassent] </ab>
-
-         <!-- bm: Ab hier bis fol. 118 rein gar nichts zu erkennen. -->
+         <ab corresp="BK.146_8_inscriptio" type="meta-text" rend="coloured"
+            xml:id="paris-bn-lat-4788-116v-5"><seg type="num" n="8">VIII</seg>
+         </ab>
+         <ab type="text" xml:id="paris-bn-lat-4788-116v-6" corresp="BK.146_8">
+            <seg type="initial">U</seg>t omni ebdomada per diem <lb/> sabbati nobis <choice>
+               <abbr>ministerial</abbr>
+               <expan>ministeriales</expan>
+            </choice> nostri <cb n="117r"/> indicent qui de hac inquisitio<lb break="no"/>ne factum
+            habeant et hoc quod <lb/> nobis indica<gap unit="chars" quantity="6"/> si<gap
+               unit="chars" quantity="1"/> diligen<unclear>ter</unclear>
+            <lb/>
+            <gap unit="chars" quantity="1"/>c
+            ueraciter<!-- NEU bm: Hier weicht die Schrift dem Pergamentloch aus! Das muss also schon 
+               vor der Beschriftung da gewesen sein, wenn auch nicht so groß wie heute. -->
+               ha<lb break="no"/><gap unit="chars" quantity="1"/>eant i<gap unit="chars"
+               quantity="2"/>uisitum <lb/> et inuestiga<lb break="no"/><gap unit="chars"
+               quantity="2"/>m ut si nobis placu<lb break="no"/>erit in manu nostra ualeant <gap
+               unit="chars" quantity="2"/><lb break="no"/><unclear>fi</unclear>rmare quod non aliud
+            nobis <unclear>n</unclear>isi <lb/> ueritatem indicassent <lb/>
+         </ab>
 
 
          <milestone unit="capitulare" n="BK.147"/>
 
-         <!-- bm: BK-Edition vergleichen. Dort sind die Zeilenwechsel und die ungefähre Position der von Pertz noch entzifferten Worte in der jeweiligen Zeile erkennbar! -->
+         <ab corresp="BK.147_1_inscriptio" type="meta-text" rend="coloured"
+            xml:id="paris-bn-lat-4788-117r-1">
+            <seg type="num" n="1">I</seg>
+            <seg type="numDenom">
+               <choice>
+                  <abbr>capl</abbr>
+                  <expan>capitulum</expan>
+               </choice></seg> . </ab>
+         <ab corresp="BK.147_1" type="text" xml:id="paris-bn-lat-4788-117r-2">
+            h<unclear>a</unclear>c a<gap unit="chars" quantity="11"/> singulis <lb/> locis obseruari
+               deb<unclear>e</unclear><gap unit="chars" quantity="10"/>
+            <lb/> ciuita<gap unit="chars" quantity="3"/> illius mo<gap unit="chars" quantity="3"/>a
+               pu<gap unit="chars" quantity="5"/>
+            <lb/> sub custodia comitis <gap unit="chars" quantity="4"/>
+            <lb/>
+         </ab>
 
-         <ab type="text" xml:id="paris-bn-lat-4788-117r-1" corresp="BK.147">1. Cap. Haec capitula in
-            singulis locis observari debent re. Ut civitatis illius moneta publice sub custodia
-            comitis fiat. 2. Ut monetarii ipsi publice, nec loco alia nec infra nec extra illam
-            civitatem nisi constituto eis loco, monetam facere praesuniant. 3. Si inventus quisquam
-            fuerit aut ex ipsis aut alia quaelibet persona in ipso pago monetam faciens cum omnem
-            substantiam eius et totam m amplius opus accipiat nihil 4. Ut monetarii monete batere
-            non possint; ideo volumus ut comes h is inquisitum t per hoc est falsat et proclam 5.
-            nihil et cum piscibus riatur corium in dorso et capite et scribatur ei in facie:
-            falsator monetae; in ceteris vero civitatibus ubi conces sum non est moneta, simili
-            ratio ne comes ...s monetariorum ipse comes non solum que facienti ad solicitudinem
-            comes et me optineat ut ipse per pares suos vel negotiatores huc illucque discurrentes
-            inquirat ob ferat auct substantiae subiacere statutum in praesum</ab>
+         <ab corresp="BK.147_2_inscriptio" type="meta-text" rend="coloured"
+            xml:id="paris-bn-lat-4788-117r-3">
+            <seg type="num" n="2"><unclear>II</unclear>
+            </seg>
+            <seg type="numDenom">
+               <choice>
+                  <abbr>capTL</abbr>
+                  <expan>capitulum</expan>
+               </choice></seg>
+         </ab>
+         <ab corresp="BK.147_2" type="text" xml:id="paris-bn-lat-4788-117r-4"> Ut mon<gap
+               unit="chars" quantity="4"/><unclear>ii</unclear> ips<gap unit="chars" quantity="11"/>
+            <lb/> loco alia n<unclear>e</unclear><gap unit="chars" quantity="2"/>nfra nec extra
+            illam <lb/> ciuitatem nisi con<unclear>stitu</unclear><gap unit="chars" quantity="2"/>
+            eis loco <unclear>m</unclear><gap unit="chars" quantity="7"/><note type="editorial">Nach
+               Pertz folgt nach <mentioned>loco</mentioned>: <mentioned>monetam facere
+                  non</mentioned>. Bei dem <mentioned>non</mentioned> handelt es sich wahrscheinlich
+               um eine Konjektur von Pertz, da das Wort (nach Angabe von Boretius 1883 S. 299 Anm.
+               a) nicht in Pertz' Unterlagen stand, weshalb es Boretius nicht in seinen Editionstext
+               aufnahm. Das Wort <mentioned>m(onetam)</mentioned> stand offenbar am Ende der letzten
+               Zeile, unter dem Schriftspiegel ist noch der Anfang von
+                  <mentioned>presum(ant)</mentioned> erkennbar. Davor befindet sich ein Loch im
+               Pergament, das den Verlust weiterer Schrift bedingt haben könnte. Allerdings dürfte
+               der Platz kaum für <mentioned>facere non</mentioned> gereicht haben, allenfalls für
+                  <mentioned>facere</mentioned> (was die Konjektur des <mentioned>non</mentioned>
+               durch Pertz wiederum wahrscheinlicher macht). Da sich an den Rändern des Ausrisses
+               aber keine Tintenreste mehr erkennen lassen, ist es sehr unwahrscheinlich, dass hier
+               jemals ein weiteres Wort stand.</note>
+            <lb/>
+            <expan>presum<gap unit="chars" quantity="3"/></expan>
+            <cb n="117v"/>
+         </ab>
+
+         <ab corresp="BK.147_3_inscriptio" type="meta-text" rend="coloured"
+            xml:id="paris-bn-lat-4788-117v-1">
+            <seg type="num" n="3">III </seg>
+         </ab>
+         <ab corresp="BK.147_3" type="text" xml:id="paris-bn-lat-4788-117v-2">
+            <seg type="initial">S</seg>i inuentus quisquam fuerit aut ex ip<lb break="no"/><gap
+               unit="chars" quantity="7"/><unclear>lia</unclear> q<unclear>ue</unclear>libe<gap
+               unit="chars" quantity="1"/><note type="editorial">Ein Kürzungszeichen über
+                  <mentioned>q</mentioned> ist nicht mehr zu erkennen. Grammatisch gefordert ist
+                  <mentioned>que</mentioned>-.</note> persona in ipso pago <lb/> m<gap unit="chars"
+               quantity="9"/>iens cum omn<gap unit="chars" quantity="1"/>m <lb/> su<gap unit="chars"
+               quantity="1"/><unclear>st</unclear><gap unit="chars" quantity="4"/>am eius ex <lb/>
+               tot<gap unit="chars" quantity="5"/>
+            <lb/>
+            <gap unit="chars" quantity="2"/><unclear>pro</unclear><gap unit="chars" quantity="2"
+               /><unclear>a</unclear>
+            <gap unit="chars" quantity="4"/>
+            <lb/> opus accip<gap unit="chars" quantity="3"/> nihil <lb/>
+            <gap unit="chars" quantity="26"/>
+         </ab>
+
+         <ab corresp="BK.147_4_inscriptio" type="meta-text" rend="coloured"
+            xml:id="paris-bn-lat-4788-117v-3">
+            <seg type="num" n="4">IIII </seg>
+         </ab>
+         <ab corresp="BK.147_4" type="text" xml:id="paris-bn-lat-4788-117v-4">
+            <seg type="initial"><gap unit="chars" quantity="1"/>T</seg>
+            <gap unit="chars" quantity="4"/><unclear>u</unclear>s fals<gap unit="chars" quantity="9"
+               /><unclear>bat</unclear><gap unit="chars" quantity="3"/>
+            <lb/> no<gap unit="chars" quantity="1"/>
+            <gap unit="chars" quantity="7"/>t id<gap unit="chars" quantity="1"/>o
+               <unclear>u</unclear><gap unit="chars" quantity="6"/>
+            <unclear>ut</unclear>
+            <gap unit="chars" quantity="5"/>
+            <lb/> ho<unclear>c</unclear>
+            <gap unit="chars" quantity="23"/><lb/>
+            <gap unit="chars" quantity="26"/><lb/><gap unit="chars" quantity="26"/><lb/><gap
+               unit="chars" quantity="10"/>
+            <unclear>hoc</unclear>
+            <gap unit="chars" quantity="3"/>
+            <unclear>f</unclear><gap unit="chars" quantity="1"/><unclear>l</unclear><gap
+               unit="chars" quantity="7"/>
+            <lb/>
+            <gap unit="chars" quantity="16"/> pro<gap unit="chars" quantity="2"/>a<gap unit="chars"
+               quantity="6"/><lb/>
+         </ab>
+
+         <ab corresp="BK.147_5_inscriptio" type="meta-text" rend="coloured"
+            xml:id="paris-bn-lat-4788-117v-5">
+            <seg type="num" n="5"><unclear>V</unclear></seg>
+         </ab>
+
+         <ab corresp="BK.147_5" type="text" xml:id="paris-bn-lat-4788-117v-6">
+            <seg type="initial"><unclear>U</unclear></seg>
+            <gap unit="chars" quantity="10"/><unclear>t</unclear>
+            <gap unit="chars" quantity="2"/>
+            <unclear>n</unclear>ihil <gap unit="chars" quantity="2"/>upiscib<gap unit="chars"
+               quantity="1"/>
+            <lb/>
+            <gap unit="chars" quantity="18"/> corium in dorso <lb/>
+            <gap unit="chars" quantity="19"/>apite <gap unit="chars" quantity="2"/>
+            <cb n="118r"/> scribatur ei in facie falsat<unclear>o</unclear>r monete <lb/>
+            <unclear>in</unclear> ceteris uero co<gap unit="chars" quantity="1"/>itatibus ubi <gap
+               unit="chars" quantity="3"/>
+            <lb/><unclear>um</unclear><note type="editorial">Nach Pertz und Boretius folgt nach
+                  <mentioned>ubi</mentioned>: <mentioned>concessum</mentioned>. Diese Lesung kann
+               nicht verifiziert werden und ist zudem unwahrscheinlich, da der erste Buchstabe des
+               auf <mentioned>-um</mentioned> endenden und größtenteils nicht mehr erhaltenen Wortes
+               einen Schaft- und keinen Bogenansatz hatte, wie es für ein c zu erwarten wäre.</note>
+            non est m<gap unit="chars" quantity="1"/>netam <gap unit="chars" quantity="5"
+               /><unclear>e</unclear> si<gap unit="chars" quantity="2"/>li ratio<lb break="no"/><gap
+               unit="chars" quantity="3"/>om<gap unit="chars" quantity="7"/>s monetarior<gap
+               unit="chars" quantity="2"/>
+            <lb/>
+            <gap unit="chars" quantity="12"/> ipse <choice>
+               <abbr>com</abbr>
+               <expan>comis</expan>
+            </choice>
+            <gap unit="chars" quantity="2"/>c non solum <lb/><gap unit="chars" quantity="12"
+               />dcu<gap unit="chars" quantity="1"/><unclear>q</unclear><note type="editorial">Ein
+               eventuelles Kürzungszeichen (für beispielsweise <mentioned>que</mentioned>) ist nicht
+               mehr erkennbar.</note> facienti <lb/>
+            <gap unit="chars" quantity="8"/>t ad solicitud<unclear>inem</unclear>
+            <unclear>com</unclear>e<gap unit="chars" quantity="1"/>
+            <lb/>
+            <gap unit="chars" quantity="7"/>ptineat <unclear>ut</unclear>
+            <unclear>i</unclear>ps<unclear>e</unclear> per pares <lb/><gap unit="chars" quantity="2"
+            />os uel ne<unclear>g</unclear>otiator<unclear>es</unclear>
+            <gap unit="chars" quantity="1"/><unclear>uc</unclear> illucq<gap unit="chars"
+               quantity="1"/>
+            <lb/>
+            <gap unit="chars" quantity="1"/>iscurrentes <unclear>in</unclear>qui<gap unit="chars"
+               quantity="10"/>
+            <lb/>
+            <gap unit="chars" quantity="2"/><unclear>i</unclear>que <gap unit="chars" quantity="20"/>
+            <lb/>
+            <gap unit="chars" quantity="26"/>
+            <lb/>
+            <gap unit="chars" quantity="1"/> dnr <gap unit="chars" quantity="3"/> ferat <gap
+               unit="chars" quantity="13"/>
+            <lb/> deor<gap unit="chars" quantity="4"/> auct<unclear>o</unclear><gap unit="chars"
+               quantity="11"/><lb break="no"/>tię subiacer<gap unit="chars" quantity="1"/>
+            <gap unit="chars" quantity="14"/><lb/> statut<gap unit="chars" quantity="2"/>n <gap
+               unit="chars" quantity="17"/>
+            <lb/>
+            <expan>presum</expan><gap unit="chars" quantity="1"/>t </ab>
 
       </body>
    </text>
