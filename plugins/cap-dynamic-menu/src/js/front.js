@@ -231,19 +231,21 @@ function get_topmost () {
             return [div, top];
         }
     }
-    return null;
+    return [null, 0];
 }
 
 function initLinebreakCheckbox () {
-    $ ('body').change ('.custom-checkbox-linebreak', function (event) {
+    $ ('body').on ('change', '.custom-checkbox-linebreak', function (event) {
         const checked = $ (event.target).is (':checked');
         const [topmost, offset] = get_topmost ();
         $ ('div.mss-transcript-xsl').toggleClass ('show-linebreaks', checked);
-        setTimeout (function () {
-            const new_offset = get_offset (topmost);
-            // topmost.scrollIntoView (true);
-            window.scrollBy (0, new_offset - offset);
-        });
+        if (topmost !== null) {
+            setTimeout (function () {
+                const new_offset = get_offset (topmost);
+                // topmost.scrollIntoView (true);
+                window.scrollBy (0, new_offset - offset);
+            });
+        }
     });
 }
 
