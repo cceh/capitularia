@@ -3,7 +3,7 @@
 	<ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
 	<!--Platzhalter-->
 	<pattern id="platzhalter_leerezeichen-vorgaben">
-		<rule context="text()[ancestor::tei:body][not(ancestor::tei:note)]">
+		<rule context="text()[ancestor::tei:body][not(ancestor::tei:note)][not(ancestor::tei:figDesc)]">
 			<report test="matches(.,'\.[a-z]')" role="warning">Auf Platzhalter folgt kein Leerzeichen X-PATH: //text()[matches(.,'\.[a-z]')][ancestor::body][not(ancestor::note)]</report>
 			<report test="matches(.,'[a-z]\.')" role="warning">Auf Platzhalter folgt kein Leerzeichen X-PATH: //text()[matches(.,'[a-z]\.')][ancestor::body][not(ancestor::note)]</report>
 			<report test="matches(.,',[a-z]')" role="warning">Auf Platzhalter folgt kein Leerzeichen X-PATH: //text()[matches(.,',[a-z]')][ancestor::body][not(ancestor::note)]</report>
