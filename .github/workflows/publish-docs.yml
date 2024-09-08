@@ -1,3 +1,10 @@
+# Publish the docs to https://cceh.github.io/capitularia/
+#
+# make tar-docs
+# git add docs
+# git commit -m "update docs"
+# git push
+#
 name: Publish Docs
 
 on: push
@@ -17,7 +24,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: docs/gh-pages/artifact.tar.gz
+          path: docs/gh-pages/artifact.tar.gz  # built by: make tar-docs
           retention-days: 1
           if-no-files-found: error
 
