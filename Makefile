@@ -99,7 +99,7 @@ doccs: clean_docs docs
 
 tar-docs:
 	mkdir -p $(DOCS_DIST_DIR)
-	tar -h --hard-dereference -cvf $(DOCS_DIST_DIR)/artifact.tar.gz $(DOCS_BUILD_DIR)
+	tar -h --hard-dereference -cvf $(DOCS_DIST_DIR)/artifact.tar.gz -C $(DOCS_BUILD_DIR) .
 
 clean_docs:
 	$(RM) -r $(DOCS_BUILD_DIR)/*
