@@ -25,6 +25,7 @@ HOST_XSLT    := $(HOST_PRJ_DIR)/xslt
 NODE_MODULES := $(ROOT)/node_modules
 NODE         := $(NODE_MODULES)/.bin
 PYTHON       := $(ROOT)/.venv/bin/python3
+
 SOLR_INST    := $(HOME)/solr/solr
 SOLR         := $(SOLR_INST)/bin/solr
 

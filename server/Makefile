@@ -1,4 +1,4 @@
-include ../Variables.mak
+include ../variables.mak
 
 IMPORT := ../.venv/bin/python3 -m scripts.import_data -vvv -c ./server.conf
 

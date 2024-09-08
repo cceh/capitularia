@@ -177,7 +177,7 @@ class Widget extends \WP_Widget
         $this->help_text = array ();
 
         echo "<div class='cap-meta-search-box'>\n";
-        echo "<form>\n";
+        echo "<form action='/'>\n";
 
         $capitulars = get_capitulars ();
 

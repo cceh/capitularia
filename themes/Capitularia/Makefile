@@ -6,8 +6,8 @@ PHP_FILES   := $(wildcard $(PHP_SRC)/*.php) $(wildcard $(PHP_SRC)/widgets/*.php)
 
 TEXT_DOMAIN := 'capitularia'
 
-include ../../Variables.mak
-include ../../Makefile.inc
+include ../../variables.mak
+include ../../include.mak
 
 deploy:
 	$(RSYNC) * $(WPCONTENT)/themes/Capitularia/

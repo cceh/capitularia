@@ -1,4 +1,4 @@
-include ../Variables.mak
+include ../variables.mak
 
 IMPORT := cd ../server; python3 -m scripts.import_data -vv -c ./server.conf
 

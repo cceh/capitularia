@@ -1,4 +1,4 @@
-include Variables.mak
+include variables.mak
 
 THEMES  = themes/Capitularia
 PLUGINS = $(wildcard plugins/cap-*)
@@ -11,7 +11,7 @@ clean:
 
 deploy: clean geodata-client deploy_php
 
-deploy_php: lint mo js
+deploy_php: mo js
 	$(RSYNC) themes  $(WPCONTENT)
 	$(RSYNC) plugins $(WPCONTENT)
 	$(RSYNC) --delete --exclude "api.conf.js" dist $(WPCONTENT)
@@ -38,7 +38,7 @@ deploy_schemas:
 
 deploy_server:
 	cd $(SERVER) && $(MAKE) deploy
-	$(RSYNC) Makefile* Variables.mak $(HOST_PRJ_DIR)/
+	$(RSYNC) Makefile* variables.mak $(HOST_PRJ_DIR)/
 	$(RSYNC) solr $(HOST_PRJ_DIR)/
 
 import_xml: import_mss import_capits
@@ -126,7 +126,7 @@ solr-logs:
 	less $(SOLR_INST)/server/logs/solr.log
 
 solr-prereq:
-	cp $(SOLR_PRJ)/lib/build/libs/lib.jar $(SOLR_INST)/lib/capitularia.jar
+	cp $(SOLR_PRJ)/lib/build/libs/capitularia-lucene-tools.jar $(SOLR_INST)/lib/
 
 # needs VPN
 psql-remote:
