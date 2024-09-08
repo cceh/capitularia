@@ -26,27 +26,23 @@
 </template>
 
 <script>
-/** @module plugins/collation/results  */
 
-/**
- * @file
- */
+/** @module plugins/cap-collation/results */
 
-import $ from 'jquery';
+import jQuery from 'jquery';
 import { zip } from 'lodash';
 
 import * as tools from './tools.js';
 
 /**
  * The vue.js instance that manages the collation output table.
- * @class module:plugins/collation/results.VueResults
+ * @class Results
  */
 
 export default {
     'name' : 'capCollationResults',
     data () {
         return {
-            'api'             : null,  // API server
             'corresp'         : '',
             'items'           : [],
             'witnesses'       : [],
@@ -56,12 +52,9 @@ export default {
             'spinner'         : false,
         };
     },
-    mounted () {
-        this.api = tools.get_api_entrypoint () + '/collator/collate';
-    },
     updated () {
         const vm = this;
-        const $tbodies = $ (this.$el).find ('table.collation tbody');
+        const $tbodies = jQuery (this.$el).find ('table.collation tbody');
         $tbodies.disableSelection ().sortable ({
             'items'       : 'tr.sortable',
             'handle'      : 'th.handle',
@@ -75,7 +68,7 @@ export default {
             },
         });
     },
-    /** @lends module:plugins/collation/results.VueResults.prototype */
+    /** @lends Results */
     'methods' : {
         collate (data) {
             const vm   = this;
@@ -86,16 +79,11 @@ export default {
 
             data.collate = tools.unroll_witnesses (data.collate);
 
-            const p = $.ajax ({
-                'url'         : vm.api,
-                'type'        : 'POST',
-                'data'        : JSON.stringify (data),
-                'contentType' : 'application/json; charset=utf-8',
-            });
-            p.done (function () {
-                vm.update_tables (p.responseJSON.witnesses, p.responseJSON.table);
+            const p = tools.api ('/collator/collate', data);
+            p.then ((response) => {
+                vm.update_tables (response.data.witnesses, response.data.table);
                 vm.sort_like (data.collate);
-            }).always (function () {
+            }).finally (() => {
                 vm.spinner   = false;
             });
             return p;
@@ -106,9 +94,9 @@ export default {
          *
          * Turn rows into columns and vice versa.
          *
-         * @param {array} matrix The table as returned by the API
+         * @param {Array} matrix The table as returned by the API
          *
-         * @return {array} The transposed table
+         * @return {Array} The transposed table
          */
 
         transpose (matrix) {
@@ -118,23 +106,23 @@ export default {
         /**
          * Calculate the cell width in characters
          *
-         * @param {array} cell The array of tokens in the cell
+         * @param {Array} cell The array of tokens in the cell
          *
          * @return {integer} The width in characters
          */
 
         cell_width (cell) {
-            const tokens = cell.map (token => token.t.trim ());
+            const tokens = cell.map ((token) => token.t.trim ());
             return tokens.join (' ').length;
         },
 
         /**
          * Split a table in columns every n characters
          *
-         * @param {array}   table     The table to split
+         * @param {Array}   table     The table to split
          * @param {integer} max_width Split after this many characters
          *
-         * @return {array} An array of tables
+         * @return {Array} An array of tables
          */
 
         split_table (table, max_width) {
@@ -143,7 +131,7 @@ export default {
             let width = 0;
 
             for (const column of table) {
-                const column_width = 2 + Math.max (... column.map (cell => this.cell_width (cell)));
+                const column_width = 2 + Math.max (...column.map ((cell) => this.cell_width (cell)));
                 if (width + column_width > max_width) {
                     // start a new table
                     out_tables.push (tmp_table.slice ());
@@ -176,7 +164,7 @@ export default {
          *    }
          *
          * @param {Object[]} witnesses The collated items as found in 'table'
-         * @param {array}    table The collation table in column-major orientation
+         * @param {Array}    table The collation table in column-major orientation
          * @param {string[]} order The loci (corresp/witness) in the order they should be displayed
          *
          * @return {Object} The rows of the formatted table
@@ -186,8 +174,8 @@ export default {
             if (order.length === 0) {
                 return  [];
             }
-            const urls  = witnesses.map (ms => `${ms.corresp}/${ms.url}`);
-            const titles = witnesses.map (ms => ms.title);
+            const urls  = witnesses.map ((ms) => `${ms.corresp}/${ms.url}`);
+            const titles = witnesses.map ((ms) => ms.title);
             const out_table = {
                 'class' : '',
                 'rows'  : [],
@@ -217,9 +205,9 @@ export default {
                 for (const [ms_set, master_set] of zip (ms_text, master_text)) {
                     let class_ = 'tokens';
                     // const master      = master_set.map (token => token.t).join (' ').trim ();
-                    const text        = ms_set.map     (token => token.t).join (' ').trim ();
-                    const norm_master = master_set.map (token => token.n).join (' ').trim ();
-                    const norm_text   = ms_set.map     (token => token.n).join (' ').trim ();
+                    const text        = ms_set.map     ((token) => token.t).join (' ').trim ();
+                    const norm_master = master_set.map ((token) => token.n).join (' ').trim ();
+                    const norm_text   = ms_set.map     ((token) => token.n).join (' ').trim ();
                     if (!is_master && (norm_master.toLowerCase () === norm_text.toLowerCase ())) {
                         class_ += ' equal';
                     }
@@ -237,15 +225,15 @@ export default {
         update_tables (witnesses, table) {
             this.witnesses = witnesses.map (tools.parse_locus_url);
 
-            const max_width = 120 - Math.max (... this.witnesses.map (ms => ms.title.length));
+            const max_width = 120 - Math.max (...this.witnesses.map ((ms) => ms.title.length));
 
             this.unsorted_tables = this
                 .split_table (table, max_width)
-                .map (t => this.transpose (t));
+                .map ((t) => this.transpose (t));
         },
 
         sort_like (order) {
-            this.tables = this.unsorted_tables.map (table => this.format_table (
+            this.tables = this.unsorted_tables.map ((table) => this.format_table (
                 this.witnesses,
                 table,
                 order

@@ -32,7 +32,6 @@
  * @author Marcello Perathoner
  */
 
-import $ from 'jquery';
 import 'bootstrap';
 
 export default {

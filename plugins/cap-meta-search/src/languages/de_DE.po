@@ -1,29 +1,23 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the @cceh/capitularia package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Marcello Perathoner <marcello@perathoner.de>, 2015, 2016.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2024-04-25 17:33+0200\n"
-"PO-Revision-Date: 2024-04-25 17:41+0200\n"
+"POT-Creation-Date: 2024-08-30 08:58+0200\n"
+"PO-Revision-Date: 2024-08-30 12:05+0200\n"
 "Last-Translator: Marcello Perathoner <marcello@perathoner.de>\n"
-"Language-Team: German <>\n"
-"Language: de_DE\n"
+"Language-Team: German\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
-#: cap-meta-search.php:74
+#: cap-meta-search.php:75
 msgid "Capitularia Meta Search"
 msgstr "Capitularia Meta-Suche"
 
-#: cap-meta-search.php:75
+#: cap-meta-search.php:76
 msgid "Perform metadata-aware searches for and in TEI files."
 msgstr "Sucht mit Hilfe von Meta-Daten nach und in TEI-Dateien."
 
@@ -61,36 +55,38 @@ msgid "All"
 msgstr "Alle"
 
 #: class-meta-search-widget.php:184
-msgid "Capitularies contained"
-msgstr "Enthaltene Kapitularien"
+msgid "In Capitulary"
+msgstr "In Kapitular"
 
 #: class-meta-search-widget.php:185
-msgid "Only show manuscripts that contain this capitulary."
-msgstr "Nur Handschriften, die dieses Kapitular enthalten."
+msgid "Search only in this capitulary."
+msgstr "Suche nur in diesem Kapitular."
 
 #: class-meta-search-widget.php:189
 msgid "After"
 msgstr "Nach"
 
 #: class-meta-search-widget.php:190
-msgid "Only show manuscripts created after this year."
-msgstr "Nur Handschriften, die nach diesem Jahr entstanden sind."
+msgid "Search only in manuscript parts created in or after this year."
+msgstr ""
+"Suche nur in Manuskriptteilen, die in oder nach diesem Jahr entstanden sind."
 
 #: class-meta-search-widget.php:193
 msgid "Before"
 msgstr "Vor"
 
 #: class-meta-search-widget.php:194
-msgid "Only show manuscripts created before this year."
-msgstr "Nur Handschriften, die vor diesem Jahr entstanden sind."
+msgid "Search only in manuscript parts created before or in this year."
+msgstr ""
+"Suche nur in Manuskriptteilen, die vor oder in diesem Jahr entstanden sind."
 
 #: class-meta-search-widget.php:198
 msgid "Origin"
 msgstr "Entstehung"
 
 #: class-meta-search-widget.php:199
-msgid "Only show manuscripts created in this region."
-msgstr "Nur Handschriften, die in diesem Gebiet entstanden sind."
+msgid "search only in manuscript parts created in this region."
+msgstr "Suche nur in Manuskriptteilen, die in diesem Gebiet entstanden sind."
 
 #: class-meta-search-widget.php:202
 msgid "Free Text In Transcription"
@@ -127,6 +123,47 @@ msgstr "Titel"
 #: class-meta-search-widget.php:268
 msgid "New title"
 msgstr "Neuer Titel"
+
+#: search.php:32
+msgid "Search Results"
+msgstr "Suchergebnisse"
+
+#: src/js/tools.js:81
+msgid "docs"
+msgstr ""
+
+#: src/js/front.js:37
+#, fuzzy
+msgid "el"
+msgstr "Hilfe"
+
+#: src/js/front.js:21
+msgid "text"
+msgstr ""
+
+#: src/js/cap-pager.vue:15
+msgid "« Previous page"
+msgstr "« Vorherige Seite"
+
+#: src/js/main.vue:39
+msgid "Capitularies"
+msgstr "Kapitularien"
+
+#: src/js/main.vue:46
+msgid "Mordek"
+msgstr "Mordek"
+
+#: src/js/cap-pager.vue:37
+#, fuzzy
+msgid "Next page »"
+msgstr "Nächste Seite »"
+
+#: src/js/main.vue:53
+msgid "Website"
+msgstr "Webseite"
+
+#~ msgid "Capitularies contained"
+#~ msgstr "Enthaltene Kapitularien"
 
 #~ msgid "Free text search"
 #~ msgstr "Freie Textsuche"
@@ -180,10 +217,6 @@ msgstr "Neuer Titel"
 #~ msgctxt "Button: Load the collation config"
 #~ msgid "Load Config"
 #~ msgstr "Konfiguration Laden"
-
-#~ msgctxt "H2 caption"
-#~ msgid "Capitulary"
-#~ msgstr "Kapitular"
 
 #~ msgctxt "Label: for select"
 #~ msgid "Select Capitulary and Section"
@@ -412,8 +445,10 @@ msgstr "Neuer Titel"
 #~ msgid "xmllint path"
 #~ msgstr "xmllint Pfad"
 
-#~ msgid "The full path to the xmllint utility as seen from the server, eg.: %s"
-#~ msgstr "Pfad- und Dateiname des xmllint-tools vom Server aus gesehen, z.B.: %s"
+#~ msgid ""
+#~ "The full path to the xmllint utility as seen from the server, eg.: %s"
+#~ msgstr ""
+#~ "Pfad- und Dateiname des xmllint-tools vom Server aus gesehen, z.B.: %s"
 
 #~ msgid "Section name"
 #~ msgstr "Name der Sektion"
@@ -430,14 +465,18 @@ msgstr "Neuer Titel"
 #~ msgid "XSL files list"
 #~ msgstr "Liste der XSL-Dateien"
 
-#~ msgid "A list of xsl files to run (relative to XSL root) (space-separated list)."
-#~ msgstr "Liste der anzuwendenden XSL-Dateien (relativ zum XSL-Stammverzeichnis) (mit Leerzeichen getrennt)."
+#~ msgid ""
+#~ "A list of xsl files to run (relative to XSL root) (space-separated list)."
+#~ msgstr ""
+#~ "Liste der anzuwendenden XSL-Dateien (relativ zum XSL-Stammverzeichnis) "
+#~ "(mit Leerzeichen getrennt)."
 
 #~ msgid "XSL schema"
 #~ msgstr "XSL Schema"
 
 #~ msgid "The path to the xsl schema file (relative to schema root)."
-#~ msgstr "Der Pfad zur XSL-Schema-Datei (relativ zum Schema-Stammverzeichnis)."
+#~ msgstr ""
+#~ "Der Pfad zur XSL-Schema-Datei (relativ zum Schema-Stammverzeichnis)."
 
 #~ msgid "Slug path"
 #~ msgstr "Slug-Pfad"
@@ -458,7 +497,9 @@ msgstr "Neuer Titel"
 #~ msgstr "Sidebars"
 
 #~ msgid "The sidebars (space-separated list). Eg.: %s"
-#~ msgstr "Welche Sidebars sollen angezeigt werden (mit Leerzeichen getrennt)? Z.B.: %s"
+#~ msgstr ""
+#~ "Welche Sidebars sollen angezeigt werden (mit Leerzeichen getrennt)? Z.B.: "
+#~ "%s"
 
 #~ msgid "General"
 #~ msgstr "Allgemein"
@@ -488,7 +529,8 @@ msgstr "Neuer Titel"
 #~ msgstr "Fehler: die Seite %s konnte nicht erstellt werden."
 
 #~ msgid "Error while extracting metadata: no page with slug %s."
-#~ msgstr "Fehler beim Extrahieren der Meta-Daten: es gibt keine Seite mit Slug: %s."
+#~ msgstr ""
+#~ "Fehler beim Extrahieren der Meta-Daten: es gibt keine Seite mit Slug: %s."
 
 #~ msgid "Metadata extracted from file %s."
 #~ msgstr "Meta-Daten aus Datei %s extrahiert."
@@ -597,15 +639,6 @@ msgstr "Neuer Titel"
 #~ msgid "Page:"
 #~ msgstr "Seite:"
 
-#~ msgid "« Previous"
-#~ msgstr "« Vorherige Seite"
-
-#~ msgid "Next »"
-#~ msgstr "Nächste Seite »"
-
-#~ msgid "Search Results"
-#~ msgstr "Suchergebnisse"
-
 #~ msgid "Y-m-d"
 #~ msgstr "Y-m-d"
 
@@ -633,26 +666,40 @@ msgstr "Neuer Titel"
 #~ msgid "Frontpage Image"
 #~ msgstr "Titelseiten-Bild"
 
-#~ msgid "The big splash image on the front page. Takes one Capitularia Logo Widget."
-#~ msgstr "Das große Bild auf der Titelseite. Enthält ein Capitularia Logo-Widget."
+#~ msgid ""
+#~ "The big splash image on the front page. Takes one Capitularia Logo Widget."
+#~ msgstr ""
+#~ "Das große Bild auf der Titelseite. Enthält ein Capitularia Logo-Widget."
 
 #~ msgid "Frontpage Teaser Bar 1"
 #~ msgstr "Titelseiten-Teaser-Band 1"
 
-#~ msgid "The top teaser bar on the front page. Normally takes 3 Capitularia Text Widgets."
-#~ msgstr "Das obere Vorschau-Band auf der Titelseite. Enthält typischerweise 3 Capitularia Text-Widgets."
+#~ msgid ""
+#~ "The top teaser bar on the front page. Normally takes 3 Capitularia Text "
+#~ "Widgets."
+#~ msgstr ""
+#~ "Das obere Vorschau-Band auf der Titelseite. Enthält typischerweise 3 "
+#~ "Capitularia Text-Widgets."
 
 #~ msgid "Frontpage Teaser Bar 2"
 #~ msgstr "Titelseiten-Teaser-Band 2"
 
-#~ msgid "The bottom teaser bar on the front page. Normally takes 2 Capitularia Image Widgets."
-#~ msgstr "Das untere Vorschau-Band auf der Titelseite. Enthält typischerweise 2 Capitularia Bild-Widgets."
+#~ msgid ""
+#~ "The bottom teaser bar on the front page. Normally takes 2 Capitularia "
+#~ "Image Widgets."
+#~ msgstr ""
+#~ "Das untere Vorschau-Band auf der Titelseite. Enthält typischerweise 2 "
+#~ "Capitularia Bild-Widgets."
 
 #~ msgid "Logo Bar"
 #~ msgstr "Logo-Band"
 
-#~ msgid "The logo bar in the footer of every page. Takes one or more Capitularia Logo Widgets."
-#~ msgstr "Das Logo-Band im Fußteil einer jeden Seite. Enthält ein oder mehrere Capitularia Logo-Widgets."
+#~ msgid ""
+#~ "The logo bar in the footer of every page. Takes one or more Capitularia "
+#~ "Logo Widgets."
+#~ msgstr ""
+#~ "Das Logo-Band im Fußteil einer jeden Seite. Enthält ein oder mehrere "
+#~ "Capitularia Logo-Widgets."
 
 #~ msgid "Post Sidebar"
 #~ msgstr "Post Sidebar"
@@ -663,14 +710,18 @@ msgstr "Neuer Titel"
 #~ msgid "Page Sidebar"
 #~ msgstr "Page Sidebar"
 
-#~ msgid "The sidebar on pages. Output below the more specialized page sidebars."
-#~ msgstr "Die Sidebar auf Pages. Wird unter den spezielleren Sidebars ausgegeben."
+#~ msgid ""
+#~ "The sidebar on pages. Output below the more specialized page sidebars."
+#~ msgstr ""
+#~ "Die Sidebar auf Pages. Wird unter den spezielleren Sidebars ausgegeben."
 
 #~ msgid "Post and Page Sidebar"
 #~ msgstr "Sidebar auf Posts und Pages"
 
 #~ msgid "The sidebar on posts and pages. Output below the other sidebars."
-#~ msgstr "Die Sidebar auf Pages und Posts. Wird unter den anderen Sidebars ausgegeben."
+#~ msgstr ""
+#~ "Die Sidebar auf Pages und Posts. Wird unter den anderen Sidebars "
+#~ "ausgegeben."
 
 #~ msgid "Capitularies Sidebar"
 #~ msgstr "Kapitularien-Sidebar"
@@ -701,9 +752,6 @@ msgstr "Neuer Titel"
 
 #~ msgid "The sidebar on /internal/ pages."
 #~ msgstr "Die Sidebar auf /internal/ Seiten."
-
-#~ msgid "Capitular Sidebar"
-#~ msgstr "Kapitularie-Sidebar"
 
 #~ msgid "The sidebar on single capitular pages"
 #~ msgstr "Die Sidebar auf Kapitular-Seiten"

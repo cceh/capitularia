@@ -559,10 +559,10 @@ function on_wp_get_nav_menu_items ($items, $menu, $args) {
 /**
  * Add dynamic url to login menu.  Remove text from twitter and fb logos.
  *
- * @param array    $atts  The old HTML attributes.
- * @param WP_Post  $item  The current menu item.
- * @param stdClass $args  An object of wp_nav_menu() arguments.
- * @param int      $depth Depth of menu item. Used for padding.
+ * @param array     $atts  The old HTML attributes.
+ * @param \WP_Post  $item  The current menu item.
+ * @param \stdClass $args  An object of wp_nav_menu() arguments.
+ * @param int       $depth Depth of menu item. Used for padding.
  *
  * @return array  The updated HTML attributes.
  */
@@ -615,7 +615,7 @@ function on_upload_mimes ($mimes)
  * @param string               $redirect_to           The redirect destination URL.
  * @param string               $requested_redirect_to The requested redirect destination URL
  *                                                    passed as a parameter.
- * @param \WP_User | \WP_Error $user                  WP_User object if login was successful,
+ * @param \WP_User|\WP_Error   $user                  WP_User object if login was successful,
  *                                                    WP_Error object otherwise.
  *
  * @return string The target URL of the redirection.

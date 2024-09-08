@@ -50,7 +50,7 @@ function ns ($function_name)
  *
  * @param string $text The text to sanitize.
  *
- * @return The sanitized text.
+ * @return string The sanitized text.
  */
 
 function sanitize ($text)
@@ -66,11 +66,8 @@ function sanitize ($text)
 
 function get_capitulars ()
 {
-    $params = array (
-        'status' => current_user_can ('read_private_pages') ? 'private' : 'publish'
-    );
     $res = [];
-    foreach (lib\api_json_request ('/data/capitularies.json/', $params) as $r) {
+    foreach (lib\api_json_request ('/data/capitularies.json/', array (), true) as $r) {
         $cap_id = $r['cap_id'];
         $transcriptions = $r['transcriptions'];
         if ($transcriptions > 1 && preg_match ('/^BK|^Mordek/', $cap_id)) {
@@ -142,3 +139,36 @@ function on_cap_meta_search_the_permalink ($permalink)
     }
     return $permalink;
 }
+
+/**
+ * Makes Wordpress display our custom search page.
+ */
+
+function on_template_include ($template)
+{
+    global $wp_query;
+    if (!$wp_query->is_search) {
+        return $template;
+    }
+
+    return dirname ( __FILE__ ) . '/search.php';
+}
+
+/**
+ * Enqueue the front page script and localize it.
+ *
+ * The script is a webpacked Vue.js application containing its own css.
+ *
+ * @return void
+ */
+
+ function enqueue_scripts ()
+ {
+     $handle = 'cap-meta-search-front';
+
+     lib\enqueue_from_manifest ("$handle.js", ['cap-theme-front.js']);
+
+     lib\enqueue_from_manifest ("$handle.css");
+
+     lib\wp_set_script_translations ("$handle.js", DOMAIN);
+ }

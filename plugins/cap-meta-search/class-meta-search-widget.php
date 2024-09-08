@@ -75,11 +75,11 @@ class Widget extends \WP_Widget
     private function echo_options ($items, $selected)
     {
         $all = _x ('All', '\'All\' option in drop-down', DOMAIN);
-        echo ("    <option value=''>$all</option>\n");
+        echo "    <option value=''>$all</option>\n";
 
         foreach ($items as $item) {
             $sel = $item === $selected ? ' selected' : '';
-            echo ("    <option value='{$item}'{$sel}>{$item}</option>\n");
+            echo "    <option value='{$item}'{$sel}>{$item}</option>\n";
         }
     }
 
@@ -98,12 +98,12 @@ class Widget extends \WP_Widget
     {
         $tooltip  = esc_attr ($tooltip);
         $selected = stripslashes (esc_attr ($_GET[$id] ?? ''));
-        echo ("<div class='cap-meta-search-field cap-meta-search-field-$id'>\n");
-        echo ("  <label for='$id'>$caption</label>\n");
-        echo ("  <select id='$id' name='$id' data-bs-toggle='tooltip' title='$tooltip' >\n");
+        echo "<div class='cap-meta-search-field cap-meta-search-field-$id'>\n";
+        echo "  <label for='$id'>$caption</label>\n";
+        echo "  <select id='$id' name='$id' data-bs-toggle='tooltip' title='$tooltip' >\n";
         $this->echo_options ($items, $selected);
-        echo ("  </select>\n");
-        echo ("</div>\n");
+        echo "  </select>\n";
+        echo "</div>\n";
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
     }
 
@@ -120,9 +120,9 @@ class Widget extends \WP_Widget
     private function echo_places_tree ($caption, $id, $tooltip)
     {
         $tooltip = esc_attr ($tooltip);
-        echo ("<label for='$id'>$caption</label>\n");
-        echo ("<div id='$id' class='cap-meta-search-places' data-bs-toggle='tooltip' title='$tooltip'>\n");
-        echo ("</div>\n");
+        echo "<label for='$id'>$caption</label>\n";
+        echo "<div id='$id' class='cap-meta-search-places' data-bs-toggle='tooltip' title='$tooltip'>\n";
+        echo "</div>\n";
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
 
         lib\enqueue_from_manifest ('cap-meta-search-front.js', ['cap-theme-front.js']);
@@ -146,10 +146,10 @@ class Widget extends \WP_Widget
         $tooltip     = esc_attr ($tooltip);
         $placeholder = esc_attr ($placeholder);
         $value       = stripslashes (esc_attr ($_GET[$id] ?? ''));
-        echo ("<div class='cap-meta-search-field cap-meta-search-field-$id'>\n");
-        echo ("  <label for='$id'>$caption</label>\n");
-        echo ("  <input type='text' id='$id' name='$id' placeholder='$placeholder' data-bs-toggle='tooltip' title='$tooltip' value='$value' />\n");
-        echo ("</div>\n");
+        echo "<div class='cap-meta-search-field cap-meta-search-field-$id'>\n";
+        echo "  <label for='$id'>$caption</label>\n";
+        echo "  <input type='text' id='$id' name='$id' placeholder='$placeholder' data-bs-toggle='tooltip' title='$tooltip' value='$value' />\n";
+        echo "</div>\n";
         $this->help_text[] = "<p><b>$caption:</b> $tooltip</p>\n";
     }
 
@@ -170,33 +170,33 @@ class Widget extends \WP_Widget
         $this->setup ($args, $instance);
 
         echo $args['before_widget'];
-        echo ($args['before_title']);
+        echo $args['before_title'];
         echo $this->title;
-        echo ($args['after_title']);
+        echo $args['after_title'];
 
         $this->help_text = array ();
 
-        echo ("<div class='cap-meta-search-box'>\n");
-        echo ("<form>\n");
+        echo "<div class='cap-meta-search-box'>\n";
+        echo "<form>\n";
 
         $capitulars = get_capitulars ();
 
-        $label   = __ ('Capitularies contained', DOMAIN);
-        $tooltip = __ ('Only show manuscripts that contain this capitulary.', DOMAIN);
+        $label   = __ ('In Capitulary', DOMAIN);
+        $tooltip = __ ('Search only in this capitulary.', DOMAIN);
         $this->echo_select ($label, 'capit', $capitulars, $tooltip);
 
-        echo ("<div class='clearfix'>\n");
+        echo "<div class='clearfix'>\n";
         $label   = __ ('After', DOMAIN);
-        $tooltip = __ ('Only show manuscripts created after this year.', DOMAIN);
+        $tooltip = __ ('Search only in manuscript parts created in or after this year.', DOMAIN);
         $this->echo_input  ($label, 'notbefore', '700',  $tooltip);
 
         $label   = __ ('Before', DOMAIN);
-        $tooltip = __ ('Only show manuscripts created before this year.', DOMAIN);
+        $tooltip = __ ('Search only in manuscript parts created before or in this year.', DOMAIN);
         $this->echo_input  ($label, 'notafter',  '1000', $tooltip);
-        echo ("</div>\n");
+        echo "</div>\n";
 
         $label   = __ ('Origin', DOMAIN);
-        $tooltip = __ ('Only show manuscripts created in this region.', DOMAIN);
+        $tooltip = __ ('search only in manuscript parts created in this region.', DOMAIN);
         $this->echo_places_tree ($label, 'places', $tooltip);
 
         $label       = __ ('Free Text In Transcription', DOMAIN);
@@ -210,25 +210,25 @@ class Widget extends \WP_Widget
         // ... but without an 's' parameter Wordpress will not process the query
         // in any sensible manner.  Add a dummy 's' parameter to fix the
         // brain-dead Wordpress query parser.
-        echo ("<input type='hidden' name='s'>");
+        echo "<input type='hidden' name='s'>";
 
-        echo ("<div class='cap-meta-search-buttons clearfix'>\n");
+        echo "<div class='cap-meta-search-buttons clearfix'>\n";
 
         $label   = __ ('Search', DOMAIN);
         $tooltip = __ ('Start the search', DOMAIN);
-        echo ("  <input class='cap-meta-search-submit' type='submit' value='$label' data-bs-toggle='tooltip' title='$tooltip' />\n");
+        echo "  <input class='cap-meta-search-submit' type='submit' value='$label' data-bs-toggle='tooltip' title='$tooltip' />\n";
 
         $label   = __ ('Help', DOMAIN);
         $tooltip = __ ('Show some help', DOMAIN);
-        echo ("  <input class='cap-meta-search-help'   type='button' value='$label' data-bs-toggle='tooltip' title='$tooltip' />\n");
+        echo "  <input class='cap-meta-search-help'   type='button' value='$label' data-bs-toggle='tooltip' title='$tooltip' />\n";
 
-        echo ("</div>\n");
+        echo "</div>\n";
 
-        echo ("</form>\n");
-        echo ("<div class='cap-meta-search-help-text'>\n");
-        echo (implode ("\n", $this->help_text));
-        echo ("</div>\n");
-        echo ("</div>\n");
+        echo "</form>\n";
+        echo "<div class='cap-meta-search-help-text'>\n";
+        echo implode ("\n", $this->help_text);
+        echo "</div>\n";
+        echo "</div>\n";
 
         echo $args['after_widget'];
     }
@@ -282,9 +282,9 @@ class Widget extends \WP_Widget
     public function the_option ($instance, $name, $caption, $placeholder)
     {
         $value = !empty ($instance[$name]) ? $instance[$name] : '';
-        echo ("<p><label for=\"{$this->get_field_id ($name)}\">$caption</label>");
-        echo ("<input class=\"widefat\" id=\"{$this->get_field_id ($name)}\" " .
-              "name=\"{$this->get_field_name ($name)}\" type=\"text\" value=\"$value\" " .
-              "placeholder=\"$placeholder\"></p>");
+        echo "<p><label for=\"{$this->get_field_id ($name)}\">$caption</label>";
+        echo "<input class=\"widefat\" id=\"{$this->get_field_id ($name)}\" " .
+             "name=\"{$this->get_field_name ($name)}\" type=\"text\" value=\"$value\" " .
+             "placeholder=\"$placeholder\"></p>";
     }
 }

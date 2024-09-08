@@ -1,3 +1,8 @@
+/**
+ * Initializes the collation applet.
+ * @module plugins/cap-collation/front
+ */
+
 import { createApp } from 'vue';
 
 import 'jquery-ui/ui/disable-selection';
@@ -17,7 +22,7 @@ const app = createApp (App);
 app.config.globalProperties.$t = $t;
 
 // the v-translate directive
-app.directive ('translate', function (el) {
+app.directive ('translate', (el) => {
     el.innerText = $t (el.innerText.trim ());
 });
 

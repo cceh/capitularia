@@ -22,13 +22,13 @@ from cachelib import SimpleCache
 import mapnik
 from pyproj import Transformer
 
+import common
+
 """Using pyproj instead of the projecting functions in mapnik because the current (2022-07)
 available version of python-mapnik is not compatible with proj6. Error is:
 
   RuntimeError: projection::forward not supported without proj4 support (-DMAPNIK_USE_PROJ4)
 """
-
-import common
 
 
 class Config(object):
@@ -107,7 +107,9 @@ class Render:
                 app.logger.info(f"Patching old-style proj4 syntax in: {filename}")
                 xml_as_string = fp.read().replace("+init=epsg:", "epsg:")
                 app.logger.debug(xml_as_string)
-                mapnik.load_map_from_string(self.map, xml_as_string, False, app.root_path)
+                mapnik.load_map_from_string(
+                    self.map, xml_as_string, False, app.root_path
+                )
 
     def render_with_agg(self, tile_size):
         """Render tile with Agg renderer."""

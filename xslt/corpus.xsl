@@ -2,8 +2,8 @@
 
 <!--
 
-This stylesheet builds a corpus.xml file by concatenating all TEI manuscript
-files into one huge file.  To reduce file size, only interesting sections are
+This stylesheet builds a corpus.xml file by concatenating all TEI manuscript files found
+in $dir into one huge file.  To reduce file size, only interesting sections are
 retained, eg. all <ab> text is removed.
 
 The corpus.xml file is used to speed up subsequent transformations.

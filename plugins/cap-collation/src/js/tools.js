@@ -1,10 +1,10 @@
-/** @module plugins/collation/tools */
-
 /**
- * @file Contains utility functions for the collation applet.
+ * Utility functions for the collation applet.
+ * @module plugins/cap-collation/tools
  */
 
-import $ from 'jquery';
+import axios from 'axios';
+import jQuery from 'jquery';
 
 import { Tooltip } from 'bootstrap';
 
@@ -23,14 +23,9 @@ function $pgettext (context, msg) {
 export const bk_id = 'bk-textzeuge';
 
 /**
- * The collation algorithms we support.  The Needleman-Wunsch-Gotoh algorithm
- * is available only with our special patched version of CollateX.
+ * The collation algorithms we support.
  */
 export const cap_collation_algorithms = [
-    { 'key' : 'dekker',                 'name' : 'Dekker' },
-    { 'key' : 'gst',                    'name' : 'Greedy String Tiling' },
-    { 'key' : 'medite',                 'name' : 'MEDITE' },
-    { 'key' : 'needleman-wunsch',       'name' : 'Needleman-Wunsch' },
     { 'key' : 'needleman-wunsch-gotoh', 'name' : 'Needleman-Wunsch-Gotoh' },
 ];
 
@@ -45,7 +40,7 @@ export const Palette = '8888881f77b42ca02cd62728e7ba52ff7f0e9467bd8c564be377c217
  *
  * @function insert_css_palette
  *
- * @param {String} css - The color palette as string.
+ * @param {string} css - The color palette as string.
  */
 export function insert_css_palette (palette) {
     const css = palette.match (/.{6}/g)
@@ -58,29 +53,17 @@ export function insert_css_palette (palette) {
 }
 
 /**
- * Get the API entrypoint
- *
- * @returns {string} The root URL of the API server.
- */
-export function get_api_entrypoint () {
-    return cap_lib.api_url;
-}
-
-/**
  * This calls the API on the API server
  *
- * @param {string} url  The endpoint relative to the API root.
- * @param {Object} data The data to send.
+ * @param {string} endpoint  The endpoint relative to the API root.
+ * @param {URLSearchParams} data The query to send.
  * @returns {Promise} Promise resolved when call completed.
  */
-export function api (url, data = {}) {
-    data.status = cap_lib.read_private_pages ? 'private' : 'publish';
-
-    const p = $.ajax ({
-        'url'  : get_api_entrypoint () + url,
-        'data' : data,
-    });
-    return p;
+export function api (endpoint, data = new URLSearchParams ()) {
+    const fd = new FormData ();
+    fd.set ('endpoint', endpoint);
+    fd.set ('action', 'cap_lib_query_api');
+    return axios.post (cap_lib.ajaxurl, fd, { 'params' : data });
 }
 
 /**
@@ -197,44 +180,51 @@ export function parse_locus_url (url) {
  *
  * Unrolls the witness list before sending it to the collation server.
  *
+ * Turns this:
+ *
+ * .. code-block:: json
+ *
+ *    [
+ *        {
+ *            "corresp": "BK.40_4",
+ *            "witnesses": [
+ *                "bk-textzeuge",
+ *                "vatikan-bav-chigi-f-iv-75"
+ *            ]
+ *        },
+ *        {
+ *            "corresp": "BK.137",
+ *            "witnesses": [
+ *                "bk-textzeuge",
+ *                "kopenhagen-kb-1943-4",
+ *                "paris-bn-lat-2718"
+ *            ]
+ *        }
+ *    ]
+ *
+ * into this:
+ *
+ * .. code-block: json
+ *
+ *    [
+ *       "BK.40_4/bk-textzeuge",
+ *       "BK.40_4/vatikan-bav-chigi-f-iv-75",
+ *       "BK.137/bk-textzeuge",
+ *       "BK.137/kopenhagen-kb-1943-4",
+ *       "BK.137/paris-bn-lat-2718",
+ *    ]
+ *
  * @param {Array} rolled  The collate struct
  * @returns {Array}  The unrolled witness array
- *
- * Turns this:
-    [
-        {
-            "corresp": "BK.40_4",
-            "witnesses": [
-                "bk-textzeuge",
-                "vatikan-bav-chigi-f-iv-75"
-            ]
-        },
-        {
-            "corresp": "BK.137",
-            "witnesses": [
-                "bk-textzeuge",
-                "kopenhagen-kb-1943-4",
-                "paris-bn-lat-2718"
-            ]
-        }
-    ]
- * into this:
- * [
- *    "BK.40_4/bk-textzeuge",
- *    "BK.40_4/vatikan-bav-chigi-f-iv-75",
- *    "BK.137/bk-textzeuge",
- *    "BK.137/kopenhagen-kb-1943-4",
- *    "BK.137/paris-bn-lat-2718",
- * ]
  */
 
 export function unroll_witnesses (rolled) {
-    return [].concat (... rolled.map (d => d.witnesses.map (w => `${d.corresp}/${w}`)));
+    return [].concat (...rolled.map ((d) => d.witnesses.map ((w) => `${d.corresp}/${w}`)));
 }
 
 export function get_urls (elem) {
     // Get the "url" of all witnesses to collate in user-specified order
-    const $table = $ (elem).closest ('table');
+    const $table = jQuery (elem).closest ('table');
     return $table.find ('tr[data-url]').map (function () {
         return this.getAttribute ('data-url');
     }).get ();

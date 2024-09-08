@@ -38,7 +38,8 @@ deploy_schemas:
 
 deploy_server:
 	cd $(SERVER) && $(MAKE) deploy
-	$(RSYNC) Makefile* Variables.mak $(HOST_SERVER)/../
+	$(RSYNC) Makefile* Variables.mak $(HOST_PRJ_DIR)/
+	$(RSYNC) solr $(HOST_PRJ_DIR)/
 
 import_xml: import_mss import_capits
 
@@ -54,39 +55,84 @@ import_backups:
 import_backup_mysql:
 	bzcat $(SERVERFS)/backups/mysql/capitularia-mysql-$(shell date +%F).sql.bz2 | $(MYSQL_LOCAL)
 
-.PHONY: docs mysql-remote mysql-local
+.PHONY: docs psql-local psql-remote mysql-remote mysql-local
 
-doc_src/phpdoc/structure.xml: $(wildcard plugins/*/*.php $(THEMES)/*.php $(THEMES)/widgets/*.php)
-	mkdir -p doc_src/phpdoc
-	$(PHPDOC) --template=xml -d "plugins,themes" -t ./doc_src/phpdoc --ignore="*/node_modules/*"
+################ docs
 
-doc_src/jsdoc/structure.json: $(shell find . -not -path "*node_modules*" -a -path "*/src/js/*.js")
-	mkdir -p doc_src/jsdoc/
-	$(JSDOC) -X $^ > $@
+.PHONY: docs clean_docs phpdoc jsdoc xsltdoc
 
-doc_src/xslt_dep/structure.ttl: xslt/*.xsl python/xslt_dep.py
-	cd $(XSLT) && ../python/xslt_dep.py -e "r *.xsl; save ../$@"
+DOCS_DIR = $(CAPITULARIA_PRJ)/docs
+DOCS_SRC_DIR = $(DOCS_DIR)/src
+DOCS_BUILD_DIR = $(DOCS_DIR)/build
+export SPHINXBUILD=$(PYTHON) -m sphinx -c $(DOCS_DIR)
+export SRCDIR=$(DOCS_SRC_DIR)
+export BUILDDIR=$(DOCS_BUILD_DIR)
 
-make_dependencies: doc_src/xslt_dep/structure.ttl
-	python/xslt_dep.py -e "l $<; make" > xslt/dependencies.inc
+phpdoc: $(DOCS_BUILD_DIR)/phpdoc/structure.xml
 
-docs: doc_src/phpdoc/structure.xml doc_src/jsdoc/structure.json doc_src/xslt_dep/structure.ttl
-	cd doc_src && $(MAKE) -e html
+jsdoc: $(DOCS_BUILD_DIR)/jsdoc/structure.json
 
-doccs: doc_src/phpdoc/structure.xml doc_src/jsdoc/structure.json doc_src/xslt_dep/structure.ttl
-	$(RM) -r docs/*
-	cd doc_src && $(MAKE) -e html
+xsltdoc: $(DOCS_BUILD_DIR)/xsltdoc/structure.ttl
 
-jsdoc: doc_src/jsdoc/structure.json
+$(DOCS_BUILD_DIR)/phpdoc/structure.xml: $(wildcard plugins/*/*.php $(THEMES)/*.php $(THEMES)/widgets/*.php)
+	mkdir -p $(DOCS_BUILD_DIR)/phpdoc
+	$(PHPDOC) --template=xml -d "plugins,themes" -t $(DOCS_BUILD_DIR)/phpdoc --ignore="*/node_modules/*"
 
-doxygen:
-	doxygen
-	mkdir -p doc_src/webprojekt/doxygen/
-	doxyphp2sphinx -v --xml-dir doxygen_build/xml/ --out-dir doc_src/webprojekt/doxygen/ cceh::capitularia
+$(DOCS_BUILD_DIR)/jsdoc/structure.json: $(shell find . -not -path "*node_modules*" -a -path "*/src/js/*")
+	mkdir -p $(DOCS_BUILD_DIR)/jsdoc/
+	$(JSDOC) -c $(DOCS_DIR)/jsdoc.conf.js -X $^ > $@
+
+$(DOCS_BUILD_DIR)/xsltdoc/structure.ttl: xslt/*.xsl python/xslt_dep.py
+	mkdir -p $(DOCS_BUILD_DIR)/xsltdoc/
+	cd $(XSLT) && PYTHONPATH=../python $(PYTHON) -m xslt_dep -e "r *.xsl; save $@"
+
+make_dependencies: xsltdoc
+	$(PYTHON) -m python.xslt_dep -e "l $<; make" > xslt/dependencies.inc
+
+docs: phpdoc jsdoc xsltdoc
+	cd $(DOCS_DIR) && $(MAKE) -e html
+	-cp    $(DOCS_DIR)/_config.yml $(DOCS_BUILD_DIR)/
+	-cp -r $(DOCS_SRC_DIR)/_images $(DOCS_BUILD_DIR)/
+
+doccs: clean_docs docs
+
+clean_docs:
+	$(RM) -r $(DOCS_BUILD_DIR)/*
+
+################ Solr
+
+solr-init:
+	-$(SOLR) delete -c capitularia
+	$(SOLR) create -c capitularia -d $(ROOT)/solr/configsets/capitularia
+
+solr-start:
+	$(SOLR) start
+
+solr-stop:
+	$(SOLR) stop
+
+solr-restart:
+	$(SOLR) restart
+
+solr-import:
+	cd $(XSLT) && $(MAKE) solr-import
+
+solr-logs:
+	less $(SOLR_INST)/server/logs/solr.log
+
+solr-prereq:
+	cp $(SOLR_PRJ)/lib/build/libs/lib.jar $(SOLR_INST)/lib/capitularia.jar
+
+# needs VPN
+psql-remote:
+	$(PSQL) $(PGREMOTE)
 
 # needs VPN
 mysql-remote:
 	$(MYSQL_REMOTE)
+
+psql-local:
+	$(PSQL) $(PGLOCAL)
 
 mysql-local:
 	$(MYSQL_LOCAL)
@@ -153,7 +199,10 @@ phpcs:
 	-vendor/bin/phpcs --standard=tools/phpcs --report=emacs -s --extensions=php --ignore=node_modules themes plugins
 
 mypy:
-	-mypy server/
+	-mypy server/ python/
+
+black:
+	-black server/ python/
 
 
 TARGETS = csslint jslint phplint mo po pot

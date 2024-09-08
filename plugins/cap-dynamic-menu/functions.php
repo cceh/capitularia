@@ -41,10 +41,10 @@ function on_enqueue_scripts ()
  * Puts the item description into the HTML attribute
  * data-cap-dynamic-menu.  Otherwise it would get lost.
  *
- * @param array    $atts  The old HTML attributes.
- * @param WP_Post  $item  The current menu item.
- * @param stdClass $args  An object of wp_nav_menu() arguments.
- * @param int      $depth Depth of menu item. Used for padding.
+ * @param array     $atts  The old HTML attributes.
+ * @param \WP_Post  $item  The current menu item.
+ * @param \stdClass $args  An object of wp_nav_menu() arguments.
+ * @param int       $depth Depth of menu item. Used for padding.
  *
  * @return array  The updated HTML attributes.
  *

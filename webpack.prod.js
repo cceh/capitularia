@@ -23,7 +23,14 @@ module.exports = merge (common, {
                         },
                     },
                     'postcss-loader',
-                    'sass-loader',
+                    {
+                        'loader'  : 'sass-loader',
+                        'options' : {
+                            'sassOptions' : {
+                                'quietDeps' : true,
+                            },
+                        },
+                    },
                 ],
             },
         ],
@@ -32,10 +39,6 @@ module.exports = merge (common, {
         new MiniCssExtractPlugin ({
             'filename'      : '[name].[contenthash].css',
             'chunkFilename' : '[id].[contenthash].css',
-        }),
-        new webpack.DefinePlugin ({
-            '__VUE_OPTIONS_API__'   : JSON.stringify (true),
-            '__VUE_PROD_DEVTOOLS__' : JSON.stringify (false),
         }),
     ],
 });

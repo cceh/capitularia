@@ -28,8 +28,6 @@ class Settings_Page
      *
      * Also register _one_ POST parameter to be handled and validated by
      * Wordpress.
-     *
-     * @return Settings_Page
      */
 
     public function __construct ()

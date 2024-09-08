@@ -108,7 +108,7 @@
  */
 
 import { mapGetters } from 'vuex';
-import $              from 'jquery';
+import jQuery         from 'jquery';
 import _              from 'lodash';
 import { bin }        from 'd3';
 import { parse }      from 'papaparse';
@@ -131,9 +131,9 @@ import options        from '../js/toolbar_options.js';
  *
  * @function natural_sort
  *
- * @param {String} s - The input string
+ * @param {string} s - The input string
  *
- * @returns {String} The transformed string
+ * @returns {string} The transformed string
  */
 
 export function natural_sort (s) {
@@ -256,7 +256,7 @@ export default {
                 'geo_source' : p.geo_source,
                 'geo_id'     : p.geo_id,
             };
-            return ENDPOINTS[this.toolbar.place_layer_shown] + '?' + $.param (xhr_params);
+            return ENDPOINTS[this.toolbar.place_layer_shown] + '?' + jQuery.param (xhr_params);
         },
         download () {
             window.open (this.build_full_api_url (this.build_url (), '_blank'));
@@ -289,8 +289,11 @@ div.map-popup-vm {
     }
 
     div.scroller {
-        max-height: 40em;
-        overflow-y: scroll;
+        max-height: 30em;
+        overflow-y: auto;
+        table.table {
+            background: transparent;
+        }
     }
 
     table.relatives {
@@ -338,14 +341,6 @@ div.map-popup-vm {
         overflow-y: auto;
         path {
             fill: none;
-        }
-    }
-
-    div.scroller {
-        max-height: 30em;
-        overflow-y: auto;
-        table.table {
-            background: transparent;
         }
     }
 }

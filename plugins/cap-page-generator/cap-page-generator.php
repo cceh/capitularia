@@ -34,8 +34,7 @@
  * How do the TEI files get to the user?
  *
  * A cron process on the API server converts all the TEI files into HTML files
- * and stores them in the filesystem.  See also: the :ref:`Makefile` in the
- * xslt directory on the API server.
+ * and stores them in the filesystem.  See also: :ref:`makefile`.
  *
  * The :ref:`Capitularia File Includer plugin <file-includer>` then includes
  * those files from the filesystem when outputting a Wordpress page to the

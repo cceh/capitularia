@@ -21,7 +21,7 @@
 
 import { mapGetters } from 'vuex';
 
-import $        from 'jquery';
+import jQuery   from 'jquery';
 import * as d3  from 'd3';
 import L        from 'leaflet';
 
@@ -308,7 +308,7 @@ L.Control.Info_Pane = L.Control.extend ({
         this._div = L.DomUtil.create ('div', 'info-pane-control');
         L.DomEvent.disableClickPropagation (this._div);
         L.DomEvent.disableScrollPropagation (this._div);
-        $ (this._div).append ($ ('div.info-panels'));
+        jQuery (this._div).append (jQuery ('div.info-panels'));
         return this._div;
     },
 

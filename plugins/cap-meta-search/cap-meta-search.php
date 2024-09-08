@@ -26,7 +26,7 @@
  * instead of the page excerpt.  The highlighter may be used on any Wordpress
  * page.
  *
- * See: :mod:`data_server`, :ref:`metadata search overview<meta-search-overview>`.
+ * See: :mod:`data_server`, :ref:`fulltext-search-overview`.
  *
  * @package Capitularia_Meta_Search
  */
@@ -55,6 +55,7 @@ add_action ('widgets_init',          ns ('on_widgets_init'));
 if (!is_admin ()) {
     add_filter ('query_vars',                    ns ('on_query_vars'));
     add_filter ('cap_meta_search_the_permalink', ns ('on_cap_meta_search_the_permalink'));
+    add_filter ('template_include',              ns ('on_template_include'));
 
     $cap_meta_search = null;
 

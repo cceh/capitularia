@@ -1,16 +1,14 @@
-/** @module client/main */
-
 /**
  * Main entry point.
  *
- * @file
+ * @module client/main
  *
  * @author Marcello Perathoner
  */
 
 import { createApp } from 'vue';
 
-import $             from 'jquery';
+import jQuery        from 'jquery';
 import axios         from 'axios';
 
 import { App, router, store } from '../components/app.vue';
@@ -24,9 +22,9 @@ app.use (store);
  * Ascend the VM tree until you find an api_url and use it as prefix to build
  * the full API url.
  *
- * @param {String} url - Url suffix
+ * @param {string} url - Url suffix
  *
- * @returns {String} Full API url
+ * @returns {string} Full API url
  */
 
 app.config.globalProperties.build_full_api_url = function (url) {
@@ -47,7 +45,7 @@ app.config.globalProperties.build_full_api_url = function (url) {
 /**
  * Make a GET request to the API server.
  *
- * @param {String} url  - Url suffix
+ * @param {string} url  - Url suffix
  * @param {Object} data - Params for axios call
  *
  * @returns {Promise}
@@ -73,12 +71,10 @@ app.config.globalProperties.put = function (url, data = {}) {
  * event that bubbles and can be caught by vue.js.
  *
  * @param {string} name - event name
- * @param {array}  data - data
+ * @param {Array}  data - data
  */
 
 app.config.globalProperties.$trigger = function (name, data) {
-    // $ (this.$el).trigger (event, data);
-
     const event = new CustomEvent (name, {
         'bubbles' : true,
         'detail'  : { 'data' : data },
@@ -86,14 +82,14 @@ app.config.globalProperties.$trigger = function (name, data) {
     this.$el.dispatchEvent (event);
 };
 
-$ (document).off ('.data-api'); // turn off bootstrap's data api
+jQuery (document).off ('.data-api'); // turn off bootstrap's data api
 
 // The browser triggers hashchange only on window.  We want it on every app.
-$ (window).on ('hashchange', function () {
+jQuery (window).on ('hashchange', function () {
     // Concoct an event that you can actually catch with vue.js. (jquery events
     // are not real native events.)  This event does not bubble.
     const event = new CustomEvent ('hashchange');
-    $ ('.want_hashchange').each (function (i, e) {
+    jQuery ('.want_hashchange').each (function (i, e) {
         e.dispatchEvent (event);
     });
 });

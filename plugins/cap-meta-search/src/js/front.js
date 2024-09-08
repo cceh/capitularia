@@ -1,42 +1,82 @@
-/** @module plugins/meta-search */
-
 /**
- * The meta search applet.
- * @file
+ * Initializes the meta search applet.
+ * @module plugins/cap-meta-search/front
  */
 
-import $ from 'jquery';
+import { createApp } from 'vue';
+
+import jQuery from 'jquery';
 import jstree from 'imports-loader?imports=default|jquery|jQuery!jstree'; // eslint-disable-line no-unused-vars
 
 import { Tooltip } from 'bootstrap';
 
+import App from './main.vue';
+import CapTab from './cap-tab.vue';
+import CapPager from './cap-pager.vue';
+import * as tools from './tools.js';
+
+/**
+ * A wrapper to call the Wordpress translate function
+ * See: https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
+ *
+ * @param   {string} text The untranslated text.
+ * @returns {string}      The translated string.
+ */
+function $t (text) {
+    return wp.i18n.__ (text, 'cap-meta-search');
+}
+
+/**
+ * A wrapper to call the Wordpress translate function
+ *
+ * @param   {string} singular The untranslated singular text.
+ * @param   {string} plural   The untranslated plural text.
+ * @param   {number} number   The number talked about.
+ * @returns {string}          The translated string, singular or plural.
+ */
+function $n (singular, plural, number) {
+    return wp.i18n._n (singular, plural, number, 'cap-meta-search');
+}
+
+const app = createApp (App);
+
+// the vm.$t function
+app.config.globalProperties.$t = $t;
+app.config.globalProperties.$n = $n;
+
+// the v-translate directive
+app.directive ('translate', (el) => {
+    el.innerText = $t (el.innerText.trim ());
+});
+
+app.component ('cap-tab', CapTab);
+app.component ('cap-pager', CapPager);
+
+app.mount ('#cap-meta-search-app');
+
 /**
  * Initialize the help button in the widget.
- *
- * @alias module:plugins/meta-search.help_init
  */
 function help_init () {
-    $ ('.cap-meta-search-help').on ('click', function (dummy_event) {
-        $ ('div.cap-meta-search-help-text').toggle ();
+    jQuery ('.cap-meta-search-help').on ('click', (dummy_event) => {
+        jQuery ('div.cap-meta-search-help-text').toggle ();
     });
     const bs_tooltips = [].slice.call (document.querySelectorAll ('[data-bs-toggle="tooltip"]'));
     bs_tooltips.map ((el) => new Tooltip (el, { 'placement' : 'left' }));
 }
 
-/** @ignore */
-var collator = new Intl.Collator ('de');
+/** A collator for the German language */
+const collator = new Intl.Collator ('de');
 
 /**
- * Initialize the places tree view in the widget.
- *
- * @alias module:plugins/meta-search.places_tree_init
+ * Initialize the tree view of places in the widget.
  */
 function places_tree_init () {
-    $ ('#places').jstree ({
+    jQuery ('#places').jstree ({
         'plugins'  : ['checkbox', 'sort', 'state', 'wholerow'],
         'checkbox' : {
             // 'three_state' : false,
-            'cascade'     : 'down',
+            'cascade' : 'down',
         },
         'sort' : function (a, b) {
             return collator.compare (this.get_text (a), this.get_text (b));
@@ -48,26 +88,25 @@ function places_tree_init () {
             },
             // See: https://www.jstree.com/docs/json/
             'data' : function (node, callback) {
-                $.ajax (cap_lib.api_url + '/data/places.json/?lang=' + document.documentElement.lang.substring (0, 2))
-                    .then ((response) => callback (response.map (
-                        function (r) {
-                            return { 'id' : r.geo_id, 'parent' : r.parent_id || '#', 'text' : r.geo_name };
-                        }
+                const params = new URLSearchParams ({ 'lang' : document.documentElement.lang.substring (0, 2) });
+                tools.api ('/data/places.json/', params)
+                    .then ((response) => callback (response.data.map (
+                        (r) => ({ 'id' : r.geo_id, 'parent' : r.parent_id || '#', 'text' : r.geo_name })
                     )));
             },
         },
     });
 
-    $ ('div.cap-meta-search-box form').submit (function (event) {
-        var data = $ (event.target).serializeArray ();
-        var jst = $ ('#places').jstree (true);
-        $.each (jst.get_selected (true), function (i, node) {
+    jQuery ('div.cap-meta-search-box form').submit ((event) => {
+        const data = jQuery (event.target).serializeArray ();
+        const jst = jQuery ('#places').jstree (true);
+        $.each (jst.get_selected (true), (i, node) => {
             data.push ({ 'name' : 'places[]', 'value' : node.id });
             // used by "You searched for: X"
             data.push ({ 'name' : 'placenames[]', 'value' : node.text });
         });
         // submit to the wordpress search page
-        window.location.href = '/?' + $.param (data);
+        window.location.href = `/?${$.param (data)}`;
         event.preventDefault ();
     });
 }

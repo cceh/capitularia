@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# -*- encoding: utf-8 -*-
 
 """Insert and update data from TEI files into Postgres.
 
@@ -10,40 +9,29 @@ Includes the geographic information tables.
 
 """
 
-import argparse
 import collections
 import datetime
 import json
 import logging
 import logging.handlers
 import re
+import urllib.parse
 
 from lxml import etree
 import requests
 import sqlalchemy
 
 import common
-from common import fix_ws
+from common import fix_ws, fix_id, NS
 from config import args, init_logging, config_from_pyfile
 import db_tools
 from db_tools import execute, executemany, log
 import db
 
-NS_TEI = "http://www.tei-c.org/ns/1.0"
-NS_XML = "http://www.w3.org/XML/1998/namespace"
-NS_HTML = "http://www.w3.org/1999/xhtml"
-NS_CAP = "http://cceh.uni-koeln.de/capitularia"
-
-NS = {
-    "tei": NS_TEI,
-    "xml": NS_XML,
-    "html": NS_HTML,
-    "cap": NS_CAP,
-}
-
 QNAME_DIV = etree.QName(NS["tei"], "div")
 QNAME_LOCUS = etree.QName(NS["tei"], "locus")
 QNAME_MILESTONE = etree.QName(NS["tei"], "milestone")
+QNAME_NOTE = etree.QName(NS["tei"], "note")
 
 GEO_APIS = {
     "geonames": {
@@ -257,6 +245,29 @@ def lookup_geonames(conn, geo_source):
         except:
             log(logging.WARNING, "Error looking up %s" % url)
             raise
+
+
+def get_parent_places(conn, places):
+    """Get all parents of the given places."""
+
+    res = execute(
+        conn,
+        """
+    WITH RECURSIVE parent_places (geo_id, parent_id) AS (
+        SELECT geo_id, parent_id
+        FROM geoplaces
+        WHERE geo_id IN :geo_ids
+        UNION
+        SELECT p.geo_id, p.parent_id
+        FROM parent_places pp, geoplaces p
+        WHERE pp.parent_id = p.geo_id
+    )
+    SELECT DISTINCT geo_id FROM parent_places ORDER BY geo_id
+    """,
+        {"geo_ids": tuple(places)},
+    )
+
+    return [r[0] for r in res]
 
 
 def get_width_height(elem):
@@ -495,7 +506,7 @@ def lookup_published(conn, ajax_endpoint):
 
     for status in ("publish", "private"):
         params = {
-            "action": "on_cap_lib_get_published_ids",
+            "action": "cap_lib_get_published_ids",
             "status": status,
         }
         r = requests.get(ajax_endpoint, params=params, timeout=5)
@@ -728,7 +739,7 @@ def process_body(conn, root, ms_id):
         if unit == "capitulare":
             try:
                 n = milestone.get("n")
-                catalog, no, mscap_n = common.normalize_bk_capitulare(n)
+                catalog, no, mscap_n = common.normalize_milestone_n(n)
             except ValueError as e:
                 log(logging.WARNING, "%s: %s" % (ms_id, str(e)))
             continue
@@ -848,6 +859,9 @@ def process_body(conn, root, ms_id):
 def import_fulltext(conn, filenames, mode):
     """Import the xml or plain text of the chapter transcriptions"""
 
+    if mode == "solr":
+        post_status_dict = common.get_post_status(args)
+
     for fn in filenames:
         log(logging.INFO, "Parsing %s ..." % fn)
         tree = etree.parse(fn, parser=parser)
@@ -860,9 +874,15 @@ def import_fulltext(conn, filenames, mode):
                 # set bk-textzeuge's id
                 if fn.endswith("bk-textzeuge.xml"):
                     ms_id = common.BK_ZEUGE
+                title = tei.xpath(
+                    "normalize-space(tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main'])",
+                    namespaces=NS,
+                )
+                solr = []
 
                 for item in tei.xpath(
-                    ".//tei:div[@corresp]|.//tei:milestone[@unit]", namespaces=NS
+                    ".//tei:div[@corresp]|.//tei:note[@corresp and @type='editorial']|.//tei:milestone[@unit]",
+                    namespaces=NS,
                 ):
                     if item.tag == QNAME_MILESTONE:
                         unit = item.get("unit")
@@ -873,7 +893,7 @@ def import_fulltext(conn, filenames, mode):
                                     mscap_catalog,
                                     mscap_no,
                                     mscap_n,
-                                ) = common.normalize_bk_capitulare(n)
+                                ) = common.normalize_milestone_n(n)
                             except ValueError as e:
                                 log(logging.WARNING, "%s: %s" % (ms_id, str(e)))
                         continue
@@ -881,8 +901,14 @@ def import_fulltext(conn, filenames, mode):
                     corresp = item.get("corresp")
                     hand = "original"
                     if "?later_hands" in corresp:
+                        # this is an extra section, added only if later hands were found in the ms
+                        # see mss-extract-chapter-txt.xsl
                         hand = "later_hands"
                         corresp = corresp.replace("?later_hands", "")
+                    if item.tag == QNAME_NOTE:
+                        if not corresp:
+                            continue
+                        hand = "notes"
 
                     try:
                         catalog, no, chapter = common.normalize_corresp(corresp)
@@ -894,9 +920,10 @@ def import_fulltext(conn, filenames, mode):
                                 % (ms_id, corresp),
                             )
 
+                        cap_id = f"{catalog}.{no}"
                         params = {
                             "ms_id": ms_id,
-                            "cap_id": "%s.%s" % (catalog, no),
+                            "cap_id": cap_id,
                             "mscap_n": mscap_n,
                             "chapter": chapter,
                             "type": hand,
@@ -948,11 +975,57 @@ def import_fulltext(conn, filenames, mode):
                                     ),
                                 )
 
+                        if mode == "solr" and params["ms_id"] != common.BK_ZEUGE:
+                            res = execute(
+                                conn,
+                                """
+                            SELECT mc.msp_part, lower(msp.date), upper(msp.date), array_agg(mn.geo_id)
+                            FROM mss_chapters mc
+                              JOIN msparts msp USING (ms_id, msp_part)
+                              JOIN gis.mn_mss_geoplaces mn USING (ms_id)
+                            WHERE (mc.ms_id, mc.cap_id, mc.mscap_n, mc.chapter) = (:ms_id, :cap_id, :mscap_n, :chapter)
+                            GROUP BY mc.msp_part, msp.date
+                            """,
+                                params,
+                            )
+
+                            row = res.first()
+                            if row is None:
+                                log(
+                                    logging.WARNING,
+                                    f"No msparts found for: {ms_id} {cap_id} {mscap_n} {chapter}",
+                                )
+                                continue
+
+                            params["ms_id_part"] = fix_id(f"{ms_id}-{row[0]}")
+                            params["notbefore"] = row[1]
+                            params["notafter"] = row[2]
+                            params["places"] = get_parent_places(conn, row[3])
+
+                            params["title_de"] = title
+                            params["text_la"] = item.text
+                            params["cap_id_chapter"] = fix_id(f"{cap_id}-{chapter}")
+                            params["id"] = fix_id(
+                                f"{ms_id}-{cap_id}-{mscap_n}-{chapter}-{hand}"
+                            )
+                            params["category"] = "chapter"
+                            params["post_status"] = post_status_dict[ms_id]
+                            solr.append(params)
+                            # log(logging.ERROR, json.dumps(params))
+
                     except ValueError as e:
                         if corresp not in CORRESP_EXCEPTIONS:
                             log(logging.WARNING, "%s: %s" % (ms_id, str(e)))
 
-                execute(conn, "COMMIT", {})
+                if mode == "solr":
+                    try:
+                        url = urllib.parse.urljoin(common.URL_SOLR, "update/json/docs")
+                        r = requests.post(url, json=solr)
+                        r.raise_for_status()
+                    except requests.exceptions.RequestException as e:
+                        log(logging.ERROR, f"Import fulltext Solr: Error {str(e)}")
+                else:
+                    execute(conn, "COMMIT", {})
 
             # "touch" a sidecar file
             log(logging.INFO, "Done %s" % fn)
@@ -969,24 +1042,8 @@ def import_fulltext(conn, filenames, mode):
 def build_parser(default_config_file):
     """Build the commandline parser."""
 
-    parser = argparse.ArgumentParser(description=__doc__, fromfile_prefix_chars="@")
+    parser = common.build_parser(default_config_file, __doc__)
 
-    parser.add_argument(
-        "-v",
-        "--verbose",
-        dest="verbose",
-        action="count",
-        help="increase output verbosity",
-        default=0,
-    )
-    parser.add_argument(
-        "-c",
-        "--config-file",
-        dest="config_file",
-        default=default_config_file,
-        metavar="CONFIG_FILE",
-        help="the config file (default='%s')" % default_config_file,
-    )
     parser.add_argument(
         "--init",
         action="store_true",
@@ -1004,6 +1061,12 @@ def build_parser(default_config_file):
     )
     parser.add_argument(
         "--fulltext", nargs="*", help="import per-chapter extracted fulltext from files"
+    )
+    parser.add_argument(
+        "--solr",
+        nargs="*",
+        metavar="FULLTEXT",
+        help="index per-chapter extracted fulltext from files with Solr",
     )
     parser.add_argument(
         "--geoareas", nargs="+", help="import geoareas from geojson file"
@@ -1063,7 +1126,9 @@ if __name__ == "__main__":
 
     log(logging.INFO, "using url: %s." % dba.url)
 
-    parser = etree.XMLParser(recover=True, remove_blank_text=True)
+    parser = etree.XMLParser(
+        recover=True, resolve_entities=False, remove_blank_text=True
+    )
 
     if args.init:
         log(logging.INFO, "Creating Postgres database schema ...")
@@ -1124,5 +1189,10 @@ if __name__ == "__main__":
         log(logging.INFO, "Importing extracted @corresp fulltext ...")
         with dba.engine.begin() as conn:
             import_fulltext(conn, args.fulltext, "txt")
+
+    if args.solr:
+        log(logging.INFO, "Indexing extracted @corresp fulltext with Solr ...")
+        with dba.engine.begin() as conn:
+            import_fulltext(conn, args.solr, "solr")
 
     log(logging.INFO, "Done")

@@ -353,7 +353,6 @@ def heat_matrix(
     vmin=None,
     vmax=None,
 ):
-
     """Plot a heat map of the matrix."""
 
     if vmin is None:

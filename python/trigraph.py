@@ -34,7 +34,7 @@ sab = sa & sb
 similarity = 2.0 * len(sab) / (len(sa) + len(sb))
 
 print(".PS")
-print('copy "config.pic";')
+print('copy "pic.conf";')
 print("boxwid = 0.6;")
 
 print_nodes(a, "A", sb)

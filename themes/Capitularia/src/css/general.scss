@@ -283,7 +283,9 @@ nav {
 .logo-bar {
     @include make-row();
     @include clearfix();
-    width: 100%;
+    & {
+        width: 100%;
+    }
 
     li.widget {
         @include make-col-ready();
@@ -317,6 +319,8 @@ div.hr {
 }
 
 div.page-break {
+    page-break-before: always;
+
     /* a horizontal rule on screen and a page break on print */
     @media screen {
         margin: 3em 0;
@@ -326,7 +330,6 @@ div.page-break {
             margin: 1em 0;
         }
     }
-    page-break-before: always;
 }
 
 div.page-break + div.page-break {
@@ -430,7 +433,9 @@ div.index-results {
     ul.sub-menu {
 
         @include clearfix;
-        padding-left: 16px;
+        & {
+            padding-left: 16px;
+        }
     }
 
     ul.menu {

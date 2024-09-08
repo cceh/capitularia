@@ -16,10 +16,10 @@
  * include any external HTML file in a Worpdress page.  We use this shortcode to
  * put the transcribed manuscripts into Wordpress.
  *
- * The TEI files are :ref:`transformed into HTML files <html-generation>` on the
- * Capitularia VM.  On that server we maintain up-to-date python and java
- * installations.  A customary Web Projekt at uni-koeln.de does not include
- * those or includes outdated versions of them.
+ * The TEI files are :ref:`transformed into HTML files <html-generation-overview>` on
+ * the Capitularia VM.  On that server we maintain up-to-date python and java
+ * installations.  A customary Web Projekt at uni-koeln.de does not include those or
+ * includes outdated versions of them.
  *
  * This plugin also stores the included text into the Wordpress database.  This
  * makes the built-in Wordpress search function work with the included material.

@@ -27,8 +27,6 @@ class Settings_Page
      * Wordpress to the validation function and stored in the database all in
      * *one* row.
      *
-     * @return Settings_Page
-     *
      * @see http://planetozh.com/blog/2009/05/handling-plugins-options-in-wordpress-28-with-register_setting/
      *      Blog post: how to store all plugin options into one database row.
      */

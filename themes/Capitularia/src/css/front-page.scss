@@ -5,12 +5,14 @@
 .front-splash {
     @include make-row();
     @include clearfix();
-    position: relative;
+    & {
+        position: relative;
 
-    margin-top:    40px;
-    margin-bottom: 40px;
-    background:    $color-startpage-box;
-    color:         $color-white;
+        margin-top:    40px;
+        margin-bottom: 40px;
+        background:    $color-startpage-box;
+        color:         $color-white;
+    }
 
     div.front-splash-caption {
         @include make-col-ready();
@@ -61,9 +63,11 @@ ul.teaser-bar {
     @include make-row(); /* see: https://getbootstrap.com/css/ */
     @include clearfix();
 
-    margin: 0 auto;
-    margin: 2em 0;
-    line-height: 1.5em;
+    & {
+        margin: 0 auto;
+        margin: 2em 0;
+        line-height: 1.5em;
+    }
 
     li.widget {
         margin-bottom: 1em;

@@ -36,9 +36,8 @@ function ns ($function_name)
 
 function add_nopriv_action ($action)
 {
-    $action = 'on_cap_lib_' . $action;
-    add_action ('wp_ajax_'        . $action, ns ($action));
-    add_action ('wp_ajax_nopriv_' . $action, ns ($action));
+    add_action ('wp_ajax_'        . $action, ns ('on_' . $action));
+    add_action ('wp_ajax_nopriv_' . $action, ns ('on_' . $action));
 }
 
 /**
@@ -64,9 +63,78 @@ function make_sort_key ($s)
 }
 
 /**
+ * Parse a query string in a standard-compliant way.
+ *
+ * PHP's parse_str function does not process query strings in the standard way, when it
+ * comes to duplicate fields.  If multiple fields of the same name exist in a query
+ * string, every other web processing language would read them into an array, but PHP
+ * silently overwrites them.  This function handles them in a sane way.
+ *
+ * @param string $query A standard query string, eg. a=1&b=2&a=3
+ *
+ * @return array An associative array of name => value or name => [value1, value2]
+ */
+function sane_parse_str ($query) {
+    $arr = array();
+
+    foreach (explode('&', $query) as $pair) {
+        if (strpos ($pair, '=') === false) {
+            $pair .= '=';
+        }
+        list ($name, $value) = explode ('=', $pair, 2);
+        $name = urldecode ($name);
+        $value = urldecode ($value);
+
+        if (isset ($arr[$name])) {
+            # stick multiple values into an array
+            if (is_array ($arr[$name])) {
+                $arr[$name][] = $value;
+            } else {
+                $arr[$name] = array ($arr[$name], $value);
+            }
+        } else {
+            $arr[$name] = $value;
+        }
+    }
+    return $arr;
+}
+
+/**
+ * AJAX tunnel to the API server
+ *
+ * Usage example: if you need to hide private posts for non-logged in users.
+ *
+ * This function is invoked through a POST call to Wordpress and executes a GET call on
+ * the API.  The endpoint on the API side is given by the 'endpoint' parameter in the
+ * POST multipart body.  The query string is given by the POST query string.  This
+ * function adds a 'status' parameter to the query string but otherwise passes it on
+ * unchanged.
+ *
+ * Call example:
+ *
+ *    const fd = new FormData ();
+ *    fd.set ('action',   'cap_lib_query_api');
+ *    fd.set ('endpoint', '/solr/select.json/');
+ *    return axios.post (get_api_entrypoint (), fd, { 'params' : query });
+ *
+ *
+ * @return void
+ */
+
+function on_cap_lib_query_api ()
+{
+    $params = sane_parse_str ($_SERVER['QUERY_STRING']);
+    $endpoint = $_POST['endpoint'];
+
+    error_log ("on_cap_lib_query_api $endpoint " . print_r ($params, true));
+
+    wp_send_json (api_json_request($endpoint, $params, true));
+}
+
+ /**
  * AJAX endpoint to get the API server endpoint
  *
- * Send JSON response with the URL to talk directly to the API server.
+ * Answers with the configured URL of the API server.
  *
  * @return void
  */
@@ -84,7 +152,7 @@ function on_cap_lib_get_api_endpoint ()
 /**
  * AJAX endpoint to query user capabilities
  *
- * Sends a JSON response.
+ * Answers true if the user has a given capability.
  *
  * @param string $cap The capability to query, eg. 'read_private_pages'.
  *
@@ -135,7 +203,7 @@ function on_cap_lib_get_published_ids ()
  *
  * @param string $status - Include all manuscripts with this visibility.
  *
- * @return string[]
+ * @return string[] A list of xml:id
  */
 
 function get_published_ids ($status)
@@ -159,21 +227,34 @@ function get_published_ids ($status)
 /**
  * Make a json request to the configured API.
  *
- * @param string $endpoint Endpoint relative to configured root.
- * @param array  $params   URL parameters to send.
+ * Use this function to query the python application server.
+ *
+ * Optionally adds a 'status' parameter that is 'private' if the user is allowed to see
+ * private posts, else 'publish'.
+ *
+ * @param string  $endpoint   Endpoint relative to configured root.
+ * @param array   $params     URL parameters to send.
+ * @param boolean $add_status If true adds a status param to the query.
  *
  * @return string The decoded JSON response.
  */
 
-function api_json_request ($endpoint, $params = array ())
+function api_json_request ($endpoint, $params = array (), $add_status = false)
 {
     $request = new \WP_Http ();
-    error_log (get_opt ('api') . $endpoint);
     $url = get_opt ('api') . $endpoint;
+    // error_log ($url);
+    if ($add_status) {
+        $params['status'] = current_user_can ('read_private_pages') ? 'private' : 'publish';
+    }
     if ($params) {
         $query = http_build_query ($params);
-        // Remove array indices, that is turn a[0]=42&a[1]=69 into a[]=42&a[]=69
-        $query = preg_replace ('/%5B[0-9]+%5D/simU', '%5B%5D', $query);
+        // Remove array indices, that is turn a[0]=42&a[1]=69 into a=42&a=69. PHP is too
+        // dumb to understand the standard format as input, so you have to add [] as a
+        // hack workaround if you need multiple params with the same name.  Everybody
+        // else understands the standard format so we have to take them out again before
+        // passing it on.
+        $query = preg_replace ('/%5B\d*%5D/simU', '', $query);
         $url .= '?' . $query;
     }
     $result = $request->request (
@@ -187,7 +268,7 @@ function api_json_request ($endpoint, $params = array ())
     }
     $body = $result['body'];
     // if ($result['response'] !== 200) {
-    //    error_log ($body);
+    //    error_log (print_r($body, true));
     // }
     return json_decode ($body, true);
 }
@@ -230,7 +311,7 @@ function get_opt ($name, $default = '')
  * @param string $url1 The first path.
  * @param string $url2 The second path.
  *
- * @return url1 and url2 joined by exactly one slash.
+ * @return string url1 and url2 joined by exactly one slash.
  */
 
 function urljoin ($url1, $url2)
@@ -398,6 +479,7 @@ function on_enqueue_scripts ()
 {
     $handle = 'cap-lib-front.js';
 
+    wp_enqueue_script('wp-util');
     enqueue_from_manifest ($handle);
 
     $data = array (

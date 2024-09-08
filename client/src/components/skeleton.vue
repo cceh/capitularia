@@ -9,8 +9,8 @@
  * @author Marcello Perathoner
  */
 
-import $ from 'jquery';
-import _ from 'lodash';
+
+ import _ from 'lodash';
 
 export default {
     'data'  : function () {

@@ -24,8 +24,14 @@ module.exports = merge (common, {
                             'importLoaders' : 2,
                         },
                     },
-                    'postcss-loader',
-                    'sass-loader',
+                    {
+                        'loader'  : 'sass-loader',
+                        'options' : {
+                            'sassOptions' : {
+                                'quietDeps' : true,
+                            },
+                        },
+                    },
                 ],
             },
         ],

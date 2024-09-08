@@ -44,8 +44,6 @@ class Config
 
     /**
      * Constructor
-     *
-     * @return Config
      */
 
     public function __construct ()

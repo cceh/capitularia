@@ -1,5 +1,3 @@
-/** @module plugins/dynamic-menu */
-
 /**
  * The dynamic menu applet.
  *
@@ -42,10 +40,10 @@
  *    also packs babel-runtime for us.  babel-runtime is required for async
  *    functions.
  *
- * @file
+ * @module plugins/cap-dynamic-menu/front
  */
 
-import $ from 'jquery';
+import jQuery from 'jquery';
 import { escape } from 'lodash';
 
 /** The Wordpress Text Domain of the plugin. */
@@ -61,8 +59,6 @@ function $pgettext (context, msg) {
  * This routine looks for an <a> with the :code:`data-cap-dynamic-menu`
  * attribute and transmogrifies it into the real menu by going through the DOM
  * of the page and adding all elements that fit the xpath'es in the attribute.
- *
- * @memberof module:plugins/dynamic-menu
  */
 function init_dynamic_menues () {
     let menu_id = 1;
@@ -75,7 +71,7 @@ function init_dynamic_menues () {
             .replace (/[′’]/g, "'")
             .replace (/”/g,  '"');
         const wp_classes = (menu.parentNode.getAttribute ('class') || '').trim ().split (' ');
-        const level_attr = 'data-cap-level-' + menu_id;
+        const level_attr = `data-cap-level-${menu_id}`;
 
         // set the attribute 'data-cap-level-*' on all source items
         let cap_level = 1;
@@ -104,8 +100,8 @@ function init_dynamic_menues () {
         const a = [];
 
         for (const n of document.querySelectorAll (`[${level_attr}]`)) {
-            const id      = 'cap-menu-item-id-' + last_id++;
-            const href    = escape (n.hasAttribute ('id') ? '#' + n.getAttribute ('id') : n.getAttribute ('href'));
+            const id      = `cap-menu-item-id-${last_id++}`;
+            const href    = escape (n.hasAttribute ('id') ? `#${n.getAttribute ('id')}` : n.getAttribute ('href'));
             const level   = Number (n.getAttribute (level_attr));
             let   caption = n.getAttribute ('data-cap-dyn-menu-caption');
             const title   = escape (caption.replace (/\s+/g, ' ').trim ());
@@ -131,7 +127,7 @@ function init_dynamic_menues () {
             // HTML of the page to the menu.  This is a way to style
             // arbitrary entries of the menu.
             const html_classes = (n.getAttribute ('class') || '').trim ().split (' ');
-            for (let html_class of html_classes) {
+            for (const html_class of html_classes) {
                 classes.push (`${html_class}-level-${level}`);
                 if (html_class.startsWith ('dynamic-menu-')) {
                     classes.push (html_class);
@@ -177,20 +173,20 @@ function init_dynamic_menues () {
         ++menu_id;
     }
 
-    const toc = $ ('div.sidebar-toc > ul');
+    const toc = jQuery ('div.sidebar-toc > ul');
 
     toc.css ('display', 'none');
 
     // Initializes the sidebar menu collapsibles
 
-    $ ('li.dynamic-menu-item').each (function () {
-        const $this = $ (this);
-        const id = $this.attr ('id') + '-ul';
+    jQuery ('li.dynamic-menu-item').each (function () {
+        const $this = jQuery (this);
+        const id = `${$this.attr ('id')}-ul`;
         if ($this.children ('ul').length > 0) {
             $this.children ('a').addClass ('has-opener');
-            $ ('<a class="opener"/>').prependTo ($this)
+            jQuery ('<a class="opener"/>').prependTo ($this)
                 .attr ('data-bs-toggle', 'collapse')
-                .attr ('data-bs-target', '#' + id)
+                .attr ('data-bs-target', `#${id}`)
                 .addClass ('collapsed');
             $this.children ('ul').attr ('id', id).addClass ('collapse sub-menu');
         }
@@ -200,11 +196,11 @@ function init_dynamic_menues () {
 
     toc.find ('a[href]').each (function () {
         // jquery interprets #BK.123 as selector id=BK and class=123
-        let href = $ (this).attr ('href');
+        let href = jQuery (this).attr ('href');
         if (href[0] === '#') {
-            href = '#' + $.escapeSelector (href.slice (1));
-            if ($ (href).length === 0) {
-                $ (this).removeAttr ('href');
+            href = `#${jQuery.escapeSelector (href.slice (1))}`;
+            if (jQuery (href).length === 0) {
+                jQuery (this).removeAttr ('href');
             }
         }
     });
@@ -235,15 +231,13 @@ function get_topmost () {
 }
 
 function initLinebreakCheckbox () {
-    $ ('body').on ('change', '.custom-checkbox-linebreak', function (event) {
-        const checked = $ (event.target).is (':checked');
+    jQuery ('body').on ('change', '.custom-checkbox-linebreak', (event) => {
+        const checked = jQuery (event.target).is (':checked');
         const [topmost, offset] = get_topmost ();
-        $ ('div.mss-transcript-xsl').toggleClass ('show-linebreaks', checked);
+        jQuery ('div.mss-transcript-xsl').toggleClass ('show-linebreaks', checked);
         if (topmost !== null) {
-            setTimeout (function () {
-                const new_offset = get_offset (topmost);
-                // topmost.scrollIntoView (true);
-                window.scrollBy (0, new_offset - offset);
+            setTimeout (() => {
+                window.scrollBy (0, get_offset (topmost) - offset);
             });
         }
     });

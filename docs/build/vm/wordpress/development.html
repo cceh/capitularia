@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Notes &mdash; Capitularia 0.2.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/my_theme.css?v=dc6f3be3" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon-cceh-blue.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/documentation_options.js?v=37f418d5"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Application Server" href="../app_server.html" />
+    <link rel="prev" title="Wordpress Maintenance" href="maintenance.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Capitularia
+              <img src="../../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../overviews/index.html">Overviews</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../overviews/html_generation.html">HTML Generation Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/html_generation.html#xslt-transformations">XSLT Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/html_generation.html#user-delivery">User Delivery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../overviews/collation_tool.html">Collation Tool Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/collation_tool.html#id2">Collation Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/collation_tool.html#collation-algorithm">Collation Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/collation_tool.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../overviews/fulltext_search.html">Full-text Search Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/fulltext_search.html#full-text-extraction">Full-text Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/fulltext_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/fulltext_search.html#geodata-extraction">Geodata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/fulltext_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../overviews/makefile.html">Makefile Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/makefile.html#xslt-dependencies">XSLT Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../overviews/collections.html">Collections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../overviews/collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Capitularia VM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../apache.html">Apache Web Server</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Wordpress</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="installation.html">Wordpress Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html">Wordpress Database Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theme.html">Wordpress Theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="plugins.html">Wordpress Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maintenance.html">Wordpress Maintenance</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Developer Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../app_server.html">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#module-collator_server">collator_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../database.html">Postgres Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database.html#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database.html#module-db">db.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../solr.html">SOLR</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../solr.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../solr.html#service">Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../solr.html#icinga">Icinga</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../transformations.html">XSLT Transformations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../transformations.html#graph-of-all-transformations">Graph of All Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transformations.html#graph-of-stylesheet-dependencies">Graph of Stylesheet Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user.html">Users of the VM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user.html#users-and-groups">Users and Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user.html#adding-a-new-user">Adding a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user.html#deleting-a-new-user">Deleting a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user.html#security">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../backup.html">TSM Backup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../backup.html#update">Update</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../maintenance/index.html">Maintenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../maintenance/logfiles.html">Location of Logfiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../maintenance/logfiles.html#apache-php">Apache / PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../maintenance/logfiles.html#python-app-server">Python App Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../maintenance/logfiles.html#python-import-script">Python Import Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development/development.html">Assorted Development Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Capitularia</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Capitularia VM</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Wordpress</a></li>
+      <li class="breadcrumb-item active">Developer Notes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/vm/wordpress/development.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="developer-notes">
+<span id="wordpress-development"></span><h1>Developer Notes<a class="headerlink" href="#developer-notes" title="Link to this heading">¶</a></h1>
+<p>Description of our development environment for Wordpress customizations.</p>
+<p>Skills needed: Wordpress, PHP, Javascript, Sass, Vue.js, jQuery, Bootstrap, Webpack,
+GNU Make.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#webpack" id="id3">webpack</a></p></li>
+<li><p><a class="reference internal" href="#i18n-of-javascript" id="id4">i18n of Javascript</a></p>
+<ul>
+<li><p><a class="reference internal" href="#extract" id="id5">Extract</a></p>
+<ul>
+<li><p><a class="reference internal" href="#php-files" id="id6">PHP Files</a></p></li>
+<li><p><a class="reference internal" href="#js-files" id="id7">JS Files</a></p></li>
+<li><p><a class="reference internal" href="#vue-files" id="id8">Vue Files</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#translate" id="id9">Translate</a></p></li>
+<li><p><a class="reference internal" href="#enqueue-translations" id="id10">Enqueue Translations</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="webpack">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">webpack</a><a class="headerlink" href="#webpack" title="Link to this heading">¶</a></h2>
+<p>We use webpack to compile all our JS and CSS modules.</p>
+<p>Webpack generates a manifest file in <code class="file docutils literal notranslate"><span class="pre">dist/manifest.json</span></code>
+that contains the public path to all compiled modules.</p>
+<p>The theme and plugins load all JS code through the function:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">\cceh\capitularia\lib\enqueue_from_manifest ($key, $dependencies = array ())</span>
+</pre></div>
+</div>
+<p>where <code class="code docutils literal notranslate"><span class="pre">$key</span></code> ist the key in the manifest file.</p>
+<p>To build production files compile with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>webpack<span class="w"> </span>--config<span class="w"> </span>webpack.prod.js
+</pre></div>
+</div>
+<p>To build development files and enable hot module reloading (HMR) compile with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>webpack<span class="w"> </span>serve<span class="w"> </span>--config<span class="w"> </span>webpack.dev.js
+</pre></div>
+</div>
+<p>webpack serve adds some code to your JS to enable HMR.  Once loaded into
+Wordpress this code opens a socket to the webpack-dev-server and awaits
+commands.  When webpack-dev-server detects a source code change it compiles the
+changed modules into hot-update.js files and sends a reload command down the
+socket.  The HMR code in your app then tries to reload the changed modules
+preserving application state.  If it fails to do so it will fallback on
+reloading the whole page (and will lose application state).</p>
+<p>Example webpack config:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">merge</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;webpack-merge&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">chokidar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;chokidar&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">common</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;./webpack.common.js&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">host</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;capitularia.fritz.box&#39;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">devHost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">devPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8081</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">merge</span><span class="w"> </span><span class="p">(</span><span class="nx">common</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;mode&#39;</span><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;development&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;devtool&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;eval-source-map&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;output&#39;</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s1">&#39;publicPath&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="sb">`http://</span><span class="si">${</span><span class="nx">devHost</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">devPort</span><span class="si">}</span><span class="sb">/`</span><span class="p">,</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s1">&#39;module&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s1">&#39;rules&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="s1">&#39;test&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="sr">/\.s?css$/</span><span class="p">,</span>
+<span class="w">                </span><span class="s1">&#39;use&#39;</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s1">&#39;style-loader&#39;</span><span class="p">,</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="s1">&#39;loader&#39;</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;css-loader&#39;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s1">&#39;options&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="s1">&#39;importLoaders&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+<span class="w">                        </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="s1">&#39;loader&#39;</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;sass-loader&#39;</span><span class="p">,</span>
+<span class="w">                        </span><span class="s1">&#39;options&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="s1">&#39;sassOptions&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="s1">&#39;quietDeps&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                            </span><span class="p">},</span>
+<span class="w">                        </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s1">&#39;devServer&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s1">&#39;host&#39;</span><span class="w">       </span><span class="o">:</span><span class="w"> </span><span class="nx">devHost</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">&#39;port&#39;</span><span class="w">       </span><span class="o">:</span><span class="w"> </span><span class="nx">devPort</span><span class="p">,</span>
+<span class="w">        </span><span class="c1">// Enable hot module reloading (HMR).</span>
+<span class="w">        </span><span class="s1">&#39;hot&#39;</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">&#39;liveReload&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">&#39;static&#39;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s1">&#39;directory&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./dist&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="s1">&#39;devMiddleware&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// write images because we still load them the traditional way</span>
+<span class="w">            </span><span class="s1">&#39;writeToDisk&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+
+<span class="w">        </span><span class="c1">// Needed because we access port devPort from port 80.</span>
+<span class="w">        </span><span class="s1">&#39;allowedHosts&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">host</span><span class="p">],</span>
+<span class="w">        </span><span class="s1">&#39;headers&#39;</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="sb">`http://</span><span class="si">${</span><span class="nx">host</span><span class="si">}</span><span class="sb">`</span><span class="w"> </span><span class="p">},</span>
+
+<span class="w">        </span><span class="c1">// Watch for changes to PHP files and reload the page when one changes.</span>
+<span class="w">        </span><span class="c1">// See: https://mikeselander.com/hot-reloading-using-webpack-with-php-file-changes/</span>
+<span class="w">        </span><span class="nx">setupMiddlewares</span><span class="w"> </span><span class="p">(</span><span class="nx">middlewares</span><span class="p">,</span><span class="w"> </span><span class="nx">devServer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">chokidar</span>
+<span class="w">                </span><span class="p">.</span><span class="nx">watch</span><span class="w"> </span><span class="p">([</span><span class="s1">&#39;themes/**/*.php&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;plugins/*/*.php&#39;</span><span class="p">],</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="s1">&#39;alwaysStat&#39;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                    </span><span class="s1">&#39;atomic&#39;</span><span class="w">         </span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s1">&#39;followSymlinks&#39;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                    </span><span class="s1">&#39;ignoreInitial&#39;</span><span class="w">  </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                    </span><span class="s1">&#39;persistent&#39;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                    </span><span class="s1">&#39;usePolling&#39;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                </span><span class="p">})</span>
+<span class="w">                </span><span class="p">.</span><span class="nx">on</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">devServer</span><span class="p">.</span><span class="nx">sendMessage</span><span class="w"> </span><span class="p">(</span><span class="nx">devServer</span><span class="p">.</span><span class="nx">sockets</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;content-changed&#39;</span><span class="p">);</span>
+<span class="w">                </span><span class="p">});</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">middlewares</span><span class="p">;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+<section id="i18n-of-javascript">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">i18n of Javascript</a><a class="headerlink" href="#i18n-of-javascript" title="Link to this heading">¶</a></h2>
+<p>Internationalization consists of these steps:</p>
+<ol class="arabic simple">
+<li><p>Extract the strings to translate from the source files.</p></li>
+<li><p>Translate the strings and compile them into a .json file (in jed format).</p></li>
+<li><p>Make the .json file available to your JS module.</p></li>
+<li><p>Use the Wordpress <code class="file docutils literal notranslate"><span class="pre">wp-i18n.js</span></code> library to translate the strings at
+runtime.</p></li>
+</ol>
+<section id="extract">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Extract</a><a class="headerlink" href="#extract" title="Link to this heading">¶</a></h3>
+<p>There are 3 kinds of source files: PHP files, JS files and Vue single component
+files.  PHP files can be extracted using the GNU xgettext utility.  JS and Vue
+files can be extracted using the <a class="reference external" href="https://github.com/Polyconseil/easygettext">easygettext</a> utility.</p>
+<section id="php-files">
+<h4><a class="toc-backref" href="#id6" role="doc-backlink">PHP Files</a><a class="headerlink" href="#php-files" title="Link to this heading">¶</a></h4>
+<p>In PHP files use the __ (), _x (), and _n () functions.</p>
+</section>
+<section id="js-files">
+<h4><a class="toc-backref" href="#id7" role="doc-backlink">JS Files</a><a class="headerlink" href="#js-files" title="Link to this heading">¶</a></h4>
+<p>In JS files, add this boilerplate to the file:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/** The Wordpress Text Domain of the plugin. */</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">LANG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;cap-dynamic-menu&#39;</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">$gettext</span><span class="w"> </span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">__</span><span class="w"> </span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="nx">LANG</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">$pgettext</span><span class="w"> </span><span class="p">(</span><span class="nx">context</span><span class="p">,</span><span class="w"> </span><span class="nx">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_x</span><span class="w"> </span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span><span class="w"> </span><span class="nx">context</span><span class="p">,</span><span class="w"> </span><span class="nx">LANG</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">$ngettext</span><span class="w"> </span><span class="p">(</span><span class="nx">singular</span><span class="p">,</span><span class="w"> </span><span class="nx">plural</span><span class="p">,</span><span class="w"> </span><span class="nx">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_n</span><span class="w"> </span><span class="p">(</span><span class="nx">singular</span><span class="p">,</span><span class="w"> </span><span class="nx">plural</span><span class="p">,</span><span class="w"> </span><span class="nx">number</span><span class="p">,</span><span class="w"> </span><span class="nx">LANG</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then use like this:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nx">$gettext</span><span class="w">  </span><span class="p">(</span><span class="s1">&#39;Message to translate&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">pmessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$pgettext</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Hint to translators&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Message to translate&#39;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">nmessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$ngettext</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Singular&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Plural&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">number</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>We must use the <code class="xref py py-func docutils literal notranslate"><span class="pre">$gettext()</span></code> names for our functions, or the stupid
+easygettext tool will not recognize the function.  The functions used like this
+tag the message for the string extractor and also translate the string at
+runtime.</p>
+</section>
+<section id="vue-files">
+<h4><a class="toc-backref" href="#id8" role="doc-backlink">Vue Files</a><a class="headerlink" href="#vue-files" title="Link to this heading">¶</a></h4>
+<p>Vue single component files contain 3 sections: HTML, JS, and CSS.  The CSS
+section does not need to be translated.</p>
+<p>In the JS section of Vue files, use the <code class="xref py py-func docutils literal notranslate"><span class="pre">$t</span> <span class="pre">()</span></code> function:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$t</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Message to translate&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This function tags the message for the string extractor and also translates
+the string at runtime.</p>
+<p>In the HTML template section of Vue files, you may use two different methods to
+tag translatable strings:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h2</span> <span class="na">v-translate</span><span class="p">&gt;</span>Header to translate<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;$t (&#39;Tooltip to translate&#39;)&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>This is the Vue 3 boilerplate that enables translations in Vue files: Put this
+in main.js before initializing your Vue app.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Vue.js 3 boilerplate</span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">DOMAIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;my-text-domain&#39;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nx">createApp</span><span class="w"> </span><span class="p">(</span><span class="nx">App</span><span class="p">);</span>
+
+<span class="c1">// wrapper to call the Wordpress translate function</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">$t</span><span class="w"> </span><span class="p">(</span><span class="nx">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">wp</span><span class="p">.</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">__</span><span class="w"> </span><span class="p">(</span><span class="nx">text</span><span class="p">,</span><span class="w"> </span><span class="nx">DOMAIN</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// the vm.$t function</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">globalProperties</span><span class="p">.</span><span class="nx">$t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$t</span><span class="p">;</span>
+
+<span class="c1">// the v-translate directive</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">directive</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;translate&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">el</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">el</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$t</span><span class="w"> </span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">innerText</span><span class="p">.</span><span class="nx">trim</span><span class="w"> </span><span class="p">());</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;...&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="translate">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Translate</a><a class="headerlink" href="#translate" title="Link to this heading">¶</a></h3>
+<p>Use poedit to translate the extracted strings.</p>
+<p>To compile .po files into .json files we use a custom made
+<strong class="program">python/po2json.py</strong>.</p>
+</section>
+<section id="enqueue-translations">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Enqueue Translations</a><a class="headerlink" href="#enqueue-translations" title="Link to this heading">¶</a></h3>
+<p>Wordpress boilerplate to make translations available in PHP and JS files:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Wordpress boilerplate</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">use cceh\capitularia\lib;</span>
+
+<span class="x">const DOMAIN = &#39;my-text-domain&#39;;</span>
+
+<span class="x">function enqueue_scripts ()</span>
+<span class="x">{</span>
+<span class="x">    $key = &#39;my-module&#39;; // key from webpack.common.js</span>
+
+<span class="x">    // enqueue webpacked JS module</span>
+<span class="x">    lib\enqueue_from_manifest (&quot;$key.js&quot;, [</span>
+<span class="x">        &#39;another-module.js&#39;,</span>
+<span class="x">    ]);</span>
+
+<span class="x">    // enqueue extracted (minified) CSS</span>
+<span class="x">    lib\enqueue_from_manifest (&quot;$key.css&quot;, [</span>
+<span class="x">        &#39;another-module.css&#39;</span>
+<span class="x">    ]);</span>
+
+<span class="x">    // translations in PHP files</span>
+<span class="x">    lib\load_textdomain (DOMAIN);</span>
+
+<span class="x">    // translations in JS files</span>
+<span class="x">    lib\wp_set_script_translations (&quot;$key.js&quot;, DOMAIN);</span>
+<span class="x">}</span>
+</pre></div>
+</div>
+</div>
+<p>See also:
+<a class="reference external" href="https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/">https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/</a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="maintenance.html" class="btn btn-neutral float-left" title="Wordpress Maintenance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../app_server.html" class="btn btn-neutral float-right" title="Application Server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-24 CCeH - Licensed under the GNU GPL v3 or later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

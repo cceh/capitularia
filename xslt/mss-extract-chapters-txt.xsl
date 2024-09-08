@@ -5,6 +5,12 @@
 This stylesheet generates plain text versions of the chapters generated
 by mss-extract-chapters.xsl, for collation and fulltext search.
 
+For each chapter it generates:
+
+  - the original text
+  - the corrected text (if any later hands were active)
+  - the notes (if any were added)
+
 Transforms: $(CACHE_DIR)/extracted/%.xml -> $(CACHE_DIR)/collation/%.xml
 
 Scrape: fulltext $(CACHE_DIR)/collation/%.xml
@@ -54,10 +60,15 @@ Target: collation $(CACHE_DIR)/collation/%.xml
     </xsl:variable>
 
     <xsl:text>&#x0a;</xsl:text>
-    <xsl:text>&#x0a;</xsl:text>
     <div corresp="{@corresp}" cap:hands="{@cap:hands}">
-        <xsl:value-of select="normalize-space ($extracted3)"/>
+      <xsl:value-of select="normalize-space ($extracted3)"/>
     </div>
+
+    <!-- then extract the notes -->
+    <xsl:if test="$extracted2//note">
+      <xsl:text>&#x0a;</xsl:text>
+      <xsl:apply-templates select="$extracted2//note" mode="notes" />
+    </xsl:if>
 
     <!-- maybe add a "later_hands" section -->
 
@@ -93,7 +104,15 @@ Target: collation $(CACHE_DIR)/collation/%.xml
     <xsl:value-of select="translate (., 'Vv', 'Uu')"/>
   </xsl:template>
 
+  <!-- keep notes out of main text flow -->
   <xsl:template match="note" />
+
+  <xsl:template match="note" mode="notes">
+    <xsl:text>&#x0a;</xsl:text>
+    <note corresp="{../@corresp}" type="{@type}" >
+      <xsl:value-of select="normalize-space()" />
+    </note>
+  </xsl:template>
 
   <xsl:template match="figure" />
 

@@ -12,12 +12,12 @@ const options = {
 
 async function dropdown_select (page, selector) {
     await page.waitForSelector (selector);
-    await page.$eval (selector, button => $ (button).parent ().addClass ('show'));
+    await page.$eval (selector, (button) => $ (button).parent ().addClass ('show'));
     await page.click (selector);
-    await page.$eval (selector, button => $ (button).parent ().removeClass ('show'));
+    await page.$eval (selector, (button) => $ (button).parent ().removeClass ('show'));
 }
 
-pup.launch (options).then (async browser => {
+pup.launch (options).then (async (browser) => {
     const page = await browser.newPage ();
     await page.goto ('http://capitularia.fritz.box/tools/collation/', { 'waitUntil' : 'load' });
 

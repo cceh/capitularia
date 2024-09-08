@@ -126,11 +126,7 @@
 
 <script>
 
-/** @module plugins/collation/selector  */
-
-/**
- * @file
- */
+/** @module plugins/cap-collation/selector */
 
 import { uniqueId } from 'lodash';
 
@@ -138,7 +134,7 @@ import * as tools from './tools.js';
 
 /**
  * The vue.js instance that manages the section selector(s).
- * @class module:plugins/collation/selector.VueSelector
+ * @class Selector
  */
 
 export default {
@@ -166,7 +162,7 @@ export default {
     'computed' : {
         /** @returns The list of selected items in the correct order. */
         'selected' : function () {
-            return this.witnesses.filter (w => w.checked).map (w => w.url);
+            return this.witnesses.filter ((w) => w.checked).map ((w) => w.url);
         },
     },
     'watch' : {
@@ -175,10 +171,10 @@ export default {
     },
     async mounted () {
         const vm = this;
-        vm.id = 'selector_' + uniqueId ();
+        vm.id = `selector_${uniqueId ()}`;
         await vm.ajax_load_bks ();
     },
-    /** @lends module:plugins/collation/front.VueFront.prototype */
+    /** @lends Selector */
     'methods' : {
         /**
          * Load the bk dropdown.  Called once during setup.
@@ -189,7 +185,9 @@ export default {
             const response = await tools.api ('/data/capitularies.json/');
             // list of { cap_id, title, transcriptions }
             // Do not show Ansegis etc.
-            vm.bks = response.filter ((r) => r.cap_id.match (/^BK|^Mordek|^Benedictus\.Levita\.1\.279/)).map ((r) => r.cap_id);
+            vm.bks = response.data
+                .filter ((r) => r.cap_id.match (/^BK|^Mordek|^Benedictus\.Levita\.1\.279/))
+                .map ((r) => r.cap_id);
             vm.bk = vm.config.bk || vm.bks[0] || '';
 
             await vm.ajax_load_corresps (vm.config);
@@ -205,7 +203,7 @@ export default {
             const response = await tools.api (`/data/capitulary/${vm.bk}/chapters.json/`);
             // list of { chapter, transcriptions }
 
-            vm.corresps = response.map ((r) => r.cap_id + (r.chapter ? `_${r.chapter}` : ''));
+            vm.corresps = response.data.map ((r) => r.cap_id + (r.chapter ? `_${r.chapter}` : ''));
             vm.corresp = config.corresp || vm.corresps[0] || '';
         },
         /**
@@ -219,12 +217,12 @@ export default {
             // list of { ms_id, siglum, n, type }
             vm.spinner = false;
 
-            vm.witnesses = response.map (w => { w.corresp = vm.corresp; return w; });
+            vm.witnesses = response.data.map ((w) => { w.corresp = vm.corresp; return w; });
             vm.witnesses = vm.witnesses.map (tools.fix_witness);
             vm.witnesses.sort ((a, b) => a.sort_key.localeCompare (b.sort_key));
 
             if (!vm.later_hands) {
-                vm.witnesses = vm.witnesses.filter (w => { return w.type === 'original'; });
+                vm.witnesses = vm.witnesses.filter ((w) => w.type === 'original');
             }
 
             for (const w of vm.witnesses) {
@@ -250,7 +248,7 @@ export default {
          * Check or uncheck all witnesses.
          */
         check_all (val) {
-            this.witnesses.map (w => {
+            this.witnesses.map ((w) => {
                 w.checked = val;
                 return w;
             });
@@ -259,7 +257,7 @@ export default {
          * Check all witnesses in list but don't uncheck any.
          */
         check_these (items) {
-            this.witnesses.map (w => {
+            this.witnesses.map ((w) => {
                 if (items.includes (w.url)) {
                     w.checked = true;
                 }

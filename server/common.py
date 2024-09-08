@@ -3,46 +3,72 @@
 
 """ Repository for common tools. """
 
+import argparse
 import collections
 import csv
 import io
 import logging
+import os.path
 import re
 import types
 
+import MySQLdb  # apt-get libmariadb-dev && pip install mysqlclient
 import requests
 import roman as rom
 
 import flask
 from flask import current_app, request
 
-RE_WS = re.compile(r"(\s+)")
-RE_PUNCT = re.compile(r"[-.,:;!?*/]")
-RE_BRACES = re.compile(r"\(.*?\)")
-RE_BRACKETS = re.compile(r"\[\s*|\s*\]")
+NS_TEI = "http://www.tei-c.org/ns/1.0"
+NS_XML = "http://www.w3.org/XML/1998/namespace"
+NS_HTML = "http://www.w3.org/1999/xhtml"
+NS_CAP = "http://cceh.uni-koeln.de/capitularia"
+
+NS = {
+    "tei": NS_TEI,
+    "xml": NS_XML,
+    "html": NS_HTML,
+    "cap": NS_CAP,
+}
+
+# fmt: off
+RE_WS              = re.compile(r"(\s+)")
+RE_PUNCT           = re.compile(r"[-_.,:;!?*/]")
+RE_BRACES          = re.compile(r"\([^\)]*\)")
+RE_BRACKETS        = re.compile(r"\[\s*|\s*\]")
 RE_NORMALIZE_SPACE = re.compile(r"\s+")
 
 # See: https://capitularia.uni-koeln.de/wp-admin/admin.php?page=wp-help-documents&document=7402
 
-REGEX_BK = r"(bk|mordek|benedictus\.levita\.[1-3]|dtr_66\.§)[-nr._]+0*(\d+)([a-z]?)"
-REGEX_ANSEGIS = r"(ansegis\.[1-4])(?:_(\d+(?:bis|ter)?))?(?:_([_a-z]+))?"
+# regexes to match the milestone/@n and the */@corresp attributes
+# @n:       the first group is the catalog name, the second the catalog number, the third the copy index
+# @corresp: the first group is the catalog name, the second the catalog number, the third the chapter
+REGEX_BK_N               = r"(bk|mordek|dtr_66\.§)[-nr._]+0*(\d+[a-z]?)(?:_(\d))?"
+REGEX_BK_CORRESP         = r"(bk|mordek|dtr_66\.§)[-nr._]+0*(\d+[a-z]?)(?:_(.+))?"
+REGEX_BENEDICTUS_N       = r"(benedictus\.levita)"
+REGEX_BENEDICTUS_CORRESP = r"(benedictus\.levita)\.([1-2])((?:_\d+)?(?:_inscriptio(?:_c)?)?)"
+REGEX_ANSEGIS_N          = r"(ansegis)\.([1-4])"
+REGEX_ANSEGIS_CORRESP    = r"(ansegis)\.([1-4])(_\d+(?:_inscriptio)?)?"
+
 REGEX_LOCUS = (
     r"<?([0-9]*)([IVXL]*)\s*\(?((?:bis|ter)?)\)?\s*((?:recto|verso|r|v)?)\s*([abc]?)>?"
 )
 
-RE_BK = re.compile(REGEX_BK, re.IGNORECASE)
-RE_ANSEGIS = re.compile(REGEX_ANSEGIS, re.IGNORECASE)
-RE_BK_N = re.compile(r"_(\d)")
-RE_BK_CHAPTER = re.compile(r"_(.+)")
+RE_BK_N               = re.compile(REGEX_BK_N,               re.IGNORECASE)
+RE_BK_CORRESP         = re.compile(REGEX_BK_CORRESP,         re.IGNORECASE)
+RE_BENEDICTUS_N       = re.compile(REGEX_BENEDICTUS_N,       re.IGNORECASE)
+RE_BENEDICTUS_CORRESP = re.compile(REGEX_BENEDICTUS_CORRESP, re.IGNORECASE)
+RE_ANSEGIS_N          = re.compile(REGEX_ANSEGIS_N,          re.IGNORECASE)
+RE_ANSEGIS_CORRESP    = re.compile(REGEX_ANSEGIS_CORRESP,    re.IGNORECASE)
 
-RE_LOCUS = re.compile(REGEX_LOCUS)
-RE_LOCUS_RANGE = re.compile(r"\b%s(?:\s*-\s*%s)?\b" % (REGEX_LOCUS, REGEX_LOCUS))
-RE_LOCUS_N = re.compile(r"-(\d+)")
+RE_LOCUS        = re.compile(REGEX_LOCUS)
+RE_LOCUS_RANGE  = re.compile(r"\b%s(?:\s*-\s*%s)?\b" % (REGEX_LOCUS, REGEX_LOCUS))
+RE_LOCUS_N      = re.compile(r"-(\d+)")
 RE_LOCUS_PITHOU = re.compile(r"\d-(\d+)")
 
-RE_MSPART_N = re.compile(r"(?:(foll|fol|pp|p)\.\s+)(.*)")
-RE_INTRANGE = re.compile(r"(\d+)(?:-(\d+))")
-
+RE_MSPART_N     = re.compile(r"(foll|fol|pp|p)\.\s+(.*)")
+RE_INTRANGE     = re.compile(r"(\d+)-(\d+)")
+# fmt: on
 
 RE_BK_GUESS = re.compile(r"(bk|b|mordek|m)?[._ ]?(\d+)", re.IGNORECASE)
 """ Regex for guessing a BK while parsing the commandline.
@@ -62,6 +88,8 @@ VIDAL1898 = "Vidal-Lablache, Paul. Atlas général. Paris, 1898"
 SHEPHERD1911 = "Shepherd, William. Historical Atlas. New York, 1911"
 NATEARTH2019 = '&copy; <a href="http://www.naturalearthdata.com/">Natural Earth</a>'
 CAPITULARIA = "capitularia.uni-koeln.de"
+
+URL_SOLR = "http://localhost:8983/solr/capitularia/"
 
 
 def make_json_response(json=None, status=200):
@@ -140,6 +168,11 @@ def to_csv(fields, rows):
     for r in rows:
         writer.writerow(r._asdict())
     return fp.getvalue()
+
+
+def fix_id(s: str) -> str:
+    """Lowercases and replaces all punctuation with a hyphen."""
+    return RE_PUNCT.sub("-", s).lower()
 
 
 def fix_ws(s: str) -> str:
@@ -308,16 +341,11 @@ def parse_xml_id_locus(locus):
 BK_NORM = {
     "bk": "BK",
     "mordek": "Mordek",
-    "ansegis.1": "Ansegis.1",
-    "ansegis.2": "Ansegis.2",
-    "ansegis.3": "Ansegis.3",
-    "ansegis.4": "Ansegis.4",
-    "benedictus.levita.1": "Benedictus.Levita.1",
-    "benedictus.levita.2": "Benedictus.Levita.2",
-    "benedictus.levita.3": "Benedictus.Levita.3",
+    "ansegis": "Ansegis",
+    "benedictus.levita": "Benedictus.Levita",
     "dtr_66.§": "DTR.66.§",
 }
-""" The format(s) of a normalized BK. """
+""" Normalized catalog names. """
 
 
 def _normalize_bk(m):
@@ -328,7 +356,7 @@ def _normalize_bk(m):
     :raises: ValueError if the input is malformed.
     """
 
-    return BK_NORM[m.group(1).lower()], (m.group(2) or "") + (m.group(3) or "").lower()
+    return BK_NORM[m[1].lower()], m[2] if m.lastindex >= 2 else ""
 
 
 def normalize_bk(s):
@@ -344,21 +372,30 @@ def normalize_bk(s):
 
     """
 
-    m = RE_BK.fullmatch(s) or RE_ANSEGIS.fullmatch(s)
+    m = (
+        RE_BK_CORRESP.fullmatch(s)
+        or RE_BENEDICTUS_CORRESP.fullmatch(s)
+        or RE_ANSEGIS_CORRESP.fullmatch(s)
+    )
     if m is None:
         raise ValueError("Invalid BK: '%s'" % s)
 
     return (*_normalize_bk(m),)
 
 
-def normalize_bk_capitulare(n):
+def normalize_milestone_n(n):
     """Normalize the @n attribute on a milestone unit capitulare.
+
+    Examples:
+
+       <milestone unit='capitulare' n='BK.139' />
+       <milestone unit='capitulare' n='Benedictus.Levita' />
+       <milestone unit='capitulare' n='Ansegis.3_57' />
 
     There may be more than one copy of any capitulary in a manuscript.
     The copies are marked by milestones:
 
        <milestone unit='capitulare' n='BK.139' />
-       ...
        <milestone unit='capitulare' n='BK.139_1' />
 
     The last element in the returned list is the index, starting with 1.
@@ -374,25 +411,27 @@ def normalize_bk_capitulare(n):
     if n is None:
         raise ValueError("No @n found on milestone capitulare")
 
-    m = RE_BK.match(n) or RE_ANSEGIS.match(n)
+    m = RE_BK_N.match(n) or RE_BENEDICTUS_N.match(n) or RE_ANSEGIS_N.match(n)
     if m is None:
         raise ValueError("Invalid milestone capitulare @n: '%s'" % n)
 
-    if n == m.group(0):
-        return (*_normalize_bk(m), 1)
+    if m.lastindex == 3:
+        return (*_normalize_bk(m), int(m[3]) + 1)
 
-    m2 = RE_BK_N.fullmatch(n, m.end(0))
-    if m2 is None:
-        raise ValueError("Invalid milestone capitulare @n: '%s'" % n)
-
-    return (*_normalize_bk(m), int(m2.group(1)) + 1)
+    # no copy index
+    return (*_normalize_bk(m), 1)
 
 
 def normalize_corresp(corresp):
     """Normalize a corresp attribute.
 
-       <ab corresp='BK_16'>...</ab>
-       <ab corresp='BK_20a_12'>...</ab>
+    Examples:
+
+        <ab corresp='BK_16'>
+        <ab corresp='BK_20a_12'>
+        <ab corresp="Mordek.27">
+        <ab corresp="Benedictus.Levita.1_279">
+        <ab corresp="Ansegis.4_72_inscriptio_c">
 
     :param str corresp: The corresp to normalize
 
@@ -401,18 +440,19 @@ def normalize_corresp(corresp):
     :raises: ValueError if the corresp is malformed
     """
 
-    m = RE_BK.match(corresp) or RE_ANSEGIS.match(corresp)
+    m = (
+        RE_BK_CORRESP.match(corresp)
+        or RE_BENEDICTUS_CORRESP.match(corresp)
+        or RE_ANSEGIS_CORRESP.match(corresp)
+    )
     if m is None:
         raise ValueError("Invalid @corresp: '%s'" % corresp)
 
-    if corresp == m.group(0):
-        return (*_normalize_bk(m), "")
+    if m.lastindex == 3:
+        return (*_normalize_bk(m), m[3])
 
-    m2 = RE_BK_CHAPTER.fullmatch(corresp, m.end(0))
-    if m2 is None:
-        raise ValueError("Invalid @corresp: '%s'" % corresp)
-
-    return (*_normalize_bk(m), m2.group(1))
+    # no chapter
+    return (*_normalize_bk(m), "")
 
 
 def guess_bk(s, default_prefix="bk"):
@@ -609,6 +649,105 @@ def normalize_latin(s):
     s = RE_BRACKETS.sub("", s)
 
     for regex, d in NORMALIZATIONS:
-        s = regex.sub(lambda m: d[m.group(0)], s)
+        s = regex.sub(lambda m: d[m.group(0)], s)  # NOSONAR
 
     return normalize_space(s)
+
+
+def un_qtranslate(text: str, lang: str) -> str:
+    """Extract a language from a qTranslate multi-language text"""
+
+    default_lang = "de"
+    mode = default_lang
+    result = ""
+
+    for s in re.split(r"(\[:\w*\])", text):
+        if s.startswith("[:"):
+            if len(s) == 5:
+                mode = s[2:4]
+            if s == "[:]":
+                mode = default_lang
+            continue
+        if lang == mode:
+            result += s
+
+    return result.strip()
+
+
+def get_de(text: str) -> str:
+    """Extract the German text from a qTranslate multi-language text"""
+    return un_qtranslate(text, "de")
+
+
+def get_en(text: str) -> str:
+    """Extract the English text from a qTranslate multi-language text"""
+    return un_qtranslate(text, "en")
+
+
+def mysql_connection(args):
+    """Connect to the mysql database."""
+    cnf = os.path.expanduser(args.mysql_config_file)
+    logging.log(logging.INFO, f"Connecting to mysql using config file: {cnf}")
+    return MySQLdb.connect(read_default_file=cnf, read_default_group="mysql")
+
+
+def get_post_status(args) -> dict[str, str]:
+    """Get a dict of all xml:ids -> publish status"""
+
+    mysql = mysql_connection(args)
+    c = mysql.cursor()
+
+    # get the parent page of all manuscripts: /mss
+    query = """
+        SELECT ID, post_name, post_parent, post_type
+        FROM wp_posts
+        WHERE post_name = 'mss'
+            AND post_type = 'page'
+        """
+    c.execute(query)
+    parent_page_id = int(c.fetchone()[0])
+
+    # get the post_status of all manuscripts
+    query = """
+        SELECT pm.meta_value, p.post_status
+        FROM wp_posts p
+           INNER JOIN wp_postmeta pm ON p.ID = pm.post_id
+        WHERE p.post_parent = %s
+            AND pm.meta_key = 'tei-xml-id'
+        """
+    c.execute(query, (parent_page_id,))
+
+    d = {"bk-textzeuge": "publish"}
+    d.update(c.fetchall())
+    return d
+
+
+def build_parser(default_config_file, doc):
+    """Build the commandline parser."""
+
+    parser = argparse.ArgumentParser(description=doc, fromfile_prefix_chars="@")
+
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        dest="verbose",
+        action="count",
+        help="increase output verbosity",
+        default=0,
+    )
+    parser.add_argument(
+        "-c",
+        "--config-file",
+        dest="config_file",
+        default=default_config_file,
+        metavar="CONFIG_FILE",
+        help="the config file (default='%s')" % default_config_file,
+    )
+    parser.add_argument(
+        "--my-cnf",
+        metavar=".MY.CNF.FILE",
+        default="~/.my.cnf",
+        dest="mysql_config_file",
+        help="the mysql .my.cnf file to use (default:~/.my.cnf) (reads client and mysql sections)",
+    )
+    return parser

@@ -270,6 +270,39 @@ Endpoints
    Response format see above.
 
 
+.. http:get:: /data/query_manuscript_parts.json/
+
+   Return all manuscript parts that satisfy a set of conditions.
+
+   This endpoint can be use to query convert attributes like date range or place of
+   origin into a list of eligible manuscript parts. The solr_server can then be queried
+   restricted to those manuscript parts.
+
+   :query string status:       Optional. Return all or only published msparts,
+                               must be either 'publish' or 'private', defaults to 'publish'.
+   :query integer notbefore:   Optional. The mspart must not be older than this year
+   :query integer notafter:    Optional. The mspart must not be younger than this year
+   :query list[string] places: Optional. List of places, the mspart must originate from one of these places
+
+   **Example request**:
+
+   .. sourcecode:: http
+
+      GET /data/query_manuscript_parts.json/?notbefore=1100&places[]=ferrara&places[]=brixen HTTP/1.1
+
+   **Example response**:
+
+   .. sourcecode:: http
+
+      HTTP/1.1 200 OK
+      Content-Type: application/json
+
+      [
+        {"ms_id":"modena-as-130","msp_part":""},
+        {"ms_id":"paris-bn-lat-3878","msp_part":""},
+        {"ms_id":"weimar-hsa-depositum-hardenberg-fragm-9","msp_part":""}
+      ]
+
 """
 
 import collections
@@ -285,12 +318,12 @@ class Config(object):
     pass
 
 
-class dataBlueprint(Blueprint):
+class DataBlueprint(Blueprint):
     def init_app(self, app):
         app.config.from_object(Config)
 
 
-app = dataBlueprint("data", __name__)
+app = DataBlueprint("data", __name__)
 
 
 def cache(response):
@@ -643,6 +676,101 @@ def query_manuscripts():
         else:
             for ms in manuscripts:
                 ms["snippet"] = ""
+
+        # current_app.logger.warn ("RESULT = %s" % manuscripts)
+        return cache(make_json_response(manuscripts))
+
+
+@app.route("/query_manuscript_parts.json/")
+def query_manuscript_parts():
+    """Returns a list of manuscript parts."""
+
+    status = request.args.get("status") or "publish"
+    capit = request.args.get("capit")
+    notbefore = request.args.get("notbefore")
+    notafter = request.args.get("notafter")
+    places = request.args.getlist("places[]")
+
+    with current_app.config.dba.engine.begin() as conn:
+        where = []
+        params = {}
+        if status == "private":
+            where.append("m.status IN ('private', 'publish')")
+        if status == "publish":
+            where.append("m.status = 'publish'")
+        if capit:
+            where.append("cap_id = :cap_id")
+            params["cap_id"] = capit
+        if notbefore:
+            where.append(":after <= upper (msp.date)")
+            params["after"] = notbefore
+        if notafter:
+            where.append("lower (msp.date) <= :before")
+            params["before"] = notafter
+
+        if places:
+            # current_app.logger.warn ("user selected places = %s" % str (places))
+
+            # First get the geo_ids of all the places that fit the query.
+            # Get all children of the place(s) selected by the user.
+            res = execute(
+                conn,
+                """
+            WITH RECURSIVE parent_places (geo_id, parent_id) AS (
+              SELECT geo_id, parent_id
+              FROM geoplaces
+                WHERE geo_id IN :geo_ids
+              UNION
+              SELECT p.geo_id, p.parent_id
+              FROM parent_places pp, geoplaces p
+                WHERE p.parent_id = pp.geo_id
+            )
+            SELECT DISTINCT geo_id FROM parent_places ORDER BY geo_id
+            """,
+                {"geo_ids": tuple(places)},
+            )
+
+            places = [r[0] for r in res]
+
+            # current_app.logger.warn ("resolved places = %s" % str (places))
+
+            # Now get all manuscript parts originated in one of those places.
+            where.append(
+                """(m.ms_id, msp.msp_part) IN (
+              SELECT ms_id, msp_part
+              FROM mn_mss_geoplaces
+                WHERE geo_id IN :geo_ids
+              GROUP BY ms_id, msp_part
+            )
+            """
+            )
+
+            params["geo_ids"] = tuple(places)
+
+        if where:
+            where = "WHERE " + (" AND ".join(where))
+        else:
+            where = ""
+
+        res = execute(
+            conn,
+            """
+        SELECT m.ms_id, msp.msp_part
+        FROM manuscripts m
+          JOIN msparts msp USING (ms_id)
+        %s
+        GROUP BY m.ms_id, msp.msp_part
+        ORDER BY natsort (m.ms_id), natsort (msp.msp_part)
+        """
+            % where,
+            params,
+        )
+
+        Manuscripts = collections.namedtuple(
+            "Manuscripts",
+            "ms_id, msp_part",
+        )
+        manuscripts = [Manuscripts._make(r)._asdict() for r in res]
 
         # current_app.logger.warn ("RESULT = %s" % manuscripts)
         return cache(make_json_response(manuscripts))

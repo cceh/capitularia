@@ -266,10 +266,8 @@ function if_visible ($path)
     $cache = get_page_status_in_cache ($path);
 
     if (array_key_exists ($path, $cache)) {
-        return (
-            $cache[$path] == 'publish' ||
-            ($cache[$path] == 'private' && current_user_can ('read_private_pages'))
-        );
+        return $cache[$path] == 'publish' ||
+            ($cache[$path] == 'private' && current_user_can ('read_private_pages'));
     }
     return false; // page does not exist
 }

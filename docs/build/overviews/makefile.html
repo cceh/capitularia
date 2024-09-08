@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Makefile Overview &mdash; Capitularia 0.2.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/my_theme.css?v=dc6f3be3" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon-cceh-blue.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=37f418d5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Collections" href="collections.html" />
+    <link rel="prev" title="Full-text Search Overview" href="fulltext_search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Capitularia
+              <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Overviews</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="html_generation.html">HTML Generation Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="html_generation.html#xslt-transformations">XSLT Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="html_generation.html#user-delivery">User Delivery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="collation_tool.html">Collation Tool Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#id2">Collation Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#collation-algorithm">Collation Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collation_tool.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fulltext_search.html">Full-text Search Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fulltext_search.html#full-text-extraction">Full-text Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fulltext_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fulltext_search.html#geodata-extraction">Geodata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fulltext_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Makefile Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xslt-dependencies">XSLT Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="collections.html">Collections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../vm/index.html">Capitularia VM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vm/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vm/apache.html">Apache Web Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vm/wordpress/index.html">Wordpress</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vm/wordpress/installation.html">Wordpress Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/wordpress/database.html">Wordpress Database Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/wordpress/theme.html">Wordpress Theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/wordpress/plugins.html">Wordpress Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/wordpress/maintenance.html">Wordpress Maintenance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/wordpress/development.html">Developer Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vm/app_server.html">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vm/app_server.html#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/app_server.html#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/app_server.html#module-collator_server">collator_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/app_server.html#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/app_server.html#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vm/database.html">Postgres Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vm/database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/database.html#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/database.html#module-db">db.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vm/solr.html">SOLR</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vm/solr.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/solr.html#service">Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/solr.html#icinga">Icinga</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vm/transformations.html">XSLT Transformations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vm/transformations.html#graph-of-all-transformations">Graph of All Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/transformations.html#graph-of-stylesheet-dependencies">Graph of Stylesheet Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vm/user.html">Users of the VM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vm/user.html#users-and-groups">Users and Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/user.html#adding-a-new-user">Adding a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/user.html#deleting-a-new-user">Deleting a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vm/user.html#security">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../vm/backup.html">TSM Backup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vm/backup.html#update">Update</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../maintenance/index.html">Maintenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../maintenance/logfiles.html">Location of Logfiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#apache-php">Apache / PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-app-server">Python App Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-import-script">Python Import Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/development.html">Assorted Development Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Capitularia</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Overviews</a></li>
+      <li class="breadcrumb-item active">Makefile Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/overviews/makefile.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="makefile-overview">
+<span id="makefile"></span><h1>Makefile Overview<a class="headerlink" href="#makefile-overview" title="Link to this heading">¶</a></h1>
+<p>The <code class="file docutils literal notranslate"><span class="pre">Makefile</span></code> is the central controller in the project. It includes
+other Makefiles as sub-components.</p>
+<p>Different parts of the <code class="file docutils literal notranslate"><span class="pre">Makefile</span></code> are called by cron at various intervals.
+cron runs as the <a class="reference internal" href="../vm/user.html#user"><span class="std std-ref">user capitularia</span></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../vm/transformations.html#transformations"><span class="std std-ref">XSLT Transformations</span></a></p></li>
+<li><p><a class="reference internal" href="html_generation.html#html-generation-overview"><span class="std std-ref">HTML Generation Overview</span></a></p></li>
+<li><p><a class="reference internal" href="fulltext_search.html#fulltext-search-overview"><span class="std std-ref">Full-text Search Overview</span></a></p></li>
+</ul>
+</div>
+<figure class="align-center" id="id1">
+<div align="center" class="pic align-center pic-format-text-xml pic-language-uml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" preserveAspectRatio="none" version="1.1" viewBox="0 0 786 635" width="100%" zoomAndPan="magnify"><defs><filter height="300%" id="f15874kvz2yfzw" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[f43d1bbe4f1159838c5f6e7e47575b7c]
+entity tei--><path d="M323,18 C323,8 387.5,8 387.5,8 C387.5,8 452,8 452,18 L452,65.1358 C452,75.1358 387.5,75.1358 387.5,75.1358 C387.5,75.1358 323,75.1358 323,65.1358 L323,18 " fill="#FEFECE" filter="url(#f15874kvz2yfzw)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M323,18 C323,28 387.5,28 387.5,28 C387.5,28 452,28 452,18 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="109" x="333" y="46.9659">Manuscript files</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="104" x="335.5" y="66.0339">publ/mss/*.xml</text><!--MD5=[0a2bd27fccdac7a369aac2b428719809]
+entity html--><path d="M8,330 C8,320 95.5,320 95.5,320 C95.5,320 183,320 183,330 L183,377.1358 C183,387.1358 95.5,387.1358 95.5,387.1358 C95.5,387.1358 8,387.1358 8,377.1358 L8,330 " fill="#FEFECE" filter="url(#f15874kvz2yfzw)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M8,330 C8,340 95.5,340 95.5,340 C95.5,340 183,340 183,330 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="109" x="41" y="358.9659">Manuscript files</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="155" x="18" y="378.0339">publ/cache/mss/*.html</text><!--MD5=[0e4e82c954b664e5d225f5849797976f]
+entity chapters--><path d="M424.5,330 C424.5,320 523.5,320 523.5,320 C523.5,320 622.5,320 622.5,330 L622.5,377.1358 C622.5,387.1358 523.5,387.1358 523.5,387.1358 C523.5,387.1358 424.5,387.1358 424.5,377.1358 L424.5,330 " fill="#FEFECE" filter="url(#f15874kvz2yfzw)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M424.5,330 C424.5,340 523.5,340 523.5,340 C523.5,340 622.5,340 622.5,330 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="460.5" y="358.9659">Extracted chapters</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="178" x="434.5" y="378.0339">publ/cache/collation/*.xml</text><!--MD5=[9b9a51ab13fe46cc218e888d7ed128f3]
+entity lists--><path d="M218.5,330 C218.5,320 288.5,320 288.5,320 C288.5,320 358.5,320 358.5,330 L358.5,377.1358 C358.5,387.1358 288.5,387.1358 288.5,387.1358 C288.5,387.1358 218.5,387.1358 218.5,377.1358 L218.5,330 " fill="#FEFECE" filter="url(#f15874kvz2yfzw)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M218.5,330 C218.5,340 288.5,340 288.5,340 C288.5,340 358.5,340 358.5,330 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="30" x="273.5" y="358.9659">Lists</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="120" x="228.5" y="378.0339">publ/cache/lists/*</text><!--MD5=[4819d7e546ed2c2981b8955b82e72e10]
+entity pg--><path d="M491.5,566 C491.5,556 534.5,556 534.5,556 C534.5,556 577.5,556 577.5,566 L577.5,613.1358 C577.5,623.1358 534.5,623.1358 534.5,623.1358 C534.5,623.1358 491.5,623.1358 491.5,613.1358 L491.5,566 " fill="#FEFECE" filter="url(#f15874kvz2yfzw)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M491.5,566 C491.5,576 534.5,576 534.5,576 C534.5,576 577.5,576 577.5,566 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="63" x="503" y="594.9659">Database</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="501.5" y="614.0339">(Postgres)</text><!--MD5=[4660e0abdb7fa9e4244c49bb3714a7b9]
+entity wp--><path d="M661,18 C661,8 707.5,8 707.5,8 C707.5,8 754,8 754,18 L754,65.1358 C754,75.1358 707.5,75.1358 707.5,75.1358 C707.5,75.1358 661,75.1358 661,65.1358 L661,18 " fill="#FEFECE" filter="url(#f15874kvz2yfzw)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M661,18 C661,28 707.5,28 707.5,28 C707.5,28 754,28 754,18 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="73" x="671" y="46.9659">Wordpress</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="65" x="675" y="66.0339">(mariadb)</text><!--MD5=[0d15b2eb428f0c0027bf5ef6513f3386]
+entity solr--><path d="M619,566 C619,556 680.5,556 680.5,556 C680.5,556 742,556 742,566 L742,613.1358 C742,623.1358 680.5,623.1358 680.5,623.1358 C680.5,623.1358 619,623.1358 619,613.1358 L619,566 " fill="#FEFECE" filter="url(#f15874kvz2yfzw)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M619,566 C619,576 680.5,576 680.5,576 C680.5,576 742,576 742,566 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="103" x="629" y="594.9659">Full-text search</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="34" x="663.5" y="614.0339">(Solr)</text><!--MD5=[d032816cc3313145e22a2f76e9f03823]
+entity xsl_mss--><rect fill="#FEFECE" filter="url(#f15874kvz2yfzw)" height="87.2038" style="stroke: #A80036; stroke-width: 1.5;" width="181" x="6" y="154"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="167" y="159"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="165" y="161"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="165" y="165"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="102" x="40.5" y="188.9659">mss-header.xsl</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="141" x="21" y="208.0339">mss-transcription.xsl</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="94" x="44.5" y="227.1018">mss-footer.xsl</text><!--MD5=[d564c3314abd40b4be0915a8853931d1]
+entity xsl_lists--><rect fill="#FEFECE" filter="url(#f15874kvz2yfzw)" height="125.3396" style="stroke: #A80036; stroke-width: 1.5;" width="120" x="223.5" y="135"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="323.5" y="140"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="321.5" y="142"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="321.5" y="146"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="80" x="238.5" y="169.9659">capit-list.xsl</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="76" x="240.5" y="189.0339">mss-key.xsl</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="79" x="239" y="208.1018">changes.xsl</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="68" x="244.5" y="227.1697">corpus.xsl</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="12" x="272.5" y="246.2376">...</text><!--MD5=[cd90ae651b304385ce1d7572e1e35070]
+entity xsl_chapters--><rect fill="#FEFECE" filter="url(#f15874kvz2yfzw)" height="68.1358" style="stroke: #A80036; stroke-width: 1.5;" width="226" x="378.5" y="163.5"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="584.5" y="168.5"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="582.5" y="170.5"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="582.5" y="174.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="164" x="404.5" y="198.4659">mss-extract-chapters.xsl</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="186" x="393.5" y="217.5339">mss-extract-chapters-txt.xsl</text><!--MD5=[106aa88e7d5b71a84f0a028d2109a8d0]
+entity import_data--><rect fill="#FEFECE" filter="url(#f15874kvz2yfzw)" height="49.0679" style="stroke: #A80036; stroke-width: 1.5;" width="141" x="464" y="447"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="585" y="452"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="583" y="454"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="583" y="458"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="101" x="479" y="481.9659">import_data.py</text><!--MD5=[1c3a717e670360b8f6a3ad9c72e53b00]
+entity import_solr--><rect fill="#FEFECE" filter="url(#f15874kvz2yfzw)" height="49.0679" style="stroke: #A80036; stroke-width: 1.5;" width="136" x="639.5" y="173"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="755.5" y="178"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="753.5" y="180"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="753.5" y="184"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="96" x="654.5" y="207.9659">import_solr.py</text><!--MD5=[5d77580de0051e1a229a8d2039d6247b]
+link tei to xsl_mss--><path d="M322.71,74.57 C287.8,92.07 244.08,114.32 205.5,135 C195.78,140.21 185.64,145.76 175.62,151.33 " fill="none" id="tei-&gt;xsl_mss" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="171.02,153.89,180.83,153.0158,175.3908,151.4618,176.9448,146.0226,171.02,153.89" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[0004118f304772d7fb916f4f31c665d9]
+link xsl_mss to html--><path d="M96.22,241.4 C96.07,264.3 95.89,292.25 95.75,314.39 " fill="none" id="xsl_mss-&gt;html" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="95.71,319.6,99.787,310.6346,95.7529,314.6002,91.7873,310.566,95.71,319.6" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[1b15dbe3f49e168a9976f85fe7b2c27f]
+link tei to xsl_lists--><path d="M365.44,75.16 C354.52,91.33 340.93,111.46 327.97,130.64 " fill="none" id="tei-&gt;xsl_lists" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="325.05,134.98,333.3913,129.7434,327.84,130.8308,326.7526,125.2794,325.05,134.98" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[002ac31bac7319aa75dfb2d1a492bb2a]
+link xsl_lists to lists--><path d="M285.5,260.25 C286.1,278.59 286.74,298.14 287.27,314.5 " fill="none" id="xsl_lists-&gt;lists" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="287.44,319.92,291.1293,310.7882,287.2687,314.9229,283.134,311.0623,287.44,319.92" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[39ed67a482ca548ae2206b3431c5e1b1]
+link tei to xsl_chapters--><path d="M409.56,75.16 C426.13,99.7 448.85,133.35 466.17,158.99 " fill="none" id="tei-&gt;xsl_chapters" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="469.12,163.36,467.3944,153.6635,466.3202,159.2174,460.7663,158.1432,469.12,163.36" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[b6515adf879033161b3c5bbae8860068]
+link xsl_chapters to chapters--><path d="M498.36,231.54 C503.44,255.98 510.37,289.31 515.67,314.79 " fill="none" id="xsl_chapters-&gt;chapters" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="516.7,319.78,518.7927,310.156,515.6865,314.8838,510.9587,311.7776,516.7,319.78" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[5e87cf8621b439ff5bdc9c22d2de19d9]
+link chapters to import_data--><path d="M526.59,387.12 C528.23,404.37 530.22,425.34 531.79,441.94 " fill="none" id="chapters-&gt;import_data" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="532.27,446.94,535.405,437.6034,531.7993,441.9622,527.4405,438.3565,532.27,446.94" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[7c7ec9fde6cdc1a60d93e4f6ab9ef29a]
+link import_data to pg--><path d="M534.5,496.25 C534.5,511.87 534.5,532.65 534.5,550.53 " fill="none" id="import_data-&gt;pg" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="534.5,555.98,538.5,546.98,534.5,550.98,530.5,546.98,534.5,555.98" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[4349e509895376ff154130c86148e1bf]
+link import_data to solr--><path d="M564.4,496.25 C584.9,512.55 612.48,534.45 635.61,552.83 " fill="none" id="import_data-&gt;solr" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="639.57,555.98,635.0176,547.2464,635.6573,552.867,630.0367,553.5067,639.57,555.98" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8dd6d2bd992b1025d5e30856c45cc29b]
+link tei to import_solr--><path d="M452.21,63.28 C500.29,79.85 566.73,105.18 621.5,135 C639.77,144.95 658.72,158.14 674.17,169.76 " fill="none" id="tei-&gt;import_solr" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="678.43,172.99,673.6794,164.3626,674.4473,169.9671,668.8428,170.735,678.43,172.99" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[12569632c352f64f7dd882ad2a2a37e0]
+link wp to import_solr--><path d="M707.5,75.16 C707.5,102.64 707.5,141.55 707.5,167.84 " fill="none" id="wp-&gt;import_solr" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="707.5,172.92,711.5,163.92,707.5,167.92,703.5,163.92,707.5,172.92" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[c93ecb08da1fe25fabdc1eed23b43ea0]
+link import_solr to solr--><path d="M705.87,222.02 C701.35,287.28 688.63,471.08 683.11,550.81 " fill="none" id="import_solr-&gt;solr" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="682.76,555.91,687.368,547.2056,683.103,550.9218,679.3869,546.6568,682.76,555.91" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[a5525c8920e79d55d02a361c2789bb17]
+@startuml
+
+   skinparam backgroundColor transparent
+   skinparam DefaultTextAlignment center
+   skinparam componentStyle uml2
+   skinparam actorStyle awesome
+
+database "Manuscript files\npubl/mss/*.xml"               as tei
+database "Manuscript files\npubl/cache/mss/*.html"        as html
+database "Extracted chapters\npubl/cache/collation/*.xml" as chapters
+database "Lists\npubl/cache/lists/*" as lists
+database "Database\n(Postgres)"      as pg
+database "Wordpress\n(mariadb)"      as wp
+database "Full-text search\n(Solr)"  as solr
+
+component xsl_mss [mss-header.xsl
+                   mss-transcription.xsl
+                   mss-footer.xsl]
+
+component xsl_lists [capit-list.xsl
+                     mss-key.xsl
+                     changes.xsl
+                     corpus.xsl
+                     ...]
+
+component xsl_chapters [mss-extract-chapters.xsl
+                        mss-extract-chapters-txt.xsl]
+
+component "import_data.py"         as import_data
+component "import_solr.py"         as import_solr
+
+tei          - -> xsl_mss
+xsl_mss      - -> html
+
+tei          - -> xsl_lists
+xsl_lists    - -> lists
+
+tei          - -> xsl_chapters
+xsl_chapters - -> chapters
+chapters     - -> import_data
+import_data  - -> pg
+
+import_data  - -> solr
+
+tei          - -> import_solr
+wp           - -> import_solr
+import_solr  - -> solr
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 11:22:07 CET 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 21.0.4+7-Debian-3
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg></div>
+<figcaption>
+<p><span class="caption-text">Makefile Overview</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<section id="xslt-dependencies">
+<h2>XSLT Dependencies<a class="headerlink" href="#xslt-dependencies" title="Link to this heading">¶</a></h2>
+<p>The section of the Makefile that deals with the dependencies between manuscripts, xslt
+stylesheets, and html files is generated by the Python script
+<strong class="program">python/xslt_dep.py</strong>.</p>
+<section id="xslt-dep-py">
+<h3>xslt_dep.py<a class="headerlink" href="#xslt-dep-py" title="Link to this heading">¶</a></h3>
+<p>Manage dependencies between XSL-Stylesheets.</p>
+<p>This tool reads specially formatted metadata in the first comment of XSL-Stylesheets and
+generates one of:</p>
+<ul class="simple">
+<li><p>a Makefile</p></li>
+<li><p>a graphviz .dot file</p></li>
+<li><p>an HTML table.</p></li>
+</ul>
+<p>The generated Makefile is then included into the main Makefile.</p>
+<p>It can also draw a dependency graph of XSL-Stylesheets by reading the <code class="code docutils literal notranslate"><span class="pre">&lt;xsl:include&gt;</span></code> and
+<code class="code docutils literal notranslate"><span class="pre">&lt;xsl:import&gt;</span></code> statements.</p>
+<p>Internally uses a triple store for the relations between files.</p>
+<p>Following “markup” is recognized in the first comment of XSL-Stylesheets:</p>
+<dl class="simple">
+<dt>Transforms: sources -&gt; destinations [: comment]</dt><dd><p>Adds dependencies to the generated Makefile.
+Adds sources, xsl file, and destinations to the graph.
+The optional comment will be added to the arrow in the .dot file.
+If the comment is <code class="code docutils literal notranslate"><span class="pre">make=false</span></code> no dependencies will be added to the Makefile.</p>
+</dd>
+<dt>Target: target destinations</dt><dd><p>Adds a target to the generated Makefile that depends on the destination files.
+Adds a group box to the graph that surrounds all destination files.</p>
+</dd>
+<dt>URL: destinations path</dt><dd><p>Graph only.  Adds a box to the graph that shows the path from the web root where the
+destination files will be visible for the public.</p>
+</dd>
+<dt>Scrape: parameter sources</dt><dd><p>Graph only.  Adds a drum to the graph that says: <strong class="program">import_data.py
+--&lt;parameter&gt;</strong>.  With that command you can import the the source file(s) into the
+Postgres database.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>Transforms:<span class="w"> </span>$(CAPIT_DIR)/lists/capit_all.xml<span class="w"> </span>-&gt;<span class="w"> </span>$(CACHE_DIR)/lists/capit-all.html<span class="w">     </span>:<span class="w"> </span>type=all
+Transforms:<span class="w"> </span>$(CAPIT_DIR)/lists/capit_all.xml<span class="w"> </span>-&gt;<span class="w"> </span>$(CACHE_DIR)/lists/capit-pre814.html<span class="w">  </span>:<span class="w"> </span>type=pre814
+Transforms:<span class="w"> </span>$(CAPIT_DIR)/lists/capit_all.xml<span class="w"> </span>-&gt;<span class="w"> </span>$(CACHE_DIR)/lists/capit-ldf.html<span class="w">     </span>:<span class="w"> </span>type=ldf
+Transforms:<span class="w"> </span>$(CAPIT_DIR)/lists/capit_all.xml<span class="w"> </span>-&gt;<span class="w"> </span>$(CACHE_DIR)/lists/capit-post840.html<span class="w"> </span>:<span class="w"> </span>type=post840
+Transforms:<span class="w"> </span>$(CAPIT_DIR)/lists/capit_all.xml<span class="w"> </span>-&gt;<span class="w"> </span>$(CACHE_DIR)/lists/capit-undated.html<span class="w"> </span>:<span class="w"> </span>type=undated
+
+URL:<span class="w"> </span>$(CACHE_DIR)/lists/capit-all.html<span class="w">     </span>/capit/list/
+URL:<span class="w"> </span>$(CACHE_DIR)/lists/capit-pre814.html<span class="w">  </span>/capit/pre814/
+URL:<span class="w"> </span>$(CACHE_DIR)/lists/capit-ldf.html<span class="w">     </span>/capit/ldf/
+URL:<span class="w"> </span>$(CACHE_DIR)/lists/capit-post840.html<span class="w"> </span>/capit/post840/
+URL:<span class="w"> </span>$(CACHE_DIR)/lists/capit-undated.html<span class="w"> </span>/capit/undated/
+
+Target:<span class="w"> </span>lists<span class="w"> </span>$(CACHE_DIR)/lists/capit-all.html
+Target:<span class="w"> </span>lists<span class="w"> </span>$(CACHE_DIR)/lists/capit-pre814.html
+Target:<span class="w"> </span>lists<span class="w"> </span>$(CACHE_DIR)/lists/capit-ldf.html
+Target:<span class="w"> </span>lists<span class="w"> </span>$(CACHE_DIR)/lists/capit-post840.html
+Target:<span class="w"> </span>lists<span class="w"> </span>$(CACHE_DIR)/lists/capit-undated.html
+
+Scrape:<span class="w"> </span>cap-list<span class="w"> </span>$(CAPIT_DIR)/lists/capit_all.xml
+</pre></div>
+</div>
+<p>The tool implements a ‘little language’ that reads a list of commands from stdin.
+Commands are separated by newlines.</p>
+<dl class="simple">
+<dt>read filename</dt><dd><p>scan an XSL-Stylesheet.</p>
+</dd>
+<dt>recurse</dt><dd><p>recursively scan all XSL-Stylesheets referenced in xsl:import and xsl:include
+statements</p>
+</dd>
+<dt>load filename</dt><dd><p>load a triple store in turtle format</p>
+</dd>
+<dt>save filename</dt><dd><p>saves a triple store in turtle format</p>
+</dd>
+<dt>io filename</dt><dd><p>adds transformations involving filename to the output</p>
+</dd>
+<dt>dep filename</dt><dd><p>adds stylesheet dependencies of filename to the output</p>
+</dd>
+<dt>make filename</dt><dd><p>outputs a Makefile dependencies</p>
+</dd>
+<dt>dot filename</dt><dd><p>outputs a graphviz dot file</p>
+</dd>
+<dt>html filename</dt><dd><p>outputs a HTML table</p>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">read</span> <span class="n">my</span><span class="o">-</span><span class="n">style</span><span class="o">.</span><span class="n">xsl</span>
+<span class="n">recurse</span>
+<span class="n">dep</span> <span class="o">*.</span><span class="n">xsl</span>
+<span class="n">dot</span> <span class="n">output</span><span class="o">-</span><span class="n">graph</span><span class="o">.</span><span class="n">dot</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">read</span> <span class="n">my</span><span class="o">-</span><span class="n">style</span><span class="o">.</span><span class="n">xsl</span>
+<span class="n">read</span> <span class="n">my</span><span class="o">-</span><span class="n">styles</span><span class="o">-*.</span><span class="n">xsl</span>
+<span class="n">read</span> <span class="n">my</span><span class="o">-</span><span class="n">extended</span><span class="o">-</span><span class="n">styles</span><span class="o">-*.</span><span class="n">xsl</span>
+<span class="n">save</span> <span class="n">styles</span><span class="o">.</span><span class="n">ttl</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">load</span> <span class="n">styles</span><span class="o">.</span><span class="n">ttl</span>
+<span class="n">io</span> <span class="n">my</span><span class="o">-</span><span class="n">style</span><span class="o">.</span><span class="n">xsl</span>
+<span class="n">io</span> <span class="n">my</span><span class="o">-</span><span class="n">styles</span><span class="o">-</span><span class="n">first</span><span class="o">.</span><span class="n">xsl</span>
+<span class="n">io</span> <span class="n">my</span><span class="o">-</span><span class="n">styles</span><span class="o">-</span><span class="n">second</span><span class="o">.</span><span class="n">xsl</span>
+<span class="n">dot</span> <span class="n">output</span><span class="o">-</span><span class="n">graph</span><span class="o">.</span><span class="n">dot</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">usage: xslt_dep.py [-h] [-e E]</span>
+</pre></div>
+</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-xslt_dep.py-h">
+<span id="cmdoption-xslt_dep.py-help"></span><span class="sig-name descname"><span class="pre">-h</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--help</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-xslt_dep.py-h" title="Link to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-xslt_dep.py-e">
+<span class="sig-name descname"><span class="pre">-e</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;e&gt;</span></span><a class="headerlink" href="#cmdoption-xslt_dep.py-e" title="Link to this definition">¶</a></dt>
+<dd><p>Commands to be executed, separated by ‘;’.  Default: read commands from stdin, separated by newlines.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fulltext_search.html" class="btn btn-neutral float-left" title="Full-text Search Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="collections.html" class="btn btn-neutral float-right" title="Collections" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-24 CCeH - Licensed under the GNU GPL v3 or later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

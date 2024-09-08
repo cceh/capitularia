@@ -40,16 +40,13 @@ Endpoints
 
 import os.path
 
-from typing import Optional, Tuple, List, Sequence, Dict
-import urllib.parse
+from typing import Tuple
 
 import flask
 from flask import abort, current_app, request, Blueprint
 import werkzeug
 
-from saxonche import PySaxonProcessor, PyXslt30Processor, PyXsltExecutable, PySaxonApiError
-
-import common
+from saxonche import PySaxonProcessor, PyXslt30Processor, PyXsltExecutable
 
 
 class Config(object):
@@ -66,8 +63,10 @@ class SaxonError(werkzeug.exceptions.HTTPException):
 def handle_saxon_error(e):
     return flask.Response(e.description, e.code, mimetype="text/plain")
 
+
 SAXON_PROC: PySaxonProcessor = None
 XSLT_PROC: PyXslt30Processor = None
+
 
 class SaxonBlueprint(Blueprint):
     def init_app(self, app):
@@ -82,6 +81,7 @@ class SaxonBlueprint(Blueprint):
 app = SaxonBlueprint("saxon", __name__)
 
 XSLT_CACHE: dict[str, Tuple[float, PyXsltExecutable]] = dict()
+
 
 def get_cached_stylesheet(stylesheet_path: str) -> PyXsltExecutable:
     """Compiles and caches a stylesheet
@@ -99,7 +99,7 @@ def get_cached_stylesheet(stylesheet_path: str) -> PyXsltExecutable:
         raise OSError()
 
     try:
-        dt_disk = os.path.getmtime(sheet_path) # throws OSError on missing file
+        dt_disk = os.path.getmtime(sheet_path)  # throws OSError on missing file
     except OSError:
         current_app.logger.error("Stylesheet not found: %s", stylesheet_path)
         raise
@@ -134,4 +134,4 @@ def collate():
     document = SAXON_PROC.parse_xml(xml_text=xml)
     output = executable.transform_to_string(xdm_node=document)
 
-    return flask.make_response(output, 200, { "Content-Type" : "application/xml" })
+    return flask.make_response(output, 200, {"Content-Type": "application/xml"})

@@ -27,8 +27,6 @@ class Dashboard_Page
 
     /**
      * Constructor
-     *
-     * @return Dashboard_Page The Dashboard page
      */
 
     public function __construct ()
@@ -193,7 +191,7 @@ class Dashboard_Page
      *
      * @return string Error messages formatted as HTML
      *
-     * @see on_cap_action_file()
+     * @see on_cap_action_file
      */
 
     private function process_bulk_actions ($action, $section_id, $filenames)

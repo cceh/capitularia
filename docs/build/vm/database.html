@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Postgres Database Structure &mdash; Capitularia 0.2.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/my_theme.css?v=dc6f3be3" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon-cceh-blue.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=37f418d5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SOLR" href="solr.html" />
+    <link rel="prev" title="Application Server" href="app_server.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Capitularia
+              <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overviews/index.html">Overviews</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/html_generation.html">HTML Generation Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/html_generation.html#xslt-transformations">XSLT Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/html_generation.html#user-delivery">User Delivery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/collation_tool.html">Collation Tool Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#id2">Collation Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#collation-algorithm">Collation Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/fulltext_search.html">Full-text Search Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/fulltext_search.html#full-text-extraction">Full-text Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/fulltext_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/fulltext_search.html#geodata-extraction">Geodata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/fulltext_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/makefile.html">Makefile Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/makefile.html#xslt-dependencies">XSLT Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/collections.html">Collections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Capitularia VM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache.html">Apache Web Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wordpress/index.html">Wordpress</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/installation.html">Wordpress Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/database.html">Wordpress Database Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/theme.html">Wordpress Theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/plugins.html">Wordpress Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/maintenance.html">Wordpress Maintenance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/development.html">Developer Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app_server.html">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-collator_server">collator_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Postgres Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-db">db.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="solr.html">SOLR</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solr.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solr.html#service">Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solr.html#icinga">Icinga</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">XSLT Transformations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="transformations.html#graph-of-all-transformations">Graph of All Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transformations.html#graph-of-stylesheet-dependencies">Graph of Stylesheet Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user.html">Users of the VM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user.html#users-and-groups">Users and Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user.html#adding-a-new-user">Adding a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user.html#deleting-a-new-user">Deleting a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user.html#security">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">TSM Backup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="backup.html#update">Update</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../maintenance/index.html">Maintenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../maintenance/logfiles.html">Location of Logfiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#apache-php">Apache / PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-app-server">Python App Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-import-script">Python Import Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/development.html">Assorted Development Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Capitularia</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Capitularia VM</a></li>
+      <li class="breadcrumb-item active">Postgres Database Structure</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/vm/database.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="postgres-database-structure">
+<span id="postgres-database"></span><h1>Postgres Database Structure<a class="headerlink" href="#postgres-database-structure" title="Link to this heading">¶</a></h1>
+<section id="schema-capitularia">
+<h2>Schema <em>capitularia:</em><a class="headerlink" href="#schema-capitularia" title="Link to this heading">¶</a></h2>
+<p>The teiHeader contains in msDesc/msPart references to capitularies and loci but
+no reference to chapters.  The teiHeader includes capitularies not yet
+transcribed.  This relation is caught in table <cite>mss_capitularies</cite>.  The map
+client uses this relation.</p>
+<p>The body contains finer grained references to chapters and loci in the &#64;corresp
+and &#64;xml:id, but only for already transcribed material.  This relation is caught
+in table <cite>mss_chapters</cite>.  The collation tool uses this relation.</p>
+<p>The <cite>mss_chapters_text</cite> table contains the chapter’s text preprocessed for the
+collation tool.</p>
+<p>Note that the relation between the <cite>mss_chapters</cite> and <cite>msparts</cite> tables was
+inferred using the loci, because there are no milestones for msParts/msItems in
+the body.</p>
+<p>Note that the mscap_n of the <cite>mss_capitularies</cite> and <cite>mss_chapters</cite> tables do not
+indicate the same concept.</p>
+<figure class="align-center" id="id1">
+<div align="center" class="pic align-center pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" viewBox="0.00 0.00 580.00 701.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 701)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-701 580,-701 580,0 0,0"/>
+<!-- manuscripts -->
+<g id="node1" class="node">
+<title>manuscripts</title>
+<path fill="#e7f2fa" stroke="transparent" d="M13,-1C13,-1 200,-1 200,-1 206,-1 212,-7 212,-13 212,-13 212,-85 212,-85 212,-91 206,-97 200,-97 200,-97 13,-97 13,-97 7,-97 1,-91 1,-85 1,-85 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="6.5" y="-85" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-85" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">manuscripts</text>
+<text text-anchor="start" x="146.5" y="-85" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="106.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="141.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">title</text>
+<text text-anchor="start" x="106.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="141.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">filename</text>
+<text text-anchor="start" x="106.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="141.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">status</text>
+<text text-anchor="start" x="106.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="141.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">siglum</text>
+<text text-anchor="start" x="106.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="141.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="0.5,-77 0.5,-77 213.5,-77 213.5,-77 0.5,-77"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M13,-1C13,-1 200,-1 200,-1 206,-1 212,-7 212,-13 212,-13 212,-85 212,-85 212,-91 206,-97 200,-97 200,-97 13,-97 13,-97 7,-97 1,-91 1,-85 1,-85 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+<!-- msparts -->
+<g id="node2" class="node">
+<title>msparts</title>
+<path fill="#e7f2fa" stroke="transparent" d="M25,-146C25,-146 188,-146 188,-146 194,-146 200,-152 200,-158 200,-158 200,-245 200,-245 200,-251 194,-257 188,-257 188,-257 25,-257 25,-257 19,-257 13,-251 13,-245 13,-245 13,-158 13,-158 13,-152 19,-146 25,-146"/>
+<text text-anchor="start" x="18.5" y="-244.5" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="91.5" y="-244.5" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">msparts</text>
+<text text-anchor="start" x="134.5" y="-244.5" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="16.5" y="-226.5" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="112.5" y="-226.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="132.5" y="-226.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="16.5" y="-211.5" font-family="DejaVu Sans Mono" font-size="10.00">msp_part</text>
+<text text-anchor="start" x="112.5" y="-211.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="132.5" y="-211.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="16.5" y="-196.5" font-family="DejaVu Sans Mono" font-size="10.00">locus_cooked</text>
+<text text-anchor="start" x="112.5" y="-196.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="132.5" y="-196.5" font-family="DejaVu Sans Mono" font-size="10.00">ARRAY</text>
+<text text-anchor="start" x="16.5" y="-181.5" font-family="DejaVu Sans Mono" font-size="10.00">date</text>
+<text text-anchor="start" x="112.5" y="-181.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="132.5" y="-181.5" font-family="DejaVu Sans Mono" font-size="10.00">INT4RANGE</text>
+<text text-anchor="start" x="16.5" y="-166.5" font-family="DejaVu Sans Mono" font-size="10.00">leaf</text>
+<text text-anchor="start" x="112.5" y="-166.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="132.5" y="-166.5" font-family="DejaVu Sans Mono" font-size="10.00">ARRAY</text>
+<text text-anchor="start" x="16.5" y="-151.5" font-family="DejaVu Sans Mono" font-size="10.00">written</text>
+<text text-anchor="start" x="112.5" y="-151.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="132.5" y="-151.5" font-family="DejaVu Sans Mono" font-size="10.00">ARRAY</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="12.5,-236.5 12.5,-236.5 201.5,-236.5 201.5,-236.5 12.5,-236.5"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M25,-146C25,-146 188,-146 188,-146 194,-146 200,-152 200,-158 200,-158 200,-245 200,-245 200,-251 194,-257 188,-257 188,-257 25,-257 25,-257 19,-257 13,-251 13,-245 13,-245 13,-158 13,-158 13,-152 19,-146 25,-146"/>
+</g>
+<!-- msparts&#45;&gt;manuscripts -->
+<g id="edge1" class="edge">
+<title>msparts-&gt;manuscripts</title>
+<path fill="none" stroke="black" d="M106.5,-144.89C106.5,-133.7 106.5,-121.88 106.5,-110.53"/>
+<polygon fill="none" stroke="black" points="106.5,-110.45 102.5,-104.45 106.5,-98.45 110.5,-104.45 106.5,-110.45"/>
+<text text-anchor="middle" x="122" y="-119" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+</g>
+<!-- capitularies -->
+<g id="node3" class="node">
+<title>capitularies</title>
+<path fill="#e7f2fa" stroke="transparent" d="M299,-16C299,-16 492,-16 492,-16 498,-16 504,-22 504,-28 504,-28 504,-70 504,-70 504,-76 498,-82 492,-82 492,-82 299,-82 299,-82 293,-82 287,-76 287,-70 287,-70 287,-28 287,-28 287,-22 293,-16 299,-16"/>
+<text text-anchor="start" x="292.5" y="-70" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="365.5" y="-70" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">capitularies</text>
+<text text-anchor="start" x="438.5" y="-70" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="290.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">cap_id</text>
+<text text-anchor="start" x="383.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="420.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="290.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">title</text>
+<text text-anchor="start" x="383.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="420.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="290.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">date</text>
+<text text-anchor="start" x="383.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="420.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">INT4RANGE</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="286.5,-62 286.5,-62 505.5,-62 505.5,-62 286.5,-62"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M299,-16C299,-16 492,-16 492,-16 498,-16 504,-22 504,-28 504,-28 504,-70 504,-70 504,-76 498,-82 492,-82 492,-82 299,-82 299,-82 293,-82 287,-76 287,-70 287,-70 287,-28 287,-28 287,-22 293,-16 299,-16"/>
+</g>
+<!-- chapters -->
+<g id="node4" class="node">
+<title>chapters</title>
+<path fill="#e7f2fa" stroke="transparent" d="M232,-176C232,-176 401,-176 401,-176 407,-176 413,-182 413,-188 413,-188 413,-215 413,-215 413,-221 407,-227 401,-227 401,-227 232,-227 232,-227 226,-227 220,-221 220,-215 220,-215 220,-188 220,-188 220,-182 226,-176 232,-176"/>
+<text text-anchor="start" x="225.5" y="-214.5" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="298.5" y="-214.5" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">chapters</text>
+<text text-anchor="start" x="347.5" y="-214.5" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="223.5" y="-196.5" font-family="DejaVu Sans Mono" font-size="10.00">cap_id</text>
+<text text-anchor="start" x="313.5" y="-196.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="345.5" y="-196.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="223.5" y="-181.5" font-family="DejaVu Sans Mono" font-size="10.00">chapter</text>
+<text text-anchor="start" x="313.5" y="-181.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="345.5" y="-181.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="219.5,-206.5 219.5,-206.5 414.5,-206.5 414.5,-206.5 219.5,-206.5"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M232,-176C232,-176 401,-176 401,-176 407,-176 413,-182 413,-188 413,-188 413,-215 413,-215 413,-221 407,-227 401,-227 401,-227 232,-227 232,-227 226,-227 220,-221 220,-215 220,-215 220,-188 220,-188 220,-182 226,-176 232,-176"/>
+</g>
+<!-- chapters&#45;&gt;capitularies -->
+<g id="edge2" class="edge">
+<title>chapters-&gt;capitularies</title>
+<path fill="none" stroke="black" d="M329.9,-174.97C341.53,-152.81 358.63,-120.23 372.46,-93.9"/>
+<polygon fill="none" stroke="black" points="372.58,-93.67 371.83,-86.5 378.16,-83.04 378.91,-90.21 372.58,-93.67"/>
+<text text-anchor="middle" x="379" y="-119" font-family="DejaVu Sans Mono" font-size="10.00">cap_id</text>
+</g>
+<!-- mss_capitularies -->
+<g id="node5" class="node">
+<title>mss_capitularies</title>
+<path fill="#e7f2fa" stroke="transparent" d="M320,-347C320,-347 567,-347 567,-347 573,-347 579,-353 579,-359 579,-359 579,-465 579,-465 579,-471 573,-477 567,-477 567,-477 320,-477 320,-477 314,-477 308,-471 308,-465 308,-465 308,-359 308,-359 308,-353 314,-347 320,-347"/>
+<text text-anchor="start" x="328.5" y="-465" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="401.5" y="-465" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">mss_capitularies</text>
+<text text-anchor="start" x="498.5" y="-465" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="313.5" y="-446" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="386.5" y="-446" font-family="DejaVu Sans Mono" font-size="10.00">according to &lt;msDesc&gt;</text>
+<text text-anchor="start" x="513.5" y="-446" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="311.5" y="-428" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="455.5" y="-428" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="499.5" y="-428" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="311.5" y="-413" font-family="DejaVu Sans Mono" font-size="10.00">cap_id</text>
+<text text-anchor="start" x="455.5" y="-413" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="499.5" y="-413" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="311.5" y="-398" font-family="DejaVu Sans Mono" font-size="10.00">mscap_n</text>
+<text text-anchor="start" x="455.5" y="-398" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="499.5" y="-398" font-family="DejaVu Sans Mono" font-size="10.00">INTEGER</text>
+<text text-anchor="start" x="311.5" y="-383" font-family="DejaVu Sans Mono" font-size="10.00">msp_part</text>
+<text text-anchor="start" x="455.5" y="-383" font-family="DejaVu Sans Mono" font-size="10.00">☆</text>
+<text text-anchor="start" x="499.5" y="-383" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="311.5" y="-368" font-family="DejaVu Sans Mono" font-size="10.00">locus</text>
+<text text-anchor="start" x="455.5" y="-368" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="499.5" y="-368" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="311.5" y="-353" font-family="DejaVu Sans Mono" font-size="10.00">locus_cooked</text>
+<text text-anchor="start" x="455.5" y="-353" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="499.5" y="-353" font-family="DejaVu Sans Mono" font-size="10.00">ARRAY</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="307.5,-457 307.5,-457 580.5,-457 580.5,-457 307.5,-457"/>
+<polygon fill="#2980b9" stroke="#2980b9" points="307.5,-438 307.5,-438 580.5,-438 580.5,-438 307.5,-438"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M320,-347C320,-347 567,-347 567,-347 573,-347 579,-353 579,-359 579,-359 579,-465 579,-465 579,-471 573,-477 567,-477 567,-477 320,-477 320,-477 314,-477 308,-471 308,-465 308,-465 308,-359 308,-359 308,-353 314,-347 320,-347"/>
+</g>
+<!-- mss_capitularies&#45;&gt;msparts -->
+<g id="edge4" class="edge">
+<title>mss_capitularies-&gt;msparts</title>
+<path fill="none" stroke="black" d="M387.81,-345.96C362.68,-320.49 331.11,-293.29 297.5,-276 265.54,-259.56 250.45,-269.26 213,-258.33"/>
+<polygon fill="none" stroke="black" points="212.61,-258.2 205.66,-260.12 201.21,-254.44 208.16,-252.52 212.61,-258.2"/>
+<text text-anchor="middle" x="354" y="-290" font-family="DejaVu Sans Mono" font-size="10.00">ms_id,</text>
+<text text-anchor="middle" x="354" y="-279" font-family="DejaVu Sans Mono" font-size="10.00">msp_part</text>
+</g>
+<!-- mss_capitularies&#45;&gt;capitularies -->
+<g id="edge3" class="edge">
+<title>mss_capitularies-&gt;capitularies</title>
+<path fill="none" stroke="black" d="M442.43,-345.74C440.63,-291.59 435.89,-212.76 423.5,-145 420.47,-128.42 415.65,-110.61 410.87,-94.94"/>
+<polygon fill="none" stroke="black" points="410.85,-94.88 405.23,-90.36 407.24,-83.44 412.86,-87.96 410.85,-94.88"/>
+<text text-anchor="middle" x="456" y="-199" font-family="DejaVu Sans Mono" font-size="10.00">cap_id</text>
+</g>
+<!-- mss_chapters -->
+<g id="node6" class="node">
+<title>mss_chapters</title>
+<path fill="#e7f2fa" stroke="transparent" d="M26,-317C26,-317 261,-317 261,-317 267,-317 273,-323 273,-329 273,-329 273,-495 273,-495 273,-501 267,-507 261,-507 261,-507 26,-507 26,-507 20,-507 14,-501 14,-495 14,-495 14,-329 14,-329 14,-323 20,-317 26,-317"/>
+<text text-anchor="start" x="40.5" y="-495" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="113.5" y="-495" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">mss_chapters</text>
+<text text-anchor="start" x="186.5" y="-495" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="19.5" y="-476" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="92.5" y="-476" font-family="DejaVu Sans Mono" font-size="10.00">according to &lt;body&gt;</text>
+<text text-anchor="start" x="207.5" y="-476" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="17.5" y="-458" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="155.5" y="-458" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="196.5" y="-458" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="17.5" y="-443" font-family="DejaVu Sans Mono" font-size="10.00">cap_id</text>
+<text text-anchor="start" x="155.5" y="-443" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="196.5" y="-443" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="17.5" y="-428" font-family="DejaVu Sans Mono" font-size="10.00">mscap_n</text>
+<text text-anchor="start" x="155.5" y="-428" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="196.5" y="-428" font-family="DejaVu Sans Mono" font-size="10.00">INTEGER</text>
+<text text-anchor="start" x="17.5" y="-413" font-family="DejaVu Sans Mono" font-size="10.00">chapter</text>
+<text text-anchor="start" x="155.5" y="-413" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="196.5" y="-413" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="17.5" y="-398" font-family="DejaVu Sans Mono" font-size="10.00">msp_part</text>
+<text text-anchor="start" x="155.5" y="-398" font-family="DejaVu Sans Mono" font-size="10.00">☆</text>
+<text text-anchor="start" x="196.5" y="-398" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="17.5" y="-383" font-family="DejaVu Sans Mono" font-size="10.00">locus</text>
+<text text-anchor="start" x="155.5" y="-383" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="196.5" y="-383" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="17.5" y="-368" font-family="DejaVu Sans Mono" font-size="10.00">locus_index</text>
+<text text-anchor="start" x="155.5" y="-368" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="196.5" y="-368" font-family="DejaVu Sans Mono" font-size="10.00">INTEGER</text>
+<text text-anchor="start" x="17.5" y="-353" font-family="DejaVu Sans Mono" font-size="10.00">locus_cooked</text>
+<text text-anchor="start" x="155.5" y="-353" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="196.5" y="-353" font-family="DejaVu Sans Mono" font-size="10.00">INTEGER</text>
+<text text-anchor="start" x="17.5" y="-338" font-family="DejaVu Sans Mono" font-size="10.00">transcribed</text>
+<text text-anchor="start" x="155.5" y="-338" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="196.5" y="-338" font-family="DejaVu Sans Mono" font-size="10.00">INTEGER</text>
+<text text-anchor="start" x="17.5" y="-323" font-family="DejaVu Sans Mono" font-size="10.00">xml</text>
+<text text-anchor="start" x="155.5" y="-323" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="196.5" y="-323" font-family="DejaVu Sans Mono" font-size="10.00">NULL</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="13.5,-487 13.5,-487 274.5,-487 274.5,-487 13.5,-487"/>
+<polygon fill="#2980b9" stroke="#2980b9" points="13.5,-468 13.5,-468 274.5,-468 274.5,-468 13.5,-468"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M26,-317C26,-317 261,-317 261,-317 267,-317 273,-323 273,-329 273,-329 273,-495 273,-495 273,-501 267,-507 261,-507 261,-507 26,-507 26,-507 20,-507 14,-501 14,-495 14,-495 14,-329 14,-329 14,-323 20,-317 26,-317"/>
+</g>
+<!-- mss_chapters&#45;&gt;msparts -->
+<g id="edge6" class="edge">
+<title>mss_chapters-&gt;msparts</title>
+<path fill="none" stroke="black" d="M126.62,-315.9C123.88,-300.46 121.1,-284.75 118.5,-270.14"/>
+<polygon fill="none" stroke="black" points="118.47,-269.98 113.49,-264.77 116.38,-258.16 121.36,-263.37 118.47,-269.98"/>
+<text text-anchor="middle" x="148" y="-290" font-family="DejaVu Sans Mono" font-size="10.00">ms_id,</text>
+<text text-anchor="middle" x="148" y="-279" font-family="DejaVu Sans Mono" font-size="10.00">msp_part</text>
+</g>
+<!-- mss_chapters&#45;&gt;chapters -->
+<g id="edge5" class="edge">
+<title>mss_chapters-&gt;chapters</title>
+<path fill="none" stroke="black" d="M222.41,-315.9C245.59,-287.96 269.51,-259.14 287.43,-237.54"/>
+<polygon fill="none" stroke="black" points="287.55,-237.39 288.3,-230.22 295.21,-228.15 294.46,-235.33 287.55,-237.39"/>
+<text text-anchor="middle" x="272" y="-290" font-family="DejaVu Sans Mono" font-size="10.00">cap_id,</text>
+<text text-anchor="middle" x="272" y="-279" font-family="DejaVu Sans Mono" font-size="10.00">chapter</text>
+</g>
+<!-- mss_chapters_text -->
+<g id="node7" class="node">
+<title>mss_chapters_text</title>
+<path fill="#e7f2fa" stroke="transparent" d="M32,-589C32,-589 255,-589 255,-589 261,-589 267,-595 267,-601 267,-601 267,-688 267,-688 267,-694 261,-700 255,-700 255,-700 32,-700 32,-700 26,-700 20,-694 20,-688 20,-688 20,-601 20,-601 20,-595 26,-589 32,-589"/>
+<text text-anchor="start" x="25.5" y="-687.5" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="98.5" y="-687.5" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">mss_chapters_text</text>
+<text text-anchor="start" x="201.5" y="-687.5" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="23.5" y="-669.5" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="140.5" y="-669.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="186.5" y="-669.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="23.5" y="-654.5" font-family="DejaVu Sans Mono" font-size="10.00">cap_id</text>
+<text text-anchor="start" x="140.5" y="-654.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="186.5" y="-654.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="23.5" y="-639.5" font-family="DejaVu Sans Mono" font-size="10.00">mscap_n</text>
+<text text-anchor="start" x="140.5" y="-639.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="186.5" y="-639.5" font-family="DejaVu Sans Mono" font-size="10.00">INTEGER</text>
+<text text-anchor="start" x="23.5" y="-624.5" font-family="DejaVu Sans Mono" font-size="10.00">chapter</text>
+<text text-anchor="start" x="140.5" y="-624.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="186.5" y="-624.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="23.5" y="-609.5" font-family="DejaVu Sans Mono" font-size="10.00">type</text>
+<text text-anchor="start" x="140.5" y="-609.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="186.5" y="-609.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="23.5" y="-594.5" font-family="DejaVu Sans Mono" font-size="10.00">text</text>
+<text text-anchor="start" x="140.5" y="-594.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="186.5" y="-594.5" font-family="DejaVu Sans Mono" font-size="10.00">TEXT</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="19.5,-679.5 19.5,-679.5 268.5,-679.5 268.5,-679.5 19.5,-679.5"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M32,-589C32,-589 255,-589 255,-589 261,-589 267,-595 267,-601 267,-601 267,-688 267,-688 267,-694 261,-700 255,-700 255,-700 32,-700 32,-700 26,-700 20,-694 20,-688 20,-688 20,-601 20,-601 20,-595 26,-589 32,-589"/>
+</g>
+<!-- mss_chapters_text&#45;&gt;mss_chapters -->
+<g id="edge7" class="edge">
+<title>mss_chapters_text-&gt;mss_chapters</title>
+<path fill="none" stroke="black" d="M143.5,-588C143.5,-567.58 143.5,-543.7 143.5,-520.26"/>
+<polygon fill="none" stroke="black" points="143.5,-520.07 139.5,-514.07 143.5,-508.07 147.5,-514.07 143.5,-520.07"/>
+<text text-anchor="middle" x="168" y="-562" font-family="DejaVu Sans Mono" font-size="10.00">ms_id,</text>
+<text text-anchor="middle" x="168" y="-551" font-family="DejaVu Sans Mono" font-size="10.00">cap_id,</text>
+<text text-anchor="middle" x="168" y="-540" font-family="DejaVu Sans Mono" font-size="10.00">mscap_n,</text>
+<text text-anchor="middle" x="168" y="-529" font-family="DejaVu Sans Mono" font-size="10.00">chapter</text>
+</g>
+</g>
+</svg></div>
+<figcaption>
+<p><span class="caption-text">Schema <em>capitularia</em></span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="schema-gis">
+<h2>Schema <em>gis:</em><a class="headerlink" href="#schema-gis" title="Link to this heading">¶</a></h2>
+<p>Note: the <cite>gis.geonames</cite> table and relatives contain standard hierarchies of place
+names, extracted from the geonames, dnb, and viaf databases.</p>
+<p>Note: the <cite>gis.geoplaces</cite> table and relatives contain a different, custom hierarchy of
+place names, which is the one displayed in the manuscript search box.  This hierarchy is
+extracted from the file <code class="file docutils literal notranslate"><span class="pre">mss/lists/capitularia_geo.xml</span></code>.  Unfortunately it is
+linked to manuscripts and not to manuscript parts.</p>
+<figure class="align-center" id="id2">
+<div align="center" class="pic align-center pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" viewBox="0.00 0.00 1021.00 474.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 474)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-474 1021,-474 1021,0 0,0"/>
+<!-- gis.mn_msparts_geonames -->
+<g id="node1" class="node">
+<title>gis.mn_msparts_geonames</title>
+<path fill="#b2df8a" stroke="transparent" d="M512,-362C512,-362 771,-362 771,-362 777,-362 783,-368 783,-374 783,-374 783,-431 783,-431 783,-437 777,-443 771,-443 771,-443 512,-443 512,-443 506,-443 500,-437 500,-431 500,-431 500,-374 500,-374 500,-368 506,-362 512,-362"/>
+<text text-anchor="start" x="505.5" y="-430.5" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="578.5" y="-430.5" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">gis.mn_msparts_geonames</text>
+<text text-anchor="start" x="717.5" y="-430.5" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="503.5" y="-412.5" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="647.5" y="-412.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="697.5" y="-412.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="503.5" y="-397.5" font-family="DejaVu Sans Mono" font-size="10.00">msp_part</text>
+<text text-anchor="start" x="647.5" y="-397.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="697.5" y="-397.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="503.5" y="-382.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+<text text-anchor="start" x="647.5" y="-382.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="697.5" y="-382.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="503.5" y="-367.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_source</text>
+<text text-anchor="start" x="647.5" y="-367.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="697.5" y="-367.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#33a02c" stroke="#33a02c" points="499.5,-422.5 499.5,-422.5 784.5,-422.5 784.5,-422.5 499.5,-422.5"/>
+<path fill="none" stroke="#33a02c" stroke-width="2" d="M512,-362C512,-362 771,-362 771,-362 777,-362 783,-368 783,-374 783,-374 783,-431 783,-431 783,-437 777,-443 771,-443 771,-443 512,-443 512,-443 506,-443 500,-437 500,-431 500,-431 500,-374 500,-374 500,-368 506,-362 512,-362"/>
+</g>
+<!-- gis.geonames -->
+<g id="node2" class="node">
+<title>gis.geonames</title>
+<path fill="#b2df8a" stroke="transparent" d="M292,-146C292,-146 485,-146 485,-146 491,-146 497,-152 497,-158 497,-158 497,-260 497,-260 497,-266 491,-272 485,-272 485,-272 292,-272 292,-272 286,-272 280,-266 280,-260 280,-260 280,-158 280,-158 280,-152 286,-146 292,-146"/>
+<text text-anchor="start" x="285.5" y="-260" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="358.5" y="-260" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">gis.geonames</text>
+<text text-anchor="start" x="431.5" y="-260" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="283.5" y="-242" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+<text text-anchor="start" x="394.5" y="-242" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="428.5" y="-242" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="283.5" y="-227" font-family="DejaVu Sans Mono" font-size="10.00">geo_source</text>
+<text text-anchor="start" x="394.5" y="-227" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="428.5" y="-227" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="283.5" y="-212" font-family="DejaVu Sans Mono" font-size="10.00">parent_id</text>
+<text text-anchor="start" x="394.5" y="-212" font-family="DejaVu Sans Mono" font-size="10.00">☆</text>
+<text text-anchor="start" x="428.5" y="-212" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="283.5" y="-197" font-family="DejaVu Sans Mono" font-size="10.00">geo_name</text>
+<text text-anchor="start" x="394.5" y="-197" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="428.5" y="-197" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="283.5" y="-182" font-family="DejaVu Sans Mono" font-size="10.00">geo_fcode</text>
+<text text-anchor="start" x="394.5" y="-182" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="428.5" y="-182" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="283.5" y="-167" font-family="DejaVu Sans Mono" font-size="10.00">geom</text>
+<text text-anchor="start" x="394.5" y="-167" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="428.5" y="-167" font-family="DejaVu Sans Mono" font-size="10.00">NULL</text>
+<text text-anchor="start" x="283.5" y="-152" font-family="DejaVu Sans Mono" font-size="10.00">blob</text>
+<text text-anchor="start" x="394.5" y="-152" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="428.5" y="-152" font-family="DejaVu Sans Mono" font-size="10.00">JSONB</text>
+<polygon fill="#33a02c" stroke="#33a02c" points="279.5,-252 279.5,-252 498.5,-252 498.5,-252 279.5,-252"/>
+<path fill="none" stroke="#33a02c" stroke-width="2" d="M292,-146C292,-146 485,-146 485,-146 491,-146 497,-152 497,-158 497,-158 497,-260 497,-260 497,-266 491,-272 485,-272 485,-272 292,-272 292,-272 286,-272 280,-266 280,-260 280,-260 280,-158 280,-158 280,-152 286,-146 292,-146"/>
+</g>
+<!-- gis.mn_msparts_geonames&#45;&gt;gis.geonames -->
+<g id="edge1" class="edge">
+<title>gis.mn_msparts_geonames-&gt;gis.geonames</title>
+<path fill="none" stroke="black" d="M587.85,-360.89C557.09,-337.61 517.61,-307.72 481.91,-280.71"/>
+<polygon fill="none" stroke="black" points="481.52,-280.41 474.33,-279.98 471.96,-273.17 479.15,-273.6 481.52,-280.41"/>
+<text text-anchor="middle" x="556" y="-305" font-family="DejaVu Sans Mono" font-size="10.00">geo_source,</text>
+<text text-anchor="middle" x="556" y="-294" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+</g>
+<!-- msparts -->
+<g id="node4" class="node">
+<title>msparts</title>
+<path fill="#e7f2fa" stroke="transparent" d="M814,-153.5C814,-153.5 977,-153.5 977,-153.5 983,-153.5 989,-159.5 989,-165.5 989,-165.5 989,-252.5 989,-252.5 989,-258.5 983,-264.5 977,-264.5 977,-264.5 814,-264.5 814,-264.5 808,-264.5 802,-258.5 802,-252.5 802,-252.5 802,-165.5 802,-165.5 802,-159.5 808,-153.5 814,-153.5"/>
+<text text-anchor="start" x="807.5" y="-252" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="880.5" y="-252" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">msparts</text>
+<text text-anchor="start" x="923.5" y="-252" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="805.5" y="-234" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="901.5" y="-234" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="921.5" y="-234" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="805.5" y="-219" font-family="DejaVu Sans Mono" font-size="10.00">msp_part</text>
+<text text-anchor="start" x="901.5" y="-219" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="921.5" y="-219" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="805.5" y="-204" font-family="DejaVu Sans Mono" font-size="10.00">locus_cooked</text>
+<text text-anchor="start" x="901.5" y="-204" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="921.5" y="-204" font-family="DejaVu Sans Mono" font-size="10.00">ARRAY</text>
+<text text-anchor="start" x="805.5" y="-189" font-family="DejaVu Sans Mono" font-size="10.00">date</text>
+<text text-anchor="start" x="901.5" y="-189" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="921.5" y="-189" font-family="DejaVu Sans Mono" font-size="10.00">INT4RANGE</text>
+<text text-anchor="start" x="805.5" y="-174" font-family="DejaVu Sans Mono" font-size="10.00">leaf</text>
+<text text-anchor="start" x="901.5" y="-174" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="921.5" y="-174" font-family="DejaVu Sans Mono" font-size="10.00">ARRAY</text>
+<text text-anchor="start" x="805.5" y="-159" font-family="DejaVu Sans Mono" font-size="10.00">written</text>
+<text text-anchor="start" x="901.5" y="-159" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="921.5" y="-159" font-family="DejaVu Sans Mono" font-size="10.00">ARRAY</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="801.5,-244 801.5,-244 990.5,-244 990.5,-244 801.5,-244"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M814,-153.5C814,-153.5 977,-153.5 977,-153.5 983,-153.5 989,-159.5 989,-165.5 989,-165.5 989,-252.5 989,-252.5 989,-258.5 983,-264.5 977,-264.5 977,-264.5 814,-264.5 814,-264.5 808,-264.5 802,-258.5 802,-252.5 802,-252.5 802,-165.5 802,-165.5 802,-159.5 808,-153.5 814,-153.5"/>
+</g>
+<!-- gis.mn_msparts_geonames&#45;&gt;msparts -->
+<g id="edge2" class="edge">
+<title>gis.mn_msparts_geonames-&gt;msparts</title>
+<path fill="none" stroke="black" d="M695.37,-360.89C729.2,-335.38 773.53,-301.96 811.87,-273.05"/>
+<polygon fill="none" stroke="black" points="811.9,-273.03 814.28,-266.23 821.48,-265.81 819.1,-272.61 811.9,-273.03"/>
+<text text-anchor="middle" x="808" y="-305" font-family="DejaVu Sans Mono" font-size="10.00">ms_id,</text>
+<text text-anchor="middle" x="808" y="-294" font-family="DejaVu Sans Mono" font-size="10.00">msp_part</text>
+</g>
+<!-- gis.geoplaces -->
+<g id="node3" class="node">
+<title>gis.geoplaces</title>
+<path fill="#b2df8a" stroke="transparent" d="M289,-23.5C289,-23.5 488,-23.5 488,-23.5 494,-23.5 500,-29.5 500,-35.5 500,-35.5 500,-62.5 500,-62.5 500,-68.5 494,-74.5 488,-74.5 488,-74.5 289,-74.5 289,-74.5 283,-74.5 277,-68.5 277,-62.5 277,-62.5 277,-35.5 277,-35.5 277,-29.5 283,-23.5 289,-23.5"/>
+<text text-anchor="start" x="282.5" y="-62" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="355.5" y="-62" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">gis.geoplaces</text>
+<text text-anchor="start" x="434.5" y="-62" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="280.5" y="-44" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+<text text-anchor="start" x="391.5" y="-44" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="428.5" y="-44" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="280.5" y="-29" font-family="DejaVu Sans Mono" font-size="10.00">parent_id</text>
+<text text-anchor="start" x="391.5" y="-29" font-family="DejaVu Sans Mono" font-size="10.00">☆</text>
+<text text-anchor="start" x="428.5" y="-29" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#33a02c" stroke="#33a02c" points="276.5,-54 276.5,-54 501.5,-54 501.5,-54 276.5,-54"/>
+<path fill="none" stroke="#33a02c" stroke-width="2" d="M289,-23.5C289,-23.5 488,-23.5 488,-23.5 494,-23.5 500,-29.5 500,-35.5 500,-35.5 500,-62.5 500,-62.5 500,-68.5 494,-74.5 488,-74.5 488,-74.5 289,-74.5 289,-74.5 283,-74.5 277,-68.5 277,-62.5 277,-62.5 277,-35.5 277,-35.5 277,-29.5 283,-23.5 289,-23.5"/>
+</g>
+<!-- gis.geonames&#45;&gt;gis.geoplaces -->
+<g id="edge3" class="edge">
+<title>gis.geonames-&gt;gis.geoplaces</title>
+<path fill="none" stroke="black" d="M388.5,-144.65C388.5,-125.49 388.5,-105.06 388.5,-88.09"/>
+<polygon fill="none" stroke="black" points="388.5,-87.88 384.5,-81.88 388.5,-75.88 392.5,-81.88 388.5,-87.88"/>
+<text text-anchor="middle" x="440" y="-119" font-family="DejaVu Sans Mono" font-size="10.00">parent_id-&gt;geo_id</text>
+</g>
+<!-- gis.geoplaces&#45;&gt;gis.geoplaces -->
+<g id="edge4" class="edge">
+<title>gis.geoplaces-&gt;gis.geoplaces</title>
+<path fill="none" stroke="black" d="M501.26,-59.92C512.12,-57.7 519,-54.06 519,-49 519,-46.15 516.82,-43.76 512.98,-41.81"/>
+<polygon fill="none" stroke="black" points="512.69,-41.72 505.77,-43.71 501.26,-38.08 508.19,-36.09 512.69,-41.72"/>
+<text text-anchor="middle" x="570.5" y="-46.5" font-family="DejaVu Sans Mono" font-size="10.00">parent_id-&gt;geo_id</text>
+</g>
+<!-- manuscripts -->
+<g id="node5" class="node">
+<title>manuscripts</title>
+<path fill="#e7f2fa" stroke="transparent" d="M727,-1C727,-1 914,-1 914,-1 920,-1 926,-7 926,-13 926,-13 926,-85 926,-85 926,-91 920,-97 914,-97 914,-97 727,-97 727,-97 721,-97 715,-91 715,-85 715,-85 715,-13 715,-13 715,-7 721,-1 727,-1"/>
+<text text-anchor="start" x="720.5" y="-85" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="793.5" y="-85" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">manuscripts</text>
+<text text-anchor="start" x="860.5" y="-85" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="718.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="820.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="855.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="718.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">title</text>
+<text text-anchor="start" x="820.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="855.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="718.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">filename</text>
+<text text-anchor="start" x="820.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="855.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="718.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">status</text>
+<text text-anchor="start" x="820.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="855.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="718.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">siglum</text>
+<text text-anchor="start" x="820.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="855.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="714.5,-77 714.5,-77 927.5,-77 927.5,-77 714.5,-77"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M727,-1C727,-1 914,-1 914,-1 920,-1 926,-7 926,-13 926,-13 926,-85 926,-85 926,-91 920,-97 914,-97 914,-97 727,-97 727,-97 721,-97 715,-91 715,-85 715,-85 715,-13 715,-13 715,-7 721,-1 727,-1"/>
+</g>
+<!-- msparts&#45;&gt;manuscripts -->
+<g id="edge5" class="edge">
+<title>msparts-&gt;manuscripts</title>
+<path fill="none" stroke="black" d="M869.06,-152.3C862.44,-138.34 855.31,-123.33 848.61,-109.21"/>
+<polygon fill="none" stroke="black" points="848.49,-108.97 842.3,-105.26 843.34,-98.13 849.53,-101.83 848.49,-108.97"/>
+<text text-anchor="middle" x="871" y="-119" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+</g>
+<!-- gis.geoareas -->
+<g id="node6" class="node">
+<title>gis.geoareas</title>
+<path fill="#b2df8a" stroke="transparent" d="M815,-332C815,-332 1008,-332 1008,-332 1014,-332 1020,-338 1020,-344 1020,-344 1020,-461 1020,-461 1020,-467 1014,-473 1008,-473 1008,-473 815,-473 815,-473 809,-473 803,-467 803,-461 803,-461 803,-344 803,-344 803,-338 809,-332 815,-332"/>
+<text text-anchor="start" x="808.5" y="-460.5" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="881.5" y="-460.5" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">gis.geoareas</text>
+<text text-anchor="start" x="954.5" y="-460.5" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="806.5" y="-442.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+<text text-anchor="start" x="893.5" y="-442.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="912.5" y="-442.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="806.5" y="-427.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_source</text>
+<text text-anchor="start" x="893.5" y="-427.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="912.5" y="-427.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="806.5" y="-412.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_name</text>
+<text text-anchor="start" x="893.5" y="-412.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="912.5" y="-412.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="806.5" y="-397.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_fcode</text>
+<text text-anchor="start" x="893.5" y="-397.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="912.5" y="-397.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="806.5" y="-382.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_color</text>
+<text text-anchor="start" x="893.5" y="-382.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="912.5" y="-382.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="806.5" y="-367.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_label_x</text>
+<text text-anchor="start" x="893.5" y="-367.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="912.5" y="-367.5" font-family="DejaVu Sans Mono" font-size="10.00">DOUBLE PRECISION</text>
+<text text-anchor="start" x="806.5" y="-352.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_label_y</text>
+<text text-anchor="start" x="893.5" y="-352.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="912.5" y="-352.5" font-family="DejaVu Sans Mono" font-size="10.00">DOUBLE PRECISION</text>
+<text text-anchor="start" x="806.5" y="-337.5" font-family="DejaVu Sans Mono" font-size="10.00">geom</text>
+<text text-anchor="start" x="893.5" y="-337.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="912.5" y="-337.5" font-family="DejaVu Sans Mono" font-size="10.00">NULL</text>
+<polygon fill="#33a02c" stroke="#33a02c" points="802.5,-452.5 802.5,-452.5 1021.5,-452.5 1021.5,-452.5 802.5,-452.5"/>
+<path fill="none" stroke="#33a02c" stroke-width="2" d="M815,-332C815,-332 1008,-332 1008,-332 1014,-332 1020,-338 1020,-344 1020,-344 1020,-461 1020,-461 1020,-467 1014,-473 1008,-473 1008,-473 815,-473 815,-473 809,-473 803,-467 803,-461 803,-461 803,-344 803,-344 803,-338 809,-332 815,-332"/>
+</g>
+<!-- gis.geoplaces_names -->
+<g id="node7" class="node">
+<title>gis.geoplaces_names</title>
+<path fill="#b2df8a" stroke="transparent" d="M13,-176C13,-176 248,-176 248,-176 254,-176 260,-182 260,-188 260,-188 260,-230 260,-230 260,-236 254,-242 248,-242 248,-242 13,-242 13,-242 7,-242 1,-236 1,-230 1,-230 1,-188 1,-188 1,-182 7,-176 13,-176"/>
+<text text-anchor="start" x="6.5" y="-230" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-230" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">gis.geoplaces_names</text>
+<text text-anchor="start" x="194.5" y="-230" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-212" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+<text text-anchor="start" x="130.5" y="-212" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="177.5" y="-212" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-197" font-family="DejaVu Sans Mono" font-size="10.00">geo_lang</text>
+<text text-anchor="start" x="130.5" y="-197" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="177.5" y="-197" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-182" font-family="DejaVu Sans Mono" font-size="10.00">geo_name</text>
+<text text-anchor="start" x="130.5" y="-182" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="177.5" y="-182" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#33a02c" stroke="#33a02c" points="0.5,-222 0.5,-222 261.5,-222 261.5,-222 0.5,-222"/>
+<path fill="none" stroke="#33a02c" stroke-width="2" d="M13,-176C13,-176 248,-176 248,-176 254,-176 260,-182 260,-188 260,-188 260,-230 260,-230 260,-236 254,-242 248,-242 248,-242 13,-242 13,-242 7,-242 1,-236 1,-230 1,-230 1,-188 1,-188 1,-182 7,-176 13,-176"/>
+</g>
+<!-- gis.geoplaces_names&#45;&gt;gis.geoplaces -->
+<g id="edge6" class="edge">
+<title>gis.geoplaces_names-&gt;gis.geoplaces</title>
+<path fill="none" stroke="black" d="M184.59,-174.88C229.22,-147.54 292.17,-108.99 336.29,-81.97"/>
+<polygon fill="none" stroke="black" points="336.56,-81.81 339.59,-75.26 346.8,-75.54 343.77,-82.08 336.56,-81.81"/>
+<text text-anchor="middle" x="294" y="-119" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+</g>
+<!-- gis.mn_mss_geoplaces -->
+<g id="node8" class="node">
+<title>gis.mn_mss_geoplaces</title>
+<path fill="#b2df8a" stroke="transparent" d="M529,-183.5C529,-183.5 770,-183.5 770,-183.5 776,-183.5 782,-189.5 782,-195.5 782,-195.5 782,-222.5 782,-222.5 782,-228.5 776,-234.5 770,-234.5 770,-234.5 529,-234.5 529,-234.5 523,-234.5 517,-228.5 517,-222.5 517,-222.5 517,-195.5 517,-195.5 517,-189.5 523,-183.5 529,-183.5"/>
+<text text-anchor="start" x="522.5" y="-222" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="595.5" y="-222" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">gis.mn_mss_geoplaces</text>
+<text text-anchor="start" x="716.5" y="-222" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="520.5" y="-204" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="643.5" y="-204" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="695.5" y="-204" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="520.5" y="-189" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+<text text-anchor="start" x="643.5" y="-189" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="695.5" y="-189" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#33a02c" stroke="#33a02c" points="516.5,-214 516.5,-214 783.5,-214 783.5,-214 516.5,-214"/>
+<path fill="none" stroke="#33a02c" stroke-width="2" d="M529,-183.5C529,-183.5 770,-183.5 770,-183.5 776,-183.5 782,-189.5 782,-195.5 782,-195.5 782,-222.5 782,-222.5 782,-228.5 776,-234.5 770,-234.5 770,-234.5 529,-234.5 529,-234.5 523,-234.5 517,-228.5 517,-222.5 517,-222.5 517,-195.5 517,-195.5 517,-189.5 523,-183.5 529,-183.5"/>
+</g>
+<!-- gis.mn_mss_geoplaces&#45;&gt;gis.geoplaces -->
+<g id="edge7" class="edge">
+<title>gis.mn_mss_geoplaces-&gt;gis.geoplaces</title>
+<path fill="none" stroke="black" d="M607.28,-182.44C561.98,-155.02 489.97,-111.43 441.04,-81.81"/>
+<polygon fill="none" stroke="black" points="440.93,-81.74 433.72,-82.05 430.66,-75.52 437.87,-75.21 440.93,-81.74"/>
+<text text-anchor="middle" x="529" y="-119" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+</g>
+<!-- gis.mn_mss_geoplaces&#45;&gt;manuscripts -->
+<g id="edge8" class="edge">
+<title>gis.mn_mss_geoplaces-&gt;manuscripts</title>
+<path fill="none" stroke="black" d="M677.35,-182.26C699.56,-161.75 731.47,-132.26 759.53,-106.34"/>
+<polygon fill="none" stroke="black" points="759.67,-106.2 761.37,-99.19 768.49,-98.06 766.79,-105.07 759.67,-106.2"/>
+<text text-anchor="middle" x="760" y="-119" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+</g>
+</g>
+</svg></div>
+<figcaption>
+<p><span class="caption-text">Schema <em>gis</em></span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="module-db">
+<span id="db-py"></span><h2>db.py<a class="headerlink" href="#module-db" title="Link to this heading">¶</a></h2>
+<p>This module contains the sqlalchemy classes that initialize the database structure.</p>
+<p>To create a new database: (must be database superuser)</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql
+</pre></div>
+</div>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">capitularia</span><span class="w"> </span><span class="k">PASSWORD</span><span class="w"> </span><span class="s1">&#39;&lt;password&gt;&#39;</span><span class="p">;</span>
+<span class="go">CREATE DATABASE capitularia OWNER capitularia;</span>
+
+<span class="go">\c capitularia</span>
+<span class="go">CREATE EXTENSION pg_trgm WITH SCHEMA public;</span>
+<span class="go">CREATE EXTENSION postgis WITH SCHEMA public;</span>
+<span class="go">CREATE SCHEMA capitularia AUTHORIZATION capitularia;</span>
+<span class="go">CREATE SCHEMA gis AUTHORIZATION capitularia;</span>
+<span class="go">ALTER DATABASE capitularia SET search_path = capitularia, gis, public;</span>
+<span class="go">\q</span>
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>rebuild_db
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="db.Capitularies">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Capitularies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.Capitularies" title="Link to this definition">¶</a></dt>
+<dd><p>All capitularies catalogued according to BK or Mordek.</p>
+<div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="219pt" height="68pt" viewBox="0.00 0.00 219.00 68.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 68)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-68 219,-68 219,0 0,0"/>
+<!-- capitularies -->
+<g id="node1" class="node">
+<title>capitularies</title>
+<path fill="#e7f2fa" stroke="transparent" d="M13,-1C13,-1 206,-1 206,-1 212,-1 218,-7 218,-13 218,-13 218,-55 218,-55 218,-61 212,-67 206,-67 206,-67 13,-67 13,-67 7,-67 1,-61 1,-55 1,-55 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="6.5" y="-55" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-55" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">capitularies</text>
+<text text-anchor="start" x="152.5" y="-55" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">cap_id</text>
+<text text-anchor="start" x="97.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="134.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">title</text>
+<text text-anchor="start" x="97.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="134.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">date</text>
+<text text-anchor="start" x="97.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="134.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">INT4RANGE</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="0.5,-47 0.5,-47 219.5,-47 219.5,-47 0.5,-47"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M13,-1C13,-1 206,-1 206,-1 212,-1 218,-7 218,-13 218,-13 218,-55 218,-55 218,-61 212,-67 206,-67 206,-67 13,-67 13,-67 7,-67 1,-61 1,-55 1,-55 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.Capitularies.cap_id">
+<span class="sig-name descname"><span class="pre">cap_id</span></span><a class="headerlink" href="#db.Capitularies.cap_id" title="Link to this definition">¶</a></dt>
+<dd><p>The capitulary number, eg. “BK.42”</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.Capitularies.title">
+<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#db.Capitularies.title" title="Link to this definition">¶</a></dt>
+<dd><p>The capitulary title assigned by BK.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.Chapters">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Chapters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.Chapters" title="Link to this definition">¶</a></dt>
+<dd><p>All chapters catalogued according to BK or Mordek.</p>
+<div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="195pt" height="53pt" viewBox="0.00 0.00 195.00 53.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 53)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-53 195,-53 195,0 0,0"/>
+<!-- chapters -->
+<g id="node1" class="node">
+<title>chapters</title>
+<path fill="#e7f2fa" stroke="transparent" d="M13,-1C13,-1 182,-1 182,-1 188,-1 194,-7 194,-13 194,-13 194,-40 194,-40 194,-46 188,-52 182,-52 182,-52 13,-52 13,-52 7,-52 1,-46 1,-40 1,-40 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="6.5" y="-39.5" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-39.5" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">chapters</text>
+<text text-anchor="start" x="128.5" y="-39.5" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">cap_id</text>
+<text text-anchor="start" x="94.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="126.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">chapter</text>
+<text text-anchor="start" x="94.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="126.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="0.5,-31.5 0.5,-31.5 195.5,-31.5 195.5,-31.5 0.5,-31.5"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M13,-1C13,-1 182,-1 182,-1 188,-1 194,-7 194,-13 194,-13 194,-40 194,-40 194,-46 188,-52 182,-52 182,-52 13,-52 13,-52 7,-52 1,-46 1,-40 1,-40 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.Chapters.chapter">
+<span class="sig-name descname"><span class="pre">chapter</span></span><a class="headerlink" href="#db.Chapters.chapter" title="Link to this definition">¶</a></dt>
+<dd><p>The chapter number from 1 to N.  Also: 1_inscription, etc.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.GeoAreas">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GeoAreas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.GeoAreas" title="Link to this definition">¶</a></dt>
+<dd><p>Custom defined geographic areas</p>
+<div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="219pt" height="143pt" viewBox="0.00 0.00 219.00 143.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 143)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-143 219,-143 219,0 0,0"/>
+<!-- gis.geoareas -->
+<g id="node1" class="node">
+<title>gis.geoareas</title>
+<path fill="#b2df8a" stroke="transparent" d="M13,-1C13,-1 206,-1 206,-1 212,-1 218,-7 218,-13 218,-13 218,-130 218,-130 218,-136 212,-142 206,-142 206,-142 13,-142 13,-142 7,-142 1,-136 1,-130 1,-130 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="6.5" y="-129.5" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-129.5" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">gis.geoareas</text>
+<text text-anchor="start" x="152.5" y="-129.5" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-111.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+<text text-anchor="start" x="91.5" y="-111.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="110.5" y="-111.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-96.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_source</text>
+<text text-anchor="start" x="91.5" y="-96.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="110.5" y="-96.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-81.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_name</text>
+<text text-anchor="start" x="91.5" y="-81.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="110.5" y="-81.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-66.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_fcode</text>
+<text text-anchor="start" x="91.5" y="-66.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="110.5" y="-66.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_color</text>
+<text text-anchor="start" x="91.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="110.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_label_x</text>
+<text text-anchor="start" x="91.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="110.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">DOUBLE PRECISION</text>
+<text text-anchor="start" x="4.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_label_y</text>
+<text text-anchor="start" x="91.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="110.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">DOUBLE PRECISION</text>
+<text text-anchor="start" x="4.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">geom</text>
+<text text-anchor="start" x="91.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="110.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">NULL</text>
+<polygon fill="#33a02c" stroke="#33a02c" points="0.5,-121.5 0.5,-121.5 219.5,-121.5 219.5,-121.5 0.5,-121.5"/>
+<path fill="none" stroke="#33a02c" stroke-width="2" d="M13,-1C13,-1 206,-1 206,-1 212,-1 218,-7 218,-13 218,-13 218,-130 218,-130 218,-136 212,-142 206,-142 206,-142 13,-142 13,-142 7,-142 1,-136 1,-130 1,-130 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.GeoPlaces">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GeoPlaces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.GeoPlaces" title="Link to this definition">¶</a></dt>
+<dd><p>Data extracted from capitularia_geo.xml</p>
+<div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="225pt" height="53pt" viewBox="0.00 0.00 225.00 53.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 53)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-53 225,-53 225,0 0,0"/>
+<!-- gis.geoplaces -->
+<g id="node1" class="node">
+<title>gis.geoplaces</title>
+<path fill="#b2df8a" stroke="transparent" d="M13,-1C13,-1 212,-1 212,-1 218,-1 224,-7 224,-13 224,-13 224,-40 224,-40 224,-46 218,-52 212,-52 212,-52 13,-52 13,-52 7,-52 1,-46 1,-40 1,-40 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="6.5" y="-39.5" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-39.5" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">gis.geoplaces</text>
+<text text-anchor="start" x="158.5" y="-39.5" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+<text text-anchor="start" x="115.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="152.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">parent_id</text>
+<text text-anchor="start" x="115.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">☆</text>
+<text text-anchor="start" x="152.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#33a02c" stroke="#33a02c" points="0.5,-31.5 0.5,-31.5 225.5,-31.5 225.5,-31.5 0.5,-31.5"/>
+<path fill="none" stroke="#33a02c" stroke-width="2" d="M13,-1C13,-1 212,-1 212,-1 218,-1 224,-7 224,-13 224,-13 224,-40 224,-40 224,-46 218,-52 212,-52 212,-52 13,-52 13,-52 7,-52 1,-46 1,-40 1,-40 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.GeoPlacesNames">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GeoPlacesNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.GeoPlacesNames" title="Link to this definition">¶</a></dt>
+<dd><p>Data extracted from capitularia_geo.xml</p>
+<div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="261pt" height="68pt" viewBox="0.00 0.00 261.00 68.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 68)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-68 261,-68 261,0 0,0"/>
+<!-- gis.geoplaces_names -->
+<g id="node1" class="node">
+<title>gis.geoplaces_names</title>
+<path fill="#b2df8a" stroke="transparent" d="M13,-1C13,-1 248,-1 248,-1 254,-1 260,-7 260,-13 260,-13 260,-55 260,-55 260,-61 254,-67 248,-67 248,-67 13,-67 13,-67 7,-67 1,-61 1,-55 1,-55 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="6.5" y="-55" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-55" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">gis.geoplaces_names</text>
+<text text-anchor="start" x="194.5" y="-55" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+<text text-anchor="start" x="130.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="177.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">geo_lang</text>
+<text text-anchor="start" x="130.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="177.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">geo_name</text>
+<text text-anchor="start" x="130.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="177.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#33a02c" stroke="#33a02c" points="0.5,-47 0.5,-47 261.5,-47 261.5,-47 0.5,-47"/>
+<path fill="none" stroke="#33a02c" stroke-width="2" d="M13,-1C13,-1 248,-1 248,-1 254,-1 260,-7 260,-13 260,-13 260,-55 260,-55 260,-61 254,-67 248,-67 248,-67 13,-67 13,-67 7,-67 1,-61 1,-55 1,-55 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.Geonames">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Geonames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.Geonames" title="Link to this definition">¶</a></dt>
+<dd><p>Data scraped from geonames.org et al. and cached here.</p>
+<div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="219pt" height="128pt" viewBox="0.00 0.00 219.00 128.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 128)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-128 219,-128 219,0 0,0"/>
+<!-- gis.geonames -->
+<g id="node1" class="node">
+<title>gis.geonames</title>
+<path fill="#b2df8a" stroke="transparent" d="M13,-1C13,-1 206,-1 206,-1 212,-1 218,-7 218,-13 218,-13 218,-115 218,-115 218,-121 212,-127 206,-127 206,-127 13,-127 13,-127 7,-127 1,-121 1,-115 1,-115 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="6.5" y="-115" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-115" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">gis.geonames</text>
+<text text-anchor="start" x="152.5" y="-115" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-97" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+<text text-anchor="start" x="115.5" y="-97" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="149.5" y="-97" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-82" font-family="DejaVu Sans Mono" font-size="10.00">geo_source</text>
+<text text-anchor="start" x="115.5" y="-82" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="149.5" y="-82" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">parent_id</text>
+<text text-anchor="start" x="115.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">☆</text>
+<text text-anchor="start" x="149.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">geo_name</text>
+<text text-anchor="start" x="115.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="149.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">geo_fcode</text>
+<text text-anchor="start" x="115.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="149.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">geom</text>
+<text text-anchor="start" x="115.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="149.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">NULL</text>
+<text text-anchor="start" x="4.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">blob</text>
+<text text-anchor="start" x="115.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="149.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">JSONB</text>
+<polygon fill="#33a02c" stroke="#33a02c" points="0.5,-107 0.5,-107 219.5,-107 219.5,-107 0.5,-107"/>
+<path fill="none" stroke="#33a02c" stroke-width="2" d="M13,-1C13,-1 206,-1 206,-1 212,-1 218,-7 218,-13 218,-13 218,-115 218,-115 218,-121 212,-127 206,-127 206,-127 13,-127 13,-127 7,-127 1,-121 1,-115 1,-115 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.Manuscripts">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Manuscripts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.Manuscripts" title="Link to this definition">¶</a></dt>
+<dd><div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="213pt" height="98pt" viewBox="0.00 0.00 213.00 98.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 98)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-98 213,-98 213,0 0,0"/>
+<!-- manuscripts -->
+<g id="node1" class="node">
+<title>manuscripts</title>
+<path fill="#e7f2fa" stroke="transparent" d="M13,-1C13,-1 200,-1 200,-1 206,-1 212,-7 212,-13 212,-13 212,-85 212,-85 212,-91 206,-97 200,-97 200,-97 13,-97 13,-97 7,-97 1,-91 1,-85 1,-85 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="6.5" y="-85" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-85" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">manuscripts</text>
+<text text-anchor="start" x="146.5" y="-85" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="106.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="141.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">title</text>
+<text text-anchor="start" x="106.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="141.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">filename</text>
+<text text-anchor="start" x="106.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="141.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">status</text>
+<text text-anchor="start" x="106.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="141.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">siglum</text>
+<text text-anchor="start" x="106.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="141.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="0.5,-77 0.5,-77 213.5,-77 213.5,-77 0.5,-77"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M13,-1C13,-1 200,-1 200,-1 206,-1 212,-7 212,-13 212,-13 212,-85 212,-85 212,-91 206,-97 200,-97 200,-97 13,-97 13,-97 7,-97 1,-91 1,-85 1,-85 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.Manuscripts.filename">
+<span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#db.Manuscripts.filename" title="Link to this definition">¶</a></dt>
+<dd><p>The filename of the TEI file containing the transcription of the
+manuscript.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.Manuscripts.ms_id">
+<span class="sig-name descname"><span class="pre">ms_id</span></span><a class="headerlink" href="#db.Manuscripts.ms_id" title="Link to this definition">¶</a></dt>
+<dd><p>The manuscript id assigned by the Capitularia project.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.Manuscripts.status">
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#db.Manuscripts.status" title="Link to this definition">¶</a></dt>
+<dd><p>The Wordpress publication status: either ‘publish’ or ‘private’</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.Manuscripts.title">
+<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#db.Manuscripts.title" title="Link to this definition">¶</a></dt>
+<dd><p>The official title of the manuscript.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.MnManuscriptsGeoPlaces">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MnManuscriptsGeoPlaces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.MnManuscriptsGeoPlaces" title="Link to this definition">¶</a></dt>
+<dd><p>The M:N relationship between manuscripts and geoplaces</p>
+<div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="267pt" height="53pt" viewBox="0.00 0.00 267.00 53.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 53)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-53 267,-53 267,0 0,0"/>
+<!-- gis.mn_mss_geoplaces -->
+<g id="node1" class="node">
+<title>gis.mn_mss_geoplaces</title>
+<path fill="#b2df8a" stroke="transparent" d="M13,-1C13,-1 254,-1 254,-1 260,-1 266,-7 266,-13 266,-13 266,-40 266,-40 266,-46 260,-52 254,-52 254,-52 13,-52 13,-52 7,-52 1,-46 1,-40 1,-40 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="6.5" y="-39.5" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-39.5" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">gis.mn_mss_geoplaces</text>
+<text text-anchor="start" x="200.5" y="-39.5" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="127.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="179.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+<text text-anchor="start" x="127.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="179.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#33a02c" stroke="#33a02c" points="0.5,-31.5 0.5,-31.5 267.5,-31.5 267.5,-31.5 0.5,-31.5"/>
+<path fill="none" stroke="#33a02c" stroke-width="2" d="M13,-1C13,-1 254,-1 254,-1 260,-1 266,-7 266,-13 266,-13 266,-40 266,-40 266,-46 260,-52 254,-52 254,-52 13,-52 13,-52 7,-52 1,-46 1,-40 1,-40 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.MnMsPartsGeonames">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MnMsPartsGeonames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.MnMsPartsGeonames" title="Link to this definition">¶</a></dt>
+<dd><p>The M:N relationship between msparts and geonames</p>
+<div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="285pt" height="83pt" viewBox="0.00 0.00 285.00 83.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 83)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-83 285,-83 285,0 0,0"/>
+<!-- gis.mn_msparts_geonames -->
+<g id="node1" class="node">
+<title>gis.mn_msparts_geonames</title>
+<path fill="#b2df8a" stroke="transparent" d="M13,-1C13,-1 272,-1 272,-1 278,-1 284,-7 284,-13 284,-13 284,-70 284,-70 284,-76 278,-82 272,-82 272,-82 13,-82 13,-82 7,-82 1,-76 1,-70 1,-70 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="6.5" y="-69.5" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-69.5" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">gis.mn_msparts_geonames</text>
+<text text-anchor="start" x="218.5" y="-69.5" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="148.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="198.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">msp_part</text>
+<text text-anchor="start" x="148.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="198.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_id</text>
+<text text-anchor="start" x="148.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="198.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">geo_source</text>
+<text text-anchor="start" x="148.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="198.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<polygon fill="#33a02c" stroke="#33a02c" points="0.5,-61.5 0.5,-61.5 285.5,-61.5 285.5,-61.5 0.5,-61.5"/>
+<path fill="none" stroke="#33a02c" stroke-width="2" d="M13,-1C13,-1 272,-1 272,-1 278,-1 284,-7 284,-13 284,-13 284,-70 284,-70 284,-76 278,-82 272,-82 272,-82 13,-82 13,-82 7,-82 1,-76 1,-70 1,-70 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.MsParts">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MsParts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.MsParts" title="Link to this definition">¶</a></dt>
+<dd><p>The parts of a manuscript</p>
+<div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="189pt" height="113pt" viewBox="0.00 0.00 189.00 113.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 113)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-113 189,-113 189,0 0,0"/>
+<!-- msparts -->
+<g id="node1" class="node">
+<title>msparts</title>
+<path fill="#e7f2fa" stroke="transparent" d="M13,-1C13,-1 176,-1 176,-1 182,-1 188,-7 188,-13 188,-13 188,-100 188,-100 188,-106 182,-112 176,-112 176,-112 13,-112 13,-112 7,-112 1,-106 1,-100 1,-100 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="6.5" y="-99.5" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-99.5" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">msparts</text>
+<text text-anchor="start" x="122.5" y="-99.5" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-81.5" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="100.5" y="-81.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="120.5" y="-81.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-66.5" font-family="DejaVu Sans Mono" font-size="10.00">msp_part</text>
+<text text-anchor="start" x="100.5" y="-66.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="120.5" y="-66.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">locus_cooked</text>
+<text text-anchor="start" x="100.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="120.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">ARRAY</text>
+<text text-anchor="start" x="4.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">date</text>
+<text text-anchor="start" x="100.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="120.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">INT4RANGE</text>
+<text text-anchor="start" x="4.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">leaf</text>
+<text text-anchor="start" x="100.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="120.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">ARRAY</text>
+<text text-anchor="start" x="4.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">written</text>
+<text text-anchor="start" x="100.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="120.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">ARRAY</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="0.5,-91.5 0.5,-91.5 189.5,-91.5 189.5,-91.5 0.5,-91.5"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M13,-1C13,-1 176,-1 176,-1 182,-1 188,-7 188,-13 188,-13 188,-100 188,-100 188,-106 182,-112 176,-112 176,-112 13,-112 13,-112 7,-112 1,-106 1,-100 1,-100 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MsParts.date">
+<span class="sig-name descname"><span class="pre">date</span></span><a class="headerlink" href="#db.MsParts.date" title="Link to this definition">¶</a></dt>
+<dd><p>When did the manuscript part originate? Range of years.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MsParts.leaf">
+<span class="sig-name descname"><span class="pre">leaf</span></span><a class="headerlink" href="#db.MsParts.leaf" title="Link to this definition">¶</a></dt>
+<dd><p>Size of the leaf.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MsParts.locus_cooked">
+<span class="sig-name descname"><span class="pre">locus_cooked</span></span><a class="headerlink" href="#db.MsParts.locus_cooked" title="Link to this definition">¶</a></dt>
+<dd><p>Ranges of cooked loci.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MsParts.msp_part">
+<span class="sig-name descname"><span class="pre">msp_part</span></span><a class="headerlink" href="#db.MsParts.msp_part" title="Link to this definition">¶</a></dt>
+<dd><p>The official designation of the manuscript part.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MsParts.written">
+<span class="sig-name descname"><span class="pre">written</span></span><a class="headerlink" href="#db.MsParts.written" title="Link to this definition">¶</a></dt>
+<dd><p>Size of the written area.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.MssCapitularies">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MssCapitularies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.MssCapitularies" title="Link to this definition">¶</a></dt>
+<dd><p>A capitulary in a manuscript according to &lt;msDesc&gt;.</p>
+<p>This table also contains capitularies that are not yet transcribed.</p>
+<p>A finer granularity (chapters instead of capitularies) can be found in the
+<a class="reference internal" href="#db.MssChapters" title="db.MssChapters"><code class="xref py py-class docutils literal notranslate"><span class="pre">MssChapters</span></code></a> table, albeit only already transcribed ones.</p>
+<div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="273pt" height="132pt" viewBox="0.00 0.00 273.00 132.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 132)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-132 273,-132 273,0 0,0"/>
+<!-- mss_capitularies -->
+<g id="node1" class="node">
+<title>mss_capitularies</title>
+<path fill="#e7f2fa" stroke="transparent" d="M13,-1C13,-1 260,-1 260,-1 266,-1 272,-7 272,-13 272,-13 272,-119 272,-119 272,-125 266,-131 260,-131 260,-131 13,-131 13,-131 7,-131 1,-125 1,-119 1,-119 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="21.5" y="-119" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="94.5" y="-119" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">mss_capitularies</text>
+<text text-anchor="start" x="191.5" y="-119" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="6.5" y="-100" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-100" font-family="DejaVu Sans Mono" font-size="10.00">according to &lt;msDesc&gt;</text>
+<text text-anchor="start" x="206.5" y="-100" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-82" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="148.5" y="-82" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="192.5" y="-82" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">cap_id</text>
+<text text-anchor="start" x="148.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="192.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">mscap_n</text>
+<text text-anchor="start" x="148.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="192.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">INTEGER</text>
+<text text-anchor="start" x="4.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">msp_part</text>
+<text text-anchor="start" x="148.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">☆</text>
+<text text-anchor="start" x="192.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">locus</text>
+<text text-anchor="start" x="148.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="192.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">locus_cooked</text>
+<text text-anchor="start" x="148.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="192.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">ARRAY</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="0.5,-111 0.5,-111 273.5,-111 273.5,-111 0.5,-111"/>
+<polygon fill="#2980b9" stroke="#2980b9" points="0.5,-92 0.5,-92 273.5,-92 273.5,-92 0.5,-92"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M13,-1C13,-1 260,-1 260,-1 266,-1 272,-7 272,-13 272,-13 272,-119 272,-119 272,-125 266,-131 260,-131 260,-131 13,-131 13,-131 7,-131 1,-125 1,-119 1,-119 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssCapitularies.locus">
+<span class="sig-name descname"><span class="pre">locus</span></span><a class="headerlink" href="#db.MssCapitularies.locus" title="Link to this definition">¶</a></dt>
+<dd><p>The locus of this capitulary instance in the ms as recorded
+by the editor, eg. 42ra-45vb.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssCapitularies.locus_cooked">
+<span class="sig-name descname"><span class="pre">locus_cooked</span></span><a class="headerlink" href="#db.MssCapitularies.locus_cooked" title="Link to this definition">¶</a></dt>
+<dd><p>Ranges of cooked loci.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssCapitularies.mscap_n">
+<span class="sig-name descname"><span class="pre">mscap_n</span></span><a class="headerlink" href="#db.MssCapitularies.mscap_n" title="Link to this definition">¶</a></dt>
+<dd><p>The n_th occurence of the capitulary in the manuscript.  Default is 1.</p>
+<p>Since msItem does not contain milestones, this value is inferred by counting
+the number of preceding loci that contain this capitulary.</p>
+<p>N.B.: The value in the mss_chapters table is found in a different way.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssCapitularies.msp_part">
+<span class="sig-name descname"><span class="pre">msp_part</span></span><a class="headerlink" href="#db.MssCapitularies.msp_part" title="Link to this definition">¶</a></dt>
+<dd><p>The official designation of the manuscript part.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.MssChapters">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MssChapters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.MssChapters" title="Link to this definition">¶</a></dt>
+<dd><p>A chapter in a manuscript according to &lt;body&gt;.</p>
+<p>This table contains only chapters that were already transcribed.</p>
+<p>Note: The table <a class="reference internal" href="#db.MssCapitularies" title="db.MssCapitularies"><code class="xref py py-class docutils literal notranslate"><span class="pre">MssCapitularies</span></code></a> relates manuscripts to
+capitularies yet untranscribed.</p>
+<div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="261pt" height="192pt" viewBox="0.00 0.00 261.00 192.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 192)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-192 261,-192 261,0 0,0"/>
+<!-- mss_chapters -->
+<g id="node1" class="node">
+<title>mss_chapters</title>
+<path fill="#e7f2fa" stroke="transparent" d="M13,-1C13,-1 248,-1 248,-1 254,-1 260,-7 260,-13 260,-13 260,-179 260,-179 260,-185 254,-191 248,-191 248,-191 13,-191 13,-191 7,-191 1,-185 1,-179 1,-179 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="27.5" y="-179" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="100.5" y="-179" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">mss_chapters</text>
+<text text-anchor="start" x="173.5" y="-179" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="6.5" y="-160" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-160" font-family="DejaVu Sans Mono" font-size="10.00">according to &lt;body&gt;</text>
+<text text-anchor="start" x="194.5" y="-160" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-142" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="142.5" y="-142" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="183.5" y="-142" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-127" font-family="DejaVu Sans Mono" font-size="10.00">cap_id</text>
+<text text-anchor="start" x="142.5" y="-127" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="183.5" y="-127" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-112" font-family="DejaVu Sans Mono" font-size="10.00">mscap_n</text>
+<text text-anchor="start" x="142.5" y="-112" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="183.5" y="-112" font-family="DejaVu Sans Mono" font-size="10.00">INTEGER</text>
+<text text-anchor="start" x="4.5" y="-97" font-family="DejaVu Sans Mono" font-size="10.00">chapter</text>
+<text text-anchor="start" x="142.5" y="-97" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="183.5" y="-97" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-82" font-family="DejaVu Sans Mono" font-size="10.00">msp_part</text>
+<text text-anchor="start" x="142.5" y="-82" font-family="DejaVu Sans Mono" font-size="10.00">☆</text>
+<text text-anchor="start" x="183.5" y="-82" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">locus</text>
+<text text-anchor="start" x="142.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="183.5" y="-67" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">locus_index</text>
+<text text-anchor="start" x="142.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="183.5" y="-52" font-family="DejaVu Sans Mono" font-size="10.00">INTEGER</text>
+<text text-anchor="start" x="4.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">locus_cooked</text>
+<text text-anchor="start" x="142.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="183.5" y="-37" font-family="DejaVu Sans Mono" font-size="10.00">INTEGER</text>
+<text text-anchor="start" x="4.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">transcribed</text>
+<text text-anchor="start" x="142.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="183.5" y="-22" font-family="DejaVu Sans Mono" font-size="10.00">INTEGER</text>
+<text text-anchor="start" x="4.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">xml</text>
+<text text-anchor="start" x="142.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="183.5" y="-7" font-family="DejaVu Sans Mono" font-size="10.00">NULL</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="0.5,-171 0.5,-171 261.5,-171 261.5,-171 0.5,-171"/>
+<polygon fill="#2980b9" stroke="#2980b9" points="0.5,-152 0.5,-152 261.5,-152 261.5,-152 0.5,-152"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M13,-1C13,-1 248,-1 248,-1 254,-1 260,-7 260,-13 260,-13 260,-179 260,-179 260,-185 254,-191 248,-191 248,-191 13,-191 13,-191 7,-191 1,-185 1,-179 1,-179 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssChapters.locus">
+<span class="sig-name descname"><span class="pre">locus</span></span><a class="headerlink" href="#db.MssChapters.locus" title="Link to this definition">¶</a></dt>
+<dd><p>The locus of the chapter in the manuscript.
+As recorded by the editor, eg. 42ra</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssChapters.locus_cooked">
+<span class="sig-name descname"><span class="pre">locus_cooked</span></span><a class="headerlink" href="#db.MssChapters.locus_cooked" title="Link to this definition">¶</a></dt>
+<dd><p>The cooked locus. Locus transformed to a sortable integer.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssChapters.locus_index">
+<span class="sig-name descname"><span class="pre">locus_index</span></span><a class="headerlink" href="#db.MssChapters.locus_index" title="Link to this definition">¶</a></dt>
+<dd><p>The index at the locus, eg. the ‘1’ in 42ra-1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssChapters.mscap_n">
+<span class="sig-name descname"><span class="pre">mscap_n</span></span><a class="headerlink" href="#db.MssChapters.mscap_n" title="Link to this definition">¶</a></dt>
+<dd><p>This chapter was found in the n_th occurence of the capitulary in the
+manuscript.  Default is 1.</p>
+<p>The value is read from the milestone, eg.:</p>
+<blockquote>
+<div><p>&lt;milestone unit=’capitulare’ n=’BK.139_2’ /&gt;</p>
+</div></blockquote>
+<p>marks the second occurence of capitulary 139 in this manuscript.  All
+chapters of BK.139 following this milestone get a value of 2 in this field.</p>
+<p>N.B.: The value in the mss_capitularies table is found in a different way.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssChapters.msp_part">
+<span class="sig-name descname"><span class="pre">msp_part</span></span><a class="headerlink" href="#db.MssChapters.msp_part" title="Link to this definition">¶</a></dt>
+<dd><p>The official designation of the manuscript part.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssChapters.transcribed">
+<span class="sig-name descname"><span class="pre">transcribed</span></span><a class="headerlink" href="#db.MssChapters.transcribed" title="Link to this definition">¶</a></dt>
+<dd><p>Is this chapter already transcribed? 0 == no, 1 == partially, 2 == completed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssChapters.xml">
+<span class="sig-name descname"><span class="pre">xml</span></span><a class="headerlink" href="#db.MssChapters.xml" title="Link to this definition">¶</a></dt>
+<dd><p>The XML text of the chapter.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.MssChaptersText">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MssChaptersText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.MssChaptersText" title="Link to this definition">¶</a></dt>
+<dd><p>Various kinds of preprocessed texts extracted from the chapter.</p>
+<p>There may be more than one text extracted from the same chapter: the original
+hand and later corrector hands.</p>
+<div align="None" class="pic align-None pic-format-text-xml pic-language-sauml">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="249pt" height="113pt" viewBox="0.00 0.00 249.00 113.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(0 113)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="0,0 0,-113 249,-113 249,0 0,0"/>
+<!-- mss_chapters_text -->
+<g id="node1" class="node">
+<title>mss_chapters_text</title>
+<path fill="#e7f2fa" stroke="transparent" d="M13,-1C13,-1 236,-1 236,-1 242,-1 248,-7 248,-13 248,-13 248,-100 248,-100 248,-106 242,-112 236,-112 236,-112 13,-112 13,-112 7,-112 1,-106 1,-100 1,-100 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+<text text-anchor="start" x="6.5" y="-99.5" font-family="DejaVu Sans Mono" font-size="10.00">            </text>
+<text text-anchor="start" x="79.5" y="-99.5" font-family="DejaVu Sans Mono" font-weight="bold" font-size="10.00">mss_chapters_text</text>
+<text text-anchor="start" x="182.5" y="-99.5" font-family="DejaVu Sans Mono" font-size="10.00">          </text>
+<text text-anchor="start" x="4.5" y="-81.5" font-family="DejaVu Sans Mono" font-size="10.00">ms_id</text>
+<text text-anchor="start" x="121.5" y="-81.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="167.5" y="-81.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-66.5" font-family="DejaVu Sans Mono" font-size="10.00">cap_id</text>
+<text text-anchor="start" x="121.5" y="-66.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="167.5" y="-66.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">mscap_n</text>
+<text text-anchor="start" x="121.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="167.5" y="-51.5" font-family="DejaVu Sans Mono" font-size="10.00">INTEGER</text>
+<text text-anchor="start" x="4.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">chapter</text>
+<text text-anchor="start" x="121.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="167.5" y="-36.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">type</text>
+<text text-anchor="start" x="121.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">★</text>
+<text text-anchor="start" x="167.5" y="-21.5" font-family="DejaVu Sans Mono" font-size="10.00">VARCHAR</text>
+<text text-anchor="start" x="4.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">text</text>
+<text text-anchor="start" x="121.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">◦</text>
+<text text-anchor="start" x="167.5" y="-6.5" font-family="DejaVu Sans Mono" font-size="10.00">TEXT</text>
+<polygon fill="#2980b9" stroke="#2980b9" points="0.5,-91.5 0.5,-91.5 249.5,-91.5 249.5,-91.5 0.5,-91.5"/>
+<path fill="none" stroke="#2980b9" stroke-width="2" d="M13,-1C13,-1 236,-1 236,-1 242,-1 248,-7 248,-13 248,-13 248,-100 248,-100 248,-106 242,-112 236,-112 236,-112 13,-112 13,-112 7,-112 1,-106 1,-100 1,-100 1,-13 1,-13 1,-7 7,-1 13,-1"/>
+</g>
+</g>
+</svg></div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssChaptersText.text">
+<span class="sig-name descname"><span class="pre">text</span></span><a class="headerlink" href="#db.MssChaptersText.text" title="Link to this definition">¶</a></dt>
+<dd><p>The preprocessed plain text of the chapter.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="db.MssChaptersText.type_">
+<span class="sig-name descname"><span class="pre">type_</span></span><a class="headerlink" href="#db.MssChaptersText.type_" title="Link to this definition">¶</a></dt>
+<dd><p>Either ‘original’ or ‘later_hands’.  The type of preprocessing applied.
+Whether the original hand was followed or a later corrector.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="db.XML">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">XML</span></span><a class="headerlink" href="#db.XML" title="Link to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="db.XML.bind_processor">
+<span class="sig-name descname"><span class="pre">bind_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dialect</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.XML.bind_processor" title="Link to this definition">¶</a></dt>
+<dd><p>Return a conversion function for processing bind values.</p>
+<p>Returns a callable which will receive a bind parameter value
+as the sole positional argument and will return a value to
+send to the DB-API.</p>
+<p>If processing is not necessary, the method should return <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is only called relative to a <strong>dialect specific type
+object</strong>, which is often <strong>private to a dialect in use</strong> and is not
+the same type object as the public facing one, which means it’s not
+feasible to subclass a <code class="xref py py-class docutils literal notranslate"><span class="pre">types.TypeEngine</span></code> class in order to
+provide an alternate <code class="xref py py-meth docutils literal notranslate"><span class="pre">_types.TypeEngine.bind_processor()</span></code>
+method, unless subclassing the <code class="xref py py-class docutils literal notranslate"><span class="pre">_types.UserDefinedType</span></code>
+class explicitly.</p>
+<p>To provide alternate behavior for
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">_types.TypeEngine.bind_processor()</span></code>, implement a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">_types.TypeDecorator</span></code> class and provide an implementation
+of <code class="xref py py-meth docutils literal notranslate"><span class="pre">_types.TypeDecorator.process_bind_param()</span></code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><span class="xref std std-ref">types_typedecorator</span></p>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dialect</strong> – Dialect instance in use.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="db.XML.result_processor">
+<span class="sig-name descname"><span class="pre">result_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dialect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coltype</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.XML.result_processor" title="Link to this definition">¶</a></dt>
+<dd><p>Return a conversion function for processing result row values.</p>
+<p>Returns a callable which will receive a result row column
+value as the sole positional argument and will return a value
+to return to the user.</p>
+<p>If processing is not necessary, the method should return <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is only called relative to a <strong>dialect specific type
+object</strong>, which is often <strong>private to a dialect in use</strong> and is not
+the same type object as the public facing one, which means it’s not
+feasible to subclass a <code class="xref py py-class docutils literal notranslate"><span class="pre">types.TypeEngine</span></code> class in order to
+provide an alternate <code class="xref py py-meth docutils literal notranslate"><span class="pre">_types.TypeEngine.result_processor()</span></code>
+method, unless subclassing the <code class="xref py py-class docutils literal notranslate"><span class="pre">_types.UserDefinedType</span></code>
+class explicitly.</p>
+<p>To provide alternate behavior for
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">_types.TypeEngine.result_processor()</span></code>, implement a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">_types.TypeDecorator</span></code> class and provide an implementation
+of <code class="xref py py-meth docutils literal notranslate"><span class="pre">_types.TypeDecorator.process_result_value()</span></code>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><span class="xref std std-ref">types_typedecorator</span></p>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dialect</strong> – Dialect instance in use.</p></li>
+<li><p><strong>coltype</strong> – DBAPI coltype argument received in cursor.description.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="app_server.html" class="btn btn-neutral float-left" title="Application Server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="solr.html" class="btn btn-neutral float-right" title="SOLR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-24 CCeH - Licensed under the GNU GPL v3 or later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

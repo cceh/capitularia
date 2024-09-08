@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Users of the VM &mdash; Capitularia 0.2.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/my_theme.css?v=dc6f3be3" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon-cceh-blue.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=37f418d5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="TSM Backup" href="backup.html" />
+    <link rel="prev" title="XSLT Transformations" href="transformations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Capitularia
+              <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overviews/index.html">Overviews</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/html_generation.html">HTML Generation Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/html_generation.html#xslt-transformations">XSLT Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/html_generation.html#user-delivery">User Delivery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/collation_tool.html">Collation Tool Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#id2">Collation Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#collation-algorithm">Collation Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/fulltext_search.html">Full-text Search Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/fulltext_search.html#full-text-extraction">Full-text Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/fulltext_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/fulltext_search.html#geodata-extraction">Geodata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/fulltext_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/makefile.html">Makefile Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/makefile.html#xslt-dependencies">XSLT Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/collections.html">Collections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Capitularia VM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache.html">Apache Web Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wordpress/index.html">Wordpress</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/installation.html">Wordpress Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/database.html">Wordpress Database Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/theme.html">Wordpress Theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/plugins.html">Wordpress Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/maintenance.html">Wordpress Maintenance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/development.html">Developer Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app_server.html">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-collator_server">collator_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">Postgres Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#module-db">db.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="solr.html">SOLR</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solr.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solr.html#service">Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solr.html#icinga">Icinga</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">XSLT Transformations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="transformations.html#graph-of-all-transformations">Graph of All Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transformations.html#graph-of-stylesheet-dependencies">Graph of Stylesheet Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Users of the VM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#users-and-groups">Users and Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-a-new-user">Adding a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deleting-a-new-user">Deleting a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#security">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">TSM Backup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="backup.html#update">Update</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../maintenance/index.html">Maintenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../maintenance/logfiles.html">Location of Logfiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#apache-php">Apache / PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-app-server">Python App Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-import-script">Python Import Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/development.html">Assorted Development Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Capitularia</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Capitularia VM</a></li>
+      <li class="breadcrumb-item active">Users of the VM</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/vm/user.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="users-of-the-vm">
+<span id="user"></span><h1>Users of the VM<a class="headerlink" href="#users-of-the-vm" title="Link to this heading">¶</a></h1>
+<p>Each editor is a user on the VM.
+The username is the same as the username of the UniKim account.</p>
+<p>Users must access the VM by SSH, WinSCP, etc. using their UniKim account’s username and
+password.</p>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>meckhart@capitularia.uni-koeln.de
+</pre></div>
+</div>
+<section id="users-and-groups">
+<h2>Users and Groups<a class="headerlink" href="#users-and-groups" title="Link to this heading">¶</a></h2>
+<dl>
+<dt>User <code class="docutils literal notranslate"><span class="pre">capitularia</span></code></dt><dd><p>The admin user for this project.  This user must have read/write access to all files.</p>
+<p>The application server is installed under this user’s home directory. The XSLT
+transformations are also there. This user</p>
+<ul class="simple">
+<li><p>owns the Apache DocumentRoot directory for the Capitularia web site,</p></li>
+<li><p>runs the cron jobs to transform TEI files into HTML,</p></li>
+<li><p>runs scripts on demand to bulk-edit TEI files (also in editors’ private directories)</p></li>
+</ul>
+</dd>
+<dt>Group <code class="docutils literal notranslate"><span class="pre">capitularia</span></code></dt><dd><p>The group of the project admin user.</p>
+</dd>
+<dt>User <code class="docutils literal notranslate"><span class="pre">&lt;editor&gt;</span></code></dt><dd><p>Personal user account for each editor.</p>
+</dd>
+<dt>Group <code class="docutils literal notranslate"><span class="pre">capitularia-editors</span></code></dt><dd><p>All editors are members of this group.</p>
+</dd>
+<dt>User <code class="docutils literal notranslate"><span class="pre">www-data</span></code></dt><dd><p>The web server. Must have read access to <code class="file docutils literal notranslate"><span class="pre">cap/publ/</span></code>.</p>
+</dd>
+<dt>Directory <code class="file docutils literal notranslate"><span class="pre">cap/publ/</span></code></dt><dd><p>All editors have read/write access through group <code class="docutils literal notranslate"><span class="pre">capitularia-editors</span></code>.</p>
+</dd>
+<dt>Directory <code class="file docutils literal notranslate"><span class="pre">cap/intern/</span></code></dt><dd><p>All editors have read/write access through group <code class="docutils literal notranslate"><span class="pre">capitularia-editors</span></code>.</p>
+</dd>
+<dt>Directory <code class="file docutils literal notranslate"><span class="pre">cap/intern/InArbeit/&lt;editor&gt;</span></code></dt><dd><p>Semi-private directories owned by the the editor.
+All editors have read/write access to all these directories
+through group <code class="docutils literal notranslate"><span class="pre">capitularia-editors</span></code>.</p>
+</dd>
+</dl>
+<p>Groups for user:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>User</p></th>
+<th class="head"><p>Groups</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>capitularia</p></td>
+<td><p>capitularia, capitularia-editors</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;editor&gt;</p></td>
+<td><p>&lt;editor&gt;, capitularia-editors</p></td>
+</tr>
+</tbody>
+</table>
+<p>ACL permissions for users:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>User</p></th>
+<th class="head"><p>cap/publ</p></th>
+<th class="head"><p>cap/intern</p></th>
+<th class="head"><p>cap/intern/InArbeit/&lt;editor&gt;</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>capitularia</p></td>
+<td><p>rwx</p></td>
+<td><p>rwx</p></td>
+<td><p>rwx</p></td>
+</tr>
+<tr class="row-odd"><td><p>www-data</p></td>
+<td><p>r-x</p></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>ACL permissions for groups:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Group</p></th>
+<th class="head"><p>cap/publ</p></th>
+<th class="head"><p>cap/intern</p></th>
+<th class="head"><p>cap/intern/InArbeit/&lt;editor&gt;</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>capitularia</p></td>
+<td><p>rwx</p></td>
+<td><p>rwx</p></td>
+<td><p>rwx</p></td>
+</tr>
+<tr class="row-odd"><td><p>capitularia-editors</p></td>
+<td><p>rwx</p></td>
+<td><p>rwx</p></td>
+<td><p>rwx</p></td>
+</tr>
+</tbody>
+</table>
+<p>To see ACLs for the current directory, say:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>getfacl<span class="w"> </span>.
+</pre></div>
+</div>
+<p>An example of how to set ACLs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>setfacl<span class="w"> </span>-R<span class="w"> </span>-m<span class="w"> </span>u:www-data:rX,g:capitularia-editors:rwX,o::-<span class="w"> </span>&lt;dir&gt;
+</pre></div>
+</div>
+</section>
+<section id="adding-a-new-user">
+<h2>Adding a New User<a class="headerlink" href="#adding-a-new-user" title="Link to this heading">¶</a></h2>
+<p>To add a new user to the VM (needs root):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>~root/add_capitularia_user.sh<span class="w"> </span>&lt;username&gt;
+</pre></div>
+</div>
+<p>Each user should also have a semi-personal subdirectory in: <code class="file docutils literal notranslate"><span class="pre">cap/intern/InArbeit/</span></code>.
+They can create that themselves.</p>
+</section>
+<section id="deleting-a-new-user">
+<h2>Deleting a New User<a class="headerlink" href="#deleting-a-new-user" title="Link to this heading">¶</a></h2>
+<p>To delete a user (needs root):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>~root/del_capitularia_user.sh<span class="w"> </span>&lt;username&gt;
+</pre></div>
+</div>
+<p>Each user should also have a semi-personal subdirectory in: <code class="file docutils literal notranslate"><span class="pre">cap/intern/InArbeit/</span></code>.
+The script does not remove that directory as it may still contain data.</p>
+</section>
+<section id="security">
+<h2>Security<a class="headerlink" href="#security" title="Link to this heading">¶</a></h2>
+<p>The users are authenticated by the RRZK Kerberos system through PAM and the pam_krb5
+module.  For particulars see the voice: “Zugang zu Gast-VM (debian) mit UniKim-Account”
+in the internal CCeH wiki.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transformations.html" class="btn btn-neutral float-left" title="XSLT Transformations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="backup.html" class="btn btn-neutral float-right" title="TSM Backup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-24 CCeH - Licensed under the GNU GPL v3 or later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

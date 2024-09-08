@@ -18,7 +18,6 @@
  * @author Marcello Perathoner
  */
 
-import $ from 'jquery';
 import { Tooltip } from 'bootstrap';
 
 export default {

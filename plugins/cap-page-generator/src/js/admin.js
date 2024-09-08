@@ -1,10 +1,6 @@
 /**
- * @module plugins/page-generator
- */
-
-/**
  * Some utility function for the Page Generator admin interface.
- * @file
+ * @module plugins/cap-page-generator/admin
  */
 
 // do not import $ from 'jquery';
@@ -16,15 +12,14 @@ const $ = window.jQuery;
  *
  * @param s {string} A string in the form "p=1&q=2"
  * @return {Object} { p : 1, q : 2 }
- * @memberof module:plugins/page-generator
  */
 
 function deparam (s) {
-    return s.split ('&').reduce (function (params, param) {
-        var paramSplit = param.split ('=').map (function (value) {
-            return decodeURIComponent (value.replace ('+', ' '));
-        });
-        params[paramSplit[0]] = paramSplit[1];
+    return s.split ('&').reduce ((params, param) => {
+        const [key, value] = param.split ('=').map (
+            (v) => decodeURIComponent (v.replace ('+', ' '))
+        );
+        params[key] = value;
         return params;
     }, {});
 }
@@ -35,7 +30,6 @@ function deparam (s) {
  * @param {Object} data The AJAX request data.
  * @param {Object} action The AJAX action.
  * @return {Object} The AJAX request data augmented.
- * @memberof module:plugins/page-generator
  */
 
 function add_ajax_action (data, action) {
@@ -50,18 +44,17 @@ function add_ajax_action (data, action) {
  * The user clicked somewhere inside the table row listing that file.
  *
  * @param {Event} event The click event
- * @memberof module:plugins/page-generator
  */
 
 function on_cap_action_file (event) {
     event.preventDefault ();
 
-    var $e     = $ (event.target);
-    var $tr    = $e.closest ('tr');
-    var $table = $e.closest ('table');
-    var $form  = $e.closest ('form');
+    const $e     = $ (event.target);
+    const $tr    = $e.closest ('tr');
+    const $table = $e.closest ('table');
+    const $form  = $e.closest ('form');
 
-    var data = {
+    const data = {
         'user_action' : $e.attr ('data-action'),
         'section'     : $tr.attr ('data-section'),
         'filename'    : $tr.attr ('data-filename'),
@@ -69,18 +62,18 @@ function on_cap_action_file (event) {
         'paged'       : $form.attr ('data-paged'),
     };
 
-    var msg_div    = $ ('div.cap_page_dash_message');
-    var status_div = $tr.find ('td.column-status');
-    var spinner    = $ ('<div class="cap_page_spinner"></div>').progressbar ({ 'value' : false });
+    const msg_div    = $ ('div.cap_page_dash_message');
+    const status_div = $tr.find ('td.column-status');
+    const spinner    = $ ('<div class="cap_page_spinner"></div>').progressbar ({ 'value' : false });
     spinner.hide ().appendTo (status_div).fadeIn ();
 
     $.ajax ({
         'method' : 'POST',
         'url'    : ajaxurl,
         'data'   : add_ajax_action (data, 'on_cap_action_file'),
-    }).done (function (response) {
+    }).done ((response) => {
         $table.find ('tbody').html (response.rows);
-    }).always (function (response) {
+    }).always ((response) => {
         spinner.fadeOut ().remove ();
         $ (response.message).hide ().appendTo (msg_div).slideDown ();
         /* Adds a 'dismiss this notice' button. */
@@ -94,32 +87,31 @@ function on_cap_action_file (event) {
  * The user clicked on a tab. The tab contents must now be loaded.
  *
  * @param {Event} event The click event
- * @memberof module:plugins/page-generator
  */
 
 function on_cap_load_section (event) {
     event.preventDefault ();
 
-    var $this = $ (this);
-    var $form  = $this.closest ('form');
-    var q = deparam ($this.attr ('href').split ('?')[1] || '');
+    const $this = $ (this);
+    const $form  = $this.closest ('form');
+    const q = deparam ($this.attr ('href').split ('?')[1] || '');
 
-    var data = {
+    const data = {
         'section' : $form.attr ('data-section'),
         'paged'   : q.paged || 1,
     };
 
-    var status_div = $form.parent ();
-    var spinner    = $ ('<div class="spinner-div"><span class="spinner is-active" /></div>');
+    const status_div = $form.parent ();
+    const spinner    = $ ('<div class="spinner-div"><span class="spinner is-active" /></div>');
     spinner.hide ().appendTo (status_div).fadeIn ();
 
     $.ajax ({
         'method' : 'POST',
         'url'    : ajaxurl,
         'data'   : add_ajax_action (data, 'on_cap_load_section'),
-    }).done (function (response) {
+    }).done ((response) => {
         $form.closest ('div[role=tabpanel]').html (response);
-    }).always (function () {
+    }).always (() => {
         spinner.fadeOut ().remove ();
     });
 }
@@ -132,7 +124,6 @@ function on_cap_load_section (event) {
  *
  * @param {Event} ev (unused) The tab loaded event emited by jQuery-ui
  * @param {Element} ui The tab element
- * @memberof module:plugins/page-generator
  */
 
 function make_cb_select_all (ev, ui) {
@@ -140,10 +131,10 @@ function make_cb_select_all (ev, ui) {
         .find ('thead, tfoot')
         .find ('.check-column :checkbox')
         .on ('click.wp-toggle-checkboxes', function (event) {
-            var $this          = $ (this);
-            var $table         = $this.closest ('table');
-            var controlChecked = $this.prop ('checked');
-            var toggle         = event.shiftKey || $this.data ('wp-toggle');
+            const $this          = $ (this);
+            const $table         = $this.closest ('table');
+            const controlChecked = $this.prop ('checked');
+            const toggle         = event.shiftKey || $this.data ('wp-toggle');
 
             $table.children ('tbody')
                 .filter (':visible')
@@ -168,7 +159,7 @@ function make_cb_select_all (ev, ui) {
                 .children ()
                 .children ('.check-column')
                 .find (':checkbox')
-                .prop ('checked', function () {
+                .prop ('checked', () => {
                     if (toggle) {
                         return false;
                     }
@@ -185,29 +176,19 @@ function make_cb_select_all (ev, ui) {
  *
  * @param {string} name The name of the parameter
  * @return {?string} The value of the parameter or null
- * @memberof module:plugins/page-generator
  */
 
 function get_url_parameter (name) {
-    var search = window.location.search.substring (1);
-    var params = search.split ('&');
-    for (var i = 0; i < params.length; i++) {
-        var name_val = params[i].split ('=');
-        if (name_val[0] === name) {
-            return name_val[1];
-        }
-    }
-    return null;
+    const urlParams = new URLSearchParams (window.location.search);
+    return urlParams.get (name);
 }
 
 /**
  * Initialize the jQuery tab interface.
- *
- * @memberof module:plugins/page-generator
  */
 
 function init_tabs () {
-    var tabs = $ ('#tabs');
+    const tabs = $ ('#tabs');
     tabs.tabs ({
         /*
          * Display a Wordpress spinner.
@@ -230,14 +211,14 @@ function init_tabs () {
     );
 
     /* open the right tab */
-    var section = get_url_parameter ('section');
+    const section = get_url_parameter ('section');
     if (section) {
-        var index = tabs.find ('a[data-section="' + section + '"]').parent ().index ();
+        const index = tabs.find (`a[data-section="${section}"]`).parent ().index ();
         tabs.tabs ('option', 'active', index);
     }
 }
 
-$ (document).ready (function () {
+$ (() => {
     init_tabs ();
     $ ('body').on ('click', 'div.cap-page-generator-dashboard div.tablenav-pages a', on_cap_load_section);
     $ ('body').on ('click', 'a.cap-page-generator-action', on_cap_action_file);

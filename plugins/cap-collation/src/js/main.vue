@@ -52,7 +52,7 @@
 
 <script>
 
-/** @module plugins/collation/front */
+/** @module plugins/cap-collation/main */
 
 import { pick } from 'lodash';
 
@@ -63,7 +63,7 @@ import * as tools from './tools.js';
 
 /**
  * The vue.js instance that manages the whole page.
- * @class module:plugins/collation/front.App
+ * @class Main
  */
 export default {
     'name'       : 'capCollationMain',
@@ -84,7 +84,7 @@ export default {
     beforeUpdate () {
         this.selectors = [];
     },
-    /** @lends module:plugins/collation/front.VueFront.prototype */
+    /** @lends Main */
     'methods' : {
         /**
          * Bundle all parameters for on_collate () and on_save_config ().
@@ -93,7 +93,7 @@ export default {
          */
         ajax_params () {
             return {
-                'collate' : this.selectors.map (sel => {
+                'collate' : this.selectors.map ((sel) => {
                     const data = pick (
                         sel.$data,
                         'bk',
@@ -110,7 +110,7 @@ export default {
             const vm = this;
             vm.collating = true;
             const p = this.$refs.results.collate (this.ajax_params ());
-            p.always (() => { vm.collating = false; });
+            p.finally (() => { vm.collating = false; });
         },
         set_selector_ref (el) {
             if (el) {
@@ -124,7 +124,7 @@ export default {
         on_load_config (event) {
             const vm = this;
             const file_input = event.target;
-            const files = file_input.files;
+            const { files } = file_input;
             if (files.length === 1) {
                 const reader = new FileReader ();
                 reader.onload = async function (e) {
@@ -142,7 +142,7 @@ export default {
          */
         on_save_config () {
             const params = this.ajax_params ();
-            const url = 'data:text/plain,' + encodeURIComponent (JSON.stringify (params, null, 2));
+            const url = `data:text/plain,${encodeURIComponent (JSON.stringify (params, null, 2))}`;
             const b = document.getElementById ('save-config-a');
             b.setAttribute ('href', url);
             b.click ();

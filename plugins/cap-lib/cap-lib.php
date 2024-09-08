@@ -51,9 +51,10 @@ add_filter (
     ns ('on_plugin_action_links')
 );
 
-add_nopriv_action ('get_api_endpoint');
-add_nopriv_action ('current_user_can');
-add_nopriv_action ('get_published_ids');
+add_nopriv_action ('cap_lib_get_api_endpoint');
+add_nopriv_action ('cap_lib_current_user_can');
+add_nopriv_action ('cap_lib_get_published_ids');
+add_nopriv_action ('cap_lib_query_api');
 
 
 // for side effect only: to get it in the .po file

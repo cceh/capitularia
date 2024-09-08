@@ -57,7 +57,7 @@ class Highlighter
      *
      * @param string  $content      The post content to search
      * @param string  $regex        The regex to search for
-     * @param integer $max_snippets The max. no. of snippets to return
+     * @param int     $max_snippets The max. no. of snippets to return
      *
      * @return string HTML list of snippets
      */

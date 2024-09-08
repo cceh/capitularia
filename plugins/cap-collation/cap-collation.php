@@ -21,15 +21,14 @@
  * PHP code of this plugin basically only serves the Javascript code to the
  * user.
  *
- * The actual collation is done on the Capitularia API Server with a customized
- * version of CollateX for Java.
+ * The actual collation is done on the Capitularia API Server with the `super collator
+ * <https://github.com/cceh/super-collator>`_ library.
  *
- * A big Makefile, run by cron on the API server, uses XSLT and Saxon to extract
- * the relevant sections from the TEI files and pre-processes them for
- * collation.  In the end all TEI tags are removed and only the normalized text
- * is stored into the Postgres database.  On an incoming collation request the
- * API server reads the pre-processed texts from the database and sends them to
- * CollateX.
+ * A big `Makefile <makefile>`_, run by cron on the API server, uses XSLT and Saxon to
+ * extract the relevant sections from the TEI files and pre-processes them for
+ * collation.  In the end all TEI tags are removed and only the normalized text is
+ * stored into the Postgres database.  On an incoming collation request the API server
+ * reads the pre-processed texts from the database and sends them to the super collator.
  *
  * See: :mod:`collatex_server`, :ref:`collation overview<collation-tool-overview>`.
  *

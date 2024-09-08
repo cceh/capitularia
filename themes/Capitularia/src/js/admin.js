@@ -1,9 +1,4 @@
-/** @module themes/capitularia */
-
 /**
- * This file contains the Javascript for the Capitularia theme Admin side.
- *
- * Dummy file to make webpack happy.
- *
- * @file
+ * A dummy file to make webpack happy.
+ * @module themes/Capitularia/admin
  */

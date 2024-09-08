@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; Capitularia 0.2.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/my_theme.css?v=dc6f3be3" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon-cceh-blue.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=37f418d5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Apache Web Server" href="apache.html" />
+    <link rel="prev" title="Capitularia VM" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Capitularia
+              <img src="../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overviews/index.html">Overviews</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/html_generation.html">HTML Generation Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/html_generation.html#xslt-transformations">XSLT Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/html_generation.html#user-delivery">User Delivery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/collation_tool.html">Collation Tool Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#id2">Collation Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#collation-algorithm">Collation Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collation_tool.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/fulltext_search.html">Full-text Search Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/fulltext_search.html#full-text-extraction">Full-text Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/fulltext_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/fulltext_search.html#geodata-extraction">Geodata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/fulltext_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/makefile.html">Makefile Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/makefile.html#xslt-dependencies">XSLT Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overviews/collections.html">Collections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overviews/collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Capitularia VM</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache.html">Apache Web Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wordpress/index.html">Wordpress</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/installation.html">Wordpress Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/database.html">Wordpress Database Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/theme.html">Wordpress Theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/plugins.html">Wordpress Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/maintenance.html">Wordpress Maintenance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wordpress/development.html">Developer Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app_server.html">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-collator_server">collator_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app_server.html#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">Postgres Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="database.html#module-db">db.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="solr.html">SOLR</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solr.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solr.html#service">Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solr.html#icinga">Icinga</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">XSLT Transformations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="transformations.html#graph-of-all-transformations">Graph of All Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transformations.html#graph-of-stylesheet-dependencies">Graph of Stylesheet Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="user.html">Users of the VM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user.html#users-and-groups">Users and Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user.html#adding-a-new-user">Adding a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user.html#deleting-a-new-user">Deleting a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user.html#security">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="backup.html">TSM Backup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="backup.html#update">Update</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../maintenance/index.html">Maintenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../maintenance/logfiles.html">Location of Logfiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#apache-php">Apache / PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-app-server">Python App Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance/logfiles.html#python-import-script">Python Import Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/development.html">Assorted Development Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Capitularia</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Capitularia VM</a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/vm/intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
+<p>The Capitularia VM is a root virtual machine offered by the RRZK.
+It runs debian stable.</p>
+<p>The VM hosts an <a class="reference internal" href="apache.html#apache"><span class="std std-ref">Apache Web Server</span></a> at <a class="reference external" href="https://capitularia.uni-koeln.de">https://capitularia.uni-koeln.de</a>
+which runs <a class="reference internal" href="wordpress/index.html#wordpress"><span class="std std-ref">Wordpress</span></a>.</p>
+<p>The VM also hosts an <a class="reference internal" href="app_server.html#app-server"><span class="std std-ref">application server</span></a> written in Python.  Next to
+that it hosts Saxon and <a class="reference internal" href="solr.html#solr"><span class="std std-ref">Solr</span></a> with the Java OpenJDK 17.</p>
+<p>The VM also hosts a <a class="reference internal" href="database.html#postgres-database"><span class="std std-ref">Postgres database</span></a> server for the
+application server and a <a class="reference internal" href="wordpress/database.html#wordpress-database"><span class="std std-ref">mysql database</span></a> server for
+Wordpress.</p>
+<p>We wrote a <a class="reference internal" href="wordpress/theme.html#wordpress-theme"><span class="std std-ref">Wordpress theme</span></a> and many <a class="reference internal" href="wordpress/plugins.html#wordpress-plugins"><span class="std std-ref">Wordpress plugins</span></a> to add the functionality we needed for our project.  We use the
+application server (and its API at <a class="reference external" href="https://api.capitularia.uni-koeln.de">https://api.capitularia.uni-koeln.de</a>) for all
+functionality that is too inconvenient to implement in Wordpress plugins.</p>
+<figure class="align-center" id="id1">
+<div align="center" class="pic align-center pic-format-text-xml pic-language-pic">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision;  image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" width="601.2px" height="495.84px" viewBox="0 0 601.2 495.84" font-size="11pt" text-anchor="middle" stroke="black" stroke-miterlimit="10" stroke-width="1.066667" fill="none">
+<g>
+<text font-size="11pt" stroke-width="0.266667" fill="black" x="122" y="29.88">Capitularia VM</text>
+<text font-size="11pt" stroke-width="0.266667" fill="black" x="122" y="68.36">Apache</text>
+<text font-size="11pt" stroke-width="0.266667" fill="black" x="122" y="106.84">Wordpress / PHP</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="40.4" y="116.44" width="163.2" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="135.68">Capitularia Theme</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="40.4" y="159.64" width="163.2" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="178.88">Library Plugin</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="40.4" y="193.24" width="163.2" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="212.48">File Include Plugin</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="40.4" y="226.84" width="163.2" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="246.08">Collation Plugin</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="40.4" y="260.44" width="163.2" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="279.68">Meta Search Plugin</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="40.4" y="294.04" width="163.2" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="313.28">Page Generator Plugin</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="40.4" y="327.64" width="163.2" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="122" y="346.88">Dynamic Menu Plugin</text>
+<rect stroke-width="2" x="30.8" y="87.56" width="182.4" height="278.48"/>
+<rect stroke-width="2" x="21.2" y="49.08" width="201.6" height="326.56"/>
+<text font-size="11pt" stroke-width="0.266667" fill="black" x="309.2" y="68.36">Saxon</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="261.2" y="77.96" width="96" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="309.2" y="97.2">XSLT</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="261.2" y="111.56" width="96" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="309.2" y="130.8">XSLT</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="261.2" y="145.16" width="96" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="309.2" y="164.4">XSLT</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="261.2" y="178.76" width="96" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="309.2" y="198">...</text>
+<rect stroke-width="2" x="251.6" y="49.08" width="115.2" height="168.08"/>
+<text font-size="11pt" stroke-width="0.266667" fill="black" x="486.8" y="68.36">App Server / Python</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="405.2" y="77.96" width="163.2" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="486.8" y="97.2">Collation Server</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="405.2" y="111.56" width="163.2" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="486.8" y="130.8">Data Server</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="405.2" y="145.16" width="163.2" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="486.8" y="164.4">Solr Server</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="405.2" y="178.76" width="163.2" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="486.8" y="198">...</text>
+<rect stroke-width="2" x="395.6" y="49.08" width="182.4" height="168.08"/>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="261.2" y="260.44" width="96" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="309.2" y="279.68">Makefile</text>
+<rect fill="#fefece" stroke-width="2" stroke="#a80136" x="261.2" y="327.64" width="96" height="28.8"/>
+<text font-size="11pt" stroke-width="0.2pt" fill="black" x="309.2" y="346.88">TSM backup</text>
+<path stroke-width="0" stroke="#a80136" fill="#fefece" d="M 74,414.04  C 74,419.32 74,434.44 74,447.64 74,460.84 95.6,471.64 122,471.64 148.4,471.64 170,460.84 170,447.64 170,434.44 170,419.32 170,414.04"/>
+<path stroke-width="2" stroke="#a80136" d="M 74,414.04  C 74,419.32 74,434.44 74,447.64 74,460.84 95.6,471.64 122,471.64 148.4,471.64 170,460.84 170,447.64 170,434.44 170,419.32 170,414.04"/>
+<ellipse fill="#fefece" stroke-width="2" stroke="#a80136" cx="122" cy="414.04" rx="48" ry="19.2"/>
+<text font-size="11pt" stroke-width="0.266667" fill="black" x="122" y="449.946667">mysql</text>
+<text font-size="11pt" stroke-width="0.266667" fill="black" x="122" y="464.613333">Database</text>
+<path stroke-width="0" stroke="#a80136" fill="#fefece" d="M 261.2,414.04  C 261.2,419.32 261.2,434.44 261.2,447.64 261.2,460.84 282.8,471.64 309.2,471.64 335.6,471.64 357.2,460.84 357.2,447.64 357.2,434.44 357.2,419.32 357.2,414.04"/>
+<path stroke-width="2" stroke="#a80136" d="M 261.2,414.04  C 261.2,419.32 261.2,434.44 261.2,447.64 261.2,460.84 282.8,471.64 309.2,471.64 335.6,471.64 357.2,460.84 357.2,447.64 357.2,434.44 357.2,419.32 357.2,414.04"/>
+<ellipse fill="#fefece" stroke-width="2" stroke="#a80136" cx="309.2" cy="414.04" rx="48" ry="19.2"/>
+<text font-size="11pt" stroke-width="0.266667" fill="black" x="309.2" y="449.946667">Postgres</text>
+<text font-size="11pt" stroke-width="0.266667" fill="black" x="309.2" y="464.613333">Database</text>
+<path stroke-width="0" stroke="#a80136" fill="#fefece" d="M 438.8,289.24  C 438.8,294.52 438.8,309.64 438.8,322.84 438.8,336.04 460.4,346.84 486.8,346.84 513.2,346.84 534.8,336.04 534.8,322.84 534.8,309.64 534.8,294.52 534.8,289.24"/>
+<path stroke-width="2" stroke="#a80136" d="M 438.8,289.24  C 438.8,294.52 438.8,309.64 438.8,322.84 438.8,336.04 460.4,346.84 486.8,346.84 513.2,346.84 534.8,336.04 534.8,322.84 534.8,309.64 534.8,294.52 534.8,289.24"/>
+<ellipse fill="#fefece" stroke-width="2" stroke="#a80136" cx="486.8" cy="289.24" rx="48" ry="19.2"/>
+<text font-size="11pt" stroke-width="0.266667" fill="black" x="486.8" y="332.48">Files</text>
+<path stroke-width="0" stroke="#a80136" fill="#fefece" d="M 438.8,414.04  C 438.8,419.32 438.8,434.44 438.8,447.64 438.8,460.84 460.4,471.64 486.8,471.64 513.2,471.64 534.8,460.84 534.8,447.64 534.8,434.44 534.8,419.32 534.8,414.04"/>
+<path stroke-width="2" stroke="#a80136" d="M 438.8,414.04  C 438.8,419.32 438.8,434.44 438.8,447.64 438.8,460.84 460.4,471.64 486.8,471.64 513.2,471.64 534.8,460.84 534.8,447.64 534.8,434.44 534.8,419.32 534.8,414.04"/>
+<ellipse fill="#fefece" stroke-width="2" stroke="#a80136" cx="486.8" cy="414.04" rx="48" ry="19.2"/>
+<text font-size="11pt" stroke-width="0.266667" fill="black" x="486.8" y="449.946667">Solr</text>
+<text font-size="11pt" stroke-width="0.266667" fill="black" x="486.8" y="464.613333">Database</text>
+<rect stroke-width="2" stroke-dasharray="5.6,4" x="2" y="1" width="595.2" height="489.84"/>
+</g></svg></div>
+<figcaption>
+<p><span class="caption-text">Main Components of the Capitularia VM</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Many different <a class="reference internal" href="transformations.html#transformations"><span class="std std-ref">XSLT transformations</span></a> are used to
+<a class="reference internal" href="../overviews/html_generation.html#html-generation-overview"><span class="std std-ref">generate the HTML files</span></a> of the TEI manuscripts and also
+many auxiliary files like lists of capitularies and manuscripts.
+The transformations are driven by <strong class="program">make</strong> and the <code class="file docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
+<p>The <a class="reference internal" href="database.html#postgres-database"><span class="std std-ref">Postgres database</span></a> holds manuscript metadata and the
+pre-processed text of every chapter in every manuscript.</p>
+<p>The app server does <a class="reference internal" href="../overviews/collation_tool.html#collation-tool-overview"><span class="std std-ref">collations</span></a> and offers
+<a class="reference internal" href="../overviews/fulltext_search.html#fulltext-search-overview"><span class="std std-ref">metadata and fulltext search</span></a> in the Capitulars.</p>
+<p>There is a nightly <a class="reference internal" href="backup.html#backup"><span class="std std-ref">TSM backup</span></a> of the whole VM.
+The TEI files and the databases are dumped and kept in multiple versions.</p>
+<p>The editors store the original manuscript files encoded in TEI in the VM filesystem.
+The TEI files are then <a class="reference internal" href="../overviews/html_generation.html#html-generation-overview"><span class="std std-ref">converted to HTML</span></a>.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Capitularia VM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="apache.html" class="btn btn-neutral float-right" title="Apache Web Server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-24 CCeH - Licensed under the GNU GPL v3 or later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

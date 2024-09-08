@@ -58,7 +58,7 @@ Endpoints
 import functools
 import json
 import re
-from typing import Optional, Tuple, List, Sequence, Dict
+from typing import Optional
 import urllib.parse
 
 import flask
@@ -123,7 +123,9 @@ def normalize_with_patterns(patterns, text, whole_words=False):
     return normalized
 
 
-def preprocess(text: str, normalizations: Optional[List[str]] = None) -> List[List[NGrams]]:
+def preprocess(
+    text: str, normalizations: Optional[list[str]] = None
+) -> list[list[NGrams]]:
     """Preprocess the input to the collator
 
     Builds the representation for one witness.  Returns an object that must be
@@ -157,26 +159,30 @@ def preprocess(text: str, normalizations: Optional[List[str]] = None) -> List[Li
         res.append([memoized_ngrams(t, n)])
     return res
 
-NGRAMS_CACHE : Dict[str,NGrams] = {}
+
+NGRAMS_CACHE: dict[str, NGrams] = {}
+
 
 def memoized_ngrams(t, n):
     if ngrams := NGRAMS_CACHE.get(t):
         return ngrams
-    ngrams = NGrams([{"t" : t, "n" : n}])
+    ngrams = NGrams([{"t": t, "n": n}])
     ngrams.load(n, 3)
     ngrams.hash = hash(ngrams)
     NGRAMS_CACHE[t] = ngrams
     return ngrams
 
+
 @functools.lru_cache(maxsize=10000)
 def memoized_similarity(a, b):
-    return -1.0 + 2.0 * NGrams.similarity(a, b) # like we did in collatex
+    return -1.0 + 2.0 * NGrams.similarity(a, b)
 
-def similarity(aa: List[NGrams], bb: List[NGrams]) -> float:
+
+def similarity(aa: list[NGrams], bb: list[NGrams]) -> float:
     sim = -1.0
     for a in aa:
         for b in bb:
-            if (a.hash < b.hash):
+            if a.hash < b.hash:
                 score = memoized_similarity(a, b)
             else:
                 score = memoized_similarity(b, a)
@@ -185,20 +191,24 @@ def similarity(aa: List[NGrams], bb: List[NGrams]) -> float:
                 sim = score
     return sim
 
-@app.route("/collate", methods=["POST"])
-def collate():
+
+@app.route("/collate", methods=["GET", "POST"])
+def collate() -> flask.Response:
     """Implements the /collator/collate endpoint."""
 
-    json_in = {
+    json_in: dict[str, list] = {
         "normalizations": [],
         "collate": [],
     }
-    json_in.update(request.get_json())
+
+    if request.method == "POST":
+        json_in.update(request.get_json())
+    else:
+        json_in.update(urllib.parse.parse_qs(request.query_string.decode("UTF-8")))
 
     current_app.logger.info(json.dumps(json_in, indent=4))
-
-    normalizations: List[str] = json_in["normalizations"]
-    sequences: List[List[NGram]] = []
+    normalizations: list[str] = json_in["normalizations"]
+    sequences: list[list[NGrams]] = []
 
     # build the sequences to collate
     with current_app.config.dba.engine.begin() as conn:
@@ -245,9 +255,12 @@ def collate():
 
     aa = sequences[0]
     for n, bb in enumerate(sequences[1:], start=1):
-        aa, bb, score = aligner.align(aa, bb, similarity,
+        aa, bb, _score = aligner.align(
+            aa,
+            bb,
+            similarity,
             lambda: [memoized_ngrams("-", "")] * n,
-            lambda: [memoized_ngrams("-", "")]
+            lambda: [memoized_ngrams("-", "")],
         )
         aa = [a + b for a, b in zip(aa, bb)]
 

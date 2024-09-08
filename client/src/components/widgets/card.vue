@@ -21,7 +21,7 @@
  * @author Marcello Perathoner
  */
 
-import $ from 'jquery';
+import jQuery from 'jquery';
 
 import { createPopper } from '@popperjs/core';
 
@@ -79,7 +79,7 @@ export default {
             const vm = this;
             if (event.card_action) {
                 // was clicked on any caption button
-                const $el = $ (vm.$el);
+                const $el = jQuery (vm.$el);
                 if (event.card_action == 'minimize') {
                     $el.find ('.card-slide').slideUp (() => {
                         vm.visible = false;
@@ -124,8 +124,6 @@ export default {
             // abort the drag
             event.preventDefault ();
 
-            const vm = this;
-
             // get the offset of the mouse pointer into the dragged card
             // (popperjs uses 'transform: translate3d' to position the element)
             const m = [... this.$el.style.transform.matchAll (/(-?[0-9.]+)px/g)];
@@ -140,18 +138,14 @@ export default {
                 'x' : event.clientX - left,
                 'y' : event.clientY - top,
             };
-
-            // console.log ('dragstart');
         },
 
         move (event, data) {
             const style = this.$el.style;
             style.transform = `translate3d(${event.clientX - data.x}px, ${event.clientY - data.y}px, 0px)`;
-            // console.log (style.transform);
         },
 
         end_drag (event) {
-            // console.log (event.x, event.y);
             if (this.dragging) {
                 this.move (event, this.dragging);
             }
@@ -165,7 +159,6 @@ export default {
         },
 
         on_mouseup (event) {
-            // console.log ('mouseup');
             this.end_drag (event);
         },
 

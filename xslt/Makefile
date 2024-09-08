@@ -85,6 +85,13 @@ mss_priv : $(patsubst %,$(CACHE_DIR)/internal/mss/%.footer.html,$(IDS_PRIV))
 .PRECIOUS: $(CACHE_DIR)/internal/mss/%.transcript.phase-1.xml
 
 
+################ Solr search in Manuscripts
+
+solr-import : $(CACHE_DIR)/collation/*.xml
+	cd ../server ; $(PYTHON) -m scripts.import_data -vv  --my-cnf=$(MYSQL_CONF) --solr $(CACHE_DIR)/collation/*.xml
+	cd ../server ; $(PYTHON) -m scripts.import_solr -vvv --my-cnf=$(MYSQL_CONF) --mss  $(MSS_DIR)/*.xml
+	cd ../server ; $(PYTHON) -m scripts.import_solr -vvv --my-cnf=$(MYSQL_CONF) --wordpress
+
 ################ Capitularies
 
 capits : $(patsubst %,$(CACHE_DIR)/capits/%.html,$(CAPITS))

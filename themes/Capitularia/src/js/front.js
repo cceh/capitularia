@@ -1,28 +1,23 @@
-/** @module themes/capitularia */
-
 /**
- * This file contains the Javascript for the Capitularia theme.
- *
- * @file
+ * This module contains the Javascript for the Capitularia theme.
+ * @module themes/Capitularia/front
  */
 
-import $ from 'jquery';
+import jQuery from 'jquery';
 import { Tooltip } from 'bootstrap';
 import panZoom from 'panzoom';
 
 /**
  * Initialize reset buttons to reset input and select controls on the parent
  * form.
- *
- * @memberof module:themes/capitularia
  */
 
 function initResetForm () {
-    $ ('.reset-form').click (function () {
-        $ (this).closest ('form').find ('input[type="text"]').val ('');
-        $ (this).closest ('form').find ('select').each (function () {
-            const v = $ (this).children ().first ().val ();
-            $ (this).val (v);
+    jQuery ('.reset-form').click (function () {
+        jQuery (this).closest ('form').find ('input[type="text"]').val ('');
+        jQuery (this).closest ('form').find ('select').each (function () {
+            const v = jQuery (this).children ().first ().val ();
+            jQuery (this).val (v);
         });
     });
 }
@@ -34,32 +29,30 @@ function initResetForm () {
  * content.
  *
  * Footnotes are done with bootstrap 5.
- *
- * @memberof module:themes/capitularia
  */
 
 function initFootnoteTooltips () {
-    $ ('a.annotation-ref').each (function () {
+    jQuery ('a.annotation-ref').each (function () {
         const that = this;
         const tt = new Tooltip (this, {
             'trigger'   : 'manual',
             'placement' : 'top',
             'html'      : true,
             'title'     : function () {
-                const href = $ (that).attr ('href');
-                return $ (href).closest ('div.annotation-content').prop ('outerHTML');
+                const href = jQuery (that).attr ('href');
+                return jQuery (href).closest ('div.annotation-content').prop ('outerHTML');
             },
         });
 
-        $ (this).on ('mouseenter', function () {
+        jQuery (this).on ('mouseenter', () => {
             tt.show ();
-        }).on ('mouseleave', function () {
+        }).on ('mouseleave', () => {
             // hack: are there any open tooltips hovered ?
-            const hovers = $ ('.tooltip:hover');
+            const hovers = jQuery ('.tooltip:hover');
             if (hovers.length) {
                 // pointer went over the content
                 // close when pointer leaves the content
-                hovers.on ('mouseleave', function () {
+                hovers.on ('mouseleave', () => {
                     tt.hide ();
                 });
             } else {
@@ -73,31 +66,29 @@ function initFootnoteTooltips () {
 /**
  * Initialize the legend slide-out.  Make the legend slide out (and back in)
  * if the user clicks on the respective tab.
- *
- * @memberof module:themes/capitularia
  */
 
 function initLegend () {
     // the Key (Legend) slide-out
-    const legend = $ ('#legend');
+    const legend = jQuery ('#legend');
     if (legend.length) {
-        const wrapper = $ ('<div class="slideout screen-only"><div class="slideout-tab"></div>'
+        const wrapper = jQuery ('<div class="slideout screen-only"><div class="slideout-tab"></div>'
                          + '<div class="slideout-inner"></div></div>');
-        $ ('body').append (wrapper);
+        jQuery ('body').append (wrapper);
         const legend_copy = legend.clone ();
         legend.addClass ('print-only');
-        $ ('div.slideout-inner').append (legend_copy);
-        $ ('div.slideout-tab').append ($ ('div.slideout-inner h5'));
-        $ ('div.slideout-tab, div.slideout-inner').click (function () {
-            $ (this).parent ().toggleClass ('slideout-active');
+        jQuery ('div.slideout-inner').append (legend_copy);
+        jQuery ('div.slideout-tab').append (jQuery ('div.slideout-inner h5'));
+        jQuery ('div.slideout-tab, div.slideout-inner').click (function () {
+            jQuery (this).parent ().toggleClass ('slideout-active');
         });
     }
 }
 
 function initSidebarToc () {
-    const sidebar = $ ('div.sidebar-toc');
+    const sidebar = jQuery ('div.sidebar-toc');
     const top = parseInt (sidebar.css ('top'), 10);
-    const height = $ (window).height () - (2 * top) + 'px';
+    const height = `${jQuery (window).height () - (2 * top)}px`;
     sidebar.css ('max-height', height);
     sidebar.closest ('li').css ('height', '100%');
     sidebar.closest ('ul').css ('height', '100%');
@@ -108,9 +99,9 @@ function initPanZoom () {
 
     for (const img of document.querySelectorAll ('img.svg-pan-zoom[src]')) {
         // retrieve the SVG
-        $.get (img.getAttribute ('src'), function (data) {
+        $.get (img.getAttribute ('src'), (data) => {
             // only the SVG tag
-            const $svg = $ (data).find ('svg');
+            const $svg = jQuery (data).find ('svg');
             const svg  = $svg[0];
             for (const name of ['width', 'height', 'content']) {
                 svg.removeAttribute (name); // clean up
@@ -122,7 +113,7 @@ function initPanZoom () {
             }
 
             // switch tags
-            $ (img).replaceWith ($svg);
+            jQuery (img).replaceWith ($svg);
 
             // get original scene dimensions, reflows layout
             const sceneRect = svg.getBoundingClientRect ();
@@ -156,24 +147,22 @@ function initPanZoom () {
                 p.zoomAbs (0, 0, scale);
             }
 
-            const $controls = $ ('<div class="pan-zoom-controls"></div>');
+            const $controls = jQuery ('<div class="pan-zoom-controls"></div>');
             $controls.appendTo ($container);
 
-            $ ('<button>+</button>').appendTo ($controls).on ('click', () => { zoom (2); });
-            $ ('<button>0</button>').appendTo ($controls).on ('click', () => { fit (); });
-            $ ('<button>-</button>').appendTo ($controls).on ('click', () => { zoom (0.5); });
+            jQuery ('<button>+</button>').appendTo ($controls).on ('click', () => { zoom (2); });
+            jQuery ('<button>0</button>').appendTo ($controls).on ('click', () => { fit (); });
+            jQuery ('<button>-</button>').appendTo ($controls).on ('click', () => { zoom (0.5); });
         }, 'xml');
     }
 }
 
-$ (document).ready (function () {
+jQuery (() => {
     initFootnoteTooltips ();
     setTimeout (initResetForm, 0);
 
     initPanZoom ();
 
-    // FIXME: somehow extract this value from bootstrap files
-    // if ($('body').css ('content') == 'sm')
     if (window.matchMedia ('(min-width: 768px)').matches) {
         initLegend ();
         initSidebarToc ();

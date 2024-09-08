@@ -493,7 +493,7 @@ The generated text of the footnote varies according to these cases.
       </xsl:when>
       <!-- If this <ab type="meta-text"> is an epilog or explicit or
            is immediately followed by a capitulatio -->
-      <xsl:when test="@type='meta-text' and (following-sibling::*[1][self::milestone[@unit='capitulatio']] or contains (@corresp, '_epilog') or contains (@corresp, 'explicit'))">
+      <xsl:when test="@type='meta-text' and (following-sibling::*[1][self::milestone[@unit='capitulatio']] or (contains (@corresp, '_epilog') and not (contains (@corresp, '_inscriptio'))) or contains (@corresp, 'explicit'))">
         <milestone type="footnotes-wrapper" />
         <milestone type="page-break" />
       </xsl:when>

@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta Search &mdash; Capitularia 0.2.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/my_theme.css?v=dc6f3be3" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon-cceh-blue.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/documentation_options.js?v=37f418d5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="File Includer" href="file-includer.html" />
+    <link rel="prev" title="Collation Tool" href="collation-tool.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Capitularia
+              <img src="../../../_static/logo-cceh-white.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../overviews/index.html">Overviews</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../overviews/html_generation.html">HTML Generation Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/html_generation.html#xslt-transformations">XSLT Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/html_generation.html#user-delivery">User Delivery</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overviews/collation_tool.html">Collation Tool Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/collation_tool.html#pre-processing-of-the-tei-files">Pre-Processing of the TEI files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/collation_tool.html#id2">Collation Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/collation_tool.html#collation-algorithm">Collation Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/collation_tool.html#word-comparison-function">Word Comparison Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/collation_tool.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overviews/fulltext_search.html">Full-text Search Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/fulltext_search.html#full-text-extraction">Full-text Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/fulltext_search.html#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/fulltext_search.html#geodata-extraction">Geodata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/fulltext_search.html#search">Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overviews/makefile.html">Makefile Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/makefile.html#xslt-dependencies">XSLT Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../overviews/collections.html">Collections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../overviews/collections.html#algorithm">Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Capitularia VM</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../apache.html">Apache Web Server</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Wordpress</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../installation.html">Wordpress Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database.html">Wordpress Database Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../theme.html">Wordpress Theme</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../plugins.html">Wordpress Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../maintenance.html">Wordpress Maintenance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development.html">Developer Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../app_server.html">Application Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../app_server.html#server">server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app_server.html#module-data_server">data_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app_server.html#module-collator_server">collator_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app_server.html#module-geo_server">geo_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app_server.html#module-tile_server">tile_server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../database.html">Postgres Database Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../database.html#schema-capitularia">Schema <em>capitularia:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../database.html#schema-gis">Schema <em>gis:</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../database.html#module-db">db.py</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../solr.html">SOLR</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../solr.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../solr.html#service">Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../solr.html#icinga">Icinga</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../transformations.html">XSLT Transformations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../transformations.html#graph-of-all-transformations">Graph of All Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../transformations.html#graph-of-stylesheet-dependencies">Graph of Stylesheet Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user.html">Users of the VM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user.html#users-and-groups">Users and Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user.html#adding-a-new-user">Adding a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user.html#deleting-a-new-user">Deleting a New User</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user.html#security">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../backup.html">TSM Backup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../backup.html#update">Update</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../maintenance/index.html">Maintenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../maintenance/logfiles.html">Location of Logfiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../maintenance/logfiles.html#apache-php">Apache / PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../maintenance/logfiles.html#python-app-server">Python App Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../maintenance/logfiles.html#python-import-script">Python Import Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/index.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development/development.html">Assorted Development Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/collation_tool.html">Troubleshooting the Collation Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../troubleshooting/collation_tool.html#manuscripts-do-not-show-up">Manuscripts do not show up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Capitularia</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Capitularia VM</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Wordpress</a></li>
+          <li class="breadcrumb-item"><a href="../plugins.html">Wordpress Plugins</a></li>
+      <li class="breadcrumb-item active">Meta Search</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/vm/wordpress/plugins/meta-search.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="meta-search">
+<span id="id1"></span><h1>Meta Search<a class="headerlink" href="#meta-search" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#module-plugins.cap-meta-search.cap-meta-search" id="id2">PHP</a></p>
+<ul>
+<li><p><a class="reference internal" href="#plugins-cap-meta-search-cap-meta-search-php" id="id3">plugins/cap-meta-search/cap-meta-search.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-meta-search-class-highlighter-php" id="id4">plugins/cap-meta-search/class-highlighter.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-meta-search-class-meta-search-widget-php" id="id5">plugins/cap-meta-search/class-meta-search-widget.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-meta-search-class-meta-search-php" id="id6">plugins/cap-meta-search/class-meta-search.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-meta-search-functions-php" id="id7">plugins/cap-meta-search/functions.php</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-meta-search-search-php" id="id8">plugins/cap-meta-search/search.php</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#module-plugins-cap-meta-search-cap-pager" id="id9">Javascript</a></p>
+<ul>
+<li><p><a class="reference internal" href="#plugins-cap-meta-search-src-js-cap-pager-vue" id="id10">plugins/cap-meta-search/src/js/cap-pager.vue</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-meta-search-src-js-cap-tab-vue" id="id11">plugins/cap-meta-search/src/js/cap-tab.vue</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-meta-search-src-js-front-js" id="id12">plugins/cap-meta-search/src/js/front.js</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-meta-search-src-js-main-vue" id="id13">plugins/cap-meta-search/src/js/main.vue</a></p></li>
+<li><p><a class="reference internal" href="#plugins-cap-meta-search-src-js-tools-js" id="id14">plugins/cap-meta-search/src/js/tools.js</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="module-plugins.cap-meta-search.cap-meta-search">
+<span id="php"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">PHP</a><a class="headerlink" href="#module-plugins.cap-meta-search.cap-meta-search" title="Link to this heading">¶</a></h2>
+<section id="plugins-cap-meta-search-cap-meta-search-php">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">plugins/cap-meta-search/cap-meta-search.php</a><a class="headerlink" href="#plugins-cap-meta-search-cap-meta-search-php" title="Link to this heading">¶</a></h3>
+<p>Plugin Name: Capitularia Meta Search
+Plugin URI:
+Description: Perform metadata-aware searches for and in TEI files.</p>
+<p>Version:     0.2.0
+Author:      Marcello Perathoner
+Author URI:
+License:     GPLv2 or later
+Text Domain: cap-meta-search
+Domain Path: /languages</p>
+<p>TEI Metadata Search plugin.</p>
+<p>The <em>Meta Search plugin</em> offers metadata-aware and fuzzy fulltext search.  A
+search form widget is part of the plugin.  This search box is used on all
+manuscript pages.</p>
+<p>The meta search uses a different approach than the built-in Wordpress search.
+This search is done on the VM server and the unit of search is the capitulary
+chapter.  It lets you filter by metadata such as capitularies contained,
+dates, and place of origin.</p>
+<p>The plugin also provides a snippet and highlighter class for the built-in
+Wordpress search, that displays snippets of text around the found terms
+instead of the page excerpt.  The highlighter may be used on any Wordpress
+page.</p>
+<p>See: <a class="reference internal" href="../../app_server.html#module-data_server" title="data_server"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_server</span></code></a>, <a class="reference internal" href="../../../overviews/fulltext_search.html#fulltext-search-overview"><span class="std std-ref">Full-text Search Overview</span></a>.</p>
+<dl class="php const" id="namespace-\cceh\capitularia\meta_search">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\NAME">
+<em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">NAME</span></span><a class="headerlink" href="#\cceh\capitularia\meta_search\NAME" title="Link to this definition">¶</a></dt>
+<dd><p>‘Capitularia Meta Search’</p>
+<p>The name of the plugin.</p>
+</dd></dl>
+
+<dl class="php const">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\DOMAIN">
+<em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">DOMAIN</span></span><a class="headerlink" href="#\cceh\capitularia\meta_search\DOMAIN" title="Link to this definition">¶</a></dt>
+<dd><p>‘cap-meta-search’</p>
+<p>The text domain of the plugin.</p>
+</dd></dl>
+
+<dl class="php const">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\HIGHLIGHT">
+<em class="property"><span class="pre">constant</span> </em><span class="sig-name descname"><span class="pre">HIGHLIGHT</span></span><a class="headerlink" href="#\cceh\capitularia\meta_search\HIGHLIGHT" title="Link to this definition">¶</a></dt>
+<dd><p>‘cap_highlight_words’</p>
+<p>The URL query parameter to request word highlighting.</p>
+</dd></dl>
+
+</section>
+<section id="plugins-cap-meta-search-class-highlighter-php">
+<span id="module-plugins.cap-meta-search.class-highlighter"></span><h3><a class="toc-backref" href="#id4" role="doc-backlink">plugins/cap-meta-search/class-highlighter.php</a><a class="headerlink" href="#plugins-cap-meta-search-class-highlighter-php" title="Link to this heading">¶</a></h3>
+<p>Capitularia Meta Search Highlighter</p>
+<dl class="php class">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Highlighter">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Highlighter</span></span><a class="headerlink" href="#\cceh\capitularia\meta_search\Highlighter" title="Link to this definition">¶</a></dt>
+<dd><p>This class provides a snippet view and highlighted search terms for the
+built-in Wordpress search.  It displays snippets of text around the found
+terms instead of the page excerpt.</p>
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Highlighter::get_bounds">
+<span class="sig-name descname"><span class="pre">get_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">content</span></em>, <em class="sig-param"><span class="pre">content_len</span></em>, <em class="sig-param"><span class="pre">match</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Highlighter::get_bounds" title="Link to this definition">¶</a></dt>
+<dd><p>Get start and end of snippet</p>
+<p>Given a match returns the start offset (strpos) and end offset of the
+snippet in the post content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The post content.</p></li>
+<li><p><strong>content_len</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – The post content length.</p></li>
+<li><p><strong>match</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">object</span></code></span>) – The preg_match match structure.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Begin and end of the snippet.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Highlighter::get_snippets">
+<span class="sig-name descname"><span class="pre">get_snippets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">content</span></em>, <em class="sig-param"><span class="pre">regex</span></em>, <em class="sig-param"><span class="pre">max_snippets</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Highlighter::get_snippets" title="Link to this definition">¶</a></dt>
+<dd><p>Extract snippets from page content.</p>
+<p>Given a regex, search a post and return a list of snippets.  The snippets
+contain the highlighted search term and a few words of context.  If two
+snippets do overlap they are merged.  Snippets are returned formatted as
+HTML unordered list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The post content to search</p></li>
+<li><p><strong>regex</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The regex to search for</p></li>
+<li><p><strong>max_snippets</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">int</span></code></span>) – The max. no. of snippets to return</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML list of snippets</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Highlighter::escape_search_term">
+<span class="sig-name descname"><span class="pre">escape_search_term</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">term</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Highlighter::escape_search_term" title="Link to this definition">¶</a></dt>
+<dd><p>Escape search term for regexp.</p>
+<p>Escapes a search term so that preg_* functions can safely use it. ‘#’ is
+the preg separator, eg. #term#u .</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>term</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The user input.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The escaped user input.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Highlighter::on_get_the_excerpt">
+<span class="sig-name descname"><span class="pre">on_get_the_excerpt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">content</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Highlighter::on_get_the_excerpt" title="Link to this definition">¶</a></dt>
+<dd><p>Return search results snippets.</p>
+<p>Build an excerpt using snippets with highlighted search results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The unused old excerpt content.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A series of Highlighted snippets.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Highlighter::on_the_content">
+<span class="sig-name descname"><span class="pre">on_the_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">content</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Highlighter::on_the_content" title="Link to this definition">¶</a></dt>
+<dd><p>Highlight the search terms in the post.</p>
+<p>Highlight the full post if we came through the search page.  We use
+the query string in the HTTP referrer to highlight the content.</p>
+<p>The naive approach:</p>
+<blockquote>
+<div><p>return preg_replace ($regex, ‘&lt;mark&gt;${0}&lt;/mark&gt;’, $content);</p>
+</div></blockquote>
+<p>did not work because we were also replacing text in HTML
+tags and attributes.  This whole rigmarole is needed so
+we can parse the content as HTML and then search the text
+nodes only.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The post content.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The highlighted post content.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="plugins-cap-meta-search-class-meta-search-widget-php">
+<span id="module-plugins.cap-meta-search.class-meta-search-widget"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">plugins/cap-meta-search/class-meta-search-widget.php</a><a class="headerlink" href="#plugins-cap-meta-search-class-meta-search-widget-php" title="Link to this heading">¶</a></h3>
+<p>Capitularia Meta Search search box widget</p>
+<dl class="php class">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Widget">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Widget</span></span><a class="headerlink" href="#\cceh\capitularia\meta_search\Widget" title="Link to this definition">¶</a></dt>
+<dd><p>A metadata search box widget.</p>
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Widget::$title">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#\cceh\capitularia\meta_search\Widget::$title" title="Link to this definition">¶</a></dt>
+<dd><p>The widget title (caption)</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Widget::__construct">
+<span class="sig-name descname"><span class="pre">__construct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Widget::__construct" title="Link to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Widget::setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dummy_args</span></em>, <em class="sig-param"><span class="pre">instance</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Widget::setup" title="Link to this definition">¶</a></dt>
+<dd><p>Setup the widget</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dummy_args</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The widget arguments</p></li>
+<li><p><strong>instance</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The widget instance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Widget::echo_options">
+<span class="sig-name descname"><span class="pre">echo_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">items</span></em>, <em class="sig-param"><span class="pre">selected</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Widget::echo_options" title="Link to this definition">¶</a></dt>
+<dd><p>Echo the &lt;option&gt;s of a &lt;select&gt;.</p>
+<p>Echo the &lt;option&gt;s for a HTML &lt;select&gt; element.  Sort numeric substrings
+in a sensible way for humans, eg. ‘BK 2’ before ‘BK 12’</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>items</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Array of strings: The items to display in the drop-down</p></li>
+<li><p><strong>selected</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The item in the list to select</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Widget::echo_select">
+<span class="sig-name descname"><span class="pre">echo_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">caption</span></em>, <em class="sig-param"><span class="pre">id</span></em>, <em class="sig-param"><span class="pre">items</span></em>, <em class="sig-param"><span class="pre">tooltip</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Widget::echo_select" title="Link to this definition">¶</a></dt>
+<dd><p>Echo a HTML &lt;select&gt; element with options.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>caption</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The caption for the &lt;select&gt;</p></li>
+<li><p><strong>id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The xml id and name of the &lt;select&gt;</p></li>
+<li><p><strong>items</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Array of strings: The items to display in the drop-down</p></li>
+<li><p><strong>tooltip</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The tooltip for the &lt;select&gt;</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Widget::echo_places_tree">
+<span class="sig-name descname"><span class="pre">echo_places_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">caption</span></em>, <em class="sig-param"><span class="pre">id</span></em>, <em class="sig-param"><span class="pre">tooltip</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Widget::echo_places_tree" title="Link to this definition">¶</a></dt>
+<dd><p>Echo a HTML &lt;div&gt; element to contain a jstree of place names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>caption</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The caption for the &lt;select&gt;</p></li>
+<li><p><strong>id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The xml id and name of the &lt;select&gt;</p></li>
+<li><p><strong>tooltip</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The tooltip for the &lt;select&gt;</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Widget::echo_input">
+<span class="sig-name descname"><span class="pre">echo_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">caption</span></em>, <em class="sig-param"><span class="pre">id</span></em>, <em class="sig-param"><span class="pre">placeholder</span></em>, <em class="sig-param"><span class="pre">tooltip</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Widget::echo_input" title="Link to this definition">¶</a></dt>
+<dd><p>Echo a text &lt;input&gt; field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>caption</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The caption for the &lt;input&gt;</p></li>
+<li><p><strong>id</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The xml id and nameof the &lt;input&gt;</p></li>
+<li><p><strong>placeholder</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The placeholder text</p></li>
+<li><p><strong>tooltip</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The tooltip</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Widget::widget">
+<span class="sig-name descname"><span class="pre">widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">args</span></em>, <em class="sig-param"><span class="pre">instance</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Widget::widget" title="Link to this definition">¶</a></dt>
+<dd><p>Output the widget.  Overrides the base class method.</p>
+<p>See: \WP_Widget::widget()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Display arguments including ‘before_title’, ‘after_title’, ‘before_widget’, and ‘after_widget’.</p></li>
+<li><p><strong>instance</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The settings for the particular instance of the widget.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Widget::update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">new_instance</span></em>, <em class="sig-param"><span class="pre">old_instance</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Widget::update" title="Link to this definition">¶</a></dt>
+<dd><p>Update widget settings on save.  Overrides the base class method.</p>
+<p>See: \WP_Widget::update()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_instance</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – New settings for this instance as input by the user via WP_Widget::form().</p></li>
+<li><p><strong>old_instance</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Old settings for this instance.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Settings to save or bool false to cancel saving.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Widget::form">
+<span class="sig-name descname"><span class="pre">form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">instance</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Widget::form" title="Link to this definition">¶</a></dt>
+<dd><p>Outputs the widget options form on the admin page. Overrides the base
+class method.</p>
+<p>See: \WP_Widget::form()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – Current settings.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\Widget::the_option">
+<span class="sig-name descname"><span class="pre">the_option</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">instance</span></em>, <em class="sig-param"><span class="pre">name</span></em>, <em class="sig-param"><span class="pre">caption</span></em>, <em class="sig-param"><span class="pre">placeholder</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\Widget::the_option" title="Link to this definition">¶</a></dt>
+<dd><p>Output one option field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The widet options</p></li>
+<li><p><strong>name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The option name</p></li>
+<li><p><strong>caption</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The caption</p></li>
+<li><p><strong>placeholder</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The placeholder</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="plugins-cap-meta-search-class-meta-search-php">
+<span id="module-plugins.cap-meta-search.class-meta-search"></span><h3><a class="toc-backref" href="#id6" role="doc-backlink">plugins/cap-meta-search/class-meta-search.php</a><a class="headerlink" href="#plugins-cap-meta-search-class-meta-search-php" title="Link to this heading">¶</a></h3>
+<p>Capitularia Meta Search</p>
+<dl class="php class">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\MetaSearch">
+<em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">MetaSearch</span></span><a class="headerlink" href="#\cceh\capitularia\meta_search\MetaSearch" title="Link to this definition">¶</a></dt>
+<dd><p>A query manipulation class.</p>
+<dl class="php attr">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\MetaSearch::$json">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">json</span></span><a class="headerlink" href="#\cceh\capitularia\meta_search\MetaSearch::$json" title="Link to this definition">¶</a></dt>
+<dd><p>The result returned by the App server</p>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\MetaSearch::on_pre_get_posts">
+<span class="sig-name descname"><span class="pre">on_pre_get_posts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">query</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\MetaSearch::on_pre_get_posts" title="Link to this definition">¶</a></dt>
+<dd><p>Runs the meta query on the Capitularia VM server.</p>
+<p>Runs the meta query on the server, which returns the ids of the
+manuscripts that contain the search terms.  Then builds a Wordpress query
+that searches for the pages that contain those manuscripts.</p>
+<p>Then the program flow goes back to the normal Wordpress search page,
+except that we also provide the snippets to display and the chapter
+information.</p>
+<p>See: <a class="reference external" href="https://codex.wordpress.org/Class_Reference/WP_Query">https://codex.wordpress.org/Class_Reference/WP_Query</a> Class Reference for WP_Query</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">WP_Query</span></code></span>) – The Wordpress query object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\MetaSearch::on_get_the_excerpt">
+<span class="sig-name descname"><span class="pre">on_get_the_excerpt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\MetaSearch::on_get_the_excerpt" title="Link to this definition">¶</a></dt>
+<dd><p>Get the excerpt for the search result</p>
+<p>Return the excerpt generated by the VM Server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The excerpt (with HTML)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php method">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\MetaSearch::on_get_search_query">
+<span class="sig-name descname"><span class="pre">on_get_search_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dummy_message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\MetaSearch::on_get_search_query" title="Link to this definition">¶</a></dt>
+<dd><p>Format the contents of the search query variables.</p>
+<p>Generate a string like “BK.123 not before 950 and ‘Karl’”.  This hook is
+called from the search.php page, and serves to insert the text outside
+our widget.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dummy_message</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The old message</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The message</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="plugins-cap-meta-search-functions-php">
+<span id="module-plugins.cap-meta-search.functions"></span><h3><a class="toc-backref" href="#id7" role="doc-backlink">plugins/cap-meta-search/functions.php</a><a class="headerlink" href="#plugins-cap-meta-search-functions-php" title="Link to this heading">¶</a></h3>
+<p>Capitularia Meta Search global functions</p>
+<dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\is_meta_search">
+<span class="sig-name descname"><span class="pre">is_meta_search</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\is_meta_search" title="Link to this definition">¶</a></dt>
+<dd><p>Should we perform a meta search?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if this is a meta search.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\is_highlight">
+<span class="sig-name descname"><span class="pre">is_highlight</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\is_highlight" title="Link to this definition">¶</a></dt>
+<dd><p>Should we highlight search results?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\ns">
+<span class="sig-name descname"><span class="pre">ns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">function_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\ns" title="Link to this definition">¶</a></dt>
+<dd><p>Add current namespace</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>function_name</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The class or function name without namespace</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Name with namespace</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\sanitize">
+<span class="sig-name descname"><span class="pre">sanitize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\sanitize" title="Link to this definition">¶</a></dt>
+<dd><p>Sanitize a text filed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The text to sanitize.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The sanitized text.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\get_capitulars">
+<span class="sig-name descname"><span class="pre">get_capitulars</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\get_capitulars" title="Link to this definition">¶</a></dt>
+<dd><p>Get a list of all capitulars</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>All capitulars</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string[]</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\on_init">
+<span class="sig-name descname"><span class="pre">on_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\on_init" title="Link to this definition">¶</a></dt>
+<dd><p>Register the translations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\on_widgets_init">
+<span class="sig-name descname"><span class="pre">on_widgets_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\on_widgets_init" title="Link to this definition">¶</a></dt>
+<dd><p>Register the widget with Wordpress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\on_query_vars">
+<span class="sig-name descname"><span class="pre">on_query_vars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">vars</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\on_query_vars" title="Link to this definition">¶</a></dt>
+<dd><p>Add our custom HTTP query vars</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vars</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span>) – The stock query vars</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The stock and custom query vars</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">array</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\on_cap_meta_search_the_permalink">
+<span class="sig-name descname"><span class="pre">on_cap_meta_search_the_permalink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">permalink</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\on_cap_meta_search_the_permalink" title="Link to this definition">¶</a></dt>
+<dd><p>Get the permalink for the search result</p>
+<p>Called from the search results page of the Capitularia theme.  Return a link that
+will go to the post <em>and</em> highlight the search terms if followed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>permalink</strong> (<span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span>) – The permalink generated by Wordpress</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The decorated permalink</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">string</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\on_template_include">
+<span class="sig-name descname"><span class="pre">on_template_include</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">template</span></em><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\on_template_include" title="Link to this definition">¶</a></dt>
+<dd><p>Makes Wordpress display our custom search page.</p>
+</dd></dl>
+
+<dl class="php function">
+<dt class="sig sig-object php" id="\cceh\capitularia\meta_search\enqueue_scripts">
+<span class="sig-name descname"><span class="pre">enqueue_scripts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#\cceh\capitularia\meta_search\enqueue_scripts" title="Link to this definition">¶</a></dt>
+<dd><p>Enqueue the front page script and localize it.</p>
+<p>The script is a webpacked Vue.js application containing its own css.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span><code class="xref php php-obj docutils literal notranslate"><span class="pre">void</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plugins-cap-meta-search-search-php">
+<span id="module-plugins.cap-meta-search.search"></span><h3><a class="toc-backref" href="#id8" role="doc-backlink">plugins/cap-meta-search/search.php</a><a class="headerlink" href="#plugins-cap-meta-search-search-php" title="Link to this heading">¶</a></h3>
+<p>The template for displaying Search Results pages.</p>
+</section>
+</section>
+<section id="module-plugins-cap-meta-search-cap-pager">
+<span id="javascript"></span><h2><a class="toc-backref" href="#id9" role="doc-backlink">Javascript</a><a class="headerlink" href="#module-plugins-cap-meta-search-cap-pager" title="Link to this heading">¶</a></h2>
+<section id="plugins-cap-meta-search-src-js-cap-pager-vue">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">plugins/cap-meta-search/src/js/cap-pager.vue</a><a class="headerlink" href="#plugins-cap-meta-search-src-js-cap-pager-vue" title="Link to this heading">¶</a></h3>
+<dl class="js class">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-cap-pager.Pager">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/cap-pager</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Pager</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-cap-pager.Pager" title="Link to this definition">¶</a></dt>
+<dd><p>A pager widget.</p>
+</dd></dl>
+
+</section>
+<section id="plugins-cap-meta-search-src-js-cap-tab-vue">
+<span id="module-plugins-cap-meta-search-cap-tab"></span><h3><a class="toc-backref" href="#id11" role="doc-backlink">plugins/cap-meta-search/src/js/cap-tab.vue</a><a class="headerlink" href="#plugins-cap-meta-search-src-js-cap-tab-vue" title="Link to this heading">¶</a></h3>
+<dl class="js class">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-cap-tab.Tab">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/cap-tab</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Tab</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-cap-tab.Tab" title="Link to this definition">¶</a></dt>
+<dd><p>One tab of the search results.</p>
+</dd></dl>
+
+</section>
+<section id="plugins-cap-meta-search-src-js-front-js">
+<span id="module-plugins-cap-meta-search-front"></span><h3><a class="toc-backref" href="#id12" role="doc-backlink">plugins/cap-meta-search/src/js/front.js</a><a class="headerlink" href="#plugins-cap-meta-search-src-js-front-js" title="Link to this heading">¶</a></h3>
+<p>Initializes the meta search applet.</p>
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-front.-t">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/front</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">$t</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-front.-t" title="Link to this definition">¶</a></dt>
+<dd><p>A wrapper to call the Wordpress translate function See: <a class="reference external" href="https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/">https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The untranslated text.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The translated string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-front.-n">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/front</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">$n</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">singular</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plural</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-front.-n" title="Link to this definition">¶</a></dt>
+<dd><p>A wrapper to call the Wordpress translate function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>singular</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The untranslated singular text.</p></li>
+<li><p><strong>plural</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The untranslated plural text.</p></li>
+<li><p><strong>number</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">number()</span></code></span>) – The number talked about.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The translated string, singular or plural.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-front.help_init">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/front</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">help_init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-front.help_init" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the help button in the widget.</p>
+</dd></dl>
+
+<dl class="js data">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-front.collator">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/front</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">collator</span></span></span><a class="headerlink" href="#plugins-cap-meta-search-front.collator" title="Link to this definition">¶</a></dt>
+<dd><p>A collator for the German language</p>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-front.places_tree_init">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/front</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">places_tree_init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-front.places_tree_init" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the tree view of places in the widget.</p>
+</dd></dl>
+
+</section>
+<section id="plugins-cap-meta-search-src-js-main-vue">
+<span id="module-plugins-cap-meta-search-main"></span><h3><a class="toc-backref" href="#id13" role="doc-backlink">plugins/cap-meta-search/src/js/main.vue</a><a class="headerlink" href="#plugins-cap-meta-search-src-js-main-vue" title="Link to this heading">¶</a></h3>
+<dl class="js class">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-main.Main">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/main</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Main</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-main.Main" title="Link to this definition">¶</a></dt>
+<dd><p>Queries the SOLR server and manages the tabs.</p>
+</dd></dl>
+
+</section>
+<section id="plugins-cap-meta-search-src-js-tools-js">
+<span id="module-plugins-cap-meta-search-tools"></span><h3><a class="toc-backref" href="#id14" role="doc-backlink">plugins/cap-meta-search/src/js/tools.js</a><a class="headerlink" href="#plugins-cap-meta-search-src-js-tools-js" title="Link to this heading">¶</a></h3>
+<p>Utility functions for the meta-search applet.</p>
+<dl class="js data">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-tools.bk_id">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">bk_id</span></span></span><a class="headerlink" href="#plugins-cap-meta-search-tools.bk_id" title="Link to this definition">¶</a></dt>
+<dd><p>(string)
+The id of the “Obertext”.</p>
+</dd></dl>
+
+<dl class="js data">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-tools.Palette">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Palette</span></span></span><a class="headerlink" href="#plugins-cap-meta-search-tools.Palette" title="Link to this definition">¶</a></dt>
+<dd><p>A color palette.</p>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-tools.insert_css_palette">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">insert_css_palette</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">css</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-tools.insert_css_palette" title="Link to this definition">¶</a></dt>
+<dd><p>Insert a CSS color palette into the DOM making it active.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>css</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The color palette as string.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-tools.api">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">api</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-tools.api" title="Link to this definition">¶</a></dt>
+<dd><p>This calls the API on the API server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>endpoint</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – The endpoint relative to the API root.</p></li>
+<li><p><strong>data</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">URLSearchParams()</span></code></span>) – The query to send.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Promise resolved when call completed.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Promise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-tools.sort_key">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">sort_key</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-tools.sort_key" title="Link to this definition">¶</a></dt>
+<dd><p>A key that sorts numbers right</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – Any string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A key derived from the string that sorts numbers right.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-tools.facets">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">facets</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-tools.facets" title="Link to this definition">¶</a></dt>
+<dd><p>Converts the stupid facets notation of Solr into an object dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Array()</span></code></span>) – solr array</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-tools.get_url_search_param">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">get_url_search_param</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">def</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-tools.get_url_search_param" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a parameter or the default value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">URLSearchParams()</span></code></span>) – params to pick from</p></li>
+<li><p><strong>name</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – name of the parameter</p></li>
+<li><p><strong>def</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">string()</span></code></span>) – default value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="js function">
+<dt class="sig sig-object js" id="plugins-cap-meta-search-tools.pick_url_search_params">
+<span class="sig-prename descclassname"><span class="n"><span class="pre">plugins/cap-meta-search/tools</span></span><span class="p"><span class="pre">.</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">pick_url_search_params</span></span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">picks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#plugins-cap-meta-search-tools.pick_url_search_params" title="Link to this definition">¶</a></dt>
+<dd><p>Creates an URLQueryParams object composed of the picked params.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Arguments<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">URLSearchParams()</span></code></span>) – params to pick from</p></li>
+<li><p><strong>picks</strong> (<span><code class="xref js js-func docutils literal notranslate"><span class="pre">Array()</span></code></span>) – array of keys to pick</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>URLSearchParams</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="collation-tool.html" class="btn btn-neutral float-left" title="Collation Tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="file-includer.html" class="btn btn-neutral float-right" title="File Includer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-24 CCeH - Licensed under the GNU GPL v3 or later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -17,6 +17,7 @@ from collator_server import app as collator_app
 from data_server import app as data_app
 from geo_server import geo_app
 from saxon_server import app as saxon_app
+from solr_server import app as solr_app
 from tile_server import tile_app
 
 
@@ -79,6 +80,9 @@ def create_app(Config):
     app.register_blueprint(saxon_app, url_prefix="/saxon")
     saxon_app.init_app(app)
 
+    app.register_blueprint(solr_app, url_prefix="/solr")
+    solr_app.init_app(app)
+
     app.register_blueprint(collator_app, url_prefix="/collator")
     collator_app.init_app(app)
 
@@ -104,9 +108,9 @@ if __name__ == "__main__":
             "CORS_ALLOW_ORIGIN"
         ]
         response.headers["Access-Control-Allow-Credentials"] = "true"
-        response.headers[
-            "Access-Control-Allow-Headers"
-        ] = "Content-Type"  # allow application/json
+        response.headers["Access-Control-Allow-Headers"] = (
+            "Content-Type"  # allow application/json
+        )
         response.headers["Server"] = "Jetty 0.8.15"
         return response
 

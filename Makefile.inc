@@ -46,7 +46,7 @@ define LOCALE_TEMPLATE
 
 .PRECIOUS: $(LANG_SRC)/$(1).po
 
-po: $(LANG_SRC)/$(1).po
+po: pot $(LANG_SRC)/$(1).po
 
 $(LANG_SRC)/$(1).po: $(LANG_SRC)/capitularia.pot
 	if test -e $$@; \
@@ -66,8 +66,8 @@ $(LANG_DEST)/$(TEXT_DOMAIN)-$(1).mo: $(LANG_SRC)/$(1).po
 	mkdir -p $$(dir $$@)
 	msgfmt -o $$@ $$?
 
-$(LANG_DEST)/$(TEXT_DOMAIN)-$(1)-$(HANDLE).json: $(LANG_SRC)/$(1).po
-	$(PO2JSON) $$? $$@ -f jed --pretty
+$(LANG_DEST)/$(TEXT_DOMAIN)-$(1)-$(HANDLE).json: $(LANG_SRC)/$(1).po $(PO2JSON)
+	$$(PYTHON) $$(PO2JSON) --domain $$(TEXT_DOMAIN) --lang $(1) $$< $$@
 
 endef
 
