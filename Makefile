@@ -64,6 +64,7 @@ import_backup_mysql:
 DOCS_DIR = $(CAPITULARIA_PRJ)/docs
 DOCS_SRC_DIR = $(DOCS_DIR)/src
 DOCS_BUILD_DIR = $(DOCS_DIR)/build
+DOCS_DIST_DIR = $(DOCS_DIR)/gh-pages
 export SPHINXBUILD=$(PYTHON) -m sphinx -c $(DOCS_DIR)
 export SRCDIR=$(DOCS_SRC_DIR)
 export BUILDDIR=$(DOCS_BUILD_DIR)
@@ -95,6 +96,10 @@ docs: phpdoc jsdoc xsltdoc
 	-cp -r $(DOCS_SRC_DIR)/_images $(DOCS_BUILD_DIR)/
 
 doccs: clean_docs docs
+
+tar-docs:
+	mkdir -p $(DOCS_DIST_DIR)
+	tar -h --hard-dereference -cvf $(DOCS_DIST_DIR)/artifact.tar.gz $(DOCS_BUILD_DIR)
 
 clean_docs:
 	$(RM) -r $(DOCS_BUILD_DIR)/*
