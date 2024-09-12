@@ -1,11 +1,16 @@
 <template>
-<div class="search-your-search">{{ your_search }}</div>
+<div class="search-your-search">{{ your_search () }}</div>
 <div class="search-results cap-meta-search-results">
     <div id="tabheader" class="nav nav-tabs">
         <div class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#chapter-tab-pane"
                 :class="getTabHeaderClass ('chapter')"
-                aria-current="page">{{ $t ('Capitularies') }} ({{ getNumFound ('chapter') }})</a>
+                aria-current="page">{{ $t ('Chapters') }} ({{ getNumFound ('chapter') }})</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab"
+                :class="getTabHeaderClass ('ms')"
+                data-bs-target="#ms-tab-pane">{{ $t ('Manuscripts') }} ({{ getNumFound ('ms') }})</a>
         </div>
         <div class="nav-item">
             <a class="nav-link" data-bs-toggle="tab"
@@ -15,7 +20,7 @@
         <div class="nav-item">
             <a class="nav-link" data-bs-toggle="tab"
                 :class="getTabHeaderClass ('post')"
-                data-bs-target="#post-tab-pane">{{ $t ('Website') }} ({{ getNumFound ('post') }})</a>
+                data-bs-target="#post-tab-pane">{{ $t ('Posts') }} ({{ getNumFound ('post') }})</a>
         </div>
     </div>
     <div class="tab-content">
@@ -32,6 +37,12 @@
                     <span>&nbsp; </span>
                 </template>
             </div>
+        </cap-tab>
+
+        <cap-tab :solr-params="solr_params('ms')" id="ms-tab-pane" :class="getTabClass ('ms')"
+                v-slot="{ doc, snippets, expanded }" @numFound="(n) => setNumFound ('ms', n)">
+            <a class="excerpt-corresp" :href="mss_url + doc.ms_id + '#' + frag(doc)">{{ doc.title_de }}:</a>&nbsp;
+            <span class="snippet" v-html="join_snippets(snippets)" />
         </cap-tab>
 
         <cap-tab :solr-params="solr_params('front')" id="front-tab-pane" :class="getTabClass ('front')"
@@ -66,6 +77,7 @@
 /** @module plugins/cap-meta-search/main */
 
 import _ from 'lodash';
+import { sprintf } from 'sprintf-js';
 
 import * as tools from './tools.js';
 
@@ -80,6 +92,7 @@ export default {
             'q'    : null,
             'tabs' : {
                 'chapter' : { 'numFound' : 0 },
+                'ms'      : { 'numFound' : 0 },
                 'front'   : { 'numFound' : 0 },
                 'post'    : { 'numFound' : 0 },
             },
@@ -113,18 +126,27 @@ export default {
     /** @lends Main */
     'methods' : {
         solr_params (category) {
+            const queryParams = new URLSearchParams (window.location.search);
             const params = new URLSearchParams ();
+            const q = queryParams.get ('s');
             // Note the 'fq' form is a hack to get multiple params with the same name
             // past the brain-damaged PHP
-            params.set ('fq', `category:${category}`);
-            if (category === 'chapter') {
+            if (['chapter', 'ms'].includes(category)) {
+                if (category === 'chapter') {
+                    params.append ('fq', '{!collapse field=cap_id_chapter}');
+                    if (!q) {
+                        params.set ('sort', 'strnumsort(cap_id_chapter) asc');
+                    }
+                } else {
+                    params.append ('fq', '{!collapse field=ms_id}');
+                    if (!q) {
+                        params.set ('sort', 'strnumsort(ms_id) asc');
+                    }
+                    category = 'chapter';
+                }
                 params.set ('qf', 'text_la^2 text_de text_en text_la_ngrams');
-                params.append ('fq', '{!collapse field=cap_id_chapter}');
-                // NOSONAR
-                // p.set ('sort', 'strnumsort(cap_id_chapter) asc');
                 params.set ('expand', 'true');
 
-                const queryParams = new URLSearchParams (window.location.search);
                 const capit = queryParams.get ('capit');
                 if (capit && capit !== '') {
                     params.append ('fq', `cap_id:${capit}`);
@@ -142,7 +164,27 @@ export default {
                     params.append ('fq', `places:(${places.join (' OR ')})`);
                 }
             }
+            params.append ('fq', `category:${category}`);
+            params.set ('q', q || '*:*');
             return params;
+        },
+        your_search() {
+            const queryParams = new URLSearchParams (window.location.search);
+            const templates = {
+                's'            : '%s',
+                'capit'        : this.$t ('in %s'),
+                'notbefore'    : this.$t ('after %s'),
+                'notafter'     : this.$t ('before %s'),
+                'placenames[]' : this.$t ('origin in %s'),
+            }
+            const your_search = [];
+
+            for (const [key, template] of Object.entries(templates)) {
+                const value = (queryParams.getAll (key) || []).join (', ');
+                if (value)
+                    your_search.push (sprintf (template, _.escape (value)));
+            }
+            return sprintf (this.$t ('Your search for "%s" gave following results: '), your_search.join (' · '));
         },
         setNumFound (name, n) {
             this.tabs[name].numFound = n;
@@ -152,7 +194,7 @@ export default {
         },
         getTabHeaderClass (name) {
             const c = [];
-            for (const n of ['chapter', 'front', 'post']) {
+            for (const n of ['chapter', 'ms', 'front', 'post']) {
                 if (this.getNumFound (n) > 0) {
                     if (n === name) {
                         c.push ('active');
@@ -166,7 +208,7 @@ export default {
             return c.join (' ');
         },
         getTabClass (name) {
-            for (const n of ['chapter', 'front', 'post']) {
+            for (const n of ['chapter', 'ms', 'front', 'post']) {
                 if (this.getNumFound (n) > 0) {
                     if (n === name) {
                         return 'active show';

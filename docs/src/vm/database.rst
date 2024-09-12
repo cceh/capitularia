@@ -29,7 +29,7 @@ indicate the same concept.
 
 .. Palette https://github.com/d3/d3-scale-chromatic/blob/master/src/categorical/Paired.js
 
-.. pic:: sauml -i manuscripts -i msparts -i capitularies -i chapters -i mss_capitularies
+.. minilang:: sauml -i manuscripts -i msparts -i capitularies -i chapters -i mss_capitularies
                -i mss_chapters -i mss_chapters_text
    :caption: Schema *capitularia*
    :align: center
@@ -49,7 +49,7 @@ place names, which is the one displayed in the manuscript search box.  This hier
 extracted from the file :file:`mss/lists/capitularia_geo.xml`.  Unfortunately it is
 linked to manuscripts and not to manuscript parts.
 
-.. pic:: sauml -s gis
+.. minilang:: sauml -s gis
    :caption: Schema *gis*
    :align: center
    :svg-width: 100%

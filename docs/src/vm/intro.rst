@@ -20,7 +20,7 @@ We wrote a :ref:`Wordpress theme <wordpress-theme>` and many :ref:`Wordpress plu
 application server (and its API at https://api.capitularia.uni-koeln.de) for all
 functionality that is too inconvenient to implement in Wordpress plugins.
 
-.. pic:: pic
+.. minilang:: pic
    :caption: Main Components of the Capitularia VM
 
    down

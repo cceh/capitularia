@@ -21,7 +21,7 @@ version are extracted.
 
 The online collation tool knows about all versions and offers them to the user.
 
-.. pic:: uml
+.. minilang:: uml
    :caption: Data flow during pre-processing
 
    database  "Manuscript files\n(XML+TEI)"       as tei
@@ -66,7 +66,7 @@ The application server retrieves the chapters from the database and collates the
 results of the collation are sent in json to the frontend that does the formatting for
 display.
 
-.. pic:: uml
+.. minilang:: uml
    :caption: Data flow during collation
 
    cloud "Backend" {
@@ -214,7 +214,7 @@ This is sometimes called the
 
 An example calculation follows:
 
-.. pic:: trigram hlodouuico ludouico
+.. minilang:: trigram hlodouuico ludouico
    :caption: Calculating similarity using trigrams
 
 The similarity based on trigrams was chosen because its calculation can be done in

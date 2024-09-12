@@ -7,6 +7,7 @@ Maintenance
 .. toctree::
    :maxdepth: 2
 
+   scripts
    logfiles
 
 

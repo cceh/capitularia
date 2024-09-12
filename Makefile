@@ -210,7 +210,7 @@ black:
 	-black server/ python/
 
 
-TARGETS = csslint jslint phplint mo po pot
+TARGETS = csslint jslint phplint mo po pot poedit
 
 define TARGETS_TEMPLATE
 

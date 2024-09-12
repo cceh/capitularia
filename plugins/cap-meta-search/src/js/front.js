@@ -15,6 +15,8 @@ import CapTab from './cap-tab.vue';
 import CapPager from './cap-pager.vue';
 import * as tools from './tools.js';
 
+const DOMAIN = 'cap-meta-search';
+
 /**
  * A wrapper to call the Wordpress translate function
  * See: https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
@@ -23,7 +25,7 @@ import * as tools from './tools.js';
  * @returns {string}      The translated string.
  */
 function $t (text) {
-    return wp.i18n.__ (text, 'cap-meta-search');
+    return wp.i18n.__ (text, DOMAIN);
 }
 
 /**
@@ -35,7 +37,7 @@ function $t (text) {
  * @returns {string}          The translated string, singular or plural.
  */
 function $n (singular, plural, number) {
-    return wp.i18n._n (singular, plural, number, 'cap-meta-search');
+    return wp.i18n._n (singular, plural, number, DOMAIN);
 }
 
 const app = createApp (App);
@@ -46,7 +48,7 @@ app.config.globalProperties.$n = $n;
 
 // the v-translate directive
 app.directive ('translate', (el) => {
-    el.innerText = $t (el.innerText.trim ());
+    el.innerText = wp.i18n.__ (el.innerText.trim (), DOMAIN);
 });
 
 app.component ('cap-tab', CapTab);
@@ -72,16 +74,21 @@ const collator = new Intl.Collator ('de');
  * Initialize the tree view of places in the widget.
  */
 function places_tree_init () {
+    const places = new URLSearchParams (window.location.search).getAll ('places[]');
+    console.log(places);
+
     jQuery ('#places').jstree ({
-        'plugins'  : ['checkbox', 'sort', 'state', 'wholerow'],
+        'plugins'  : ['checkbox', 'sort', 'wholerow'],
         'checkbox' : {
-            // 'three_state' : false,
-            'cascade' : 'down',
+            'three_state' : false,
+            // 'cascade' : 'up',
+            // 'cascade' : 'down',
         },
         'sort' : function (a, b) {
             return collator.compare (this.get_text (a), this.get_text (b));
         },
         'core' : {
+            'worker' : false,
             'themes' : {
                 'icons' : false,
                 'dots'  : false,
@@ -91,8 +98,15 @@ function places_tree_init () {
                 const params = new URLSearchParams ({ 'lang' : document.documentElement.lang.substring (0, 2) });
                 tools.api ('/data/places.json/', params)
                     .then ((response) => callback (response.data.map (
-                        (r) => ({ 'id' : r.geo_id, 'parent' : r.parent_id || '#', 'text' : r.geo_name })
-                    )));
+                        (r) => ({
+                            'id'     : r.geo_id,
+                            'parent' : r.parent_id || '#',
+                            'text'   : r.geo_name,
+                            'state'  : {
+                                'selected' : places.includes (r.geo_id),
+                            }
+                        })
+                    )))
             },
         },
     });
@@ -100,13 +114,13 @@ function places_tree_init () {
     jQuery ('div.cap-meta-search-box form').submit ((event) => {
         const data = jQuery (event.target).serializeArray ();
         const jst = jQuery ('#places').jstree (true);
-        $.each (jst.get_selected (true), (i, node) => {
+        jQuery.each (jst.get_selected (true), (i, node) => {
             data.push ({ 'name' : 'places[]', 'value' : node.id });
             // used by "You searched for: X"
             data.push ({ 'name' : 'placenames[]', 'value' : node.text });
         });
         // submit to the wordpress search page
-        window.location.href = `/?${$.param (data)}`;
+        window.location.href = `/?${jQuery.param (data)}`;
         event.preventDefault ();
     });
 }

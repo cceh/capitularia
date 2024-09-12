@@ -73,10 +73,9 @@ Internationalization consists of these steps:
 Extract
 -------
 
-There are 3 kinds of source files: PHP files, JS files and Vue single component
-files.  PHP files can be extracted using the GNU xgettext utility.  JS and Vue
-files can be extracted using the `easygettext
-<https://github.com/Polyconseil/easygettext>`_ utility.
+There are 3 kinds of source files: PHP files, JS files and Vue single component files.
+PHP files can be extracted using the GNU xgettext utility.  JS and Vue files are
+extracted using the :program:`docs/cap-gettext-extractor.mjs` node utility.
 
 
 PHP Files
@@ -88,35 +87,19 @@ In PHP files use the __ (), _x (), and _n () functions.
 JS Files
 ++++++++
 
-In JS files, add this boilerplate to the file:
+In JS files, do this:
 
 .. code-block:: js
 
    /** The Wordpress Text Domain of the plugin. */
-   const LANG = 'cap-dynamic-menu';
+   const DOMAIN = 'cap-dynamic-menu';
 
-   function $gettext (msg) {
-       return wp.i18n.__ (msg, LANG);
-   }
-   function $pgettext (context, msg) {
-       return wp.i18n._x (msg, context, LANG);
-   }
-   function $ngettext (singular, plural, number) {
-       return wp.i18n._n (singular, plural, number, LANG);
-   }
+   const message  = wp.i18n.__ ('Message to translate', DOMAIN);
+   const xmessage = wp.i18n._x ('Message to translate', 'Hint to translators', DOMAIN);
+   const nmessage = wp.i18n._n ('Singular', 'Plural', number, DOMAIN);
 
-Then use like this:
-
-.. code-block:: js
-
-   const message  = $gettext  ('Message to translate');
-   const pmessage = $pgettext ('Hint to translators', 'Message to translate');
-   const nmessage = $ngettext ('Singular', 'Plural', number);
-
-We must use the :func:`$gettext` names for our functions, or the stupid
-easygettext tool will not recognize the function.  The functions used like this
-tag the message for the string extractor and also translate the string at
-runtime.
+These functions translate the message at runtime and also tag the message for the
+string extractor at compile time.
 
 
 Vue Files
@@ -129,7 +112,7 @@ In the JS section of Vue files, use the :func:`$t ()` function:
 
 .. code-block:: js
 
-   const message = $t ('Message to translate');
+   const message = this.$t ('Message to translate');
 
 This function tags the message for the string extractor and also translates
 the string at runtime.
@@ -145,24 +128,23 @@ tag translatable strings:
 This is the Vue 3 boilerplate that enables translations in Vue files: Put this
 in main.js before initializing your Vue app.
 
-
 .. code-block:: js
    :caption: Vue.js 3 boilerplate
 
    const DOMAIN = 'my-text-domain';
    const app    = createApp (App);
 
-   // wrapper to call the Wordpress translate function
+   // wrapper that calls the Wordpress translate function
    function $t (text) {
        return wp.i18n.__ (text, DOMAIN);
    }
 
-   // the vm.$t function
+   // make it available as this.$t on all instances
    app.config.globalProperties.$t = $t;
 
    // the v-translate directive
    app.directive ('translate', (el) => {
-       el.innerText = $t (el.innerText.trim ());
+       el.innerText = wp.i18n.__ (el.innerText.trim (), DOMAIN);
    });
 
    app.mount ('...');
@@ -210,5 +192,6 @@ Wordpress boilerplate to make translations available in PHP and JS files:
        lib\wp_set_script_translations ("$key.js", DOMAIN);
    }
 
-See also:
-https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
+.. seealso::
+
+    https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/

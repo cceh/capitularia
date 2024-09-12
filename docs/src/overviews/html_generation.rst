@@ -10,7 +10,7 @@ plugin<file-includer>`.
 XSLT Transformations
 --------------------
 
-.. pic:: uml
+.. minilang:: uml
    :caption: Data flow during HTML generation
 
    database  "Manuscript files\n(XML+TEI)" as tei
@@ -45,7 +45,7 @@ The HTML files are stored in the cache directory.
 User Delivery
 -------------
 
-.. pic:: uml
+.. minilang:: uml
    :align: center
    :caption: Data flow during user access
 

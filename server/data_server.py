@@ -568,7 +568,7 @@ def query_manuscripts():
     """Return manuscripts according to query."""
 
     status = request.args.get("status")
-    fulltext = request.args.get("fulltext")
+    fulltext = request.args.get("s")
     capit = request.args.get("capit")
     notbefore = request.args.get("notbefore")
     notafter = request.args.get("notafter")

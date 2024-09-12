@@ -1,12 +1,11 @@
 #!/usr/bin/python3
 
-"""Indexes TEI files and Wordpress pages into Solr
+"""Indexes TEI files and Wordpress pages into Solr.
 
-This tool can:
+- Connects to the Wordpress mysql database and indexes all pages and posts to Solr.
+- Indexes the header (Mordek) sections of TEI files to Solr.
 
-  - Connect directly to the Wordpress mysql database and index all pages and posts to
-    Solr.
-  - Index the header sections of TEI files to Solr.
+This program is run nightly by :program:`cron`.
 
 """
 
@@ -264,7 +263,7 @@ def tei2solr():
                 log(logging.ERROR, f"Error: {fn} {str(e)}")
 
 
-def build_parser(default_config_file):
+def build_parser(default_config_file="server.conf"):
     """Build the commandline parser."""
 
     parser = common.build_parser(default_config_file, __doc__)
@@ -286,7 +285,7 @@ def build_parser(default_config_file):
 
 
 if __name__ == "__main__":
-    build_parser("server.conf").parse_args(namespace=args)
+    build_parser().parse_args(namespace=args)
     args.config = config_from_pyfile(args.config_file)
 
     handlers = [

@@ -29,7 +29,7 @@ theme\get_sidebar_end ();
 theme\get_content_start ();
 
 echo "<header class='search-header cap-page-header'>\n  <h2>" .
-    __ ('Search Results', 'capitularia') . "</h2>\n";
+    __ ('Search Results', DOMAIN) . "</h2>\n";
 
 echo '<div id="cap-meta-search-app"></div>';
 

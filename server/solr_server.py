@@ -73,6 +73,7 @@ Endpoints
 
 """
 
+import logging
 from urllib.parse import urljoin
 
 import requests
@@ -136,6 +137,7 @@ def select():
         "q.op": "AND",
         "qf": "text_la text_de text_en",
         "defType": "edismax",
+        # "fl": "ms_id cap_id mscap_n chapter type ms_id_part notbefore notafter places cap_id_chapter id category post_status title_de score",
         "fl": "* score",
         "hl": "true",
         "hl.tag.pre": "<mark>",
@@ -155,4 +157,5 @@ def select():
     url = urljoin(current_app.config["SOLR_URL"], "select")
 
     r = requests.get(url, params=params)
+    # logging.info(r.content)
     return r.content

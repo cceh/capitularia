@@ -9,12 +9,9 @@ import jQuery from 'jquery';
 import { Tooltip } from 'bootstrap';
 
 /** The Wordpress Text Domain of the plugin. */
-const LANG = 'cap-collation';
+const DOMAIN = 'cap-collation';
 
 // See: https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
-function $pgettext (context, msg) {
-    return wp.i18n._x (msg, context, LANG);
-}
 
 /**
  * The id of the "Obertext".
@@ -134,8 +131,8 @@ export function fix_witness (w) {
 
     const corresp = w.corresp ? `${w.corresp} : ` : '';
     const siglum = w.siglum ? ` [${w.siglum}]` : '';
-    const corrected = w.type === 'later_hands' ? $pgettext ('corrected version of capitularies', ' (corrected)') : '';
-    const n = w.n > '1' ? $pgettext ('2., 3., etc. copy of capitularies', ' ($1. copy)').replace (/\$1/, w.n) : '';
+    const corrected = w.type === 'later_hands' ? wp.i18n._x (' (corrected)', 'corrected version of capitularies', DOMAIN) : '';
+    const n = w.n > '1' ? wp.i18n._x (' ($1. copy)', '2., 3., etc. copy of capitularies', DOMAIN).replace (/\$1/, w.n) : '';
 
     w.title = `${corresp}${w.ms_id}${siglum}${corrected}${n}`;
     w.short_title = `${w.ms_id}${siglum}${corrected}${n}`;
@@ -143,11 +140,11 @@ export function fix_witness (w) {
     w.sort_key    = w.title;
     w.title       = w.title.replace (
         /bk-textzeuge/,
-        $pgettext ('title of the edition', 'Edition by Boretius/Krause')
+        wp.i18n._x ('Edition by Boretius/Krause', 'title of the edition', DOMAIN)
     );
     w.short_title = w.short_title.replace (
         /bk-textzeuge/,
-        $pgettext ('title of the edition', 'Edition by Boretius/Krause')
+        wp.i18n._x ('Edition by Boretius/Krause', 'title of the edition', DOMAIN)
     );
     w.sort_key    = w.sort_key.replace (/bk-textzeuge/, '_bk-textzeuge'); // always sort this first
     w.sort_key    = sort_key (w.sort_key);

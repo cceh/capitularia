@@ -40,7 +40,7 @@ sys.path.insert(0, os.path.join(prj_dir, "python"))
 
 extension("sphinxcontrib-autojsdoc")
 extension("sphinxcontrib-autophpdoc")
-extension("sphinxcontrib-pic")
+extension("sphinxcontrib-minilang")
 
 # -- General configuration ------------------------------------------------
 
@@ -60,7 +60,7 @@ extensions = [
     "sphinxcontrib.phpdomain",
     "autophpdoc",
     "autojsdoc",
-    "pic",
+    "minilang",
 ]
 
 autojsdoc_structure_json = "build/jsdoc/structure.json"
@@ -71,7 +71,7 @@ autophpdoc_structure_xml = "build/phpdoc/structure.xml"
 autophpdoc_members = True
 autophpdoc_title = True
 
-pic_options = {
+minilang_options = {
     "pic": {
         "program": ["dpic", "-v"],
         "align": "center",

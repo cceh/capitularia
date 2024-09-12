@@ -128,7 +128,7 @@ $$"""
 class Manuscripts(Base):
     r"""Manuscripts
 
-    .. pic:: sauml -i manuscripts
+    .. minilang:: sauml -i manuscripts
 
     """
 
@@ -153,7 +153,7 @@ class Manuscripts(Base):
 class MsParts(Base):
     r"""The parts of a manuscript
 
-    .. pic:: sauml -i msparts
+    .. minilang:: sauml -i msparts
 
     """
 
@@ -187,7 +187,7 @@ class Capitularies(Base):
 
     All capitularies catalogued according to BK or Mordek.
 
-    .. pic:: sauml -i capitularies
+    .. minilang:: sauml -i capitularies
 
     """
 
@@ -209,7 +209,7 @@ class Chapters(Base):
 
     All chapters catalogued according to BK or Mordek.
 
-    .. pic:: sauml -i chapters
+    .. minilang:: sauml -i chapters
 
     """
 
@@ -234,7 +234,7 @@ class MssCapitularies(Base):
     A finer granularity (chapters instead of capitularies) can be found in the
     :class:`MssChapters` table, albeit only already transcribed ones.
 
-    .. pic:: sauml -i mss_capitularies
+    .. minilang:: sauml -i mss_capitularies
 
     """
 
@@ -281,7 +281,7 @@ class MssChapters(Base):
     Note: The table :class:`MssCapitularies` relates manuscripts to
     capitularies yet untranscribed.
 
-    .. pic:: sauml -i mss_chapters
+    .. minilang:: sauml -i mss_chapters
 
     """
 
@@ -345,7 +345,7 @@ class MssChaptersText(Base):
     There may be more than one text extracted from the same chapter: the original
     hand and later corrector hands.
 
-    .. pic:: sauml -i mss_chapters_text
+    .. minilang:: sauml -i mss_chapters_text
 
     """
 
@@ -457,7 +457,7 @@ class GeoPlaces(Base):
 
     Data extracted from capitularia_geo.xml
 
-    .. pic:: sauml -s gis -i gis.geoplaces
+    .. minilang:: sauml -s gis -i gis.geoplaces
 
     """
 
@@ -478,7 +478,7 @@ class GeoPlacesNames(Base):
 
     Data extracted from capitularia_geo.xml
 
-    .. pic:: sauml -s gis -i gis.geoplaces_names
+    .. minilang:: sauml -s gis -i gis.geoplaces_names
 
     """
 
@@ -498,7 +498,7 @@ class GeoPlacesNames(Base):
 class MnManuscriptsGeoPlaces(Base):
     r"""The M:N relationship between manuscripts and geoplaces
 
-    .. pic:: sauml -s gis -i gis.mn_mss_geoplaces
+    .. minilang:: sauml -s gis -i gis.mn_mss_geoplaces
 
     """
 
@@ -521,7 +521,7 @@ class Geonames(Base):
 
     Data scraped from geonames.org et al. and cached here.
 
-    .. pic:: sauml -s gis -i gis.geonames
+    .. minilang:: sauml -s gis -i gis.geonames
 
     """
 
@@ -547,7 +547,7 @@ class Geonames(Base):
 class MnMsPartsGeonames(Base):
     r"""The M:N relationship between msparts and geonames
 
-    .. pic:: sauml -s gis -i gis.mn_msparts_geonames
+    .. minilang:: sauml -s gis -i gis.mn_msparts_geonames
 
     """
 
@@ -578,7 +578,7 @@ class GeoAreas(Base):
 
     Custom defined geographic areas
 
-    .. pic:: sauml -s gis -i gis.geoareas
+    .. minilang:: sauml -s gis -i gis.geoareas
 
     """
 

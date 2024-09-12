@@ -47,11 +47,7 @@ import jQuery from 'jquery';
 import { escape } from 'lodash';
 
 /** The Wordpress Text Domain of the plugin. */
-const LANG = 'cap-dynamic-menu';
-
-function $pgettext (context, msg) {
-    return wp.i18n._x (msg, context, LANG);
-}
+const DOMAIN = 'cap-dynamic-menu';
 
 /**
  * Initialize all dynamic menus on the page.
@@ -152,7 +148,7 @@ function init_dynamic_menues () {
 
                 // horrible hack for linebreak checkbox, close your eyes
                 if (href === '#editorial-preface') {
-                    const message = escape ($pgettext ('Checkbox label', 'Show line breaks'));
+                    const message = escape (wp.i18n._x ('Show line breaks', 'Checkbox label', DOMAIN));
 
                     a.push (`<a class="ssdone">
 <div class="form-check">

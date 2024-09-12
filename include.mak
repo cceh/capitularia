@@ -85,11 +85,11 @@ $(LANG_SRC)/php.pot: $(PHP_FILES)
 
 $(LANG_SRC)/js.pot: $(wildcard $(JS_SRC)/*.js)
 	touch $@
-	-$(EASYGETTEXT) --output $@ $^
+	-$(JSGETTEXT) --output $@ $^
 
 $(LANG_SRC)/vue.pot: $(wildcard $(JS_SRC)/*.vue)
 	touch $@
-	-$(EASYGETTEXT) --output $@ $^
+	-$(VUEGETTEXT) --output $@ $^
 
 poedit: po
 	poedit $(LANG_SRC)/de_DE.po

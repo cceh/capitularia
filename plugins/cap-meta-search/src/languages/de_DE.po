@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @cceh/capitularia 0.1.0\n"
 "Report-Msgid-Bugs-To: marcello@perathoner.de\n"
-"POT-Creation-Date: 2024-09-08 15:12+0200\n"
-"PO-Revision-Date: 2024-08-30 12:05+0200\n"
+"POT-Creation-Date: 2024-09-12 09:08+0200\n"
+"PO-Revision-Date: 2024-09-12 09:21+0200\n"
 "Last-Translator: Marcello Perathoner <marcello@perathoner.de>\n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 
 #: cap-meta-search.php:75
 msgid "Capitularia Meta Search"
@@ -36,7 +36,7 @@ msgstr "nach %d"
 msgid "before %d"
 msgstr "vor %d"
 
-#: class-meta-search.php:149
+#: class-meta-search.php:148 src/js/main.vue:102
 #, php-format
 msgid "origin in %s"
 msgstr "entstanden in %s"
@@ -100,27 +100,27 @@ msgstr "Freie Textsuche in der Transkription"
 msgid "Free Text"
 msgstr "Freitext"
 
-#: class-meta-search-widget.php:217
+#: class-meta-search-widget.php:210
 msgid "Search"
 msgstr "Suchen"
 
-#: class-meta-search-widget.php:218
+#: class-meta-search-widget.php:211
 msgid "Start the search"
 msgstr "Suche starten"
 
-#: class-meta-search-widget.php:221
+#: class-meta-search-widget.php:214
 msgid "Help"
 msgstr "Hilfe"
 
-#: class-meta-search-widget.php:222
+#: class-meta-search-widget.php:215
 msgid "Show some help"
 msgstr "Hilfe anzeigen"
 
-#: class-meta-search-widget.php:268
+#: class-meta-search-widget.php:261
 msgid "Title"
 msgstr "Titel"
 
-#: class-meta-search-widget.php:268
+#: class-meta-search-widget.php:261
 msgid "New title"
 msgstr "Neuer Titel"
 
@@ -132,12 +132,7 @@ msgstr "Suchergebnisse"
 msgid "docs"
 msgstr ""
 
-#: src/js/front.js:49
-#, fuzzy
-msgid "el"
-msgstr "Hilfe"
-
-#: src/js/front.js:25
+#: src/js/front.js:27
 msgid "text"
 msgstr ""
 
@@ -145,22 +140,48 @@ msgstr ""
 msgid "« Previous page"
 msgstr "« Vorherige Seite"
 
-#: src/js/main.vue:38
-msgid "Capitularies"
-msgstr "Kapitularien"
+#: src/js/main.vue:100
+msgid "after %s"
+msgstr "nach %s"
 
-#: src/js/main.vue:45
+#: src/js/main.vue:101
+msgid "before %s"
+msgstr "vor %s"
+
+#: src/js/main.vue:41
+msgid "Chapters"
+msgstr "Kapitel"
+
+#: src/js/main.vue:99
+msgid "in %s"
+msgstr "in %s"
+
+#: src/js/main.vue:48
+msgid "Manuskripte"
+msgstr "Handschriften"
+
+#: src/js/main.vue:55
 msgid "Mordek"
 msgstr "Mordek"
 
 #: src/js/cap-pager.vue:37
-#, fuzzy
 msgid "Next page »"
 msgstr "Nächste Seite »"
 
-#: src/js/main.vue:52
+#: src/js/main.vue:62
 msgid "Website"
 msgstr "Webseite"
+
+#: src/js/main.vue:111
+msgid "Your search for \"%s\" gave following results: "
+msgstr "Ihre Suche nach: \"%s\" ergab folgende Treffer: "
+
+#, fuzzy
+#~ msgid "el"
+#~ msgstr "Hilfe"
+
+#~ msgid "Capitularies"
+#~ msgstr "Kapitularien"
 
 #~ msgid "Capitularies contained"
 #~ msgstr "Enthaltene Kapitularien"
@@ -321,9 +342,6 @@ msgstr "Webseite"
 #~ msgctxt "Collation Algorithm"
 #~ msgid "Needleman-Wunsch-Gotoh"
 #~ msgstr "Needleman-Wunsch-Gotoh"
-
-#~ msgid "Manuscript"
-#~ msgstr "Handschrift"
 
 #~ msgid "Manuscripts"
 #~ msgstr "Handschriften"
@@ -632,9 +650,6 @@ msgstr "Webseite"
 #~ msgid_plural "Your search for: %1$s gave %2$d results."
 #~ msgstr[0] "Ihre Suche nach: %1$s ergab einen Treffer."
 #~ msgstr[1] "Ihre Suche nach: %1$s ergab %2$d Treffer."
-
-#~ msgid "Your search for %1$s gave no results."
-#~ msgstr "Ihre Suche nach: %1$s ergab keine Treffer."
 
 #~ msgid "Page:"
 #~ msgstr "Seite:"

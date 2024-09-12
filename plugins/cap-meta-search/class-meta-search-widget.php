@@ -202,15 +202,8 @@ class Widget extends \WP_Widget
         $label       = __ ('Free Text In Transcription', DOMAIN);
         $tooltip     = __ ('Free text search in transcription', DOMAIN);
         $placeholder = __ ('Free Text', DOMAIN);
-        // Use 'fulltext' as query parameter instead of 's' to switch to our own
-        // search implementation.  Because our manuscript pages contain only a
-        // shortcode Wordpress search could not find anything.
-        $this->echo_input  ($label, 'fulltext', $placeholder, $tooltip);
 
-        // ... but without an 's' parameter Wordpress will not process the query
-        // in any sensible manner.  Add a dummy 's' parameter to fix the
-        // brain-dead Wordpress query parser.
-        echo "<input type='hidden' name='s'>";
+        $this->echo_input  ($label, 's', $placeholder, $tooltip);
 
         echo "<div class='cap-meta-search-buttons clearfix'>\n";
 

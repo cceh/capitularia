@@ -143,15 +143,13 @@ class MetaSearch
             if ($key == 'notafter') {
                 $your_search[] = sprintf (__ ('before %d', DOMAIN), absint ($val));
             }
-            if ($key == 'placenames') {
-                if (is_array ($val)) {
-                    $your_search[] = sprintf (
-                        __ ('origin in %s', DOMAIN),
-                        implode (', ', $val)
-                    );
-                }
+            if ($key == 'placenames' && is_array ($val)) {
+                $your_search[] = sprintf (
+                    __ ('origin in %s', DOMAIN),
+                    implode (', ', $val)
+                );
             }
-            if ($key == 'fulltext') {
+            if ($key == 's') {
                 $your_search[] = stripslashes ($val);
             }
         }

@@ -56,8 +56,8 @@
           <div class="form-check">
             <input :id="id + '-lh'" v-model="later_hands" class="form-check-input" type="checkbox"
                    value="" @change="on_later_hands">
-            <label class="form-check-label" :for="id + '-lh'">
-              {{ $t ('Include corrections by different hands') }}
+            <label v-translate class="form-check-label" :for="id + '-lh'">
+                Include corrections by different hands
             </label>
           </div>
         </form>

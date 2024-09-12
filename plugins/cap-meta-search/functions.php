@@ -17,7 +17,7 @@ use \cceh\capitularia\lib;
 
 function is_meta_search ()
 {
-    return !is_admin () && array_key_exists ('fulltext', $_GET);
+    return !is_admin () && array_key_exists ('s', $_GET);
 }
 
 /**
@@ -109,7 +109,6 @@ function on_widgets_init ()
 
 function on_query_vars ($vars)
 {
-    $vars[] = 'fulltext';
     $vars[] = 'capit';
     $vars[] = 'place';
     $vars[] = 'notbefore';
@@ -133,7 +132,7 @@ function on_query_vars ($vars)
 
 function on_cap_meta_search_the_permalink ($permalink)
 {
-    $highlight = $_GET['fulltext'] ?? $_GET['s'] ?? '';
+    $highlight = $_GET['s'] ?? '';
     if (!empty ($highlight)) {
         return esc_attr (add_query_arg (HIGHLIGHT, $highlight, $permalink));
     }

@@ -32,7 +32,7 @@ The command for updating the Solr database is: :command:`make solr-import`.
 
 That same command is run nightly by cron.
 
-.. pic:: uml
+.. minilang:: uml
    :caption: Data flow during text extraction
 
    database  "Manuscript files\n(TEI)"   as tei
@@ -56,7 +56,7 @@ We extract the metadata from the manuscript files and store them in the Postgres
 database on the Capitularia VM.  The process is similar to the pre-processing
 done for the Collation Tool.
 
-.. pic:: uml
+.. minilang:: uml
    :caption: Data flow during metadata extraction
 
    database  "Manuscript files\n(TEI)" as tei
@@ -116,7 +116,7 @@ Lucene <https://github.com/cceh/capitularia-lucene-tools>`_.
 Searches in Mordek and Wordpress posts use more traditional search methods like
 stemming.
 
-.. pic:: uml
+.. minilang:: uml
     :caption: Components used in searching
 
     component "Frontend\n(Javascript)" as client
@@ -135,7 +135,7 @@ stemming.
     api    --> solr
 
 
-.. pic:: uml
+.. minilang:: uml
     :caption: Data flow while searching
 
     participant "Frontend"         as client

@@ -50,11 +50,9 @@ export default {
          */
         solr (start) {
             const vm = this;
-            const queryParams = new URLSearchParams (window.location.search);
             const params = new URLSearchParams (vm.solrParams.toString ());
-            params.set ('q', queryParams.get ('fulltext'));
             params.set ('start', start);
-            console.log (`solr_query: ${params.toString ()}`);
+            console.log (`solr_query: ${decodeURIComponent(params.toString ())}`);
             tools.api ('/solr/select.json', params).then ((response) => {
                 vm.response = response.data.response || {};
                 vm.highlighting = response.data.highlighting || {};

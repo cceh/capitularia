@@ -22,8 +22,9 @@ HOST_PRJ_DIR := $(HOST_ROOT):~/prj/capitularia/capitularia
 HOST_SERVER  := $(HOST_PRJ_DIR)/server
 HOST_XSLT    := $(HOST_PRJ_DIR)/xslt
 
+NODEJS       := node
 NODE_MODULES := $(ROOT)/node_modules
-NODE         := $(NODE_MODULES)/.bin
+NODE_BIN_DIR := $(NODE_MODULES)/.bin
 PYTHON       := $(ROOT)/.venv/bin/python3
 
 SOLR_INST    := $(HOME)/solr/solr
@@ -31,35 +32,37 @@ SOLR         := $(SOLR_INST)/bin/solr
 
 NAT_EARTH    := https://naciscdn.org/naturalearth
 
-WEBPACK             = $(NODE)/webpack --no-color
-WEBPACK_DEV_SERVER  = $(NODE)/webpack serve --no-color
+WEBPACK             = $(NODE_BIN_DIR)/webpack --no-color
+WEBPACK_DEV_SERVER  = $(NODE_BIN_DIR)/webpack serve --no-color
 WEBPACK_DEV_CONFIG  = webpack.dev.js
 WEBPACK_PROD_CONFIG = webpack.prod.js
 
-BABEL           = $(NODE)/babel
+BABEL           = $(NODE_BIN_DIR)/babel
 BABELFLAGS      = --source-maps true
-SASS            = $(NODE)/sass
+SASS            = $(NODE_BIN_DIR)/sass
 SASSFLAGS       = -I $(CSS_SRC)
-POSTCSS         = $(NODE)/postcss
+POSTCSS         = $(NODE_BIN_DIR)/postcss
 POSTCSSFLAGS    =
-ESLINT         := $(NODE)/eslint
+ESLINT         := $(NODE_BIN_DIR)/eslint
 ESLINTFLAGS     = -f unix
-JSHINT         := $(NODE)/jshint
+JSHINT         := $(NODE_BIN_DIR)/jshint
 JSHINTFLAGS     = --reporter=unix
-STYLELINT       = $(NODE)/stylelint $(STYLELINTFLAGS)
+STYLELINT       = $(NODE_BIN_DIR)/stylelint $(STYLELINTFLAGS)
 STYLELINTFLAGS  = -f unix
 RSYNC          := rsync -v -crlptz --exclude='*~' --exclude='.*'
 RSYNCPY        := $(RSYNC) --exclude "**/__pycache__"  --exclude "*.pyc" --exclude "*.log"
 WP_CLI         := $(LOCALFS)/wp
 PO2JSON        := $(ROOT)/python/po2json.py
-EASYGETTEXT    := $(NODE)/gettext-extract --attribute v-translate
+EASYGETTEXT    := $(NODE_BIN_DIR)/gettext-extract --attribute v-translate
+JSGETTEXT      := $(NODEJS) docs/cap-gettext-extractor.mjs
+VUEGETTEXT     := $(JSGETTEXT)
 XGETTEXT       := xgettext --default-domain=capitularia --from-code=utf-8 \
 	--copyright-holder="CCeH Cologne" --package-name=Capitularia --package-version=2.0 \
 	--msgid-bugs-address=marcello@perathoner.de \
 	-k'__' -k'_e' -k'_n:1,2' -k'_x:1,2c' -k'_ex:1,2c'
 
 PHPDOC         := vendor/phpdoc
-JSDOC          := $(NODE)/jsdoc
+JSDOC          := $(NODE_BIN_DIR)/jsdoc
 
 MYSQL_REMOTE     := mysql --defaults-file=~/.my.cnf.capitularia
 MYSQL_LOCAL      := mysql --defaults-file=~/.my.cnf.capitularia-local

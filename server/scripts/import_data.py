@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
-"""Insert and update data from TEI files into Postgres.
+"""Inserts and updates data from TEI files into Postgres.
 
-Call this tool from cron to keep the postgres database in sync with the data in
-the TEI file collection.
+- Inserts the contents of each single capitulary chapter into the Postgres database.
+- Inserts the geographic information into Postgres.
 
-Includes the geographic information tables.
+This tool is run at regular intervals by :program:`cron` to keep the postgres database
+in sync with the data in the TEI file collection.
 
 """
 
@@ -874,10 +875,7 @@ def import_fulltext(conn, filenames, mode):
                 # set bk-textzeuge's id
                 if fn.endswith("bk-textzeuge.xml"):
                     ms_id = common.BK_ZEUGE
-                title = tei.xpath(
-                    "normalize-space(tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main'])",
-                    namespaces=NS,
-                )
+
                 solr = []
 
                 for item in tei.xpath(
@@ -979,6 +977,17 @@ def import_fulltext(conn, filenames, mode):
                             res = execute(
                                 conn,
                                 """
+                            SELECT title
+                            FROM manuscripts
+                            WHERE ms_id = :ms_id
+                            """,
+                                params,
+                            )
+                            title = res.scalar() or ""
+
+                            res = execute(
+                                conn,
+                                """
                             SELECT mc.msp_part, lower(msp.date), upper(msp.date), array_agg(mn.geo_id)
                             FROM mss_chapters mc
                               JOIN msparts msp USING (ms_id, msp_part)
@@ -1002,7 +1011,7 @@ def import_fulltext(conn, filenames, mode):
                             params["notafter"] = row[2]
                             params["places"] = get_parent_places(conn, row[3])
 
-                            params["title_de"] = title
+                            params["title_de"] = common.normalize_space(title.strip())
                             params["text_la"] = item.text
                             params["cap_id_chapter"] = fix_id(f"{cap_id}-{chapter}")
                             params["id"] = fix_id(
@@ -1039,7 +1048,7 @@ def import_fulltext(conn, filenames, mode):
             log(logging.ERROR, "Parsing %s ...\n%s" % (fn, str(e)))
 
 
-def build_parser(default_config_file):
+def build_parser(default_config_file="server.conf"):
     """Build the commandline parser."""
 
     parser = common.build_parser(default_config_file, __doc__)
@@ -1051,25 +1060,40 @@ def build_parser(default_config_file):
         default=False,
     )
     parser.add_argument(
-        "--mss", nargs="+", help="the manuscript files (or the corpus file) to import"
+        "--mss",
+        nargs="+",
+        metavar="FILES",
+        help="the manuscript files (or the corpus file) to import",
     )
     parser.add_argument(
-        "--cap-list", nargs="+", help="the capitularies lists to import"
+        "--cap-list",
+        nargs="+",
+        metavar="FILES",
+        help="the capitularies lists to import",
     )
     parser.add_argument(
-        "--extracted", nargs="*", help="import per-chapter extracted XML from files"
+        "--extracted",
+        nargs="+",
+        metavar="FILES",
+        help="import per-chapter extracted XML from files",
     )
     parser.add_argument(
-        "--fulltext", nargs="*", help="import per-chapter extracted fulltext from files"
+        "--fulltext",
+        nargs="+",
+        metavar="FILES",
+        help="import per-chapter extracted fulltext from files",
     )
     parser.add_argument(
         "--solr",
-        nargs="*",
-        metavar="FULLTEXT",
+        nargs="+",
+        metavar="FILES",
         help="index per-chapter extracted fulltext from files with Solr",
     )
     parser.add_argument(
-        "--geoareas", nargs="+", help="import geoareas from geojson file"
+        "--geoareas",
+        nargs="+",
+        metavar="FILES",
+        help="import geoareas from geojson file",
     )
     parser.add_argument(
         "--publish",
@@ -1098,7 +1122,7 @@ def build_parser(default_config_file):
 
 
 if __name__ == "__main__":
-    build_parser("server.conf").parse_args(namespace=args)
+    build_parser().parse_args(namespace=args)
     args.config = config_from_pyfile(args.config_file)
 
     handlers = [

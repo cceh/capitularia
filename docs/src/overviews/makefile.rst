@@ -16,7 +16,7 @@ cron runs as the :ref:`user capitularia <user>`.
     - :ref:`fulltext-search-overview`
 
 
-.. pic:: uml
+.. minilang:: uml
    :caption: Makefile Overview
    :svg-width: 100%
 

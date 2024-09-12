@@ -82,7 +82,10 @@ use cceh\capitularia\lib;
                 <tr>
                   <td>
                     <input id="searchinput" class="sword" type="text" name="s"
-                        <?php echo_attribute ('placeholder', __ ('Search', 'capitularia')); ?> />
+                        <?php
+                            echo_attribute ('value', $_GET['s']);
+                            echo_attribute ('placeholder', __ ('Search', 'capitularia')); ?>
+                        />
                   </td>
                   <td class="submit-cell">
                     <button id="searchsubmit" class="submit" type="submit" name="submit"></button>
