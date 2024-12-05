@@ -291,6 +291,10 @@
         <title>Digitale Historische Bibliothek Erfurt/Gotha</title>
         <caption>Digitale Historische Bibliothek Erfurt/Gotha</caption>
       </item>
+      <item key="archive.thulb.uni-jena.de">
+        <title>Thüringer Universitäts- und Landesbibliothek Jena</title>
+        <caption>ThULB</caption>
+      </item>
       <item key="dhb.thulb.uni-jena.de">
         <title>Digitale Historische Bibliothek Erfurt/Gotha</title>
         <caption>Digitale Historische Bibliothek Erfurt/Gotha</caption>
