@@ -147,6 +147,7 @@
 	<pattern id="anchor">
 		<rule context="tei:anchor">
 			<report test="text()" role="warning">Soll keinen Text enthalten</report>
+  		    <assert test="@xml:id" role="error">anchor ohne xml:id.</assert>
 		</rule>
 	</pattern>
 	<!--  -->
@@ -174,26 +175,26 @@
 	<!--  -->
 	<!--ab-->
 	<pattern id="startswith_hash">
-		<rule context="@prev | @next | @spanTo">
-			<assert test="starts-with(.,'#')" role="warning">Attributwert soll mit # starten</assert>
+		<rule context="tei:ab/@prev | tei:ab/@next | tei:milestone/@prev | tei:milestone/@next | tei:milestone/@spanTo">
+			<assert test="starts-with(.,'#')" role="error">Attributwert muss mit # starten</assert>
 		</rule>
 	</pattern>
 	<pattern id="prev">
-		<rule context="@prev">
+		<rule context="tei:ab/@prev | tei:milestone/@prev">
   		    <assert test="preceding::tei:*[@xml:id = substring-after (current (), '#')]"
-                    role="warning">Das Ziel für @prev fehlt.</assert>
+                    role="error">Das Ziel für @prev fehlt.</assert>
 		</rule>
 	</pattern>
 	<pattern id="next">
-		<rule context="@next">
+		<rule context="tei:ab/@next | tei:milestone/@next">
   		    <assert test="following::tei:*[@xml:id = substring-after (current (), '#')]"
-                    role="warning">Es folgt kein Ziel auf @next.</assert>
+                    role="error">Es folgt kein Ziel auf @next.</assert>
 		</rule>
 	</pattern>
 	<pattern id="spanTo">
-		<rule context="@spanTo">
+		<rule context="tei:milestone/@spanTo">
   		    <assert test="following::tei:*[@xml:id = substring-after (current (), '#')]"
-                    role="warning">Es folgt kein Ziel auf @spanTo.</assert>
+                    role="error">Es folgt kein Ziel auf @spanTo.</assert>
 		</rule>
 	</pattern>
 	<!--  -->
