@@ -158,27 +158,6 @@
 			<report test="text()" role="warning">Soll keinen Text enthalten</report>
 		</rule>
 	</pattern>
-	<pattern id="milestone_prev">
-		<rule context="tei:milestone/@prev">
-			<assert test="starts-with(.,'#')" role="warning">Attributwert soll mit # starten</assert>
-		</rule>
-	</pattern>
-	<pattern id="milestone_next">
-		<rule context="tei:milestone/@next">
-			<assert test="starts-with(.,'#')" role="warning">Attributwert soll mit # starten</assert>
-		</rule>
-	</pattern>
-	<pattern id="milestone_spanTo">
-		<rule context="tei:milestone/@spanTo">
-			<assert test="starts-with(.,'#')" role="warning">Attributwert soll mit # starten</assert>
-		</rule>
-	</pattern>
-	<pattern id="milestone_spanTo_anchor">
-		<rule context="tei:milestone[@spanTo]">
-		  <assert test="following::tei:anchor[@xml:id = substring-after (current ()/@spanTo, '#')]"
-                  role="warning">Anchor mit entsprechender xml:id fehlt.</assert>
-		</rule>
-	</pattern>
 	<!--  -->
 	<!--  -->
 	<!--  -->
@@ -194,14 +173,27 @@
 	<!--  -->
 	<!--  -->
 	<!--ab-->
-	<pattern id="ab_prev">
-		<rule context="tei:ab/@prev">
+	<pattern id="startswith_hash">
+		<rule context="@prev | @next | @spanTo">
 			<assert test="starts-with(.,'#')" role="warning">Attributwert soll mit # starten</assert>
 		</rule>
 	</pattern>
-	<pattern id="ab_next">
-		<rule context="tei:ab/@next">
-			<assert test="starts-with(.,'#')" role="warning">Attributwert soll mit # starten</assert>
+	<pattern id="prev">
+		<rule context="@prev">
+  		    <assert test="preceding::tei:*[@xml:id = substring-after (current (), '#')]"
+                    role="warning">Das Ziel für @prev fehlt.</assert>
+		</rule>
+	</pattern>
+	<pattern id="next">
+		<rule context="@next">
+  		    <assert test="following::tei:*[@xml:id = substring-after (current (), '#')]"
+                    role="warning">Es folgt kein Ziel auf @next.</assert>
+		</rule>
+	</pattern>
+	<pattern id="spanTo">
+		<rule context="@spanTo">
+  		    <assert test="following::tei:*[@xml:id = substring-after (current (), '#')]"
+                    role="warning">Es folgt kein Ziel auf @spanTo.</assert>
 		</rule>
 	</pattern>
 	<!--  -->
