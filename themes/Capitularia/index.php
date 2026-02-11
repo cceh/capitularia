@@ -54,6 +54,10 @@ if (have_posts ()) {
         echo ("<article id='post-$id' class='$classes'>\n");
         echo ("  <header class='article-header $class-header'>\n");
         echo ("    <h2>$title</h2>\n");
+        if (is_single ()) {
+        echo("<small>" . get_the_date ( 'd.m.Y' ) . "</small>" );
+        }
+
         echo ("  </header>\n");
         echo ("  <div class='$class'>\n");
         if (is_single ()) {
