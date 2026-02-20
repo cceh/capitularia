@@ -41,4 +41,5 @@ module.exports = merge (common, {
             'chunkFilename' : '[id].[contenthash].css',
         }),
     ],
+    'stats': 'errors-only'
 });
