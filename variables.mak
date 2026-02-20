@@ -1,4 +1,5 @@
-ROOT      := $(CAPITULARIA_PRJ)
+#ROOT      := $(CAPITULARIA_PRJ)
+ROOT      ?= $(CURDIR)
 HOST_ROOT := $(CAPITULARIA_SSHUSER)@capitularia.uni-koeln.de
 
 SERVERFS := $(HOST_ROOT):/var/www/capitularia.uni-koeln.de
