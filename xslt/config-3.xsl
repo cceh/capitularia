@@ -206,6 +206,18 @@
         <title>Archivio Capitolare di Modena</title>
         <caption>Archivio Capitolare di Modena</caption>
       </item>
+      <item key="dl.ub.uni-freiburg.de">
+        <title>Freiburger historische Bestände – digital</title>
+        <caption>Freiburger historische Bestände – digital</caption>
+      </item>  
+      <item key="scriptoria.at">
+        <title>scriptoria.at</title>
+        <caption>scriptoria.at</caption>
+      </item>
+      <item key="lodovico.medialibrary.it">
+        <title>Lodovico Media Library</title>
+        <caption>Lodovico Media Library</caption>
+      </item>                           
       <item key=".beic.it">
         <title>Biblioteca Europea di Informazione e Cultura</title>
         <caption>BEIC</caption>
@@ -246,10 +258,22 @@
         <title>British Library</title>
         <caption>British Library</caption>
       </item>
+      <item key="iiif.bl.uk">
+        <title>British Library</title>
+        <caption>British Library</caption>
+      </item>
+      <item key="sammlungen.ub.uni-frankfurt.de">
+        <title>UB Frankfurt</title>
+        <caption>UB Frankfurt</caption>
+      </item>              
       <item key="bodley.ox.ac.uk">
         <title>Bodleian Library Oxford</title>
         <caption>Bodleian</caption>
       </item>
+      <item key="digital.bodleian.ox.ac.uk">
+        <title>Digital Bodleian</title>
+        <caption>Digital Bodleian</caption>
+      </item>      
       <item key="mdz-nbn-resolving.de/details:bsb">
         <!-- redirect -->
         <title>Bayerische Staatsbibliothek</title>
@@ -327,6 +351,10 @@
         <title>manuscripta.at</title>
         <caption>manuscripta.at</caption>
       </item>
+      <item key="crispa.uw.edu.pl">
+        <title>CRISPA</title>
+        <caption>CRISPA</caption>
+      </item>      
       <item key="manuscripta-mediaevalia.de">
         <title>Manuscripta Mediaevalia</title>
         <caption>MM</caption>
@@ -415,6 +443,10 @@
         <title>Det Kongelige Bibliotek, København</title>
         <caption>Det Kongelige Bibliotek, København</caption>
       </item>
+      <item key="vb.uni-wuerzburg.de">
+        <title>UB Würzburg</title>
+        <caption>UB Würzburg</caption>
+      </item>      
     </root>
   </xsl:variable>
 
