@@ -35,7 +35,12 @@ const IMAGE_SERVER_URL = 'http://images.cceh.uni-koeln.de/capitularia/';
  * plugin.
  */
 
-load_theme_textdomain ('capitularia', WP_CONTENT_DIR . '/dist/languages/');
+add_action('init', function () {
+    load_textdomain(
+        'capitularia',
+        get_template_directory() . '/dist/languages/' . determine_locale() . '.mo'
+    );
+});
 
 /*
  * These strings are defined somewhere inside Wordpress.  Because we want to
