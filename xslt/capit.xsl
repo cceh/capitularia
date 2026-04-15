@@ -137,8 +137,9 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
       <td class="value">
         <xsl:if test="@corresp">
           <xsl:variable name="id" select="replace (replace (substring-before (../../head, ':'), ' Nr. ', '_'), ' ', '_')"/>
+          <xsl:variable name="norm-id" select="replace($id, '(^[A-Za-z_]+)0+([0-9]+$)', '$1$2')"/>          
           <xsl:variable name="path"  select="concat ('/mss/', @corresp, '/')"/>
-          <xsl:variable name="href"  select="concat ('/mss/', @corresp, '#', replace ($id, 'BK_185', 'BK_185A'))"/>
+          <xsl:variable name="href"  select="concat ('/mss/', @corresp, '#', replace ($norm-id, 'BK_185', 'BK_185A'))"/>
           <!-- Make a link to the manuscript if it is already published, else: no link, just the
                name. -->
           <xsl:call-template name="if-visible-then-else">
