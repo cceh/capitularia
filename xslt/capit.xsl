@@ -138,12 +138,18 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
   <xsl:template name="resp">
     <td class="resp">
       <xsl:text>[:de]bei[:en]by[:] </xsl:text>
-      <xsl:if test="@resp!='bk'">
-        <xsl:value-of select="@resp"/>
-      </xsl:if>
-      <xsl:if test="@resp='bk'">
-        <xsl:text>Boretius/Krause</xsl:text>
-      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="editorLabel">
+          <xsl:value-of select="editorLabel"/>
+        </xsl:when>
+
+        <xsl:when test="@resp='bk'">
+          <xsl:text>Boretius/Krause</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="@resp"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </td>
     <td class="value">
       <xsl:apply-templates/>
