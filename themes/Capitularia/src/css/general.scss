@@ -1,20 +1,20 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    @include regular;
-    color: $color-text;
-    background: $background;
-    line-height: 1.3;
+  @include regular;
+  color: $color-text;
+  background: $background;
+  line-height: 1.3;
 }
 
 article.page-blank {
-    width: 100%;
+  width: 100%;
 }
 
 p {
-    margin: 1em 0;
+  margin: 1em 0;
 }
 
 h1,
@@ -23,148 +23,148 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 3em 0 2em;
-    line-height: 1.5em;
-    text-align: left;
+  margin: 3em 0 2em;
+  line-height: 1.5em;
+  text-align: left;
 }
 
 h4,
 h5,
 h6 {
-    margin: 2em 0 1em;
+  margin: 2em 0 1em;
 }
 
 h1 {
-    @include light;
-    font-size: 3em;
-    margin: 0;
+  @include light;
+  font-size: 3em;
+  margin: 0;
 }
 
 h2 {
-    @include regular;
-    font-size: 2.4em;
+  @include regular;
+  font-size: 2.4em;
 }
 
 header {
-    h2 {
-        margin-top: 32px;
-        color: $color-highlight;
-        margin-bottom: 20px;
-    }
+  h2 {
+    margin-top: 32px;
+    color: $color-highlight;
+    margin-bottom: 20px;
+  }
 }
 
 h3 {
-    @include regular;
-    font-size: 2em;
+  @include regular;
+  font-size: 2em;
 }
 
 h4 {
-    @include semibold;
-    font-size: 1.3em;
+  @include semibold;
+  font-size: 1.3em;
 }
 
 h5 {
-    @include semibold;
-    font-size: 1em;
+  @include semibold;
+  font-size: 1em;
 }
 
 h6 {
-    @include regular;
-    font-size: 0.85em;
-    text-decoration: underline;
+  @include regular;
+  font-size: 0.85em;
+  text-decoration: underline;
 }
 
 ol,
 ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 a[href] {
-    @include semibold;
-    color: $color-link;
-    text-decoration: none;
+  @include semibold;
+  color: $color-link;
+  text-decoration: none;
 }
 
-a[href]:active ,
-a[href]:focus ,
+a[href]:active,
+a[href]:focus,
 a[href]:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .regular {
-    @include regular;
+  @include regular;
 }
 
 i,
 em,
 .italic {
-    @include italic;
+  @include italic;
 
-    a[href],
-    a[href]:active,
-    a[href]:focus,
-    a[href]:hover {
-        @include semibold-italic;
-    }
+  a[href],
+  a[href]:active,
+  a[href]:focus,
+  a[href]:hover {
+    @include semibold-italic;
+  }
 }
 
 b,
 strong,
 .bold {
-    @include bold;
+  @include bold;
 }
 
 .small {
-    font-size: small;
+  font-size: small;
 }
 
 .black {
-    @include black;
+  @include black;
 }
 
 .red {
-    @include red;
+  @include red;
 }
 
 .sup {
-    @include sup;
+  @include sup;
 }
 
 .sub {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-    bottom: -0.25em;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  bottom: -0.25em;
 }
 
 .justify {
-    text-align: justify;
+  text-align: justify;
 }
 
 .screen-only {
-    @media print {
-        display: none;
-    }
+  @media print {
+    display: none;
+  }
 }
 
 .print-only {
-    @media screen {
-        display: none;
-    }
+  @media screen {
+    display: none;
+  }
 }
 
 @media print {
-    /* undo bootstrap madness */
-    a[href]::after {
-        content: none !important;
-    }
+  /* undo bootstrap madness */
+  a[href]::after {
+    content: none !important;
+  }
 }
 
 /***********/
@@ -172,99 +172,99 @@ strong,
 /***********/
 
 @media print {
-    div.container {
-        margin: 2em 5%;
-    }
+  div.container {
+    margin: 2em 5%;
+  }
 }
 
 @media not print {
-    div.container {
-        > header {
-            @include make-row(); /* see: https://getbootstrap.com/css/ */
-            @include clearfix();
-        }
-
-        > main {
-            @include make-row();
-            @include clearfix();
-        }
-
-        > footer {
-            @include make-row();
-            @include clearfix();
-        }
+  div.container {
+    > header {
+      @include make-row(); /* see: https://getbootstrap.com/css/ */
+      @include clearfix();
     }
 
-    .cap-row {
-        @include make-row();
+    > main {
+      @include make-row();
+      @include clearfix();
     }
 
-    .cap-left-col {
-        @include make-col-ready();
-        @include make-col(12);
-
-        @include media-breakpoint-up(md) {
-            @include make-col(8);
-        }
+    > footer {
+      @include make-row();
+      @include clearfix();
     }
+  }
 
-    .cap-right-col {
-        @include make-col-ready();
-        @include make-col(12);
+  .cap-row {
+    @include make-row();
+  }
 
-        @include media-breakpoint-up(md) {
-            @include make-col(4);
-        }
+  .cap-left-col {
+    @include make-col-ready();
+    @include make-col(12);
+
+    @include media-breakpoint-up(md) {
+      @include make-col(8);
     }
+  }
 
-    .cap-left-col-pull {
-        @include make-col-ready();
-        @include make-col(12);
+  .cap-right-col {
+    @include make-col-ready();
+    @include make-col(12);
 
-        @include media-breakpoint-up(md) {
-            /* a column that comes on bottom on mobile but on the left on desktop */
-            @include make-col(8);
-            order: 0;
-        }
+    @include media-breakpoint-up(md) {
+      @include make-col(4);
     }
+  }
 
-    .cap-right-col-push {
-        @include make-col-ready();
-        @include make-col(12);
+  .cap-left-col-pull {
+    @include make-col-ready();
+    @include make-col(12);
 
-        @include media-breakpoint-up(md) {
-            /* a column that comes on top on mobile but on the right on desktop */
-            @include make-col(4);
-            order: 8;
-        }
+    @include media-breakpoint-up(md) {
+      /* a column that comes on bottom on mobile but on the left on desktop */
+      @include make-col(8);
+      order: 0;
     }
+  }
 
-    nav {
-        &.horiz-nav {
-            @include make-col-ready();
-            @include make-col(12);
-            @include clearfix();
-        }
+  .cap-right-col-push {
+    @include make-col-ready();
+    @include make-col(12);
+
+    @include media-breakpoint-up(md) {
+      /* a column that comes on top on mobile but on the right on desktop */
+      @include make-col(4);
+      order: 8;
     }
+  }
+
+  nav {
+    &.horiz-nav {
+      @include make-col-ready();
+      @include make-col(12);
+      @include clearfix();
+    }
+  }
 }
 
 nav {
-    @media print {
-        display: none;
-    }
+  @media print {
+    display: none;
+  }
 }
 
 #bottom-nav {
-    padding-top: 20px;
-    border-bottom: solid 1px $color-rule;
+  padding-top: 20px;
+  border-bottom: solid 1px $color-rule;
 }
 
 #main.home > div {
-    padding-top: 15px;
+  padding-top: 15px;
 }
 
 #header2 > div {
-    padding-top: 40px;
+  padding-top: 40px;
 }
 
 /**********/
@@ -272,138 +272,141 @@ nav {
 /**********/
 
 #footer {
-    background: $color-gray;
-    color: $color-white;
-    font-size: 0.825em;
-    @media print {
-        display: none;
-    }
+  background: $color-gray;
+  color: $color-white;
+  font-size: 0.825em;
+  @media print {
+    display: none;
+  }
 }
 
 .logo-bar {
-    @include make-row();
-    @include clearfix();
-    & {
+  @include make-row();
+  @include clearfix();
+  & {
+    width: 100%;
+  }
+
+  li.widget {
+    @include make-col-ready();
+    @include make-col(3);
+
+    a {
+      display: block;
+      width: 33%;
+      margin: 20px auto;
+
+      img {
         width: 100%;
+      }
     }
-
-    li.widget {
-        @include make-col-ready();
-        @include make-col(3);
-
-        a {
-            display: block;
-            width: 33%;
-            margin: 20px auto;
-
-            img {
-                width: 100%;
-            }
-        }
-    }
+  }
 }
-
 
 /***********/
 /* Gadgets */
 /***********/
 
 div.hr {
-    /* a horizontal rule always */
+  /* a horizontal rule always */
+  margin: 3em 0;
+  border-top: 1px solid $color-black;
+
+  .compact {
+    margin: 1em 0;
+  }
+}
+
+div.page-break {
+  page-break-before: always;
+
+  /* a horizontal rule on screen and a page break on print */
+  @media screen {
     margin: 3em 0;
     border-top: 1px solid $color-black;
 
     .compact {
-        margin: 1em 0;
+      margin: 1em 0;
     }
-}
-
-div.page-break {
-    page-break-before: always;
-
-    /* a horizontal rule on screen and a page break on print */
-    @media screen {
-        margin: 3em 0;
-        border-top: 1px solid $color-black;
-
-        .compact {
-            margin: 1em 0;
-        }
-    }
+  }
 }
 
 div.page-break + div.page-break {
-    /* Quick fix for duplicated page-breaks. */
-    display: none;
+  /* Quick fix for duplicated page-breaks. */
+  display: none;
 }
 
 div.pagination-nav {
-    margin:  14px 0;
-    padding: 14px 0;
-    border: solid 1px $color-rule;
-    font-size: smaller;
+  margin: 14px 0;
+  padding: 14px 0;
+  border: solid 1px $color-rule;
+  font-size: smaller;
 
-    .screen-reader-text {
-        display: none;
-    }
+  .screen-reader-text {
+    display: none;
+  }
 }
 
 div.pagination-nav-top {
-    border-width: 1px 0;
+  border-width: 1px 0;
 }
 
 div.pagination-nav-bottom {
-    border-width: 1px 0 0;
+  border-width: 1px 0 0;
 }
 
 div.search-results,
 div.index-results {
-    margin: 2em 0;
+  margin: 2em 0;
 
-    li {
-        padding: 10px 0;
-    }
+  li {
+    padding: 10px 0;
+  }
 
-    p {
-        padding-top: 6px;
-    }
+  p {
+    padding-top: 6px;
+  }
 
-    b {
-        @include bold;
-    }
+  b {
+    @include bold;
+  }
 
-    h2 {
-        margin: 2em 0 1.5em;
-        font-size: 1.3em;
-    }
+  h2 {
+    margin: 2em 0 1.5em;
+    font-size: 1.3em;
+  }
 }
 
 .downloads li a {
-    text-decoration: none;
-    transition: color 300ms;
+  text-decoration: none;
+  transition: color 300ms;
 }
 
 .downloads li a:hover,
 .downloads li a:focus,
 .downloads li a:active {
-    color:$color-black;
+  color: $color-black;
 }
 
 .pan-zoom-container {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .pan-zoom-controls {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 
-    button {
-        display: block;
-        width: 1.5em;
-        margin: 0.5ex;
-    }
+  button {
+    display: block;
+    width: 1.5em;
+    margin: 0.5ex;
+  }
+}
+
+h4.concordance-link {
+  margin: 10px;
 }
 
 /***********/
@@ -411,96 +414,91 @@ div.index-results {
 /***********/
 
 .sidebar-col {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 
-    @media print {
-        display: none;
+  @media print {
+    display: none;
+  }
+
+  div.sidebar-toc {
+    position: sticky;
+    top: 24px;
+    overflow-y: auto;
+  }
+
+  h2 {
+    font-size: 1.3em;
+    margin: 1.5em 0 1em;
+  }
+
+  ul.sub-menu {
+    @include clearfix;
+    & {
+      padding-left: 16px;
     }
+  }
 
-    div.sidebar-toc {
+  ul.menu {
+    background: $color-beige;
 
-        position: sticky;
-        top: 24px;
-        overflow-y: auto;
-    }
+    li {
+      background: $color-beige; // keep floats beige
+      position: relative;
 
-    h2 {
+      a {
+        display: block;
+        border-bottom: 1px solid $color-white;
+        color: $color-link;
+        line-height: 1.3;
 
-        font-size: 1.3em;
-        margin: 1.5em 0 1em;
-    }
+        &.opener {
+          position: absolute;
+          left: 0;
+          top: -0.125em;
+          padding-bottom: 0;
+          border-bottom: 0;
 
-    ul.sub-menu {
+          &::before {
+            @extend %fa-icon;
+            @extend .fa-regular;
+            content: fa-content($fa-var-minus-square);
+          }
 
-        @include clearfix;
-        & {
-            padding-left: 16px;
-        }
-    }
-
-    ul.menu {
-
-        background: $color-beige;
-
-        li {
-
-            background: $color-beige; // keep floats beige
-            position: relative;
-
-            a {
-                display: block;
-                border-bottom: 1px solid $color-white;
-                color: $color-link;
-                line-height: 1.3;
-
-                &.opener {
-                    position: absolute;
-                    left: 0;
-                    top: -0.125em;
-                    padding-bottom: 0;
-                    border-bottom: 0;
-
-                    &::before {
-                        @extend %fa-icon;
-                        @extend .fa-regular;
-                        content: fa-content($fa-var-minus-square);
-                    }
-
-                    &.collapsed::before {
-                        content: fa-content($fa-var-plus-square);
-                    }
-                }
-
-                &.has-opener {
-                    padding-left: 32px;
-                }
-            }
-            /* HACK for Alphabet Menus */
-            &.dynamic-menu-item-level-2.dynamic-menu-item-inline {
-                float: left;
-                width: 2em;
-                text-align: center;
-                border-bottom: 0;
-            }
-            /* HACK for Alphabet Menus */
-            &.dynamic-menu-item-float {
-                float: left;
-                width: 2em;
-                text-align: center;
-                border-bottom: 0;
-            }
+          &.collapsed::before {
+            content: fa-content($fa-var-plus-square);
+          }
         }
 
-        li a {
-            padding: 16px 8px;
+        &.has-opener {
+          padding-left: 32px;
         }
-
-        li li a {
-            padding: 4px 8px;
-        }
-
-        li li li li a {
-            font-size: 85%;
-        }
+      }
+      /* HACK for Alphabet Menus */
+      &.dynamic-menu-item-level-2.dynamic-menu-item-inline {
+        float: left;
+        width: 2em;
+        text-align: center;
+        border-bottom: 0;
+      }
+      /* HACK for Alphabet Menus */
+      &.dynamic-menu-item-float {
+        float: left;
+        width: 2em;
+        text-align: center;
+        border-bottom: 0;
+      }
     }
+
+    li a {
+      padding: 16px 8px;
+    }
+
+    li li a {
+      padding: 4px 8px;
+    }
+
+    li li li li a {
+      font-size: 85%;
+    }
+  }
 }
