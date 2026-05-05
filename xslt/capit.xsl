@@ -73,11 +73,7 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
 
   <xsl:template match="list[@type='concordance']">
     <div>
-      <table>
-        <tbody>
           <xsl:apply-templates/>
-        </tbody>
-      </table>
     </div>
   </xsl:template>
 
@@ -103,7 +99,7 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
     <xsl:choose>
       <xsl:when test="../note[@type='newEdition']">
         <div>
-          <h4 id="titles">[:de]Ältere Edition[:en]Older Edition[:]</h4>
+          <h4 id="titles">[:de]Ältere Editionen[:en]Older Editions[:]</h4>
           <table>
             <tbody>
               <xsl:apply-templates/>
@@ -137,16 +133,18 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
 
   <xsl:template name="resp">
     <td class="resp">
-      <xsl:text>[:de]bei[:en]by[:] </xsl:text>
       <xsl:choose>
         <xsl:when test="editorLabel">
-          <xsl:value-of select="editorLabel"/>
+          <xsl:text>[:de]von[:en]by[:] </xsl:text>
+          <xsl:value-of select="editorLabel/@name"/>
         </xsl:when>
 
         <xsl:when test="@resp='bk'">
+          <xsl:text>[:de]bei[:en]by[:] </xsl:text>
           <xsl:text>Boretius/Krause</xsl:text>
         </xsl:when>
         <xsl:otherwise>
+          <xsl:text>[:de]bei[:en]by[:] </xsl:text>
           <xsl:value-of select="@resp"/>
         </xsl:otherwise>
       </xsl:choose>
@@ -159,7 +157,7 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
   <xsl:template match="citedRange">
     <xsl:text>S. </xsl:text>
     <xsl:value-of select="@from"/>
-    <xsl:text> - </xsl:text>
+    <xsl:text>-</xsl:text>
     <xsl:value-of select="@to"/>
   </xsl:template>  
 
@@ -200,8 +198,6 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
           <xsl:variable name="norm-id" select="replace($id, '(^[A-Za-z_]+)0+([0-9]+$)', '$1$2')"/>          
           <xsl:variable name="path"  select="concat ('/mss/', @corresp, '/')"/>
           <xsl:variable name="href"  select="concat ('/mss/', @corresp, '#', replace ($norm-id, 'BK_185', 'BK_185A'))"/>
-          <!-- Make a link to the manuscript if it is already published, else: no link, just the
-               name. -->
           <xsl:choose>
           <xsl:when test="parent::list[@type='concordance']">
                    <h4 class="concordance-link">
@@ -209,6 +205,8 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
                   </h4>
           </xsl:when>
           <xsl:otherwise>
+          <!-- Make a link to the manuscript if it is already published, else: no link, just the
+               name. -->
             <xsl:call-template name="if-visible-then-else">
               <xsl:with-param name="path"  select="$path"/>
               <xsl:with-param name="then">
