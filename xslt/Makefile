@@ -35,7 +35,8 @@ IDS_PRIV  := $(sort $(notdir $(basename $(wildcard $(MSS_PRIV_DIR)/*.xml))))
 CAPIT_FILES := $(sort $(wildcard $(CAPIT_DIR)/pre814/*.xml))  \
 			   $(sort $(wildcard $(CAPIT_DIR)/ldf/*.xml))     \
 			   $(sort $(wildcard $(CAPIT_DIR)/post840/*.xml)) \
-			   $(sort $(wildcard $(CAPIT_DIR)/undated/*.xml))
+			   $(sort $(wildcard $(CAPIT_DIR)/undated/*.xml)) \
+               $(sort $(wildcard $(CAPIT_DIR)/iv/ldf/*.xml))
 
 CAPITS    := $(patsubst $(CAPIT_DIR)/%.xml,%,$(CAPIT_FILES))
 
@@ -199,6 +200,7 @@ dirs:
 			 $(CACHE_DIR)/capits/ldf \
 			 $(CACHE_DIR)/capits/post840 \
 			 $(CACHE_DIR)/capits/undated \
+             $(CACHE_DIR)/capits/iv/ldf \
 			 $(CACHE_DIR)/lists \
 			 $(CACHE_DIR)/internal/mss \
 			 $(CACHE_DIR)/extracted \
