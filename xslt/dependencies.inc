@@ -15,7 +15,6 @@ $(CACHE_DIR)/capits/undated/%.html : $(CAPIT_DIR)/undated/%.xml capit.xsl common
 $(CACHE_DIR)/capits/iv/ldf/%.html : $(CAPIT_DIR)/iv/ldf/%.xml capit.xsl common-3.xsl common-html.xsl config-3.xsl
 	$(SAXON) -s:$< -xsl:capit.xsl -o:$@
 
-
 $(CACHE_DIR)/collation/%.xml : $(CACHE_DIR)/extracted/%.xml common-3.xsl mss-extract-chapters-txt.xsl mss-transcript-phase-1.xsl
 	$(SAXON) -s:$< -xsl:mss-extract-chapters-txt.xsl -o:$@
 

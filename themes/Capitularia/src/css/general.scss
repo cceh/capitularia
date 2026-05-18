@@ -405,8 +405,23 @@ div.index-results {
   }
 }
 
-h4.concordance-link {
-  margin: 10px 0;
+div.concordances {
+  background: #e9e1c1;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+div.concordances .icon::after {
+  @include fas;
+  content: "\f06a";
+  font-size: 1rem;
+  display: block;
+  color: #914029;
+  margin-right: 5px;
+}
+
+div.concordances .bk-note-header {
+  display: flex;
+  align-items: center;
 }
 
 /***********/

@@ -72,7 +72,25 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
 
 
   <xsl:template match="list[@type='concordance']">
-    <div>
+    <div class="concordances">
+
+      <xsl:choose>
+          <xsl:when test="item/@corresp[starts-with(., 'BK.')]">
+              <div class="bk-note-header">
+                <div class="icon"></div>
+                <b>[:de]ACHTUNG![:en]ATTENTION[:]</b>
+              </div>
+              <span class="bk‑note">
+                <div>[:de]Diese Seite wird nicht mehr aktualisiert[:en]This page is no longer being updated[:]. 
+                [:de]Zur Neuedition geht es hier[:en]The new edition can be found here[:]:</div>
+              </span>
+          </xsl:when>
+          <xsl:otherwise>
+              <span class="ab‑note">[:de]Entspricht[:en]Corresponds to[:] </span>
+          </xsl:otherwise>    
+      </xsl:choose>
+
+          
           <xsl:apply-templates/>
     </div>
   </xsl:template>
@@ -191,53 +209,55 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
   </xsl:template>
 
   <xsl:template match="item">
-    <tr>
-      <td class="value">
-        <xsl:if test="@corresp">
-          <xsl:variable name="id" select="replace (replace (substring-before (../../head, ':'), ' Nr. ', '_'), ' ', '_')"/>
-          <xsl:variable name="norm-id" select="replace($id, '(^[A-Za-z_]+)0+([0-9]+$)', '$1$2')"/>          
-          <xsl:variable name="path"  select="concat ('/mss/', @corresp, '/')"/>
-          <xsl:variable name="href"  select="concat ('/mss/', @corresp, '#', replace ($norm-id, 'BK_185', 'BK_185A'))"/>
-          <xsl:choose>
-          <xsl:when test="parent::list[@type='concordance']">
-                   <h4 class="concordance-link">
+    <xsl:choose>
+    <xsl:when test="parent::list[@type='concordance']">
+      <xsl:apply-templates/>
+        <xsl:if test="position() != last() 
+                      and count(../item) &gt; 1">
+            <xsl:text>, </xsl:text>
+        </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <tr>
+        <td class="value">
+          <xsl:if test="@corresp">
+            <xsl:variable name="id" select="replace (replace (substring-before (../../head, ':'), ' Nr. ', '_'), ' ', '_')"/>
+            <xsl:variable name="norm-id" select="replace($id, '(^[A-Za-z_]+)0+([0-9]+$)', '$1$2')"/>          
+            <xsl:variable name="path"  select="concat ('/mss/', @corresp, '/')"/>
+            <xsl:variable name="href"  select="concat ('/mss/', @corresp, '#', replace ($norm-id, 'BK_185', 'BK_185A'))"/>
+            <!-- Make a link to the manuscript if it is already published, else: no link, just the
+                name. -->
+              <xsl:call-template name="if-visible-then-else">
+                <xsl:with-param name="path"  select="$path"/>
+                <xsl:with-param name="then">
+                  <a class="internal" href="{$path}"
+                    title="[:de]Zur Handschrift[:en]Go to the manuscript[:]">
                     <xsl:apply-templates/>
-                  </h4>
-          </xsl:when>
-          <xsl:otherwise>
-          <!-- Make a link to the manuscript if it is already published, else: no link, just the
-               name. -->
-            <xsl:call-template name="if-visible-then-else">
-              <xsl:with-param name="path"  select="$path"/>
-              <xsl:with-param name="then">
-                <a class="internal" href="{$path}"
-                   title="[:de]Zur Handschrift[:en]Go to the manuscript[:]">
+                  </a>
+                  <!-- Add a deep link to the capitular if it is already transcribed in that ms. -->
+                  <xsl:text>[if_transcribed ms_id="</xsl:text>
+                  <xsl:value-of select="@corresp"/>
+                  <xsl:text>" cap_id="</xsl:text>
+                  <xsl:value-of select="/TEI/@corresp"/>
+                  <xsl:text>"]</xsl:text>
+                  <a class="internal transcription" href="{$href}"
+                    title="[:de]Zur Transkription[:en]Go to the transcription[:]">
+                  </a>
+                  <xsl:text>[/if_transcribed]</xsl:text>
+                </xsl:with-param>
+                <xsl:with-param name="else">
                   <xsl:apply-templates/>
-                </a>
-                <!-- Add a deep link to the capitular if it is already transcribed in that ms. -->
-                <xsl:text>[if_transcribed ms_id="</xsl:text>
-                <xsl:value-of select="@corresp"/>
-                <xsl:text>" cap_id="</xsl:text>
-                <xsl:value-of select="/TEI/@corresp"/>
-                <xsl:text>"]</xsl:text>
-                <a class="internal transcription" href="{$href}"
-                   title="[:de]Zur Transkription[:en]Go to the transcription[:]">
-                </a>
-                <xsl:text>[/if_transcribed]</xsl:text>
-              </xsl:with-param>
-              <xsl:with-param name="else">
-                <xsl:apply-templates/>
-              </xsl:with-param>
-            </xsl:call-template>
-          </xsl:otherwise>
-          </xsl:choose>
+                </xsl:with-param>
+              </xsl:call-template>
 
-        </xsl:if>
-        <xsl:if test="not (@corresp)">
-          <xsl:apply-templates/>
-        </xsl:if>
-      </td>
-    </tr>
+          </xsl:if>
+          <xsl:if test="not (@corresp)">
+            <xsl:apply-templates/>
+          </xsl:if>
+        </td>
+      </tr>
+    </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="listBibl[@type='literature' or @type='translation']">
