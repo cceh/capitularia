@@ -75,7 +75,10 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
     <div class="concordances">
 
       <xsl:choose>
-          <xsl:when test="item/@corresp[starts-with(., 'BK.')]">
+          <xsl:when test="item/@corresp[starts-with(., 'IV.')]">
+              <span class="ab‑note">[:de]Entspricht[:en]Corresponds to[:] </span>
+          </xsl:when>
+          <xsl:otherwise>
               <div class="bk-note-header">
                 <div class="icon"></div>
                 <b>[:de]ACHTUNG![:en]ATTENTION[:]</b>
@@ -84,9 +87,6 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
                 <div>[:de]Diese Seite wird nicht mehr aktualisiert[:en]This page is no longer being updated[:]. 
                 [:de]Zur Neuedition geht es hier[:en]The new edition can be found here[:]:</div>
               </span>
-          </xsl:when>
-          <xsl:otherwise>
-              <span class="ab‑note">[:de]Entspricht[:en]Corresponds to[:] </span>
           </xsl:otherwise>    
       </xsl:choose>
 
@@ -117,7 +117,7 @@ Target: capits $(CACHE_DIR)/capits/undated/%.html
     <xsl:choose>
       <xsl:when test="../note[@type='newEdition']">
         <div>
-          <h4 id="titles">[:de]Ältere Editionen[:en]Older Editions[:]</h4>
+          <h4 id="titles">[:de]"Titel in älteren Editionen[:en]Titles in Older Editions[:]</h4>
           <table>
             <tbody>
               <xsl:apply-templates/>
