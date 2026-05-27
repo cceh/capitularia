@@ -138,17 +138,32 @@
   <!-- Verlinkungen zu Resourcen -->
   <xsl:template name="make-link-to-resource">
     <xsl:variable name="target" select="cap:lookup-element ($tei-ref-external-targets, @subtype)"/>
+    <!-- Get the citedRange/@from attribute from the parent element -->
+    <xsl:variable name="citedRangeFrom" select="../citedRange/@from"/>
     <xsl:choose>
-      <xsl:when test="$target">
-        <a class="external" href="{string ($target/prefix)}{@target}{string ($target/postfix)}"
-           target="_blank" title="{string ($target/caption)}">
+        <!-- If @target exists -->
+        <xsl:when test="@target">
+          <a class="external"
+            href="{string($target/prefix)}{@target}{string($target/postfix)}"
+            target="_blank"
+            title="{string($target/caption)}">
+            <xsl:apply-templates/>
+          </a>
+        </xsl:when>
+        <!-- If no @target but subtype is IV -->
+        <xsl:when test="@subtype = 'IV'">
+          <a class="external"
+            href="{string($target/prefix)}{$citedRangeFrom}"
+            target="_blank"
+            title="{string($target/caption)}">
+            <xsl:apply-templates/>
+          </a>
+        </xsl:when>
+        <!-- Fallback -->
+        <xsl:otherwise>
           <xsl:apply-templates/>
-        </a>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates/>
-      </xsl:otherwise>
-    </xsl:choose>
+        </xsl:otherwise>
+      </xsl:choose>
   </xsl:template>
 
   <xsl:template match="tei:ref[@type='external']">

@@ -180,6 +180,11 @@
         <caption>[:de]Gallica[:en]Gallica[:]</caption>
         <alt>Zu Gallica</alt>
       </item>
+      <item key="IV">
+        <prefix>http://www.mgh.de/dmgh/resolving/MGH_Capit._N._S._4,1_S._</prefix>
+        <caption>[:de]Zur Neuen Edition[:en]To the New Edition[:]</caption>
+        <alt>Zur neuen Edition</alt>
+      </item>      
       <item key="">
         <prefix></prefix>
         <caption>[:de]Zur externen Ressource[:en]To the external resource[:]</caption>
