@@ -8,16 +8,19 @@ Transforms: $(CAPIT_DIR)/pre814/%.xml  -> $(CACHE_DIR)/capits/pre814/%.html
 Transforms: $(CAPIT_DIR)/ldf/%.xml     -> $(CACHE_DIR)/capits/ldf/%.html
 Transforms: $(CAPIT_DIR)/post840/%.xml -> $(CACHE_DIR)/capits/post840/%.html
 Transforms: $(CAPIT_DIR)/undated/%.xml -> $(CACHE_DIR)/capits/undated/%.html
+Transforms: $(CAPIT_DIR)/iv/ldf%.xml -> $(CACHE_DIR)/capits/iv/ldf/%.html
 
 URL: $(CACHE_DIR)/capits/pre814/%.html  /capit/pre814/%/
 URL: $(CACHE_DIR)/capits/ldf/%.html     /capit/ldf/%/
 URL: $(CACHE_DIR)/capits/post840/%.html /capit/post840/%/
 URL: $(CACHE_DIR)/capits/undated/%.html /capit/undated/%/
+URL: $(CACHE_DIR)/capits/iv/ldf/%.html /capit/iv/ldf/%/
 
 Target: capits $(CACHE_DIR)/capits/pre814/%.html
 Target: capits $(CACHE_DIR)/capits/ldf/%.html
 Target: capits $(CACHE_DIR)/capits/post840/%.html
 Target: capits $(CACHE_DIR)/capits/undated/%.html
+Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
 
 -->
 
