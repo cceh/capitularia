@@ -74,10 +74,27 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
               <tr>
                 <th class="siglum">[:de]Nummer[:en]No.[:]</th>
                 <th class="title">[:de]Titel[:en]Caption[:]</th>
+                <th class="title">[:de]Konkordanz[:en]Concordance[:]</th>
               </tr>
             </thead>
 
             <xsl:for-each   select=".//tei:item[tei:list[@type='CNS']/tei:item]//tei:list[@type='CNS']/tei:item">
+                <!--- sort table rows by padded iv nr -->
+                <xsl:sort
+                  select="
+                    concat(
+                      format-number(
+                        xs:integer(
+                          if (matches(substring-after(normalize-space(.),'IV_'), '^[0-9]+'))
+                          then replace(substring-after(normalize-space(.),'IV_'),'[^0-9].*','')
+                          else '0')
+                        ,'000'),
+                      replace(substring-after(normalize-space(.),'IV_'),'^[0-9]+','')
+                    )
+                  "
+                  data-type="text"
+                  order="ascending"
+                />
               <xsl:variable name="iv" select="normalize-space(.)"/>
               <xsl:variable name="n" select="replace($iv, '[^0-9].*', '')"/>
               <xsl:variable name="id"
@@ -111,6 +128,12 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                     <xsl:with-param name="text"
                       select="normalize-space(ancestor::tei:item[1]/tei:name)"/>
                   </xsl:call-template>
+                </td>
+                <td>
+                  <xsl:value-of
+                      select="replace(
+                                      ancestor::tei:item[1]/@xml:id,
+                                      '_',' ')"/>
                 </td>
               </tr>
 
