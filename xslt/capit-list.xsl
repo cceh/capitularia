@@ -51,7 +51,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
       <xsl:apply-templates select=".//item[starts-with (@xml:id, 'Mordek_')]"/>
     </xsl:variable>
     <xsl:variable name="Other">
-      <xsl:apply-templates select=".//item[not(@xml:id)][not(parent::list[@type='transmission'])]"/>
+      <xsl:apply-templates select=".//item[not(@xml:id)][not(parent::list[@type='transmission'])][not(parent::list[@type='CNS'])]"/>
     </xsl:variable>
     <!-- IV‑sub‑items -->
     <xsl:variable name="IV"
