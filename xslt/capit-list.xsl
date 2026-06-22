@@ -196,16 +196,39 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
   <xsl:template match="list/item">
     <xsl:if test="../@type=$type or $type='all'">
       <xsl:text>&#x0a;&#x0a;</xsl:text>
+        <!-- List type ALL -->
       <tr>
-        <td class="siglum">    
-          <xsl:value-of select="cap:human-readable-siglum (@xml:id)"/>
-        </td>
+        <!-- Link BK number if no IV Number exists, otherwise link IV number -->
+        <xsl:choose>
+          <xsl:when test="not(list[@type='CNS']/item)">
+          <td class="siglum">
+            <xsl:call-template name="if-visible">
+              <xsl:with-param name="path" select="concat('/capit/', name/@ref, '/')"/>
+              <xsl:with-param name="title">
+                <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
+                <xsl:value-of select="cap:human-readable-siglum(@xml:id)"/>
+              </xsl:with-param>
+              <xsl:with-param name="text">
+                <xsl:value-of select="cap:human-readable-siglum(@xml:id)"/>
+              </xsl:with-param>
+            </xsl:call-template>
+          </td>
+          </xsl:when>
+          <xsl:otherwise>
+            <td class="siglum">
+              <xsl:value-of select="cap:human-readable-siglum(@xml:id)"/>
+            </td>
+          </xsl:otherwise>
+        </xsl:choose>
+      
+
         <td class="title">
-          <xsl:apply-templates select="name"/>
+          <xsl:value-of select="name"/>
         </td>
-        <xsl:if test="$type = 'all'">
-          <td class="concordance">
-            <xsl:if test="list[@type='CNS']/item">
+
+        <xsl:choose>
+           <xsl:when test="list[@type='CNS']/item">
+            <td class="concordance">
               <xsl:for-each select="list[@type='CNS']/item">
                 <xsl:variable name="iv" select="normalize-space(.)"/>
                 <xsl:variable name="id"
@@ -219,10 +242,10 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                       '000'
                     ),
                     replace(substring-after($iv,'IV_'), '^[0-9]+', '')
-                  )"/>
+                  )" />
                 <xsl:call-template name="if-visible">
                   <xsl:with-param name="path"
-                    select="concat('/capit/ldf/iv-nr-', $id, '/')"/>
+                    select="concat('/capit/', name/@ref)"/>
                   <xsl:with-param name="title">
                     <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
                     <xsl:value-of select="$iv"/>
@@ -235,9 +258,13 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                   <br/>
                 </xsl:if>
               </xsl:for-each>
-            </xsl:if>
-          </td>
-        </xsl:if>
+            </td>
+          </xsl:when>
+           <xsl:otherwise>
+            <td class="concordance">
+            </td>
+           </xsl:otherwise>
+        </xsl:choose>
       </tr>
     </xsl:if>
   </xsl:template>
