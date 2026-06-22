@@ -126,14 +126,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                   </xsl:call-template>
                 </td>
                 <td class="title">
-                  <xsl:call-template name="if-visible">
-                    <xsl:with-param name="path" select="concat('/capit/', current-group()[1]/name/@ref, '/')"/>
-                    <xsl:with-param name="title">
-                      <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
-                      <xsl:value-of select="normalize-space(current-group()[1])"/>
-                    </xsl:with-param>
-                    <xsl:with-param name="text" select="normalize-space(current-group()[1]/ancestor::tei:item[1]/tei:name)"/>
-                  </xsl:call-template>
+                  <xsl:value-of select="normalize-space(current-group()[1]/ancestor::tei:item[1]/tei:name)"/>
                 </td>
                 <td>
                   <xsl:value-of select="cap:human-readable-siglum(current-group()[1]/ancestor::tei:item[1]/@xml:id)"/>
@@ -144,14 +137,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
               <xsl:for-each select="current-group()[position() > 1]">
                 <tr>
                   <td class="title">
-                    <xsl:call-template name="if-visible">
-                      <xsl:with-param name="path" select="concat('/capit/', name/@ref, '/')"/>
-                      <xsl:with-param name="title">
-                        <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
-                        <xsl:value-of select="normalize-space(.)"/>
-                      </xsl:with-param>
-                      <xsl:with-param name="text" select="normalize-space(ancestor::tei:item[1]/tei:name)"/>
-                    </xsl:call-template>
+                    <xsl:value-of select="normalize-space(ancestor::tei:item[1]/tei:name)"/>
                   </td>
                   <td>
                     <xsl:value-of select="cap:human-readable-siglum(ancestor::tei:item[1]/@xml:id)"/>
