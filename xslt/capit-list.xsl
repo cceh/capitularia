@@ -76,29 +76,52 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
               </tr>
             </thead>
 
-            <!--- Group IVs by their text -->
-            <xsl:for-each-group select=".//tei:item[tei:list[@type='CNS']/tei:item]//tei:list[@type='CNS']/tei:item"
-                    group-by="normalize-space(.)">
-              <!-- Sort by IV number -->
-              <xsl:sort select="concat(format-number(xs:integer(if (matches(substring-after(normalize-space(@xml:id),'IV_'), '^[0-9]+')) then replace(substring-after(normalize-space(@xml:id),'IV_'),'[^0-9].*','') else '0'),'000'), replace(substring-after(normalize-space(@xml:id),'IV_'),'^[0-9]+',''))"
+           <!--- Group IVs by their numeric prefix -->
+          <xsl:for-each-group select=".//tei:item[tei:list[@type='CNS']/tei:item]//tei:list[@type='CNS']/tei:item"
+                  group-by="replace(substring-after(normalize-space(@xml:id),'IV_'), '[^0-9]', '')">
+            <!-- Sort by IV number -->
+            <xsl:sort select="concat(format-number(xs:integer(if (matches(substring-after(normalize-space(@xml:id),'IV_'), '^[0-9]+')) then replace(substring-after(normalize-space(@xml:id),'IV_'),'[^0-9].*','') else '0'),'000'), replace(substring-after(normalize-space(@xml:id),'IV_'),'^[0-9]+',''))"
                         data-type="text" order="ascending"/>
 
+            <xsl:variable name="base-numeric" select="current-grouping-key()"/>
+            <xsl:variable name="has-letters" select="exists(current-group()[matches(substring-after(normalize-space(@xml:id),'IV_'), '[a-zA-Z]')])"/>
+            <xsl:variable name="base-id" select="format-number(xs:integer($base-numeric), '000')"/>
+
+            <!-- Heading row for base number if group contains lettered items -->
+            <xsl:if test="$has-letters">
+              <tr>
+                <td class="siglum">
+                  <xsl:call-template name="if-visible">
+                    <xsl:with-param name="path" select="concat('/capit/ldf/iv-nr-', $base-id, '/')"/>
+                    <xsl:with-param name="title">
+                      <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
+                      <xsl:value-of select="concat('IV ', $base-numeric)"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="text">
+                      <xsl:value-of select="concat('IV ', $base-numeric)"/>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </td>
+                <td class="title"></td>
+                <td></td>
+              </tr>
+            </xsl:if>
+
+            <!-- Inner grouping by text content to maintain rowspan -->
+            <xsl:for-each-group select="current-group()" group-by="normalize-space(.)">
               <xsl:variable name="group-size" select="count(current-group())"/>
-              <xsl:variable name="iv-text" select="current-grouping-key()"/>
 
               <!-- First row with IV cell and rowspan -->
               <tr>
-                <td class="siglum" rowspan="{$group-size}">
-                  <xsl:variable name="idLetter" select="substring-after($iv-text, 'IV_')"/>
+                <td class="siglum" style="{if (matches(substring-after(normalize-space(current-group()[1]/@xml:id),'IV_'), '[a-zA-Z]')) then 'padding-left: 20px;' else ''}" rowspan="{$group-size}">
                   <xsl:call-template name="if-visible">
                     <xsl:with-param name="path" select="concat('/capit/', current-group()[1]/name/@ref, '/')"/>
-
                     <xsl:with-param name="title">
                       <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
-                      <xsl:value-of select="$iv-text"/>
+                      <xsl:value-of select="normalize-space(current-group()[1])"/>
                     </xsl:with-param>
                     <xsl:with-param name="text">
-                      <xsl:value-of select="$iv-text"/>
+                      <xsl:value-of select="normalize-space(current-group()[1])"/>
                     </xsl:with-param>
                   </xsl:call-template>
                 </td>
@@ -107,7 +130,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                     <xsl:with-param name="path" select="concat('/capit/', current-group()[1]/name/@ref, '/')"/>
                     <xsl:with-param name="title">
                       <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
-                      <xsl:value-of select="$iv-text"/>
+                      <xsl:value-of select="normalize-space(current-group()[1])"/>
                     </xsl:with-param>
                     <xsl:with-param name="text" select="normalize-space(current-group()[1]/ancestor::tei:item[1]/tei:name)"/>
                   </xsl:call-template>
@@ -117,15 +140,15 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                 </td>
               </tr>
 
-              <!-- Subsequent rows without IV cell -->
+              <!-- Subsequent rows without IV cell (rowspan handles the first column) -->
               <xsl:for-each select="current-group()[position() > 1]">
                 <tr>
                   <td class="title">
                     <xsl:call-template name="if-visible">
-                      <xsl:with-param name="path" select="concat('/capit/', ancestor::tei:item[1]/tei:name/@ref, '/')"/>
+                      <xsl:with-param name="path" select="concat('/capit/', name/@ref, '/')"/>
                       <xsl:with-param name="title">
                         <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
-                        <xsl:value-of select="$iv-text"/>
+                        <xsl:value-of select="normalize-space(.)"/>
                       </xsl:with-param>
                       <xsl:with-param name="text" select="normalize-space(ancestor::tei:item[1]/tei:name)"/>
                     </xsl:call-template>
@@ -136,6 +159,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                 </tr>
               </xsl:for-each>
             </xsl:for-each-group>
+          </xsl:for-each-group>
           </table>
         </xsl:if> 
 
