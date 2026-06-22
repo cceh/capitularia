@@ -64,8 +64,20 @@
     <xsl:param name="title"  select="''"/>
     <xsl:param name="target" select="''"/>
 
+    <!-- Strip the fragment identifier from the path -->
+    <xsl:variable name="cleanPath">
+        <xsl:choose>
+            <xsl:when test="contains($path, '#')">
+                <xsl:value-of select="substring-before($path, '#')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$path"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+
     <xsl:call-template name="if-visible-then-else">
-      <xsl:with-param name="path" select="$path"/>
+      <xsl:with-param name="path" select="$cleanPath"/>
       <xsl:with-param name="then">
         <a class="{$class}" href="{$href}">
           <xsl:if test="$title">
