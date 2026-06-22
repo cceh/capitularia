@@ -53,15 +53,13 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
     <xsl:variable name="Other">
       <xsl:apply-templates select=".//item[not(@xml:id)][not(parent::list[@type='transmission'])][not(parent::list[@type='CNS'])]"/>
     </xsl:variable>
-    <!-- IV‑sub‑items -->
-    <xsl:variable name="IV"
-      select=".//tei:list[@type='CNS']/tei:item"/>
+    <xsl:variable name="IV" select=".//tei:list[@type='CNS']/tei:item"/> <!-- IV‑sub‑items -->
 
 
     <div class="capit-list-xsl">
       <div class="handschriften">
 
-        <!-- Neue IV Liste für ldf -->
+        <!-- IV LDF Liste -->
         <xsl:if test="$type='ldf' and .//tei:list[@type='CNS']/tei:item">
           <h4 id="IV">
             [:de]Nach IV verzeichnete Kapitularien
@@ -78,66 +76,55 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
               </tr>
             </thead>
 
-            <xsl:for-each   select=".//tei:item[tei:list[@type='CNS']/tei:item]//tei:list[@type='CNS']/tei:item">
-                <!--- sort table rows by padded iv nr -->
-                <xsl:sort
-                  select="
-                    concat(
-                      format-number(
-                        xs:integer(
-                          if (matches(substring-after(normalize-space(.),'IV_'), '^[0-9]+'))
-                          then replace(substring-after(normalize-space(.),'IV_'),'[^0-9].*','')
-                          else '0')
-                        ,'000'),
-                      replace(substring-after(normalize-space(.),'IV_'),'^[0-9]+','')
-                    )
-                  "
-                  data-type="text"
-                  order="ascending"
-                />
-              <xsl:variable name="iv" select="normalize-space(.)"/>
-              <xsl:variable name="n" select="replace($iv, '[^0-9].*', '')"/>
-              <xsl:variable name="id"
-                select="concat(
-                  format-number(
-                    xs:integer(
-                      if (matches(substring-after($iv,'IV_'), '^[0-9]+'))
-                      then replace(substring-after($iv,'IV_'), '[^0-9].*', '')
-                      else '0'
-                    ),
-                    '000'
-                  ),
-                  replace(substring-after($iv,'IV_'), '^[0-9]+', '')
-                )"/>
+            <!--- Group IVs by their text -->
+            <xsl:for-each-group select=".//tei:item[tei:list[@type='CNS']/tei:item]//tei:list[@type='CNS']/tei:item"
+                    group-by="normalize-space(.)">
+              <!-- Sort by IV number -->
+              <xsl:sort select="concat(format-number(xs:integer(if (matches(substring-after(normalize-space(@xml:id),'IV_'), '^[0-9]+')) then replace(substring-after(normalize-space(@xml:id),'IV_'),'[^0-9].*','') else '0'),'000'), replace(substring-after(normalize-space(@xml:id),'IV_'),'^[0-9]+',''))"
+                        data-type="text" order="ascending"/>
 
+              <xsl:variable name="group-size" select="count(current-group())"/>
+              <xsl:variable name="iv-text" select="current-grouping-key()"/>
+
+              <!-- First row with IV cell and rowspan -->
               <tr>
-                <td class="siglum">
-                  <xsl:value-of select="replace($iv, '_', ' ')"/>
+                <td class="siglum" rowspan="{$group-size}">
+                  <xsl:value-of select="$iv-text"/>
                 </td>
-
                 <td class="title">
                   <xsl:call-template name="if-visible">
-                  <xsl:with-param name="path"
-                    select="concat('/capit/ldf/iv-nr-', $id, '/')"/>
-
+                    <xsl:with-param name="path" select="concat('/capit/', current-group()[1]/ancestor::tei:item[1]/tei:name/@ref, '/')"/>
                     <xsl:with-param name="title">
                       <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
-                      <xsl:value-of select="$iv"/>
+                      <xsl:value-of select="$iv-text"/>
                     </xsl:with-param>
-
-                    <xsl:with-param name="text"
-                      select="normalize-space(ancestor::tei:item[1]/tei:name)"/>
+                    <xsl:with-param name="text" select="normalize-space(current-group()[1]/ancestor::tei:item[1]/tei:name)"/>
                   </xsl:call-template>
                 </td>
                 <td>
-                  <xsl:value-of
-                      select="replace(
-                                      ancestor::tei:item[1]/@xml:id,
-                                      '_',' ')"/>
+                  <xsl:value-of select="cap:human-readable-siglum(current-group()[1]/ancestor::tei:item[1]/@xml:id)"/>
                 </td>
               </tr>
 
-            </xsl:for-each>
+              <!-- Subsequent rows without IV cell -->
+              <xsl:for-each select="current-group()[position() > 1]">
+                <tr>
+                  <td class="title">
+                    <xsl:call-template name="if-visible">
+                      <xsl:with-param name="path" select="concat('/capit/', ancestor::tei:item[1]/tei:name/@ref, '/')"/>
+                      <xsl:with-param name="title">
+                        <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
+                        <xsl:value-of select="$iv-text"/>
+                      </xsl:with-param>
+                      <xsl:with-param name="text" select="normalize-space(ancestor::tei:item[1]/tei:name)"/>
+                    </xsl:call-template>
+                  </td>
+                  <td>
+                    <xsl:value-of select="cap:human-readable-siglum(ancestor::tei:item[1]/@xml:id)"/>
+                  </td>
+                </tr>
+              </xsl:for-each>
+            </xsl:for-each-group>
           </table>
         </xsl:if> 
 
@@ -189,12 +176,47 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
     <xsl:if test="../@type=$type or $type='all'">
       <xsl:text>&#x0a;&#x0a;</xsl:text>
       <tr>
-        <td class="siglum">
+        <td class="siglum">    
           <xsl:value-of select="cap:human-readable-siglum (@xml:id)"/>
         </td>
         <td class="title">
           <xsl:apply-templates select="name"/>
         </td>
+        <xsl:if test="$type = 'all'">
+          <td class="concordance">
+            <xsl:if test="list[@type='CNS']/item">
+              <xsl:for-each select="list[@type='CNS']/item">
+                <xsl:variable name="iv" select="normalize-space(.)"/>
+                <xsl:variable name="id"
+                  select="concat(
+                    format-number(
+                      xs:integer(
+                        if (matches(substring-after($iv,'IV_'), '^[0-9]+'))
+                        then replace(substring-after($iv,'IV_'), '[^0-9].*', '')
+                        else '0'
+                      ),
+                      '000'
+                    ),
+                    replace(substring-after($iv,'IV_'), '^[0-9]+', '')
+                  )"/>
+                <xsl:call-template name="if-visible">
+                  <xsl:with-param name="path"
+                    select="concat('/capit/ldf/iv-nr-', $id, '/')"/>
+                  <xsl:with-param name="title">
+                    <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
+                    <xsl:value-of select="$iv"/>
+                  </xsl:with-param>
+                  <xsl:with-param name="text">
+                    <xsl:value-of select="cap:human-readable-siglum($iv)"/>
+                  </xsl:with-param>
+                </xsl:call-template>
+                <xsl:if test="position() != last()">
+                  <br/>
+                </xsl:if>
+              </xsl:for-each>
+            </xsl:if>
+          </td>
+        </xsl:if>
       </tr>
     </xsl:if>
   </xsl:template>
@@ -218,6 +240,9 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
       <tr>
         <th class="siglum">[:de]Nummer[:en]No.    [:]</th>
         <th class="title" >[:de]Titel [:en]Caption[:]</th>
+        <xsl:if test="$type = 'all'">
+          <th class="title">[:de]Konkordanz[:en]Concordance[:]</th>
+        </xsl:if>        
       </tr>
     </thead>
   </xsl:template>
