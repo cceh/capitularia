@@ -89,11 +89,22 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
               <!-- First row with IV cell and rowspan -->
               <tr>
                 <td class="siglum" rowspan="{$group-size}">
-                  <xsl:value-of select="$iv-text"/>
+                  <xsl:variable name="idLetter" select="substring-after($iv-text, 'IV_')"/>
+                  <xsl:call-template name="if-visible">
+                    <xsl:with-param name="path" select="concat('/capit/', current-group()[1]/name/@ref, '/')"/>
+
+                    <xsl:with-param name="title">
+                      <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
+                      <xsl:value-of select="$iv-text"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="text">
+                      <xsl:value-of select="$iv-text"/>
+                    </xsl:with-param>
+                  </xsl:call-template>
                 </td>
                 <td class="title">
                   <xsl:call-template name="if-visible">
-                    <xsl:with-param name="path" select="concat('/capit/', current-group()[1]/ancestor::tei:item[1]/tei:name/@ref, '/')"/>
+                    <xsl:with-param name="path" select="concat('/capit/', current-group()[1]/name/@ref, '/')"/>
                     <xsl:with-param name="title">
                       <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
                       <xsl:value-of select="$iv-text"/>
