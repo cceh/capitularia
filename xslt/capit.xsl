@@ -40,7 +40,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
 
   <xsl:template match="/TEI">
     <div class="capit-xsl">
-      <xsl:apply-templates select="text/body/div/list[@type='concordance']"/>      
+      <xsl:call-template name="render-concordance"/>
       <xsl:apply-templates select="text/body/div/note[@type='annotation']"/>
       <xsl:apply-templates select="text/body/div/note[@type='newEdition']"/>
       <xsl:apply-templates select="text/body/div/note[@type='titles']"/>
@@ -74,28 +74,54 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
   </xsl:template>
 
 
-  <xsl:template match="list[@type='concordance']">
-    <div class="concordances">
+  <xsl:template name="render-concordance">
+    <xsl:variable name="all-items" select="//list[@type='concordance']//item"/>
 
-      <xsl:choose>
-          <xsl:when test="item/@corresp[starts-with(., 'IV.')]">
-              <span class="ab‑note">[:de]Entspricht[:en]Corresponds to[:] </span>
+    <xsl:if test="exists($all-items)">
+      <div class="concordances">
+        <xsl:variable name="non-iv-items" select="$all-items[not(starts-with(@corresp, 'IV.'))]"/>
+
+        <xsl:choose>
+          <xsl:when test="empty($non-iv-items)">
+            <span class="ab-note">[:de]Entspricht[:en]Corresponds to[:] </span>
+
+            <xsl:for-each-group select="$all-items" group-by="ref/@target">
+              <xsl:sort select="replace(current-grouping-key(), 'ldf/bk-nr-', '')" data-type="number"/>
+
+              <a class="internal" href="{concat('/capit/', current-grouping-key())}">
+                <xsl:value-of select="current-group()[1]"/>
+              </a>
+
+              <xsl:text>(</xsl:text>
+
+              <xsl:for-each select="current-group()">
+                <xsl:sort select="@corresp"/>
+                <xsl:if test="position() > 1">
+                  <xsl:text>, </xsl:text>
+                </xsl:if>
+                <xsl:value-of select="replace(replace(@corresp, '\.', ' '), '_', ' c.')"/>
+              </xsl:for-each>
+
+              <xsl:text>)</xsl:text>
+              <xsl:if test="position() != last()">
+                <xsl:text>, </xsl:text>
+              </xsl:if>
+            </xsl:for-each-group>
           </xsl:when>
           <xsl:otherwise>
-              <div class="bk-note-header">
-                <div class="icon"></div>
-                <b>[:de]ACHTUNG![:en]ATTENTION[:]</b>
-              </div>
-              <span class="bk‑note">
-                <div>[:de]Diese Seite wird nicht mehr aktualisiert[:en]This page is no longer being updated[:]. 
-                [:de]Zur Neuedition geht es hier[:en]The new edition can be found here[:]:</div>
-              </span>
-          </xsl:otherwise>    
-      </xsl:choose>
-
-          
-          <xsl:apply-templates/>
-    </div>
+            <div class="bk-note-header">
+              <div class="icon"></div>
+              <b>[:de]ACHTUNG![:en]ATTENTION[:]</b>
+            </div>
+            <span class="bk-note">
+              <div>[:de]Diese Seite wird nicht mehr aktualisiert[:en]This page is no longer being updated[:]. 
+              [:de]Zur Neuedition geht es hier[:en]The new edition can be found here[:]:</div>
+            </span>
+            <xsl:apply-templates/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </div>
+    </xsl:if>
   </xsl:template>
 
 
