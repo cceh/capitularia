@@ -74,26 +74,22 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
   </xsl:template>
 
 
-  <xsl:template name="render-concordance">
+   <xsl:template name="render-concordance">
     <xsl:variable name="all-items" select="//list[@type='concordance']//item"/>
 
     <xsl:if test="exists($all-items)">
       <div class="concordances">
-        <xsl:variable name="non-iv-items" select="$all-items[not(starts-with(@corresp, 'IV.'))]"/>
+        <xsl:variable name="iv-items" select="$all-items[starts-with(@corresp, 'IV.')]"/>
 
         <xsl:choose>
-          <xsl:when test="empty($non-iv-items)">
+          <xsl:when test="not(empty($iv-items))">
             <span class="ab-note">[:de]Entspricht[:en]Corresponds to[:] </span>
 
             <xsl:for-each-group select="$all-items" group-by="ref/@target">
               <xsl:sort select="replace(current-grouping-key(), 'ldf/bk-nr-', '')" data-type="number"/>
 
-              <a class="internal" href="{concat('/capit/', current-grouping-key())}">
-                <xsl:value-of select="current-group()[1]"/>
-              </a>
-
+              <xsl:apply-templates select="current-group()[1]"/>
               <xsl:text>(</xsl:text>
-
               <xsl:for-each select="current-group()">
                 <xsl:sort select="@corresp"/>
                 <xsl:if test="position() > 1">
@@ -101,11 +97,12 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
                 </xsl:if>
                 <xsl:value-of select="replace(replace(@corresp, '\.', ' '), '_', ' c.')"/>
               </xsl:for-each>
-
               <xsl:text>)</xsl:text>
-              <xsl:if test="position() != last()">
+
+             <xsl:if test="position() != last()">
                 <xsl:text>, </xsl:text>
               </xsl:if>
+
             </xsl:for-each-group>
           </xsl:when>
           <xsl:otherwise>
@@ -117,7 +114,8 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
               <div>[:de]Diese Seite wird nicht mehr aktualisiert[:en]This page is no longer being updated[:]. 
               [:de]Zur Neuedition geht es hier[:en]The new edition can be found here[:]:</div>
             </span>
-            <xsl:apply-templates/>
+            <xsl:apply-templates select="$all-items"/>
+
           </xsl:otherwise>
         </xsl:choose>
       </div>
@@ -241,10 +239,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
     <xsl:choose>
     <xsl:when test="parent::list[@type='concordance']">
       <xsl:apply-templates/>
-        <xsl:if test="position() != last() 
-                      and count(../item) &gt; 1">
-            <xsl:text>, </xsl:text>
-        </xsl:if>
+      <xsl:if test="position() != last()"><xsl:text>, </xsl:text></xsl:if>
     </xsl:when>
     <xsl:otherwise>
       <tr>

@@ -254,7 +254,7 @@
 
       <xsl:when test="@subtype='capit'">
         <a class="internal" href="{$capit}{@target}" title="[:de]Zum Kapitular[:en]To the respective capitulary[:]">
-          <xsl:apply-templates/>
+          <xsl:value-of select="normalize-space(.)"/>
         </a>
       </xsl:when>
 
