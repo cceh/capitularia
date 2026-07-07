@@ -357,10 +357,10 @@ joined to the preceding word.
     <xsl:variable name="cb_space">
       <xsl:choose>
         <xsl:when test="@break = 'no'">
-          <text/>
+          <xsl:text/>
         </xsl:when>
         <xsl:otherwise>
-          <text> </text>
+          <xsl:text> </xsl:text>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
@@ -392,11 +392,12 @@ joined to the preceding word.
       <xsl:value-of select="@n" />
       <xsl:text>"]</xsl:text>
 
+
       <xsl:value-of select="concat ('[', $cb_prefix, '&#xa0;', @n, ']')"/>
 
       <xsl:text>[/cap_image_server]</xsl:text>
-      <xsl:value-of select="$cb_space"/>
     </span>
+      <xsl:value-of select="$cb_space"/>
   </xsl:template>
 
   <xsl:template match="milestone">
