@@ -238,8 +238,16 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
   <xsl:template match="item">
     <xsl:choose>
     <xsl:when test="parent::list[@type='concordance']">
+      <!-- Apply ref template -->
       <xsl:apply-templates/>
+      <!-- if ref/corresp holds kapitel-info, print it  -->
+      <xsl:if test="contains(ref/@corresp, '_')">
+        <xsl:text>(</xsl:text>
+        <xsl:value-of select="replace(replace(ref/@corresp, '\.', ' '), '_', ' c.')"/>
+        <xsl:text>)</xsl:text>
+      </xsl:if>
       <xsl:if test="position() != last()"><xsl:text>, </xsl:text></xsl:if>
+
     </xsl:when>
     <xsl:otherwise>
       <tr>
