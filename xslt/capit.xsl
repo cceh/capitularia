@@ -75,7 +75,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
 
 
    <xsl:template name="render-concordance">
-    <xsl:variable name="all-items" select="//list[@type='concordance']//item"/>
+    <!-- <xsl:variable name="all-items" select="//list[@type='concordance']//item"/>
 
     <xsl:if test="exists($all-items)">
       <div class="concordances">
@@ -119,7 +119,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
           </xsl:otherwise>
         </xsl:choose>
       </div>
-    </xsl:if>
+    </xsl:if> -->
   </xsl:template>
 
 

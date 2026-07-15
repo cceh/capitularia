@@ -68,13 +68,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
           </h4>
 
           <table>
-            <thead>
-              <tr>
-                <th class="siglum">[:de]Nummer[:en]No.[:]</th>
-                <th class="title">[:de]Titel[:en]Caption[:]</th>
-                <th class="title">[:de]Konkordanz[:en]Concordance[:]</th>
-              </tr>
-            </thead>
+          <xsl:call-template name="thead"/>
 
            <!--- Group IVs by their numeric prefix -->
           <xsl:for-each-group select=".//tei:item[tei:list[@type='CNS']/tei:item]//tei:list[@type='CNS']/tei:item"
@@ -228,7 +222,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
 
         <xsl:if test="$type = 'all' or $type='ldf'">
           <xsl:choose>
-            <xsl:when test="list[@type='CNS']/item">
+              <xsl:when test="//tei:list[@type='CNS']/tei:item">
               <td class="concordance">
                 <xsl:for-each select="list[@type='CNS']/item">
                   <xsl:variable name="iv" select="normalize-space(.)"/>
@@ -266,10 +260,6 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                 </xsl:for-each>
               </td>
             </xsl:when>
-            <xsl:otherwise>
-              <td class="concordance">
-              </td>
-            </xsl:otherwise>
           </xsl:choose>
         </xsl:if>
       </tr>
@@ -295,11 +285,10 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
       <tr>
         <th class="siglum">[:de]Nummer[:en]No.    [:]</th>
         <th class="title" >[:de]Titel [:en]Caption[:]</th>
-        <xsl:if test="$type = 'all' or ($type='ldf' and .//tei:list[@type='CNS']/tei:item)">
+        <xsl:if test="($type = 'all' or $type='ldf' ) and .//tei:list[@type='CNS']/tei:item">
           <th class="title">[:de]Konkordanz[:en]Concordance[:]</th>
         </xsl:if>        
       </tr>
     </thead>
   </xsl:template>
-
 </xsl:stylesheet>
