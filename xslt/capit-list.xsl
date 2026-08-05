@@ -101,13 +101,10 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
               </tr>
             </xsl:if>
 
-            <!-- Inner grouping by text content to maintain rowspan -->
+            <!-- Single row per IV group with matching information in divs -->
             <xsl:for-each-group select="current-group()" group-by="normalize-space(.)">
-              <xsl:variable name="group-size" select="count(current-group())"/>
-
-              <!-- First row with IV cell and rowspan -->
               <tr>
-                <td class="siglum" style="{if (matches(substring-after(normalize-space(current-group()[1]/@xml:id),'IV_'), '[a-zA-Z]')) then 'padding-left: 20px;' else ''}" rowspan="{$group-size}">
+                <td class="siglum" style="{if (matches(substring-after(normalize-space(current-group()[1]/@xml:id),'IV_'), '[a-zA-Z]')) then 'padding-left: 20px;' else ''}">
                   <xsl:call-template name="if-visible">
                     <xsl:with-param name="path" select="concat('/capit/', current-group()[1]/name/@ref, '/')"/>
                     <xsl:with-param name="title">
@@ -120,24 +117,20 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                   </xsl:call-template>
                 </td>
                 <td class="title">
-                  <xsl:value-of select="normalize-space(current-group()[1]/ancestor::tei:item[1]/tei:name)"/>
+                  <xsl:for-each select="current-group()">
+                    <div>
+                      <xsl:value-of select="normalize-space(ancestor::tei:item[1]/tei:name)"/>
+                    </div>
+                  </xsl:for-each>
                 </td>
                 <td>
-                  <xsl:value-of select="cap:human-readable-siglum(current-group()[1]/ancestor::tei:item[1]/@xml:id)"/>
+                  <xsl:for-each select="current-group()">
+                    <div>
+                      <xsl:value-of select="cap:human-readable-siglum(ancestor::tei:item[1]/@xml:id)"/>
+                    </div>
+                  </xsl:for-each>
                 </td>
               </tr>
-
-              <!-- Subsequent rows without IV cell (rowspan handles the first column) -->
-              <xsl:for-each select="current-group()[position() > 1]">
-                <tr>
-                  <td class="title">
-                    <xsl:value-of select="normalize-space(ancestor::tei:item[1]/tei:name)"/>
-                  </td>
-                  <td>
-                    <xsl:value-of select="cap:human-readable-siglum(ancestor::tei:item[1]/@xml:id)"/>
-                  </td>
-                </tr>
-              </xsl:for-each>
             </xsl:for-each-group>
           </xsl:for-each-group>
           </table>
