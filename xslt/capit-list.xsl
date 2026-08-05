@@ -244,7 +244,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                   </xsl:call-template>
                   <xsl:if test="name/@corresp">
                     <xsl:text> (</xsl:text>
-                    <xsl:value-of select="replace(replace(name/@corresp, '\.', ' '), '_', ' c.')"/>
+                    <xsl:value-of select="replace(replace(name/@corresp, '\.', ' '), '_', ' c. ')"/>
                     <xsl:text>)</xsl:text>
                   </xsl:if>
                   <xsl:if test="position() != last()">

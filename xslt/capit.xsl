@@ -75,7 +75,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
 
 
    <xsl:template name="render-concordance">
-    <!-- <xsl:variable name="all-items" select="//list[@type='concordance']//item"/>
+    <xsl:variable name="all-items" select="//list[@type='concordance']//item"/>
 
     <xsl:if test="exists($all-items)">
       <div class="concordances">
@@ -95,7 +95,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
                 <xsl:if test="position() > 1">
                   <xsl:text>, </xsl:text>
                 </xsl:if>
-                <xsl:value-of select="replace(replace(@corresp, '\.', ' '), '_', ' c.')"/>
+                <xsl:value-of select="replace(replace(@corresp, '\.', ' '), '_', ' c. ')"/>
               </xsl:for-each>
               <xsl:text>)</xsl:text>
 
@@ -119,7 +119,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
           </xsl:otherwise>
         </xsl:choose>
       </div>
-    </xsl:if> -->
+    </xsl:if>
   </xsl:template>
 
 
@@ -243,7 +243,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
       <!-- if ref/corresp holds kapitel-info, print it  -->
       <xsl:if test="contains(ref/@corresp, '_')">
         <xsl:text>(</xsl:text>
-        <xsl:value-of select="replace(replace(ref/@corresp, '\.', ' '), '_', ' c.')"/>
+        <xsl:value-of select="replace(replace(ref/@corresp, '\.', ' '), '_', ' c. ')"/>
         <xsl:text>)</xsl:text>
       </xsl:if>
       <xsl:if test="position() != last()"><xsl:text>, </xsl:text></xsl:if>
