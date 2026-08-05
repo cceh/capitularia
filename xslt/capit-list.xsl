@@ -40,6 +40,21 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
 
   <xsl:output method="html" encoding="UTF-8" indent="yes"/>
 
+  <!-- Function to format correspondence chapter information -->
+  <xsl:function name="cap:format-corresp-chapter" as="xs:string?">
+    <xsl:param name="corresp" as="xs:string?"/>
+    <xsl:param name="full" as="xs:boolean"/>
+    <xsl:sequence select="
+      if ($corresp) then
+        if ($full) then
+          concat(' (', replace(replace($corresp, '\.', ' '), '_', ' c. '), ')')
+        else
+          concat(' (c. ', substring-after($corresp, '_'), ')')
+      else
+        ''
+    "/>
+  </xsl:function>
+
   <xsl:param name="type" select="'all'"/>
 
   <xsl:template match="/TEI">
@@ -127,6 +142,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                   <xsl:for-each select="current-group()">
                     <div>
                       <xsl:value-of select="cap:human-readable-siglum(ancestor::tei:item[1]/@xml:id)"/>
+                      <xsl:value-of select="cap:format-corresp-chapter(name/@corresp, false())"/>
                     </div>
                   </xsl:for-each>
                 </td>
@@ -242,11 +258,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                       <xsl:value-of select="cap:human-readable-siglum($iv)"/>
                     </xsl:with-param>
                   </xsl:call-template>
-                  <xsl:if test="name/@corresp">
-                    <xsl:text> (</xsl:text>
-                    <xsl:value-of select="replace(replace(name/@corresp, '\.', ' '), '_', ' c. ')"/>
-                    <xsl:text>)</xsl:text>
-                  </xsl:if>
+                  <xsl:value-of select="cap:format-corresp-chapter(name/@corresp, true())"/>
                   <xsl:if test="position() != last()">
                     <br/>
                   </xsl:if>
