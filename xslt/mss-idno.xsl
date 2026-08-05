@@ -86,10 +86,6 @@ Target: lists $(CACHE_DIR)/lists/mss-idno.html
       <xsl:apply-templates />
       <xsl:text>]</xsl:text>
 
-      <xsl:if test="@type = 'new'">
-        <xsl:text> [:de](NEU)[:en](NEW)[:]</xsl:text>
-      </xsl:if>
-
       <xsl:if test="@type = 'old'">
         <xsl:text> (olim)</xsl:text>
       </xsl:if>
