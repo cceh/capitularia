@@ -42,7 +42,9 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
     <div class="capit-xsl">
       <xsl:call-template name="render-concordance"/>
       <xsl:apply-templates select="text/body/div/note[@type='annotation']"/>
-      <xsl:apply-templates select="text/body/div/note[@type='newEdition']"/>
+      <xsl:apply-templates select="text/body/div/note[@type='newEdition'][1]"/>
+      <!-- separating line if multiple capit sections are to follow -->
+      <xsl:if test="count(//head) > 1"><hr/></xsl:if>
       <xsl:apply-templates select="text/body/div/note[@type='titles']"/>
       <xsl:apply-templates select="text/body/div/note[@type='date']"/>
       <xsl:apply-templates select="text/body/div/list[@type='transmission']"/>
@@ -134,11 +136,13 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
       <h4 id="newEdition">[:de]Neue Edition[:en]New Edition[:]</h4>
       <table>
         <tbody>
-          <xsl:apply-templates/>
+          <xsl:apply-templates select="../note[@type='newEdition']/node()"/>
         </tbody>
       </table>
     </div>
   </xsl:template>
+
+  
 
   <xsl:template match="note[@type='titles']">
     <xsl:choose>
