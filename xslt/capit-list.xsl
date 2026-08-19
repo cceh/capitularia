@@ -121,7 +121,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
               <tr>
                 <td class="siglum" style="{if (matches(substring-after(normalize-space(current-group()[1]/@xml:id),'IV_'), '[a-zA-Z]')) then 'padding-left: 20px;' else ''}">
                   <xsl:call-template name="if-visible">
-                    <xsl:with-param name="path" select="concat('/capit/', current-group()[1]/name/@ref, '/')"/>
+                    <xsl:with-param name="path" select="concat('/capit/', current-group()[1]/name/@ref)"/>
                     <xsl:with-param name="title">
                       <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
                       <xsl:value-of select="normalize-space(current-group()[1])"/>
