@@ -21,6 +21,11 @@ deploy_xslt: make_dependencies
 	$(RSYNC) xslt/*.xsl $(TRANSFORM)/
 	$(RSYNC) server/scripts/import_data.py $(HOST_SERVER)/scripts/
 
+deploy_one_xslt:
+	@echo "Deploying $(FILE)..."
+	$(RSYNC) xslt/$(FILE) $(HOST_XSLT)/
+	$(RSYNC) xslt/$(FILE) $(TRANSFORM)/
+
 deploy_xml: deploy_mss deploy_capits
 
 deploy_mss:
