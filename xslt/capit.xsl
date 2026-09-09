@@ -41,15 +41,26 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
   <xsl:template match="/TEI">
     <div class="capit-xsl">
       <xsl:call-template name="render-concordance"/>
-      <xsl:apply-templates select="text/body/div/note[@type='annotation']"/>
-      <xsl:apply-templates select="text/body/div/note[@type='newEdition'][1]"/>
-      <!-- separating line if multiple capit sections are to follow -->
-      <xsl:if test="count(//head) > 1"><hr/></xsl:if>
-      <xsl:apply-templates select="text/body/div/note[@type='titles']"/>
-      <xsl:apply-templates select="text/body/div/note[@type='date']"/>
-      <xsl:apply-templates select="text/body/div/list[@type='transmission']"/>
-      <xsl:apply-templates select="text/body/div/listBibl[@type='literature']"/>
-      <xsl:apply-templates select="text/body/div/listBibl[@type='translation']"/>
+      
+      <!-- Combined newEdition block from all sections -->
+      <xsl:if test="//note[@type='newEdition']">
+        <div>
+          <h4 id="newEdition">[:de]Neue Edition[:en]New Edition[:]</h4>
+          <table>
+            <tbody>
+              <xsl:apply-templates select="//note[@type='newEdition']/node()"/>
+            </tbody>
+          </table>
+        </div>
+        <hr/>
+      </xsl:if>
+
+      <!-- Process each section div individually -->
+      <xsl:for-each select="text/body/div">
+        <xsl:call-template name="render-section">
+          <xsl:with-param name="section-content" select="."/>
+        </xsl:call-template>
+      </xsl:for-each>
 
       <xsl:call-template name="hr"/>
 
@@ -124,6 +135,26 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
     </xsl:if>
   </xsl:template>
 
+  <xsl:template name="render-section">
+    <xsl:param name="section-content"/>
+    
+    <!-- Extract section ID from head/@corresp (e.g., "IV.21a" -> "a") -->
+    <xsl:variable name="head-corresp" select="$section-content/head/@corresp"/>
+    <xsl:variable name="section-id" select="if (contains($head-corresp, '.')) then substring($head-corresp, string-length($head-corresp)) else 'section'"/>
+    
+    <!-- Create section with heading -->
+    <section id="{$section-id}">
+      <xsl:if test="count(/TEI/text/body/div[head]) > 1">
+        <h3 id="{$section-id}">
+          <xsl:value-of select="$section-content/head"/>
+        </h3>
+      </xsl:if>
+      
+      <!-- Process all child elements except head, newEdition and concordance -->
+      <xsl:apply-templates select="$section-content/node()[not(self::head or self::note[@type='newEdition'] or self::list[@type='concordance'])]"/>
+    </section>
+  </xsl:template>
+
 
   <xsl:template match="note[@type='annotation']">
     <div class="capit-annotation">
@@ -131,22 +162,10 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
     </div>
   </xsl:template>
 
-  <xsl:template match="note[@type='newEdition']">
-    <div>
-      <h4 id="newEdition">[:de]Neue Edition[:en]New Edition[:]</h4>
-      <table>
-        <tbody>
-          <xsl:apply-templates select="../note[@type='newEdition']/node()"/>
-        </tbody>
-      </table>
-    </div>
-  </xsl:template>
-
-  
 
   <xsl:template match="note[@type='titles']">
     <xsl:choose>
-      <xsl:when test="../note[@type='newEdition']">
+      <xsl:when test="//note[@type='newEdition']">
         <div>
           <h4 id="titles">[:de]"Titel in älteren Editionen[:en]Titles in Older Editions[:]</h4>
           <table>
@@ -171,7 +190,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
 
   <xsl:template match="note[@type='date']">
     <div>
-      <h4 id="date">[:de]Datierung[:en]Origin[:]</h4>
+      <h4 id="date">[:de]Datierung[:en]Date[:]</h4>
       <table>
         <tbody>
           <xsl:apply-templates/>
