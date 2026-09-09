@@ -102,15 +102,6 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
               <xsl:sort select="replace(current-grouping-key(), 'ldf/bk-nr-', '')" data-type="number"/>
 
               <xsl:apply-templates select="current-group()[1]"/>
-              <xsl:text>(</xsl:text>
-              <xsl:for-each select="current-group()">
-                <xsl:sort select="@corresp"/>
-                <xsl:if test="position() > 1">
-                  <xsl:text>, </xsl:text>
-                </xsl:if>
-                <xsl:value-of select="replace(replace(@corresp, '\.', ' '), '_', ' c. ')"/>
-              </xsl:for-each>
-              <xsl:text>)</xsl:text>
 
              <xsl:if test="position() != last()">
                 <xsl:text>, </xsl:text>
