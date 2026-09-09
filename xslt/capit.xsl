@@ -40,7 +40,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
 
   <xsl:template match="/TEI">
     <div class="capit-xsl">
-      <xsl:call-template name="render-concordance"/>
+      <!-- <xsl:call-template name="render-concordance"/> -->
       
       <!-- Combined newEdition block from all sections -->
       <xsl:if test="//note[@type='newEdition']">
@@ -170,7 +170,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
           <h4 id="titles">[:de]"Titel in älteren Editionen[:en]Titles in Older Editions[:]</h4>
           <table>
             <tbody>
-              <xsl:apply-templates/>
+              <xsl:apply-templates select="node()"/>
             </tbody>
           </table>
         </div>
@@ -180,12 +180,16 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
           <h4 id="titles">[:de]Titel[:en]Captions[:]</h4>
           <table>
             <tbody>
-              <xsl:apply-templates/>
+              <xsl:apply-templates select="node()"/>
             </tbody>
           </table>
         </div>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+  <!-- Remove extra whiespaces between text and ref  -->
+  <xsl:template match="note[@type='titles']//text()">
+    <xsl:value-of select="normalize-space(.)"/>
   </xsl:template>
 
   <xsl:template match="note[@type='date']">
@@ -217,9 +221,9 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
         </xsl:otherwise>
       </xsl:choose>
     </td>
-    <td class="value">
-      <xsl:apply-templates/>
-    </td>
+  <td class="value">
+    <xsl:apply-templates/>
+  </td>
   </xsl:template>
   
   <xsl:template match="citedRange">
