@@ -126,7 +126,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
     </xsl:if>
   </xsl:template>
 
-  <xsl:template name="render-section">
+    <xsl:template name="render-section">
     <xsl:param name="section-content"/>
     
     <!-- Extract section ID from head/@corresp (e.g., "IV.21a" -> "a") -->
@@ -139,6 +139,12 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
         <h3 id="{$section-id}">
           <xsl:value-of select="$section-content/head"/>
         </h3>
+      </xsl:if>
+      
+      <!-- Display BK reference from concordance -->
+      <xsl:variable name="chapter" select="substring-after($section-content/list[@type='concordance']/item/ref/@corresp, '_')"/>
+      <xsl:if test="$chapter">
+        <div class="concordance-ref">≙ <xsl:value-of select="normalize-space($section-content/list[@type='concordance']/item/ref)"/> c. <xsl:value-of select="$chapter"/></div>
       </xsl:if>
       
       <!-- Process all child elements except head, newEdition and concordance -->
