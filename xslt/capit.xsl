@@ -136,7 +136,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
     <!-- Create section with heading -->
     <section id="{$section-id}">
       <xsl:if test="count(/TEI/text/body/div[head]) > 1">
-        <h3 id="{$section-id}">
+        <h3 id="{$section-id}" data-cap-level-1="1" data-cap-dyn-menu-caption="{$section-content/head}">
           <xsl:value-of select="$section-content/head"/>
         </h3>
       </xsl:if>
