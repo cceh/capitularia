@@ -164,7 +164,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
     <xsl:choose>
       <xsl:when test="//note[@type='newEdition']">
         <div>
-          <h4 id="titles">[:de]"Titel in älteren Editionen[:en]Titles in Older Editions[:]</h4>
+          <h4 id="titles">[:de]Titel in älteren Editionen[:en]Titles in Older Editions[:]</h4>
           <table>
             <tbody>
               <xsl:apply-templates select="node()"/>
