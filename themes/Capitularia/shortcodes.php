@@ -248,18 +248,30 @@ function if_visible ($path)
         $url = bk_to_permalink ('BK.' . $matches[2]);
         if ($url) {
             $path = trim (parse_url ($url, PHP_URL_PATH), '/');
+            // Remove en/ prefix for qTranslate compatibility
+            if (strpos($path, 'en/') === 0) {
+                $path = substr($path, 3);
+            }
         }
     }
     if (preg_match ('!^mordek/(Mordek[._])?(\d+\w?)$!', $path, $matches)) {
         $url = bk_to_permalink ('Mordek.' . $matches[2]);
         if ($url) {
             $path = trim (parse_url ($url, PHP_URL_PATH), '/');
+            // Remove en/ prefix for qTranslate compatibility
+            if (strpos($path, 'en/') === 0) {
+                $path = substr($path, 3);
+            }
         }
     }
     if (preg_match ('!^capit/(BK|Mordek)(.*)$!', $path, $matches)) {
         $url = bk_to_permalink ($matches[1] . $matches[2]);
         if ($url) {
             $path = trim (parse_url ($url, PHP_URL_PATH), '/');
+            // Remove en/ prefix for qTranslate compatibility
+            if (strpos($path, 'en/') === 0) {
+                $path = substr($path, 3);
+            }
         }
     }
 
