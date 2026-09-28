@@ -500,28 +500,29 @@ function on_do_parse_request ($do_parse, $wp, $extra_query_vars) // phpcs:ignore
     $request = isset ($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
     // error_log ('Request was: ' . $request);
 
-    if (preg_match ('!^/bk/(BK[._])?(\d+\w?)$!i', $request, $matches)) {
+    // Match paths with optional language prefix (e.g., /en/bk/BK.22 or /bk/BK.22)
+    if (preg_match ('!^/(?:[a-z]{2}/)?bk/(BK[._])?(\d+\w?)$!i', $request, $matches)) {
         $url = bk_to_permalink ('BK.' . $matches[2]);
         if ($url) {
             wp_redirect ($url);
             exit ();
         }
     }
-    if (preg_match ('!^/mordek/(Mordek[._])?(\d+\w?)$!i', $request, $matches)) {
+    if (preg_match ('!^/(?:[a-z]{2}/)?mordek/(Mordek[._])?(\d+\w?)$!i', $request, $matches)) {
         $url = bk_to_permalink ('Mordek.' . $matches[2]);
         if ($url) {
             wp_redirect ($url);
             exit ();
         }
     }
-    if (preg_match ('!^/capit/(BK|Mordek)(.*)$!i', $request, $matches)) {
+    if (preg_match ('!^/(?:[a-z]{2}/)?capit/(BK|Mordek)(.*)$!i', $request, $matches)) {
         $url = bk_to_permalink ($matches[1] . $matches[2]);
         if ($url) {
             wp_redirect ($url);
             exit ();
         }
     }
-    if (preg_match ('!^/siglum/(.*)$!i', $request, $matches)) {
+    if (preg_match ('!^/(?:[a-z]{2}/)?siglum/(.*)$!i', $request, $matches)) {
         $url = siglum_to_permalink ($matches[1]);
         if ($url) {
             wp_redirect ($url);
