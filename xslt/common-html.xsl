@@ -122,7 +122,7 @@
   <xsl:template name="cite_as">
     <xsl:param name="author" />
     <xsl:param name="title">
-      <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main']" />
+      <xsl:apply-templates select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type='main'][1]" />
     </xsl:param>
 
     <div class="citation">
