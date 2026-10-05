@@ -204,7 +204,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
     <td class="resp">
       <xsl:choose>
         <xsl:when test="editorLabel">
-          <xsl:text>[:de]von[:en]by[:] </xsl:text>
+          <xsl:text>[:de]bei[:en]by[:] </xsl:text>
           <xsl:value-of select="editorLabel/@name"/>
         </xsl:when>
 
