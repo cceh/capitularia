@@ -202,25 +202,39 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
 
   <xsl:template name="resp">
     <td class="resp">
-      <xsl:choose>
-        <xsl:when test="editorLabel">
-          <xsl:text>[:de]bei[:en]by[:] </xsl:text>
-          <xsl:value-of select="editorLabel/@name"/>
-        </xsl:when>
+  
+      <xsl:variable name="preposition">
+        <xsl:choose>
+          <xsl:when test="parent::*[@type='newEdition']">[:de]von[:en]by[:]</xsl:when>
+          <xsl:otherwise>[:de]bei[:en]by[:]</xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
 
-        <xsl:when test="@resp='bk'">
-          <xsl:text>[:de]bei[:en]by[:] </xsl:text>
-          <xsl:text>Boretius/Krause</xsl:text>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:text>[:de]bei[:en]by[:] </xsl:text>
+      <xsl:variable name="name">
+        <xsl:choose>
+          <xsl:when test="editorLabel">
+            <xsl:value-of select="editorLabel/@name"/>
+          </xsl:when>
+          <xsl:when test="@resp='bk'">
+            <xsl:text>Boretius/Krause</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
           <xsl:value-of select="@resp"/>
-        </xsl:otherwise>
-      </xsl:choose>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+
+      <xsl:if test="$name">
+        <xsl:value-of select="$preposition"/>
+        <xsl:text> </xsl:text>
+        <xsl:value-of select="$name"/>
+      </xsl:if>
     </td>
+
   <td class="value">
     <xsl:apply-templates/>
   </td>
+
   </xsl:template>
   
   <xsl:template match="citedRange">
