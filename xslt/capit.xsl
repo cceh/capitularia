@@ -148,7 +148,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
       </xsl:if>
       
       <!-- Process all child elements except head, newEdition and concordance -->
-      <xsl:apply-templates select="$section-content/node()[not(self::head or self::note[@type='newEdition'] or self::list[@type='concordance'])]"/>
+      <xsl:apply-templates select="$section-content/node()[not(self::head or self::note[@type='newEdition'] or self::list[@type='concordance'] or ref[@subtype='com'])]"/>
     </section>
   </xsl:template>
 
