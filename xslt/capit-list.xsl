@@ -77,8 +77,8 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
         <!-- IV LDF Liste -->
         <xsl:if test="$type='ldf' and .//tei:list[@type='CNS']/tei:item">
           <h4 id="IV">
-            [:de]Nach IV verzeichnete Kapitularien
-            [:en]Capitularies by IV number
+            [:de]In der neuen Edition verzeichnete Kapitularien
+            [:en]Capitularies in the new edition
             [:]
           </h4>
 
