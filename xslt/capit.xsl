@@ -40,7 +40,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
 
   <xsl:template match="/TEI">
     <div class="capit-xsl">
-      <!-- <xsl:call-template name="render-concordance"/> -->
+      <xsl:call-template name="render-concordance"/>
       
       <!-- Combined newEdition block from all sections -->
       <xsl:if test="//note[@type='newEdition']">
@@ -64,8 +64,8 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
 
       <xsl:call-template name="hr"/>
 
-      <xsl:if test="text/body//ref[@subtype]">
-        <!-- Links zum Artikel: Manuskript/Kapitular/Kapitel/Sammlung des Monats -->
+      <!-- Links zum Artikel: Manuskript/Kapitular/Kapitel/Sammlung des Monats -->
+      <xsl:if test="text/body//ref[@subtype='mom' or @subtype='com' or @subtype='chom' or @subtype='collom']">
         <xsl:apply-templates select="text/body//ref[@subtype='mom']"/>
         <xsl:apply-templates select="text/body//ref[@subtype='com']"/>
         <xsl:apply-templates select="text/body//ref[@subtype='chom']"/>
@@ -127,29 +127,29 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
   </xsl:template>
 
     <xsl:template name="render-section">
-    <xsl:param name="section-content"/>
-    
-    <!-- Extract section ID from head/@corresp (e.g., "IV.21a" -> "a") -->
-    <xsl:variable name="head-corresp" select="$section-content/head/@corresp"/>
-    <xsl:variable name="section-id" select="if (contains($head-corresp, '.')) then substring($head-corresp, string-length($head-corresp)) else 'section'"/>
-    
-    <!-- Create section with heading -->
-    <section id="{$section-id}">
-      <xsl:if test="count(/TEI/text/body/div[head]) > 1">
-        <h3 id="{$section-id}" data-cap-level-1="1" data-cap-dyn-menu-caption="{$section-content/head}">
-          <xsl:value-of select="$section-content/head"/>
-        </h3>
+      <xsl:param name="section-content"/>
       
-        <!-- Display BK reference from concordance -->
-        <xsl:variable name="chapter" select="substring-after($section-content/list[@type='concordance']/item/ref/@corresp, '_')"/>
-        <xsl:if test="$chapter">
-          <div class="concordance-ref">≙ <xsl:value-of select="normalize-space($section-content/list[@type='concordance']/item/ref)"/> c. <xsl:value-of select="$chapter"/></div>
+      <!-- Extract section ID from head/@corresp (e.g., "IV.21a" -> "a") -->
+      <xsl:variable name="head-corresp" select="$section-content/head/@corresp"/>
+      <xsl:variable name="section-id" select="if (contains($head-corresp, '.')) then substring($head-corresp, string-length($head-corresp)) else 'section'"/>
+      
+      <!-- Create section with heading -->
+      <section id="{$section-id}">
+        <xsl:if test="count(/TEI/text/body/div[head]) > 1">
+          <h3 id="{$section-id}" data-cap-level-1="1" data-cap-dyn-menu-caption="{$section-content/head}">
+            <xsl:value-of select="$section-content/head"/>
+          </h3>
+        
+          <!-- Display BK reference from concordance -->
+          <xsl:variable name="chapter" select="substring-after($section-content/list[@type='concordance']/item/ref/@corresp, '_')"/>
+          <xsl:if test="$chapter">
+            <div class="concordance-ref">≙ <xsl:value-of select="normalize-space($section-content/list[@type='concordance']/item/ref)"/> c. <xsl:value-of select="$chapter"/></div>
+          </xsl:if>
         </xsl:if>
-      </xsl:if>
-      
-      <!-- Process all child elements except head, newEdition and concordance -->
-      <xsl:apply-templates select="$section-content/node()[not(self::head or self::note[@type='newEdition'] or self::list[@type='concordance'] or ref[@subtype='com'])]"/>
-    </section>
+        
+        <!-- Process all child elements except head, newEdition and concordance -->
+        <xsl:apply-templates select="$section-content/node()[not(self::head or self::note[@type='newEdition'] or self::list[@type='concordance'] or ref[@subtype='com'] or ref[@subtype='mom'] or ref[@subtype='chom'] or ref[@subtype='collom'])]"/>
+      </section>
   </xsl:template>
 
 
