@@ -104,10 +104,10 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                     <xsl:with-param name="path" select="concat('/capit/ldf/iv-nr-', $base-id, '/')"/>
                     <xsl:with-param name="title">
                       <xsl:text>[:de]Zu[:en]Go to[:] </xsl:text>
-                      <xsl:value-of select="concat('IV ', $base-numeric)"/>
+                      <xsl:value-of select="concat('Bd. 4 Nr. ', $base-numeric)"/>
                     </xsl:with-param>
                     <xsl:with-param name="text">
-                      <xsl:value-of select="concat('IV ', $base-numeric)"/>
+                      <xsl:value-of select="concat('Bd. 4 Nr. ', $base-numeric)"/>
                     </xsl:with-param>
                   </xsl:call-template>
                 </td>
@@ -255,7 +255,7 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
                       <xsl:value-of select="$iv"/>
                     </xsl:with-param>
                     <xsl:with-param name="text">
-                      <xsl:value-of select="cap:human-readable-siglum($iv)"/>
+                      <xsl:value-of select="$iv"/>
                     </xsl:with-param>
                   </xsl:call-template>
                   <xsl:value-of select="cap:format-corresp-chapter(name/@corresp, true())"/>
