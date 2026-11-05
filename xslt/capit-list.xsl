@@ -77,8 +77,8 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
         <!-- IV LDF Liste -->
         <xsl:if test="$type='ldf' and .//tei:list[@type='CNS']/tei:item">
           <h4 id="IV">
-            [:de]In der neuen Edition verzeichnete Kapitularien
-            [:en]Capitularies in the new edition
+            [:de]Kapitularien in der Neuedition (MGH Capit. N. S. 4)
+            [:en]Capitularies in the new edition (MGH Capit. N. S. 4)
             [:]
           </h4>
 
@@ -155,8 +155,8 @@ Scrape: cap-list $(CAPIT_DIR)/lists/capit_all.xml
 
         <xsl:if test="normalize-space ($BK)">
           <h4 id="BK">
-            [:de]Bei Boretius/Krause (BK) verzeichnete Kapitularien
-            [:en]Capitularies mentioned by Boretius/Krause (BK)
+            [:de]Kapitularien in der Edition von Boretius / Krause (BK)
+            [:en]Capitularies in the edition of Boretius / Krause (BK)
             [:]
           </h4>
 
