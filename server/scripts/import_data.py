@@ -476,13 +476,18 @@ def process_cap(conn, filename):
         log(logging.INFO, "Parsing %s ..." % cap_id)
 
         for body in tei.xpath(".//tei:body", namespaces=NS):
+
+            # Catch mising/empty head or no colon
+            heads = body.xpath(".//tei:head", namespaces=NS)
+            head_text = heads[0].text if heads and heads[0].text else ""
+            if ":" in head_text:
+                head_text = head_text.split(":", 1)[1].strip()
+            else:
+                head_text = head_text.strip()
+
             row = {
                 "cap_id": cap_id,
-                "title": fix_ws(
-                    body.xpath(".//tei:head", namespaces=NS)[0]
-                    .text.split(":")[1]
-                    .strip()
-                ),
+                "title": fix_ws(head_text),
                 "date": get_date(
                     body.xpath(".//tei:note[@type='date']/tei:date", namespaces=NS)
                 ),
