@@ -91,7 +91,7 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
     <xsl:variable name="all-items" select="//list[@type='concordance']//item"/>
 
     <xsl:if test="exists($all-items)">
-      <div class="concordances">
+      <div class="info-box">
         <xsl:variable name="iv-items" select="$all-items[starts-with(@corresp, 'IV.')]"/>
 
         <xsl:choose>
@@ -110,8 +110,8 @@ Target: capits $(CACHE_DIR)/capits/iv/ldf/%.html
             </xsl:for-each-group>
           </xsl:when>
           <xsl:otherwise>
-            <div class="bk-note-header">
-              <div class="icon"></div>
+            <div class="info-header">
+              <div class="alert-icon"></div>
               <b>[:de]ACHTUNG![:en]ATTENTION[:]</b>
             </div>
             <span class="bk-note">

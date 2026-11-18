@@ -307,6 +307,32 @@ nav {
 /* Gadgets */
 /***********/
 
+.info-icon::after {
+  @include fas;
+  content: "\f05a";
+  font-size: 1rem;
+  display: block;
+  color: #914029;
+  margin-right: 5px;
+}
+.alert-icon::after {
+  @include fas;
+  content: "\f06a";
+  font-size: 1rem;
+  display: block;
+  color: #914029;
+  margin-right: 5px;
+}
+.info-box {
+  background: #e9e1c1;
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+.info-box .info-header {
+  display: flex;
+  align-items: center;
+}
+
 div.hr {
   /* a horizontal rule always */
   margin: 3em 0;
@@ -408,25 +434,6 @@ div.index-results {
 /***********/
 /* Capit Page */
 /***********/
-
-div.concordances {
-  background: #e9e1c1;
-  padding: 10px 15px;
-  border-radius: 4px;
-}
-div.concordances .icon::after {
-  @include fas;
-  content: "\f06a";
-  font-size: 1rem;
-  display: block;
-  color: #914029;
-  margin-right: 5px;
-}
-
-div.concordances .bk-note-header {
-  display: flex;
-  align-items: center;
-}
 
 div.capit-xsl section {
   margin-top: 3rem;
