@@ -24,10 +24,17 @@
       </div>
     </div>
     <div class="tab-content">
-      <div class="d-flex justify-content-end">
-        <div class="form-check form-switch mt-2" v-if="activeTab === 'ms'">
+      <div class="d-flex justify-content-between gap-2 mt-2 text-start" v-if="activeTab === 'ms'">
+        <div class="info-box" style="display: flex; flex-wrap: wrap; font-size: 14px; width: 100%">
+          <div class="info-icon"></div>
+          {{ $t("Treffer werden alphabetisch sortiert.") }}
+          <template v-if="msFuzzySearch">
+            <br />{{ $t("Fuzzy Search ist aktiviert: auch ungenaue Treffer werden berücksichtigt.") }}
+          </template>
+        </div>
+        <div class="form-check form-switch mt-2" style="width: fit-content">
           <input class="form-check-input" type="checkbox" id="fuzzyToggle" v-model="msFuzzySearch" />
-          <label class="form-check-label" for="fuzzyToggle">
+          <label class="form-check-label text-nowrap" for="fuzzyToggle">
             {{ $t("Fuzzy Search") }}
           </label>
         </div>
@@ -44,18 +51,18 @@
       >
         <a class="excerpt-corresp" :href="mss_url + doc.ms_id">{{ doc.title_de }}</a>
         <div>
-          <a :href="mss_url + doc.ms_id + '#' + frag(doc)" style="font-size: 12px; margin-right: 4px">{{
-            fragTxt(doc)
-          }}</a>
+          <span class="capit-tag" style="margin-right: 6px">
+            <a :href="mss_url + doc.ms_id + '#' + frag(doc)">{{ fragTxt(doc) }}</a>
+          </span>
           <span class="snippet" v-html="join_snippets(snippets)" />
         </div>
-        <div v-if="expanded && expanded.docs" v-for="doc in expanded.docs">
-          <a :href="mss_url + doc.ms_id + '#' + frag(doc)" style="font-size: 12px; margin-right: 4px">{{
-            fragTxt(doc)
-          }}</a>
-          <span class="snippet" style="font-size: 10px; color: gray">
-            {{ doc.text_la ? (doc.text_la.length > 50 ? doc.text_la.substring(0, 50) + "..." : doc.text_la) : "" }}
-          </span>
+        <div v-if="expanded && expanded.docs" style="margin-top: 6px">
+          <span style="font-size: 12px">{{ $t("Weitere Treffer in diesem Manuskript") }}:</span>
+          <div style="display: flex; flex-wrap: wrap">
+            <span class="capit-tag" v-for="doc in expanded.docs">
+              <a :href="mss_url + doc.ms_id + '#' + frag(doc)">{{ fragTxt(doc) }}</a>
+            </span>
+          </div>
         </div>
         <hr style="margin: 8px 0" />
       </cap-tab>
@@ -100,7 +107,7 @@ export default {
         ms: { numFound: 0 },
         post: { numFound: 0 },
       },
-      msFuzzySearch: true,
+      msFuzzySearch: false,
       activeTab: "ms",
     };
   },
@@ -238,6 +245,16 @@ export default {
 
 .nav-link {
   cursor: pointer;
+}
+
+.capit-tag {
+  background-color: #f5f5f5;
+  border-radius: 3px;
+  padding: 2px 6px;
+  margin: 2px;
+  width: fit-content;
+  display: inline-block;
+  font-size: 12px;
 }
 
 div.cap-collation {

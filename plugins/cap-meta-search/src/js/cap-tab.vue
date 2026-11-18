@@ -6,7 +6,7 @@
       </div>
     </div>
     <cap-pager class="my-3" :last="last_page()" :current="page" @page="goto_page" />
-    <article v-for="doc of response.docs" :key="doc.id" class="search-results-excerpt my-3">
+    <article v-for="doc of response.docs" :key="doc.id" class="search-results-excerpt my-4">
       <slot :doc="doc" :snippets="highlighting[doc.id]" :expanded="expanded[doc.ms_id]" />
     </article>
     <cap-pager class="my-3" :last="last_page()" :current="page" @page="goto_page" />
@@ -61,12 +61,20 @@ export default {
       const vm = this;
       const params = new URLSearchParams(vm.solrParams.toString());
       params.set("start", start);
-      console.log(`solr_query: ${decodeURIComponent(params.toString())}`);
+      //console.log(`solr_query: ${decodeURIComponent(params.toString())}`);
       tools.api("/solr/select.json", params).then((response) => {
         vm.response = response.data.response || {};
         vm.highlighting = response.data.highlighting || {};
         vm.expanded = response.data.expanded || {};
-        console.log(response.data);
+
+        // Sort every expanded.docs by cap_id_chapter
+        for (const key in vm.expanded) {
+          if (Array.isArray(vm.expanded[key].docs)) {
+            vm.expanded[key].docs.sort((a, b) => a.cap_id_chapter.localeCompare(b.cap_id_chapter));
+          }
+        }
+
+        //console.log(response.data);
         this.$emit("numFound", vm.response.numFound ? vm.response.numFound : 0);
       });
     },
