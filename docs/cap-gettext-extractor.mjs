@@ -124,10 +124,11 @@ async function main (args) {
                     // build a map that actually works because
                     // SourceMapConsumer.originalPositionFor(generatedPosition) surely
                     // does not!
-                    new sourceMap.SourceMapConsumer(compiled.map).eachMapping((m) => {
+                    const consumer = await new sourceMap.SourceMapConsumer (compiled.map);
+                    consumer.eachMapping ((m) => {
                         sourceMaps[`${m.source}:${m.generatedLine}`] = `${m.source}:${m.originalLine}`;
                         // console.log(`${m.source}:${m.generatedLine} => ${m.source}:${m.originalLine}`);
-                    }, this, sourceMap.SourceMapConsumer.ORIGINAL_ORDER);
+                    });
                 }
 
                 if (descriptor.script && descriptor.script.content) {
@@ -181,4 +182,7 @@ parser.add_argument('-v', '--verbose', { action: 'store_true', help: 'Be verbose
 parser.add_argument('-o', '--output', { default: '-', help: 'Output to file (default stdout).' });
 parser.add_argument('inputs', { nargs: '+', help: 'Input files' });
 
-main (parser.parse_args());
+main (parser.parse_args()).catch ((e) => {
+    console.error (e);
+    process.exit (1);
+});

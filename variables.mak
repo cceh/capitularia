@@ -1,4 +1,4 @@
-ROOT      := $(CAPITULARIA_PRJ)
+ROOT      := $(or $(CAPITULARIA_PRJ),/var/www/html/capitularia.uni-koeln.de/repo)
 HOST_ROOT := $(CAPITULARIA_SSHUSER)@capitularia.uni-koeln.de
 
 SERVERFS := $(HOST_ROOT):/var/www/capitularia.uni-koeln.de
@@ -54,7 +54,7 @@ RSYNCPY        := $(RSYNC) --exclude "**/__pycache__"  --exclude "*.pyc" --exclu
 WP_CLI         := $(LOCALFS)/wp
 PO2JSON        := $(ROOT)/python/po2json.py
 EASYGETTEXT    := $(NODE_BIN_DIR)/gettext-extract --attribute v-translate
-JSGETTEXT      := $(NODEJS) docs/cap-gettext-extractor.mjs
+JSGETTEXT      := $(NODEJS) $(ROOT)/docs/cap-gettext-extractor.mjs
 VUEGETTEXT     := $(JSGETTEXT)
 XGETTEXT       := xgettext --default-domain=capitularia --from-code=utf-8 \
 	--copyright-holder="CCeH Cologne" --package-name=Capitularia --package-version=2.0 \
