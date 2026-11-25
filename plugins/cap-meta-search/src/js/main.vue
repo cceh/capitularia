@@ -27,9 +27,9 @@
       <div class="d-flex justify-content-between gap-2 mt-2 text-start" v-if="activeTab === 'ms'">
         <div class="info-box" style="display: flex; flex-wrap: wrap; font-size: 14px; width: 100%">
           <div class="info-icon"></div>
-          {{ $t("Treffer werden alphabetisch sortiert.") }}
+          {{ $t("Results are sorted alphabetically.") }}
           <template v-if="msFuzzySearch">
-            <br />{{ $t("Fuzzy Search ist aktiviert: auch ungenaue Treffer werden berücksichtigt.") }}
+            <br />{{ $t("Fuzzy Search is enabled: results include inexact matches.") }}
           </template>
         </div>
         <div class="form-check form-switch mt-2" style="width: fit-content">
@@ -57,7 +57,7 @@
           <span class="snippet" v-html="join_snippets(snippets)" />
         </div>
         <div v-if="expanded && expanded.docs" style="margin-top: 6px">
-          <span style="font-size: 12px">{{ $t("Weitere Treffer in diesem Manuskript") }}:</span>
+          <span style="font-size: 12px">{{ $t("More results in this manuscript") }}:</span>
           <div style="display: flex; flex-wrap: wrap">
             <span class="capit-tag" v-for="doc in expanded.docs">
               <a :href="mss_url + doc.ms_id + '#' + frag(doc)">{{ fragTxt(doc) }}</a>
